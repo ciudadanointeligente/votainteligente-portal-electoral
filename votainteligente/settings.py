@@ -154,3 +154,11 @@ LOGGING = {
         },
     }
 }
+
+EXTRA_APPS = ()
+
+try:
+    from local_settings import *
+    INSTALLED_APPS += EXTRA_APPS
+except ImportError:
+    pass

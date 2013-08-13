@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_nose',
     'south',
+    'categories',
     'elections',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
@@ -161,7 +162,7 @@ LOGGING = {
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 
-
+SOUTH_TESTS_MIGRATE = False
 EXTRA_APPS = ()
 
 try:

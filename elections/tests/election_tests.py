@@ -2,6 +2,7 @@ from django.test import TestCase
 from elections.models import Election
 from django.db import IntegrityError
 from loremipsum import get_paragraphs
+from categories.models import Category
 
 
 class ElectionTestCase(TestCase):
@@ -43,5 +44,20 @@ class ElectionTestCase(TestCase):
 			description=lorem_ipsum
 			)
 		self.assertEquals(election.description, lorem_ipsum)
+
+
+	def test_it_belongs_to_a_category(self):
+		category = Category.objects.create(name='the category')
+		election = Election.objects.create(
+			name='the name'
+			)
+		election.category = category
+
+		election.save()
+
+		self.assertEquals(election.category, category)
+
+		self.assertEquals(election, category.election)
+
 
 

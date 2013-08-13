@@ -46,15 +46,17 @@ class ElectionTestCase(TestCase):
 		self.assertEquals(election.description, lorem_ipsum)
 
 
-	def test_it_belongs_to_a_category(self):
-		category = Category.objects.create(name='the category')
+	def test_has_tags(self):
+		
 		election = Election.objects.create(
-			name='the name'
+			name='Distrito'
 			)
-		election.category = category
+		election.tags.add('providencia','valdivia')
+		tags = [tag.name for tag in election.tags.all()]
 
-		election.save()
+		self.assertIn('providencia', tags)
+		self.assertIn('valdivia', tags)
 
-		self.assertEquals(election.category, category)
 
-		self.assertEquals(election, category.election)
+
+

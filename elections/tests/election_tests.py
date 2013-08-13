@@ -58,6 +58,3 @@ class ElectionTestCase(TestCase):
 		self.assertEquals(election.category, category)
 
 		self.assertEquals(election, category.election)
-
-
-

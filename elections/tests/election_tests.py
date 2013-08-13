@@ -18,13 +18,13 @@ class ElectionTestCase(TestCase):
 		self.assertEquals(election.description, 'this is a description')
 
 	def test_there_are_no_two_elections_with_the_same_slug(self):
-		Election.objects.create(
+		election1 = Election.objects.create(
 			slug='the-slug',
 			)
-		with self.assertRaises(IntegrityError):
-			Election.objects.create(
+		election2 = Election.objects.create(
 				slug='the-slug',
 				)
+		self.assertNotEquals(election1.slug, election2.slug)
 
 
 	def test_slug_based_on_the_name(self):

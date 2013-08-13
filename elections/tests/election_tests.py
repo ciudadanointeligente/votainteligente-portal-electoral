@@ -27,3 +27,10 @@ class ElectionTestCase(TestCase):
 				)
 
 
+	def test_slug_based_on_the_name(self):
+		election = Election.objects.create(
+			name='the name'
+			)
+		self.assertEquals(election.slug, 'the-name')
+
+

@@ -1,6 +1,7 @@
 from django.test import TestCase
 from elections.models import Election
 from django.db import IntegrityError
+from loremipsum import get_paragraphs
 
 
 class ElectionTestCase(TestCase):
@@ -32,5 +33,15 @@ class ElectionTestCase(TestCase):
 			name='the name'
 			)
 		self.assertEquals(election.slug, 'the-name')
+
+
+	def test_description_is_very_long(self):
+		paragraphs = get_paragraphs(25)
+		lorem_ipsum = ', '.join(paragraphs)
+		election = Election.objects.create(
+			name='the name',
+			description=lorem_ipsum
+			)
+		self.assertEquals(election.description, lorem_ipsum)
 
 

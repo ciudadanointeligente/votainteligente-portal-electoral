@@ -1,3 +1,4 @@
+import sys
 # Django settings for votainteligente project.
 
 DEBUG = True
@@ -113,6 +114,7 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+TESTING = 'test' in sys.argv
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -123,6 +125,7 @@ INSTALLED_APPS = (
     'django_nose',
     'south',
     'taggit',
+    'haystack',
     'elections',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
@@ -160,7 +163,23 @@ LOGGING = {
 }
 #Django nose
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+if TESTING:
 
+    HAYSTACK_CONNECTIONS = {
+        'default': {
+            'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+            'URL': 'http://127.0.0.1:9200/',
+            'INDEX_NAME': 'votainteligente_test',
+        },
+    }
+else:
+    HAYSTACK_CONNECTIONS = {
+        'default': {
+            'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+            'URL': 'http://127.0.0.1:9200/',
+            'INDEX_NAME': 'votainteligente',
+        },
+    }
 
 SOUTH_TESTS_MIGRATE = False
 EXTRA_APPS = ()

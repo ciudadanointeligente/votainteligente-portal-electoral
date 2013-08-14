@@ -4,3 +4,5 @@ django-autoslug
 django-taggit
 loremipsum
 South
+pyelasticsearch
+django-haystack

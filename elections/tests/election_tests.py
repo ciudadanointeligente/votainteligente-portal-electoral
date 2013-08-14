@@ -2,7 +2,6 @@ from django.test import TestCase
 from elections.models import Election
 from django.db import IntegrityError
 from loremipsum import get_paragraphs
-from categories.models import Category
 
 
 class ElectionTestCase(TestCase):

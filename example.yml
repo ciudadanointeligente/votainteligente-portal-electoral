@@ -1,0 +1,1281 @@
+- fields: {description: '', name: "I - Tarapac\xE1", slug: i-tarapaca}
+  model: elections.election
+  pk: 1
+- fields: {description: '', name: "Distrito N\xFAmero 1", slug: distrito-numero-1}
+  model: elections.election
+  pk: 2
+- fields: {description: '', name: "Distrito N\xFAmero 2", slug: distrito-numero-2}
+  model: elections.election
+  pk: 3
+- fields: {description: '', name: II - Antofagasta, slug: ii-antofagasta}
+  model: elections.election
+  pk: 4
+- fields: {description: '', name: "Distrito N\xFAmero 3", slug: distrito-numero-3}
+  model: elections.election
+  pk: 5
+- fields: {description: '', name: "Distrito N\xFAmero 4", slug: distrito-numero-4}
+  model: elections.election
+  pk: 6
+- fields: {description: '', name: III - Atacama, slug: iii-atacama}
+  model: elections.election
+  pk: 7
+- fields: {description: '', name: "Distrito N\xFAmero 5", slug: distrito-numero-5}
+  model: elections.election
+  pk: 8
+- fields: {description: '', name: "Distrito N\xFAmero 6", slug: distrito-numero-6}
+  model: elections.election
+  pk: 9
+- fields: {description: '', name: IV - Coquimbo, slug: iv-coquimbo}
+  model: elections.election
+  pk: 10
+- fields: {description: '', name: "Distrito N\xFAmero 7", slug: distrito-numero-7}
+  model: elections.election
+  pk: 11
+- fields: {description: '', name: "Distrito N\xFAmero 8", slug: distrito-numero-8}
+  model: elections.election
+  pk: 12
+- fields: {description: '', name: "Distrito N\xFAmero 9", slug: distrito-numero-9}
+  model: elections.election
+  pk: 13
+- fields: {description: '', name: IX - O'Higgins, slug: ix-ohiggins}
+  model: elections.election
+  pk: 14
+- fields: {description: '', name: "Distrito N\xFAmero 32", slug: distrito-numero-32}
+  model: elections.election
+  pk: 15
+- fields: {description: '', name: "Distrito N\xFAmero 33", slug: distrito-numero-33}
+  model: elections.election
+  pk: 16
+- fields: {description: '', name: "Distrito N\xFAmero 34", slug: distrito-numero-34}
+  model: elections.election
+  pk: 17
+- fields: {description: '', name: "Distrito N\xFAmero 35", slug: distrito-numero-35}
+  model: elections.election
+  pk: 18
+- fields: {description: '', name: "V - Valpara\xEDso Cordillera", slug: v-valparaiso-cordillera}
+  model: elections.election
+  pk: 19
+- fields: {description: '', name: "Distrito N\xFAmero 10", slug: distrito-numero-10}
+  model: elections.election
+  pk: 20
+- fields: {description: '', name: "Distrito N\xFAmero 11", slug: distrito-numero-11}
+  model: elections.election
+  pk: 21
+- fields: {description: '', name: "Distrito N\xFAmero 12", slug: distrito-numero-12}
+  model: elections.election
+  pk: 22
+- fields: {description: '', name: "VI - Valpara\xEDso Costa", slug: vi-valparaiso-costa}
+  model: elections.election
+  pk: 23
+- fields: {description: '', name: "Distrito N\xFAmero 13", slug: distrito-numero-13}
+  model: elections.election
+  pk: 24
+- fields: {description: '', name: "Distrito N\xFAmero 14", slug: distrito-numero-14}
+  model: elections.election
+  pk: 25
+- fields: {description: '', name: "Distrito N\xFAmero 15", slug: distrito-numero-15}
+  model: elections.election
+  pk: 26
+- fields: {description: '', name: VII - Santiago Poniente, slug: vii-santiago-poniente}
+  model: elections.election
+  pk: 27
+- fields: {description: '', name: "Distrito N\xFAmero 16", slug: distrito-numero-16}
+  model: elections.election
+  pk: 28
+- fields: {description: '', name: "Distrito N\xFAmero 17", slug: distrito-numero-17}
+  model: elections.election
+  pk: 29
+- fields: {description: '', name: "Distrito N\xFAmero 18", slug: distrito-numero-18}
+  model: elections.election
+  pk: 30
+- fields: {description: '', name: "Distrito N\xFAmero 19", slug: distrito-numero-19}
+  model: elections.election
+  pk: 31
+- fields: {description: '', name: "Distrito N\xFAmero 20", slug: distrito-numero-20}
+  model: elections.election
+  pk: 32
+- fields: {description: '', name: "Distrito N\xFAmero 22", slug: distrito-numero-22}
+  model: elections.election
+  pk: 33
+- fields: {description: '', name: "Distrito N\xFAmero 30", slug: distrito-numero-30}
+  model: elections.election
+  pk: 34
+- fields: {description: '', name: "Distrito N\xFAmero 31", slug: distrito-numero-31}
+  model: elections.election
+  pk: 35
+- fields: {description: '', name: VIII - Santiago Oriente, slug: viii-santiago-oriente}
+  model: elections.election
+  pk: 36
+- fields: {description: '', name: "Distrito N\xFAmero 21", slug: distrito-numero-21}
+  model: elections.election
+  pk: 37
+- fields: {description: '', name: "Distrito N\xFAmero 23", slug: distrito-numero-23}
+  model: elections.election
+  pk: 38
+- fields: {description: '', name: "Distrito N\xFAmero 24", slug: distrito-numero-24}
+  model: elections.election
+  pk: 39
+- fields: {description: '', name: "Distrito N\xFAmero 25", slug: distrito-numero-25}
+  model: elections.election
+  pk: 40
+- fields: {description: '', name: "Distrito N\xFAmero 26", slug: distrito-numero-26}
+  model: elections.election
+  pk: 41
+- fields: {description: '', name: "Distrito N\xFAmero 27", slug: distrito-numero-27}
+  model: elections.election
+  pk: 42
+- fields: {description: '', name: "Distrito N\xFAmero 28", slug: distrito-numero-28}
+  model: elections.election
+  pk: 43
+- fields: {description: '', name: "Distrito N\xFAmero 29", slug: distrito-numero-29}
+  model: elections.election
+  pk: 44
+- fields: {description: '', name: X - Maule Norte, slug: x-maule-norte}
+  model: elections.election
+  pk: 45
+- fields: {description: '', name: "Distrito N\xFAmero 36", slug: distrito-numero-36}
+  model: elections.election
+  pk: 46
+- fields: {description: '', name: "Distrito N\xFAmero 37", slug: distrito-numero-37}
+  model: elections.election
+  pk: 47
+- fields: {description: '', name: "Distrito N\xFAmero 38", slug: distrito-numero-38}
+  model: elections.election
+  pk: 48
+- fields: {description: '', name: XI - Maule Sur, slug: xi-maule-sur}
+  model: elections.election
+  pk: 49
+- fields: {description: '', name: "Distrito N\xFAmero 39", slug: distrito-numero-39}
+  model: elections.election
+  pk: 50
+- fields: {description: '', name: "Distrito N\xFAmero 40", slug: distrito-numero-40}
+  model: elections.election
+  pk: 51
+- fields: {description: '', name: "XII - Biob\xEDo Costa", slug: xii-biobio-costa}
+  model: elections.election
+  pk: 52
+- fields: {description: '', name: "Distrito N\xFAmero 42", slug: distrito-numero-42}
+  model: elections.election
+  pk: 53
+- fields: {description: '', name: "Distrito N\xFAmero 43", slug: distrito-numero-43}
+  model: elections.election
+  pk: 54
+- fields: {description: '', name: "Distrito N\xFAmero 44", slug: distrito-numero-44}
+  model: elections.election
+  pk: 55
+- fields: {description: '', name: "Distrito N\xFAmero 45", slug: distrito-numero-45}
+  model: elections.election
+  pk: 56
+- fields: {description: '', name: "XIII - Biob\xEDo Cordillera", slug: xiii-biobio-cordillera}
+  model: elections.election
+  pk: 57
+- fields: {description: '', name: "Distrito N\xFAmero 41", slug: distrito-numero-41}
+  model: elections.election
+  pk: 58
+- fields: {description: '', name: "Distrito N\xFAmero 46", slug: distrito-numero-46}
+  model: elections.election
+  pk: 59
+- fields: {description: '', name: "Distrito N\xFAmero 47", slug: distrito-numero-47}
+  model: elections.election
+  pk: 60
+- fields: {description: '', name: "XIV - Araucan\xEDa Norte", slug: xiv-araucania-norte}
+  model: elections.election
+  pk: 61
+- fields: {description: '', name: "Distrito N\xFAmero 48", slug: distrito-numero-48}
+  model: elections.election
+  pk: 62
+- fields: {description: '', name: "Distrito N\xFAmero 49", slug: distrito-numero-49}
+  model: elections.election
+  pk: 63
+- fields: {description: '', name: XIX - Magallanes, slug: xix-magallanes}
+  model: elections.election
+  pk: 64
+- fields: {description: '', name: "Distrito N\xFAmero 60", slug: distrito-numero-60}
+  model: elections.election
+  pk: 65
+- fields: {description: '', name: "XV - Araucan\xEDa Sur", slug: xv-araucania-sur}
+  model: elections.election
+  pk: 66
+- fields: {description: '', name: "Distrito N\xFAmero 50", slug: distrito-numero-50}
+  model: elections.election
+  pk: 67
+- fields: {description: '', name: "Distrito N\xFAmero 51", slug: distrito-numero-51}
+  model: elections.election
+  pk: 68
+- fields: {description: '', name: "Distrito N\xFAmero 52", slug: distrito-numero-52}
+  model: elections.election
+  pk: 69
+- fields: {description: '', name: "XVI - Los R\xEDos", slug: xvi-los-rios}
+  model: elections.election
+  pk: 70
+- fields: {description: '', name: "Distrito N\xFAmero 53", slug: distrito-numero-53}
+  model: elections.election
+  pk: 71
+- fields: {description: '', name: "Distrito N\xFAmero 54", slug: distrito-numero-54}
+  model: elections.election
+  pk: 72
+- fields: {description: '', name: XVII - Los Lagos, slug: xvii-los-lagos}
+  model: elections.election
+  pk: 73
+- fields: {description: '', name: "Distrito N\xFAmero 55", slug: distrito-numero-55}
+  model: elections.election
+  pk: 74
+- fields: {description: '', name: "Distrito N\xFAmero 56", slug: distrito-numero-56}
+  model: elections.election
+  pk: 75
+- fields: {description: '', name: "Distrito N\xFAmero 57", slug: distrito-numero-57}
+  model: elections.election
+  pk: 76
+- fields: {description: '', name: "Distrito N\xFAmero 58", slug: distrito-numero-58}
+  model: elections.election
+  pk: 77
+- fields: {description: '', name: "XVIII - Ays\xE9n", slug: xviii-aysen}
+  model: elections.election
+  pk: 78
+- fields: {description: '', name: "Distrito N\xFAmero 59", slug: distrito-numero-59}
+  model: elections.election
+  pk: 79
+- fields: {name: senadores, slug: senadores}
+  model: taggit.tag
+  pk: 1
+- fields: {name: diputados, slug: diputados}
+  model: taggit.tag
+  pk: 2
+- fields: {name: Arica, slug: arica}
+  model: taggit.tag
+  pk: 3
+- fields: {name: Camarones, slug: camarones}
+  model: taggit.tag
+  pk: 4
+- fields: {name: General Lagos, slug: general-lagos}
+  model: taggit.tag
+  pk: 5
+- fields: {name: Putre, slug: putre}
+  model: taggit.tag
+  pk: 6
+- fields: {name: Alto Hospicio, slug: alto-hospicio}
+  model: taggit.tag
+  pk: 7
+- fields: {name: "Cami\xF1a", slug: camina}
+  model: taggit.tag
+  pk: 8
+- fields: {name: Colchane, slug: colchane}
+  model: taggit.tag
+  pk: 9
+- fields: {name: Huara, slug: huara}
+  model: taggit.tag
+  pk: 10
+- fields: {name: Iquique, slug: iquique}
+  model: taggit.tag
+  pk: 11
+- fields: {name: Pica, slug: pica}
+  model: taggit.tag
+  pk: 12
+- fields: {name: Pozo Almonte, slug: pozo-almonte}
+  model: taggit.tag
+  pk: 13
+- fields: {name: Calama, slug: calama}
+  model: taggit.tag
+  pk: 14
+- fields: {name: "Mar\xEDa Elena", slug: maria-elena}
+  model: taggit.tag
+  pk: 15
+- fields: {name: "Ollag\xFCe", slug: ollague}
+  model: taggit.tag
+  pk: 16
+- fields: {name: San Pedro de Atacama, slug: san-pedro-de-atacama}
+  model: taggit.tag
+  pk: 17
+- fields: {name: Tocopilla, slug: tocopilla}
+  model: taggit.tag
+  pk: 18
+- fields: {name: Antofagasta, slug: antofagasta}
+  model: taggit.tag
+  pk: 19
+- fields: {name: Mejillones, slug: mejillones}
+  model: taggit.tag
+  pk: 20
+- fields: {name: Sierra Gorda, slug: sierra-gorda}
+  model: taggit.tag
+  pk: 21
+- fields: {name: Taltal, slug: taltal}
+  model: taggit.tag
+  pk: 22
+- fields: {name: "Cha\xF1aral", slug: chanaral}
+  model: taggit.tag
+  pk: 23
+- fields: {name: "Copiap\xF3", slug: copiapo}
+  model: taggit.tag
+  pk: 24
+- fields: {name: Diego de Almagro, slug: diego-de-almagro}
+  model: taggit.tag
+  pk: 25
+- fields: {name: Alto del Carmen, slug: alto-del-carmen}
+  model: taggit.tag
+  pk: 26
+- fields: {name: Caldera, slug: caldera}
+  model: taggit.tag
+  pk: 27
+- fields: {name: Freirina, slug: freirina}
+  model: taggit.tag
+  pk: 28
+- fields: {name: Huasco, slug: huasco}
+  model: taggit.tag
+  pk: 29
+- fields: {name: Tierra Amarilla, slug: tierra-amarilla}
+  model: taggit.tag
+  pk: 30
+- fields: {name: Vallenar, slug: vallenar}
+  model: taggit.tag
+  pk: 31
+- fields: {name: Andacollo, slug: andacollo}
+  model: taggit.tag
+  pk: 32
+- fields: {name: La Higuera, slug: la-higuera}
+  model: taggit.tag
+  pk: 33
+- fields: {name: La Serena, slug: la-serena}
+  model: taggit.tag
+  pk: 34
+- fields: {name: Paihuano, slug: paihuano}
+  model: taggit.tag
+  pk: 35
+- fields: {name: "Vicu\xF1a", slug: vicuna}
+  model: taggit.tag
+  pk: 36
+- fields: {name: Coquimbo, slug: coquimbo}
+  model: taggit.tag
+  pk: 37
+- fields: {name: Ovalle, slug: ovalle}
+  model: taggit.tag
+  pk: 38
+- fields: {name: "R\xEDo Hurtado", slug: rio-hurtado}
+  model: taggit.tag
+  pk: 39
+- fields: {name: Canela, slug: canela}
+  model: taggit.tag
+  pk: 40
+- fields: {name: "Combarbal\xE1", slug: combarbala}
+  model: taggit.tag
+  pk: 41
+- fields: {name: Illapel, slug: illapel}
+  model: taggit.tag
+  pk: 42
+- fields: {name: Los Vilos, slug: los-vilos}
+  model: taggit.tag
+  pk: 43
+- fields: {name: Monte Patria, slug: monte-patria}
+  model: taggit.tag
+  pk: 44
+- fields: {name: Punitaqui, slug: punitaqui}
+  model: taggit.tag
+  pk: 45
+- fields: {name: Salamanca, slug: salamanca}
+  model: taggit.tag
+  pk: 46
+- fields: {name: Rancagua, slug: rancagua}
+  model: taggit.tag
+  pk: 47
+- fields: {name: Codegua, slug: codegua}
+  model: taggit.tag
+  pk: 48
+- fields: {name: Coltauco, slug: coltauco}
+  model: taggit.tag
+  pk: 49
+- fields: {name: "Co\xEDnco", slug: coinco}
+  model: taggit.tag
+  pk: 50
+- fields: {name: "Do\xF1ihue", slug: donihue}
+  model: taggit.tag
+  pk: 51
+- fields: {name: Graneros, slug: graneros}
+  model: taggit.tag
+  pk: 52
+- fields: {name: "Machal\xED", slug: machali}
+  model: taggit.tag
+  pk: 53
+- fields: {name: Malloa, slug: malloa}
+  model: taggit.tag
+  pk: 54
+- fields: {name: Mostazal, slug: mostazal}
+  model: taggit.tag
+  pk: 55
+- fields: {name: Olivar, slug: olivar}
+  model: taggit.tag
+  pk: 56
+- fields: {name: Quinta de Tilcoco, slug: quinta-de-tilcoco}
+  model: taggit.tag
+  pk: 57
+- fields: {name: Rengo, slug: rengo}
+  model: taggit.tag
+  pk: 58
+- fields: {name: "Requ\xEDnoa", slug: requinoa}
+  model: taggit.tag
+  pk: 59
+- fields: {name: Chimbarongo, slug: chimbarongo}
+  model: taggit.tag
+  pk: 60
+- fields: {name: Las Cabras, slug: las-cabras}
+  model: taggit.tag
+  pk: 61
+- fields: {name: Peumo, slug: peumo}
+  model: taggit.tag
+  pk: 62
+- fields: {name: Pichidegua, slug: pichidegua}
+  model: taggit.tag
+  pk: 63
+- fields: {name: San Fernando, slug: san-fernando}
+  model: taggit.tag
+  pk: 64
+- fields: {name: San Vicente, slug: san-vicente}
+  model: taggit.tag
+  pk: 65
+- fields: {name: "Ch\xE9pica", slug: chepica}
+  model: taggit.tag
+  pk: 66
+- fields: {name: La Estrella, slug: la-estrella}
+  model: taggit.tag
+  pk: 67
+- fields: {name: Litueche, slug: litueche}
+  model: taggit.tag
+  pk: 68
+- fields: {name: Lolol, slug: lolol}
+  model: taggit.tag
+  pk: 69
+- fields: {name: Marchihue, slug: marchihue}
+  model: taggit.tag
+  pk: 70
+- fields: {name: Nancagua, slug: nancagua}
+  model: taggit.tag
+  pk: 71
+- fields: {name: Navidad, slug: navidad}
+  model: taggit.tag
+  pk: 72
+- fields: {name: Palmilla, slug: palmilla}
+  model: taggit.tag
+  pk: 73
+- fields: {name: Paredones, slug: paredones}
+  model: taggit.tag
+  pk: 74
+- fields: {name: Peralillo, slug: peralillo}
+  model: taggit.tag
+  pk: 75
+- fields: {name: Pichilemu, slug: pichilemu}
+  model: taggit.tag
+  pk: 76
+- fields: {name: Placilla, slug: placilla}
+  model: taggit.tag
+  pk: 77
+- fields: {name: Pumanque, slug: pumanque}
+  model: taggit.tag
+  pk: 78
+- fields: {name: Santa Cruz, slug: santa-cruz}
+  model: taggit.tag
+  pk: 79
+- fields: {name: Cabildo, slug: cabildo}
+  model: taggit.tag
+  pk: 80
+- fields: {name: Hijuelas, slug: hijuelas}
+  model: taggit.tag
+  pk: 81
+- fields: {name: La Calera, slug: la-calera}
+  model: taggit.tag
+  pk: 82
+- fields: {name: La Cruz, slug: la-cruz}
+  model: taggit.tag
+  pk: 83
+- fields: {name: La Ligua, slug: la-ligua}
+  model: taggit.tag
+  pk: 84
+- fields: {name: Nogales, slug: nogales}
+  model: taggit.tag
+  pk: 85
+- fields: {name: Papudo, slug: papudo}
+  model: taggit.tag
+  pk: 86
+- fields: {name: Petorca, slug: petorca}
+  model: taggit.tag
+  pk: 87
+- fields: {name: "Puchuncav\xED", slug: puchuncavi}
+  model: taggit.tag
+  pk: 88
+- fields: {name: Quillota, slug: quillota}
+  model: taggit.tag
+  pk: 89
+- fields: {name: Quintero, slug: quintero}
+  model: taggit.tag
+  pk: 90
+- fields: {name: Zapallar, slug: zapallar}
+  model: taggit.tag
+  pk: 91
+- fields: {name: Calle Larga, slug: calle-larga}
+  model: taggit.tag
+  pk: 92
+- fields: {name: Catemu, slug: catemu}
+  model: taggit.tag
+  pk: 93
+- fields: {name: Llaillay, slug: llaillay}
+  model: taggit.tag
+  pk: 94
+- fields: {name: Los Andes, slug: los-andes}
+  model: taggit.tag
+  pk: 95
+- fields: {name: Panquehue, slug: panquehue}
+  model: taggit.tag
+  pk: 96
+- fields: {name: Putaendo, slug: putaendo}
+  model: taggit.tag
+  pk: 97
+- fields: {name: Rinconada, slug: rinconada}
+  model: taggit.tag
+  pk: 98
+- fields: {name: San Esteban, slug: san-esteban}
+  model: taggit.tag
+  pk: 99
+- fields: {name: San Felipe, slug: san-felipe}
+  model: taggit.tag
+  pk: 100
+- fields: {name: "Santa Mar\xEDa", slug: santa-maria}
+  model: taggit.tag
+  pk: 101
+- fields: {name: Limache, slug: limache}
+  model: taggit.tag
+  pk: 102
+- fields: {name: "Olmu\xE9", slug: olmue}
+  model: taggit.tag
+  pk: 103
+- fields: {name: "Quilpu\xE9", slug: quilpue}
+  model: taggit.tag
+  pk: 104
+- fields: {name: Villa Alemana, slug: villa-alemana}
+  model: taggit.tag
+  pk: 105
+- fields: {name: Isla de Pascua, slug: isla-de-pascua}
+  model: taggit.tag
+  pk: 106
+- fields: {name: "Juan Fern\xE1ndez", slug: juan-fernandez}
+  model: taggit.tag
+  pk: 107
+- fields: {name: "Valpara\xEDso", slug: valparaiso}
+  model: taggit.tag
+  pk: 108
+- fields: {name: "Conc\xF3n", slug: concon}
+  model: taggit.tag
+  pk: 109
+- fields: {name: "Vi\xF1a del Mar", slug: vina-del-mar}
+  model: taggit.tag
+  pk: 110
+- fields: {name: Algarrobo, slug: algarrobo}
+  model: taggit.tag
+  pk: 111
+- fields: {name: Cartagena, slug: cartagena}
+  model: taggit.tag
+  pk: 112
+- fields: {name: Casablanca, slug: casablanca}
+  model: taggit.tag
+  pk: 113
+- fields: {name: El Quisco, slug: el-quisco}
+  model: taggit.tag
+  pk: 114
+- fields: {name: El Tabo, slug: el-tabo}
+  model: taggit.tag
+  pk: 115
+- fields: {name: San Antonio, slug: san-antonio}
+  model: taggit.tag
+  pk: 116
+- fields: {name: Santo Domingo, slug: santo-domingo}
+  model: taggit.tag
+  pk: 117
+- fields: {name: Colina, slug: colina}
+  model: taggit.tag
+  pk: 118
+- fields: {name: Lampa, slug: lampa}
+  model: taggit.tag
+  pk: 119
+- fields: {name: Pudahuel, slug: pudahuel}
+  model: taggit.tag
+  pk: 120
+- fields: {name: Quilicura, slug: quilicura}
+  model: taggit.tag
+  pk: 121
+- fields: {name: Tiltil, slug: tiltil}
+  model: taggit.tag
+  pk: 122
+- fields: {name: "Conchal\xED", slug: conchali}
+  model: taggit.tag
+  pk: 123
+- fields: {name: Huechuraba, slug: huechuraba}
+  model: taggit.tag
+  pk: 124
+- fields: {name: Renca, slug: renca}
+  model: taggit.tag
+  pk: 125
+- fields: {name: Cerro Navia, slug: cerro-navia}
+  model: taggit.tag
+  pk: 126
+- fields: {name: Lo Prado, slug: lo-prado}
+  model: taggit.tag
+  pk: 127
+- fields: {name: Quinta Normal, slug: quinta-normal}
+  model: taggit.tag
+  pk: 128
+- fields: {name: Independencia, slug: independencia}
+  model: taggit.tag
+  pk: 129
+- fields: {name: Recoleta, slug: recoleta}
+  model: taggit.tag
+  pk: 130
+- fields: {name: Cerrillos, slug: cerrillos}
+  model: taggit.tag
+  pk: 131
+- fields: {name: "Estaci\xF3n Central", slug: estacion-central}
+  model: taggit.tag
+  pk: 132
+- fields: {name: "Maip\xFA", slug: maipu}
+  model: taggit.tag
+  pk: 133
+- fields: {name: Santiago, slug: santiago}
+  model: taggit.tag
+  pk: 134
+- fields: {name: Buin, slug: buin}
+  model: taggit.tag
+  pk: 135
+- fields: {name: Calera de Tango, slug: calera-de-tango}
+  model: taggit.tag
+  pk: 136
+- fields: {name: Paine, slug: paine}
+  model: taggit.tag
+  pk: 137
+- fields: {name: San Bernardo, slug: san-bernardo}
+  model: taggit.tag
+  pk: 138
+- fields: {name: "Alhu\xE9", slug: alhue}
+  model: taggit.tag
+  pk: 139
+- fields: {name: "Curacav\xED", slug: curacavi}
+  model: taggit.tag
+  pk: 140
+- fields: {name: El Monte, slug: el-monte}
+  model: taggit.tag
+  pk: 141
+- fields: {name: Isla de Maipo, slug: isla-de-maipo}
+  model: taggit.tag
+  pk: 142
+- fields: {name: "Mar\xEDa Pinto", slug: maria-pinto}
+  model: taggit.tag
+  pk: 143
+- fields: {name: Melipilla, slug: melipilla}
+  model: taggit.tag
+  pk: 144
+- fields: {name: Padre Hurtado, slug: padre-hurtado}
+  model: taggit.tag
+  pk: 145
+- fields: {name: "Pe\xF1aflor", slug: penaflor}
+  model: taggit.tag
+  pk: 146
+- fields: {name: San Pedro, slug: san-pedro}
+  model: taggit.tag
+  pk: 147
+- fields: {name: Talagante, slug: talagante}
+  model: taggit.tag
+  pk: 148
+- fields: {name: Providencia, slug: providencia}
+  model: taggit.tag
+  pk: 149
+- fields: {name: "\xD1u\xF1oa", slug: nunoa}
+  model: taggit.tag
+  pk: 150
+- fields: {name: Las Condes, slug: las-condes}
+  model: taggit.tag
+  pk: 151
+- fields: {name: Lo Barnechea, slug: lo-barnechea}
+  model: taggit.tag
+  pk: 152
+- fields: {name: Vitacura, slug: vitacura}
+  model: taggit.tag
+  pk: 153
+- fields: {name: La Reina, slug: la-reina}
+  model: taggit.tag
+  pk: 154
+- fields: {name: "Pe\xF1alol\xE9n", slug: penalolen}
+  model: taggit.tag
+  pk: 155
+- fields: {name: La Granja, slug: la-granja}
+  model: taggit.tag
+  pk: 156
+- fields: {name: Macul, slug: macul}
+  model: taggit.tag
+  pk: 157
+- fields: {name: "San Joaqu\xEDn", slug: san-joaquin}
+  model: taggit.tag
+  pk: 158
+- fields: {name: La Florida, slug: la-florida}
+  model: taggit.tag
+  pk: 159
+- fields: {name: El Bosque, slug: el-bosque}
+  model: taggit.tag
+  pk: 160
+- fields: {name: La Cisterna, slug: la-cisterna}
+  model: taggit.tag
+  pk: 161
+- fields: {name: "San Ram\xF3n", slug: san-ramon}
+  model: taggit.tag
+  pk: 162
+- fields: {name: Lo Espejo, slug: lo-espejo}
+  model: taggit.tag
+  pk: 163
+- fields: {name: Pedro Aguirre Cerda, slug: pedro-aguirre-cerda}
+  model: taggit.tag
+  pk: 164
+- fields: {name: San Miguel, slug: san-miguel}
+  model: taggit.tag
+  pk: 165
+- fields: {name: La Pintana, slug: la-pintana}
+  model: taggit.tag
+  pk: 166
+- fields: {name: Pirque, slug: pirque}
+  model: taggit.tag
+  pk: 167
+- fields: {name: Puente Alto, slug: puente-alto}
+  model: taggit.tag
+  pk: 168
+- fields: {name: "San Jos\xE9 de Maipo", slug: san-jose-de-maipo}
+  model: taggit.tag
+  pk: 169
+- fields: {name: "Curic\xF3", slug: curico}
+  model: taggit.tag
+  pk: 170
+- fields: {name: "Huala\xF1\xE9", slug: hualane}
+  model: taggit.tag
+  pk: 171
+- fields: {name: "Licant\xE9n", slug: licanten}
+  model: taggit.tag
+  pk: 172
+- fields: {name: Molina, slug: molina}
+  model: taggit.tag
+  pk: 173
+- fields: {name: Rauco, slug: rauco}
+  model: taggit.tag
+  pk: 174
+- fields: {name: Romeral, slug: romeral}
+  model: taggit.tag
+  pk: 175
+- fields: {name: Sagrada Familia, slug: sagrada-familia}
+  model: taggit.tag
+  pk: 176
+- fields: {name: Teno, slug: teno}
+  model: taggit.tag
+  pk: 177
+- fields: {name: "Vichuqu\xE9n", slug: vichuquen}
+  model: taggit.tag
+  pk: 178
+- fields: {name: Talca, slug: talca}
+  model: taggit.tag
+  pk: 179
+- fields: {name: "Constituci\xF3n", slug: constitucion}
+  model: taggit.tag
+  pk: 180
+- fields: {name: Curepto, slug: curepto}
+  model: taggit.tag
+  pk: 181
+- fields: {name: Empedrado, slug: empedrado}
+  model: taggit.tag
+  pk: 182
+- fields: {name: Maule, slug: maule}
+  model: taggit.tag
+  pk: 183
+- fields: {name: Pelarco, slug: pelarco}
+  model: taggit.tag
+  pk: 184
+- fields: {name: Pencahue, slug: pencahue}
+  model: taggit.tag
+  pk: 185
+- fields: {name: "R\xEDo Claro", slug: rio-claro}
+  model: taggit.tag
+  pk: 186
+- fields: {name: San Clemente, slug: san-clemente}
+  model: taggit.tag
+  pk: 187
+- fields: {name: San Rafael, slug: san-rafael}
+  model: taggit.tag
+  pk: 188
+- fields: {name: "Colb\xFAn", slug: colbun}
+  model: taggit.tag
+  pk: 189
+- fields: {name: Linares, slug: linares}
+  model: taggit.tag
+  pk: 190
+- fields: {name: San Javier, slug: san-javier}
+  model: taggit.tag
+  pk: 191
+- fields: {name: Villa Alegre, slug: villa-alegre}
+  model: taggit.tag
+  pk: 192
+- fields: {name: Yerbas Buenas, slug: yerbas-buenas}
+  model: taggit.tag
+  pk: 193
+- fields: {name: Cauquenes, slug: cauquenes}
+  model: taggit.tag
+  pk: 194
+- fields: {name: Chanco, slug: chanco}
+  model: taggit.tag
+  pk: 195
+- fields: {name: "Longav\xED", slug: longavi}
+  model: taggit.tag
+  pk: 196
+- fields: {name: Parral, slug: parral}
+  model: taggit.tag
+  pk: 197
+- fields: {name: Pelluhue, slug: pelluhue}
+  model: taggit.tag
+  pk: 198
+- fields: {name: Retiro, slug: retiro}
+  model: taggit.tag
+  pk: 199
+- fields: {name: Bulnes, slug: bulnes}
+  model: taggit.tag
+  pk: 200
+- fields: {name: Cabrero, slug: cabrero}
+  model: taggit.tag
+  pk: 201
+- fields: {name: Cobquecura, slug: cobquecura}
+  model: taggit.tag
+  pk: 202
+- fields: {name: Coelemu, slug: coelemu}
+  model: taggit.tag
+  pk: 203
+- fields: {name: Ninhue, slug: ninhue}
+  model: taggit.tag
+  pk: 204
+- fields: {name: Portezuelo, slug: portezuelo}
+  model: taggit.tag
+  pk: 205
+- fields: {name: "Quill\xF3n", slug: quillon}
+  model: taggit.tag
+  pk: 206
+- fields: {name: Quirihue, slug: quirihue}
+  model: taggit.tag
+  pk: 207
+- fields: {name: "R\xE1nquil", slug: ranquil}
+  model: taggit.tag
+  pk: 208
+- fields: {name: San Carlos, slug: san-carlos}
+  model: taggit.tag
+  pk: 209
+- fields: {name: "San Fabi\xE1n", slug: san-fabian}
+  model: taggit.tag
+  pk: 210
+- fields: {name: "San Nicol\xE1s", slug: san-nicolas}
+  model: taggit.tag
+  pk: 211
+- fields: {name: Treguaco, slug: treguaco}
+  model: taggit.tag
+  pk: 212
+- fields: {name: Yumbel, slug: yumbel}
+  model: taggit.tag
+  pk: 213
+- fields: {name: "\xD1iqu\xE9n", slug: niquen}
+  model: taggit.tag
+  pk: 214
+- fields: {name: "Hualp\xE9n", slug: hualpen}
+  model: taggit.tag
+  pk: 215
+- fields: {name: Talcahuano, slug: talcahuano}
+  model: taggit.tag
+  pk: 216
+- fields: {name: Chiguayante, slug: chiguayante}
+  model: taggit.tag
+  pk: 217
+- fields: {name: "Concepci\xF3n", slug: concepcion}
+  model: taggit.tag
+  pk: 218
+- fields: {name: San Pedro de la Paz, slug: san-pedro-de-la-paz}
+  model: taggit.tag
+  pk: 219
+- fields: {name: Coronel, slug: coronel}
+  model: taggit.tag
+  pk: 220
+- fields: {name: Florida, slug: florida}
+  model: taggit.tag
+  pk: 221
+- fields: {name: Hualqui, slug: hualqui}
+  model: taggit.tag
+  pk: 222
+- fields: {name: Penco, slug: penco}
+  model: taggit.tag
+  pk: 223
+- fields: {name: Santa Juana, slug: santa-juana}
+  model: taggit.tag
+  pk: 224
+- fields: {name: "Tom\xE9", slug: tome}
+  model: taggit.tag
+  pk: 225
+- fields: {name: "Chill\xE1n", slug: chillan}
+  model: taggit.tag
+  pk: 226
+- fields: {name: "Chill\xE1n Viejo", slug: chillan-viejo}
+  model: taggit.tag
+  pk: 227
+- fields: {name: Coihueco, slug: coihueco}
+  model: taggit.tag
+  pk: 228
+- fields: {name: El Carmen, slug: el-carmen}
+  model: taggit.tag
+  pk: 229
+- fields: {name: Pemuco, slug: pemuco}
+  model: taggit.tag
+  pk: 230
+- fields: {name: Pinto, slug: pinto}
+  model: taggit.tag
+  pk: 231
+- fields: {name: San Ignacio, slug: san-ignacio}
+  model: taggit.tag
+  pk: 232
+- fields: {name: Yungay, slug: yungay}
+  model: taggit.tag
+  pk: 233
+- fields: {name: Arauco, slug: arauco}
+  model: taggit.tag
+  pk: 234
+- fields: {name: "Ca\xF1ete", slug: canete}
+  model: taggit.tag
+  pk: 235
+- fields: {name: Contulmo, slug: contulmo}
+  model: taggit.tag
+  pk: 236
+- fields: {name: Curanilahue, slug: curanilahue}
+  model: taggit.tag
+  pk: 237
+- fields: {name: Lebu, slug: lebu}
+  model: taggit.tag
+  pk: 238
+- fields: {name: "Los \xC1lamos", slug: los-alamos}
+  model: taggit.tag
+  pk: 239
+- fields: {name: Lota, slug: lota}
+  model: taggit.tag
+  pk: 240
+- fields: {name: "Tir\xFAa", slug: tirua}
+  model: taggit.tag
+  pk: 241
+- fields: {name: "Alto Biob\xEDo", slug: alto-biobio}
+  model: taggit.tag
+  pk: 242
+- fields: {name: Antuco, slug: antuco}
+  model: taggit.tag
+  pk: 243
+- fields: {name: Laja, slug: laja}
+  model: taggit.tag
+  pk: 244
+- fields: {name: "Los \xC1ngeles", slug: los-angeles}
+  model: taggit.tag
+  pk: 245
+- fields: {name: "Mulch\xE9n", slug: mulchen}
+  model: taggit.tag
+  pk: 246
+- fields: {name: Nacimiento, slug: nacimiento}
+  model: taggit.tag
+  pk: 247
+- fields: {name: Negrete, slug: negrete}
+  model: taggit.tag
+  pk: 248
+- fields: {name: Quilaco, slug: quilaco}
+  model: taggit.tag
+  pk: 249
+- fields: {name: Quilleco, slug: quilleco}
+  model: taggit.tag
+  pk: 250
+- fields: {name: San Rosendo, slug: san-rosendo}
+  model: taggit.tag
+  pk: 251
+- fields: {name: "Santa B\xE1rbara", slug: santa-barbara}
+  model: taggit.tag
+  pk: 252
+- fields: {name: Tucapel, slug: tucapel}
+  model: taggit.tag
+  pk: 253
+- fields: {name: Angol, slug: angol}
+  model: taggit.tag
+  pk: 254
+- fields: {name: Collipulli, slug: collipulli}
+  model: taggit.tag
+  pk: 255
+- fields: {name: Ercilla, slug: ercilla}
+  model: taggit.tag
+  pk: 256
+- fields: {name: Los Sauces, slug: los-sauces}
+  model: taggit.tag
+  pk: 257
+- fields: {name: Lumaco, slug: lumaco}
+  model: taggit.tag
+  pk: 258
+- fields: {name: "Pur\xE9n", slug: puren}
+  model: taggit.tag
+  pk: 259
+- fields: {name: Renaico, slug: renaico}
+  model: taggit.tag
+  pk: 260
+- fields: {name: "Traigu\xE9n", slug: traiguen}
+  model: taggit.tag
+  pk: 261
+- fields: {name: "Curacaut\xEDn", slug: curacautin}
+  model: taggit.tag
+  pk: 262
+- fields: {name: Galvarino, slug: galvarino}
+  model: taggit.tag
+  pk: 263
+- fields: {name: Lautaro, slug: lautaro}
+  model: taggit.tag
+  pk: 264
+- fields: {name: Lonquimay, slug: lonquimay}
+  model: taggit.tag
+  pk: 265
+- fields: {name: Melipeuco, slug: melipeuco}
+  model: taggit.tag
+  pk: 266
+- fields: {name: Perquenco, slug: perquenco}
+  model: taggit.tag
+  pk: 267
+- fields: {name: Victoria, slug: victoria}
+  model: taggit.tag
+  pk: 268
+- fields: {name: "Vilc\xFAn", slug: vilcun}
+  model: taggit.tag
+  pk: 269
+- fields: {name: "Ant\xE1rtica", slug: antartica}
+  model: taggit.tag
+  pk: 270
+- fields: {name: Cabo de Hornos, slug: cabo-de-hornos}
+  model: taggit.tag
+  pk: 271
+- fields: {name: Laguna Blanca, slug: laguna-blanca}
+  model: taggit.tag
+  pk: 272
+- fields: {name: Natales, slug: natales}
+  model: taggit.tag
+  pk: 273
+- fields: {name: Porvenir, slug: porvenir}
+  model: taggit.tag
+  pk: 274
+- fields: {name: Primavera, slug: primavera}
+  model: taggit.tag
+  pk: 275
+- fields: {name: Punta Arenas, slug: punta-arenas}
+  model: taggit.tag
+  pk: 276
+- fields: {name: "R\xEDo Verde", slug: rio-verde}
+  model: taggit.tag
+  pk: 277
+- fields: {name: San Gregorio, slug: san-gregorio}
+  model: taggit.tag
+  pk: 278
+- fields: {name: Timaukel, slug: timaukel}
+  model: taggit.tag
+  pk: 279
+- fields: {name: Torres del Paine, slug: torres-del-paine}
+  model: taggit.tag
+  pk: 280
+- fields: {name: Padre Las Casas, slug: padre-las-casas}
+  model: taggit.tag
+  pk: 281
+- fields: {name: Temuco, slug: temuco}
+  model: taggit.tag
+  pk: 282
+- fields: {name: Carahue, slug: carahue}
+  model: taggit.tag
+  pk: 283
+- fields: {name: Cholchol, slug: cholchol}
+  model: taggit.tag
+  pk: 284
+- fields: {name: Freire, slug: freire}
+  model: taggit.tag
+  pk: 285
+- fields: {name: Nueva Imperial, slug: nueva-imperial}
+  model: taggit.tag
+  pk: 286
+- fields: {name: "Pitrufqu\xE9n", slug: pitrufquen}
+  model: taggit.tag
+  pk: 287
+- fields: {name: Saavedra, slug: saavedra}
+  model: taggit.tag
+  pk: 288
+- fields: {name: Teodoro Schmidt, slug: teodoro-schmidt}
+  model: taggit.tag
+  pk: 289
+- fields: {name: Cunco, slug: cunco}
+  model: taggit.tag
+  pk: 290
+- fields: {name: Curarrehue, slug: curarrehue}
+  model: taggit.tag
+  pk: 291
+- fields: {name: Gorbea, slug: gorbea}
+  model: taggit.tag
+  pk: 292
+- fields: {name: Loncoche, slug: loncoche}
+  model: taggit.tag
+  pk: 293
+- fields: {name: "Puc\xF3n", slug: pucon}
+  model: taggit.tag
+  pk: 294
+- fields: {name: "Tolt\xE9n", slug: tolten}
+  model: taggit.tag
+  pk: 295
+- fields: {name: Villarrica, slug: villarrica}
+  model: taggit.tag
+  pk: 296
+- fields: {name: Corral, slug: corral}
+  model: taggit.tag
+  pk: 297
+- fields: {name: Lanco, slug: lanco}
+  model: taggit.tag
+  pk: 298
+- fields: {name: Mariquina, slug: mariquina}
+  model: taggit.tag
+  pk: 299
+- fields: {name: "M\xE1fil", slug: mafil}
+  model: taggit.tag
+  pk: 300
+- fields: {name: Valdivia, slug: valdivia}
+  model: taggit.tag
+  pk: 301
+- fields: {name: Futrono, slug: futrono}
+  model: taggit.tag
+  pk: 302
+- fields: {name: "La Uni\xF3n", slug: la-union}
+  model: taggit.tag
+  pk: 303
+- fields: {name: Lago Ranco, slug: lago-ranco}
+  model: taggit.tag
+  pk: 304
+- fields: {name: Los Lagos, slug: los-lagos}
+  model: taggit.tag
+  pk: 305
+- fields: {name: Paillaco, slug: paillaco}
+  model: taggit.tag
+  pk: 306
+- fields: {name: Panguipulli, slug: panguipulli}
+  model: taggit.tag
+  pk: 307
+- fields: {name: "R\xEDo Bueno", slug: rio-bueno}
+  model: taggit.tag
+  pk: 308
+- fields: {name: Osorno, slug: osorno}
+  model: taggit.tag
+  pk: 309
+- fields: {name: San Juan de la Costa, slug: san-juan-de-la-costa}
+  model: taggit.tag
+  pk: 310
+- fields: {name: San Pablo, slug: san-pablo}
+  model: taggit.tag
+  pk: 311
+- fields: {name: Fresia, slug: fresia}
+  model: taggit.tag
+  pk: 312
+- fields: {name: Frutillar, slug: frutillar}
+  model: taggit.tag
+  pk: 313
+- fields: {name: Llanquihue, slug: llanquihue}
+  model: taggit.tag
+  pk: 314
+- fields: {name: Los Muermos, slug: los-muermos}
+  model: taggit.tag
+  pk: 315
+- fields: {name: Puerto Octay, slug: puerto-octay}
+  model: taggit.tag
+  pk: 316
+- fields: {name: Puerto Varas, slug: puerto-varas}
+  model: taggit.tag
+  pk: 317
+- fields: {name: Purranque, slug: purranque}
+  model: taggit.tag
+  pk: 318
+- fields: {name: Puyehue, slug: puyehue}
+  model: taggit.tag
+  pk: 319
+- fields: {name: "R\xEDo Negro", slug: rio-negro}
+  model: taggit.tag
+  pk: 320
+- fields: {name: Calbuco, slug: calbuco}
+  model: taggit.tag
+  pk: 321
+- fields: {name: "Cocham\xF3", slug: cochamo}
+  model: taggit.tag
+  pk: 322
+- fields: {name: "Maull\xEDn", slug: maullin}
+  model: taggit.tag
+  pk: 323
+- fields: {name: Puerto Montt, slug: puerto-montt}
+  model: taggit.tag
+  pk: 324
+- fields: {name: Ancud, slug: ancud}
+  model: taggit.tag
+  pk: 325
+- fields: {name: Castro, slug: castro}
+  model: taggit.tag
+  pk: 326
+- fields: {name: "Chait\xE9n", slug: chaiten}
+  model: taggit.tag
+  pk: 327
+- fields: {name: Chonchi, slug: chonchi}
+  model: taggit.tag
+  pk: 328
+- fields: {name: "Curaco de V\xE9lez", slug: curaco-de-velez}
+  model: taggit.tag
+  pk: 329
+- fields: {name: Dalcahue, slug: dalcahue}
+  model: taggit.tag
+  pk: 330
+- fields: {name: "Futaleuf\xFA", slug: futaleufu}
+  model: taggit.tag
+  pk: 331
+- fields: {name: "Hualaihu\xE9", slug: hualaihue}
+  model: taggit.tag
+  pk: 332
+- fields: {name: Palena, slug: palena}
+  model: taggit.tag
+  pk: 333
+- fields: {name: "Puqueld\xF3n", slug: puqueldon}
+  model: taggit.tag
+  pk: 334
+- fields: {name: "Queil\xE9n", slug: queilen}
+  model: taggit.tag
+  pk: 335
+- fields: {name: "Quell\xF3n", slug: quellon}
+  model: taggit.tag
+  pk: 336
+- fields: {name: Quemchi, slug: quemchi}
+  model: taggit.tag
+  pk: 337
+- fields: {name: Quinchao, slug: quinchao}
+  model: taggit.tag
+  pk: 338
+- fields: {name: "Ays\xE9n", slug: aysen}
+  model: taggit.tag
+  pk: 339
+- fields: {name: Chile Chico, slug: chile-chico}
+  model: taggit.tag
+  pk: 340
+- fields: {name: Cisnes, slug: cisnes}
+  model: taggit.tag
+  pk: 341
+- fields: {name: Cochrane, slug: cochrane}
+  model: taggit.tag
+  pk: 342
+- fields: {name: Coihaique, slug: coihaique}
+  model: taggit.tag
+  pk: 343
+- fields: {name: Guaitecas, slug: guaitecas}
+  model: taggit.tag
+  pk: 344
+- fields: {name: Lago Verde, slug: lago-verde}
+  model: taggit.tag
+  pk: 345
+- fields: {name: O'Higgins, slug: ohiggins}
+  model: taggit.tag
+  pk: 346
+- fields: {name: "R\xEDo Ib\xE1\xF1ez", slug: rio-ibanez}
+  model: taggit.tag
+  pk: 347
+- fields: {name: Tortel, slug: tortel}
+  model: taggit.tag
+  pk: 348

@@ -52,5 +52,6 @@ class ElectionSearchViewTestCase(TestCase):
 
 		self.assertEquals(response.status_code, 200)
 		self.assertTemplateUsed(response, 'search.html')
+		self.assertTemplateUsed(response, 'base.html')
 		self.assertIn('form', response.context)
 		self.assertIsInstance(response.context['form'], ElectionForm)

@@ -3,7 +3,8 @@ from django.test import TestCase
 from elections.models import Election
 from haystack import indexes
 from elections.search_indexes import ElectionIndex
-
+from elections.forms import ElectionForm
+from haystack.forms import SearchForm
 
 class ElectionIndexTestCase(TestCase):
 	def setUp(self):
@@ -27,3 +28,13 @@ class ElectionIndexTestCase(TestCase):
 		self.assertIn(u'Nueva Imperial', indexed_election)
 		self.assertIn(u'Pitrufquén', indexed_election)
 		self.assertIn(u'Saavedra', indexed_election)
+
+
+class ElectionFormTestCase(TestCase):
+	def setUp(self):
+		super(ElectionFormTestCase, self).setUp()
+
+	def test_election_form(self):
+		form = ElectionForm()
+
+		self.assertIsInstance(form, SearchForm)

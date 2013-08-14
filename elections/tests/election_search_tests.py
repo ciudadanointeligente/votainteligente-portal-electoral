@@ -5,6 +5,7 @@ from haystack import indexes
 from elections.search_indexes import ElectionIndex
 from elections.forms import ElectionForm
 from haystack.forms import SearchForm
+from django.core.urlresolvers import reverse
 
 class ElectionIndexTestCase(TestCase):
 	def setUp(self):
@@ -30,11 +31,26 @@ class ElectionIndexTestCase(TestCase):
 		self.assertIn(u'Saavedra', indexed_election)
 
 
-class ElectionFormTestCase(TestCase):
+class ElectionSearchFormTestCase(TestCase):
 	def setUp(self):
-		super(ElectionFormTestCase, self).setUp()
+		super(ElectionSearchFormTestCase, self).setUp()
 
 	def test_election_form(self):
 		form = ElectionForm()
 
 		self.assertIsInstance(form, SearchForm)
+
+
+
+class ElectionSearchViewTestCase(TestCase):
+	def setUp(self):
+		super(ElectionSearchViewTestCase, self).setUp()
+
+	def test_get_url(self):
+		url = reverse('search')
+		response = self.client.get(url)
+
+		self.assertEquals(response.status_code, 200)
+		self.assertTemplateUsed(response, 'search.html')
+		self.assertIn('form', response.context)
+		self.assertIsInstance(response.context['form'], ElectionForm)

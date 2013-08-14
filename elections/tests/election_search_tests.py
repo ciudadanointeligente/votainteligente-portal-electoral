@@ -22,7 +22,7 @@ class ElectionIndexTestCase(TestCase):
 		election = Election.objects.create(name=u'XV - Araucanía Sur')
 		election.tags.add(u'Nueva Imperial', u'Pitrufquén', u'Saavedra')
 		index = ElectionIndex()
-
+		self.assertTrue(index.text.use_template)
 		indexed_election = index.text.prepare_template(election)
 
 		self.assertIn(election.name, indexed_election)

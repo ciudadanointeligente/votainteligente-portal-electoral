@@ -56,6 +56,13 @@ class ElectionTestCase(TestCase):
 		self.assertIn('providencia', tags)
 		self.assertIn('valdivia', tags)
 
+	def test_unicode(self):
+		election = Election.objects.create(
+			name='Distrito'
+			)
+
+		self.assertEquals(election.__unicode__(), election.name)
+
 
 
 

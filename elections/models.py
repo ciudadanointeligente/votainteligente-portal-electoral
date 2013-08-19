@@ -8,3 +8,7 @@ class Election(models.Model):
 	slug = AutoSlugField(populate_from='name', unique=True)
 	description = models.TextField()
 	tags = TaggableManager()
+
+
+	def __unicode__(self):
+		return self.name

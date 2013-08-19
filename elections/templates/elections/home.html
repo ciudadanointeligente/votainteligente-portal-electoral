@@ -1,4 +1,37 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% block content %}
+<!-- Main hero unit for a primary marketing message or call to action -->
+            <div class="hero-unit">
+            	<form method="get" action="{% url 'tags_search' %}">
+			        <table>
+			            {{ form.as_table }}
+			            <tr>
+			                <td>&nbsp;</td>
+			                <td>
+			                    <input class="btn btn-primary btn-large" type="submit" value="{% trans 'Buscar' %}">
+			                </td>
+			            </tr>
+			        </table>
+			    </form>
+            </div>
+
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="span4">
+                    <h2>Somos bacanes</h2>
+                    <p>Si  </p>
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                </div>
+                <div class="span4">
+                    <h2>Pulgas</h2>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+               </div>
+                <div class="span4">
+                    <h2>Fiera</h2>
+                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                </div>
+            </div>
 {% endblock content %}

@@ -2,18 +2,21 @@
 {% load i18n %}
 
 {% block content %}
-    <h2>{% trans "Busqueda" %}</h2>
+    <div class="hero-unit">
+        <h2>{% trans "Busqueda" %}</h2>
 
-    <form method="get">
-        <table>
-            {{ form.as_table }}
-            <tr>
-                <td>&nbsp;</td>
-                <td>
-                    <input type="submit" value="{% trans 'Buscar' %}">
-                </td>
-            </tr>
-        </table>
+        <form method="get">
+            <table>
+                {{ form.as_table }}
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input class="btn btn-primary btn-large" type="submit" value="{% trans 'Buscar' %}">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 
         <h3>{% trans "Elecciones" %}</h3>
 
@@ -24,5 +27,4 @@
         {% empty %}
             <p>{% trans "No encontré resultados" %}</p>
         {% endfor %}
-    </form>
 {% endblock %}

@@ -52,6 +52,7 @@ class ElectionSearchByTagsFormTestCase(TestCase):
 
 		self.assertIn('q', form.fields)
 		self.assertIsInstance(form.fields['q'], forms.CharField)
+		self.assertFalse(form.fields['q'].required)
 		self.assertEquals(form.fields['q'].label, _('Busca tu comuna'))
 
 	def test_get_result(self):

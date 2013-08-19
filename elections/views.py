@@ -2,6 +2,7 @@
 from django.views.generic.edit import FormView
 from elections.forms import ElectionSearchByTagsForm
 from django.core.urlresolvers import reverse
+from django.views.generic import TemplateView
 
 class ElectionsSearchByTagView(FormView):
     form_class = ElectionSearchByTagsForm
@@ -37,3 +38,9 @@ class ElectionsSearchByTagView(FormView):
 
     def get_success_url(self):
         return reverse('tags_search')
+
+class HomeView(TemplateView):
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['form'] = ElectionSearchByTagsForm()
+        return context

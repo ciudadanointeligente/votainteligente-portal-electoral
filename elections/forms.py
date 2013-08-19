@@ -7,7 +7,7 @@ class ElectionForm(SearchForm):
 	pass
 
 class ElectionSearchByTagsForm(forms.Form):
-	q = forms.CharField(label=_('Busca tu comuna'))
+	q = forms.CharField(required=False, label=_('Busca tu comuna'))
 
 	def get_search_result(self):
 		cleaned_data = self.clean()

@@ -1,0 +1,150 @@
+- fields: {description: '', name: "I - Tarapac\xE1", slug: i-tarapaca}
+  model: elections.election
+  pk: 1
+- fields: {description: '', name: "Distrito N\xFAmero 1", slug: distrito-numero-1}
+  model: elections.election
+  pk: 2
+- fields: {description: '', name: "Distrito N\xFAmero 2", slug: distrito-numero-2}
+  model: elections.election
+  pk: 3
+- fields: {description: '', name: II - Antofagasta, slug: ii-antofagasta}
+  model: elections.election
+  pk: 4
+- fields: {description: '', name: "Distrito N\xFAmero 3", slug: distrito-numero-3}
+  model: elections.election
+  pk: 5
+- fields: {description: '', name: "Distrito N\xFAmero 4", slug: distrito-numero-4}
+  model: elections.election
+  pk: 6
+- fields: {name: senadores, slug: senadores}
+  model: taggit.tag
+  pk: 1
+- fields: {name: diputados, slug: diputados}
+  model: taggit.tag
+  pk: 2
+- fields: {name: Arica, slug: arica}
+  model: taggit.tag
+  pk: 3
+- fields: {name: Camarones, slug: camarones}
+  model: taggit.tag
+  pk: 4
+- fields: {name: General Lagos, slug: general-lagos}
+  model: taggit.tag
+  pk: 5
+- fields: {name: Putre, slug: putre}
+  model: taggit.tag
+  pk: 6
+- fields: {name: Alto Hospicio, slug: alto-hospicio}
+  model: taggit.tag
+  pk: 7
+- fields: {name: "Cami\xF1a", slug: camina}
+  model: taggit.tag
+  pk: 8
+- fields: {name: Colchane, slug: colchane}
+  model: taggit.tag
+  pk: 9
+- fields: {name: Huara, slug: huara}
+  model: taggit.tag
+  pk: 10
+- fields: {name: Iquique, slug: iquique}
+  model: taggit.tag
+  pk: 11
+- fields: {name: Pica, slug: pica}
+  model: taggit.tag
+  pk: 12
+- fields: {name: Pozo Almonte, slug: pozo-almonte}
+  model: taggit.tag
+  pk: 13
+- fields: {name: Calama, slug: calama}
+  model: taggit.tag
+  pk: 14
+- fields: {name: "Mar\xEDa Elena", slug: maria-elena}
+  model: taggit.tag
+  pk: 15
+- fields: {name: "Ollag\xFCe", slug: ollague}
+  model: taggit.tag
+  pk: 16
+- fields: {name: San Pedro de Atacama, slug: san-pedro-de-atacama}
+  model: taggit.tag
+  pk: 17
+- fields: {name: Tocopilla, slug: tocopilla}
+  model: taggit.tag
+  pk: 18
+- fields: {name: Antofagasta, slug: antofagasta}
+  model: taggit.tag
+  pk: 19
+- fields: {name: Mejillones, slug: mejillones}
+  model: taggit.tag
+  pk: 20
+- fields: {name: Sierra Gorda, slug: sierra-gorda}
+  model: taggit.tag
+  pk: 21
+- fields: {name: Taltal, slug: taltal}
+  model: taggit.tag
+  pk: 22
+- fields: {name: senadores, slug: senadores}
+  model: taggit.tag
+  pk: 1
+- fields: {name: diputados, slug: diputados}
+  model: taggit.tag
+  pk: 2
+- fields: {name: Arica, slug: arica}
+  model: taggit.tag
+  pk: 3
+- fields: {name: Camarones, slug: camarones}
+  model: taggit.tag
+  pk: 4
+- fields: {name: General Lagos, slug: general-lagos}
+  model: taggit.tag
+  pk: 5
+- fields: {name: Putre, slug: putre}
+  model: taggit.tag
+  pk: 6
+- fields: {name: Alto Hospicio, slug: alto-hospicio}
+  model: taggit.tag
+  pk: 7
+- fields: {name: "Cami\xF1a", slug: camina}
+  model: taggit.tag
+  pk: 8
+- fields: {name: Colchane, slug: colchane}
+  model: taggit.tag
+  pk: 9
+- fields: {name: Huara, slug: huara}
+  model: taggit.tag
+  pk: 10
+- fields: {name: Iquique, slug: iquique}
+  model: taggit.tag
+  pk: 11
+- fields: {name: Pica, slug: pica}
+  model: taggit.tag
+  pk: 12
+- fields: {name: Pozo Almonte, slug: pozo-almonte}
+  model: taggit.tag
+  pk: 13
+- fields: {name: Calama, slug: calama}
+  model: taggit.tag
+  pk: 14
+- fields: {name: "Mar\xEDa Elena", slug: maria-elena}
+  model: taggit.tag
+  pk: 15
+- fields: {name: "Ollag\xFCe", slug: ollague}
+  model: taggit.tag
+  pk: 16
+- fields: {name: San Pedro de Atacama, slug: san-pedro-de-atacama}
+  model: taggit.tag
+  pk: 17
+- fields: {name: Tocopilla, slug: tocopilla}
+  model: taggit.tag
+  pk: 18
+- fields: {name: Antofagasta, slug: antofagasta}
+  model: taggit.tag
+  pk: 19
+- fields: {name: Mejillones, slug: mejillones}
+  model: taggit.tag
+  pk: 20
+- fields: {name: Sierra Gorda, slug: sierra-gorda}
+  model: taggit.tag
+  pk: 21
+- fields: {name: Taltal, slug: taltal}
+  model: taggit.tag
+  pk: 22

@@ -8,9 +8,9 @@ from elections.views import ElectionsSearchByTagView
 from django.views.generic.edit import FormView
 from django.utils.translation import ugettext as _
 
-class ElectionTagsBasedSearchView(TestCase):
+class ElectionTagsBasedSearchViewTestCase(TestCase):
 	def setUp(self):
-		super(ElectionTagsBasedSearchView, self).setUp()
+		super(ElectionTagsBasedSearchViewTestCase, self).setUp()
 
 	#@skip('missing view')
 	def test_get_url(self):

@@ -24,7 +24,7 @@ class TemplateTagsTestCase(TestCase):
 			expected_elections.append(election_dict)
 
 		
-		template = Template("{% load votainteligente %}{% elections_json %}")
+		template = Template("{% load votainteligente_extras %}{% elections_json %}")
 		context = Context({})
 
 		self.assertEqual(template.render(context), json.dumps(expected_elections))

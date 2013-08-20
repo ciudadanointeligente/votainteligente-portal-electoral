@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 {% load i18n %}
+{% load votainteligente_templatetags %}
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -57,6 +58,7 @@
             <hr>
 
             <footer>
+                {{ elections_json }}
                 <p>&copy; Fundación Ciudadano Inteligente y Fiera Feroz</p>
             </footer>
 

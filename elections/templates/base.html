@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 {% load i18n %}
-{% load votainteligente_extras %}
+
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -25,7 +25,7 @@
 
         <script src="{% static 'js/vendor/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
     </head>
-    <body>
+    <body ng-app>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
@@ -58,7 +58,7 @@
             <hr>
 
             <footer>
-                {{ elections_json }}
+                
                 <p>&copy; Fundación Ciudadano Inteligente y Fiera Feroz</p>
             </footer>
 
@@ -71,6 +71,11 @@
         <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
 
         <script src="{% static 'js/main.js' %}"></script>
+        <script type="text/javascript">
+        {% block extrajs %}
+        {% endblock extrajs %}
+        </script>
+        
 
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

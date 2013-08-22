@@ -10,5 +10,10 @@ angular.module('votainteligente').config(function($interpolateProvider) {
 
 var searchFormController = function($scope, $http, $filter, $log){
 	$scope.elections = {% elections_json %}
-	$log.log($scope.elections)
+	$scope.comperator = function(obj, text){
+		text = removeDiacritics((''+text).toLowerCase());
+		var obj_text = removeDiacritics((''+obj).toLowerCase())
+        return obj_text.indexOf(text) > -1
+	}
+	
 };

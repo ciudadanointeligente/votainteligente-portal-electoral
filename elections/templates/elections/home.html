@@ -7,19 +7,17 @@
 
 {% block content %}
 <!-- Main hero unit for a primary marketing message or call to action -->
-            <div class="hero-unit">
+            <div class="hero-unit" ng-controller='searchFormController'>
             	<form method="get" action="{% url 'tags_search' %}">
-			        <table>
-                        <div ng-controller='searchFormController'>
-                            <input id="id_q" name="q" autocomplete="off" type="text" placeholder="{% trans "Escribe el nombre de tu comuna" %}" />
-                        </div>
-                        <tr>
-                            <td>
-                                <input class="btn btn-primary btn-large" type="submit" value="{% trans "Buscar" %}">
-                            </td>
-                        </tr>
-                    </table>
+                            <input id="id_q" name="q" autocomplete="off" type="text" ng-model="searchElection" placeholder="{% trans "Escribe el nombre de tu comuna" %}" />
 			    </form>
+                <div>
+                    <ul ng-show="searchElection">
+                        <li ng-repeat="election in elections | filter:searchElection:comperator">
+                            [[election.name]]
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <!-- Example row of columns -->

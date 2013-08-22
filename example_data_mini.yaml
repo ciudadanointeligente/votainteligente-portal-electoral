@@ -16,6 +16,9 @@
 - fields: {description: '', name: "Distrito N\xFAmero 4", slug: distrito-numero-4}
   model: elections.election
   pk: 6
+- fields: {description: '', name: "Presidenciales", slug: presidenciales, highlighted: true, searchable: false}
+  model: elections.election
+  pk: 7
 - fields: {name: senadores, slug: senadores}
   model: taggit.tag
   pk: 1
@@ -148,6 +151,12 @@
 - fields: {name: Taltal, slug: taltal}
   model: taggit.tag
   pk: 22
+- fields: {name: Presidenciales, slug: presidenciales}
+  model: taggit.tag
+  pk: 23
+- fields: {name: Presidente, slug: presidente}
+  model: taggit.tag
+  pk: 24
 - fields: {content_type: 10, object_id: 1, tag: 1}
   model: taggit.taggeditem
   pk: 1
@@ -284,5 +293,11 @@
   model: taggit.taggeditem
   pk: 45
 - fields: {content_type: 10, object_id: 6, tag: 22}
+  model: taggit.taggeditem
+  pk: 46
+- fields: {content_type: 10, object_id: 7, tag: 23}
+  model: taggit.taggeditem
+  pk: 45
+- fields: {content_type: 10, object_id: 7, tag: 24}
   model: taggit.taggeditem
   pk: 46

@@ -8,7 +8,6 @@ class HomeTestCase(TestCase):
 	def setUp(self):
 		super(HomeTestCase, self).setUp()
 
-	@skip
 	def test_get_home(self):
 		url = reverse('home')
 		response = self.client.get(url)
@@ -16,7 +15,7 @@ class HomeTestCase(TestCase):
 		self.assertTemplateUsed(response, 'elections/home.html')
 		self.assertTemplateUsed(response, 'base.html')
 		self.assertIn('form',response.context)
-		self.assertIsInstance(context['form'], ElectionSearchByTagsForm)
+		self.assertIsInstance(response.context['form'], ElectionSearchByTagsForm)
 
 	def test_home_view(self):
 		view = HomeView()

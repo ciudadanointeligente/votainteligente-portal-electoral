@@ -15,6 +15,7 @@
                     <ul ng-show="searchElection">
                         <li ng-repeat="election in elections | filter:searchElection:comperator">
                             [[election.name]]
+                            <a href="[[election.detaillink]]">{% trans "Detalle de la elección" %}</a>
                         </li>
                     </ul>
                 </div>

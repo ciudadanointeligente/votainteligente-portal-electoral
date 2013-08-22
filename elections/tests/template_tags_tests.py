@@ -19,6 +19,7 @@ class TemplateTagsTestCase(TestCase):
 			election_dict = {
 			'name': election.name,
 			'slug': election.slug,
+			'detaillink':election.get_absolute_url(),
 			'tags':tags
 			}
 			expected_elections.append(election_dict)

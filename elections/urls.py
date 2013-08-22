@@ -11,4 +11,5 @@ urlpatterns = patterns('',
 	        form_class=ElectionForm
 	    ), name='search' ),
 	url(r'^busqueda_tags/?$', ElectionsSearchByTagView.as_view(), name='tags_search' ),
+	url(r'^election/(?P<slug>[-\w]+)/?$', TemplateView.as_view(template_name='elections/home.html'), name='election_view' ),
 )

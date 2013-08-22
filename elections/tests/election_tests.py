@@ -1,7 +1,8 @@
-from django.test import TestCase
+from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import Election
 from django.db import IntegrityError
 from loremipsum import get_paragraphs
+from django.core.urlresolvers import reverse
 
 
 class ElectionTestCase(TestCase):
@@ -64,6 +65,18 @@ class ElectionTestCase(TestCase):
 			)
 
 		self.assertEquals(election.__unicode__(), election.name)
+
+class ElectionViewTestCase(TestCase):
+	def setUp(self):
+		super(ElectionViewTestCase, self).setUp()
+		self.election = Election.objects.filter(searchable=True)[0]
+
+	def test_url_is_reachable(self):
+		url = reverse('election_view', kwargs={'slug':self.election.slug})
+		self.assertTrue(url)
+		response = self.client.get(url)
+		self.assertEquals(response.status_code, 200)
+
 
 
 

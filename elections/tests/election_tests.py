@@ -66,6 +66,15 @@ class ElectionTestCase(TestCase):
 
 		self.assertEquals(election.__unicode__(), election.name)
 
+	def test_get_absolute_url(self):
+		election = Election.objects.create(
+			name='Distrito',
+			slug='distrito'
+			)
+		expected_url = reverse('election_view', kwargs={'slug':election.slug})
+
+		self.assertEquals(election.get_absolute_url(), expected_url)
+
 class ElectionViewTestCase(TestCase):
 	def setUp(self):
 		super(ElectionViewTestCase, self).setUp()

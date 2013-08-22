@@ -3,6 +3,8 @@ from elections.models import Election
 from django.db import IntegrityError
 from loremipsum import get_paragraphs
 from django.core.urlresolvers import reverse
+from elections.views import ElectionDetailView
+from django.views.generic import DetailView
 
 
 class ElectionTestCase(TestCase):
@@ -80,11 +82,21 @@ class ElectionViewTestCase(TestCase):
 		super(ElectionViewTestCase, self).setUp()
 		self.election = Election.objects.filter(searchable=True)[0]
 
-	def test_url_is_reachable(self):
+	def test_view_has_model(self):
+		view = ElectionDetailView()
+		self.assertIsInstance(view, DetailView)
+		self.assertEquals(view.model, Election)
+
+
+	def atest_url_is_reachable(self):
 		url = reverse('election_view', kwargs={'slug':self.election.slug})
 		self.assertTrue(url)
 		response = self.client.get(url)
 		self.assertEquals(response.status_code, 200)
+		self.assertIn('election', response.context)
+		self.assertTemplateUsed(response, 'elections/election_detail.html')
+		self.assertTemplateUsed(response, 'base.html')
+
 
 
 

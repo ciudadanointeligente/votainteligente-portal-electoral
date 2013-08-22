@@ -235,6 +235,9 @@
 - fields: {description: '', name: "Distrito N\xFAmero 59", slug: distrito-numero-59}
   model: elections.election
   pk: 79
+- fields: {description: '', name: "Presidenciales", slug: presidenciales, highlighted:true, searchable: false}
+  model: elections.election
+  pk: 80
 - fields: {name: senadores, slug: senadores}
   model: taggit.tag
   pk: 1
@@ -1279,6 +1282,12 @@
 - fields: {name: Tortel, slug: tortel}
   model: taggit.tag
   pk: 348
+- fields: {name: Presidenciales, slug: presidenciales}
+  model: taggit.tag
+  pk: 349
+- fields: {name: Presidente, slug: presidente}
+  model: taggit.tag
+  pk: 350
 - fields: {content_type: 10, object_id: 1, tag: 1}
   model: taggit.taggeditem
   pk: 1
@@ -3592,3 +3601,9 @@
 - fields: {content_type: 10, object_id: 79, tag: 348}
   model: taggit.taggeditem
   pk: 771
+- fields: {content_type: 10, object_id: 80, tag: 349}
+  model: taggit.taggeditem
+  pk: 772
+- fields: {content_type: 10, object_id: 80, tag: 350}
+  model: taggit.taggeditem
+  pk: 773

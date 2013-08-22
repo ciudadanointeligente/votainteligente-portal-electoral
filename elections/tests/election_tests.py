@@ -17,6 +17,8 @@ class ElectionTestCase(TestCase):
 		self.assertEquals(election.name, 'the name')
 		self.assertEquals(election.slug, 'the-slug')
 		self.assertEquals(election.description, 'this is a description')
+		self.assertTrue(election.searchable)
+		self.assertFalse(election.highlighted)
 
 	def test_there_are_no_two_elections_with_the_same_slug(self):
 		election1 = Election.objects.create(

@@ -10,7 +10,7 @@ import simplejson as json
 @register.simple_tag
 def elections_json():
 	expected_elections = []
-	for election in Election.objects.all():
+	for election in Election.objects.filter(searchable=True):
 		tags = []
 		for tag in election.tags.all():
 			tags.append(tag.name)

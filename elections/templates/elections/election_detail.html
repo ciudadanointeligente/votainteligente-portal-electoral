@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block extrajs %}
+{% endblock extrajs %}
+
+{% block content %}
+<div class="hero-unit">
+	<h1>{{ election }}</h1>
+	<p>{% trans "Esta elección tiene los siguientes tags" %}</p>
+	<ul>
+		{% for tag in election.tags.all %}
+		<li>{{tag}}</li>
+		{% endfor %}
+	</ul>
+</div>
+{% endblock content %}

@@ -1,4 +1,42 @@
 {% extends "base.html" %}
+{% load i18n %}
+
+{% block extrajs %}
+{% include 'elections/home.js' %}
+{% endblock extrajs %}
 
 {% block content %}
+<!-- Main hero unit for a primary marketing message or call to action -->
+            <div class="hero-unit" ng-controller='searchFormController'>
+            	<form method="get" action="{% url 'tags_search' %}">
+                            <input id="id_q" name="q" autocomplete="off" type="text" ng-model="searchElection" placeholder="{% trans "Escribe el nombre de tu comuna" %}" />
+			    </form>
+                <div>
+                    <ul ng-show="searchElection">
+                        <li ng-repeat="election in elections | filter:searchElection:comperator">
+                            [[election.name]]
+                            <a href="[[election.detaillink]]">{% trans "Detalle de la elección" %}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="span4">
+                    <h2>Somos bacanes</h2>
+                    <p>Si  </p>
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                </div>
+                <div class="span4">
+                    <h2>Pulgas</h2>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+               </div>
+                <div class="span4">
+                    <h2>Fiera</h2>
+                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                </div>
+            </div>
 {% endblock content %}

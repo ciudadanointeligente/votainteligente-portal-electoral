@@ -88,7 +88,7 @@ class ElectionViewTestCase(TestCase):
 		self.assertEquals(view.model, Election)
 
 
-	def atest_url_is_reachable(self):
+	def test_url_is_reachable(self):
 		url = reverse('election_view', kwargs={'slug':self.election.slug})
 		self.assertTrue(url)
 		response = self.client.get(url)

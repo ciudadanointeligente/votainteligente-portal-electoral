@@ -235,7 +235,7 @@
 - fields: {description: '', name: "Distrito N\xFAmero 59", slug: distrito-numero-59}
   model: elections.election
   pk: 79
-- fields: {description: '', name: "Presidenciales", slug: presidenciales, highlighted:true, searchable: false}
+- fields: {description: '', name: "Presidenciales", slug: presidenciales, highlighted: true, searchable: false}
   model: elections.election
   pk: 80
 - fields: {name: senadores, slug: senadores}

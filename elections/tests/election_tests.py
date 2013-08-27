@@ -4,6 +4,9 @@ from elections.models import Election
 from django.db import IntegrityError
 from loremipsum import get_paragraphs
 from candideitorg.models import Election as CanElection
+from django.core.urlresolvers import reverse
+from elections.views import ElectionDetailView
+from django.views.generic import DetailView
 
 
 class ElectionTestCase(TestCase):
@@ -22,6 +25,8 @@ class ElectionTestCase(TestCase):
 		self.assertEquals(election.slug, 'the-slug')
 		self.assertEquals(election.description, 'this is a description')
 		self.assertEqual(election.can_election, self.can_election)
+		self.assertTrue(election.searchable)
+		self.assertFalse(election.highlighted)
 
 	def test_there_are_no_two_elections_with_the_same_slug(self):
 		election1 = Election.objects.create(
@@ -68,6 +73,31 @@ class ElectionTestCase(TestCase):
 
 		self.assertEquals(election.__unicode__(), election.name)
 
+	def test_get_absolute_url(self):
+		election = Election.objects.create(
+			name='Distrito',
+			slug='distrito'
+			)
+		expected_url = reverse('election_view', kwargs={'slug':election.slug})
+
+		self.assertEquals(election.get_absolute_url(), expected_url)
+
+class ElectionViewTestCase(TestCase):
+	def setUp(self):
+		super(ElectionViewTestCase, self).setUp()
+		self.election = Election.objects.filter(searchable=True)[0]
+
+	def test_view_has_model(self):
+		view = ElectionDetailView()
+		self.assertIsInstance(view, DetailView)
+		self.assertEquals(view.model, Election)
 
 
-
+	def test_url_is_reachable(self):
+		url = reverse('election_view', kwargs={'slug':self.election.slug})
+		self.assertTrue(url)
+		response = self.client.get(url)
+		self.assertEquals(response.status_code, 200)
+		self.assertIn('election', response.context)
+		self.assertTemplateUsed(response, 'elections/election_detail.html')
+		self.assertTemplateUsed(response, 'base.html')

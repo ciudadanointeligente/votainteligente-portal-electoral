@@ -1,4 +1,4 @@
-- fields: {description: '', name: "I - Tarapac\xE1", slug: i-tarapaca}
+- fields: {description: '', name: "I - Tarapac\xE1", slug: i-tarapaca, can_election: 1}
   model: elections.election
   pk: 1
 - fields: {description: '', name: "Distrito N\xFAmero 1", slug: distrito-numero-1}
@@ -286,3 +286,46 @@
 - fields: {content_type: 10, object_id: 6, tag: 22}
   model: taggit.taggeditem
   pk: 46
+- fields: {description: Elecciones CEI 2012, information_source: '', logo: /media/photos/dummy.jpg,
+    name: cei 2012, remote_id: 1, resource_uri: /api/v2/election/1/, slug: cei-2012,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 1
+- fields: {election: 1, name: Politicas Publicas, order: 1, remote_id: 1, resource_uri: /api/v2/category/1/,
+    slug: politicas-publicas}
+  model: candideitorg.category
+  pk: 1
+- fields: {election: 1, name: Politicas Monetarias, order: 1, remote_id: 2, resource_uri: /api/v2/category/2/,
+    slug: politicas-monetarias}
+  model: candideitorg.category
+  pk: 2
+- fields: {election: 1, has_answered: false, name: Juanito Perez, photo: /media/photos/dummy.jpg,
+    remote_id: 1, resource_uri: '', slug: juanito-perez}
+  model: candideitorg.candidate
+  pk: 1
+- fields: {election: 1, has_answered: false, name: Candidato Tester, photo: /media/photos/dummy.jpg,
+    remote_id: 2, resource_uri: '', slug: candidato-tester}
+  model: candideitorg.candidate
+  pk: 2
+- fields: {election: 1, has_answered: false, name: Foo Bar, photo: /media/photos/dummy.jpg,
+    remote_id: 3, resource_uri: '', slug: foo-bar}
+  model: candideitorg.candidate
+  pk: 3
+- fields: {election: 1, name: Tendencia Politica, remote_id: 1, resource_uri: ''}
+  model: candideitorg.backgroundcategory
+  pk: 1
+- fields: {election: 1, name: Educacion, remote_id: 2, resource_uri: ''}
+  model: candideitorg.backgroundcategory
+  pk: 2
+- fields: {election: 1, label: Nacimiento, remote_id: 1, resource_uri: ''}
+  model: candideitorg.personaldata
+  pk: 1
+- fields: {election: 1, label: Profesion, remote_id: 2, resource_uri: ''}
+  model: candideitorg.personaldata
+  pk: 2
+- fields: {election: 1, label: "Profesi\xF3n", remote_id: 3, resource_uri: ''}
+  model: candideitorg.personaldata
+  pk: 3
+- fields: {election: 1, label: "G\xE9nero", remote_id: 4, resource_uri: ''}
+  model: candideitorg.personaldata
+  pk: 4

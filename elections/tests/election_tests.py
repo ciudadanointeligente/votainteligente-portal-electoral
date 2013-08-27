@@ -1,22 +1,27 @@
-from django.test import TestCase
+# coding=utf-8
+from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import Election
 from django.db import IntegrityError
 from loremipsum import get_paragraphs
+from candideitorg.models import Election as CanElection
 
 
 class ElectionTestCase(TestCase):
 	def setUp(self):
 		super(ElectionTestCase, self).setUp()
+		self.can_election = CanElection.objects.all()[0]
 
 	def test_election_create(self):
 		election = Election.objects.create(
 			name='the name',
 			slug='the-slug',
-			description='this is a description'
+			description='this is a description',
+			can_election=self.can_election
 			)
 		self.assertEquals(election.name, 'the name')
 		self.assertEquals(election.slug, 'the-slug')
 		self.assertEquals(election.description, 'this is a description')
+		self.assertEqual(election.can_election, self.can_election)
 
 	def test_there_are_no_two_elections_with_the_same_slug(self):
 		election1 = Election.objects.create(

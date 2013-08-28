@@ -13,5 +13,15 @@
 		<li>{{tag}}</li>
 		{% endfor %}
 	</ul>
+	
+
+
+	<p>{% trans "Candidatos" %}</p>
+	<ul>
+		{% for candidato in election.can_election.candidate_set.all %}
+		<li>{{candidato.name}}</li>
+		{% endfor %}
+	</ul>
+
 </div>
 {% endblock content %}

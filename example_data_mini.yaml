@@ -1,4 +1,4 @@
-- fields: {description: '', name: "I - Tarapac\xE1", slug: i-tarapaca, can_election: 1}
+- fields: {description: '', name: "I - Tarapaca", slug: i-tarapaca, can_election: 1}
   model: elections.election
   pk: 1
 - fields: {description: '', name: "Distrito N\xFAmero 1", slug: distrito-numero-1}

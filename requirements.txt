@@ -6,3 +6,5 @@ loremipsum
 South
 pyelasticsearch
 django-haystack
+-e git://github.com/ciudadanointeligente/candideitorg-django.git#egg=candideitorg-django
+PyYAML

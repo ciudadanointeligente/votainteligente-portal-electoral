@@ -13,5 +13,15 @@
 		<li>{{tag}}</li>
 		{% endfor %}
 	</ul>
+	
+
+
+	<p>{% trans "Candidatos" %}</p>
+	<ul>
+		{% for candidato in election.can_election.candidate_set.all %}
+		<li><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}">{{candidato.name}}</a></li>
+		{% endfor %}
+	</ul>
+
 </div>
 {% endblock content %}

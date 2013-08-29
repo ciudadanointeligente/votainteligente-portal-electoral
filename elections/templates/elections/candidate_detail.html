@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+ 
+<div>
+	<ul class="breadcrumb">
+		<li><a href="#">Home</a> <span class="divider">/</span></li>
+		<li><a href="{% url 'election_view' slug=election.slug %}">{{ election.name }}</a> <span class="divider">/</span></li>
+		<li class="active">{{ candidate.name }}</li>
+	</ul>
+</div>
+<section>
+	<div class="page-header">
+		<h2>{{ candidate.name }}</h2>
+	</div>
+</section>
+
+<ul>
+	{% for personal_data in election.can_election.personaldata_set.all %}
+	<li>{{personal_data.label}}</li>
+	{% endfor %}
+</ul>
+
+{% endblock content %}

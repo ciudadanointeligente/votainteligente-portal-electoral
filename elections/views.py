@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView
 from django.views.generic import DetailView
 from elections.models import Election
+from candideitorg.models import Candidate
 
 class ElectionsSearchByTagView(FormView):
     form_class = ElectionSearchByTagsForm
@@ -49,3 +50,11 @@ class HomeView(TemplateView):
 
 class ElectionDetailView(DetailView):
     model = Election
+
+class CandidateDetailView(DetailView):
+    model = Candidate
+
+    def get_context_data(self, **kwargs):
+        context = super(CandidateDetailView, self).get_context_data(**kwargs)
+        context['election'] = self.object.election.election_set.all()[0]
+        return context

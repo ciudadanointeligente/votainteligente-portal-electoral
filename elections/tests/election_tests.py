@@ -1,7 +1,9 @@
+# coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import Election
 from django.db import IntegrityError
 from loremipsum import get_paragraphs
+from candideitorg.models import Election as CanElection
 from django.core.urlresolvers import reverse
 from elections.views import ElectionDetailView
 from django.views.generic import DetailView
@@ -10,16 +12,19 @@ from django.views.generic import DetailView
 class ElectionTestCase(TestCase):
 	def setUp(self):
 		super(ElectionTestCase, self).setUp()
+		self.can_election = CanElection.objects.all()[0]
 
 	def test_election_create(self):
 		election = Election.objects.create(
 			name='the name',
 			slug='the-slug',
-			description='this is a description'
+			description='this is a description',
+			can_election=self.can_election
 			)
 		self.assertEquals(election.name, 'the name')
 		self.assertEquals(election.slug, 'the-slug')
 		self.assertEquals(election.description, 'this is a description')
+		self.assertEqual(election.can_election, self.can_election)
 		self.assertTrue(election.searchable)
 		self.assertFalse(election.highlighted)
 
@@ -96,9 +101,3 @@ class ElectionViewTestCase(TestCase):
 		self.assertIn('election', response.context)
 		self.assertTemplateUsed(response, 'elections/election_detail.html')
 		self.assertTemplateUsed(response, 'base.html')
-
-
-
-
-
-

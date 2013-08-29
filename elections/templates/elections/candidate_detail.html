@@ -16,4 +16,10 @@
 	</div>
 </section>
 
+<ul>
+	{% for personal_data in election.can_election.personaldata_set.all %}
+	<li>{{personal_data.label}}</li>
+	{% endfor %}
+</ul>
+
 {% endblock content %}

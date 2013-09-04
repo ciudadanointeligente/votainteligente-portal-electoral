@@ -1,25 +1,91 @@
 {% extends "base.html" %}
-{% load i18n %}
-
+{% load candideitorg_templetags %}
 {% block content %}
- 
-<div>
-	<ul class="breadcrumb">
-		<li><a href="#">Home</a> <span class="divider">/</span></li>
-		<li><a href="{% url 'election_view' slug=election.slug %}">{{ election.name }}</a> <span class="divider">/</span></li>
-		<li class="active">{{ candidate.name }}</li>
-	</ul>
-</div>
+
 <section>
-	<div class="page-header">
+	<div>
+		<h1 class="text-center">Senador por {{ election.name }}</h1>
+	</div>
+
+	<div class="row nav-candidator">
+		<div class="col-md-7 col-md-offset-3">
+			<ul class="list-inline">
+				<li><a href="{{}}"><i class="icon-group"></i> Perfiles</a></li>
+				<li><a href=""><i class="icon-list"></i> Cuestionario</a></li>
+				<li><a href=""><i class="icon-heart"></i> 1/2 Naranja</a></li>
+				<li><a href=""><i class="icon-bolt"></i> Frente a Frente</a></li>
+				<li><a href=""><i class="icon-edit"></i> Pregúntales</a></li>
+				<li><a href=""><i class="icon-trophy"></i> Ranking</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div>
 		<h2>{{ candidate.name }}</h2>
 	</div>
-</section>
 
-<ul>
-	{% for personal_data in election.can_election.personaldata_set.all %}
-	<li>{{personal_data.label}}</li>
-	{% endfor %}
-</ul>
+	<div class="row profile-candidate">
+		<div class="col-md-3">
+			<img src="{{ candidate.photo }}" class="img-responsive img-profile" alt="{{ candidate.name }}">
+		</div>
+		<div class="col-md-7">
+			<table class="table">
+				{% for personal_data in election.can_election.personaldata_set.all %}
+				<tr>
+					<td>
+						{{personal_data.label}}
+					</td>
+					<td>
+						{% for personal_data_candidate in personal_data.personaldatacandidate_set.all %}
+							{% relation_personal_data_candidate candidate personal_data %}
+						{% endfor %}
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+		<div class="col-md-2">
+			<ul class="list-inline">
+				{% for link in candidate.link_set.all %}
+					<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate"><i class="{{ link.icon_class }} icon-2x"></i> {{link.name}}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+
+ 	<div class="antecedentes">
+ 		{% for background_category in election.can_election.backgroundcategory_set.all %}
+ 			{% for background in background_category.background_set.all %}
+ 				{% for background_candidate in background.backgroundcandidate_set.all %}
+	 			<p>
+	 				{{background_candidate.value}}
+	 			</p>
+ 				{% endfor %}
+ 			{% endfor %}
+ 		{% endfor %}
+ 	</div>
+	
+
+<!--
+
+	<ul>
+		{% for category in election.can_election.category_set.all %}
+			<li>
+				{{category.name}}
+				<ul>
+				{% for question in category.question_set.all %}
+					<li>
+						{{question.question}}
+						<ul>
+							{% answer_for_candidate_and_question candidate question %}
+						</ul>
+					</li>
+				{% endfor %}
+				</ul>
+			</li>
+		{% endfor %}
+	</ul>
+-->
+</section>
 
 {% endblock content %}

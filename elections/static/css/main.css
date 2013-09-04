@@ -4,11 +4,43 @@
    Author's custom styles
    ========================================================================== */
 
+body {
+	background-color: #eaedf2;
+	color: #323a45;
+}
 
+.navbar-inverse {
+	color: #FFF;
+	background-color: #323a45;
+}
 
+/*
+profile
+*/
+.nav-candidator {
+	padding-top: 10px;
+	background-color: #FFF;
+}
+.profile-candidate {
+	padding: 10px;
+	background-color: #14b9d5;
+	color: #FFF;
+}
+.img-profile {
+	padding-bottom: 5px;
+}
+.social-link-candidate {
+	color: #FFF;
+}
+/*
+eof profile
+*/
 
-
-
+.footer {
+	padding-top: 10px;
+	color: #FFF;
+	background-color: #323a45;
+}
 
 
 

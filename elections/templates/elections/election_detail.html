@@ -5,8 +5,38 @@
 {% endblock extrajs %}
 
 {% block content %}
-<div class="hero-unit">
-	<h1>{{ election }}</h1>
+<section id="election">
+	<div>
+		<h1 class="text-center">{{ election }}</h1>
+	</div>
+
+	<div class="row nav-candidator">
+		<div class="col-md-7 col-md-offset-3">
+			<ul class="list-inline">
+				<li class="active"><a href="{% url 'election_view' slug=election.slug %}"><i class="icon-group"></i> Perfiles</a></li>
+				<li><a href=""><i class="icon-list"></i> Cuestionario</a></li>
+				<li><a href=""><i class="icon-heart"></i> 1/2 Naranja</a></li>
+				<li><a href=""><i class="icon-bolt"></i> Frente a Frente</a></li>
+				<li><a href=""><i class="icon-edit"></i> Pregúntales</a></li>
+				<li><a href=""><i class="icon-trophy"></i> Ranking</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row container-candidates" style="margin-top: 20px;">
+		{% for candidato in election.can_election.candidate_set.all %}
+		<div class="col-md-2">
+			<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}"><img src="http://placehold.it/200x200" alt="{{candidato.name}}" border="0" class="img-responsive"></a>
+			<p>
+				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}">{{candidato.name}}</a>
+			</p>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+
+<!-- <div class="hero-unit">
+	
 	<p>{% trans "Esta elección tiene los siguientes tags" %}</p>
 	<ul>
 		{% for tag in election.tags.all %}
@@ -23,5 +53,6 @@
 		{% endfor %}
 	</ul>
 
-</div>
+</div> -->
+
 {% endblock content %}

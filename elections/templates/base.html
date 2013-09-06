@@ -21,32 +21,36 @@
     </head>
 
     <body ng-app="votainteligente">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/">{% trans "VotaInteligente" %}</a>
+        <div id="wrapper">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">{% trans "VotaInteligente" %}</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">{% trans "Inicio" %}</a></li>
+                            <li><a href="#about">{% trans "Sobre Nosotros" %}</a></li>
+                            <li><a href="#contact">{% trans "Contacto" %}</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
                 </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">{% trans "Inicio" %}</a></li>
-                        <li><a href="#about">{% trans "Sobre Nosotros" %}</a></li>
-                        <li><a href="#contact">{% trans "Contacto" %}</a></li>
-                    </ul>
-                </div><!--/.nav-collapse -->
+            </div>
+
+            <div class="container">
+                {% block content %}
+                {% endblock content %}
             </div>
         </div>
-
-        <div class="container">
-        	{% block content %}
-			{% endblock content %}
-        </div> <!-- /container -->
-
-        <div class="footer">
+        
+        
+        
+        <div id="footer">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
@@ -59,7 +63,6 @@
                         <p>&copy; Fundación Ciudadano Inteligente y Fiera Feroz</p>
                     </div>
                 </div>
-                
             </div>
         </div>
 
@@ -68,7 +71,6 @@
         window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')
         </script>
         
-
         <script src="{% static 'js/vendor/angular.js' %}"></script>
         <script src="{% static 'js/removeDiacritics.js' %}"></script>
         

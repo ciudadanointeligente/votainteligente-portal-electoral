@@ -41,10 +41,10 @@
 - fields: {election: 1, label: "G\xE9nero", remote_id: 4, resource_uri: ''}
   model: candideitorg.personaldata
   pk: 4
-- fields: {content_type: 10, object_id: 7, tag: 23}
+- fields: {content_type: 21, object_id: 7, tag: 23}
   model: taggit.taggeditem
   pk: 45
-- fields: {content_type: 10, object_id: 7, tag: 24}
+- fields: {content_type: 21, object_id: 7, tag: 24}
   model: taggit.taggeditem
   pk: 46
 - fields: {candidate: 1, personaldata: 1, remote_id: 1, resource_uri: /api/v2/personal_data_candidate/1/,
@@ -214,141 +214,141 @@
 - fields: {name: Presidente, slug: presidente}
   model: taggit.tag
   pk: 24
-- fields: {content_type: 10, object_id: 1, tag: 1}
+- fields: {content_type: 21, object_id: 1, tag: 1}
   model: taggit.taggeditem
   pk: 1
-- fields: {content_type: 10, object_id: 2, tag: 2}
+- fields: {content_type: 21, object_id: 2, tag: 2}
   model: taggit.taggeditem
   pk: 2
-- fields: {content_type: 10, object_id: 1, tag: 3}
+- fields: {content_type: 21, object_id: 1, tag: 3}
   model: taggit.taggeditem
   pk: 3
-- fields: {content_type: 10, object_id: 2, tag: 3}
+- fields: {content_type: 21, object_id: 2, tag: 3}
   model: taggit.taggeditem
   pk: 4
-- fields: {content_type: 10, object_id: 1, tag: 4}
+- fields: {content_type: 21, object_id: 1, tag: 4}
   model: taggit.taggeditem
   pk: 5
-- fields: {content_type: 10, object_id: 2, tag: 4}
+- fields: {content_type: 21, object_id: 2, tag: 4}
   model: taggit.taggeditem
   pk: 6
-- fields: {content_type: 10, object_id: 1, tag: 5}
+- fields: {content_type: 21, object_id: 1, tag: 5}
   model: taggit.taggeditem
   pk: 7
-- fields: {content_type: 10, object_id: 2, tag: 5}
+- fields: {content_type: 21, object_id: 2, tag: 5}
   model: taggit.taggeditem
   pk: 8
-- fields: {content_type: 10, object_id: 1, tag: 6}
+- fields: {content_type: 21, object_id: 1, tag: 6}
   model: taggit.taggeditem
   pk: 9
-- fields: {content_type: 10, object_id: 2, tag: 6}
+- fields: {content_type: 21, object_id: 2, tag: 6}
   model: taggit.taggeditem
   pk: 10
-- fields: {content_type: 10, object_id: 3, tag: 2}
+- fields: {content_type: 21, object_id: 3, tag: 2}
   model: taggit.taggeditem
   pk: 11
-- fields: {content_type: 10, object_id: 1, tag: 7}
+- fields: {content_type: 21, object_id: 1, tag: 7}
   model: taggit.taggeditem
   pk: 12
-- fields: {content_type: 10, object_id: 3, tag: 7}
+- fields: {content_type: 21, object_id: 3, tag: 7}
   model: taggit.taggeditem
   pk: 13
-- fields: {content_type: 10, object_id: 1, tag: 8}
+- fields: {content_type: 21, object_id: 1, tag: 8}
   model: taggit.taggeditem
   pk: 14
-- fields: {content_type: 10, object_id: 3, tag: 8}
+- fields: {content_type: 21, object_id: 3, tag: 8}
   model: taggit.taggeditem
   pk: 15
-- fields: {content_type: 10, object_id: 1, tag: 9}
+- fields: {content_type: 21, object_id: 1, tag: 9}
   model: taggit.taggeditem
   pk: 16
-- fields: {content_type: 10, object_id: 3, tag: 9}
+- fields: {content_type: 21, object_id: 3, tag: 9}
   model: taggit.taggeditem
   pk: 17
-- fields: {content_type: 10, object_id: 1, tag: 10}
+- fields: {content_type: 21, object_id: 1, tag: 10}
   model: taggit.taggeditem
   pk: 18
-- fields: {content_type: 10, object_id: 3, tag: 10}
+- fields: {content_type: 21, object_id: 3, tag: 10}
   model: taggit.taggeditem
   pk: 19
-- fields: {content_type: 10, object_id: 1, tag: 11}
+- fields: {content_type: 21, object_id: 1, tag: 11}
   model: taggit.taggeditem
   pk: 20
-- fields: {content_type: 10, object_id: 3, tag: 11}
+- fields: {content_type: 21, object_id: 3, tag: 11}
   model: taggit.taggeditem
   pk: 21
-- fields: {content_type: 10, object_id: 1, tag: 12}
+- fields: {content_type: 21, object_id: 1, tag: 12}
   model: taggit.taggeditem
   pk: 22
-- fields: {content_type: 10, object_id: 3, tag: 12}
+- fields: {content_type: 21, object_id: 3, tag: 12}
   model: taggit.taggeditem
   pk: 23
-- fields: {content_type: 10, object_id: 1, tag: 13}
+- fields: {content_type: 21, object_id: 1, tag: 13}
   model: taggit.taggeditem
   pk: 24
-- fields: {content_type: 10, object_id: 3, tag: 13}
+- fields: {content_type: 21, object_id: 3, tag: 13}
   model: taggit.taggeditem
   pk: 25
-- fields: {content_type: 10, object_id: 4, tag: 1}
+- fields: {content_type: 21, object_id: 4, tag: 1}
   model: taggit.taggeditem
   pk: 26
-- fields: {content_type: 10, object_id: 5, tag: 2}
+- fields: {content_type: 21, object_id: 5, tag: 2}
   model: taggit.taggeditem
   pk: 27
-- fields: {content_type: 10, object_id: 4, tag: 14}
+- fields: {content_type: 21, object_id: 4, tag: 14}
   model: taggit.taggeditem
   pk: 28
-- fields: {content_type: 10, object_id: 5, tag: 14}
+- fields: {content_type: 21, object_id: 5, tag: 14}
   model: taggit.taggeditem
   pk: 29
-- fields: {content_type: 10, object_id: 4, tag: 15}
+- fields: {content_type: 21, object_id: 4, tag: 15}
   model: taggit.taggeditem
   pk: 30
-- fields: {content_type: 10, object_id: 5, tag: 15}
+- fields: {content_type: 21, object_id: 5, tag: 15}
   model: taggit.taggeditem
   pk: 31
-- fields: {content_type: 10, object_id: 4, tag: 16}
+- fields: {content_type: 21, object_id: 4, tag: 16}
   model: taggit.taggeditem
   pk: 32
-- fields: {content_type: 10, object_id: 5, tag: 16}
+- fields: {content_type: 21, object_id: 5, tag: 16}
   model: taggit.taggeditem
   pk: 33
-- fields: {content_type: 10, object_id: 4, tag: 17}
+- fields: {content_type: 21, object_id: 4, tag: 17}
   model: taggit.taggeditem
   pk: 34
-- fields: {content_type: 10, object_id: 5, tag: 17}
+- fields: {content_type: 21, object_id: 5, tag: 17}
   model: taggit.taggeditem
   pk: 35
-- fields: {content_type: 10, object_id: 4, tag: 18}
+- fields: {content_type: 21, object_id: 4, tag: 18}
   model: taggit.taggeditem
   pk: 36
-- fields: {content_type: 10, object_id: 5, tag: 18}
+- fields: {content_type: 21, object_id: 5, tag: 18}
   model: taggit.taggeditem
   pk: 37
-- fields: {content_type: 10, object_id: 6, tag: 2}
+- fields: {content_type: 21, object_id: 6, tag: 2}
   model: taggit.taggeditem
   pk: 38
-- fields: {content_type: 10, object_id: 4, tag: 19}
+- fields: {content_type: 21, object_id: 4, tag: 19}
   model: taggit.taggeditem
   pk: 39
-- fields: {content_type: 10, object_id: 6, tag: 19}
+- fields: {content_type: 21, object_id: 6, tag: 19}
   model: taggit.taggeditem
   pk: 40
-- fields: {content_type: 10, object_id: 4, tag: 20}
+- fields: {content_type: 21, object_id: 4, tag: 20}
   model: taggit.taggeditem
   pk: 41
-- fields: {content_type: 10, object_id: 6, tag: 20}
+- fields: {content_type: 21, object_id: 6, tag: 20}
   model: taggit.taggeditem
   pk: 42
-- fields: {content_type: 10, object_id: 4, tag: 21}
+- fields: {content_type: 21, object_id: 4, tag: 21}
   model: taggit.taggeditem
   pk: 43
-- fields: {content_type: 10, object_id: 6, tag: 21}
+- fields: {content_type: 21, object_id: 6, tag: 21}
   model: taggit.taggeditem
   pk: 44
-- fields: {content_type: 10, object_id: 4, tag: 22}
+- fields: {content_type: 21, object_id: 4, tag: 22}
   model: taggit.taggeditem
   pk: 45
-- fields: {content_type: 10, object_id: 6, tag: 22}
+- fields: {content_type: 21, object_id: 6, tag: 22}
   model: taggit.taggeditem
   pk: 46

@@ -4,11 +4,51 @@
    Author's custom styles
    ========================================================================== */
 
+html, body {
+	background-color: #eaedf2;
+	color: #323a45;
+	height: 100%;
+}
 
+.navbar-inverse {
+	color: #FFF;
+	background-color: #323a45;
+}
 
+/*
+profile
+*/
+.nav-candidator {
+	padding-top: 10px;
+	background-color: #FFF;
+}
+.profile-candidate {
+	padding: 10px;
+	background-color: #14b9d5;
+	color: #FFF;
+}
+.img-profile {
+	padding-bottom: 5px;
+}
+.social-link-candidate {
+	color: #FFF;
+}
+/*
+eof profile
+*/
+#wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -60px; /* the bottom margin is the negative value of the footer's height */
+}
 
-
-
+#footer {
+	height: 60px;
+	padding-top: 10px;
+	color: #FFF;
+	background-color: #323a45;
+}
 
 
 

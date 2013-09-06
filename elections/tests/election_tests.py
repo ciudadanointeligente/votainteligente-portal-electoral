@@ -7,6 +7,7 @@ from candideitorg.models import Election as CanElection
 from django.core.urlresolvers import reverse
 from elections.views import ElectionDetailView
 from django.views.generic import DetailView
+from popit.models import ApiInstance as PopitApiInstance
 
 
 class ElectionTestCase(TestCase):
@@ -27,6 +28,21 @@ class ElectionTestCase(TestCase):
 		self.assertEqual(election.can_election, self.can_election)
 		self.assertTrue(election.searchable)
 		self.assertFalse(election.highlighted)
+
+	def test_it_can_have_a_popit_instance(self):
+		election = Election.objects.create(
+			name='the name',
+			slug='the-slug',
+			description='this is a description',
+			can_election=self.can_election
+			)
+		popit_api_instance = PopitApiInstance.objects.get(id=1)
+		election.popit_api_instance = popit_api_instance
+		election.save()
+		election = Election.objects.get(id=election.id)
+		self.assertEquals(election.popit_api_instance, popit_api_instance)
+
+
 
 	def test_there_are_no_two_elections_with_the_same_slug(self):
 		election1 = Election.objects.create(

@@ -3667,3 +3667,18 @@
 - fields: {content_type: 10, object_id: 79, tag: 348}
   model: taggit.taggeditem
   pk: 771
+- fields: {url: 'http://popit.org/api/v1'}
+  model: popit.apiinstance
+  pk: 1
+- fields: {url: 'http://popit.org/api/v2'}
+  model: popit.apiinstance
+  pk: 2
+- fields: {api_instance: 1, name: Pedro, popit_url: 'http://popit.mysociety.org/api/v1/persons/1'}
+  model: popit.person
+  pk: 1
+- fields: {api_instance: 2, name: Marcel, popit_url: 'http://popit.mysociety.org/api/v1/persons/2'}
+  model: popit.person
+  pk: 2
+- fields: {api_instance: 2, name: Felipe, popit_url: 'http://popit.mysociety.org/api/v1/persons/3'}
+  model: popit.person
+  pk: 3

@@ -1,8 +1,9 @@
 from django.db import models
 from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
-from candideitorg.models import Election as CanElection
+from candideitorg.models import Election as CanElection, Candidate as CanCandidate
 from django.core.urlresolvers import reverse
+from popit.models import Person, ApiInstance as PopitApiInstance
 
 class Election(models.Model):
 	name = models.CharField(max_length=255)
@@ -12,6 +13,7 @@ class Election(models.Model):
 	can_election = models.ForeignKey(CanElection, null=True)
 	searchable = models.BooleanField(default=True)
 	highlighted = models.BooleanField(default=False)
+	popit_api_instance = models.OneToOneField(PopitApiInstance, null=True)
 
 
 	def __unicode__(self):
@@ -19,3 +21,8 @@ class Election(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('election_view', kwargs={'slug':self.slug})
+
+
+class CandidatePerson(models.Model):
+	person = models.OneToOneField(Person, related_name="relation")
+	candidate = models.OneToOneField(CanCandidate, related_name="relation")

@@ -15,6 +15,7 @@ html, body {
 
 .list-inline>li {
 	padding: 0px;
+	margin-left: -4px;
 }
 
 .list-inline>li a {

@@ -4,6 +4,7 @@ from elections.models import CandidatePerson, Election
 from candideitorg.models import Candidate as CanCandidate, Election as CanElection
 from django.utils.unittest import skip
 from popit.models import Person
+from django.db import IntegrityError
 
 
 class CandideitorCandideitPopitPerson(TestCase):
@@ -88,5 +89,26 @@ class AutomaticCreationOfThingsWhenLoadingCandideitorgs(TestCase):
         election = Election.objects.get(can_election=can_election)
         self.assertTrue(election)
 
+    def test_can_election_to_election_is_one_to_one(self):
+        can_election = CanElection.objects.create(
+            description = "Elecciones CEI 2012",
+            remote_id = 1,
+            information_source = "",
+            logo = "/media/photos/dummy.jpg",
+            name = "cei 2012",
+            resource_uri = "/api/v2/election/1/",
+            slug = "cei-2012",
+            use_default_media_naranja_option = True
+            )
+
+        #ok it now has a relation between a can_election and an election
+        #if I try add another one it should simply throw an integrity error
+
+        with self.assertRaises(IntegrityError) as e:
+            Election.objects.create(
+                    description = can_election.description,
+                    can_election=can_election,
+                    name = can_election.name,
+                    )
 
     #def test_it_creates_a_popit_API_client(self):

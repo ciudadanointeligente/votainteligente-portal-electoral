@@ -12,7 +12,7 @@ class Election(models.Model):
 	slug = AutoSlugField(populate_from='name', unique=True)
 	description = models.TextField()
 	tags = TaggableManager()
-	can_election = models.ForeignKey(CanElection, null=True)
+	can_election = models.OneToOneField(CanElection, null=True)
 	searchable = models.BooleanField(default=True)
 	highlighted = models.BooleanField(default=False)
 	popit_api_instance = models.OneToOneField(PopitApiInstance, null=True)

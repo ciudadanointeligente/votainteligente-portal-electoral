@@ -4,6 +4,8 @@ from taggit.managers import TaggableManager
 from candideitorg.models import Election as CanElection, Candidate as CanCandidate
 from django.core.urlresolvers import reverse
 from popit.models import Person, ApiInstance as PopitApiInstance
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class Election(models.Model):
 	name = models.CharField(max_length=255)
@@ -26,3 +28,13 @@ class Election(models.Model):
 class CandidatePerson(models.Model):
 	person = models.OneToOneField(Person, related_name="relation")
 	candidate = models.OneToOneField(CanCandidate, related_name="relation")
+
+
+@receiver(post_save, sender=CanElection)
+def automatically_create_election(sender, instance, created, **kwargs):
+	can_election = instance
+	Election.objects.create(
+            description = can_election.description,
+            can_election=can_election,
+            name = can_election.name,
+            )

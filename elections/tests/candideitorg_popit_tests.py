@@ -42,9 +42,14 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertEquals(can_candidate.relation.person.name, can_candidate.name)
 
 
-class AutomaticCreationOfElectionsWhenLoadingCandideitorgs(TestCase):
+class AutomaticCreationOfThingsWhenLoadingCandideitorgs(TestCase):
+    #Ya se que esto está terrible de mal escrito por que no describe niuna wea
+    #pero la idea es que cuando se cree una elección del candideitorg, que viene desde 
+    #el django candideitorg se creen elecciones del votainteligente
+    #y además se cree un popit API instance
+    #Si a alguien se le ocurre un mejor nombre que lo cambie!
     def setUp(self):
-        super(AutomaticCreationOfElectionsWhenLoadingCandideitorgs, self).setUp()
+        super(AutomaticCreationOfThingsWhenLoadingCandideitorgs, self).setUp()
 
 
     def test_it_creates_an_election_out_of_a_candideitorg_election(self):
@@ -63,3 +68,7 @@ class AutomaticCreationOfElectionsWhenLoadingCandideitorgs(TestCase):
         self.assertIsNotNone(election)
         self.assertEquals(election.name, can_election.name)
         self.assertEquals(election.description, can_election.description)
+
+#It should create only one election per can_election but I don't know how to write this test
+#yet
+    #def test_it_creates_a_popit_API_client(self):

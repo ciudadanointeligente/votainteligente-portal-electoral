@@ -56,7 +56,7 @@ def automatically_create_election(sender, instance, created, **kwargs):
 def automatically_create_popit_person(sender, instance, created, **kwargs):
 	candidate = instance
 	api_instance = candidate.election.election.popit_api_instance
-	if api_instance is not None:
+	if created and api_instance:
 		person = Person.objects.create(
 			api_instance = api_instance,
 			name=candidate.name

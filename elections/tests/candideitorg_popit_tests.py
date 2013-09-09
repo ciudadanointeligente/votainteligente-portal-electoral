@@ -160,7 +160,19 @@ class AutomaticCreationOfAPopitPerson(TestCase):
             name="Perico los Palotes",
             election=self.can_election
             )
-        
+
         self.assertIsNotNone(can_candidate.relation)
         self.assertEquals(can_candidate.relation.person.name, can_candidate.name)
         self.assertEquals(can_candidate.relation.person.api_instance.election, self.can_election.election)
+
+
+    def test_it_does_not_create_two_relations(self):
+        can_candidate = CanCandidate.objects.create(
+            remote_id=1,
+            resource_uri="/api/v2/candidate/1/",
+            name="Perico los Palotes",
+            election=self.can_election
+            )
+        can_candidate.save()
+
+        self.assertTrue(can_candidate.relation)

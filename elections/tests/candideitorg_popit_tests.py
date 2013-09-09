@@ -69,6 +69,24 @@ class AutomaticCreationOfThingsWhenLoadingCandideitorgs(TestCase):
         self.assertEquals(election.name, can_election.name)
         self.assertEquals(election.description, can_election.description)
 
-#It should create only one election per can_election but I don't know how to write this test
-#yet
+    #ya se me ocurrió wn!!
+    def test_it_only_creates_one(self):
+        can_election = CanElection.objects.create(
+            description = "Elecciones CEI 2012",
+            remote_id = 1,
+            information_source = "",
+            logo = "/media/photos/dummy.jpg",
+            name = "cei 2012",
+            resource_uri = "/api/v2/election/1/",
+            slug = "cei-2012",
+            use_default_media_naranja_option = True
+            )
+        can_election.save()
+
+        self.assertEquals(Election.objects.filter(can_election=can_election).count(), 1)
+
+        election = Election.objects.get(can_election=can_election)
+        self.assertTrue(election)
+
+
     #def test_it_creates_a_popit_API_client(self):

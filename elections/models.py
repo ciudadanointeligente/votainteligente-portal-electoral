@@ -33,8 +33,9 @@ class CandidatePerson(models.Model):
 @receiver(post_save, sender=CanElection)
 def automatically_create_election(sender, instance, created, **kwargs):
 	can_election = instance
-	Election.objects.create(
-            description = can_election.description,
-            can_election=can_election,
-            name = can_election.name,
-            )
+	if(created):
+		Election.objects.create(
+	            description = can_election.description,
+	            can_election=can_election,
+	            name = can_election.name,
+	            )

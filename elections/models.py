@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from popit.models import Person, ApiInstance as PopitApiInstance
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.conf import settings
 
 class Election(models.Model):
 	name = models.CharField(max_length=255)
@@ -34,8 +35,18 @@ class CandidatePerson(models.Model):
 def automatically_create_election(sender, instance, created, **kwargs):
 	can_election = instance
 	if(created):
-		Election.objects.create(
+		election = Election.objects.create(
 	            description = can_election.description,
 	            can_election=can_election,
 	            name = can_election.name,
 	            )
+
+
+		popit_api_instance_url = "http://%s.%s.xip.io:%s/api" % ( election.slug,
+	                                                      settings.TEST_POPIT_API_HOST_IP,
+	                                                      settings.TEST_POPIT_API_PORT )
+
+		popit_api_instance = PopitApiInstance.objects.create(
+			url = popit_api_instance_url
+			)
+		election.popit_api_instance = popit_api_instance

@@ -14,6 +14,7 @@ class ElectionTestCase(TestCase):
 	def setUp(self):
 		super(ElectionTestCase, self).setUp()
 		self.can_election = CanElection.objects.all()[0]
+		self.can_election.election.delete()
 
 	def test_election_create(self):
 		election = Election.objects.create(

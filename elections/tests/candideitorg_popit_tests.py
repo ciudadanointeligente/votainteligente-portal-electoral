@@ -3,8 +3,9 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import CandidatePerson, Election
 from candideitorg.models import Candidate as CanCandidate, Election as CanElection
 from django.utils.unittest import skip
-from popit.models import Person
+from popit.models import Person, ApiInstance as PopitApiInstance
 from django.db import IntegrityError
+from django.conf import settings
 
 
 class CandideitorCandideitPopitPerson(TestCase):
@@ -111,4 +112,41 @@ class AutomaticCreationOfThingsWhenLoadingCandideitorgs(TestCase):
                     name = can_election.name,
                     )
 
-    #def test_it_creates_a_popit_API_client(self):
+
+    def test_election_can_election_related_name(self):
+        can_election = CanElection.objects.create(
+            description = "Elecciones CEI 2012",
+            remote_id = 1,
+            information_source = "",
+            logo = "/media/photos/dummy.jpg",
+            name = "cei 2012",
+            resource_uri = "/api/v2/election/1/",
+            slug = "cei-2012",
+            use_default_media_naranja_option = True
+            )
+
+
+        election = Election.objects.get(can_election=can_election)
+        self.assertEquals(can_election.election, election)
+
+    def test_it_creates_a_popit_API_client(self):
+        can_election = CanElection.objects.create(
+            description = "Elecciones CEI 2012",
+            remote_id = 1,
+            information_source = "",
+            logo = "/media/photos/dummy.jpg",
+            name = "cei 2012",
+            resource_uri = "/api/v2/election/1/",
+            slug = "cei-2012",
+            use_default_media_naranja_option = True
+            )
+        #Create one ApiInstance for the love of the FSM
+
+        self.assertIsNotNone(can_election.election.popit_api_instance)
+        #manso webeo pa llegar a la APIinstance
+
+        api_instance = can_election.election.popit_api_instance
+        expected_url = "http://%s.%s.xip.io:%s/api" % ( can_election.election.slug,
+                                                      settings.TEST_POPIT_API_HOST_IP,
+                                                      settings.TEST_POPIT_API_PORT )
+        self.assertEquals(api_instance.url, expected_url)

@@ -50,3 +50,15 @@ def automatically_create_election(sender, instance, created, **kwargs):
 			url = popit_api_instance_url
 			)
 		election.popit_api_instance = popit_api_instance
+
+
+@receiver(post_save, sender=CanCandidate)
+def automatically_create_popit_person(sender, instance, created, **kwargs):
+	candidate = instance
+	api_instance = candidate.election.election.popit_api_instance
+	if api_instance is not None:
+		person = Person.objects.create(
+			api_instance = api_instance,
+			name=candidate.name
+			)
+		relation = CandidatePerson.objects.create(person=person, candidate=candidate)

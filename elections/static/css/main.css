@@ -8,6 +8,48 @@ html, body {
 	background-color: #eaedf2;
 	color: #323a45;
 	height: 100%;
+	-webkit-font-smoothing: antialiased;
+}
+
+/*Menu*/
+
+.list-inline>li {
+	padding: 0px;
+	margin-left: -4px;
+}
+
+.list-inline>li a {
+	background: #FFF;
+	border-right: 3px solid #eaedf2;
+	padding: 10px;
+}
+
+.list-inline>li:first-child a {
+	border-left: 3px solid #eaedf2;
+}
+
+.list-inline>li.active a, .list-inline>li:hover a {
+	background: #5e6d82;
+	color: #FFF;
+}
+
+.list-inline>li.active a {
+	color: #FFF;
+}
+
+.list-inline>li a {
+	color: #9fa7b4;
+	text-decoration: none;
+}
+
+ul.list-inline {
+	margin-bottom: 0px;
+	padding: 8px;
+}
+
+.nav-candidator {
+	background-color: #FFF;
+	text-align: center;
 }
 
 .navbar-inverse {
@@ -15,13 +57,25 @@ html, body {
 	background-color: #323a45;
 }
 
+.list-inline i.icon-group, .list-inline i.icon-edit {
+	color: #14b9d5;
+}
+
+.list-inline i.icon-heart {
+	color: #fe635f;
+}
+
+.list-inline i.icon-list {
+	color: #3ee0cb;
+}
+
+.list-inline i.icon-bolt, .list-inline i.icon-trophy {
+	color: #ffd200;
+}
+
 /*
 profile
 */
-.nav-candidator {
-	padding-top: 10px;
-	background-color: #FFF;
-}
 .profile-candidate {
 	padding: 10px;
 	background-color: #14b9d5;

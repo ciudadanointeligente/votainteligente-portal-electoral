@@ -58,3 +58,4 @@ class CandidateDetailView(DetailView):
         context = super(CandidateDetailView, self).get_context_data(**kwargs)
         context['election'] = self.object.election.election_set.all()[0]
         return context
+        

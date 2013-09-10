@@ -7,7 +7,6 @@
 html, body {
 	background-color: #eaedf2;
 	color: #323a45;
-	height: 100%;
 }
 
 .navbar-inverse {
@@ -21,11 +20,17 @@ profile
 .nav-candidator {
 	padding-top: 10px;
 	background-color: #FFF;
+	margin-bottom: 10px;
 }
 .profile-candidate {
 	padding: 10px;
-	background-color: #14b9d5;
+	background-color: #5e6d82;
 	color: #FFF;
+	max-height: 250px;
+	overflow: hidden;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 .img-profile {
 	padding-bottom: 5px;
@@ -33,30 +38,43 @@ profile
 .social-link-candidate {
 	color: #FFF;
 }
+
+.questionary .panel-heading {
+	background-color: #323a45;
+	color: #FFF;
+}
+
+.question-answer {
+	background-color: #ebedf2;
+	padding: 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.question {
+	font-weight: bold;
+}
 /*
 eof profile
 */
+/*
 #wrapper {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -60px; /* the bottom margin is the negative value of the footer's height */
+	margin: 0 auto -60px;
 }
+*/
 
 #footer {
-	height: 60px;
 	padding-top: 10px;
 	color: #FFF;
 	background-color: #323a45;
 }
 
-
-
-
-
-
-
-
-
-
-
+@media (max-width: 480px) {
+	.profile-candidate {
+		min-height: 425px;
+	}
+}

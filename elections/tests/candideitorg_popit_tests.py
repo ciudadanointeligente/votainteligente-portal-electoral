@@ -6,6 +6,10 @@ from django.utils.unittest import skip
 from popit.models import Person, ApiInstance as PopitApiInstance
 from django.db import IntegrityError
 from django.conf import settings
+import simplejson as json
+import urllib
+import re
+from popit.tests.instance_helpers import delete_api_database
 
 
 class CandideitorCandideitPopitPerson(TestCase):
@@ -152,6 +156,10 @@ class AutomaticCreationOfAPopitPerson(TestCase):
             use_default_media_naranja_option = True
             )
 
+    def tearDown(self):
+        super(AutomaticCreationOfAPopitPerson, self).tearDown()
+        delete_api_database()
+
 
     def test_when_creating_a_candidate_it_creates_a_person(self):
         can_candidate = CanCandidate.objects.create(
@@ -176,3 +184,25 @@ class AutomaticCreationOfAPopitPerson(TestCase):
         can_candidate.save()
 
         self.assertTrue(can_candidate.relation)
+
+    def test_it_posts_to_the_popit_api(self):
+        
+
+        can_candidate = CanCandidate.objects.create(
+            remote_id=1,
+            resource_uri="/api/v2/candidate/1/",
+            name="Perico los Palotes",
+            election=self.can_election
+            )
+
+        person = can_candidate.relation.person
+        instance = person.api_instance
+        my_re = re.compile(instance.url + "/persons/([^/]+)/{0,1}")
+        self.assertIsNotNone(my_re.match(person.popit_url))
+
+        person_id = my_re.match(person.popit_url).groups()[0]
+        response = urllib.urlopen(person.popit_url)
+        self.assertEquals(response.code, 200)
+        response_as_json = json.loads(response.read())
+
+

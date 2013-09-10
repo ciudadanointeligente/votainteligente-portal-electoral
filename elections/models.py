@@ -61,4 +61,5 @@ def automatically_create_popit_person(sender, instance, created, **kwargs):
 			api_instance = api_instance,
 			name=candidate.name
 			)
+		person.post_to_the_api()
 		relation = CandidatePerson.objects.create(person=person, candidate=candidate)

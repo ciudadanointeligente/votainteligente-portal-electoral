@@ -9,46 +9,70 @@ html, body {
 	color: #323a45;
 	height: 100%;
 	-webkit-font-smoothing: antialiased;
+	font-family: 'Lato', sans-serif;
+}
+
+h1 {
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+}
+
+a {
+	color: #14b9d5;
 }
 
 /*Menu*/
 
-.list-inline>li {
+.nav-candidator .list-inline>li {
 	padding: 0px;
 	margin-left: -4px;
+	height: 39px;
 }
 
-.list-inline>li a {
+.nav-candidator .list-inline>li a {
 	background: #FFF;
 	border-right: 3px solid #eaedf2;
 	padding: 10px;
-}
-
-.list-inline>li:first-child a {
-	border-left: 3px solid #eaedf2;
-}
-
-.list-inline>li.active a, .list-inline>li:hover a {
-	background: #5e6d82;
-	color: #FFF;
-}
-
-.list-inline>li.active a {
-	color: #FFF;
-}
-
-.list-inline>li a {
 	color: #9fa7b4;
 	text-decoration: none;
 }
 
-ul.list-inline {
+.nav-candidator .list-inline>li:first-child a {
+	border-left: 3px solid #eaedf2;
+}
+
+.nav-candidator .list-inline>li.active a, .nav-candidator .list-inline>li:hover a {
+	background: #5e6d82;
+	color: #FFF;
+	position: relative;
+}
+
+.nav-candidator .list-inline>li.active a:after {
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.nav-candidator .list-inline>li.active a:after {
+	border-color: rgba(94, 109, 130, 0);
+	border-top-color: #5e6d82;
+	border-width: 8px;
+	left: 50%;
+	margin-left: -8px;
+}
+
+.nav-candidator ul.list-inline {
 	margin-bottom: 0px;
-	padding: 8px;
+	padding: 9px;
+	background: #fff;
+	height: 37px;
 }
 
 .nav-candidator {
-	background-color: #FFF;
 	text-align: center;
 }
 
@@ -57,19 +81,19 @@ ul.list-inline {
 	background-color: #323a45;
 }
 
-.list-inline i.icon-group, .list-inline i.icon-edit {
+.nav-candidator .list-inline i.icon-group, .nav-candidator .list-inline i.icon-edit {
 	color: #14b9d5;
 }
 
-.list-inline i.icon-heart {
+.nav-candidator .list-inline i.icon-heart {
 	color: #fe635f;
 }
 
-.list-inline i.icon-list {
+.nav-candidator .list-inline i.icon-list, .nav-candidator .list-inline i.icon-info {
 	color: #3ee0cb;
 }
 
-.list-inline i.icon-bolt, .list-inline i.icon-trophy {
+.nav-candidator .list-inline i.icon-bolt, .nav-candidator .list-inline i.icon-trophy {
 	color: #ffd200;
 }
 
@@ -86,6 +110,11 @@ profile
 }
 .social-link-candidate {
 	color: #FFF;
+}
+
+.container-candidates p {
+	background: #fff;
+	padding: 5px;
 }
 /*
 eof profile

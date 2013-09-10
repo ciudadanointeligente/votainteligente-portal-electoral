@@ -9,7 +9,7 @@
 <div>
     <div>
         <h3 class="text-center">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, optio laboriosam debitis laudantium ipsum error dignissimos illo ab autem sapiente placeat aperiam totam animi vel obcaecati asperiores distinctio quidem assumenda.
+            Este 18 de Septiembre los chilenos elegiremos Presidente, Senadores, Diputados y Consejeros Regionales (CORE). Aquí encontrarás info para votar informado:
         </h3>
     </div>
 
@@ -62,109 +62,25 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, nobis molestias earum cum perferendis non consequuntur soluta sed.
             </p>
         </div>
-        <div class="col-md-4">
-            <div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                </div>
-            </div>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, nobis molestias earum cum perferendis non consequuntur soluta sed.
-            </p>
-        </div>
-        <div class="col-md-4">
-            <div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/100x100" alt="" class="img-responsive">
-                    </div>
-                </div>
-            </div>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, nobis molestias earum cum perferendis non consequuntur soluta sed.
-            </p>
-        </div>
     </div>
     
     <div id="home-search" class="row" ng-controller="searchFormController">
         <form action="{% url 'tags_search' %}" method="get" class="form-horizontal" rol="form">
+            
             <div class="form-group">
-                <label class="sr-only col-md-2" for="id_q">{% trans "Búsqueda" %}</label>
+
                 <div class="col-md-4 col-md-offset-4">
-                    <input type="text" class="form-control" id="id_q" name="q" placeholder="{% trans "Ingresa el nombre de tu candidato, distrito, comuna" %}" autocomplete="off" ng-model="searchElection">
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default"><i class="icon-search"></i></button>
+                      </span>
+                      <input type="text" class="form-control" id="id_q" name="q" placeholder="{% trans "Ingresa el nombre de tu candidato, distrito, comuna" %}" autocomplete="off" ng-model="searchElection">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">{% trans "Buscar" %}</button>
+                      </span>
+                    </div>
                 </div>
+
             </div>
         </form>
         <div>
@@ -179,19 +95,4 @@
     </div>
 
 </div>
-            <!-- <div class="hero-unit" ng-controller='searchFormController'>
-            	<form method="get" action="{% url 'tags_search' %}">
-                            <input id="id_q" name="q" autocomplete="off" type="text" ng-model="searchElection" placeholder="{% trans "Escribe el nombre de tu comuna" %}" />
-			    </form>
-                <div>
-                    <ul ng-show="searchElection">
-                        <li ng-repeat="election in elections | filter:searchElection:comperator">
-                            [[election.name]]
-                            <a href="[[election.detaillink]]">{% trans "Detalle de la elección" %}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-             -->
 {% endblock content %}

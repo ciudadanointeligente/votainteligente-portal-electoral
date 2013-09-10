@@ -8,4 +8,4 @@ pyelasticsearch
 django-haystack
 -e git://github.com/ciudadanointeligente/candideitorg-django.git#egg=candideitorg-django
 PyYAML
-popit-django
+-e git://github.com/ciudadanointeligente/popit-django.git@posts_a_person_to_the_api#egg=popit-django

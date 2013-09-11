@@ -19,6 +19,7 @@
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
         <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+
     </head>
 
     <body ng-app="votainteligente">
@@ -74,8 +75,11 @@
         
         <script src="{% static 'js/vendor/angular.js' %}"></script>
         <script src="{% static 'js/removeDiacritics.js' %}"></script>
-        
+        <script src="{% static 'js/jquery.expander.js' %}"></script>
         <script src="{% static 'js/main.js' %}"></script>
+        <script type="text/javascript">
+        var app = angular.module('votainteligente', []);
+        </script>
         <script type="text/javascript">
         {% block extrajs %}
         {% endblock extrajs %}

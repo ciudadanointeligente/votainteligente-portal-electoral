@@ -50,6 +50,7 @@ ul.list-inline {
 .nav-candidator {
 	background-color: #FFF;
 	text-align: center;
+	margin-bottom: 15px;
 }
 
 .navbar-inverse {
@@ -121,6 +122,22 @@ eof profile
 }
 */
 
+/*face-to-face*/
+.progress-bar .fondo {
+	background-color: #000
+}
+/*EOF face-to-face*/
+
+/*soulmate*/
+.other-soulmate-box {
+	background-color: #FFF;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 1px 15px;
+}
+/*EOF soulmate*/
+
 #footer {
 	padding-top: 10px;
 	color: #FFF;
@@ -128,7 +145,28 @@ eof profile
 }
 
 @media (max-width: 480px) {
+	/* menu */
+	.list-inline>li {
+		padding: 0px;
+		margin: 5px 0px;
+	}
+
+	.list-inline>li a {
+		background: #FFF;
+		border-right: 0px solid #eaedf2;
+		padding: 0px 5px;
+	}
+
+	.list-inline>li:first-child a {
+		border-left: 0px solid #eaedf2;
+	}
+	/* eof menu */
+
 	.profile-candidate {
 		min-height: 425px;
+	}
+
+	.other-soulmate-box {
+		margin-top: 5px;
 	}
 }

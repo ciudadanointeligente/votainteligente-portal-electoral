@@ -20,9 +20,7 @@
 						{% for personal_data in election.can_election.personaldata_set.all %}
 						<tr>
 							<td>
-								{{personal_data.label}}
-							</td>
-							<td>
+								<span>{{personal_data.label}}:</span>
 								{% for personal_data_candidate in personal_data.personaldatacandidate_set.all %}
 									{% relation_personal_data_candidate candidate personal_data %}
 								{% endfor %}
@@ -34,7 +32,7 @@
 				<div class="col-md-3">
 					<ul class="list-unstyled">
 						{% for link in candidate.link_set.all %}
-							<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate"><i class="{{ link.icon_class }} icon-2x"></i> {{link.name}}</a></li>
+							<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate"><i class="{{ link.icon_class }}"></i> {{link.name}}</a></li>
 						{% endfor %}
 					</ul>
 

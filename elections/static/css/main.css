@@ -17,6 +17,12 @@ h1 {
 	font-weight: 300;
 }
 
+h3 {
+	font-family: 'Lato', sans-serif;
+	font-weight: 900;
+}
+
+
 a {
 	color: #14b9d5;
 }
@@ -24,6 +30,33 @@ a {
 a:hover {
 	color: #0e778a;
 	text-decoration: none;
+}
+
+/*Botones*/
+
+.btn-lg {
+	font-size: 14px;
+	font-family: 'Lato', sans-serif;
+}
+
+.btn-success {
+	background-color: #3ee0cb;
+	border-color: transparent;
+}
+
+.btn-success:hover {
+	background-color: #44938e;
+	border-color: transparent;
+}
+
+.btn-primary {
+	background-color: #fe635f;
+	border-color: transparent;
+}
+
+.btn-primary:hover {
+	background-color: #af373c;
+	border-color: transparent;
 }
 
 /*Menu*/
@@ -131,9 +164,6 @@ profile
 	padding-bottom: 5px;
 }
 
-.social-link-candidate {
-	color: #FFF;
-}
 
 
 .container-candidates p {
@@ -192,8 +222,33 @@ profile
 	margin: 0;
 }
 
+.profile-candidate .table tbody>tr>td {
+	border-bottom: 1px solid rgba(142, 146, 167, 1);
+	border-top: none;
+	font-weight: 400;
+	padding: 4px;
+}
 
+.profile-candidate .table tbody>tr>td span {
+	opacity: 0.8;
+	font-weight: 300;
+}
 
+.profile-candidate .btn-success {
+	margin: 10px 0;
+}
+
+.profile-candidate .btn-primary {
+	margin: 10px 0 25px;
+}
+
+.social-link-candidate {
+	color: #FFF;
+}
+
+.social-link-candidate:hover {
+	color: #3ee0cb;
+}
 
 
 

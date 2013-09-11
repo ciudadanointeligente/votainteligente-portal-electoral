@@ -1,96 +1,86 @@
-{% extends "base.html" %}
+{% extends "elections/election_base.html" %}
 {% load candideitorg_templetags %}
-{% block content %}
+{% load i18n %}
 
-<section>
-	<div>
-		<h1 class="text-center">Senador por {{ election.name }}</h1>
-	</div>
 
-	<div class="row nav-candidator">
-		<div class="col-md-12">
-			<ul class="list-inline">
-				<li><a href="{% url 'election_view' slug=election.slug %}"><i class="icon-group"></i> Perfiles</a></li>
-				<li><a href=""><i class="icon-list"></i> Cuestionario</a></li>
-				<li><a href=""><i class="icon-heart"></i> 1/2 Naranja</a></li>
-				<li><a href=""><i class="icon-bolt"></i> Frente a Frente</a></li>
-				<li><a href=""><i class="icon-edit"></i> Pregúntales</a></li>
-				<li><a href=""><i class="icon-trophy"></i> Ranking</a></li>
-				<li><a href=""><i class="icon-info"></i> Más info</a></li>
-			</ul>
-		</div>
-	</div>
+{% block mainelection %}
 
 	<div class="container-profile">
 		<div>
 			<h3>{{ candidate.name }}</h3>
 		</div>
 
-		<div class="row profile-candidate">
-			<div class="col-md-3">
-				<img src="{{ candidate.photo }}" class="img-responsive img-profile" alt="{{ candidate.name }}">
+		<div class="profile-candidate">
+			<div class="row">
+				<div class="col-md-3">
+					<img src="{{ candidate.photo }}" class="img-responsive img-profile" alt="{{ candidate.name }}">
+				</div>
+				<div class="col-md-6">
+					<table class="table">
+						{% for personal_data in election.can_election.personaldata_set.all %}
+						<tr>
+							<td>
+								{{personal_data.label}}
+							</td>
+							<td>
+								{% for personal_data_candidate in personal_data.personaldatacandidate_set.all %}
+									{% relation_personal_data_candidate candidate personal_data %}
+								{% endfor %}
+							</td>
+						</tr>
+						{% endfor %}
+					</table>
+				</div>
+				<div class="col-md-3">
+					<ul class="list-unstyled">
+						{% for link in candidate.link_set.all %}
+							<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate"><i class="{{ link.icon_class }} icon-2x"></i> {{link.name}}</a></li>
+						{% endfor %}
+					</ul>
+
+					<button type="button" class="btn btn-success btn-lg btn-block"><i class="icon-edit"></i> {% trans "Hazle una pregunta" %}</button>
+					<button type="button" class="btn btn-primary btn-lg btn-block"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
+				</div>
 			</div>
-			<div class="col-md-7">
-				<table class="table">
-					{% for personal_data in election.can_election.personaldata_set.all %}
-					<tr>
-						<td>
-							{{personal_data.label}}
-						</td>
-						<td>
-							{% for personal_data_candidate in personal_data.personaldatacandidate_set.all %}
-								{#% relation_personal_data_candidate candidate personal_data %#}
-							{% endfor %}
-						</td>
-					</tr>
-					{% endfor %}
-				</table>
-			</div>
-			<div class="col-md-2">
-				<ul class="list-inline">
-					{% for link in candidate.link_set.all %}
-						<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate"><i class="{{ link.icon_class }} icon-2x"></i> {{link.name}}</a></li>
-					{% endfor %}
-				</ul>
+			
+			<div class="row">
+				<div class="antecedentes col-md-12">
+			 		{% for background_category in election.can_election.backgroundcategory_set.all %}
+			 			{% for background in background_category.background_set.all %}
+			 				{% for background_candidate in background.backgroundcandidate_set.all %}
+				 			<p>
+				 				{{background_candidate.value}}
+				 			</p>
+			 				{% endfor %}
+			 			{% endfor %}
+			 		{% endfor %}
+			 	</div>
 			</div>
 		</div>
 
-	 	<div class="antecedentes">
-	 		<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
-	 		{% for background_category in election.can_election.backgroundcategory_set.all %}
-	 			{% for background in background_category.background_set.all %}
-	 				{% for background_candidate in background.backgroundcandidate_set.all %}
-		 			<p>
-		 				{{background_candidate.value}}
-		 			</p>
-	 				{% endfor %}
-	 			{% endfor %}
-	 		{% endfor %}
-	 	</div>
 	</div>
-	
-	
 
-<!--
+	<div class="questionary">
+		<h3>{% trans "Cuestionario" %}:</h3>
 
-	<ul>
 		{% for category in election.can_election.category_set.all %}
-			<li>
-				{{category.name}}
-				<ul>
+		<div class="panel panel-default">
+			<div class="panel-heading">{{category.name}}</div>
+			<div class="panel-body">
 				{% for question in category.question_set.all %}
-					<li>
+				<div class="question-answer" {% if forloop.counter >= 2 %}style="margin-top:5px;" {% endif %}>
+					<p class="question">
 						{{question.question}}
-						<ul>
-							{% answer_for_candidate_and_question candidate question %}
-						</ul>
-					</li>
+					</p>
+					<p class="answer">
+						{% answer_for_candidate_and_question candidate question %}
+					</p>
+				</div>
 				{% endfor %}
-				</ul>
-			</li>
+			</div>
+		</div>
 		{% endfor %}
-	</ul>
--->
+
 </section>
 
 {% endblock content %}
@@ -108,3 +98,6 @@
 
 
         {% endblock extrajs %}
+
+	</div>
+{% endblock mainelection %}

@@ -2,11 +2,12 @@
 {% load candideitorg_templetags %}
 {% load i18n %}
 
+
 {% block mainelection %}
 
 	<div class="container-profile">
 		<div>
-			<h2>{{ candidate.name }}</h2>
+			<h3>{{ candidate.name }}</h3>
 		</div>
 
 		<div class="profile-candidate">
@@ -56,6 +57,7 @@
 			 	</div>
 			</div>
 		</div>
+
 	</div>
 
 	<div class="questionary">
@@ -78,5 +80,24 @@
 			</div>
 		</div>
 		{% endfor %}
+
+</section>
+
+{% endblock content %}
+
+        {% block extrajs %}
+
+			$(document).ready(function() {
+			  $('div.antecedentes p').expander({
+			  expandText: '<i class="icon-chevron-down"></i>',
+			  userCollapseText: '<i class="icon-chevron-up"></i>',
+			  slicePoint: 180,
+			});
+
+			});
+
+
+        {% endblock extrajs %}
+
 	</div>
 {% endblock mainelection %}

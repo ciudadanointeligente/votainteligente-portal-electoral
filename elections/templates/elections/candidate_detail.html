@@ -20,9 +20,7 @@
 						{% for personal_data in election.can_election.personaldata_set.all %}
 						<tr>
 							<td>
-								{{personal_data.label}}
-							</td>
-							<td>
+								<span>{{personal_data.label}}:</span>
 								{% for personal_data_candidate in personal_data.personaldatacandidate_set.all %}
 									{% relation_personal_data_candidate candidate personal_data %}
 								{% endfor %}
@@ -34,7 +32,7 @@
 				<div class="col-md-3">
 					<ul class="list-unstyled">
 						{% for link in candidate.link_set.all %}
-							<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate"><i class="{{ link.icon_class }} icon-2x"></i> {{link.name}}</a></li>
+							<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate"><i class="{{ link.icon_class }}"></i> {{link.name}}</a></li>
 						{% endfor %}
 					</ul>
 
@@ -81,6 +79,26 @@
 			</div>
 		</div>
 		{% endfor %}
+
+
+	</div>
+
+	<div class="questionary">
+		<h3>Cuestionario</h3>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">Educación</div>
+			<div class="panel-body">
+				<div class="question-answer">
+					<p class="question">
+							¿Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium?
+					</p>
+					<p class="answer">
+						<i class="icon-quote-left"></i> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. <i class="icon-quote-right"></i>
+					</p>
+				</div>
+			</div>
+		</div>
 
 
 	</div>

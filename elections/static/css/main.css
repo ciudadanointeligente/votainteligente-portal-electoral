@@ -17,6 +17,12 @@ h1 {
 	font-weight: 300;
 }
 
+h3 {
+	font-family: 'Lato', sans-serif;
+	font-weight: 900;
+}
+
+
 a {
 	color: #14b9d5;
 }
@@ -24,6 +30,34 @@ a {
 a:hover {
 	color: #0e778a;
 	text-decoration: none;
+}
+
+/*Botones*/
+
+.btn-lg {
+	font-size: 14px;
+	font-family: 'Lato', sans-serif;
+	padding: 17px 16px;
+}
+
+.btn-success {
+	background-color: #3ee0cb;
+	border-color: transparent;
+}
+
+.btn-success:hover {
+	background-color: #44938e;
+	border-color: transparent;
+}
+
+.btn-primary {
+	background-color: #fe635f;
+	border-color: transparent;
+}
+
+.btn-primary:hover {
+	background-color: #af373c;
+	border-color: transparent;
 }
 
 /*Menu*/
@@ -113,9 +147,7 @@ a:hover {
 	color: #ffd200;
 }
 
-/*
-profile
-*/
+/*Perfil candidato*/
 
 .profile-candidate {
 	background-color: #5e6d82;
@@ -125,16 +157,12 @@ profile
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	min-height: 210px;
+	padding: 20px 20px 0 20px;
 }
 
 .img-profile {
 	padding-bottom: 5px;
 }
-
-.social-link-candidate {
-	color: #FFF;
-}
-
 
 .container-candidates p {
 	background: #fff;
@@ -144,6 +172,7 @@ profile
 .questionary .panel-heading {
 	background-color: #323a45;
 	color: #FFF;
+	font-weight: 900;
 }
 
 .question-answer {
@@ -155,28 +184,23 @@ profile
 }
 
 .question {
-	font-weight: bold;
+	font-weight: 900;
 }
 
-#footer {
-	padding-top: 10px;
-	color: #FFF;
-	background-color: #323a45;
+p.answer i {
+	color: #9fa7b4;
 }
-
-
-/*Perfil candidato*/
 
 .container-profile {
 	background: #5e6d82;
 	border-radius: 6px;
 	color: #fff;
-	padding: 20px 20px 0 20px;
 	margin: auto;
 }
 
 .container-profile h3 {
 	margin-top: 0;
+	padding: 20px 20px 0 20px;
 }
 
 .read-more a, .read-less a {
@@ -192,7 +216,54 @@ profile
 	margin: 0;
 }
 
+.profile-candidate {
+	padding: 20px 20px 0 20px;
+}
 
+.profile-candidate .table tbody>tr>td {
+	border-bottom: 1px solid rgba(142, 146, 167, 1);
+	border-top: none;
+	font-weight: 400;
+	padding: 4px;
+}
+
+.profile-candidate .table tbody>tr>td span {
+	opacity: 0.8;
+	font-weight: 300;
+}
+
+.profile-candidate .btn-success {
+	margin: 10px 0;
+}
+
+.profile-candidate .btn-primary {
+	margin: 10px 0 25px;
+}
+
+.social-link-candidate {
+	color: #FFF;
+}
+
+.social-link-candidate:hover {
+	color: #3ee0cb;
+}
+
+.panel-heading {
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
+}
+
+.panel {
+	border-radius: 6px;
+}
+
+/*Footer*/
+
+#footer {
+	padding-top: 10px;
+	color: #FFF;
+	background-color: #323a45;
+}
 
 
 

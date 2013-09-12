@@ -156,3 +156,25 @@ class AskTestCase(TestCase):
 		response = self.client.get(url)
 		self.assertEquals(response.status_code, 200)
 		self.assertTemplateUsed(response, 'elections/ask_candidate.html')
+
+class RankingTestCase(TestCase):
+	def setUp(self):
+		super(RankingTestCase, self).setUp()
+		self.tarapaca = Election.objects.get(id=1)
+
+	def test_url_ask(self):
+		url = reverse('ranking_detail_view', 
+			kwargs={
+			'slug':self.tarapaca.slug
+			})
+		self.assertTrue(url)
+
+	def test_url_is_reachable_for_ranking(self):
+		url = reverse('ranking_detail_view', 
+			kwargs={
+			'slug':self.tarapaca.slug,
+			})
+		self.assertTrue(url)
+		response = self.client.get(url)
+		self.assertEquals(response.status_code, 200)
+		self.assertTemplateUsed(response, 'elections/ranking_candidates.html')

@@ -128,6 +128,8 @@ INSTALLED_APPS = (
     'haystack',
     'elections',
     'candideitorg',
+    'markdown_deux',
+    'django_extensions',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

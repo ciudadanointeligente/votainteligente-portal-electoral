@@ -7,6 +7,8 @@ from candideitorg.models import Election as CanElection
 from django.core.urlresolvers import reverse
 from elections.views import ElectionDetailView
 from django.views.generic import DetailView
+from django.utils.unittest import skip
+
 
 
 class ElectionTestCase(TestCase):
@@ -19,11 +21,15 @@ class ElectionTestCase(TestCase):
 			name='the name',
 			slug='the-slug',
 			description='this is a description',
-			can_election=self.can_election
-			)
+			can_election=self.can_election,
+			extra_info_title = u'ver más',
+			extra_info_content=u'Más Información')
+
 		self.assertEquals(election.name, 'the name')
 		self.assertEquals(election.slug, 'the-slug')
 		self.assertEquals(election.description, 'this is a description')
+		self.assertEquals(election.extra_info_title, u'ver más')
+		self.assertEquals(election.extra_info_content, u'Más Información')
 		self.assertEqual(election.can_election, self.can_election)
 		self.assertTrue(election.searchable)
 		self.assertFalse(election.highlighted)
@@ -81,6 +87,35 @@ class ElectionTestCase(TestCase):
 		expected_url = reverse('election_view', kwargs={'slug':election.slug})
 
 		self.assertEquals(election.get_absolute_url(), expected_url)
+	def test_extra_info_reverse_url(self):
+		election = Election.objects.create(
+			name='Distrito',
+			slug='distrito'
+			)
+		reverse_url = reverse('election_extra_info', kwargs={'slug':election.slug})
+		self.assertTrue(reverse_url)
+
+	def test_election_extra_info_url_is_reachable(self):
+		election = Election.objects.create(
+			name='Distrito',
+			slug='distrito'
+			)
+		reverse_url = reverse('election_extra_info', kwargs={'slug':election.slug})
+		response = self.client.get(reverse_url)
+		self.assertEquals(response.status_code,200)
+		self.assertEquals(response.context['election'],election)
+		self.assertTemplateUsed(response,"elections/extra_info.html")
+
+
+	
+	def test_get_election_ extra_info_url(self):
+		election = Election.objects.create(
+			name='Distrito',
+			slug='distrito'
+			)
+		expected_url = reverse('election_extra_info', kwargs={'slug':election.slug})
+
+		self.assertEquals(election.get_extra_info_url(), expected_url)
 
 class ElectionViewTestCase(TestCase):
 	def setUp(self):

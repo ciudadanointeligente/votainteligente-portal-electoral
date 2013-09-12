@@ -283,6 +283,16 @@ p.answer i {
 	border-radius: 6px;
 }
 
+/*ask*/
+.candidate-answer {
+	color: #323a45;
+	background-color: #eee;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+/*eof ask*/
+
 @media (max-width: 480px) {
 	/* menu */
 	.nav-candidator ul.list-inline {

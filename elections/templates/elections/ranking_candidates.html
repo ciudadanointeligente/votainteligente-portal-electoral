@@ -1,0 +1,112 @@
+{% extends "elections/election_base.html" %}
+{% load i18n %}
+
+{% block mainelection %}
+<!-- ranking -->
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3>
+					{% trans "Candidatos que más responden a los ciudadanos" %}
+				</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table">
+					<tr class="primary">
+						<td>
+							<p>1. Perico los Palotes <small>de Presidenciales</small></p>
+							<p>Ha respondido <strong>30 de 31</strong> preguntas</p>
+						</td>
+						<td>
+							<i class="icon-twitter"></i> felicitalo(a)
+						</td>
+					</tr>
+					<tr class="primary">
+						<td>
+							<p>2. Perico los Palotes <small>de Presidenciales</small></p>
+							<p>Ha respondido <strong>20 de 31</strong> preguntas</p>
+						</td>
+						<td>
+							<i class="icon-twitter"></i> felicitalo(a)
+						</td>
+					</tr>
+					<tr class="primary">
+						<td>
+							<p>3. Perico los Palotes <small>de Presidenciales</small></p>
+							<p>Ha respondido <strong>10 de 31</strong> preguntas</p>
+						</td>
+						<td>
+							<i class="icon-twitter"></i> felicitalo(a)
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h3>
+					{% trans "Candidatos que menos responden a los ciudadanos" %}
+				</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table">
+					<tr class="danger">
+						<td>
+							<p>1. Perico los Palotes <small>de Presidenciales</small></p>
+							<p>Ha respondido <strong>1 de 31</strong> preguntas</p>
+						</td>
+						<td>
+							<i class="icon-twitter"></i> exígele
+						</td>
+					</tr>
+					<tr class="danger">
+						<td>
+							<p>2. Perico los Palotes <small>de Presidenciales</small></p>
+							<p>Ha respondido <strong>8 de 31</strong> preguntas</p>
+						</td>
+						<td>
+							<i class="icon-twitter"></i> exígele
+						</td>
+					</tr>
+					<tr class="danger">
+						<td>
+							<p>3. Perico los Palotes <small>de Presidenciales</small></p>
+							<p>Ha respondido <strong>14 de 31</strong> preguntas</p>
+						</td>
+						<td>
+							<i class="icon-twitter"></i> exígele
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 col-md-offset-9">
+		<p>
+			<a data-toggle="modal" href="#myModal">{% trans "Cómo se calcula el ranking?" %}</a>
+		</p>
+	</div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">{% trans "Cómo se calcula el ranking?" %}</h4>
+			</div>
+			<div class="modal-body">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, consectetur, provident, eveniet vel dolorum nisi sit doloribus optio illo quaerat excepturi nihil libero repellendus! Porro molestiae neque aperiam culpa sunt.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, consectetur, provident, eveniet vel dolorum nisi sit doloribus optio illo quaerat excepturi nihil libero repellendus! Porro molestiae neque aperiam culpa sunt.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, consectetur, provident, eveniet vel dolorum nisi sit doloribus optio illo quaerat excepturi nihil libero repellendus! Porro molestiae neque aperiam culpa sunt.</p>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- eof ranking -->
+{% endblock mainelection %}

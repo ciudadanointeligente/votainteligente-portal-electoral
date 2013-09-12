@@ -1,6 +1,7 @@
 {% extends "elections/election_base.html" %}
 {% load candideitorg_templetags %}
 {% load i18n %}
+{% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}{% endblock url_face_to_face %}
 
 
 {% block mainelection %}
@@ -13,16 +14,14 @@
 		<div class="profile-candidate">
 			<div class="row">
 				<div class="col-md-3">
-					<img src="{{ candidate.photo }}" class="img-responsive img-profile" alt="{{ candidate.name }}">
+					<img src="http://placehold.it/800x600" class="img-responsive img-profile" alt="{{ candidate.name }}">
 				</div>
 				<div class="col-md-6">
 					<table class="table">
 						{% for personal_data in election.can_election.personaldata_set.all %}
 						<tr>
 							<td>
-								{{personal_data.label}}
-							</td>
-							<td>
+								<span>{{personal_data.label}}:</span>
 								{% for personal_data_candidate in personal_data.personaldatacandidate_set.all %}
 									{% relation_personal_data_candidate candidate personal_data %}
 								{% endfor %}
@@ -34,7 +33,7 @@
 				<div class="col-md-3">
 					<ul class="list-unstyled">
 						{% for link in candidate.link_set.all %}
-							<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate"><i class="{{ link.icon_class }} icon-2x"></i> {{link.name}}</a></li>
+							<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate"><i class="{{ link.icon_class }}"></i> {{link.name}}</a></li>
 						{% endfor %}
 					</ul>
 
@@ -45,15 +44,15 @@
 			
 			<div class="row">
 				<div class="antecedentes col-md-12">
-			 		{% for background_category in election.can_election.backgroundcategory_set.all %}
+					<p>
+					{% for background_category in election.can_election.backgroundcategory_set.all %}
 			 			{% for background in background_category.background_set.all %}
 			 				{% for background_candidate in background.backgroundcandidate_set.all %}
-				 			<p>
 				 				{{background_candidate.value}}
-				 			</p>
 			 				{% endfor %}
 			 			{% endfor %}
 			 		{% endfor %}
+			 		</p>
 			 	</div>
 			</div>
 		</div>
@@ -61,7 +60,7 @@
 	</div>
 
 	<div class="questionary">
-		<h3>{% trans "Cuestionario" %}:</h3>
+		<h3>{% trans "Cuestionario" %}</h3>
 
 		{% for category in election.can_election.category_set.all %}
 		<div class="panel panel-default">
@@ -73,7 +72,7 @@
 						{{question.question}}
 					</p>
 					<p class="answer">
-						{% answer_for_candidate_and_question candidate question %}
+						<i class="icon-quote-left"></i> {% answer_for_candidate_and_question candidate question %} <i class="icon-quote-right"></i>
 					</p>
 				</div>
 				{% endfor %}
@@ -81,23 +80,16 @@
 		</div>
 		{% endfor %}
 
-</section>
-
-{% endblock content %}
-
-        {% block extrajs %}
-
-			$(document).ready(function() {
-			  $('div.antecedentes p').expander({
-			  expandText: '<i class="icon-chevron-down"></i>',
-			  userCollapseText: '<i class="icon-chevron-up"></i>',
-			  slicePoint: 180,
-			});
-
-			});
-
-
-        {% endblock extrajs %}
-
 	</div>
+	
 {% endblock mainelection %}
+
+{% block extrajs %}
+	$(document).ready(function() {
+		$('div.antecedentes p').expander({
+			expandText: '<i class="icon-chevron-down"></i>',
+			userCollapseText: '<i class="icon-chevron-up"></i>',
+			slicePoint: 180,
+		});
+	});
+{% endblock extrajs %}

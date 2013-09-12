@@ -30,6 +30,18 @@ urlpatterns = patterns('',
 	url(r'^election/(?P<slug>[-\w]+)/face-to-face/?$',
 		ElectionDetailView.as_view(template_name='elections/compare_candidates.html'), 
 		name='face_to_face_no_candidate_detail_view'),
+	#soulmate
+	url(r'^election/(?P<slug>[-\w]+)/soul-mate/?$',
+		ElectionDetailView.as_view(template_name='elections/soulmate_candidate.html'), 
+		name='soul_mate_detail_view'),
+	#ask
+	url(r'^election/(?P<slug>[-\w]+)/ask/?$',
+		ElectionDetailView.as_view(template_name='elections/ask_candidate.html'), 
+		name='ask_detail_view'),
+	#ranking
+	url(r'^election/(?P<slug>[-\w]+)/ranking/?$',
+		ElectionDetailView.as_view(template_name='elections/ranking_candidates.html'), 
+		name='ranking_detail_view'),
 	url(r'^election/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/?$', 
 		CandidateDetailView.as_view(template_name='elections/candidate_detail.html'),
 		name='candidate_detail_view'

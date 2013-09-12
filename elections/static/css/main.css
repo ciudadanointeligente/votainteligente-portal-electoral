@@ -12,10 +12,18 @@ html, body {
 	font-family: 'Lato', sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family:  'Lato', sans-serif;
+}
+
 h1 {
-	font-family: 'Lato', sans-serif;
 	font-weight: 300;
 }
+
+h3 {
+	font-weight: 900;
+}
+
 
 a {
 	color: #14b9d5;
@@ -24,6 +32,46 @@ a {
 a:hover {
 	color: #0e778a;
 	text-decoration: none;
+}
+
+/*Botones*/
+
+.btn-lg {
+	font-size: 14px;
+	font-family: 'Lato', sans-serif;
+	padding: 17px 16px;
+}
+
+.btn-success {
+	background-color: #3ee0cb;
+	border-color: transparent;
+	padding: 15px 15px;
+	float: right;
+}
+
+.btn-success:hover {
+	background-color: #44938e;
+	border-color: transparent;
+}
+
+.btn-primary {
+	background-color: #14b9d5;
+	border-color: transparent;
+}
+
+.btn-primary:hover {
+	background-color: #0e778a;
+	border-color: transparent;
+}
+
+.btn-danger {
+	background-color: #fe635f;
+	border-color: transparent;
+}
+
+.btn-danger:hover {
+	background-color: #af373c;
+	border-color: transparent;
 }
 
 /*Menu*/
@@ -113,19 +161,19 @@ a:hover {
 	color: #ffd200;
 }
 
-/*
-profile
-*/
+
+
+/*Perfil candidato*/
 
 .profile-candidate {
-	padding: 10px;
 	background-color: #5e6d82;
 	color: #FFF;
-	max-height: 250px;
 	overflow: hidden;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	min-height: 210px;
+	padding: 20px 20px 0 20px;
 }
 
 .img-profile {
@@ -136,7 +184,6 @@ profile
 	color: #FFF;
 }
 
-
 .container-candidates p {
 	background: #fff;
 	padding: 5px;
@@ -145,6 +192,7 @@ profile
 .questionary .panel-heading {
 	background-color: #323a45;
 	color: #FFF;
+	font-weight: 900;
 }
 
 .question-answer {
@@ -156,8 +204,137 @@ profile
 }
 
 .question {
-	font-weight: bold;
+	font-weight: 900;
 }
+
+
+p.answer i {
+	color: #9fa7b4;
+}
+
+
+
+/* Frente a frente*/
+.progress-bar .fondo {
+	background-color: #000
+}
+/*EOF frente a frente*/
+
+
+
+/*Media naranja*/
+
+.panel-default>.panel-heading {
+	color: #fff;
+	background-color: #323a45;
+	border-color: transparent;
+}
+
+.panel-title {
+	font-size: 14px;
+}
+
+.other-soulmate-box {
+	background-color: #FFF;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 1px 15px;
+}
+
+.fondo-gris {
+	background: #eaedf2;
+	border-radius: 6px;
+	margin-bottom: 15px;
+}
+
+#question-soulmate .fondo-gris {
+	padding: 15px 0px;
+}
+
+#question-soulmate .row {
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+/*Media naranja - Resultado */
+
+#soulmate-result {
+	background: #5e6d82;
+	padding: 15px;
+	border-radius: 6px;
+	color: #fff;
+}
+
+#soulmate-result .icon-heart {
+	color: #fe635f;
+}
+
+#soulmate-result a {
+	color: #3ee0cb;
+}
+
+#soulmate-result a:hover {
+	color: #fff;
+}
+
+#soulmate-result h3 {
+	margin-top: 0px;
+}
+
+#soulmate-result h2 {
+	font-size: 98px;
+	font-weight: 900;
+	font-family: 'Lato', sans-serif;
+	margin: -10px 0px;
+}
+
+#soulmate-result h2 span {
+	font-weight: 300;
+}
+
+#soulmate-result .fondo-azuloscuro {
+	background: #323a45;
+	padding: 9px 0px 0px;
+	border-radius: 6px;
+	margin-top: 20px;
+}
+
+#soulmate-result .fondo-azuloscuro i {
+	color: #fff;
+}
+
+#soulmate-result .fondo-azuloscuro i:hover {
+	color: #3ee0cb;
+}
+
+.progress {
+	height: 26px;
+	margin-bottom: 5px;
+	background-color: #9fa7b4;
+}
+
+.progress-bar-success {
+	background-color: #3ee0cb;
+}
+
+.progress-bar-warning {
+	background-color: #ffd200;
+}
+
+.progress-bar-danger {
+	background-color: #fe635f;
+}
+
+#soulmate-result .container-progress p span {
+	float: right;
+}
+
+.other-soulmate-box h4 {
+	font-weight: 900;	
+}
+
+/* Footer */
 
 #footer {
 	padding-top: 10px;
@@ -165,19 +342,16 @@ profile
 	background-color: #323a45;
 }
 
-
-/*Perfil candidato*/
-
 .container-profile {
 	background: #5e6d82;
 	border-radius: 6px;
 	color: #fff;
-	padding: 20px 20px 0 20px;
 	margin: auto;
 }
 
 .container-profile h3 {
 	margin-top: 0;
+	padding: 20px 20px 0 20px;
 }
 
 .read-more a, .read-less a {
@@ -189,15 +363,90 @@ profile
 	margin: 0px -20px;
 }
 
+.antecedentes p {
+	margin: 0;
+}
 
+.profile-candidate {
+	padding: 20px 20px 0 20px;
+}
 
+.profile-candidate .table tbody>tr>td {
+	border-bottom: 1px solid rgba(142, 146, 167, 1);
+	border-top: none;
+	font-weight: 400;
+	padding: 4px;
+}
 
+.profile-candidate .table tbody>tr>td span {
+	opacity: 0.8;
+	font-weight: 300;
+}
 
+.profile-candidate .btn-success {
+	margin: 10px 0;
+}
 
+.profile-candidate .btn-primary {
+	margin: 10px 0 25px;
+}
 
+.social-link-candidate {
+	color: #FFF;
+}
+
+.social-link-candidate:hover {
+	color: #3ee0cb;
+}
+
+.panel-heading {
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
+}
+
+.panel {
+	border-radius: 6px;
+}
 
 @media (max-width: 480px) {
+	/* menu */
+	.nav-candidator ul.list-inline {
+		margin-bottom: 0px;
+		padding: 5px;
+		background: #fff;
+		height: auto;
+	}
+	.nav-candidator .list-inline>li {
+		height: auto;
+	}
+	.nav-candidator .list-inline>li:first-child a {
+		border-left: none;
+	}
+	.nav-candidator .list-inline>li a {
+		border-right: none;
+		padding: 5px;
+	}
+	.list-inline>li {
+		padding: 0px;
+		margin: 5px 0px;
+	}
+
+	.list-inline>li a {
+		background: #FFF;
+		border-right: 0px solid #eaedf2;
+		padding: 0px 5px;
+	}
+
+	.list-inline>li:first-child a {
+		border-left: 0px solid #eaedf2;
+	}
+	/* eof menu */
+
 	.profile-candidate {
 		min-height: 425px;
+	}
+
+	.other-soulmate-box {
+		margin-top: 5px;
 	}
 }

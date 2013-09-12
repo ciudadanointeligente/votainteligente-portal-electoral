@@ -285,6 +285,22 @@ p.answer i {
 
 @media (max-width: 480px) {
 	/* menu */
+	.nav-candidator ul.list-inline {
+		margin-bottom: 0px;
+		padding: 5px;
+		background: #fff;
+		height: auto;
+	}
+	.nav-candidator .list-inline>li {
+		height: auto;
+	}
+	.nav-candidator .list-inline>li:first-child a {
+		border-left: none;
+	}
+	.nav-candidator .list-inline>li a {
+		border-right: none;
+		padding: 5px;
+	}
 	.list-inline>li {
 		padding: 0px;
 		margin: 5px 0px;

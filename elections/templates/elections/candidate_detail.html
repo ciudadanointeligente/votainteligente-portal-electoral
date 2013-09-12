@@ -48,9 +48,7 @@
 					{% for background_category in election.can_election.backgroundcategory_set.all %}
 			 			{% for background in background_category.background_set.all %}
 			 				{% for background_candidate in background.backgroundcandidate_set.all %}
-				 			
 				 				{{background_candidate.value}}
-				 			
 			 				{% endfor %}
 			 			{% endfor %}
 			 		{% endfor %}
@@ -81,7 +79,6 @@
 			</div>
 		</div>
 		{% endfor %}
-
 
 	</div>
 	

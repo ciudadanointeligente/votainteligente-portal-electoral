@@ -408,8 +408,6 @@ p.answer i {
 	border-radius: 6px;
 }
 
-
-
 @media (max-width: 480px) {
 	/* menu */
 	.nav-candidator ul.list-inline {

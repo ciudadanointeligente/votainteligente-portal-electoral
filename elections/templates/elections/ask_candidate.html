@@ -1,0 +1,108 @@
+{% extends "elections/election_base.html" %}
+{% load i18n %}
+
+{% block mainelection %}
+<!-- ask -->
+<div class="row">
+	<form role="form">
+		<div class="col-md-8">
+			
+			<div class="form-group">
+				<label for="name">{% trans "Yo soy" %}</label>
+				<input type="text" class="form-control" id="name" placeholder="{% trans "Identifícate como quieras" %}">
+			</div>
+			<div class="form-group">
+				<label for="email">{% trans "Correo electrónico" %}</label>
+				<input type="email" class="form-control" id="email" placeholder="{% trans "Si deseas que te notifiquemos la respuesta del candidato" %}">
+			</div>
+			<div class="form-group">
+				<label for="question">{% trans "Escribe tu pregunta" %}</label>
+				<textarea name="question" id="question" class="form-control" rows="3" placeholder="{% trans "Escribe una pregunta clara y respetuosa. Revisa si otros han preguntado lo que a ti te interesa saber" %}"></textarea>
+			</div>
+			<p class="text-warning">
+				{% trans "Acepto que mis preguntas y respuestas sean publicadas en este mismo medio.<br>Confirmo que lo que aquí dice no atenta contra el candidato." %}
+			</p>
+		</div>
+		<div class="col-md-4">
+			<h5>{% trans "A quien quieres preguntar" %}:</h5>
+			<ul class="list-unstyled">
+				{% for candidato in election.can_election.candidate_set.all %}
+				<li><input type="checkbox" value=""> {{candidato.name}}</li>
+				{% endfor %}
+			</ul>
+			<button type="submit" class="btn btn-primary">{% trans "Enviar pregunta" %}</button>
+		</div>
+	</form>
+</div>
+<div>
+	<div class="row">
+		<div class="col-md-8">
+			<h4>Preguntas Recientes</h4>
+		</div>
+		<div class="col-md-4">
+			<form action="" class="form-inline" role="form">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Buscar pregunta">
+					<span class="input-group-addon"><i class="icon-search"></i></span>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro odit ipsum perferendis explicabo. Laboriosam, laudantium, quaerat, cupiditate, libero numquam quia eum corporis quo consectetur molestias aspernatur sint ad aliquam. Suscipit?
+					</p>
+					<p class="text-right">
+						Perico los Palotes
+					</p>
+				</div>
+				<div class="panel-body">
+					<div class="candidate-answer">
+						<div class="row">
+							<div class="col-md-10">
+								Perico los Palotes
+							</div>
+							<div class="col-md-2">
+								<ul class="list-inline">
+									<li><i class="icon-twitter"></i></li>
+									<li><i class="icon-facebook"></i></li>
+									<li><i class="icon-google-plus"></i></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, fugit, voluptates, aspernatur laboriosam aliquid reiciendis asperiores dolorem nemo ex quam rerum cupiditate repellendus facilis ea earum voluptate dolore dicta mollitia.
+							</p>
+						</div>
+					</div>
+					<div class="candidate-answer">
+						<div class="row">
+							<div class="col-md-10">
+								Perico los Palotes
+							</div>
+							<div class="col-md-2">
+								<ul class="list-inline">
+									<li><i class="icon-twitter"></i></li>
+									<li><i class="icon-facebook"></i></li>
+									<li><i class="icon-google-plus"></i></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, fugit, voluptates, aspernatur laboriosam aliquid reiciendis asperiores dolorem nemo ex quam rerum cupiditate repellendus facilis ea earum voluptate dolore dicta mollitia.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- eof ask -->
+{% endblock mainelection %}

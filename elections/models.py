@@ -15,7 +15,7 @@ class Election(models.Model):
 	searchable = models.BooleanField(default=True)
 	highlighted = models.BooleanField(default=False)
 	extra_info_title = models.CharField(max_length = 50, blank = True, null = True)
-	extra_info_content = models.TextField(max_length = 3000, blank = True, null = True, help_text=_("Puedes usar Markdown. <br/> ")) 
+	extra_info_content = models.TextField(max_length = 3000, blank = True, null = True, help_text=_("Puedes usar Markdown. <br/> ") 
             + markdown_allowed())
 
 

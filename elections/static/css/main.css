@@ -164,6 +164,10 @@ a:hover {
 	padding-bottom: 5px;
 }
 
+.social-link-candidate {
+	color: #FFF;
+}
+
 .container-candidates p {
 	background: #fff;
 	padding: 5px;
@@ -187,8 +191,30 @@ a:hover {
 	font-weight: 900;
 }
 
+
 p.answer i {
 	color: #9fa7b4;
+}
+/*face-to-face*/
+.progress-bar .fondo {
+	background-color: #000
+}
+/*EOF face-to-face*/
+
+/*soulmate*/
+.other-soulmate-box {
+	background-color: #FFF;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 1px 15px;
+}
+/*EOF soulmate*/
+
+#footer {
+	padding-top: 10px;
+	color: #FFF;
+	background-color: #323a45;
 }
 
 .container-profile {
@@ -257,19 +283,45 @@ p.answer i {
 	border-radius: 6px;
 }
 
-/*Footer*/
-
-#footer {
-	padding-top: 10px;
-	color: #FFF;
-	background-color: #323a45;
-}
-
-
-
-
 @media (max-width: 480px) {
+	/* menu */
+	.nav-candidator ul.list-inline {
+		margin-bottom: 0px;
+		padding: 5px;
+		background: #fff;
+		height: auto;
+	}
+	.nav-candidator .list-inline>li {
+		height: auto;
+	}
+	.nav-candidator .list-inline>li:first-child a {
+		border-left: none;
+	}
+	.nav-candidator .list-inline>li a {
+		border-right: none;
+		padding: 5px;
+	}
+	.list-inline>li {
+		padding: 0px;
+		margin: 5px 0px;
+	}
+
+	.list-inline>li a {
+		background: #FFF;
+		border-right: 0px solid #eaedf2;
+		padding: 0px 5px;
+	}
+
+	.list-inline>li:first-child a {
+		border-left: 0px solid #eaedf2;
+	}
+	/* eof menu */
+
 	.profile-candidate {
 		min-height: 425px;
+	}
+
+	.other-soulmate-box {
+		margin-top: 5px;
 	}
 }

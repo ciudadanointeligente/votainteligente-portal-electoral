@@ -91,3 +91,46 @@ class FaceToFaceViewTestCase(TestCase):
 		response = self.client.get(url)
 		self.assertEquals(response.status_code, 200)
 		self.assertTemplateUsed(response, 'elections/compare_candidates.html')
+
+	def test_url_is_reachable_for_one_candidates(self):
+		url = reverse('face_to_face_one_candidate_detail_view', 
+			kwargs={
+			'slug':self.tarapaca.slug,
+			'slug_candidate_one':self.tarapaca.can_election.candidate_set.all()[0].slug,
+			})
+		self.assertTrue(url)
+		response = self.client.get(url)
+		self.assertEquals(response.status_code, 200)
+		self.assertTemplateUsed(response, 'elections/compare_candidates.html')
+
+	def test_url_is_reachable_for_no_one_candidates(self):
+		url = reverse('face_to_face_no_candidate_detail_view', 
+			kwargs={
+			'slug':self.tarapaca.slug,
+			})
+		self.assertTrue(url)
+		response = self.client.get(url)
+		self.assertEquals(response.status_code, 200)
+		self.assertTemplateUsed(response, 'elections/compare_candidates.html')
+
+class SoulMateTestCase(TestCase):
+	def setUp(self):
+		super(SoulMateTestCase, self).setUp()
+		self.tarapaca = Election.objects.get(id=1)
+
+	def test_url_better_half(self):
+		url = reverse('soul_mate_detail_view', 
+			kwargs={
+			'slug':self.tarapaca.slug
+			})
+		self.assertTrue(url)
+
+	def test_url_is_reachable_for_better_half(self):
+		url = reverse('soul_mate_detail_view', 
+			kwargs={
+			'slug':self.tarapaca.slug,
+			})
+		self.assertTrue(url)
+		response = self.client.get(url)
+		self.assertEquals(response.status_code, 200)
+		self.assertTemplateUsed(response, 'elections/soulmate_candidate.html')

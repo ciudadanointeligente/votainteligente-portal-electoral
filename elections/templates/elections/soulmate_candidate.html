@@ -1,0 +1,170 @@
+{% extends "elections/election_base.html" %}
+{% load i18n %}
+
+{% block mainelection %}
+<!-- soulmate -->
+<div id="question-soulmate">
+	<div class="row">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit?</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-8">
+						<ul class="list-unstyled">
+							<li>
+								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							</li>
+							<li>
+								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							</li>
+							<li>
+								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<h4>{% trans "Que importancia le das a esta pregunta?" %}</h4>
+						<ul id="importancia" class="list-inline">
+							<li><input type="radio" name="voto" value="1"> 1</li>
+							<li><input type="radio" name="voto" value="2"> 2</li>
+							<li><input type="radio" name="voto" value="3"> 3</li>
+							<li><input type="radio" name="voto" value="4"> 4</li>
+							<li><input type="radio" name="voto" value="5"> 5</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit?</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-8">
+						<ul class="list-unstyled">
+							<li>
+								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							</li>
+							<li>
+								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							</li>
+							<li>
+								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<h4>{% trans "Que importancia le das a esta pregunta?" %}</h4>
+						<ul id="importancia" class="list-inline">
+							<li><input type="radio" name="voto" value="1"> 1</li>
+							<li><input type="radio" name="voto" value="2"> 2</li>
+							<li><input type="radio" name="voto" value="3"> 3</li>
+							<li><input type="radio" name="voto" value="4"> 4</li>
+							<li><input type="radio" name="voto" value="5"> 5</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 col-md-offset-9">
+			<button class="btn btn-primary"><i class="icon-heart"></i> {% trans "Encontrar mi 1/2 naranja" %}</button>
+		</div>
+	</div>
+</div>
+
+<div id="soulmate-result">
+	<div class="row">
+		<div class="col-md-3">
+			<img src="http://placehold.it/800x600" alt="" class="img-responsive">
+		</div>
+		<div class="col-md-5">
+			<h2>Perico los Palotes</h2>
+			<h3>66% <small>{% trans "de afinidad" %}</small></h3>
+			<div class="row">
+				<div class="col-md-6">
+					{% trans "Declara tu amor publicamente" %}
+				</div>
+				<div class="col-md-6">
+					<ul class="list-inline">
+						<li><a href="#"><i class="icon-twitter icon-2x"></i></a></li>
+						<li><a href="#"><i class="icon-facebook icon-2x"></i></a></li>
+						<li><a href="#"><i class="icon-google-plus icon-2x"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="container-progress">
+				<div class="progress">
+					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+					</div>
+				</div>
+				<p>80% Corrupción</p>
+			</div>
+			<div class="container-progress">
+				<div class="progress">
+					<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+					</div>
+				</div>
+				<p>40% Corrupción</p>
+			</div>
+			<div class="container-progress">
+				<div class="progress">
+					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+					</div>
+				</div>
+				<p>65% Corrupción</p>
+			</div>
+			<div class="container-progress">
+				<div class="progress">
+					<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 33%">
+					</div>
+				</div>
+				<p>33% Corrupción</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="other-soulmate">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="other-soulmate-box">
+				<h4>60% Perico los Palotes</h4>
+				<ul class="list-unstyled">
+					<li>80% Corrupción</li>
+					<li>40% Corrupción</li>
+					<li>65% Corrupción</li>
+					<li>33% Corrupción</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="other-soulmate-box">
+				<h4>60% Perico los Palotes</h4>
+				<ul class="list-unstyled">
+					<li>80% Corrupción</li>
+					<li>40% Corrupción</li>
+					<li>65% Corrupción</li>
+					<li>33% Corrupción</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="other-soulmate-box">
+				<h4>60% Perico los Palotes</h4>
+				<ul class="list-unstyled">
+					<li>80% Corrupción</li>
+					<li>40% Corrupción</li>
+					<li>65% Corrupción</li>
+					<li>33% Corrupción</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- EOF soulmate -->
+{% endblock mainelection %}

@@ -1,6 +1,7 @@
 {% extends "elections/election_base.html" %}
 {% load candideitorg_templetags %}
 {% load i18n %}
+{% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}{% endblock url_face_to_face %}
 
 
 {% block mainelection %}
@@ -13,7 +14,7 @@
 		<div class="profile-candidate">
 			<div class="row">
 				<div class="col-md-3">
-					<img src="{{ candidate.photo }}" class="img-responsive img-profile" alt="{{ candidate.name }}">
+					<img src="http://placehold.it/800x600" class="img-responsive img-profile" alt="{{ candidate.name }}">
 				</div>
 				<div class="col-md-6">
 					<table class="table">

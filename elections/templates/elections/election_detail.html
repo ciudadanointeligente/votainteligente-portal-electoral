@@ -5,14 +5,16 @@
 {% endblock extrajs %}
 
 {% block mainelection %}
-<div class="row container-candidates" style="margin-top: 20px;">
-	{% for candidato in election.can_election.candidate_set.all %}
-	<div class="col-md-2">
-		<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}"><img src="http://placehold.it/800x600" alt="{{candidato.name}}" border="0" class="img-responsive"></a>
-		<p>
-			<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}">{{candidato.name}}</a>
-		</p>
+<div class="row">
+	<div class="container-candidates">
+		{% for candidato in election.can_election.candidate_set.all %}
+		<div class="col-md-2">
+			<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}"><img src="http://placehold.it/800x600" alt="{{candidato.name}}" border="0" class="img-responsive"></a>
+			<p>
+				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}">{{candidato.name}}</a>
+			</p>
+		</div>
+		{% endfor %}
 	</div>
-	{% endfor %}
 </div>
 {% endblock mainelection %}

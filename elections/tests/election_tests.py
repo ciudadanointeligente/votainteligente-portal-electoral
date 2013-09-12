@@ -108,7 +108,7 @@ class ElectionTestCase(TestCase):
 
 
 	
-	def test_get_election_ extra_info_url(self):
+	def test_get_election_extra_info_url(self):
 		election = Election.objects.create(
 			name='Distrito',
 			slug='distrito'

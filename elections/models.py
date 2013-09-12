@@ -3,6 +3,7 @@ from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
 from candideitorg.models import Election as CanElection
 from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext as _
 from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
 
 class Election(models.Model):
@@ -14,7 +15,7 @@ class Election(models.Model):
 	searchable = models.BooleanField(default=True)
 	highlighted = models.BooleanField(default=False)
 	extra_info_title = models.CharField(max_length = 50, blank = True, null = True)
-	extra_info_content = models.TextField(max_length = 3000, blank = True, null = True, help_text="Puedes usar Markdown. <br/> "
+	extra_info_content = models.TextField(max_length = 3000, blank = True, null = True, help_text=_("Puedes usar Markdown. <br/> ")) 
             + markdown_allowed())
 
 

@@ -12,13 +12,15 @@ html, body {
 	font-family: 'Lato', sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family:  'Lato', sans-serif;
+}
+
 h1 {
-	font-family: 'Lato', sans-serif;
 	font-weight: 300;
 }
 
 h3 {
-	font-family: 'Lato', sans-serif;
 	font-weight: 900;
 }
 
@@ -43,6 +45,8 @@ a:hover {
 .btn-success {
 	background-color: #3ee0cb;
 	border-color: transparent;
+	padding: 15px 15px;
+	float: right;
 }
 
 .btn-success:hover {
@@ -51,11 +55,21 @@ a:hover {
 }
 
 .btn-primary {
-	background-color: #fe635f;
+	background-color: #14b9d5;
 	border-color: transparent;
 }
 
 .btn-primary:hover {
+	background-color: #0e778a;
+	border-color: transparent;
+}
+
+.btn-danger {
+	background-color: #fe635f;
+	border-color: transparent;
+}
+
+.btn-danger:hover {
 	background-color: #af373c;
 	border-color: transparent;
 }
@@ -147,6 +161,8 @@ a:hover {
 	color: #ffd200;
 }
 
+
+
 /*Perfil candidato*/
 
 .profile-candidate {
@@ -195,13 +211,29 @@ a:hover {
 p.answer i {
 	color: #9fa7b4;
 }
-/*face-to-face*/
+
+
+
+/* Frente a frente*/
 .progress-bar .fondo {
 	background-color: #000
 }
-/*EOF face-to-face*/
+/*EOF frente a frente*/
 
-/*soulmate*/
+
+
+/*Media naranja*/
+
+.panel-default>.panel-heading {
+	color: #fff;
+	background-color: #323a45;
+	border-color: transparent;
+}
+
+.panel-title {
+	font-size: 14px;
+}
+
 .other-soulmate-box {
 	background-color: #FFF;
 	-webkit-border-radius: 5px;
@@ -209,7 +241,100 @@ p.answer i {
 	border-radius: 5px;
 	padding: 1px 15px;
 }
-/*EOF soulmate*/
+
+.fondo-gris {
+	background: #eaedf2;
+	border-radius: 6px;
+	margin-bottom: 15px;
+}
+
+#question-soulmate .fondo-gris {
+	padding: 15px 0px;
+}
+
+#question-soulmate .row {
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+/*Media naranja - Resultado */
+
+#soulmate-result {
+	background: #5e6d82;
+	padding: 15px;
+	border-radius: 6px;
+	color: #fff;
+}
+
+#soulmate-result .icon-heart {
+	color: #fe635f;
+}
+
+#soulmate-result a {
+	color: #3ee0cb;
+}
+
+#soulmate-result a:hover {
+	color: #fff;
+}
+
+#soulmate-result h3 {
+	margin-top: 0px;
+}
+
+#soulmate-result h2 {
+	font-size: 98px;
+	font-weight: 900;
+	font-family: 'Lato', sans-serif;
+	margin: -10px 0px;
+}
+
+#soulmate-result h2 span {
+	font-weight: 300;
+}
+
+#soulmate-result .fondo-azuloscuro {
+	background: #323a45;
+	padding: 9px 0px 0px;
+	border-radius: 6px;
+	margin-top: 20px;
+}
+
+#soulmate-result .fondo-azuloscuro i {
+	color: #fff;
+}
+
+#soulmate-result .fondo-azuloscuro i:hover {
+	color: #3ee0cb;
+}
+
+.progress {
+	height: 26px;
+	margin-bottom: 5px;
+	background-color: #9fa7b4;
+}
+
+.progress-bar-success {
+	background-color: #3ee0cb;
+}
+
+.progress-bar-warning {
+	background-color: #ffd200;
+}
+
+.progress-bar-danger {
+	background-color: #fe635f;
+}
+
+#soulmate-result .container-progress p span {
+	float: right;
+}
+
+.other-soulmate-box h4 {
+	font-weight: 900;	
+}
+
+/* Footer */
 
 #footer {
 	padding-top: 10px;
@@ -282,16 +407,6 @@ p.answer i {
 .panel {
 	border-radius: 6px;
 }
-
-/*ask*/
-.candidate-answer {
-	color: #323a45;
-	background-color: #eee;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-}
-/*eof ask*/
 
 @media (max-width: 480px) {
 	/* menu */

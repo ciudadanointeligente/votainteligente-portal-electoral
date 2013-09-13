@@ -1,0 +1,7 @@
+{% extends "elections/election_base.html" %}
+{% load markdown_deux_tags %}
+{% block mainelection %}
+ 
+	{{ election.extra_info_content|markdown }}
+
+{% endblock %}

@@ -46,5 +46,7 @@ urlpatterns = patterns('',
 		CandidateDetailView.as_view(template_name='elections/candidate_detail.html'),
 		name='candidate_detail_view'
 		),
-	
+	url(r'^election/(?P<slug>[-\w]+)/extra_info.html$',
+		ElectionDetailView.as_view(template_name='elections/extra_info.html'), 
+		name='election_extra_info'),
 )

@@ -24,6 +24,11 @@ h3 {
 	font-weight: 900;
 }
 
+h5 {
+	font-weight: 900;
+	font-size: 14px;
+}
+
 
 a {
 	color: #14b9d5;
@@ -32,6 +37,12 @@ a {
 a:hover {
 	color: #0e778a;
 	text-decoration: none;
+}
+
+.fondo-blanco {
+	background: #fff;
+	border-radius: 6px;
+	padding: 10px;
 }
 
 /*Botones*/
@@ -332,6 +343,83 @@ p.answer i {
 
 .other-soulmate-box h4 {
 	font-weight: 900;	
+}
+
+/*Frente a frente*/
+
+.porcentaje-similitud {
+	background: #14b9d5;
+	color: #fff;
+	border-radius: 6px;
+}
+
+.porcentaje-similitud h3 {
+	padding: 10px;
+}
+
+.chosen-container-single .chosen-single {
+	padding: 12px 0px 0px 15px;
+	height: 47px;
+	border: transparent;
+	border-radius: 0px;
+	background: #323a45;
+	box-shadow: none;
+	color: #fff;
+	font-weight: 900;
+	position:relative;
+	font-size: 14px;
+}
+
+.chosen-container-single .chosen-single:after {
+	position: absolute;
+	top: 11px;
+	content: "\f078";
+	font-family: FontAwesome;
+	font-weight: normal;
+	right: 15px;
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single {
+	border: none;
+	-moz-border-radius-bottomright: 0;
+	border-bottom-right-radius: 0;
+	-moz-border-radius-bottomleft: 0;
+	border-bottom-left-radius: 0;
+	background: #323a45;
+	box-shadow: none;
+}
+
+.chosen-container .chosen-results li.highlighted{
+	background: #ffd200;
+	color: inherit;
+}
+
+.panel-default>.panel-heading {
+	color: inherit;
+	background-color: #fff;
+	border-color: transparent;
+	margin-bottom: -10px;
+	margin-top: 10px;
+}
+
+#compare-candidates .text-right, #compare-candidates .text-center {
+	color: #9fa7b4;
+}
+
+#compare-candidates i {
+	color: #9fa7b4;
+}
+
+#compare-candidates .text-center i {
+	color: #14b9d5;
+}
+
+#compare-candidates div.col-md-12:first-child {
+	margin-top: 20px;
+}
+
+#compare-candidates div.col-md-6:last-child {
+margin-bottom: 20px;
 }
 
 /* Footer */

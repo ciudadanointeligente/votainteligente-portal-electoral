@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.db import models
 from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
@@ -26,3 +27,7 @@ class Election(models.Model):
 		return reverse('election_view', kwargs={'slug':self.slug})
 	def get_extra_info_url(self):
 			return reverse('election_extra_info', kwargs={'slug':self.slug})
+
+	class Meta:
+	        verbose_name = _(u'Mi Elección')
+	        verbose_name_plural = _(u'Mis Elecciones')

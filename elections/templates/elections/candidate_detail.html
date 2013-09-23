@@ -1,6 +1,8 @@
 {% extends "elections/election_base.html" %}
 {% load candideitorg_templetags %}
 {% load i18n %}
+{% load thumbnail %}
+
 {% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}{% endblock url_face_to_face %}
 
 
@@ -14,7 +16,9 @@
 		<div class="profile-candidate">
 			<div class="row">
 				<div class="col-md-3">
-					<img src="http://placehold.it/800x600" class="img-responsive img-profile" alt="{{ candidate.name }}">
+					{% thumbnail candidate.photo "800x600" crop="center" as im %}
+					<img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive">
+					{% endthumbnail %}
 				</div>
 				<div class="col-md-6">
 					<table class="table">
@@ -37,8 +41,8 @@
 						{% endfor %}
 					</ul>
 
-					<button type="button" class="btn btn-success btn-lg btn-block"><i class="icon-edit"></i> {% trans "Hazle una pregunta" %}</button>
-					<button type="button" class="btn btn-primary btn-lg btn-block"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
+					<button type="button" class="btn btn-success btn-lg btn-block" onClick="location.href='{% url 'ask_detail_view' slug=election.slug %}'"><i class="icon-edit"></i> {% trans "Hazle una pregunta" %}</button>
+					<button type="button" class="btn btn-primary btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
 				</div>
 			</div>
 			

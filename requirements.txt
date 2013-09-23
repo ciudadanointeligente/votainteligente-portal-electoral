@@ -10,3 +10,6 @@ django-haystack
 PyYAML
 django-markdown-deux==1.0.4
 django-extensions
+sorl-thumbnail
+pillow
+pgmagick

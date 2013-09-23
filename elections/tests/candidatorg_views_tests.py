@@ -91,17 +91,24 @@ class FaceToFaceViewTestCase(TestCase):
 		response = self.client.get(url)
 		self.assertEquals(response.status_code, 200)
 		self.assertTemplateUsed(response, 'elections/compare_candidates.html')
+		self.assertIn('first_candidate', response.context)
+		self.assertEqual(response.context['first_candidate'], self.tarapaca.can_election.candidate_set.all()[0])
+		self.assertIn('second_candidate', response.context)
+		self.assertEqual(response.context['second_candidate'], self.tarapaca.can_election.candidate_set.all()[1])
 
 	def test_url_is_reachable_for_one_candidates(self):
 		url = reverse('face_to_face_one_candidate_detail_view', 
 			kwargs={
 			'slug':self.tarapaca.slug,
-			'slug_candidate_one':self.tarapaca.can_election.candidate_set.all()[0].slug,
+			'slug_candidate_one':self.tarapaca.can_election.candidate_set.all()[1].slug,
 			})
 		self.assertTrue(url)
 		response = self.client.get(url)
 		self.assertEquals(response.status_code, 200)
 		self.assertTemplateUsed(response, 'elections/compare_candidates.html')
+		self.assertIn('first_candidate', response.context)
+		self.assertEqual(response.context['first_candidate'], self.tarapaca.can_election.candidate_set.all()[1])
+
 
 	def test_url_is_reachable_for_no_one_candidates(self):
 		url = reverse('face_to_face_no_candidate_detail_view', 

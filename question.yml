@@ -1,0 +1,15 @@
+- fields: {category: 1, question: 'Esta de a cuerdo con los paros?', remote_id: 1,
+    resource_uri: /api/v2/question/1/, can_election: 1}
+  model: candideitorg.question
+  pk: 1
+- fields: {category: 1, question: 'Le gusta ir a las marchas?', remote_id: 2, resource_uri: /api/v2/question/2/, can_election: 1}
+  model: candideitorg.question
+  pk: 2
+- fields: {category: 2, question: 'Quiere gastar su plata carreteando?', remote_id: 3,
+    resource_uri: /api/v2/question/3/, can_election: 1}
+  model: candideitorg.question
+  pk: 3
+- fields: {category: 2, question: 'Quiere robarse la plata del CEI?', remote_id: 4,
+    resource_uri: /api/v2/question/4/, can_election: 1}
+  model: candideitorg.question
+  pk: 4

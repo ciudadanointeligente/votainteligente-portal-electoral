@@ -69,7 +69,6 @@ def automatically_create_election(sender, instance, created, **kwargs):
 		writeit_api_instance = get_current_writeit_api_instance()
 		writeitinstance = WriteItInstance.objects.create(api_instance=writeit_api_instance, name=can_election.name)
 
-		writeitinstance.push_to_the_api()
 		election.writeitinstance = writeitinstance
 		election.save()
 

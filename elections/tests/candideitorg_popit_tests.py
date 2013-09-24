@@ -239,8 +239,26 @@ class AutomaticCreationOfAWriteitInstance(TestCase):
         self.assertTrue(election.writeitinstance.name)
         self.assertEquals(election.writeitinstance.name, can_election.name)
 
-        self.assertTrue(election.writeitinstance.url)
-        self.assertTrue(election.writeitinstance.remote_id)
+        self.assertFalse(election.writeitinstance.url)
+        self.assertFalse(election.writeitinstance.remote_id)
+
+
+    @skip('not ready yet')
+    def test_it_creates_the_writeit_instance_with_the_popit_api(self):
+        can_election = CanElection.objects.create(
+            description = "Elecciones CEI 2012",
+            remote_id = 1,
+            information_source = "",
+            logo = "/media/photos/dummy.jpg",
+            name = "cei 2012",
+            resource_uri = "/api/v2/election/1/",
+            slug = "cei-2012",
+            use_default_media_naranja_option = True
+            )
+        election = Election.objects.get(can_election=can_election)
+        print Person.objects.filter(api_instance = election.popit_api_instance)
+        #response = urllib.urlopen(person.popit_url)
+        self.fail()
 
 
 

@@ -166,7 +166,7 @@ TEST_POPIT_API_URL = "http://%s.%s.xip.io:%s/api" % ( TEST_POPIT_API_SUBDOMAIN,
 
 ### WRITEIT API THINGS
 
-WRITEIT_API_URL = "http://127.0.0.1.xip.io:2425/api/v1/"
+WRITEIT_API_URL = "http://localhost:3001/api/v1/"
 
 WRITEIT_USERNAME = 'admin'
 WRITEIT_KEY = 'a'

@@ -18,7 +18,7 @@ set -e
 export DIR=writeit-for-testing
 export BRANCH=master
 export REMOTE_REPO=https://github.com/ciudadanointeligente/write-it.git
-export PORT=2425
+export PORT=3001
 export VIRTUALENV=writeit-for-testing
 
 if [ ! -e $DIR ]; then mkdir $DIR; fi
@@ -47,7 +47,6 @@ else
   git pull origin $BRANCH
   source $VIRTUALENV/bin/activate
   pip install -r requirements.txt
-  python manage.py runserver $PORT &
 fi
 
 
@@ -57,4 +56,5 @@ fi
 
 # give it a chance to start and then print out the url to it
 sleep 2
+python manage.py runserver $PORT > writeit_access.log &
 echo "API should now be running on http://localhost:$PORT/api"

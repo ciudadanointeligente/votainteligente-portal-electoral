@@ -61,3 +61,4 @@ class CandidateDetailView(DetailView):
         #so that's why it says election.election
         context['election'] = self.object.election.election
         return context
+        

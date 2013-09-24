@@ -8,5 +8,8 @@ pyelasticsearch
 django-haystack
 -e git://github.com/ciudadanointeligente/candideitorg-django.git#egg=candideitorg-django
 PyYAML
+django-markdown-deux==1.0.4
+django-extensions
+django_admin_bootstrapped
 -e git://github.com/ciudadanointeligente/popit-django.git@posts_a_person_to_the_api#egg=popit-django
--e git://github.com/ciudadanointeligente/writeit-django.git@use_actual_writeit#egg=writeit-django
+-e git://github.com/ciudadanointeligente/writeit-django.git#egg=writeit-django

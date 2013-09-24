@@ -1,0 +1,149 @@
+{% extends "elections/election_base.html" %}
+{% load i18n %}
+
+{% block mainelection %}
+<!-- face-to-face -->
+<div>
+	<div class="col-md-12 text-center porcentaje-similitud">
+		<!--
+		<div class="progress progress-striped">
+			<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
+				<span class="sr-only">{% trans "5% similitud" %}</span>
+			</div>
+			<div class="progress-bar" style="width: 95%"></div>
+		</div>
+		-->
+		<h3>33% de similitud</h3>
+	</div>
+</div>
+
+<div id="compare-candidates">
+	<div class="row">
+		<div class="col-md-6">
+			<select data-placeholder="{% trans "Selecciona un candidato" %}" name="candidate_one" id="candidate_one" class="chosen-select" style="width:100%">
+				<option value=""></option>
+				{% for candidato in election.can_election.candidate_set.all %}
+				<option value="">{{candidato.name}}</option>
+				{% endfor %}
+				<i class="icon-chevron-down"></i>
+			</select>
+		</div>
+		<div class="col-md-6">
+			<select data-placeholder="{% trans "Selecciona un candidato" %}" name="candidate_one" id="candidate_one" class="chosen-select" style="width:100%">
+				<option value=""></option>
+				{% for candidato in election.can_election.candidate_set.all %}
+				<option value="">{{candidato.name}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	</div>
+
+	<!-- hidden for small devices -->
+	<div class="hidden-xs">
+		<div class="row">
+					<div class="col-md-12">
+						<h5>Quas modi consequuntur tenetur temporibus culpa ad?</h5>
+					</div>
+		</div>
+		<div class="row">
+					<div class="col-md-6">
+						<div class="fondo-blanco">
+							<p>
+								<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia voluptas ratione perferendis assumenda nihil quod et quidem. Alias, perferendis, vel, nulla repellat quidem in dolorem a iusto quaerat mollitia repellendus? <i class="icon-quote-right"></i>
+							</p>
+							<p class="text-right">candidate one</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="fondo-blanco">
+							<p>
+								<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam at aperiam perspiciatis fugit obcaecati. Assumenda, veritatis, illum, tempore aliquam minus perferendis ducimus modi deleniti nostrum a esse cum qui nobis? <i class="icon-quote-right"></i>
+							</p>
+							<p class="text-right">candidate two</p>
+						</div>
+					</div>
+		</div>
+	</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h5>Quas modi consequuntur tenetur temporibus culpa ad?</h5>
+					<div class="fondo-blanco">
+						<p>
+							<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, cupiditate, tempora repellendus fugiat nesciunt ab ad esse aut nam rerum accusamus facere nostrum natus eligendi commodi eius vero illo aperiam. <i class="icon-quote-right"></i>
+						</p>
+						<p class="text-center">
+							candidate one <i class="icon-heart"></i> candidate two
+						</p>
+					</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h5>Quas modi consequuntur tenetur temporibus culpa ad tempore nostrum tenetur rem error nulla dolorem consequatur nihil quaerat tempora assumenda ipsa nisi ducimus autem?</h5>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="fondo-blanco">
+						<p>
+							<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, veniam consequuntur excepturi expedita officiis reprehenderit ratione illum in rerum exercitationem? Et, quaerat, soluta harum sed est error earum optio aspernatur. <i class="icon-quote-right"></i>
+						</p>
+						<p class="text-right">candidate one</p>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="fondo-blanco">
+						<p>
+							<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, voluptatum repellendus expedita voluptatem modi ratione maxime aut exercitationem ipsa dolor sed nesciunt voluptate fugit architecto reiciendis accusantium incidunt accusamus optio! <i class="icon-quote-right"></i>
+						</p>
+						<p class="text-right">candidate two</p>
+				</div>
+			</div>
+		</div>
+	<!-- EOF hidden for small devices -->
+	<!-- display only for small devices -->
+	<div class="visible-xs">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit?</h3>
+			</div>
+			<div class="panel-body">
+				<div class="response-candidate-one">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, illum, atque, corrupti, inventore a tempore nostrum tenetur rem error nulla dolorem consequatur nihil quaerat tempora assumenda ipsa nisi ducimus autem!
+					</p>
+					<p class="text-right"><small>candidate one</small></p>
+				</div>
+				<div class="response-candidate-two">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, illum, atque, corrupti, inventore a tempore nostrum tenetur rem error nulla dolorem consequatur nihil quaerat tempora assumenda ipsa nisi ducimus autem!
+					</p>
+					<p class="text-right"><small>candidate two</small></p>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit?</h3>
+			</div>
+			<div class="panel-body">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, illum, atque, corrupti, inventore a tempore nostrum tenetur rem error nulla dolorem consequatur nihil quaerat tempora assumenda ipsa nisi ducimus autem!</p>
+				<p class="text-center">
+					<small>candidate one</small>
+					<i class="icon-heart"></i>
+					<small>candidate two</small>
+				</p>
+				
+			</div>
+		</div>
+	</div>
+	<!-- display only for small devices -->
+	
+</div>
+
+<!-- eof face-to-face -->
+{% endblock mainelection %}

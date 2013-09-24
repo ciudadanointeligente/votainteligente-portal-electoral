@@ -51,15 +51,6 @@ class HomeView(TemplateView):
 class ElectionDetailView(DetailView):
     model = Election
 
-    def get_context_data(self, **kwargs):
-        context = super(ElectionDetailView, self).get_context_data(**kwargs)
-        if self.object.can_election and 'slug_candidate_one' in self.kwargs:
-            context['first_candidate'] = self.object.can_election.candidate_set.get(slug=self.kwargs['slug_candidate_one'])
-        if self.object.can_election and 'slug_candidate_two' in self.kwargs:
-            context['second_candidate'] = self.object.can_election.candidate_set.get(slug=self.kwargs['slug_candidate_two'])
-        return context
-
-
 class CandidateDetailView(DetailView):
     model = Candidate
 

@@ -1,6 +1,5 @@
 {% extends "elections/election_base.html" %}
 {% load i18n %}
-{% load candideitorg_templetags %}
 
 {% block mainelection %}
 <!-- face-to-face -->
@@ -15,8 +14,6 @@
 		</div>
 		-->
 		<h3>33% de similitud</h3>
-		
-		
 	</div>
 </div>
 
@@ -26,18 +23,16 @@
 			<select data-placeholder="{% trans "Selecciona un candidato" %}" name="candidate_one" id="candidate_one" class="chosen-select" style="width:100%">
 				<option value=""></option>
 				{% for candidato in election.can_election.candidate_set.all %}
-				<option value="{{candidato.slug}}" {% if candidato.slug and candidato.slug == first_candidate.slug %}selected="selected"{% endif %}>{{candidato.name}}</option>
+				<option value="">{{candidato.name}}</option>
 				{% endfor %}
 				<i class="icon-chevron-down"></i>
 			</select>
 		</div>
 		<div class="col-md-6">
-			<select data-placeholder="{% trans "Selecciona un candidato" %}" name="candidate_two" id="candidate_two" class="chosen-select" style="width:100%">
+			<select data-placeholder="{% trans "Selecciona un candidato" %}" name="candidate_one" id="candidate_one" class="chosen-select" style="width:100%">
 				<option value=""></option>
 				{% for candidato in election.can_election.candidate_set.all %}
-					{% if first_candidate.slug != candidato.slug %}
-				<option value="{{candidato.slug}}" {% if candidato.slug and candidato.slug == second_candidate.slug %}selected="selected"{% endif %}>{{candidato.name}}</option>
-					{% endif %}
+				<option value="">{{candidato.name}}</option>
 				{% endfor %}
 			</select>
 		</div>
@@ -45,49 +40,42 @@
 
 	<!-- hidden for small devices -->
 	<div class="hidden-xs">
-		{% for category in election.can_election.category_set.all %}
-			{% for question in category.question_set.all %}
 		<div class="row">
-			<div class="col-md-12">
-				<h5>{{ question.question }}</h5>
-			</div>
+					<div class="col-md-12">
+						<h5>Quas modi consequuntur tenetur temporibus culpa ad?</h5>
+					</div>
 		</div>
-		{% if first_candidate.slug and second_candidate.slug %}
 		<div class="row">
-			<div class="col-md-6">
-				<div class="fondo-blanco">
-					<p>
-						<i class="icon-quote-left"></i> {% answer_for_candidate_and_question first_candidate question %} <i class="icon-quote-right"></i>
-					</p>
-					<p class="text-right">{{ first_candidate.name }}</p>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="fondo-blanco">
-					<p>
-						<i class="icon-quote-left"></i> {% answer_for_candidate_and_question second_candidate question %} <i class="icon-quote-right"></i>
-					</p>
-					<p class="text-right">{{ second_candidate.name }}</p>
-				</div>
-			</div>
+					<div class="col-md-6">
+						<div class="fondo-blanco">
+							<p>
+								<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia voluptas ratione perferendis assumenda nihil quod et quidem. Alias, perferendis, vel, nulla repellat quidem in dolorem a iusto quaerat mollitia repellendus? <i class="icon-quote-right"></i>
+							</p>
+							<p class="text-right">candidate one</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="fondo-blanco">
+							<p>
+								<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam at aperiam perspiciatis fugit obcaecati. Assumenda, veritatis, illum, tempore aliquam minus perferendis ducimus modi deleniti nostrum a esse cum qui nobis? <i class="icon-quote-right"></i>
+							</p>
+							<p class="text-right">candidate two</p>
+						</div>
+					</div>
 		</div>
-		{% endif %}
-			{% endfor %}
-		{% endfor %}
-		
-	
-		<!--
+	</div>
+
 		<div class="row">
 			<div class="col-md-12">
 				<h5>Quas modi consequuntur tenetur temporibus culpa ad?</h5>
-				<div class="fondo-blanco">
-					<p>
-						<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, cupiditate, tempora repellendus fugiat nesciunt ab ad esse aut nam rerum accusamus facere nostrum natus eligendi commodi eius vero illo aperiam. <i class="icon-quote-right"></i>
-					</p>
-					<p class="text-center">
-						candidate one <i class="icon-heart"></i> candidate two
-					</p>
-				</div>
+					<div class="fondo-blanco">
+						<p>
+							<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, cupiditate, tempora repellendus fugiat nesciunt ab ad esse aut nam rerum accusamus facere nostrum natus eligendi commodi eius vero illo aperiam. <i class="icon-quote-right"></i>
+						</p>
+						<p class="text-center">
+							candidate one <i class="icon-heart"></i> candidate two
+						</p>
+					</div>
 			</div>
 		</div>
 
@@ -99,54 +87,45 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="fondo-blanco">
-					<p>
-						<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, veniam consequuntur excepturi expedita officiis reprehenderit ratione illum in rerum exercitationem? Et, quaerat, soluta harum sed est error earum optio aspernatur. <i class="icon-quote-right"></i>
-					</p>
-					<p class="text-right">candidate one</p>
+						<p>
+							<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, veniam consequuntur excepturi expedita officiis reprehenderit ratione illum in rerum exercitationem? Et, quaerat, soluta harum sed est error earum optio aspernatur. <i class="icon-quote-right"></i>
+						</p>
+						<p class="text-right">candidate one</p>
 				</div>
 			</div>
 
 			<div class="col-md-6">
 				<div class="fondo-blanco">
-					<p>
-						<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, voluptatum repellendus expedita voluptatem modi ratione maxime aut exercitationem ipsa dolor sed nesciunt voluptate fugit architecto reiciendis accusantium incidunt accusamus optio! <i class="icon-quote-right"></i>
-					</p>
-					<p class="text-right">candidate two</p>
+						<p>
+							<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, voluptatum repellendus expedita voluptatem modi ratione maxime aut exercitationem ipsa dolor sed nesciunt voluptate fugit architecto reiciendis accusantium incidunt accusamus optio! <i class="icon-quote-right"></i>
+						</p>
+						<p class="text-right">candidate two</p>
 				</div>
 			</div>
 		</div>
-		-->
-	</div>
 	<!-- EOF hidden for small devices -->
 	<!-- display only for small devices -->
 	<div class="visible-xs">
-		{% for category in election.can_election.category_set.all %}
-			{% for question in category.question_set.all %}
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">{{ question.question }}</h3>
+				<h3 class="panel-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit?</h3>
 			</div>
-			{% if first_candidate.slug and second_candidate.slug %}
 			<div class="panel-body">
 				<div class="response-candidate-one">
 					<p>
-						{% answer_for_candidate_and_question first_candidate question %}
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, illum, atque, corrupti, inventore a tempore nostrum tenetur rem error nulla dolorem consequatur nihil quaerat tempora assumenda ipsa nisi ducimus autem!
 					</p>
-					<p class="text-right"><small>{{ first_candidate.name }}</small></p>
+					<p class="text-right"><small>candidate one</small></p>
 				</div>
 				<div class="response-candidate-two">
 					<p>
-						{% answer_for_candidate_and_question second_candidate question %}
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, illum, atque, corrupti, inventore a tempore nostrum tenetur rem error nulla dolorem consequatur nihil quaerat tempora assumenda ipsa nisi ducimus autem!
 					</p>
-					<p class="text-right"><small>{{ second_candidate.name }}</small></p>
+					<p class="text-right"><small>candidate two</small></p>
 				</div>
 			</div>
-			{% endif %}
 		</div>
-			{% endfor %}
-		{% endfor %}
-		
-		<!--
+
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit?</h3>
@@ -161,7 +140,6 @@
 				
 			</div>
 		</div>
-		-->
 	</div>
 	<!-- display only for small devices -->
 	

@@ -49,6 +49,10 @@ strong {
 	padding: 10px;
 }
 
+.container {
+	max-width: 970px;
+}
+
 /*Botones*/
 
 .btn-lg {
@@ -89,6 +93,10 @@ strong {
 	border-color: transparent;
 }
 
+input, button, select, textarea {
+	font-family: 'Lato', sans-serif;
+}
+
 /*Menu*/
 
 .navbar-inverse .navbar-nav>li>a {
@@ -98,6 +106,7 @@ strong {
 .navbar-inverse .navbar-nav>li>a:hover {
 	color: #14b9d5;
 }
+
 
 /*Menu Interno*/
 
@@ -176,7 +185,66 @@ strong {
 	color: #ffd200;
 }
 
+/*Home*/
 
+#home-search .form-control {
+	color: #fff;
+	background-color: #5e6d82;
+	border-left: 1px solid #9fa7b4;
+	border-radius: 0px;
+	border-top: none;
+	border-bottom: none;
+	border-right: none;
+	margin-top: 10px;
+	box-shadow: none;
+}
+
+#home-search .form-control::-webkit-input-placeholder {
+   color: #9fa7b4;
+   font-weight: 300;
+}
+
+#home-search .form-control:-moz-placeholder { /* Firefox 18- */
+   color: #9fa7b4;
+   font-weight: 300;  
+}
+
+#home-search .form-control::-moz-placeholder {  /* Firefox 19+ */
+   color: #9fa7b4;
+   font-weight: 300;  
+}
+
+#home-search .form-control:-ms-input-placeholder {  
+   color: #9fa7b4;
+   font-weight: 300;  
+}
+
+#home-search .btn-default {
+	color: #fff;
+	background-color: #5e6d82;
+	border-color: #5e6d82;
+}
+
+#home-search .btn {
+	border-radius: 0px;
+	font-weight: 300;
+	text-transform: uppercase;
+	padding: 16px 20px;
+}
+
+#home-search button.btn[type="button"] {
+	background-color: #9fa7b4;
+	border-color: #9fa7b4;
+}
+
+#home-search .input-group {
+	background: #5e6d82;
+}
+
+.imgs-mosaico .col-md-2 {
+	padding-right: 0px;
+	padding-left: 0px;
+}
 
 /*Perfil candidato*/
 

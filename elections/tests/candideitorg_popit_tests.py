@@ -22,7 +22,7 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.candidato2 = CanCandidate.objects.get(id=2)
 
     def test_create_a_model_that_relates_them_both(self):
-        candidate_person = CandidatePerson.objects.create(
+        candidate_person, created = CandidatePerson.objects.get_or_create(
             person=self.pedro,
             candidate=self.candidato1
             )
@@ -220,7 +220,7 @@ class AutomaticCreationOfAWriteitInstance(TestCase):
         self.assertIsInstance(instance, WriteItApiInstance)
         self.assertEquals(instance.url, settings.WRITEIT_API_URL)
 
-    @skip("creating api instances automatically")
+    #@skip("creating api instances automatically")
     def test_it_creates_a_writeit_instance(self):
         #WriteitInstance.objects.get()
         can_election = CanElection.objects.create(
@@ -233,7 +233,14 @@ class AutomaticCreationOfAWriteitInstance(TestCase):
             slug = "cei-2012",
             use_default_media_naranja_option = True
             )
-        self.assertIsNotNone(can_election.election.writeitinstance)
-        self.assertIsInstance(can_election.election.writeitinstance, WriteitInstance)
-        self.assertTrue(can_election.election.writeitinstance.url)
-        self.assertTrue(can_election.election.writeitinstance.remote_id)
+        election = Election.objects.get(can_election=can_election)
+        self.assertIsNotNone(election.writeitinstance)
+        self.assertIsInstance(election.writeitinstance, WriteItInstance)
+        self.assertTrue(election.writeitinstance.name)
+        self.assertEquals(election.writeitinstance.name, can_election.name)
+
+        self.assertTrue(election.writeitinstance.url)
+        self.assertTrue(election.writeitinstance.remote_id)
+
+
+

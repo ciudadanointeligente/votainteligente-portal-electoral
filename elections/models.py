@@ -21,6 +21,7 @@ class Election(models.Model):
 	searchable = models.BooleanField(default=True)
 	highlighted = models.BooleanField(default=False)
 	popit_api_instance = models.OneToOneField(PopitApiInstance, null=True)
+	writeitinstance = models.OneToOneField(WriteItInstance, null=True)
 	extra_info_title = models.CharField(max_length = 50, blank = True, null = True)
 	extra_info_content = models.TextField(max_length = 3000, blank = True, null = True, help_text=_("Puedes usar Markdown. <br/> ") 
             + markdown_allowed())
@@ -64,6 +65,15 @@ def automatically_create_election(sender, instance, created, **kwargs):
 			url = popit_api_instance_url
 			)
 		election.popit_api_instance = popit_api_instance
+
+		writeit_api_instance = get_current_writeit_api_instance()
+		writeitinstance = WriteItInstance.objects.create(api_instance=writeit_api_instance, name=can_election.name)
+
+		writeitinstance.push_to_the_api()
+		election.writeitinstance = writeitinstance
+		election.save()
+
+
 
 
 @receiver(post_save, sender=CanCandidate)

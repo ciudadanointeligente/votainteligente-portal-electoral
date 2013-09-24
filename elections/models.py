@@ -10,6 +10,7 @@ from django.dispatch import receiver
 from django.conf import settings
 from django.utils.translation import ugettext as _
 from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
+from writeit.models import WriteItApiInstance, WriteItInstance
 
 class Election(models.Model):
 	name = models.CharField(max_length=255)
@@ -76,3 +77,8 @@ def automatically_create_popit_person(sender, instance, created, **kwargs):
 			)
 		person.post_to_the_api()
 		relation = CandidatePerson.objects.create(person=person, candidate=candidate)
+
+
+def get_current_writeit_api_instance():
+	api_instance, created = WriteItApiInstance.objects.get_or_create(url=settings.WRITEIT_API_URL)
+	return api_instance

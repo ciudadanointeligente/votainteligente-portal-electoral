@@ -7,6 +7,7 @@ from popit.models import Person, ApiInstance as PopitApiInstance
 from django.db import IntegrityError
 from django.conf import settings
 import simplejson as json
+from writeit.models import WriteItInstance, WriteItApiInstance
 import urllib
 import re
 from popit.tests.instance_helpers import delete_api_database
@@ -206,3 +207,33 @@ class AutomaticCreationOfAPopitPerson(TestCase):
         response_as_json = json.loads(response.read())
 
 
+class AutomaticCreationOfAWriteitInstance(TestCase):
+    def setUp(self):
+        super(AutomaticCreationOfAWriteitInstance, self).setUp()
+
+
+    def test_it_creates_an_api_instance_from_settings(self):
+        from elections.models import get_current_writeit_api_instance
+
+        instance = get_current_writeit_api_instance()
+
+        self.assertIsInstance(instance, WriteItApiInstance)
+        self.assertEquals(instance.url, settings.WRITEIT_API_URL)
+
+    @skip("creating api instances automatically")
+    def test_it_creates_a_writeit_instance(self):
+        #WriteitInstance.objects.get()
+        can_election = CanElection.objects.create(
+            description = "Elecciones CEI 2012",
+            remote_id = 1,
+            information_source = "",
+            logo = "/media/photos/dummy.jpg",
+            name = "cei 2012",
+            resource_uri = "/api/v2/election/1/",
+            slug = "cei-2012",
+            use_default_media_naranja_option = True
+            )
+        self.assertIsNotNone(can_election.election.writeitinstance)
+        self.assertIsInstance(can_election.election.writeitinstance, WriteitInstance)
+        self.assertTrue(can_election.election.writeitinstance.url)
+        self.assertTrue(can_election.election.writeitinstance.remote_id)

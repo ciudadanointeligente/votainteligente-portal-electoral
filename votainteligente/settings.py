@@ -191,7 +191,6 @@ TINYMCE_DEFAULT_CONFIG = {
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 10,
 }
-TINYMCE_COMPRESSOR = True
 #Django nose
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 if TESTING:

@@ -1,5 +1,6 @@
 {% extends "elections/election_base.html" %}
 {% load i18n %}
+{% load thumbnail %}
 
 {% block mainelection %}
 <!--
@@ -10,7 +11,7 @@
 </div>
 -->
 
-<div class="row">
+<div id="questionary">
 	<div class="questionary">
 		{% for category in election.can_election.category_set.all %}
 		<div class="panel panel-default">
@@ -26,11 +27,32 @@
 							{{answer.caption}}
 						</p>
 
-						<ul class="list-inline">
-						{% for candidate in answer.candidate_set.all %}
-							<li><img src="http://placehold.it/800x600" class="img-responsive" alt="{{candidate.name}}"></li>
-						{% endfor %}
-						</ul>
+						<!-- for desktop version -->
+						<div class="row hidden-xs">
+							{% for candidate in answer.candidate_set.all %}
+							
+							<div class="col-md-1 hidden-xs">
+								{% thumbnail candidate.photo "300x300" crop="center" as im %}
+								<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+								{% endthumbnail %}
+							</div>
+							
+								{% if forloop.counter >= 12 %}
+								</div><div class="row hidden-xs">
+								{% endif %}
+							{% endfor %}
+						</div>
+						<!-- end desktop version-->
+						<!-- mobile version, no image of candidate -->
+						<div class="row visible-xs">
+							<ul class="list-inline">
+								{% for candidate in answer.candidate_set.all %}
+								<li><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+						<!-- end mobile version -->
+						
 					{% endfor %}
 				</div>
 				{% endfor %}

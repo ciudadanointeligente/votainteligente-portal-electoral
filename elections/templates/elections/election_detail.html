@@ -1,6 +1,5 @@
 {% extends "elections/election_base.html" %}
 {% load i18n %}
-{% load thumbnail %}
 
 {% block extrajs %}
 {% endblock extrajs %}
@@ -10,9 +9,7 @@
 	<div class="container-candidates">
 		{% for candidato in election.can_election.candidate_set.all %}
 		<div class="col-md-2">
-			{% thumbnail candidato.photo "800x600" crop="center" as im %}
-			<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}"><img src="{{im.url}}" alt="{{candidato.name}}" border="0" class="img-responsive"></a>
-			{% endthumbnail %}
+			<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}"><img src="http://placehold.it/800x600" alt="{{candidato.name}}" border="0" class="img-responsive"></a>
 			<p>
 				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}">{{candidato.name}}</a>
 			</p>

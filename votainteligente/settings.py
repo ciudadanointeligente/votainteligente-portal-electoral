@@ -1,6 +1,5 @@
 import sys
 # Django settings for votainteligente project.
-import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -8,8 +7,6 @@ TEMPLATE_DEBUG = DEBUG
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
-
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 MANAGERS = ADMINS
 
@@ -54,12 +51,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, '..' ,'cache')
+MEDIA_ROOT = ''
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = '/cache/'
+MEDIA_URL = ''
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -142,7 +139,6 @@ INSTALLED_APPS = (
     'candideitorg',
     'markdown_deux',
     'django_extensions',
-    'sorl.thumbnail',
     'django_admin_bootstrapped',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',

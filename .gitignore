@@ -4,5 +4,4 @@
 local_settings.py
 .coverage
 *.db
-cache/*
 .DS_Store

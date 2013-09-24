@@ -1,12 +1,9 @@
-from django.conf import settings
 from django.conf.urls import patterns, url
 from django.views.generic import TemplateView
 from haystack.views import SearchView
 from elections.forms import ElectionForm
 from elections.views import ElectionsSearchByTagView, HomeView, ElectionDetailView,\
 							CandidateDetailView
-
-media_root = getattr(settings, 'MEDIA_ROOT', '/') 
 
 urlpatterns = patterns('',
 	url(r'^/?$', HomeView.as_view(template_name='elections/home.html'), name='home' ),
@@ -52,9 +49,4 @@ urlpatterns = patterns('',
 	url(r'^election/(?P<slug>[-\w]+)/extra_info.html$',
 		ElectionDetailView.as_view(template_name='elections/extra_info.html'), 
 		name='election_extra_info'),
-)
-
-urlpatterns += patterns('', 
-	url(r'^cache/(?P<path>.*)$','django.views.static.serve',
-    	{'document_root': media_root})
 )

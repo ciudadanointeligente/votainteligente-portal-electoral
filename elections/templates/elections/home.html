@@ -25,10 +25,15 @@
               <div class="box-top"></div>
               <div class="box-contentwrap">
                 <div class="box-color">
-                  <a href="{{ featured_election.slug }}">
+                  <a href="{{ featured_election.get_absolute_url }}">
 
                     <h2>{{featured_election.name}}</h2>
                   </a>
+                  {% for candidate in featured_election.can_election.candidate_set.all %}
+                  <img src="{{ candidate.photo }}">
+                  
+                  {% endfor %}
+
                   <div class="votos">
                     <p class="">{{ featured_election.description|truncatewords:20 }}</p> 
                   </div>
@@ -49,7 +54,7 @@
               <div class="box-top"></div>
               <div class="box-contentwrap">
                 <div class="box-color">
-                  <a href="{{ featured_election.slug }}">
+                  <a href="{{ featured_election.get_absolute_url }}">
 
                     <h2>{{ featured_election.name }}</h2>
                   </a>
@@ -72,7 +77,7 @@
               <div class="box-top"></div>
               <div class="box-contentwrap">
                 <div class="box-color">
-                  <a href="{{ featured_election.slug }}">
+                  <a href="{{ featured_election.get_absolute_url }}">
 
                     <h2>{{featured_election.name}}</h2>
                   </a>

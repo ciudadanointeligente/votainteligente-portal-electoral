@@ -263,7 +263,7 @@ input, button, select, textarea {
 .nav-candidator .list-inline>li {
 	padding: 0px;
 	margin-left: -4px;
-	height: 39px;
+	height: auto;
 }
 
 .nav-candidator .list-inline>li a {
@@ -306,7 +306,7 @@ input, button, select, textarea {
 	margin-bottom: 0px;
 	padding: 9px;
 	background: #fff;
-	height: 37px;
+	height: auto;
 }
 
 .nav-candidator {
@@ -727,7 +727,7 @@ margin-bottom: 20px;
 		height: auto;
 	}
 	.nav-candidator .list-inline>li {
-		height: auto;
+		min-height: 25px;
 	}
 	.nav-candidator .list-inline>li:first-child a {
 		border-left: none;

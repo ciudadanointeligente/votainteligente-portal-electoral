@@ -7,11 +7,13 @@
 
 {% block content %}
 <div>
+  <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <h2 class="text-center">
             Este 18 de Septiembre los chilenos elegiremos Presidente, Senadores, Diputados y Consejeros Regionales (CORE). Aquí encontrarás info para votar informado:
         </h2>
     </div>
+  </div>
 
 <!-- Featured Elections  -->
 
@@ -22,13 +24,22 @@
         <ul>
           {% for featured_election in featured_elections %}
             <li class="col-md-12">
-                  <a href="{{ featured_election.slug }}">
+                  <a href="{{ featured_election.get_absolute_url }}">
                     <h2>{{featured_election.name}}</h2>
                   </a>
-                   {% for candidate in featured_election.can_election.candidate_set.all %}
-                  <img src="{{ candidate.photo }}">
-                  
-                  {% endfor %}
+                    <div class="ia-container">
+                       {% for candidate in featured_election.can_election.candidate_set.all %}
+            
+                            <figure>
+                              <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" />
+                              <input type="radio" name="radio-set"/>
+                              <figcaption><span>{{ candidate.name }}</span></figcaption>
+
+                      {% endfor %}
+                      {% for candidate in featured_election.can_election.candidate_set.all %}
+                            </figure>
+                      {% endfor %}
+                    </div>
                   <div class="election-description">
                     <p>{{ featured_election.description|truncatewords:20 }}</p> 
                   </div>
@@ -44,7 +55,7 @@
         <ul>
           {% for featured_election in featured_elections %}
             <li class="col-md-6">
-                  <a href="{{ featured_election.slug }}">
+                  <a href="{{ featured_election.get_absolute_url }}">
                     <h2>{{ featured_election.name }}</h2>
                   </a>
                    {% for candidate in featured_election.can_election.candidate_set.all %}
@@ -65,7 +76,7 @@
         <ul>
           {% for featured_election in featured_elections %}
             <li class="col-md-4">
-                  <a href="{{ featured_election.slug }}">
+                  <a href="{{ featured_election.get_absolute_url }}">
                     <h2>{{featured_election.name}}</h2>
                   </a>
                    {% for candidate in featured_election.can_election.candidate_set.all %}

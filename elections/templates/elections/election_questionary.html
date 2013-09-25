@@ -44,7 +44,7 @@
 						</div>
 						<!-- end desktop version-->
 						<!-- mobile version, no image of candidate -->
-						<div class="row visible-xs">
+						<div class="visible-xs">
 							<ul class="list-inline">
 								{% for candidate in answer.candidate_set.all %}
 								<li><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a></li>

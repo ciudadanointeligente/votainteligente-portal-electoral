@@ -4,7 +4,7 @@ services:
 python:
   - "2.7"
 before_install:
-  - sudo apt-get update python-pgmagick
+  - sudo apt-get install python-pgmagick libgraphicsmagick++1-dev libboost-python-dev
 install:
   - pip install -r requirements.txt 
   - pip install coveralls

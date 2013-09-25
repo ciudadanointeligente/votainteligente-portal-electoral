@@ -7,7 +7,7 @@
 
 {% block content %}
 <div>
-    <div>
+    <div class="col-md-10 col-md-offset-1">
         <h2 class="text-center">
             Este 18 de Septiembre los chilenos elegiremos Presidente, Senadores, Diputados y Consejeros Regionales (CORE). Aquí encontrarás info para votar informado:
         </h2>
@@ -18,22 +18,16 @@
     {% if featured_elections|length = 1 %}
      
      <!-- Featured Election block -->
-      <div class="contenedorDestacado well">
+      <div class="contenedorDestacado">
         <ul>
           {% for featured_election in featured_elections %}
-            <li class="span8 offset2 box right-box tipoEleccion{{ forloop.counter }}">
-              <div class="box-top"></div>
-              <div class="box-contentwrap">
-                <div class="box-color">
+            <li class="col-md-12">
                   <a href="{{ featured_election.slug }}">
-
                     <h2>{{featured_election.name}}</h2>
                   </a>
-                  <div class="votos">
-                    <p class="">{{ featured_election.description|truncatewords:20 }}</p> 
+                  <div class="election-description">
+                    <p>{{ featured_election.description|truncatewords:20 }}</p> 
                   </div>
-                </div>  
-              </div>
             </li>
           {% endfor %}
         </ul>
@@ -42,22 +36,16 @@
 
     {% elif featured_elections|length = 2 %}
       <!-- Featured Election block -->
-     <div class="contenedorDestacado well">
+     <div class="contenedorDestacado">
         <ul>
           {% for featured_election in featured_elections %}
-            <li class="span6 box right-box tipoEleccion{{ forloop.counter }}">
-              <div class="box-top"></div>
-              <div class="box-contentwrap">
-                <div class="box-color">
+            <li class="col-md-6">
                   <a href="{{ featured_election.slug }}">
-
                     <h2>{{ featured_election.name }}</h2>
                   </a>
-                  <div class="votos">
-                    <p class="">{{ featured_election.description|truncatewords:20 }}</p> 
+                  <div class="election-description">
+                    <p>{{ featured_election.description|truncatewords:20 }}</p> 
                   </div>
-                </div>  
-              </div>
             </li>
           {% endfor %}
         </ul>
@@ -65,22 +53,16 @@
 
     {% elif featured_elections|length >= 3 %}
       <!-- Featured Election block -->
-     <div class="contenedorDestacado well">
+     <div class="contenedorDestacado">
         <ul>
           {% for featured_election in featured_elections %}
-            <li class="span4 box right-box tipoEleccion{{ forloop.counter }}">
-              <div class="box-top"></div>
-              <div class="box-contentwrap">
-                <div class="box-color">
+            <li class="col-md-4">
                   <a href="{{ featured_election.slug }}">
-
                     <h2>{{featured_election.name}}</h2>
                   </a>
-                  <div class="votos">
-                    <p class="">{{ featured_election.description|truncatewords:20 }}</p> 
+                  <div class="election-description">
+                    <p>{{ featured_election.description|truncatewords:20 }}</p> 
                   </div>
-                </div>  
-              </div>
             </li>
           {% endfor %}
         </ul>
@@ -162,7 +144,7 @@
 
   <!-- Searchable Elections  -->
 
-  {% if elecciones_buscables|length >= 1 %}
+  {% if elecciones_buscables = true %}
     
     <div id="home-search" class="row" ng-controller="searchFormController">
         <form action="{% url 'tags_search' %}" method="get" class="form-horizontal" rol="form">

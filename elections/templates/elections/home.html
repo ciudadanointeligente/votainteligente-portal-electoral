@@ -15,22 +15,22 @@
 
 <!-- Featured Elections  -->
 
-    {% if elecciones_destacadas|length = 1 %}
+    {% if featured_elections|length = 1 %}
      
      <!-- Featured Election block -->
       <div class="contenedorDestacado well">
         <ul>
-          {% for eleccion_destacada in elecciones_destacadas %}
+          {% for featured_election in featured_elections %}
             <li class="span8 offset2 box right-box tipoEleccion{{ forloop.counter }}">
               <div class="box-top"></div>
               <div class="box-contentwrap">
                 <div class="box-color">
-                  <a href="{{ eleccion_destacada.slug }}">
+                  <a href="{{ featured_election.slug }}">
 
-                    <h2>{{eleccion_destacada.nombre}}</h2>
+                    <h2>{{featured_election.name}}</h2>
                   </a>
                   <div class="votos">
-                    <p class="">{{eleccion_destacada.featured_caption}}</p> 
+                    <p class="">{{ featured_election.description|truncatewords:20 }}</p> 
                   </div>
                 </div>  
               </div>
@@ -40,21 +40,21 @@
       </div><!-- /contenedorDestacado -->
       <!-- /FeaturedBlock -->
 
-    {% elif elecciones_destacadas|length = 2 %}
+    {% elif featured_elections|length = 2 %}
       <!-- Featured Election block -->
      <div class="contenedorDestacado well">
         <ul>
-          {% for eleccion_destacada in elecciones_destacadas %}
+          {% for featured_election in featured_elections %}
             <li class="span6 box right-box tipoEleccion{{ forloop.counter }}">
               <div class="box-top"></div>
               <div class="box-contentwrap">
                 <div class="box-color">
-                  <a href="{{ eleccion_destacada.slug }}">
+                  <a href="{{ featured_election.slug }}">
 
-                    <h2>{{eleccion_destacada.nombre}}</h2>
+                    <h2>{{ featured_election.name }}</h2>
                   </a>
                   <div class="votos">
-                    <p class="">{{eleccion_destacada.featured_caption}}</p> 
+                    <p class="">{{ featured_election.description|truncatewords:20 }}</p> 
                   </div>
                 </div>  
               </div>
@@ -63,21 +63,21 @@
         </ul>
       </div><!-- /contenedorDestacado -->
 
-    {% elif elecciones_destacadas|length >= 3 %}
+    {% elif featured_elections|length >= 3 %}
       <!-- Featured Election block -->
      <div class="contenedorDestacado well">
         <ul>
-          {% for eleccion_destacada in elecciones_destacadas %}
+          {% for featured_election in featured_elections %}
             <li class="span4 box right-box tipoEleccion{{ forloop.counter }}">
               <div class="box-top"></div>
               <div class="box-contentwrap">
                 <div class="box-color">
-                  <a href="{{ eleccion_destacada.slug }}">
+                  <a href="{{ featured_election.slug }}">
 
-                    <h2>{{eleccion_destacada.nombre}}</h2>
+                    <h2>{{featured_election.name}}</h2>
                   </a>
                   <div class="votos">
-                    <p class="">{{eleccion_destacada.featured_caption}}</p> 
+                    <p class="">{{ featured_election.description|truncatewords:20 }}</p> 
                   </div>
                 </div>  
               </div>
@@ -169,7 +169,7 @@
             
             <div class="form-group">
 
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-8 col-md-offset-2">
                     <div class="input-group">
                       <span class="input-group-btn">
                         <button class="btn btn-default"><i class="icon-search"></i></button>

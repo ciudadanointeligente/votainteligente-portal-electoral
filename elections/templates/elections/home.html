@@ -13,8 +13,10 @@
         </h2>
     </div>
 
-        {% if elecciones_destacadas|length = 1 %}
+<!-- Featured Elections  -->
 
+    {% if elecciones_destacadas|length = 1 %}
+     
      <!-- Featured Election block -->
       <div class="contenedorDestacado well">
         <ul>
@@ -23,12 +25,12 @@
               <div class="box-top"></div>
               <div class="box-contentwrap">
                 <div class="box-color">
-                  <a href="{{ eleccion_destacada.get_absolute_url }}">
+                  <a href="{{ eleccion_destacada.slug }}">
 
-                    <h2>{{eleccion_destacada.name}}</h2>
+                    <h2>{{eleccion_destacada.nombre}}</h2>
                   </a>
                   <div class="votos">
-                    <p class="">{{eleccion_destacada.description}}</p> 
+                    <p class="">{{eleccion_destacada.featured_caption}}</p> 
                   </div>
                 </div>  
               </div>
@@ -38,7 +40,7 @@
       </div><!-- /contenedorDestacado -->
       <!-- /FeaturedBlock -->
 
-       {% elif elecciones_destacadas|length = 2 %}
+    {% elif elecciones_destacadas|length = 2 %}
       <!-- Featured Election block -->
      <div class="contenedorDestacado well">
         <ul>
@@ -47,12 +49,12 @@
               <div class="box-top"></div>
               <div class="box-contentwrap">
                 <div class="box-color">
-                  <a href="{{ eleccion_destacada.get_absolute_url }}">
+                  <a href="{{ eleccion_destacada.slug }}">
 
-                    <h2>{{eleccion_destacada.name}}</h2>
+                    <h2>{{eleccion_destacada.nombre}}</h2>
                   </a>
                   <div class="votos">
-                    <p class="">{{eleccion_destacada.description}}</p> 
+                    <p class="">{{eleccion_destacada.featured_caption}}</p> 
                   </div>
                 </div>  
               </div>
@@ -70,12 +72,12 @@
               <div class="box-top"></div>
               <div class="box-contentwrap">
                 <div class="box-color">
-                  <a href="{{ eleccion_destacada.get_absolute_url }}">
+                  <a href="{{ eleccion_destacada.slug }}">
 
-                    <h2>{{eleccion_destacada.name}}</h2>
+                    <h2>{{eleccion_destacada.nombre}}</h2>
                   </a>
                   <div class="votos">
-                    <p class="">{{eleccion_destacada.description}}</p> 
+                    <p class="">{{eleccion_destacada.featured_caption}}</p> 
                   </div>
                 </div>  
               </div>
@@ -157,6 +159,10 @@
             </p>
         </div>
     </div> -->
+
+  <!-- Searchable Elections  -->
+
+  {% if elecciones_buscables|length >= 1 %}
     
     <div id="home-search" class="row" ng-controller="searchFormController">
         <form action="{% url 'tags_search' %}" method="get" class="form-horizontal" rol="form">
@@ -187,6 +193,7 @@
             </ul>
         </div>
     </div>
+  {% endif %}
 
 </div>
 {% endblock content %}

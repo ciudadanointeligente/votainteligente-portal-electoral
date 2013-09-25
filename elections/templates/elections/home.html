@@ -25,6 +25,10 @@
                   <a href="{{ featured_election.slug }}">
                     <h2>{{featured_election.name}}</h2>
                   </a>
+                   {% for candidate in featured_election.can_election.candidate_set.all %}
+                  <img src="{{ candidate.photo }}">
+                  
+                  {% endfor %}
                   <div class="election-description">
                     <p>{{ featured_election.description|truncatewords:20 }}</p> 
                   </div>
@@ -43,6 +47,10 @@
                   <a href="{{ featured_election.slug }}">
                     <h2>{{ featured_election.name }}</h2>
                   </a>
+                   {% for candidate in featured_election.can_election.candidate_set.all %}
+                  <img src="{{ candidate.photo }}">
+                  
+                  {% endfor %}
                   <div class="election-description">
                     <p>{{ featured_election.description|truncatewords:20 }}</p> 
                   </div>
@@ -60,6 +68,10 @@
                   <a href="{{ featured_election.slug }}">
                     <h2>{{featured_election.name}}</h2>
                   </a>
+                   {% for candidate in featured_election.can_election.candidate_set.all %}
+                  <img src="{{ candidate.photo }}">
+                  
+                  {% endfor %}
                   <div class="election-description">
                     <p>{{ featured_election.description|truncatewords:20 }}</p> 
                   </div>

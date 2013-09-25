@@ -1,5 +1,6 @@
 import sys
 # Django settings for votainteligente project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -7,6 +8,8 @@ TEMPLATE_DEBUG = DEBUG
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 MANAGERS = ADMINS
 
@@ -51,12 +54,14 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, '..' ,'cache')
+
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = '/cache/'
+
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -99,6 +104,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -131,6 +137,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.flatpages',
     'django_nose',
     'south',
     'taggit',
@@ -141,9 +148,11 @@ INSTALLED_APPS = (
     'writeit',
     'markdown_deux',
     'django_extensions',
+    'sorl.thumbnail',
     'django_admin_bootstrapped',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
+    'tinymce',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -202,6 +211,14 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+#django tinyMCE
+TINYMCE_JS_URL = os.path.join(STATIC_URL, 'js/tiny_mce/tiny_mce.js')
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
 }
 #Django nose
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'

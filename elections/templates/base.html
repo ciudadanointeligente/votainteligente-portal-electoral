@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load flatpages %}
 {% load i18n %}
 <html>
     <head>
@@ -36,10 +37,11 @@
                         <a class="navbar-brand" href="/">{% trans "VotaInteligente" %}</a>
                     </div>
                     <div class="collapse navbar-collapse">
+                        {% get_flatpages as flatpages %}
                         <ul class="nav navbar-nav">
-                            <li><a href="#">{% trans "Inicio" %}</a></li>
-                            <li><a href="#about">{% trans "Sobre Nosotros" %}</a></li>
-                            <li><a href="#contact">{% trans "Contacto" %}</a></li>
+                            {% for page in flatpages %}
+                                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                            {% endfor %}
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>

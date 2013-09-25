@@ -39,6 +39,10 @@ a:hover {
 	text-decoration: none;
 }
 
+strong {
+	font-weight: 900;
+}
+
 .fondo-blanco {
 	background: #fff;
 	border-radius: 6px;
@@ -100,7 +104,7 @@ a:hover {
 .nav-candidator .list-inline>li {
 	padding: 0px;
 	margin-left: -4px;
-	height: 39px;
+	height: auto;
 }
 
 .nav-candidator .list-inline>li a {
@@ -143,7 +147,7 @@ a:hover {
 	margin-bottom: 0px;
 	padding: 9px;
 	background: #fff;
-	height: 37px;
+	height: auto;
 }
 
 .nav-candidator {
@@ -505,7 +509,7 @@ margin-bottom: 20px;
 		height: auto;
 	}
 	.nav-candidator .list-inline>li {
-		height: auto;
+		min-height: 25px;
 	}
 	.nav-candidator .list-inline>li:first-child a {
 		border-left: none;
@@ -537,4 +541,104 @@ margin-bottom: 20px;
 	.other-soulmate-box {
 		margin-top: 5px;
 	}
+}
+
+/*Ranking*/
+
+.panel-primary>.panel-heading {
+	background-color: #0e778a;
+	border-color: transparent;
+}
+
+.panel-primary {
+	border-color: transparent;
+	background-color: transparent;
+}
+
+.responden .panel-body {
+	background: #14b9d5;
+	color: #fff;
+	border-radius: 0px 0px 6px 6px;
+}
+
+.responden .panel-body p span {
+	color: #006577;
+}
+
+.no-responden .panel-body p span {
+	color: #920006;
+}
+
+.responden .table tbody>tr>td {
+	border-bottom: 1px solid #0e778a;
+	border-top: none;
+}
+
+.no-responden .table tbody>tr>td {
+	border-bottom: 1px solid #af373c;
+	border-top: none;
+}
+
+.no-responden .panel-body {
+	background: #fe635f;
+	color: #fff;
+	border-radius: 0px 0px 6px 6px;
+}
+
+.panel-danger>.panel-heading {
+	color: #fff;
+	background-color: #af373c;
+	border-color: transparent;
+}
+
+.panel-danger {
+	border-color: transparent;
+	background-color: transparent;
+}
+
+.table>tbody>tr.danger>td {
+	background-color: transparent;
+}
+
+.responden .icon-smile {
+	font-size: 18px;
+}
+
+.no-responden .icon-frown {
+	font-size: 18px;
+}
+
+.table tbody>tr>td.ranking-icon {
+	padding: 8px 4px 8px 0px;
+}
+
+.responden tr.primary:first-child, .no-responden tr.danger:first-child {
+	font-size: 18px;
+}
+
+tr.primary p:first-child, tr.danger p:first-child {
+	margin: 0 0 0px;
+}
+
+.responden tr.primary:first-child .icon-smile, .no-responden tr.danger:first-child .icon-frown {
+	font-size: 26px;
+}
+
+.bt-twitter {
+	background: #eaedf2;
+	border-radius: 6px;
+	color: #323a45;
+	text-align: center;
+	font-size: 12px;
+	padding: 2px;
+	cursor: pointer;
+}
+
+.bt-twitter:hover {
+	background: #323a45;
+	color: #eaedf2;
+}
+
+.responden h4, .no-responden h4 {
+	font-weight: 900;
 }

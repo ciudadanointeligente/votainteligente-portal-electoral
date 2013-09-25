@@ -16,7 +16,7 @@
 				<div class="col-md-3">
 					<img src="http://placehold.it/800x600" class="img-responsive img-profile" alt="{{ candidate.name }}">
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<table class="table">
 						{% for personal_data in election.can_election.personaldata_set.all %}
 						<tr>
@@ -30,7 +30,7 @@
 						{% endfor %}
 					</table>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<ul class="list-unstyled">
 						{% for link in candidate.link_set.all %}
 							<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate"><i class="{{ link.icon_class }}"></i> {{link.name}}</a></li>

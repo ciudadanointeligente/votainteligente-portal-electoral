@@ -23,5 +23,5 @@ class HomeTestCase(TestCase):
 
 		self.assertIn('form', context)
 		self.assertIn('featured_elections', context)
-		self.assertIn('searchable_elections', context)
+		self.assertIn('searchable_elections_enabled', context)
 		self.assertIsInstance(context['form'], ElectionSearchByTagsForm)

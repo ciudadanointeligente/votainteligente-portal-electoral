@@ -46,6 +46,10 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['form'] = ElectionSearchByTagsForm()
+        context['featured_elections'] = Election.objects.filter(highlighted = True)
+        context['searchable_elections_enabled'] = True
+        if Election.objects.filter(searchable = True) < 1:
+            context['searchable_elections_enabled'] = False
         return context
 
 class ElectionDetailView(DetailView):

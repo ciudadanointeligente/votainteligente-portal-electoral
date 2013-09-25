@@ -7,13 +7,71 @@
 
 {% block content %}
 <div>
-    <div>
-        <h3 class="text-center">
+    <div class="col-md-10 col-md-offset-1">
+        <h2 class="text-center">
             Este 18 de Septiembre los chilenos elegiremos Presidente, Senadores, Diputados y Consejeros Regionales (CORE). Aquí encontrarás info para votar informado:
-        </h3>
+        </h2>
     </div>
 
-    <div class="row">
+<!-- Featured Elections  -->
+
+    {% if featured_elections|length = 1 %}
+     
+     <!-- Featured Election block -->
+      <div class="contenedorDestacado">
+        <ul>
+          {% for featured_election in featured_elections %}
+            <li class="col-md-12">
+                  <a href="{{ featured_election.slug }}">
+                    <h2>{{featured_election.name}}</h2>
+                  </a>
+                  <div class="election-description">
+                    <p>{{ featured_election.description|truncatewords:20 }}</p> 
+                  </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div><!-- /contenedorDestacado -->
+      <!-- /FeaturedBlock -->
+
+    {% elif featured_elections|length = 2 %}
+      <!-- Featured Election block -->
+     <div class="contenedorDestacado">
+        <ul>
+          {% for featured_election in featured_elections %}
+            <li class="col-md-6">
+                  <a href="{{ featured_election.slug }}">
+                    <h2>{{ featured_election.name }}</h2>
+                  </a>
+                  <div class="election-description">
+                    <p>{{ featured_election.description|truncatewords:20 }}</p> 
+                  </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div><!-- /contenedorDestacado -->
+
+    {% elif featured_elections|length >= 3 %}
+      <!-- Featured Election block -->
+     <div class="contenedorDestacado">
+        <ul>
+          {% for featured_election in featured_elections %}
+            <li class="col-md-4">
+                  <a href="{{ featured_election.slug }}">
+                    <h2>{{featured_election.name}}</h2>
+                  </a>
+                  <div class="election-description">
+                    <p>{{ featured_election.description|truncatewords:20 }}</p> 
+                  </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div><!-- /contenedorDestacado -->
+
+
+    {% endif %}
+
+<!--     <div class="row imgs-mosaico">
         <div class="col-md-4">
             <div>
                 <div class="row">
@@ -56,20 +114,44 @@
                         <img src="http://placehold.it/800x600" alt="" class="img-responsive">
                     </div>
                 </div>
+                                <div class="row">
+                    <div class="col-md-2">
+                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
+                    </div>
+                </div>
             </div>
             
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, nobis molestias earum cum perferendis non consequuntur soluta sed.
             </p>
         </div>
-    </div>
+    </div> -->
+
+  <!-- Searchable Elections  -->
+
+  {% if elecciones_buscables = true %}
     
     <div id="home-search" class="row" ng-controller="searchFormController">
         <form action="{% url 'tags_search' %}" method="get" class="form-horizontal" rol="form">
             
             <div class="form-group">
 
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-8 col-md-offset-2">
                     <div class="input-group">
                       <span class="input-group-btn">
                         <button class="btn btn-default"><i class="icon-search"></i></button>
@@ -93,6 +175,7 @@
             </ul>
         </div>
     </div>
+  {% endif %}
 
 </div>
 {% endblock content %}

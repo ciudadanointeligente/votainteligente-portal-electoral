@@ -4,29 +4,22 @@
 
 {% block mainelection %}
 <!-- face-to-face -->
+<!--
 <div>
 	<div class="col-md-12 text-center porcentaje-similitud">
-		<!--
-		<div class="progress progress-striped">
-			<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
-				<span class="sr-only">{% trans "5% similitud" %}</span>
-			</div>
-			<div class="progress-bar" style="width: 95%"></div>
-		</div>
-		-->
 		<h3>33% de similitud</h3>
-		
-		
 	</div>
 </div>
-
+-->
 <div id="compare-candidates">
 	<div class="row">
 		<div class="col-md-6">
 			<select data-placeholder="{% trans "Selecciona un candidato" %}" name="candidate_one" id="candidate_one" class="chosen-select" style="width:100%">
 				<option value=""></option>
 				{% for candidato in election.can_election.candidate_set.all %}
+					{% if second_candidate.slug != candidato.slug %}
 				<option value="{{candidato.slug}}" {% if candidato.slug and candidato.slug == first_candidate.slug %}selected="selected"{% endif %}>{{candidato.name}}</option>
+					{% endif %}
 				{% endfor %}
 				<i class="icon-chevron-down"></i>
 			</select>

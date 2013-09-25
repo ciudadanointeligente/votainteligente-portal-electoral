@@ -17,7 +17,9 @@
 			<select data-placeholder="{% trans "Selecciona un candidato" %}" name="candidate_one" id="candidate_one" class="chosen-select" style="width:100%">
 				<option value=""></option>
 				{% for candidato in election.can_election.candidate_set.all %}
+					{% if second_candidate.slug != candidato.slug %}
 				<option value="{{candidato.slug}}" {% if candidato.slug and candidato.slug == first_candidate.slug %}selected="selected"{% endif %}>{{candidato.name}}</option>
+					{% endif %}
 				{% endfor %}
 				<i class="icon-chevron-down"></i>
 			</select>

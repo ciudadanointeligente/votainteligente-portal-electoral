@@ -16,35 +16,39 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'elections', ['CandidatePerson'])
 
-        # Adding field 'Election.searchable'
-        db.add_column(u'elections_election', 'searchable',
-                      self.gf('django.db.models.fields.BooleanField')(default=True),
-                      keep_default=False)
-
-        # Adding field 'Election.highlighted'
-        db.add_column(u'elections_election', 'highlighted',
-                      self.gf('django.db.models.fields.BooleanField')(default=False),
-                      keep_default=False)
-
         # Adding field 'Election.popit_api_instance'
         db.add_column(u'elections_election', 'popit_api_instance',
                       self.gf('django.db.models.fields.related.OneToOneField')(to=orm['popit.ApiInstance'], unique=True, null=True),
                       keep_default=False)
 
+        # Adding field 'Election.writeitinstance'
+        db.add_column(u'elections_election', 'writeitinstance',
+                      self.gf('django.db.models.fields.related.OneToOneField')(to=orm['writeit.WriteItInstance'], unique=True, null=True),
+                      keep_default=False)
+
+
+        # Changing field 'Election.can_election'
+        db.alter_column(u'elections_election', 'can_election_id', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['candideitorg.Election'], unique=True, null=True))
+        # Adding unique constraint on 'Election', fields ['can_election']
+        db.create_unique(u'elections_election', ['can_election_id'])
+
 
     def backwards(self, orm):
+        # Removing unique constraint on 'Election', fields ['can_election']
+        db.delete_unique(u'elections_election', ['can_election_id'])
+
         # Deleting model 'CandidatePerson'
         db.delete_table(u'elections_candidateperson')
-
-        # Deleting field 'Election.searchable'
-        db.delete_column(u'elections_election', 'searchable')
-
-        # Deleting field 'Election.highlighted'
-        db.delete_column(u'elections_election', 'highlighted')
 
         # Deleting field 'Election.popit_api_instance'
         db.delete_column(u'elections_election', 'popit_api_instance_id')
 
+        # Deleting field 'Election.writeitinstance'
+        db.delete_column(u'elections_election', 'writeitinstance_id')
+
+
+        # Changing field 'Election.can_election'
+        db.alter_column(u'elections_election', 'can_election_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['candideitorg.Election'], null=True))
 
     models = {
         u'candideitorg.answer': {
@@ -112,14 +116,17 @@ class Migration(SchemaMigration):
         },
         u'elections.election': {
             'Meta': {'object_name': 'Election'},
-            'can_election': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['candideitorg.Election']", 'null': 'True'}),
+            'can_election': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['candideitorg.Election']", 'unique': 'True', 'null': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {}),
+            'extra_info_content': ('django.db.models.fields.TextField', [], {'max_length': '3000', 'null': 'True', 'blank': 'True'}),
+            'extra_info_title': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
             'highlighted': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'popit_api_instance': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['popit.ApiInstance']", 'unique': 'True', 'null': 'True'}),
             'searchable': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'slug': ('autoslug.fields.AutoSlugField', [], {'unique': 'True', 'max_length': '50', 'populate_from': "'name'", 'unique_with': '()'})
+            'slug': ('autoslug.fields.AutoSlugField', [], {'unique': 'True', 'max_length': '50', 'populate_from': "'name'", 'unique_with': '()'}),
+            'writeitinstance': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['writeit.WriteItInstance']", 'unique': 'True', 'null': 'True'})
         },
         u'popit.apiinstance': {
             'Meta': {'object_name': 'ApiInstance'},
@@ -147,6 +154,23 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'object_id': ('django.db.models.fields.IntegerField', [], {'db_index': 'True'}),
             'tag': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'taggit_taggeditem_items'", 'to': u"orm['taggit.Tag']"})
+        },
+        u'writeit.writeitapiinstance': {
+            'Meta': {'object_name': 'WriteItApiInstance'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'url': ('django.db.models.fields.URLField', [], {'unique': 'True', 'max_length': '200'})
+        },
+        u'writeit.writeitdocument': {
+            'Meta': {'object_name': 'WriteItDocument'},
+            'api_instance': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['writeit.WriteItApiInstance']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'remote_id': ('django.db.models.fields.IntegerField', [], {'null': 'True'}),
+            'url': ('django.db.models.fields.CharField', [], {'max_length': '256'})
+        },
+        u'writeit.writeitinstance': {
+            'Meta': {'object_name': 'WriteItInstance', '_ormbases': [u'writeit.WriteItDocument']},
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            u'writeitdocument_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['writeit.WriteItDocument']", 'unique': 'True', 'primary_key': 'True'})
         }
     }
 

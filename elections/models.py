@@ -11,6 +11,7 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
 from writeit.models import WriteItApiInstance, WriteItInstance
+from candideitorg.models import election_finished
 
 class Election(models.Model):
 	name = models.CharField(max_length=255)
@@ -86,6 +87,14 @@ def automatically_create_popit_person(sender, instance, created, **kwargs):
 			)
 		person.post_to_the_api()
 		relation = CandidatePerson.objects.create(person=person, candidate=candidate)
+@receiver(election_finished)
+def automatically_push_writeit_instance(sender, **kwargs):
+	election = Election.objects.get(can_election=sender)
+	extra_params = {
+	'popit-api': election.popit_api_instance.url
+	}
+	election.writeitinstance.push_to_the_api(extra_params=extra_params)
+
 
 
 def get_current_writeit_api_instance():

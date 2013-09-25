@@ -10,7 +10,9 @@ import simplejson as json
 from writeit.models import WriteItInstance, WriteItApiInstance
 import urllib
 import re
-from popit.tests.instance_helpers import delete_api_database
+from popit.tests.instance_helpers import delete_api_database, get_api_database_name, get_api_client
+
+from candideitorg.models import election_finished
 
 
 class CandideitorCandideitPopitPerson(TestCase):
@@ -206,10 +208,15 @@ class AutomaticCreationOfAPopitPerson(TestCase):
         self.assertEquals(response.code, 200)
         response_as_json = json.loads(response.read())
 
-
+import uuid 
 class AutomaticCreationOfAWriteitInstance(TestCase):
     def setUp(self):
         super(AutomaticCreationOfAWriteitInstance, self).setUp()
+        delete_api_database()
+
+    def tearDown(self):
+        super(AutomaticCreationOfAWriteitInstance, self).tearDown()
+        delete_api_database()
 
 
     def test_it_creates_an_api_instance_from_settings(self):
@@ -242,23 +249,41 @@ class AutomaticCreationOfAWriteitInstance(TestCase):
         self.assertFalse(election.writeitinstance.url)
         self.assertFalse(election.writeitinstance.remote_id)
 
+    
 
-    @skip('not ready yet')
     def test_it_creates_the_writeit_instance_with_the_popit_api(self):
+        name_and_slug = uuid.uuid1().hex
         can_election = CanElection.objects.create(
             description = "Elecciones CEI 2012",
             remote_id = 1,
             information_source = "",
             logo = "/media/photos/dummy.jpg",
-            name = "cei 2012",
+            name = name_and_slug,
             resource_uri = "/api/v2/election/1/",
-            slug = "cei-2012",
+            slug = name_and_slug,
             use_default_media_naranja_option = True
             )
+        can_candidate = CanCandidate.objects.create(
+            remote_id=1,
+            resource_uri="/api/v2/candidate/1/",
+            name="Perico los Palotes",
+            election=can_election
+            )
+        #print get_api_client().__getattr__('').get()['info']['databaseName']
+
+        person = can_candidate.relation.person
+        #print Person.objects.filter(api_instance = election.popit_api_instance)
+        election_finished.send(sender=can_election)
         election = Election.objects.get(can_election=can_election)
-        print Person.objects.filter(api_instance = election.popit_api_instance)
-        #response = urllib.urlopen(person.popit_url)
-        self.fail()
+        writeitinstance = election.writeitinstance
+        self.assertTrue(writeitinstance.url)
+        self.assertTrue(writeitinstance.remote_id)
+
+        response = writeitinstance.api_instance.get_api().instance(writeitinstance.remote_id).get()
+        persons = response['persons']
+        self.assertEquals(len(persons), Person.objects.filter(api_instance = election.popit_api_instance).count())
+
+        self.assertIn(person.popit_url, persons)
 
 
 

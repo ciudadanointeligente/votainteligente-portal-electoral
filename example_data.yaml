@@ -1,4 +1,4 @@
-- fields: {description: Elecciones CEI 2012, information_source: '', logo: 'http://placedog.com/400/300',
+- fields: {description: Elecciones CEI 2012, information_source: '', logo: 'http://placedog.com/300/300',
     name: cei 2012, remote_id: 1, resource_uri: /api/v2/election/1/, slug: cei-2012,
     use_default_media_naranja_option: true}
   model: candideitorg.election
@@ -11,59 +11,250 @@
     slug: politicas-monetarias}
   model: candideitorg.category
   pk: 2
-- fields: {election: 1, has_answered: false, name: Juanito Perez, photo: 'http://placedog.com/400/300',
-    remote_id: 1, resource_uri: '', slug: juanito-perez}
+- fields:
+    answers: [2, 5, 7, 10]
+    election: 1
+    has_answered: true
+    name: Juanito Perez
+    photo: 'http://placedog.com/300/300'
+    remote_id: 1
+    resource_uri: /api/v2/candidate/1/
+    slug: juanito-perez
   model: candideitorg.candidate
   pk: 1
-- fields: {election: 1, has_answered: false, name: Candidato Tester, photo: 'http://placedog.com/400/300',
-    remote_id: 2, resource_uri: '', slug: candidato-tester}
+- fields:
+    answers: [1, 4, 7, 9]
+    election: 1
+    has_answered: true
+    name: Candidato Tester
+    photo: 'http://placedog.com/300/300'
+    remote_id: 2
+    resource_uri: /api/v2/candidate/2/
+    slug: candidato-tester
   model: candideitorg.candidate
   pk: 2
-- fields: {election: 1, has_answered: false, name: Foo Bar, photo: 'http://placedog.com/400/300',
-    remote_id: 3, resource_uri: '', slug: foo-bar}
+- fields:
+    answers: []
+    election: 1
+    has_answered: true
+    name: Foo Bar
+    photo: 'http://placedog.com/300/300'
+    remote_id: 3
+    resource_uri: /api/v2/candidate/3/
+    slug: foo-bar
   model: candideitorg.candidate
   pk: 3
-- fields: {election: 1, name: Tendencia Politica, remote_id: 1, resource_uri: ''}
+- fields: {election: 1, name: Tendencia Politica, remote_id: 1, resource_uri: /api/v2/background_category/1/}
   model: candideitorg.backgroundcategory
   pk: 1
-- fields: {election: 1, name: Educacion, remote_id: 2, resource_uri: ''}
+- fields: {election: 1, name: Educacion, remote_id: 2, resource_uri: /api/v2/background_category/2/}
   model: candideitorg.backgroundcategory
   pk: 2
-- fields: {election: 1, label: Nacimiento, remote_id: 1, resource_uri: ''}
+- fields: {election: 1, name: '', remote_id: 3, resource_uri: /api/v2/background_category/3/}
+  model: candideitorg.backgroundcategory
+  pk: 3
+- fields: {election: 1, label: Nacimiento, remote_id: 1, resource_uri: /api/v2/personal_data/1/}
   model: candideitorg.personaldata
   pk: 1
-- fields: {election: 1, label: Profesion, remote_id: 2, resource_uri: ''}
+- fields: {election: 1, label: Profesion, remote_id: 2, resource_uri: /api/v2/personal_data/2/}
   model: candideitorg.personaldata
   pk: 2
-- fields: {election: 1, label: "Profesi\xF3n", remote_id: 3, resource_uri: ''}
+- fields: {election: 1, label: "Profesi\xF3n", remote_id: 3, resource_uri: /api/v2/personal_data/3/}
   model: candideitorg.personaldata
   pk: 3
-- fields: {election: 1, label: "G\xE9nero", remote_id: 4, resource_uri: ''}
+- fields: {election: 1, label: "G\xE9nero", remote_id: 4, resource_uri: /api/v2/personal_data/4/}
   model: candideitorg.personaldata
   pk: 4
+- fields: {background_category: 1, name: Partido politico actual, remote_id: 1, resource_uri: /api/v2/background/1/}
+  model: candideitorg.background
+  pk: 1
+- fields: {background_category: 2, name: Secundaria, remote_id: 2, resource_uri: /api/v2/background/2/}
+  model: candideitorg.background
+  pk: 2
+- fields: {background_category: 2, name: Universitaria, remote_id: 3, resource_uri: /api/v2/background/3/}
+  model: candideitorg.background
+  pk: 3
+- fields: {background_category: 2, name: "\xDAltimo trabajo", remote_id: 4, resource_uri: /api/v2/background/4/}
+  model: candideitorg.background
+  pk: 4
+- fields: {background_category: 3, name: '', remote_id: 5, resource_uri: /api/v2/background/5/}
+  model: candideitorg.background
+  pk: 5
+- fields: {background_category: 3, name: '', remote_id: 6, resource_uri: /api/v2/background/6/}
+  model: candideitorg.background
+  pk: 6
+- fields: {background_category: 3, name: '', remote_id: 7, resource_uri: /api/v2/background/7/}
+  model: candideitorg.background
+  pk: 7
+- fields: {caption: Puro perder clases, question: 1, remote_id: 9, resource_uri: /api/v2/answer/9/}
+  model: candideitorg.answer
+  pk: 1
+- fields: {caption: 'Si, la llevan', question: 1, remote_id: 10, resource_uri: /api/v2/answer/10/}
+  model: candideitorg.answer
+  pk: 2
+- fields: {caption: Nunca, question: 2, remote_id: 6, resource_uri: /api/v2/answer/6/}
+  model: candideitorg.answer
+  pk: 3
+- fields: {caption: Siempre, question: 2, remote_id: 7, resource_uri: /api/v2/answer/7/}
+  model: candideitorg.answer
+  pk: 4
+- fields: {caption: De vez en cuando, question: 2, remote_id: 8, resource_uri: /api/v2/answer/8/}
+  model: candideitorg.answer
+  pk: 5
+- fields: {caption: Si, question: 3, remote_id: 3, resource_uri: /api/v2/answer/3/}
+  model: candideitorg.answer
+  pk: 6
+- fields: {caption: 'No', question: 3, remote_id: 4, resource_uri: /api/v2/answer/4/}
+  model: candideitorg.answer
+  pk: 7
+- fields: {caption: A veces, question: 3, remote_id: 5, resource_uri: /api/v2/answer/5/}
+  model: candideitorg.answer
+  pk: 8
+- fields: {caption: Si, question: 4, remote_id: 1, resource_uri: /api/v2/answer/1/}
+  model: candideitorg.answer
+  pk: 9
+- fields: {caption: 'No', question: 4, remote_id: 2, resource_uri: /api/v2/answer/2/}
+  model: candideitorg.answer
+  pk: 10
+- fields: {category: 1, question: 'Esta de a cuerdo con los paros?', remote_id: 1,
+    resource_uri: /api/v2/question/1/}
+  model: candideitorg.question
+  pk: 1
+- fields: {category: 1, question: 'Le gusta ir a las marchas?', remote_id: 2, resource_uri: /api/v2/question/2/}
+  model: candideitorg.question
+  pk: 2
+- fields: {category: 2, question: 'Quiere gastar su plata carreteando?', remote_id: 3,
+    resource_uri: /api/v2/question/3/}
+  model: candideitorg.question
+  pk: 3
+- fields: {category: 2, question: 'Quiere robarse la plata del CEI?', remote_id: 4,
+    resource_uri: /api/v2/question/4/}
+  model: candideitorg.question
+  pk: 4
+- fields: {candidate: 1, personaldata: 1, remote_id: 7, resource_uri: /api/v2/personal_data_candidate/7/,
+    value: 13-13-2013}
+  model: candideitorg.personaldatacandidate
+  pk: 1
+- fields: {candidate: 1, personaldata: 2, remote_id: 8, resource_uri: /api/v2/personal_data_candidate/8/,
+    value: Nunc id neque interdum}
+  model: candideitorg.personaldatacandidate
+  pk: 2
+- fields: {candidate: 1, personaldata: 3, remote_id: 9, resource_uri: /api/v2/personal_data_candidate/9/,
+    value: Ensamblador de piezas}
+  model: candideitorg.personaldatacandidate
+  pk: 3
+- fields: {candidate: 1, personaldata: 4, remote_id: 10, resource_uri: /api/v2/personal_data_candidate/10/,
+    value: Masculino}
+  model: candideitorg.personaldatacandidate
+  pk: 4
+- fields: {candidate: 2, personaldata: 1, remote_id: 11, resource_uri: /api/v2/personal_data_candidate/11/,
+    value: 05 - Julio - 1973}
+  model: candideitorg.personaldatacandidate
+  pk: 5
+- fields: {candidate: 2, personaldata: 2, remote_id: 12, resource_uri: /api/v2/personal_data_candidate/12/,
+    value: Doctor}
+  model: candideitorg.personaldatacandidate
+  pk: 6
+- fields: {candidate: 2, personaldata: 3, remote_id: 13, resource_uri: /api/v2/personal_data_candidate/13/,
+    value: Ing Acustico}
+  model: candideitorg.personaldatacandidate
+  pk: 7
+- fields: {candidate: 2, personaldata: 4, remote_id: 14, resource_uri: /api/v2/personal_data_candidate/14/,
+    value: Masculino}
+  model: candideitorg.personaldatacandidate
+  pk: 8
+- fields: {candidate: 1, name: '@jperez', remote_id: 1, resource_uri: /api/v2/link/1/,
+    url: 'http://www.twitter.com'}
+  model: candideitorg.link
+  pk: 1
+- fields: {candidate: 1, name: JuAn_PeReZ, remote_id: 2, resource_uri: /api/v2/link/2/,
+    url: 'http://facebook.com'}
+  model: candideitorg.link
+  pk: 2
+- fields: {candidate: 1, name: el Web, remote_id: 3, resource_uri: /api/v2/link/3/,
+    url: 'http://myspace.com'}
+  model: candideitorg.link
+  pk: 3
+- fields: {candidate: 2, name: Web, remote_id: 4, resource_uri: /api/v2/link/4/, url: 'http://myspace.com'}
+  model: candideitorg.link
+  pk: 4
+- fields: {background: 1, candidate: 1, remote_id: 8, resource_uri: /api/v2/backgrounds_candidate/8/,
+    value: Centro Democrata Independiente Pendiente}
+  model: candideitorg.backgroundcandidate
+  pk: 1
+- fields: {background: 2, candidate: 1, remote_id: 9, resource_uri: /api/v2/backgrounds_candidate/9/,
+    value: Colegio Ahumada}
+  model: candideitorg.backgroundcandidate
+  pk: 2
+- fields: {background: 3, candidate: 1, remote_id: 10, resource_uri: /api/v2/backgrounds_candidate/10/,
+    value: "Universidad Cat\xF3nica"}
+  model: candideitorg.backgroundcandidate
+  pk: 3
+- fields: {background: 4, candidate: 1, remote_id: 11, resource_uri: /api/v2/backgrounds_candidate/11/,
+    value: ''}
+  model: candideitorg.backgroundcandidate
+  pk: 4
+- fields: {background: 5, candidate: 1, remote_id: 12, resource_uri: /api/v2/backgrounds_candidate/12/,
+    value: 'Donec scelerisque ut dui vel sodales. Aliquam facilisis mauris a orci
+      commodo, in placerat sem aliquam. Etiam ut accumsan ipsum, quis consectetur
+      neque. Aenean at mollis risus. Integer at dolor diam. Sed ac rhoncus quam.'}
+  model: candideitorg.backgroundcandidate
+  pk: 5
+- fields: {background: 6, candidate: 1, remote_id: 13, resource_uri: /api/v2/backgrounds_candidate/13/,
+    value: 'Donec scelerisque ut dui vel sodales. Aliquam facilisis mauris a orci
+      commodo, in placerat sem aliquam. Etiam ut accumsan ipsum, quis consectetur
+      neque. Aenean at mollis risus. Integer at dolor diam. Sed ac rhoncus quam.'}
+  model: candideitorg.backgroundcandidate
+  pk: 6
+- fields: {background: 7, candidate: 1, remote_id: 14, resource_uri: /api/v2/backgrounds_candidate/14/,
+    value: 'Donec scelerisque ut dui vel sodales. Aliquam facilisis mauris a orci
+      commodo, in placerat sem aliquam. Etiam ut accumsan ipsum, quis consectetur
+      neque. Aenean at mollis risus. Integer at dolor diam. Sed ac rhoncus quam.'}
+  model: candideitorg.backgroundcandidate
+  pk: 7
+- fields: {background: 1, candidate: 2, remote_id: 15, resource_uri: /api/v2/backgrounds_candidate/15/,
+    value: Pellentesque ultrices}
+  model: candideitorg.backgroundcandidate
+  pk: 8
+- fields: {background: 2, candidate: 2, remote_id: 16, resource_uri: /api/v2/backgrounds_candidate/16/,
+    value: Praesent egestas velit ut eros gravida}
+  model: candideitorg.backgroundcandidate
+  pk: 9
+- fields: {background: 3, candidate: 2, remote_id: 17, resource_uri: /api/v2/backgrounds_candidate/17/,
+    value: Praesent egestas velit ut eros gravida}
+  model: candideitorg.backgroundcandidate
+  pk: 10
+- fields: {background: 4, candidate: 2, remote_id: 18, resource_uri: /api/v2/backgrounds_candidate/18/,
+    value: Praesent egestas velit ut eros gravida}
+  model: candideitorg.backgroundcandidate
+  pk: 11
+- fields: {background: 5, candidate: 2, remote_id: 19, resource_uri: /api/v2/backgrounds_candidate/19/,
+    value: 'Nulla vitae aliquam erat. Pellentesque ultrices a ipsum non suscipit.
+      Pellentesque tincidunt, quam et accumsan pulvinar, mauris felis tempor elit,
+      sit amet hendrerit risus risus vel ligula. In nisl nulla, convallis sit amet
+      fermentum et, accumsan vel urna. '}
+  model: candideitorg.backgroundcandidate
+  pk: 12
+- fields: {background: 6, candidate: 2, remote_id: 20, resource_uri: /api/v2/backgrounds_candidate/20/,
+    value: 'Nulla vitae aliquam erat. Pellentesque ultrices a ipsum non suscipit.
+      Pellentesque tincidunt, quam et accumsan pulvinar, mauris felis tempor elit,
+      sit amet hendrerit risus risus vel ligula. In nisl nulla, convallis sit amet
+      fermentum et, accumsan vel urna. '}
+  model: candideitorg.backgroundcandidate
+  pk: 13
+- fields: {background: 7, candidate: 2, remote_id: 21, resource_uri: /api/v2/backgrounds_candidate/21/,
+    value: 'Nulla vitae aliquam erat. Pellentesque ultrices a ipsum non suscipit.
+      Pellentesque tincidunt, quam et accumsan pulvinar, mauris felis tempor elit,
+      sit amet hendrerit risus risus vel ligula. In nisl nulla, convallis sit amet
+      fermentum et, accumsan vel urna. '}
+  model: candideitorg.backgroundcandidate
+  pk: 14
 - fields: {content_type: 21, object_id: 80, tag: 349}
   model: taggit.taggeditem
   pk: 772
 - fields: {content_type: 21, object_id: 80, tag: 350}
   model: taggit.taggeditem
   pk: 773
-- fields: {candidate: 1, personaldata: 1, remote_id: 1, resource_uri: /api/v2/personal_data_candidate/1/,
-    value: 13/13/13}
-  model: candideitorg.personaldatacandidate
-  pk: 1
-- fields: {candidate: 1, personaldata: 2, remote_id: 2, resource_uri: /api/v2/personal_data_candidate/2/,
-    value: Estudiante}
-  model: candideitorg.personaldatacandidate
-  pk: 2
-- fields: {candidate: 1, name: el Twitter, url: 'http://www.twitter.com', remote_id: 1, resource_uri: /api/v2/link/1/}
-  model: candideitorg.link
-  pk: 1
-- fields: {candidate: 1, name: el Facebook, url: 'http://www.facebook.com', remote_id: 2, resource_uri: /api/v2/link/2/}
-  model: candideitorg.link
-  pk: 2
-- fields: {candidate: 1, name: el Web, url: 'http://www.mi-web.com', remote_id: 3, resource_uri: /api/v2/link/3/}
-  model: candideitorg.link
-  pk: 3
 - fields: {description: '', name: "I - Tarapac\xE1", slug: i-tarapaca, can_election: 1}
   model: elections.election
   pk: 1

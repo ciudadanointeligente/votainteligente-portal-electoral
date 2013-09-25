@@ -3,6 +3,8 @@ services:
   - mongodb
 python:
   - "2.7"
+before_install:
+  - sudo apt-get update python-pgmagick
 install:
   - pip install -r requirements.txt 
   - pip install coveralls

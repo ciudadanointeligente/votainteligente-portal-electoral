@@ -15,6 +15,26 @@
     </div>
   </div>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}/js/jquery.gridAccordion.min.js"></script>
+
+<script type="text/javascript">
+  
+  jQuery(document).ready(function($){
+        $('.accordion').gridAccordion({ 
+                                       height:300, 
+                                       columns:3, 
+                                       distance:2, 
+                                       closedPanelWidth:10, 
+                                       closedPanelHeight:10, 
+                                       alignType:'centerCenter',
+                                       slideshow:true
+                                        });
+    });
+  
+</script>
+
+
 <!-- Featured Elections  -->
 
     {% if featured_elections|length = 1 %}
@@ -27,19 +47,14 @@
                   <a href="{{ featured_election.get_absolute_url }}">
                     <h2>{{featured_election.name}}</h2>
                   </a>
-                    <div class="ia-container">
+                 <ul class="accordion">
                        {% for candidate in featured_election.can_election.candidate_set.all %}
-            
-                            <figure>
-                              <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" />
-                              <input type="radio" name="radio-set"/>
-                              <figcaption><span>{{ candidate.name }}</span></figcaption>
-
+                    <li>
+                        <img src="{{ candidate.photo }}" alt="{{ candidate.name }}" />
+                        <div class="caption">{{ candidate.name }}</div>
+                    </li>
                       {% endfor %}
-                      {% for candidate in featured_election.can_election.candidate_set.all %}
-                            </figure>
-                      {% endfor %}
-                    </div>
+                  </ul>
                   <div class="election-description">
                     <p>{{ featured_election.description|truncatewords:20 }}</p> 
                   </div>

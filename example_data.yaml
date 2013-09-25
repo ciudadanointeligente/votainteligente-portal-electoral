@@ -3858,3 +3858,41 @@
 - fields: {content_type: 21, object_id: 79, tag: 348}
   model: taggit.taggeditem
   pk: 771
+- fields:
+    date_joined: 2013-09-25 15:40:05.141141+00:00
+    email: admin@admin.com
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: true
+    is_superuser: true
+    last_login: 2013-09-25 15:40:11.560584+00:00
+    last_name: ''
+    password: pbkdf2_sha256$10000$imJ5pG6veRLo$5qZ/wJOXS5zXELvvqipOeX0X74uA9rXb//QlSsFfC+4=
+    user_permissions: []
+    username: admin
+  model: auth.user
+  pk: 1
+- fields:
+    content: "<p><strong>Ciudadano Inteligente</strong> es una organizaci&oacute;n&nbsp;Latinoamericana\
+      \ sin fines de lucro con sede en Santiago de Chile, que apoyada en el uso innovador\
+      \ de las tecnolog&iacute;as de la informaci&oacute;n, promueve la transparencia\
+      \ y la participaci&oacute;n ciudadana como herramientas de cuidado y profundizaci&oacute;n\
+      \ de la democracia.</p>\r\n<p>Nos definimos como una organizaci&oacute;n social\
+      \ diversa e inclusiva, que aunque enraizada en el principio liberal del acceso\
+      \ a la informaci&oacute;n, no adscribe a partidos ni movimientos pol&iacute;ticos,\
+      \ sino a la protecci&oacute;n transversal de los valores democr&aacute;ticos,\
+      \ donde los gobiernos responden al inter&eacute;s colectivo, y no al de una\
+      \ minor&iacute;a que utiliza su influencia para preservar intereses particulares.</p>\r\
+      \n<p>Somos una organizaci&oacute;n laica, respetuosa y defensora de la diversidad\
+      \ pol&iacute;tica, cultural, social, religiosa y sexual. Buscamos aportar a\
+      \ una sociedad justa e incluyente, donde los ciudadanos tenemos los mismos derechos\
+      \ y oportunidades.</p>"
+    enable_comments: false
+    registration_required: false
+    sites: [1]
+    template_name: ''
+    title: acerca de nosotros
+    url: /about-us/
+  model: flatpages.flatpage
+  pk: 1

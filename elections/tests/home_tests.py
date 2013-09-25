@@ -22,4 +22,6 @@ class HomeTestCase(TestCase):
 		context = view.get_context_data()
 
 		self.assertIn('form', context)
+		self.assertIn('featured_elections', context)
+		self.assertIn('searchable_elections_enabled', context)
 		self.assertIsInstance(context['form'], ElectionSearchByTagsForm)

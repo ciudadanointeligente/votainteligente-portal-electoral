@@ -40,7 +40,7 @@ if [ ! -e done.txt ]; then
   pip install -r requirements.txt
   python manage.py syncdb --noinput
   python manage.py migrate --noinput
-  python manage.py loaddata ../example_data.yaml
+  python manage.py loaddata ../writeit-example-data.yaml
 
   touch done.txt;
 else

@@ -1,0 +1,21 @@
+- fields: {domain: 'localhost:3001', name: 'localhost:3001'}
+  model: sites.site
+  pk: 1
+- fields:
+    date_joined: 2013-04-26 21:09:22.224616+00:00
+    email: admin@admines.cl
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: true
+    is_superuser: true
+    last_login: 2013-06-10 16:06:46.989439+00:00
+    last_name: ''
+    password: pbkdf2_sha256$10000$LoeTDV2yMCWT$fgkQ++r4O7wurfFSAtHT1/a9WTjb32cHq63dFgXU+rI=
+    user_permissions: []
+    username: admin
+  model: auth.user
+  pk: 1
+- fields: {created: !!timestamp '2013-09-10 18:42:37+00:00', key: a, user: 1}
+  model: tastypie.apikey
+  pk: 1

@@ -69,6 +69,9 @@ class CandidateDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CandidateDetailView, self).get_context_data(**kwargs)
-        context['election'] = self.object.election.election_set.all()[0]
+        #I know this is weird but this is basically
+        #me the candidate.candideitorg_election.votainteligente_election
+        #so that's why it says election.election
+        context['election'] = self.object.election.election
         return context
         

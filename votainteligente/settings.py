@@ -144,6 +144,8 @@ INSTALLED_APPS = (
     'haystack',
     'elections',
     'candideitorg',
+    'popit',
+    'writeit',
     'markdown_deux',
     'django_extensions',
     'sorl.thumbnail',
@@ -154,6 +156,40 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+### POPIT DJANGO THINGS THINGS
+
+# Testing related
+TEST_POPIT_API_HOST_IP   = '127.0.0.1'
+TEST_POPIT_API_PORT      = '3000'
+TEST_POPIT_API_SUBDOMAIN = 'popit-django-test'
+
+# create the url to use for testing the database.
+# See http://xip.io/ for details on the domain used.
+TEST_POPIT_API_URL = "http://%s.%s.xip.io:%s/api" % ( TEST_POPIT_API_SUBDOMAIN,
+                                                      TEST_POPIT_API_HOST_IP,
+                                                      TEST_POPIT_API_PORT )
+
+### POPIT DJANGO THINGS THINGS
+
+
+### WRITEIT API THINGS
+
+WRITEIT_API_URL = "http://localhost:3001/api/v1/"
+
+WRITEIT_USERNAME = 'admin'
+WRITEIT_KEY = 'a'
+
+### WRITEIT API THINGS
+
+
+### CANDIDEITORG API THINGS
+
+CANDIDEITORG_URL = 'http://localhost:3002/api/v2/'
+CANDIDEITORG_USERNAME = 'admin'
+CANDIDEITORG_API_KEY = 'a'
+
+### CANDIDEITORG API THINGS
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

@@ -1,3 +1,4 @@
+from candideitorg.models import Election as CanElection, Candidate
 from django.contrib import admin
 from elections.models import Election
 from django.contrib.flatpages.admin import FlatpageForm, FlatPageAdmin
@@ -12,6 +13,17 @@ class ElectionAdmin(admin.ModelAdmin):
 	search_fields = ['name', 'tags']
 	
 admin.site.register(Election, ElectionAdmin)
+
+class CandidateInline(admin.TabularInline):
+    model = Candidate
+    extra = 0
+
+class CanElectionAdmin(admin.ModelAdmin):
+    inlines = [
+        CandidateInline
+    ]
+    
+admin.site.register(CanElection, CanElectionAdmin)
 
 
 class PageForm(FlatpageForm):

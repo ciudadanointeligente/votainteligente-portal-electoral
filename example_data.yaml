@@ -3,6 +3,71 @@
     use_default_media_naranja_option: true}
   model: candideitorg.election
   pk: 1
+- fields: {description: '', information_source: '', logo: null, name: "1\xAA Circunscripci\xF3\
+      n Tarapac\xE1", remote_id: 1, resource_uri: /api/v2/election/1/, slug: 1a-circunscripcion-tarapaca,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 2
+- fields: {description: '', information_source: '', logo: null, name: "2\xAA Circunscripci\xF3\
+      n Antofagasta", remote_id: 2, resource_uri: /api/v2/election/2/, slug: 2a-circunscripcion-antofagasta,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 3
+- fields: {description: '', information_source: '', logo: null, name: "3\xAA Circunscripci\xF3\
+      n Atacama", remote_id: 3, resource_uri: /api/v2/election/3/, slug: 3a-circunscripcion-atacama,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 4
+- fields: {description: '', information_source: '', logo: null, name: "4\xAA Circunscripci\xF3\
+      n Coquimbo", remote_id: 4, resource_uri: /api/v2/election/4/, slug: 4a-circunscripcion-coquimbo,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 5
+- fields: {description: '', information_source: '', logo: null, name: "5\xAA Circunscripci\xF3\
+      n Quinta Cordillera", remote_id: 5, resource_uri: /api/v2/election/5/, slug: 5a-circunscripcion-quinta-cordillera,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 6
+- fields: {description: '', information_source: '', logo: null, name: "6\xAA Circunscripci\xF3\
+      n Quinta Costa", remote_id: 6, resource_uri: /api/v2/election/6/, slug: 6a-circunscripcion-quinta-costa,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 7
+- fields: {description: '', information_source: '', logo: null, name: "7\xAA Circunscripci\xF3\
+      n Santiago Poniente", remote_id: 7, resource_uri: /api/v2/election/7/, slug: 7a-circunscripcion-santiago-poniente,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 8
+- fields: {description: '', information_source: '', logo: null, name: "8\xAA Circunscripci\xF3\
+      n Santiago Oriente", remote_id: 8, resource_uri: /api/v2/election/8/, slug: 8a-circunscripcion-santiago-oriente,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 9
+- fields: {description: '', information_source: '', logo: null, name: "9\xAA Circunscripci\xF3\
+      n O'Higgins", remote_id: 9, resource_uri: /api/v2/election/9/, slug: 9a-circunscripcion-ohiggins,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 10
+- fields: {description: '', information_source: '', logo: null, name: "10\xAA Circunscripci\xF3\
+      n Maule Norte", remote_id: 10, resource_uri: /api/v2/election/10/, slug: 10a-circunscripcion-maule-norte,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 11
+- fields: {description: '', information_source: '', logo: null, name: "11\xAA Circunscripci\xF3\
+      n Maule Sur", remote_id: 11, resource_uri: /api/v2/election/11/, slug: 11a-circunscripcion-maule-sur,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 12
+- fields: {description: '', information_source: '', logo: null, name: "12\xAA Circunscripci\xF3\
+      n Biob\xEDo Costa", remote_id: 12, resource_uri: /api/v2/election/12/, slug: 12a-circunscripcion-biobio-costa,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 13
+- fields: {description: '', information_source: '', logo: null, name: "13\xAA Circunscripci\xF3\
+      n Biob\xEDo Cordillera", remote_id: 13, resource_uri: /api/v2/election/13/,
+    slug: 13a-circunscripcion-biobio-cordillera, use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 14
 - fields: {election: 1, name: Politicas Publicas, order: 1, remote_id: 1, resource_uri: /api/v2/category/1/,
     slug: politicas-publicas}
   model: candideitorg.category
@@ -11,12 +76,108 @@
     slug: politicas-monetarias}
   model: candideitorg.category
   pk: 2
+- fields: {election: 2, name: Perros y gatos, order: 1, remote_id: 1, resource_uri: /api/v2/category/1/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 3
+- fields: {election: 2, name: "Educaci\xF3n", order: 1, remote_id: 2, resource_uri: /api/v2/category/2/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 4
+- fields: {election: 3, name: Perros y gatos, order: 1, remote_id: 3, resource_uri: /api/v2/category/3/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 5
+- fields: {election: 3, name: "Educaci\xF3n", order: 1, remote_id: 4, resource_uri: /api/v2/category/4/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 6
+- fields: {election: 4, name: Perros y gatos, order: 1, remote_id: 5, resource_uri: /api/v2/category/5/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 7
+- fields: {election: 4, name: "Educaci\xF3n", order: 1, remote_id: 6, resource_uri: /api/v2/category/6/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 8
+- fields: {election: 5, name: Perros y gatos, order: 1, remote_id: 7, resource_uri: /api/v2/category/7/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 9
+- fields: {election: 5, name: "Educaci\xF3n", order: 1, remote_id: 8, resource_uri: /api/v2/category/8/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 10
+- fields: {election: 6, name: Perros y gatos, order: 1, remote_id: 9, resource_uri: /api/v2/category/9/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 11
+- fields: {election: 6, name: "Educaci\xF3n", order: 1, remote_id: 10, resource_uri: /api/v2/category/10/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 12
+- fields: {election: 7, name: Perros y gatos, order: 1, remote_id: 11, resource_uri: /api/v2/category/11/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 13
+- fields: {election: 7, name: "Educaci\xF3n", order: 1, remote_id: 12, resource_uri: /api/v2/category/12/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 14
+- fields: {election: 8, name: Perros y gatos, order: 1, remote_id: 13, resource_uri: /api/v2/category/13/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 15
+- fields: {election: 8, name: "Educaci\xF3n", order: 1, remote_id: 14, resource_uri: /api/v2/category/14/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 16
+- fields: {election: 9, name: Perros y gatos, order: 1, remote_id: 15, resource_uri: /api/v2/category/15/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 17
+- fields: {election: 9, name: "Educaci\xF3n", order: 1, remote_id: 16, resource_uri: /api/v2/category/16/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 18
+- fields: {election: 10, name: Perros y gatos, order: 1, remote_id: 17, resource_uri: /api/v2/category/17/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 19
+- fields: {election: 10, name: "Educaci\xF3n", order: 1, remote_id: 18, resource_uri: /api/v2/category/18/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 20
+- fields: {election: 11, name: Perros y gatos, order: 1, remote_id: 19, resource_uri: /api/v2/category/19/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 21
+- fields: {election: 11, name: "Educaci\xF3n", order: 1, remote_id: 20, resource_uri: /api/v2/category/20/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 22
+- fields: {election: 12, name: Perros y gatos, order: 1, remote_id: 21, resource_uri: /api/v2/category/21/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 23
+- fields: {election: 12, name: "Educaci\xF3n", order: 1, remote_id: 22, resource_uri: /api/v2/category/22/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 24
+- fields: {election: 13, name: Perros y gatos, order: 1, remote_id: 23, resource_uri: /api/v2/category/23/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 25
+- fields: {election: 13, name: "Educaci\xF3n", order: 1, remote_id: 24, resource_uri: /api/v2/category/24/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 26
 - fields:
     answers: [2, 5, 7, 10]
     election: 1
     has_answered: true
     name: Juanito Perez
-    photo: 'http://placedog.com/300/300'
+    photo: http://placedog.com/300/300
     remote_id: 1
     resource_uri: /api/v2/candidate/1/
     slug: juanito-perez
@@ -27,7 +188,7 @@
     election: 1
     has_answered: true
     name: Candidato Tester
-    photo: 'http://placedog.com/300/300'
+    photo: http://placedog.com/300/300
     remote_id: 2
     resource_uri: /api/v2/candidate/2/
     slug: candidato-tester
@@ -38,12 +199,573 @@
     election: 1
     has_answered: true
     name: Foo Bar
-    photo: 'http://placedog.com/300/300'
+    photo: http://placedog.com/300/300
     remote_id: 3
     resource_uri: /api/v2/candidate/3/
     slug: foo-bar
   model: candideitorg.candidate
   pk: 3
+- fields:
+    answers: []
+    election: 2
+    has_answered: true
+    name: ''
+    photo: null
+    remote_id: 1
+    resource_uri: /api/v2/candidate/1/
+    slug: ''
+  model: candideitorg.candidate
+  pk: 4
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Manuel Rojas
+    photo: null
+    remote_id: 2
+    resource_uri: /api/v2/candidate/2/
+    slug: manuel-rojas
+  model: candideitorg.candidate
+  pk: 5
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Alejandro Guillier
+    photo: null
+    remote_id: 3
+    resource_uri: /api/v2/candidate/3/
+    slug: alejandro-guillier
+  model: candideitorg.candidate
+  pk: 6
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Pedro Araya
+    photo: null
+    remote_id: 4
+    resource_uri: /api/v2/candidate/4/
+    slug: pedro-araya
+  model: candideitorg.candidate
+  pk: 7
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Gisela Contreras
+    photo: null
+    remote_id: 5
+    resource_uri: /api/v2/candidate/5/
+    slug: gisela-contreras
+  model: candideitorg.candidate
+  pk: 8
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Carlos Cantero
+    photo: null
+    remote_id: 6
+    resource_uri: /api/v2/candidate/6/
+    slug: carlos-cantero
+  model: candideitorg.candidate
+  pk: 9
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Daniel Guevara
+    photo: null
+    remote_id: 7
+    resource_uri: /api/v2/candidate/7/
+    slug: daniel-guevara
+  model: candideitorg.candidate
+  pk: 10
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Jimena Orrego
+    photo: null
+    remote_id: 8
+    resource_uri: /api/v2/candidate/8/
+    slug: jimena-orrego
+  model: candideitorg.candidate
+  pk: 11
+- fields:
+    answers: []
+    election: 4
+    has_answered: true
+    name: ''
+    photo: null
+    remote_id: 9
+    resource_uri: /api/v2/candidate/9/
+    slug: ''
+  model: candideitorg.candidate
+  pk: 12
+- fields:
+    answers: []
+    election: 5
+    has_answered: true
+    name: Gonzalo Uriarte
+    photo: null
+    remote_id: 10
+    resource_uri: /api/v2/candidate/10/
+    slug: gonzalo-uriarte
+  model: candideitorg.candidate
+  pk: 13
+- fields:
+    answers: []
+    election: 5
+    has_answered: true
+    name: Mario Bertolino
+    photo: null
+    remote_id: 11
+    resource_uri: /api/v2/candidate/11/
+    slug: mario-bertolino
+  model: candideitorg.candidate
+  pk: 14
+- fields:
+    answers: []
+    election: 5
+    has_answered: true
+    name: Jorge Pizarro
+    photo: null
+    remote_id: 12
+    resource_uri: /api/v2/candidate/12/
+    slug: jorge-pizarro
+  model: candideitorg.candidate
+  pk: 15
+- fields:
+    answers: []
+    election: 5
+    has_answered: true
+    name: "Adriana Mu\xF1oz"
+    photo: null
+    remote_id: 13
+    resource_uri: /api/v2/candidate/13/
+    slug: adriana-munoz
+  model: candideitorg.candidate
+  pk: 16
+- fields:
+    answers: []
+    election: 5
+    has_answered: true
+    name: Luis Vega
+    photo: null
+    remote_id: 14
+    resource_uri: /api/v2/candidate/14/
+    slug: luis-vega
+  model: candideitorg.candidate
+  pk: 17
+- fields:
+    answers: []
+    election: 6
+    has_answered: true
+    name: ''
+    photo: null
+    remote_id: 15
+    resource_uri: /api/v2/candidate/15/
+    slug: ''
+  model: candideitorg.candidate
+  pk: 18
+- fields:
+    answers: []
+    election: 7
+    has_answered: true
+    name: ''
+    photo: null
+    remote_id: 16
+    resource_uri: /api/v2/candidate/16/
+    slug: ''
+  model: candideitorg.candidate
+  pk: 19
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: Pablo Zalaquett
+    photo: null
+    remote_id: 17
+    resource_uri: /api/v2/candidate/17/
+    slug: pablo-zalaquett
+  model: candideitorg.candidate
+  pk: 20
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: "Andr\xE9s Allamand"
+    photo: null
+    remote_id: 18
+    resource_uri: /api/v2/candidate/18/
+    slug: andres-allamand
+  model: candideitorg.candidate
+  pk: 21
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: Alberto Undurraga
+    photo: null
+    remote_id: 19
+    resource_uri: /api/v2/candidate/19/
+    slug: alberto-undurraga
+  model: candideitorg.candidate
+  pk: 22
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: Guido Girardi
+    photo: null
+    remote_id: 20
+    resource_uri: /api/v2/candidate/20/
+    slug: guido-girardi
+  model: candideitorg.candidate
+  pk: 23
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: Wilfredo Alfsen
+    photo: null
+    remote_id: 21
+    resource_uri: /api/v2/candidate/21/
+    slug: wilfredo-alfsen
+  model: candideitorg.candidate
+  pk: 24
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: "Carlos Mu\xF1oz"
+    photo: null
+    remote_id: 22
+    resource_uri: /api/v2/candidate/22/
+    slug: carlos-munoz
+  model: candideitorg.candidate
+  pk: 25
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: "Eduardo Guti\xE9rrez"
+    photo: null
+    remote_id: 23
+    resource_uri: /api/v2/candidate/23/
+    slug: eduardo-gutierrez
+  model: candideitorg.candidate
+  pk: 26
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: Sergio Flores
+    photo: null
+    remote_id: 24
+    resource_uri: /api/v2/candidate/24/
+    slug: sergio-flores
+  model: candideitorg.candidate
+  pk: 27
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: Laurence Golborne
+    photo: null
+    remote_id: 25
+    resource_uri: /api/v2/candidate/25/
+    slug: laurence-golborne
+  model: candideitorg.candidate
+  pk: 28
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: "Manuel Jos\xE9 Ossand\xF3n"
+    photo: null
+    remote_id: 26
+    resource_uri: /api/v2/candidate/26/
+    slug: manuel-jose-ossandon
+  model: candideitorg.candidate
+  pk: 29
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: Soledad Alvear
+    photo: null
+    remote_id: 27
+    resource_uri: /api/v2/candidate/27/
+    slug: soledad-alvear
+  model: candideitorg.candidate
+  pk: 30
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: Carlos Montes
+    photo: null
+    remote_id: 28
+    resource_uri: /api/v2/candidate/28/
+    slug: carlos-montes
+  model: candideitorg.candidate
+  pk: 31
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: Esteban Silva
+    photo: null
+    remote_id: 29
+    resource_uri: /api/v2/candidate/29/
+    slug: esteban-silva
+  model: candideitorg.candidate
+  pk: 32
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: "Jos\xE9 Antonio Carre\xF1o"
+    photo: null
+    remote_id: 30
+    resource_uri: /api/v2/candidate/30/
+    slug: jose-antonio-carreno
+  model: candideitorg.candidate
+  pk: 33
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: Juan Guillermo Ossa
+    photo: null
+    remote_id: 31
+    resource_uri: /api/v2/candidate/31/
+    slug: juan-guillermo-ossa
+  model: candideitorg.candidate
+  pk: 34
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: "Patricio Guzm\xE1n"
+    photo: null
+    remote_id: 32
+    resource_uri: /api/v2/candidate/32/
+    slug: patricio-guzman
+  model: candideitorg.candidate
+  pk: 35
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: "Iv\xE1n Carrasco"
+    photo: null
+    remote_id: 33
+    resource_uri: /api/v2/candidate/33/
+    slug: ivan-carrasco
+  model: candideitorg.candidate
+  pk: 36
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: "Luis Mariano Rend\xF3n"
+    photo: null
+    remote_id: 34
+    resource_uri: /api/v2/candidate/34/
+    slug: luis-mariano-rendon
+  model: candideitorg.candidate
+  pk: 37
+- fields:
+    answers: []
+    election: 10
+    has_answered: true
+    name: "Alejandro Garc\xEDa-Huidobro"
+    photo: null
+    remote_id: 35
+    resource_uri: /api/v2/candidate/35/
+    slug: alejandro-garcia-huidobro
+  model: candideitorg.candidate
+  pk: 38
+- fields:
+    answers: []
+    election: 10
+    has_answered: true
+    name: Alberto Cardemil
+    photo: null
+    remote_id: 36
+    resource_uri: /api/v2/candidate/36/
+    slug: alberto-cardemil
+  model: candideitorg.candidate
+  pk: 39
+- fields:
+    answers: []
+    election: 10
+    has_answered: true
+    name: Juan Carlos Latorre
+    photo: null
+    remote_id: 37
+    resource_uri: /api/v2/candidate/37/
+    slug: juan-carlos-latorre
+  model: candideitorg.candidate
+  pk: 40
+- fields:
+    answers: []
+    election: 10
+    has_answered: true
+    name: Juan Pablo Letelier
+    photo: null
+    remote_id: 38
+    resource_uri: /api/v2/candidate/38/
+    slug: juan-pablo-letelier
+  model: candideitorg.candidate
+  pk: 41
+- fields:
+    answers: []
+    election: 10
+    has_answered: true
+    name: "Luis Felipe Garc\xEDa"
+    photo: null
+    remote_id: 39
+    resource_uri: /api/v2/candidate/39/
+    slug: luis-felipe-garcia
+  model: candideitorg.candidate
+  pk: 42
+- fields:
+    answers: []
+    election: 11
+    has_answered: true
+    name: ''
+    photo: null
+    remote_id: 40
+    resource_uri: /api/v2/candidate/40/
+    slug: ''
+  model: candideitorg.candidate
+  pk: 43
+- fields:
+    answers: []
+    election: 12
+    has_answered: true
+    name: ''
+    photo: null
+    remote_id: 41
+    resource_uri: /api/v2/candidate/41/
+    slug: ''
+  model: candideitorg.candidate
+  pk: 44
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: Jacqueline van Rysselberghe
+    photo: null
+    remote_id: 42
+    resource_uri: /api/v2/candidate/42/
+    slug: jacqueline-van-rysselberghe
+  model: candideitorg.candidate
+  pk: 45
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: Daniel Contesse
+    photo: null
+    remote_id: 43
+    resource_uri: /api/v2/candidate/43/
+    slug: daniel-contesse
+  model: candideitorg.candidate
+  pk: 46
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: Alejandro Navarro
+    photo: null
+    remote_id: 44
+    resource_uri: /api/v2/candidate/44/
+    slug: alejandro-navarro
+  model: candideitorg.candidate
+  pk: 47
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: Camilo Escalona
+    photo: null
+    remote_id: 45
+    resource_uri: /api/v2/candidate/45/
+    slug: camilo-escalona
+  model: candideitorg.candidate
+  pk: 48
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: Rafael Garay
+    photo: null
+    remote_id: 46
+    resource_uri: /api/v2/candidate/46/
+    slug: rafael-garay
+  model: candideitorg.candidate
+  pk: 49
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: "Osm\xE1n V\xE1squez"
+    photo: null
+    remote_id: 47
+    resource_uri: /api/v2/candidate/47/
+    slug: osman-vasquez
+  model: candideitorg.candidate
+  pk: 50
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: "Loreto\_Mu\xF1oz"
+    photo: null
+    remote_id: 48
+    resource_uri: /api/v2/candidate/48/
+    slug: loreto-munoz
+  model: candideitorg.candidate
+  pk: 51
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: Javier Sandoval
+    photo: null
+    remote_id: 49
+    resource_uri: /api/v2/candidate/49/
+    slug: javier-sandoval
+  model: candideitorg.candidate
+  pk: 52
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: "Graciela Gonz\xE1lez"
+    photo: null
+    remote_id: 50
+    resource_uri: /api/v2/candidate/50/
+    slug: graciela-gonzalez
+  model: candideitorg.candidate
+  pk: 53
+- fields:
+    answers: []
+    election: 14
+    has_answered: true
+    name: "V\xEDctor P\xE9rez"
+    photo: null
+    remote_id: 51
+    resource_uri: /api/v2/candidate/51/
+    slug: victor-perez
+  model: candideitorg.candidate
+  pk: 54
 - fields: {election: 1, name: Tendencia Politica, remote_id: 1, resource_uri: /api/v2/background_category/1/}
   model: candideitorg.backgroundcategory
   pk: 1
@@ -65,6 +787,240 @@
 - fields: {election: 1, label: "G\xE9nero", remote_id: 4, resource_uri: /api/v2/personal_data/4/}
   model: candideitorg.personaldata
   pk: 4
+- fields: {election: 2, label: Partido, remote_id: 1, resource_uri: /api/v2/personal_data/1/}
+  model: candideitorg.personaldata
+  pk: 5
+- fields: {election: 2, label: Pacto - Lista, remote_id: 2, resource_uri: /api/v2/personal_data/2/}
+  model: candideitorg.personaldata
+  pk: 6
+- fields: {election: 2, label: "\xBFVa a reelecci\xF3n?", remote_id: 3, resource_uri: /api/v2/personal_data/3/}
+  model: candideitorg.personaldata
+  pk: 7
+- fields: {election: 2, label: "Profesi\xF3n", remote_id: 4, resource_uri: /api/v2/personal_data/4/}
+  model: candideitorg.personaldata
+  pk: 8
+- fields: {election: 2, label: "Cargos P\xFAblicos", remote_id: 5, resource_uri: /api/v2/personal_data/5/}
+  model: candideitorg.personaldata
+  pk: 9
+- fields: {election: 2, label: Dato Curioso, remote_id: 6, resource_uri: /api/v2/personal_data/6/}
+  model: candideitorg.personaldata
+  pk: 10
+- fields: {election: 3, label: Partido, remote_id: 7, resource_uri: /api/v2/personal_data/7/}
+  model: candideitorg.personaldata
+  pk: 11
+- fields: {election: 3, label: Pacto - Lista, remote_id: 8, resource_uri: /api/v2/personal_data/8/}
+  model: candideitorg.personaldata
+  pk: 12
+- fields: {election: 3, label: "\xBFVa a reelecci\xF3n?", remote_id: 9, resource_uri: /api/v2/personal_data/9/}
+  model: candideitorg.personaldata
+  pk: 13
+- fields: {election: 3, label: "Profesi\xF3n", remote_id: 10, resource_uri: /api/v2/personal_data/10/}
+  model: candideitorg.personaldata
+  pk: 14
+- fields: {election: 3, label: "Cargos P\xFAblicos", remote_id: 11, resource_uri: /api/v2/personal_data/11/}
+  model: candideitorg.personaldata
+  pk: 15
+- fields: {election: 3, label: Dato Curioso, remote_id: 12, resource_uri: /api/v2/personal_data/12/}
+  model: candideitorg.personaldata
+  pk: 16
+- fields: {election: 4, label: Partido, remote_id: 13, resource_uri: /api/v2/personal_data/13/}
+  model: candideitorg.personaldata
+  pk: 17
+- fields: {election: 4, label: Pacto - Lista, remote_id: 14, resource_uri: /api/v2/personal_data/14/}
+  model: candideitorg.personaldata
+  pk: 18
+- fields: {election: 4, label: "\xBFVa a reelecci\xF3n?", remote_id: 15, resource_uri: /api/v2/personal_data/15/}
+  model: candideitorg.personaldata
+  pk: 19
+- fields: {election: 4, label: "Profesi\xF3n", remote_id: 16, resource_uri: /api/v2/personal_data/16/}
+  model: candideitorg.personaldata
+  pk: 20
+- fields: {election: 4, label: "Cargos P\xFAblicos", remote_id: 17, resource_uri: /api/v2/personal_data/17/}
+  model: candideitorg.personaldata
+  pk: 21
+- fields: {election: 4, label: Dato Curioso, remote_id: 18, resource_uri: /api/v2/personal_data/18/}
+  model: candideitorg.personaldata
+  pk: 22
+- fields: {election: 5, label: Partido, remote_id: 19, resource_uri: /api/v2/personal_data/19/}
+  model: candideitorg.personaldata
+  pk: 23
+- fields: {election: 5, label: Pacto - Lista, remote_id: 20, resource_uri: /api/v2/personal_data/20/}
+  model: candideitorg.personaldata
+  pk: 24
+- fields: {election: 5, label: "\xBFVa a reelecci\xF3n?", remote_id: 21, resource_uri: /api/v2/personal_data/21/}
+  model: candideitorg.personaldata
+  pk: 25
+- fields: {election: 5, label: "Profesi\xF3n", remote_id: 22, resource_uri: /api/v2/personal_data/22/}
+  model: candideitorg.personaldata
+  pk: 26
+- fields: {election: 5, label: "Cargos P\xFAblicos", remote_id: 23, resource_uri: /api/v2/personal_data/23/}
+  model: candideitorg.personaldata
+  pk: 27
+- fields: {election: 5, label: Dato Curioso, remote_id: 24, resource_uri: /api/v2/personal_data/24/}
+  model: candideitorg.personaldata
+  pk: 28
+- fields: {election: 6, label: Partido, remote_id: 25, resource_uri: /api/v2/personal_data/25/}
+  model: candideitorg.personaldata
+  pk: 29
+- fields: {election: 6, label: Pacto - Lista, remote_id: 26, resource_uri: /api/v2/personal_data/26/}
+  model: candideitorg.personaldata
+  pk: 30
+- fields: {election: 6, label: "\xBFVa a reelecci\xF3n?", remote_id: 27, resource_uri: /api/v2/personal_data/27/}
+  model: candideitorg.personaldata
+  pk: 31
+- fields: {election: 6, label: "Profesi\xF3n", remote_id: 28, resource_uri: /api/v2/personal_data/28/}
+  model: candideitorg.personaldata
+  pk: 32
+- fields: {election: 6, label: "Cargos P\xFAblicos", remote_id: 29, resource_uri: /api/v2/personal_data/29/}
+  model: candideitorg.personaldata
+  pk: 33
+- fields: {election: 6, label: Dato Curioso, remote_id: 30, resource_uri: /api/v2/personal_data/30/}
+  model: candideitorg.personaldata
+  pk: 34
+- fields: {election: 7, label: Partido, remote_id: 31, resource_uri: /api/v2/personal_data/31/}
+  model: candideitorg.personaldata
+  pk: 35
+- fields: {election: 7, label: Pacto - Lista, remote_id: 32, resource_uri: /api/v2/personal_data/32/}
+  model: candideitorg.personaldata
+  pk: 36
+- fields: {election: 7, label: "\xBFVa a reelecci\xF3n?", remote_id: 33, resource_uri: /api/v2/personal_data/33/}
+  model: candideitorg.personaldata
+  pk: 37
+- fields: {election: 7, label: "Profesi\xF3n", remote_id: 34, resource_uri: /api/v2/personal_data/34/}
+  model: candideitorg.personaldata
+  pk: 38
+- fields: {election: 7, label: "Cargos P\xFAblicos", remote_id: 35, resource_uri: /api/v2/personal_data/35/}
+  model: candideitorg.personaldata
+  pk: 39
+- fields: {election: 7, label: Dato Curioso, remote_id: 36, resource_uri: /api/v2/personal_data/36/}
+  model: candideitorg.personaldata
+  pk: 40
+- fields: {election: 8, label: Partido, remote_id: 37, resource_uri: /api/v2/personal_data/37/}
+  model: candideitorg.personaldata
+  pk: 41
+- fields: {election: 8, label: Pacto - Lista, remote_id: 38, resource_uri: /api/v2/personal_data/38/}
+  model: candideitorg.personaldata
+  pk: 42
+- fields: {election: 8, label: "\xBFVa a reelecci\xF3n?", remote_id: 39, resource_uri: /api/v2/personal_data/39/}
+  model: candideitorg.personaldata
+  pk: 43
+- fields: {election: 8, label: "Profesi\xF3n", remote_id: 40, resource_uri: /api/v2/personal_data/40/}
+  model: candideitorg.personaldata
+  pk: 44
+- fields: {election: 8, label: "Cargos P\xFAblicos", remote_id: 41, resource_uri: /api/v2/personal_data/41/}
+  model: candideitorg.personaldata
+  pk: 45
+- fields: {election: 8, label: Dato Curioso, remote_id: 42, resource_uri: /api/v2/personal_data/42/}
+  model: candideitorg.personaldata
+  pk: 46
+- fields: {election: 9, label: Partido, remote_id: 43, resource_uri: /api/v2/personal_data/43/}
+  model: candideitorg.personaldata
+  pk: 47
+- fields: {election: 9, label: Pacto - Lista, remote_id: 44, resource_uri: /api/v2/personal_data/44/}
+  model: candideitorg.personaldata
+  pk: 48
+- fields: {election: 9, label: "\xBFVa a reelecci\xF3n?", remote_id: 45, resource_uri: /api/v2/personal_data/45/}
+  model: candideitorg.personaldata
+  pk: 49
+- fields: {election: 9, label: "Profesi\xF3n", remote_id: 46, resource_uri: /api/v2/personal_data/46/}
+  model: candideitorg.personaldata
+  pk: 50
+- fields: {election: 9, label: "Cargos P\xFAblicos", remote_id: 47, resource_uri: /api/v2/personal_data/47/}
+  model: candideitorg.personaldata
+  pk: 51
+- fields: {election: 9, label: Dato Curioso, remote_id: 48, resource_uri: /api/v2/personal_data/48/}
+  model: candideitorg.personaldata
+  pk: 52
+- fields: {election: 10, label: Partido, remote_id: 49, resource_uri: /api/v2/personal_data/49/}
+  model: candideitorg.personaldata
+  pk: 53
+- fields: {election: 10, label: Pacto - Lista, remote_id: 50, resource_uri: /api/v2/personal_data/50/}
+  model: candideitorg.personaldata
+  pk: 54
+- fields: {election: 10, label: "\xBFVa a reelecci\xF3n?", remote_id: 51, resource_uri: /api/v2/personal_data/51/}
+  model: candideitorg.personaldata
+  pk: 55
+- fields: {election: 10, label: "Profesi\xF3n", remote_id: 52, resource_uri: /api/v2/personal_data/52/}
+  model: candideitorg.personaldata
+  pk: 56
+- fields: {election: 10, label: "Cargos P\xFAblicos", remote_id: 53, resource_uri: /api/v2/personal_data/53/}
+  model: candideitorg.personaldata
+  pk: 57
+- fields: {election: 10, label: Dato Curioso, remote_id: 54, resource_uri: /api/v2/personal_data/54/}
+  model: candideitorg.personaldata
+  pk: 58
+- fields: {election: 11, label: Partido, remote_id: 55, resource_uri: /api/v2/personal_data/55/}
+  model: candideitorg.personaldata
+  pk: 59
+- fields: {election: 11, label: Pacto - Lista, remote_id: 56, resource_uri: /api/v2/personal_data/56/}
+  model: candideitorg.personaldata
+  pk: 60
+- fields: {election: 11, label: "\xBFVa a reelecci\xF3n?", remote_id: 57, resource_uri: /api/v2/personal_data/57/}
+  model: candideitorg.personaldata
+  pk: 61
+- fields: {election: 11, label: "Profesi\xF3n", remote_id: 58, resource_uri: /api/v2/personal_data/58/}
+  model: candideitorg.personaldata
+  pk: 62
+- fields: {election: 11, label: "Cargos P\xFAblicos", remote_id: 59, resource_uri: /api/v2/personal_data/59/}
+  model: candideitorg.personaldata
+  pk: 63
+- fields: {election: 11, label: Dato Curioso, remote_id: 60, resource_uri: /api/v2/personal_data/60/}
+  model: candideitorg.personaldata
+  pk: 64
+- fields: {election: 12, label: Partido, remote_id: 61, resource_uri: /api/v2/personal_data/61/}
+  model: candideitorg.personaldata
+  pk: 65
+- fields: {election: 12, label: Pacto - Lista, remote_id: 62, resource_uri: /api/v2/personal_data/62/}
+  model: candideitorg.personaldata
+  pk: 66
+- fields: {election: 12, label: "\xBFVa a reelecci\xF3n?", remote_id: 63, resource_uri: /api/v2/personal_data/63/}
+  model: candideitorg.personaldata
+  pk: 67
+- fields: {election: 12, label: "Profesi\xF3n", remote_id: 64, resource_uri: /api/v2/personal_data/64/}
+  model: candideitorg.personaldata
+  pk: 68
+- fields: {election: 12, label: "Cargos P\xFAblicos", remote_id: 65, resource_uri: /api/v2/personal_data/65/}
+  model: candideitorg.personaldata
+  pk: 69
+- fields: {election: 12, label: Dato Curioso, remote_id: 66, resource_uri: /api/v2/personal_data/66/}
+  model: candideitorg.personaldata
+  pk: 70
+- fields: {election: 13, label: Partido, remote_id: 67, resource_uri: /api/v2/personal_data/67/}
+  model: candideitorg.personaldata
+  pk: 71
+- fields: {election: 13, label: Pacto - Lista, remote_id: 68, resource_uri: /api/v2/personal_data/68/}
+  model: candideitorg.personaldata
+  pk: 72
+- fields: {election: 13, label: "\xBFVa a reelecci\xF3n?", remote_id: 69, resource_uri: /api/v2/personal_data/69/}
+  model: candideitorg.personaldata
+  pk: 73
+- fields: {election: 13, label: "Profesi\xF3n", remote_id: 70, resource_uri: /api/v2/personal_data/70/}
+  model: candideitorg.personaldata
+  pk: 74
+- fields: {election: 13, label: "Cargos P\xFAblicos", remote_id: 71, resource_uri: /api/v2/personal_data/71/}
+  model: candideitorg.personaldata
+  pk: 75
+- fields: {election: 13, label: Dato Curioso, remote_id: 72, resource_uri: /api/v2/personal_data/72/}
+  model: candideitorg.personaldata
+  pk: 76
+- fields: {election: 14, label: Partido, remote_id: 73, resource_uri: /api/v2/personal_data/73/}
+  model: candideitorg.personaldata
+  pk: 77
+- fields: {election: 14, label: Pacto - Lista, remote_id: 74, resource_uri: /api/v2/personal_data/74/}
+  model: candideitorg.personaldata
+  pk: 78
+- fields: {election: 14, label: "\xBFVa a reelecci\xF3n?", remote_id: 75, resource_uri: /api/v2/personal_data/75/}
+  model: candideitorg.personaldata
+  pk: 79
+- fields: {election: 14, label: "Profesi\xF3n", remote_id: 76, resource_uri: /api/v2/personal_data/76/}
+  model: candideitorg.personaldata
+  pk: 80
+- fields: {election: 14, label: "Cargos P\xFAblicos", remote_id: 77, resource_uri: /api/v2/personal_data/77/}
+  model: candideitorg.personaldata
+  pk: 81
+- fields: {election: 14, label: Dato Curioso, remote_id: 78, resource_uri: /api/v2/personal_data/78/}
+  model: candideitorg.personaldata
+  pk: 82
 - fields: {background_category: 1, name: Partido politico actual, remote_id: 1, resource_uri: /api/v2/background/1/}
   model: candideitorg.background
   pk: 1
@@ -116,6 +1072,258 @@
 - fields: {caption: 'No', question: 4, remote_id: 2, resource_uri: /api/v2/answer/2/}
   model: candideitorg.answer
   pk: 10
+- fields: {caption: "S\xED", question: 5, remote_id: 1, resource_uri: /api/v2/answer/1/}
+  model: candideitorg.answer
+  pk: 11
+- fields: {caption: 'No', question: 5, remote_id: 2, resource_uri: /api/v2/answer/2/}
+  model: candideitorg.answer
+  pk: 12
+- fields: {caption: A veces, question: 5, remote_id: 3, resource_uri: /api/v2/answer/3/}
+  model: candideitorg.answer
+  pk: 13
+- fields: {caption: "S\xED", question: 6, remote_id: 4, resource_uri: /api/v2/answer/4/}
+  model: candideitorg.answer
+  pk: 14
+- fields: {caption: 'no', question: 6, remote_id: 5, resource_uri: /api/v2/answer/5/}
+  model: candideitorg.answer
+  pk: 15
+- fields: {caption: "S\xED", question: 7, remote_id: 6, resource_uri: /api/v2/answer/6/}
+  model: candideitorg.answer
+  pk: 16
+- fields: {caption: 'no', question: 7, remote_id: 7, resource_uri: /api/v2/answer/7/}
+  model: candideitorg.answer
+  pk: 17
+- fields: {caption: "S\xED", question: 8, remote_id: 8, resource_uri: /api/v2/answer/8/}
+  model: candideitorg.answer
+  pk: 18
+- fields: {caption: 'No', question: 8, remote_id: 9, resource_uri: /api/v2/answer/9/}
+  model: candideitorg.answer
+  pk: 19
+- fields: {caption: A veces, question: 8, remote_id: 10, resource_uri: /api/v2/answer/10/}
+  model: candideitorg.answer
+  pk: 20
+- fields: {caption: "S\xED", question: 9, remote_id: 11, resource_uri: /api/v2/answer/11/}
+  model: candideitorg.answer
+  pk: 21
+- fields: {caption: 'no', question: 9, remote_id: 12, resource_uri: /api/v2/answer/12/}
+  model: candideitorg.answer
+  pk: 22
+- fields: {caption: "S\xED", question: 10, remote_id: 13, resource_uri: /api/v2/answer/13/}
+  model: candideitorg.answer
+  pk: 23
+- fields: {caption: 'no', question: 10, remote_id: 14, resource_uri: /api/v2/answer/14/}
+  model: candideitorg.answer
+  pk: 24
+- fields: {caption: "S\xED", question: 11, remote_id: 15, resource_uri: /api/v2/answer/15/}
+  model: candideitorg.answer
+  pk: 25
+- fields: {caption: 'No', question: 11, remote_id: 16, resource_uri: /api/v2/answer/16/}
+  model: candideitorg.answer
+  pk: 26
+- fields: {caption: A veces, question: 11, remote_id: 17, resource_uri: /api/v2/answer/17/}
+  model: candideitorg.answer
+  pk: 27
+- fields: {caption: "S\xED", question: 12, remote_id: 18, resource_uri: /api/v2/answer/18/}
+  model: candideitorg.answer
+  pk: 28
+- fields: {caption: 'no', question: 12, remote_id: 19, resource_uri: /api/v2/answer/19/}
+  model: candideitorg.answer
+  pk: 29
+- fields: {caption: "S\xED", question: 13, remote_id: 20, resource_uri: /api/v2/answer/20/}
+  model: candideitorg.answer
+  pk: 30
+- fields: {caption: 'no', question: 13, remote_id: 21, resource_uri: /api/v2/answer/21/}
+  model: candideitorg.answer
+  pk: 31
+- fields: {caption: "S\xED", question: 14, remote_id: 22, resource_uri: /api/v2/answer/22/}
+  model: candideitorg.answer
+  pk: 32
+- fields: {caption: 'No', question: 14, remote_id: 23, resource_uri: /api/v2/answer/23/}
+  model: candideitorg.answer
+  pk: 33
+- fields: {caption: A veces, question: 14, remote_id: 24, resource_uri: /api/v2/answer/24/}
+  model: candideitorg.answer
+  pk: 34
+- fields: {caption: "S\xED", question: 15, remote_id: 25, resource_uri: /api/v2/answer/25/}
+  model: candideitorg.answer
+  pk: 35
+- fields: {caption: 'no', question: 15, remote_id: 26, resource_uri: /api/v2/answer/26/}
+  model: candideitorg.answer
+  pk: 36
+- fields: {caption: "S\xED", question: 16, remote_id: 27, resource_uri: /api/v2/answer/27/}
+  model: candideitorg.answer
+  pk: 37
+- fields: {caption: 'no', question: 16, remote_id: 28, resource_uri: /api/v2/answer/28/}
+  model: candideitorg.answer
+  pk: 38
+- fields: {caption: "S\xED", question: 17, remote_id: 29, resource_uri: /api/v2/answer/29/}
+  model: candideitorg.answer
+  pk: 39
+- fields: {caption: 'No', question: 17, remote_id: 30, resource_uri: /api/v2/answer/30/}
+  model: candideitorg.answer
+  pk: 40
+- fields: {caption: A veces, question: 17, remote_id: 31, resource_uri: /api/v2/answer/31/}
+  model: candideitorg.answer
+  pk: 41
+- fields: {caption: "S\xED", question: 18, remote_id: 32, resource_uri: /api/v2/answer/32/}
+  model: candideitorg.answer
+  pk: 42
+- fields: {caption: 'no', question: 18, remote_id: 33, resource_uri: /api/v2/answer/33/}
+  model: candideitorg.answer
+  pk: 43
+- fields: {caption: "S\xED", question: 19, remote_id: 34, resource_uri: /api/v2/answer/34/}
+  model: candideitorg.answer
+  pk: 44
+- fields: {caption: 'no', question: 19, remote_id: 35, resource_uri: /api/v2/answer/35/}
+  model: candideitorg.answer
+  pk: 45
+- fields: {caption: "S\xED", question: 20, remote_id: 36, resource_uri: /api/v2/answer/36/}
+  model: candideitorg.answer
+  pk: 46
+- fields: {caption: 'No', question: 20, remote_id: 37, resource_uri: /api/v2/answer/37/}
+  model: candideitorg.answer
+  pk: 47
+- fields: {caption: A veces, question: 20, remote_id: 38, resource_uri: /api/v2/answer/38/}
+  model: candideitorg.answer
+  pk: 48
+- fields: {caption: "S\xED", question: 21, remote_id: 39, resource_uri: /api/v2/answer/39/}
+  model: candideitorg.answer
+  pk: 49
+- fields: {caption: 'no', question: 21, remote_id: 40, resource_uri: /api/v2/answer/40/}
+  model: candideitorg.answer
+  pk: 50
+- fields: {caption: "S\xED", question: 22, remote_id: 41, resource_uri: /api/v2/answer/41/}
+  model: candideitorg.answer
+  pk: 51
+- fields: {caption: 'no', question: 22, remote_id: 42, resource_uri: /api/v2/answer/42/}
+  model: candideitorg.answer
+  pk: 52
+- fields: {caption: "S\xED", question: 23, remote_id: 43, resource_uri: /api/v2/answer/43/}
+  model: candideitorg.answer
+  pk: 53
+- fields: {caption: 'No', question: 23, remote_id: 44, resource_uri: /api/v2/answer/44/}
+  model: candideitorg.answer
+  pk: 54
+- fields: {caption: A veces, question: 23, remote_id: 45, resource_uri: /api/v2/answer/45/}
+  model: candideitorg.answer
+  pk: 55
+- fields: {caption: "S\xED", question: 24, remote_id: 46, resource_uri: /api/v2/answer/46/}
+  model: candideitorg.answer
+  pk: 56
+- fields: {caption: 'no', question: 24, remote_id: 47, resource_uri: /api/v2/answer/47/}
+  model: candideitorg.answer
+  pk: 57
+- fields: {caption: "S\xED", question: 25, remote_id: 48, resource_uri: /api/v2/answer/48/}
+  model: candideitorg.answer
+  pk: 58
+- fields: {caption: 'no', question: 25, remote_id: 49, resource_uri: /api/v2/answer/49/}
+  model: candideitorg.answer
+  pk: 59
+- fields: {caption: "S\xED", question: 26, remote_id: 50, resource_uri: /api/v2/answer/50/}
+  model: candideitorg.answer
+  pk: 60
+- fields: {caption: 'No', question: 26, remote_id: 51, resource_uri: /api/v2/answer/51/}
+  model: candideitorg.answer
+  pk: 61
+- fields: {caption: A veces, question: 26, remote_id: 52, resource_uri: /api/v2/answer/52/}
+  model: candideitorg.answer
+  pk: 62
+- fields: {caption: "S\xED", question: 27, remote_id: 53, resource_uri: /api/v2/answer/53/}
+  model: candideitorg.answer
+  pk: 63
+- fields: {caption: 'no', question: 27, remote_id: 54, resource_uri: /api/v2/answer/54/}
+  model: candideitorg.answer
+  pk: 64
+- fields: {caption: "S\xED", question: 28, remote_id: 55, resource_uri: /api/v2/answer/55/}
+  model: candideitorg.answer
+  pk: 65
+- fields: {caption: 'no', question: 28, remote_id: 56, resource_uri: /api/v2/answer/56/}
+  model: candideitorg.answer
+  pk: 66
+- fields: {caption: "S\xED", question: 29, remote_id: 57, resource_uri: /api/v2/answer/57/}
+  model: candideitorg.answer
+  pk: 67
+- fields: {caption: 'No', question: 29, remote_id: 58, resource_uri: /api/v2/answer/58/}
+  model: candideitorg.answer
+  pk: 68
+- fields: {caption: A veces, question: 29, remote_id: 59, resource_uri: /api/v2/answer/59/}
+  model: candideitorg.answer
+  pk: 69
+- fields: {caption: "S\xED", question: 30, remote_id: 60, resource_uri: /api/v2/answer/60/}
+  model: candideitorg.answer
+  pk: 70
+- fields: {caption: 'no', question: 30, remote_id: 61, resource_uri: /api/v2/answer/61/}
+  model: candideitorg.answer
+  pk: 71
+- fields: {caption: "S\xED", question: 31, remote_id: 62, resource_uri: /api/v2/answer/62/}
+  model: candideitorg.answer
+  pk: 72
+- fields: {caption: 'no', question: 31, remote_id: 63, resource_uri: /api/v2/answer/63/}
+  model: candideitorg.answer
+  pk: 73
+- fields: {caption: "S\xED", question: 32, remote_id: 64, resource_uri: /api/v2/answer/64/}
+  model: candideitorg.answer
+  pk: 74
+- fields: {caption: 'No', question: 32, remote_id: 65, resource_uri: /api/v2/answer/65/}
+  model: candideitorg.answer
+  pk: 75
+- fields: {caption: A veces, question: 32, remote_id: 66, resource_uri: /api/v2/answer/66/}
+  model: candideitorg.answer
+  pk: 76
+- fields: {caption: "S\xED", question: 33, remote_id: 67, resource_uri: /api/v2/answer/67/}
+  model: candideitorg.answer
+  pk: 77
+- fields: {caption: 'no', question: 33, remote_id: 68, resource_uri: /api/v2/answer/68/}
+  model: candideitorg.answer
+  pk: 78
+- fields: {caption: "S\xED", question: 34, remote_id: 69, resource_uri: /api/v2/answer/69/}
+  model: candideitorg.answer
+  pk: 79
+- fields: {caption: 'no', question: 34, remote_id: 70, resource_uri: /api/v2/answer/70/}
+  model: candideitorg.answer
+  pk: 80
+- fields: {caption: "S\xED", question: 35, remote_id: 71, resource_uri: /api/v2/answer/71/}
+  model: candideitorg.answer
+  pk: 81
+- fields: {caption: 'No', question: 35, remote_id: 72, resource_uri: /api/v2/answer/72/}
+  model: candideitorg.answer
+  pk: 82
+- fields: {caption: A veces, question: 35, remote_id: 73, resource_uri: /api/v2/answer/73/}
+  model: candideitorg.answer
+  pk: 83
+- fields: {caption: "S\xED", question: 36, remote_id: 74, resource_uri: /api/v2/answer/74/}
+  model: candideitorg.answer
+  pk: 84
+- fields: {caption: 'no', question: 36, remote_id: 75, resource_uri: /api/v2/answer/75/}
+  model: candideitorg.answer
+  pk: 85
+- fields: {caption: "S\xED", question: 37, remote_id: 76, resource_uri: /api/v2/answer/76/}
+  model: candideitorg.answer
+  pk: 86
+- fields: {caption: 'no', question: 37, remote_id: 77, resource_uri: /api/v2/answer/77/}
+  model: candideitorg.answer
+  pk: 87
+- fields: {caption: "S\xED", question: 38, remote_id: 78, resource_uri: /api/v2/answer/78/}
+  model: candideitorg.answer
+  pk: 88
+- fields: {caption: 'No', question: 38, remote_id: 79, resource_uri: /api/v2/answer/79/}
+  model: candideitorg.answer
+  pk: 89
+- fields: {caption: A veces, question: 38, remote_id: 80, resource_uri: /api/v2/answer/80/}
+  model: candideitorg.answer
+  pk: 90
+- fields: {caption: "S\xED", question: 39, remote_id: 81, resource_uri: /api/v2/answer/81/}
+  model: candideitorg.answer
+  pk: 91
+- fields: {caption: 'no', question: 39, remote_id: 82, resource_uri: /api/v2/answer/82/}
+  model: candideitorg.answer
+  pk: 92
+- fields: {caption: "S\xED", question: 40, remote_id: 83, resource_uri: /api/v2/answer/83/}
+  model: candideitorg.answer
+  pk: 93
+- fields: {caption: 'no', question: 40, remote_id: 84, resource_uri: /api/v2/answer/84/}
+  model: candideitorg.answer
+  pk: 94
 - fields: {category: 1, question: 'Esta de a cuerdo con los paros?', remote_id: 1,
     resource_uri: /api/v2/question/1/}
   model: candideitorg.question
@@ -131,6 +1339,114 @@
     resource_uri: /api/v2/question/4/}
   model: candideitorg.question
   pk: 4
+- fields: {category: 3, question: 'Le gusta la Fiera??', remote_id: 1, resource_uri: /api/v2/question/1/}
+  model: candideitorg.question
+  pk: 5
+- fields: {category: 3, question: 'Le gusta Benito??', remote_id: 2, resource_uri: /api/v2/question/2/}
+  model: candideitorg.question
+  pk: 6
+- fields: {category: 4, question: 'Libre para todos??', remote_id: 3, resource_uri: /api/v2/question/3/}
+  model: candideitorg.question
+  pk: 7
+- fields: {category: 5, question: 'Le gusta la Fiera??', remote_id: 4, resource_uri: /api/v2/question/4/}
+  model: candideitorg.question
+  pk: 8
+- fields: {category: 5, question: 'Le gusta Benito??', remote_id: 5, resource_uri: /api/v2/question/5/}
+  model: candideitorg.question
+  pk: 9
+- fields: {category: 6, question: 'Libre para todos??', remote_id: 6, resource_uri: /api/v2/question/6/}
+  model: candideitorg.question
+  pk: 10
+- fields: {category: 7, question: 'Le gusta la Fiera??', remote_id: 7, resource_uri: /api/v2/question/7/}
+  model: candideitorg.question
+  pk: 11
+- fields: {category: 7, question: 'Le gusta Benito??', remote_id: 8, resource_uri: /api/v2/question/8/}
+  model: candideitorg.question
+  pk: 12
+- fields: {category: 8, question: 'Libre para todos??', remote_id: 9, resource_uri: /api/v2/question/9/}
+  model: candideitorg.question
+  pk: 13
+- fields: {category: 9, question: 'Le gusta la Fiera??', remote_id: 10, resource_uri: /api/v2/question/10/}
+  model: candideitorg.question
+  pk: 14
+- fields: {category: 9, question: 'Le gusta Benito??', remote_id: 11, resource_uri: /api/v2/question/11/}
+  model: candideitorg.question
+  pk: 15
+- fields: {category: 10, question: 'Libre para todos??', remote_id: 12, resource_uri: /api/v2/question/12/}
+  model: candideitorg.question
+  pk: 16
+- fields: {category: 11, question: 'Le gusta la Fiera??', remote_id: 13, resource_uri: /api/v2/question/13/}
+  model: candideitorg.question
+  pk: 17
+- fields: {category: 11, question: 'Le gusta Benito??', remote_id: 14, resource_uri: /api/v2/question/14/}
+  model: candideitorg.question
+  pk: 18
+- fields: {category: 12, question: 'Libre para todos??', remote_id: 15, resource_uri: /api/v2/question/15/}
+  model: candideitorg.question
+  pk: 19
+- fields: {category: 13, question: 'Le gusta la Fiera??', remote_id: 16, resource_uri: /api/v2/question/16/}
+  model: candideitorg.question
+  pk: 20
+- fields: {category: 13, question: 'Le gusta Benito??', remote_id: 17, resource_uri: /api/v2/question/17/}
+  model: candideitorg.question
+  pk: 21
+- fields: {category: 14, question: 'Libre para todos??', remote_id: 18, resource_uri: /api/v2/question/18/}
+  model: candideitorg.question
+  pk: 22
+- fields: {category: 15, question: 'Le gusta la Fiera??', remote_id: 19, resource_uri: /api/v2/question/19/}
+  model: candideitorg.question
+  pk: 23
+- fields: {category: 15, question: 'Le gusta Benito??', remote_id: 20, resource_uri: /api/v2/question/20/}
+  model: candideitorg.question
+  pk: 24
+- fields: {category: 16, question: 'Libre para todos??', remote_id: 21, resource_uri: /api/v2/question/21/}
+  model: candideitorg.question
+  pk: 25
+- fields: {category: 17, question: 'Le gusta la Fiera??', remote_id: 22, resource_uri: /api/v2/question/22/}
+  model: candideitorg.question
+  pk: 26
+- fields: {category: 17, question: 'Le gusta Benito??', remote_id: 23, resource_uri: /api/v2/question/23/}
+  model: candideitorg.question
+  pk: 27
+- fields: {category: 18, question: 'Libre para todos??', remote_id: 24, resource_uri: /api/v2/question/24/}
+  model: candideitorg.question
+  pk: 28
+- fields: {category: 19, question: 'Le gusta la Fiera??', remote_id: 25, resource_uri: /api/v2/question/25/}
+  model: candideitorg.question
+  pk: 29
+- fields: {category: 19, question: 'Le gusta Benito??', remote_id: 26, resource_uri: /api/v2/question/26/}
+  model: candideitorg.question
+  pk: 30
+- fields: {category: 20, question: 'Libre para todos??', remote_id: 27, resource_uri: /api/v2/question/27/}
+  model: candideitorg.question
+  pk: 31
+- fields: {category: 21, question: 'Le gusta la Fiera??', remote_id: 28, resource_uri: /api/v2/question/28/}
+  model: candideitorg.question
+  pk: 32
+- fields: {category: 21, question: 'Le gusta Benito??', remote_id: 29, resource_uri: /api/v2/question/29/}
+  model: candideitorg.question
+  pk: 33
+- fields: {category: 22, question: 'Libre para todos??', remote_id: 30, resource_uri: /api/v2/question/30/}
+  model: candideitorg.question
+  pk: 34
+- fields: {category: 23, question: 'Le gusta la Fiera??', remote_id: 31, resource_uri: /api/v2/question/31/}
+  model: candideitorg.question
+  pk: 35
+- fields: {category: 23, question: 'Le gusta Benito??', remote_id: 32, resource_uri: /api/v2/question/32/}
+  model: candideitorg.question
+  pk: 36
+- fields: {category: 24, question: 'Libre para todos??', remote_id: 33, resource_uri: /api/v2/question/33/}
+  model: candideitorg.question
+  pk: 37
+- fields: {category: 25, question: 'Le gusta la Fiera??', remote_id: 34, resource_uri: /api/v2/question/34/}
+  model: candideitorg.question
+  pk: 38
+- fields: {category: 25, question: 'Le gusta Benito??', remote_id: 35, resource_uri: /api/v2/question/35/}
+  model: candideitorg.question
+  pk: 39
+- fields: {category: 26, question: 'Libre para todos??', remote_id: 36, resource_uri: /api/v2/question/36/}
+  model: candideitorg.question
+  pk: 40
 - fields: {candidate: 1, personaldata: 1, remote_id: 7, resource_uri: /api/v2/personal_data_candidate/7/,
     value: 13-13-2013}
   model: candideitorg.personaldatacandidate
@@ -249,252 +1565,630 @@
       fermentum et, accumsan vel urna. '}
   model: candideitorg.backgroundcandidate
   pk: 14
-- fields: {content_type: 21, object_id: 80, tag: 349}
-  model: taggit.taggeditem
-  pk: 772
-- fields: {content_type: 21, object_id: 80, tag: 350}
-  model: taggit.taggeditem
-  pk: 773
-- fields: {description: '', name: "I - Tarapac\xE1", slug: i-tarapaca, can_election: 1}
+- fields: {can_election: 1, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "I - Tarapac\xE1", popit_api_instance: null, searchable: true,
+    slug: i-tarapaca, writeitinstance: null}
   model: elections.election
   pk: 1
-- fields: {description: '', name: "Distrito N\xFAmero 1", slug: distrito-numero-1}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 1", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-1, writeitinstance: null}
   model: elections.election
   pk: 2
-- fields: {description: '', name: "Distrito N\xFAmero 2", slug: distrito-numero-2}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 2", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-2, writeitinstance: null}
   model: elections.election
   pk: 3
-- fields: {description: '', name: II - Antofagasta, slug: ii-antofagasta}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: II - Antofagasta, popit_api_instance: null, searchable: true,
+    slug: ii-antofagasta, writeitinstance: null}
   model: elections.election
   pk: 4
-- fields: {description: '', name: "Distrito N\xFAmero 3", slug: distrito-numero-3}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 3", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-3, writeitinstance: null}
   model: elections.election
   pk: 5
-- fields: {description: '', name: "Distrito N\xFAmero 4", slug: distrito-numero-4}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 4", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-4, writeitinstance: null}
   model: elections.election
   pk: 6
-- fields: {description: '', name: III - Atacama, slug: iii-atacama}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: III - Atacama, popit_api_instance: null, searchable: true,
+    slug: iii-atacama, writeitinstance: null}
   model: elections.election
   pk: 7
-- fields: {description: '', name: "Distrito N\xFAmero 5", slug: distrito-numero-5}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 5", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-5, writeitinstance: null}
   model: elections.election
   pk: 8
-- fields: {description: '', name: "Distrito N\xFAmero 6", slug: distrito-numero-6}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 6", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-6, writeitinstance: null}
   model: elections.election
   pk: 9
-- fields: {description: '', name: IV - Coquimbo, slug: iv-coquimbo}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: IV - Coquimbo, popit_api_instance: null, searchable: true,
+    slug: iv-coquimbo, writeitinstance: null}
   model: elections.election
   pk: 10
-- fields: {description: '', name: "Distrito N\xFAmero 7", slug: distrito-numero-7}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 7", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-7, writeitinstance: null}
   model: elections.election
   pk: 11
-- fields: {description: '', name: "Distrito N\xFAmero 8", slug: distrito-numero-8}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 8", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-8, writeitinstance: null}
   model: elections.election
   pk: 12
-- fields: {description: '', name: "Distrito N\xFAmero 9", slug: distrito-numero-9}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 9", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-9, writeitinstance: null}
   model: elections.election
   pk: 13
-- fields: {description: '', name: IX - O'Higgins, slug: ix-ohiggins}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: IX - O'Higgins, popit_api_instance: null, searchable: true,
+    slug: ix-ohiggins, writeitinstance: null}
   model: elections.election
   pk: 14
-- fields: {description: '', name: "Distrito N\xFAmero 32", slug: distrito-numero-32}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 32", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-32, writeitinstance: null}
   model: elections.election
   pk: 15
-- fields: {description: '', name: "Distrito N\xFAmero 33", slug: distrito-numero-33}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 33", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-33, writeitinstance: null}
   model: elections.election
   pk: 16
-- fields: {description: '', name: "Distrito N\xFAmero 34", slug: distrito-numero-34}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 34", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-34, writeitinstance: null}
   model: elections.election
   pk: 17
-- fields: {description: '', name: "Distrito N\xFAmero 35", slug: distrito-numero-35}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 35", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-35, writeitinstance: null}
   model: elections.election
   pk: 18
-- fields: {description: '', name: "V - Valpara\xEDso Cordillera", slug: v-valparaiso-cordillera}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "V - Valpara\xEDso Cordillera", popit_api_instance: null,
+    searchable: true, slug: v-valparaiso-cordillera, writeitinstance: null}
   model: elections.election
   pk: 19
-- fields: {description: '', name: "Distrito N\xFAmero 10", slug: distrito-numero-10}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 10", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-10, writeitinstance: null}
   model: elections.election
   pk: 20
-- fields: {description: '', name: "Distrito N\xFAmero 11", slug: distrito-numero-11}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 11", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-11, writeitinstance: null}
   model: elections.election
   pk: 21
-- fields: {description: '', name: "Distrito N\xFAmero 12", slug: distrito-numero-12}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 12", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-12, writeitinstance: null}
   model: elections.election
   pk: 22
-- fields: {description: '', name: "VI - Valpara\xEDso Costa", slug: vi-valparaiso-costa}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "VI - Valpara\xEDso Costa", popit_api_instance: null,
+    searchable: true, slug: vi-valparaiso-costa, writeitinstance: null}
   model: elections.election
   pk: 23
-- fields: {description: '', name: "Distrito N\xFAmero 13", slug: distrito-numero-13}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 13", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-13, writeitinstance: null}
   model: elections.election
   pk: 24
-- fields: {description: '', name: "Distrito N\xFAmero 14", slug: distrito-numero-14}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 14", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-14, writeitinstance: null}
   model: elections.election
   pk: 25
-- fields: {description: '', name: "Distrito N\xFAmero 15", slug: distrito-numero-15}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 15", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-15, writeitinstance: null}
   model: elections.election
   pk: 26
-- fields: {description: '', name: VII - Santiago Poniente, slug: vii-santiago-poniente}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: VII - Santiago Poniente, popit_api_instance: null, searchable: true,
+    slug: vii-santiago-poniente, writeitinstance: null}
   model: elections.election
   pk: 27
-- fields: {description: '', name: "Distrito N\xFAmero 16", slug: distrito-numero-16}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 16", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-16, writeitinstance: null}
   model: elections.election
   pk: 28
-- fields: {description: '', name: "Distrito N\xFAmero 17", slug: distrito-numero-17}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 17", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-17, writeitinstance: null}
   model: elections.election
   pk: 29
-- fields: {description: '', name: "Distrito N\xFAmero 18", slug: distrito-numero-18}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 18", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-18, writeitinstance: null}
   model: elections.election
   pk: 30
-- fields: {description: '', name: "Distrito N\xFAmero 19", slug: distrito-numero-19}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 19", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-19, writeitinstance: null}
   model: elections.election
   pk: 31
-- fields: {description: '', name: "Distrito N\xFAmero 20", slug: distrito-numero-20}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 20", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-20, writeitinstance: null}
   model: elections.election
   pk: 32
-- fields: {description: '', name: "Distrito N\xFAmero 22", slug: distrito-numero-22}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 22", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-22, writeitinstance: null}
   model: elections.election
   pk: 33
-- fields: {description: '', name: "Distrito N\xFAmero 30", slug: distrito-numero-30}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 30", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-30, writeitinstance: null}
   model: elections.election
   pk: 34
-- fields: {description: '', name: "Distrito N\xFAmero 31", slug: distrito-numero-31}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 31", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-31, writeitinstance: null}
   model: elections.election
   pk: 35
-- fields: {description: '', name: VIII - Santiago Oriente, slug: viii-santiago-oriente}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: VIII - Santiago Oriente, popit_api_instance: null, searchable: true,
+    slug: viii-santiago-oriente, writeitinstance: null}
   model: elections.election
   pk: 36
-- fields: {description: '', name: "Distrito N\xFAmero 21", slug: distrito-numero-21}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 21", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-21, writeitinstance: null}
   model: elections.election
   pk: 37
-- fields: {description: '', name: "Distrito N\xFAmero 23", slug: distrito-numero-23}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 23", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-23, writeitinstance: null}
   model: elections.election
   pk: 38
-- fields: {description: '', name: "Distrito N\xFAmero 24", slug: distrito-numero-24}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 24", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-24, writeitinstance: null}
   model: elections.election
   pk: 39
-- fields: {description: '', name: "Distrito N\xFAmero 25", slug: distrito-numero-25}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 25", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-25, writeitinstance: null}
   model: elections.election
   pk: 40
-- fields: {description: '', name: "Distrito N\xFAmero 26", slug: distrito-numero-26}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 26", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-26, writeitinstance: null}
   model: elections.election
   pk: 41
-- fields: {description: '', name: "Distrito N\xFAmero 27", slug: distrito-numero-27}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 27", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-27, writeitinstance: null}
   model: elections.election
   pk: 42
-- fields: {description: '', name: "Distrito N\xFAmero 28", slug: distrito-numero-28}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 28", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-28, writeitinstance: null}
   model: elections.election
   pk: 43
-- fields: {description: '', name: "Distrito N\xFAmero 29", slug: distrito-numero-29}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 29", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-29, writeitinstance: null}
   model: elections.election
   pk: 44
-- fields: {description: '', name: X - Maule Norte, slug: x-maule-norte}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: X - Maule Norte, popit_api_instance: null, searchable: true,
+    slug: x-maule-norte, writeitinstance: null}
   model: elections.election
   pk: 45
-- fields: {description: '', name: "Distrito N\xFAmero 36", slug: distrito-numero-36}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 36", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-36, writeitinstance: null}
   model: elections.election
   pk: 46
-- fields: {description: '', name: "Distrito N\xFAmero 37", slug: distrito-numero-37}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 37", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-37, writeitinstance: null}
   model: elections.election
   pk: 47
-- fields: {description: '', name: "Distrito N\xFAmero 38", slug: distrito-numero-38}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 38", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-38, writeitinstance: null}
   model: elections.election
   pk: 48
-- fields: {description: '', name: XI - Maule Sur, slug: xi-maule-sur}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: XI - Maule Sur, popit_api_instance: null, searchable: true,
+    slug: xi-maule-sur, writeitinstance: null}
   model: elections.election
   pk: 49
-- fields: {description: '', name: "Distrito N\xFAmero 39", slug: distrito-numero-39}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 39", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-39, writeitinstance: null}
   model: elections.election
   pk: 50
-- fields: {description: '', name: "Distrito N\xFAmero 40", slug: distrito-numero-40}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 40", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-40, writeitinstance: null}
   model: elections.election
   pk: 51
-- fields: {description: '', name: "XII - Biob\xEDo Costa", slug: xii-biobio-costa}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "XII - Biob\xEDo Costa", popit_api_instance: null, searchable: true,
+    slug: xii-biobio-costa, writeitinstance: null}
   model: elections.election
   pk: 52
-- fields: {description: '', name: "Distrito N\xFAmero 42", slug: distrito-numero-42}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 42", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-42, writeitinstance: null}
   model: elections.election
   pk: 53
-- fields: {description: '', name: "Distrito N\xFAmero 43", slug: distrito-numero-43}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 43", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-43, writeitinstance: null}
   model: elections.election
   pk: 54
-- fields: {description: '', name: "Distrito N\xFAmero 44", slug: distrito-numero-44}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 44", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-44, writeitinstance: null}
   model: elections.election
   pk: 55
-- fields: {description: '', name: "Distrito N\xFAmero 45", slug: distrito-numero-45}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 45", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-45, writeitinstance: null}
   model: elections.election
   pk: 56
-- fields: {description: '', name: "XIII - Biob\xEDo Cordillera", slug: xiii-biobio-cordillera}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "XIII - Biob\xEDo Cordillera", popit_api_instance: null,
+    searchable: true, slug: xiii-biobio-cordillera, writeitinstance: null}
   model: elections.election
   pk: 57
-- fields: {description: '', name: "Distrito N\xFAmero 41", slug: distrito-numero-41}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 41", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-41, writeitinstance: null}
   model: elections.election
   pk: 58
-- fields: {description: '', name: "Distrito N\xFAmero 46", slug: distrito-numero-46}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 46", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-46, writeitinstance: null}
   model: elections.election
   pk: 59
-- fields: {description: '', name: "Distrito N\xFAmero 47", slug: distrito-numero-47}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 47", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-47, writeitinstance: null}
   model: elections.election
   pk: 60
-- fields: {description: '', name: "XIV - Araucan\xEDa Norte", slug: xiv-araucania-norte}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "XIV - Araucan\xEDa Norte", popit_api_instance: null,
+    searchable: true, slug: xiv-araucania-norte, writeitinstance: null}
   model: elections.election
   pk: 61
-- fields: {description: '', name: "Distrito N\xFAmero 48", slug: distrito-numero-48}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 48", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-48, writeitinstance: null}
   model: elections.election
   pk: 62
-- fields: {description: '', name: "Distrito N\xFAmero 49", slug: distrito-numero-49}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 49", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-49, writeitinstance: null}
   model: elections.election
   pk: 63
-- fields: {description: '', name: XIX - Magallanes, slug: xix-magallanes}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: XIX - Magallanes, popit_api_instance: null, searchable: true,
+    slug: xix-magallanes, writeitinstance: null}
   model: elections.election
   pk: 64
-- fields: {description: '', name: "Distrito N\xFAmero 60", slug: distrito-numero-60}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 60", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-60, writeitinstance: null}
   model: elections.election
   pk: 65
-- fields: {description: '', name: "XV - Araucan\xEDa Sur", slug: xv-araucania-sur}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "XV - Araucan\xEDa Sur", popit_api_instance: null, searchable: true,
+    slug: xv-araucania-sur, writeitinstance: null}
   model: elections.election
   pk: 66
-- fields: {description: '', name: "Distrito N\xFAmero 50", slug: distrito-numero-50}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 50", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-50, writeitinstance: null}
   model: elections.election
   pk: 67
-- fields: {description: '', name: "Distrito N\xFAmero 51", slug: distrito-numero-51}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 51", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-51, writeitinstance: null}
   model: elections.election
   pk: 68
-- fields: {description: '', name: "Distrito N\xFAmero 52", slug: distrito-numero-52}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 52", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-52, writeitinstance: null}
   model: elections.election
   pk: 69
-- fields: {description: '', name: "XVI - Los R\xEDos", slug: xvi-los-rios}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "XVI - Los R\xEDos", popit_api_instance: null, searchable: true,
+    slug: xvi-los-rios, writeitinstance: null}
   model: elections.election
   pk: 70
-- fields: {description: '', name: "Distrito N\xFAmero 53", slug: distrito-numero-53}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 53", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-53, writeitinstance: null}
   model: elections.election
   pk: 71
-- fields: {description: '', name: "Distrito N\xFAmero 54", slug: distrito-numero-54}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 54", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-54, writeitinstance: null}
   model: elections.election
   pk: 72
-- fields: {description: '', name: XVII - Los Lagos, slug: xvii-los-lagos}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: XVII - Los Lagos, popit_api_instance: null, searchable: true,
+    slug: xvii-los-lagos, writeitinstance: null}
   model: elections.election
   pk: 73
-- fields: {description: '', name: "Distrito N\xFAmero 55", slug: distrito-numero-55}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 55", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-55, writeitinstance: null}
   model: elections.election
   pk: 74
-- fields: {description: '', name: "Distrito N\xFAmero 56", slug: distrito-numero-56}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 56", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-56, writeitinstance: null}
   model: elections.election
   pk: 75
-- fields: {description: '', name: "Distrito N\xFAmero 57", slug: distrito-numero-57}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 57", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-57, writeitinstance: null}
   model: elections.election
   pk: 76
-- fields: {description: '', name: "Distrito N\xFAmero 58", slug: distrito-numero-58}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 58", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-58, writeitinstance: null}
   model: elections.election
   pk: 77
-- fields: {description: '', name: "XVIII - Ays\xE9n", slug: xviii-aysen}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "XVIII - Ays\xE9n", popit_api_instance: null, searchable: true,
+    slug: xviii-aysen, writeitinstance: null}
   model: elections.election
   pk: 78
-- fields: {description: '', name: "Distrito N\xFAmero 59", slug: distrito-numero-59}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 59", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-59, writeitinstance: null}
   model: elections.election
   pk: 79
-- fields: {description: '', name: "Presidenciales", slug: presidenciales, highlighted: true, searchable: false}
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: true, name: Presidenciales, popit_api_instance: null, searchable: false,
+    slug: presidenciales, writeitinstance: null}
   model: elections.election
   pk: 80
+- fields: {can_election: 2, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "1\xAA Circunscripci\xF3n Tarapac\xE1", popit_api_instance: 2,
+    searchable: true, slug: 1a-circunscripcion-tarapaca, writeitinstance: 2}
+  model: elections.election
+  pk: 81
+- fields: {can_election: 3, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "2\xAA Circunscripci\xF3n Antofagasta", popit_api_instance: 3,
+    searchable: true, slug: 2a-circunscripcion-antofagasta, writeitinstance: 3}
+  model: elections.election
+  pk: 82
+- fields: {can_election: 4, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "3\xAA Circunscripci\xF3n Atacama", popit_api_instance: 4,
+    searchable: true, slug: 3a-circunscripcion-atacama, writeitinstance: 4}
+  model: elections.election
+  pk: 83
+- fields: {can_election: 5, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "4\xAA Circunscripci\xF3n Coquimbo", popit_api_instance: 5,
+    searchable: true, slug: 4a-circunscripcion-coquimbo, writeitinstance: 5}
+  model: elections.election
+  pk: 84
+- fields: {can_election: 6, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "5\xAA Circunscripci\xF3n Quinta Cordillera", popit_api_instance: 6,
+    searchable: true, slug: 5a-circunscripcion-quinta-cordillera, writeitinstance: 6}
+  model: elections.election
+  pk: 85
+- fields: {can_election: 7, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "6\xAA Circunscripci\xF3n Quinta Costa", popit_api_instance: 7,
+    searchable: true, slug: 6a-circunscripcion-quinta-costa, writeitinstance: 7}
+  model: elections.election
+  pk: 86
+- fields: {can_election: 8, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "7\xAA Circunscripci\xF3n Santiago Poniente", popit_api_instance: 8,
+    searchable: true, slug: 7a-circunscripcion-santiago-poniente, writeitinstance: 8}
+  model: elections.election
+  pk: 87
+- fields: {can_election: 9, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "8\xAA Circunscripci\xF3n Santiago Oriente", popit_api_instance: 9,
+    searchable: true, slug: 8a-circunscripcion-santiago-oriente, writeitinstance: 9}
+  model: elections.election
+  pk: 88
+- fields: {can_election: 10, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "9\xAA Circunscripci\xF3n O'Higgins", popit_api_instance: 10,
+    searchable: true, slug: 9a-circunscripcion-ohiggins, writeitinstance: 10}
+  model: elections.election
+  pk: 89
+- fields: {can_election: 11, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "10\xAA Circunscripci\xF3n Maule Norte", popit_api_instance: 11,
+    searchable: true, slug: 10a-circunscripcion-maule-norte, writeitinstance: 11}
+  model: elections.election
+  pk: 90
+- fields: {can_election: 12, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "11\xAA Circunscripci\xF3n Maule Sur", popit_api_instance: 12,
+    searchable: true, slug: 11a-circunscripcion-maule-sur, writeitinstance: 12}
+  model: elections.election
+  pk: 91
+- fields: {can_election: 13, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "12\xAA Circunscripci\xF3n Biob\xEDo Costa", popit_api_instance: 13,
+    searchable: true, slug: 12a-circunscripcion-biobio-costa, writeitinstance: 13}
+  model: elections.election
+  pk: 92
+- fields: {can_election: 14, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "13\xAA Circunscripci\xF3n Biob\xEDo Cordillera", popit_api_instance: 14,
+    searchable: true, slug: 13a-circunscripcion-biobio-cordillera, writeitinstance: 14}
+  model: elections.election
+  pk: 93
+- fields: {candidate: 1, person: 1}
+  model: elections.candidateperson
+  pk: 1
+- fields: {candidate: 2, person: 2}
+  model: elections.candidateperson
+  pk: 2
+- fields: {candidate: 3, person: 3}
+  model: elections.candidateperson
+  pk: 3
+- fields: {candidate: 4, person: 4}
+  model: elections.candidateperson
+  pk: 4
+- fields: {candidate: 5, person: 5}
+  model: elections.candidateperson
+  pk: 5
+- fields: {candidate: 6, person: 6}
+  model: elections.candidateperson
+  pk: 6
+- fields: {candidate: 7, person: 7}
+  model: elections.candidateperson
+  pk: 7
+- fields: {candidate: 8, person: 8}
+  model: elections.candidateperson
+  pk: 8
+- fields: {candidate: 9, person: 9}
+  model: elections.candidateperson
+  pk: 9
+- fields: {candidate: 10, person: 10}
+  model: elections.candidateperson
+  pk: 10
+- fields: {candidate: 11, person: 11}
+  model: elections.candidateperson
+  pk: 11
+- fields: {candidate: 12, person: 12}
+  model: elections.candidateperson
+  pk: 12
+- fields: {candidate: 13, person: 13}
+  model: elections.candidateperson
+  pk: 13
+- fields: {candidate: 14, person: 14}
+  model: elections.candidateperson
+  pk: 14
+- fields: {candidate: 15, person: 15}
+  model: elections.candidateperson
+  pk: 15
+- fields: {candidate: 16, person: 16}
+  model: elections.candidateperson
+  pk: 16
+- fields: {candidate: 17, person: 17}
+  model: elections.candidateperson
+  pk: 17
+- fields: {candidate: 18, person: 18}
+  model: elections.candidateperson
+  pk: 18
+- fields: {candidate: 19, person: 19}
+  model: elections.candidateperson
+  pk: 19
+- fields: {candidate: 20, person: 20}
+  model: elections.candidateperson
+  pk: 20
+- fields: {candidate: 21, person: 21}
+  model: elections.candidateperson
+  pk: 21
+- fields: {candidate: 22, person: 22}
+  model: elections.candidateperson
+  pk: 22
+- fields: {candidate: 23, person: 23}
+  model: elections.candidateperson
+  pk: 23
+- fields: {candidate: 24, person: 24}
+  model: elections.candidateperson
+  pk: 24
+- fields: {candidate: 25, person: 25}
+  model: elections.candidateperson
+  pk: 25
+- fields: {candidate: 26, person: 26}
+  model: elections.candidateperson
+  pk: 26
+- fields: {candidate: 27, person: 27}
+  model: elections.candidateperson
+  pk: 27
+- fields: {candidate: 28, person: 28}
+  model: elections.candidateperson
+  pk: 28
+- fields: {candidate: 29, person: 29}
+  model: elections.candidateperson
+  pk: 29
+- fields: {candidate: 30, person: 30}
+  model: elections.candidateperson
+  pk: 30
+- fields: {candidate: 31, person: 31}
+  model: elections.candidateperson
+  pk: 31
+- fields: {candidate: 32, person: 32}
+  model: elections.candidateperson
+  pk: 32
+- fields: {candidate: 33, person: 33}
+  model: elections.candidateperson
+  pk: 33
+- fields: {candidate: 34, person: 34}
+  model: elections.candidateperson
+  pk: 34
+- fields: {candidate: 35, person: 35}
+  model: elections.candidateperson
+  pk: 35
+- fields: {candidate: 36, person: 36}
+  model: elections.candidateperson
+  pk: 36
+- fields: {candidate: 37, person: 37}
+  model: elections.candidateperson
+  pk: 37
+- fields: {candidate: 38, person: 38}
+  model: elections.candidateperson
+  pk: 38
+- fields: {candidate: 39, person: 39}
+  model: elections.candidateperson
+  pk: 39
+- fields: {candidate: 40, person: 40}
+  model: elections.candidateperson
+  pk: 40
+- fields: {candidate: 41, person: 41}
+  model: elections.candidateperson
+  pk: 41
+- fields: {candidate: 42, person: 42}
+  model: elections.candidateperson
+  pk: 42
+- fields: {candidate: 43, person: 43}
+  model: elections.candidateperson
+  pk: 43
+- fields: {candidate: 44, person: 44}
+  model: elections.candidateperson
+  pk: 44
+- fields: {candidate: 45, person: 45}
+  model: elections.candidateperson
+  pk: 45
+- fields: {candidate: 46, person: 46}
+  model: elections.candidateperson
+  pk: 46
+- fields: {candidate: 47, person: 47}
+  model: elections.candidateperson
+  pk: 47
+- fields: {candidate: 48, person: 48}
+  model: elections.candidateperson
+  pk: 48
+- fields: {candidate: 49, person: 49}
+  model: elections.candidateperson
+  pk: 49
+- fields: {candidate: 50, person: 50}
+  model: elections.candidateperson
+  pk: 50
+- fields: {candidate: 51, person: 51}
+  model: elections.candidateperson
+  pk: 51
+- fields: {candidate: 52, person: 52}
+  model: elections.candidateperson
+  pk: 52
+- fields: {candidate: 53, person: 53}
+  model: elections.candidateperson
+  pk: 53
 - fields: {name: senadores, slug: senadores}
   model: taggit.tag
   pk: 1

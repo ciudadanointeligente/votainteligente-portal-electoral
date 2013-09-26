@@ -1,0 +1,5592 @@
+- fields: {description: Elecciones CEI 2012, information_source: '', logo: 'http://placedog.com/300/300',
+    name: cei 2012, remote_id: 1, resource_uri: /api/v2/election/1/, slug: cei-2012,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 1
+- fields: {description: '', information_source: '', logo: null, name: "1\xAA Circunscripci\xF3\
+      n Tarapac\xE1", remote_id: 1, resource_uri: /api/v2/election/1/, slug: 1a-circunscripcion-tarapaca,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 2
+- fields: {description: '', information_source: '', logo: null, name: "2\xAA Circunscripci\xF3\
+      n Antofagasta", remote_id: 2, resource_uri: /api/v2/election/2/, slug: 2a-circunscripcion-antofagasta,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 3
+- fields: {description: '', information_source: '', logo: null, name: "3\xAA Circunscripci\xF3\
+      n Atacama", remote_id: 3, resource_uri: /api/v2/election/3/, slug: 3a-circunscripcion-atacama,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 4
+- fields: {description: '', information_source: '', logo: null, name: "4\xAA Circunscripci\xF3\
+      n Coquimbo", remote_id: 4, resource_uri: /api/v2/election/4/, slug: 4a-circunscripcion-coquimbo,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 5
+- fields: {description: '', information_source: '', logo: null, name: "5\xAA Circunscripci\xF3\
+      n Quinta Cordillera", remote_id: 5, resource_uri: /api/v2/election/5/, slug: 5a-circunscripcion-quinta-cordillera,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 6
+- fields: {description: '', information_source: '', logo: null, name: "6\xAA Circunscripci\xF3\
+      n Quinta Costa", remote_id: 6, resource_uri: /api/v2/election/6/, slug: 6a-circunscripcion-quinta-costa,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 7
+- fields: {description: '', information_source: '', logo: null, name: "7\xAA Circunscripci\xF3\
+      n Santiago Poniente", remote_id: 7, resource_uri: /api/v2/election/7/, slug: 7a-circunscripcion-santiago-poniente,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 8
+- fields: {description: '', information_source: '', logo: null, name: "8\xAA Circunscripci\xF3\
+      n Santiago Oriente", remote_id: 8, resource_uri: /api/v2/election/8/, slug: 8a-circunscripcion-santiago-oriente,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 9
+- fields: {description: '', information_source: '', logo: null, name: "9\xAA Circunscripci\xF3\
+      n O'Higgins", remote_id: 9, resource_uri: /api/v2/election/9/, slug: 9a-circunscripcion-ohiggins,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 10
+- fields: {description: '', information_source: '', logo: null, name: "10\xAA Circunscripci\xF3\
+      n Maule Norte", remote_id: 10, resource_uri: /api/v2/election/10/, slug: 10a-circunscripcion-maule-norte,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 11
+- fields: {description: '', information_source: '', logo: null, name: "11\xAA Circunscripci\xF3\
+      n Maule Sur", remote_id: 11, resource_uri: /api/v2/election/11/, slug: 11a-circunscripcion-maule-sur,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 12
+- fields: {description: '', information_source: '', logo: null, name: "12\xAA Circunscripci\xF3\
+      n Biob\xEDo Costa", remote_id: 12, resource_uri: /api/v2/election/12/, slug: 12a-circunscripcion-biobio-costa,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 13
+- fields: {description: '', information_source: '', logo: null, name: "13\xAA Circunscripci\xF3\
+      n Biob\xEDo Cordillera", remote_id: 13, resource_uri: /api/v2/election/13/,
+    slug: 13a-circunscripcion-biobio-cordillera, use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 14
+- fields: {election: 1, name: Politicas Publicas, order: 1, remote_id: 1, resource_uri: /api/v2/category/1/,
+    slug: politicas-publicas}
+  model: candideitorg.category
+  pk: 1
+- fields: {election: 1, name: Politicas Monetarias, order: 1, remote_id: 2, resource_uri: /api/v2/category/2/,
+    slug: politicas-monetarias}
+  model: candideitorg.category
+  pk: 2
+- fields: {election: 2, name: Perros y gatos, order: 1, remote_id: 1, resource_uri: /api/v2/category/1/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 3
+- fields: {election: 2, name: "Educaci\xF3n", order: 1, remote_id: 2, resource_uri: /api/v2/category/2/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 4
+- fields: {election: 3, name: Perros y gatos, order: 1, remote_id: 3, resource_uri: /api/v2/category/3/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 5
+- fields: {election: 3, name: "Educaci\xF3n", order: 1, remote_id: 4, resource_uri: /api/v2/category/4/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 6
+- fields: {election: 4, name: Perros y gatos, order: 1, remote_id: 5, resource_uri: /api/v2/category/5/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 7
+- fields: {election: 4, name: "Educaci\xF3n", order: 1, remote_id: 6, resource_uri: /api/v2/category/6/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 8
+- fields: {election: 5, name: Perros y gatos, order: 1, remote_id: 7, resource_uri: /api/v2/category/7/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 9
+- fields: {election: 5, name: "Educaci\xF3n", order: 1, remote_id: 8, resource_uri: /api/v2/category/8/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 10
+- fields: {election: 6, name: Perros y gatos, order: 1, remote_id: 9, resource_uri: /api/v2/category/9/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 11
+- fields: {election: 6, name: "Educaci\xF3n", order: 1, remote_id: 10, resource_uri: /api/v2/category/10/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 12
+- fields: {election: 7, name: Perros y gatos, order: 1, remote_id: 11, resource_uri: /api/v2/category/11/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 13
+- fields: {election: 7, name: "Educaci\xF3n", order: 1, remote_id: 12, resource_uri: /api/v2/category/12/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 14
+- fields: {election: 8, name: Perros y gatos, order: 1, remote_id: 13, resource_uri: /api/v2/category/13/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 15
+- fields: {election: 8, name: "Educaci\xF3n", order: 1, remote_id: 14, resource_uri: /api/v2/category/14/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 16
+- fields: {election: 9, name: Perros y gatos, order: 1, remote_id: 15, resource_uri: /api/v2/category/15/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 17
+- fields: {election: 9, name: "Educaci\xF3n", order: 1, remote_id: 16, resource_uri: /api/v2/category/16/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 18
+- fields: {election: 10, name: Perros y gatos, order: 1, remote_id: 17, resource_uri: /api/v2/category/17/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 19
+- fields: {election: 10, name: "Educaci\xF3n", order: 1, remote_id: 18, resource_uri: /api/v2/category/18/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 20
+- fields: {election: 11, name: Perros y gatos, order: 1, remote_id: 19, resource_uri: /api/v2/category/19/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 21
+- fields: {election: 11, name: "Educaci\xF3n", order: 1, remote_id: 20, resource_uri: /api/v2/category/20/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 22
+- fields: {election: 12, name: Perros y gatos, order: 1, remote_id: 21, resource_uri: /api/v2/category/21/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 23
+- fields: {election: 12, name: "Educaci\xF3n", order: 1, remote_id: 22, resource_uri: /api/v2/category/22/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 24
+- fields: {election: 13, name: Perros y gatos, order: 1, remote_id: 23, resource_uri: /api/v2/category/23/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 25
+- fields: {election: 13, name: "Educaci\xF3n", order: 1, remote_id: 24, resource_uri: /api/v2/category/24/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 26
+- fields:
+    answers: [2, 5, 7, 10]
+    election: 1
+    has_answered: true
+    name: Juanito Perez
+    photo: http://placedog.com/300/300
+    remote_id: 1
+    resource_uri: /api/v2/candidate/1/
+    slug: juanito-perez
+  model: candideitorg.candidate
+  pk: 1
+- fields:
+    answers: [1, 4, 7, 9]
+    election: 1
+    has_answered: true
+    name: Candidato Tester
+    photo: http://placedog.com/300/300
+    remote_id: 2
+    resource_uri: /api/v2/candidate/2/
+    slug: candidato-tester
+  model: candideitorg.candidate
+  pk: 2
+- fields:
+    answers: []
+    election: 1
+    has_answered: true
+    name: Foo Bar
+    photo: http://placedog.com/300/300
+    remote_id: 3
+    resource_uri: /api/v2/candidate/3/
+    slug: foo-bar
+  model: candideitorg.candidate
+  pk: 3
+- fields:
+    answers: []
+    election: 2
+    has_answered: true
+    name: ''
+    photo: null
+    remote_id: 1
+    resource_uri: /api/v2/candidate/1/
+    slug: ''
+  model: candideitorg.candidate
+  pk: 4
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Manuel Rojas
+    photo: null
+    remote_id: 2
+    resource_uri: /api/v2/candidate/2/
+    slug: manuel-rojas
+  model: candideitorg.candidate
+  pk: 5
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Alejandro Guillier
+    photo: null
+    remote_id: 3
+    resource_uri: /api/v2/candidate/3/
+    slug: alejandro-guillier
+  model: candideitorg.candidate
+  pk: 6
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Pedro Araya
+    photo: null
+    remote_id: 4
+    resource_uri: /api/v2/candidate/4/
+    slug: pedro-araya
+  model: candideitorg.candidate
+  pk: 7
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Gisela Contreras
+    photo: null
+    remote_id: 5
+    resource_uri: /api/v2/candidate/5/
+    slug: gisela-contreras
+  model: candideitorg.candidate
+  pk: 8
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Carlos Cantero
+    photo: null
+    remote_id: 6
+    resource_uri: /api/v2/candidate/6/
+    slug: carlos-cantero
+  model: candideitorg.candidate
+  pk: 9
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Daniel Guevara
+    photo: null
+    remote_id: 7
+    resource_uri: /api/v2/candidate/7/
+    slug: daniel-guevara
+  model: candideitorg.candidate
+  pk: 10
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Jimena Orrego
+    photo: null
+    remote_id: 8
+    resource_uri: /api/v2/candidate/8/
+    slug: jimena-orrego
+  model: candideitorg.candidate
+  pk: 11
+- fields:
+    answers: []
+    election: 4
+    has_answered: true
+    name: ''
+    photo: null
+    remote_id: 9
+    resource_uri: /api/v2/candidate/9/
+    slug: ''
+  model: candideitorg.candidate
+  pk: 12
+- fields:
+    answers: []
+    election: 5
+    has_answered: true
+    name: Gonzalo Uriarte
+    photo: null
+    remote_id: 10
+    resource_uri: /api/v2/candidate/10/
+    slug: gonzalo-uriarte
+  model: candideitorg.candidate
+  pk: 13
+- fields:
+    answers: []
+    election: 5
+    has_answered: true
+    name: Mario Bertolino
+    photo: null
+    remote_id: 11
+    resource_uri: /api/v2/candidate/11/
+    slug: mario-bertolino
+  model: candideitorg.candidate
+  pk: 14
+- fields:
+    answers: []
+    election: 5
+    has_answered: true
+    name: Jorge Pizarro
+    photo: null
+    remote_id: 12
+    resource_uri: /api/v2/candidate/12/
+    slug: jorge-pizarro
+  model: candideitorg.candidate
+  pk: 15
+- fields:
+    answers: []
+    election: 5
+    has_answered: true
+    name: "Adriana Mu\xF1oz"
+    photo: null
+    remote_id: 13
+    resource_uri: /api/v2/candidate/13/
+    slug: adriana-munoz
+  model: candideitorg.candidate
+  pk: 16
+- fields:
+    answers: []
+    election: 5
+    has_answered: true
+    name: Luis Vega
+    photo: null
+    remote_id: 14
+    resource_uri: /api/v2/candidate/14/
+    slug: luis-vega
+  model: candideitorg.candidate
+  pk: 17
+- fields:
+    answers: []
+    election: 6
+    has_answered: true
+    name: ''
+    photo: null
+    remote_id: 15
+    resource_uri: /api/v2/candidate/15/
+    slug: ''
+  model: candideitorg.candidate
+  pk: 18
+- fields:
+    answers: []
+    election: 7
+    has_answered: true
+    name: ''
+    photo: null
+    remote_id: 16
+    resource_uri: /api/v2/candidate/16/
+    slug: ''
+  model: candideitorg.candidate
+  pk: 19
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: Pablo Zalaquett
+    photo: null
+    remote_id: 17
+    resource_uri: /api/v2/candidate/17/
+    slug: pablo-zalaquett
+  model: candideitorg.candidate
+  pk: 20
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: "Andr\xE9s Allamand"
+    photo: null
+    remote_id: 18
+    resource_uri: /api/v2/candidate/18/
+    slug: andres-allamand
+  model: candideitorg.candidate
+  pk: 21
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: Alberto Undurraga
+    photo: null
+    remote_id: 19
+    resource_uri: /api/v2/candidate/19/
+    slug: alberto-undurraga
+  model: candideitorg.candidate
+  pk: 22
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: Guido Girardi
+    photo: null
+    remote_id: 20
+    resource_uri: /api/v2/candidate/20/
+    slug: guido-girardi
+  model: candideitorg.candidate
+  pk: 23
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: Wilfredo Alfsen
+    photo: null
+    remote_id: 21
+    resource_uri: /api/v2/candidate/21/
+    slug: wilfredo-alfsen
+  model: candideitorg.candidate
+  pk: 24
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: "Carlos Mu\xF1oz"
+    photo: null
+    remote_id: 22
+    resource_uri: /api/v2/candidate/22/
+    slug: carlos-munoz
+  model: candideitorg.candidate
+  pk: 25
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: "Eduardo Guti\xE9rrez"
+    photo: null
+    remote_id: 23
+    resource_uri: /api/v2/candidate/23/
+    slug: eduardo-gutierrez
+  model: candideitorg.candidate
+  pk: 26
+- fields:
+    answers: []
+    election: 8
+    has_answered: true
+    name: Sergio Flores
+    photo: null
+    remote_id: 24
+    resource_uri: /api/v2/candidate/24/
+    slug: sergio-flores
+  model: candideitorg.candidate
+  pk: 27
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: Laurence Golborne
+    photo: null
+    remote_id: 25
+    resource_uri: /api/v2/candidate/25/
+    slug: laurence-golborne
+  model: candideitorg.candidate
+  pk: 28
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: "Manuel Jos\xE9 Ossand\xF3n"
+    photo: null
+    remote_id: 26
+    resource_uri: /api/v2/candidate/26/
+    slug: manuel-jose-ossandon
+  model: candideitorg.candidate
+  pk: 29
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: Soledad Alvear
+    photo: null
+    remote_id: 27
+    resource_uri: /api/v2/candidate/27/
+    slug: soledad-alvear
+  model: candideitorg.candidate
+  pk: 30
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: Carlos Montes
+    photo: null
+    remote_id: 28
+    resource_uri: /api/v2/candidate/28/
+    slug: carlos-montes
+  model: candideitorg.candidate
+  pk: 31
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: Esteban Silva
+    photo: null
+    remote_id: 29
+    resource_uri: /api/v2/candidate/29/
+    slug: esteban-silva
+  model: candideitorg.candidate
+  pk: 32
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: "Jos\xE9 Antonio Carre\xF1o"
+    photo: null
+    remote_id: 30
+    resource_uri: /api/v2/candidate/30/
+    slug: jose-antonio-carreno
+  model: candideitorg.candidate
+  pk: 33
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: Juan Guillermo Ossa
+    photo: null
+    remote_id: 31
+    resource_uri: /api/v2/candidate/31/
+    slug: juan-guillermo-ossa
+  model: candideitorg.candidate
+  pk: 34
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: "Patricio Guzm\xE1n"
+    photo: null
+    remote_id: 32
+    resource_uri: /api/v2/candidate/32/
+    slug: patricio-guzman
+  model: candideitorg.candidate
+  pk: 35
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: "Iv\xE1n Carrasco"
+    photo: null
+    remote_id: 33
+    resource_uri: /api/v2/candidate/33/
+    slug: ivan-carrasco
+  model: candideitorg.candidate
+  pk: 36
+- fields:
+    answers: []
+    election: 9
+    has_answered: true
+    name: "Luis Mariano Rend\xF3n"
+    photo: null
+    remote_id: 34
+    resource_uri: /api/v2/candidate/34/
+    slug: luis-mariano-rendon
+  model: candideitorg.candidate
+  pk: 37
+- fields:
+    answers: []
+    election: 10
+    has_answered: true
+    name: "Alejandro Garc\xEDa-Huidobro"
+    photo: null
+    remote_id: 35
+    resource_uri: /api/v2/candidate/35/
+    slug: alejandro-garcia-huidobro
+  model: candideitorg.candidate
+  pk: 38
+- fields:
+    answers: []
+    election: 10
+    has_answered: true
+    name: Alberto Cardemil
+    photo: null
+    remote_id: 36
+    resource_uri: /api/v2/candidate/36/
+    slug: alberto-cardemil
+  model: candideitorg.candidate
+  pk: 39
+- fields:
+    answers: []
+    election: 10
+    has_answered: true
+    name: Juan Carlos Latorre
+    photo: null
+    remote_id: 37
+    resource_uri: /api/v2/candidate/37/
+    slug: juan-carlos-latorre
+  model: candideitorg.candidate
+  pk: 40
+- fields:
+    answers: []
+    election: 10
+    has_answered: true
+    name: Juan Pablo Letelier
+    photo: null
+    remote_id: 38
+    resource_uri: /api/v2/candidate/38/
+    slug: juan-pablo-letelier
+  model: candideitorg.candidate
+  pk: 41
+- fields:
+    answers: []
+    election: 10
+    has_answered: true
+    name: "Luis Felipe Garc\xEDa"
+    photo: null
+    remote_id: 39
+    resource_uri: /api/v2/candidate/39/
+    slug: luis-felipe-garcia
+  model: candideitorg.candidate
+  pk: 42
+- fields:
+    answers: []
+    election: 11
+    has_answered: true
+    name: ''
+    photo: null
+    remote_id: 40
+    resource_uri: /api/v2/candidate/40/
+    slug: ''
+  model: candideitorg.candidate
+  pk: 43
+- fields:
+    answers: []
+    election: 12
+    has_answered: true
+    name: ''
+    photo: null
+    remote_id: 41
+    resource_uri: /api/v2/candidate/41/
+    slug: ''
+  model: candideitorg.candidate
+  pk: 44
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: Jacqueline van Rysselberghe
+    photo: null
+    remote_id: 42
+    resource_uri: /api/v2/candidate/42/
+    slug: jacqueline-van-rysselberghe
+  model: candideitorg.candidate
+  pk: 45
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: Daniel Contesse
+    photo: null
+    remote_id: 43
+    resource_uri: /api/v2/candidate/43/
+    slug: daniel-contesse
+  model: candideitorg.candidate
+  pk: 46
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: Alejandro Navarro
+    photo: null
+    remote_id: 44
+    resource_uri: /api/v2/candidate/44/
+    slug: alejandro-navarro
+  model: candideitorg.candidate
+  pk: 47
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: Camilo Escalona
+    photo: null
+    remote_id: 45
+    resource_uri: /api/v2/candidate/45/
+    slug: camilo-escalona
+  model: candideitorg.candidate
+  pk: 48
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: Rafael Garay
+    photo: null
+    remote_id: 46
+    resource_uri: /api/v2/candidate/46/
+    slug: rafael-garay
+  model: candideitorg.candidate
+  pk: 49
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: "Osm\xE1n V\xE1squez"
+    photo: null
+    remote_id: 47
+    resource_uri: /api/v2/candidate/47/
+    slug: osman-vasquez
+  model: candideitorg.candidate
+  pk: 50
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: "Loreto\_Mu\xF1oz"
+    photo: null
+    remote_id: 48
+    resource_uri: /api/v2/candidate/48/
+    slug: loreto-munoz
+  model: candideitorg.candidate
+  pk: 51
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: Javier Sandoval
+    photo: null
+    remote_id: 49
+    resource_uri: /api/v2/candidate/49/
+    slug: javier-sandoval
+  model: candideitorg.candidate
+  pk: 52
+- fields:
+    answers: []
+    election: 13
+    has_answered: true
+    name: "Graciela Gonz\xE1lez"
+    photo: null
+    remote_id: 50
+    resource_uri: /api/v2/candidate/50/
+    slug: graciela-gonzalez
+  model: candideitorg.candidate
+  pk: 53
+- fields:
+    answers: []
+    election: 14
+    has_answered: true
+    name: "V\xEDctor P\xE9rez"
+    photo: null
+    remote_id: 51
+    resource_uri: /api/v2/candidate/51/
+    slug: victor-perez
+  model: candideitorg.candidate
+  pk: 54
+- fields: {election: 1, name: Tendencia Politica, remote_id: 1, resource_uri: /api/v2/background_category/1/}
+  model: candideitorg.backgroundcategory
+  pk: 1
+- fields: {election: 1, name: Educacion, remote_id: 2, resource_uri: /api/v2/background_category/2/}
+  model: candideitorg.backgroundcategory
+  pk: 2
+- fields: {election: 1, name: '', remote_id: 3, resource_uri: /api/v2/background_category/3/}
+  model: candideitorg.backgroundcategory
+  pk: 3
+- fields: {election: 1, label: Nacimiento, remote_id: 1, resource_uri: /api/v2/personal_data/1/}
+  model: candideitorg.personaldata
+  pk: 1
+- fields: {election: 1, label: Profesion, remote_id: 2, resource_uri: /api/v2/personal_data/2/}
+  model: candideitorg.personaldata
+  pk: 2
+- fields: {election: 1, label: "Profesi\xF3n", remote_id: 3, resource_uri: /api/v2/personal_data/3/}
+  model: candideitorg.personaldata
+  pk: 3
+- fields: {election: 1, label: "G\xE9nero", remote_id: 4, resource_uri: /api/v2/personal_data/4/}
+  model: candideitorg.personaldata
+  pk: 4
+- fields: {election: 2, label: Partido, remote_id: 1, resource_uri: /api/v2/personal_data/1/}
+  model: candideitorg.personaldata
+  pk: 5
+- fields: {election: 2, label: Pacto - Lista, remote_id: 2, resource_uri: /api/v2/personal_data/2/}
+  model: candideitorg.personaldata
+  pk: 6
+- fields: {election: 2, label: "\xBFVa a reelecci\xF3n?", remote_id: 3, resource_uri: /api/v2/personal_data/3/}
+  model: candideitorg.personaldata
+  pk: 7
+- fields: {election: 2, label: "Profesi\xF3n", remote_id: 4, resource_uri: /api/v2/personal_data/4/}
+  model: candideitorg.personaldata
+  pk: 8
+- fields: {election: 2, label: "Cargos P\xFAblicos", remote_id: 5, resource_uri: /api/v2/personal_data/5/}
+  model: candideitorg.personaldata
+  pk: 9
+- fields: {election: 2, label: Dato Curioso, remote_id: 6, resource_uri: /api/v2/personal_data/6/}
+  model: candideitorg.personaldata
+  pk: 10
+- fields: {election: 3, label: Partido, remote_id: 7, resource_uri: /api/v2/personal_data/7/}
+  model: candideitorg.personaldata
+  pk: 11
+- fields: {election: 3, label: Pacto - Lista, remote_id: 8, resource_uri: /api/v2/personal_data/8/}
+  model: candideitorg.personaldata
+  pk: 12
+- fields: {election: 3, label: "\xBFVa a reelecci\xF3n?", remote_id: 9, resource_uri: /api/v2/personal_data/9/}
+  model: candideitorg.personaldata
+  pk: 13
+- fields: {election: 3, label: "Profesi\xF3n", remote_id: 10, resource_uri: /api/v2/personal_data/10/}
+  model: candideitorg.personaldata
+  pk: 14
+- fields: {election: 3, label: "Cargos P\xFAblicos", remote_id: 11, resource_uri: /api/v2/personal_data/11/}
+  model: candideitorg.personaldata
+  pk: 15
+- fields: {election: 3, label: Dato Curioso, remote_id: 12, resource_uri: /api/v2/personal_data/12/}
+  model: candideitorg.personaldata
+  pk: 16
+- fields: {election: 4, label: Partido, remote_id: 13, resource_uri: /api/v2/personal_data/13/}
+  model: candideitorg.personaldata
+  pk: 17
+- fields: {election: 4, label: Pacto - Lista, remote_id: 14, resource_uri: /api/v2/personal_data/14/}
+  model: candideitorg.personaldata
+  pk: 18
+- fields: {election: 4, label: "\xBFVa a reelecci\xF3n?", remote_id: 15, resource_uri: /api/v2/personal_data/15/}
+  model: candideitorg.personaldata
+  pk: 19
+- fields: {election: 4, label: "Profesi\xF3n", remote_id: 16, resource_uri: /api/v2/personal_data/16/}
+  model: candideitorg.personaldata
+  pk: 20
+- fields: {election: 4, label: "Cargos P\xFAblicos", remote_id: 17, resource_uri: /api/v2/personal_data/17/}
+  model: candideitorg.personaldata
+  pk: 21
+- fields: {election: 4, label: Dato Curioso, remote_id: 18, resource_uri: /api/v2/personal_data/18/}
+  model: candideitorg.personaldata
+  pk: 22
+- fields: {election: 5, label: Partido, remote_id: 19, resource_uri: /api/v2/personal_data/19/}
+  model: candideitorg.personaldata
+  pk: 23
+- fields: {election: 5, label: Pacto - Lista, remote_id: 20, resource_uri: /api/v2/personal_data/20/}
+  model: candideitorg.personaldata
+  pk: 24
+- fields: {election: 5, label: "\xBFVa a reelecci\xF3n?", remote_id: 21, resource_uri: /api/v2/personal_data/21/}
+  model: candideitorg.personaldata
+  pk: 25
+- fields: {election: 5, label: "Profesi\xF3n", remote_id: 22, resource_uri: /api/v2/personal_data/22/}
+  model: candideitorg.personaldata
+  pk: 26
+- fields: {election: 5, label: "Cargos P\xFAblicos", remote_id: 23, resource_uri: /api/v2/personal_data/23/}
+  model: candideitorg.personaldata
+  pk: 27
+- fields: {election: 5, label: Dato Curioso, remote_id: 24, resource_uri: /api/v2/personal_data/24/}
+  model: candideitorg.personaldata
+  pk: 28
+- fields: {election: 6, label: Partido, remote_id: 25, resource_uri: /api/v2/personal_data/25/}
+  model: candideitorg.personaldata
+  pk: 29
+- fields: {election: 6, label: Pacto - Lista, remote_id: 26, resource_uri: /api/v2/personal_data/26/}
+  model: candideitorg.personaldata
+  pk: 30
+- fields: {election: 6, label: "\xBFVa a reelecci\xF3n?", remote_id: 27, resource_uri: /api/v2/personal_data/27/}
+  model: candideitorg.personaldata
+  pk: 31
+- fields: {election: 6, label: "Profesi\xF3n", remote_id: 28, resource_uri: /api/v2/personal_data/28/}
+  model: candideitorg.personaldata
+  pk: 32
+- fields: {election: 6, label: "Cargos P\xFAblicos", remote_id: 29, resource_uri: /api/v2/personal_data/29/}
+  model: candideitorg.personaldata
+  pk: 33
+- fields: {election: 6, label: Dato Curioso, remote_id: 30, resource_uri: /api/v2/personal_data/30/}
+  model: candideitorg.personaldata
+  pk: 34
+- fields: {election: 7, label: Partido, remote_id: 31, resource_uri: /api/v2/personal_data/31/}
+  model: candideitorg.personaldata
+  pk: 35
+- fields: {election: 7, label: Pacto - Lista, remote_id: 32, resource_uri: /api/v2/personal_data/32/}
+  model: candideitorg.personaldata
+  pk: 36
+- fields: {election: 7, label: "\xBFVa a reelecci\xF3n?", remote_id: 33, resource_uri: /api/v2/personal_data/33/}
+  model: candideitorg.personaldata
+  pk: 37
+- fields: {election: 7, label: "Profesi\xF3n", remote_id: 34, resource_uri: /api/v2/personal_data/34/}
+  model: candideitorg.personaldata
+  pk: 38
+- fields: {election: 7, label: "Cargos P\xFAblicos", remote_id: 35, resource_uri: /api/v2/personal_data/35/}
+  model: candideitorg.personaldata
+  pk: 39
+- fields: {election: 7, label: Dato Curioso, remote_id: 36, resource_uri: /api/v2/personal_data/36/}
+  model: candideitorg.personaldata
+  pk: 40
+- fields: {election: 8, label: Partido, remote_id: 37, resource_uri: /api/v2/personal_data/37/}
+  model: candideitorg.personaldata
+  pk: 41
+- fields: {election: 8, label: Pacto - Lista, remote_id: 38, resource_uri: /api/v2/personal_data/38/}
+  model: candideitorg.personaldata
+  pk: 42
+- fields: {election: 8, label: "\xBFVa a reelecci\xF3n?", remote_id: 39, resource_uri: /api/v2/personal_data/39/}
+  model: candideitorg.personaldata
+  pk: 43
+- fields: {election: 8, label: "Profesi\xF3n", remote_id: 40, resource_uri: /api/v2/personal_data/40/}
+  model: candideitorg.personaldata
+  pk: 44
+- fields: {election: 8, label: "Cargos P\xFAblicos", remote_id: 41, resource_uri: /api/v2/personal_data/41/}
+  model: candideitorg.personaldata
+  pk: 45
+- fields: {election: 8, label: Dato Curioso, remote_id: 42, resource_uri: /api/v2/personal_data/42/}
+  model: candideitorg.personaldata
+  pk: 46
+- fields: {election: 9, label: Partido, remote_id: 43, resource_uri: /api/v2/personal_data/43/}
+  model: candideitorg.personaldata
+  pk: 47
+- fields: {election: 9, label: Pacto - Lista, remote_id: 44, resource_uri: /api/v2/personal_data/44/}
+  model: candideitorg.personaldata
+  pk: 48
+- fields: {election: 9, label: "\xBFVa a reelecci\xF3n?", remote_id: 45, resource_uri: /api/v2/personal_data/45/}
+  model: candideitorg.personaldata
+  pk: 49
+- fields: {election: 9, label: "Profesi\xF3n", remote_id: 46, resource_uri: /api/v2/personal_data/46/}
+  model: candideitorg.personaldata
+  pk: 50
+- fields: {election: 9, label: "Cargos P\xFAblicos", remote_id: 47, resource_uri: /api/v2/personal_data/47/}
+  model: candideitorg.personaldata
+  pk: 51
+- fields: {election: 9, label: Dato Curioso, remote_id: 48, resource_uri: /api/v2/personal_data/48/}
+  model: candideitorg.personaldata
+  pk: 52
+- fields: {election: 10, label: Partido, remote_id: 49, resource_uri: /api/v2/personal_data/49/}
+  model: candideitorg.personaldata
+  pk: 53
+- fields: {election: 10, label: Pacto - Lista, remote_id: 50, resource_uri: /api/v2/personal_data/50/}
+  model: candideitorg.personaldata
+  pk: 54
+- fields: {election: 10, label: "\xBFVa a reelecci\xF3n?", remote_id: 51, resource_uri: /api/v2/personal_data/51/}
+  model: candideitorg.personaldata
+  pk: 55
+- fields: {election: 10, label: "Profesi\xF3n", remote_id: 52, resource_uri: /api/v2/personal_data/52/}
+  model: candideitorg.personaldata
+  pk: 56
+- fields: {election: 10, label: "Cargos P\xFAblicos", remote_id: 53, resource_uri: /api/v2/personal_data/53/}
+  model: candideitorg.personaldata
+  pk: 57
+- fields: {election: 10, label: Dato Curioso, remote_id: 54, resource_uri: /api/v2/personal_data/54/}
+  model: candideitorg.personaldata
+  pk: 58
+- fields: {election: 11, label: Partido, remote_id: 55, resource_uri: /api/v2/personal_data/55/}
+  model: candideitorg.personaldata
+  pk: 59
+- fields: {election: 11, label: Pacto - Lista, remote_id: 56, resource_uri: /api/v2/personal_data/56/}
+  model: candideitorg.personaldata
+  pk: 60
+- fields: {election: 11, label: "\xBFVa a reelecci\xF3n?", remote_id: 57, resource_uri: /api/v2/personal_data/57/}
+  model: candideitorg.personaldata
+  pk: 61
+- fields: {election: 11, label: "Profesi\xF3n", remote_id: 58, resource_uri: /api/v2/personal_data/58/}
+  model: candideitorg.personaldata
+  pk: 62
+- fields: {election: 11, label: "Cargos P\xFAblicos", remote_id: 59, resource_uri: /api/v2/personal_data/59/}
+  model: candideitorg.personaldata
+  pk: 63
+- fields: {election: 11, label: Dato Curioso, remote_id: 60, resource_uri: /api/v2/personal_data/60/}
+  model: candideitorg.personaldata
+  pk: 64
+- fields: {election: 12, label: Partido, remote_id: 61, resource_uri: /api/v2/personal_data/61/}
+  model: candideitorg.personaldata
+  pk: 65
+- fields: {election: 12, label: Pacto - Lista, remote_id: 62, resource_uri: /api/v2/personal_data/62/}
+  model: candideitorg.personaldata
+  pk: 66
+- fields: {election: 12, label: "\xBFVa a reelecci\xF3n?", remote_id: 63, resource_uri: /api/v2/personal_data/63/}
+  model: candideitorg.personaldata
+  pk: 67
+- fields: {election: 12, label: "Profesi\xF3n", remote_id: 64, resource_uri: /api/v2/personal_data/64/}
+  model: candideitorg.personaldata
+  pk: 68
+- fields: {election: 12, label: "Cargos P\xFAblicos", remote_id: 65, resource_uri: /api/v2/personal_data/65/}
+  model: candideitorg.personaldata
+  pk: 69
+- fields: {election: 12, label: Dato Curioso, remote_id: 66, resource_uri: /api/v2/personal_data/66/}
+  model: candideitorg.personaldata
+  pk: 70
+- fields: {election: 13, label: Partido, remote_id: 67, resource_uri: /api/v2/personal_data/67/}
+  model: candideitorg.personaldata
+  pk: 71
+- fields: {election: 13, label: Pacto - Lista, remote_id: 68, resource_uri: /api/v2/personal_data/68/}
+  model: candideitorg.personaldata
+  pk: 72
+- fields: {election: 13, label: "\xBFVa a reelecci\xF3n?", remote_id: 69, resource_uri: /api/v2/personal_data/69/}
+  model: candideitorg.personaldata
+  pk: 73
+- fields: {election: 13, label: "Profesi\xF3n", remote_id: 70, resource_uri: /api/v2/personal_data/70/}
+  model: candideitorg.personaldata
+  pk: 74
+- fields: {election: 13, label: "Cargos P\xFAblicos", remote_id: 71, resource_uri: /api/v2/personal_data/71/}
+  model: candideitorg.personaldata
+  pk: 75
+- fields: {election: 13, label: Dato Curioso, remote_id: 72, resource_uri: /api/v2/personal_data/72/}
+  model: candideitorg.personaldata
+  pk: 76
+- fields: {election: 14, label: Partido, remote_id: 73, resource_uri: /api/v2/personal_data/73/}
+  model: candideitorg.personaldata
+  pk: 77
+- fields: {election: 14, label: Pacto - Lista, remote_id: 74, resource_uri: /api/v2/personal_data/74/}
+  model: candideitorg.personaldata
+  pk: 78
+- fields: {election: 14, label: "\xBFVa a reelecci\xF3n?", remote_id: 75, resource_uri: /api/v2/personal_data/75/}
+  model: candideitorg.personaldata
+  pk: 79
+- fields: {election: 14, label: "Profesi\xF3n", remote_id: 76, resource_uri: /api/v2/personal_data/76/}
+  model: candideitorg.personaldata
+  pk: 80
+- fields: {election: 14, label: "Cargos P\xFAblicos", remote_id: 77, resource_uri: /api/v2/personal_data/77/}
+  model: candideitorg.personaldata
+  pk: 81
+- fields: {election: 14, label: Dato Curioso, remote_id: 78, resource_uri: /api/v2/personal_data/78/}
+  model: candideitorg.personaldata
+  pk: 82
+- fields: {background_category: 1, name: Partido politico actual, remote_id: 1, resource_uri: /api/v2/background/1/}
+  model: candideitorg.background
+  pk: 1
+- fields: {background_category: 2, name: Secundaria, remote_id: 2, resource_uri: /api/v2/background/2/}
+  model: candideitorg.background
+  pk: 2
+- fields: {background_category: 2, name: Universitaria, remote_id: 3, resource_uri: /api/v2/background/3/}
+  model: candideitorg.background
+  pk: 3
+- fields: {background_category: 2, name: "\xDAltimo trabajo", remote_id: 4, resource_uri: /api/v2/background/4/}
+  model: candideitorg.background
+  pk: 4
+- fields: {background_category: 3, name: '', remote_id: 5, resource_uri: /api/v2/background/5/}
+  model: candideitorg.background
+  pk: 5
+- fields: {background_category: 3, name: '', remote_id: 6, resource_uri: /api/v2/background/6/}
+  model: candideitorg.background
+  pk: 6
+- fields: {background_category: 3, name: '', remote_id: 7, resource_uri: /api/v2/background/7/}
+  model: candideitorg.background
+  pk: 7
+- fields: {caption: Puro perder clases, question: 1, remote_id: 9, resource_uri: /api/v2/answer/9/}
+  model: candideitorg.answer
+  pk: 1
+- fields: {caption: 'Si, la llevan', question: 1, remote_id: 10, resource_uri: /api/v2/answer/10/}
+  model: candideitorg.answer
+  pk: 2
+- fields: {caption: Nunca, question: 2, remote_id: 6, resource_uri: /api/v2/answer/6/}
+  model: candideitorg.answer
+  pk: 3
+- fields: {caption: Siempre, question: 2, remote_id: 7, resource_uri: /api/v2/answer/7/}
+  model: candideitorg.answer
+  pk: 4
+- fields: {caption: De vez en cuando, question: 2, remote_id: 8, resource_uri: /api/v2/answer/8/}
+  model: candideitorg.answer
+  pk: 5
+- fields: {caption: Si, question: 3, remote_id: 3, resource_uri: /api/v2/answer/3/}
+  model: candideitorg.answer
+  pk: 6
+- fields: {caption: 'No', question: 3, remote_id: 4, resource_uri: /api/v2/answer/4/}
+  model: candideitorg.answer
+  pk: 7
+- fields: {caption: A veces, question: 3, remote_id: 5, resource_uri: /api/v2/answer/5/}
+  model: candideitorg.answer
+  pk: 8
+- fields: {caption: Si, question: 4, remote_id: 1, resource_uri: /api/v2/answer/1/}
+  model: candideitorg.answer
+  pk: 9
+- fields: {caption: 'No', question: 4, remote_id: 2, resource_uri: /api/v2/answer/2/}
+  model: candideitorg.answer
+  pk: 10
+- fields: {caption: "S\xED", question: 5, remote_id: 1, resource_uri: /api/v2/answer/1/}
+  model: candideitorg.answer
+  pk: 11
+- fields: {caption: 'No', question: 5, remote_id: 2, resource_uri: /api/v2/answer/2/}
+  model: candideitorg.answer
+  pk: 12
+- fields: {caption: A veces, question: 5, remote_id: 3, resource_uri: /api/v2/answer/3/}
+  model: candideitorg.answer
+  pk: 13
+- fields: {caption: "S\xED", question: 6, remote_id: 4, resource_uri: /api/v2/answer/4/}
+  model: candideitorg.answer
+  pk: 14
+- fields: {caption: 'no', question: 6, remote_id: 5, resource_uri: /api/v2/answer/5/}
+  model: candideitorg.answer
+  pk: 15
+- fields: {caption: "S\xED", question: 7, remote_id: 6, resource_uri: /api/v2/answer/6/}
+  model: candideitorg.answer
+  pk: 16
+- fields: {caption: 'no', question: 7, remote_id: 7, resource_uri: /api/v2/answer/7/}
+  model: candideitorg.answer
+  pk: 17
+- fields: {caption: "S\xED", question: 8, remote_id: 8, resource_uri: /api/v2/answer/8/}
+  model: candideitorg.answer
+  pk: 18
+- fields: {caption: 'No', question: 8, remote_id: 9, resource_uri: /api/v2/answer/9/}
+  model: candideitorg.answer
+  pk: 19
+- fields: {caption: A veces, question: 8, remote_id: 10, resource_uri: /api/v2/answer/10/}
+  model: candideitorg.answer
+  pk: 20
+- fields: {caption: "S\xED", question: 9, remote_id: 11, resource_uri: /api/v2/answer/11/}
+  model: candideitorg.answer
+  pk: 21
+- fields: {caption: 'no', question: 9, remote_id: 12, resource_uri: /api/v2/answer/12/}
+  model: candideitorg.answer
+  pk: 22
+- fields: {caption: "S\xED", question: 10, remote_id: 13, resource_uri: /api/v2/answer/13/}
+  model: candideitorg.answer
+  pk: 23
+- fields: {caption: 'no', question: 10, remote_id: 14, resource_uri: /api/v2/answer/14/}
+  model: candideitorg.answer
+  pk: 24
+- fields: {caption: "S\xED", question: 11, remote_id: 15, resource_uri: /api/v2/answer/15/}
+  model: candideitorg.answer
+  pk: 25
+- fields: {caption: 'No', question: 11, remote_id: 16, resource_uri: /api/v2/answer/16/}
+  model: candideitorg.answer
+  pk: 26
+- fields: {caption: A veces, question: 11, remote_id: 17, resource_uri: /api/v2/answer/17/}
+  model: candideitorg.answer
+  pk: 27
+- fields: {caption: "S\xED", question: 12, remote_id: 18, resource_uri: /api/v2/answer/18/}
+  model: candideitorg.answer
+  pk: 28
+- fields: {caption: 'no', question: 12, remote_id: 19, resource_uri: /api/v2/answer/19/}
+  model: candideitorg.answer
+  pk: 29
+- fields: {caption: "S\xED", question: 13, remote_id: 20, resource_uri: /api/v2/answer/20/}
+  model: candideitorg.answer
+  pk: 30
+- fields: {caption: 'no', question: 13, remote_id: 21, resource_uri: /api/v2/answer/21/}
+  model: candideitorg.answer
+  pk: 31
+- fields: {caption: "S\xED", question: 14, remote_id: 22, resource_uri: /api/v2/answer/22/}
+  model: candideitorg.answer
+  pk: 32
+- fields: {caption: 'No', question: 14, remote_id: 23, resource_uri: /api/v2/answer/23/}
+  model: candideitorg.answer
+  pk: 33
+- fields: {caption: A veces, question: 14, remote_id: 24, resource_uri: /api/v2/answer/24/}
+  model: candideitorg.answer
+  pk: 34
+- fields: {caption: "S\xED", question: 15, remote_id: 25, resource_uri: /api/v2/answer/25/}
+  model: candideitorg.answer
+  pk: 35
+- fields: {caption: 'no', question: 15, remote_id: 26, resource_uri: /api/v2/answer/26/}
+  model: candideitorg.answer
+  pk: 36
+- fields: {caption: "S\xED", question: 16, remote_id: 27, resource_uri: /api/v2/answer/27/}
+  model: candideitorg.answer
+  pk: 37
+- fields: {caption: 'no', question: 16, remote_id: 28, resource_uri: /api/v2/answer/28/}
+  model: candideitorg.answer
+  pk: 38
+- fields: {caption: "S\xED", question: 17, remote_id: 29, resource_uri: /api/v2/answer/29/}
+  model: candideitorg.answer
+  pk: 39
+- fields: {caption: 'No', question: 17, remote_id: 30, resource_uri: /api/v2/answer/30/}
+  model: candideitorg.answer
+  pk: 40
+- fields: {caption: A veces, question: 17, remote_id: 31, resource_uri: /api/v2/answer/31/}
+  model: candideitorg.answer
+  pk: 41
+- fields: {caption: "S\xED", question: 18, remote_id: 32, resource_uri: /api/v2/answer/32/}
+  model: candideitorg.answer
+  pk: 42
+- fields: {caption: 'no', question: 18, remote_id: 33, resource_uri: /api/v2/answer/33/}
+  model: candideitorg.answer
+  pk: 43
+- fields: {caption: "S\xED", question: 19, remote_id: 34, resource_uri: /api/v2/answer/34/}
+  model: candideitorg.answer
+  pk: 44
+- fields: {caption: 'no', question: 19, remote_id: 35, resource_uri: /api/v2/answer/35/}
+  model: candideitorg.answer
+  pk: 45
+- fields: {caption: "S\xED", question: 20, remote_id: 36, resource_uri: /api/v2/answer/36/}
+  model: candideitorg.answer
+  pk: 46
+- fields: {caption: 'No', question: 20, remote_id: 37, resource_uri: /api/v2/answer/37/}
+  model: candideitorg.answer
+  pk: 47
+- fields: {caption: A veces, question: 20, remote_id: 38, resource_uri: /api/v2/answer/38/}
+  model: candideitorg.answer
+  pk: 48
+- fields: {caption: "S\xED", question: 21, remote_id: 39, resource_uri: /api/v2/answer/39/}
+  model: candideitorg.answer
+  pk: 49
+- fields: {caption: 'no', question: 21, remote_id: 40, resource_uri: /api/v2/answer/40/}
+  model: candideitorg.answer
+  pk: 50
+- fields: {caption: "S\xED", question: 22, remote_id: 41, resource_uri: /api/v2/answer/41/}
+  model: candideitorg.answer
+  pk: 51
+- fields: {caption: 'no', question: 22, remote_id: 42, resource_uri: /api/v2/answer/42/}
+  model: candideitorg.answer
+  pk: 52
+- fields: {caption: "S\xED", question: 23, remote_id: 43, resource_uri: /api/v2/answer/43/}
+  model: candideitorg.answer
+  pk: 53
+- fields: {caption: 'No', question: 23, remote_id: 44, resource_uri: /api/v2/answer/44/}
+  model: candideitorg.answer
+  pk: 54
+- fields: {caption: A veces, question: 23, remote_id: 45, resource_uri: /api/v2/answer/45/}
+  model: candideitorg.answer
+  pk: 55
+- fields: {caption: "S\xED", question: 24, remote_id: 46, resource_uri: /api/v2/answer/46/}
+  model: candideitorg.answer
+  pk: 56
+- fields: {caption: 'no', question: 24, remote_id: 47, resource_uri: /api/v2/answer/47/}
+  model: candideitorg.answer
+  pk: 57
+- fields: {caption: "S\xED", question: 25, remote_id: 48, resource_uri: /api/v2/answer/48/}
+  model: candideitorg.answer
+  pk: 58
+- fields: {caption: 'no', question: 25, remote_id: 49, resource_uri: /api/v2/answer/49/}
+  model: candideitorg.answer
+  pk: 59
+- fields: {caption: "S\xED", question: 26, remote_id: 50, resource_uri: /api/v2/answer/50/}
+  model: candideitorg.answer
+  pk: 60
+- fields: {caption: 'No', question: 26, remote_id: 51, resource_uri: /api/v2/answer/51/}
+  model: candideitorg.answer
+  pk: 61
+- fields: {caption: A veces, question: 26, remote_id: 52, resource_uri: /api/v2/answer/52/}
+  model: candideitorg.answer
+  pk: 62
+- fields: {caption: "S\xED", question: 27, remote_id: 53, resource_uri: /api/v2/answer/53/}
+  model: candideitorg.answer
+  pk: 63
+- fields: {caption: 'no', question: 27, remote_id: 54, resource_uri: /api/v2/answer/54/}
+  model: candideitorg.answer
+  pk: 64
+- fields: {caption: "S\xED", question: 28, remote_id: 55, resource_uri: /api/v2/answer/55/}
+  model: candideitorg.answer
+  pk: 65
+- fields: {caption: 'no', question: 28, remote_id: 56, resource_uri: /api/v2/answer/56/}
+  model: candideitorg.answer
+  pk: 66
+- fields: {caption: "S\xED", question: 29, remote_id: 57, resource_uri: /api/v2/answer/57/}
+  model: candideitorg.answer
+  pk: 67
+- fields: {caption: 'No', question: 29, remote_id: 58, resource_uri: /api/v2/answer/58/}
+  model: candideitorg.answer
+  pk: 68
+- fields: {caption: A veces, question: 29, remote_id: 59, resource_uri: /api/v2/answer/59/}
+  model: candideitorg.answer
+  pk: 69
+- fields: {caption: "S\xED", question: 30, remote_id: 60, resource_uri: /api/v2/answer/60/}
+  model: candideitorg.answer
+  pk: 70
+- fields: {caption: 'no', question: 30, remote_id: 61, resource_uri: /api/v2/answer/61/}
+  model: candideitorg.answer
+  pk: 71
+- fields: {caption: "S\xED", question: 31, remote_id: 62, resource_uri: /api/v2/answer/62/}
+  model: candideitorg.answer
+  pk: 72
+- fields: {caption: 'no', question: 31, remote_id: 63, resource_uri: /api/v2/answer/63/}
+  model: candideitorg.answer
+  pk: 73
+- fields: {caption: "S\xED", question: 32, remote_id: 64, resource_uri: /api/v2/answer/64/}
+  model: candideitorg.answer
+  pk: 74
+- fields: {caption: 'No', question: 32, remote_id: 65, resource_uri: /api/v2/answer/65/}
+  model: candideitorg.answer
+  pk: 75
+- fields: {caption: A veces, question: 32, remote_id: 66, resource_uri: /api/v2/answer/66/}
+  model: candideitorg.answer
+  pk: 76
+- fields: {caption: "S\xED", question: 33, remote_id: 67, resource_uri: /api/v2/answer/67/}
+  model: candideitorg.answer
+  pk: 77
+- fields: {caption: 'no', question: 33, remote_id: 68, resource_uri: /api/v2/answer/68/}
+  model: candideitorg.answer
+  pk: 78
+- fields: {caption: "S\xED", question: 34, remote_id: 69, resource_uri: /api/v2/answer/69/}
+  model: candideitorg.answer
+  pk: 79
+- fields: {caption: 'no', question: 34, remote_id: 70, resource_uri: /api/v2/answer/70/}
+  model: candideitorg.answer
+  pk: 80
+- fields: {caption: "S\xED", question: 35, remote_id: 71, resource_uri: /api/v2/answer/71/}
+  model: candideitorg.answer
+  pk: 81
+- fields: {caption: 'No', question: 35, remote_id: 72, resource_uri: /api/v2/answer/72/}
+  model: candideitorg.answer
+  pk: 82
+- fields: {caption: A veces, question: 35, remote_id: 73, resource_uri: /api/v2/answer/73/}
+  model: candideitorg.answer
+  pk: 83
+- fields: {caption: "S\xED", question: 36, remote_id: 74, resource_uri: /api/v2/answer/74/}
+  model: candideitorg.answer
+  pk: 84
+- fields: {caption: 'no', question: 36, remote_id: 75, resource_uri: /api/v2/answer/75/}
+  model: candideitorg.answer
+  pk: 85
+- fields: {caption: "S\xED", question: 37, remote_id: 76, resource_uri: /api/v2/answer/76/}
+  model: candideitorg.answer
+  pk: 86
+- fields: {caption: 'no', question: 37, remote_id: 77, resource_uri: /api/v2/answer/77/}
+  model: candideitorg.answer
+  pk: 87
+- fields: {caption: "S\xED", question: 38, remote_id: 78, resource_uri: /api/v2/answer/78/}
+  model: candideitorg.answer
+  pk: 88
+- fields: {caption: 'No', question: 38, remote_id: 79, resource_uri: /api/v2/answer/79/}
+  model: candideitorg.answer
+  pk: 89
+- fields: {caption: A veces, question: 38, remote_id: 80, resource_uri: /api/v2/answer/80/}
+  model: candideitorg.answer
+  pk: 90
+- fields: {caption: "S\xED", question: 39, remote_id: 81, resource_uri: /api/v2/answer/81/}
+  model: candideitorg.answer
+  pk: 91
+- fields: {caption: 'no', question: 39, remote_id: 82, resource_uri: /api/v2/answer/82/}
+  model: candideitorg.answer
+  pk: 92
+- fields: {caption: "S\xED", question: 40, remote_id: 83, resource_uri: /api/v2/answer/83/}
+  model: candideitorg.answer
+  pk: 93
+- fields: {caption: 'no', question: 40, remote_id: 84, resource_uri: /api/v2/answer/84/}
+  model: candideitorg.answer
+  pk: 94
+- fields: {category: 1, question: 'Esta de a cuerdo con los paros?', remote_id: 1,
+    resource_uri: /api/v2/question/1/}
+  model: candideitorg.question
+  pk: 1
+- fields: {category: 1, question: 'Le gusta ir a las marchas?', remote_id: 2, resource_uri: /api/v2/question/2/}
+  model: candideitorg.question
+  pk: 2
+- fields: {category: 2, question: 'Quiere gastar su plata carreteando?', remote_id: 3,
+    resource_uri: /api/v2/question/3/}
+  model: candideitorg.question
+  pk: 3
+- fields: {category: 2, question: 'Quiere robarse la plata del CEI?', remote_id: 4,
+    resource_uri: /api/v2/question/4/}
+  model: candideitorg.question
+  pk: 4
+- fields: {category: 3, question: 'Le gusta la Fiera??', remote_id: 1, resource_uri: /api/v2/question/1/}
+  model: candideitorg.question
+  pk: 5
+- fields: {category: 3, question: 'Le gusta Benito??', remote_id: 2, resource_uri: /api/v2/question/2/}
+  model: candideitorg.question
+  pk: 6
+- fields: {category: 4, question: 'Libre para todos??', remote_id: 3, resource_uri: /api/v2/question/3/}
+  model: candideitorg.question
+  pk: 7
+- fields: {category: 5, question: 'Le gusta la Fiera??', remote_id: 4, resource_uri: /api/v2/question/4/}
+  model: candideitorg.question
+  pk: 8
+- fields: {category: 5, question: 'Le gusta Benito??', remote_id: 5, resource_uri: /api/v2/question/5/}
+  model: candideitorg.question
+  pk: 9
+- fields: {category: 6, question: 'Libre para todos??', remote_id: 6, resource_uri: /api/v2/question/6/}
+  model: candideitorg.question
+  pk: 10
+- fields: {category: 7, question: 'Le gusta la Fiera??', remote_id: 7, resource_uri: /api/v2/question/7/}
+  model: candideitorg.question
+  pk: 11
+- fields: {category: 7, question: 'Le gusta Benito??', remote_id: 8, resource_uri: /api/v2/question/8/}
+  model: candideitorg.question
+  pk: 12
+- fields: {category: 8, question: 'Libre para todos??', remote_id: 9, resource_uri: /api/v2/question/9/}
+  model: candideitorg.question
+  pk: 13
+- fields: {category: 9, question: 'Le gusta la Fiera??', remote_id: 10, resource_uri: /api/v2/question/10/}
+  model: candideitorg.question
+  pk: 14
+- fields: {category: 9, question: 'Le gusta Benito??', remote_id: 11, resource_uri: /api/v2/question/11/}
+  model: candideitorg.question
+  pk: 15
+- fields: {category: 10, question: 'Libre para todos??', remote_id: 12, resource_uri: /api/v2/question/12/}
+  model: candideitorg.question
+  pk: 16
+- fields: {category: 11, question: 'Le gusta la Fiera??', remote_id: 13, resource_uri: /api/v2/question/13/}
+  model: candideitorg.question
+  pk: 17
+- fields: {category: 11, question: 'Le gusta Benito??', remote_id: 14, resource_uri: /api/v2/question/14/}
+  model: candideitorg.question
+  pk: 18
+- fields: {category: 12, question: 'Libre para todos??', remote_id: 15, resource_uri: /api/v2/question/15/}
+  model: candideitorg.question
+  pk: 19
+- fields: {category: 13, question: 'Le gusta la Fiera??', remote_id: 16, resource_uri: /api/v2/question/16/}
+  model: candideitorg.question
+  pk: 20
+- fields: {category: 13, question: 'Le gusta Benito??', remote_id: 17, resource_uri: /api/v2/question/17/}
+  model: candideitorg.question
+  pk: 21
+- fields: {category: 14, question: 'Libre para todos??', remote_id: 18, resource_uri: /api/v2/question/18/}
+  model: candideitorg.question
+  pk: 22
+- fields: {category: 15, question: 'Le gusta la Fiera??', remote_id: 19, resource_uri: /api/v2/question/19/}
+  model: candideitorg.question
+  pk: 23
+- fields: {category: 15, question: 'Le gusta Benito??', remote_id: 20, resource_uri: /api/v2/question/20/}
+  model: candideitorg.question
+  pk: 24
+- fields: {category: 16, question: 'Libre para todos??', remote_id: 21, resource_uri: /api/v2/question/21/}
+  model: candideitorg.question
+  pk: 25
+- fields: {category: 17, question: 'Le gusta la Fiera??', remote_id: 22, resource_uri: /api/v2/question/22/}
+  model: candideitorg.question
+  pk: 26
+- fields: {category: 17, question: 'Le gusta Benito??', remote_id: 23, resource_uri: /api/v2/question/23/}
+  model: candideitorg.question
+  pk: 27
+- fields: {category: 18, question: 'Libre para todos??', remote_id: 24, resource_uri: /api/v2/question/24/}
+  model: candideitorg.question
+  pk: 28
+- fields: {category: 19, question: 'Le gusta la Fiera??', remote_id: 25, resource_uri: /api/v2/question/25/}
+  model: candideitorg.question
+  pk: 29
+- fields: {category: 19, question: 'Le gusta Benito??', remote_id: 26, resource_uri: /api/v2/question/26/}
+  model: candideitorg.question
+  pk: 30
+- fields: {category: 20, question: 'Libre para todos??', remote_id: 27, resource_uri: /api/v2/question/27/}
+  model: candideitorg.question
+  pk: 31
+- fields: {category: 21, question: 'Le gusta la Fiera??', remote_id: 28, resource_uri: /api/v2/question/28/}
+  model: candideitorg.question
+  pk: 32
+- fields: {category: 21, question: 'Le gusta Benito??', remote_id: 29, resource_uri: /api/v2/question/29/}
+  model: candideitorg.question
+  pk: 33
+- fields: {category: 22, question: 'Libre para todos??', remote_id: 30, resource_uri: /api/v2/question/30/}
+  model: candideitorg.question
+  pk: 34
+- fields: {category: 23, question: 'Le gusta la Fiera??', remote_id: 31, resource_uri: /api/v2/question/31/}
+  model: candideitorg.question
+  pk: 35
+- fields: {category: 23, question: 'Le gusta Benito??', remote_id: 32, resource_uri: /api/v2/question/32/}
+  model: candideitorg.question
+  pk: 36
+- fields: {category: 24, question: 'Libre para todos??', remote_id: 33, resource_uri: /api/v2/question/33/}
+  model: candideitorg.question
+  pk: 37
+- fields: {category: 25, question: 'Le gusta la Fiera??', remote_id: 34, resource_uri: /api/v2/question/34/}
+  model: candideitorg.question
+  pk: 38
+- fields: {category: 25, question: 'Le gusta Benito??', remote_id: 35, resource_uri: /api/v2/question/35/}
+  model: candideitorg.question
+  pk: 39
+- fields: {category: 26, question: 'Libre para todos??', remote_id: 36, resource_uri: /api/v2/question/36/}
+  model: candideitorg.question
+  pk: 40
+- fields: {candidate: 1, personaldata: 1, remote_id: 7, resource_uri: /api/v2/personal_data_candidate/7/,
+    value: 13-13-2013}
+  model: candideitorg.personaldatacandidate
+  pk: 1
+- fields: {candidate: 1, personaldata: 2, remote_id: 8, resource_uri: /api/v2/personal_data_candidate/8/,
+    value: Nunc id neque interdum}
+  model: candideitorg.personaldatacandidate
+  pk: 2
+- fields: {candidate: 1, personaldata: 3, remote_id: 9, resource_uri: /api/v2/personal_data_candidate/9/,
+    value: Ensamblador de piezas}
+  model: candideitorg.personaldatacandidate
+  pk: 3
+- fields: {candidate: 1, personaldata: 4, remote_id: 10, resource_uri: /api/v2/personal_data_candidate/10/,
+    value: Masculino}
+  model: candideitorg.personaldatacandidate
+  pk: 4
+- fields: {candidate: 2, personaldata: 1, remote_id: 11, resource_uri: /api/v2/personal_data_candidate/11/,
+    value: 05 - Julio - 1973}
+  model: candideitorg.personaldatacandidate
+  pk: 5
+- fields: {candidate: 2, personaldata: 2, remote_id: 12, resource_uri: /api/v2/personal_data_candidate/12/,
+    value: Doctor}
+  model: candideitorg.personaldatacandidate
+  pk: 6
+- fields: {candidate: 2, personaldata: 3, remote_id: 13, resource_uri: /api/v2/personal_data_candidate/13/,
+    value: Ing Acustico}
+  model: candideitorg.personaldatacandidate
+  pk: 7
+- fields: {candidate: 2, personaldata: 4, remote_id: 14, resource_uri: /api/v2/personal_data_candidate/14/,
+    value: Masculino}
+  model: candideitorg.personaldatacandidate
+  pk: 8
+- fields: {candidate: 1, name: '@jperez', remote_id: 1, resource_uri: /api/v2/link/1/,
+    url: 'http://www.twitter.com'}
+  model: candideitorg.link
+  pk: 1
+- fields: {candidate: 1, name: JuAn_PeReZ, remote_id: 2, resource_uri: /api/v2/link/2/,
+    url: 'http://facebook.com'}
+  model: candideitorg.link
+  pk: 2
+- fields: {candidate: 1, name: el Web, remote_id: 3, resource_uri: /api/v2/link/3/,
+    url: 'http://myspace.com'}
+  model: candideitorg.link
+  pk: 3
+- fields: {candidate: 2, name: Web, remote_id: 4, resource_uri: /api/v2/link/4/, url: 'http://myspace.com'}
+  model: candideitorg.link
+  pk: 4
+- fields: {background: 1, candidate: 1, remote_id: 8, resource_uri: /api/v2/backgrounds_candidate/8/,
+    value: Centro Democrata Independiente Pendiente}
+  model: candideitorg.backgroundcandidate
+  pk: 1
+- fields: {background: 2, candidate: 1, remote_id: 9, resource_uri: /api/v2/backgrounds_candidate/9/,
+    value: Colegio Ahumada}
+  model: candideitorg.backgroundcandidate
+  pk: 2
+- fields: {background: 3, candidate: 1, remote_id: 10, resource_uri: /api/v2/backgrounds_candidate/10/,
+    value: "Universidad Cat\xF3nica"}
+  model: candideitorg.backgroundcandidate
+  pk: 3
+- fields: {background: 4, candidate: 1, remote_id: 11, resource_uri: /api/v2/backgrounds_candidate/11/,
+    value: ''}
+  model: candideitorg.backgroundcandidate
+  pk: 4
+- fields: {background: 5, candidate: 1, remote_id: 12, resource_uri: /api/v2/backgrounds_candidate/12/,
+    value: 'Donec scelerisque ut dui vel sodales. Aliquam facilisis mauris a orci
+      commodo, in placerat sem aliquam. Etiam ut accumsan ipsum, quis consectetur
+      neque. Aenean at mollis risus. Integer at dolor diam. Sed ac rhoncus quam.'}
+  model: candideitorg.backgroundcandidate
+  pk: 5
+- fields: {background: 6, candidate: 1, remote_id: 13, resource_uri: /api/v2/backgrounds_candidate/13/,
+    value: 'Donec scelerisque ut dui vel sodales. Aliquam facilisis mauris a orci
+      commodo, in placerat sem aliquam. Etiam ut accumsan ipsum, quis consectetur
+      neque. Aenean at mollis risus. Integer at dolor diam. Sed ac rhoncus quam.'}
+  model: candideitorg.backgroundcandidate
+  pk: 6
+- fields: {background: 7, candidate: 1, remote_id: 14, resource_uri: /api/v2/backgrounds_candidate/14/,
+    value: 'Donec scelerisque ut dui vel sodales. Aliquam facilisis mauris a orci
+      commodo, in placerat sem aliquam. Etiam ut accumsan ipsum, quis consectetur
+      neque. Aenean at mollis risus. Integer at dolor diam. Sed ac rhoncus quam.'}
+  model: candideitorg.backgroundcandidate
+  pk: 7
+- fields: {background: 1, candidate: 2, remote_id: 15, resource_uri: /api/v2/backgrounds_candidate/15/,
+    value: Pellentesque ultrices}
+  model: candideitorg.backgroundcandidate
+  pk: 8
+- fields: {background: 2, candidate: 2, remote_id: 16, resource_uri: /api/v2/backgrounds_candidate/16/,
+    value: Praesent egestas velit ut eros gravida}
+  model: candideitorg.backgroundcandidate
+  pk: 9
+- fields: {background: 3, candidate: 2, remote_id: 17, resource_uri: /api/v2/backgrounds_candidate/17/,
+    value: Praesent egestas velit ut eros gravida}
+  model: candideitorg.backgroundcandidate
+  pk: 10
+- fields: {background: 4, candidate: 2, remote_id: 18, resource_uri: /api/v2/backgrounds_candidate/18/,
+    value: Praesent egestas velit ut eros gravida}
+  model: candideitorg.backgroundcandidate
+  pk: 11
+- fields: {background: 5, candidate: 2, remote_id: 19, resource_uri: /api/v2/backgrounds_candidate/19/,
+    value: 'Nulla vitae aliquam erat. Pellentesque ultrices a ipsum non suscipit.
+      Pellentesque tincidunt, quam et accumsan pulvinar, mauris felis tempor elit,
+      sit amet hendrerit risus risus vel ligula. In nisl nulla, convallis sit amet
+      fermentum et, accumsan vel urna. '}
+  model: candideitorg.backgroundcandidate
+  pk: 12
+- fields: {background: 6, candidate: 2, remote_id: 20, resource_uri: /api/v2/backgrounds_candidate/20/,
+    value: 'Nulla vitae aliquam erat. Pellentesque ultrices a ipsum non suscipit.
+      Pellentesque tincidunt, quam et accumsan pulvinar, mauris felis tempor elit,
+      sit amet hendrerit risus risus vel ligula. In nisl nulla, convallis sit amet
+      fermentum et, accumsan vel urna. '}
+  model: candideitorg.backgroundcandidate
+  pk: 13
+- fields: {background: 7, candidate: 2, remote_id: 21, resource_uri: /api/v2/backgrounds_candidate/21/,
+    value: 'Nulla vitae aliquam erat. Pellentesque ultrices a ipsum non suscipit.
+      Pellentesque tincidunt, quam et accumsan pulvinar, mauris felis tempor elit,
+      sit amet hendrerit risus risus vel ligula. In nisl nulla, convallis sit amet
+      fermentum et, accumsan vel urna. '}
+  model: candideitorg.backgroundcandidate
+  pk: 14
+- fields: {can_election: 1, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "I - Tarapac\xE1", popit_api_instance: null, searchable: true,
+    slug: i-tarapaca, writeitinstance: null}
+  model: elections.election
+  pk: 1
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 1", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-1, writeitinstance: null}
+  model: elections.election
+  pk: 2
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 2", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-2, writeitinstance: null}
+  model: elections.election
+  pk: 3
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: II - Antofagasta, popit_api_instance: null, searchable: true,
+    slug: ii-antofagasta, writeitinstance: null}
+  model: elections.election
+  pk: 4
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 3", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-3, writeitinstance: null}
+  model: elections.election
+  pk: 5
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 4", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-4, writeitinstance: null}
+  model: elections.election
+  pk: 6
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: III - Atacama, popit_api_instance: null, searchable: true,
+    slug: iii-atacama, writeitinstance: null}
+  model: elections.election
+  pk: 7
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 5", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-5, writeitinstance: null}
+  model: elections.election
+  pk: 8
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 6", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-6, writeitinstance: null}
+  model: elections.election
+  pk: 9
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: IV - Coquimbo, popit_api_instance: null, searchable: true,
+    slug: iv-coquimbo, writeitinstance: null}
+  model: elections.election
+  pk: 10
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 7", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-7, writeitinstance: null}
+  model: elections.election
+  pk: 11
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 8", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-8, writeitinstance: null}
+  model: elections.election
+  pk: 12
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 9", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-9, writeitinstance: null}
+  model: elections.election
+  pk: 13
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: IX - O'Higgins, popit_api_instance: null, searchable: true,
+    slug: ix-ohiggins, writeitinstance: null}
+  model: elections.election
+  pk: 14
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 32", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-32, writeitinstance: null}
+  model: elections.election
+  pk: 15
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 33", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-33, writeitinstance: null}
+  model: elections.election
+  pk: 16
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 34", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-34, writeitinstance: null}
+  model: elections.election
+  pk: 17
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 35", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-35, writeitinstance: null}
+  model: elections.election
+  pk: 18
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "V - Valpara\xEDso Cordillera", popit_api_instance: null,
+    searchable: true, slug: v-valparaiso-cordillera, writeitinstance: null}
+  model: elections.election
+  pk: 19
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 10", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-10, writeitinstance: null}
+  model: elections.election
+  pk: 20
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 11", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-11, writeitinstance: null}
+  model: elections.election
+  pk: 21
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 12", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-12, writeitinstance: null}
+  model: elections.election
+  pk: 22
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "VI - Valpara\xEDso Costa", popit_api_instance: null,
+    searchable: true, slug: vi-valparaiso-costa, writeitinstance: null}
+  model: elections.election
+  pk: 23
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 13", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-13, writeitinstance: null}
+  model: elections.election
+  pk: 24
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 14", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-14, writeitinstance: null}
+  model: elections.election
+  pk: 25
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 15", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-15, writeitinstance: null}
+  model: elections.election
+  pk: 26
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: VII - Santiago Poniente, popit_api_instance: null, searchable: true,
+    slug: vii-santiago-poniente, writeitinstance: null}
+  model: elections.election
+  pk: 27
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 16", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-16, writeitinstance: null}
+  model: elections.election
+  pk: 28
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 17", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-17, writeitinstance: null}
+  model: elections.election
+  pk: 29
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 18", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-18, writeitinstance: null}
+  model: elections.election
+  pk: 30
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 19", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-19, writeitinstance: null}
+  model: elections.election
+  pk: 31
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 20", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-20, writeitinstance: null}
+  model: elections.election
+  pk: 32
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 22", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-22, writeitinstance: null}
+  model: elections.election
+  pk: 33
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 30", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-30, writeitinstance: null}
+  model: elections.election
+  pk: 34
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 31", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-31, writeitinstance: null}
+  model: elections.election
+  pk: 35
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: VIII - Santiago Oriente, popit_api_instance: null, searchable: true,
+    slug: viii-santiago-oriente, writeitinstance: null}
+  model: elections.election
+  pk: 36
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 21", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-21, writeitinstance: null}
+  model: elections.election
+  pk: 37
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 23", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-23, writeitinstance: null}
+  model: elections.election
+  pk: 38
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 24", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-24, writeitinstance: null}
+  model: elections.election
+  pk: 39
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 25", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-25, writeitinstance: null}
+  model: elections.election
+  pk: 40
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 26", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-26, writeitinstance: null}
+  model: elections.election
+  pk: 41
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 27", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-27, writeitinstance: null}
+  model: elections.election
+  pk: 42
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 28", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-28, writeitinstance: null}
+  model: elections.election
+  pk: 43
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 29", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-29, writeitinstance: null}
+  model: elections.election
+  pk: 44
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: X - Maule Norte, popit_api_instance: null, searchable: true,
+    slug: x-maule-norte, writeitinstance: null}
+  model: elections.election
+  pk: 45
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 36", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-36, writeitinstance: null}
+  model: elections.election
+  pk: 46
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 37", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-37, writeitinstance: null}
+  model: elections.election
+  pk: 47
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 38", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-38, writeitinstance: null}
+  model: elections.election
+  pk: 48
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: XI - Maule Sur, popit_api_instance: null, searchable: true,
+    slug: xi-maule-sur, writeitinstance: null}
+  model: elections.election
+  pk: 49
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 39", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-39, writeitinstance: null}
+  model: elections.election
+  pk: 50
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 40", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-40, writeitinstance: null}
+  model: elections.election
+  pk: 51
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "XII - Biob\xEDo Costa", popit_api_instance: null, searchable: true,
+    slug: xii-biobio-costa, writeitinstance: null}
+  model: elections.election
+  pk: 52
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 42", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-42, writeitinstance: null}
+  model: elections.election
+  pk: 53
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 43", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-43, writeitinstance: null}
+  model: elections.election
+  pk: 54
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 44", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-44, writeitinstance: null}
+  model: elections.election
+  pk: 55
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 45", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-45, writeitinstance: null}
+  model: elections.election
+  pk: 56
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "XIII - Biob\xEDo Cordillera", popit_api_instance: null,
+    searchable: true, slug: xiii-biobio-cordillera, writeitinstance: null}
+  model: elections.election
+  pk: 57
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 41", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-41, writeitinstance: null}
+  model: elections.election
+  pk: 58
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 46", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-46, writeitinstance: null}
+  model: elections.election
+  pk: 59
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 47", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-47, writeitinstance: null}
+  model: elections.election
+  pk: 60
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "XIV - Araucan\xEDa Norte", popit_api_instance: null,
+    searchable: true, slug: xiv-araucania-norte, writeitinstance: null}
+  model: elections.election
+  pk: 61
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 48", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-48, writeitinstance: null}
+  model: elections.election
+  pk: 62
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 49", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-49, writeitinstance: null}
+  model: elections.election
+  pk: 63
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: XIX - Magallanes, popit_api_instance: null, searchable: true,
+    slug: xix-magallanes, writeitinstance: null}
+  model: elections.election
+  pk: 64
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 60", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-60, writeitinstance: null}
+  model: elections.election
+  pk: 65
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "XV - Araucan\xEDa Sur", popit_api_instance: null, searchable: true,
+    slug: xv-araucania-sur, writeitinstance: null}
+  model: elections.election
+  pk: 66
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 50", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-50, writeitinstance: null}
+  model: elections.election
+  pk: 67
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 51", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-51, writeitinstance: null}
+  model: elections.election
+  pk: 68
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 52", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-52, writeitinstance: null}
+  model: elections.election
+  pk: 69
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "XVI - Los R\xEDos", popit_api_instance: null, searchable: true,
+    slug: xvi-los-rios, writeitinstance: null}
+  model: elections.election
+  pk: 70
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 53", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-53, writeitinstance: null}
+  model: elections.election
+  pk: 71
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 54", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-54, writeitinstance: null}
+  model: elections.election
+  pk: 72
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: XVII - Los Lagos, popit_api_instance: null, searchable: true,
+    slug: xvii-los-lagos, writeitinstance: null}
+  model: elections.election
+  pk: 73
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 55", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-55, writeitinstance: null}
+  model: elections.election
+  pk: 74
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 56", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-56, writeitinstance: null}
+  model: elections.election
+  pk: 75
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 57", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-57, writeitinstance: null}
+  model: elections.election
+  pk: 76
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 58", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-58, writeitinstance: null}
+  model: elections.election
+  pk: 77
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "XVIII - Ays\xE9n", popit_api_instance: null, searchable: true,
+    slug: xviii-aysen, writeitinstance: null}
+  model: elections.election
+  pk: 78
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "Distrito N\xFAmero 59", popit_api_instance: null, searchable: true,
+    slug: distrito-numero-59, writeitinstance: null}
+  model: elections.election
+  pk: 79
+- fields: {can_election: null, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: true, name: Presidenciales, popit_api_instance: null, searchable: false,
+    slug: presidenciales, writeitinstance: null}
+  model: elections.election
+  pk: 80
+- fields: {can_election: 2, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "1\xAA Circunscripci\xF3n Tarapac\xE1", popit_api_instance: 2,
+    searchable: true, slug: 1a-circunscripcion-tarapaca, writeitinstance: 2}
+  model: elections.election
+  pk: 81
+- fields: {can_election: 3, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "2\xAA Circunscripci\xF3n Antofagasta", popit_api_instance: 3,
+    searchable: true, slug: 2a-circunscripcion-antofagasta, writeitinstance: 3}
+  model: elections.election
+  pk: 82
+- fields: {can_election: 4, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "3\xAA Circunscripci\xF3n Atacama", popit_api_instance: 4,
+    searchable: true, slug: 3a-circunscripcion-atacama, writeitinstance: 4}
+  model: elections.election
+  pk: 83
+- fields: {can_election: 5, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "4\xAA Circunscripci\xF3n Coquimbo", popit_api_instance: 5,
+    searchable: true, slug: 4a-circunscripcion-coquimbo, writeitinstance: 5}
+  model: elections.election
+  pk: 84
+- fields: {can_election: 6, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "5\xAA Circunscripci\xF3n Quinta Cordillera", popit_api_instance: 6,
+    searchable: true, slug: 5a-circunscripcion-quinta-cordillera, writeitinstance: 6}
+  model: elections.election
+  pk: 85
+- fields: {can_election: 7, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "6\xAA Circunscripci\xF3n Quinta Costa", popit_api_instance: 7,
+    searchable: true, slug: 6a-circunscripcion-quinta-costa, writeitinstance: 7}
+  model: elections.election
+  pk: 86
+- fields: {can_election: 8, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "7\xAA Circunscripci\xF3n Santiago Poniente", popit_api_instance: 8,
+    searchable: true, slug: 7a-circunscripcion-santiago-poniente, writeitinstance: 8}
+  model: elections.election
+  pk: 87
+- fields: {can_election: 9, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "8\xAA Circunscripci\xF3n Santiago Oriente", popit_api_instance: 9,
+    searchable: true, slug: 8a-circunscripcion-santiago-oriente, writeitinstance: 9}
+  model: elections.election
+  pk: 88
+- fields: {can_election: 10, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "9\xAA Circunscripci\xF3n O'Higgins", popit_api_instance: 10,
+    searchable: true, slug: 9a-circunscripcion-ohiggins, writeitinstance: 10}
+  model: elections.election
+  pk: 89
+- fields: {can_election: 11, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "10\xAA Circunscripci\xF3n Maule Norte", popit_api_instance: 11,
+    searchable: true, slug: 10a-circunscripcion-maule-norte, writeitinstance: 11}
+  model: elections.election
+  pk: 90
+- fields: {can_election: 12, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "11\xAA Circunscripci\xF3n Maule Sur", popit_api_instance: 12,
+    searchable: true, slug: 11a-circunscripcion-maule-sur, writeitinstance: 12}
+  model: elections.election
+  pk: 91
+- fields: {can_election: 13, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "12\xAA Circunscripci\xF3n Biob\xEDo Costa", popit_api_instance: 13,
+    searchable: true, slug: 12a-circunscripcion-biobio-costa, writeitinstance: 13}
+  model: elections.election
+  pk: 92
+- fields: {can_election: 14, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "13\xAA Circunscripci\xF3n Biob\xEDo Cordillera", popit_api_instance: 14,
+    searchable: true, slug: 13a-circunscripcion-biobio-cordillera, writeitinstance: 14}
+  model: elections.election
+  pk: 93
+- fields: {candidate: 1, person: 1}
+  model: elections.candidateperson
+  pk: 1
+- fields: {candidate: 2, person: 2}
+  model: elections.candidateperson
+  pk: 2
+- fields: {candidate: 3, person: 3}
+  model: elections.candidateperson
+  pk: 3
+- fields: {candidate: 4, person: 4}
+  model: elections.candidateperson
+  pk: 4
+- fields: {candidate: 5, person: 5}
+  model: elections.candidateperson
+  pk: 5
+- fields: {candidate: 6, person: 6}
+  model: elections.candidateperson
+  pk: 6
+- fields: {candidate: 7, person: 7}
+  model: elections.candidateperson
+  pk: 7
+- fields: {candidate: 8, person: 8}
+  model: elections.candidateperson
+  pk: 8
+- fields: {candidate: 9, person: 9}
+  model: elections.candidateperson
+  pk: 9
+- fields: {candidate: 10, person: 10}
+  model: elections.candidateperson
+  pk: 10
+- fields: {candidate: 11, person: 11}
+  model: elections.candidateperson
+  pk: 11
+- fields: {candidate: 12, person: 12}
+  model: elections.candidateperson
+  pk: 12
+- fields: {candidate: 13, person: 13}
+  model: elections.candidateperson
+  pk: 13
+- fields: {candidate: 14, person: 14}
+  model: elections.candidateperson
+  pk: 14
+- fields: {candidate: 15, person: 15}
+  model: elections.candidateperson
+  pk: 15
+- fields: {candidate: 16, person: 16}
+  model: elections.candidateperson
+  pk: 16
+- fields: {candidate: 17, person: 17}
+  model: elections.candidateperson
+  pk: 17
+- fields: {candidate: 18, person: 18}
+  model: elections.candidateperson
+  pk: 18
+- fields: {candidate: 19, person: 19}
+  model: elections.candidateperson
+  pk: 19
+- fields: {candidate: 20, person: 20}
+  model: elections.candidateperson
+  pk: 20
+- fields: {candidate: 21, person: 21}
+  model: elections.candidateperson
+  pk: 21
+- fields: {candidate: 22, person: 22}
+  model: elections.candidateperson
+  pk: 22
+- fields: {candidate: 23, person: 23}
+  model: elections.candidateperson
+  pk: 23
+- fields: {candidate: 24, person: 24}
+  model: elections.candidateperson
+  pk: 24
+- fields: {candidate: 25, person: 25}
+  model: elections.candidateperson
+  pk: 25
+- fields: {candidate: 26, person: 26}
+  model: elections.candidateperson
+  pk: 26
+- fields: {candidate: 27, person: 27}
+  model: elections.candidateperson
+  pk: 27
+- fields: {candidate: 28, person: 28}
+  model: elections.candidateperson
+  pk: 28
+- fields: {candidate: 29, person: 29}
+  model: elections.candidateperson
+  pk: 29
+- fields: {candidate: 30, person: 30}
+  model: elections.candidateperson
+  pk: 30
+- fields: {candidate: 31, person: 31}
+  model: elections.candidateperson
+  pk: 31
+- fields: {candidate: 32, person: 32}
+  model: elections.candidateperson
+  pk: 32
+- fields: {candidate: 33, person: 33}
+  model: elections.candidateperson
+  pk: 33
+- fields: {candidate: 34, person: 34}
+  model: elections.candidateperson
+  pk: 34
+- fields: {candidate: 35, person: 35}
+  model: elections.candidateperson
+  pk: 35
+- fields: {candidate: 36, person: 36}
+  model: elections.candidateperson
+  pk: 36
+- fields: {candidate: 37, person: 37}
+  model: elections.candidateperson
+  pk: 37
+- fields: {candidate: 38, person: 38}
+  model: elections.candidateperson
+  pk: 38
+- fields: {candidate: 39, person: 39}
+  model: elections.candidateperson
+  pk: 39
+- fields: {candidate: 40, person: 40}
+  model: elections.candidateperson
+  pk: 40
+- fields: {candidate: 41, person: 41}
+  model: elections.candidateperson
+  pk: 41
+- fields: {candidate: 42, person: 42}
+  model: elections.candidateperson
+  pk: 42
+- fields: {candidate: 43, person: 43}
+  model: elections.candidateperson
+  pk: 43
+- fields: {candidate: 44, person: 44}
+  model: elections.candidateperson
+  pk: 44
+- fields: {candidate: 45, person: 45}
+  model: elections.candidateperson
+  pk: 45
+- fields: {candidate: 46, person: 46}
+  model: elections.candidateperson
+  pk: 46
+- fields: {candidate: 47, person: 47}
+  model: elections.candidateperson
+  pk: 47
+- fields: {candidate: 48, person: 48}
+  model: elections.candidateperson
+  pk: 48
+- fields: {candidate: 49, person: 49}
+  model: elections.candidateperson
+  pk: 49
+- fields: {candidate: 50, person: 50}
+  model: elections.candidateperson
+  pk: 50
+- fields: {candidate: 51, person: 51}
+  model: elections.candidateperson
+  pk: 51
+- fields: {candidate: 52, person: 52}
+  model: elections.candidateperson
+  pk: 52
+- fields: {candidate: 53, person: 53}
+  model: elections.candidateperson
+  pk: 53
+- fields: {name: senadores, slug: senadores}
+  model: taggit.tag
+  pk: 1
+- fields: {name: diputados, slug: diputados}
+  model: taggit.tag
+  pk: 2
+- fields: {name: Arica, slug: arica}
+  model: taggit.tag
+  pk: 3
+- fields: {name: Camarones, slug: camarones}
+  model: taggit.tag
+  pk: 4
+- fields: {name: General Lagos, slug: general-lagos}
+  model: taggit.tag
+  pk: 5
+- fields: {name: Putre, slug: putre}
+  model: taggit.tag
+  pk: 6
+- fields: {name: Alto Hospicio, slug: alto-hospicio}
+  model: taggit.tag
+  pk: 7
+- fields: {name: "Cami\xF1a", slug: camina}
+  model: taggit.tag
+  pk: 8
+- fields: {name: Colchane, slug: colchane}
+  model: taggit.tag
+  pk: 9
+- fields: {name: Huara, slug: huara}
+  model: taggit.tag
+  pk: 10
+- fields: {name: Iquique, slug: iquique}
+  model: taggit.tag
+  pk: 11
+- fields: {name: Pica, slug: pica}
+  model: taggit.tag
+  pk: 12
+- fields: {name: Pozo Almonte, slug: pozo-almonte}
+  model: taggit.tag
+  pk: 13
+- fields: {name: Calama, slug: calama}
+  model: taggit.tag
+  pk: 14
+- fields: {name: "Mar\xEDa Elena", slug: maria-elena}
+  model: taggit.tag
+  pk: 15
+- fields: {name: "Ollag\xFCe", slug: ollague}
+  model: taggit.tag
+  pk: 16
+- fields: {name: San Pedro de Atacama, slug: san-pedro-de-atacama}
+  model: taggit.tag
+  pk: 17
+- fields: {name: Tocopilla, slug: tocopilla}
+  model: taggit.tag
+  pk: 18
+- fields: {name: Antofagasta, slug: antofagasta}
+  model: taggit.tag
+  pk: 19
+- fields: {name: Mejillones, slug: mejillones}
+  model: taggit.tag
+  pk: 20
+- fields: {name: Sierra Gorda, slug: sierra-gorda}
+  model: taggit.tag
+  pk: 21
+- fields: {name: Taltal, slug: taltal}
+  model: taggit.tag
+  pk: 22
+- fields: {name: "Cha\xF1aral", slug: chanaral}
+  model: taggit.tag
+  pk: 23
+- fields: {name: "Copiap\xF3", slug: copiapo}
+  model: taggit.tag
+  pk: 24
+- fields: {name: Diego de Almagro, slug: diego-de-almagro}
+  model: taggit.tag
+  pk: 25
+- fields: {name: Alto del Carmen, slug: alto-del-carmen}
+  model: taggit.tag
+  pk: 26
+- fields: {name: Caldera, slug: caldera}
+  model: taggit.tag
+  pk: 27
+- fields: {name: Freirina, slug: freirina}
+  model: taggit.tag
+  pk: 28
+- fields: {name: Huasco, slug: huasco}
+  model: taggit.tag
+  pk: 29
+- fields: {name: Tierra Amarilla, slug: tierra-amarilla}
+  model: taggit.tag
+  pk: 30
+- fields: {name: Vallenar, slug: vallenar}
+  model: taggit.tag
+  pk: 31
+- fields: {name: Andacollo, slug: andacollo}
+  model: taggit.tag
+  pk: 32
+- fields: {name: La Higuera, slug: la-higuera}
+  model: taggit.tag
+  pk: 33
+- fields: {name: La Serena, slug: la-serena}
+  model: taggit.tag
+  pk: 34
+- fields: {name: Paihuano, slug: paihuano}
+  model: taggit.tag
+  pk: 35
+- fields: {name: "Vicu\xF1a", slug: vicuna}
+  model: taggit.tag
+  pk: 36
+- fields: {name: Coquimbo, slug: coquimbo}
+  model: taggit.tag
+  pk: 37
+- fields: {name: Ovalle, slug: ovalle}
+  model: taggit.tag
+  pk: 38
+- fields: {name: "R\xEDo Hurtado", slug: rio-hurtado}
+  model: taggit.tag
+  pk: 39
+- fields: {name: Canela, slug: canela}
+  model: taggit.tag
+  pk: 40
+- fields: {name: "Combarbal\xE1", slug: combarbala}
+  model: taggit.tag
+  pk: 41
+- fields: {name: Illapel, slug: illapel}
+  model: taggit.tag
+  pk: 42
+- fields: {name: Los Vilos, slug: los-vilos}
+  model: taggit.tag
+  pk: 43
+- fields: {name: Monte Patria, slug: monte-patria}
+  model: taggit.tag
+  pk: 44
+- fields: {name: Punitaqui, slug: punitaqui}
+  model: taggit.tag
+  pk: 45
+- fields: {name: Salamanca, slug: salamanca}
+  model: taggit.tag
+  pk: 46
+- fields: {name: Rancagua, slug: rancagua}
+  model: taggit.tag
+  pk: 47
+- fields: {name: Codegua, slug: codegua}
+  model: taggit.tag
+  pk: 48
+- fields: {name: Coltauco, slug: coltauco}
+  model: taggit.tag
+  pk: 49
+- fields: {name: "Co\xEDnco", slug: coinco}
+  model: taggit.tag
+  pk: 50
+- fields: {name: "Do\xF1ihue", slug: donihue}
+  model: taggit.tag
+  pk: 51
+- fields: {name: Graneros, slug: graneros}
+  model: taggit.tag
+  pk: 52
+- fields: {name: "Machal\xED", slug: machali}
+  model: taggit.tag
+  pk: 53
+- fields: {name: Malloa, slug: malloa}
+  model: taggit.tag
+  pk: 54
+- fields: {name: Mostazal, slug: mostazal}
+  model: taggit.tag
+  pk: 55
+- fields: {name: Olivar, slug: olivar}
+  model: taggit.tag
+  pk: 56
+- fields: {name: Quinta de Tilcoco, slug: quinta-de-tilcoco}
+  model: taggit.tag
+  pk: 57
+- fields: {name: Rengo, slug: rengo}
+  model: taggit.tag
+  pk: 58
+- fields: {name: "Requ\xEDnoa", slug: requinoa}
+  model: taggit.tag
+  pk: 59
+- fields: {name: Chimbarongo, slug: chimbarongo}
+  model: taggit.tag
+  pk: 60
+- fields: {name: Las Cabras, slug: las-cabras}
+  model: taggit.tag
+  pk: 61
+- fields: {name: Peumo, slug: peumo}
+  model: taggit.tag
+  pk: 62
+- fields: {name: Pichidegua, slug: pichidegua}
+  model: taggit.tag
+  pk: 63
+- fields: {name: San Fernando, slug: san-fernando}
+  model: taggit.tag
+  pk: 64
+- fields: {name: San Vicente, slug: san-vicente}
+  model: taggit.tag
+  pk: 65
+- fields: {name: "Ch\xE9pica", slug: chepica}
+  model: taggit.tag
+  pk: 66
+- fields: {name: La Estrella, slug: la-estrella}
+  model: taggit.tag
+  pk: 67
+- fields: {name: Litueche, slug: litueche}
+  model: taggit.tag
+  pk: 68
+- fields: {name: Lolol, slug: lolol}
+  model: taggit.tag
+  pk: 69
+- fields: {name: Marchihue, slug: marchihue}
+  model: taggit.tag
+  pk: 70
+- fields: {name: Nancagua, slug: nancagua}
+  model: taggit.tag
+  pk: 71
+- fields: {name: Navidad, slug: navidad}
+  model: taggit.tag
+  pk: 72
+- fields: {name: Palmilla, slug: palmilla}
+  model: taggit.tag
+  pk: 73
+- fields: {name: Paredones, slug: paredones}
+  model: taggit.tag
+  pk: 74
+- fields: {name: Peralillo, slug: peralillo}
+  model: taggit.tag
+  pk: 75
+- fields: {name: Pichilemu, slug: pichilemu}
+  model: taggit.tag
+  pk: 76
+- fields: {name: Placilla, slug: placilla}
+  model: taggit.tag
+  pk: 77
+- fields: {name: Pumanque, slug: pumanque}
+  model: taggit.tag
+  pk: 78
+- fields: {name: Santa Cruz, slug: santa-cruz}
+  model: taggit.tag
+  pk: 79
+- fields: {name: Cabildo, slug: cabildo}
+  model: taggit.tag
+  pk: 80
+- fields: {name: Hijuelas, slug: hijuelas}
+  model: taggit.tag
+  pk: 81
+- fields: {name: La Calera, slug: la-calera}
+  model: taggit.tag
+  pk: 82
+- fields: {name: La Cruz, slug: la-cruz}
+  model: taggit.tag
+  pk: 83
+- fields: {name: La Ligua, slug: la-ligua}
+  model: taggit.tag
+  pk: 84
+- fields: {name: Nogales, slug: nogales}
+  model: taggit.tag
+  pk: 85
+- fields: {name: Papudo, slug: papudo}
+  model: taggit.tag
+  pk: 86
+- fields: {name: Petorca, slug: petorca}
+  model: taggit.tag
+  pk: 87
+- fields: {name: "Puchuncav\xED", slug: puchuncavi}
+  model: taggit.tag
+  pk: 88
+- fields: {name: Quillota, slug: quillota}
+  model: taggit.tag
+  pk: 89
+- fields: {name: Quintero, slug: quintero}
+  model: taggit.tag
+  pk: 90
+- fields: {name: Zapallar, slug: zapallar}
+  model: taggit.tag
+  pk: 91
+- fields: {name: Calle Larga, slug: calle-larga}
+  model: taggit.tag
+  pk: 92
+- fields: {name: Catemu, slug: catemu}
+  model: taggit.tag
+  pk: 93
+- fields: {name: Llaillay, slug: llaillay}
+  model: taggit.tag
+  pk: 94
+- fields: {name: Los Andes, slug: los-andes}
+  model: taggit.tag
+  pk: 95
+- fields: {name: Panquehue, slug: panquehue}
+  model: taggit.tag
+  pk: 96
+- fields: {name: Putaendo, slug: putaendo}
+  model: taggit.tag
+  pk: 97
+- fields: {name: Rinconada, slug: rinconada}
+  model: taggit.tag
+  pk: 98
+- fields: {name: San Esteban, slug: san-esteban}
+  model: taggit.tag
+  pk: 99
+- fields: {name: San Felipe, slug: san-felipe}
+  model: taggit.tag
+  pk: 100
+- fields: {name: "Santa Mar\xEDa", slug: santa-maria}
+  model: taggit.tag
+  pk: 101
+- fields: {name: Limache, slug: limache}
+  model: taggit.tag
+  pk: 102
+- fields: {name: "Olmu\xE9", slug: olmue}
+  model: taggit.tag
+  pk: 103
+- fields: {name: "Quilpu\xE9", slug: quilpue}
+  model: taggit.tag
+  pk: 104
+- fields: {name: Villa Alemana, slug: villa-alemana}
+  model: taggit.tag
+  pk: 105
+- fields: {name: Isla de Pascua, slug: isla-de-pascua}
+  model: taggit.tag
+  pk: 106
+- fields: {name: "Juan Fern\xE1ndez", slug: juan-fernandez}
+  model: taggit.tag
+  pk: 107
+- fields: {name: "Valpara\xEDso", slug: valparaiso}
+  model: taggit.tag
+  pk: 108
+- fields: {name: "Conc\xF3n", slug: concon}
+  model: taggit.tag
+  pk: 109
+- fields: {name: "Vi\xF1a del Mar", slug: vina-del-mar}
+  model: taggit.tag
+  pk: 110
+- fields: {name: Algarrobo, slug: algarrobo}
+  model: taggit.tag
+  pk: 111
+- fields: {name: Cartagena, slug: cartagena}
+  model: taggit.tag
+  pk: 112
+- fields: {name: Casablanca, slug: casablanca}
+  model: taggit.tag
+  pk: 113
+- fields: {name: El Quisco, slug: el-quisco}
+  model: taggit.tag
+  pk: 114
+- fields: {name: El Tabo, slug: el-tabo}
+  model: taggit.tag
+  pk: 115
+- fields: {name: San Antonio, slug: san-antonio}
+  model: taggit.tag
+  pk: 116
+- fields: {name: Santo Domingo, slug: santo-domingo}
+  model: taggit.tag
+  pk: 117
+- fields: {name: Colina, slug: colina}
+  model: taggit.tag
+  pk: 118
+- fields: {name: Lampa, slug: lampa}
+  model: taggit.tag
+  pk: 119
+- fields: {name: Pudahuel, slug: pudahuel}
+  model: taggit.tag
+  pk: 120
+- fields: {name: Quilicura, slug: quilicura}
+  model: taggit.tag
+  pk: 121
+- fields: {name: Tiltil, slug: tiltil}
+  model: taggit.tag
+  pk: 122
+- fields: {name: "Conchal\xED", slug: conchali}
+  model: taggit.tag
+  pk: 123
+- fields: {name: Huechuraba, slug: huechuraba}
+  model: taggit.tag
+  pk: 124
+- fields: {name: Renca, slug: renca}
+  model: taggit.tag
+  pk: 125
+- fields: {name: Cerro Navia, slug: cerro-navia}
+  model: taggit.tag
+  pk: 126
+- fields: {name: Lo Prado, slug: lo-prado}
+  model: taggit.tag
+  pk: 127
+- fields: {name: Quinta Normal, slug: quinta-normal}
+  model: taggit.tag
+  pk: 128
+- fields: {name: Independencia, slug: independencia}
+  model: taggit.tag
+  pk: 129
+- fields: {name: Recoleta, slug: recoleta}
+  model: taggit.tag
+  pk: 130
+- fields: {name: Cerrillos, slug: cerrillos}
+  model: taggit.tag
+  pk: 131
+- fields: {name: "Estaci\xF3n Central", slug: estacion-central}
+  model: taggit.tag
+  pk: 132
+- fields: {name: "Maip\xFA", slug: maipu}
+  model: taggit.tag
+  pk: 133
+- fields: {name: Santiago, slug: santiago}
+  model: taggit.tag
+  pk: 134
+- fields: {name: Buin, slug: buin}
+  model: taggit.tag
+  pk: 135
+- fields: {name: Calera de Tango, slug: calera-de-tango}
+  model: taggit.tag
+  pk: 136
+- fields: {name: Paine, slug: paine}
+  model: taggit.tag
+  pk: 137
+- fields: {name: San Bernardo, slug: san-bernardo}
+  model: taggit.tag
+  pk: 138
+- fields: {name: "Alhu\xE9", slug: alhue}
+  model: taggit.tag
+  pk: 139
+- fields: {name: "Curacav\xED", slug: curacavi}
+  model: taggit.tag
+  pk: 140
+- fields: {name: El Monte, slug: el-monte}
+  model: taggit.tag
+  pk: 141
+- fields: {name: Isla de Maipo, slug: isla-de-maipo}
+  model: taggit.tag
+  pk: 142
+- fields: {name: "Mar\xEDa Pinto", slug: maria-pinto}
+  model: taggit.tag
+  pk: 143
+- fields: {name: Melipilla, slug: melipilla}
+  model: taggit.tag
+  pk: 144
+- fields: {name: Padre Hurtado, slug: padre-hurtado}
+  model: taggit.tag
+  pk: 145
+- fields: {name: "Pe\xF1aflor", slug: penaflor}
+  model: taggit.tag
+  pk: 146
+- fields: {name: San Pedro, slug: san-pedro}
+  model: taggit.tag
+  pk: 147
+- fields: {name: Talagante, slug: talagante}
+  model: taggit.tag
+  pk: 148
+- fields: {name: Providencia, slug: providencia}
+  model: taggit.tag
+  pk: 149
+- fields: {name: "\xD1u\xF1oa", slug: nunoa}
+  model: taggit.tag
+  pk: 150
+- fields: {name: Las Condes, slug: las-condes}
+  model: taggit.tag
+  pk: 151
+- fields: {name: Lo Barnechea, slug: lo-barnechea}
+  model: taggit.tag
+  pk: 152
+- fields: {name: Vitacura, slug: vitacura}
+  model: taggit.tag
+  pk: 153
+- fields: {name: La Reina, slug: la-reina}
+  model: taggit.tag
+  pk: 154
+- fields: {name: "Pe\xF1alol\xE9n", slug: penalolen}
+  model: taggit.tag
+  pk: 155
+- fields: {name: La Granja, slug: la-granja}
+  model: taggit.tag
+  pk: 156
+- fields: {name: Macul, slug: macul}
+  model: taggit.tag
+  pk: 157
+- fields: {name: "San Joaqu\xEDn", slug: san-joaquin}
+  model: taggit.tag
+  pk: 158
+- fields: {name: La Florida, slug: la-florida}
+  model: taggit.tag
+  pk: 159
+- fields: {name: El Bosque, slug: el-bosque}
+  model: taggit.tag
+  pk: 160
+- fields: {name: La Cisterna, slug: la-cisterna}
+  model: taggit.tag
+  pk: 161
+- fields: {name: "San Ram\xF3n", slug: san-ramon}
+  model: taggit.tag
+  pk: 162
+- fields: {name: Lo Espejo, slug: lo-espejo}
+  model: taggit.tag
+  pk: 163
+- fields: {name: Pedro Aguirre Cerda, slug: pedro-aguirre-cerda}
+  model: taggit.tag
+  pk: 164
+- fields: {name: San Miguel, slug: san-miguel}
+  model: taggit.tag
+  pk: 165
+- fields: {name: La Pintana, slug: la-pintana}
+  model: taggit.tag
+  pk: 166
+- fields: {name: Pirque, slug: pirque}
+  model: taggit.tag
+  pk: 167
+- fields: {name: Puente Alto, slug: puente-alto}
+  model: taggit.tag
+  pk: 168
+- fields: {name: "San Jos\xE9 de Maipo", slug: san-jose-de-maipo}
+  model: taggit.tag
+  pk: 169
+- fields: {name: "Curic\xF3", slug: curico}
+  model: taggit.tag
+  pk: 170
+- fields: {name: "Huala\xF1\xE9", slug: hualane}
+  model: taggit.tag
+  pk: 171
+- fields: {name: "Licant\xE9n", slug: licanten}
+  model: taggit.tag
+  pk: 172
+- fields: {name: Molina, slug: molina}
+  model: taggit.tag
+  pk: 173
+- fields: {name: Rauco, slug: rauco}
+  model: taggit.tag
+  pk: 174
+- fields: {name: Romeral, slug: romeral}
+  model: taggit.tag
+  pk: 175
+- fields: {name: Sagrada Familia, slug: sagrada-familia}
+  model: taggit.tag
+  pk: 176
+- fields: {name: Teno, slug: teno}
+  model: taggit.tag
+  pk: 177
+- fields: {name: "Vichuqu\xE9n", slug: vichuquen}
+  model: taggit.tag
+  pk: 178
+- fields: {name: Talca, slug: talca}
+  model: taggit.tag
+  pk: 179
+- fields: {name: "Constituci\xF3n", slug: constitucion}
+  model: taggit.tag
+  pk: 180
+- fields: {name: Curepto, slug: curepto}
+  model: taggit.tag
+  pk: 181
+- fields: {name: Empedrado, slug: empedrado}
+  model: taggit.tag
+  pk: 182
+- fields: {name: Maule, slug: maule}
+  model: taggit.tag
+  pk: 183
+- fields: {name: Pelarco, slug: pelarco}
+  model: taggit.tag
+  pk: 184
+- fields: {name: Pencahue, slug: pencahue}
+  model: taggit.tag
+  pk: 185
+- fields: {name: "R\xEDo Claro", slug: rio-claro}
+  model: taggit.tag
+  pk: 186
+- fields: {name: San Clemente, slug: san-clemente}
+  model: taggit.tag
+  pk: 187
+- fields: {name: San Rafael, slug: san-rafael}
+  model: taggit.tag
+  pk: 188
+- fields: {name: "Colb\xFAn", slug: colbun}
+  model: taggit.tag
+  pk: 189
+- fields: {name: Linares, slug: linares}
+  model: taggit.tag
+  pk: 190
+- fields: {name: San Javier, slug: san-javier}
+  model: taggit.tag
+  pk: 191
+- fields: {name: Villa Alegre, slug: villa-alegre}
+  model: taggit.tag
+  pk: 192
+- fields: {name: Yerbas Buenas, slug: yerbas-buenas}
+  model: taggit.tag
+  pk: 193
+- fields: {name: Cauquenes, slug: cauquenes}
+  model: taggit.tag
+  pk: 194
+- fields: {name: Chanco, slug: chanco}
+  model: taggit.tag
+  pk: 195
+- fields: {name: "Longav\xED", slug: longavi}
+  model: taggit.tag
+  pk: 196
+- fields: {name: Parral, slug: parral}
+  model: taggit.tag
+  pk: 197
+- fields: {name: Pelluhue, slug: pelluhue}
+  model: taggit.tag
+  pk: 198
+- fields: {name: Retiro, slug: retiro}
+  model: taggit.tag
+  pk: 199
+- fields: {name: Bulnes, slug: bulnes}
+  model: taggit.tag
+  pk: 200
+- fields: {name: Cabrero, slug: cabrero}
+  model: taggit.tag
+  pk: 201
+- fields: {name: Cobquecura, slug: cobquecura}
+  model: taggit.tag
+  pk: 202
+- fields: {name: Coelemu, slug: coelemu}
+  model: taggit.tag
+  pk: 203
+- fields: {name: Ninhue, slug: ninhue}
+  model: taggit.tag
+  pk: 204
+- fields: {name: Portezuelo, slug: portezuelo}
+  model: taggit.tag
+  pk: 205
+- fields: {name: "Quill\xF3n", slug: quillon}
+  model: taggit.tag
+  pk: 206
+- fields: {name: Quirihue, slug: quirihue}
+  model: taggit.tag
+  pk: 207
+- fields: {name: "R\xE1nquil", slug: ranquil}
+  model: taggit.tag
+  pk: 208
+- fields: {name: San Carlos, slug: san-carlos}
+  model: taggit.tag
+  pk: 209
+- fields: {name: "San Fabi\xE1n", slug: san-fabian}
+  model: taggit.tag
+  pk: 210
+- fields: {name: "San Nicol\xE1s", slug: san-nicolas}
+  model: taggit.tag
+  pk: 211
+- fields: {name: Treguaco, slug: treguaco}
+  model: taggit.tag
+  pk: 212
+- fields: {name: Yumbel, slug: yumbel}
+  model: taggit.tag
+  pk: 213
+- fields: {name: "\xD1iqu\xE9n", slug: niquen}
+  model: taggit.tag
+  pk: 214
+- fields: {name: "Hualp\xE9n", slug: hualpen}
+  model: taggit.tag
+  pk: 215
+- fields: {name: Talcahuano, slug: talcahuano}
+  model: taggit.tag
+  pk: 216
+- fields: {name: Chiguayante, slug: chiguayante}
+  model: taggit.tag
+  pk: 217
+- fields: {name: "Concepci\xF3n", slug: concepcion}
+  model: taggit.tag
+  pk: 218
+- fields: {name: San Pedro de la Paz, slug: san-pedro-de-la-paz}
+  model: taggit.tag
+  pk: 219
+- fields: {name: Coronel, slug: coronel}
+  model: taggit.tag
+  pk: 220
+- fields: {name: Florida, slug: florida}
+  model: taggit.tag
+  pk: 221
+- fields: {name: Hualqui, slug: hualqui}
+  model: taggit.tag
+  pk: 222
+- fields: {name: Penco, slug: penco}
+  model: taggit.tag
+  pk: 223
+- fields: {name: Santa Juana, slug: santa-juana}
+  model: taggit.tag
+  pk: 224
+- fields: {name: "Tom\xE9", slug: tome}
+  model: taggit.tag
+  pk: 225
+- fields: {name: "Chill\xE1n", slug: chillan}
+  model: taggit.tag
+  pk: 226
+- fields: {name: "Chill\xE1n Viejo", slug: chillan-viejo}
+  model: taggit.tag
+  pk: 227
+- fields: {name: Coihueco, slug: coihueco}
+  model: taggit.tag
+  pk: 228
+- fields: {name: El Carmen, slug: el-carmen}
+  model: taggit.tag
+  pk: 229
+- fields: {name: Pemuco, slug: pemuco}
+  model: taggit.tag
+  pk: 230
+- fields: {name: Pinto, slug: pinto}
+  model: taggit.tag
+  pk: 231
+- fields: {name: San Ignacio, slug: san-ignacio}
+  model: taggit.tag
+  pk: 232
+- fields: {name: Yungay, slug: yungay}
+  model: taggit.tag
+  pk: 233
+- fields: {name: Arauco, slug: arauco}
+  model: taggit.tag
+  pk: 234
+- fields: {name: "Ca\xF1ete", slug: canete}
+  model: taggit.tag
+  pk: 235
+- fields: {name: Contulmo, slug: contulmo}
+  model: taggit.tag
+  pk: 236
+- fields: {name: Curanilahue, slug: curanilahue}
+  model: taggit.tag
+  pk: 237
+- fields: {name: Lebu, slug: lebu}
+  model: taggit.tag
+  pk: 238
+- fields: {name: "Los \xC1lamos", slug: los-alamos}
+  model: taggit.tag
+  pk: 239
+- fields: {name: Lota, slug: lota}
+  model: taggit.tag
+  pk: 240
+- fields: {name: "Tir\xFAa", slug: tirua}
+  model: taggit.tag
+  pk: 241
+- fields: {name: "Alto Biob\xEDo", slug: alto-biobio}
+  model: taggit.tag
+  pk: 242
+- fields: {name: Antuco, slug: antuco}
+  model: taggit.tag
+  pk: 243
+- fields: {name: Laja, slug: laja}
+  model: taggit.tag
+  pk: 244
+- fields: {name: "Los \xC1ngeles", slug: los-angeles}
+  model: taggit.tag
+  pk: 245
+- fields: {name: "Mulch\xE9n", slug: mulchen}
+  model: taggit.tag
+  pk: 246
+- fields: {name: Nacimiento, slug: nacimiento}
+  model: taggit.tag
+  pk: 247
+- fields: {name: Negrete, slug: negrete}
+  model: taggit.tag
+  pk: 248
+- fields: {name: Quilaco, slug: quilaco}
+  model: taggit.tag
+  pk: 249
+- fields: {name: Quilleco, slug: quilleco}
+  model: taggit.tag
+  pk: 250
+- fields: {name: San Rosendo, slug: san-rosendo}
+  model: taggit.tag
+  pk: 251
+- fields: {name: "Santa B\xE1rbara", slug: santa-barbara}
+  model: taggit.tag
+  pk: 252
+- fields: {name: Tucapel, slug: tucapel}
+  model: taggit.tag
+  pk: 253
+- fields: {name: Angol, slug: angol}
+  model: taggit.tag
+  pk: 254
+- fields: {name: Collipulli, slug: collipulli}
+  model: taggit.tag
+  pk: 255
+- fields: {name: Ercilla, slug: ercilla}
+  model: taggit.tag
+  pk: 256
+- fields: {name: Los Sauces, slug: los-sauces}
+  model: taggit.tag
+  pk: 257
+- fields: {name: Lumaco, slug: lumaco}
+  model: taggit.tag
+  pk: 258
+- fields: {name: "Pur\xE9n", slug: puren}
+  model: taggit.tag
+  pk: 259
+- fields: {name: Renaico, slug: renaico}
+  model: taggit.tag
+  pk: 260
+- fields: {name: "Traigu\xE9n", slug: traiguen}
+  model: taggit.tag
+  pk: 261
+- fields: {name: "Curacaut\xEDn", slug: curacautin}
+  model: taggit.tag
+  pk: 262
+- fields: {name: Galvarino, slug: galvarino}
+  model: taggit.tag
+  pk: 263
+- fields: {name: Lautaro, slug: lautaro}
+  model: taggit.tag
+  pk: 264
+- fields: {name: Lonquimay, slug: lonquimay}
+  model: taggit.tag
+  pk: 265
+- fields: {name: Melipeuco, slug: melipeuco}
+  model: taggit.tag
+  pk: 266
+- fields: {name: Perquenco, slug: perquenco}
+  model: taggit.tag
+  pk: 267
+- fields: {name: Victoria, slug: victoria}
+  model: taggit.tag
+  pk: 268
+- fields: {name: "Vilc\xFAn", slug: vilcun}
+  model: taggit.tag
+  pk: 269
+- fields: {name: "Ant\xE1rtica", slug: antartica}
+  model: taggit.tag
+  pk: 270
+- fields: {name: Cabo de Hornos, slug: cabo-de-hornos}
+  model: taggit.tag
+  pk: 271
+- fields: {name: Laguna Blanca, slug: laguna-blanca}
+  model: taggit.tag
+  pk: 272
+- fields: {name: Natales, slug: natales}
+  model: taggit.tag
+  pk: 273
+- fields: {name: Porvenir, slug: porvenir}
+  model: taggit.tag
+  pk: 274
+- fields: {name: Primavera, slug: primavera}
+  model: taggit.tag
+  pk: 275
+- fields: {name: Punta Arenas, slug: punta-arenas}
+  model: taggit.tag
+  pk: 276
+- fields: {name: "R\xEDo Verde", slug: rio-verde}
+  model: taggit.tag
+  pk: 277
+- fields: {name: San Gregorio, slug: san-gregorio}
+  model: taggit.tag
+  pk: 278
+- fields: {name: Timaukel, slug: timaukel}
+  model: taggit.tag
+  pk: 279
+- fields: {name: Torres del Paine, slug: torres-del-paine}
+  model: taggit.tag
+  pk: 280
+- fields: {name: Padre Las Casas, slug: padre-las-casas}
+  model: taggit.tag
+  pk: 281
+- fields: {name: Temuco, slug: temuco}
+  model: taggit.tag
+  pk: 282
+- fields: {name: Carahue, slug: carahue}
+  model: taggit.tag
+  pk: 283
+- fields: {name: Cholchol, slug: cholchol}
+  model: taggit.tag
+  pk: 284
+- fields: {name: Freire, slug: freire}
+  model: taggit.tag
+  pk: 285
+- fields: {name: Nueva Imperial, slug: nueva-imperial}
+  model: taggit.tag
+  pk: 286
+- fields: {name: "Pitrufqu\xE9n", slug: pitrufquen}
+  model: taggit.tag
+  pk: 287
+- fields: {name: Saavedra, slug: saavedra}
+  model: taggit.tag
+  pk: 288
+- fields: {name: Teodoro Schmidt, slug: teodoro-schmidt}
+  model: taggit.tag
+  pk: 289
+- fields: {name: Cunco, slug: cunco}
+  model: taggit.tag
+  pk: 290
+- fields: {name: Curarrehue, slug: curarrehue}
+  model: taggit.tag
+  pk: 291
+- fields: {name: Gorbea, slug: gorbea}
+  model: taggit.tag
+  pk: 292
+- fields: {name: Loncoche, slug: loncoche}
+  model: taggit.tag
+  pk: 293
+- fields: {name: "Puc\xF3n", slug: pucon}
+  model: taggit.tag
+  pk: 294
+- fields: {name: "Tolt\xE9n", slug: tolten}
+  model: taggit.tag
+  pk: 295
+- fields: {name: Villarrica, slug: villarrica}
+  model: taggit.tag
+  pk: 296
+- fields: {name: Corral, slug: corral}
+  model: taggit.tag
+  pk: 297
+- fields: {name: Lanco, slug: lanco}
+  model: taggit.tag
+  pk: 298
+- fields: {name: Mariquina, slug: mariquina}
+  model: taggit.tag
+  pk: 299
+- fields: {name: "M\xE1fil", slug: mafil}
+  model: taggit.tag
+  pk: 300
+- fields: {name: Valdivia, slug: valdivia}
+  model: taggit.tag
+  pk: 301
+- fields: {name: Futrono, slug: futrono}
+  model: taggit.tag
+  pk: 302
+- fields: {name: "La Uni\xF3n", slug: la-union}
+  model: taggit.tag
+  pk: 303
+- fields: {name: Lago Ranco, slug: lago-ranco}
+  model: taggit.tag
+  pk: 304
+- fields: {name: Los Lagos, slug: los-lagos}
+  model: taggit.tag
+  pk: 305
+- fields: {name: Paillaco, slug: paillaco}
+  model: taggit.tag
+  pk: 306
+- fields: {name: Panguipulli, slug: panguipulli}
+  model: taggit.tag
+  pk: 307
+- fields: {name: "R\xEDo Bueno", slug: rio-bueno}
+  model: taggit.tag
+  pk: 308
+- fields: {name: Osorno, slug: osorno}
+  model: taggit.tag
+  pk: 309
+- fields: {name: San Juan de la Costa, slug: san-juan-de-la-costa}
+  model: taggit.tag
+  pk: 310
+- fields: {name: San Pablo, slug: san-pablo}
+  model: taggit.tag
+  pk: 311
+- fields: {name: Fresia, slug: fresia}
+  model: taggit.tag
+  pk: 312
+- fields: {name: Frutillar, slug: frutillar}
+  model: taggit.tag
+  pk: 313
+- fields: {name: Llanquihue, slug: llanquihue}
+  model: taggit.tag
+  pk: 314
+- fields: {name: Los Muermos, slug: los-muermos}
+  model: taggit.tag
+  pk: 315
+- fields: {name: Puerto Octay, slug: puerto-octay}
+  model: taggit.tag
+  pk: 316
+- fields: {name: Puerto Varas, slug: puerto-varas}
+  model: taggit.tag
+  pk: 317
+- fields: {name: Purranque, slug: purranque}
+  model: taggit.tag
+  pk: 318
+- fields: {name: Puyehue, slug: puyehue}
+  model: taggit.tag
+  pk: 319
+- fields: {name: "R\xEDo Negro", slug: rio-negro}
+  model: taggit.tag
+  pk: 320
+- fields: {name: Calbuco, slug: calbuco}
+  model: taggit.tag
+  pk: 321
+- fields: {name: "Cocham\xF3", slug: cochamo}
+  model: taggit.tag
+  pk: 322
+- fields: {name: "Maull\xEDn", slug: maullin}
+  model: taggit.tag
+  pk: 323
+- fields: {name: Puerto Montt, slug: puerto-montt}
+  model: taggit.tag
+  pk: 324
+- fields: {name: Ancud, slug: ancud}
+  model: taggit.tag
+  pk: 325
+- fields: {name: Castro, slug: castro}
+  model: taggit.tag
+  pk: 326
+- fields: {name: "Chait\xE9n", slug: chaiten}
+  model: taggit.tag
+  pk: 327
+- fields: {name: Chonchi, slug: chonchi}
+  model: taggit.tag
+  pk: 328
+- fields: {name: "Curaco de V\xE9lez", slug: curaco-de-velez}
+  model: taggit.tag
+  pk: 329
+- fields: {name: Dalcahue, slug: dalcahue}
+  model: taggit.tag
+  pk: 330
+- fields: {name: "Futaleuf\xFA", slug: futaleufu}
+  model: taggit.tag
+  pk: 331
+- fields: {name: "Hualaihu\xE9", slug: hualaihue}
+  model: taggit.tag
+  pk: 332
+- fields: {name: Palena, slug: palena}
+  model: taggit.tag
+  pk: 333
+- fields: {name: "Puqueld\xF3n", slug: puqueldon}
+  model: taggit.tag
+  pk: 334
+- fields: {name: "Queil\xE9n", slug: queilen}
+  model: taggit.tag
+  pk: 335
+- fields: {name: "Quell\xF3n", slug: quellon}
+  model: taggit.tag
+  pk: 336
+- fields: {name: Quemchi, slug: quemchi}
+  model: taggit.tag
+  pk: 337
+- fields: {name: Quinchao, slug: quinchao}
+  model: taggit.tag
+  pk: 338
+- fields: {name: "Ays\xE9n", slug: aysen}
+  model: taggit.tag
+  pk: 339
+- fields: {name: Chile Chico, slug: chile-chico}
+  model: taggit.tag
+  pk: 340
+- fields: {name: Cisnes, slug: cisnes}
+  model: taggit.tag
+  pk: 341
+- fields: {name: Cochrane, slug: cochrane}
+  model: taggit.tag
+  pk: 342
+- fields: {name: Coihaique, slug: coihaique}
+  model: taggit.tag
+  pk: 343
+- fields: {name: Guaitecas, slug: guaitecas}
+  model: taggit.tag
+  pk: 344
+- fields: {name: Lago Verde, slug: lago-verde}
+  model: taggit.tag
+  pk: 345
+- fields: {name: O'Higgins, slug: ohiggins}
+  model: taggit.tag
+  pk: 346
+- fields: {name: "R\xEDo Ib\xE1\xF1ez", slug: rio-ibanez}
+  model: taggit.tag
+  pk: 347
+- fields: {name: Tortel, slug: tortel}
+  model: taggit.tag
+  pk: 348
+- fields: {name: Presidenciales, slug: presidenciales}
+  model: taggit.tag
+  pk: 349
+- fields: {name: Presidente, slug: presidente}
+  model: taggit.tag
+  pk: 350
+- fields: {content_type: 21, object_id: 1, tag: 1}
+  model: taggit.taggeditem
+  pk: 1
+- fields: {content_type: 21, object_id: 2, tag: 2}
+  model: taggit.taggeditem
+  pk: 2
+- fields: {content_type: 21, object_id: 1, tag: 3}
+  model: taggit.taggeditem
+  pk: 3
+- fields: {content_type: 21, object_id: 2, tag: 3}
+  model: taggit.taggeditem
+  pk: 4
+- fields: {content_type: 21, object_id: 1, tag: 4}
+  model: taggit.taggeditem
+  pk: 5
+- fields: {content_type: 21, object_id: 2, tag: 4}
+  model: taggit.taggeditem
+  pk: 6
+- fields: {content_type: 21, object_id: 1, tag: 5}
+  model: taggit.taggeditem
+  pk: 7
+- fields: {content_type: 21, object_id: 2, tag: 5}
+  model: taggit.taggeditem
+  pk: 8
+- fields: {content_type: 21, object_id: 1, tag: 6}
+  model: taggit.taggeditem
+  pk: 9
+- fields: {content_type: 21, object_id: 2, tag: 6}
+  model: taggit.taggeditem
+  pk: 10
+- fields: {content_type: 21, object_id: 3, tag: 2}
+  model: taggit.taggeditem
+  pk: 11
+- fields: {content_type: 21, object_id: 1, tag: 7}
+  model: taggit.taggeditem
+  pk: 12
+- fields: {content_type: 21, object_id: 3, tag: 7}
+  model: taggit.taggeditem
+  pk: 13
+- fields: {content_type: 21, object_id: 1, tag: 8}
+  model: taggit.taggeditem
+  pk: 14
+- fields: {content_type: 21, object_id: 3, tag: 8}
+  model: taggit.taggeditem
+  pk: 15
+- fields: {content_type: 21, object_id: 1, tag: 9}
+  model: taggit.taggeditem
+  pk: 16
+- fields: {content_type: 21, object_id: 3, tag: 9}
+  model: taggit.taggeditem
+  pk: 17
+- fields: {content_type: 21, object_id: 1, tag: 10}
+  model: taggit.taggeditem
+  pk: 18
+- fields: {content_type: 21, object_id: 3, tag: 10}
+  model: taggit.taggeditem
+  pk: 19
+- fields: {content_type: 21, object_id: 1, tag: 11}
+  model: taggit.taggeditem
+  pk: 20
+- fields: {content_type: 21, object_id: 3, tag: 11}
+  model: taggit.taggeditem
+  pk: 21
+- fields: {content_type: 21, object_id: 1, tag: 12}
+  model: taggit.taggeditem
+  pk: 22
+- fields: {content_type: 21, object_id: 3, tag: 12}
+  model: taggit.taggeditem
+  pk: 23
+- fields: {content_type: 21, object_id: 1, tag: 13}
+  model: taggit.taggeditem
+  pk: 24
+- fields: {content_type: 21, object_id: 3, tag: 13}
+  model: taggit.taggeditem
+  pk: 25
+- fields: {content_type: 21, object_id: 4, tag: 1}
+  model: taggit.taggeditem
+  pk: 26
+- fields: {content_type: 21, object_id: 5, tag: 2}
+  model: taggit.taggeditem
+  pk: 27
+- fields: {content_type: 21, object_id: 4, tag: 14}
+  model: taggit.taggeditem
+  pk: 28
+- fields: {content_type: 21, object_id: 5, tag: 14}
+  model: taggit.taggeditem
+  pk: 29
+- fields: {content_type: 21, object_id: 4, tag: 15}
+  model: taggit.taggeditem
+  pk: 30
+- fields: {content_type: 21, object_id: 5, tag: 15}
+  model: taggit.taggeditem
+  pk: 31
+- fields: {content_type: 21, object_id: 4, tag: 16}
+  model: taggit.taggeditem
+  pk: 32
+- fields: {content_type: 21, object_id: 5, tag: 16}
+  model: taggit.taggeditem
+  pk: 33
+- fields: {content_type: 21, object_id: 4, tag: 17}
+  model: taggit.taggeditem
+  pk: 34
+- fields: {content_type: 21, object_id: 5, tag: 17}
+  model: taggit.taggeditem
+  pk: 35
+- fields: {content_type: 21, object_id: 4, tag: 18}
+  model: taggit.taggeditem
+  pk: 36
+- fields: {content_type: 21, object_id: 5, tag: 18}
+  model: taggit.taggeditem
+  pk: 37
+- fields: {content_type: 21, object_id: 6, tag: 2}
+  model: taggit.taggeditem
+  pk: 38
+- fields: {content_type: 21, object_id: 4, tag: 19}
+  model: taggit.taggeditem
+  pk: 39
+- fields: {content_type: 21, object_id: 6, tag: 19}
+  model: taggit.taggeditem
+  pk: 40
+- fields: {content_type: 21, object_id: 4, tag: 20}
+  model: taggit.taggeditem
+  pk: 41
+- fields: {content_type: 21, object_id: 6, tag: 20}
+  model: taggit.taggeditem
+  pk: 42
+- fields: {content_type: 21, object_id: 4, tag: 21}
+  model: taggit.taggeditem
+  pk: 43
+- fields: {content_type: 21, object_id: 6, tag: 21}
+  model: taggit.taggeditem
+  pk: 44
+- fields: {content_type: 21, object_id: 4, tag: 22}
+  model: taggit.taggeditem
+  pk: 45
+- fields: {content_type: 21, object_id: 6, tag: 22}
+  model: taggit.taggeditem
+  pk: 46
+- fields: {content_type: 21, object_id: 7, tag: 1}
+  model: taggit.taggeditem
+  pk: 47
+- fields: {content_type: 21, object_id: 8, tag: 2}
+  model: taggit.taggeditem
+  pk: 48
+- fields: {content_type: 21, object_id: 7, tag: 23}
+  model: taggit.taggeditem
+  pk: 49
+- fields: {content_type: 21, object_id: 8, tag: 23}
+  model: taggit.taggeditem
+  pk: 50
+- fields: {content_type: 21, object_id: 7, tag: 24}
+  model: taggit.taggeditem
+  pk: 51
+- fields: {content_type: 21, object_id: 8, tag: 24}
+  model: taggit.taggeditem
+  pk: 52
+- fields: {content_type: 21, object_id: 7, tag: 25}
+  model: taggit.taggeditem
+  pk: 53
+- fields: {content_type: 21, object_id: 8, tag: 25}
+  model: taggit.taggeditem
+  pk: 54
+- fields: {content_type: 21, object_id: 9, tag: 2}
+  model: taggit.taggeditem
+  pk: 55
+- fields: {content_type: 21, object_id: 7, tag: 26}
+  model: taggit.taggeditem
+  pk: 56
+- fields: {content_type: 21, object_id: 9, tag: 26}
+  model: taggit.taggeditem
+  pk: 57
+- fields: {content_type: 21, object_id: 7, tag: 27}
+  model: taggit.taggeditem
+  pk: 58
+- fields: {content_type: 21, object_id: 9, tag: 27}
+  model: taggit.taggeditem
+  pk: 59
+- fields: {content_type: 21, object_id: 7, tag: 28}
+  model: taggit.taggeditem
+  pk: 60
+- fields: {content_type: 21, object_id: 9, tag: 28}
+  model: taggit.taggeditem
+  pk: 61
+- fields: {content_type: 21, object_id: 7, tag: 29}
+  model: taggit.taggeditem
+  pk: 62
+- fields: {content_type: 21, object_id: 9, tag: 29}
+  model: taggit.taggeditem
+  pk: 63
+- fields: {content_type: 21, object_id: 7, tag: 30}
+  model: taggit.taggeditem
+  pk: 64
+- fields: {content_type: 21, object_id: 9, tag: 30}
+  model: taggit.taggeditem
+  pk: 65
+- fields: {content_type: 21, object_id: 7, tag: 31}
+  model: taggit.taggeditem
+  pk: 66
+- fields: {content_type: 21, object_id: 9, tag: 31}
+  model: taggit.taggeditem
+  pk: 67
+- fields: {content_type: 21, object_id: 10, tag: 1}
+  model: taggit.taggeditem
+  pk: 68
+- fields: {content_type: 21, object_id: 11, tag: 2}
+  model: taggit.taggeditem
+  pk: 69
+- fields: {content_type: 21, object_id: 10, tag: 32}
+  model: taggit.taggeditem
+  pk: 70
+- fields: {content_type: 21, object_id: 11, tag: 32}
+  model: taggit.taggeditem
+  pk: 71
+- fields: {content_type: 21, object_id: 10, tag: 33}
+  model: taggit.taggeditem
+  pk: 72
+- fields: {content_type: 21, object_id: 11, tag: 33}
+  model: taggit.taggeditem
+  pk: 73
+- fields: {content_type: 21, object_id: 10, tag: 34}
+  model: taggit.taggeditem
+  pk: 74
+- fields: {content_type: 21, object_id: 11, tag: 34}
+  model: taggit.taggeditem
+  pk: 75
+- fields: {content_type: 21, object_id: 10, tag: 35}
+  model: taggit.taggeditem
+  pk: 76
+- fields: {content_type: 21, object_id: 11, tag: 35}
+  model: taggit.taggeditem
+  pk: 77
+- fields: {content_type: 21, object_id: 10, tag: 36}
+  model: taggit.taggeditem
+  pk: 78
+- fields: {content_type: 21, object_id: 11, tag: 36}
+  model: taggit.taggeditem
+  pk: 79
+- fields: {content_type: 21, object_id: 12, tag: 2}
+  model: taggit.taggeditem
+  pk: 80
+- fields: {content_type: 21, object_id: 10, tag: 37}
+  model: taggit.taggeditem
+  pk: 81
+- fields: {content_type: 21, object_id: 12, tag: 37}
+  model: taggit.taggeditem
+  pk: 82
+- fields: {content_type: 21, object_id: 10, tag: 38}
+  model: taggit.taggeditem
+  pk: 83
+- fields: {content_type: 21, object_id: 12, tag: 38}
+  model: taggit.taggeditem
+  pk: 84
+- fields: {content_type: 21, object_id: 10, tag: 39}
+  model: taggit.taggeditem
+  pk: 85
+- fields: {content_type: 21, object_id: 12, tag: 39}
+  model: taggit.taggeditem
+  pk: 86
+- fields: {content_type: 21, object_id: 13, tag: 2}
+  model: taggit.taggeditem
+  pk: 87
+- fields: {content_type: 21, object_id: 10, tag: 40}
+  model: taggit.taggeditem
+  pk: 88
+- fields: {content_type: 21, object_id: 13, tag: 40}
+  model: taggit.taggeditem
+  pk: 89
+- fields: {content_type: 21, object_id: 10, tag: 41}
+  model: taggit.taggeditem
+  pk: 90
+- fields: {content_type: 21, object_id: 13, tag: 41}
+  model: taggit.taggeditem
+  pk: 91
+- fields: {content_type: 21, object_id: 10, tag: 42}
+  model: taggit.taggeditem
+  pk: 92
+- fields: {content_type: 21, object_id: 13, tag: 42}
+  model: taggit.taggeditem
+  pk: 93
+- fields: {content_type: 21, object_id: 10, tag: 43}
+  model: taggit.taggeditem
+  pk: 94
+- fields: {content_type: 21, object_id: 13, tag: 43}
+  model: taggit.taggeditem
+  pk: 95
+- fields: {content_type: 21, object_id: 10, tag: 44}
+  model: taggit.taggeditem
+  pk: 96
+- fields: {content_type: 21, object_id: 13, tag: 44}
+  model: taggit.taggeditem
+  pk: 97
+- fields: {content_type: 21, object_id: 10, tag: 45}
+  model: taggit.taggeditem
+  pk: 98
+- fields: {content_type: 21, object_id: 13, tag: 45}
+  model: taggit.taggeditem
+  pk: 99
+- fields: {content_type: 21, object_id: 10, tag: 46}
+  model: taggit.taggeditem
+  pk: 100
+- fields: {content_type: 21, object_id: 13, tag: 46}
+  model: taggit.taggeditem
+  pk: 101
+- fields: {content_type: 21, object_id: 14, tag: 1}
+  model: taggit.taggeditem
+  pk: 102
+- fields: {content_type: 21, object_id: 15, tag: 2}
+  model: taggit.taggeditem
+  pk: 103
+- fields: {content_type: 21, object_id: 14, tag: 47}
+  model: taggit.taggeditem
+  pk: 104
+- fields: {content_type: 21, object_id: 15, tag: 47}
+  model: taggit.taggeditem
+  pk: 105
+- fields: {content_type: 21, object_id: 16, tag: 2}
+  model: taggit.taggeditem
+  pk: 106
+- fields: {content_type: 21, object_id: 14, tag: 48}
+  model: taggit.taggeditem
+  pk: 107
+- fields: {content_type: 21, object_id: 16, tag: 48}
+  model: taggit.taggeditem
+  pk: 108
+- fields: {content_type: 21, object_id: 14, tag: 49}
+  model: taggit.taggeditem
+  pk: 109
+- fields: {content_type: 21, object_id: 16, tag: 49}
+  model: taggit.taggeditem
+  pk: 110
+- fields: {content_type: 21, object_id: 14, tag: 50}
+  model: taggit.taggeditem
+  pk: 111
+- fields: {content_type: 21, object_id: 16, tag: 50}
+  model: taggit.taggeditem
+  pk: 112
+- fields: {content_type: 21, object_id: 14, tag: 51}
+  model: taggit.taggeditem
+  pk: 113
+- fields: {content_type: 21, object_id: 16, tag: 51}
+  model: taggit.taggeditem
+  pk: 114
+- fields: {content_type: 21, object_id: 14, tag: 52}
+  model: taggit.taggeditem
+  pk: 115
+- fields: {content_type: 21, object_id: 16, tag: 52}
+  model: taggit.taggeditem
+  pk: 116
+- fields: {content_type: 21, object_id: 14, tag: 53}
+  model: taggit.taggeditem
+  pk: 117
+- fields: {content_type: 21, object_id: 16, tag: 53}
+  model: taggit.taggeditem
+  pk: 118
+- fields: {content_type: 21, object_id: 14, tag: 54}
+  model: taggit.taggeditem
+  pk: 119
+- fields: {content_type: 21, object_id: 16, tag: 54}
+  model: taggit.taggeditem
+  pk: 120
+- fields: {content_type: 21, object_id: 14, tag: 55}
+  model: taggit.taggeditem
+  pk: 121
+- fields: {content_type: 21, object_id: 16, tag: 55}
+  model: taggit.taggeditem
+  pk: 122
+- fields: {content_type: 21, object_id: 14, tag: 56}
+  model: taggit.taggeditem
+  pk: 123
+- fields: {content_type: 21, object_id: 16, tag: 56}
+  model: taggit.taggeditem
+  pk: 124
+- fields: {content_type: 21, object_id: 14, tag: 57}
+  model: taggit.taggeditem
+  pk: 125
+- fields: {content_type: 21, object_id: 16, tag: 57}
+  model: taggit.taggeditem
+  pk: 126
+- fields: {content_type: 21, object_id: 14, tag: 58}
+  model: taggit.taggeditem
+  pk: 127
+- fields: {content_type: 21, object_id: 16, tag: 58}
+  model: taggit.taggeditem
+  pk: 128
+- fields: {content_type: 21, object_id: 14, tag: 59}
+  model: taggit.taggeditem
+  pk: 129
+- fields: {content_type: 21, object_id: 16, tag: 59}
+  model: taggit.taggeditem
+  pk: 130
+- fields: {content_type: 21, object_id: 17, tag: 2}
+  model: taggit.taggeditem
+  pk: 131
+- fields: {content_type: 21, object_id: 14, tag: 60}
+  model: taggit.taggeditem
+  pk: 132
+- fields: {content_type: 21, object_id: 17, tag: 60}
+  model: taggit.taggeditem
+  pk: 133
+- fields: {content_type: 21, object_id: 14, tag: 61}
+  model: taggit.taggeditem
+  pk: 134
+- fields: {content_type: 21, object_id: 17, tag: 61}
+  model: taggit.taggeditem
+  pk: 135
+- fields: {content_type: 21, object_id: 14, tag: 62}
+  model: taggit.taggeditem
+  pk: 136
+- fields: {content_type: 21, object_id: 17, tag: 62}
+  model: taggit.taggeditem
+  pk: 137
+- fields: {content_type: 21, object_id: 14, tag: 63}
+  model: taggit.taggeditem
+  pk: 138
+- fields: {content_type: 21, object_id: 17, tag: 63}
+  model: taggit.taggeditem
+  pk: 139
+- fields: {content_type: 21, object_id: 14, tag: 64}
+  model: taggit.taggeditem
+  pk: 140
+- fields: {content_type: 21, object_id: 17, tag: 64}
+  model: taggit.taggeditem
+  pk: 141
+- fields: {content_type: 21, object_id: 14, tag: 65}
+  model: taggit.taggeditem
+  pk: 142
+- fields: {content_type: 21, object_id: 17, tag: 65}
+  model: taggit.taggeditem
+  pk: 143
+- fields: {content_type: 21, object_id: 18, tag: 2}
+  model: taggit.taggeditem
+  pk: 144
+- fields: {content_type: 21, object_id: 14, tag: 66}
+  model: taggit.taggeditem
+  pk: 145
+- fields: {content_type: 21, object_id: 18, tag: 66}
+  model: taggit.taggeditem
+  pk: 146
+- fields: {content_type: 21, object_id: 14, tag: 67}
+  model: taggit.taggeditem
+  pk: 147
+- fields: {content_type: 21, object_id: 18, tag: 67}
+  model: taggit.taggeditem
+  pk: 148
+- fields: {content_type: 21, object_id: 14, tag: 68}
+  model: taggit.taggeditem
+  pk: 149
+- fields: {content_type: 21, object_id: 18, tag: 68}
+  model: taggit.taggeditem
+  pk: 150
+- fields: {content_type: 21, object_id: 14, tag: 69}
+  model: taggit.taggeditem
+  pk: 151
+- fields: {content_type: 21, object_id: 18, tag: 69}
+  model: taggit.taggeditem
+  pk: 152
+- fields: {content_type: 21, object_id: 14, tag: 70}
+  model: taggit.taggeditem
+  pk: 153
+- fields: {content_type: 21, object_id: 18, tag: 70}
+  model: taggit.taggeditem
+  pk: 154
+- fields: {content_type: 21, object_id: 14, tag: 71}
+  model: taggit.taggeditem
+  pk: 155
+- fields: {content_type: 21, object_id: 18, tag: 71}
+  model: taggit.taggeditem
+  pk: 156
+- fields: {content_type: 21, object_id: 14, tag: 72}
+  model: taggit.taggeditem
+  pk: 157
+- fields: {content_type: 21, object_id: 18, tag: 72}
+  model: taggit.taggeditem
+  pk: 158
+- fields: {content_type: 21, object_id: 14, tag: 73}
+  model: taggit.taggeditem
+  pk: 159
+- fields: {content_type: 21, object_id: 18, tag: 73}
+  model: taggit.taggeditem
+  pk: 160
+- fields: {content_type: 21, object_id: 14, tag: 74}
+  model: taggit.taggeditem
+  pk: 161
+- fields: {content_type: 21, object_id: 18, tag: 74}
+  model: taggit.taggeditem
+  pk: 162
+- fields: {content_type: 21, object_id: 14, tag: 75}
+  model: taggit.taggeditem
+  pk: 163
+- fields: {content_type: 21, object_id: 18, tag: 75}
+  model: taggit.taggeditem
+  pk: 164
+- fields: {content_type: 21, object_id: 14, tag: 76}
+  model: taggit.taggeditem
+  pk: 165
+- fields: {content_type: 21, object_id: 18, tag: 76}
+  model: taggit.taggeditem
+  pk: 166
+- fields: {content_type: 21, object_id: 14, tag: 77}
+  model: taggit.taggeditem
+  pk: 167
+- fields: {content_type: 21, object_id: 18, tag: 77}
+  model: taggit.taggeditem
+  pk: 168
+- fields: {content_type: 21, object_id: 14, tag: 78}
+  model: taggit.taggeditem
+  pk: 169
+- fields: {content_type: 21, object_id: 18, tag: 78}
+  model: taggit.taggeditem
+  pk: 170
+- fields: {content_type: 21, object_id: 14, tag: 79}
+  model: taggit.taggeditem
+  pk: 171
+- fields: {content_type: 21, object_id: 18, tag: 79}
+  model: taggit.taggeditem
+  pk: 172
+- fields: {content_type: 21, object_id: 19, tag: 1}
+  model: taggit.taggeditem
+  pk: 173
+- fields: {content_type: 21, object_id: 20, tag: 2}
+  model: taggit.taggeditem
+  pk: 174
+- fields: {content_type: 21, object_id: 19, tag: 80}
+  model: taggit.taggeditem
+  pk: 175
+- fields: {content_type: 21, object_id: 20, tag: 80}
+  model: taggit.taggeditem
+  pk: 176
+- fields: {content_type: 21, object_id: 19, tag: 81}
+  model: taggit.taggeditem
+  pk: 177
+- fields: {content_type: 21, object_id: 20, tag: 81}
+  model: taggit.taggeditem
+  pk: 178
+- fields: {content_type: 21, object_id: 19, tag: 82}
+  model: taggit.taggeditem
+  pk: 179
+- fields: {content_type: 21, object_id: 20, tag: 82}
+  model: taggit.taggeditem
+  pk: 180
+- fields: {content_type: 21, object_id: 19, tag: 83}
+  model: taggit.taggeditem
+  pk: 181
+- fields: {content_type: 21, object_id: 20, tag: 83}
+  model: taggit.taggeditem
+  pk: 182
+- fields: {content_type: 21, object_id: 19, tag: 84}
+  model: taggit.taggeditem
+  pk: 183
+- fields: {content_type: 21, object_id: 20, tag: 84}
+  model: taggit.taggeditem
+  pk: 184
+- fields: {content_type: 21, object_id: 19, tag: 85}
+  model: taggit.taggeditem
+  pk: 185
+- fields: {content_type: 21, object_id: 20, tag: 85}
+  model: taggit.taggeditem
+  pk: 186
+- fields: {content_type: 21, object_id: 19, tag: 86}
+  model: taggit.taggeditem
+  pk: 187
+- fields: {content_type: 21, object_id: 20, tag: 86}
+  model: taggit.taggeditem
+  pk: 188
+- fields: {content_type: 21, object_id: 19, tag: 87}
+  model: taggit.taggeditem
+  pk: 189
+- fields: {content_type: 21, object_id: 20, tag: 87}
+  model: taggit.taggeditem
+  pk: 190
+- fields: {content_type: 21, object_id: 19, tag: 88}
+  model: taggit.taggeditem
+  pk: 191
+- fields: {content_type: 21, object_id: 20, tag: 88}
+  model: taggit.taggeditem
+  pk: 192
+- fields: {content_type: 21, object_id: 19, tag: 89}
+  model: taggit.taggeditem
+  pk: 193
+- fields: {content_type: 21, object_id: 20, tag: 89}
+  model: taggit.taggeditem
+  pk: 194
+- fields: {content_type: 21, object_id: 19, tag: 90}
+  model: taggit.taggeditem
+  pk: 195
+- fields: {content_type: 21, object_id: 20, tag: 90}
+  model: taggit.taggeditem
+  pk: 196
+- fields: {content_type: 21, object_id: 19, tag: 91}
+  model: taggit.taggeditem
+  pk: 197
+- fields: {content_type: 21, object_id: 20, tag: 91}
+  model: taggit.taggeditem
+  pk: 198
+- fields: {content_type: 21, object_id: 21, tag: 2}
+  model: taggit.taggeditem
+  pk: 199
+- fields: {content_type: 21, object_id: 19, tag: 92}
+  model: taggit.taggeditem
+  pk: 200
+- fields: {content_type: 21, object_id: 21, tag: 92}
+  model: taggit.taggeditem
+  pk: 201
+- fields: {content_type: 21, object_id: 19, tag: 93}
+  model: taggit.taggeditem
+  pk: 202
+- fields: {content_type: 21, object_id: 21, tag: 93}
+  model: taggit.taggeditem
+  pk: 203
+- fields: {content_type: 21, object_id: 19, tag: 94}
+  model: taggit.taggeditem
+  pk: 204
+- fields: {content_type: 21, object_id: 21, tag: 94}
+  model: taggit.taggeditem
+  pk: 205
+- fields: {content_type: 21, object_id: 19, tag: 95}
+  model: taggit.taggeditem
+  pk: 206
+- fields: {content_type: 21, object_id: 21, tag: 95}
+  model: taggit.taggeditem
+  pk: 207
+- fields: {content_type: 21, object_id: 19, tag: 96}
+  model: taggit.taggeditem
+  pk: 208
+- fields: {content_type: 21, object_id: 21, tag: 96}
+  model: taggit.taggeditem
+  pk: 209
+- fields: {content_type: 21, object_id: 19, tag: 97}
+  model: taggit.taggeditem
+  pk: 210
+- fields: {content_type: 21, object_id: 21, tag: 97}
+  model: taggit.taggeditem
+  pk: 211
+- fields: {content_type: 21, object_id: 19, tag: 98}
+  model: taggit.taggeditem
+  pk: 212
+- fields: {content_type: 21, object_id: 21, tag: 98}
+  model: taggit.taggeditem
+  pk: 213
+- fields: {content_type: 21, object_id: 19, tag: 99}
+  model: taggit.taggeditem
+  pk: 214
+- fields: {content_type: 21, object_id: 21, tag: 99}
+  model: taggit.taggeditem
+  pk: 215
+- fields: {content_type: 21, object_id: 19, tag: 100}
+  model: taggit.taggeditem
+  pk: 216
+- fields: {content_type: 21, object_id: 21, tag: 100}
+  model: taggit.taggeditem
+  pk: 217
+- fields: {content_type: 21, object_id: 19, tag: 101}
+  model: taggit.taggeditem
+  pk: 218
+- fields: {content_type: 21, object_id: 21, tag: 101}
+  model: taggit.taggeditem
+  pk: 219
+- fields: {content_type: 21, object_id: 22, tag: 2}
+  model: taggit.taggeditem
+  pk: 220
+- fields: {content_type: 21, object_id: 19, tag: 102}
+  model: taggit.taggeditem
+  pk: 221
+- fields: {content_type: 21, object_id: 22, tag: 102}
+  model: taggit.taggeditem
+  pk: 222
+- fields: {content_type: 21, object_id: 19, tag: 103}
+  model: taggit.taggeditem
+  pk: 223
+- fields: {content_type: 21, object_id: 22, tag: 103}
+  model: taggit.taggeditem
+  pk: 224
+- fields: {content_type: 21, object_id: 19, tag: 104}
+  model: taggit.taggeditem
+  pk: 225
+- fields: {content_type: 21, object_id: 22, tag: 104}
+  model: taggit.taggeditem
+  pk: 226
+- fields: {content_type: 21, object_id: 19, tag: 105}
+  model: taggit.taggeditem
+  pk: 227
+- fields: {content_type: 21, object_id: 22, tag: 105}
+  model: taggit.taggeditem
+  pk: 228
+- fields: {content_type: 21, object_id: 23, tag: 1}
+  model: taggit.taggeditem
+  pk: 229
+- fields: {content_type: 21, object_id: 24, tag: 2}
+  model: taggit.taggeditem
+  pk: 230
+- fields: {content_type: 21, object_id: 23, tag: 106}
+  model: taggit.taggeditem
+  pk: 231
+- fields: {content_type: 21, object_id: 24, tag: 106}
+  model: taggit.taggeditem
+  pk: 232
+- fields: {content_type: 21, object_id: 23, tag: 107}
+  model: taggit.taggeditem
+  pk: 233
+- fields: {content_type: 21, object_id: 24, tag: 107}
+  model: taggit.taggeditem
+  pk: 234
+- fields: {content_type: 21, object_id: 23, tag: 108}
+  model: taggit.taggeditem
+  pk: 235
+- fields: {content_type: 21, object_id: 24, tag: 108}
+  model: taggit.taggeditem
+  pk: 236
+- fields: {content_type: 21, object_id: 25, tag: 2}
+  model: taggit.taggeditem
+  pk: 237
+- fields: {content_type: 21, object_id: 23, tag: 109}
+  model: taggit.taggeditem
+  pk: 238
+- fields: {content_type: 21, object_id: 25, tag: 109}
+  model: taggit.taggeditem
+  pk: 239
+- fields: {content_type: 21, object_id: 23, tag: 110}
+  model: taggit.taggeditem
+  pk: 240
+- fields: {content_type: 21, object_id: 25, tag: 110}
+  model: taggit.taggeditem
+  pk: 241
+- fields: {content_type: 21, object_id: 26, tag: 2}
+  model: taggit.taggeditem
+  pk: 242
+- fields: {content_type: 21, object_id: 23, tag: 111}
+  model: taggit.taggeditem
+  pk: 243
+- fields: {content_type: 21, object_id: 26, tag: 111}
+  model: taggit.taggeditem
+  pk: 244
+- fields: {content_type: 21, object_id: 23, tag: 112}
+  model: taggit.taggeditem
+  pk: 245
+- fields: {content_type: 21, object_id: 26, tag: 112}
+  model: taggit.taggeditem
+  pk: 246
+- fields: {content_type: 21, object_id: 23, tag: 113}
+  model: taggit.taggeditem
+  pk: 247
+- fields: {content_type: 21, object_id: 26, tag: 113}
+  model: taggit.taggeditem
+  pk: 248
+- fields: {content_type: 21, object_id: 23, tag: 114}
+  model: taggit.taggeditem
+  pk: 249
+- fields: {content_type: 21, object_id: 26, tag: 114}
+  model: taggit.taggeditem
+  pk: 250
+- fields: {content_type: 21, object_id: 23, tag: 115}
+  model: taggit.taggeditem
+  pk: 251
+- fields: {content_type: 21, object_id: 26, tag: 115}
+  model: taggit.taggeditem
+  pk: 252
+- fields: {content_type: 21, object_id: 23, tag: 116}
+  model: taggit.taggeditem
+  pk: 253
+- fields: {content_type: 21, object_id: 26, tag: 116}
+  model: taggit.taggeditem
+  pk: 254
+- fields: {content_type: 21, object_id: 23, tag: 117}
+  model: taggit.taggeditem
+  pk: 255
+- fields: {content_type: 21, object_id: 26, tag: 117}
+  model: taggit.taggeditem
+  pk: 256
+- fields: {content_type: 21, object_id: 27, tag: 1}
+  model: taggit.taggeditem
+  pk: 257
+- fields: {content_type: 21, object_id: 28, tag: 2}
+  model: taggit.taggeditem
+  pk: 258
+- fields: {content_type: 21, object_id: 27, tag: 118}
+  model: taggit.taggeditem
+  pk: 259
+- fields: {content_type: 21, object_id: 28, tag: 118}
+  model: taggit.taggeditem
+  pk: 260
+- fields: {content_type: 21, object_id: 27, tag: 119}
+  model: taggit.taggeditem
+  pk: 261
+- fields: {content_type: 21, object_id: 28, tag: 119}
+  model: taggit.taggeditem
+  pk: 262
+- fields: {content_type: 21, object_id: 27, tag: 120}
+  model: taggit.taggeditem
+  pk: 263
+- fields: {content_type: 21, object_id: 28, tag: 120}
+  model: taggit.taggeditem
+  pk: 264
+- fields: {content_type: 21, object_id: 27, tag: 121}
+  model: taggit.taggeditem
+  pk: 265
+- fields: {content_type: 21, object_id: 28, tag: 121}
+  model: taggit.taggeditem
+  pk: 266
+- fields: {content_type: 21, object_id: 27, tag: 122}
+  model: taggit.taggeditem
+  pk: 267
+- fields: {content_type: 21, object_id: 28, tag: 122}
+  model: taggit.taggeditem
+  pk: 268
+- fields: {content_type: 21, object_id: 29, tag: 2}
+  model: taggit.taggeditem
+  pk: 269
+- fields: {content_type: 21, object_id: 27, tag: 123}
+  model: taggit.taggeditem
+  pk: 270
+- fields: {content_type: 21, object_id: 29, tag: 123}
+  model: taggit.taggeditem
+  pk: 271
+- fields: {content_type: 21, object_id: 27, tag: 124}
+  model: taggit.taggeditem
+  pk: 272
+- fields: {content_type: 21, object_id: 29, tag: 124}
+  model: taggit.taggeditem
+  pk: 273
+- fields: {content_type: 21, object_id: 27, tag: 125}
+  model: taggit.taggeditem
+  pk: 274
+- fields: {content_type: 21, object_id: 29, tag: 125}
+  model: taggit.taggeditem
+  pk: 275
+- fields: {content_type: 21, object_id: 30, tag: 2}
+  model: taggit.taggeditem
+  pk: 276
+- fields: {content_type: 21, object_id: 27, tag: 126}
+  model: taggit.taggeditem
+  pk: 277
+- fields: {content_type: 21, object_id: 30, tag: 126}
+  model: taggit.taggeditem
+  pk: 278
+- fields: {content_type: 21, object_id: 27, tag: 127}
+  model: taggit.taggeditem
+  pk: 279
+- fields: {content_type: 21, object_id: 30, tag: 127}
+  model: taggit.taggeditem
+  pk: 280
+- fields: {content_type: 21, object_id: 27, tag: 128}
+  model: taggit.taggeditem
+  pk: 281
+- fields: {content_type: 21, object_id: 30, tag: 128}
+  model: taggit.taggeditem
+  pk: 282
+- fields: {content_type: 21, object_id: 31, tag: 2}
+  model: taggit.taggeditem
+  pk: 283
+- fields: {content_type: 21, object_id: 27, tag: 129}
+  model: taggit.taggeditem
+  pk: 284
+- fields: {content_type: 21, object_id: 31, tag: 129}
+  model: taggit.taggeditem
+  pk: 285
+- fields: {content_type: 21, object_id: 27, tag: 130}
+  model: taggit.taggeditem
+  pk: 286
+- fields: {content_type: 21, object_id: 31, tag: 130}
+  model: taggit.taggeditem
+  pk: 287
+- fields: {content_type: 21, object_id: 32, tag: 2}
+  model: taggit.taggeditem
+  pk: 288
+- fields: {content_type: 21, object_id: 27, tag: 131}
+  model: taggit.taggeditem
+  pk: 289
+- fields: {content_type: 21, object_id: 32, tag: 131}
+  model: taggit.taggeditem
+  pk: 290
+- fields: {content_type: 21, object_id: 27, tag: 132}
+  model: taggit.taggeditem
+  pk: 291
+- fields: {content_type: 21, object_id: 32, tag: 132}
+  model: taggit.taggeditem
+  pk: 292
+- fields: {content_type: 21, object_id: 27, tag: 133}
+  model: taggit.taggeditem
+  pk: 293
+- fields: {content_type: 21, object_id: 32, tag: 133}
+  model: taggit.taggeditem
+  pk: 294
+- fields: {content_type: 21, object_id: 33, tag: 2}
+  model: taggit.taggeditem
+  pk: 295
+- fields: {content_type: 21, object_id: 27, tag: 134}
+  model: taggit.taggeditem
+  pk: 296
+- fields: {content_type: 21, object_id: 33, tag: 134}
+  model: taggit.taggeditem
+  pk: 297
+- fields: {content_type: 21, object_id: 34, tag: 2}
+  model: taggit.taggeditem
+  pk: 298
+- fields: {content_type: 21, object_id: 27, tag: 135}
+  model: taggit.taggeditem
+  pk: 299
+- fields: {content_type: 21, object_id: 34, tag: 135}
+  model: taggit.taggeditem
+  pk: 300
+- fields: {content_type: 21, object_id: 27, tag: 136}
+  model: taggit.taggeditem
+  pk: 301
+- fields: {content_type: 21, object_id: 34, tag: 136}
+  model: taggit.taggeditem
+  pk: 302
+- fields: {content_type: 21, object_id: 27, tag: 137}
+  model: taggit.taggeditem
+  pk: 303
+- fields: {content_type: 21, object_id: 34, tag: 137}
+  model: taggit.taggeditem
+  pk: 304
+- fields: {content_type: 21, object_id: 27, tag: 138}
+  model: taggit.taggeditem
+  pk: 305
+- fields: {content_type: 21, object_id: 34, tag: 138}
+  model: taggit.taggeditem
+  pk: 306
+- fields: {content_type: 21, object_id: 35, tag: 2}
+  model: taggit.taggeditem
+  pk: 307
+- fields: {content_type: 21, object_id: 27, tag: 139}
+  model: taggit.taggeditem
+  pk: 308
+- fields: {content_type: 21, object_id: 35, tag: 139}
+  model: taggit.taggeditem
+  pk: 309
+- fields: {content_type: 21, object_id: 27, tag: 140}
+  model: taggit.taggeditem
+  pk: 310
+- fields: {content_type: 21, object_id: 35, tag: 140}
+  model: taggit.taggeditem
+  pk: 311
+- fields: {content_type: 21, object_id: 27, tag: 141}
+  model: taggit.taggeditem
+  pk: 312
+- fields: {content_type: 21, object_id: 35, tag: 141}
+  model: taggit.taggeditem
+  pk: 313
+- fields: {content_type: 21, object_id: 27, tag: 142}
+  model: taggit.taggeditem
+  pk: 314
+- fields: {content_type: 21, object_id: 35, tag: 142}
+  model: taggit.taggeditem
+  pk: 315
+- fields: {content_type: 21, object_id: 27, tag: 143}
+  model: taggit.taggeditem
+  pk: 316
+- fields: {content_type: 21, object_id: 35, tag: 143}
+  model: taggit.taggeditem
+  pk: 317
+- fields: {content_type: 21, object_id: 27, tag: 144}
+  model: taggit.taggeditem
+  pk: 318
+- fields: {content_type: 21, object_id: 35, tag: 144}
+  model: taggit.taggeditem
+  pk: 319
+- fields: {content_type: 21, object_id: 27, tag: 145}
+  model: taggit.taggeditem
+  pk: 320
+- fields: {content_type: 21, object_id: 35, tag: 145}
+  model: taggit.taggeditem
+  pk: 321
+- fields: {content_type: 21, object_id: 27, tag: 146}
+  model: taggit.taggeditem
+  pk: 322
+- fields: {content_type: 21, object_id: 35, tag: 146}
+  model: taggit.taggeditem
+  pk: 323
+- fields: {content_type: 21, object_id: 27, tag: 147}
+  model: taggit.taggeditem
+  pk: 324
+- fields: {content_type: 21, object_id: 35, tag: 147}
+  model: taggit.taggeditem
+  pk: 325
+- fields: {content_type: 21, object_id: 27, tag: 148}
+  model: taggit.taggeditem
+  pk: 326
+- fields: {content_type: 21, object_id: 35, tag: 148}
+  model: taggit.taggeditem
+  pk: 327
+- fields: {content_type: 21, object_id: 36, tag: 1}
+  model: taggit.taggeditem
+  pk: 328
+- fields: {content_type: 21, object_id: 37, tag: 2}
+  model: taggit.taggeditem
+  pk: 329
+- fields: {content_type: 21, object_id: 36, tag: 149}
+  model: taggit.taggeditem
+  pk: 330
+- fields: {content_type: 21, object_id: 37, tag: 149}
+  model: taggit.taggeditem
+  pk: 331
+- fields: {content_type: 21, object_id: 36, tag: 150}
+  model: taggit.taggeditem
+  pk: 332
+- fields: {content_type: 21, object_id: 37, tag: 150}
+  model: taggit.taggeditem
+  pk: 333
+- fields: {content_type: 21, object_id: 38, tag: 2}
+  model: taggit.taggeditem
+  pk: 334
+- fields: {content_type: 21, object_id: 36, tag: 151}
+  model: taggit.taggeditem
+  pk: 335
+- fields: {content_type: 21, object_id: 38, tag: 151}
+  model: taggit.taggeditem
+  pk: 336
+- fields: {content_type: 21, object_id: 36, tag: 152}
+  model: taggit.taggeditem
+  pk: 337
+- fields: {content_type: 21, object_id: 38, tag: 152}
+  model: taggit.taggeditem
+  pk: 338
+- fields: {content_type: 21, object_id: 36, tag: 153}
+  model: taggit.taggeditem
+  pk: 339
+- fields: {content_type: 21, object_id: 38, tag: 153}
+  model: taggit.taggeditem
+  pk: 340
+- fields: {content_type: 21, object_id: 39, tag: 2}
+  model: taggit.taggeditem
+  pk: 341
+- fields: {content_type: 21, object_id: 36, tag: 154}
+  model: taggit.taggeditem
+  pk: 342
+- fields: {content_type: 21, object_id: 39, tag: 154}
+  model: taggit.taggeditem
+  pk: 343
+- fields: {content_type: 21, object_id: 36, tag: 155}
+  model: taggit.taggeditem
+  pk: 344
+- fields: {content_type: 21, object_id: 39, tag: 155}
+  model: taggit.taggeditem
+  pk: 345
+- fields: {content_type: 21, object_id: 40, tag: 2}
+  model: taggit.taggeditem
+  pk: 346
+- fields: {content_type: 21, object_id: 36, tag: 156}
+  model: taggit.taggeditem
+  pk: 347
+- fields: {content_type: 21, object_id: 40, tag: 156}
+  model: taggit.taggeditem
+  pk: 348
+- fields: {content_type: 21, object_id: 36, tag: 157}
+  model: taggit.taggeditem
+  pk: 349
+- fields: {content_type: 21, object_id: 40, tag: 157}
+  model: taggit.taggeditem
+  pk: 350
+- fields: {content_type: 21, object_id: 36, tag: 158}
+  model: taggit.taggeditem
+  pk: 351
+- fields: {content_type: 21, object_id: 40, tag: 158}
+  model: taggit.taggeditem
+  pk: 352
+- fields: {content_type: 21, object_id: 41, tag: 2}
+  model: taggit.taggeditem
+  pk: 353
+- fields: {content_type: 21, object_id: 36, tag: 159}
+  model: taggit.taggeditem
+  pk: 354
+- fields: {content_type: 21, object_id: 41, tag: 159}
+  model: taggit.taggeditem
+  pk: 355
+- fields: {content_type: 21, object_id: 42, tag: 2}
+  model: taggit.taggeditem
+  pk: 356
+- fields: {content_type: 21, object_id: 36, tag: 160}
+  model: taggit.taggeditem
+  pk: 357
+- fields: {content_type: 21, object_id: 42, tag: 160}
+  model: taggit.taggeditem
+  pk: 358
+- fields: {content_type: 21, object_id: 36, tag: 161}
+  model: taggit.taggeditem
+  pk: 359
+- fields: {content_type: 21, object_id: 42, tag: 161}
+  model: taggit.taggeditem
+  pk: 360
+- fields: {content_type: 21, object_id: 36, tag: 162}
+  model: taggit.taggeditem
+  pk: 361
+- fields: {content_type: 21, object_id: 42, tag: 162}
+  model: taggit.taggeditem
+  pk: 362
+- fields: {content_type: 21, object_id: 43, tag: 2}
+  model: taggit.taggeditem
+  pk: 363
+- fields: {content_type: 21, object_id: 36, tag: 163}
+  model: taggit.taggeditem
+  pk: 364
+- fields: {content_type: 21, object_id: 43, tag: 163}
+  model: taggit.taggeditem
+  pk: 365
+- fields: {content_type: 21, object_id: 36, tag: 164}
+  model: taggit.taggeditem
+  pk: 366
+- fields: {content_type: 21, object_id: 43, tag: 164}
+  model: taggit.taggeditem
+  pk: 367
+- fields: {content_type: 21, object_id: 36, tag: 165}
+  model: taggit.taggeditem
+  pk: 368
+- fields: {content_type: 21, object_id: 43, tag: 165}
+  model: taggit.taggeditem
+  pk: 369
+- fields: {content_type: 21, object_id: 44, tag: 2}
+  model: taggit.taggeditem
+  pk: 370
+- fields: {content_type: 21, object_id: 36, tag: 166}
+  model: taggit.taggeditem
+  pk: 371
+- fields: {content_type: 21, object_id: 44, tag: 166}
+  model: taggit.taggeditem
+  pk: 372
+- fields: {content_type: 21, object_id: 36, tag: 167}
+  model: taggit.taggeditem
+  pk: 373
+- fields: {content_type: 21, object_id: 44, tag: 167}
+  model: taggit.taggeditem
+  pk: 374
+- fields: {content_type: 21, object_id: 36, tag: 168}
+  model: taggit.taggeditem
+  pk: 375
+- fields: {content_type: 21, object_id: 44, tag: 168}
+  model: taggit.taggeditem
+  pk: 376
+- fields: {content_type: 21, object_id: 36, tag: 169}
+  model: taggit.taggeditem
+  pk: 377
+- fields: {content_type: 21, object_id: 44, tag: 169}
+  model: taggit.taggeditem
+  pk: 378
+- fields: {content_type: 21, object_id: 45, tag: 1}
+  model: taggit.taggeditem
+  pk: 379
+- fields: {content_type: 21, object_id: 46, tag: 2}
+  model: taggit.taggeditem
+  pk: 380
+- fields: {content_type: 21, object_id: 45, tag: 170}
+  model: taggit.taggeditem
+  pk: 381
+- fields: {content_type: 21, object_id: 46, tag: 170}
+  model: taggit.taggeditem
+  pk: 382
+- fields: {content_type: 21, object_id: 45, tag: 171}
+  model: taggit.taggeditem
+  pk: 383
+- fields: {content_type: 21, object_id: 46, tag: 171}
+  model: taggit.taggeditem
+  pk: 384
+- fields: {content_type: 21, object_id: 45, tag: 172}
+  model: taggit.taggeditem
+  pk: 385
+- fields: {content_type: 21, object_id: 46, tag: 172}
+  model: taggit.taggeditem
+  pk: 386
+- fields: {content_type: 21, object_id: 45, tag: 173}
+  model: taggit.taggeditem
+  pk: 387
+- fields: {content_type: 21, object_id: 46, tag: 173}
+  model: taggit.taggeditem
+  pk: 388
+- fields: {content_type: 21, object_id: 45, tag: 174}
+  model: taggit.taggeditem
+  pk: 389
+- fields: {content_type: 21, object_id: 46, tag: 174}
+  model: taggit.taggeditem
+  pk: 390
+- fields: {content_type: 21, object_id: 45, tag: 175}
+  model: taggit.taggeditem
+  pk: 391
+- fields: {content_type: 21, object_id: 46, tag: 175}
+  model: taggit.taggeditem
+  pk: 392
+- fields: {content_type: 21, object_id: 45, tag: 176}
+  model: taggit.taggeditem
+  pk: 393
+- fields: {content_type: 21, object_id: 46, tag: 176}
+  model: taggit.taggeditem
+  pk: 394
+- fields: {content_type: 21, object_id: 45, tag: 177}
+  model: taggit.taggeditem
+  pk: 395
+- fields: {content_type: 21, object_id: 46, tag: 177}
+  model: taggit.taggeditem
+  pk: 396
+- fields: {content_type: 21, object_id: 45, tag: 178}
+  model: taggit.taggeditem
+  pk: 397
+- fields: {content_type: 21, object_id: 46, tag: 178}
+  model: taggit.taggeditem
+  pk: 398
+- fields: {content_type: 21, object_id: 47, tag: 2}
+  model: taggit.taggeditem
+  pk: 399
+- fields: {content_type: 21, object_id: 45, tag: 179}
+  model: taggit.taggeditem
+  pk: 400
+- fields: {content_type: 21, object_id: 47, tag: 179}
+  model: taggit.taggeditem
+  pk: 401
+- fields: {content_type: 21, object_id: 48, tag: 2}
+  model: taggit.taggeditem
+  pk: 402
+- fields: {content_type: 21, object_id: 45, tag: 180}
+  model: taggit.taggeditem
+  pk: 403
+- fields: {content_type: 21, object_id: 48, tag: 180}
+  model: taggit.taggeditem
+  pk: 404
+- fields: {content_type: 21, object_id: 45, tag: 181}
+  model: taggit.taggeditem
+  pk: 405
+- fields: {content_type: 21, object_id: 48, tag: 181}
+  model: taggit.taggeditem
+  pk: 406
+- fields: {content_type: 21, object_id: 45, tag: 182}
+  model: taggit.taggeditem
+  pk: 407
+- fields: {content_type: 21, object_id: 48, tag: 182}
+  model: taggit.taggeditem
+  pk: 408
+- fields: {content_type: 21, object_id: 45, tag: 183}
+  model: taggit.taggeditem
+  pk: 409
+- fields: {content_type: 21, object_id: 48, tag: 183}
+  model: taggit.taggeditem
+  pk: 410
+- fields: {content_type: 21, object_id: 45, tag: 184}
+  model: taggit.taggeditem
+  pk: 411
+- fields: {content_type: 21, object_id: 48, tag: 184}
+  model: taggit.taggeditem
+  pk: 412
+- fields: {content_type: 21, object_id: 45, tag: 185}
+  model: taggit.taggeditem
+  pk: 413
+- fields: {content_type: 21, object_id: 48, tag: 185}
+  model: taggit.taggeditem
+  pk: 414
+- fields: {content_type: 21, object_id: 45, tag: 186}
+  model: taggit.taggeditem
+  pk: 415
+- fields: {content_type: 21, object_id: 48, tag: 186}
+  model: taggit.taggeditem
+  pk: 416
+- fields: {content_type: 21, object_id: 45, tag: 187}
+  model: taggit.taggeditem
+  pk: 417
+- fields: {content_type: 21, object_id: 48, tag: 187}
+  model: taggit.taggeditem
+  pk: 418
+- fields: {content_type: 21, object_id: 45, tag: 188}
+  model: taggit.taggeditem
+  pk: 419
+- fields: {content_type: 21, object_id: 48, tag: 188}
+  model: taggit.taggeditem
+  pk: 420
+- fields: {content_type: 21, object_id: 49, tag: 1}
+  model: taggit.taggeditem
+  pk: 421
+- fields: {content_type: 21, object_id: 50, tag: 2}
+  model: taggit.taggeditem
+  pk: 422
+- fields: {content_type: 21, object_id: 49, tag: 189}
+  model: taggit.taggeditem
+  pk: 423
+- fields: {content_type: 21, object_id: 50, tag: 189}
+  model: taggit.taggeditem
+  pk: 424
+- fields: {content_type: 21, object_id: 49, tag: 190}
+  model: taggit.taggeditem
+  pk: 425
+- fields: {content_type: 21, object_id: 50, tag: 190}
+  model: taggit.taggeditem
+  pk: 426
+- fields: {content_type: 21, object_id: 49, tag: 191}
+  model: taggit.taggeditem
+  pk: 427
+- fields: {content_type: 21, object_id: 50, tag: 191}
+  model: taggit.taggeditem
+  pk: 428
+- fields: {content_type: 21, object_id: 49, tag: 192}
+  model: taggit.taggeditem
+  pk: 429
+- fields: {content_type: 21, object_id: 50, tag: 192}
+  model: taggit.taggeditem
+  pk: 430
+- fields: {content_type: 21, object_id: 49, tag: 193}
+  model: taggit.taggeditem
+  pk: 431
+- fields: {content_type: 21, object_id: 50, tag: 193}
+  model: taggit.taggeditem
+  pk: 432
+- fields: {content_type: 21, object_id: 51, tag: 2}
+  model: taggit.taggeditem
+  pk: 433
+- fields: {content_type: 21, object_id: 49, tag: 194}
+  model: taggit.taggeditem
+  pk: 434
+- fields: {content_type: 21, object_id: 51, tag: 194}
+  model: taggit.taggeditem
+  pk: 435
+- fields: {content_type: 21, object_id: 49, tag: 195}
+  model: taggit.taggeditem
+  pk: 436
+- fields: {content_type: 21, object_id: 51, tag: 195}
+  model: taggit.taggeditem
+  pk: 437
+- fields: {content_type: 21, object_id: 49, tag: 196}
+  model: taggit.taggeditem
+  pk: 438
+- fields: {content_type: 21, object_id: 51, tag: 196}
+  model: taggit.taggeditem
+  pk: 439
+- fields: {content_type: 21, object_id: 49, tag: 197}
+  model: taggit.taggeditem
+  pk: 440
+- fields: {content_type: 21, object_id: 51, tag: 197}
+  model: taggit.taggeditem
+  pk: 441
+- fields: {content_type: 21, object_id: 49, tag: 198}
+  model: taggit.taggeditem
+  pk: 442
+- fields: {content_type: 21, object_id: 51, tag: 198}
+  model: taggit.taggeditem
+  pk: 443
+- fields: {content_type: 21, object_id: 49, tag: 199}
+  model: taggit.taggeditem
+  pk: 444
+- fields: {content_type: 21, object_id: 51, tag: 199}
+  model: taggit.taggeditem
+  pk: 445
+- fields: {content_type: 21, object_id: 52, tag: 1}
+  model: taggit.taggeditem
+  pk: 446
+- fields: {content_type: 21, object_id: 53, tag: 2}
+  model: taggit.taggeditem
+  pk: 447
+- fields: {content_type: 21, object_id: 52, tag: 200}
+  model: taggit.taggeditem
+  pk: 448
+- fields: {content_type: 21, object_id: 53, tag: 200}
+  model: taggit.taggeditem
+  pk: 449
+- fields: {content_type: 21, object_id: 52, tag: 201}
+  model: taggit.taggeditem
+  pk: 450
+- fields: {content_type: 21, object_id: 53, tag: 201}
+  model: taggit.taggeditem
+  pk: 451
+- fields: {content_type: 21, object_id: 52, tag: 202}
+  model: taggit.taggeditem
+  pk: 452
+- fields: {content_type: 21, object_id: 53, tag: 202}
+  model: taggit.taggeditem
+  pk: 453
+- fields: {content_type: 21, object_id: 52, tag: 203}
+  model: taggit.taggeditem
+  pk: 454
+- fields: {content_type: 21, object_id: 53, tag: 203}
+  model: taggit.taggeditem
+  pk: 455
+- fields: {content_type: 21, object_id: 52, tag: 204}
+  model: taggit.taggeditem
+  pk: 456
+- fields: {content_type: 21, object_id: 53, tag: 204}
+  model: taggit.taggeditem
+  pk: 457
+- fields: {content_type: 21, object_id: 52, tag: 205}
+  model: taggit.taggeditem
+  pk: 458
+- fields: {content_type: 21, object_id: 53, tag: 205}
+  model: taggit.taggeditem
+  pk: 459
+- fields: {content_type: 21, object_id: 52, tag: 206}
+  model: taggit.taggeditem
+  pk: 460
+- fields: {content_type: 21, object_id: 53, tag: 206}
+  model: taggit.taggeditem
+  pk: 461
+- fields: {content_type: 21, object_id: 52, tag: 207}
+  model: taggit.taggeditem
+  pk: 462
+- fields: {content_type: 21, object_id: 53, tag: 207}
+  model: taggit.taggeditem
+  pk: 463
+- fields: {content_type: 21, object_id: 52, tag: 208}
+  model: taggit.taggeditem
+  pk: 464
+- fields: {content_type: 21, object_id: 53, tag: 208}
+  model: taggit.taggeditem
+  pk: 465
+- fields: {content_type: 21, object_id: 52, tag: 209}
+  model: taggit.taggeditem
+  pk: 466
+- fields: {content_type: 21, object_id: 53, tag: 209}
+  model: taggit.taggeditem
+  pk: 467
+- fields: {content_type: 21, object_id: 52, tag: 210}
+  model: taggit.taggeditem
+  pk: 468
+- fields: {content_type: 21, object_id: 53, tag: 210}
+  model: taggit.taggeditem
+  pk: 469
+- fields: {content_type: 21, object_id: 52, tag: 211}
+  model: taggit.taggeditem
+  pk: 470
+- fields: {content_type: 21, object_id: 53, tag: 211}
+  model: taggit.taggeditem
+  pk: 471
+- fields: {content_type: 21, object_id: 52, tag: 212}
+  model: taggit.taggeditem
+  pk: 472
+- fields: {content_type: 21, object_id: 53, tag: 212}
+  model: taggit.taggeditem
+  pk: 473
+- fields: {content_type: 21, object_id: 52, tag: 213}
+  model: taggit.taggeditem
+  pk: 474
+- fields: {content_type: 21, object_id: 53, tag: 213}
+  model: taggit.taggeditem
+  pk: 475
+- fields: {content_type: 21, object_id: 52, tag: 214}
+  model: taggit.taggeditem
+  pk: 476
+- fields: {content_type: 21, object_id: 53, tag: 214}
+  model: taggit.taggeditem
+  pk: 477
+- fields: {content_type: 21, object_id: 54, tag: 2}
+  model: taggit.taggeditem
+  pk: 478
+- fields: {content_type: 21, object_id: 52, tag: 215}
+  model: taggit.taggeditem
+  pk: 479
+- fields: {content_type: 21, object_id: 54, tag: 215}
+  model: taggit.taggeditem
+  pk: 480
+- fields: {content_type: 21, object_id: 52, tag: 216}
+  model: taggit.taggeditem
+  pk: 481
+- fields: {content_type: 21, object_id: 54, tag: 216}
+  model: taggit.taggeditem
+  pk: 482
+- fields: {content_type: 21, object_id: 55, tag: 2}
+  model: taggit.taggeditem
+  pk: 483
+- fields: {content_type: 21, object_id: 52, tag: 217}
+  model: taggit.taggeditem
+  pk: 484
+- fields: {content_type: 21, object_id: 55, tag: 217}
+  model: taggit.taggeditem
+  pk: 485
+- fields: {content_type: 21, object_id: 52, tag: 218}
+  model: taggit.taggeditem
+  pk: 486
+- fields: {content_type: 21, object_id: 55, tag: 218}
+  model: taggit.taggeditem
+  pk: 487
+- fields: {content_type: 21, object_id: 52, tag: 219}
+  model: taggit.taggeditem
+  pk: 488
+- fields: {content_type: 21, object_id: 55, tag: 219}
+  model: taggit.taggeditem
+  pk: 489
+- fields: {content_type: 21, object_id: 56, tag: 2}
+  model: taggit.taggeditem
+  pk: 490
+- fields: {content_type: 21, object_id: 52, tag: 220}
+  model: taggit.taggeditem
+  pk: 491
+- fields: {content_type: 21, object_id: 56, tag: 220}
+  model: taggit.taggeditem
+  pk: 492
+- fields: {content_type: 21, object_id: 52, tag: 221}
+  model: taggit.taggeditem
+  pk: 493
+- fields: {content_type: 21, object_id: 56, tag: 221}
+  model: taggit.taggeditem
+  pk: 494
+- fields: {content_type: 21, object_id: 52, tag: 222}
+  model: taggit.taggeditem
+  pk: 495
+- fields: {content_type: 21, object_id: 56, tag: 222}
+  model: taggit.taggeditem
+  pk: 496
+- fields: {content_type: 21, object_id: 52, tag: 223}
+  model: taggit.taggeditem
+  pk: 497
+- fields: {content_type: 21, object_id: 56, tag: 223}
+  model: taggit.taggeditem
+  pk: 498
+- fields: {content_type: 21, object_id: 52, tag: 224}
+  model: taggit.taggeditem
+  pk: 499
+- fields: {content_type: 21, object_id: 56, tag: 224}
+  model: taggit.taggeditem
+  pk: 500
+- fields: {content_type: 21, object_id: 52, tag: 225}
+  model: taggit.taggeditem
+  pk: 501
+- fields: {content_type: 21, object_id: 56, tag: 225}
+  model: taggit.taggeditem
+  pk: 502
+- fields: {content_type: 21, object_id: 57, tag: 1}
+  model: taggit.taggeditem
+  pk: 503
+- fields: {content_type: 21, object_id: 58, tag: 2}
+  model: taggit.taggeditem
+  pk: 504
+- fields: {content_type: 21, object_id: 57, tag: 226}
+  model: taggit.taggeditem
+  pk: 505
+- fields: {content_type: 21, object_id: 58, tag: 226}
+  model: taggit.taggeditem
+  pk: 506
+- fields: {content_type: 21, object_id: 57, tag: 227}
+  model: taggit.taggeditem
+  pk: 507
+- fields: {content_type: 21, object_id: 58, tag: 227}
+  model: taggit.taggeditem
+  pk: 508
+- fields: {content_type: 21, object_id: 57, tag: 228}
+  model: taggit.taggeditem
+  pk: 509
+- fields: {content_type: 21, object_id: 58, tag: 228}
+  model: taggit.taggeditem
+  pk: 510
+- fields: {content_type: 21, object_id: 57, tag: 229}
+  model: taggit.taggeditem
+  pk: 511
+- fields: {content_type: 21, object_id: 58, tag: 229}
+  model: taggit.taggeditem
+  pk: 512
+- fields: {content_type: 21, object_id: 57, tag: 230}
+  model: taggit.taggeditem
+  pk: 513
+- fields: {content_type: 21, object_id: 58, tag: 230}
+  model: taggit.taggeditem
+  pk: 514
+- fields: {content_type: 21, object_id: 57, tag: 231}
+  model: taggit.taggeditem
+  pk: 515
+- fields: {content_type: 21, object_id: 58, tag: 231}
+  model: taggit.taggeditem
+  pk: 516
+- fields: {content_type: 21, object_id: 57, tag: 232}
+  model: taggit.taggeditem
+  pk: 517
+- fields: {content_type: 21, object_id: 58, tag: 232}
+  model: taggit.taggeditem
+  pk: 518
+- fields: {content_type: 21, object_id: 57, tag: 233}
+  model: taggit.taggeditem
+  pk: 519
+- fields: {content_type: 21, object_id: 58, tag: 233}
+  model: taggit.taggeditem
+  pk: 520
+- fields: {content_type: 21, object_id: 59, tag: 2}
+  model: taggit.taggeditem
+  pk: 521
+- fields: {content_type: 21, object_id: 57, tag: 234}
+  model: taggit.taggeditem
+  pk: 522
+- fields: {content_type: 21, object_id: 59, tag: 234}
+  model: taggit.taggeditem
+  pk: 523
+- fields: {content_type: 21, object_id: 57, tag: 235}
+  model: taggit.taggeditem
+  pk: 524
+- fields: {content_type: 21, object_id: 59, tag: 235}
+  model: taggit.taggeditem
+  pk: 525
+- fields: {content_type: 21, object_id: 57, tag: 236}
+  model: taggit.taggeditem
+  pk: 526
+- fields: {content_type: 21, object_id: 59, tag: 236}
+  model: taggit.taggeditem
+  pk: 527
+- fields: {content_type: 21, object_id: 57, tag: 237}
+  model: taggit.taggeditem
+  pk: 528
+- fields: {content_type: 21, object_id: 59, tag: 237}
+  model: taggit.taggeditem
+  pk: 529
+- fields: {content_type: 21, object_id: 57, tag: 238}
+  model: taggit.taggeditem
+  pk: 530
+- fields: {content_type: 21, object_id: 59, tag: 238}
+  model: taggit.taggeditem
+  pk: 531
+- fields: {content_type: 21, object_id: 57, tag: 239}
+  model: taggit.taggeditem
+  pk: 532
+- fields: {content_type: 21, object_id: 59, tag: 239}
+  model: taggit.taggeditem
+  pk: 533
+- fields: {content_type: 21, object_id: 57, tag: 240}
+  model: taggit.taggeditem
+  pk: 534
+- fields: {content_type: 21, object_id: 59, tag: 240}
+  model: taggit.taggeditem
+  pk: 535
+- fields: {content_type: 21, object_id: 57, tag: 241}
+  model: taggit.taggeditem
+  pk: 536
+- fields: {content_type: 21, object_id: 59, tag: 241}
+  model: taggit.taggeditem
+  pk: 537
+- fields: {content_type: 21, object_id: 60, tag: 2}
+  model: taggit.taggeditem
+  pk: 538
+- fields: {content_type: 21, object_id: 57, tag: 242}
+  model: taggit.taggeditem
+  pk: 539
+- fields: {content_type: 21, object_id: 60, tag: 242}
+  model: taggit.taggeditem
+  pk: 540
+- fields: {content_type: 21, object_id: 57, tag: 243}
+  model: taggit.taggeditem
+  pk: 541
+- fields: {content_type: 21, object_id: 60, tag: 243}
+  model: taggit.taggeditem
+  pk: 542
+- fields: {content_type: 21, object_id: 57, tag: 244}
+  model: taggit.taggeditem
+  pk: 543
+- fields: {content_type: 21, object_id: 60, tag: 244}
+  model: taggit.taggeditem
+  pk: 544
+- fields: {content_type: 21, object_id: 57, tag: 245}
+  model: taggit.taggeditem
+  pk: 545
+- fields: {content_type: 21, object_id: 60, tag: 245}
+  model: taggit.taggeditem
+  pk: 546
+- fields: {content_type: 21, object_id: 57, tag: 246}
+  model: taggit.taggeditem
+  pk: 547
+- fields: {content_type: 21, object_id: 60, tag: 246}
+  model: taggit.taggeditem
+  pk: 548
+- fields: {content_type: 21, object_id: 57, tag: 247}
+  model: taggit.taggeditem
+  pk: 549
+- fields: {content_type: 21, object_id: 60, tag: 247}
+  model: taggit.taggeditem
+  pk: 550
+- fields: {content_type: 21, object_id: 57, tag: 248}
+  model: taggit.taggeditem
+  pk: 551
+- fields: {content_type: 21, object_id: 60, tag: 248}
+  model: taggit.taggeditem
+  pk: 552
+- fields: {content_type: 21, object_id: 57, tag: 249}
+  model: taggit.taggeditem
+  pk: 553
+- fields: {content_type: 21, object_id: 60, tag: 249}
+  model: taggit.taggeditem
+  pk: 554
+- fields: {content_type: 21, object_id: 57, tag: 250}
+  model: taggit.taggeditem
+  pk: 555
+- fields: {content_type: 21, object_id: 60, tag: 250}
+  model: taggit.taggeditem
+  pk: 556
+- fields: {content_type: 21, object_id: 57, tag: 251}
+  model: taggit.taggeditem
+  pk: 557
+- fields: {content_type: 21, object_id: 60, tag: 251}
+  model: taggit.taggeditem
+  pk: 558
+- fields: {content_type: 21, object_id: 57, tag: 252}
+  model: taggit.taggeditem
+  pk: 559
+- fields: {content_type: 21, object_id: 60, tag: 252}
+  model: taggit.taggeditem
+  pk: 560
+- fields: {content_type: 21, object_id: 57, tag: 253}
+  model: taggit.taggeditem
+  pk: 561
+- fields: {content_type: 21, object_id: 60, tag: 253}
+  model: taggit.taggeditem
+  pk: 562
+- fields: {content_type: 21, object_id: 61, tag: 1}
+  model: taggit.taggeditem
+  pk: 563
+- fields: {content_type: 21, object_id: 62, tag: 2}
+  model: taggit.taggeditem
+  pk: 564
+- fields: {content_type: 21, object_id: 61, tag: 254}
+  model: taggit.taggeditem
+  pk: 565
+- fields: {content_type: 21, object_id: 62, tag: 254}
+  model: taggit.taggeditem
+  pk: 566
+- fields: {content_type: 21, object_id: 61, tag: 255}
+  model: taggit.taggeditem
+  pk: 567
+- fields: {content_type: 21, object_id: 62, tag: 255}
+  model: taggit.taggeditem
+  pk: 568
+- fields: {content_type: 21, object_id: 61, tag: 256}
+  model: taggit.taggeditem
+  pk: 569
+- fields: {content_type: 21, object_id: 62, tag: 256}
+  model: taggit.taggeditem
+  pk: 570
+- fields: {content_type: 21, object_id: 61, tag: 257}
+  model: taggit.taggeditem
+  pk: 571
+- fields: {content_type: 21, object_id: 62, tag: 257}
+  model: taggit.taggeditem
+  pk: 572
+- fields: {content_type: 21, object_id: 61, tag: 258}
+  model: taggit.taggeditem
+  pk: 573
+- fields: {content_type: 21, object_id: 62, tag: 258}
+  model: taggit.taggeditem
+  pk: 574
+- fields: {content_type: 21, object_id: 61, tag: 259}
+  model: taggit.taggeditem
+  pk: 575
+- fields: {content_type: 21, object_id: 62, tag: 259}
+  model: taggit.taggeditem
+  pk: 576
+- fields: {content_type: 21, object_id: 61, tag: 260}
+  model: taggit.taggeditem
+  pk: 577
+- fields: {content_type: 21, object_id: 62, tag: 260}
+  model: taggit.taggeditem
+  pk: 578
+- fields: {content_type: 21, object_id: 61, tag: 261}
+  model: taggit.taggeditem
+  pk: 579
+- fields: {content_type: 21, object_id: 62, tag: 261}
+  model: taggit.taggeditem
+  pk: 580
+- fields: {content_type: 21, object_id: 63, tag: 2}
+  model: taggit.taggeditem
+  pk: 581
+- fields: {content_type: 21, object_id: 61, tag: 262}
+  model: taggit.taggeditem
+  pk: 582
+- fields: {content_type: 21, object_id: 63, tag: 262}
+  model: taggit.taggeditem
+  pk: 583
+- fields: {content_type: 21, object_id: 61, tag: 263}
+  model: taggit.taggeditem
+  pk: 584
+- fields: {content_type: 21, object_id: 63, tag: 263}
+  model: taggit.taggeditem
+  pk: 585
+- fields: {content_type: 21, object_id: 61, tag: 264}
+  model: taggit.taggeditem
+  pk: 586
+- fields: {content_type: 21, object_id: 63, tag: 264}
+  model: taggit.taggeditem
+  pk: 587
+- fields: {content_type: 21, object_id: 61, tag: 265}
+  model: taggit.taggeditem
+  pk: 588
+- fields: {content_type: 21, object_id: 63, tag: 265}
+  model: taggit.taggeditem
+  pk: 589
+- fields: {content_type: 21, object_id: 61, tag: 266}
+  model: taggit.taggeditem
+  pk: 590
+- fields: {content_type: 21, object_id: 63, tag: 266}
+  model: taggit.taggeditem
+  pk: 591
+- fields: {content_type: 21, object_id: 61, tag: 267}
+  model: taggit.taggeditem
+  pk: 592
+- fields: {content_type: 21, object_id: 63, tag: 267}
+  model: taggit.taggeditem
+  pk: 593
+- fields: {content_type: 21, object_id: 61, tag: 268}
+  model: taggit.taggeditem
+  pk: 594
+- fields: {content_type: 21, object_id: 63, tag: 268}
+  model: taggit.taggeditem
+  pk: 595
+- fields: {content_type: 21, object_id: 61, tag: 269}
+  model: taggit.taggeditem
+  pk: 596
+- fields: {content_type: 21, object_id: 63, tag: 269}
+  model: taggit.taggeditem
+  pk: 597
+- fields: {content_type: 21, object_id: 64, tag: 1}
+  model: taggit.taggeditem
+  pk: 598
+- fields: {content_type: 21, object_id: 65, tag: 2}
+  model: taggit.taggeditem
+  pk: 599
+- fields: {content_type: 21, object_id: 64, tag: 270}
+  model: taggit.taggeditem
+  pk: 600
+- fields: {content_type: 21, object_id: 65, tag: 270}
+  model: taggit.taggeditem
+  pk: 601
+- fields: {content_type: 21, object_id: 64, tag: 271}
+  model: taggit.taggeditem
+  pk: 602
+- fields: {content_type: 21, object_id: 65, tag: 271}
+  model: taggit.taggeditem
+  pk: 603
+- fields: {content_type: 21, object_id: 64, tag: 272}
+  model: taggit.taggeditem
+  pk: 604
+- fields: {content_type: 21, object_id: 65, tag: 272}
+  model: taggit.taggeditem
+  pk: 605
+- fields: {content_type: 21, object_id: 64, tag: 273}
+  model: taggit.taggeditem
+  pk: 606
+- fields: {content_type: 21, object_id: 65, tag: 273}
+  model: taggit.taggeditem
+  pk: 607
+- fields: {content_type: 21, object_id: 64, tag: 274}
+  model: taggit.taggeditem
+  pk: 608
+- fields: {content_type: 21, object_id: 65, tag: 274}
+  model: taggit.taggeditem
+  pk: 609
+- fields: {content_type: 21, object_id: 64, tag: 275}
+  model: taggit.taggeditem
+  pk: 610
+- fields: {content_type: 21, object_id: 65, tag: 275}
+  model: taggit.taggeditem
+  pk: 611
+- fields: {content_type: 21, object_id: 64, tag: 276}
+  model: taggit.taggeditem
+  pk: 612
+- fields: {content_type: 21, object_id: 65, tag: 276}
+  model: taggit.taggeditem
+  pk: 613
+- fields: {content_type: 21, object_id: 64, tag: 277}
+  model: taggit.taggeditem
+  pk: 614
+- fields: {content_type: 21, object_id: 65, tag: 277}
+  model: taggit.taggeditem
+  pk: 615
+- fields: {content_type: 21, object_id: 64, tag: 278}
+  model: taggit.taggeditem
+  pk: 616
+- fields: {content_type: 21, object_id: 65, tag: 278}
+  model: taggit.taggeditem
+  pk: 617
+- fields: {content_type: 21, object_id: 64, tag: 279}
+  model: taggit.taggeditem
+  pk: 618
+- fields: {content_type: 21, object_id: 65, tag: 279}
+  model: taggit.taggeditem
+  pk: 619
+- fields: {content_type: 21, object_id: 64, tag: 280}
+  model: taggit.taggeditem
+  pk: 620
+- fields: {content_type: 21, object_id: 65, tag: 280}
+  model: taggit.taggeditem
+  pk: 621
+- fields: {content_type: 21, object_id: 66, tag: 1}
+  model: taggit.taggeditem
+  pk: 622
+- fields: {content_type: 21, object_id: 67, tag: 2}
+  model: taggit.taggeditem
+  pk: 623
+- fields: {content_type: 21, object_id: 66, tag: 281}
+  model: taggit.taggeditem
+  pk: 624
+- fields: {content_type: 21, object_id: 67, tag: 281}
+  model: taggit.taggeditem
+  pk: 625
+- fields: {content_type: 21, object_id: 66, tag: 282}
+  model: taggit.taggeditem
+  pk: 626
+- fields: {content_type: 21, object_id: 67, tag: 282}
+  model: taggit.taggeditem
+  pk: 627
+- fields: {content_type: 21, object_id: 68, tag: 2}
+  model: taggit.taggeditem
+  pk: 628
+- fields: {content_type: 21, object_id: 66, tag: 283}
+  model: taggit.taggeditem
+  pk: 629
+- fields: {content_type: 21, object_id: 68, tag: 283}
+  model: taggit.taggeditem
+  pk: 630
+- fields: {content_type: 21, object_id: 66, tag: 284}
+  model: taggit.taggeditem
+  pk: 631
+- fields: {content_type: 21, object_id: 68, tag: 284}
+  model: taggit.taggeditem
+  pk: 632
+- fields: {content_type: 21, object_id: 66, tag: 285}
+  model: taggit.taggeditem
+  pk: 633
+- fields: {content_type: 21, object_id: 68, tag: 285}
+  model: taggit.taggeditem
+  pk: 634
+- fields: {content_type: 21, object_id: 66, tag: 286}
+  model: taggit.taggeditem
+  pk: 635
+- fields: {content_type: 21, object_id: 68, tag: 286}
+  model: taggit.taggeditem
+  pk: 636
+- fields: {content_type: 21, object_id: 66, tag: 287}
+  model: taggit.taggeditem
+  pk: 637
+- fields: {content_type: 21, object_id: 68, tag: 287}
+  model: taggit.taggeditem
+  pk: 638
+- fields: {content_type: 21, object_id: 66, tag: 288}
+  model: taggit.taggeditem
+  pk: 639
+- fields: {content_type: 21, object_id: 68, tag: 288}
+  model: taggit.taggeditem
+  pk: 640
+- fields: {content_type: 21, object_id: 66, tag: 289}
+  model: taggit.taggeditem
+  pk: 641
+- fields: {content_type: 21, object_id: 68, tag: 289}
+  model: taggit.taggeditem
+  pk: 642
+- fields: {content_type: 21, object_id: 69, tag: 2}
+  model: taggit.taggeditem
+  pk: 643
+- fields: {content_type: 21, object_id: 66, tag: 290}
+  model: taggit.taggeditem
+  pk: 644
+- fields: {content_type: 21, object_id: 69, tag: 290}
+  model: taggit.taggeditem
+  pk: 645
+- fields: {content_type: 21, object_id: 66, tag: 291}
+  model: taggit.taggeditem
+  pk: 646
+- fields: {content_type: 21, object_id: 69, tag: 291}
+  model: taggit.taggeditem
+  pk: 647
+- fields: {content_type: 21, object_id: 66, tag: 292}
+  model: taggit.taggeditem
+  pk: 648
+- fields: {content_type: 21, object_id: 69, tag: 292}
+  model: taggit.taggeditem
+  pk: 649
+- fields: {content_type: 21, object_id: 66, tag: 293}
+  model: taggit.taggeditem
+  pk: 650
+- fields: {content_type: 21, object_id: 69, tag: 293}
+  model: taggit.taggeditem
+  pk: 651
+- fields: {content_type: 21, object_id: 66, tag: 294}
+  model: taggit.taggeditem
+  pk: 652
+- fields: {content_type: 21, object_id: 69, tag: 294}
+  model: taggit.taggeditem
+  pk: 653
+- fields: {content_type: 21, object_id: 66, tag: 295}
+  model: taggit.taggeditem
+  pk: 654
+- fields: {content_type: 21, object_id: 69, tag: 295}
+  model: taggit.taggeditem
+  pk: 655
+- fields: {content_type: 21, object_id: 66, tag: 296}
+  model: taggit.taggeditem
+  pk: 656
+- fields: {content_type: 21, object_id: 69, tag: 296}
+  model: taggit.taggeditem
+  pk: 657
+- fields: {content_type: 21, object_id: 70, tag: 1}
+  model: taggit.taggeditem
+  pk: 658
+- fields: {content_type: 21, object_id: 71, tag: 2}
+  model: taggit.taggeditem
+  pk: 659
+- fields: {content_type: 21, object_id: 70, tag: 297}
+  model: taggit.taggeditem
+  pk: 660
+- fields: {content_type: 21, object_id: 71, tag: 297}
+  model: taggit.taggeditem
+  pk: 661
+- fields: {content_type: 21, object_id: 70, tag: 298}
+  model: taggit.taggeditem
+  pk: 662
+- fields: {content_type: 21, object_id: 71, tag: 298}
+  model: taggit.taggeditem
+  pk: 663
+- fields: {content_type: 21, object_id: 70, tag: 299}
+  model: taggit.taggeditem
+  pk: 664
+- fields: {content_type: 21, object_id: 71, tag: 299}
+  model: taggit.taggeditem
+  pk: 665
+- fields: {content_type: 21, object_id: 70, tag: 300}
+  model: taggit.taggeditem
+  pk: 666
+- fields: {content_type: 21, object_id: 71, tag: 300}
+  model: taggit.taggeditem
+  pk: 667
+- fields: {content_type: 21, object_id: 70, tag: 301}
+  model: taggit.taggeditem
+  pk: 668
+- fields: {content_type: 21, object_id: 71, tag: 301}
+  model: taggit.taggeditem
+  pk: 669
+- fields: {content_type: 21, object_id: 72, tag: 2}
+  model: taggit.taggeditem
+  pk: 670
+- fields: {content_type: 21, object_id: 70, tag: 302}
+  model: taggit.taggeditem
+  pk: 671
+- fields: {content_type: 21, object_id: 72, tag: 302}
+  model: taggit.taggeditem
+  pk: 672
+- fields: {content_type: 21, object_id: 70, tag: 303}
+  model: taggit.taggeditem
+  pk: 673
+- fields: {content_type: 21, object_id: 72, tag: 303}
+  model: taggit.taggeditem
+  pk: 674
+- fields: {content_type: 21, object_id: 70, tag: 304}
+  model: taggit.taggeditem
+  pk: 675
+- fields: {content_type: 21, object_id: 72, tag: 304}
+  model: taggit.taggeditem
+  pk: 676
+- fields: {content_type: 21, object_id: 70, tag: 305}
+  model: taggit.taggeditem
+  pk: 677
+- fields: {content_type: 21, object_id: 72, tag: 305}
+  model: taggit.taggeditem
+  pk: 678
+- fields: {content_type: 21, object_id: 70, tag: 306}
+  model: taggit.taggeditem
+  pk: 679
+- fields: {content_type: 21, object_id: 72, tag: 306}
+  model: taggit.taggeditem
+  pk: 680
+- fields: {content_type: 21, object_id: 70, tag: 307}
+  model: taggit.taggeditem
+  pk: 681
+- fields: {content_type: 21, object_id: 72, tag: 307}
+  model: taggit.taggeditem
+  pk: 682
+- fields: {content_type: 21, object_id: 70, tag: 308}
+  model: taggit.taggeditem
+  pk: 683
+- fields: {content_type: 21, object_id: 72, tag: 308}
+  model: taggit.taggeditem
+  pk: 684
+- fields: {content_type: 21, object_id: 73, tag: 1}
+  model: taggit.taggeditem
+  pk: 685
+- fields: {content_type: 21, object_id: 74, tag: 2}
+  model: taggit.taggeditem
+  pk: 686
+- fields: {content_type: 21, object_id: 73, tag: 309}
+  model: taggit.taggeditem
+  pk: 687
+- fields: {content_type: 21, object_id: 74, tag: 309}
+  model: taggit.taggeditem
+  pk: 688
+- fields: {content_type: 21, object_id: 73, tag: 310}
+  model: taggit.taggeditem
+  pk: 689
+- fields: {content_type: 21, object_id: 74, tag: 310}
+  model: taggit.taggeditem
+  pk: 690
+- fields: {content_type: 21, object_id: 73, tag: 311}
+  model: taggit.taggeditem
+  pk: 691
+- fields: {content_type: 21, object_id: 74, tag: 311}
+  model: taggit.taggeditem
+  pk: 692
+- fields: {content_type: 21, object_id: 75, tag: 2}
+  model: taggit.taggeditem
+  pk: 693
+- fields: {content_type: 21, object_id: 73, tag: 312}
+  model: taggit.taggeditem
+  pk: 694
+- fields: {content_type: 21, object_id: 75, tag: 312}
+  model: taggit.taggeditem
+  pk: 695
+- fields: {content_type: 21, object_id: 73, tag: 313}
+  model: taggit.taggeditem
+  pk: 696
+- fields: {content_type: 21, object_id: 75, tag: 313}
+  model: taggit.taggeditem
+  pk: 697
+- fields: {content_type: 21, object_id: 73, tag: 314}
+  model: taggit.taggeditem
+  pk: 698
+- fields: {content_type: 21, object_id: 75, tag: 314}
+  model: taggit.taggeditem
+  pk: 699
+- fields: {content_type: 21, object_id: 73, tag: 315}
+  model: taggit.taggeditem
+  pk: 700
+- fields: {content_type: 21, object_id: 75, tag: 315}
+  model: taggit.taggeditem
+  pk: 701
+- fields: {content_type: 21, object_id: 73, tag: 316}
+  model: taggit.taggeditem
+  pk: 702
+- fields: {content_type: 21, object_id: 75, tag: 316}
+  model: taggit.taggeditem
+  pk: 703
+- fields: {content_type: 21, object_id: 73, tag: 317}
+  model: taggit.taggeditem
+  pk: 704
+- fields: {content_type: 21, object_id: 75, tag: 317}
+  model: taggit.taggeditem
+  pk: 705
+- fields: {content_type: 21, object_id: 73, tag: 318}
+  model: taggit.taggeditem
+  pk: 706
+- fields: {content_type: 21, object_id: 75, tag: 318}
+  model: taggit.taggeditem
+  pk: 707
+- fields: {content_type: 21, object_id: 73, tag: 319}
+  model: taggit.taggeditem
+  pk: 708
+- fields: {content_type: 21, object_id: 75, tag: 319}
+  model: taggit.taggeditem
+  pk: 709
+- fields: {content_type: 21, object_id: 73, tag: 320}
+  model: taggit.taggeditem
+  pk: 710
+- fields: {content_type: 21, object_id: 75, tag: 320}
+  model: taggit.taggeditem
+  pk: 711
+- fields: {content_type: 21, object_id: 76, tag: 2}
+  model: taggit.taggeditem
+  pk: 712
+- fields: {content_type: 21, object_id: 73, tag: 321}
+  model: taggit.taggeditem
+  pk: 713
+- fields: {content_type: 21, object_id: 76, tag: 321}
+  model: taggit.taggeditem
+  pk: 714
+- fields: {content_type: 21, object_id: 73, tag: 322}
+  model: taggit.taggeditem
+  pk: 715
+- fields: {content_type: 21, object_id: 76, tag: 322}
+  model: taggit.taggeditem
+  pk: 716
+- fields: {content_type: 21, object_id: 73, tag: 323}
+  model: taggit.taggeditem
+  pk: 717
+- fields: {content_type: 21, object_id: 76, tag: 323}
+  model: taggit.taggeditem
+  pk: 718
+- fields: {content_type: 21, object_id: 73, tag: 324}
+  model: taggit.taggeditem
+  pk: 719
+- fields: {content_type: 21, object_id: 76, tag: 324}
+  model: taggit.taggeditem
+  pk: 720
+- fields: {content_type: 21, object_id: 77, tag: 2}
+  model: taggit.taggeditem
+  pk: 721
+- fields: {content_type: 21, object_id: 73, tag: 325}
+  model: taggit.taggeditem
+  pk: 722
+- fields: {content_type: 21, object_id: 77, tag: 325}
+  model: taggit.taggeditem
+  pk: 723
+- fields: {content_type: 21, object_id: 73, tag: 326}
+  model: taggit.taggeditem
+  pk: 724
+- fields: {content_type: 21, object_id: 77, tag: 326}
+  model: taggit.taggeditem
+  pk: 725
+- fields: {content_type: 21, object_id: 73, tag: 327}
+  model: taggit.taggeditem
+  pk: 726
+- fields: {content_type: 21, object_id: 77, tag: 327}
+  model: taggit.taggeditem
+  pk: 727
+- fields: {content_type: 21, object_id: 73, tag: 328}
+  model: taggit.taggeditem
+  pk: 728
+- fields: {content_type: 21, object_id: 77, tag: 328}
+  model: taggit.taggeditem
+  pk: 729
+- fields: {content_type: 21, object_id: 73, tag: 329}
+  model: taggit.taggeditem
+  pk: 730
+- fields: {content_type: 21, object_id: 77, tag: 329}
+  model: taggit.taggeditem
+  pk: 731
+- fields: {content_type: 21, object_id: 73, tag: 330}
+  model: taggit.taggeditem
+  pk: 732
+- fields: {content_type: 21, object_id: 77, tag: 330}
+  model: taggit.taggeditem
+  pk: 733
+- fields: {content_type: 21, object_id: 73, tag: 331}
+  model: taggit.taggeditem
+  pk: 734
+- fields: {content_type: 21, object_id: 77, tag: 331}
+  model: taggit.taggeditem
+  pk: 735
+- fields: {content_type: 21, object_id: 73, tag: 332}
+  model: taggit.taggeditem
+  pk: 736
+- fields: {content_type: 21, object_id: 77, tag: 332}
+  model: taggit.taggeditem
+  pk: 737
+- fields: {content_type: 21, object_id: 73, tag: 333}
+  model: taggit.taggeditem
+  pk: 738
+- fields: {content_type: 21, object_id: 77, tag: 333}
+  model: taggit.taggeditem
+  pk: 739
+- fields: {content_type: 21, object_id: 73, tag: 334}
+  model: taggit.taggeditem
+  pk: 740
+- fields: {content_type: 21, object_id: 77, tag: 334}
+  model: taggit.taggeditem
+  pk: 741
+- fields: {content_type: 21, object_id: 73, tag: 335}
+  model: taggit.taggeditem
+  pk: 742
+- fields: {content_type: 21, object_id: 77, tag: 335}
+  model: taggit.taggeditem
+  pk: 743
+- fields: {content_type: 21, object_id: 73, tag: 336}
+  model: taggit.taggeditem
+  pk: 744
+- fields: {content_type: 21, object_id: 77, tag: 336}
+  model: taggit.taggeditem
+  pk: 745
+- fields: {content_type: 21, object_id: 73, tag: 337}
+  model: taggit.taggeditem
+  pk: 746
+- fields: {content_type: 21, object_id: 77, tag: 337}
+  model: taggit.taggeditem
+  pk: 747
+- fields: {content_type: 21, object_id: 73, tag: 338}
+  model: taggit.taggeditem
+  pk: 748
+- fields: {content_type: 21, object_id: 77, tag: 338}
+  model: taggit.taggeditem
+  pk: 749
+- fields: {content_type: 21, object_id: 78, tag: 1}
+  model: taggit.taggeditem
+  pk: 750
+- fields: {content_type: 21, object_id: 79, tag: 2}
+  model: taggit.taggeditem
+  pk: 751
+- fields: {content_type: 21, object_id: 78, tag: 339}
+  model: taggit.taggeditem
+  pk: 752
+- fields: {content_type: 21, object_id: 79, tag: 339}
+  model: taggit.taggeditem
+  pk: 753
+- fields: {content_type: 21, object_id: 78, tag: 340}
+  model: taggit.taggeditem
+  pk: 754
+- fields: {content_type: 21, object_id: 79, tag: 340}
+  model: taggit.taggeditem
+  pk: 755
+- fields: {content_type: 21, object_id: 78, tag: 341}
+  model: taggit.taggeditem
+  pk: 756
+- fields: {content_type: 21, object_id: 79, tag: 341}
+  model: taggit.taggeditem
+  pk: 757
+- fields: {content_type: 21, object_id: 78, tag: 342}
+  model: taggit.taggeditem
+  pk: 758
+- fields: {content_type: 21, object_id: 79, tag: 342}
+  model: taggit.taggeditem
+  pk: 759
+- fields: {content_type: 21, object_id: 78, tag: 343}
+  model: taggit.taggeditem
+  pk: 760
+- fields: {content_type: 21, object_id: 79, tag: 343}
+  model: taggit.taggeditem
+  pk: 761
+- fields: {content_type: 21, object_id: 78, tag: 344}
+  model: taggit.taggeditem
+  pk: 762
+- fields: {content_type: 21, object_id: 79, tag: 344}
+  model: taggit.taggeditem
+  pk: 763
+- fields: {content_type: 21, object_id: 78, tag: 345}
+  model: taggit.taggeditem
+  pk: 764
+- fields: {content_type: 21, object_id: 79, tag: 345}
+  model: taggit.taggeditem
+  pk: 765
+- fields: {content_type: 21, object_id: 78, tag: 346}
+  model: taggit.taggeditem
+  pk: 766
+- fields: {content_type: 21, object_id: 79, tag: 346}
+  model: taggit.taggeditem
+  pk: 767
+- fields: {content_type: 21, object_id: 78, tag: 347}
+  model: taggit.taggeditem
+  pk: 768
+- fields: {content_type: 21, object_id: 79, tag: 347}
+  model: taggit.taggeditem
+  pk: 769
+- fields: {content_type: 21, object_id: 78, tag: 348}
+  model: taggit.taggeditem
+  pk: 770
+- fields: {content_type: 21, object_id: 79, tag: 348}
+  model: taggit.taggeditem
+  pk: 771
+- fields:
+    date_joined: 2013-09-25 15:40:05.141141+00:00
+    email: admin@admin.com
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: true
+    is_superuser: true
+    last_login: 2013-09-25 15:40:11.560584+00:00
+    last_name: ''
+    password: pbkdf2_sha256$10000$imJ5pG6veRLo$5qZ/wJOXS5zXELvvqipOeX0X74uA9rXb//QlSsFfC+4=
+    user_permissions: []
+    username: admin
+  model: auth.user
+  pk: 1
+- fields:
+    content: "<p><strong>Ciudadano Inteligente</strong> es una organizaci&oacute;n&nbsp;Latinoamericana\
+      \ sin fines de lucro con sede en Santiago de Chile, que apoyada en el uso innovador\
+      \ de las tecnolog&iacute;as de la informaci&oacute;n, promueve la transparencia\
+      \ y la participaci&oacute;n ciudadana como herramientas de cuidado y profundizaci&oacute;n\
+      \ de la democracia.</p>\r\n<p>Nos definimos como una organizaci&oacute;n social\
+      \ diversa e inclusiva, que aunque enraizada en el principio liberal del acceso\
+      \ a la informaci&oacute;n, no adscribe a partidos ni movimientos pol&iacute;ticos,\
+      \ sino a la protecci&oacute;n transversal de los valores democr&aacute;ticos,\
+      \ donde los gobiernos responden al inter&eacute;s colectivo, y no al de una\
+      \ minor&iacute;a que utiliza su influencia para preservar intereses particulares.</p>\r\
+      \n<p>Somos una organizaci&oacute;n laica, respetuosa y defensora de la diversidad\
+      \ pol&iacute;tica, cultural, social, religiosa y sexual. Buscamos aportar a\
+      \ una sociedad justa e incluyente, donde los ciudadanos tenemos los mismos derechos\
+      \ y oportunidades.</p>"
+    enable_comments: false
+    registration_required: false
+    sites: [1]
+    template_name: ''
+    title: acerca de nosotros
+    url: /about-us/
+  model: flatpages.flatpage
+  pk: 1

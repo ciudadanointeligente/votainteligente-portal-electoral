@@ -183,6 +183,13 @@ WRITEIT_KEY = 'a'
 ### WRITEIT API THINGS
 
 
+### CANDIDEITORG API THINGS
+
+CANDIDEITORG_URL = 'http://localhost:3002/api/v2/'
+CANDIDEITORG_USERNAME = 'admin'
+CANDIDEITORG_API_KEY = 'a'
+
+### CANDIDEITORG API THINGS
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

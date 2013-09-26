@@ -49,6 +49,8 @@ class CandidatePerson(models.Model):
 
 @receiver(post_save, sender=CanElection)
 def automatically_create_election(sender, instance, created, **kwargs):
+	if kwargs.get('raw', False):
+		return
 	can_election = instance
 	if(created):
 		election = Election.objects.create(
@@ -78,6 +80,8 @@ def automatically_create_election(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=CanCandidate)
 def automatically_create_popit_person(sender, instance, created, **kwargs):
+	if kwargs.get('raw', False):
+		return
 	candidate = instance
 	api_instance = candidate.election.election.popit_api_instance
 	if created and api_instance:
@@ -89,6 +93,8 @@ def automatically_create_popit_person(sender, instance, created, **kwargs):
 		relation = CandidatePerson.objects.create(person=person, candidate=candidate)
 @receiver(election_finished)
 def automatically_push_writeit_instance(sender, **kwargs):
+	if kwargs.get('raw', False):
+		return
 	election = Election.objects.get(can_election=sender)
 	extra_params = {
 	'popit-api': election.popit_api_instance.url

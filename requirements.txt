@@ -15,3 +15,5 @@ pillow
 pgmagick
 django_admin_bootstrapped
 django-tinymce==1.5.1
+-e git://github.com/ciudadanointeligente/popit-django.git@posts_a_person_to_the_api#egg=popit-django
+-e git://github.com/ciudadanointeligente/writeit-django.git#egg=writeit-django

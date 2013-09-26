@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load thumbnail %}
 
 {% block extrajs %}
 {% include 'elections/home.js' %}
@@ -7,26 +8,62 @@
 
 {% block content %}
 <div>
+  <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <h2 class="text-center">
             Este 18 de Septiembre los chilenos elegiremos Presidente, Senadores, Diputados y Consejeros Regionales (CORE). Aquí encontrarás info para votar informado:
         </h2>
     </div>
+  </div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}/js/jquery.gridAccordion.min.js"></script>
+
 
 <!-- Featured Elections  -->
 
     {% if featured_elections|length = 1 %}
+
+
      
      <!-- Featured Election block -->
       <div class="contenedorDestacado">
         <ul>
           {% for featured_election in featured_elections %}
-            <li class="col-md-12">
-                  <a href="{{ featured_election.slug }}">
+            <li class="col-md-10 col-md-offset-1 containerAccordion">
+                  <a href="{{ featured_election.get_absolute_url }}">
                     <h2>{{featured_election.name}}</h2>
                   </a>
+                              <script type="text/javascript">
+      
+                              jQuery(document).ready(function($){
+                                screenwidth=$(".containerAccordion").width();
+                                    $('#gridaccordion-{{forloop.counter}}').gridAccordion({width:screenwidth,
+                                                                   height:250, 
+                                                                   columns:{{featured_election.can_election.candidate_set.all|length}}, 
+                                                                   distance:2, 
+                                                                   closedPanelWidth:10, 
+                                                                   closedPanelHeight:10, 
+                                                                   alignType:'centerCenter',
+                                                                   slideshow:true
+                                                                    });
+                                });
+                              
+                              </script>
+                 <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
+                       {% for candidate in featured_election.can_election.candidate_set.all %}
+
+
+                    <li>
+                      {% thumbnail candidate.photo "350x350" as im %}
+                        <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
+                      {% endthumbnail %}
+                        <div class="caption">{{ candidate.name }}</div>
+                    </li>
+                      {% endfor %}
+                  </ul>
                   <div class="election-description">
-                    <p>{{ featured_election.description|truncatewords:20 }}</p> 
+                    <p>{{ featured_election.description|truncatewords:100 }}</p> 
                   </div>
             </li>
           {% endfor %}
@@ -39,12 +76,38 @@
      <div class="contenedorDestacado">
         <ul>
           {% for featured_election in featured_elections %}
-            <li class="col-md-6">
-                  <a href="{{ featured_election.slug }}">
+            <li class="col-md-6 containerAccordion">
+                  <a href="{{ featured_election.get_absolute_url }}">
                     <h2>{{ featured_election.name }}</h2>
                   </a>
+                              <script type="text/javascript">
+      
+                              jQuery(document).ready(function($){
+                                screenwidth=$(".containerAccordion").width();
+                                    $('#gridaccordion-{{forloop.counter}}').gridAccordion({width:screenwidth,
+                                                                   height:250, 
+                                                                   columns:{{featured_election.can_election.candidate_set.all|length}}, 
+                                                                   distance:2, 
+                                                                   closedPanelWidth:10, 
+                                                                   closedPanelHeight:10, 
+                                                                   alignType:'centerCenter',
+                                                                   slideshow:true
+                                                                    });
+                                });
+                              
+                              </script>
+                     <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
+                           {% for candidate in featured_election.can_election.candidate_set.all %}
+                        <li>
+                            {% thumbnail candidate.photo "300x300" as im %}
+                              <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive"/></a>
+                            {% endthumbnail %}
+                            <div class="caption">{{ candidate.name }}</div>
+                        </li>
+                          {% endfor %}
+                      </ul>
                   <div class="election-description">
-                    <p>{{ featured_election.description|truncatewords:20 }}</p> 
+                    <p>{{ featured_election.description|truncatewords:50 }}</p> 
                   </div>
             </li>
           {% endfor %}
@@ -55,13 +118,39 @@
       <!-- Featured Election block -->
      <div class="contenedorDestacado">
         <ul>
-          {% for featured_election in featured_elections %}
-            <li class="col-md-4">
-                  <a href="{{ featured_election.slug }}">
-                    <h2>{{featured_election.name}}</h2>
+           {% for featured_election in featured_elections %}
+            <li class="col-md-4 containerAccordion">
+                  <a href="{{ featured_election.get_absolute_url }}">
+                    <h2>{{ featured_election.name }}</h2>
                   </a>
+                              <script type="text/javascript">
+      
+                              jQuery(document).ready(function($){
+                                screenwidth=$(".containerAccordion").width();
+                                    $('#gridaccordion-{{forloop.counter}}').gridAccordion({width:screenwidth,
+                                                                   height:250, 
+                                                                   columns:{{featured_election.can_election.candidate_set.all|length}}, 
+                                                                   distance:2, 
+                                                                   closedPanelWidth:10, 
+                                                                   closedPanelHeight:10, 
+                                                                   alignType:'centerCenter',
+                                                                   slideshow:true
+                                                                    });
+                                });
+                              
+                              </script>
+                     <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
+                           {% for candidate in featured_election.can_election.candidate_set.all %}
+                        <li>
+                            {% thumbnail candidate.photo "300x300" as im %}
+                              <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive"/></a>
+                            {% endthumbnail %}
+                            <div class="caption">{{ candidate.name }}</div>
+                        </li>
+                          {% endfor %}
+                      </ul>
                   <div class="election-description">
-                    <p>{{ featured_election.description|truncatewords:20 }}</p> 
+                    <p>{{ featured_election.description|truncatewords:33 }}</p> 
                   </div>
             </li>
           {% endfor %}
@@ -71,80 +160,10 @@
 
     {% endif %}
 
-<!--     <div class="row imgs-mosaico">
-        <div class="col-md-4">
-            <div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                </div>
-                                <div class="row">
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="http://placehold.it/800x600" alt="" class="img-responsive">
-                    </div>
-                </div>
-            </div>
-            
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, nobis molestias earum cum perferendis non consequuntur soluta sed.
-            </p>
-        </div>
-    </div> -->
 
   <!-- Searchable Elections  -->
 
-  {% if elecciones_buscables = true %}
+  {% if searchable_elections_enabled %}
     
     <div id="home-search" class="row" ng-controller="searchFormController">
         <form action="{% url 'tags_search' %}" method="get" class="form-horizontal" rol="form">

@@ -1565,8 +1565,8 @@
       fermentum et, accumsan vel urna. '}
   model: candideitorg.backgroundcandidate
   pk: 14
-- fields: {can_election: 1, description: '', extra_info_content: null, extra_info_title: null,
-    highlighted: false, name: "I - Tarapac\xE1", popit_api_instance: null, searchable: true,
+- fields: {can_election: 1, description: 'olinwi', extra_info_content: null, extra_info_title: null,
+    highlighted: True, name: "I - Tarapac\xE1", popit_api_instance: null, searchable: true,
     slug: i-tarapaca, writeitinstance: null}
   model: elections.election
   pk: 1

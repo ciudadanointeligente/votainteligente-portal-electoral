@@ -365,7 +365,7 @@ input, button, select, textarea {
 }
 
 
-p.answer i {
+.icon-quote-left, .icon-quote-right {
 	color: #9fa7b4;
 }
 
@@ -566,6 +566,21 @@ p.answer i {
 
 #compare-candidates div.col-md-6:last-child {
 margin-bottom: 20px;
+}
+
+/*Cuestionario*/
+
+.questionary .col-md-4 {
+	float: right;
+	padding: 5px 0px 5px 15px;
+}
+
+div.question-answer div.row.hidden-xs {
+	border-top: 1px solid #fff;
+}
+
+div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.row.hidden-xs:nth-of-type(1) {
+	border-top: none;
 }
 
 /* Footer */

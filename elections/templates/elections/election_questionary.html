@@ -22,38 +22,45 @@
 					<p class="question">
 						{{question.question}}
 					</p>
-					{% for answer in question.answer_set.all %}
-						<p class="answer">
-							{{answer.caption}}
-						</p>
 
-						<!-- for desktop version -->
-						<div class="row hidden-xs">
+						{% for answer in question.answer_set.all %}
+						{% if answer.candidate_set.all|length > 0 %}
+					<div class="row hidden-xs">
+							<!-- for desktop version -->
+							<div class="col-md-3 hidden-xs">
+								<div class="row">
 							{% for candidate in answer.candidate_set.all %}
-							
-							<div class="col-md-1 hidden-xs">
-								{% thumbnail candidate.photo "300x300" crop="center" as im %}
-								<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
-								{% endthumbnail %}
+									<div class="col-md-4">
+										{% thumbnail candidate.photo "300x300" crop="center" as im %}
+										<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+										{% endthumbnail %}
+									</div>
+							{% endfor %}
+								</div>
 							</div>
 							
-								{% if forloop.counter >= 12 %}
-								</div><div class="row hidden-xs">
-								{% endif %}
-							{% endfor %}
-						</div>
+							
+							<div class="col-md-9 answer">
+								<i class="icon-quote-left"> </i>{{answer.caption}} <i class="icon-quote-right"></i>
+							</div>
+							
+					</div>
+						{% endif %}
 						<!-- end desktop version-->
 						<!-- mobile version, no image of candidate -->
-						<div class="visible-xs">
+					<div class="visible-xs">
 							<ul class="list-inline">
 								{% for candidate in answer.candidate_set.all %}
 								<li><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a></li>
 								{% endfor %}
 							</ul>
-						</div>
+							<div class="answer">
+								{{answer.caption}}
+							</div>
+					</div>
 						<!-- end mobile version -->
 						
-					{% endfor %}
+						{% endfor %}
 				</div>
 				{% endfor %}
 			</div>

@@ -142,27 +142,6 @@ class SoulMateTestCase(TestCase):
 		self.assertEquals(response.status_code, 200)
 		self.assertTemplateUsed(response, 'elections/soulmate_candidate.html')
 
-class AskTestCase(TestCase):
-	def setUp(self):
-		super(AskTestCase, self).setUp()
-		self.tarapaca = Election.objects.get(id=1)
-
-	def test_url_ask(self):
-		url = reverse('ask_detail_view', 
-			kwargs={
-			'slug':self.tarapaca.slug
-			})
-		self.assertTrue(url)
-
-	def test_url_is_reachable_for_ask(self):
-		url = reverse('ask_detail_view', 
-			kwargs={
-			'slug':self.tarapaca.slug,
-			})
-		self.assertTrue(url)
-		response = self.client.get(url)
-		self.assertEquals(response.status_code, 200)
-		self.assertTemplateUsed(response, 'elections/ask_candidate.html')
 
 class RankingTestCase(TestCase):
 	def setUp(self):

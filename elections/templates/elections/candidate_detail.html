@@ -16,7 +16,7 @@
 		<div class="profile-candidate">
 			<div class="row">
 				<div class="col-md-3">
-					{% thumbnail candidate.photo "800x600" crop="center" as im %}
+					{% thumbnail candidate.photo "800x600" as im %}
 					<img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive">
 					{% endthumbnail %}
 				</div>
@@ -26,9 +26,7 @@
 						<tr>
 							<td>
 								<span>{{personal_data.label}}:</span>
-								{% for personal_data_candidate in personal_data.personaldatacandidate_set.all %}
 									{% relation_personal_data_candidate candidate personal_data %}
-								{% endfor %}
 							</td>
 						</tr>
 						{% endfor %}

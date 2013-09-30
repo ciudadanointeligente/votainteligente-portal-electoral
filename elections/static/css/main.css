@@ -49,6 +49,10 @@ strong {
 	padding: 10px;
 }
 
+.container {
+	margin-bottom: 20px;
+}
+
 /*Elecciones destacadas*/
 
 .contenedorDestacado ul {
@@ -129,6 +133,10 @@ strong {
 
 /*Botones*/
 
+.btn {
+	font-weight: 300;
+}
+
 .btn-lg {
 	font-size: 14px;
 	font-family: 'Lato', sans-serif;
@@ -185,7 +193,7 @@ input, button, select, textarea {
 /*Menu Interno*/
 
 .nav-candidator .list-inline>li {
-	padding: 0px;
+	padding: 9px 0px 8px;
 	margin-left: -4px;
 	height: auto;
 }
@@ -193,13 +201,18 @@ input, button, select, textarea {
 .nav-candidator .list-inline>li a {
 	background: #FFF;
 	border-right: 3px solid #eaedf2;
+	/*border-top: 2px solid #eaedf2;*/
 	padding: 10px;
 	color: #9fa7b4;
 	text-decoration: none;
 }
 
 .nav-candidator .list-inline>li:first-child a {
-	border-left: 3px solid #eaedf2;
+	border-left: 2px solid #eaedf2;
+}
+
+.nav-candidator .list-inline>li:last-child a {
+	border-right: 2px solid #eaedf2;
 }
 
 .nav-candidator .list-inline>li.active a, .nav-candidator .list-inline>li:hover a {
@@ -228,7 +241,6 @@ input, button, select, textarea {
 
 .nav-candidator ul.list-inline {
 	margin-bottom: 0px;
-	padding: 9px;
 	background: #fff;
 	height: auto;
 }
@@ -257,6 +269,18 @@ input, button, select, textarea {
 
 .nav-candidator .list-inline i.icon-bolt, .nav-candidator .list-inline i.icon-trophy {
 	color: #ffd200;
+}
+
+@media (max-width: 604px) {
+
+	.nav-candidator ul.list-inline {
+		background: transparent;
+	}
+
+	.nav-candidator .list-inline>li {
+		padding: 9px 0px 10px;
+	}
+
 }
 
 /*Home*/
@@ -541,11 +565,9 @@ input, button, select, textarea {
 }
 
 .panel-default>.panel-heading {
-	color: inherit;
-	background-color: #fff;
+	color: #fff;
+	background-color: #323a45;
 	border-color: transparent;
-	margin-bottom: -10px;
-	margin-top: 10px;
 }
 
 #compare-candidates .text-right, #compare-candidates .text-center {
@@ -576,7 +598,8 @@ margin-bottom: 20px;
 }
 
 div.question-answer div.row.hidden-xs {
-	border-top: 1px solid #fff;
+	border-top: 1px solid #FFF;
+	padding: 10px 0px;
 }
 
 div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.row.hidden-xs:nth-of-type(1) {
@@ -658,38 +681,6 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 }
 
 @media (max-width: 480px) {
-	/* menu */
-	.nav-candidator ul.list-inline {
-		margin-bottom: 0px;
-		padding: 5px;
-		background: #fff;
-		height: auto;
-	}
-	.nav-candidator .list-inline>li {
-		min-height: 25px;
-	}
-	.nav-candidator .list-inline>li:first-child a {
-		border-left: none;
-	}
-	.nav-candidator .list-inline>li a {
-		border-right: none;
-		padding: 5px;
-	}
-	.list-inline>li {
-		padding: 0px;
-		margin: 5px 0px;
-	}
-
-	.list-inline>li a {
-		background: #FFF;
-		border-right: 0px solid #eaedf2;
-		padding: 0px 5px;
-	}
-
-	.list-inline>li:first-child a {
-		border-left: 0px solid #eaedf2;
-	}
-	/* eof menu */
 
 	.profile-candidate {
 		min-height: 425px;

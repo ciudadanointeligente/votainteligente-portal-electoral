@@ -25,9 +25,9 @@
 
 						{% for answer in question.answer_set.all %}
 						{% if answer.candidate_set.all|length > 0 %}
-					<div class="row hidden-xs">
+					<div class="row hidden-xs visible-lg visible-md hidden-sm">
 							<!-- for desktop version -->
-							<div class="col-md-3 hidden-xs">
+							<div class="col-md-3">
 								<div class="row">
 							{% for candidate in answer.candidate_set.all %}
 									<div class="col-md-4">
@@ -39,23 +39,16 @@
 								</div>
 							</div>
 							
-							
 							<div class="col-md-9 answer">
 								<i class="icon-quote-left"> </i>{{answer.caption}} <i class="icon-quote-right"></i>
 							</div>
-							
 					</div>
 						{% endif %}
-						<!-- end desktop version-->
-						<!-- mobile version, no image of candidate -->
-					<div class="visible-xs">
-							<ul class="list-inline">
-								{% for candidate in answer.candidate_set.all %}
-								<li><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a></li>
-								{% endfor %}
-							</ul>
-							<div class="answer">
-								{{answer.caption}}
+					<!-- end desktop version-->
+					<!-- mobile version, no image of candidate -->
+					<div class="visible-xs hidden-lg hidden-md visible-sm">
+							<div class="list-inline">
+								{% for candidate in answer.candidate_set.all %}{% if forloop.first %}<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a>{% elif forloop.last %} y <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a>{% else %}, <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a>{% endif %}{% endfor %}{% if answer.candidate_set.all|length > 0 %}<span class="answer">: <i class="icon-quote-left"> </i>{{answer.caption}} <i class="icon-quote-right"></i></span>{% endif %}
 							</div>
 					</div>
 						<!-- end mobile version -->
@@ -71,7 +64,7 @@
 
 <div class="row">
 	<div class="col-md-3 col-md-offset-9">
-		<button class="btn btn-primary">{% trans "Quieres preguntar algo más?" %}</button>
+		<button class="btn btn-primary"><i class="icon-edit"></i> {% trans "Quieres preguntar algo más?" %}</button>
 	</div>
 </div>
 

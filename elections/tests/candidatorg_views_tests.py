@@ -185,3 +185,13 @@ class RankingTestCase(TestCase):
 		response = self.client.get(url)
 		self.assertEquals(response.status_code, 200)
 		self.assertTemplateUsed(response, 'elections/ranking_candidates.html')
+
+class MediaNaranjaTestCase(TestCase):
+	def setUp(self):
+		super(MediaNaranjaTestCase, self).setUp()
+
+	def test_get(self):
+		pass
+
+	def test_put(self):
+		pass

@@ -43,6 +43,10 @@ strong {
 	font-weight: 900;
 }
 
+.txt-gris {
+	color: #9fa7b4;
+}
+
 .fondo-blanco {
 	background: #fff;
 	border-radius: 6px;
@@ -51,6 +55,26 @@ strong {
 
 .container {
 	margin-bottom: 20px;
+}
+
+.text-warning {
+	color: #b79800;
+}
+
+.form-control::-webkit-input-placeholder {
+   font-weight: 300;
+}
+
+.form-control:-moz-placeholder { /* Firefox 18- */
+   font-weight: 300;  
+}
+
+.form-control::-moz-placeholder {  /* Firefox 19+ */
+   font-weight: 300;  
+}
+
+.form-control:-ms-input-placeholder {  
+   font-weight: 300;  
 }
 
 /*Elecciones destacadas*/
@@ -146,7 +170,6 @@ strong {
 .btn-success {
 	background-color: #3ee0cb;
 	border-color: transparent;
-	padding: 15px 15px;
 	float: right;
 }
 
@@ -789,4 +812,84 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 .responden h4, .no-responden h4 {
 	font-weight: 900;
+}
+
+/*Preguntales*/
+
+.ask-form {
+	background: #FFF;
+	border-radius: 6px;
+	padding: 20px;
+	*zoom: 1;
+	margin-bottom: 40px;
+}
+
+.ask-form:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.ask-form .form-control {
+	background-color: #eaedf2;
+	border: none;
+	border-radius: 0px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.recent-questions h3 {
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+.search-questions .form-control {
+	color: #fff;
+	background-color: #9fa7b4;
+	border: none;
+	border-radius: 0px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.search-questions .input-group-addon {
+	background-color: #5e6d82;
+	border: none;
+	border-radius: 0px;
+	color: #fff;
+}
+
+.panel-heading .text-right {
+	color: #9fa7b4;
+}
+
+.candidate-answer {
+	background-color: #ebedf2;
+	padding: 10px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	margin-bottom: 8px;
+}
+
+.candidate-answer .btn-primary {
+	padding: 3px 6px;
+	font-size: 12px;
+	float: right;
+}
+
+.search-questions .form-control::-webkit-input-placeholder {
+   color: #eaedf2;
+}
+
+.search-questions .form-control:-moz-placeholder { /* Firefox 18- */
+   color: #eaedf2;
+}
+
+.search-questions .form-control::-moz-placeholder {  /* Firefox 19+ */
+   color: #eaedf2;
+}
+
+.search-questions .form-control:-ms-input-placeholder {  
+   color: #eaedf2;
 }

@@ -1,0 +1,3321 @@
+- fields:
+    date_joined: 2013-09-26 11:54:38.163519
+    email: admin@admines.cl
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: true
+    is_superuser: true
+    last_login: 2013-09-30 12:17:25.823441
+    last_name: ''
+    password: sha1$a56bb$394817a2092dd034ed0c52a3500607280e5db144
+    user_permissions: []
+    username: admin
+  model: auth.user
+  pk: 1
+- fields: {created: !!timestamp '2013-09-26 11:54:38.333573', key: a, user: 1}
+  model: tastypie.apikey
+  pk: 1
+- fields: {created_at: !!timestamp '2013-09-30 15:18:05.943144', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "2\xAA Circunscripci\xF3n Antofagasta", owner: 1, published: false, should_display_empty_personal_data: true,
+    slug: 2a-circunscripcion-antofagasta, updated_at: !!timestamp '2013-09-30 15:18:09.004656',
+    use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 1
+- fields: {created_at: !!timestamp '2013-09-30 15:18:23.633447', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "3\xAA Circunscripci\xF3n Atacama", owner: 1, published: false, should_display_empty_personal_data: true,
+    slug: 3a-circunscripcion-atacama, updated_at: !!timestamp '2013-09-30 15:18:26.673341',
+    use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 2
+- fields: {created_at: !!timestamp '2013-09-30 15:18:32.082211', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "4\xAA Circunscripci\xF3n Coquimbo", owner: 1, published: false, should_display_empty_personal_data: true,
+    slug: 4a-circunscripcion-coquimbo, updated_at: !!timestamp '2013-09-30 15:18:35.302426',
+    use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 3
+- fields: {created_at: !!timestamp '2013-09-30 15:18:48.026375', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "5\xAA Circunscripci\xF3n Quinta Cordillera", owner: 1, published: false,
+    should_display_empty_personal_data: true, slug: 5a-circunscripcion-quinta-cordillera,
+    updated_at: !!timestamp '2013-09-30 15:18:51.420433', use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 4
+- fields: {created_at: !!timestamp '2013-09-30 15:18:57.515746', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "6\xAA Circunscripci\xF3n Quinta Costa", owner: 1, published: false, should_display_empty_personal_data: true,
+    slug: 6a-circunscripcion-quinta-costa, updated_at: !!timestamp '2013-09-30 15:19:01.030117',
+    use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 5
+- fields: {created_at: !!timestamp '2013-09-30 15:19:07.709004', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "7\xAA Circunscripci\xF3n Santiago Poniente", owner: 1, published: false,
+    should_display_empty_personal_data: true, slug: 7a-circunscripcion-santiago-poniente,
+    updated_at: !!timestamp '2013-09-30 15:19:11.920628', use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 6
+- fields: {created_at: !!timestamp '2013-09-30 15:19:28.720051', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "8\xAA Circunscripci\xF3n Santiago Oriente", owner: 1, published: false,
+    should_display_empty_personal_data: true, slug: 8a-circunscripcion-santiago-oriente,
+    updated_at: !!timestamp '2013-09-30 15:19:32.159033', use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 7
+- fields: {created_at: !!timestamp '2013-09-30 15:19:50.582841', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "9\xAA Circunscripci\xF3n O'Higgins", owner: 1, published: false, should_display_empty_personal_data: true,
+    slug: 9a-circunscripcion-ohiggins, updated_at: !!timestamp '2013-09-30 15:19:53.877252',
+    use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 8
+- fields: {created_at: !!timestamp '2013-09-30 15:20:04.402301', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "10\xAA Circunscripci\xF3n Maule Norte", owner: 1, published: false, should_display_empty_personal_data: true,
+    slug: 10a-circunscripcion-maule-norte, updated_at: !!timestamp '2013-09-30 15:20:07.629540',
+    use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 9
+- fields: {created_at: !!timestamp '2013-09-30 15:20:12.871483', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "11\xAA Circunscripci\xF3n Maule Sur", owner: 1, published: false, should_display_empty_personal_data: true,
+    slug: 11a-circunscripcion-maule-sur, updated_at: !!timestamp '2013-09-30 15:20:17.576418',
+    use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 10
+- fields: {created_at: !!timestamp '2013-09-30 15:20:25.065621', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "12\xAA Circunscripci\xF3n Biob\xEDo Costa", owner: 1, published: false,
+    should_display_empty_personal_data: true, slug: 12a-circunscripcion-biobio-costa,
+    updated_at: !!timestamp '2013-09-30 15:20:28.460053', use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 11
+- fields: {created_at: !!timestamp '2013-09-30 15:20:44.379663', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "13\xAA Circunscripci\xF3n Biob\xEDo Cordillera", owner: 1, published: false,
+    should_display_empty_personal_data: true, slug: 13a-circunscripcion-biobio-cordillera,
+    updated_at: !!timestamp '2013-09-30 15:20:49.412928', use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 12
+- fields: {created_at: !!timestamp '2013-09-30 15:21:01.516653', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "14\xAA Circunscripci\xF3n Araucan\xEDa Norte", owner: 1, published: false,
+    should_display_empty_personal_data: true, slug: 14a-circunscripcion-araucania-norte,
+    updated_at: !!timestamp '2013-09-30 15:21:05.229766', use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 13
+- fields: {created_at: !!timestamp '2013-09-30 15:21:11.291520', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "15\xAA Circunscripci\xF3n Araucan\xEDa Sur", owner: 1, published: false,
+    should_display_empty_personal_data: true, slug: 15a-circunscripcion-araucania-sur,
+    updated_at: !!timestamp '2013-09-30 15:21:14.683801', use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 14
+- fields: {created_at: !!timestamp '2013-09-30 15:21:20.080527', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "16\xAA Circunscripci\xF3n Los R\xEDos", owner: 1, published: false, should_display_empty_personal_data: true,
+    slug: 16a-circunscripcion-los-rios, updated_at: !!timestamp '2013-09-30 15:21:23.520376',
+    use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 15
+- fields: {created_at: !!timestamp '2013-09-30 15:21:36.372428', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "17\xAA Circunscripci\xF3n Los Lagos", owner: 1, published: false, should_display_empty_personal_data: true,
+    slug: 17a-circunscripcion-los-lagos, updated_at: !!timestamp '2013-09-30 15:21:39.589135',
+    use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 16
+- fields: {created_at: !!timestamp '2013-09-30 15:21:48.533960', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "18\xAA Circunscripci\xF3n Ays\xE9n", owner: 1, published: false, should_display_empty_personal_data: true,
+    slug: 18a-circunscripcion-aysen, updated_at: !!timestamp '2013-09-30 15:21:51.782244',
+    use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 17
+- fields: {created_at: !!timestamp '2013-09-30 15:21:57.690794', custom_style: '',
+    date: '', description: '', highlighted: false, information_source: '', logo: '',
+    name: "19\xAA Circunscripci\xF3n Magallanes", owner: 1, published: false, should_display_empty_personal_data: true,
+    slug: 19a-circunscripcion-magallanes, updated_at: !!timestamp '2013-09-30 15:22:01.525045',
+    use_default_media_naranja_option: true}
+  model: elections.election
+  pk: 18
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:18:13.290034
+    election: 1
+    has_answered: true
+    name: Manuel Rojas
+    photo: ''
+    slug: manuel-rojas
+    updated_at: 2013-09-30 15:18:13.290091
+  model: elections.candidate
+  pk: 1
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:18:14.977133
+    election: 1
+    has_answered: true
+    name: Alejandro Guillier
+    photo: ''
+    slug: alejandro-guillier
+    updated_at: 2013-09-30 15:18:14.977172
+  model: elections.candidate
+  pk: 2
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:18:16.815827
+    election: 1
+    has_answered: true
+    name: Pedro Araya
+    photo: ''
+    slug: pedro-araya
+    updated_at: 2013-09-30 15:18:16.815866
+  model: elections.candidate
+  pk: 3
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:18:18.061441
+    election: 1
+    has_answered: true
+    name: Gisela Contreras
+    photo: ''
+    slug: gisela-contreras
+    updated_at: 2013-09-30 15:18:18.061492
+  model: elections.candidate
+  pk: 4
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:18:19.568706
+    election: 1
+    has_answered: true
+    name: Carlos Cantero
+    photo: ''
+    slug: carlos-cantero
+    updated_at: 2013-09-30 15:18:19.568745
+  model: elections.candidate
+  pk: 5
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:18:20.814719
+    election: 1
+    has_answered: true
+    name: Daniel Guevara
+    photo: ''
+    slug: daniel-guevara
+    updated_at: 2013-09-30 15:18:20.814766
+  model: elections.candidate
+  pk: 6
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:18:22.377135
+    election: 1
+    has_answered: true
+    name: Jimena Orrego
+    photo: ''
+    slug: jimena-orrego
+    updated_at: 2013-09-30 15:18:22.377173
+  model: elections.candidate
+  pk: 7
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:18:30.693481
+    election: 2
+    has_answered: true
+    name: ''
+    photo: ''
+    slug: ''
+    updated_at: 2013-09-30 15:18:30.693519
+  model: elections.candidate
+  pk: 8
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:18:40.488628
+    election: 3
+    has_answered: true
+    name: Gonzalo Uriarte
+    photo: ''
+    slug: gonzalo-uriarte
+    updated_at: 2013-09-30 15:18:40.488676
+  model: elections.candidate
+  pk: 9
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:18:41.811416
+    election: 3
+    has_answered: true
+    name: Mario Bertolino
+    photo: ''
+    slug: mario-bertolino
+    updated_at: 2013-09-30 15:18:41.811454
+  model: elections.candidate
+  pk: 10
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:18:42.954854
+    election: 3
+    has_answered: true
+    name: Jorge Pizarro
+    photo: ''
+    slug: jorge-pizarro
+    updated_at: 2013-09-30 15:18:42.954893
+  model: elections.candidate
+  pk: 11
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:18:44.345555
+    election: 3
+    has_answered: true
+    name: "Adriana Mu\xF1oz"
+    photo: ''
+    slug: adriana-munoz
+    updated_at: 2013-09-30 15:18:44.345605
+  model: elections.candidate
+  pk: 12
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:18:45.609386
+    election: 3
+    has_answered: true
+    name: Luis Vega
+    photo: ''
+    slug: luis-vega
+    updated_at: 2013-09-30 15:18:45.609426
+  model: elections.candidate
+  pk: 13
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:18:55.993042
+    election: 4
+    has_answered: true
+    name: ''
+    photo: ''
+    slug: ''
+    updated_at: 2013-09-30 15:18:55.993083
+  model: elections.candidate
+  pk: 14
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:06.131134
+    election: 5
+    has_answered: true
+    name: ''
+    photo: ''
+    slug: ''
+    updated_at: 2013-09-30 15:19:06.131176
+  model: elections.candidate
+  pk: 15
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:17.499173
+    election: 6
+    has_answered: true
+    name: Pablo Zalaquett
+    photo: ''
+    slug: pablo-zalaquett
+    updated_at: 2013-09-30 15:19:17.499223
+  model: elections.candidate
+  pk: 16
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:19.010835
+    election: 6
+    has_answered: true
+    name: "Andr\xE9s Allamand"
+    photo: ''
+    slug: andres-allamand
+    updated_at: 2013-09-30 15:19:19.010884
+  model: elections.candidate
+  pk: 17
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:20.418027
+    election: 6
+    has_answered: true
+    name: Alberto Undurraga
+    photo: ''
+    slug: alberto-undurraga
+    updated_at: 2013-09-30 15:19:20.418066
+  model: elections.candidate
+  pk: 18
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:22.026790
+    election: 6
+    has_answered: true
+    name: Guido Girardi
+    photo: ''
+    slug: guido-girardi
+    updated_at: 2013-09-30 15:19:22.026829
+  model: elections.candidate
+  pk: 19
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:23.534439
+    election: 6
+    has_answered: true
+    name: Wilfredo Alfsen
+    photo: ''
+    slug: wilfredo-alfsen
+    updated_at: 2013-09-30 15:19:23.534477
+  model: elections.candidate
+  pk: 20
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:25.010760
+    election: 6
+    has_answered: true
+    name: "Carlos Mu\xF1oz"
+    photo: ''
+    slug: carlos-munoz
+    updated_at: 2013-09-30 15:19:25.010806
+  model: elections.candidate
+  pk: 21
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:26.232038
+    election: 6
+    has_answered: true
+    name: "Eduardo Guti\xE9rrez"
+    photo: ''
+    slug: eduardo-gutierrez
+    updated_at: 2013-09-30 15:19:26.232108
+  model: elections.candidate
+  pk: 22
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:27.510020
+    election: 6
+    has_answered: true
+    name: Sergio Flores
+    photo: ''
+    slug: sergio-flores
+    updated_at: 2013-09-30 15:19:27.510058
+  model: elections.candidate
+  pk: 23
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:36.819215
+    election: 7
+    has_answered: true
+    name: Laurence Golborne
+    photo: ''
+    slug: laurence-golborne
+    updated_at: 2013-09-30 15:19:36.819264
+  model: elections.candidate
+  pk: 24
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:38.197388
+    election: 7
+    has_answered: true
+    name: "Manuel Jos\xE9 Ossand\xF3n"
+    photo: ''
+    slug: manuel-jose-ossandon
+    updated_at: 2013-09-30 15:19:38.197427
+  model: elections.candidate
+  pk: 25
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:39.541251
+    election: 7
+    has_answered: true
+    name: Soledad Alvear
+    photo: ''
+    slug: soledad-alvear
+    updated_at: 2013-09-30 15:19:39.541306
+  model: elections.candidate
+  pk: 26
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:40.762161
+    election: 7
+    has_answered: true
+    name: Carlos Montes
+    photo: ''
+    slug: carlos-montes
+    updated_at: 2013-09-30 15:19:40.762205
+  model: elections.candidate
+  pk: 27
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:42.016060
+    election: 7
+    has_answered: true
+    name: Esteban Silva
+    photo: ''
+    slug: esteban-silva
+    updated_at: 2013-09-30 15:19:42.016144
+  model: elections.candidate
+  pk: 28
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:43.239377
+    election: 7
+    has_answered: true
+    name: "Jos\xE9 Antonio Carre\xF1o"
+    photo: ''
+    slug: jose-antonio-carreno
+    updated_at: 2013-09-30 15:19:43.239423
+  model: elections.candidate
+  pk: 29
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:44.458828
+    election: 7
+    has_answered: true
+    name: Juan Guillermo Ossa
+    photo: ''
+    slug: juan-guillermo-ossa
+    updated_at: 2013-09-30 15:19:44.458869
+  model: elections.candidate
+  pk: 30
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:46.101168
+    election: 7
+    has_answered: true
+    name: "Patricio Guzm\xE1n"
+    photo: ''
+    slug: patricio-guzman
+    updated_at: 2013-09-30 15:19:46.101207
+  model: elections.candidate
+  pk: 31
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:47.765024
+    election: 7
+    has_answered: true
+    name: "Iv\xE1n Carrasco"
+    photo: ''
+    slug: ivan-carrasco
+    updated_at: 2013-09-30 15:19:47.765080
+  model: elections.candidate
+  pk: 32
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:49.217887
+    election: 7
+    has_answered: true
+    name: "Luis Mariano Rend\xF3n"
+    photo: ''
+    slug: luis-mariano-rendon
+    updated_at: 2013-09-30 15:19:49.217943
+  model: elections.candidate
+  pk: 33
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:57.861802
+    election: 8
+    has_answered: true
+    name: "Alejandro Garc\xEDa-Huidobro"
+    photo: ''
+    slug: alejandro-garcia-huidobro
+    updated_at: 2013-09-30 15:19:57.861849
+  model: elections.candidate
+  pk: 34
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:19:59.141212
+    election: 8
+    has_answered: true
+    name: Alberto Cardemil
+    photo: ''
+    slug: alberto-cardemil
+    updated_at: 2013-09-30 15:19:59.141262
+  model: elections.candidate
+  pk: 35
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:00.372706
+    election: 8
+    has_answered: true
+    name: Juan Carlos Latorre
+    photo: ''
+    slug: juan-carlos-latorre
+    updated_at: 2013-09-30 15:20:00.372744
+  model: elections.candidate
+  pk: 36
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:02.036919
+    election: 8
+    has_answered: true
+    name: Juan Pablo Letelier
+    photo: ''
+    slug: juan-pablo-letelier
+    updated_at: 2013-09-30 15:20:02.036960
+  model: elections.candidate
+  pk: 37
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:03.212234
+    election: 8
+    has_answered: true
+    name: "Luis Felipe Garc\xEDa"
+    photo: ''
+    slug: luis-felipe-garcia
+    updated_at: 2013-09-30 15:20:03.212286
+  model: elections.candidate
+  pk: 38
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:11.671092
+    election: 9
+    has_answered: true
+    name: ''
+    photo: ''
+    slug: ''
+    updated_at: 2013-09-30 15:20:11.671130
+  model: elections.candidate
+  pk: 39
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:23.089221
+    election: 10
+    has_answered: true
+    name: ''
+    photo: ''
+    slug: ''
+    updated_at: 2013-09-30 15:20:23.089260
+  model: elections.candidate
+  pk: 40
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:33.184753
+    election: 11
+    has_answered: true
+    name: Jacqueline van Rysselberghe
+    photo: ''
+    slug: jacqueline-van-rysselberghe
+    updated_at: 2013-09-30 15:20:33.184792
+  model: elections.candidate
+  pk: 41
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:34.420629
+    election: 11
+    has_answered: true
+    name: Daniel Contesse
+    photo: ''
+    slug: daniel-contesse
+    updated_at: 2013-09-30 15:20:34.420675
+  model: elections.candidate
+  pk: 42
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:35.640977
+    election: 11
+    has_answered: true
+    name: Alejandro Navarro
+    photo: ''
+    slug: alejandro-navarro
+    updated_at: 2013-09-30 15:20:35.641021
+  model: elections.candidate
+  pk: 43
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:36.829545
+    election: 11
+    has_answered: true
+    name: Camilo Escalona
+    photo: ''
+    slug: camilo-escalona
+    updated_at: 2013-09-30 15:20:36.829585
+  model: elections.candidate
+  pk: 44
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:38.105153
+    election: 11
+    has_answered: true
+    name: Rafael Garay
+    photo: ''
+    slug: rafael-garay
+    updated_at: 2013-09-30 15:20:38.105192
+  model: elections.candidate
+  pk: 45
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:39.350545
+    election: 11
+    has_answered: true
+    name: "Osm\xE1n V\xE1squez"
+    photo: ''
+    slug: osman-vasquez
+    updated_at: 2013-09-30 15:20:39.350593
+  model: elections.candidate
+  pk: 46
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:40.571041
+    election: 11
+    has_answered: true
+    name: "Loreto\_Mu\xF1oz"
+    photo: ''
+    slug: loreto-munoz
+    updated_at: 2013-09-30 15:20:40.571086
+  model: elections.candidate
+  pk: 47
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:41.759772
+    election: 11
+    has_answered: true
+    name: Javier Sandoval
+    photo: ''
+    slug: javier-sandoval
+    updated_at: 2013-09-30 15:20:41.759814
+  model: elections.candidate
+  pk: 48
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:42.902284
+    election: 11
+    has_answered: true
+    name: "Graciela Gonz\xE1lez"
+    photo: ''
+    slug: graciela-gonzalez
+    updated_at: 2013-09-30 15:20:42.902324
+  model: elections.candidate
+  pk: 49
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:53.264717
+    election: 12
+    has_answered: true
+    name: "V\xEDctor P\xE9rez"
+    photo: ''
+    slug: victor-perez
+    updated_at: 2013-09-30 15:20:53.264758
+  model: elections.candidate
+  pk: 50
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:54.466657
+    election: 12
+    has_answered: true
+    name: Rosa Oyarce
+    photo: ''
+    slug: rosa-oyarce
+    updated_at: 2013-09-30 15:20:54.466696
+  model: elections.candidate
+  pk: 51
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:55.732418
+    election: 12
+    has_answered: true
+    name: "Hosa\xEDn Sabag"
+    photo: ''
+    slug: hosain-sabag
+    updated_at: 2013-09-30 15:20:55.732462
+  model: elections.candidate
+  pk: 52
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:56.975795
+    election: 12
+    has_answered: true
+    name: Felipe Harboe
+    photo: ''
+    slug: felipe-harboe
+    updated_at: 2013-09-30 15:20:56.975837
+  model: elections.candidate
+  pk: 53
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:20:58.541494
+    election: 12
+    has_answered: true
+    name: "H\xE9ctor Seguel"
+    photo: ''
+    slug: hector-seguel
+    updated_at: 2013-09-30 15:20:58.541542
+  model: elections.candidate
+  pk: 54
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:00.305178
+    election: 12
+    has_answered: true
+    name: Juanita Carrasco
+    photo: ''
+    slug: juanita-carrasco
+    updated_at: 2013-09-30 15:21:00.305220
+  model: elections.candidate
+  pk: 55
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:09.844853
+    election: 13
+    has_answered: true
+    name: ''
+    photo: ''
+    slug: ''
+    updated_at: 2013-09-30 15:21:09.844893
+  model: elections.candidate
+  pk: 56
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:18.902459
+    election: 14
+    has_answered: true
+    name: ''
+    photo: ''
+    slug: ''
+    updated_at: 2013-09-30 15:21:18.902498
+  model: elections.candidate
+  pk: 57
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:27.449754
+    election: 15
+    has_answered: true
+    name: Ena von Baer
+    photo: ''
+    slug: ena-von-baer
+    updated_at: 2013-09-30 15:21:27.449793
+  model: elections.candidate
+  pk: 58
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:28.613084
+    election: 15
+    has_answered: true
+    name: Fernando Schultz
+    photo: ''
+    slug: fernando-schultz
+    updated_at: 2013-09-30 15:21:28.613123
+  model: elections.candidate
+  pk: 59
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:29.877720
+    election: 15
+    has_answered: true
+    name: Alfonso de Urresti
+    photo: ''
+    slug: alfonso-de-urresti
+    updated_at: 2013-09-30 15:21:29.877763
+  model: elections.candidate
+  pk: 60
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:31.044473
+    election: 15
+    has_answered: true
+    name: Abernego Mardones
+    photo: ''
+    slug: abernego-mardones
+    updated_at: 2013-09-30 15:21:31.044515
+  model: elections.candidate
+  pk: 61
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:32.742336
+    election: 15
+    has_answered: true
+    name: "Rodrigo Mu\xF1oz"
+    photo: ''
+    slug: rodrigo-munoz
+    updated_at: 2013-09-30 15:21:32.742391
+  model: elections.candidate
+  pk: 62
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:33.973465
+    election: 15
+    has_answered: true
+    name: Dulcelina Yolanda Candia
+    photo: ''
+    slug: dulcelina-yolanda-candia
+    updated_at: 2013-09-30 15:21:33.973508
+  model: elections.candidate
+  pk: 63
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:35.172566
+    election: 15
+    has_answered: true
+    name: Alejandro Aravena
+    photo: ''
+    slug: alejandro-aravena
+    updated_at: 2013-09-30 15:21:35.172623
+  model: elections.candidate
+  pk: 64
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:43.521280
+    election: 16
+    has_answered: true
+    name: "Iv\xE1n Moreira"
+    photo: ''
+    slug: ivan-moreira
+    updated_at: 2013-09-30 15:21:43.521318
+  model: elections.candidate
+  pk: 65
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:44.721103
+    election: 16
+    has_answered: true
+    name: Carlos Kuschel
+    photo: ''
+    slug: carlos-kuschel
+    updated_at: 2013-09-30 15:21:44.721143
+  model: elections.candidate
+  pk: 66
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:45.921277
+    election: 16
+    has_answered: true
+    name: Gabriel Ascencio
+    photo: ''
+    slug: gabriel-ascencio
+    updated_at: 2013-09-30 15:21:45.921316
+  model: elections.candidate
+  pk: 67
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:47.253802
+    election: 16
+    has_answered: true
+    name: Rabindranath Quinteros
+    photo: ''
+    slug: rabindranath-quinteros
+    updated_at: 2013-09-30 15:21:47.253850
+  model: elections.candidate
+  pk: 68
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:21:56.178360
+    election: 17
+    has_answered: true
+    name: ''
+    photo: ''
+    slug: ''
+    updated_at: 2013-09-30 15:21:56.178399
+  model: elections.candidate
+  pk: 69
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:22:06.806597
+    election: 18
+    has_answered: true
+    name: Miodrag Marinovic
+    photo: ''
+    slug: miodrag-marinovic
+    updated_at: 2013-09-30 15:22:06.806636
+  model: elections.candidate
+  pk: 70
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:22:08.139314
+    election: 18
+    has_answered: true
+    name: Francisco Berger
+    photo: ''
+    slug: francisco-berger
+    updated_at: 2013-09-30 15:22:08.139357
+  model: elections.candidate
+  pk: 71
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:22:09.483199
+    election: 18
+    has_answered: true
+    name: Carolina Goic
+    photo: ''
+    slug: carolina-goic
+    updated_at: 2013-09-30 15:22:09.483259
+  model: elections.candidate
+  pk: 72
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:22:10.670516
+    election: 18
+    has_answered: true
+    name: "Pedro Mu\xF1oz"
+    photo: ''
+    slug: pedro-munoz
+    updated_at: 2013-09-30 15:22:10.670555
+  model: elections.candidate
+  pk: 73
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:22:11.892371
+    election: 18
+    has_answered: true
+    name: Carlos Bianchi
+    photo: ''
+    slug: carlos-bianchi
+    updated_at: 2013-09-30 15:22:11.892411
+  model: elections.candidate
+  pk: 74
+- fields:
+    answers: []
+    created_at: 2013-09-30 15:22:13.168730
+    election: 18
+    has_answered: true
+    name: Sergio Tapia
+    photo: ''
+    slug: sergio-tapia
+    updated_at: 2013-09-30 15:22:13.168769
+  model: elections.candidate
+  pk: 75
+- fields: {election: 1, label: Partido}
+  model: elections.personaldata
+  pk: 1
+- fields: {election: 1, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 2
+- fields: {election: 1, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 3
+- fields: {election: 1, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 4
+- fields: {election: 1, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 5
+- fields: {election: 1, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 6
+- fields: {election: 2, label: Partido}
+  model: elections.personaldata
+  pk: 7
+- fields: {election: 2, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 8
+- fields: {election: 2, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 9
+- fields: {election: 2, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 10
+- fields: {election: 2, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 11
+- fields: {election: 2, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 12
+- fields: {election: 3, label: Partido}
+  model: elections.personaldata
+  pk: 13
+- fields: {election: 3, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 14
+- fields: {election: 3, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 15
+- fields: {election: 3, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 16
+- fields: {election: 3, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 17
+- fields: {election: 3, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 18
+- fields: {election: 4, label: Partido}
+  model: elections.personaldata
+  pk: 19
+- fields: {election: 4, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 20
+- fields: {election: 4, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 21
+- fields: {election: 4, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 22
+- fields: {election: 4, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 23
+- fields: {election: 4, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 24
+- fields: {election: 5, label: Partido}
+  model: elections.personaldata
+  pk: 25
+- fields: {election: 5, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 26
+- fields: {election: 5, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 27
+- fields: {election: 5, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 28
+- fields: {election: 5, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 29
+- fields: {election: 5, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 30
+- fields: {election: 6, label: Partido}
+  model: elections.personaldata
+  pk: 31
+- fields: {election: 6, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 32
+- fields: {election: 6, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 33
+- fields: {election: 6, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 34
+- fields: {election: 6, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 35
+- fields: {election: 6, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 36
+- fields: {election: 7, label: Partido}
+  model: elections.personaldata
+  pk: 37
+- fields: {election: 7, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 38
+- fields: {election: 7, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 39
+- fields: {election: 7, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 40
+- fields: {election: 7, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 41
+- fields: {election: 7, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 42
+- fields: {election: 8, label: Partido}
+  model: elections.personaldata
+  pk: 43
+- fields: {election: 8, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 44
+- fields: {election: 8, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 45
+- fields: {election: 8, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 46
+- fields: {election: 8, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 47
+- fields: {election: 8, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 48
+- fields: {election: 9, label: Partido}
+  model: elections.personaldata
+  pk: 49
+- fields: {election: 9, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 50
+- fields: {election: 9, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 51
+- fields: {election: 9, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 52
+- fields: {election: 9, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 53
+- fields: {election: 9, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 54
+- fields: {election: 10, label: Partido}
+  model: elections.personaldata
+  pk: 55
+- fields: {election: 10, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 56
+- fields: {election: 10, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 57
+- fields: {election: 10, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 58
+- fields: {election: 10, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 59
+- fields: {election: 10, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 60
+- fields: {election: 11, label: Partido}
+  model: elections.personaldata
+  pk: 61
+- fields: {election: 11, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 62
+- fields: {election: 11, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 63
+- fields: {election: 11, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 64
+- fields: {election: 11, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 65
+- fields: {election: 11, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 66
+- fields: {election: 12, label: Partido}
+  model: elections.personaldata
+  pk: 67
+- fields: {election: 12, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 68
+- fields: {election: 12, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 69
+- fields: {election: 12, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 70
+- fields: {election: 12, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 71
+- fields: {election: 12, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 72
+- fields: {election: 13, label: Partido}
+  model: elections.personaldata
+  pk: 73
+- fields: {election: 13, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 74
+- fields: {election: 13, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 75
+- fields: {election: 13, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 76
+- fields: {election: 13, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 77
+- fields: {election: 13, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 78
+- fields: {election: 14, label: Partido}
+  model: elections.personaldata
+  pk: 79
+- fields: {election: 14, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 80
+- fields: {election: 14, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 81
+- fields: {election: 14, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 82
+- fields: {election: 14, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 83
+- fields: {election: 14, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 84
+- fields: {election: 15, label: Partido}
+  model: elections.personaldata
+  pk: 85
+- fields: {election: 15, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 86
+- fields: {election: 15, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 87
+- fields: {election: 15, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 88
+- fields: {election: 15, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 89
+- fields: {election: 15, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 90
+- fields: {election: 16, label: Partido}
+  model: elections.personaldata
+  pk: 91
+- fields: {election: 16, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 92
+- fields: {election: 16, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 93
+- fields: {election: 16, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 94
+- fields: {election: 16, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 95
+- fields: {election: 16, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 96
+- fields: {election: 17, label: Partido}
+  model: elections.personaldata
+  pk: 97
+- fields: {election: 17, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 98
+- fields: {election: 17, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 99
+- fields: {election: 17, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 100
+- fields: {election: 17, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 101
+- fields: {election: 17, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 102
+- fields: {election: 18, label: Partido}
+  model: elections.personaldata
+  pk: 103
+- fields: {election: 18, label: Pacto - Lista}
+  model: elections.personaldata
+  pk: 104
+- fields: {election: 18, label: "\xBFVa a reelecci\xF3n?"}
+  model: elections.personaldata
+  pk: 105
+- fields: {election: 18, label: "Profesi\xF3n"}
+  model: elections.personaldata
+  pk: 106
+- fields: {election: 18, label: "Cargos P\xFAblicos"}
+  model: elections.personaldata
+  pk: 107
+- fields: {election: 18, label: Dato Curioso}
+  model: elections.personaldata
+  pk: 108
+- fields: {candidate: 1, personal_data: 1, value: UDI}
+  model: elections.personaldatacandidate
+  pk: 1
+- fields: {candidate: 1, personal_data: 2, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 2
+- fields: {candidate: 1, personal_data: 3, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 3
+- fields: {candidate: 1, personal_data: 4, value: "Profesor de Educaci\xF3n F\xED\
+      sica"}
+  model: elections.personaldatacandidate
+  pk: 4
+- fields: {candidate: 1, personal_data: 5, value: Diputado por el distrito 4 (1998-2014)}
+  model: elections.personaldatacandidate
+  pk: 5
+- fields: {candidate: 1, personal_data: 6, value: ''}
+  model: elections.personaldatacandidate
+  pk: 6
+- fields: {candidate: 2, personal_data: 1, value: Ind-PRSD}
+  model: elections.personaldatacandidate
+  pk: 7
+- fields: {candidate: 2, personal_data: 2, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 8
+- fields: {candidate: 2, personal_data: 3, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 9
+- fields: {candidate: 2, personal_data: 4, value: Periodista}
+  model: elections.personaldatacandidate
+  pk: 10
+- fields: {candidate: 2, personal_data: 5, value: ''}
+  model: elections.personaldatacandidate
+  pk: 11
+- fields: {candidate: 2, personal_data: 6, value: Conductor de noticias}
+  model: elections.personaldatacandidate
+  pk: 12
+- fields: {candidate: 3, personal_data: 1, value: Ind-DC}
+  model: elections.personaldatacandidate
+  pk: 13
+- fields: {candidate: 3, personal_data: 2, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 14
+- fields: {candidate: 3, personal_data: 3, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 15
+- fields: {candidate: 3, personal_data: 4, value: Abogado}
+  model: elections.personaldatacandidate
+  pk: 16
+- fields: {candidate: 3, personal_data: 5, value: Diputado por el distrito 4 (2002-2014)}
+  model: elections.personaldatacandidate
+  pk: 17
+- fields: {candidate: 3, personal_data: 6, value: 'Hijo del ex diputado y alcalde
+      por Antofagasta, Pedro Araya Ortiz'}
+  model: elections.personaldatacandidate
+  pk: 18
+- fields: {candidate: 4, personal_data: 1, value: PH}
+  model: elections.personaldatacandidate
+  pk: 19
+- fields: {candidate: 4, personal_data: 2, value: Humanista}
+  model: elections.personaldatacandidate
+  pk: 20
+- fields: {candidate: 4, personal_data: 3, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 21
+- fields: {candidate: 4, personal_data: 4, value: ''}
+  model: elections.personaldatacandidate
+  pk: 22
+- fields: {candidate: 4, personal_data: 5, value: ''}
+  model: elections.personaldatacandidate
+  pk: 23
+- fields: {candidate: 4, personal_data: 6, value: ''}
+  model: elections.personaldatacandidate
+  pk: 24
+- fields: {candidate: 5, personal_data: 1, value: Ind}
+  model: elections.personaldatacandidate
+  pk: 25
+- fields: {candidate: 5, personal_data: 2, value: sin pacto}
+  model: elections.personaldatacandidate
+  pk: 26
+- fields: {candidate: 5, personal_data: 3, value: "s\xED"}
+  model: elections.personaldatacandidate
+  pk: 27
+- fields: {candidate: 5, personal_data: 4, value: "Ge\xF3grafo"}
+  model: elections.personaldatacandidate
+  pk: 28
+- fields: {candidate: 5, personal_data: 5, value: "Diputado por el distrito 3 (1990-1998),\
+      \ Senador por la circunscripci\xF3n 3 (1998- 2014)"}
+  model: elections.personaldatacandidate
+  pk: 29
+- fields: {candidate: 5, personal_data: 6, value: ''}
+  model: elections.personaldatacandidate
+  pk: 30
+- fields: {candidate: 6, personal_data: 1, value: Ind}
+  model: elections.personaldatacandidate
+  pk: 31
+- fields: {candidate: 6, personal_data: 2, value: sin pacto}
+  model: elections.personaldatacandidate
+  pk: 32
+- fields: {candidate: 6, personal_data: 3, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 33
+- fields: {candidate: 6, personal_data: 4, value: Abogado}
+  model: elections.personaldatacandidate
+  pk: 34
+- fields: {candidate: 6, personal_data: 5, value: SEREMI de Bienes Nacionales}
+  model: elections.personaldatacandidate
+  pk: 35
+- fields: {candidate: 6, personal_data: 6, value: ''}
+  model: elections.personaldatacandidate
+  pk: 36
+- fields: {candidate: 7, personal_data: 1, value: Ind}
+  model: elections.personaldatacandidate
+  pk: 37
+- fields: {candidate: 7, personal_data: 2, value: "Nueva Constituci\xF3n para Chile"}
+  model: elections.personaldatacandidate
+  pk: 38
+- fields: {candidate: 7, personal_data: 3, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 39
+- fields: {candidate: 7, personal_data: 4, value: ''}
+  model: elections.personaldatacandidate
+  pk: 40
+- fields: {candidate: 7, personal_data: 5, value: ''}
+  model: elections.personaldatacandidate
+  pk: 41
+- fields: {candidate: 7, personal_data: 6, value: ''}
+  model: elections.personaldatacandidate
+  pk: 42
+- fields: {candidate: 8, personal_data: 7, value: ''}
+  model: elections.personaldatacandidate
+  pk: 43
+- fields: {candidate: 8, personal_data: 8, value: ''}
+  model: elections.personaldatacandidate
+  pk: 44
+- fields: {candidate: 8, personal_data: 9, value: ''}
+  model: elections.personaldatacandidate
+  pk: 45
+- fields: {candidate: 8, personal_data: 10, value: ''}
+  model: elections.personaldatacandidate
+  pk: 46
+- fields: {candidate: 8, personal_data: 11, value: ''}
+  model: elections.personaldatacandidate
+  pk: 47
+- fields: {candidate: 8, personal_data: 12, value: ''}
+  model: elections.personaldatacandidate
+  pk: 48
+- fields: {candidate: 9, personal_data: 13, value: UDI}
+  model: elections.personaldatacandidate
+  pk: 49
+- fields: {candidate: 9, personal_data: 14, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 50
+- fields: {candidate: 9, personal_data: 15, value: "s\xED"}
+  model: elections.personaldatacandidate
+  pk: 51
+- fields: {candidate: 9, personal_data: 16, value: Abogado}
+  model: elections.personaldatacandidate
+  pk: 52
+- fields: {candidate: 9, personal_data: 17, value: 'Diputado por el distrito 31 (2002-2011),
+      en Enero 2011 ocupa el cupo senatorial de Evelyn Matthei'}
+  model: elections.personaldatacandidate
+  pk: 53
+- fields: {candidate: 9, personal_data: 18, value: ''}
+  model: elections.personaldatacandidate
+  pk: 54
+- fields: {candidate: 10, personal_data: 13, value: RN}
+  model: elections.personaldatacandidate
+  pk: 55
+- fields: {candidate: 10, personal_data: 14, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 56
+- fields: {candidate: 10, personal_data: 15, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 57
+- fields: {candidate: 10, personal_data: 16, value: Veterinario}
+  model: elections.personaldatacandidate
+  pk: 58
+- fields: {candidate: 10, personal_data: 17, value: Diputado por el distrito 7 (1998-2014)}
+  model: elections.personaldatacandidate
+  pk: 59
+- fields: {candidate: 10, personal_data: 18, value: ''}
+  model: elections.personaldatacandidate
+  pk: 60
+- fields: {candidate: 11, personal_data: 13, value: DC}
+  model: elections.personaldatacandidate
+  pk: 61
+- fields: {candidate: 11, personal_data: 14, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 62
+- fields: {candidate: 11, personal_data: 15, value: "s\xED"}
+  model: elections.personaldatacandidate
+  pk: 63
+- fields: {candidate: 11, personal_data: 16, value: "Estudios en Ciencias Pol\xED\
+      ticas"}
+  model: elections.personaldatacandidate
+  pk: 64
+- fields: {candidate: 11, personal_data: 17, value: "Diputado por el distrito 8 (1990-1998),\
+      \ Senador por la circunscripci\xF3n 4 (1998-2014)"}
+  model: elections.personaldatacandidate
+  pk: 65
+- fields: {candidate: 11, personal_data: 18, value: ''}
+  model: elections.personaldatacandidate
+  pk: 66
+- fields: {candidate: 12, personal_data: 13, value: PPD}
+  model: elections.personaldatacandidate
+  pk: 67
+- fields: {candidate: 12, personal_data: 14, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 68
+- fields: {candidate: 12, personal_data: 15, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 69
+- fields: {candidate: 12, personal_data: 16, value: "Soci\xF3loga y Cientista Pol\xED\
+      tico"}
+  model: elections.personaldatacandidate
+  pk: 70
+- fields: {candidate: 12, personal_data: 17, value: 'Diputada por el distrito 16 (1990-1994),
+      Diputada por el distrito 9 (1998-2014)'}
+  model: elections.personaldatacandidate
+  pk: 71
+- fields: {candidate: 12, personal_data: 18, value: ''}
+  model: elections.personaldatacandidate
+  pk: 72
+- fields: {candidate: 13, personal_data: 13, value: Ind}
+  model: elections.personaldatacandidate
+  pk: 73
+- fields: {candidate: 13, personal_data: 14, value: Humanista}
+  model: elections.personaldatacandidate
+  pk: 74
+- fields: {candidate: 13, personal_data: 15, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 75
+- fields: {candidate: 13, personal_data: 16, value: "Dirigente del MPMR (Movimiento\
+      \ Patri\xF3tico Manuel Rodr\xEDguez)."}
+  model: elections.personaldatacandidate
+  pk: 76
+- fields: {candidate: 13, personal_data: 17, value: ''}
+  model: elections.personaldatacandidate
+  pk: 77
+- fields: {candidate: 13, personal_data: 18, value: ''}
+  model: elections.personaldatacandidate
+  pk: 78
+- fields: {candidate: 14, personal_data: 19, value: ''}
+  model: elections.personaldatacandidate
+  pk: 79
+- fields: {candidate: 14, personal_data: 20, value: ''}
+  model: elections.personaldatacandidate
+  pk: 80
+- fields: {candidate: 14, personal_data: 21, value: ''}
+  model: elections.personaldatacandidate
+  pk: 81
+- fields: {candidate: 14, personal_data: 22, value: ''}
+  model: elections.personaldatacandidate
+  pk: 82
+- fields: {candidate: 14, personal_data: 23, value: ''}
+  model: elections.personaldatacandidate
+  pk: 83
+- fields: {candidate: 14, personal_data: 24, value: ''}
+  model: elections.personaldatacandidate
+  pk: 84
+- fields: {candidate: 15, personal_data: 25, value: ''}
+  model: elections.personaldatacandidate
+  pk: 85
+- fields: {candidate: 15, personal_data: 26, value: ''}
+  model: elections.personaldatacandidate
+  pk: 86
+- fields: {candidate: 15, personal_data: 27, value: ''}
+  model: elections.personaldatacandidate
+  pk: 87
+- fields: {candidate: 15, personal_data: 28, value: ''}
+  model: elections.personaldatacandidate
+  pk: 88
+- fields: {candidate: 15, personal_data: 29, value: ''}
+  model: elections.personaldatacandidate
+  pk: 89
+- fields: {candidate: 15, personal_data: 30, value: ''}
+  model: elections.personaldatacandidate
+  pk: 90
+- fields: {candidate: 16, personal_data: 31, value: UDI}
+  model: elections.personaldatacandidate
+  pk: 91
+- fields: {candidate: 16, personal_data: 32, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 92
+- fields: {candidate: 16, personal_data: 33, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 93
+- fields: {candidate: 16, personal_data: 34, value: Ingeniero Comercial}
+  model: elections.personaldatacandidate
+  pk: 94
+- fields: {candidate: 16, personal_data: 35, value: "Alcalde de La Florida\_(2000-2008),\
+      \ alcalde de Santiago (2008-2012)"}
+  model: elections.personaldatacandidate
+  pk: 95
+- fields: {candidate: 16, personal_data: 36, value: "Hermano de la diputada M\xF3\
+      nica Zalaquett"}
+  model: elections.personaldatacandidate
+  pk: 96
+- fields: {candidate: 17, personal_data: 31, value: RN}
+  model: elections.personaldatacandidate
+  pk: 97
+- fields: {candidate: 17, personal_data: 32, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 98
+- fields: {candidate: 17, personal_data: 33, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 99
+- fields: {candidate: 17, personal_data: 34, value: Abogado}
+  model: elections.personaldatacandidate
+  pk: 100
+- fields: {candidate: 17, personal_data: 35, value: "Diputado por el distrito 23\_\
+      (1994-1998), senador por circunscripci\xF3n 16 (2006-2011), ministro de defensa\
+      \ desde enero 2011 a noviembre 2012"}
+  model: elections.personaldatacandidate
+  pk: 101
+- fields: {candidate: 17, personal_data: 36, value: ''}
+  model: elections.personaldatacandidate
+  pk: 102
+- fields: {candidate: 18, personal_data: 31, value: DC}
+  model: elections.personaldatacandidate
+  pk: 103
+- fields: {candidate: 18, personal_data: 32, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 104
+- fields: {candidate: 18, personal_data: 33, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 105
+- fields: {candidate: 18, personal_data: 34, value: Ingeniero Comercial}
+  model: elections.personaldatacandidate
+  pk: 106
+- fields: {candidate: 18, personal_data: 35, value: "Director del SERNAC, Alcalde\
+      \ de Maip\xFA (2004-2012)"}
+  model: elections.personaldatacandidate
+  pk: 107
+- fields: {candidate: 18, personal_data: 36, value: ''}
+  model: elections.personaldatacandidate
+  pk: 108
+- fields: {candidate: 19, personal_data: 31, value: PPD}
+  model: elections.personaldatacandidate
+  pk: 109
+- fields: {candidate: 19, personal_data: 32, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 110
+- fields: {candidate: 19, personal_data: 33, value: "s\xED"}
+  model: elections.personaldatacandidate
+  pk: 111
+- fields: {candidate: 19, personal_data: 34, value: "M\xE9dico"}
+  model: elections.personaldatacandidate
+  pk: 112
+- fields: {candidate: 19, personal_data: 35, value: "Diputado por el distrito 23\_\
+      (1990-1994), diputado por el distrito\_18 (1994-2006), Senador por la circunscripci\xF3\
+      n 7 (2006-2014)"}
+  model: elections.personaldatacandidate
+  pk: 113
+- fields: {candidate: 19, personal_data: 36, value: ''}
+  model: elections.personaldatacandidate
+  pk: 114
+- fields: {candidate: 20, personal_data: 31, value: PH}
+  model: elections.personaldatacandidate
+  pk: 115
+- fields: {candidate: 20, personal_data: 32, value: Humanista}
+  model: elections.personaldatacandidate
+  pk: 116
+- fields: {candidate: 20, personal_data: 33, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 117
+- fields: {candidate: 20, personal_data: 34, value: ''}
+  model: elections.personaldatacandidate
+  pk: 118
+- fields: {candidate: 20, personal_data: 35, value: ''}
+  model: elections.personaldatacandidate
+  pk: 119
+- fields: {candidate: 20, personal_data: 36, value: ''}
+  model: elections.personaldatacandidate
+  pk: 120
+- fields: {candidate: 21, personal_data: 31, value: Ind}
+  model: elections.personaldatacandidate
+  pk: 121
+- fields: {candidate: 21, personal_data: 32, value: Humanista}
+  model: elections.personaldatacandidate
+  pk: 122
+- fields: {candidate: 21, personal_data: 33, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 123
+- fields: {candidate: 21, personal_data: 34, value: ''}
+  model: elections.personaldatacandidate
+  pk: 124
+- fields: {candidate: 21, personal_data: 35, value: ''}
+  model: elections.personaldatacandidate
+  pk: 125
+- fields: {candidate: 21, personal_data: 36, value: ''}
+  model: elections.personaldatacandidate
+  pk: 126
+- fields: {candidate: 22, personal_data: 31, value: Ind-PI}
+  model: elections.personaldatacandidate
+  pk: 127
+- fields: {candidate: 22, personal_data: 32, value: "Nueva Constituci\xF3n para Chile"}
+  model: elections.personaldatacandidate
+  pk: 128
+- fields: {candidate: 22, personal_data: 33, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 129
+- fields: {candidate: 22, personal_data: 34, value: ''}
+  model: elections.personaldatacandidate
+  pk: 130
+- fields: {candidate: 22, personal_data: 35, value: ''}
+  model: elections.personaldatacandidate
+  pk: 131
+- fields: {candidate: 22, personal_data: 36, value: ''}
+  model: elections.personaldatacandidate
+  pk: 132
+- fields: {candidate: 23, personal_data: 31, value: PI}
+  model: elections.personaldatacandidate
+  pk: 133
+- fields: {candidate: 23, personal_data: 32, value: "Nueva Constituci\xF3n para Chile"}
+  model: elections.personaldatacandidate
+  pk: 134
+- fields: {candidate: 23, personal_data: 33, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 135
+- fields: {candidate: 23, personal_data: 34, value: ''}
+  model: elections.personaldatacandidate
+  pk: 136
+- fields: {candidate: 23, personal_data: 35, value: ''}
+  model: elections.personaldatacandidate
+  pk: 137
+- fields: {candidate: 23, personal_data: 36, value: ''}
+  model: elections.personaldatacandidate
+  pk: 138
+- fields: {candidate: 24, personal_data: 37, value: Ind-UDI}
+  model: elections.personaldatacandidate
+  pk: 139
+- fields: {candidate: 24, personal_data: 38, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 140
+- fields: {candidate: 24, personal_data: 39, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 141
+- fields: {candidate: 24, personal_data: 40, value: 'Ingeniero Civil Industrial, empresario'}
+  model: elections.personaldatacandidate
+  pk: 142
+- fields: {candidate: 24, personal_data: 41, value: "Ministro de Obras P\xFAblicas,\_\
+      Biministro de Miner\xEDa y Energ\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 143
+- fields: {candidate: 24, personal_data: 42, value: "Fue el candidato presidencial\
+      \ de la UDI. Su hija ser\xE1 candidata por el distrito 28."}
+  model: elections.personaldatacandidate
+  pk: 144
+- fields: {candidate: 25, personal_data: 37, value: RN}
+  model: elections.personaldatacandidate
+  pk: 145
+- fields: {candidate: 25, personal_data: 38, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 146
+- fields: {candidate: 25, personal_data: 39, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 147
+- fields: {candidate: 25, personal_data: 40, value: "T\xE9cnico agr\xEDcola"}
+  model: elections.personaldatacandidate
+  pk: 148
+- fields: {candidate: 25, personal_data: 41, value: "Alcalde de Pirque\_(1992-2000),\
+      \ Alcalde de Puente Alto (2000-2012)"}
+  model: elections.personaldatacandidate
+  pk: 149
+- fields: {candidate: 25, personal_data: 42, value: ''}
+  model: elections.personaldatacandidate
+  pk: 150
+- fields: {candidate: 26, personal_data: 37, value: DC}
+  model: elections.personaldatacandidate
+  pk: 151
+- fields: {candidate: 26, personal_data: 38, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 152
+- fields: {candidate: 26, personal_data: 39, value: "s\xED"}
+  model: elections.personaldatacandidate
+  pk: 153
+- fields: {candidate: 26, personal_data: 40, value: Abogada}
+  model: elections.personaldatacandidate
+  pk: 154
+- fields: {candidate: 26, personal_data: 41, value: "Ministra SERNAM (1991-1994),\
+      \ Ministra de Justicia (1994-1999), Ministra de RR.EE (2000-2004), Senadora\
+      \ por la circunscripci\xF3n 8\_(2006-2014)"}
+  model: elections.personaldatacandidate
+  pk: 155
+- fields: {candidate: 26, personal_data: 42, value: ''}
+  model: elections.personaldatacandidate
+  pk: 156
+- fields: {candidate: 27, personal_data: 37, value: PS}
+  model: elections.personaldatacandidate
+  pk: 157
+- fields: {candidate: 27, personal_data: 38, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 158
+- fields: {candidate: 27, personal_data: 39, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 159
+- fields: {candidate: 27, personal_data: 40, value: Economista}
+  model: elections.personaldatacandidate
+  pk: 160
+- fields: {candidate: 27, personal_data: 41, value: "Diputado por el distrito 26\_\
+      (1990-2014)"}
+  model: elections.personaldatacandidate
+  pk: 161
+- fields: {candidate: 27, personal_data: 42, value: ''}
+  model: elections.personaldatacandidate
+  pk: 162
+- fields: {candidate: 28, personal_data: 37, value: MSA}
+  model: elections.personaldatacandidate
+  pk: 163
+- fields: {candidate: 28, personal_data: 38, value: "Si t\xFA quieres, Chile cambia"}
+  model: elections.personaldatacandidate
+  pk: 164
+- fields: {candidate: 28, personal_data: 39, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 165
+- fields: {candidate: 28, personal_data: 40, value: ''}
+  model: elections.personaldatacandidate
+  pk: 166
+- fields: {candidate: 28, personal_data: 41, value: ''}
+  model: elections.personaldatacandidate
+  pk: 167
+- fields: {candidate: 28, personal_data: 42, value: Presidente del MSA}
+  model: elections.personaldatacandidate
+  pk: 168
+- fields: {candidate: 29, personal_data: 37, value: Ind-PL}
+  model: elections.personaldatacandidate
+  pk: 169
+- fields: {candidate: 29, personal_data: 38, value: "Si t\xFA quieres, Chile cambia"}
+  model: elections.personaldatacandidate
+  pk: 170
+- fields: {candidate: 29, personal_data: 39, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 171
+- fields: {candidate: 29, personal_data: 40, value: ''}
+  model: elections.personaldatacandidate
+  pk: 172
+- fields: {candidate: 29, personal_data: 41, value: ''}
+  model: elections.personaldatacandidate
+  pk: 173
+- fields: {candidate: 29, personal_data: 42, value: ''}
+  model: elections.personaldatacandidate
+  pk: 174
+- fields: {candidate: 30, personal_data: 37, value: PH}
+  model: elections.personaldatacandidate
+  pk: 175
+- fields: {candidate: 30, personal_data: 38, value: Humanista}
+  model: elections.personaldatacandidate
+  pk: 176
+- fields: {candidate: 30, personal_data: 39, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 177
+- fields: {candidate: 30, personal_data: 40, value: "Empresario independiente y profesor\
+      \ de inform\xE1tica para adultos"}
+  model: elections.personaldatacandidate
+  pk: 178
+- fields: {candidate: 30, personal_data: 41, value: ''}
+  model: elections.personaldatacandidate
+  pk: 179
+- fields: {candidate: 30, personal_data: 42, value: ''}
+  model: elections.personaldatacandidate
+  pk: 180
+- fields: {candidate: 31, personal_data: 37, value: Ind}
+  model: elections.personaldatacandidate
+  pk: 181
+- fields: {candidate: 31, personal_data: 38, value: Humanista}
+  model: elections.personaldatacandidate
+  pk: 182
+- fields: {candidate: 31, personal_data: 39, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 183
+- fields: {candidate: 31, personal_data: 40, value: ''}
+  model: elections.personaldatacandidate
+  pk: 184
+- fields: {candidate: 31, personal_data: 41, value: ''}
+  model: elections.personaldatacandidate
+  pk: 185
+- fields: {candidate: 31, personal_data: 42, value: ''}
+  model: elections.personaldatacandidate
+  pk: 186
+- fields: {candidate: 32, personal_data: 37, value: PI}
+  model: elections.personaldatacandidate
+  pk: 187
+- fields: {candidate: 32, personal_data: 38, value: "Nueva Constituci\xF3n para Chile"}
+  model: elections.personaldatacandidate
+  pk: 188
+- fields: {candidate: 32, personal_data: 39, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 189
+- fields: {candidate: 32, personal_data: 40, value: ''}
+  model: elections.personaldatacandidate
+  pk: 190
+- fields: {candidate: 32, personal_data: 41, value: ''}
+  model: elections.personaldatacandidate
+  pk: 191
+- fields: {candidate: 32, personal_data: 42, value: Secretario General Partido Igualdad}
+  model: elections.personaldatacandidate
+  pk: 192
+- fields: {candidate: 33, personal_data: 37, value: Ind}
+  model: elections.personaldatacandidate
+  pk: 193
+- fields: {candidate: 33, personal_data: 38, value: "Nueva Constituci\xF3n para Chile"}
+  model: elections.personaldatacandidate
+  pk: 194
+- fields: {candidate: 33, personal_data: 39, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 195
+- fields: {candidate: 33, personal_data: 40, value: ''}
+  model: elections.personaldatacandidate
+  pk: 196
+- fields: {candidate: 33, personal_data: 41, value: ''}
+  model: elections.personaldatacandidate
+  pk: 197
+- fields: {candidate: 33, personal_data: 42, value: ''}
+  model: elections.personaldatacandidate
+  pk: 198
+- fields: {candidate: 34, personal_data: 43, value: UDI}
+  model: elections.personaldatacandidate
+  pk: 199
+- fields: {candidate: 34, personal_data: 44, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 200
+- fields: {candidate: 34, personal_data: 45, value: "s\xED"}
+  model: elections.personaldatacandidate
+  pk: 201
+- fields: {candidate: 34, personal_data: 46, value: "Cientista Pol\xEDtico"}
+  model: elections.personaldatacandidate
+  pk: 202
+- fields: {candidate: 34, personal_data: 47, value: Diputado por el distrito 32 (1994-2014)}
+  model: elections.personaldatacandidate
+  pk: 203
+- fields: {candidate: 34, personal_data: 48, value: ''}
+  model: elections.personaldatacandidate
+  pk: 204
+- fields: {candidate: 35, personal_data: 43, value: RN}
+  model: elections.personaldatacandidate
+  pk: 205
+- fields: {candidate: 35, personal_data: 44, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 206
+- fields: {candidate: 35, personal_data: 45, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 207
+- fields: {candidate: 35, personal_data: 46, value: Abogado}
+  model: elections.personaldatacandidate
+  pk: 208
+- fields: {candidate: 35, personal_data: 47, value: Diputado por el distrito 22 (1994-2014)}
+  model: elections.personaldatacandidate
+  pk: 209
+- fields: {candidate: 35, personal_data: 48, value: ''}
+  model: elections.personaldatacandidate
+  pk: 210
+- fields: {candidate: 36, personal_data: 43, value: DC}
+  model: elections.personaldatacandidate
+  pk: 211
+- fields: {candidate: 36, personal_data: 44, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 212
+- fields: {candidate: 36, personal_data: 45, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 213
+- fields: {candidate: 36, personal_data: 46, value: Ingeniero Civil}
+  model: elections.personaldatacandidate
+  pk: 214
+- fields: {candidate: 36, personal_data: 47, value: "Diputado por el distrito 35\_\
+      (1990-1998, 2002-2014)"}
+  model: elections.personaldatacandidate
+  pk: 215
+- fields: {candidate: 36, personal_data: 48, value: ''}
+  model: elections.personaldatacandidate
+  pk: 216
+- fields: {candidate: 37, personal_data: 43, value: PS}
+  model: elections.personaldatacandidate
+  pk: 217
+- fields: {candidate: 37, personal_data: 44, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 218
+- fields: {candidate: 37, personal_data: 45, value: "s\xED"}
+  model: elections.personaldatacandidate
+  pk: 219
+- fields: {candidate: 37, personal_data: 46, value: Economista}
+  model: elections.personaldatacandidate
+  pk: 220
+- fields: {candidate: 37, personal_data: 47, value: "Diputado por el distrito 33 (1990-2006),\
+      \ Senador por la circunscripci\xF3n 9 (2006-2014)"}
+  model: elections.personaldatacandidate
+  pk: 221
+- fields: {candidate: 37, personal_data: 48, value: "Hijo del asesinado\_Orlando Letelier."}
+  model: elections.personaldatacandidate
+  pk: 222
+- fields: {candidate: 38, personal_data: 43, value: PH}
+  model: elections.personaldatacandidate
+  pk: 223
+- fields: {candidate: 38, personal_data: 44, value: Humanista}
+  model: elections.personaldatacandidate
+  pk: 224
+- fields: {candidate: 38, personal_data: 45, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 225
+- fields: {candidate: 38, personal_data: 46, value: ''}
+  model: elections.personaldatacandidate
+  pk: 226
+- fields: {candidate: 38, personal_data: 47, value: ''}
+  model: elections.personaldatacandidate
+  pk: 227
+- fields: {candidate: 38, personal_data: 48, value: ''}
+  model: elections.personaldatacandidate
+  pk: 228
+- fields: {candidate: 39, personal_data: 49, value: ''}
+  model: elections.personaldatacandidate
+  pk: 229
+- fields: {candidate: 39, personal_data: 50, value: ''}
+  model: elections.personaldatacandidate
+  pk: 230
+- fields: {candidate: 39, personal_data: 51, value: ''}
+  model: elections.personaldatacandidate
+  pk: 231
+- fields: {candidate: 39, personal_data: 52, value: ''}
+  model: elections.personaldatacandidate
+  pk: 232
+- fields: {candidate: 39, personal_data: 53, value: ''}
+  model: elections.personaldatacandidate
+  pk: 233
+- fields: {candidate: 39, personal_data: 54, value: ''}
+  model: elections.personaldatacandidate
+  pk: 234
+- fields: {candidate: 40, personal_data: 55, value: ''}
+  model: elections.personaldatacandidate
+  pk: 235
+- fields: {candidate: 40, personal_data: 56, value: ''}
+  model: elections.personaldatacandidate
+  pk: 236
+- fields: {candidate: 40, personal_data: 57, value: ''}
+  model: elections.personaldatacandidate
+  pk: 237
+- fields: {candidate: 40, personal_data: 58, value: ''}
+  model: elections.personaldatacandidate
+  pk: 238
+- fields: {candidate: 40, personal_data: 59, value: ''}
+  model: elections.personaldatacandidate
+  pk: 239
+- fields: {candidate: 40, personal_data: 60, value: ''}
+  model: elections.personaldatacandidate
+  pk: 240
+- fields: {candidate: 41, personal_data: 61, value: UDI}
+  model: elections.personaldatacandidate
+  pk: 241
+- fields: {candidate: 41, personal_data: 62, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 242
+- fields: {candidate: 41, personal_data: 63, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 243
+- fields: {candidate: 41, personal_data: 64, value: Psiquiatra}
+  model: elections.personaldatacandidate
+  pk: 244
+- fields: {candidate: 41, personal_data: 65, value: "Concejal de la comuna de Concepci\xF3\
+      n (1992-2000), Alcaldesa de Concepci\xF3n (2000-2012), Intendenta de la regi\xF3\
+      n del B\xEDo B\xEDo (2010-2011)"}
+  model: elections.personaldatacandidate
+  pk: 245
+- fields: {candidate: 41, personal_data: 66, value: ''}
+  model: elections.personaldatacandidate
+  pk: 246
+- fields: {candidate: 42, personal_data: 61, value: Ind-RN}
+  model: elections.personaldatacandidate
+  pk: 247
+- fields: {candidate: 42, personal_data: 62, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 248
+- fields: {candidate: 42, personal_data: 63, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 249
+- fields: {candidate: 42, personal_data: 64, value: Ingeniero Civil Industrial}
+  model: elections.personaldatacandidate
+  pk: 250
+- fields: {candidate: 42, personal_data: 65, value: ''}
+  model: elections.personaldatacandidate
+  pk: 251
+- fields: {candidate: 42, personal_data: 66, value: ''}
+  model: elections.personaldatacandidate
+  pk: 252
+- fields: {candidate: 43, personal_data: 61, value: MAS}
+  model: elections.personaldatacandidate
+  pk: 253
+- fields: {candidate: 43, personal_data: 62, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 254
+- fields: {candidate: 43, personal_data: 63, value: "s\xED"}
+  model: elections.personaldatacandidate
+  pk: 255
+- fields: {candidate: 43, personal_data: 64, value: "Profesor de Filosof\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 256
+- fields: {candidate: 43, personal_data: 65, value: ''}
+  model: elections.personaldatacandidate
+  pk: 257
+- fields: {candidate: 43, personal_data: 66, value: ''}
+  model: elections.personaldatacandidate
+  pk: 258
+- fields: {candidate: 44, personal_data: 61, value: PS}
+  model: elections.personaldatacandidate
+  pk: 259
+- fields: {candidate: 44, personal_data: 62, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 260
+- fields: {candidate: 44, personal_data: 63, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 261
+- fields: {candidate: 44, personal_data: 64, value: ''}
+  model: elections.personaldatacandidate
+  pk: 262
+- fields: {candidate: 44, personal_data: 65, value: ''}
+  model: elections.personaldatacandidate
+  pk: 263
+- fields: {candidate: 44, personal_data: 66, value: ''}
+  model: elections.personaldatacandidate
+  pk: 264
+- fields: {candidate: 45, personal_data: 61, value: Ind}
+  model: elections.personaldatacandidate
+  pk: 265
+- fields: {candidate: 45, personal_data: 62, value: "Si t\xFA quieres, Chile cambia"}
+  model: elections.personaldatacandidate
+  pk: 266
+- fields: {candidate: 45, personal_data: 63, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 267
+- fields: {candidate: 45, personal_data: 64, value: Economista}
+  model: elections.personaldatacandidate
+  pk: 268
+- fields: {candidate: 45, personal_data: 65, value: ''}
+  model: elections.personaldatacandidate
+  pk: 269
+- fields: {candidate: 45, personal_data: 66, value: ''}
+  model: elections.personaldatacandidate
+  pk: 270
+- fields: {candidate: 46, personal_data: 61, value: Ind-PL}
+  model: elections.personaldatacandidate
+  pk: 271
+- fields: {candidate: 46, personal_data: 62, value: "Si t\xFA quieres, Chile cambia"}
+  model: elections.personaldatacandidate
+  pk: 272
+- fields: {candidate: 46, personal_data: 63, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 273
+- fields: {candidate: 46, personal_data: 64, value: "Bioqu\xEDmico"}
+  model: elections.personaldatacandidate
+  pk: 274
+- fields: {candidate: 46, personal_data: 65, value: ''}
+  model: elections.personaldatacandidate
+  pk: 275
+- fields: {candidate: 46, personal_data: 66, value: ''}
+  model: elections.personaldatacandidate
+  pk: 276
+- fields: {candidate: 47, personal_data: 61, value: PH}
+  model: elections.personaldatacandidate
+  pk: 277
+- fields: {candidate: 47, personal_data: 62, value: Humanista}
+  model: elections.personaldatacandidate
+  pk: 278
+- fields: {candidate: 47, personal_data: 63, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 279
+- fields: {candidate: 47, personal_data: 64, value: ''}
+  model: elections.personaldatacandidate
+  pk: 280
+- fields: {candidate: 47, personal_data: 65, value: Dirigente social}
+  model: elections.personaldatacandidate
+  pk: 281
+- fields: {candidate: 47, personal_data: 66, value: ''}
+  model: elections.personaldatacandidate
+  pk: 282
+- fields: {candidate: 48, personal_data: 61, value: PI}
+  model: elections.personaldatacandidate
+  pk: 283
+- fields: {candidate: 48, personal_data: 62, value: "Nueva Constituci\xF3n para Chile"}
+  model: elections.personaldatacandidate
+  pk: 284
+- fields: {candidate: 48, personal_data: 63, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 285
+- fields: {candidate: 48, personal_data: 64, value: ''}
+  model: elections.personaldatacandidate
+  pk: 286
+- fields: {candidate: 48, personal_data: 65, value: ''}
+  model: elections.personaldatacandidate
+  pk: 287
+- fields: {candidate: 48, personal_data: 66, value: ''}
+  model: elections.personaldatacandidate
+  pk: 288
+- fields: {candidate: 49, personal_data: 61, value: PEV}
+  model: elections.personaldatacandidate
+  pk: 289
+- fields: {candidate: 49, personal_data: 62, value: "Nueva Constituci\xF3n para Chile"}
+  model: elections.personaldatacandidate
+  pk: 290
+- fields: {candidate: 49, personal_data: 63, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 291
+- fields: {candidate: 49, personal_data: 64, value: ''}
+  model: elections.personaldatacandidate
+  pk: 292
+- fields: {candidate: 49, personal_data: 65, value: ''}
+  model: elections.personaldatacandidate
+  pk: 293
+- fields: {candidate: 49, personal_data: 66, value: ''}
+  model: elections.personaldatacandidate
+  pk: 294
+- fields: {candidate: 50, personal_data: 67, value: UDI}
+  model: elections.personaldatacandidate
+  pk: 295
+- fields: {candidate: 50, personal_data: 68, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 296
+- fields: {candidate: 50, personal_data: 69, value: "s\xED"}
+  model: elections.personaldatacandidate
+  pk: 297
+- fields: {candidate: 50, personal_data: 70, value: Abogado}
+  model: elections.personaldatacandidate
+  pk: 298
+- fields: {candidate: 50, personal_data: 71, value: "Alcalde designado de Los \xC1\
+      ngeles (1981-1987)."}
+  model: elections.personaldatacandidate
+  pk: 299
+- fields: {candidate: 50, personal_data: 72, value: ''}
+  model: elections.personaldatacandidate
+  pk: 300
+- fields: {candidate: 51, personal_data: 67, value: RN}
+  model: elections.personaldatacandidate
+  pk: 301
+- fields: {candidate: 51, personal_data: 68, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 302
+- fields: {candidate: 51, personal_data: 69, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 303
+- fields: {candidate: 51, personal_data: 70, value: "Tecn\xF3loga m\xE9dica"}
+  model: elections.personaldatacandidate
+  pk: 304
+- fields: {candidate: 51, personal_data: 71, value: "SEREMI de Salud de la Regi\xF3\
+      n Metropolitana (2010-2013)"}
+  model: elections.personaldatacandidate
+  pk: 305
+- fields: {candidate: 51, personal_data: 72, value: ''}
+  model: elections.personaldatacandidate
+  pk: 306
+- fields: {candidate: 52, personal_data: 67, value: DC}
+  model: elections.personaldatacandidate
+  pk: 307
+- fields: {candidate: 52, personal_data: 68, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 308
+- fields: {candidate: 52, personal_data: 69, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 309
+- fields: {candidate: 52, personal_data: 70, value: Contador}
+  model: elections.personaldatacandidate
+  pk: 310
+- fields: {candidate: 52, personal_data: 71, value: ''}
+  model: elections.personaldatacandidate
+  pk: 311
+- fields: {candidate: 52, personal_data: 72, value: ''}
+  model: elections.personaldatacandidate
+  pk: 312
+- fields: {candidate: 53, personal_data: 67, value: PPD}
+  model: elections.personaldatacandidate
+  pk: 313
+- fields: {candidate: 53, personal_data: 68, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 314
+- fields: {candidate: 53, personal_data: 69, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 315
+- fields: {candidate: 53, personal_data: 70, value: Abogado}
+  model: elections.personaldatacandidate
+  pk: 316
+- fields: {candidate: 53, personal_data: 71, value: ''}
+  model: elections.personaldatacandidate
+  pk: 317
+- fields: {candidate: 53, personal_data: 72, value: ''}
+  model: elections.personaldatacandidate
+  pk: 318
+- fields: {candidate: 54, personal_data: 67, value: Ind-PI}
+  model: elections.personaldatacandidate
+  pk: 319
+- fields: {candidate: 54, personal_data: 68, value: "Nueva Constituci\xF3n para Chile"}
+  model: elections.personaldatacandidate
+  pk: 320
+- fields: {candidate: 54, personal_data: 69, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 321
+- fields: {candidate: 54, personal_data: 70, value: ''}
+  model: elections.personaldatacandidate
+  pk: 322
+- fields: {candidate: 54, personal_data: 71, value: ''}
+  model: elections.personaldatacandidate
+  pk: 323
+- fields: {candidate: 54, personal_data: 72, value: ''}
+  model: elections.personaldatacandidate
+  pk: 324
+- fields: {candidate: 55, personal_data: 67, value: Ind}
+  model: elections.personaldatacandidate
+  pk: 325
+- fields: {candidate: 55, personal_data: 68, value: sin pacto}
+  model: elections.personaldatacandidate
+  pk: 326
+- fields: {candidate: 55, personal_data: 69, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 327
+- fields: {candidate: 55, personal_data: 70, value: ''}
+  model: elections.personaldatacandidate
+  pk: 328
+- fields: {candidate: 55, personal_data: 71, value: ''}
+  model: elections.personaldatacandidate
+  pk: 329
+- fields: {candidate: 55, personal_data: 72, value: ''}
+  model: elections.personaldatacandidate
+  pk: 330
+- fields: {candidate: 56, personal_data: 73, value: ''}
+  model: elections.personaldatacandidate
+  pk: 331
+- fields: {candidate: 56, personal_data: 74, value: ''}
+  model: elections.personaldatacandidate
+  pk: 332
+- fields: {candidate: 56, personal_data: 75, value: ''}
+  model: elections.personaldatacandidate
+  pk: 333
+- fields: {candidate: 56, personal_data: 76, value: ''}
+  model: elections.personaldatacandidate
+  pk: 334
+- fields: {candidate: 56, personal_data: 77, value: ''}
+  model: elections.personaldatacandidate
+  pk: 335
+- fields: {candidate: 56, personal_data: 78, value: ''}
+  model: elections.personaldatacandidate
+  pk: 336
+- fields: {candidate: 57, personal_data: 79, value: ''}
+  model: elections.personaldatacandidate
+  pk: 337
+- fields: {candidate: 57, personal_data: 80, value: ''}
+  model: elections.personaldatacandidate
+  pk: 338
+- fields: {candidate: 57, personal_data: 81, value: ''}
+  model: elections.personaldatacandidate
+  pk: 339
+- fields: {candidate: 57, personal_data: 82, value: ''}
+  model: elections.personaldatacandidate
+  pk: 340
+- fields: {candidate: 57, personal_data: 83, value: ''}
+  model: elections.personaldatacandidate
+  pk: 341
+- fields: {candidate: 57, personal_data: 84, value: ''}
+  model: elections.personaldatacandidate
+  pk: 342
+- fields: {candidate: 58, personal_data: 85, value: UDI}
+  model: elections.personaldatacandidate
+  pk: 343
+- fields: {candidate: 58, personal_data: 86, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 344
+- fields: {candidate: 58, personal_data: 87, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 345
+- fields: {candidate: 58, personal_data: 88, value: Periodista}
+  model: elections.personaldatacandidate
+  pk: 346
+- fields: {candidate: 58, personal_data: 89, value: ''}
+  model: elections.personaldatacandidate
+  pk: 347
+- fields: {candidate: 58, personal_data: 90, value: ''}
+  model: elections.personaldatacandidate
+  pk: 348
+- fields: {candidate: 59, personal_data: 85, value: RN}
+  model: elections.personaldatacandidate
+  pk: 349
+- fields: {candidate: 59, personal_data: 86, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 350
+- fields: {candidate: 59, personal_data: 87, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 351
+- fields: {candidate: 59, personal_data: 88, value: Ingeniero Forestal}
+  model: elections.personaldatacandidate
+  pk: 352
+- fields: {candidate: 59, personal_data: 89, value: Concejal por Valdivia (2004-2012).}
+  model: elections.personaldatacandidate
+  pk: 353
+- fields: {candidate: 59, personal_data: 90, value: ''}
+  model: elections.personaldatacandidate
+  pk: 354
+- fields: {candidate: 60, personal_data: 85, value: PS}
+  model: elections.personaldatacandidate
+  pk: 355
+- fields: {candidate: 60, personal_data: 86, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 356
+- fields: {candidate: 60, personal_data: 87, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 357
+- fields: {candidate: 60, personal_data: 88, value: Abogado}
+  model: elections.personaldatacandidate
+  pk: 358
+- fields: {candidate: 60, personal_data: 89, value: ''}
+  model: elections.personaldatacandidate
+  pk: 359
+- fields: {candidate: 60, personal_data: 90, value: ''}
+  model: elections.personaldatacandidate
+  pk: 360
+- fields: {candidate: 61, personal_data: 85, value: PC}
+  model: elections.personaldatacandidate
+  pk: 361
+- fields: {candidate: 61, personal_data: 86, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 362
+- fields: {candidate: 61, personal_data: 87, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 363
+- fields: {candidate: 61, personal_data: 88, value: Egresado de la carrera de Secretariado.}
+  model: elections.personaldatacandidate
+  pk: 364
+- fields: {candidate: 61, personal_data: 89, value: ''}
+  model: elections.personaldatacandidate
+  pk: 365
+- fields: {candidate: 61, personal_data: 90, value: ''}
+  model: elections.personaldatacandidate
+  pk: 366
+- fields: {candidate: 62, personal_data: 85, value: Ind}
+  model: elections.personaldatacandidate
+  pk: 367
+- fields: {candidate: 62, personal_data: 86, value: Humanista}
+  model: elections.personaldatacandidate
+  pk: 368
+- fields: {candidate: 62, personal_data: 87, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 369
+- fields: {candidate: 62, personal_data: 88, value: ''}
+  model: elections.personaldatacandidate
+  pk: 370
+- fields: {candidate: 62, personal_data: 89, value: ''}
+  model: elections.personaldatacandidate
+  pk: 371
+- fields: {candidate: 62, personal_data: 90, value: ''}
+  model: elections.personaldatacandidate
+  pk: 372
+- fields: {candidate: 63, personal_data: 85, value: Ind}
+  model: elections.personaldatacandidate
+  pk: 373
+- fields: {candidate: 63, personal_data: 86, value: "Nueva Constituci\xF3n para Chile"}
+  model: elections.personaldatacandidate
+  pk: 374
+- fields: {candidate: 63, personal_data: 87, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 375
+- fields: {candidate: 63, personal_data: 88, value: ''}
+  model: elections.personaldatacandidate
+  pk: 376
+- fields: {candidate: 63, personal_data: 89, value: ''}
+  model: elections.personaldatacandidate
+  pk: 377
+- fields: {candidate: 63, personal_data: 90, value: ''}
+  model: elections.personaldatacandidate
+  pk: 378
+- fields: {candidate: 64, personal_data: 85, value: Ind}
+  model: elections.personaldatacandidate
+  pk: 379
+- fields: {candidate: 64, personal_data: 86, value: ''}
+  model: elections.personaldatacandidate
+  pk: 380
+- fields: {candidate: 64, personal_data: 87, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 381
+- fields: {candidate: 64, personal_data: 88, value: ''}
+  model: elections.personaldatacandidate
+  pk: 382
+- fields: {candidate: 64, personal_data: 89, value: ''}
+  model: elections.personaldatacandidate
+  pk: 383
+- fields: {candidate: 64, personal_data: 90, value: ''}
+  model: elections.personaldatacandidate
+  pk: 384
+- fields: {candidate: 65, personal_data: 91, value: UDI}
+  model: elections.personaldatacandidate
+  pk: 385
+- fields: {candidate: 65, personal_data: 92, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 386
+- fields: {candidate: 65, personal_data: 93, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 387
+- fields: {candidate: 65, personal_data: 94, value: "Relacionador p\xFAblico"}
+  model: elections.personaldatacandidate
+  pk: 388
+- fields: {candidate: 65, personal_data: 95, value: ''}
+  model: elections.personaldatacandidate
+  pk: 389
+- fields: {candidate: 65, personal_data: 96, value: ''}
+  model: elections.personaldatacandidate
+  pk: 390
+- fields: {candidate: 66, personal_data: 91, value: RN}
+  model: elections.personaldatacandidate
+  pk: 391
+- fields: {candidate: 66, personal_data: 92, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 392
+- fields: {candidate: 66, personal_data: 93, value: "s\xED"}
+  model: elections.personaldatacandidate
+  pk: 393
+- fields: {candidate: 66, personal_data: 94, value: Ingeniero Comercial}
+  model: elections.personaldatacandidate
+  pk: 394
+- fields: {candidate: 66, personal_data: 95, value: ''}
+  model: elections.personaldatacandidate
+  pk: 395
+- fields: {candidate: 66, personal_data: 96, value: ''}
+  model: elections.personaldatacandidate
+  pk: 396
+- fields: {candidate: 67, personal_data: 91, value: DC}
+  model: elections.personaldatacandidate
+  pk: 397
+- fields: {candidate: 67, personal_data: 92, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 398
+- fields: {candidate: 67, personal_data: 93, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 399
+- fields: {candidate: 67, personal_data: 94, value: Abogado}
+  model: elections.personaldatacandidate
+  pk: 400
+- fields: {candidate: 67, personal_data: 95, value: ''}
+  model: elections.personaldatacandidate
+  pk: 401
+- fields: {candidate: 67, personal_data: 96, value: ''}
+  model: elections.personaldatacandidate
+  pk: 402
+- fields: {candidate: 68, personal_data: 91, value: PS}
+  model: elections.personaldatacandidate
+  pk: 403
+- fields: {candidate: 68, personal_data: 92, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 404
+- fields: {candidate: 68, personal_data: 93, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 405
+- fields: {candidate: 68, personal_data: 94, value: "Odont\xF3logo"}
+  model: elections.personaldatacandidate
+  pk: 406
+- fields: {candidate: 68, personal_data: 95, value: Intendente de Los Lagos (1990-2000).
+      Alcalde de Puerto Montt (2000-2012).}
+  model: elections.personaldatacandidate
+  pk: 407
+- fields: {candidate: 68, personal_data: 96, value: ''}
+  model: elections.personaldatacandidate
+  pk: 408
+- fields: {candidate: 69, personal_data: 97, value: ''}
+  model: elections.personaldatacandidate
+  pk: 409
+- fields: {candidate: 69, personal_data: 98, value: ''}
+  model: elections.personaldatacandidate
+  pk: 410
+- fields: {candidate: 69, personal_data: 99, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 411
+- fields: {candidate: 69, personal_data: 100, value: ''}
+  model: elections.personaldatacandidate
+  pk: 412
+- fields: {candidate: 69, personal_data: 101, value: ''}
+  model: elections.personaldatacandidate
+  pk: 413
+- fields: {candidate: 69, personal_data: 102, value: ''}
+  model: elections.personaldatacandidate
+  pk: 414
+- fields: {candidate: 70, personal_data: 103, value: Ind-RN}
+  model: elections.personaldatacandidate
+  pk: 415
+- fields: {candidate: 70, personal_data: 104, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 416
+- fields: {candidate: 70, personal_data: 105, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 417
+- fields: {candidate: 70, personal_data: 106, value: Ingeniero Comercial}
+  model: elections.personaldatacandidate
+  pk: 418
+- fields: {candidate: 70, personal_data: 107, value: ''}
+  model: elections.personaldatacandidate
+  pk: 419
+- fields: {candidate: 70, personal_data: 108, value: ''}
+  model: elections.personaldatacandidate
+  pk: 420
+- fields: {candidate: 71, personal_data: 103, value: Ind-RN}
+  model: elections.personaldatacandidate
+  pk: 421
+- fields: {candidate: 71, personal_data: 104, value: Alianza}
+  model: elections.personaldatacandidate
+  pk: 422
+- fields: {candidate: 71, personal_data: 105, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 423
+- fields: {candidate: 71, personal_data: 106, value: "M\xE9dico"}
+  model: elections.personaldatacandidate
+  pk: 424
+- fields: {candidate: 71, personal_data: 107, value: ''}
+  model: elections.personaldatacandidate
+  pk: 425
+- fields: {candidate: 71, personal_data: 108, value: ''}
+  model: elections.personaldatacandidate
+  pk: 426
+- fields: {candidate: 72, personal_data: 103, value: DC}
+  model: elections.personaldatacandidate
+  pk: 427
+- fields: {candidate: 72, personal_data: 104, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 428
+- fields: {candidate: 72, personal_data: 105, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 429
+- fields: {candidate: 72, personal_data: 106, value: Asistente Social}
+  model: elections.personaldatacandidate
+  pk: 430
+- fields: {candidate: 72, personal_data: 107, value: ''}
+  model: elections.personaldatacandidate
+  pk: 431
+- fields: {candidate: 72, personal_data: 108, value: ''}
+  model: elections.personaldatacandidate
+  pk: 432
+- fields: {candidate: 73, personal_data: 103, value: PS}
+  model: elections.personaldatacandidate
+  pk: 433
+- fields: {candidate: 73, personal_data: 104, value: "Nueva Mayor\xEDa"}
+  model: elections.personaldatacandidate
+  pk: 434
+- fields: {candidate: 73, personal_data: 105, value: "s\xED"}
+  model: elections.personaldatacandidate
+  pk: 435
+- fields: {candidate: 73, personal_data: 106, value: Abogado}
+  model: elections.personaldatacandidate
+  pk: 436
+- fields: {candidate: 73, personal_data: 107, value: ''}
+  model: elections.personaldatacandidate
+  pk: 437
+- fields: {candidate: 73, personal_data: 108, value: ''}
+  model: elections.personaldatacandidate
+  pk: 438
+- fields: {candidate: 74, personal_data: 103, value: Ind}
+  model: elections.personaldatacandidate
+  pk: 439
+- fields: {candidate: 74, personal_data: 104, value: sin pacto}
+  model: elections.personaldatacandidate
+  pk: 440
+- fields: {candidate: 74, personal_data: 105, value: "s\xED"}
+  model: elections.personaldatacandidate
+  pk: 441
+- fields: {candidate: 74, personal_data: 106, value: Empresario y Comunicador social}
+  model: elections.personaldatacandidate
+  pk: 442
+- fields: {candidate: 74, personal_data: 107, value: ''}
+  model: elections.personaldatacandidate
+  pk: 443
+- fields: {candidate: 74, personal_data: 108, value: ''}
+  model: elections.personaldatacandidate
+  pk: 444
+- fields: {candidate: 75, personal_data: 103, value: Ind}
+  model: elections.personaldatacandidate
+  pk: 445
+- fields: {candidate: 75, personal_data: 104, value: sin pacto}
+  model: elections.personaldatacandidate
+  pk: 446
+- fields: {candidate: 75, personal_data: 105, value: 'no'}
+  model: elections.personaldatacandidate
+  pk: 447
+- fields: {candidate: 75, personal_data: 106, value: ''}
+  model: elections.personaldatacandidate
+  pk: 448
+- fields: {candidate: 75, personal_data: 107, value: ''}
+  model: elections.personaldatacandidate
+  pk: 449
+- fields: {candidate: 75, personal_data: 108, value: ''}
+  model: elections.personaldatacandidate
+  pk: 450
+- fields: {election: 1, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 1
+- fields: {election: 1, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 2
+- fields: {election: 2, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 3
+- fields: {election: 2, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 4
+- fields: {election: 3, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 5
+- fields: {election: 3, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 6
+- fields: {election: 4, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 7
+- fields: {election: 4, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 8
+- fields: {election: 5, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 9
+- fields: {election: 5, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 10
+- fields: {election: 6, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 11
+- fields: {election: 6, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 12
+- fields: {election: 7, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 13
+- fields: {election: 7, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 14
+- fields: {election: 8, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 15
+- fields: {election: 8, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 16
+- fields: {election: 9, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 17
+- fields: {election: 9, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 18
+- fields: {election: 10, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 19
+- fields: {election: 10, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 20
+- fields: {election: 11, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 21
+- fields: {election: 11, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 22
+- fields: {election: 12, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 23
+- fields: {election: 12, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 24
+- fields: {election: 13, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 25
+- fields: {election: 13, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 26
+- fields: {election: 14, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 27
+- fields: {election: 14, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 28
+- fields: {election: 15, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 29
+- fields: {election: 15, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 30
+- fields: {election: 16, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 31
+- fields: {election: 16, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 32
+- fields: {election: 17, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 33
+- fields: {election: 17, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 34
+- fields: {election: 18, name: Perros y gatos, order: 1, slug: perros-y-gatos}
+  model: elections.category
+  pk: 35
+- fields: {election: 18, name: "Educaci\xF3n", order: 1, slug: educacion}
+  model: elections.category
+  pk: 36
+- fields: {category: 1, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 1
+- fields: {category: 1, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 2
+- fields: {category: 2, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 3
+- fields: {category: 3, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 4
+- fields: {category: 3, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 5
+- fields: {category: 4, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 6
+- fields: {category: 5, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 7
+- fields: {category: 5, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 8
+- fields: {category: 6, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 9
+- fields: {category: 7, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 10
+- fields: {category: 7, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 11
+- fields: {category: 8, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 12
+- fields: {category: 9, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 13
+- fields: {category: 9, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 14
+- fields: {category: 10, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 15
+- fields: {category: 11, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 16
+- fields: {category: 11, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 17
+- fields: {category: 12, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 18
+- fields: {category: 13, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 19
+- fields: {category: 13, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 20
+- fields: {category: 14, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 21
+- fields: {category: 15, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 22
+- fields: {category: 15, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 23
+- fields: {category: 16, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 24
+- fields: {category: 17, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 25
+- fields: {category: 17, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 26
+- fields: {category: 18, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 27
+- fields: {category: 19, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 28
+- fields: {category: 19, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 29
+- fields: {category: 20, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 30
+- fields: {category: 21, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 31
+- fields: {category: 21, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 32
+- fields: {category: 22, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 33
+- fields: {category: 23, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 34
+- fields: {category: 23, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 35
+- fields: {category: 24, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 36
+- fields: {category: 25, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 37
+- fields: {category: 25, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 38
+- fields: {category: 26, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 39
+- fields: {category: 27, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 40
+- fields: {category: 27, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 41
+- fields: {category: 28, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 42
+- fields: {category: 29, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 43
+- fields: {category: 29, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 44
+- fields: {category: 30, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 45
+- fields: {category: 31, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 46
+- fields: {category: 31, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 47
+- fields: {category: 32, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 48
+- fields: {category: 33, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 49
+- fields: {category: 33, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 50
+- fields: {category: 34, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 51
+- fields: {category: 35, question: 'Le gusta la Fiera??'}
+  model: elections.question
+  pk: 52
+- fields: {category: 35, question: 'Le gusta Benito??'}
+  model: elections.question
+  pk: 53
+- fields: {category: 36, question: 'Libre para todos??'}
+  model: elections.question
+  pk: 54
+- fields: {caption: "S\xED", question: 1}
+  model: elections.answer
+  pk: 1
+- fields: {caption: 'No', question: 1}
+  model: elections.answer
+  pk: 2
+- fields: {caption: A veces, question: 1}
+  model: elections.answer
+  pk: 3
+- fields: {caption: "S\xED", question: 2}
+  model: elections.answer
+  pk: 4
+- fields: {caption: 'no', question: 2}
+  model: elections.answer
+  pk: 5
+- fields: {caption: "S\xED", question: 3}
+  model: elections.answer
+  pk: 6
+- fields: {caption: 'no', question: 3}
+  model: elections.answer
+  pk: 7
+- fields: {caption: "S\xED", question: 4}
+  model: elections.answer
+  pk: 8
+- fields: {caption: 'No', question: 4}
+  model: elections.answer
+  pk: 9
+- fields: {caption: A veces, question: 4}
+  model: elections.answer
+  pk: 10
+- fields: {caption: "S\xED", question: 5}
+  model: elections.answer
+  pk: 11
+- fields: {caption: 'no', question: 5}
+  model: elections.answer
+  pk: 12
+- fields: {caption: "S\xED", question: 6}
+  model: elections.answer
+  pk: 13
+- fields: {caption: 'no', question: 6}
+  model: elections.answer
+  pk: 14
+- fields: {caption: "S\xED", question: 7}
+  model: elections.answer
+  pk: 15
+- fields: {caption: 'No', question: 7}
+  model: elections.answer
+  pk: 16
+- fields: {caption: A veces, question: 7}
+  model: elections.answer
+  pk: 17
+- fields: {caption: "S\xED", question: 8}
+  model: elections.answer
+  pk: 18
+- fields: {caption: 'no', question: 8}
+  model: elections.answer
+  pk: 19
+- fields: {caption: "S\xED", question: 9}
+  model: elections.answer
+  pk: 20
+- fields: {caption: 'no', question: 9}
+  model: elections.answer
+  pk: 21
+- fields: {caption: "S\xED", question: 10}
+  model: elections.answer
+  pk: 22
+- fields: {caption: 'No', question: 10}
+  model: elections.answer
+  pk: 23
+- fields: {caption: A veces, question: 10}
+  model: elections.answer
+  pk: 24
+- fields: {caption: "S\xED", question: 11}
+  model: elections.answer
+  pk: 25
+- fields: {caption: 'no', question: 11}
+  model: elections.answer
+  pk: 26
+- fields: {caption: "S\xED", question: 12}
+  model: elections.answer
+  pk: 27
+- fields: {caption: 'no', question: 12}
+  model: elections.answer
+  pk: 28
+- fields: {caption: "S\xED", question: 13}
+  model: elections.answer
+  pk: 29
+- fields: {caption: 'No', question: 13}
+  model: elections.answer
+  pk: 30
+- fields: {caption: A veces, question: 13}
+  model: elections.answer
+  pk: 31
+- fields: {caption: "S\xED", question: 14}
+  model: elections.answer
+  pk: 32
+- fields: {caption: 'no', question: 14}
+  model: elections.answer
+  pk: 33
+- fields: {caption: "S\xED", question: 15}
+  model: elections.answer
+  pk: 34
+- fields: {caption: 'no', question: 15}
+  model: elections.answer
+  pk: 35
+- fields: {caption: "S\xED", question: 16}
+  model: elections.answer
+  pk: 36
+- fields: {caption: 'No', question: 16}
+  model: elections.answer
+  pk: 37
+- fields: {caption: A veces, question: 16}
+  model: elections.answer
+  pk: 38
+- fields: {caption: "S\xED", question: 17}
+  model: elections.answer
+  pk: 39
+- fields: {caption: 'no', question: 17}
+  model: elections.answer
+  pk: 40
+- fields: {caption: "S\xED", question: 18}
+  model: elections.answer
+  pk: 41
+- fields: {caption: 'no', question: 18}
+  model: elections.answer
+  pk: 42
+- fields: {caption: "S\xED", question: 19}
+  model: elections.answer
+  pk: 43
+- fields: {caption: 'No', question: 19}
+  model: elections.answer
+  pk: 44
+- fields: {caption: A veces, question: 19}
+  model: elections.answer
+  pk: 45
+- fields: {caption: "S\xED", question: 20}
+  model: elections.answer
+  pk: 46
+- fields: {caption: 'no', question: 20}
+  model: elections.answer
+  pk: 47
+- fields: {caption: "S\xED", question: 21}
+  model: elections.answer
+  pk: 48
+- fields: {caption: 'no', question: 21}
+  model: elections.answer
+  pk: 49
+- fields: {caption: "S\xED", question: 22}
+  model: elections.answer
+  pk: 50
+- fields: {caption: 'No', question: 22}
+  model: elections.answer
+  pk: 51
+- fields: {caption: A veces, question: 22}
+  model: elections.answer
+  pk: 52
+- fields: {caption: "S\xED", question: 23}
+  model: elections.answer
+  pk: 53
+- fields: {caption: 'no', question: 23}
+  model: elections.answer
+  pk: 54
+- fields: {caption: "S\xED", question: 24}
+  model: elections.answer
+  pk: 55
+- fields: {caption: 'no', question: 24}
+  model: elections.answer
+  pk: 56
+- fields: {caption: "S\xED", question: 25}
+  model: elections.answer
+  pk: 57
+- fields: {caption: 'No', question: 25}
+  model: elections.answer
+  pk: 58
+- fields: {caption: A veces, question: 25}
+  model: elections.answer
+  pk: 59
+- fields: {caption: "S\xED", question: 26}
+  model: elections.answer
+  pk: 60
+- fields: {caption: 'no', question: 26}
+  model: elections.answer
+  pk: 61
+- fields: {caption: "S\xED", question: 27}
+  model: elections.answer
+  pk: 62
+- fields: {caption: 'no', question: 27}
+  model: elections.answer
+  pk: 63
+- fields: {caption: "S\xED", question: 28}
+  model: elections.answer
+  pk: 64
+- fields: {caption: 'No', question: 28}
+  model: elections.answer
+  pk: 65
+- fields: {caption: A veces, question: 28}
+  model: elections.answer
+  pk: 66
+- fields: {caption: "S\xED", question: 29}
+  model: elections.answer
+  pk: 67
+- fields: {caption: 'no', question: 29}
+  model: elections.answer
+  pk: 68
+- fields: {caption: "S\xED", question: 30}
+  model: elections.answer
+  pk: 69
+- fields: {caption: 'no', question: 30}
+  model: elections.answer
+  pk: 70
+- fields: {caption: "S\xED", question: 31}
+  model: elections.answer
+  pk: 71
+- fields: {caption: 'No', question: 31}
+  model: elections.answer
+  pk: 72
+- fields: {caption: A veces, question: 31}
+  model: elections.answer
+  pk: 73
+- fields: {caption: "S\xED", question: 32}
+  model: elections.answer
+  pk: 74
+- fields: {caption: 'no', question: 32}
+  model: elections.answer
+  pk: 75
+- fields: {caption: "S\xED", question: 33}
+  model: elections.answer
+  pk: 76
+- fields: {caption: 'no', question: 33}
+  model: elections.answer
+  pk: 77
+- fields: {caption: "S\xED", question: 34}
+  model: elections.answer
+  pk: 78
+- fields: {caption: 'No', question: 34}
+  model: elections.answer
+  pk: 79
+- fields: {caption: A veces, question: 34}
+  model: elections.answer
+  pk: 80
+- fields: {caption: "S\xED", question: 35}
+  model: elections.answer
+  pk: 81
+- fields: {caption: 'no', question: 35}
+  model: elections.answer
+  pk: 82
+- fields: {caption: "S\xED", question: 36}
+  model: elections.answer
+  pk: 83
+- fields: {caption: 'no', question: 36}
+  model: elections.answer
+  pk: 84
+- fields: {caption: "S\xED", question: 37}
+  model: elections.answer
+  pk: 85
+- fields: {caption: 'No', question: 37}
+  model: elections.answer
+  pk: 86
+- fields: {caption: A veces, question: 37}
+  model: elections.answer
+  pk: 87
+- fields: {caption: "S\xED", question: 38}
+  model: elections.answer
+  pk: 88
+- fields: {caption: 'no', question: 38}
+  model: elections.answer
+  pk: 89
+- fields: {caption: "S\xED", question: 39}
+  model: elections.answer
+  pk: 90
+- fields: {caption: 'no', question: 39}
+  model: elections.answer
+  pk: 91
+- fields: {caption: "S\xED", question: 40}
+  model: elections.answer
+  pk: 92
+- fields: {caption: 'No', question: 40}
+  model: elections.answer
+  pk: 93
+- fields: {caption: A veces, question: 40}
+  model: elections.answer
+  pk: 94
+- fields: {caption: "S\xED", question: 41}
+  model: elections.answer
+  pk: 95
+- fields: {caption: 'no', question: 41}
+  model: elections.answer
+  pk: 96
+- fields: {caption: "S\xED", question: 42}
+  model: elections.answer
+  pk: 97
+- fields: {caption: 'no', question: 42}
+  model: elections.answer
+  pk: 98
+- fields: {caption: "S\xED", question: 43}
+  model: elections.answer
+  pk: 99
+- fields: {caption: 'No', question: 43}
+  model: elections.answer
+  pk: 100
+- fields: {caption: A veces, question: 43}
+  model: elections.answer
+  pk: 101
+- fields: {caption: "S\xED", question: 44}
+  model: elections.answer
+  pk: 102
+- fields: {caption: 'no', question: 44}
+  model: elections.answer
+  pk: 103
+- fields: {caption: "S\xED", question: 45}
+  model: elections.answer
+  pk: 104
+- fields: {caption: 'no', question: 45}
+  model: elections.answer
+  pk: 105
+- fields: {caption: "S\xED", question: 46}
+  model: elections.answer
+  pk: 106
+- fields: {caption: 'No', question: 46}
+  model: elections.answer
+  pk: 107
+- fields: {caption: A veces, question: 46}
+  model: elections.answer
+  pk: 108
+- fields: {caption: "S\xED", question: 47}
+  model: elections.answer
+  pk: 109
+- fields: {caption: 'no', question: 47}
+  model: elections.answer
+  pk: 110
+- fields: {caption: "S\xED", question: 48}
+  model: elections.answer
+  pk: 111
+- fields: {caption: 'no', question: 48}
+  model: elections.answer
+  pk: 112
+- fields: {caption: "S\xED", question: 49}
+  model: elections.answer
+  pk: 113
+- fields: {caption: 'No', question: 49}
+  model: elections.answer
+  pk: 114
+- fields: {caption: A veces, question: 49}
+  model: elections.answer
+  pk: 115
+- fields: {caption: "S\xED", question: 50}
+  model: elections.answer
+  pk: 116
+- fields: {caption: 'no', question: 50}
+  model: elections.answer
+  pk: 117
+- fields: {caption: "S\xED", question: 51}
+  model: elections.answer
+  pk: 118
+- fields: {caption: 'no', question: 51}
+  model: elections.answer
+  pk: 119
+- fields: {caption: "S\xED", question: 52}
+  model: elections.answer
+  pk: 120
+- fields: {caption: 'No', question: 52}
+  model: elections.answer
+  pk: 121
+- fields: {caption: A veces, question: 52}
+  model: elections.answer
+  pk: 122
+- fields: {caption: "S\xED", question: 53}
+  model: elections.answer
+  pk: 123
+- fields: {caption: 'no', question: 53}
+  model: elections.answer
+  pk: 124
+- fields: {caption: "S\xED", question: 54}
+  model: elections.answer
+  pk: 125
+- fields: {caption: 'no', question: 54}
+  model: elections.answer
+  pk: 126

@@ -83,13 +83,26 @@ strong {
    font-weight: 300;  
 }
 
+.right {
+	float: right;
+}
+
 /*Elecciones destacadas*/
+
+.contenedorDestacado {
+	*zoom: 1;
+	margin: 20px 0 60px;
+}
+
+.contenedorDestacado:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 .contenedorDestacado ul {
 	list-style: none;
 }
-
-/*Acordion de imagenes destacadas*/
 
 .accordion
 {
@@ -284,6 +297,10 @@ input, button, select, textarea {
 	background-color: #323a45;
 }
 
+.navbar .container {
+	margin-bottom: 0px;
+}
+
 .nav-candidator .list-inline i.icon-group, .nav-candidator .list-inline i.icon-edit {
 	color: #14b9d5;
 }
@@ -313,6 +330,10 @@ input, button, select, textarea {
 }
 
 /*Home*/
+
+.intro-home {
+	margin-top: 60px;
+}
 
 #home-search .form-control {
 	color: #fff;
@@ -371,6 +392,27 @@ input, button, select, textarea {
 .imgs-mosaico .col-md-2 {
 	padding-right: 0px;
 	padding-left: 0px;
+}
+
+.containerAccordion .accordion .caption {
+	height: 40px !important;
+	text-align: left;
+	left: 0 !important;
+}
+
+.containerAccordion .accordion .caption p {
+	color: #FFF;
+}
+
+.containerAccordion .accordion .caption .caption-background {
+	background: rgba(50, 58, 69, 0.8);
+}
+
+.elections-results li {
+	background: #FFF;
+	border-radius: 6px;
+	padding: 10px;
+	margin: 5px; 
 }
 
 /*Perfil candidato*/

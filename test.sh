@@ -1,1 +1,1 @@
-python manage.py test elections --failfast
+python manage.py test elections

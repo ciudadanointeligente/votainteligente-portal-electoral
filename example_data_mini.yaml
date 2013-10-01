@@ -1,369 +1,660 @@
-- fields: {description: Elecciones CEI 2012, information_source: '', logo: 'http://placedog.com/400/300',
-    name: cei 2012, remote_id: 1, resource_uri: /api/v2/election/1/, slug: cei-2012,
+- fields: {can_election: 2, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: true, name: "2\xAA Circunscripci\xF3n Antofagasta", popit_api_instance: 1,
+    searchable: true, slug: 2a-circunscripcion-antofagasta, writeitinstance: 1}
+  model: elections.election
+  pk: 1
+- fields: {can_election: 3, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: true, name: "4\xAA Circunscripci\xF3n Coquimbo", popit_api_instance: 2,
+    searchable: true, slug: 4a-circunscripcion-coquimbo, writeitinstance: 2}
+  model: elections.election
+  pk: 2
+- fields: {candidate: 1, person: 1}
+  model: elections.candidateperson
+  pk: 1
+- fields: {candidate: 2, person: 2}
+  model: elections.candidateperson
+  pk: 2
+- fields: {candidate: 3, person: 3}
+  model: elections.candidateperson
+  pk: 3
+- fields: {candidate: 4, person: 4}
+  model: elections.candidateperson
+  pk: 4
+- fields: {candidate: 5, person: 5}
+  model: elections.candidateperson
+  pk: 5
+- fields: {candidate: 6, person: 6}
+  model: elections.candidateperson
+  pk: 6
+- fields: {candidate: 7, person: 7}
+  model: elections.candidateperson
+  pk: 7
+- fields: {candidate: 8, person: 8}
+  model: elections.candidateperson
+  pk: 8
+- fields: {candidate: 9, person: 9}
+  model: elections.candidateperson
+  pk: 9
+- fields: {candidate: 10, person: 10}
+  model: elections.candidateperson
+  pk: 10
+- fields: {candidate: 11, person: 11}
+  model: elections.candidateperson
+  pk: 11
+- fields: {candidate: 12, person: 12}
+  model: elections.candidateperson
+  pk: 12
+- fields: {url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api'}
+  model: popit.apiinstance
+  pk: 1
+- fields: {url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api'}
+  model: popit.apiinstance
+  pk: 2
+- fields: {api_instance: 1, image: '', name: Manuel Rojas, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524aee4a8201d0481d000001',
+    summary: ''}
+  model: popit.person
+  pk: 1
+- fields: {api_instance: 1, image: '', name: Alejandro Guillier, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524aee4e8201d0481d000002',
+    summary: ''}
+  model: popit.person
+  pk: 2
+- fields: {api_instance: 1, image: '', name: Pedro Araya, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524aee518201d0481d000003',
+    summary: ''}
+  model: popit.person
+  pk: 3
+- fields: {api_instance: 1, image: '', name: Gisela Contreras, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524aee548201d0481d000004',
+    summary: ''}
+  model: popit.person
+  pk: 4
+- fields: {api_instance: 1, image: '', name: Carlos Cantero, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524aee588201d0481d000005',
+    summary: ''}
+  model: popit.person
+  pk: 5
+- fields: {api_instance: 1, image: '', name: Daniel Guevara, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524aee5a8201d0481d000006',
+    summary: ''}
+  model: popit.person
+  pk: 6
+- fields: {api_instance: 1, image: '', name: Jimena Orrego, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524aee5d8201d0481d000007',
+    summary: ''}
+  model: popit.person
+  pk: 7
+- fields: {api_instance: 2, image: '', name: Gonzalo Uriarte, popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524aee698201d0481d000008',
+    summary: ''}
+  model: popit.person
+  pk: 8
+- fields: {api_instance: 2, image: '', name: Mario Bertolino, popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524aee6c8201d0481d000009',
+    summary: ''}
+  model: popit.person
+  pk: 9
+- fields: {api_instance: 2, image: '', name: Jorge Pizarro, popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524aee6f8201d0481d00000a',
+    summary: ''}
+  model: popit.person
+  pk: 10
+- fields: {api_instance: 2, image: '', name: "Adriana Mu\xF1oz", popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524aee728201d0481d00000b',
+    summary: ''}
+  model: popit.person
+  pk: 11
+- fields: {api_instance: 2, image: '', name: Luis Vega, popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524aee758201d0481d00000c',
+    summary: ''}
+  model: popit.person
+  pk: 12
+- fields: {description: '', information_source: '', logo: null, name: "2\xAA Circunscripci\xF3\
+      n Antofagasta", remote_id: 1, resource_uri: /api/v2/election/1/, slug: 2a-circunscripcion-antofagasta,
     use_default_media_naranja_option: true}
   model: candideitorg.election
-  pk: 1
-- fields: {election: 1, name: Politicas Publicas, order: 1, remote_id: 1, resource_uri: /api/v2/category/1/,
-    slug: politicas-publicas}
+  pk: 2
+- fields: {description: '', information_source: '', logo: null, name: "4\xAA Circunscripci\xF3\
+      n Coquimbo", remote_id: 2, resource_uri: /api/v2/election/2/, slug: 4a-circunscripcion-coquimbo,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 3
+- fields: {election: 2, name: Perros y gatos, order: 1, remote_id: 1, resource_uri: /api/v2/category/1/,
+    slug: perros-y-gatos}
   model: candideitorg.category
   pk: 1
-- fields: {election: 1, name: Politicas Monetarias, order: 1, remote_id: 2, resource_uri: /api/v2/category/2/,
-    slug: politicas-monetarias}
+- fields: {election: 2, name: "Educaci\xF3n", order: 1, remote_id: 2, resource_uri: /api/v2/category/2/,
+    slug: educacion}
   model: candideitorg.category
   pk: 2
-- fields: {election: 1, has_answered: false, name: Juanito Perez, photo: 'http://placedog.com/400/300',
-    remote_id: 1, resource_uri: '', slug: juanito-perez}
+- fields: {election: 3, name: Perros y gatos, order: 1, remote_id: 3, resource_uri: /api/v2/category/3/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 3
+- fields: {election: 3, name: "Educaci\xF3n", order: 1, remote_id: 4, resource_uri: /api/v2/category/4/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 4
+- fields:
+    answers: []
+    election: 2
+    has_answered: true
+    name: Manuel Rojas
+    photo: http://placekitten.com/200/300
+    remote_id: 1
+    resource_uri: /api/v2/candidate/1/
+    slug: manuel-rojas
   model: candideitorg.candidate
   pk: 1
-- fields: {election: 1, has_answered: false, name: Candidato Tester, photo: 'http://placedog.com/400/300',
-    remote_id: 2, resource_uri: '', slug: candidato-tester}
+- fields:
+    answers: []
+    election: 2
+    has_answered: true
+    name: Alejandro Guillier
+    photo: http://placekitten.com/200/300
+    remote_id: 2
+    resource_uri: /api/v2/candidate/2/
+    slug: alejandro-guillier
   model: candideitorg.candidate
   pk: 2
-- fields: {election: 1, has_answered: false, name: Foo Bar, photo: 'http://placedog.com/400/300',
-    remote_id: 3, resource_uri: '', slug: foo-bar}
+- fields:
+    answers: []
+    election: 2
+    has_answered: true
+    name: Pedro Araya
+    photo: http://placekitten.com/200/300
+    remote_id: 3
+    resource_uri: /api/v2/candidate/3/
+    slug: pedro-araya
   model: candideitorg.candidate
   pk: 3
-- fields: {election: 1, name: Tendencia Politica, remote_id: 1, resource_uri: ''}
-  model: candideitorg.backgroundcategory
-  pk: 1
-- fields: {election: 1, name: Educacion, remote_id: 2, resource_uri: ''}
-  model: candideitorg.backgroundcategory
-  pk: 2
-- fields: {election: 1, label: Nacimiento, remote_id: 1, resource_uri: ''}
+- fields:
+    answers: []
+    election: 2
+    has_answered: true
+    name: Gisela Contreras
+    photo: http://placekitten.com/200/300
+    remote_id: 4
+    resource_uri: /api/v2/candidate/4/
+    slug: gisela-contreras
+  model: candideitorg.candidate
+  pk: 4
+- fields:
+    answers: []
+    election: 2
+    has_answered: true
+    name: Carlos Cantero
+    photo: http://placekitten.com/200/300
+    remote_id: 5
+    resource_uri: /api/v2/candidate/5/
+    slug: carlos-cantero
+  model: candideitorg.candidate
+  pk: 5
+- fields:
+    answers: []
+    election: 2
+    has_answered: true
+    name: Daniel Guevara
+    photo: http://placekitten.com/200/300
+    remote_id: 6
+    resource_uri: /api/v2/candidate/6/
+    slug: daniel-guevara
+  model: candideitorg.candidate
+  pk: 6
+- fields:
+    answers: []
+    election: 2
+    has_answered: true
+    name: Jimena Orrego
+    photo: http://placekitten.com/200/300
+    remote_id: 7
+    resource_uri: /api/v2/candidate/7/
+    slug: jimena-orrego
+  model: candideitorg.candidate
+  pk: 7
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Gonzalo Uriarte
+    photo: http://placekitten.com/200/300
+    remote_id: 8
+    resource_uri: /api/v2/candidate/8/
+    slug: gonzalo-uriarte
+  model: candideitorg.candidate
+  pk: 8
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Mario Bertolino
+    photo: http://placekitten.com/200/300
+    remote_id: 9
+    resource_uri: /api/v2/candidate/9/
+    slug: mario-bertolino
+  model: candideitorg.candidate
+  pk: 9
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Jorge Pizarro
+    photo: http://placekitten.com/200/300
+    remote_id: 10
+    resource_uri: /api/v2/candidate/10/
+    slug: jorge-pizarro
+  model: candideitorg.candidate
+  pk: 10
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: "Adriana Mu\xF1oz"
+    photo: http://placekitten.com/200/300
+    remote_id: 11
+    resource_uri: /api/v2/candidate/11/
+    slug: adriana-munoz
+  model: candideitorg.candidate
+  pk: 11
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Luis Vega
+    photo: http://placekitten.com/200/300
+    remote_id: 12
+    resource_uri: /api/v2/candidate/12/
+    slug: luis-vega
+  model: candideitorg.candidate
+  pk: 12
+- fields: {election: 2, label: Partido, remote_id: 1, resource_uri: /api/v2/personal_data/1/}
   model: candideitorg.personaldata
   pk: 1
-- fields: {election: 1, label: Profesion, remote_id: 2, resource_uri: ''}
+- fields: {election: 2, label: Pacto - Lista, remote_id: 2, resource_uri: /api/v2/personal_data/2/}
   model: candideitorg.personaldata
   pk: 2
-- fields: {election: 1, label: "Profesi\xF3n", remote_id: 3, resource_uri: ''}
+- fields: {election: 2, label: "\xBFVa a reelecci\xF3n?", remote_id: 3, resource_uri: /api/v2/personal_data/3/}
   model: candideitorg.personaldata
   pk: 3
-- fields: {election: 1, label: "G\xE9nero", remote_id: 4, resource_uri: ''}
+- fields: {election: 2, label: "Profesi\xF3n", remote_id: 4, resource_uri: /api/v2/personal_data/4/}
   model: candideitorg.personaldata
   pk: 4
-- fields: {content_type: 21, object_id: 7, tag: 23}
-  model: taggit.taggeditem
-  pk: 45
-- fields: {content_type: 21, object_id: 7, tag: 24}
-  model: taggit.taggeditem
-  pk: 46
+- fields: {election: 2, label: "Cargos P\xFAblicos", remote_id: 5, resource_uri: /api/v2/personal_data/5/}
+  model: candideitorg.personaldata
+  pk: 5
+- fields: {election: 2, label: Dato Curioso, remote_id: 6, resource_uri: /api/v2/personal_data/6/}
+  model: candideitorg.personaldata
+  pk: 6
+- fields: {election: 3, label: Partido, remote_id: 7, resource_uri: /api/v2/personal_data/7/}
+  model: candideitorg.personaldata
+  pk: 7
+- fields: {election: 3, label: Pacto - Lista, remote_id: 8, resource_uri: /api/v2/personal_data/8/}
+  model: candideitorg.personaldata
+  pk: 8
+- fields: {election: 3, label: "\xBFVa a reelecci\xF3n?", remote_id: 9, resource_uri: /api/v2/personal_data/9/}
+  model: candideitorg.personaldata
+  pk: 9
+- fields: {election: 3, label: "Profesi\xF3n", remote_id: 10, resource_uri: /api/v2/personal_data/10/}
+  model: candideitorg.personaldata
+  pk: 10
+- fields: {election: 3, label: "Cargos P\xFAblicos", remote_id: 11, resource_uri: /api/v2/personal_data/11/}
+  model: candideitorg.personaldata
+  pk: 11
+- fields: {election: 3, label: Dato Curioso, remote_id: 12, resource_uri: /api/v2/personal_data/12/}
+  model: candideitorg.personaldata
+  pk: 12
+- fields: {caption: "S\xED", question: 1, remote_id: 1, resource_uri: /api/v2/answer/1/}
+  model: candideitorg.answer
+  pk: 1
+- fields: {caption: 'No', question: 1, remote_id: 2, resource_uri: /api/v2/answer/2/}
+  model: candideitorg.answer
+  pk: 2
+- fields: {caption: A veces, question: 1, remote_id: 3, resource_uri: /api/v2/answer/3/}
+  model: candideitorg.answer
+  pk: 3
+- fields: {caption: "S\xED", question: 2, remote_id: 4, resource_uri: /api/v2/answer/4/}
+  model: candideitorg.answer
+  pk: 4
+- fields: {caption: 'no', question: 2, remote_id: 5, resource_uri: /api/v2/answer/5/}
+  model: candideitorg.answer
+  pk: 5
+- fields: {caption: "S\xED", question: 3, remote_id: 6, resource_uri: /api/v2/answer/6/}
+  model: candideitorg.answer
+  pk: 6
+- fields: {caption: 'no', question: 3, remote_id: 7, resource_uri: /api/v2/answer/7/}
+  model: candideitorg.answer
+  pk: 7
+- fields: {caption: "S\xED", question: 4, remote_id: 8, resource_uri: /api/v2/answer/8/}
+  model: candideitorg.answer
+  pk: 8
+- fields: {caption: 'No', question: 4, remote_id: 9, resource_uri: /api/v2/answer/9/}
+  model: candideitorg.answer
+  pk: 9
+- fields: {caption: A veces, question: 4, remote_id: 10, resource_uri: /api/v2/answer/10/}
+  model: candideitorg.answer
+  pk: 10
+- fields: {caption: "S\xED", question: 5, remote_id: 11, resource_uri: /api/v2/answer/11/}
+  model: candideitorg.answer
+  pk: 11
+- fields: {caption: 'no', question: 5, remote_id: 12, resource_uri: /api/v2/answer/12/}
+  model: candideitorg.answer
+  pk: 12
+- fields: {caption: "S\xED", question: 6, remote_id: 13, resource_uri: /api/v2/answer/13/}
+  model: candideitorg.answer
+  pk: 13
+- fields: {caption: 'no', question: 6, remote_id: 14, resource_uri: /api/v2/answer/14/}
+  model: candideitorg.answer
+  pk: 14
+- fields: {category: 1, question: 'Le gusta la Fiera??', remote_id: 1, resource_uri: /api/v2/question/1/}
+  model: candideitorg.question
+  pk: 1
+- fields: {category: 1, question: 'Le gusta Benito??', remote_id: 2, resource_uri: /api/v2/question/2/}
+  model: candideitorg.question
+  pk: 2
+- fields: {category: 2, question: 'Libre para todos??', remote_id: 3, resource_uri: /api/v2/question/3/}
+  model: candideitorg.question
+  pk: 3
+- fields: {category: 3, question: 'Le gusta la Fiera??', remote_id: 4, resource_uri: /api/v2/question/4/}
+  model: candideitorg.question
+  pk: 4
+- fields: {category: 3, question: 'Le gusta Benito??', remote_id: 5, resource_uri: /api/v2/question/5/}
+  model: candideitorg.question
+  pk: 5
+- fields: {category: 4, question: 'Libre para todos??', remote_id: 6, resource_uri: /api/v2/question/6/}
+  model: candideitorg.question
+  pk: 6
 - fields: {candidate: 1, personaldata: 1, remote_id: 1, resource_uri: /api/v2/personal_data_candidate/1/,
-    value: 13/13/13}
+    value: UDI}
   model: candideitorg.personaldatacandidate
   pk: 1
 - fields: {candidate: 1, personaldata: 2, remote_id: 2, resource_uri: /api/v2/personal_data_candidate/2/,
-    value: Estudiante}
+    value: Alianza}
   model: candideitorg.personaldatacandidate
   pk: 2
-- fields: {description: '', name: "I - Tarapaca", slug: i-tarapaca, can_election: 1}
-  model: elections.election
-  pk: 1
-- fields: {description: '', name: "Distrito N\xFAmero 1", slug: distrito-numero-1}
-  model: elections.election
-  pk: 2
-- fields: {description: '', name: "Distrito N\xFAmero 2", slug: distrito-numero-2}
-  model: elections.election
+- fields: {candidate: 1, personaldata: 3, remote_id: 3, resource_uri: /api/v2/personal_data_candidate/3/,
+    value: 'no'}
+  model: candideitorg.personaldatacandidate
   pk: 3
-- fields: {description: '', name: II - Antofagasta, slug: ii-antofagasta}
-  model: elections.election
+- fields: {candidate: 1, personaldata: 4, remote_id: 4, resource_uri: /api/v2/personal_data_candidate/4/,
+    value: "Profesor de Educaci\xF3n F\xEDsica"}
+  model: candideitorg.personaldatacandidate
   pk: 4
-- fields: {description: '', name: "Distrito N\xFAmero 3", slug: distrito-numero-3}
-  model: elections.election
+- fields: {candidate: 1, personaldata: 5, remote_id: 5, resource_uri: /api/v2/personal_data_candidate/5/,
+    value: Diputado por el distrito 4 (1998-2014)}
+  model: candideitorg.personaldatacandidate
   pk: 5
-- fields: {description: '', name: "Distrito N\xFAmero 4", slug: distrito-numero-4}
-  model: elections.election
+- fields: {candidate: 1, personaldata: 6, remote_id: 6, resource_uri: /api/v2/personal_data_candidate/6/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
   pk: 6
-- fields: {description: '', name: "Presidenciales", slug: presidenciales, highlighted: true, searchable: false}
-  model: elections.election
+- fields: {candidate: 2, personaldata: 1, remote_id: 7, resource_uri: /api/v2/personal_data_candidate/7/,
+    value: Ind-PRSD}
+  model: candideitorg.personaldatacandidate
   pk: 7
-- fields: {name: senadores, slug: senadores}
-  model: taggit.tag
-  pk: 1
-- fields: {name: diputados, slug: diputados}
-  model: taggit.tag
-  pk: 2
-- fields: {name: Arica, slug: arica}
-  model: taggit.tag
-  pk: 3
-- fields: {name: Camarones, slug: camarones}
-  model: taggit.tag
-  pk: 4
-- fields: {name: General Lagos, slug: general-lagos}
-  model: taggit.tag
-  pk: 5
-- fields: {name: Putre, slug: putre}
-  model: taggit.tag
-  pk: 6
-- fields: {name: Alto Hospicio, slug: alto-hospicio}
-  model: taggit.tag
-  pk: 7
-- fields: {name: "Cami\xF1a", slug: camina}
-  model: taggit.tag
+- fields: {candidate: 2, personaldata: 2, remote_id: 8, resource_uri: /api/v2/personal_data_candidate/8/,
+    value: "Nueva Mayor\xEDa"}
+  model: candideitorg.personaldatacandidate
   pk: 8
-- fields: {name: Colchane, slug: colchane}
-  model: taggit.tag
+- fields: {candidate: 2, personaldata: 3, remote_id: 9, resource_uri: /api/v2/personal_data_candidate/9/,
+    value: 'no'}
+  model: candideitorg.personaldatacandidate
   pk: 9
-- fields: {name: Huara, slug: huara}
-  model: taggit.tag
+- fields: {candidate: 2, personaldata: 4, remote_id: 10, resource_uri: /api/v2/personal_data_candidate/10/,
+    value: Periodista}
+  model: candideitorg.personaldatacandidate
   pk: 10
-- fields: {name: Iquique, slug: iquique}
-  model: taggit.tag
+- fields: {candidate: 2, personaldata: 5, remote_id: 11, resource_uri: /api/v2/personal_data_candidate/11/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
   pk: 11
-- fields: {name: Pica, slug: pica}
-  model: taggit.tag
+- fields: {candidate: 2, personaldata: 6, remote_id: 12, resource_uri: /api/v2/personal_data_candidate/12/,
+    value: Conductor de noticias}
+  model: candideitorg.personaldatacandidate
   pk: 12
-- fields: {name: Pozo Almonte, slug: pozo-almonte}
-  model: taggit.tag
+- fields: {candidate: 3, personaldata: 1, remote_id: 13, resource_uri: /api/v2/personal_data_candidate/13/,
+    value: Ind-DC}
+  model: candideitorg.personaldatacandidate
   pk: 13
-- fields: {name: Calama, slug: calama}
-  model: taggit.tag
+- fields: {candidate: 3, personaldata: 2, remote_id: 14, resource_uri: /api/v2/personal_data_candidate/14/,
+    value: "Nueva Mayor\xEDa"}
+  model: candideitorg.personaldatacandidate
   pk: 14
-- fields: {name: "Mar\xEDa Elena", slug: maria-elena}
-  model: taggit.tag
+- fields: {candidate: 3, personaldata: 3, remote_id: 15, resource_uri: /api/v2/personal_data_candidate/15/,
+    value: 'no'}
+  model: candideitorg.personaldatacandidate
   pk: 15
-- fields: {name: "Ollag\xFCe", slug: ollague}
-  model: taggit.tag
+- fields: {candidate: 3, personaldata: 4, remote_id: 16, resource_uri: /api/v2/personal_data_candidate/16/,
+    value: Abogado}
+  model: candideitorg.personaldatacandidate
   pk: 16
-- fields: {name: San Pedro de Atacama, slug: san-pedro-de-atacama}
-  model: taggit.tag
+- fields: {candidate: 3, personaldata: 5, remote_id: 17, resource_uri: /api/v2/personal_data_candidate/17/,
+    value: Diputado por el distrito 4 (2002-2014)}
+  model: candideitorg.personaldatacandidate
   pk: 17
-- fields: {name: Tocopilla, slug: tocopilla}
-  model: taggit.tag
+- fields: {candidate: 3, personaldata: 6, remote_id: 18, resource_uri: /api/v2/personal_data_candidate/18/,
+    value: 'Hijo del ex diputado y alcalde por Antofagasta, Pedro Araya Ortiz'}
+  model: candideitorg.personaldatacandidate
   pk: 18
-- fields: {name: Antofagasta, slug: antofagasta}
-  model: taggit.tag
+- fields: {candidate: 4, personaldata: 1, remote_id: 19, resource_uri: /api/v2/personal_data_candidate/19/,
+    value: PH}
+  model: candideitorg.personaldatacandidate
   pk: 19
-- fields: {name: Mejillones, slug: mejillones}
-  model: taggit.tag
+- fields: {candidate: 4, personaldata: 2, remote_id: 20, resource_uri: /api/v2/personal_data_candidate/20/,
+    value: Humanista}
+  model: candideitorg.personaldatacandidate
   pk: 20
-- fields: {name: Sierra Gorda, slug: sierra-gorda}
-  model: taggit.tag
+- fields: {candidate: 4, personaldata: 3, remote_id: 21, resource_uri: /api/v2/personal_data_candidate/21/,
+    value: 'no'}
+  model: candideitorg.personaldatacandidate
   pk: 21
-- fields: {name: Taltal, slug: taltal}
-  model: taggit.tag
+- fields: {candidate: 4, personaldata: 4, remote_id: 22, resource_uri: /api/v2/personal_data_candidate/22/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
   pk: 22
-- fields: {name: senadores, slug: senadores}
-  model: taggit.tag
-  pk: 1
-- fields: {name: diputados, slug: diputados}
-  model: taggit.tag
-  pk: 2
-- fields: {name: Arica, slug: arica}
-  model: taggit.tag
-  pk: 3
-- fields: {name: Camarones, slug: camarones}
-  model: taggit.tag
-  pk: 4
-- fields: {name: General Lagos, slug: general-lagos}
-  model: taggit.tag
-  pk: 5
-- fields: {name: Putre, slug: putre}
-  model: taggit.tag
-  pk: 6
-- fields: {name: Alto Hospicio, slug: alto-hospicio}
-  model: taggit.tag
-  pk: 7
-- fields: {name: "Cami\xF1a", slug: camina}
-  model: taggit.tag
-  pk: 8
-- fields: {name: Colchane, slug: colchane}
-  model: taggit.tag
-  pk: 9
-- fields: {name: Huara, slug: huara}
-  model: taggit.tag
-  pk: 10
-- fields: {name: Iquique, slug: iquique}
-  model: taggit.tag
-  pk: 11
-- fields: {name: Pica, slug: pica}
-  model: taggit.tag
-  pk: 12
-- fields: {name: Pozo Almonte, slug: pozo-almonte}
-  model: taggit.tag
-  pk: 13
-- fields: {name: Calama, slug: calama}
-  model: taggit.tag
-  pk: 14
-- fields: {name: "Mar\xEDa Elena", slug: maria-elena}
-  model: taggit.tag
-  pk: 15
-- fields: {name: "Ollag\xFCe", slug: ollague}
-  model: taggit.tag
-  pk: 16
-- fields: {name: San Pedro de Atacama, slug: san-pedro-de-atacama}
-  model: taggit.tag
-  pk: 17
-- fields: {name: Tocopilla, slug: tocopilla}
-  model: taggit.tag
-  pk: 18
-- fields: {name: Antofagasta, slug: antofagasta}
-  model: taggit.tag
-  pk: 19
-- fields: {name: Mejillones, slug: mejillones}
-  model: taggit.tag
-  pk: 20
-- fields: {name: Sierra Gorda, slug: sierra-gorda}
-  model: taggit.tag
-  pk: 21
-- fields: {name: Taltal, slug: taltal}
-  model: taggit.tag
-  pk: 22
-- fields: {name: Presidenciales, slug: presidenciales}
-  model: taggit.tag
+- fields: {candidate: 4, personaldata: 5, remote_id: 23, resource_uri: /api/v2/personal_data_candidate/23/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
   pk: 23
-- fields: {name: Presidente, slug: presidente}
-  model: taggit.tag
+- fields: {candidate: 4, personaldata: 6, remote_id: 24, resource_uri: /api/v2/personal_data_candidate/24/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
   pk: 24
-- fields: {content_type: 21, object_id: 1, tag: 1}
-  model: taggit.taggeditem
-  pk: 1
-- fields: {content_type: 21, object_id: 2, tag: 2}
-  model: taggit.taggeditem
-  pk: 2
-- fields: {content_type: 21, object_id: 1, tag: 3}
-  model: taggit.taggeditem
-  pk: 3
-- fields: {content_type: 21, object_id: 2, tag: 3}
-  model: taggit.taggeditem
-  pk: 4
-- fields: {content_type: 21, object_id: 1, tag: 4}
-  model: taggit.taggeditem
-  pk: 5
-- fields: {content_type: 21, object_id: 2, tag: 4}
-  model: taggit.taggeditem
-  pk: 6
-- fields: {content_type: 21, object_id: 1, tag: 5}
-  model: taggit.taggeditem
-  pk: 7
-- fields: {content_type: 21, object_id: 2, tag: 5}
-  model: taggit.taggeditem
-  pk: 8
-- fields: {content_type: 21, object_id: 1, tag: 6}
-  model: taggit.taggeditem
-  pk: 9
-- fields: {content_type: 21, object_id: 2, tag: 6}
-  model: taggit.taggeditem
-  pk: 10
-- fields: {content_type: 21, object_id: 3, tag: 2}
-  model: taggit.taggeditem
-  pk: 11
-- fields: {content_type: 21, object_id: 1, tag: 7}
-  model: taggit.taggeditem
-  pk: 12
-- fields: {content_type: 21, object_id: 3, tag: 7}
-  model: taggit.taggeditem
-  pk: 13
-- fields: {content_type: 21, object_id: 1, tag: 8}
-  model: taggit.taggeditem
-  pk: 14
-- fields: {content_type: 21, object_id: 3, tag: 8}
-  model: taggit.taggeditem
-  pk: 15
-- fields: {content_type: 21, object_id: 1, tag: 9}
-  model: taggit.taggeditem
-  pk: 16
-- fields: {content_type: 21, object_id: 3, tag: 9}
-  model: taggit.taggeditem
-  pk: 17
-- fields: {content_type: 21, object_id: 1, tag: 10}
-  model: taggit.taggeditem
-  pk: 18
-- fields: {content_type: 21, object_id: 3, tag: 10}
-  model: taggit.taggeditem
-  pk: 19
-- fields: {content_type: 21, object_id: 1, tag: 11}
-  model: taggit.taggeditem
-  pk: 20
-- fields: {content_type: 21, object_id: 3, tag: 11}
-  model: taggit.taggeditem
-  pk: 21
-- fields: {content_type: 21, object_id: 1, tag: 12}
-  model: taggit.taggeditem
-  pk: 22
-- fields: {content_type: 21, object_id: 3, tag: 12}
-  model: taggit.taggeditem
-  pk: 23
-- fields: {content_type: 21, object_id: 1, tag: 13}
-  model: taggit.taggeditem
-  pk: 24
-- fields: {content_type: 21, object_id: 3, tag: 13}
-  model: taggit.taggeditem
+- fields: {candidate: 5, personaldata: 1, remote_id: 25, resource_uri: /api/v2/personal_data_candidate/25/,
+    value: Ind}
+  model: candideitorg.personaldatacandidate
   pk: 25
-- fields: {content_type: 21, object_id: 4, tag: 1}
-  model: taggit.taggeditem
+- fields: {candidate: 5, personaldata: 2, remote_id: 26, resource_uri: /api/v2/personal_data_candidate/26/,
+    value: sin pacto}
+  model: candideitorg.personaldatacandidate
   pk: 26
-- fields: {content_type: 21, object_id: 5, tag: 2}
-  model: taggit.taggeditem
+- fields: {candidate: 5, personaldata: 3, remote_id: 27, resource_uri: /api/v2/personal_data_candidate/27/,
+    value: "s\xED"}
+  model: candideitorg.personaldatacandidate
   pk: 27
-- fields: {content_type: 21, object_id: 4, tag: 14}
-  model: taggit.taggeditem
+- fields: {candidate: 5, personaldata: 4, remote_id: 28, resource_uri: /api/v2/personal_data_candidate/28/,
+    value: "Ge\xF3grafo"}
+  model: candideitorg.personaldatacandidate
   pk: 28
-- fields: {content_type: 21, object_id: 5, tag: 14}
-  model: taggit.taggeditem
+- fields: {candidate: 5, personaldata: 5, remote_id: 29, resource_uri: /api/v2/personal_data_candidate/29/,
+    value: "Diputado por el distrito 3 (1990-1998), Senador por la circunscripci\xF3\
+      n 3 (1998- 2014)"}
+  model: candideitorg.personaldatacandidate
   pk: 29
-- fields: {content_type: 21, object_id: 4, tag: 15}
-  model: taggit.taggeditem
+- fields: {candidate: 5, personaldata: 6, remote_id: 30, resource_uri: /api/v2/personal_data_candidate/30/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
   pk: 30
-- fields: {content_type: 21, object_id: 5, tag: 15}
-  model: taggit.taggeditem
+- fields: {candidate: 6, personaldata: 1, remote_id: 31, resource_uri: /api/v2/personal_data_candidate/31/,
+    value: Ind}
+  model: candideitorg.personaldatacandidate
   pk: 31
-- fields: {content_type: 21, object_id: 4, tag: 16}
-  model: taggit.taggeditem
+- fields: {candidate: 6, personaldata: 2, remote_id: 32, resource_uri: /api/v2/personal_data_candidate/32/,
+    value: sin pacto}
+  model: candideitorg.personaldatacandidate
   pk: 32
-- fields: {content_type: 21, object_id: 5, tag: 16}
-  model: taggit.taggeditem
+- fields: {candidate: 6, personaldata: 3, remote_id: 33, resource_uri: /api/v2/personal_data_candidate/33/,
+    value: 'no'}
+  model: candideitorg.personaldatacandidate
   pk: 33
-- fields: {content_type: 21, object_id: 4, tag: 17}
-  model: taggit.taggeditem
+- fields: {candidate: 6, personaldata: 4, remote_id: 34, resource_uri: /api/v2/personal_data_candidate/34/,
+    value: Abogado}
+  model: candideitorg.personaldatacandidate
   pk: 34
-- fields: {content_type: 21, object_id: 5, tag: 17}
-  model: taggit.taggeditem
+- fields: {candidate: 6, personaldata: 5, remote_id: 35, resource_uri: /api/v2/personal_data_candidate/35/,
+    value: SEREMI de Bienes Nacionales}
+  model: candideitorg.personaldatacandidate
   pk: 35
-- fields: {content_type: 21, object_id: 4, tag: 18}
-  model: taggit.taggeditem
+- fields: {candidate: 6, personaldata: 6, remote_id: 36, resource_uri: /api/v2/personal_data_candidate/36/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
   pk: 36
-- fields: {content_type: 21, object_id: 5, tag: 18}
-  model: taggit.taggeditem
+- fields: {candidate: 7, personaldata: 1, remote_id: 37, resource_uri: /api/v2/personal_data_candidate/37/,
+    value: Ind}
+  model: candideitorg.personaldatacandidate
   pk: 37
-- fields: {content_type: 21, object_id: 6, tag: 2}
-  model: taggit.taggeditem
+- fields: {candidate: 7, personaldata: 2, remote_id: 38, resource_uri: /api/v2/personal_data_candidate/38/,
+    value: "Nueva Constituci\xF3n para Chile"}
+  model: candideitorg.personaldatacandidate
   pk: 38
-- fields: {content_type: 21, object_id: 4, tag: 19}
-  model: taggit.taggeditem
+- fields: {candidate: 7, personaldata: 3, remote_id: 39, resource_uri: /api/v2/personal_data_candidate/39/,
+    value: 'no'}
+  model: candideitorg.personaldatacandidate
   pk: 39
-- fields: {content_type: 21, object_id: 6, tag: 19}
-  model: taggit.taggeditem
+- fields: {candidate: 7, personaldata: 4, remote_id: 40, resource_uri: /api/v2/personal_data_candidate/40/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
   pk: 40
-- fields: {content_type: 21, object_id: 4, tag: 20}
-  model: taggit.taggeditem
+- fields: {candidate: 7, personaldata: 5, remote_id: 41, resource_uri: /api/v2/personal_data_candidate/41/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
   pk: 41
-- fields: {content_type: 21, object_id: 6, tag: 20}
-  model: taggit.taggeditem
+- fields: {candidate: 7, personaldata: 6, remote_id: 42, resource_uri: /api/v2/personal_data_candidate/42/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
   pk: 42
-- fields: {content_type: 21, object_id: 4, tag: 21}
-  model: taggit.taggeditem
+- fields: {candidate: 8, personaldata: 7, remote_id: 43, resource_uri: /api/v2/personal_data_candidate/43/,
+    value: UDI}
+  model: candideitorg.personaldatacandidate
   pk: 43
-- fields: {content_type: 21, object_id: 6, tag: 21}
-  model: taggit.taggeditem
+- fields: {candidate: 8, personaldata: 8, remote_id: 44, resource_uri: /api/v2/personal_data_candidate/44/,
+    value: Alianza}
+  model: candideitorg.personaldatacandidate
   pk: 44
-- fields: {content_type: 21, object_id: 4, tag: 22}
-  model: taggit.taggeditem
+- fields: {candidate: 8, personaldata: 9, remote_id: 45, resource_uri: /api/v2/personal_data_candidate/45/,
+    value: "s\xED"}
+  model: candideitorg.personaldatacandidate
   pk: 45
-- fields: {content_type: 21, object_id: 6, tag: 22}
-  model: taggit.taggeditem
+- fields: {candidate: 8, personaldata: 10, remote_id: 46, resource_uri: /api/v2/personal_data_candidate/46/,
+    value: Abogado}
+  model: candideitorg.personaldatacandidate
   pk: 46
-- fields: {url: 'http://popit.org/api/v1'}
-  model: popit.apiinstance
+- fields: {candidate: 8, personaldata: 11, remote_id: 47, resource_uri: /api/v2/personal_data_candidate/47/,
+    value: 'Diputado por el distrito 31 (2002-2011), en Enero 2011 ocupa el cupo senatorial
+      de Evelyn Matthei'}
+  model: candideitorg.personaldatacandidate
+  pk: 47
+- fields: {candidate: 8, personaldata: 12, remote_id: 48, resource_uri: /api/v2/personal_data_candidate/48/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
+  pk: 48
+- fields: {candidate: 9, personaldata: 7, remote_id: 49, resource_uri: /api/v2/personal_data_candidate/49/,
+    value: RN}
+  model: candideitorg.personaldatacandidate
+  pk: 49
+- fields: {candidate: 9, personaldata: 8, remote_id: 50, resource_uri: /api/v2/personal_data_candidate/50/,
+    value: Alianza}
+  model: candideitorg.personaldatacandidate
+  pk: 50
+- fields: {candidate: 9, personaldata: 9, remote_id: 51, resource_uri: /api/v2/personal_data_candidate/51/,
+    value: 'no'}
+  model: candideitorg.personaldatacandidate
+  pk: 51
+- fields: {candidate: 9, personaldata: 10, remote_id: 52, resource_uri: /api/v2/personal_data_candidate/52/,
+    value: Veterinario}
+  model: candideitorg.personaldatacandidate
+  pk: 52
+- fields: {candidate: 9, personaldata: 11, remote_id: 53, resource_uri: /api/v2/personal_data_candidate/53/,
+    value: Diputado por el distrito 7 (1998-2014)}
+  model: candideitorg.personaldatacandidate
+  pk: 53
+- fields: {candidate: 9, personaldata: 12, remote_id: 54, resource_uri: /api/v2/personal_data_candidate/54/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
+  pk: 54
+- fields: {candidate: 10, personaldata: 7, remote_id: 55, resource_uri: /api/v2/personal_data_candidate/55/,
+    value: DC}
+  model: candideitorg.personaldatacandidate
+  pk: 55
+- fields: {candidate: 10, personaldata: 8, remote_id: 56, resource_uri: /api/v2/personal_data_candidate/56/,
+    value: "Nueva Mayor\xEDa"}
+  model: candideitorg.personaldatacandidate
+  pk: 56
+- fields: {candidate: 10, personaldata: 9, remote_id: 57, resource_uri: /api/v2/personal_data_candidate/57/,
+    value: "s\xED"}
+  model: candideitorg.personaldatacandidate
+  pk: 57
+- fields: {candidate: 10, personaldata: 10, remote_id: 58, resource_uri: /api/v2/personal_data_candidate/58/,
+    value: "Estudios en Ciencias Pol\xEDticas"}
+  model: candideitorg.personaldatacandidate
+  pk: 58
+- fields: {candidate: 10, personaldata: 11, remote_id: 59, resource_uri: /api/v2/personal_data_candidate/59/,
+    value: "Diputado por el distrito 8 (1990-1998), Senador por la circunscripci\xF3\
+      n 4 (1998-2014)"}
+  model: candideitorg.personaldatacandidate
+  pk: 59
+- fields: {candidate: 10, personaldata: 12, remote_id: 60, resource_uri: /api/v2/personal_data_candidate/60/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
+  pk: 60
+- fields: {candidate: 11, personaldata: 7, remote_id: 61, resource_uri: /api/v2/personal_data_candidate/61/,
+    value: PPD}
+  model: candideitorg.personaldatacandidate
+  pk: 61
+- fields: {candidate: 11, personaldata: 8, remote_id: 62, resource_uri: /api/v2/personal_data_candidate/62/,
+    value: "Nueva Mayor\xEDa"}
+  model: candideitorg.personaldatacandidate
+  pk: 62
+- fields: {candidate: 11, personaldata: 9, remote_id: 63, resource_uri: /api/v2/personal_data_candidate/63/,
+    value: 'no'}
+  model: candideitorg.personaldatacandidate
+  pk: 63
+- fields: {candidate: 11, personaldata: 10, remote_id: 64, resource_uri: /api/v2/personal_data_candidate/64/,
+    value: "Soci\xF3loga y Cientista Pol\xEDtico"}
+  model: candideitorg.personaldatacandidate
+  pk: 64
+- fields: {candidate: 11, personaldata: 11, remote_id: 65, resource_uri: /api/v2/personal_data_candidate/65/,
+    value: 'Diputada por el distrito 16 (1990-1994), Diputada por el distrito 9 (1998-2014)'}
+  model: candideitorg.personaldatacandidate
+  pk: 65
+- fields: {candidate: 11, personaldata: 12, remote_id: 66, resource_uri: /api/v2/personal_data_candidate/66/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
+  pk: 66
+- fields: {candidate: 12, personaldata: 7, remote_id: 67, resource_uri: /api/v2/personal_data_candidate/67/,
+    value: Ind}
+  model: candideitorg.personaldatacandidate
+  pk: 67
+- fields: {candidate: 12, personaldata: 8, remote_id: 68, resource_uri: /api/v2/personal_data_candidate/68/,
+    value: Humanista}
+  model: candideitorg.personaldatacandidate
+  pk: 68
+- fields: {candidate: 12, personaldata: 9, remote_id: 69, resource_uri: /api/v2/personal_data_candidate/69/,
+    value: 'no'}
+  model: candideitorg.personaldatacandidate
+  pk: 69
+- fields: {candidate: 12, personaldata: 10, remote_id: 70, resource_uri: /api/v2/personal_data_candidate/70/,
+    value: "Dirigente del MPMR (Movimiento Patri\xF3tico Manuel Rodr\xEDguez)."}
+  model: candideitorg.personaldatacandidate
+  pk: 70
+- fields: {candidate: 12, personaldata: 11, remote_id: 71, resource_uri: /api/v2/personal_data_candidate/71/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
+  pk: 71
+- fields: {candidate: 12, personaldata: 12, remote_id: 72, resource_uri: /api/v2/personal_data_candidate/72/,
+    value: ''}
+  model: candideitorg.personaldatacandidate
+  pk: 72
+- fields: {url: 'http://localhost:3001/api/v1/'}
+  model: writeit.writeitapiinstance
   pk: 1
-- fields: {url: 'http://popit.org/api/v2'}
-  model: popit.apiinstance
-  pk: 2
-- fields: {api_instance: 1, name: Pedro, popit_url: 'http://popit.mysociety.org/api/v1/persons/1'}
-  model: popit.person
+- fields: {api_instance: 1, remote_id: 1, url: /api/v1/instance/1/}
+  model: writeit.writeitdocument
   pk: 1
-- fields: {api_instance: 2, name: Marcel, popit_url: 'http://popit.mysociety.org/api/v1/persons/2'}
-  model: popit.person
+- fields: {api_instance: 1, remote_id: 2, url: /api/v1/instance/2/}
+  model: writeit.writeitdocument
   pk: 2
-- fields: {api_instance: 2, name: Felipe, popit_url: 'http://popit.mysociety.org/api/v1/persons/3'}
-  model: popit.person
-  pk: 3
+- fields: {name: "2\xAA Circunscripci\xF3n Antofagasta"}
+  model: writeit.writeitinstance
+  pk: 1
+- fields: {name: "4\xAA Circunscripci\xF3n Coquimbo"}
+  model: writeit.writeitinstance
+  pk: 2

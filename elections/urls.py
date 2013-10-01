@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from haystack.views import SearchView
 from elections.forms import ElectionForm
 from elections.views import ElectionsSearchByTagView, HomeView, ElectionDetailView,\
-							CandidateDetailView
+							CandidateDetailView, SoulMateDetailView
 
 media_root = getattr(settings, 'MEDIA_ROOT', '/') 
 
@@ -35,7 +35,7 @@ urlpatterns = patterns('',
 		name='face_to_face_no_candidate_detail_view'),
 	#soulmate
 	url(r'^election/(?P<slug>[-\w]+)/soul-mate/?$',
-		ElectionDetailView.as_view(template_name='elections/soulmate_candidate.html'), 
+		SoulMateDetailView.as_view(template_name='elections/soulmate_candidate.html'), 
 		name='soul_mate_detail_view'),
 	#ask
 	url(r'^election/(?P<slug>[-\w]+)/ask/?$',

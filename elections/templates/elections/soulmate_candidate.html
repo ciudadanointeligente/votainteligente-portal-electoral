@@ -24,7 +24,7 @@ $(document).ready(function(){
 
 			counter++
 		})
-				
+		console.log(final_data);
 		return false;
 	})
 })
@@ -48,7 +48,7 @@ $(document).ready(function(){
 						<ul class="list-unstyled">
 							{% for answer in question.answer_set.all %}
 							<li>
-								<input name="answer-{{question.id}}" value="{{answer.id}}" type="radio"> {{answer.caption}}
+								<input name="answer-{{question.remote_id}}" value="{{answer.remote_id}}" type="radio"> {{answer.caption}}
 							</li>
 							{% endfor %}
 						</ul>
@@ -56,15 +56,15 @@ $(document).ready(function(){
 					<div class="col-md-4">
 						<p class="question">{% trans "Que importancia le das a esta pregunta?" %}</p>
 						<ul id="importancia" class="list-inline">
-							<li><input type="radio" name="importance-{{question.id}}" value="1"> 1</li>
-							<li><input type="radio" name="importance-{{question.id}}" value="2"> 2</li>
-							<li><input type="radio" name="importance-{{question.id}}" value="3" checked="checked"> 3</li>
-							<li><input type="radio" name="importance-{{question.id}}" value="4"> 4</li>
-							<li><input type="radio" name="importance-{{question.id}}" value="5"> 5</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="1"> 1</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="2"> 2</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="3" checked="checked"> 3</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="4"> 4</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="5"> 5</li>
 						</ul>
 					</div>
 				</div>
-				<input type="hidden" name="question-{{question.id}}" value="{{question.id}}">
+				<input type="hidden" name="question-{{question.remote_id}}" value="{{question.remote_id}}">
 				{% endfor %}
 			</div>
 		</div>

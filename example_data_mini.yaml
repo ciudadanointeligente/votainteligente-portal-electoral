@@ -3,6 +3,10 @@
     use_default_media_naranja_option: true}
   model: candideitorg.election
   pk: 1
+- fields: {description: '', information_source: '', logo: null, name: "2 Circunscripcion Antofagasta", remote_id: 1, resource_uri: /api/v2/election/2/, slug: 2a-circunscripcion-antofagasta,
+    use_default_media_naranja_option: true}
+  model: candideitorg.election
+  pk: 3
 - fields: {election: 1, name: Politicas Publicas, order: 1, remote_id: 1, resource_uri: /api/v2/category/1/,
     slug: politicas-publicas}
   model: candideitorg.category
@@ -11,6 +15,44 @@
     slug: politicas-monetarias}
   model: candideitorg.category
   pk: 2
+- fields: {election: 3, name: Perros y gatos, order: 1, remote_id: 3, resource_uri: /api/v2/category/3/,
+    slug: perros-y-gatos}
+  model: candideitorg.category
+  pk: 5
+- fields: {election: 3, name: "Educacion", order: 1, remote_id: 4, resource_uri: /api/v2/category/4/,
+    slug: educacion}
+  model: candideitorg.category
+  pk: 6
+- fields: {category: 5, question: 'Le gusta la Fiera??', remote_id: 4, resource_uri: /api/v2/question/4/}
+  model: candideitorg.question
+  pk: 8
+- fields: {category: 5, question: 'Le gusta Benito??', remote_id: 5, resource_uri: /api/v2/question/5/}
+  model: candideitorg.question
+  pk: 9
+- fields: {category: 6, question: 'Libre para todos??', remote_id: 6, resource_uri: /api/v2/question/6/}
+  model: candideitorg.question
+  pk: 10
+- fields: {caption: "Si", question: 8, remote_id: 8, resource_uri: /api/v2/answer/8/}
+  model: candideitorg.answer
+  pk: 18
+- fields: {caption: 'No', question: 8, remote_id: 9, resource_uri: /api/v2/answer/9/}
+  model: candideitorg.answer
+  pk: 19
+- fields: {caption: A veces, question: 8, remote_id: 10, resource_uri: /api/v2/answer/10/}
+  model: candideitorg.answer
+  pk: 20
+- fields: {caption: "Si", question: 9, remote_id: 11, resource_uri: /api/v2/answer/11/}
+  model: candideitorg.answer
+  pk: 21
+- fields: {caption: 'no', question: 9, remote_id: 12, resource_uri: /api/v2/answer/12/}
+  model: candideitorg.answer
+  pk: 22
+- fields: {caption: "Si", question: 10, remote_id: 13, resource_uri: /api/v2/answer/13/}
+  model: candideitorg.answer
+  pk: 23
+- fields: {caption: 'no', question: 10, remote_id: 14, resource_uri: /api/v2/answer/14/}
+  model: candideitorg.answer
+  pk: 24
 - fields: {election: 1, has_answered: false, name: Juanito Perez, photo: 'http://placedog.com/400/300',
     remote_id: 1, resource_uri: '', slug: juanito-perez}
   model: candideitorg.candidate
@@ -23,22 +65,117 @@
     remote_id: 3, resource_uri: '', slug: foo-bar}
   model: candideitorg.candidate
   pk: 3
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Manuel Rojas
+    photo: null
+    remote_id: 2
+    resource_uri: /api/v2/candidate/2/
+    slug: manuel-rojas
+  model: candideitorg.candidate
+  pk: 5
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Alejandro Guillier
+    photo: null
+    remote_id: 3
+    resource_uri: /api/v2/candidate/3/
+    slug: alejandro-guillier
+  model: candideitorg.candidate
+  pk: 6
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Pedro Araya
+    photo: null
+    remote_id: 4
+    resource_uri: /api/v2/candidate/4/
+    slug: pedro-araya
+  model: candideitorg.candidate
+  pk: 7
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Gisela Contreras
+    photo: null
+    remote_id: 5
+    resource_uri: /api/v2/candidate/5/
+    slug: gisela-contreras
+  model: candideitorg.candidate
+  pk: 8
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Carlos Cantero
+    photo: null
+    remote_id: 6
+    resource_uri: /api/v2/candidate/6/
+    slug: carlos-cantero
+  model: candideitorg.candidate
+  pk: 9
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Daniel Guevara
+    photo: null
+    remote_id: 7
+    resource_uri: /api/v2/candidate/7/
+    slug: daniel-guevara
+  model: candideitorg.candidate
+  pk: 10
+- fields:
+    answers: []
+    election: 3
+    has_answered: true
+    name: Jimena Orrego
+    photo: null
+    remote_id: 8
+    resource_uri: /api/v2/candidate/8/
+    slug: jimena-orrego
+  model: candideitorg.candidate
+  pk: 11
 - fields: {election: 1, name: Tendencia Politica, remote_id: 1, resource_uri: ''}
   model: candideitorg.backgroundcategory
   pk: 1
 - fields: {election: 1, name: Educacion, remote_id: 2, resource_uri: ''}
   model: candideitorg.backgroundcategory
   pk: 2
+- fields: {election: 3, label: Partido, remote_id: 7, resource_uri: /api/v2/personal_data/7/}
+  model: candideitorg.personaldata
+  pk: 11
+- fields: {election: 3, label: Pacto - Lista, remote_id: 8, resource_uri: /api/v2/personal_data/8/}
+  model: candideitorg.personaldata
+  pk: 12
+- fields: {election: 3, label: "\xBFVa a reeleccion?", remote_id: 9, resource_uri: /api/v2/personal_data/9/}
+  model: candideitorg.personaldata
+  pk: 13
+- fields: {election: 3, label: "Profesion", remote_id: 10, resource_uri: /api/v2/personal_data/10/}
+  model: candideitorg.personaldata
+  pk: 14
+- fields: {election: 3, label: "Cargos Publicos", remote_id: 11, resource_uri: /api/v2/personal_data/11/}
+  model: candideitorg.personaldata
+  pk: 15
+- fields: {election: 3, label: Dato Curioso, remote_id: 12, resource_uri: /api/v2/personal_data/12/}
+  model: candideitorg.personaldata
+  pk: 16
 - fields: {election: 1, label: Nacimiento, remote_id: 1, resource_uri: ''}
   model: candideitorg.personaldata
   pk: 1
 - fields: {election: 1, label: Profesion, remote_id: 2, resource_uri: ''}
   model: candideitorg.personaldata
   pk: 2
-- fields: {election: 1, label: "Profesi\xF3n", remote_id: 3, resource_uri: ''}
+- fields: {election: 1, label: "Profesion", remote_id: 3, resource_uri: ''}
   model: candideitorg.personaldata
   pk: 3
-- fields: {election: 1, label: "G\xE9nero", remote_id: 4, resource_uri: ''}
+- fields: {election: 1, label: "Genero", remote_id: 4, resource_uri: ''}
   model: candideitorg.personaldata
   pk: 4
 - fields: {content_type: 21, object_id: 7, tag: 23}
@@ -58,19 +195,24 @@
 - fields: {description: '', name: "I - Tarapaca", slug: i-tarapaca, can_election: 1}
   model: elections.election
   pk: 1
-- fields: {description: '', name: "Distrito N\xFAmero 1", slug: distrito-numero-1}
+- fields: {description: '', name: "Distrito Numero 1", slug: distrito-numero-1}
   model: elections.election
   pk: 2
-- fields: {description: '', name: "Distrito N\xFAmero 2", slug: distrito-numero-2}
+- fields: {description: '', name: "Distrito Numero 2", slug: distrito-numero-2}
   model: elections.election
   pk: 3
 - fields: {description: '', name: II - Antofagasta, slug: ii-antofagasta}
   model: elections.election
   pk: 4
-- fields: {description: '', name: "Distrito N\xFAmero 3", slug: distrito-numero-3}
+- fields: {can_election: 3, description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: false, name: "2 Circunscripcion Antofagasta", popit_api_instance: 3,
+    searchable: true, slug: 2a-circunscripcion-antofagasta, writeitinstance: 3}
+  model: elections.election
+  pk: 82
+- fields: {description: '', name: "Distrito Numero 3", slug: distrito-numero-3}
   model: elections.election
   pk: 5
-- fields: {description: '', name: "Distrito N\xFAmero 4", slug: distrito-numero-4}
+- fields: {description: '', name: "Distrito Numero 4", slug: distrito-numero-4}
   model: elections.election
   pk: 6
 - fields: {description: '', name: "Presidenciales", slug: presidenciales, highlighted: true, searchable: false}
@@ -97,7 +239,7 @@
 - fields: {name: Alto Hospicio, slug: alto-hospicio}
   model: taggit.tag
   pk: 7
-- fields: {name: "Cami\xF1a", slug: camina}
+- fields: {name: "Camina", slug: camina}
   model: taggit.tag
   pk: 8
 - fields: {name: Colchane, slug: colchane}
@@ -118,10 +260,10 @@
 - fields: {name: Calama, slug: calama}
   model: taggit.tag
   pk: 14
-- fields: {name: "Mar\xEDa Elena", slug: maria-elena}
+- fields: {name: "Maria Elena", slug: maria-elena}
   model: taggit.tag
   pk: 15
-- fields: {name: "Ollag\xFCe", slug: ollague}
+- fields: {name: "Ollague", slug: ollague}
   model: taggit.tag
   pk: 16
 - fields: {name: San Pedro de Atacama, slug: san-pedro-de-atacama}
@@ -163,7 +305,7 @@
 - fields: {name: Alto Hospicio, slug: alto-hospicio}
   model: taggit.tag
   pk: 7
-- fields: {name: "Cami\xF1a", slug: camina}
+- fields: {name: "Camina", slug: camina}
   model: taggit.tag
   pk: 8
 - fields: {name: Colchane, slug: colchane}
@@ -184,10 +326,10 @@
 - fields: {name: Calama, slug: calama}
   model: taggit.tag
   pk: 14
-- fields: {name: "Mar\xEDa Elena", slug: maria-elena}
+- fields: {name: "Maria Elena", slug: maria-elena}
   model: taggit.tag
   pk: 15
-- fields: {name: "Ollag\xFCe", slug: ollague}
+- fields: {name: "Ollague", slug: ollague}
   model: taggit.tag
   pk: 16
 - fields: {name: San Pedro de Atacama, slug: san-pedro-de-atacama}

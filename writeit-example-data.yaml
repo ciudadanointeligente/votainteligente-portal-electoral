@@ -2,221 +2,529 @@
   model: sites.site
   pk: 1
 - fields:
-    date_joined: 2013-04-26 21:09:22.224616+00:00
+    date_joined: 2013-10-01 15:18:15.044286+00:00
     email: admin@admines.cl
     first_name: ''
     groups: []
     is_active: true
     is_staff: true
     is_superuser: true
-    last_login: 2013-06-10 16:06:46.989439+00:00
+    last_login: 2013-10-01 15:52:23.745414+00:00
     last_name: ''
-    password: pbkdf2_sha256$10000$LoeTDV2yMCWT$fgkQ++r4O7wurfFSAtHT1/a9WTjb32cHq63dFgXU+rI=
+    password: pbkdf2_sha256$10000$QvID4vm7iuxQ$7FPnsdEMvCs17miHpIaG506lHRHDXKyawkMv2uE12UE=
     user_permissions: []
     username: admin
   model: auth.user
   pk: 1
-- fields: {created: !!timestamp '2013-09-10 18:42:37+00:00', key: a, user: 1}
+- fields: {created: !!timestamp '2013-10-01 15:19:52.287466+00:00', key: a, user: 1}
   model: tastypie.apikey
-  pk: 1
-- fields: {moderation_needed_in_all_messages: false, name: "1\xAA Circunscripci\xF3\
-      n Tarapac\xE1", owner: 1, rate_limiter: 0, slug: 1a-circunscripcion-tarapaca}
-  model: nuntium.writeitinstance
   pk: 1
 - fields: {moderation_needed_in_all_messages: false, name: "2\xAA Circunscripci\xF3\
       n Antofagasta", owner: 1, rate_limiter: 0, slug: 2a-circunscripcion-antofagasta}
   model: nuntium.writeitinstance
-  pk: 2
-- fields: {moderation_needed_in_all_messages: false, name: "3\xAA Circunscripci\xF3\
-      n Atacama", owner: 1, rate_limiter: 0, slug: 3a-circunscripcion-atacama}
-  model: nuntium.writeitinstance
-  pk: 3
+  pk: 1
 - fields: {moderation_needed_in_all_messages: false, name: "4\xAA Circunscripci\xF3\
       n Coquimbo", owner: 1, rate_limiter: 0, slug: 4a-circunscripcion-coquimbo}
   model: nuntium.writeitinstance
-  pk: 4
-- fields: {moderation_needed_in_all_messages: false, name: "5\xAA Circunscripci\xF3\
-      n Quinta Cordillera", owner: 1, rate_limiter: 0, slug: 5a-circunscripcion-quinta-cordillera}
-  model: nuntium.writeitinstance
-  pk: 5
-- fields: {moderation_needed_in_all_messages: false, name: "6\xAA Circunscripci\xF3\
-      n Quinta Costa", owner: 1, rate_limiter: 0, slug: 6a-circunscripcion-quinta-costa}
-  model: nuntium.writeitinstance
-  pk: 6
+  pk: 2
 - fields: {moderation_needed_in_all_messages: false, name: "7\xAA Circunscripci\xF3\
       n Santiago Poniente", owner: 1, rate_limiter: 0, slug: 7a-circunscripcion-santiago-poniente}
   model: nuntium.writeitinstance
-  pk: 7
+  pk: 3
 - fields: {moderation_needed_in_all_messages: false, name: "8\xAA Circunscripci\xF3\
       n Santiago Oriente", owner: 1, rate_limiter: 0, slug: 8a-circunscripcion-santiago-oriente}
   model: nuntium.writeitinstance
-  pk: 8
+  pk: 4
 - fields: {moderation_needed_in_all_messages: false, name: "9\xAA Circunscripci\xF3\
       n O'Higgins", owner: 1, rate_limiter: 0, slug: 9a-circunscripcion-ohiggins}
   model: nuntium.writeitinstance
-  pk: 9
-- fields: {moderation_needed_in_all_messages: false, name: "10\xAA Circunscripci\xF3\
-      n Maule Norte", owner: 1, rate_limiter: 0, slug: 10a-circunscripcion-maule-norte}
-  model: nuntium.writeitinstance
-  pk: 10
-- fields: {moderation_needed_in_all_messages: false, name: "11\xAA Circunscripci\xF3\
-      n Maule Sur", owner: 1, rate_limiter: 0, slug: 11a-circunscripcion-maule-sur}
-  model: nuntium.writeitinstance
-  pk: 11
+  pk: 5
 - fields: {moderation_needed_in_all_messages: false, name: "12\xAA Circunscripci\xF3\
       n Biob\xEDo Costa", owner: 1, rate_limiter: 0, slug: 12a-circunscripcion-biobio-costa}
   model: nuntium.writeitinstance
+  pk: 6
+- fields: {moderation_needed_in_all_messages: false, name: "13\xAA Circunscripci\xF3\
+      n Biob\xEDo Cord", owner: 1, rate_limiter: 0, slug: 13a-circunscripcion-biobio-cord}
+  model: nuntium.writeitinstance
+  pk: 7
+- fields: {moderation_needed_in_all_messages: false, name: "16\xAA Circunscripci\xF3\
+      n Los R\xEDos", owner: 1, rate_limiter: 0, slug: 16a-circunscripcion-los-rios}
+  model: nuntium.writeitinstance
+  pk: 8
+- fields: {moderation_needed_in_all_messages: false, name: "17\xAA Circunscripci\xF3\
+      n Los Lagos", owner: 1, rate_limiter: 0, slug: 17a-circunscripcion-los-lagos}
+  model: nuntium.writeitinstance
+  pk: 9
+- fields: {moderation_needed_in_all_messages: false, name: "19\xAA Circunscripci\xF3\
+      n Magallanes", owner: 1, rate_limiter: 0, slug: 19a-circunscripcion-magallanes}
+  model: nuntium.writeitinstance
+  pk: 10
+- fields: {moderation_needed_in_all_messages: false, name: "Distrito N\xB0 1", owner: 1,
+    rate_limiter: 0, slug: distrito-n-1}
+  model: nuntium.writeitinstance
+  pk: 11
+- fields: {moderation_needed_in_all_messages: false, name: "Distrito N\xB0 2", owner: 1,
+    rate_limiter: 0, slug: distrito-n-2}
+  model: nuntium.writeitinstance
   pk: 12
+- fields: {moderation_needed_in_all_messages: false, name: "Distrito N\xBA 3", owner: 1,
+    rate_limiter: 0, slug: distrito-no-3}
+  model: nuntium.writeitinstance
+  pk: 13
+- fields: {moderation_needed_in_all_messages: false, name: "Distrito N\xBA 4", owner: 1,
+    rate_limiter: 0, slug: distrito-no-4}
+  model: nuntium.writeitinstance
+  pk: 14
+- fields: {moderation_needed_in_all_messages: false, name: "Distrito N\xBA 5", owner: 1,
+    rate_limiter: 0, slug: distrito-no-5}
+  model: nuntium.writeitinstance
+  pk: 15
+- fields: {moderation_needed_in_all_messages: false, name: "Distrito N\xBA 6", owner: 1,
+    rate_limiter: 0, slug: distrito-no-6}
+  model: nuntium.writeitinstance
+  pk: 16
+- fields: {moderation_needed_in_all_messages: false, name: "Distrito N\xBA 7", owner: 1,
+    rate_limiter: 0, slug: distrito-no-7}
+  model: nuntium.writeitinstance
+  pk: 17
+- fields: {moderation_needed_in_all_messages: false, name: "Distrito N\xBA 8", owner: 1,
+    rate_limiter: 0, slug: distrito-no-8}
+  model: nuntium.writeitinstance
+  pk: 18
+- fields: {moderation_needed_in_all_messages: false, name: "Distrito N\xBA 9", owner: 1,
+    rate_limiter: 0, slug: distrito-no-9}
+  model: nuntium.writeitinstance
+  pk: 19
+- fields: {moderation_needed_in_all_messages: false, name: "Distrito N\xBA 10", owner: 1,
+    rate_limiter: 0, slug: distrito-no-10}
+  model: nuntium.writeitinstance
+  pk: 20
 - fields: {person: 1, writeitinstance: 1}
   model: nuntium.membership
   pk: 1
-- fields: {person: 2, writeitinstance: 2}
+- fields: {person: 2, writeitinstance: 1}
   model: nuntium.membership
   pk: 2
-- fields: {person: 3, writeitinstance: 2}
+- fields: {person: 3, writeitinstance: 1}
   model: nuntium.membership
   pk: 3
-- fields: {person: 4, writeitinstance: 2}
+- fields: {person: 4, writeitinstance: 1}
   model: nuntium.membership
   pk: 4
-- fields: {person: 5, writeitinstance: 2}
+- fields: {person: 5, writeitinstance: 1}
   model: nuntium.membership
   pk: 5
-- fields: {person: 6, writeitinstance: 2}
+- fields: {person: 6, writeitinstance: 1}
   model: nuntium.membership
   pk: 6
-- fields: {person: 7, writeitinstance: 2}
+- fields: {person: 7, writeitinstance: 1}
   model: nuntium.membership
   pk: 7
 - fields: {person: 8, writeitinstance: 2}
   model: nuntium.membership
   pk: 8
-- fields: {person: 9, writeitinstance: 3}
+- fields: {person: 9, writeitinstance: 2}
   model: nuntium.membership
   pk: 9
-- fields: {person: 10, writeitinstance: 4}
+- fields: {person: 10, writeitinstance: 2}
   model: nuntium.membership
   pk: 10
-- fields: {person: 11, writeitinstance: 4}
+- fields: {person: 11, writeitinstance: 2}
   model: nuntium.membership
   pk: 11
-- fields: {person: 12, writeitinstance: 4}
+- fields: {person: 12, writeitinstance: 2}
   model: nuntium.membership
   pk: 12
-- fields: {person: 13, writeitinstance: 4}
+- fields: {person: 13, writeitinstance: 3}
   model: nuntium.membership
   pk: 13
-- fields: {person: 14, writeitinstance: 4}
+- fields: {person: 14, writeitinstance: 3}
   model: nuntium.membership
   pk: 14
-- fields: {person: 15, writeitinstance: 5}
+- fields: {person: 15, writeitinstance: 3}
   model: nuntium.membership
   pk: 15
-- fields: {person: 16, writeitinstance: 6}
+- fields: {person: 16, writeitinstance: 3}
   model: nuntium.membership
   pk: 16
-- fields: {person: 17, writeitinstance: 7}
+- fields: {person: 17, writeitinstance: 3}
   model: nuntium.membership
   pk: 17
-- fields: {person: 18, writeitinstance: 7}
+- fields: {person: 18, writeitinstance: 3}
   model: nuntium.membership
   pk: 18
-- fields: {person: 19, writeitinstance: 7}
+- fields: {person: 19, writeitinstance: 3}
   model: nuntium.membership
   pk: 19
-- fields: {person: 20, writeitinstance: 7}
+- fields: {person: 20, writeitinstance: 3}
   model: nuntium.membership
   pk: 20
-- fields: {person: 21, writeitinstance: 7}
+- fields: {person: 21, writeitinstance: 4}
   model: nuntium.membership
   pk: 21
-- fields: {person: 22, writeitinstance: 7}
+- fields: {person: 22, writeitinstance: 4}
   model: nuntium.membership
   pk: 22
-- fields: {person: 23, writeitinstance: 7}
+- fields: {person: 23, writeitinstance: 4}
   model: nuntium.membership
   pk: 23
-- fields: {person: 24, writeitinstance: 7}
+- fields: {person: 24, writeitinstance: 4}
   model: nuntium.membership
   pk: 24
-- fields: {person: 25, writeitinstance: 8}
+- fields: {person: 25, writeitinstance: 4}
   model: nuntium.membership
   pk: 25
-- fields: {person: 26, writeitinstance: 8}
+- fields: {person: 26, writeitinstance: 4}
   model: nuntium.membership
   pk: 26
-- fields: {person: 27, writeitinstance: 8}
+- fields: {person: 27, writeitinstance: 4}
   model: nuntium.membership
   pk: 27
-- fields: {person: 28, writeitinstance: 8}
+- fields: {person: 28, writeitinstance: 4}
   model: nuntium.membership
   pk: 28
-- fields: {person: 29, writeitinstance: 8}
+- fields: {person: 29, writeitinstance: 4}
   model: nuntium.membership
   pk: 29
-- fields: {person: 30, writeitinstance: 8}
+- fields: {person: 30, writeitinstance: 4}
   model: nuntium.membership
   pk: 30
-- fields: {person: 31, writeitinstance: 8}
+- fields: {person: 31, writeitinstance: 5}
   model: nuntium.membership
   pk: 31
-- fields: {person: 32, writeitinstance: 8}
+- fields: {person: 32, writeitinstance: 5}
   model: nuntium.membership
   pk: 32
-- fields: {person: 33, writeitinstance: 8}
+- fields: {person: 33, writeitinstance: 5}
   model: nuntium.membership
   pk: 33
-- fields: {person: 34, writeitinstance: 8}
+- fields: {person: 34, writeitinstance: 5}
   model: nuntium.membership
   pk: 34
-- fields: {person: 35, writeitinstance: 9}
+- fields: {person: 35, writeitinstance: 5}
   model: nuntium.membership
   pk: 35
-- fields: {person: 36, writeitinstance: 9}
+- fields: {person: 36, writeitinstance: 6}
   model: nuntium.membership
   pk: 36
-- fields: {person: 37, writeitinstance: 9}
+- fields: {person: 37, writeitinstance: 6}
   model: nuntium.membership
   pk: 37
-- fields: {person: 38, writeitinstance: 9}
+- fields: {person: 38, writeitinstance: 6}
   model: nuntium.membership
   pk: 38
-- fields: {person: 39, writeitinstance: 9}
+- fields: {person: 39, writeitinstance: 6}
   model: nuntium.membership
   pk: 39
-- fields: {person: 40, writeitinstance: 10}
+- fields: {person: 40, writeitinstance: 6}
   model: nuntium.membership
   pk: 40
-- fields: {person: 41, writeitinstance: 11}
+- fields: {person: 41, writeitinstance: 6}
   model: nuntium.membership
   pk: 41
-- fields: {person: 42, writeitinstance: 12}
+- fields: {person: 42, writeitinstance: 6}
   model: nuntium.membership
   pk: 42
-- fields: {person: 43, writeitinstance: 12}
+- fields: {person: 43, writeitinstance: 6}
   model: nuntium.membership
   pk: 43
-- fields: {person: 44, writeitinstance: 12}
+- fields: {person: 44, writeitinstance: 6}
   model: nuntium.membership
   pk: 44
-- fields: {person: 45, writeitinstance: 12}
+- fields: {person: 45, writeitinstance: 7}
   model: nuntium.membership
   pk: 45
-- fields: {person: 46, writeitinstance: 12}
+- fields: {person: 46, writeitinstance: 7}
   model: nuntium.membership
   pk: 46
-- fields: {person: 47, writeitinstance: 12}
+- fields: {person: 47, writeitinstance: 7}
   model: nuntium.membership
   pk: 47
-- fields: {person: 48, writeitinstance: 12}
+- fields: {person: 48, writeitinstance: 7}
   model: nuntium.membership
   pk: 48
-- fields: {person: 49, writeitinstance: 12}
+- fields: {person: 49, writeitinstance: 7}
   model: nuntium.membership
   pk: 49
-- fields: {person: 50, writeitinstance: 12}
+- fields: {person: 50, writeitinstance: 7}
   model: nuntium.membership
   pk: 50
+- fields: {person: 51, writeitinstance: 8}
+  model: nuntium.membership
+  pk: 51
+- fields: {person: 52, writeitinstance: 8}
+  model: nuntium.membership
+  pk: 52
+- fields: {person: 53, writeitinstance: 8}
+  model: nuntium.membership
+  pk: 53
+- fields: {person: 54, writeitinstance: 8}
+  model: nuntium.membership
+  pk: 54
+- fields: {person: 55, writeitinstance: 8}
+  model: nuntium.membership
+  pk: 55
+- fields: {person: 56, writeitinstance: 8}
+  model: nuntium.membership
+  pk: 56
+- fields: {person: 57, writeitinstance: 8}
+  model: nuntium.membership
+  pk: 57
+- fields: {person: 58, writeitinstance: 9}
+  model: nuntium.membership
+  pk: 58
+- fields: {person: 59, writeitinstance: 9}
+  model: nuntium.membership
+  pk: 59
+- fields: {person: 60, writeitinstance: 9}
+  model: nuntium.membership
+  pk: 60
+- fields: {person: 61, writeitinstance: 9}
+  model: nuntium.membership
+  pk: 61
+- fields: {person: 62, writeitinstance: 10}
+  model: nuntium.membership
+  pk: 62
+- fields: {person: 63, writeitinstance: 10}
+  model: nuntium.membership
+  pk: 63
+- fields: {person: 64, writeitinstance: 10}
+  model: nuntium.membership
+  pk: 64
+- fields: {person: 65, writeitinstance: 10}
+  model: nuntium.membership
+  pk: 65
+- fields: {person: 66, writeitinstance: 10}
+  model: nuntium.membership
+  pk: 66
+- fields: {person: 67, writeitinstance: 10}
+  model: nuntium.membership
+  pk: 67
+- fields: {person: 68, writeitinstance: 11}
+  model: nuntium.membership
+  pk: 68
+- fields: {person: 69, writeitinstance: 11}
+  model: nuntium.membership
+  pk: 69
+- fields: {person: 70, writeitinstance: 11}
+  model: nuntium.membership
+  pk: 70
+- fields: {person: 71, writeitinstance: 11}
+  model: nuntium.membership
+  pk: 71
+- fields: {person: 72, writeitinstance: 11}
+  model: nuntium.membership
+  pk: 72
+- fields: {person: 73, writeitinstance: 11}
+  model: nuntium.membership
+  pk: 73
+- fields: {person: 74, writeitinstance: 11}
+  model: nuntium.membership
+  pk: 74
+- fields: {person: 75, writeitinstance: 11}
+  model: nuntium.membership
+  pk: 75
+- fields: {person: 76, writeitinstance: 12}
+  model: nuntium.membership
+  pk: 76
+- fields: {person: 77, writeitinstance: 12}
+  model: nuntium.membership
+  pk: 77
+- fields: {person: 78, writeitinstance: 12}
+  model: nuntium.membership
+  pk: 78
+- fields: {person: 79, writeitinstance: 12}
+  model: nuntium.membership
+  pk: 79
+- fields: {person: 80, writeitinstance: 12}
+  model: nuntium.membership
+  pk: 80
+- fields: {person: 81, writeitinstance: 12}
+  model: nuntium.membership
+  pk: 81
+- fields: {person: 82, writeitinstance: 12}
+  model: nuntium.membership
+  pk: 82
+- fields: {person: 83, writeitinstance: 12}
+  model: nuntium.membership
+  pk: 83
+- fields: {person: 84, writeitinstance: 12}
+  model: nuntium.membership
+  pk: 84
+- fields: {person: 85, writeitinstance: 13}
+  model: nuntium.membership
+  pk: 85
+- fields: {person: 86, writeitinstance: 13}
+  model: nuntium.membership
+  pk: 86
+- fields: {person: 87, writeitinstance: 13}
+  model: nuntium.membership
+  pk: 87
+- fields: {person: 88, writeitinstance: 13}
+  model: nuntium.membership
+  pk: 88
+- fields: {person: 89, writeitinstance: 13}
+  model: nuntium.membership
+  pk: 89
+- fields: {person: 90, writeitinstance: 13}
+  model: nuntium.membership
+  pk: 90
+- fields: {person: 91, writeitinstance: 13}
+  model: nuntium.membership
+  pk: 91
+- fields: {person: 92, writeitinstance: 13}
+  model: nuntium.membership
+  pk: 92
+- fields: {person: 93, writeitinstance: 14}
+  model: nuntium.membership
+  pk: 93
+- fields: {person: 94, writeitinstance: 14}
+  model: nuntium.membership
+  pk: 94
+- fields: {person: 95, writeitinstance: 14}
+  model: nuntium.membership
+  pk: 95
+- fields: {person: 96, writeitinstance: 14}
+  model: nuntium.membership
+  pk: 96
+- fields: {person: 97, writeitinstance: 14}
+  model: nuntium.membership
+  pk: 97
+- fields: {person: 98, writeitinstance: 14}
+  model: nuntium.membership
+  pk: 98
+- fields: {person: 99, writeitinstance: 14}
+  model: nuntium.membership
+  pk: 99
+- fields: {person: 100, writeitinstance: 14}
+  model: nuntium.membership
+  pk: 100
+- fields: {person: 101, writeitinstance: 14}
+  model: nuntium.membership
+  pk: 101
+- fields: {person: 102, writeitinstance: 15}
+  model: nuntium.membership
+  pk: 102
+- fields: {person: 103, writeitinstance: 15}
+  model: nuntium.membership
+  pk: 103
+- fields: {person: 104, writeitinstance: 15}
+  model: nuntium.membership
+  pk: 104
+- fields: {person: 105, writeitinstance: 15}
+  model: nuntium.membership
+  pk: 105
+- fields: {person: 106, writeitinstance: 15}
+  model: nuntium.membership
+  pk: 106
+- fields: {person: 107, writeitinstance: 15}
+  model: nuntium.membership
+  pk: 107
+- fields: {person: 108, writeitinstance: 15}
+  model: nuntium.membership
+  pk: 108
+- fields: {person: 109, writeitinstance: 16}
+  model: nuntium.membership
+  pk: 109
+- fields: {person: 110, writeitinstance: 16}
+  model: nuntium.membership
+  pk: 110
+- fields: {person: 111, writeitinstance: 16}
+  model: nuntium.membership
+  pk: 111
+- fields: {person: 112, writeitinstance: 16}
+  model: nuntium.membership
+  pk: 112
+- fields: {person: 113, writeitinstance: 16}
+  model: nuntium.membership
+  pk: 113
+- fields: {person: 114, writeitinstance: 16}
+  model: nuntium.membership
+  pk: 114
+- fields: {person: 115, writeitinstance: 17}
+  model: nuntium.membership
+  pk: 115
+- fields: {person: 116, writeitinstance: 17}
+  model: nuntium.membership
+  pk: 116
+- fields: {person: 117, writeitinstance: 17}
+  model: nuntium.membership
+  pk: 117
+- fields: {person: 118, writeitinstance: 17}
+  model: nuntium.membership
+  pk: 118
+- fields: {person: 119, writeitinstance: 17}
+  model: nuntium.membership
+  pk: 119
+- fields: {person: 120, writeitinstance: 17}
+  model: nuntium.membership
+  pk: 120
+- fields: {person: 121, writeitinstance: 17}
+  model: nuntium.membership
+  pk: 121
+- fields: {person: 122, writeitinstance: 18}
+  model: nuntium.membership
+  pk: 122
+- fields: {person: 123, writeitinstance: 18}
+  model: nuntium.membership
+  pk: 123
+- fields: {person: 124, writeitinstance: 18}
+  model: nuntium.membership
+  pk: 124
+- fields: {person: 125, writeitinstance: 18}
+  model: nuntium.membership
+  pk: 125
+- fields: {person: 126, writeitinstance: 18}
+  model: nuntium.membership
+  pk: 126
+- fields: {person: 127, writeitinstance: 18}
+  model: nuntium.membership
+  pk: 127
+- fields: {person: 128, writeitinstance: 18}
+  model: nuntium.membership
+  pk: 128
+- fields: {person: 129, writeitinstance: 18}
+  model: nuntium.membership
+  pk: 129
+- fields: {person: 130, writeitinstance: 19}
+  model: nuntium.membership
+  pk: 130
+- fields: {person: 131, writeitinstance: 19}
+  model: nuntium.membership
+  pk: 131
+- fields: {person: 132, writeitinstance: 19}
+  model: nuntium.membership
+  pk: 132
+- fields: {person: 133, writeitinstance: 19}
+  model: nuntium.membership
+  pk: 133
+- fields: {person: 134, writeitinstance: 19}
+  model: nuntium.membership
+  pk: 134
+- fields: {person: 135, writeitinstance: 19}
+  model: nuntium.membership
+  pk: 135
+- fields: {person: 136, writeitinstance: 20}
+  model: nuntium.membership
+  pk: 136
+- fields: {person: 137, writeitinstance: 20}
+  model: nuntium.membership
+  pk: 137
+- fields: {person: 138, writeitinstance: 20}
+  model: nuntium.membership
+  pk: 138
+- fields: {person: 139, writeitinstance: 20}
+  model: nuntium.membership
+  pk: 139
+- fields: {person: 140, writeitinstance: 20}
+  model: nuntium.membership
+  pk: 140
+- fields: {person: 141, writeitinstance: 20}
+  model: nuntium.membership
+  pk: 141
+- fields: {person: 142, writeitinstance: 20}
+  model: nuntium.membership
+  pk: 142
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
     template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
@@ -289,242 +597,54 @@
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 12}
   model: nuntium.newanswernotificationtemplate
   pk: 12
-- fields: {url: 'http://1a-circunscripcion-tarapaca.127.0.0.1.xip.io:3000/api'}
-  model: popit.apiinstance
-  pk: 1
-- fields: {url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api'}
-  model: popit.apiinstance
-  pk: 2
-- fields: {url: 'http://3a-circunscripcion-atacama.127.0.0.1.xip.io:3000/api'}
-  model: popit.apiinstance
-  pk: 3
-- fields: {url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api'}
-  model: popit.apiinstance
-  pk: 4
-- fields: {url: 'http://5a-circunscripcion-quinta-cordillera.127.0.0.1.xip.io:3000/api'}
-  model: popit.apiinstance
-  pk: 5
-- fields: {url: 'http://6a-circunscripcion-quinta-costa.127.0.0.1.xip.io:3000/api'}
-  model: popit.apiinstance
-  pk: 6
-- fields: {url: 'http://7a-circunscripcion-santiago-poniente.127.0.0.1.xip.io:3000/api'}
-  model: popit.apiinstance
-  pk: 7
-- fields: {url: 'http://8a-circunscripcion-santiago-oriente.127.0.0.1.xip.io:3000/api'}
-  model: popit.apiinstance
-  pk: 8
-- fields: {url: 'http://9a-circunscripcion-ohiggins.127.0.0.1.xip.io:3000/api'}
-  model: popit.apiinstance
-  pk: 9
-- fields: {url: 'http://10a-circunscripcion-maule-norte.127.0.0.1.xip.io:3000/api'}
-  model: popit.apiinstance
-  pk: 10
-- fields: {url: 'http://11a-circunscripcion-maule-sur.127.0.0.1.xip.io:3000/api'}
-  model: popit.apiinstance
-  pk: 11
-- fields: {url: 'http://12a-circunscripcion-biobio-costa.127.0.0.1.xip.io:3000/api'}
-  model: popit.apiinstance
-  pk: 12
-- fields: {api_instance: 1, image: '', name: '', popit_url: 'http://1a-circunscripcion-tarapaca.127.0.0.1.xip.io:3000/api/persons/524455a980954da51c000007',
-    summary: ''}
-  model: popit.person
-  pk: 1
-- fields: {api_instance: 2, image: '', name: Manuel Rojas, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524455b380954da51c000008',
-    summary: ''}
-  model: popit.person
-  pk: 2
-- fields: {api_instance: 2, image: '', name: Alejandro Guillier, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524455b580954da51c000009',
-    summary: ''}
-  model: popit.person
-  pk: 3
-- fields: {api_instance: 2, image: '', name: Pedro Araya, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524455b780954da51c00000a',
-    summary: ''}
-  model: popit.person
-  pk: 4
-- fields: {api_instance: 2, image: '', name: Gisela Contreras, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524455bd80954da51c00000b',
-    summary: ''}
-  model: popit.person
-  pk: 5
-- fields: {api_instance: 2, image: '', name: Carlos Cantero, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524455bf80954da51c00000c',
-    summary: ''}
-  model: popit.person
-  pk: 6
-- fields: {api_instance: 2, image: '', name: Daniel Guevara, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524455c080954da51c00000d',
-    summary: ''}
-  model: popit.person
-  pk: 7
-- fields: {api_instance: 2, image: '', name: Jimena Orrego, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524455c180954da51c00000e',
-    summary: ''}
-  model: popit.person
-  pk: 8
-- fields: {api_instance: 3, image: '', name: '', popit_url: 'http://3a-circunscripcion-atacama.127.0.0.1.xip.io:3000/api/persons/524455ce80954da51c00000f',
-    summary: ''}
-  model: popit.person
-  pk: 9
-- fields: {api_instance: 4, image: '', name: Gonzalo Uriarte, popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524455d880954da51c000010',
-    summary: ''}
-  model: popit.person
-  pk: 10
-- fields: {api_instance: 4, image: '', name: Mario Bertolino, popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524455da80954da51c000011',
-    summary: ''}
-  model: popit.person
-  pk: 11
-- fields: {api_instance: 4, image: '', name: Jorge Pizarro, popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524455db80954da51c000012',
-    summary: ''}
-  model: popit.person
-  pk: 12
-- fields: {api_instance: 4, image: '', name: "Adriana Mu\xF1oz", popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524455dc80954da51c000013',
-    summary: ''}
-  model: popit.person
+- fields: {subject_template: '%(person)s has answered to your message %(message)s',
+    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+      \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
+      \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 13}
+  model: nuntium.newanswernotificationtemplate
   pk: 13
-- fields: {api_instance: 4, image: '', name: Luis Vega, popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524455dd80954da51c000014',
-    summary: ''}
-  model: popit.person
+- fields: {subject_template: '%(person)s has answered to your message %(message)s',
+    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+      \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
+      \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 14}
+  model: nuntium.newanswernotificationtemplate
   pk: 14
-- fields: {api_instance: 5, image: '', name: '', popit_url: 'http://5a-circunscripcion-quinta-cordillera.127.0.0.1.xip.io:3000/api/persons/524455e980954da51c000015',
-    summary: ''}
-  model: popit.person
+- fields: {subject_template: '%(person)s has answered to your message %(message)s',
+    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+      \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
+      \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 15}
+  model: nuntium.newanswernotificationtemplate
   pk: 15
-- fields: {api_instance: 6, image: '', name: '', popit_url: 'http://6a-circunscripcion-quinta-costa.127.0.0.1.xip.io:3000/api/persons/524455f480954da51c000016',
-    summary: ''}
-  model: popit.person
+- fields: {subject_template: '%(person)s has answered to your message %(message)s',
+    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+      \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
+      \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 16}
+  model: nuntium.newanswernotificationtemplate
   pk: 16
-- fields: {api_instance: 7, image: '', name: Pablo Zalaquett, popit_url: 'http://7a-circunscripcion-santiago-poniente.127.0.0.1.xip.io:3000/api/persons/524455ff80954da51c000017',
-    summary: ''}
-  model: popit.person
+- fields: {subject_template: '%(person)s has answered to your message %(message)s',
+    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+      \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
+      \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 17}
+  model: nuntium.newanswernotificationtemplate
   pk: 17
-- fields: {api_instance: 7, image: '', name: "Andr\xE9s Allamand", popit_url: 'http://7a-circunscripcion-santiago-poniente.127.0.0.1.xip.io:3000/api/persons/5244560180954da51c000018',
-    summary: ''}
-  model: popit.person
+- fields: {subject_template: '%(person)s has answered to your message %(message)s',
+    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+      \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
+      \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 18}
+  model: nuntium.newanswernotificationtemplate
   pk: 18
-- fields: {api_instance: 7, image: '', name: Alberto Undurraga, popit_url: 'http://7a-circunscripcion-santiago-poniente.127.0.0.1.xip.io:3000/api/persons/5244560280954da51c000019',
-    summary: ''}
-  model: popit.person
+- fields: {subject_template: '%(person)s has answered to your message %(message)s',
+    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+      \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
+      \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 19}
+  model: nuntium.newanswernotificationtemplate
   pk: 19
-- fields: {api_instance: 7, image: '', name: Guido Girardi, popit_url: 'http://7a-circunscripcion-santiago-poniente.127.0.0.1.xip.io:3000/api/persons/5244560380954da51c00001a',
-    summary: ''}
-  model: popit.person
+- fields: {subject_template: '%(person)s has answered to your message %(message)s',
+    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+      \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
+      \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 20}
+  model: nuntium.newanswernotificationtemplate
   pk: 20
-- fields: {api_instance: 7, image: '', name: Wilfredo Alfsen, popit_url: 'http://7a-circunscripcion-santiago-poniente.127.0.0.1.xip.io:3000/api/persons/5244560480954da51c00001b',
-    summary: ''}
-  model: popit.person
-  pk: 21
-- fields: {api_instance: 7, image: '', name: "Carlos Mu\xF1oz", popit_url: 'http://7a-circunscripcion-santiago-poniente.127.0.0.1.xip.io:3000/api/persons/5244560680954da51c00001c',
-    summary: ''}
-  model: popit.person
-  pk: 22
-- fields: {api_instance: 7, image: '', name: "Eduardo Guti\xE9rrez", popit_url: 'http://7a-circunscripcion-santiago-poniente.127.0.0.1.xip.io:3000/api/persons/5244560780954da51c00001d',
-    summary: ''}
-  model: popit.person
-  pk: 23
-- fields: {api_instance: 7, image: '', name: Sergio Flores, popit_url: 'http://7a-circunscripcion-santiago-poniente.127.0.0.1.xip.io:3000/api/persons/5244560880954da51c00001e',
-    summary: ''}
-  model: popit.person
-  pk: 24
-- fields: {api_instance: 8, image: '', name: Laurence Golborne, popit_url: 'http://8a-circunscripcion-santiago-oriente.127.0.0.1.xip.io:3000/api/persons/5244561680954da51c00001f',
-    summary: ''}
-  model: popit.person
-  pk: 25
-- fields: {api_instance: 8, image: '', name: "Manuel Jos\xE9 Ossand\xF3n", popit_url: 'http://8a-circunscripcion-santiago-oriente.127.0.0.1.xip.io:3000/api/persons/5244561880954da51c000020',
-    summary: ''}
-  model: popit.person
-  pk: 26
-- fields: {api_instance: 8, image: '', name: Soledad Alvear, popit_url: 'http://8a-circunscripcion-santiago-oriente.127.0.0.1.xip.io:3000/api/persons/5244561980954da51c000021',
-    summary: ''}
-  model: popit.person
-  pk: 27
-- fields: {api_instance: 8, image: '', name: Carlos Montes, popit_url: 'http://8a-circunscripcion-santiago-oriente.127.0.0.1.xip.io:3000/api/persons/5244561b80954da51c000022',
-    summary: ''}
-  model: popit.person
-  pk: 28
-- fields: {api_instance: 8, image: '', name: Esteban Silva, popit_url: 'http://8a-circunscripcion-santiago-oriente.127.0.0.1.xip.io:3000/api/persons/5244561d80954da51c000023',
-    summary: ''}
-  model: popit.person
-  pk: 29
-- fields: {api_instance: 8, image: '', name: "Jos\xE9 Antonio Carre\xF1o", popit_url: 'http://8a-circunscripcion-santiago-oriente.127.0.0.1.xip.io:3000/api/persons/5244561e80954da51c000024',
-    summary: ''}
-  model: popit.person
-  pk: 30
-- fields: {api_instance: 8, image: '', name: Juan Guillermo Ossa, popit_url: 'http://8a-circunscripcion-santiago-oriente.127.0.0.1.xip.io:3000/api/persons/5244561f80954da51c000025',
-    summary: ''}
-  model: popit.person
-  pk: 31
-- fields: {api_instance: 8, image: '', name: "Patricio Guzm\xE1n", popit_url: 'http://8a-circunscripcion-santiago-oriente.127.0.0.1.xip.io:3000/api/persons/5244562180954da51c000026',
-    summary: ''}
-  model: popit.person
-  pk: 32
-- fields: {api_instance: 8, image: '', name: "Iv\xE1n Carrasco", popit_url: 'http://8a-circunscripcion-santiago-oriente.127.0.0.1.xip.io:3000/api/persons/5244562380954da51c000027',
-    summary: ''}
-  model: popit.person
-  pk: 33
-- fields: {api_instance: 8, image: '', name: "Luis Mariano Rend\xF3n", popit_url: 'http://8a-circunscripcion-santiago-oriente.127.0.0.1.xip.io:3000/api/persons/5244562480954da51c000028',
-    summary: ''}
-  model: popit.person
-  pk: 34
-- fields: {api_instance: 9, image: '', name: "Alejandro Garc\xEDa-Huidobro", popit_url: 'http://9a-circunscripcion-ohiggins.127.0.0.1.xip.io:3000/api/persons/5244563d80954da51c000029',
-    summary: ''}
-  model: popit.person
-  pk: 35
-- fields: {api_instance: 9, image: '', name: Alberto Cardemil, popit_url: 'http://9a-circunscripcion-ohiggins.127.0.0.1.xip.io:3000/api/persons/5244563f80954da51c00002a',
-    summary: ''}
-  model: popit.person
-  pk: 36
-- fields: {api_instance: 9, image: '', name: Juan Carlos Latorre, popit_url: 'http://9a-circunscripcion-ohiggins.127.0.0.1.xip.io:3000/api/persons/5244564080954da51c00002b',
-    summary: ''}
-  model: popit.person
-  pk: 37
-- fields: {api_instance: 9, image: '', name: Juan Pablo Letelier, popit_url: 'http://9a-circunscripcion-ohiggins.127.0.0.1.xip.io:3000/api/persons/5244564180954da51c00002c',
-    summary: ''}
-  model: popit.person
-  pk: 38
-- fields: {api_instance: 9, image: '', name: "Luis Felipe Garc\xEDa", popit_url: 'http://9a-circunscripcion-ohiggins.127.0.0.1.xip.io:3000/api/persons/5244564280954da51c00002d',
-    summary: ''}
-  model: popit.person
-  pk: 39
-- fields: {api_instance: 10, image: '', name: '', popit_url: 'http://10a-circunscripcion-maule-norte.127.0.0.1.xip.io:3000/api/persons/5244564f80954da51c00002e',
-    summary: ''}
-  model: popit.person
-  pk: 40
-- fields: {api_instance: 11, image: '', name: '', popit_url: 'http://11a-circunscripcion-maule-sur.127.0.0.1.xip.io:3000/api/persons/5244565880954da51c00002f',
-    summary: ''}
-  model: popit.person
-  pk: 41
-- fields: {api_instance: 12, image: '', name: Jacqueline van Rysselberghe, popit_url: 'http://12a-circunscripcion-biobio-costa.127.0.0.1.xip.io:3000/api/persons/5244566580954da51c000030',
-    summary: ''}
-  model: popit.person
-  pk: 42
-- fields: {api_instance: 12, image: '', name: Daniel Contesse, popit_url: 'http://12a-circunscripcion-biobio-costa.127.0.0.1.xip.io:3000/api/persons/5244566780954da51c000031',
-    summary: ''}
-  model: popit.person
-  pk: 43
-- fields: {api_instance: 12, image: '', name: Alejandro Navarro, popit_url: 'http://12a-circunscripcion-biobio-costa.127.0.0.1.xip.io:3000/api/persons/5244566880954da51c000032',
-    summary: ''}
-  model: popit.person
-  pk: 44
-- fields: {api_instance: 12, image: '', name: Camilo Escalona, popit_url: 'http://12a-circunscripcion-biobio-costa.127.0.0.1.xip.io:3000/api/persons/5244566980954da51c000033',
-    summary: ''}
-  model: popit.person
-  pk: 45
-- fields: {api_instance: 12, image: '', name: Rafael Garay, popit_url: 'http://12a-circunscripcion-biobio-costa.127.0.0.1.xip.io:3000/api/persons/5244566c80954da51c000034',
-    summary: ''}
-  model: popit.person
-  pk: 46
-- fields: {api_instance: 12, image: '', name: "Osm\xE1n V\xE1squez", popit_url: 'http://12a-circunscripcion-biobio-costa.127.0.0.1.xip.io:3000/api/persons/5244566d80954da51c000035',
-    summary: ''}
-  model: popit.person
-  pk: 47
-- fields: {api_instance: 12, image: '', name: "Loreto\_Mu\xF1oz", popit_url: 'http://12a-circunscripcion-biobio-costa.127.0.0.1.xip.io:3000/api/persons/5244566f80954da51c000036',
-    summary: ''}
-  model: popit.person
-  pk: 48
-- fields: {api_instance: 12, image: '', name: Javier Sandoval, popit_url: 'http://12a-circunscripcion-biobio-costa.127.0.0.1.xip.io:3000/api/persons/5244567080954da51c000037',
-    summary: ''}
-  model: popit.person
-  pk: 49
-- fields: {api_instance: 12, image: '', name: "Graciela Gonz\xE1lez", popit_url: 'http://12a-circunscripcion-biobio-costa.127.0.0.1.xip.io:3000/api/persons/5244567180954da51c000038',
-    summary: ''}
-  model: popit.person
-  pk: 50
 - fields: {content_template: "Hello {{ person }}:\nYou have a new message:\nsubject:\
       \ {{ subject }} \ncontent: {{ content }}\n\n\nIf you want to see all the other\
       \ messages please visit {{ writeit_url }}.\nSeeya\n--\nYou writeIt and we deliverit.",
@@ -597,3 +717,51 @@
     subject_template: '[WriteIT] Message: %(subject)s', writeitinstance: 12}
   model: mailit.mailittemplate
   pk: 12
+- fields: {content_template: "Hello {{ person }}:\nYou have a new message:\nsubject:\
+      \ {{ subject }} \ncontent: {{ content }}\n\n\nIf you want to see all the other\
+      \ messages please visit {{ writeit_url }}.\nSeeya\n--\nYou writeIt and we deliverit.",
+    subject_template: '[WriteIT] Message: %(subject)s', writeitinstance: 13}
+  model: mailit.mailittemplate
+  pk: 13
+- fields: {content_template: "Hello {{ person }}:\nYou have a new message:\nsubject:\
+      \ {{ subject }} \ncontent: {{ content }}\n\n\nIf you want to see all the other\
+      \ messages please visit {{ writeit_url }}.\nSeeya\n--\nYou writeIt and we deliverit.",
+    subject_template: '[WriteIT] Message: %(subject)s', writeitinstance: 14}
+  model: mailit.mailittemplate
+  pk: 14
+- fields: {content_template: "Hello {{ person }}:\nYou have a new message:\nsubject:\
+      \ {{ subject }} \ncontent: {{ content }}\n\n\nIf you want to see all the other\
+      \ messages please visit {{ writeit_url }}.\nSeeya\n--\nYou writeIt and we deliverit.",
+    subject_template: '[WriteIT] Message: %(subject)s', writeitinstance: 15}
+  model: mailit.mailittemplate
+  pk: 15
+- fields: {content_template: "Hello {{ person }}:\nYou have a new message:\nsubject:\
+      \ {{ subject }} \ncontent: {{ content }}\n\n\nIf you want to see all the other\
+      \ messages please visit {{ writeit_url }}.\nSeeya\n--\nYou writeIt and we deliverit.",
+    subject_template: '[WriteIT] Message: %(subject)s', writeitinstance: 16}
+  model: mailit.mailittemplate
+  pk: 16
+- fields: {content_template: "Hello {{ person }}:\nYou have a new message:\nsubject:\
+      \ {{ subject }} \ncontent: {{ content }}\n\n\nIf you want to see all the other\
+      \ messages please visit {{ writeit_url }}.\nSeeya\n--\nYou writeIt and we deliverit.",
+    subject_template: '[WriteIT] Message: %(subject)s', writeitinstance: 17}
+  model: mailit.mailittemplate
+  pk: 17
+- fields: {content_template: "Hello {{ person }}:\nYou have a new message:\nsubject:\
+      \ {{ subject }} \ncontent: {{ content }}\n\n\nIf you want to see all the other\
+      \ messages please visit {{ writeit_url }}.\nSeeya\n--\nYou writeIt and we deliverit.",
+    subject_template: '[WriteIT] Message: %(subject)s', writeitinstance: 18}
+  model: mailit.mailittemplate
+  pk: 18
+- fields: {content_template: "Hello {{ person }}:\nYou have a new message:\nsubject:\
+      \ {{ subject }} \ncontent: {{ content }}\n\n\nIf you want to see all the other\
+      \ messages please visit {{ writeit_url }}.\nSeeya\n--\nYou writeIt and we deliverit.",
+    subject_template: '[WriteIT] Message: %(subject)s', writeitinstance: 19}
+  model: mailit.mailittemplate
+  pk: 19
+- fields: {content_template: "Hello {{ person }}:\nYou have a new message:\nsubject:\
+      \ {{ subject }} \ncontent: {{ content }}\n\n\nIf you want to see all the other\
+      \ messages please visit {{ writeit_url }}.\nSeeya\n--\nYou writeIt and we deliverit.",
+    subject_template: '[WriteIT] Message: %(subject)s', writeitinstance: 20}
+  model: mailit.mailittemplate
+  pk: 20

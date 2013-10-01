@@ -1,10 +1,10 @@
 - fields: {can_election: 2, description: '', extra_info_content: null, extra_info_title: null,
-    highlighted: false, name: "2\xAA Circunscripci\xF3n Antofagasta", popit_api_instance: 1,
+    highlighted: true, name: "2\xAA Circunscripci\xF3n Antofagasta", popit_api_instance: 1,
     searchable: true, slug: 2a-circunscripcion-antofagasta, writeitinstance: 1}
   model: elections.election
   pk: 1
 - fields: {can_election: 3, description: '', extra_info_content: null, extra_info_title: null,
-    highlighted: false, name: "4\xAA Circunscripci\xF3n Coquimbo", popit_api_instance: 2,
+    highlighted: true, name: "4\xAA Circunscripci\xF3n Coquimbo", popit_api_instance: 2,
     searchable: true, slug: 4a-circunscripcion-coquimbo, writeitinstance: 2}
   model: elections.election
   pk: 2
@@ -1422,7 +1422,7 @@
     election: 2
     has_answered: true
     name: Manuel Rojas
-    photo: null
+    photo: "http://placekitten.com/200/300"
     remote_id: 1
     resource_uri: /api/v2/candidate/1/
     slug: manuel-rojas
@@ -1433,7 +1433,7 @@
     election: 2
     has_answered: true
     name: Alejandro Guillier
-    photo: null
+    photo: "http://placekitten.com/200/300"
     remote_id: 2
     resource_uri: /api/v2/candidate/2/
     slug: alejandro-guillier
@@ -1444,7 +1444,7 @@
     election: 2
     has_answered: true
     name: Pedro Araya
-    photo: null
+    photo: "http://placekitten.com/200/300"
     remote_id: 3
     resource_uri: /api/v2/candidate/3/
     slug: pedro-araya
@@ -1455,7 +1455,7 @@
     election: 2
     has_answered: true
     name: Gisela Contreras
-    photo: null
+    photo: "http://placekitten.com/200/300"
     remote_id: 4
     resource_uri: /api/v2/candidate/4/
     slug: gisela-contreras
@@ -1466,7 +1466,7 @@
     election: 2
     has_answered: true
     name: Carlos Cantero
-    photo: null
+    photo: "http://placekitten.com/200/300"
     remote_id: 5
     resource_uri: /api/v2/candidate/5/
     slug: carlos-cantero
@@ -1477,7 +1477,7 @@
     election: 2
     has_answered: true
     name: Daniel Guevara
-    photo: null
+    photo: "http://placekitten.com/200/300"
     remote_id: 6
     resource_uri: /api/v2/candidate/6/
     slug: daniel-guevara
@@ -1488,7 +1488,7 @@
     election: 2
     has_answered: true
     name: Jimena Orrego
-    photo: null
+    photo: "http://placekitten.com/200/300"
     remote_id: 7
     resource_uri: /api/v2/candidate/7/
     slug: jimena-orrego
@@ -1499,7 +1499,7 @@
     election: 3
     has_answered: true
     name: Gonzalo Uriarte
-    photo: null
+    photo: "http://placekitten.com/200/300"
     remote_id: 8
     resource_uri: /api/v2/candidate/8/
     slug: gonzalo-uriarte
@@ -1510,7 +1510,7 @@
     election: 3
     has_answered: true
     name: Mario Bertolino
-    photo: null
+    photo: "http://placekitten.com/200/300"
     remote_id: 9
     resource_uri: /api/v2/candidate/9/
     slug: mario-bertolino
@@ -1521,7 +1521,7 @@
     election: 3
     has_answered: true
     name: Jorge Pizarro
-    photo: null
+    photo: "http://placekitten.com/200/300"
     remote_id: 10
     resource_uri: /api/v2/candidate/10/
     slug: jorge-pizarro
@@ -1532,7 +1532,7 @@
     election: 3
     has_answered: true
     name: "Adriana Mu\xF1oz"
-    photo: null
+    photo: "http://placekitten.com/200/300"
     remote_id: 11
     resource_uri: /api/v2/candidate/11/
     slug: adriana-munoz
@@ -1543,7 +1543,7 @@
     election: 3
     has_answered: true
     name: Luis Vega
-    photo: null
+    photo: "http://placekitten.com/200/300"
     remote_id: 12
     resource_uri: /api/v2/candidate/12/
     slug: luis-vega
@@ -1554,7 +1554,7 @@
     election: 4
     has_answered: true
     name: Pablo Zalaquett
-    photo: null
+    photo: "http://placekitten.com/200/300"
     remote_id: 13
     resource_uri: /api/v2/candidate/13/
     slug: pablo-zalaquett

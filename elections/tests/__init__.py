@@ -9,7 +9,6 @@ class VotaInteligenteTestCase(TestCase):
 	def setUp(self):
 
 		super(VotaInteligenteTestCase, self).setUp()
-		# call_command('loaddata', 'example_data_mini', verbosity=0)
 
 	def teardown_databases(self, *args, **kwargs):
 		if not _reusing_db():

@@ -1,7 +1,9 @@
 from haystack.forms import SearchForm
 from django import forms
+from django.forms import ModelForm
 from django.utils.translation import ugettext as _
 from elections.models import Election
+from writeit.models import Message
 
 class ElectionForm(SearchForm):
 	pass
@@ -13,3 +15,10 @@ class ElectionSearchByTagsForm(forms.Form):
 		cleaned_data = self.clean()
 		queryed_element = cleaned_data['q']
 		return Election.objects.filter(tags__name__in=[queryed_element])
+
+
+class MessageForm(ModelForm):
+	class Meta:
+		model = Message
+		fields = ('author_name', 'author_email', 'subject', 'content','people')
+

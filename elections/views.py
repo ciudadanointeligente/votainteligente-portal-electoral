@@ -2,10 +2,11 @@
 from django.views.generic.edit import FormView
 from elections.forms import ElectionSearchByTagsForm
 from django.core.urlresolvers import reverse
-from django.views.generic import TemplateView
-from django.views.generic import DetailView
+from django.views.generic import CreateView, DetailView, TemplateView
 from elections.models import Election
+from elections.forms import MessageForm
 from candideitorg.models import Candidate
+from writeit.models import Message
 
 class ElectionsSearchByTagView(FormView):
     form_class = ElectionSearchByTagsForm
@@ -75,3 +76,12 @@ class CandidateDetailView(DetailView):
         context['election'] = self.object.election.election
         return context
         
+class ElectionAskView(CreateView):
+    model = Message
+
+    def get_context_data(self, **kwargs):
+        context = super(ElectionAskView, self).get_context_data(**kwargs)
+        election_slug = self.kwargs['slug']
+        context['form'] =  MessageForm()
+        context['election'] = Election.objects.get(slug = election_slug)
+        return context

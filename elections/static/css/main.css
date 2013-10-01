@@ -61,6 +61,12 @@ strong {
 	color: #b79800;
 }
 
+.alert-info {
+	color: #14b9d5;
+	background-color: #DDF6FA;
+	border-color: #AFE9F3;
+}
+
 .form-control::-webkit-input-placeholder {
    font-weight: 300;
 }

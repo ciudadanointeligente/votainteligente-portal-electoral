@@ -18,5 +18,6 @@ class Command(BaseCommand):
         for tag in tags.split(','):
           tag = tag.decode('utf-8').strip()
           election.tags.add(tag)
-      except Exception: 
+      except Exception:
+        print u'excepción con la elección ' + election_name 
         pass

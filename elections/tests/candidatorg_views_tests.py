@@ -2,6 +2,7 @@
 from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import Election
 from django.core.urlresolvers import reverse
+from candideitorg.models import Candidate
 
 class CandidateInElectionsViewsTestCase(TestCase):
 	def setUp(self):
@@ -123,24 +124,57 @@ class FaceToFaceViewTestCase(TestCase):
 class SoulMateTestCase(TestCase):
 	def setUp(self):
 		super(SoulMateTestCase, self).setUp()
-		self.tarapaca = Election.objects.get(id=1)
+		self.antofa = Election.objects.get(id=1)
 
 	def test_url_better_half(self):
 		url = reverse('soul_mate_detail_view', 
 			kwargs={
-			'slug':self.tarapaca.slug
+			'slug':self.antofa.slug
 			})
 		self.assertTrue(url)
 
 	def test_url_is_reachable_for_better_half(self):
 		url = reverse('soul_mate_detail_view', 
 			kwargs={
-			'slug':self.tarapaca.slug,
+			'slug':self.antofa.slug,
 			})
 		self.assertTrue(url)
 		response = self.client.get(url)
+		self.assertIn("election", response.context)
+		self.assertEquals(response.context["election"], self.antofa)
 		self.assertEquals(response.status_code, 200)
 		self.assertTemplateUsed(response, 'elections/soulmate_candidate.html')
+
+	def test_post_with_data_from_html(self):
+
+		data = {
+			"importance-0": "3",
+			"importance-1": "3",
+			"importance-2": "3",
+			"question-0": "8",
+			"question-1": "11",
+			"question-2": "14",
+			"question-id-0": "4",
+			"question-id-1": "5",
+			"question-id-2": "6"
+		}
+		url = reverse('soul_mate_detail_view', 
+			kwargs={
+			'slug':self.antofa.slug,
+			})
+
+		response = self.client.post(url, data=data)
+		self.assertEquals(response.status_code, 200)
+		self.assertTemplateUsed("elections/soulmate_response.html")
+		self.assertIn("election", response.context)
+		self.assertEquals(response.context["election"], self.antofa)
+		self.assertIn("winner",response.context)
+		self.assertIn("candidate", response.context["winner"])
+		self.assertIsInstance(response.context["winner"]["candidate"], Candidate)
+		self.assertIn("others",response.context)
+
+		candidatos_antofa = self.antofa.can_election.candidate_set.all()
+		self.assertIn(response.context["winner"]["candidate"], candidatos_antofa)
 
 class AskTestCase(TestCase):
 	def setUp(self):

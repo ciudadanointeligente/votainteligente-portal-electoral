@@ -14,6 +14,7 @@ env:
 before_script:
   - ./start_local_popit_api.bash
   - ./start_local_writeit.bash
+  - ./start_local_candidator.bash
 script:
   - coverage run --source=elections manage.py test elections
   - coverage report -m

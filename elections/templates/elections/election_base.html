@@ -21,8 +21,8 @@
 					<li><a href="{% url 'ask_detail_view' slug=election.slug %}"><i class="icon-edit"></i> {% trans "Pregúntales" %}</a></li>
 					<li><a href="{% url 'ranking_detail_view' slug=election.slug %}"><i class="icon-trophy"></i> {% trans "Ranking" %}</a></li>
 					{% if election.extra_info_title %}
-				<li><a href="{% url 'election_extra_info' slug=election.slug %}"><i class="icon-info"></i> {{election.extra_info_title}} </a></li>
-				{% endif %}
+					<li><a href="{% url 'election_extra_info' slug=election.slug %}"><i class="icon-info"></i> {{election.extra_info_title}} </a></li>
+					{% endif %}
 				</ul>
 			</div>
 		</div>

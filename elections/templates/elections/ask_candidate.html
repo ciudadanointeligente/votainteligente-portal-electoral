@@ -3,43 +3,52 @@
 
 {% block mainelection %}
 <!-- ask -->
-<div class="row">
+<div class="ask-form">
 	<form role="form">
-		<div class="col-md-8">
-			
-			<div class="form-group">
-				<label for="name">{% trans "Yo soy" %}</label>
-				<input type="text" class="form-control" id="name" placeholder="{% trans "Identifícate como quieras" %}">
+		<div class="row">
+			<div class="col-md-8">
+				
+				<div class="form-group">
+					<label for="name">{% trans "Yo soy" %}</label>
+					<input type="text" class="form-control" id="name" placeholder="{% trans "Identifícate como quieras" %}">
+				</div>
+				<div class="form-group">
+					<label for="email">{% trans "Correo electrónico" %}</label>
+					<input type="email" class="form-control" id="email" placeholder="{% trans "Si deseas que te notifiquemos la respuesta del candidato" %}">
+				</div>
+				<div class="form-group">
+					<label for="question">{% trans "Escribe tu pregunta" %}</label>
+					<textarea name="question" id="question" class="form-control" rows="3" placeholder="{% trans "Escribe una pregunta clara y respetuosa. Revisa si otros han preguntado lo que a ti te interesa saber" %}"></textarea>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="email">{% trans "Correo electrónico" %}</label>
-				<input type="email" class="form-control" id="email" placeholder="{% trans "Si deseas que te notifiquemos la respuesta del candidato" %}">
+			<div class="col-md-4">
+				<h5>{% trans "A quien quieres preguntar" %}:</h5>
+				<ul class="list-unstyled">
+					{% for candidato in election.can_election.candidate_set.all %}
+					<li><input type="checkbox" value=""> {{candidato.name}}</li>
+					{% endfor %}
+				</ul>
+				<p><div class="txt-gris">{% trans "*No tenemos el mail del candidato." %}</div>{% trans " ¿Eres candidato? " %}<a href="mailto:info@votainteligente.cl?Subject=Info%20candidato" target="_top">{% trans "escríbenos" %}</a>.</p>
 			</div>
-			<div class="form-group">
-				<label for="question">{% trans "Escribe tu pregunta" %}</label>
-				<textarea name="question" id="question" class="form-control" rows="3" placeholder="{% trans "Escribe una pregunta clara y respetuosa. Revisa si otros han preguntado lo que a ti te interesa saber" %}"></textarea>
-			</div>
-			<p class="text-warning">
-				{% trans "Acepto que mis preguntas y respuestas sean publicadas en este mismo medio.<br>Confirmo que lo que aquí dice no atenta contra el candidato." %}
-			</p>
 		</div>
-		<div class="col-md-4">
-			<h5>{% trans "A quien quieres preguntar" %}:</h5>
-			<ul class="list-unstyled">
-				{% for candidato in election.can_election.candidate_set.all %}
-				<li><input type="checkbox" value=""> {{candidato.name}}</li>
-				{% endfor %}
-			</ul>
-			<button type="submit" class="btn btn-primary">{% trans "Enviar pregunta" %}</button>
+		<div class="row">
+			<div class="col-md-8">
+				<p>
+					{% trans "Acepto que mis preguntas y respuestas sean publicadas en este mismo medio.<br>Confirmo que lo que aquí dice no atenta contra el candidato." %}
+				</p>
+			</div>
+			<div class="col-md-4">
+				<button type="submit" class="btn btn-success"><i class="icon-edit"></i> {% trans "Enviar pregunta" %}</button>
+			</div>
 		</div>
 	</form>
 </div>
 <div>
 	<div class="row">
-		<div class="col-md-8">
-			<h4>Preguntas Recientes</h4>
+		<div class="col-md-8 recent-questions">
+			<h3>Preguntas Recientes</h3>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4 search-questions">
 			<form action="" class="form-inline" role="form">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Buscar pregunta">
@@ -62,41 +71,21 @@
 				<div class="panel-body">
 					<div class="candidate-answer">
 						<div class="row">
-							<div class="col-md-10">
-								Perico los Palotes
-							</div>
-							<div class="col-md-2">
-								<ul class="list-inline">
-									<li><i class="icon-twitter"></i></li>
-									<li><i class="icon-facebook"></i></li>
-									<li><i class="icon-google-plus"></i></li>
-								</ul>
+							<div class="col-md-12">
+								<strong>Perico los Palotes</strong>
+									<button type="submit" class="btn btn-primary"><i class="icon-twitter"> {% trans "Twittea al candidato" %}</i></button>
 							</div>
 						</div>
-						<div class="col-md-12">
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, fugit, voluptates, aspernatur laboriosam aliquid reiciendis asperiores dolorem nemo ex quam rerum cupiditate repellendus facilis ea earum voluptate dolore dicta mollitia.
-							</p>
-						</div>
+							<p><i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, fugit, voluptates, aspernatur laboriosam aliquid reiciendis asperiores dolorem nemo ex quam rerum cupiditate repellendus facilis ea earum voluptate dolore dicta mollitia. <i class="icon-quote-right"></i></p>
 					</div>
 					<div class="candidate-answer">
 						<div class="row">
-							<div class="col-md-10">
-								Perico los Palotes
-							</div>
-							<div class="col-md-2">
-								<ul class="list-inline">
-									<li><i class="icon-twitter"></i></li>
-									<li><i class="icon-facebook"></i></li>
-									<li><i class="icon-google-plus"></i></li>
-								</ul>
+							<div class="col-md-12">
+								<strong>Perico los Palotes</strong>
+									<button type="submit" class="btn btn-primary"><i class="icon-twitter"> {% trans "Twittea al candidato" %}</i></button>
 							</div>
 						</div>
-						<div class="col-md-12">
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, fugit, voluptates, aspernatur laboriosam aliquid reiciendis asperiores dolorem nemo ex quam rerum cupiditate repellendus facilis ea earum voluptate dolore dicta mollitia.
-							</p>
-						</div>
+							<p><i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, fugit, voluptates, aspernatur laboriosam aliquid reiciendis asperiores dolorem nemo ex quam rerum cupiditate repellendus facilis ea earum voluptate dolore dicta mollitia. <i class="icon-quote-right"></i></p>
 					</div>
 				</div>
 			</div>

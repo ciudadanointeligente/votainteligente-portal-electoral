@@ -38,35 +38,37 @@
 
 	<!-- hidden for small devices -->
 	<div class="hidden-xs">
-		{% for category in election.can_election.category_set.all %}
-			{% for question in category.question_set.all %}
-		<div class="row">
-			<div class="col-md-12">
-				<h5>{{ question.question }}</h5>
-			</div>
-		</div>
 		{% if first_candidate.slug and second_candidate.slug %}
-		<div class="row">
-			<div class="col-md-6">
-				<div class="fondo-blanco">
-					<p>
-						<i class="icon-quote-left"></i> {% answer_for_candidate_and_question first_candidate question %} <i class="icon-quote-right"></i>
-					</p>
-					<p class="text-right">{{ first_candidate.name }}</p>
+			{% for category in election.can_election.category_set.all %}
+				{% for question in category.question_set.all %}
+			<div class="row">
+				<div class="col-md-12">
+					<h5>{{ question.question }}</h5>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="fondo-blanco">
-					<p>
-						<i class="icon-quote-left"></i> {% answer_for_candidate_and_question second_candidate question %} <i class="icon-quote-right"></i>
-					</p>
-					<p class="text-right">{{ second_candidate.name }}</p>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="fondo-blanco">
+						<p>
+							<i class="icon-quote-left"></i> {% answer_for_candidate_and_question first_candidate question %} <i class="icon-quote-right"></i>
+						</p>
+						<p class="text-right">{{ first_candidate.name }}</p>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="fondo-blanco">
+						<p>
+							<i class="icon-quote-left"></i> {% answer_for_candidate_and_question second_candidate question %} <i class="icon-quote-right"></i>
+						</p>
+						<p class="text-right">{{ second_candidate.name }}</p>
+					</div>
 				</div>
 			</div>
-		</div>
-		{% endif %}
+				{% endfor %}
 			{% endfor %}
-		{% endfor %}
+		{% else %}
+		<div class="alert alert-info">{% trans "Aquí se mostraran las diferencias y similitudes entre los candidatos que selecciones." %}</div>
+		{% endif %}
 		
 	
 		<!--

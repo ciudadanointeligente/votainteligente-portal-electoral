@@ -124,25 +124,24 @@ class FaceToFaceViewTestCase(TestCase):
 class SoulMateTestCase(TestCase):
 	def setUp(self):
 		super(SoulMateTestCase, self).setUp()
-		self.tarapaca = Election.objects.get(id=1)
-		self.antofa = Election.objects.get(id=82)
+		self.antofa = Election.objects.get(id=1)
 
 	def test_url_better_half(self):
 		url = reverse('soul_mate_detail_view', 
 			kwargs={
-			'slug':self.tarapaca.slug
+			'slug':self.antofa.slug
 			})
 		self.assertTrue(url)
 
 	def test_url_is_reachable_for_better_half(self):
 		url = reverse('soul_mate_detail_view', 
 			kwargs={
-			'slug':self.tarapaca.slug,
+			'slug':self.antofa.slug,
 			})
 		self.assertTrue(url)
 		response = self.client.get(url)
 		self.assertIn("election", response.context)
-		self.assertEquals(response.context["election"], self.tarapaca)
+		self.assertEquals(response.context["election"], self.antofa)
 		self.assertEquals(response.status_code, 200)
 		self.assertTemplateUsed(response, 'elections/soulmate_candidate.html')
 
@@ -165,7 +164,6 @@ class SoulMateTestCase(TestCase):
 			})
 
 		response = self.client.post(url, data=data)
-		# print response
 		self.assertEquals(response.status_code, 200)
 		self.assertTemplateUsed("elections/soulmate_response.html")
 		self.assertIn("election", response.context)
@@ -173,7 +171,10 @@ class SoulMateTestCase(TestCase):
 		self.assertIn("winner",response.context)
 		self.assertIn("candidate", response.context["winner"])
 		self.assertIsInstance(response.context["winner"]["candidate"], Candidate)
-		# self.assertIn("others",response.context)
+		self.assertIn("others",response.context)
+
+		candidatos_antofa = self.antofa.can_election.candidate_set.all()
+		self.assertIn(response.context["winner"]["candidate"], candidatos_antofa)
 
 class AskTestCase(TestCase):
 	def setUp(self):

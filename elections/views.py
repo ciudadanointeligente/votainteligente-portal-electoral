@@ -63,7 +63,6 @@ class ElectionDetailView(DetailView):
             context['second_candidate'] = self.object.can_election.candidate_set.get(slug=self.kwargs['slug_candidate_two'])
         return context
 
-
 class CandidateDetailView(DetailView):
     model = Candidate
 
@@ -100,12 +99,11 @@ class SoulMateDetailView(DetailView):
         result["winner"]["candidate"] = winner_candidate
         context['winner'] = result["winner"]
 
+        others_candidates=[]
+        for other in result['others']:
+            other_candidate = election.can_election.candidate_set.get(remote_id=other['candidate'])
+            other["candidate"] = other_candidate
+            others_candidates.append(other)
 
-        # for other in result['others']:
-        #     other_candidate = election.can_election.candidate_set.get(remote_id=other)
-        #     other["candidate"] = other_candidate
-        #     others_candidates.append(other)
-
-        # context['others'] = others_candidates
+        context['others'] = others_candidates
         return self.render_to_response(context)
-

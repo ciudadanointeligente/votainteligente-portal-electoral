@@ -18,8 +18,8 @@ from candideitorg.models import election_finished
 class CandideitorCandideitPopitPerson(TestCase):
     def setUp(self):
         super(CandideitorCandideitPopitPerson, self).setUp()
-        self.pedro = Person.objects.get(name="Pedro")
-        self.marcel = Person.objects.get(name="Marcel")
+        self.pedro = Person.objects.get(id=1)
+        self.marcel = Person.objects.get(id=2)
         self.candidato1 = CanCandidate.objects.get(id=1)
         self.candidato2 = CanCandidate.objects.get(id=2)
 

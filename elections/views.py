@@ -63,7 +63,6 @@ class ElectionDetailView(DetailView):
             context['second_candidate'] = self.object.can_election.candidate_set.get(slug=self.kwargs['slug_candidate_two'])
         return context
 
-
 class CandidateDetailView(DetailView):
     model = Candidate
 
@@ -74,4 +73,37 @@ class CandidateDetailView(DetailView):
         #so that's why it says election.election
         context['election'] = self.object.election.election
         return context
-        
+
+from django.template.response import TemplateResponse
+import requests, simplejson as json
+from django.conf import settings
+
+class SoulMateDetailView(DetailView):
+    model = Election
+
+    def post(self, request, *args, **kwargs):
+        self.template_name = "elections/soulmate_response.html"
+        election = super(SoulMateDetailView, self).get_object(self.get_queryset())
+        self.object = election
+        context = self.get_context_data()
+        election_id = election.can_election.remote_id
+        payload = {
+            'data' : request.POST,
+            "election-id":election_id
+        }
+        headers = {'content-type': 'application/json'}
+        response = requests.post(settings.CANDIDEITORG_URL + 'medianaranja/', data=json.dumps(payload), headers=headers)
+        result = json.loads(response.content)
+
+        winner_candidate = election.can_election.candidate_set.get(remote_id=result['winner']['candidate'])
+        result["winner"]["candidate"] = winner_candidate
+        context['winner'] = result["winner"]
+
+        others_candidates=[]
+        for other in result['others']:
+            other_candidate = election.can_election.candidate_set.get(remote_id=other['candidate'])
+            other["candidate"] = other_candidate
+            others_candidates.append(other)
+
+        context['others'] = others_candidates
+        return self.render_to_response(context)

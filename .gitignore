@@ -8,4 +8,6 @@ writeit-for-testing
 popit-api-for-testing
 cache/*
 .DS_Store
+.travis*
+.tm_properties
 candidator

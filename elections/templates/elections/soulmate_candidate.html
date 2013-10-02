@@ -1,202 +1,99 @@
 {% extends "elections/election_base.html" %}
 {% load i18n %}
 
+{% block extrajs %}
+$(document).ready(function(){
+	$('#btn-find-soulmate').on('click', function(){
+		var csrftoken = $.cookie('csrftoken');
+		var questions = $('#form-soulmate :input[name^="question"]');
+		var importances = $('#form-soulmate :checked[name^="importance"]');
+		var answers = $('#form-soulmate :checked[name^="answer"]');
+		var final_data = {}
+		var counter = 0;
+		questions.each(function(index, element){
+			var question_id = $(element).val()
+			var answer = $('#form-soulmate :checked[name="answer-'+question_id+'"]').val();
+			var importance = $('#form-soulmate :checked[name="importance-'+question_id+'"]').val();
+			final_data["question-id-"+counter] = question_id
+			if(answer!=undefined){
+				final_data["question-"+counter] = answer	
+			}
+			final_data["importance-"+counter] = importance
+
+			counter++
+		})
+		final_data["csrfmiddlewaretoken"] = csrftoken
+
+		if( questions.length == answers.length ) {
+			$('#btn-find-soulmate').prop('disabled',true);
+			$('#btn-find-soulmate').html('<i class="icon-cogs"></i> {% trans "calculando" %}');
+
+			$.post("{% url 'soul_mate_detail_view' slug=election.slug %}",final_data, function(final_data){
+				$('#question-soulmate').remove();
+				$('#election').append(final_data);
+			})
+		} else {
+			$('#msj-alerta').attr('style', 'display:block');
+			$('html, body').animate({
+				scrollTop: $("#election").offset().top
+			})
+		}
+		
+		return false;
+	})
+})
+{% endblock extrajs %}
+
 {% block mainelection %}
 <!-- soulmate -->
 <div id="question-soulmate">
+	<div id="msj-alerta" class="alert alert-warning" style="display:none">
+		<strong>{% trans "Atención!" %}</strong> {% trans "Para brindar una mejor respuesta es necesario que respondas todas las preguntas."%}
+	</div>
 	<div class="row">
+		<form id="form-soulmate" role="form">
+		{% for category in election.can_election.category_set.all %}
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Democracia</h3>
+				<h3 class="panel-title">{{category.name}}</h3>
 			</div>
 			<div class="panel-body">
+				{% for question in category.question_set.all %}
 				<div class="row fondo-gris">
 					<div class="col-md-8">
-					<p class="question">Lorem ipsum dolor sit amet, consectetur adipisicing elit?</p>
+					<p class="question">{{question.question}}</p>
 						<ul class="list-unstyled">
+							{% for answer in question.answer_set.all %}
 							<li>
-								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+								<label for="answer-{{question.remote_id}}-{{answer.remote_id}}"><input name="answer-{{question.remote_id}}" value="{{answer.remote_id}}" id="answer-{{question.remote_id}}-{{answer.remote_id}}" type="radio"> {{answer.caption}}</label>
 							</li>
-							<li>
-								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							</li>
-							<li>
-								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							</li>
+							{% endfor %}
 						</ul>
 					</div>
 					<div class="col-md-4">
 						<p class="question">{% trans "Que importancia le das a esta pregunta?" %}</p>
 						<ul id="importancia" class="list-inline">
-							<li><input type="radio" name="voto" value="1"> 1</li>
-							<li><input type="radio" name="voto" value="2"> 2</li>
-							<li><input type="radio" name="voto" value="3"> 3</li>
-							<li><input type="radio" name="voto" value="4"> 4</li>
-							<li><input type="radio" name="voto" value="5"> 5</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="1"> 1</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="2"> 2</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="3" checked="checked"> 3</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="4"> 4</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="5"> 5</li>
 						</ul>
 					</div>
 				</div>
-
-				<div class="row fondo-gris">
-					<div class="col-md-8">
-					<p class="question">Lorem ipsum dolor sit amet, consectetur adipisicing elit?</p>
-						<ul class="list-unstyled">
-							<li>
-								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							</li>
-							<li>
-								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							</li>
-							<li>
-								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-4">
-						<p class="question">{% trans "Que importancia le das a esta pregunta?" %}</p>
-						<ul id="importancia" class="list-inline">
-							<li><input type="radio" name="voto" value="1"> 1</li>
-							<li><input type="radio" name="voto" value="2"> 2</li>
-							<li><input type="radio" name="voto" value="3"> 3</li>
-							<li><input type="radio" name="voto" value="4"> 4</li>
-							<li><input type="radio" name="voto" value="5"> 5</li>
-						</ul>
-					</div>
-				</div>
-
+				<input type="hidden" name="question-{{question.remote_id}}" value="{{question.remote_id}}">
+				{% endfor %}
 			</div>
 		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">Educación</h3>
-			</div>
-			<div class="panel-body">
-				<div class="row fondo-gris">
-					<div class="col-md-8">
-						<p class="question">Lorem ipsum dolor sit amet, consectetur adipisicing elit?</p>
-						<ul class="list-unstyled">
-							<li>
-								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							</li>
-							<li>
-								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							</li>
-							<li>
-								<input name="answer-1" type="radio"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-4">
-						<p class="question">{% trans "Que importancia le das a esta pregunta?" %}</p>
-						<ul id="importancia" class="list-inline">
-							<li><input type="radio" name="voto" value="1"> 1</li>
-							<li><input type="radio" name="voto" value="2"> 2</li>
-							<li><input type="radio" name="voto" value="3"> 3</li>
-							<li><input type="radio" name="voto" value="4"> 4</li>
-							<li><input type="radio" name="voto" value="5"> 5</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+		{% endfor %}
+
 		<div>
-			<button class="btn btn-success"><i class="icon-heart"></i> {% trans "Encontrar mi 1/2 naranja" %}</button>
+			<button type="submit" id="btn-find-soulmate" class="btn btn-success"><i class="icon-heart"></i> {% trans "Encontrar mi 1/2 naranja" %}</button>
 		</div>
+		{% csrf_token %}
+		</form>
 	</div>
 </div>
 
-<div id="soulmate-result">
-	<div class="row">
-		<div class="col-md-3">
-			<img src="http://placehold.it/800x600" alt="" class="img-responsive">
-		</div>
-		<div class="col-md-5">
-			<h3><a href="#">Perico los Palotes </a><i class="icon-heart"></i></h3>
-			<h2>66<span>% </span></h2>
-				<div>{% trans "de afinidad" %}</div>
-			<div class="row fondo-azuloscuro">
-				<div class="col-md-5">
-					{% trans "Declara tu amor publicamente:" %}
-				</div>
-				<div class="col-md-7">
-					<ul class="list-inline">
-						<li><a href="#"><i class="icon-twitter-sign icon-4x"></i></a></li>
-						<li><a href="#"><i class="icon-facebook-sign icon-4x"></i></a></li>
-						<li><a href="#"><i class="icon-google-plus-sign icon-4x"></i></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="container-progress">
-				<div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-					</div>
-				</div>
-				<p>Corrupción<span>80%</span></p>
-			</div>
-			<div class="container-progress">
-				<div class="progress">
-					<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-					</div>
-				</div>
-				<p>Corrupción <span>40%</span></p>
-			</div>
-			<div class="container-progress">
-				<div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
-					</div>
-				</div>
-				<p>Corrupción <span>65%</span></p>
-			</div>
-			<div class="container-progress">
-				<div class="progress">
-					<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 33%">
-					</div>
-				</div>
-				<p>33% Corrupción</p>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div id="other-soulmate">
-		<h3>Compatibilidad con otros candidatos</h3>
-	<div class="row">
-		<div class="col-md-4">
-			<div class="other-soulmate-box">
-				<h4>60% <a href="#">Perico los Palotes</a></h4>
-				<ul class="list-unstyled">
-					<li>80% Corrupción</li>
-					<li>40% Corrupción</li>
-					<li>65% Corrupción</li>
-					<li>33% Corrupción</li>
-				</ul>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="other-soulmate-box">
-				<h4>60% <a href="#">Perico los Palotes</a></h4>
-				<ul class="list-unstyled">
-					<li>80% Corrupción</li>
-					<li>40% Corrupción</li>
-					<li>65% Corrupción</li>
-					<li>33% Corrupción</li>
-				</ul>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="other-soulmate-box">
-				<h4>60% <a href="#">Perico los Palotes</a></h4>
-				<ul class="list-unstyled">
-					<li>80% Corrupción</li>
-					<li>40% Corrupción</li>
-					<li>65% Corrupción</li>
-					<li>33% Corrupción</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
 <!-- EOF soulmate -->
 {% endblock mainelection %}

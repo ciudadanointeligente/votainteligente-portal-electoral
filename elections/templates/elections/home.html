@@ -10,8 +10,8 @@
 <div>
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-        <h2 class="text-center">
-            Este 18 de Septiembre los chilenos elegiremos Presidente, Senadores, Diputados y Consejeros Regionales (CORE). Aquí encontrarás info para votar informado:
+        <h2 class="text-center intro-home">
+            Este 18 de Septiembre los chilenos elegiremos <strong>Presidente, Senadores, Diputados y Consejeros Regionales (CORE).</strong> Aquí encontrarás info para votar informado:
         </h2>
     </div>
   </div>
@@ -31,9 +31,7 @@
         <ul>
           {% for featured_election in featured_elections %}
             <li class="col-md-10 col-md-offset-1 containerAccordion">
-                  <a href="{{ featured_election.get_absolute_url }}">
-                    <h2>{{featured_election.name}}</h2>
-                  </a>
+                  <a href="{{ featured_election.get_absolute_url }}"><h3>{{featured_election.name}}</h3></a>
                               <script type="text/javascript">
       
                               jQuery(document).ready(function($){
@@ -78,7 +76,7 @@
           {% for featured_election in featured_elections %}
             <li class="col-md-6 containerAccordion">
                   <a href="{{ featured_election.get_absolute_url }}">
-                    <h2>{{ featured_election.name }}</h2>
+                    <h3>{{ featured_election.name }}</h3>
                   </a>
                               <script type="text/javascript">
       
@@ -121,7 +119,7 @@
            {% for featured_election in featured_elections %}
             <li class="col-md-4 containerAccordion">
                   <a href="{{ featured_election.get_absolute_url }}">
-                    <h2>{{ featured_election.name }}</h2>
+                    <h3>{{ featured_election.name }}</h3>
                   </a>
                               <script type="text/javascript">
       
@@ -135,7 +133,7 @@
                                                                    closedPanelHeight:10, 
                                                                    alignType:'centerCenter',
                                                                    slideshow:true
-                                                                    });
+                                                                    }});
                                 });
                               
                               </script>
@@ -184,12 +182,12 @@
 
             </div>
         </form>
-        <div>
+        <div class="elections-results">
             <ul class="list-inline" ng-show="searchElection">
                 <li ng-repeat="election in elections | filter:searchElection:comperator">
-                    <span class="label label-info">
+                    <!-- <span class="label label-info"> -->
                         <a href="[[election.detaillink]]">[[election.name]]</a>
-                    </span>
+                    <!-- </span> -->
                 </li>
             </ul>
         </div>

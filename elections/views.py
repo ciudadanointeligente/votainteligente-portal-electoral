@@ -78,10 +78,24 @@ class CandidateDetailView(DetailView):
         
 class ElectionAskView(CreateView):
     model = Message
+    form_class = MessageForm
 
     def get_context_data(self, **kwargs):
         context = super(ElectionAskView, self).get_context_data(**kwargs)
         election_slug = self.kwargs['slug']
-        context['form'] =  MessageForm()
         context['election'] = Election.objects.get(slug = election_slug)
         return context
+
+    def get_form_kwargs(self):
+        kwargs = super(ElectionAskView, self).get_form_kwargs()
+        election_slug = self.kwargs['slug']
+        kwargs['writeitinstance'] = Election.objects.get(slug = election_slug).writeitinstance 
+        return kwargs
+    def get_success_url(self):
+        election_slug = self.kwargs['slug']
+        return reverse('ask_detail_view', kwargs={'slug':election_slug,})
+
+
+
+
+

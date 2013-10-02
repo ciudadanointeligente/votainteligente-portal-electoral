@@ -1,12 +1,17 @@
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django.core.urlresolvers import reverse
 from elections.models import Election
+from elections.forms import MessageForm
+from writeit.models import Message
+
 
 
 class AskTestCase(TestCase):
 	def setUp(self):
 		super(AskTestCase, self).setUp()
 		self.election = Election.objects.all()[0]
+		self.candidate1 = self.election.popit_api_instance.person_set.all()[0]
+		self.candidate2 = self.election.popit_api_instance.person_set.all()[1]
 
 	def test_url_ask(self):
 		url = reverse('ask_detail_view', 
@@ -26,15 +31,17 @@ class AskTestCase(TestCase):
 		self.assertIn('election', response.context)
 		self.assertEquals(response.context['election'], self.election)
 		self.assertIn('form', response.context)
+		self.assertIsInstance(response.context['form'],MessageForm)
 		self.assertTemplateUsed(response, 'elections/ask_candidate.html')
+
 
 	def test_submit_message(self):
 		url = reverse('ask_detail_view', kwargs={'slug':self.election.slug,})
-		response = self.client.post(url, {'people': [self.candidato1.pk, self.candidato2.pk],
+		response = self.client.post(url, {'people': [self.candidate1.pk, self.candidate2.pk],
 											'subject': 'this important issue',
 											'content': 'this is a very important message', 
 											'author_name': 'my name',
-											'author_mail': 'mail@mail.er',
+											'author_email': 'mail@mail.er',
 											# 'recaptcha_response_field': 'PASSED'
 											}, follow=True
 											)
@@ -43,6 +50,8 @@ class AskTestCase(TestCase):
 
 		self.assertTemplateUsed(response, 'elections/ask_candidate.html')
 		self.assertEquals(Message.objects.count(), 1)
-		self.assertEquals(Message.objects.all()[0].content, 'this is a very important message')
-		self.assertEquals(Message.objects.all()[0].subject, 'this important issue')
+		new_message = Message.objects.all()[0]
+		self.assertTrue(new_message.remote_id and new_message.url) 
+		self.assertEquals(new_message.content, 'this is a very important message')
+		self.assertEquals(new_message.subject, 'this important issue')
 

@@ -18,7 +18,17 @@ class ElectionSearchByTagsForm(forms.Form):
 
 
 class MessageForm(ModelForm):
+
+	def __init__(self, *args, **kwargs):
+		self.writeitinstance = kwargs.pop('writeitinstance')
+		super(MessageForm, self).__init__(*args, **kwargs)
+		self.instance.writeitinstance = self.writeitinstance
+		self.instance.api_instance = self.writeitinstance.api_instance
 	class Meta:
 		model = Message
 		fields = ('author_name', 'author_email', 'subject', 'content','people')
+	def save(self, **kwargs):
+		message = super(MessageForm, self).save(**kwargs)
+		message.push_to_the_api()
+		return message
 

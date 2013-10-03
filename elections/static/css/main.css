@@ -332,7 +332,7 @@ input, button, select, textarea {
 /*Home*/
 
 .intro-home {
-	margin-top: 60px;
+	/*margin-top: 60px;*/
 }
 
 #home-search .form-control {

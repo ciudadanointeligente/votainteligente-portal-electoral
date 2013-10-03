@@ -54,4 +54,5 @@ class AskTestCase(TestCase):
 		self.assertTrue(new_message.remote_id and new_message.url) 
 		self.assertEquals(new_message.content, 'this is a very important message')
 		self.assertEquals(new_message.subject, 'this important issue')
+		self.assertEquals(new_message.people.all().count(), 2)
 

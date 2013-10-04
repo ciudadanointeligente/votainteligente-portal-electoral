@@ -43,19 +43,66 @@ strong {
 	font-weight: 900;
 }
 
+.txt-gris {
+	color: #9fa7b4;
+}
+
 .fondo-blanco {
 	background: #fff;
 	border-radius: 6px;
 	padding: 10px;
 }
 
+.container {
+	margin-bottom: 20px;
+}
+
+.text-warning {
+	color: #b79800;
+}
+
+.alert-info {
+	color: #14b9d5;
+	background-color: #DDF6FA;
+	border-color: #AFE9F3;
+}
+
+.form-control::-webkit-input-placeholder {
+   font-weight: 300;
+}
+
+.form-control:-moz-placeholder { /* Firefox 18- */
+   font-weight: 300;  
+}
+
+.form-control::-moz-placeholder {  /* Firefox 19+ */
+   font-weight: 300;  
+}
+
+.form-control:-ms-input-placeholder {  
+   font-weight: 300;  
+}
+
+.right {
+	float: right;
+}
+
 /*Elecciones destacadas*/
+
+.contenedorDestacado {
+	*zoom: 1;
+	margin: 20px 0 60px;
+}
+
+.contenedorDestacado:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 .contenedorDestacado ul {
 	list-style: none;
 }
-
-/*Acordion de imagenes destacadas*/
 
 .accordion
 {
@@ -129,6 +176,10 @@ strong {
 
 /*Botones*/
 
+.btn {
+	font-weight: 300;
+}
+
 .btn-lg {
 	font-size: 14px;
 	font-family: 'Lato', sans-serif;
@@ -138,7 +189,6 @@ strong {
 .btn-success {
 	background-color: #3ee0cb;
 	border-color: transparent;
-	padding: 15px 15px;
 	float: right;
 }
 
@@ -185,7 +235,7 @@ input, button, select, textarea {
 /*Menu Interno*/
 
 .nav-candidator .list-inline>li {
-	padding: 0px;
+	padding: 9px 0px 8px;
 	margin-left: -4px;
 	height: auto;
 }
@@ -193,13 +243,18 @@ input, button, select, textarea {
 .nav-candidator .list-inline>li a {
 	background: #FFF;
 	border-right: 3px solid #eaedf2;
+	/*border-top: 2px solid #eaedf2;*/
 	padding: 10px;
 	color: #9fa7b4;
 	text-decoration: none;
 }
 
 .nav-candidator .list-inline>li:first-child a {
-	border-left: 3px solid #eaedf2;
+	border-left: 2px solid #eaedf2;
+}
+
+.nav-candidator .list-inline>li:last-child a {
+	border-right: 2px solid #eaedf2;
 }
 
 .nav-candidator .list-inline>li.active a, .nav-candidator .list-inline>li:hover a {
@@ -228,7 +283,6 @@ input, button, select, textarea {
 
 .nav-candidator ul.list-inline {
 	margin-bottom: 0px;
-	padding: 9px;
 	background: #fff;
 	height: auto;
 }
@@ -241,6 +295,10 @@ input, button, select, textarea {
 .navbar-inverse {
 	color: #FFF;
 	background-color: #323a45;
+}
+
+.navbar .container {
+	margin-bottom: 0px;
 }
 
 .nav-candidator .list-inline i.icon-group, .nav-candidator .list-inline i.icon-edit {
@@ -259,7 +317,23 @@ input, button, select, textarea {
 	color: #ffd200;
 }
 
+@media (max-width: 604px) {
+
+	.nav-candidator ul.list-inline {
+		background: transparent;
+	}
+
+	.nav-candidator .list-inline>li {
+		padding: 9px 0px 10px;
+	}
+
+}
+
 /*Home*/
+
+.intro-home {
+	/*margin-top: 60px;*/
+}
 
 #home-search .form-control {
 	color: #fff;
@@ -320,6 +394,27 @@ input, button, select, textarea {
 	padding-left: 0px;
 }
 
+.containerAccordion .accordion .caption {
+	height: 40px !important;
+	text-align: left;
+	left: 0 !important;
+}
+
+.containerAccordion .accordion .caption p {
+	color: #FFF;
+}
+
+.containerAccordion .accordion .caption .caption-background {
+	background: rgba(50, 58, 69, 0.8);
+}
+
+.elections-results li {
+	background: #FFF;
+	border-radius: 6px;
+	padding: 10px;
+	margin: 5px; 
+}
+
 /*Perfil candidato*/
 
 .profile-candidate {
@@ -365,7 +460,7 @@ input, button, select, textarea {
 }
 
 
-p.answer i {
+.icon-quote-left, .icon-quote-right {
 	color: #9fa7b4;
 }
 
@@ -541,11 +636,9 @@ p.answer i {
 }
 
 .panel-default>.panel-heading {
-	color: inherit;
-	background-color: #fff;
+	color: #fff;
+	background-color: #323a45;
 	border-color: transparent;
-	margin-bottom: -10px;
-	margin-top: 10px;
 }
 
 #compare-candidates .text-right, #compare-candidates .text-center {
@@ -566,6 +659,22 @@ p.answer i {
 
 #compare-candidates div.col-md-6:last-child {
 margin-bottom: 20px;
+}
+
+/*Cuestionario*/
+
+.questionary .col-md-4 {
+	float: right;
+	padding: 5px 0px 5px 15px;
+}
+
+div.question-answer div.row.hidden-xs {
+	border-top: 1px solid #FFF;
+	padding: 10px 0px;
+}
+
+div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.row.hidden-xs:nth-of-type(1) {
+	border-top: none;
 }
 
 /* Footer */
@@ -602,7 +711,7 @@ margin-bottom: 20px;
 }
 
 .profile-candidate {
-	padding: 20px 20px 0 20px;
+	padding: 5px 20px;
 }
 
 .profile-candidate .table tbody>tr>td {
@@ -643,38 +752,6 @@ margin-bottom: 20px;
 }
 
 @media (max-width: 480px) {
-	/* menu */
-	.nav-candidator ul.list-inline {
-		margin-bottom: 0px;
-		padding: 5px;
-		background: #fff;
-		height: auto;
-	}
-	.nav-candidator .list-inline>li {
-		min-height: 25px;
-	}
-	.nav-candidator .list-inline>li:first-child a {
-		border-left: none;
-	}
-	.nav-candidator .list-inline>li a {
-		border-right: none;
-		padding: 5px;
-	}
-	.list-inline>li {
-		padding: 0px;
-		margin: 5px 0px;
-	}
-
-	.list-inline>li a {
-		background: #FFF;
-		border-right: 0px solid #eaedf2;
-		padding: 0px 5px;
-	}
-
-	.list-inline>li:first-child a {
-		border-left: 0px solid #eaedf2;
-	}
-	/* eof menu */
 
 	.profile-candidate {
 		min-height: 425px;
@@ -783,4 +860,84 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 .responden h4, .no-responden h4 {
 	font-weight: 900;
+}
+
+/*Preguntales*/
+
+.ask-form {
+	background: #FFF;
+	border-radius: 6px;
+	padding: 20px;
+	*zoom: 1;
+	margin-bottom: 40px;
+}
+
+.ask-form:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.ask-form .form-control {
+	background-color: #eaedf2;
+	border: none;
+	border-radius: 0px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.recent-questions h3 {
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+.search-questions .form-control {
+	color: #fff;
+	background-color: #9fa7b4;
+	border: none;
+	border-radius: 0px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.search-questions .input-group-addon {
+	background-color: #5e6d82;
+	border: none;
+	border-radius: 0px;
+	color: #fff;
+}
+
+.panel-heading .text-right {
+	color: #9fa7b4;
+}
+
+.candidate-answer {
+	background-color: #ebedf2;
+	padding: 10px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	margin-bottom: 8px;
+}
+
+.candidate-answer .btn-primary {
+	padding: 3px 6px;
+	font-size: 12px;
+	float: right;
+}
+
+.search-questions .form-control::-webkit-input-placeholder {
+   color: #eaedf2;
+}
+
+.search-questions .form-control:-moz-placeholder { /* Firefox 18- */
+   color: #eaedf2;
+}
+
+.search-questions .form-control::-moz-placeholder {  /* Firefox 19+ */
+   color: #eaedf2;
+}
+
+.search-questions .form-control:-ms-input-placeholder {  
+   color: #eaedf2;
 }

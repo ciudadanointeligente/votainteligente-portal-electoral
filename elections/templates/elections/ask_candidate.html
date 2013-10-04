@@ -4,6 +4,96 @@
 {% block mainelection %}
 <!-- ask -->
 
+<div class="ask-form">
+	<form role="form">
+		<div class="row">
+			<div class="col-md-8">
+				
+				<div class="form-group">
+					<label for="name">{% trans "Yo soy" %}</label>
+					<input type="text" class="form-control" id="name" placeholder="{% trans "Identifícate como quieras" %}">
+				</div>
+				<div class="form-group">
+					<label for="email">{% trans "Correo electrónico" %}</label>
+					<input type="email" class="form-control" id="email" placeholder="{% trans "Si deseas que te notifiquemos la respuesta del candidato" %}">
+				</div>
+				<div class="form-group">
+					<label for="question">{% trans "Escribe tu pregunta" %}</label>
+					<textarea name="question" id="question" class="form-control" rows="3" placeholder="{% trans "Escribe una pregunta clara y respetuosa. Revisa si otros han preguntado lo que a ti te interesa saber" %}"></textarea>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<h5>{% trans "A quien quieres preguntar" %}:</h5>
+				<ul class="list-unstyled">
+					{% for candidato in election.can_election.candidate_set.all %}
+					<li><input type="checkbox" value=""> {{candidato.name}}</li>
+					{% endfor %}
+				</ul>
+				<p><div class="txt-gris">{% trans "*No tenemos el mail del candidato." %}</div>{% trans " ¿Eres candidato? " %}<a href="mailto:info@votainteligente.cl?Subject=Info%20candidato" target="_top">{% trans "escríbenos" %}</a>.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<p>
+					{% trans "Acepto que mis preguntas y respuestas sean publicadas en este mismo medio.<br>Confirmo que lo que aquí dice no atenta contra el candidato." %}
+				</p>
+			</div>
+			<div class="col-md-4">
+				<button type="submit" class="btn btn-success"><i class="icon-edit"></i> {% trans "Enviar pregunta" %}</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div>
+	<div class="row">
+		<div class="col-md-8 recent-questions">
+			<h3>Preguntas Recientes</h3>
+		</div>
+		<div class="col-md-4 search-questions">
+			<form action="" class="form-inline" role="form">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Buscar pregunta">
+					<span class="input-group-addon"><i class="icon-search"></i></span>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro odit ipsum perferendis explicabo. Laboriosam, laudantium, quaerat, cupiditate, libero numquam quia eum corporis quo consectetur molestias aspernatur sint ad aliquam. Suscipit?
+					</p>
+					<p class="text-right">
+						Perico los Palotes
+					</p>
+				</div>
+				<div class="panel-body">
+					<div class="candidate-answer">
+						<div class="row">
+							<div class="col-md-12">
+								<strong>Perico los Palotes</strong>
+									<button type="submit" class="btn btn-primary"><i class="icon-twitter"> {% trans "Twittea al candidato" %}</i></button>
+							</div>
+						</div>
+							<p><i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, fugit, voluptates, aspernatur laboriosam aliquid reiciendis asperiores dolorem nemo ex quam rerum cupiditate repellendus facilis ea earum voluptate dolore dicta mollitia. <i class="icon-quote-right"></i></p>
+					</div>
+					<div class="candidate-answer">
+						<div class="row">
+							<div class="col-md-12">
+								<strong>Perico los Palotes</strong>
+									<button type="submit" class="btn btn-primary"><i class="icon-twitter"> {% trans "Twittea al candidato" %}</i></button>
+							</div>
+						</div>
+							<p><i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, fugit, voluptates, aspernatur laboriosam aliquid reiciendis asperiores dolorem nemo ex quam rerum cupiditate repellendus facilis ea earum voluptate dolore dicta mollitia. <i class="icon-quote-right"></i></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <form action="/write-to-them/" method="post">{% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="{% trans 'Enviar' %}" />

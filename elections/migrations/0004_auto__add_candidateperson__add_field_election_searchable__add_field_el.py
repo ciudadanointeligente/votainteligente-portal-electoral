@@ -16,6 +16,16 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'elections', ['CandidatePerson'])
 
+        # Adding field 'Election.searchable'
+        db.add_column(u'elections_election', 'searchable',
+                      self.gf('django.db.models.fields.BooleanField')(default=True),
+                      keep_default=False)
+
+        # Adding field 'Election.highlighted'
+        db.add_column(u'elections_election', 'highlighted',
+                      self.gf('django.db.models.fields.BooleanField')(default=False),
+                      keep_default=False)
+
         # Adding field 'Election.popit_api_instance'
         db.add_column(u'elections_election', 'popit_api_instance',
                       self.gf('django.db.models.fields.related.OneToOneField')(to=orm['popit.ApiInstance'], unique=True, null=True),
@@ -24,6 +34,16 @@ class Migration(SchemaMigration):
         # Adding field 'Election.writeitinstance'
         db.add_column(u'elections_election', 'writeitinstance',
                       self.gf('django.db.models.fields.related.OneToOneField')(to=orm['writeit.WriteItInstance'], unique=True, null=True),
+                      keep_default=False)
+
+        # Adding field 'Election.extra_info_title'
+        db.add_column(u'elections_election', 'extra_info_title',
+                      self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True),
+                      keep_default=False)
+
+        # Adding field 'Election.extra_info_content'
+        db.add_column(u'elections_election', 'extra_info_content',
+                      self.gf('django.db.models.fields.TextField')(max_length=3000, null=True, blank=True),
                       keep_default=False)
 
 
@@ -40,11 +60,23 @@ class Migration(SchemaMigration):
         # Deleting model 'CandidatePerson'
         db.delete_table(u'elections_candidateperson')
 
+        # Deleting field 'Election.searchable'
+        db.delete_column(u'elections_election', 'searchable')
+
+        # Deleting field 'Election.highlighted'
+        db.delete_column(u'elections_election', 'highlighted')
+
         # Deleting field 'Election.popit_api_instance'
         db.delete_column(u'elections_election', 'popit_api_instance_id')
 
         # Deleting field 'Election.writeitinstance'
         db.delete_column(u'elections_election', 'writeitinstance_id')
+
+        # Deleting field 'Election.extra_info_title'
+        db.delete_column(u'elections_election', 'extra_info_title')
+
+        # Deleting field 'Election.extra_info_content'
+        db.delete_column(u'elections_election', 'extra_info_content')
 
 
         # Changing field 'Election.can_election'
@@ -66,7 +98,7 @@ class Migration(SchemaMigration):
             'has_answered': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'photo': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            'photo': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True'}),
             'remote_id': ('django.db.models.fields.IntegerField', [], {}),
             'resource_uri': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '255'})
@@ -85,8 +117,8 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Election'},
             'description': ('django.db.models.fields.TextField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'information_source': ('django.db.models.fields.TextField', [], {}),
-            'logo': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            'information_source': ('django.db.models.fields.TextField', [], {'null': 'True'}),
+            'logo': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'remote_id': ('django.db.models.fields.IntegerField', [], {}),
             'resource_uri': ('django.db.models.fields.CharField', [], {'max_length': '255'}),

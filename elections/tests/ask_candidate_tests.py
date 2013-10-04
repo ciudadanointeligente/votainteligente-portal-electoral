@@ -32,6 +32,7 @@ class AskTestCase(TestCase):
 		self.assertEquals(response.context['election'], self.election)
 		self.assertIn('form', response.context)
 		self.assertIsInstance(response.context['form'],MessageForm)
+		self.assertIn('messages', response.context)
 		self.assertTemplateUsed(response, 'elections/ask_candidate.html')
 
 
@@ -56,3 +57,7 @@ class AskTestCase(TestCase):
 		self.assertEquals(new_message.subject, 'this important issue')
 		self.assertEquals(new_message.people.all().count(), 2)
 
+	def test_persons_belongs_to_instance(self):
+		message_form = MessageForm(writeitinstance = self.election.writeitinstance)
+		election_candidates = self.election.popit_api_instance.person_set.all()
+		self.assertQuerysetEqual(election_candidates,[repr(r) for r in message_form.fields['people'].queryset])

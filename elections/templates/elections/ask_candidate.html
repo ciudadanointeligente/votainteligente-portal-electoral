@@ -4,7 +4,7 @@
 {% block mainelection %}
 <!-- ask -->
 
-<form action="/write-to-them/" method="post">{% csrf_token %}
+<form action="{% url 'ask_detail_view' election.slug %}" method="post">{% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="{% trans 'Enviar' %}" />
 </form>

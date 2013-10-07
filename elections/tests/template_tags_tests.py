@@ -9,6 +9,7 @@ from django.conf import settings
 class TemplateTagsTestCase(TestCase):
 	def setUp(self):
 		super(TemplateTagsTestCase, self).setUp()
+		settings.NAV_BAR = ('profiles', )
 
 	def test_bring_all_elections_with_their_tags_as_json(self):
 		expected_elections = []

@@ -1,0 +1,59 @@
+{% load i18n %}
+{% load thumbnail %}
+
+<div id="soulmate-result">
+	<div class="row">
+		<div class="col-md-3">
+			<img src="{{winner.candidate.photo}}" alt="{{winner.candidate.name}}" class="img-responsive">
+		</div>
+		<div class="col-md-5">
+			<h3><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}">{{winner.candidate.name}} </a><i class="icon-heart"></i></h3>
+			<h2>{{winner.global_score|floatformat}}<span>% </span></h2>
+				<div>{% trans "de afinidad" %}</div>
+			<div class="row fondo-azuloscuro">
+				<div class="col-md-5">
+					{% trans "Declara tu amor publicamente:" %}
+				</div>
+				<div class="col-md-7">
+					<ul class="list-inline">
+						<li><a href="#"><i class="icon-twitter-sign icon-4x"></i></a></li>
+						<li><a href="#"><i class="icon-facebook-sign icon-4x"></i></a></li>
+						<li><a href="#"><i class="icon-google-plus-sign icon-4x"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			{% for cat in winner.category_score %}
+			<div class="container-progress">
+				<div class="progress">
+					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{cat.score|floatformat}}" aria-valuemin="0" aria-valuemax="100" style="width: {{cat.score|floatformat}}%">
+					</div>
+				</div>
+				<p>{{cat.category}}<span>{{cat.score|floatformat}}%</span></p>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<div id="other-soulmate">
+		<h3>Compatibilidad con otros candidatos</h3>
+	<div class="row">
+		{% for other in others %}
+		<div class="col-md-4">
+			<div class="other-soulmate-box">
+				<h4>{{other.global_score|floatformat}}% <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=other.candidate.slug %}">{{other.candidate.name}}</a></h4>
+				<ul class="list-unstyled">
+					{% for other_cat in other.category_score %}
+					<li>{{other_cat.score|floatformat}}% {{other_cat.category}}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		{% if forloop.counter == 3 %}
+	</div><div class="row no-first-row">
+		{% endif %}
+		{% endfor %}
+	</div>
+</div>

@@ -273,7 +273,8 @@ class AutomaticCreationOfAWriteitInstance(TestCase):
 
         person = can_candidate.relation.person
         #print Person.objects.filter(api_instance = election.popit_api_instance)
-        election_finished.send(sender=can_election)
+        election_finished.send(sender=CanElection, instance=can_election, created=True)
+
         election = Election.objects.get(can_election=can_election)
         writeitinstance = election.writeitinstance
         self.assertTrue(writeitinstance.url)

@@ -1156,11 +1156,6 @@
       n Antofagasta", remote_id: 1, resource_uri: /api/v2/election/1/, slug: 2a-circunscripcion-antofagasta,
     use_default_media_naranja_option: true}
   model: candideitorg.election
-  pk: 1
-- fields: {description: '', information_source: '', logo: null, name: "2\xAA Circunscripci\xF3\
-      n Antofagasta", remote_id: 1, resource_uri: /api/v2/election/1/, slug: 2a-circunscripcion-antofagasta,
-    use_default_media_naranja_option: true}
-  model: candideitorg.election
   pk: 2
 - fields: {description: '', information_source: '', logo: null, name: "4\xAA Circunscripci\xF3\
       n Coquimbo", remote_id: 2, resource_uri: /api/v2/election/2/, slug: 4a-circunscripcion-coquimbo,

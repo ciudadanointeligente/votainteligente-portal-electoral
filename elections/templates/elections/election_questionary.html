@@ -2,15 +2,9 @@
 {% load i18n %}
 {% load thumbnail %}
 
-{% block mainelection %}
-<!--
-<div class="row">
-	<div class="col-md-3 col-md-offset-9">
-		<button class="btn btn-primary">{% trans "Quieres preguntar algo más?" %}</button>
-	</div>
-</div>
--->
+{% block last_breadcrumb %}{% trans "Cuestionario"%}{% endblock last_breadcrumb %}
 
+{% block mainelection %}
 <div id="questionary">
 	<div class="questionary">
 		{% for category in election.can_election.category_set.all %}

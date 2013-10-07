@@ -941,3 +941,8 @@ tr.primary p:first-child, tr.danger p:first-child {
 .search-questions .form-control:-ms-input-placeholder {  
    color: #eaedf2;
 }
+
+/*breadscrumb-social*/
+.breadscrumb-social .social-button {
+	padding-top: 8px;
+}

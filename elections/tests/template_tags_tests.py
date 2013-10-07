@@ -3,6 +3,7 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import Election
 import simplejson as json
 from django.template import Template, Context
+from django.conf import settings
 
 
 class TemplateTagsTestCase(TestCase):
@@ -29,3 +30,16 @@ class TemplateTagsTestCase(TestCase):
 		context = Context({})
 
 		self.assertEqual(template.render(context), json.dumps(expected_elections))
+
+	def test_get_navbar_in_setting_vars(self):
+
+		template = Template("{% load votainteligente_extras %}{% if 'profiles'|val_navbars  %}si{% endif %}")
+		context = Context({})
+
+		self.assertEqual(template.render(context), 'si')
+
+	def test_get_navbar_not_in_setting_var(self):
+		template = Template("{% load votainteligente_extras %}{% if 'questionary'|val_navbars  %}si{% else %}no{% endif %}")
+		context = Context({})
+
+		self.assertEqual(template.render(context), 'no')

@@ -29,3 +29,7 @@ def elections_json():
 def val_navbars(section):
 	if section in settings.NAV_BAR:
 		return True
+
+@register.simple_tag
+def title(election, name):
+	return election + ' - ' + name;

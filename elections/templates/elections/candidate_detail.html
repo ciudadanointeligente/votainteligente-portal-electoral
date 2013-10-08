@@ -6,6 +6,7 @@
 
 {% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}{% endblock url_face_to_face %}
 
+{% block title %} - {{election}} - {{candidate.name}}{% endblock title%}
 
 {% block mainelection %}
 

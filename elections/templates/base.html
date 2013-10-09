@@ -3,14 +3,22 @@
 {% load flatpages %}
 {% load i18n %}
 {% load votainteligente_extras %}
-<html>
+<html prefix="og: http://ogp.me/ns/{{ 'type'|ogpdata }}#">
     <head>
         <meta charset="utf-8">
-        <title>Vota Inteligente {% block title %}- {% trans "Portada" %}{% endblock title %}</title>
-        <meta name="author" content="">
-        <meta name="description" content="">
+        <title>{% trans "Vota Inteligente" %} {% block title %}- {% trans "Portada" %}{% endblock title %}</title>
+        <meta name="author" content="{{ 'author'|metadata }}">
+        <meta name="description" content="{{ 'description'|metadata }}">
+        <meta name="keywords" content="{{ 'keywords'|metadata }}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="mobile-web-app-capable" content="yes">
+
+        <!--for facebook fans-->
+        <meta property="og:title" content="{{ 'title'|ogpdata }}">
+        <meta property="og:type" content="{{ 'type'|ogpdata }}">
+        <meta property="og:url" content="{{ 'url'|ogpdata }}">
+        <meta property="og:image" content="{{ 'image'|ogpdata }}">
+        <!--eoff-->
 
         <link rel="shortcut icon" sizes="196x196" href="{% static 'img/votai-196.png' %}">
         

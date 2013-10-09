@@ -38,3 +38,15 @@ def title(election, name):
 @register.simple_tag
 def url_domain():
     return Site.objects.get_current().domain
+
+@register.filter
+def metadata(meta):
+	if meta in settings.WEBSITE_METADATA:
+		return settings.WEBSITE_METADATA[meta]
+	return ''
+
+@register.filter
+def ogpdata(ogp):
+	if ogp in settings.WEBSITE_OGP:
+		return settings.WEBSITE_OGP[ogp]
+	return ''

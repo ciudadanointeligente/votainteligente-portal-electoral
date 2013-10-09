@@ -60,7 +60,7 @@ def automatically_create_election(sender, instance, created, **kwargs):
 	            )
 
 
-		popit_api_instance_url = settings.POPIT_API_URL
+		popit_api_instance_url = settings.POPIT_API_URL% ( election.slug)
 
 		popit_api_instance = PopitApiInstance.objects.create(
 			url = popit_api_instance_url

@@ -1,16 +1,13 @@
 {% extends "elections/election_base.html" %}
 {% load i18n %}
 {% load thumbnail %}
+{% load votainteligente_extras %}
+
+{% block title %} - {{election}} - {% trans "Cuestionario"%}{% endblock title%}
+
+{% block last_breadcrumb %}{% trans "Cuestionario"%}{% endblock last_breadcrumb %}
 
 {% block mainelection %}
-<!--
-<div class="row">
-	<div class="col-md-3 col-md-offset-9">
-		<button class="btn btn-primary">{% trans "Quieres preguntar algo más?" %}</button>
-	</div>
-</div>
--->
-
 <div id="questionary">
 	<div class="questionary">
 		{% for category in election.can_election.category_set.all %}
@@ -62,10 +59,12 @@
 	</div>
 </div>
 
+{% if 'questionary'|val_navbars  %}
 <div class="row">
 	<div class="col-md-3 col-md-offset-9">
 		<button class="btn btn-primary"><i class="icon-edit"></i> {% trans "Quieres preguntar algo más?" %}</button>
 	</div>
 </div>
+{% endif %}
 
 {% endblock mainelection %}

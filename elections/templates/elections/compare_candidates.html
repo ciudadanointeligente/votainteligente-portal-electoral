@@ -2,15 +2,12 @@
 {% load i18n %}
 {% load candideitorg_templetags %}
 
+{% block title %} - {{election}} - {% trans "Frente a Frente"%}{% endblock title%}
+
+{% block last_breadcrumb %}{% trans "Frente a Frente"%}{% endblock last_breadcrumb %}
+
 {% block mainelection %}
 <!-- face-to-face -->
-<!--
-<div>
-	<div class="col-md-12 text-center porcentaje-similitud">
-		<h3>33% de similitud</h3>
-	</div>
-</div>
--->
 <div id="compare-candidates">
 	<div class="row">
 		<div class="col-md-6">
@@ -70,47 +67,6 @@
 		<div class="alert alert-info">{% trans "Aquí se mostraran las diferencias y similitudes entre los candidatos que selecciones." %}</div>
 		{% endif %}
 		
-	
-		<!--
-		<div class="row">
-			<div class="col-md-12">
-				<h5>Quas modi consequuntur tenetur temporibus culpa ad?</h5>
-				<div class="fondo-blanco">
-					<p>
-						<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, cupiditate, tempora repellendus fugiat nesciunt ab ad esse aut nam rerum accusamus facere nostrum natus eligendi commodi eius vero illo aperiam. <i class="icon-quote-right"></i>
-					</p>
-					<p class="text-center">
-						candidate one <i class="icon-heart"></i> candidate two
-					</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-12">
-				<h5>Quas modi consequuntur tenetur temporibus culpa ad tempore nostrum tenetur rem error nulla dolorem consequatur nihil quaerat tempora assumenda ipsa nisi ducimus autem?</h5>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="fondo-blanco">
-					<p>
-						<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, veniam consequuntur excepturi expedita officiis reprehenderit ratione illum in rerum exercitationem? Et, quaerat, soluta harum sed est error earum optio aspernatur. <i class="icon-quote-right"></i>
-					</p>
-					<p class="text-right">candidate one</p>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="fondo-blanco">
-					<p>
-						<i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, voluptatum repellendus expedita voluptatem modi ratione maxime aut exercitationem ipsa dolor sed nesciunt voluptate fugit architecto reiciendis accusantium incidunt accusamus optio! <i class="icon-quote-right"></i>
-					</p>
-					<p class="text-right">candidate two</p>
-				</div>
-			</div>
-		</div>
-		-->
 	</div>
 	<!-- EOF hidden for small devices -->
 	<!-- display only for small devices -->
@@ -140,23 +96,6 @@
 		</div>
 			{% endfor %}
 		{% endfor %}
-		
-		<!--
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit?</h3>
-			</div>
-			<div class="panel-body">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, illum, atque, corrupti, inventore a tempore nostrum tenetur rem error nulla dolorem consequatur nihil quaerat tempora assumenda ipsa nisi ducimus autem!</p>
-				<p class="text-center">
-					<small>candidate one</small>
-					<i class="icon-heart"></i>
-					<small>candidate two</small>
-				</p>
-				
-			</div>
-		</div>
-		-->
 	</div>
 	<!-- display only for small devices -->
 	

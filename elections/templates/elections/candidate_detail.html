@@ -2,9 +2,11 @@
 {% load candideitorg_templetags %}
 {% load i18n %}
 {% load thumbnail %}
+{% load votainteligente_extras %}
 
 {% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}{% endblock url_face_to_face %}
 
+{% block title %} - {{election}} - {{candidate.name}}{% endblock title%}
 
 {% block mainelection %}
 
@@ -39,8 +41,12 @@
 						{% endfor %}
 					</ul>
 
+					{% if 'ask'|val_navbars  %}
 					<button type="button" class="btn btn-success btn-lg btn-block" onClick="location.href='{% url 'ask_detail_view' slug=election.slug %}'"><i class="icon-edit"></i> {% trans "Hazle una pregunta" %}</button>
+					{% endif %}
+					{% if 'facetoface'|val_navbars  %}
 					<button type="button" class="btn btn-primary btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
+					{% endif %}
 				</div>
 			</div>
 			
@@ -74,7 +80,7 @@
 						{{question.question}}
 					</p>
 					<p class="answer">
-						<i class="icon-quote-left"></i> {% answer_for_candidate_and_question candidate question %} <i class="icon-quote-right"></i>
+						<i class="icon-quote-left"></i> {% answer_for_candidate_and_question candidate question %} <i class="icon-quote-right"></i> - <a href="" class="pop-fuente" data-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam quas blanditiis eos corrupti odio. Rerum, placeat, pariatur, aspernatur, optio dolore debitis autem atque nobis necessitatibus perferendis dolorem magnam quis minus." data-title="Fuente"><i class="icon-file-text"></i></a>
 					</p>
 				</div>
 				{% endfor %}
@@ -93,5 +99,7 @@
 			userCollapseText: '<i class="icon-chevron-up"></i>',
 			slicePoint: 180,
 		});
+
+		$('.pop-fuente').popover();
 	});
 {% endblock extrajs %}

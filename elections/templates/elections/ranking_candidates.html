@@ -1,6 +1,10 @@
 {% extends "elections/election_base.html" %}
 {% load i18n %}
 
+{% block title %} - {{election}} - {% trans "Ranking"%}{% endblock title%}
+
+{% block last_breadcrumb %}{% trans "Ranking"%}{% endblock last_breadcrumb %}
+
 {% block mainelection %}
 <!-- ranking -->
 <div class="row">

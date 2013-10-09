@@ -250,6 +250,10 @@ else:
 SOUTH_TESTS_MIGRATE = False
 EXTRA_APPS = ()
 
+#navigation bar
+# NAV_BAR = ('profiles','questionary','soulmate','facetoface','ask','ranking')
+NAV_BAR = ('profiles','questionary','soulmate','facetoface','ask','ranking')
+
 try:
     from local_settings import *
     INSTALLED_APPS += EXTRA_APPS

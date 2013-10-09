@@ -11,7 +11,7 @@
 			<img src="{{winner.candidate.photo}}" alt="{{winner.candidate.name}}" class="img-responsive">
 			{% endthumbnail %}
 			{% else %}
-			<img src="/static/img/candidate-default.jpg" alt="{{winner.candidate.name}}" class="img-responsive">
+			<img src="{% static 'img/candidate-default.jpg' %}" alt="{{winner.candidate.name}}" class="img-responsive">
 			{% endif %}
 		</div>
 		<div class="col-md-5">

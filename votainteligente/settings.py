@@ -1,3 +1,4 @@
+# coding=utf-8
 import sys
 # Django settings for votainteligente project.
 import os
@@ -253,6 +254,18 @@ EXTRA_APPS = ()
 #navigation bar
 # NAV_BAR = ('profiles','questionary','soulmate','facetoface','ask','ranking')
 NAV_BAR = ('profiles','questionary','soulmate','facetoface','ask','ranking')
+WEBSITE_METADATA = {
+    'author' : u'Fundación Ciudadano Inteligente',
+    'description' : u'Este 18 de Septiembre los chilenos elegiremos Presidente, Senadores, Diputados y Consejeros Regionales (CORE). Aquí encontrarás info para votar informado.',
+    'keywords' : u'elecciones, presidencia, presidenciales, senatoriales, senadores, diputados, cores, core'
+}
+#for Facebook OGP http://ogp.me/
+WEBSITE_OGP = {
+    'title' : u'Vota Inteligente',
+    'type' : 'website',
+    'url' : 'http://www.votainteligente.org/',
+    'image' : '/static/img/votai-196.png'
+}
 
 try:
     from local_settings import *

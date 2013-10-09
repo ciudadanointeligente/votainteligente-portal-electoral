@@ -328,18 +328,6 @@ input, button, select, textarea {
 	color: #ffd200;
 }
 
-@media (max-width: 604px) {
-
-	.nav-candidator ul.list-inline {
-		background: transparent;
-	}
-
-	.nav-candidator .list-inline>li {
-		padding: 9px 0px 10px;
-	}
-
-}
-
 /*Home*/
 
 .intro-home {
@@ -495,6 +483,10 @@ input, button, select, textarea {
 
 .panel-title {
 	font-size: 14px;
+}
+
+#other-soulmate .no-first-row {
+	margin-top: 10px;
 }
 
 .other-soulmate-box {
@@ -767,17 +759,6 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 	border-radius: 6px;
 }
 
-@media (max-width: 480px) {
-
-	.profile-candidate {
-		min-height: 425px;
-	}
-
-	.other-soulmate-box {
-		margin-top: 5px;
-	}
-}
-
 /*Ranking*/
 
 .panel-primary>.panel-heading {
@@ -961,4 +942,27 @@ tr.primary p:first-child, tr.danger p:first-child {
 /*breadscrumb-social*/
 .breadscrumb-social .social-button {
 	padding-top: 8px;
+}
+
+@media (max-width: 480px) {
+
+	.profile-candidate {
+		min-height: 425px;
+	}
+
+	.other-soulmate-box {
+		margin-top: 5px;
+	}
+}
+
+@media (max-width: 604px) {
+
+	.nav-candidator ul.list-inline {
+		background: transparent;
+	}
+
+	.nav-candidator .list-inline>li {
+		padding: 9px 0px 10px;
+	}
+
 }

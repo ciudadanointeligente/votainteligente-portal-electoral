@@ -4,6 +4,7 @@ from elections.models import Election
 import simplejson as json
 from django.template import Template, Context
 from django.conf import settings
+from django.contrib.sites.models import Site
 
 
 class TemplateTagsTestCase(TestCase):
@@ -44,3 +45,12 @@ class TemplateTagsTestCase(TestCase):
 		context = Context({})
 
 		self.assertEqual(template.render(context), 'no')
+
+	def test_url_domain(self):
+		current_domain = Site.objects.get_current()
+		current_domain.domain = "votainteligente.cl"
+		current_domain.save()
+
+		template = Template("{% load votainteligente_extras %}{% url_domain %}")
+		context = Context({})
+		self.assertEqual(template.render(context), 'votainteligente.cl')

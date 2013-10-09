@@ -683,10 +683,10 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 /* Footer */
 
 #footer {
-	padding-top: 40px;
+	padding-top: 45px;
 	color: #B4BAC5;
 	background-color: #323a45;
-	height: 140px;
+	height: 120px;
 }
 
 #footer a {
@@ -702,12 +702,13 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 }
 
 #footer i {
-	margin-right: 15px;
-	margin-left: -30px;
+	margin-right: 5px;
+	margin-left: -20px;
 }
 
 #footer img {
 	opacity: 0.6;
+	margin-top: -15px;
 }
 
 #footer img:hover {

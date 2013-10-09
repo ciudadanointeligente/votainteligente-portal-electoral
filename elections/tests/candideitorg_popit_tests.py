@@ -141,7 +141,6 @@ class AutomaticCreationOfThingsWhenLoadingCandideitorgs(TestCase):
         api_instance = can_election.election.popit_api_instance
 
         expected_url = settings.POPIT_API_URL % ( can_election.election.slug )
-        expected_url = settings.POPIT_API_URL
         self.assertEquals(api_instance.url, expected_url)
 
 

@@ -16,7 +16,7 @@
 				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}"><img src="{{im.url}}" alt="{{candidato.name}}" border="0" class="img-responsive"></a>
 				{% endthumbnail %}
 			{% else %}
-				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}"><img src="/static/img/candidate-default.jpg" alt="{{candidato.name}}" border="0" class="img-responsive"></a>
+				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidato.name}}" border="0" class="img-responsive"></a>
 			{% endif %}
 			
 			<p>

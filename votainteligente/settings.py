@@ -171,6 +171,8 @@ TEST_POPIT_API_URL = "http://%s.%s.xip.io:%s/api" % ( TEST_POPIT_API_SUBDOMAIN,
                                                       TEST_POPIT_API_HOST_IP,
                                                       TEST_POPIT_API_PORT )
 
+POPIT_API_URL = "http://%s.127.0.0.1.xip.io:3000/api"
+
 ### POPIT DJANGO THINGS THINGS
 
 

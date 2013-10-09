@@ -6,6 +6,8 @@ from django.template.defaultfilters import stringfilter
 from django.utils.safestring import mark_safe
 from elections.models import Election
 import simplejson as json
+from django.conf import settings
+from django.contrib.sites.models import Site
 
 @register.simple_tag
 def elections_json():
@@ -23,3 +25,16 @@ def elections_json():
 		}
 		expected_elections.append(election_dict)
 	return mark_safe(json.dumps(expected_elections))
+
+@register.filter
+def val_navbars(section):
+	if section in settings.NAV_BAR:
+		return True
+
+@register.simple_tag
+def title(election, name):
+	return election + ' - ' + name;
+
+@register.simple_tag
+def url_domain():
+    return Site.objects.get_current().domain

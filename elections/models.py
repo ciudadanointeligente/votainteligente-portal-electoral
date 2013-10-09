@@ -92,10 +92,10 @@ def automatically_create_popit_person(sender, instance, created, **kwargs):
 		person.post_to_the_api()
 		relation = CandidatePerson.objects.create(person=person, candidate=candidate)
 @receiver(election_finished)
-def automatically_push_writeit_instance(sender, **kwargs):
-	if kwargs.get('raw', False):
+def automatically_push_writeit_instance(sender, instance, created, **kwargs):
+	if kwargs.get('raw', False) or not created:
 		return
-	election = Election.objects.get(can_election=sender)
+	election = Election.objects.get(can_election=instance)
 	extra_params = {
 	'popit-api': election.popit_api_instance.url
 	}

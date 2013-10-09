@@ -2,26 +2,20 @@
 {% load staticfiles %}
 {% load flatpages %}
 {% load i18n %}
+{% load votainteligente_extras %}
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Vota Inteligente</title>
+        <title>Vota Inteligente {% block title %}- {% trans "Portada" %}{% endblock title %}</title>
         <meta name="author" content="">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="mobile-web-app-capable" content="yes">
 
         <link rel="shortcut icon" sizes="196x196" href="{% static 'img/votai-196.png' %}">
-        <link rel="shortcut icon" sizes="128x128" href="{% static 'img/votai-128.png' %}">
-
+        
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-        <style>
-            body {
-                padding-top: 60px;
-                padding-bottom: 40px;
-            }
-        </style>
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/chosen.min.css' %}" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
@@ -58,8 +52,6 @@
             </div>
         </div>
         
-        
-        
         <div id="footer">
             <div class="container">
                 <div class="row">
@@ -67,10 +59,10 @@
                         
                     </div>
                     <div class="col-md-4">
-                        
+                        <a href="https://github.com/ciudadanointeligente/votainteligente-portal-electoral" target="_blank"><i class="icon-github icon-3x"></i></a>
                     </div>
                     <div class="col-md-4">
-                        <p>&copy; Fundación Ciudadano Inteligente</p>
+                        <a href="http://www.ciudadanointeligente.org/" target="_blank">&copy; Fundación Ciudadano Inteligente - 2013</a>
                     </div>
                 </div>
             </div>

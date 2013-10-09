@@ -683,14 +683,39 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 /* Footer */
 
 #footer {
-	padding-top: 10px;
-	color: #FFF;
+	padding-top: 40px;
+	color: #B4BAC5;
 	background-color: #323a45;
-	height: 60px;
+	height: 140px;
 }
 
 #footer a {
+	color: #B4BAC5;
+}
+
+#footer a:hover {
 	color: #FFF;
+}
+
+#footer ul {
+	list-style: none;
+}
+
+#footer i {
+	margin-right: 15px;
+	margin-left: -30px;
+}
+
+#footer img {
+	opacity: 0.6;
+}
+
+#footer img:hover {
+	opacity: 1;
+}
+
+#footer .col-md-4:nth-child(2) {
+	text-align: center;
 }
 
 .container-profile {

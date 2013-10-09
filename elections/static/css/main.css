@@ -682,18 +682,7 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 #footer {
 	padding-top: 10px;
 	color: #FFF;
-	background: #323a45;
-	height:40px;   /* Height of the footer */
-	position: fixed;
-    margin-top: -40px; /* negative value of footer height */
-    height: 40px;
-    clear:both;
-    bottom:0px;
-    width:100%;
-}
-
-#wrapper {
-	padding-bottom: 60px;
+	background-color: #323a45;
 }
 
 .container-profile {

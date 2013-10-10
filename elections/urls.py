@@ -56,6 +56,5 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('', 
 	url(r'^cache/(?P<path>.*)$','django.views.static.serve',
-    	{'document_root': media_root}),
-	(r'^tinymce/', include('tinymce.urls')),
+    	{'document_root': media_root})
 )

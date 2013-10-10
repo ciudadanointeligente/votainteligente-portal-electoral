@@ -414,8 +414,19 @@ input, button, select, textarea {
 .elections-results li {
 	background: #FFF;
 	border-radius: 6px;
-	padding: 10px;
+	padding: 5px 10px;
 	margin: 5px; 
+}
+
+.elections-results li ul {
+	text-align: right;
+}
+
+.elections-results li ul li {
+	display: inline-block;
+	background: #ffd200;
+	color: #a38400;
+	padding: 2px 6px;
 }
 
 /*Perfil candidato*/

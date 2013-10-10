@@ -198,9 +198,11 @@
         <div class="elections-results">
             <ul class="list-inline" ng-show="searchElection">
                 <li ng-repeat="election in elections | filter:searchElection:comperator">
-                    <!-- <span class="label label-info"> -->
-                        <a href="[[election.detaillink]]">[[election.name]]</a>
-                    <!-- </span> -->
+                  <a href="[[election.detaillink]]">[[election.name]]
+                    <ul>
+                      <li ng-repeat="tag in election.tags | filter:searchElection:comperator">[[tag]]</li>
+                    </ul>
+                  </a>
                 </li>
             </ul>
         </div>

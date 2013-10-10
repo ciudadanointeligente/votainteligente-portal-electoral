@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
 from django.views.generic import TemplateView
 from haystack.views import SearchView
 from elections.forms import ElectionForm
@@ -56,5 +56,6 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('', 
 	url(r'^cache/(?P<path>.*)$','django.views.static.serve',
-    	{'document_root': media_root})
+    	{'document_root': media_root}),
+	(r'^tinymce/', include('tinymce.urls')),
 )

@@ -718,6 +718,15 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 	text-align: center;
 }
 
+.extra-footer .col-md-4 {
+	padding: 10px;
+}
+
+#footer .extra-footer img {
+	opacity: 1;
+	width: 100%;
+}
+
 .container-profile {
 	background: #5e6d82;
 	border-radius: 6px;

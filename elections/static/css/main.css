@@ -686,7 +686,7 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 	padding-top: 40px;
 	color: #B4BAC5;
 	background-color: #323a45;
-	height: 140px;
+	/*height: 140px;*/
 }
 
 #footer a {

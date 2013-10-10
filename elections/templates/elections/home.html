@@ -148,7 +148,7 @@
     {% for featured_election in featured_elections %}
       <h3><a href="{{ featured_election.get_absolute_url }}">{{featured_election.name}}</a></h3>
 
-      <ul class="list-inline">
+      <ul>
       {% for candidate in featured_election.can_election.candidate_set.all %}
         <li><a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}">{{ candidate.name }}</a></li>
       {% endfor %}

@@ -269,6 +269,10 @@ WEBSITE_OGP = {
     'image' : 'img/votai-196.png'
 }
 
+USE_POPIT = True
+#if you set USE_POPIT to False the USE_WRITEIT param will automatically be interpreted as False
+USE_WRITEIT = True
+
 try:
     from local_settings import *
     INSTALLED_APPS += EXTRA_APPS

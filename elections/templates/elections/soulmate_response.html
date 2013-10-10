@@ -60,7 +60,7 @@
 				</ul>
 			</div>
 		</div>
-		{% if forloop.counter == 3 %}
+		{% if forloop.counter|divisibleby:3 %}
 	</div><div class="row no-first-row">
 		{% endif %}
 		{% endfor %}

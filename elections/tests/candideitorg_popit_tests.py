@@ -1,5 +1,6 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
+from django.test.utils import override_settings
 from elections.models import CandidatePerson, Election
 from candideitorg.models import Candidate as CanCandidate, Election as CanElection
 from django.utils.unittest import skip
@@ -207,9 +208,8 @@ class AutomaticCreationOfAPopitPerson(TestCase):
         self.assertEquals(response.code, 200)
         response_as_json = json.loads(response.read())
 
-
+    @override_settings(USE_POPIT=False)
     def test_if_there_is_a_setting_that_says_dont_use_popit_then_dont(self):
-        settings.USE_POPIT = False
         can_election = CanElection.objects.create(
             description = "Elecciones CEI 2012",
             remote_id = 1,
@@ -318,9 +318,8 @@ class AutomaticCreationOfAWriteitInstance(TestCase):
         self.assertIn(person.popit_url, persons)
 
 
-
+    @override_settings(USE_WRITEIT=False)
     def test_if_there_is_a_dont_use_writeit_setting_then_dont(self):
-        settings.USE_WRITEIT = False
         name_and_slug = uuid.uuid1().hex
         can_election = CanElection.objects.create(
             description = "Elecciones CEI 2012",

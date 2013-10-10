@@ -269,6 +269,9 @@ WEBSITE_OGP = {
     'image' : '/static/img/votai-196.png'
 }
 
+USE_POPIT = True
+USE_WRITEIT = True
+
 try:
     from local_settings import *
     INSTALLED_APPS += EXTRA_APPS

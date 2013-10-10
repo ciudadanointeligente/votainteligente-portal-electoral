@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <h2 class="text-center intro-home">
-        Este 18 de Septiembre los chilenos elegiremos <strong>Presidente, Senadores, Diputados y Consejeros Regionales (CORE).</strong> Aquí encontrarás info para votar informado:
+        {% trans "Este 18 de Septiembre los chilenos elegiremos <strong>Presidente, Senadores, Diputados y Consejeros Regionales (CORE).</strong> Aquí encontrarás info para votar informado:" %}
       </h2>
     </div>
   </div>
@@ -25,138 +25,120 @@
   {% if featured_elections|length = 1 %}
     <!-- Featured Election block -->
     <div class="contenedorDestacado">
-        <ul>
-          {% for featured_election in featured_elections %}
-            <li class="col-md-10 col-md-offset-1 containerAccordion">
-                  <a href="{{ featured_election.get_absolute_url }}"><h3>{{featured_election.name}}</h3></a>
-                              <script type="text/javascript">
-      
-                              jQuery(document).ready(function($){
-                                screenwidth=$(".containerAccordion").width();
-                                    $('#gridaccordion-{{forloop.counter}}').gridAccordion({width:screenwidth,
-                                                                   height:250, 
-                                                                   columns:{{featured_election.can_election.candidate_set.all|length}}, 
-                                                                   distance:2, 
-                                                                   closedPanelWidth:10, 
-                                                                   closedPanelHeight:10, 
-                                                                   alignType:'centerCenter',
-                                                                   linkTarget: "_self",
-                                                                   slideshow:true
-                                                                    });
-                                });
-                              
-                              </script>
-                 <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
-                       {% for candidate in featured_election.can_election.candidate_set.all %}
-
-
-                    <li>
-                        {% if candidate.photo %}
-                        {% thumbnail candidate.photo "350x350" as im %}
-                          <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
-                        {% endthumbnail %}
-                        {% else %}
-                        <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">
-                        {% endif %}
-                        <div class="caption">{{ candidate.name }}</div>
-                    </li>
-                      {% endfor %}
-                  </ul>
-                  <div class="election-description">
-                    <p>{{ featured_election.description|truncatewords:100 }}</p> 
-                  </div>
-            </li>
-          {% endfor %}
-        </ul>
+      <ul>
+        {% for featured_election in featured_elections %}
+          <li class="col-md-10 col-md-offset-1 containerAccordion">
+            <script type="text/javascript">
+            jQuery(document).ready(function($){
+              screenwidth = $(".containerAccordion").width();
+              $('#gridaccordion-{{forloop.counter}}').gridAccordion({ 
+                width:screenwidth, height:250, columns:{{ featured_election.can_election.candidate_set.all|length }}, 
+                distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true 
+              });
+            });
+            </script>
+            <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
+              {% for candidate in featured_election.can_election.candidate_set.all %}
+              <li>
+                  {% if candidate.photo %}
+                  {% thumbnail candidate.photo "300x300" as im %}
+                    <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
+                  {% endthumbnail %}
+                  {% else %}
+                    <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+                  {% endif %}
+                  <div class="caption">{{ candidate.name }}</div>
+              </li>
+              {% endfor %}
+            </ul>
+            <a href="{{ featured_election.get_absolute_url }}"><h3>{{featured_election.name}}</h3></a>
+            <div class="election-description">
+              <p>{{ featured_election.description|truncatewords:100 }}</p> 
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
     </div><!-- /contenedorDestacado -->
     <!-- /FeaturedBlock -->
 
     {% elif featured_elections|length = 2 %}
     <!-- Featured Election block -->
     <div class="contenedorDestacado">
-        <ul>
-          {% for featured_election in featured_elections %}
-            <li class="col-md-6 containerAccordion">
-                  <a href="{{ featured_election.get_absolute_url }}">
-                    <h3>{{ featured_election.name }}</h3>
-                  </a>
-                              <script type="text/javascript">
-      
-                              jQuery(document).ready(function($){
-                                screenwidth=$(".containerAccordion").width();
-                                    $('#gridaccordion-{{forloop.counter}}').gridAccordion({width:screenwidth,
-                                                                   height:250, 
-                                                                   columns:{{featured_election.can_election.candidate_set.all|length}}, 
-                                                                   distance:2, 
-                                                                   closedPanelWidth:10, 
-                                                                   closedPanelHeight:10, 
-                                                                   alignType:'centerCenter',
-                                                                   linkTarget: "_self",
-                                                                   slideshow:true
-                                                                    });
-                                });
-                              
-                              </script>
-                     <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
-                           {% for candidate in featured_election.can_election.candidate_set.all %}
-                        <li>
-                            {% thumbnail candidate.photo "300x300" as im %}
-                              <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive"/></a>
-                            {% endthumbnail %}
-                            <div class="caption">{{ candidate.name }}</div>
-                        </li>
-                          {% endfor %}
-                      </ul>
-                  <div class="election-description">
-                    <p>{{ featured_election.description|truncatewords:50 }}</p> 
-                  </div>
-            </li>
-          {% endfor %}
-        </ul>
+      <ul>
+        {% for featured_election in featured_elections %}
+          <li class="col-md-6 containerAccordion">
+            <script type="text/javascript">
+            jQuery(document).ready(function($){
+              screenwidth = $(".containerAccordion").width();
+              $('#gridaccordion-{{forloop.counter}}').gridAccordion({
+                width:screenwidth, height:250, columns:{{ featured_election.can_election.candidate_set.all|length }}, 
+                distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true
+              });
+            });
+            </script>
+            <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
+              {% for candidate in featured_election.can_election.candidate_set.all %}
+              <li>
+                {% if candidate.photo %}
+                  {% thumbnail candidate.photo "300x300" as im %}
+                    <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
+                  {% endthumbnail %}
+                {% else %}
+                  <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+                {% endif %}
+                <div class="caption">{{ candidate.name }}</div>
+              </li>
+              {% endfor %}
+            </ul>
+            <a href="{{ featured_election.get_absolute_url }}"><h3>{{ featured_election.name }}</h3></a>
+            <div class="election-description">
+              <p>{{ featured_election.description|truncatewords:50 }}</p> 
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
     </div><!-- /contenedorDestacado -->
 
     {% elif featured_elections|length >= 3 %}
       <!-- Featured Election block -->
     <div class="contenedorDestacado">
-        <ul>
-           {% for featured_election in featured_elections %}
-            <li class="col-md-4 containerAccordion">
-                  <a href="{{ featured_election.get_absolute_url }}">
-                    <h3>{{ featured_election.name }}</h3>
-                  </a>
-                              <script type="text/javascript">
-      
-                              jQuery(document).ready(function($){
-                                screenwidth=$(".containerAccordion").width();
-                                    $('#gridaccordion-{{forloop.counter}}').gridAccordion({width:screenwidth,
-                                                                   height:250, 
-                                                                   columns:{{featured_election.can_election.candidate_set.all|length}}, 
-                                                                   distance:2, 
-                                                                   closedPanelWidth:10, 
-                                                                   closedPanelHeight:10, 
-                                                                   alignType:'centerCenter',
-                                                                   linkTarget: "_self",
-                                                                   slideshow:true
-                                                                    }});
-                                });
-                              
-                              </script>
-                     <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
-                           {% for candidate in featured_election.can_election.candidate_set.all %}
-                        <li>
-                            {% thumbnail candidate.photo "300x300" as im %}
-                              <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive"/></a>
-                            {% endthumbnail %}
-                            <div class="caption">{{ candidate.name }}</div>
-                        </li>
-                          {% endfor %}
-                      </ul>
-                  <div class="election-description">
-                    <p>{{ featured_election.description|truncatewords:33 }}</p> 
-                  </div>
+      <ul>
+        {% for featured_election in featured_elections %}
+        <li class="col-md-4 containerAccordion">
+          <script type="text/javascript">
+          jQuery(document).ready(function($){
+            screenwidth = $(".containerAccordion").width();
+            $('#gridaccordion-{{forloop.counter}}').gridAccordion({
+              width:screenwidth, height:250, columns:{{featured_election.can_election.candidate_set.all|length}}, 
+              distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true
+            });
+          });
+          </script>
+          <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
+            {% for candidate in featured_election.can_election.candidate_set.all %}
+            <li>
+              {% if candidate.photo %}
+                {% thumbnail candidate.photo "300x300" as im %}
+                  <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
+                {% endthumbnail %}
+              {% else %}
+                <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+              {% endif %}
+              <div class="caption">{{ candidate.name }}</div>
             </li>
-          {% endfor %}
-        </ul>
+            {% endfor %}
+          </ul>
+          <a href="{{ featured_election.get_absolute_url }}"><h3>{{ featured_election.name }}</h3></a>
+          <div class="election-description">
+            <p>{{ featured_election.description|truncatewords:33 }}</p> 
+          </div>
+        </li>
+        {% if forloop.counter == 3 %}
+      </ul>
+      <ul>
+        {% endif %}
+        {% endfor %}
+      </ul>
     </div><!-- /contenedorDestacado -->
   {% endif %}
   </div>
@@ -182,32 +164,27 @@
   <!-- Searchable Elections  -->
   {% if searchable_elections_enabled %}
     <div id="home-search" class="row" ng-controller="searchFormController">
-        <form action="{% url 'tags_search' %}" method="get" class="form-horizontal" rol="form">
-            
-            <div class="form-group">
-
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="input-group">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default"><i class="icon-search"></i></button>
-                      </span>
-                      <input type="text" class="form-control" id="id_q" name="q" placeholder="{% trans "Ingresa el nombre de tu candidato, distrito, comuna" %}" autocomplete="off" ng-model="searchElection">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">{% trans "Buscar" %}</button>
-                      </span>
-                    </div>
-                </div>
-
+        <form action="{% url 'tags_search' %}" method="get" class="form-horizontal" rol="form">          
+          <div class="form-group">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-default"><i class="icon-search"></i></button>
+                </span>
+                <input type="text" class="form-control" id="id_q" name="q" placeholder="{% trans "Ingresa el nombre de tu candidato, distrito, comuna" %}" autocomplete="off" ng-model="searchElection">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">{% trans "Buscar" %}</button>
+                </span>
+              </div>
             </div>
+          </div>
         </form>
         <div class="elections-results">
-            <ul class="list-inline" ng-show="searchElection">
-                <li ng-repeat="election in elections | filter:searchElection:comperator">
-                    <!-- <span class="label label-info"> -->
-                        <a href="[[election.detaillink]]">[[election.name]]</a>
-                    <!-- </span> -->
-                </li>
-            </ul>
+          <ul class="list-inline" ng-show="searchElection">
+            <li ng-repeat="election in elections | filter:searchElection:comperator">
+              <a href="[[election.detaillink]]">[[election.name]]</a>
+            </li>
+          </ul>
         </div>
     </div>
   {% endif %}

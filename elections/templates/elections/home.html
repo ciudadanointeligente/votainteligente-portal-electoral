@@ -17,7 +17,7 @@
   </div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}/js/jquery.gridAccordion.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
 
   <!-- Featured Elections  -->
   <div class="hidden-xs">
@@ -50,9 +50,13 @@
 
 
                     <li>
-                      {% thumbnail candidate.photo "350x350" as im %}
-                        <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
-                      {% endthumbnail %}
+                        {% if candidate.photo %}
+                        {% thumbnail candidate.photo "350x350" as im %}
+                          <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
+                        {% endthumbnail %}
+                        {% else %}
+                        <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">
+                        {% endif %}
                         <div class="caption">{{ candidate.name }}</div>
                     </li>
                       {% endfor %}

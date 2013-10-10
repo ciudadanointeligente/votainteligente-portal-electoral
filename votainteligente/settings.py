@@ -270,6 +270,7 @@ WEBSITE_OGP = {
 }
 
 USE_POPIT = True
+#if you set USE_POPIT to False the USE_WRITEIT param will automatically be interpreted as False
 USE_WRITEIT = True
 
 try:

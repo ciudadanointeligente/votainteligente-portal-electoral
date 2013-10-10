@@ -16,5 +16,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('elections.urls')),
     ('^pages/', include('django.contrib.flatpages.urls')),
-	(r'^tinymce/', include('tinymce.urls')),
+    (r'^tinymce/', include('tinymce.urls')),
 )

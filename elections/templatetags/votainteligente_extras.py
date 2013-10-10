@@ -7,6 +7,7 @@ from django.utils.safestring import mark_safe
 from elections.models import Election
 import simplejson as json
 from django.conf import settings
+from django.contrib.sites.models import Site
 
 @register.simple_tag
 def elections_json():
@@ -29,3 +30,23 @@ def elections_json():
 def val_navbars(section):
 	if section in settings.NAV_BAR:
 		return True
+
+@register.simple_tag
+def title(election, name):
+	return election + ' - ' + name;
+
+@register.simple_tag
+def url_domain():
+    return Site.objects.get_current().domain
+
+@register.filter
+def metadata(meta):
+	if meta in settings.WEBSITE_METADATA:
+		return settings.WEBSITE_METADATA[meta]
+	return ''
+
+@register.filter
+def ogpdata(ogp):
+	if ogp in settings.WEBSITE_OGP:
+		return settings.WEBSITE_OGP[ogp]
+	return ''

@@ -60,9 +60,7 @@ def automatically_create_election(sender, instance, created, **kwargs):
 	            )
 
 
-		popit_api_instance_url = "http://%s.%s.xip.io:%s/api" % ( election.slug,
-	                                                      settings.TEST_POPIT_API_HOST_IP,
-	                                                      settings.TEST_POPIT_API_PORT )
+		popit_api_instance_url = settings.POPIT_API_URL% ( election.slug)
 
 		popit_api_instance = PopitApiInstance.objects.create(
 			url = popit_api_instance_url

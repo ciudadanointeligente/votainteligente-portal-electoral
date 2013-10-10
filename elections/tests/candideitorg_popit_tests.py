@@ -139,9 +139,8 @@ class AutomaticCreationOfThingsWhenLoadingCandideitorgs(TestCase):
         #manso webeo pa llegar a la APIinstance
 
         api_instance = can_election.election.popit_api_instance
-        expected_url = "http://%s.%s.xip.io:%s/api" % ( can_election.election.slug,
-                                                      settings.TEST_POPIT_API_HOST_IP,
-                                                      settings.TEST_POPIT_API_PORT )
+
+        expected_url = settings.POPIT_API_URL % ( can_election.election.slug )
         self.assertEquals(api_instance.url, expected_url)
 
 

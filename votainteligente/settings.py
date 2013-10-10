@@ -266,7 +266,7 @@ WEBSITE_OGP = {
     'title' : u'Vota Inteligente',
     'type' : 'website',
     'url' : 'http://www.votainteligente.org/',
-    'image' : '/static/img/votai-196.png'
+    'image' : 'img/votai-196.png'
 }
 
 try:

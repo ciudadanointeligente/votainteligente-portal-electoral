@@ -1,5 +1,6 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
+from django.test.utils import override_settings
 from elections.models import CandidatePerson, Election
 from candideitorg.models import Candidate as CanCandidate, Election as CanElection
 from django.utils.unittest import skip
@@ -207,6 +208,38 @@ class AutomaticCreationOfAPopitPerson(TestCase):
         self.assertEquals(response.code, 200)
         response_as_json = json.loads(response.read())
 
+    @override_settings(USE_POPIT=False)
+    def test_if_there_is_a_setting_that_says_dont_use_popit_then_dont(self):
+        can_election = CanElection.objects.create(
+            description = "Elecciones CEI 2012",
+            remote_id = 1,
+            information_source = "",
+            logo = "/media/photos/dummy.jpg",
+            name = "cei 2012",
+            resource_uri = "/api/v2/election/1/",
+            slug = "cei-2012",
+            use_default_media_naranja_option = True
+            )
+        can_candidate = CanCandidate.objects.create(
+            remote_id=1,
+            resource_uri="/api/v2/candidate/1/",
+            name="Perico los Palotes",
+            election=can_election
+            )
+        with self.assertRaises(CandidatePerson.DoesNotExist) as e:
+            can_candidate.relation
+        self.assertFalse(Person.objects.filter(name=can_candidate.name).exists())
+        election_finished.send(sender=CanElection, instance=can_election, created=True)
+
+        #Don't create a writeit instance either
+
+        election = Election.objects.get(can_election=can_election)
+        self.assertIsNone(election.popit_api_instance)
+        self.assertIsNone(election.writeitinstance)
+
+
+
+
 import uuid 
 class AutomaticCreationOfAWriteitInstance(TestCase):
     def setUp(self):
@@ -247,7 +280,6 @@ class AutomaticCreationOfAWriteitInstance(TestCase):
 
         self.assertFalse(election.writeitinstance.url)
         self.assertFalse(election.writeitinstance.remote_id)
-
     
 
     def test_it_creates_the_writeit_instance_with_the_popit_api(self):
@@ -285,5 +317,29 @@ class AutomaticCreationOfAWriteitInstance(TestCase):
 
         self.assertIn(person.popit_url, persons)
 
+
+    @override_settings(USE_WRITEIT=False)
+    def test_if_there_is_a_dont_use_writeit_setting_then_dont(self):
+        name_and_slug = uuid.uuid1().hex
+        can_election = CanElection.objects.create(
+            description = "Elecciones CEI 2012",
+            remote_id = 1,
+            information_source = "",
+            logo = "/media/photos/dummy.jpg",
+            name = name_and_slug,
+            resource_uri = "/api/v2/election/1/",
+            slug = name_and_slug,
+            use_default_media_naranja_option = True
+            )
+        can_candidate = CanCandidate.objects.create(
+            remote_id=1,
+            resource_uri="/api/v2/candidate/1/",
+            name="Perico los Palotes",
+            election=can_election
+            )
+        election_finished.send(sender=CanElection, instance=can_election, created=True)
+
+        election = Election.objects.get(can_election=can_election)
+        self.assertIsNone(election.writeitinstance)
 
 

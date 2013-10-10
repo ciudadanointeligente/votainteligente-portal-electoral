@@ -59,19 +59,19 @@ def automatically_create_election(sender, instance, created, **kwargs):
 	            name = can_election.name,
 	            )
 
+		if getattr(settings, 'USE_POPIT', True):
+			popit_api_instance_url = settings.POPIT_API_URL% ( election.slug)
 
-		popit_api_instance_url = settings.POPIT_API_URL% ( election.slug)
+			popit_api_instance = PopitApiInstance.objects.create(
+				url = popit_api_instance_url
+				)
+			election.popit_api_instance = popit_api_instance
+			if getattr(settings, 'USE_WRITEIT', True):
+				writeit_api_instance = get_current_writeit_api_instance()
+				writeitinstance = WriteItInstance.objects.create(api_instance=writeit_api_instance, name=can_election.name)
 
-		popit_api_instance = PopitApiInstance.objects.create(
-			url = popit_api_instance_url
-			)
-		election.popit_api_instance = popit_api_instance
-
-		writeit_api_instance = get_current_writeit_api_instance()
-		writeitinstance = WriteItInstance.objects.create(api_instance=writeit_api_instance, name=can_election.name)
-
-		election.writeitinstance = writeitinstance
-		election.save()
+				election.writeitinstance = writeitinstance
+				election.save()
 
 
 
@@ -79,6 +79,9 @@ def automatically_create_election(sender, instance, created, **kwargs):
 @receiver(post_save, sender=CanCandidate)
 def automatically_create_popit_person(sender, instance, created, **kwargs):
 	if kwargs.get('raw', False):
+		return
+	should_be_using_popit = getattr(settings, 'USE_POPIT', True)
+	if not should_be_using_popit:
 		return
 	candidate = instance
 	api_instance = candidate.election.election.popit_api_instance
@@ -89,15 +92,21 @@ def automatically_create_popit_person(sender, instance, created, **kwargs):
 			)
 		person.post_to_the_api()
 		relation = CandidatePerson.objects.create(person=person, candidate=candidate)
+
+
 @receiver(election_finished)
 def automatically_push_writeit_instance(sender, instance, created, **kwargs):
 	if kwargs.get('raw', False) or not created:
 		return
-	election = Election.objects.get(can_election=instance)
-	extra_params = {
-	'popit-api': election.popit_api_instance.url
-	}
-	election.writeitinstance.push_to_the_api(extra_params=extra_params)
+	use_popit = getattr(settings, 'USE_POPIT', True)
+	use_writeit = getattr(settings, 'USE_WRITEIT', True)
+	if use_popit and use_writeit:
+
+		election = Election.objects.get(can_election=instance)
+		extra_params = {
+		'popit-api': election.popit_api_instance.url
+		}
+		election.writeitinstance.push_to_the_api(extra_params=extra_params)
 
 
 

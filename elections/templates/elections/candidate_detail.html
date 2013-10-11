@@ -86,6 +86,11 @@
 					</p>
 					<p class="answer">
 						<i class="icon-quote-left"></i> {% answer_for_candidate_and_question candidate question %} <i class="icon-quote-right"></i>
+						<!-- source -->
+						{% if "get_information_source candidate question" %} 
+						<a href="" class="pop-fuente" data-content="{% get_information_source candidate question %}" data-title="{% trans 'Fuente' %}"><i class="icon-file-text"></i></a>
+						{% endif %}
+						<!-- eosource -->
 					</p>
 				</div>
 				{% endfor %}

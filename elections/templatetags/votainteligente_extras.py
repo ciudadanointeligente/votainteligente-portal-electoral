@@ -50,3 +50,9 @@ def ogpdata(ogp):
 	if ogp in settings.WEBSITE_OGP:
 		return settings.WEBSITE_OGP[ogp]
 	return ''
+
+@register.filter
+def disqus(disqus):
+	if disqus in settings.WEBSITE_DISQUS:
+		return settings.WEBSITE_DISQUS[disqus]
+	return ''

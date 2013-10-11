@@ -22,6 +22,11 @@ class TemplateTagsTestCase(TestCase):
 		    'url' : 'http://www.votainteligente.org/',
 		    'image' : '/static/img/votai-196.png'
 		}
+		settings.WEBSITE_DISQUS = {
+		    'visible' : True,
+		    'shortname' : 'votainteligente',
+		    'dev' : 1,
+		}
 
 	def test_bring_all_elections_with_their_tags_as_json(self):
 		expected_elections = []
@@ -84,8 +89,20 @@ class TemplateTagsTestCase(TestCase):
 
 		self.assertEqual(template.render(context), u'Vota Inteligente')
 
-	def test_website_ogp(self):
+	def test_website_no_ogp(self):
 		template = Template("{% load votainteligente_extras %}{{ 'sound'|ogpdata }}")
+		context = Context({})
+
+		self.assertEqual(template.render(context), u'')
+
+	def test_website_disqus(self):
+		template = Template("{% load votainteligente_extras %}{{ 'shortname'|disqus }}")
+		context = Context({})
+
+		self.assertEqual(template.render(context), u'votainteligente')
+
+	def test_website_no_disqus_setting(self):
+		template = Template("{% load votainteligente_extras %}{{ 'sound'|disqus }}")
 		context = Context({})
 
 		self.assertEqual(template.render(context), u'')

@@ -270,8 +270,11 @@ WEBSITE_OGP = {
     'image' : 'img/votai-196.png'
 }
 #disqus setting dev
-DISQUS_SHORTNAME = 'votainteligente'
-DISQUS_DEV = 1
+WEBSITE_DISQUS = {
+    'enabled' : True,
+    'shortname' : 'votainteligente',
+    'dev_mode' : 1
+}
 
 USE_POPIT = True
 #if you set USE_POPIT to False the USE_WRITEIT param will automatically be interpreted as False

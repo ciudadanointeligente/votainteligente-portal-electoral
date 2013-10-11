@@ -102,6 +102,17 @@ strong {
 	float: right;
 }
 
+.breadcrumb {
+	padding: 8px 0px;
+	background-color: transparent;
+	border-radius: 0;
+}
+
+.breadcrumb>.active {
+	color: #9fa7b4;
+}
+
+
 /*Elecciones destacadas*/
 
 .contenedorDestacado {

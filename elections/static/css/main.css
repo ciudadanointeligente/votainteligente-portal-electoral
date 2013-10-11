@@ -102,6 +102,17 @@ strong {
 	float: right;
 }
 
+.breadcrumb {
+	padding: 8px 0px;
+	background-color: transparent;
+	border-radius: 0;
+}
+
+.breadcrumb>.active {
+	color: #9fa7b4;
+}
+
+
 /*Elecciones destacadas*/
 
 .contenedorDestacado {
@@ -246,6 +257,10 @@ input, button, select, textarea {
 	color: #14b9d5;
 }
 
+.navbar-nav {
+	float: right;
+}
+
 
 /*Menu Interno*/
 
@@ -333,10 +348,6 @@ input, button, select, textarea {
 }
 
 /*Home*/
-
-.intro-home {
-	/*margin-top: 60px;*/
-}
 
 #home-search .form-control {
 	color: #fff;

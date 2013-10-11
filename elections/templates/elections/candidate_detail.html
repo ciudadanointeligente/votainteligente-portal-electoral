@@ -50,7 +50,7 @@
 					<button type="button" class="btn btn-success btn-lg btn-block" onClick="location.href='{% url 'ask_detail_view' slug=election.slug %}'"><i class="icon-edit"></i> {% trans "Hazle una pregunta" %}</button>
 					{% endif %}
 					{% if 'facetoface'|val_navbars  %}
-					<button type="button" class="btn btn-primary btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
+					<button type="button" class="btn btn-danger btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
 					{% endif %}
 				</div>
 			</div>

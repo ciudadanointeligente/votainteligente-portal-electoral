@@ -1,4 +1,4 @@
 {% load i18n %}
 {% if information_source %}
-<a href="" class="pop-fuente" data-content="{{ information_source.content }}" data-title="{% trans 'Fuente' %}"><i class="icon-file-text"></i></a>
+<a href="" class="pop-fuente" data-content='{{ information_source.content|urlizetrunc:37 }}' data-html=true data-title="{% trans 'Fuente' %}"><i class="icon-file-text"></i></a>
 {% endif %}

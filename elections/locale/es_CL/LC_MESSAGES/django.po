@@ -1,0 +1,253 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-11 18:07-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: forms.py:10 tests/election_tags_based_search_tests.py:56
+msgid "Busca tu comuna"
+msgstr ""
+
+#: models.py:27
+msgid "Puedes usar Markdown. <br/> "
+msgstr ""
+
+#: models.py:41
+msgid "Mi Elección"
+msgstr ""
+
+#: models.py:42
+msgid "Mis Elecciones"
+msgstr ""
+
+#: templates/base.html:9
+msgid "Vota Inteligente"
+msgstr ""
+
+#: templates/base.html:9 templates/elections/election_base.html:15
+msgid "Portada"
+msgstr ""
+
+#: templates/base.html:44
+msgid "VotaInteligente"
+msgstr ""
+
+#: templates/search.html:5 templates/search/tags_search.html:6
+msgid "Busqueda"
+msgstr ""
+
+#: templates/search.html:13 templates/elections/home.html:176
+#: templates/search/tags_search.html:14
+msgid "Buscar"
+msgstr ""
+
+#: templates/search.html:19 templates/search/tags_search.html:21
+msgid "Elecciones"
+msgstr ""
+
+#: templates/search.html:26 templates/search/tags_search.html:28
+msgid "No encontré resultados"
+msgstr ""
+
+#: templates/search.html:31
+msgid "Anterior"
+msgstr ""
+
+#: templates/search.html:33
+msgid "Siguiente"
+msgstr ""
+
+#: templates/candideitorg/information_source.html:3
+msgid "Fuente"
+msgstr ""
+
+#: templates/elections/ask_candidate.html:4
+#: templates/elections/ask_candidate.html:6
+#: templates/elections/election_base.html:66
+msgid "Pregúntales"
+msgstr ""
+
+#: templates/elections/ask_candidate.html:16
+msgid "Yo soy"
+msgstr ""
+
+#: templates/elections/ask_candidate.html:17
+msgid "Identifícate como quieras"
+msgstr ""
+
+#: templates/elections/ask_candidate.html:20
+msgid "Correo electrónico"
+msgstr ""
+
+#: templates/elections/ask_candidate.html:21
+msgid "Si deseas que te notifiquemos la respuesta del candidato"
+msgstr ""
+
+#: templates/elections/ask_candidate.html:24
+msgid "Escribe tu pregunta"
+msgstr ""
+
+#: templates/elections/ask_candidate.html:25
+msgid ""
+"Escribe una pregunta clara y respetuosa. Revisa si otros han preguntado lo "
+"que a ti te interesa saber"
+msgstr ""
+
+#: templates/elections/ask_candidate.html:29
+msgid "A quien quieres preguntar"
+msgstr ""
+
+#: templates/elections/ask_candidate.html:35
+msgid "*No tenemos el mail del candidato."
+msgstr ""
+
+#: templates/elections/ask_candidate.html:35
+msgid " ¿Eres candidato? "
+msgstr ""
+
+#: templates/elections/ask_candidate.html:35
+msgid "escríbenos"
+msgstr ""
+
+#: templates/elections/ask_candidate.html:41
+msgid ""
+"Acepto que mis preguntas y respuestas sean publicadas en este mismo medio."
+"<br>Confirmo que lo que aquí dice no atenta contra el candidato."
+msgstr ""
+
+#: templates/elections/ask_candidate.html:45
+msgid "Enviar pregunta"
+msgstr ""
+
+#: templates/elections/ask_candidate.html:80
+#: templates/elections/ask_candidate.html:89
+msgid "Twittea al candidato"
+msgstr ""
+
+#: templates/elections/candidate_detail.html:50
+msgid "Hazle una pregunta"
+msgstr ""
+
+#: templates/elections/candidate_detail.html:53
+msgid "Compáralo con otro candidato"
+msgstr ""
+
+#: templates/elections/candidate_detail.html:76
+#: templates/elections/election_base.html:57
+#: templates/elections/election_questionary.html:6
+#: templates/elections/election_questionary.html:8
+msgid "Cuestionario"
+msgstr ""
+
+#: templates/elections/compare_candidates.html:5
+#: templates/elections/compare_candidates.html:7
+#: templates/elections/election_base.html:63
+msgid "Frente a Frente"
+msgstr ""
+
+#: templates/elections/compare_candidates.html:14
+#: templates/elections/compare_candidates.html:25
+msgid "Selecciona un candidato"
+msgstr ""
+
+#: templates/elections/compare_candidates.html:67
+msgid ""
+"Aquí se mostraran las diferencias y similitudes entre los candidatos que "
+"selecciones."
+msgstr ""
+
+#: templates/elections/election_base.html:8
+#: templates/elections/election_base.html:17
+#: templates/elections/election_base.html:54
+msgid "Perfiles"
+msgstr ""
+
+#: templates/elections/election_base.html:60
+#: templates/elections/soulmate_candidate.html:47
+#: templates/elections/soulmate_candidate.html:49
+msgid "1/2 Naranja"
+msgstr ""
+
+#: templates/elections/election_base.html:69
+#: templates/elections/ranking_candidates.html:4
+#: templates/elections/ranking_candidates.html:6
+msgid "Ranking"
+msgstr ""
+
+#: templates/elections/election_questionary.html:66
+msgid "y"
+msgstr ""
+
+#: templates/elections/election_questionary.html:89
+msgid "Quieres preguntar algo más?"
+msgstr ""
+
+#: templates/elections/home.html:15
+msgid ""
+"Este 18 de Septiembre los chilenos elegiremos <strong>Presidente, Senadores, "
+"Diputados y Consejeros Regionales (CORE).</strong> Aquí encontrarás info "
+"para votar informado:"
+msgstr ""
+
+#: templates/elections/home.html:174
+msgid "Ingresa el nombre de tu candidato, distrito, comuna"
+msgstr ""
+
+#: templates/elections/ranking_candidates.html:15
+msgid "Candidatos que más responden a los ciudadanos"
+msgstr ""
+
+#: templates/elections/ranking_candidates.html:64
+msgid "Candidatos que menos responden a los ciudadanos"
+msgstr ""
+
+#: templates/elections/ranking_candidates.html:112
+msgid "¿Cómo se calcula el ranking?"
+msgstr ""
+
+#: templates/elections/ranking_candidates.html:121
+msgid "Cómo se calcula el ranking?"
+msgstr ""
+
+#: templates/elections/soulmate_candidate.html:29
+msgid "calculando"
+msgstr ""
+
+#: templates/elections/soulmate_candidate.html:55
+msgid "Atención!"
+msgstr ""
+
+#: templates/elections/soulmate_candidate.html:55
+msgid ""
+"Para brindar una mejor respuesta es necesario que respondas todas las "
+"preguntas."
+msgstr ""
+
+#: templates/elections/soulmate_candidate.html:78
+msgid "Que importancia le das a esta pregunta?"
+msgstr ""
+
+#: templates/elections/soulmate_candidate.html:95
+msgid "Encontrar mi 1/2 naranja"
+msgstr ""
+
+#: templates/elections/soulmate_response.html:21
+msgid "de afinidad"
+msgstr ""
+
+#: templates/elections/soulmate_response.html:24
+msgid "Declara tu amor publicamente:"
+msgstr ""

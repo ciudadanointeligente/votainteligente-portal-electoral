@@ -5,17 +5,20 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 18:08-0300\n"
-"PO-Revision-Date: 2013-10-11 18:18-0300\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2013-10-11 18:49-0300\n"
+"PO-Revision-Date: 2013-10-11 18:52-0300\n"
+"Last-Translator: Lab en Ciudadano Inteligente <lab@ciudadanointeligente."
+"org>\n"
+"Language-Team: Lab at ciudadanointeligente <lab@ciudadanointeligente.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.4\n"
+"Language: ES\n"
+"X-Poedit-SourceCharset: es_CL\n"
 
 #: forms.py:10 tests/election_tags_based_search_tests.py:56
 msgid "Busca tu comuna"
@@ -44,6 +47,14 @@ msgstr "Portada"
 #: templates/base.html:44
 msgid "VotaInteligente"
 msgstr "A Quien Elegimos"
+
+#: templates/base.html:68
+msgid "Revisa nuestro código en Github"
+msgstr "Revisá nuestro código en Github"
+
+#: templates/base.html:69
+msgid "¿Quieres tener un Votainteligente para tu elección?"
+msgstr "¿Querés tener un Votainteligente para tu elección?"
 
 #: templates/search.html:5 templates/search/tags_search.html:6
 msgid "Busqueda"

@@ -84,7 +84,7 @@ class TemplateTagsTestCase(TestCase):
 
 		self.assertEqual(template.render(context), u'Vota Inteligente')
 
-	def test_website_ogp(self):
+	def test_website_no_ogp(self):
 		template = Template("{% load votainteligente_extras %}{{ 'sound'|ogpdata }}")
 		context = Context({})
 

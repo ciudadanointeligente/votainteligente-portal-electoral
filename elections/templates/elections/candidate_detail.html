@@ -85,7 +85,12 @@
 						{{question.question}}
 					</p>
 					<p class="answer">
-						<i class="icon-quote-left"></i> {% answer_for_candidate_and_question candidate question %} <i class="icon-quote-right"></i> - <a href="" class="pop-fuente" data-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam quas blanditiis eos corrupti odio. Rerum, placeat, pariatur, aspernatur, optio dolore debitis autem atque nobis necessitatibus perferendis dolorem magnam quis minus." data-title="Fuente"><i class="icon-file-text"></i></a>
+						<i class="icon-quote-left"></i> {% answer_for_candidate_and_question candidate question %} <i class="icon-quote-right"></i>
+						<!-- source -->
+						{% if "get_information_source candidate question" %} 
+						<a href="" class="pop-fuente" data-content="{% get_information_source candidate question %}" data-title="{% trans 'Fuente' %}"><i class="icon-file-text"></i></a>
+						{% endif %}
+						<!-- eosource -->
 					</p>
 				</div>
 				{% endfor %}

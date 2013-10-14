@@ -140,7 +140,7 @@ strong {
 .accordion .panel
 {
 	background-color:#000;
-	background-image:url(accordion-assets/images/preloader.gif);
+	background-image:url(../img/preloader.gif);
 	background-repeat:no-repeat;
 	background-position:center center;
 	position:absolute;

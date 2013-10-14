@@ -31,6 +31,9 @@ $(document).ready(function(){
 			$.post("{% url 'soul_mate_detail_view' slug=election.slug %}",final_data, function(final_data){
 				$('#question-soulmate').remove();
 				$('#election').append(final_data);
+				$('html, body').animate({
+					scrollTop: $("#election").offset().top
+				})
 			})
 		} else {
 			$('#msj-alerta').attr('style', 'display:block');

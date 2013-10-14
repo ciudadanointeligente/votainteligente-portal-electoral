@@ -51,22 +51,22 @@
 			<div class="col-md-12">
 				<ul class="list-inline">
 					{% if 'profiles'|val_navbars  %}
-					<li><a href="{% url 'election_view' slug=election.slug %}"><i class="icon-group"></i> {% trans "Perfiles" %}</a></li>
+					<li><a href="{% url 'election_view' slug=election.slug %}" accesskey="p" title="{% trans "Perfiles" %} (Alt+p)"><i class="icon-group"></i> {% trans "Perfiles" %}</a></li>
 					{% endif %}
 					{% if 'questionary'|val_navbars  %}
-					<li><a href="{% url 'questionary_detail_view' slug=election.slug %}"><i class="icon-list"></i> {% trans "Cuestionario" %}</a></li>
+					<li><a href="{% url 'questionary_detail_view' slug=election.slug %}" accesskey="c" title="{% trans "Cuestionario" %} (Alt+c)"><i class="icon-list"></i> {% trans "Cuestionario" %}</a></li>
 					{% endif %}
 					{% if 'soulmate'|val_navbars  %}
-					<li><a href="{% url 'soul_mate_detail_view' slug=election.slug %}"><i class="icon-heart"></i> {% trans "1/2 Naranja" %}</a></li>
+					<li><a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)"><i class="icon-heart"></i> {% trans "1/2 Naranja" %}</a></li>
 					{% endif %}
 					{% if 'facetoface'|val_navbars  %}
-					<li><a href="{% block url_face_to_face %}{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}{% endblock url_face_to_face %}"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a></li>
+					<li><a href="{% block url_face_to_face %}{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}{% endblock url_face_to_face %}" accesskey="f" title="{% trans "Frente a Frente" %} (Alt+f)"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a></li>
 					{% endif %}
 					{% if 'ask'|val_navbars  %}
-					<li><a href="{% url 'ask_detail_view' slug=election.slug %}"><i class="icon-edit"></i> {% trans "Pregúntales" %}</a></li>
+					<li><a href="{% url 'ask_detail_view' slug=election.slug %}" accesskey="a" title="{% trans "Pregúntales" %} (Alt+a)"><i class="icon-edit"></i> {% trans "Pregúntales" %}</a></li>
 					{% endif %}
 					{% if 'ranking'|val_navbars  %}
-					<li><a href="{% url 'ranking_detail_view' slug=election.slug %}"><i class="icon-trophy"></i> {% trans "Ranking" %}</a></li>
+					<li><a href="{% url 'ranking_detail_view' slug=election.slug %}" accesskey="r" title="{% trans "Ranking" %} (Alt+r)"><i class="icon-trophy"></i> {% trans "Ranking" %}</a></li>
 					{% endif %}
 					
 					{% if election.extra_info_title %}

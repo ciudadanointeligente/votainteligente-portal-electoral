@@ -153,10 +153,6 @@
         <li><a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}">{{ candidate.name }}</a></li>
       {% endfor %}
       </ul>
-
-      <div class="election-description">
-        <p>{{ featured_election.description|truncatewords:100 }}</p> 
-      </div>
     {% endfor %}
   </div>
   <!-- end mobile version -->

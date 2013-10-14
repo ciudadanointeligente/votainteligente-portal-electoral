@@ -159,15 +159,15 @@
 
   <!-- Searchable Elections  -->
   {% if searchable_elections_enabled %}
-    <div id="home-search" class="row" ng-controller="searchFormController">
-        <form action="{% url 'tags_search' %}" method="get" class="form-horizontal" rol="form">          
+    <div id="home-search" class="row" data-ng-controller="searchFormController">
+        <form action="{% url 'tags_search' %}" method="get" class="form-horizontal" role="form">          
           <div class="form-group">
             <div class="col-md-8 col-md-offset-2">
               <div class="input-group">
                 <span class="input-group-btn">
                   <button class="btn btn-default"><i class="icon-search"></i></button>
                 </span>
-                <input type="text" class="form-control" id="id_q" name="q" placeholder="{% trans "Ingresa el nombre de tu candidato, distrito, comuna" %}" autocomplete="off" ng-model="searchElection">
+                <input type="text" class="form-control" id="id_q" name="q" placeholder="{% trans "Ingresa el nombre de tu candidato, distrito, comuna" %}" autocomplete="off" data-ng-model="searchElection">
                 <span class="input-group-btn">
                   <button class="btn btn-default" type="button">{% trans "Buscar" %}</button>
                 </span>
@@ -176,11 +176,11 @@
           </div>
         </form>
         <div class="elections-results">
-            <ul class="list-inline" ng-show="searchElection">
-                <li ng-repeat="election in elections | filter:searchElection:comperator">
+            <ul class="list-inline" data-ng-show="searchElection">
+                <li data-ng-repeat="election in elections | filter:searchElection:comperator">
                   <a href="[[election.detaillink]]">[[election.name]]</a>
                     <ul>
-                      <li ng-repeat="tag in election.tags | filter:searchElection:comperator">[[tag]]</li>
+                      <li data-ng-repeat="tag in election.tags | filter:searchElection:comperator">[[tag]]</li>
                     </ul>
                 </li>
             </ul>

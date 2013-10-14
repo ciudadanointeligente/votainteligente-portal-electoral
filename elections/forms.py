@@ -1,6 +1,7 @@
+# coding=utf-8
 from haystack.forms import SearchForm
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, CheckboxSelectMultiple
 from django.utils.translation import ugettext as _
 from elections.models import Election
 from writeit.models import Message
@@ -24,9 +25,29 @@ class MessageForm(ModelForm):
 		super(MessageForm, self).__init__(*args, **kwargs)
 		self.instance.writeitinstance = self.writeitinstance
 		self.instance.api_instance = self.writeitinstance.api_instance
+		self.fields['people'].queryset = self.writeitinstance.election.popit_api_instance.person_set.all()
 	class Meta:
 		model = Message
 		fields = ('author_name', 'author_email', 'subject', 'content','people')
+		widgets = {
+            'people': CheckboxSelectMultiple(),
+        }
+        labels = {
+            'author_name': _('Nombre'),
+            'author_email': _(u'Correo electrónico'),
+            'subject': _('Asunto'),
+            'content': _('texto'),
+            'people': _('Destinatarios'),
+        }
+        help_texts = {
+            'people': _(u'Puedes seleccinar a más de un candidato para dirigir tu pregunta'),
+            'author_name': _(u'Identíficate de alguna forma: Estudiante, Obrero, Democrático, Dirigente, etc.'),
+        }
+        error_messages = {
+            'name': {
+                'required': _('Debes identificarte de alguna forma.'),
+            },
+        }
 	def save(self, **kwargs):
 		message = super(MessageForm, self).save(**kwargs)
 		message.push_to_the_api()

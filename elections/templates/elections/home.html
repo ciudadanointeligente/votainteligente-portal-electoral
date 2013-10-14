@@ -41,7 +41,7 @@
               {% for candidate in featured_election.can_election.candidate_set.all %}
               <li>
                   {% if candidate.photo %}
-                  {% thumbnail candidate.photo "300x300" as im %}
+                  {% thumbnail candidate.photo "x300" as im %}
                     <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
                   {% endthumbnail %}
                   {% else %}
@@ -80,7 +80,7 @@
               {% for candidate in featured_election.can_election.candidate_set.all %}
               <li>
                 {% if candidate.photo %}
-                  {% thumbnail candidate.photo "300x300" as im %}
+                  {% thumbnail candidate.photo "x300" as im %}
                     <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
                   {% endthumbnail %}
                 {% else %}
@@ -118,7 +118,7 @@
             {% for candidate in featured_election.can_election.candidate_set.all %}
             <li>
               {% if candidate.photo %}
-                {% thumbnail candidate.photo "300x300" as im %}
+                {% thumbnail candidate.photo "x300" as im %}
                   <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
                 {% endthumbnail %}
               {% else %}
@@ -153,10 +153,6 @@
         <li><a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.slug %}">{{ candidate.name }}</a></li>
       {% endfor %}
       </ul>
-
-      <div class="election-description">
-        <p>{{ featured_election.description|truncatewords:100 }}</p> 
-      </div>
     {% endfor %}
   </div>
   <!-- end mobile version -->

@@ -1,10 +1,13 @@
 {% extends "elections/election_base.html" %}
+{% load staticfiles %}
 {% load candideitorg_templetags %}
 {% load i18n %}
 {% load thumbnail %}
+{% load votainteligente_extras %}
 
 {% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}{% endblock url_face_to_face %}
 
+{% block title %} - {{election}} - {{candidate.name}}{% endblock title%}
 
 {% block mainelection %}
 
@@ -16,9 +19,13 @@
 		<div class="profile-candidate">
 			<div class="row">
 				<div class="col-md-3">
+					{% if candidate.photo %}
 					{% thumbnail candidate.photo "300x300" crop="center" as im %}
 					<img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive">
 					{% endthumbnail %}
+					{% else %}
+					<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">
+					{% endif %}
 				</div>
 				<div class="col-md-5">
 					<table class="table">
@@ -39,8 +46,12 @@
 						{% endfor %}
 					</ul>
 
+					{% if 'ask'|val_navbars  %}
 					<button type="button" class="btn btn-success btn-lg btn-block" onClick="location.href='{% url 'ask_detail_view' slug=election.slug %}'"><i class="icon-edit"></i> {% trans "Hazle una pregunta" %}</button>
-					<button type="button" class="btn btn-primary btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
+					{% endif %}
+					{% if 'facetoface'|val_navbars  %}
+					<button type="button" class="btn btn-danger btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
+					{% endif %}
 				</div>
 			</div>
 			
@@ -75,6 +86,9 @@
 					</p>
 					<p class="answer">
 						<i class="icon-quote-left"></i> {% answer_for_candidate_and_question candidate question %} <i class="icon-quote-right"></i>
+						<!-- source -->
+						{% get_information_source candidate question %} 
+						<!-- eosource -->
 					</p>
 				</div>
 				{% endfor %}
@@ -83,6 +97,25 @@
 		{% endfor %}
 
 	</div>
+
+	{% if 'enabled'|disqus and 'shortname'|disqus %}
+	<div class="disqus">
+		<div id="disqus_thread"></div>
+	    <script type="text/javascript">
+	        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	        var disqus_shortname = '{{ 'shortname'|disqus }}'; // required: replace example with your forum shortname
+	        var disqus_developer = {{ 'dev_mode'|disqus }};
+	        /* * * DON'T EDIT BELOW THIS LINE * * */
+	        (function() {
+	            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	        })();
+	    </script>
+	    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	</div>
+	{% endif %}
 	
 {% endblock mainelection %}
 
@@ -93,5 +126,7 @@
 			userCollapseText: '<i class="icon-chevron-up"></i>',
 			slicePoint: 180,
 		});
+
+		$('.pop-fuente').popover();
 	});
 {% endblock extrajs %}

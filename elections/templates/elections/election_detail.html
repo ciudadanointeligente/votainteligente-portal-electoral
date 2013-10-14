@@ -1,5 +1,6 @@
 {% extends "elections/election_base.html" %}
 {% load i18n %}
+{% load staticfiles %}
 {% load thumbnail %}
 
 {% block extrajs %}
@@ -10,13 +11,25 @@
 	<div class="container-candidates">
 		{% for candidato in election.can_election.candidate_set.all %}
 		<div class="col-md-2">
-			{% thumbnail candidato.photo "800x600" crop="center" as im %}
-			<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}"><img src="{{im.url}}" alt="{{candidato.name}}" border="0" class="img-responsive"></a>
-			{% endthumbnail %}
+			
+			{% if candidato.photo %}
+				{% thumbnail candidato.photo "300x300" crop="center" as im %}
+				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}"><img src="{{im.url}}" alt="{{candidato.name}}" border="0" class="img-responsive"></a>
+				{% endthumbnail %}
+			{% else %}
+				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidato.name}}" border="0" class="img-responsive"></a>
+			{% endif %}
+			
 			<p>
 				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}">{{candidato.name}}</a>
 			</p>
 		</div>
+		{% if forloop.counter == 6 %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="container-candidates">
+		{% endif %}
 		{% endfor %}
 	</div>
 </div>

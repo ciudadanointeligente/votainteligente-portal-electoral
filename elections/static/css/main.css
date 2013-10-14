@@ -10,6 +10,17 @@ html, body {
 	height: 100%;
 	-webkit-font-smoothing: antialiased;
 	font-family: 'Lato', sans-serif;
+	padding-top: 35px;
+}
+
+#wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -22,6 +33,10 @@ h1 {
 
 h3 {
 	font-weight: 900;
+}
+
+h3.portada {
+	font-size: 21px;
 }
 
 h5 {
@@ -87,6 +102,17 @@ strong {
 	float: right;
 }
 
+.breadcrumb {
+	padding: 8px 0px;
+	background-color: transparent;
+	border-radius: 0;
+}
+
+.breadcrumb>.active {
+	color: #9fa7b4;
+}
+
+
 /*Elecciones destacadas*/
 
 .contenedorDestacado {
@@ -114,7 +140,7 @@ strong {
 .accordion .panel
 {
 	background-color:#000;
-	background-image:url(accordion-assets/images/preloader.gif);
+	background-image:url(../img/preloader.gif);
 	background-repeat:no-repeat;
 	background-position:center center;
 	position:absolute;
@@ -231,6 +257,10 @@ input, button, select, textarea {
 	color: #14b9d5;
 }
 
+.navbar-nav {
+	float: right;
+}
+
 
 /*Menu Interno*/
 
@@ -317,23 +347,7 @@ input, button, select, textarea {
 	color: #ffd200;
 }
 
-@media (max-width: 604px) {
-
-	.nav-candidator ul.list-inline {
-		background: transparent;
-	}
-
-	.nav-candidator .list-inline>li {
-		padding: 9px 0px 10px;
-	}
-
-}
-
 /*Home*/
-
-.intro-home {
-	/*margin-top: 60px;*/
-}
 
 #home-search .form-control {
 	color: #fff;
@@ -411,8 +425,19 @@ input, button, select, textarea {
 .elections-results li {
 	background: #FFF;
 	border-radius: 6px;
-	padding: 10px;
+	padding: 5px 10px;
 	margin: 5px; 
+}
+
+.elections-results li ul {
+	text-align: right;
+}
+
+.elections-results li ul li {
+	display: inline-block;
+	background: #ffd200;
+	color: #a38400;
+	padding: 2px 6px;
 }
 
 /*Perfil candidato*/
@@ -484,6 +509,10 @@ input, button, select, textarea {
 
 .panel-title {
 	font-size: 14px;
+}
+
+#other-soulmate .no-first-row {
+	margin-top: 10px;
 }
 
 .other-soulmate-box {
@@ -680,9 +709,38 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 /* Footer */
 
 #footer {
-	padding-top: 10px;
-	color: #FFF;
+	padding: 40px 0 10px;
+	color: #B4BAC5;
 	background-color: #323a45;
+}
+
+#footer a {
+	color: #B4BAC5;
+}
+
+#footer a:hover {
+	color: #FFF;
+}
+
+#footer ul {
+	list-style: none;
+}
+
+#footer i {
+	margin-right: 15px;
+	margin-left: -30px;
+}
+
+#footer img {
+	opacity: 0.6;
+}
+
+#footer img:hover {
+	opacity: 1;
+}
+
+#footer .col-md-4:nth-child(2) {
+	text-align: center;
 }
 
 .container-profile {
@@ -749,17 +807,6 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 
 .panel {
 	border-radius: 6px;
-}
-
-@media (max-width: 480px) {
-
-	.profile-candidate {
-		min-height: 425px;
-	}
-
-	.other-soulmate-box {
-		margin-top: 5px;
-	}
 }
 
 /*Ranking*/
@@ -940,4 +987,32 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 .search-questions .form-control:-ms-input-placeholder {  
    color: #eaedf2;
+}
+
+/*breadscrumb-social*/
+.breadscrumb-social .social-button {
+	padding-top: 8px;
+}
+
+@media (max-width: 480px) {
+
+	.profile-candidate {
+		min-height: 425px;
+	}
+
+	.other-soulmate-box {
+		margin-top: 5px;
+	}
+}
+
+@media (max-width: 604px) {
+
+	.nav-candidator ul.list-inline {
+		background: transparent;
+	}
+
+	.nav-candidator .list-inline>li {
+		padding: 9px 0px 10px;
+	}
+
 }

@@ -1,3 +1,4 @@
+# coding=utf-8
 import sys
 # Django settings for votainteligente project.
 import os
@@ -170,6 +171,8 @@ TEST_POPIT_API_URL = "http://%s.%s.xip.io:%s/api" % ( TEST_POPIT_API_SUBDOMAIN,
                                                       TEST_POPIT_API_HOST_IP,
                                                       TEST_POPIT_API_PORT )
 
+POPIT_API_URL = "http://%s.127.0.0.1.xip.io:3000/api"
+
 ### POPIT DJANGO THINGS THINGS
 
 
@@ -221,6 +224,7 @@ LOGGING = {
 }
 #django tinyMCE
 TINYMCE_JS_URL = os.path.join(STATIC_URL, 'js/tiny_mce/tiny_mce.js')
+TINYMCE_JS_ROOT = os.path.join(STATIC_URL, 'js/tiny_mce')
 TINYMCE_DEFAULT_CONFIG = {
     'plugins': "table,spellchecker,paste,searchreplace",
     'theme': "advanced",
@@ -249,6 +253,32 @@ else:
 
 SOUTH_TESTS_MIGRATE = False
 EXTRA_APPS = ()
+
+#navigation bar
+# NAV_BAR = ('profiles','questionary','soulmate','facetoface','ask','ranking')
+NAV_BAR = ('profiles','questionary','soulmate','facetoface','ask','ranking')
+WEBSITE_METADATA = {
+    'author' : u'Fundación Ciudadano Inteligente',
+    'description' : u'Este 18 de Septiembre los chilenos elegiremos Presidente, Senadores, Diputados y Consejeros Regionales (CORE). Aquí encontrarás info para votar informado.',
+    'keywords' : u'elecciones, presidencia, presidenciales, senatoriales, senadores, diputados, cores, core'
+}
+#for Facebook OGP http://ogp.me/
+WEBSITE_OGP = {
+    'title' : u'Vota Inteligente',
+    'type' : 'website',
+    'url' : 'http://www.votainteligente.org/',
+    'image' : 'img/votai-196.png'
+}
+#disqus setting dev
+WEBSITE_DISQUS = {
+    'enabled' : True,
+    'shortname' : 'votainteligente',
+    'dev_mode' : 1
+}
+
+USE_POPIT = True
+#if you set USE_POPIT to False the USE_WRITEIT param will automatically be interpreted as False
+USE_WRITEIT = True
 
 try:
     from local_settings import *

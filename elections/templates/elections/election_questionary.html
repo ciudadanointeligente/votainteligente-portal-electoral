@@ -9,7 +9,8 @@
 
 {% block mainelection %}
 <div id="questionary">
-	<div class="questionary">
+	<div class="questionary">		
+
 		{% for category in election.can_election.category_set.all %}
 		<div class="panel panel-default">
 			<div class="panel-heading">{{category.name}}</div>
@@ -22,30 +23,29 @@
 
 					{% for answer in question.answer_set.all %}
 						{% if answer.candidate_set.all|length > 0 %}
-					<div>
-						<i class="icon-quote-left"> </i>{{answer.caption}}<i class="icon-quote-right"></i>
-					</div>
 
-					<div class="hidden-xs hidden-sm">
-						<!-- for desktop version -->
-						<div >
-							<ul class="list-inline">
-							{% for candidate in answer.candidate_set.all %}
-								<li>
-								{% if candidate.photo %}
-									{% thumbnail candidate.photo "100x100" crop="center" as im %}
-									<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
-									{% endthumbnail %}
-								{% else %}
-									{% thumbnail 'static/img/candidate-default.jpg' "100x100" crop="center" as im %}
-									<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
-									{% endthumbnail %}
-								{% endif %}
-								</li>
-							{% endfor %}
-							</ul>
+						<div class="row hidden-xs hidden-sm">
+							<div class="col-md-5">
+								<ul class="list-inline">
+								{% for candidate in answer.candidate_set.all %}
+									<li>
+									{% if candidate.photo %}
+										{% thumbnail candidate.photo "100x100" crop="center" as im %}
+										<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+										{% endthumbnail %}
+									{% else %}
+										{% thumbnail 'static/img/candidate-default.jpg' "100x100" crop="center" as im %}
+										<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+										{% endthumbnail %}
+									{% endif %}
+									</li>
+								{% endfor %}
+								</ul>
+							</div>
+							<div class="col-md-7">
+								<i class="icon-quote-left"></i> {{answer.caption}} <i class="icon-quote-right"></i>
+							</div>
 						</div>
-					</div>
 						{% endif %}
 					<!-- end desktop version-->
 					<!-- mobile version, no image of candidate -->
@@ -53,6 +53,10 @@
 						<div >
 							<div>
 								{% for candidate in answer.candidate_set.all %}
+									<div>
+										<i class="icon-quote-left"></i> {{answer.caption}} <i class="icon-quote-right"></i>
+									</div>
+
 									{% if forloop.first %}
 										<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a>
 									{% elif forloop.last %}

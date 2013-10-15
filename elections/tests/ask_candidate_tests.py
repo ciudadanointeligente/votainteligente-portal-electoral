@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from elections.models import Election, VotaInteligenteMessage
 from elections.forms import MessageForm
 from writeit.models import Message, WriteItApiInstance
+from datetime import datetime
 
 
 
@@ -107,6 +108,8 @@ class VotaInteligenteMessageTestCase(TestCase):
 		self.assertIsInstance(message, Message)
 		#I want to make sure it is not moderated
 		self.assertFalse(message.moderated)
+		self.assertTrue(message.created)
+		self.assertIsInstance(message.created,datetime)
 
 
 	def test_unicode(self):
@@ -172,6 +175,57 @@ class VotaInteligenteMessageTestCase(TestCase):
 
 
 
+class VotaInteligenteMessagesOrderedList(TestCase):
+	def setUp(self):
+		super(VotaInteligenteMessagesOrderedList, self).setUp()
+		self.election = Election.objects.all()[0]
+		self.candidate1 = self.election.popit_api_instance.person_set.all()[0]
+		self.candidate2 = self.election.popit_api_instance.person_set.all()[1]
+		
+		self.message1 = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+            , author_name='author'
+            , author_email='author email'
+            , subject = u'I\'m moderated'
+            , content = u'Qué opina usted sobre el test_accept_message'
+            , writeitinstance=self.election.writeitinstance
+            , slug = 'subject-slugified'
+            , moderated = True
+            )
+		self.message2 = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+            , author_name='author'
+            , author_email='author email'
+            , subject = u'message 3'
+            , content = u'Qué opina usted sobre el test_accept_message'
+            , writeitinstance=self.election.writeitinstance
+            , slug = 'subject-slugified'
+            , moderated = True
+            )
+		self.message3 = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+            , author_name='author'
+            , author_email='author email'
+            , subject = u'please don\'t moderate me'
+            , content = u'Qué opina usted sobre el test_accept_message'
+            , writeitinstance=self.election.writeitinstance
+            , slug = 'subject-slugified'
+            )
+		self.message4 = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+            , author_name='author'
+            , author_email='author email'
+            , subject = u'message 4'
+            , content = u'Qué opina usted sobre el test_accept_message'
+            , writeitinstance=self.election.writeitinstance
+            , slug = 'subject-slugified'
+            , moderated = True
+            )
 
+
+	def test_message_class_has_a_manager(self):
+		messages = VotaInteligenteMessage.objects.all()
+
+		self.assertEquals(messages.count(), 4)
+		self.assertEquals(messages[0], self.message4)#because it was the last created
+		self.assertEquals(messages[1], self.message2)#the third should not appear here because it has not been moderated
+		self.assertEquals(messages[2], self.message1)
+		self.assertEquals(messages[3], self.message3)#this hasn't been moderated
 
 

@@ -116,9 +116,17 @@ def get_current_writeit_api_instance():
     api_instance, created = WriteItApiInstance.objects.get_or_create(url=settings.WRITEIT_API_URL)
     return api_instance
 
+class VotaInteligenteMessageManager(models.Manager):
+    def get_query_set(self):
+        queryset = super(VotaInteligenteMessageManager, self).get_query_set()
+
+        return queryset.order_by('-moderated', '-created')
 
 class VotaInteligenteMessage(WriteItMessage):
     moderated = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+
+    objects = VotaInteligenteMessageManager()
 
     class Meta:
         verbose_name = _(u'Mensaje de preguntales')

@@ -14,6 +14,7 @@ from writeit.models import WriteItApiInstance, WriteItInstance
 from candideitorg.models import election_finished
 from writeit.models import Message as WriteItMessage
 
+
 class Election(models.Model):
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='name', unique=True)
@@ -132,3 +133,10 @@ class VotaInteligenteMessage(WriteItMessage):
     def reject_moderation(self):
         self.moderated = True
         self.save()
+
+    def __unicode__(self):
+        return u'%(author_name)s preguntó "%(subject)s" en %(election)s' % {
+        'author_name':self.author_name,
+        'subject':self.subject,
+        'election':self.writeitinstance.election
+        }

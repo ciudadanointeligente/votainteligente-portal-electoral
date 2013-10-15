@@ -36,6 +36,27 @@ class AskTestCase(TestCase):
 		self.assertIn('messages', response.context)
 		self.assertTemplateUsed(response, 'elections/ask_candidate.html')
 
+	def test_it_has_the_list_of_already_created_messages(self):
+		message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+            , author_name='author'
+            , author_email='author email'
+            , subject = u'subject test_accept_message'
+            , content = u'Qué opina usted sobre el test_accept_message'
+            , writeitinstance=self.election.writeitinstance
+            , slug = 'subject-slugified'
+            )
+
+
+		url = reverse('ask_detail_view', 
+			kwargs={
+			'slug':self.election.slug,
+			})
+		response = self.client.get(url)
+		self.assertIn('writeitmessages', response.context)
+		self.assertEquals(len(response.context['writeitmessages']), 1)
+		self.assertEquals(response.context['writeitmessages'][0], message)
+
+
 
 	def test_submit_message(self):
 		url = reverse('ask_detail_view', kwargs={'slug':self.election.slug,})
@@ -86,6 +107,20 @@ class VotaInteligenteMessageTestCase(TestCase):
 		self.assertIsInstance(message, Message)
 		#I want to make sure it is not moderated
 		self.assertFalse(message.moderated)
+
+
+	def test_unicode(self):
+		message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+            , author_name='author'
+            , author_email='author email'
+            , subject = 'subject'
+            , content = 'content'
+            , writeitinstance=self.election.writeitinstance
+            , slug = 'subject-slugified'
+            )
+
+		expected_unicode = u'author preguntó "subject" en 2a Circunscripcion Antofagasta'
+		self.assertEquals(message.__unicode__(), expected_unicode)
 
 
 	def test_accept_message(self):

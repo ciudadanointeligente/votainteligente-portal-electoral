@@ -27,6 +27,9 @@ class TemplateTagsTestCase(TestCase):
 		    'shortname' : 'votainteligente',
 		    'dev' : 1,
 		}
+		WEBSITE_GA = {
+		    'code' : 'UA-XXXXX-X'
+		}
 
 	def test_bring_all_elections_with_their_tags_as_json(self):
 		expected_elections = []
@@ -106,3 +109,9 @@ class TemplateTagsTestCase(TestCase):
 		context = Context({})
 
 		self.assertEqual(template.render(context), u'')
+
+	def test_website_ga(self):
+		template = Template("{% load votainteligente_extras %}{{ 'code'|ga }}")
+		context = Context({})
+
+		self.assertEqual(template.render(context), u'UA-XXXXX-X')

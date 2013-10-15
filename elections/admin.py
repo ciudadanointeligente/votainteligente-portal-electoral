@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from elections.models import Election
+from elections.models import Election, VotaInteligenteMessage
 from django.contrib.flatpages.admin import FlatpageForm, FlatPageAdmin
 from django.contrib.flatpages.models import FlatPage
 ## OOPS this is a custom widget that works for initializing
@@ -34,3 +34,9 @@ class PageAdmin(FlatPageAdmin):
 
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, PageAdmin)
+
+
+class MensajesAdmin(admin.ModelAdmin):
+    fields = ['author_name','author_email', 'subject', 'content', 'people', 'moderated']
+
+admin.site.register(VotaInteligenteMessage, MensajesAdmin)

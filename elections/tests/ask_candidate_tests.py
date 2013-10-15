@@ -1,8 +1,9 @@
+# coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django.core.urlresolvers import reverse
-from elections.models import Election
+from elections.models import Election, VotaInteligenteMessage
 from elections.forms import MessageForm
-from writeit.models import Message
+from writeit.models import Message, WriteItApiInstance
 
 
 
@@ -51,8 +52,10 @@ class AskTestCase(TestCase):
 
 		self.assertTemplateUsed(response, 'elections/ask_candidate.html')
 		self.assertEquals(Message.objects.count(), 1)
-		new_message = Message.objects.all()[0]
-		self.assertTrue(new_message.remote_id and new_message.url) 
+		new_message = VotaInteligenteMessage.objects.all()[0]
+		self.assertFalse(new_message.remote_id) 
+		self.assertFalse(new_message.url)
+		self.assertFalse(new_message.moderated)
 		self.assertEquals(new_message.content, 'this is a very important message')
 		self.assertEquals(new_message.subject, 'this important issue')
 		self.assertEquals(new_message.people.all().count(), 2)
@@ -61,3 +64,79 @@ class AskTestCase(TestCase):
 		message_form = MessageForm(writeitinstance = self.election.writeitinstance)
 		election_candidates = self.election.popit_api_instance.person_set.all()
 		self.assertQuerysetEqual(election_candidates,[repr(r) for r in message_form.fields['people'].queryset])
+
+
+class VotaInteligenteMessageTestCase(TestCase):
+	def setUp(self):
+		super(VotaInteligenteMessageTestCase, self).setUp()
+		self.election = Election.objects.all()[0]
+		self.candidate1 = self.election.popit_api_instance.person_set.all()[0]
+		self.candidate2 = self.election.popit_api_instance.person_set.all()[1]
+
+	def test_can_create_a_message_with_a_modetation(self):
+		message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+            , author_name='author'
+            , author_email='author email'
+            , subject = 'subject'
+            , content = 'content'
+            , writeitinstance=self.election.writeitinstance
+            , slug = 'subject-slugified'
+            )
+		#It is a writeit message
+		self.assertIsInstance(message, Message)
+		#I want to make sure it is not moderated
+		self.assertFalse(message.moderated)
+
+
+	def test_accept_message(self):
+		message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+            , author_name='author'
+            , author_email='author email'
+            , subject = u'subject test_accept_message'
+            , content = u'Qué opina usted sobre el test_accept_message'
+            , writeitinstance=self.election.writeitinstance
+            , slug = 'subject-slugified'
+            )
+		message.people.add(self.candidate1)
+		message.people.add(self.candidate2)
+
+		# just making sure this hasn't changed 
+		# 
+		
+
+		self.assertFalse(message.remote_id)
+		self.assertFalse(message.url)
+
+		# Now I moderate this
+		# which means push this to the API and then
+		# 
+		message.accept_moderation()
+
+		self.assertTrue(message.remote_id)
+		self.assertTrue(message.url)
+		self.assertTrue(message.moderated)
+
+
+	def test_reject_message(self):
+		message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+            , author_name='author'
+            , author_email='author email'
+            , subject = u'subject test_accept_message'
+            , content = u'Qué opina usted sobre el test_accept_message'
+            , writeitinstance=self.election.writeitinstance
+            , slug = 'subject-slugified'
+            )
+		message.people.add(self.candidate1)
+		message.people.add(self.candidate2)
+
+		message.reject_moderation()
+		#the message has been moderated
+		self.assertFalse(message.remote_id)
+		self.assertFalse(message.url)
+		self.assertTrue(message.moderated)
+
+
+
+
+
+

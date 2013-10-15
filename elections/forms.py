@@ -3,8 +3,7 @@ from haystack.forms import SearchForm
 from django import forms
 from django.forms import ModelForm, CheckboxSelectMultiple
 from django.utils.translation import ugettext as _
-from elections.models import Election
-from writeit.models import Message
+from elections.models import Election, VotaInteligenteMessage
 
 class ElectionForm(SearchForm):
 	pass
@@ -27,7 +26,7 @@ class MessageForm(ModelForm):
 		self.instance.api_instance = self.writeitinstance.api_instance
 		self.fields['people'].queryset = self.writeitinstance.election.popit_api_instance.person_set.all()
 	class Meta:
-		model = Message
+		model = VotaInteligenteMessage
 		fields = ('author_name', 'author_email', 'subject', 'content','people')
 		widgets = {
             'people': CheckboxSelectMultiple(),
@@ -48,8 +47,3 @@ class MessageForm(ModelForm):
                 'required': _('Debes identificarte de alguna forma.'),
             },
         }
-	def save(self, **kwargs):
-		message = super(MessageForm, self).save(**kwargs)
-		message.push_to_the_api()
-		return message
-

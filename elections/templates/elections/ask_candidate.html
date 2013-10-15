@@ -15,25 +15,27 @@
 				
 				<div class="form-group">
 					<label for="name">{% trans "Yo soy" %}</label>
-					<input type="text" class="form-control" id="name" placeholder="{% trans "Identifícate como quieras" %}">
+					<input type="text" class="form-control" id="id_author_name" maxlength="512" name="author_name" type="text"  placeholder="{% trans "Identifícate como quieras" %}">
 				</div>
 				<div class="form-group">
 					<label for="email">{% trans "Correo electrónico" %}</label>
-					<input type="email" class="form-control" id="email" placeholder="{% trans "Si deseas que te notifiquemos la respuesta del candidato" %}">
+					<input type="email" class="form-control" id="id_author_email" maxlength="75" name="author_email" placeholder="{% trans "Si deseas que te notifiquemos la respuesta del candidato" %}">
+				</div>
+				<div class="form-group">
+					<label for="email">{% trans "Ponle un título" %}</label>
+					<input id="id_subject" maxlength="512" class="form-control" name="subject" type="text" placeholder="{% trans "Cómo pretenden superar la pobreza?" %}">
 				</div>
 				<div class="form-group">
 					<label for="question">{% trans "Escribe tu pregunta" %}</label>
-					<textarea name="question" id="question" class="form-control" rows="3" placeholder="{% trans "Escribe una pregunta clara y respetuosa. Revisa si otros han preguntado lo que a ti te interesa saber" %}"></textarea>
+					<textarea cols="40" id="id_content" name="content" class="form-control" rows="3" placeholder="{% trans "Escribe una pregunta clara y respetuosa. Revisa si otros han preguntado lo que a ti te interesa saber" %}"></textarea>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<h5>{% trans "A quien quieres preguntar" %}:</h5>
-				<ul class="list-unstyled">
-					{% for candidato in election.can_election.candidate_set.all %}
-					<li><input type="checkbox" value=""> {{candidato.name}}</li>
-					{% endfor %}
-				</ul>
+				{{ form.people }}
+
 				<p><div class="txt-gris">{% trans "*No tenemos el mail del candidato." %}</div>{% trans " ¿Eres candidato? " %}<a href="mailto:info@votainteligente.cl?Subject=Info%20candidato" target="_top">{% trans "escríbenos" %}</a>.</p>
+
 			</div>
 		</div>
 		<div class="row">
@@ -64,7 +66,9 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
+			{% for message in messages %}
 			<div class="panel panel-default">
+				
 				<div class="panel-heading">
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro odit ipsum perferendis explicabo. Laboriosam, laudantium, quaerat, cupiditate, libero numquam quia eum corporis quo consectetur molestias aspernatur sint ad aliquam. Suscipit?
@@ -73,6 +77,7 @@
 						Perico los Palotes
 					</p>
 				</div>
+				
 				<div class="panel-body">
 					<div class="candidate-answer">
 						<div class="row">
@@ -94,12 +99,11 @@
 					</div>
 				</div>
 			</div>
+			{% endfor %}
+
 		</div>
 	</div>
 </div>
-
-{{ form.as_p }}
-<input type="submit" value="{% trans 'Enviar' %}" />
-</form>
 <!-- eof ask -->
+
 {% endblock mainelection %}

@@ -56,3 +56,9 @@ def disqus(disqus):
 	if disqus in settings.WEBSITE_DISQUS:
 		return settings.WEBSITE_DISQUS[disqus]
 	return ''
+
+@register.filter
+def ga(value):
+	if value in settings.WEBSITE_GA:
+		return settings.WEBSITE_GA[value]
+	return ''

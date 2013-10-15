@@ -42,7 +42,7 @@
 				<div class="col-md-4">
 					<ul class="list-unstyled">
 						{% for link in candidate.link_set.all %}
-							<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate"><i class="{{ link.icon_class }}"></i> {{link.name}}</a></li>
+							<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate" target="_blank"><i class="{{ link.icon_class }}"></i> {{link.name}}</a></li>
 						{% endfor %}
 					</ul>
 

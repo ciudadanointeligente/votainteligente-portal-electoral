@@ -60,7 +60,8 @@ def automatically_create_election(sender, instance, created, **kwargs):
 	            )
 
 		if getattr(settings, 'USE_POPIT', True):
-			popit_api_instance_url = settings.POPIT_API_URL% ( election.slug)
+			short_slug = hex(hash(election.slug))
+			popit_api_instance_url = settings.POPIT_API_URL% ( short_slug)
 
 			popit_api_instance = PopitApiInstance.objects.create(
 				url = popit_api_instance_url

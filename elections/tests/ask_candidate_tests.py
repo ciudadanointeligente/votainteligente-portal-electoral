@@ -62,6 +62,10 @@ class AskTestCase(TestCase):
 
     def test_submit_message(self):
         url = reverse('ask_detail_view', kwargs={'slug':self.election.slug,})
+        self.candidate1.relation.reachable = True
+        self.candidate1.relation.save()
+        self.candidate2.relation.reachable = True
+        self.candidate2.relation.save()
         response = self.client.post(url, {'people': [self.candidate1.pk, self.candidate2.pk],
                                             'subject': 'this important issue',
                                             'content': 'this is a very important message', 

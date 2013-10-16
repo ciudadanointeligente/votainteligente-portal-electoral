@@ -50,6 +50,16 @@ class CandidatePerson(models.Model):
     reachable = models.BooleanField(default=False)
 
 
+    def __unicode__(self):
+        return u'Extra info de %(candidate)s'%{
+            "candidate":self.candidate.name
+            }
+
+    class Meta:
+            verbose_name = _(u'Extra Info de candidato')
+            verbose_name_plural = _(u'Extra Info de candidatos')
+
+
 @receiver(post_save, sender=CanElection)
 def automatically_create_election(sender, instance, created, **kwargs):
     if kwargs.get('raw', False):

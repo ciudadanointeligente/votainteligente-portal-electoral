@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from elections.models import Election, VotaInteligenteMessage
+from elections.models import Election, VotaInteligenteMessage, CandidatePerson
 from django.contrib.flatpages.admin import FlatpageForm, FlatPageAdmin
 from django.contrib.flatpages.models import FlatPage
 ## OOPS this is a custom widget that works for initializing
@@ -41,6 +41,13 @@ class AnswerInline(admin.TabularInline):
     model = Answer
     fields = ['content',]
     extra = 0
+
+class CandidatePersonExtraInfoAdmin(admin.ModelAdmin):
+    readonly_fields = ('person',)
+    fields = ('reachable', )
+    search_fields = ['person__name', 'person__api_instance__election__name']
+
+admin.site.register(CandidatePerson, CandidatePersonExtraInfoAdmin)
 
 
 class MensajesAdmin(admin.ModelAdmin):

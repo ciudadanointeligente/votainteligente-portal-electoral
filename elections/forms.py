@@ -24,7 +24,7 @@ class MessageForm(ModelForm):
 		super(MessageForm, self).__init__(*args, **kwargs)
 		self.instance.writeitinstance = self.writeitinstance
 		self.instance.api_instance = self.writeitinstance.api_instance
-		self.fields['people'].queryset = self.writeitinstance.election.popit_api_instance.person_set.all()
+		self.fields['people'].queryset = self.writeitinstance.election.popit_api_instance.person_set.filter(relation__reachable=True)
 	class Meta:
 		model = VotaInteligenteMessage
 		fields = ('author_name', 'author_email', 'subject', 'content','people')

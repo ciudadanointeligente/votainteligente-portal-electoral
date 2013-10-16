@@ -35,6 +35,7 @@ class CandideitorCandideitPopitPerson(TestCase):
 
         self.assertEquals(self.pedro.relation, candidate_person)
         self.assertEquals(self.candidato1.relation, candidate_person)
+        self.assertFalse(candidate_person.reachable)
 
 
 

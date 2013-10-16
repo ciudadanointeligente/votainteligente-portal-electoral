@@ -47,6 +47,7 @@ class Election(models.Model):
 class CandidatePerson(models.Model):
     person = models.OneToOneField(Person, related_name="relation")
     candidate = models.OneToOneField(CanCandidate, related_name="relation")
+    reachable = models.BooleanField(default=False)
 
 
 @receiver(post_save, sender=CanElection)

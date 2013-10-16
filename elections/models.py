@@ -18,13 +18,13 @@ from writeit.models import Message as WriteItMessage
 class Election(models.Model):
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='name', unique=True)
-    description = models.TextField()
-    tags = TaggableManager()
-    can_election = models.OneToOneField(CanElection, null=True)
+    description = models.TextField(blank=True)
+    tags = TaggableManager(blank=True)
+    can_election = models.OneToOneField(CanElection, null=True, blank=True)
     searchable = models.BooleanField(default=True)
     highlighted = models.BooleanField(default=False)
-    popit_api_instance = models.OneToOneField(PopitApiInstance, null=True)
-    writeitinstance = models.OneToOneField(WriteItInstance, null=True)
+    popit_api_instance = models.OneToOneField(PopitApiInstance, null=True, blank=True)
+    writeitinstance = models.OneToOneField(WriteItInstance, null=True, blank=True)
     extra_info_title = models.CharField(max_length = 50, blank = True, null = True)
     extra_info_content = models.TextField(max_length = 3000, blank = True, null = True, help_text=_("Puedes usar Markdown. <br/> ") 
             + markdown_allowed())
@@ -71,10 +71,11 @@ def automatically_create_election(sender, instance, created, **kwargs):
                 can_election=can_election,
                 name = can_election.name,
                 )
-
         if getattr(settings, 'USE_POPIT', True):
             popit_api_instance_url = settings.POPIT_API_URL% ( election.slug)
-
+        if getattr(settings, 'USE_POPIT', True):
+            short_slug = hex(abs(hash(election.slug)))
+            popit_api_instance_url = settings.POPIT_API_URL% ( short_slug)
             popit_api_instance = PopitApiInstance.objects.create(
                 url = popit_api_instance_url
                 )

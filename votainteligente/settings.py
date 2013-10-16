@@ -258,22 +258,26 @@ EXTRA_APPS = ()
 # NAV_BAR = ('profiles','questionary','soulmate','facetoface','ask','ranking')
 NAV_BAR = ('profiles','questionary','soulmate','facetoface','ask','ranking')
 WEBSITE_METADATA = {
-    'author' : u'Fundación Ciudadano Inteligente',
-    'description' : u'Este 18 de Septiembre los chilenos elegiremos Presidente, Senadores, Diputados y Consejeros Regionales (CORE). Aquí encontrarás info para votar informado.',
-    'keywords' : u'elecciones, presidencia, presidenciales, senatoriales, senadores, diputados, cores, core'
+    'author' : u'Name of the author',
+    'description' : u'A description for the site',
+    'keywords' : u'some,tags,separated,by,comma'
 }
 #for Facebook OGP http://ogp.me/
 WEBSITE_OGP = {
-    'title' : u'Vota Inteligente',
+    'title' : u'Title page for Facebook OGP',
     'type' : 'website',
-    'url' : 'http://www.votainteligente.org/',
+    'url' : 'http://www.mi-domain.org/',
     'image' : 'img/votai-196.png'
 }
 #disqus setting dev
 WEBSITE_DISQUS = {
     'enabled' : True,
-    'shortname' : 'votainteligente',
-    'dev_mode' : 1
+    'shortname' : 'shortname_disqus',
+    'dev_mode' : 0
+}
+#google analytics
+WEBSITE_GA = {
+    'code' : 'UA-XXXXX-X'
 }
 
 USE_POPIT = True

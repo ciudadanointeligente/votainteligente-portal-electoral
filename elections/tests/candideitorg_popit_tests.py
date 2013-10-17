@@ -35,7 +35,19 @@ class CandideitorCandideitPopitPerson(TestCase):
 
         self.assertEquals(self.pedro.relation, candidate_person)
         self.assertEquals(self.candidato1.relation, candidate_person)
+        self.assertFalse(candidate_person.reachable)
 
+    def test_unicode(self):
+        candidate_person, created = CandidatePerson.objects.get_or_create(
+            person=self.pedro,
+            candidate=self.candidato1
+            )
+        
+        expected_unicode = 'Extra info de %(candidate)s'%{
+        "candidate":self.pedro.name
+        }
+
+        self.assertEquals(expected_unicode, candidate_person.__unicode__())
 
 
 class AutomaticCreationOfThingsWhenLoadingCandideitorgs(TestCase):

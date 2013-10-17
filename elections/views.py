@@ -2,10 +2,11 @@
 from django.views.generic.edit import FormView
 from elections.forms import ElectionSearchByTagsForm
 from django.core.urlresolvers import reverse
-from django.views.generic import TemplateView
-from django.views.generic import DetailView
-from elections.models import Election
+from django.views.generic import CreateView, DetailView, TemplateView
+from elections.models import Election, VotaInteligenteMessage
+from elections.forms import MessageForm
 from candideitorg.models import Candidate
+from writeit.models import Message
 
 class ElectionsSearchByTagView(FormView):
     form_class = ElectionSearchByTagsForm
@@ -73,6 +74,27 @@ class CandidateDetailView(DetailView):
         #so that's why it says election.election
         context['election'] = self.object.election.election
         return context
+        
+class ElectionAskCreateView(CreateView):
+    model = Message
+    form_class = MessageForm
+
+    def get_context_data(self, **kwargs):
+        context = super(ElectionAskCreateView, self).get_context_data(**kwargs)
+        election_slug = self.kwargs['slug']
+        context['election'] = Election.objects.get(slug = election_slug)
+        context['writeitmessages'] = VotaInteligenteMessage.objects.filter(writeitinstance=context['election'].writeitinstance)
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super(ElectionAskCreateView, self).get_form_kwargs()
+        election_slug = self.kwargs['slug']
+        kwargs['writeitinstance'] = Election.objects.get(slug = election_slug).writeitinstance 
+        return kwargs
+
+    def get_success_url(self):
+        election_slug = self.kwargs['slug']
+        return reverse('ask_detail_view', kwargs={'slug':election_slug,})
 
 from django.template.response import TemplateResponse
 import requests, simplejson as json

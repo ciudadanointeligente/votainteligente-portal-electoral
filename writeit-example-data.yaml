@@ -1393,3 +1393,12 @@
     summary: ''}
   model: popit.person
   pk: 142
+- fields: {label_name: email, name: email}
+  model: contactos.contacttype
+  pk: 1
+- fields: {contact_type: 1, is_bounced: false, owner: 1, person: 1, value: emaildemanuelrojas@mail.com}
+  model: contactos.contact
+  pk: 1
+- fields: {contact_type: 1, is_bounced: false, owner: 1, person: 2, value: emaildealejandroguillier@mail.com}
+  model: contactos.contact
+  pk: 2

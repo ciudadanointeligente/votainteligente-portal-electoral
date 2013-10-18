@@ -453,6 +453,10 @@ input, button, select, textarea {
 	padding: 20px 20px 0 20px;
 }
 
+.profile-candidate img {
+	margin-bottom: 10px;
+}
+
 .img-profile {
 	padding-bottom: 5px;
 }

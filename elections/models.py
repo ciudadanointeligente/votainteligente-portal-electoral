@@ -13,6 +13,7 @@ from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
 from writeit.models import WriteItApiInstance, WriteItInstance
 from candideitorg.models import election_finished
 from writeit.models import Message as WriteItMessage
+import datetime
 
 
 class Election(models.Model):
@@ -134,6 +135,9 @@ class VotaInteligenteMessageManager(models.Manager):
 
         return queryset.order_by('-moderated', '-created')
 
+
+
+
 class VotaInteligenteMessage(WriteItMessage):
     moderated = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
@@ -160,3 +164,18 @@ class VotaInteligenteMessage(WriteItMessage):
         'subject':self.subject,
         'election':self.writeitinstance.election
         }
+
+class VotaInteligenteAnswer(models.Model):
+    message = models.ForeignKey(VotaInteligenteMessage, related_name='answers')
+    content = models.TextField()
+    created = models.DateTimeField(editable=False)
+    person = models.ForeignKey(Person, related_name='answers')
+
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.created = datetime.datetime.today()
+
+        return super(VotaInteligenteAnswer, self).save(*args, **kwargs)
+
+

@@ -1,8 +1,14 @@
 from django.conf.urls import patterns, include, url
-
+from tastypie.api import Api
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from elections.api import NewAnswerWebHook
+
+
 admin.autodiscover()
+
+
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -17,4 +23,13 @@ urlpatterns = patterns('',
     url(r'^', include('elections.urls')),
     ('^pages/', include('django.contrib.flatpages.urls')),
     (r'^tinymce/', include('tinymce.urls')),
+)
+
+v1_api = Api(api_name='v1')
+v1_api.register(NewAnswerWebHook())
+
+urlpatterns += patterns('',
+  # ...more URLconf bits here...
+  # Then add:
+  (r'^api/', include(v1_api.urls)),
 )

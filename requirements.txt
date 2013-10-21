@@ -18,3 +18,5 @@ django-tinymce
 -e git://github.com/ciudadanointeligente/popit-django.git@posts_a_person_to_the_api#egg=popit-django
 -e git://github.com/ciudadanointeligente/writeit-django.git#egg=writeit-django
 django-registration
+mimeparse
+django-tastypie

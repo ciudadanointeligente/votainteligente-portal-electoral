@@ -1,7 +1,7 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django.core.urlresolvers import reverse
-from elections.models import Election, VotaInteligenteMessage
+from elections.models import Election, VotaInteligenteMessage, VotaInteligenteAnswer
 from elections.forms import MessageForm
 from writeit.models import Message, WriteItApiInstance
 from datetime import datetime
@@ -184,6 +184,39 @@ class VotaInteligenteMessageTestCase(TestCase):
         self.assertFalse(message.remote_id)
         self.assertFalse(message.url)
         self.assertTrue(message.moderated)
+
+class VotaInteligenteAnswerTestCase(TestCase):
+    def setUp(self):
+        self.election = Election.objects.all()[0]
+        self.candidate1 = self.election.popit_api_instance.person_set.all()[0]
+        self.candidate2 = self.election.popit_api_instance.person_set.all()[1]
+        self.message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+            , author_name='author'
+            , author_email='author email'
+            , subject = u'subject test_accept_message'
+            , content = u'Qué opina usted sobre el test_accept_message'
+            , writeitinstance=self.election.writeitinstance
+            , slug = 'subject-slugified'
+            )
+        self.message.people.add(self.candidate1)
+
+    def test_create_an_answer(self):
+        answer = VotaInteligenteAnswer.objects.create(
+            content=u'Hey I\'ve had to speak english in the last couple of days',
+            message=self.message,
+            person=self.candidate1
+            )
+
+        self.assertTrue(answer)
+        self.assertEquals(answer.content, u'Hey I\'ve had to speak english in the last couple of days')
+        self.assertEquals(answer.message, self.message)
+        self.assertEquals(answer.person, self.candidate1)
+        self.assertIsNotNone(answer.created)
+        self.assertIsInstance(answer.created, datetime)
+
+
+        self.assertIn(answer, self.message.answers.all())
+        self.assertIn(answer, self.candidate1.answers.all())
 
 
 

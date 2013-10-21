@@ -1,5 +1,7 @@
 {% extends "elections/election_base.html" %}
 {% load i18n %}
+{% load pagination_tags %}
+
 
 {% block title %} - {{election}} - {% trans "Pregúntales"%}{% endblock title%}
 
@@ -51,64 +53,73 @@
 	</form>
 </div>
 <div>
+	
 	{% if writeitmessages %}
+	{% autopaginate writeitmessages 1 %}
+	
 	<div class="row">
 		<div class="col-md-8 recent-questions">
 			<h3>{% trans 'Preguntas recientes' %}</h3>
 		</div>
+
 		<div class="col-md-4 search-questions">
+			{% comment %}
 			<form action="" class="form-inline" role="form">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Buscar pregunta">
 					<span class="input-group-addon"><i class="icon-search"></i></span>
 				</div>
 			</form>
+			{% endcomment %}
 		</div>
 	</div>
+	{% paginate %}
 	<div class="row">
 		<div class="col-md-12">
 			{% for message in writeitmessages %}
 			<div class="panel panel-default">
-				
-				<div class="panel-heading">
-					<p>
-						{{ message.content }}
-					</p>
-					<p class="text-right">
-						{{ message.author_name }}
-					</p>
-				</div>
-				
-				<div class="panel-body">
-					<div class="candidate-answer">
-						<div class="row">
-							<div class="col-md-12">
-								<strong>Perico los Palotes</strong>
-									<button type="submit" class="btn btn-primary"><i class="icon-twitter"> {% trans "Twittea al candidato" %}</i></button>
-							</div>
-						</div>
-							<p><i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, fugit, voluptates, aspernatur laboriosam aliquid reiciendis asperiores dolorem nemo ex quam rerum cupiditate repellendus facilis ea earum voluptate dolore dicta mollitia. <i class="icon-quote-right"></i></p>
+                
+			    <div class="panel-heading">
+			        <p>
+			            {{ message.content }}
+			        </p>
+			        <p class="text-right">
+			            {{ message.author_name }}
+			        </p>
+			    </div>
+			    
+			    <div class="panel-body">
+
+			        {% for answer in message.answers.all %}
+			        <div class="candidate-answer">
+					    <div class="row">
+					        <div class="col-md-12">
+					            <strong>{{ answer.person.name }}</strong>
+					                {% comment %}
+					                <button type="submit" class="btn btn-primary"><i class="icon-twitter"> {% trans "Twittea al candidato" %}</i></button>
+					                {% endcomment %}
+					        </div>
+					    </div>
+					        <p><i class="icon-quote-left"></i>{{ answer.content|linebreaksbr }}<i class="icon-quote-right"></i></p>
 					</div>
-					<div class="candidate-answer">
-						<div class="row">
-							<div class="col-md-12">
-								<strong>Perico los Palotes</strong>
-									<button type="submit" class="btn btn-primary"><i class="icon-twitter"> {% trans "Twittea al candidato" %}</i></button>
-							</div>
-						</div>
-							<p><i class="icon-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, fugit, voluptates, aspernatur laboriosam aliquid reiciendis asperiores dolorem nemo ex quam rerum cupiditate repellendus facilis ea earum voluptate dolore dicta mollitia. <i class="icon-quote-right"></i></p>
-					</div>
-				</div>
+					{% empty %}
+			        <div class="candidate-answer">
+			            {% trans 'No hay respuestas aún' %}
+			        </div>
+			        {% endfor %}
+			    </div>
 			</div>
 			{% endfor %}
 
 		</div>
 	</div>
+	{% paginate %}
 	{% else %}
 	<div class="row">
 		<div class="col-md-8 recent-questions">
 			<h3>{% trans 'No hay mensajes aún. Sé la/el primer@ en preguntar' %}</h3>
 		</div>
+		{% comment %}
 		<div class="col-md-4 search-questions">
 			<form action="" class="form-inline" role="form">
 				<div class="input-group">
@@ -117,6 +128,7 @@
 				</div>
 			</form>
 		</div>
+		{% endcomment %}
 	</div>
 	{% endif %}
 </div>

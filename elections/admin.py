@@ -1,13 +1,12 @@
 
 from django.contrib import admin
-from elections.models import Election, VotaInteligenteMessage, CandidatePerson
+from elections.models import Election, VotaInteligenteMessage, VotaInteligenteAnswer, CandidatePerson
 from django.contrib.flatpages.admin import FlatpageForm, FlatPageAdmin
 from django.contrib.flatpages.models import FlatPage
 ## OOPS this is a custom widget that works for initializing
 ## tinymce instances on stacked and tabular inlines
 ## for flatpages, just use the tinymce packaged one.
 #from content.widgets import TinyMCE 
-from writeit.models import Answer
 from tinymce.widgets import TinyMCE
 from django.utils.translation import ugettext_lazy as _
 
@@ -38,8 +37,8 @@ admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, PageAdmin)
 
 class AnswerInline(admin.TabularInline):
-    model = Answer
-    fields = ['content',]
+    model = VotaInteligenteAnswer
+    fields = ['content','person']
     extra = 0
 
 class CandidatePersonExtraInfoAdmin(admin.ModelAdmin):

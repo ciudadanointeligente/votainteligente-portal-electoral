@@ -10,6 +10,7 @@ from popit.models import Person
 from writeit.models import Message
 from django.views.generic.base import View
 import logging
+from django.views.decorators.csrf import csrf_exempt
 
 logger = logging.getLogger(__name__)
 
@@ -138,6 +139,11 @@ class SoulMateDetailView(DetailView):
 
 
 class AnswerWebHook(View):
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(AnswerWebHook, self).dispatch(request, *args, **kwargs)
+
+
     def post(self, *args, **kwargs):
         person_id = self.request.POST.get('person_id')
         content = self.request.POST.get('content')

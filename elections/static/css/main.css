@@ -261,7 +261,9 @@ input, button, select, textarea {
 	float: right;
 }
 
-
+.navbar-brand {
+	padding: 5px 13px;
+}
 /*Menu Interno*/
 
 .nav-candidator .list-inline>li {

@@ -4,11 +4,18 @@ from django.views.generic import TemplateView
 from haystack.views import SearchView
 from elections.forms import ElectionForm
 from elections.views import ElectionsSearchByTagView, HomeView, ElectionDetailView,\
-							CandidateDetailView, SoulMateDetailView, ElectionAskCreateView
+							CandidateDetailView, SoulMateDetailView, ElectionAskCreateView,\
+							AnswerWebHook
+
+from django.conf import settings
 
 media_root = getattr(settings, 'MEDIA_ROOT', '/') 
 
+
+new_answer_endpoint = r"^new_answer/%s/?$" % (settings.NEW_ANSWER_ENDPOINT)
+
 urlpatterns = patterns('',
+	url(new_answer_endpoint,AnswerWebHook.as_view(), name='new_answer_endpoint' ),
 	url(r'^/?$', HomeView.as_view(template_name='elections/home.html'), name='home' ),
 	url(r'^buscar/?$', SearchView(
 	        template='search.html',

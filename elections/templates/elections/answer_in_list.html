@@ -1,0 +1,11 @@
+<div class="candidate-answer">
+    <div class="row">
+        <div class="col-md-12">
+            <strong>{{ answer.person.name }}</strong>
+                {% comment %}
+                <button type="submit" class="btn btn-primary"><i class="icon-twitter"> {% trans "Twittea al candidato" %}</i></button>
+                {% endcomment %}
+        </div>
+    </div>
+        <p><i class="icon-quote-left"></i>{{ answer.content|linebreaksbr }}<i class="icon-quote-right"></i></p>
+</div>

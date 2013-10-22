@@ -281,7 +281,7 @@ WEBSITE_DISQUS = {
 }
 #google analytics
 WEBSITE_GA = {
-    'code' : 'UA-XXXXX-X'
+    'code' : 'UA-XXXXX-X',
     'name' : 'ga_name'
 }
 

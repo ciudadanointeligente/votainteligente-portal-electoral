@@ -1,11 +1,11 @@
 # coding=utf-8
 from elections.models import Election, VotaInteligenteMessage, VotaInteligenteAnswer
-from tastypie.test import ResourceTestCase
+from elections.tests import VotaInteligenteTestCase as TestCase
 from django.test.utils import override_settings
+from django.core.urlresolvers import reverse
 
 
-class ElectionSearchFormTestCase(ResourceTestCase):
-    fixtures = ['example_data_mini.yaml']
+class ElectionSearchFormTestCase(TestCase):
 
     def setUp(self):
         super(ElectionSearchFormTestCase, self).setUp()
@@ -27,18 +27,37 @@ class ElectionSearchFormTestCase(ResourceTestCase):
 
     @override_settings(NEW_ANSWER_ENDPOINT = 'new_answer_comming_expected_to_be_a_hash')
     def test_when_i_post_to_a_point_it_creates_an_answer(self):
-
-        response = self.api_client.post('/api/v1/%s/' % ('new_answer_comming_expected_to_be_a_hash') , 
-            format='json', 
-            data = {
+        data = {
                 'content': 'Example Answer', \
                 'person': self.candidate1.name, \
                 'person_id': self.candidate1.popit_url, \
                 'message_id': self.message.url
             }
+        response = self.client.post('/new_answer/%s/' % ('new_answer_comming_expected_to_be_a_hash') , 
+            format='json', 
+            data = data
         )
-        self.assertHttpCreated(response)
+
+
+
+        self.assertEquals(response.status_code, 200)
         self.assertEquals(self.message.answers.count(), 1)
         answer = self.message.answers.all()[0]
         self.assertEquals(answer.content, 'Example Answer')
         self.assertEquals(answer.person, self.candidate1)
+
+
+    @override_settings(NEW_ANSWER_ENDPOINT = 'new_answer_comming_expected_to_be_a_hash')
+    def test_when_I_send_anything_else_it_doesnt_crash(self):
+        data = {
+                'content': 'Example Answer', \
+                'person': self.candidate1.name, \
+                'person_id': 'non_existing_id', \
+                'message_id': self.message.url
+            }
+        response = self.client.post('/new_answer/%s/' % ('new_answer_comming_expected_to_be_a_hash') , 
+            format='json', 
+            data = data
+        )
+        self.assertEquals(response.status_code, 200)
+

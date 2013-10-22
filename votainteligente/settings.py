@@ -106,6 +106,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'pagination.middleware.PaginationMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -127,6 +128,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
+    "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages"
     )
 
@@ -149,6 +151,7 @@ INSTALLED_APPS = (
     'writeit',
     'markdown_deux',
     'django_extensions',
+    'pagination',
     'sorl.thumbnail',
     'django_admin_bootstrapped',
     # Uncomment the next line to enable the admin:
@@ -182,6 +185,7 @@ WRITEIT_API_URL = "http://localhost:3001/api/v1/"
 
 WRITEIT_USERNAME = 'admin'
 WRITEIT_KEY = 'a'
+NEW_ANSWER_ENDPOINT = 'NEW_ANSWER_ENDPOINT'
 
 ### WRITEIT API THINGS
 

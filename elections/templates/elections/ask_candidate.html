@@ -77,38 +77,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			{% for message in writeitmessages %}
-			<div class="panel panel-default">
-                
-			    <div class="panel-heading">
-			        <p>
-			            {{ message.content }}
-			        </p>
-			        <p class="text-right">
-			            {{ message.author_name }}
-			        </p>
-			    </div>
-			    
-			    <div class="panel-body">
-
-			        {% for answer in message.answers.all %}
-			        <div class="candidate-answer">
-					    <div class="row">
-					        <div class="col-md-12">
-					            <strong>{{ answer.person.name }}</strong>
-					                {% comment %}
-					                <button type="submit" class="btn btn-primary"><i class="icon-twitter"> {% trans "Twittea al candidato" %}</i></button>
-					                {% endcomment %}
-					        </div>
-					    </div>
-					        <p><i class="icon-quote-left"></i>{{ answer.content|linebreaksbr }}<i class="icon-quote-right"></i></p>
-					</div>
-					{% empty %}
-			        <div class="candidate-answer">
-			            {% trans 'No hay respuestas aún' %}
-			        </div>
-			        {% endfor %}
-			    </div>
-			</div>
+			{% include 'elections/message_in_list.html' with message=message %}
 			{% endfor %}
 
 		</div>

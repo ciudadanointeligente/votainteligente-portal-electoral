@@ -52,11 +52,10 @@
 					<div class="visible-xs visible-sm">
 						<div >
 							<div>
-								{% for candidate in answer.candidate_set.all %}
 									<div>
 										<i class="icon-quote-left"></i> {{answer.caption}} <i class="icon-quote-right"></i>
 									</div>
-
+								{% for candidate in answer.candidate_set.all %}
 									{% if forloop.first %}
 										<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a>
 									{% elif forloop.last %}

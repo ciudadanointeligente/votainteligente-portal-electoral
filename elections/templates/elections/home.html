@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
+{% load staticfiles %}
 
 {% block extrajs %}
 {% include 'elections/home.js' %}
@@ -188,4 +189,23 @@
     </div>-->
   {% endif %}
 </div>
+
 {% endblock content %}
+
+{% block extrafooter %}
+  <div class="extra-footer">
+        <div class="container">
+          <div class="row">
+              <div class="col-md-4">
+                <img src="{% static 'img/dummy-img.jpg' %}">
+              </div>
+              <div class="col-md-4">
+                <img src="{% static 'img/dummy-img.jpg' %}">
+              </div>
+              <div class="col-md-4">
+                 <img src="{% static 'img/dummy-img.jpg' %}">
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock extrafooter %}

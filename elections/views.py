@@ -3,10 +3,16 @@ from django.views.generic.edit import FormView
 from elections.forms import ElectionSearchByTagsForm
 from django.core.urlresolvers import reverse
 from django.views.generic import CreateView, DetailView, TemplateView
-from elections.models import Election, VotaInteligenteMessage
+from elections.models import Election, VotaInteligenteMessage, VotaInteligenteAnswer
 from elections.forms import MessageForm
 from candideitorg.models import Candidate
+from popit.models import Person
 from writeit.models import Message
+from django.views.generic.base import View
+import logging
+from django.views.decorators.csrf import csrf_exempt
+
+logger = logging.getLogger(__name__)
 
 class ElectionsSearchByTagView(FormView):
     form_class = ElectionSearchByTagsForm
@@ -99,6 +105,7 @@ class ElectionAskCreateView(CreateView):
 from django.template.response import TemplateResponse
 import requests, simplejson as json
 from django.conf import settings
+from django.http import HttpResponse
 
 class SoulMateDetailView(DetailView):
     model = Election
@@ -129,3 +136,25 @@ class SoulMateDetailView(DetailView):
 
         context['others'] = others_candidates
         return self.render_to_response(context)
+
+
+class AnswerWebHook(View):
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(AnswerWebHook, self).dispatch(request, *args, **kwargs)
+
+
+    def post(self, *args, **kwargs):
+        person_id = self.request.POST.get('person_id')
+        content = self.request.POST.get('content')
+
+        message_id = self.request.POST.get('message_id')
+        try:
+            message = VotaInteligenteMessage.objects.get(url=message_id)
+            person = Person.objects.get(popit_url=person_id)
+            VotaInteligenteAnswer.objects.create(person =person, message=message, content=content)
+        except Exception, e:
+            logger.error(e)
+
+        response = HttpResponse(content_type="text/plain", status=200)
+        return response

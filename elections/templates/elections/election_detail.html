@@ -24,7 +24,7 @@
 				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidato.slug %}">{{candidato.name}}</a>
 			</p>
 		</div>
-		{% if forloop.counter == 6 %}
+		{% if forloop.counter|divisibleby:6 %}
 			</div>
 		</div>
 		<div class="row">

@@ -82,6 +82,13 @@ strong {
 	border-color: #AFE9F3;
 }
 
+.alert-success {
+	color: #fff;
+	background-color: #3ee0cb;
+	border-color: transparent;
+	border-radius: 6px;
+}
+
 .form-control::-webkit-input-placeholder {
    font-weight: 300;
 }
@@ -440,6 +447,11 @@ input, button, select, textarea {
 	background: #ffd200;
 	color: #a38400;
 	padding: 2px 6px;
+}
+
+.alert-success h3.portada {
+	font-size: 21px;
+	margin-top: 0;
 }
 
 /*Perfil candidato*/

@@ -3,13 +3,30 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Daniela Tejada
+    Catalina Margozini
+    Katherina Malis
+    Pedro Daire
+    Juan Pablo Trabucco
+    Felipe Alvarez
+    Marcel Augsburguer
+    José Damián Garrido
+    Javiera Pizarro
+    Christian Parada
+    Felipe Ponce
+    Valeria Carvallo
+    María Angélica Aguilar
 
 # THANKS
 
-    <name>
+    Muchas gracias a nuestros amigos de epistemonikos.org por su ayuda con Angularjs 
+    y a todos los integrantes de la FCI que de una u otra forma hicieron que esta 
+    herramienta estuviera disponible al público que busca de una u otra forma estar 
+    informado
 
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3
-    jQuery, Modernizr
+    jQuery, Bootstrap
+    Django, WriteIt
+    PopIt, Candideit.org

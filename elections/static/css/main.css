@@ -766,10 +766,6 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 	opacity: 1;
 }
 
-#footer .col-md-4:nth-child(2) {
-	text-align: center;
-}
-
 .extra-footer .col-md-4 {
 	padding: 10px;
 }
@@ -1024,6 +1020,16 @@ tr.primary p:first-child, tr.danger p:first-child {
 .search-questions .form-control:-ms-input-placeholder {  
    color: #eaedf2;
 }
+
+/*No responde*/
+
+.not_answered a:after {
+	content: url(../img/no-responde-small.png);
+	position: absolute;
+	top: 0;
+	left: -11px;
+}
+
 
 /*breadscrumb-social*/
 .breadscrumb-social .social-button {

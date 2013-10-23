@@ -82,6 +82,19 @@ strong {
 	border-color: #AFE9F3;
 }
 
+.alert-success {
+	color: #fff;
+	background-color: #3ee0cb;
+	border-color: transparent;
+	border-radius: 6px;
+}
+
+.alert-danger {
+	color: #D1312D;
+	background-color: #FFE1E0;
+	border-color: #FFACA9;
+}
+
 .form-control::-webkit-input-placeholder {
    font-weight: 300;
 }
@@ -440,6 +453,11 @@ input, button, select, textarea {
 	background: #ffd200;
 	color: #a38400;
 	padding: 2px 6px;
+}
+
+.alert-success h3.portada {
+	font-size: 21px;
+	margin-top: 0;
 }
 
 /*Perfil candidato*/
@@ -1010,6 +1028,9 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 @media (max-width: 480px) {
+	.navbar-brand img {
+		width: 198px;
+	}
 
 	.profile-candidate {
 		min-height: 425px;

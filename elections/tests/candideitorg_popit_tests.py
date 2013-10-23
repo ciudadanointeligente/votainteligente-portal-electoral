@@ -36,6 +36,7 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertEquals(self.pedro.relation, candidate_person)
         self.assertEquals(self.candidato1.relation, candidate_person)
         self.assertFalse(candidate_person.reachable)
+        self.assertFalse(candidate_person.description)
 
     def test_unicode(self):
         candidate_person, created = CandidatePerson.objects.get_or_create(

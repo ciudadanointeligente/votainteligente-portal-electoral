@@ -11,9 +11,9 @@
 {% block content %}
 <div>
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-6 col-md-offset-3">
       <h2 class="text-center intro-home">
-        {% trans "Este 17 de Noviembre los chilenos elegiremos <strong>Presidente, Senadores, Diputados y Consejeros Regionales (CORE).</strong> Aquí encontrarás info para votar informado:" %}
+        {% trans "Los ciudadanos votamos por ideas, no por slogans. Vota inteligente." %}
       </h2>
     </div>
   </div>
@@ -160,7 +160,7 @@
 
   <!-- Searchable Elections  -->
   {% if searchable_elections_enabled %}
-    <div id="home-search" class="row" data-ng-controller="searchFormController">
+    <!--<div id="home-search" class="row" data-ng-controller="searchFormController">
         <form action="{% url 'tags_search' %}" method="get" class="form-horizontal" role="form">          
           <div class="form-group">
             <div class="col-md-8 col-md-offset-2">
@@ -186,9 +186,18 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div>-->
   {% endif %}
 </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+    <h3 class="portada">Elecciones Parlamentarias</h3>
+<div class="alert alert-danger">
+    <p>Los candidatos al parlamento tienen hasta el Viernes 25 de Octubre para contestar el cuestionario de Vota Inteligente. Muy pronto, encontrarás aquí las ideas y propuestas de los aspirantes al Congreso.</p>
+</div>
+    </div>
+  </div>
 
 {% endblock content %}
 
@@ -197,13 +206,13 @@
         <div class="container">
           <div class="row">
               <div class="col-md-4">
-                <img src="{% static 'img/dummy-img.jpg' %}">
+                <a href="http://www.elvaso.cl/" target="_blank"><img class="img-responsive" src="{% static 'img/banner-a-elvaso.png' %}"></a>
               </div>
               <div class="col-md-4">
-                <img src="{% static 'img/dummy-img.jpg' %}">
+                <a href="http://quientefinancia.cl/" target="_blank"><img class="img-responsive" src="{% static 'img/banner-a-qtf.png' %}"></a>
               </div>
               <div class="col-md-4">
-                 <img src="{% static 'img/dummy-img.jpg' %}">
+                 <a href="http://consulta.servel.cl/" target="_blank"><img class="img-responsive" src="{% static 'img/banner-a-servel.png' %}"></a>
               </div>
           </div>
       </div>

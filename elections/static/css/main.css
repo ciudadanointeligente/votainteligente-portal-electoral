@@ -766,10 +766,6 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 	opacity: 1;
 }
 
-#footer .col-md-4:nth-child(2) {
-	text-align: center;
-}
-
 .extra-footer .col-md-4 {
 	padding: 10px;
 }

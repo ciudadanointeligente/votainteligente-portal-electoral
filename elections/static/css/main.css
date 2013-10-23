@@ -1028,7 +1028,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 /*No responde*/
 
 .not_answered a:after {
-	content: url(../img/no-responde.png);
+	content: url(../img/no-responde-small.png);
 	position: absolute;
 	top: 0;
 	left: -11px;

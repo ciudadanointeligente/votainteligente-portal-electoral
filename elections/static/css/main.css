@@ -1025,6 +1025,16 @@ tr.primary p:first-child, tr.danger p:first-child {
    color: #eaedf2;
 }
 
+/*No responde*/
+
+.not_answered a:after {
+	content: url(../img/no-responde.png);
+	position: absolute;
+	top: 0;
+	left: -11px;
+}
+
+
 /*breadscrumb-social*/
 .breadscrumb-social .social-button {
 	padding-top: 8px;

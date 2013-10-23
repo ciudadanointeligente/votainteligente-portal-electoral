@@ -89,6 +89,12 @@ strong {
 	border-radius: 6px;
 }
 
+.alert-danger {
+	color: #D1312D;
+	background-color: #FFE1E0;
+	border-color: #FFACA9;
+}
+
 .form-control::-webkit-input-placeholder {
    font-weight: 300;
 }

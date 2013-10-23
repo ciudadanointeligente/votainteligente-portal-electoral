@@ -8,20 +8,20 @@
     Katherina Malis
     Pedro Daire
     Juan Pablo Trabucco
-    Felipe Alvarez
+    Luis Felipe Alvarez
     Marcel Augsburguer
-    José Damián Garrido
+    Jose Damian Garrido
     Javiera Pizarro
     Christian Parada
     Felipe Ponce
     Valeria Carvallo
-    María Angélica Aguilar
+    Maria Angelica Aguilar
 
 # THANKS
 
     Muchas gracias a nuestros amigos de epistemonikos.org por su ayuda con Angularjs 
     y a todos los integrantes de la FCI que de una u otra forma hicieron que esta 
-    herramienta estuviera disponible al público que busca de una u otra forma estar 
+    herramienta estuviera disponible al publico que busca de una u otra forma estar 
     informado
 
 # TECHNOLOGY COLOPHON

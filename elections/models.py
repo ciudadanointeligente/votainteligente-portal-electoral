@@ -49,7 +49,7 @@ class CandidatePerson(models.Model):
     person = models.OneToOneField(Person, related_name="relation")
     candidate = models.OneToOneField(CanCandidate, related_name="relation")
     reachable = models.BooleanField(default=False)
-    description = models.TextField(default='')
+    description = models.TextField(default='', blank=True)
 
 
     def __unicode__(self):

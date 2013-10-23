@@ -272,11 +272,14 @@ input, button, select, textarea {
 
 .navbar-nav {
 	float: right;
+	margin-top: 8px;
 }
 
 .navbar-brand {
 	padding: 5px 13px;
 }
+
+
 /*Menu Interno*/
 
 .nav-candidator .list-inline>li {

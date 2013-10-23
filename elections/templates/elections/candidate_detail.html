@@ -39,6 +39,9 @@
 						{% endfor %}
 					</table>
 				</div>
+				{% if candidate.relation.description %}
+				{{ candidate.relation.description|linebreaks }}
+				{% endif %}
 				<div class="col-md-4">
 					<ul class="list-unstyled">
 						{% for link in candidate.link_set.all %}

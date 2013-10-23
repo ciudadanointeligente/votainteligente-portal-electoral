@@ -1028,6 +1028,9 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 @media (max-width: 480px) {
+	.navbar-brand img {
+		width: 198px;
+	}
 
 	.profile-candidate {
 		min-height: 425px;

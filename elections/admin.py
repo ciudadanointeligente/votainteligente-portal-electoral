@@ -43,7 +43,7 @@ class AnswerInline(admin.TabularInline):
 
 class CandidatePersonExtraInfoAdmin(admin.ModelAdmin):
     readonly_fields = ('person',)
-    fields = ('reachable', )
+    fields = ('reachable','description', )
     search_fields = ['person__name', 'person__api_instance__election__name']
 
 admin.site.register(CandidatePerson, CandidatePersonExtraInfoAdmin)

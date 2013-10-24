@@ -1023,11 +1023,18 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 /*No responde*/
 
-.not_answered a:after {
+.not_answered_small a:after {
 	content: url(../img/no-responde-small.png);
 	position: absolute;
-	top: 0;
-	left: -11px;
+	top: 35px;
+	left: 16px;
+}
+
+.not_answered:after {
+	content: url(../img/no-responde.png);
+	position: absolute;
+	top: 35px;
+	left: 16px;
 }
 
 

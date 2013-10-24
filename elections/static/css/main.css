@@ -1043,6 +1043,11 @@ tr.primary p:first-child, tr.danger p:first-child {
 	padding-top: 8px;
 }
 
+.pagination>.active>a {
+	background-color: #14b9d5;
+	border-color: #14b9d5;
+}
+
 @media (max-width: 480px) {
 	.navbar-brand img {
 		width: 198px;

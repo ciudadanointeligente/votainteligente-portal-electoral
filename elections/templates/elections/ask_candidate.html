@@ -59,6 +59,7 @@
 	
 	<div class="row">
 		<div class="col-md-8 recent-questions">
+			<a name="recent-ask"></a>
 			<h3>{% trans 'Preguntas recientes' %}</h3>
 		</div>
 
@@ -73,16 +74,27 @@
 			{% endcomment %}
 		</div>
 	</div>
-	{% paginate %}
+	
+	<div class="row">
+		<div class="col-md-12 text-center">
+			{% paginate %}
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-md-12">
 			{% for message in writeitmessages %}
 			{% include 'elections/message_in_list.html' with message=message %}
 			{% endfor %}
-
 		</div>
 	</div>
-	{% paginate %}
+
+	<div class="row">
+		<div class="col-md-12 text-center">
+			{% paginate %}
+		</div>
+	</div>
+	
 	{% else %}
 	<div class="row">
 		<div class="col-md-8 recent-questions">

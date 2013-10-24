@@ -3,7 +3,7 @@
 
 <ul class="pagination">
     {% if page_obj.has_previous %}
-        <li><a href="?page={{ page_obj.previous_page_number }}{{ getvars }}">&laquo;</a></li>
+        <li><a href="?page={{ page_obj.previous_page_number }}{{ getvars }}#recent-ask">&laquo;</a></li>
     {% else %}
         <li class="disabled"><a href="#">&laquo;</a></li>
     {% endif %}
@@ -13,13 +13,13 @@
             {% ifequal page page_obj.number %}
                 <li class="active"><a href="#">{{ page }} <span class="sr-only">({% trans "activa" %})</span></a></li>
             {% else %}
-                <li><a href="?page={{ page }}{{ getvars }}">{{ page }}</a></li>
+                <li><a href="?page={{ page }}{{ getvars }}#recent-ask">{{ page }}</a></li>
             {% endifequal %}
         {% endif %}
     {% endfor %}
 
     {% if page_obj.has_next %}
-        <li><a href="?page={{ page_obj.next_page_number }}{{ getvars }}">&raquo;</a></li>
+        <li><a href="?page={{ page_obj.next_page_number }}{{ getvars }}#recent-ask">&raquo;</a></li>
     {% else %}
         <li class="disabled"><a href="#">&raquo;</a></li>
     {% endif %}

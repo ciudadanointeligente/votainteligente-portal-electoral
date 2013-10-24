@@ -82,19 +82,6 @@ strong {
 	border-color: #AFE9F3;
 }
 
-.alert-success {
-	color: #fff;
-	background-color: #3ee0cb;
-	border-color: transparent;
-	border-radius: 6px;
-}
-
-.alert-danger {
-	color: #D1312D;
-	background-color: #FFE1E0;
-	border-color: #FFACA9;
-}
-
 .form-control::-webkit-input-placeholder {
    font-weight: 300;
 }
@@ -272,14 +259,11 @@ input, button, select, textarea {
 
 .navbar-nav {
 	float: right;
-	margin-top: 8px;
 }
 
 .navbar-brand {
 	padding: 5px 13px;
 }
-
-
 /*Menu Interno*/
 
 .nav-candidator .list-inline>li {
@@ -456,11 +440,6 @@ input, button, select, textarea {
 	background: #ffd200;
 	color: #a38400;
 	padding: 2px 6px;
-}
-
-.alert-success h3.portada {
-	font-size: 21px;
-	margin-top: 0;
 }
 
 /*Perfil candidato*/
@@ -766,6 +745,10 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 	opacity: 1;
 }
 
+#footer .col-md-4:nth-child(2) {
+	text-align: center;
+}
+
 .extra-footer .col-md-4 {
 	padding: 10px;
 }
@@ -1021,23 +1004,6 @@ tr.primary p:first-child, tr.danger p:first-child {
    color: #eaedf2;
 }
 
-/*No responde*/
-
-.not_answered_small a:after {
-	content: url(../img/no-responde-small.png);
-	position: absolute;
-	top: 35px;
-	left: 16px;
-}
-
-.not_answered:after {
-	content: url(../img/no-responde.png);
-	position: absolute;
-	top: 52px;
-	left: 8px;
-}
-
-
 /*breadscrumb-social*/
 .breadscrumb-social .social-button {
 	padding-top: 8px;
@@ -1060,14 +1026,9 @@ tr.primary p:first-child, tr.danger p:first-child {
 	.other-soulmate-box {
 		margin-top: 5px;
 	}
-
-	.not_answered:after {
-		top: 90px;
-		left: 32px;
-	}
 }
 
-@media (max-width: 640px) {
+@media (max-width: 604px) {
 
 	.nav-candidator ul.list-inline {
 		background: transparent;
@@ -1075,11 +1036,6 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 	.nav-candidator .list-inline>li {
 		padding: 9px 0px 10px;
-	}
-
-	.not_answered:after {
-		top: 90px;
-		left: 32px;
 	}
 
 }

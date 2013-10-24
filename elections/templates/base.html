@@ -23,7 +23,6 @@
         <link rel="shortcut icon" sizes="196x196" href="{% static 'img/votai-196.png' %}">
         
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="{% static 'css/jquery.countdown.css' %}" />
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/chosen.min.css' %}" rel="stylesheet">
@@ -64,10 +63,10 @@
 
         
         <div id="footer">
-            
+        <!--
             {% block extrafooter %}
             {% endblock extrafooter %}
-            
+        -->
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
@@ -95,8 +94,6 @@
         window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')
         </script>
 
-        <script src="{% static 'js/jquery.countdown.js' %}"></script>
-        <script src="{% static 'js/script.js' %}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
         <script src="{% static 'js/removeDiacritics.js' %}"></script>
         <script src="{% static 'js/jquery.expander.js' %}"></script>

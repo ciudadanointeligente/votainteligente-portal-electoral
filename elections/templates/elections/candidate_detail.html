@@ -55,10 +55,6 @@
 					{% endif %}
 				</div>
 			</div>
-
-			{% if candidate.relation.description %}
-			{{ candidate.relation.description|linebreaks }}
-			{% endif %}
 			
 			<div class="row">
 				<div class="antecedentes col-md-12">
@@ -70,6 +66,10 @@
 			 				{% endfor %}
 			 			{% endfor %}
 			 		{% endfor %}
+
+			 		{% if candidate.relation.description %}
+					{{ candidate.relation.description|linebreaks }}
+					{% endif %}
 			 		</p>
 			 	</div>
 			</div>

@@ -1033,8 +1033,8 @@ tr.primary p:first-child, tr.danger p:first-child {
 .not_answered:after {
 	content: url(../img/no-responde.png);
 	position: absolute;
-	top: 35px;
-	left: 16px;
+	top: 52px;
+	left: 8px;
 }
 
 
@@ -1055,9 +1055,14 @@ tr.primary p:first-child, tr.danger p:first-child {
 	.other-soulmate-box {
 		margin-top: 5px;
 	}
+
+	.not_answered:after {
+		top: 90px;
+		left: 32px;
+	}
 }
 
-@media (max-width: 604px) {
+@media (max-width: 640px) {
 
 	.nav-candidator ul.list-inline {
 		background: transparent;
@@ -1065,6 +1070,11 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 	.nav-candidator .list-inline>li {
 		padding: 9px 0px 10px;
+	}
+
+	.not_answered:after {
+		top: 90px;
+		left: 32px;
 	}
 
 }

@@ -81,7 +81,7 @@
 {% if 'ask'|val_navbars  %}
 <div class="row">
 	<div class="col-md-3 col-md-offset-9">
-		<button class="btn btn-primary"><i class="icon-edit"></i> {% trans "Quieres preguntar algo más?" %}</button>
+		<button class="btn btn-primary" onClick="location.href='{% url 'ask_detail_view' slug=election.slug %}'"><i class="icon-edit"></i> {% trans "Quieres preguntar algo más?" %}</button>
 	</div>
 </div>
 {% endif %}

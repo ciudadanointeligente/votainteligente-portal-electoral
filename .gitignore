@@ -11,3 +11,4 @@ cache/*
 .travis*
 .tm_properties
 candidator
+src/

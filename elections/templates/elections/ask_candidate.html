@@ -41,6 +41,7 @@
 			</div>
 		</div>
 		<div class="row">
+			<a name="recent-ask"></a>
 			<div class="col-md-8">
 				<p>
 					{% trans "Acepto que mis preguntas y respuestas sean publicadas en este mismo medio.<br>Confirmo que lo que aquí dice no atenta contra el candidato." %}
@@ -73,16 +74,23 @@
 			{% endcomment %}
 		</div>
 	</div>
-	{% paginate %}
+	<div class="row">
+		<div class="col-md-12 text-center">
+			{% paginate %}
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			{% for message in writeitmessages %}
 			{% include 'elections/message_in_list.html' with message=message %}
 			{% endfor %}
-
 		</div>
 	</div>
-	{% paginate %}
+	<div class="row">
+		<div class="col-md-12 text-center">
+			{% paginate %}
+		</div>
+	</div>
 	{% else %}
 	<div class="row">
 		<div class="col-md-8 recent-questions">

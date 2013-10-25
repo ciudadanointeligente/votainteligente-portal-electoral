@@ -784,7 +784,7 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 }
 
 .profile-candidate {
-	padding: 5px 20px;
+	padding: 0px 20px;
 }
 
 .profile-candidate .table tbody>tr>td {

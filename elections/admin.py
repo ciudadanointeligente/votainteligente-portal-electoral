@@ -71,9 +71,13 @@ class MensajesAdmin(admin.ModelAdmin):
 
     # actions = ['accept_moderation']
 
+    ordering = ('moderated',)
+    list_display = ('subject','writeitinstance', 'content', 'moderated')
+
     def accept_moderation(self, request, queryset):
         for message in queryset:
-            message.accept_moderation()
+            if not message.moderated:
+                message.accept_moderation()
     accept_moderation.short_description = "Aceptar Mensajes para ser enviados"
 
 admin.site.register(VotaInteligenteMessage, MensajesAdmin)

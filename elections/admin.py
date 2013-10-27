@@ -69,7 +69,7 @@ class MensajesAdmin(admin.ModelAdmin):
     #         request.GET['moderated__exact']
     #     return super(MensajesAdmin,self).changelist_view(request, extra_context=extra_context)
 
-    # actions = ['accept_moderation']
+    actions = ['accept_moderation']
 
     ordering = ('moderated',)
     list_display = ('subject','writeitinstance', 'content', 'moderated')

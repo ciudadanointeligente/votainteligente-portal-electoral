@@ -69,7 +69,7 @@ class MensajesAdmin(admin.ModelAdmin):
     #         request.GET['moderated__exact']
     #     return super(MensajesAdmin,self).changelist_view(request, extra_context=extra_context)
 
-    # actions = ['accept_moderation']
+    actions = ['accept_moderation']
 
     def accept_moderation(self, request, queryset):
         for message in queryset:

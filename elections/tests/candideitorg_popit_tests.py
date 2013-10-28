@@ -41,10 +41,10 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertFalse(candidate_person.description)
 
     def test_it_creates_a_link_to_the_candidate_twitter(self):
-        link = Link.objects.create(url = 'twitter.com/candidato1',\
-            name = 'twitter',\
-            candidate = self.candidato1,\
-            remote_id = 1,\
+        link = Link.objects.create(url = 'twitter.com/candidato1',
+            name = 'twitter',
+            candidate = self.candidato1,
+            remote_id = 1,
             resource_uri = 'string')
         candidate_person, created = CandidatePerson.objects.get_or_create(
             person=self.pedro,
@@ -60,15 +60,15 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertIsNone(candidate_person.twitter)
 
     def test_it_only_returns_one_twitter_link(self):
-        link = Link.objects.create(url = 'twitter.com/candidato1',\
-            name = 'twitter',\
-            candidate = self.candidato1,\
-            remote_id = 1,\
+        link = Link.objects.create(url = 'twitter.com/candidato1',
+            name = 'twitter',
+            candidate = self.candidato1,
+            remote_id = 1,
             resource_uri = 'string')
-        link = Link.objects.create(url = 'twitter.com/candidato1_twitter2',\
-            name = 'twitter',\
-            candidate = self.candidato1,\
-            remote_id = 1,\
+        link = Link.objects.create(url = 'twitter.com/candidato1_twitter2',
+            name = 'twitter',
+            candidate = self.candidato1,
+            remote_id = 1,
             resource_uri = 'string')
         candidate_person, created = CandidatePerson.objects.get_or_create(
             person=self.pedro,
@@ -77,10 +77,10 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertEquals(candidate_person.twitter, 'twitter.com/candidato1')
 
     def test_tweet_if_candidator_unanswered(self):
-        link = Link.objects.create(url = 'http://twitter.com/candidato1_twitter',\
-            name = 'twitter',\
-            candidate = self.candidato1,\
-            remote_id = 1,\
+        link = Link.objects.create(url = 'http://twitter.com/candidato1_twitter',
+            name = 'twitter',
+            candidate = self.candidato1,
+            remote_id = 1,
             resource_uri = 'string')
         self.candidato1.has_answered = False
         self.candidato1.save()

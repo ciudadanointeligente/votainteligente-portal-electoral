@@ -52,17 +52,22 @@ admin.site.register(CandidatePerson, CandidatePersonExtraInfoAdmin)
 class MensajesAdmin(admin.ModelAdmin):
     fields = ['author_name','author_email', 'subject', 'content', 'people', 'moderated']
     list_filter = ('moderated', )
+    search_fields = ['author_name', 'author_email', 'subject', 'writeitinstance__name', 'people__name']
     inlines = [
     AnswerInline
     ]
 
-    def changelist_view(self, request, extra_context=None):
-        if not request.GET.has_key('moderated__exact'):
-            q = request.GET.copy()
-            q['moderated__exact'] = 0
-            request.GET = q
-            request.META['QUERY_STRING'] = request.GET.urlencode()
-        return super(MensajesAdmin,self).changelist_view(request, extra_context=extra_context)
+    # def changelist_view(self, request, extra_context=None):
+
+    #     if not request.GET.has_key('moderated__exact'):
+
+    #         q = request.GET.copy()
+    #         q['moderated__exact'] = 0
+    #         request.GET = q
+    #         request.META['QUERY_STRING'] = request.GET.urlencode()
+    #     else:
+    #         request.GET['moderated__exact']
+    #     return super(MensajesAdmin,self).changelist_view(request, extra_context=extra_context)
 
     actions = ['accept_moderation']
 

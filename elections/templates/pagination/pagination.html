@@ -1,0 +1,29 @@
+{% if is_paginated %}
+{% load i18n %}
+
+<ul class="pagination">
+  
+	{% if page_obj.has_previous %}
+	<li><a href="?page={{ page_obj.previous_page_number }}{{ getvars }}#recent-ask">&lsaquo;</a></li>
+	{% else %}
+	<li class="disabled"><a href="#">&laquo;</a></li>
+	{% endif %}
+
+	{% if page %}
+		{% ifequal page page_obj.number %}
+	<li class="disabled"><a href="#">{{ page }} <span class="sr-only">(current)</span></a></li>
+		{% else %}
+	<li><a href="?page={{ page }}{{ getvars }}#recent-ask">{{ page }}</a></li>
+		{% endifequal %}
+	{% else %}
+	<li class="disabled">...</li>
+	{% endif %}
+
+	{% if page_obj.has_next %}
+	<li class="disabled"><a href="?page={{ page_obj.next_page_number }}{{ getvars }}#recent-ask">&rsaquo;</a></li>
+	{% else %}
+	<li class="disabled"><a href="#">&rsaquo;</a></li>
+	{% endif %}
+  
+</ul>
+{% endif %}

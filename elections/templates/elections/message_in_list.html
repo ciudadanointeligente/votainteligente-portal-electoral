@@ -3,12 +3,27 @@
 <div class="panel panel-default">
                 
     <div class="panel-heading">
+        <h4>{{ message.subject }}</h4>
         <p>
             {{ message.content }}
         </p>
         <p class="text-right">
             {{ message.author_name }}
         </p>
+        <div class="row">
+            <div class="col-md-8">
+            {% for person in message.people.all %}
+                <span class="label label-success">{{ person.name }}</span>
+            {% endfor %}
+            </div>
+            <div class="col-md-4 text-right">
+                {% if message.moderated %}
+                    <span class="label label-success">{% trans "Mensaje enviado" %}</span>
+                {% else %}
+                    <span class="label label-warning">{% trans "Esperando moderación" %}</span>
+                {% endif %}
+            </div>
+        </div>
     </div>
     
     <div class="panel-body">

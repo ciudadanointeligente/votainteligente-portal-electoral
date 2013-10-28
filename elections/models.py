@@ -14,7 +14,7 @@ from writeit.models import WriteItApiInstance, WriteItInstance
 from candideitorg.models import election_finished
 from writeit.models import Message as WriteItMessage
 import datetime
-from django.db.models import Q
+from django.db.models import Q, Count
 
 
 class Election(models.Model):
@@ -140,9 +140,9 @@ def get_current_writeit_api_instance():
 
 class VotaInteligenteMessageManager(models.Manager):
     def get_query_set(self):
-        queryset = super(VotaInteligenteMessageManager, self).get_query_set()
+        queryset = super(VotaInteligenteMessageManager, self).get_query_set().annotate(num_answers=Count('answers'))
 
-        return queryset.order_by('-moderated', '-created')
+        return queryset.order_by('-num_answers','-moderated', '-created')
 
 
 

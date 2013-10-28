@@ -299,7 +299,21 @@ class VotaInteligenteMessagesOrderedList(TestCase):
             , author_name='author'
             , author_email='author email'
             , subject = u'message 4'
-            , content = u'Qué opina usted sobre el test_accept_message'
+            , content = u'Que opina usted sobre el test_accept_message'
+            , writeitinstance=self.election.writeitinstance
+            , slug = 'subject-slugified'
+            , moderated = True
+            )
+        self.message4.people.add(self.candidate1)
+
+        self.answer1 = VotaInteligenteAnswer.objects.create(message=self.message4, 
+            person=self.candidate1.relation.person,
+            content=u'answerto message4')
+        self.message5 = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+            , author_name='author'
+            , author_email='author email'
+            , subject = u'message 5'
+            , content = u'Que opina usted sobre el test_accept_message'
             , writeitinstance=self.election.writeitinstance
             , slug = 'subject-slugified'
             , moderated = True
@@ -309,10 +323,11 @@ class VotaInteligenteMessagesOrderedList(TestCase):
     def test_message_class_has_a_manager(self):
         messages = VotaInteligenteMessage.objects.all()
 
-        self.assertEquals(messages.count(), 4)
-        self.assertEquals(messages[0], self.message4)#because it was the last created
-        self.assertEquals(messages[1], self.message2)#the third should not appear here because it has not been moderated
-        self.assertEquals(messages[2], self.message1)
-        self.assertEquals(messages[3], self.message3)#this hasn't been moderated
+        self.assertEquals(messages.count(), 5)
+        self.assertEquals(messages[0], self.message4)#because it has answers
+        self.assertEquals(messages[1], self.message5)#because it was the last created
+        self.assertEquals(messages[2], self.message2)#the third should not appear here because it has not been moderated
+        self.assertEquals(messages[3], self.message1)
+        self.assertEquals(messages[4], self.message3)#this hasn't been moderated
 
 

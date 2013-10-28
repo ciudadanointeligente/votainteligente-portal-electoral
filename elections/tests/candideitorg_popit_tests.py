@@ -112,7 +112,6 @@ class CandideitorCandideitPopitPerson(TestCase):
         print actual_twitter_button
         print "/actual_twitter_button"
         self.assertEquals(actual_twitter_button, expected_twitter_button)
-        # self.fail()
 
     def test_unicode(self):
         candidate_person, created = CandidatePerson.objects.get_or_create(

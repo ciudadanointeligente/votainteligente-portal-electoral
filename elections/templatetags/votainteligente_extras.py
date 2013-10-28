@@ -65,8 +65,6 @@ def ga(value):
 	return ''
 
 def no_ha_respondido_twitter_button(context):
-	#regular expression is
-	#^https?://(www\.)?twitter\.com/(#!/)?(?<name>[^/]+)(/\w+)*$
 	regex = re.compile(r"^https?://(www\.)?twitter\.com/(#!/)?([^/]+)(/\w+)*$")
 	twitter = context["candidate"].relation.twitter
 	if twitter:

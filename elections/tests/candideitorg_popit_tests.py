@@ -8,6 +8,8 @@ from popit.models import Person, ApiInstance as PopitApiInstance
 from django.db import IntegrityError
 from django.conf import settings
 import simplejson as json
+from django.template.loader import get_template
+from django.template import Context, Template
 from writeit.models import WriteItInstance, WriteItApiInstance
 import urllib
 import re
@@ -73,6 +75,46 @@ class CandideitorCandideitPopitPerson(TestCase):
             candidate=self.candidato1
             )
         self.assertEquals(candidate_person.twitter, 'twitter.com/candidato1')
+
+    def test_tweet_if_candidator_unanswered(self):
+        link = Link.objects.create(url = 'http://twitter.com/candidato1_twitter',\
+            name = 'twitter',\
+            candidate = self.candidato1,\
+            remote_id = 1,\
+            resource_uri = 'string')
+        self.candidato1.has_answered = False
+        self.candidato1.save()
+        candidate_person, created = CandidatePerson.objects.get_or_create(
+            person=self.pedro,
+            candidate=self.candidato1
+            )
+        template_str = get_template('elections/twitter/no_candidator_answer.html')
+        context = Context({
+            "candidate":self.candidato1,
+            "twitter":"candidato1_twitter"
+            })
+        expected_twitter_button = template_str.render(context)
+        actual_twitter_button_template = Template("{% load votainteligente_extras %}{% no_ha_respondido_twitter_button %}")
+        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate":self.candidato1}))
+        self.assertEquals(actual_twitter_button, expected_twitter_button)
+
+    def test_no_tweet_if_candidate_has_no_twitter(self):
+        self.candidato1.has_answered = False
+        self.candidato1.save()
+        candidate_person, created = CandidatePerson.objects.get_or_create(
+            person=self.pedro,
+            candidate=self.candidato1
+            )
+        expected_twitter_button = ""
+        actual_twitter_button_template = Template("{% load votainteligente_extras %}{% no_ha_respondido_twitter_button %}")
+        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate":self.candidato1}))
+        print "actual_twitter_button"
+        print actual_twitter_button
+        print "/actual_twitter_button"
+        self.assertEquals(actual_twitter_button, expected_twitter_button)
+        # self.fail()
+
+
 
     def test_unicode(self):
         candidate_person, created = CandidatePerson.objects.get_or_create(

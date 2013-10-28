@@ -91,7 +91,7 @@ class CandideitorCandideitPopitPerson(TestCase):
         template_str = get_template('elections/twitter/no_candidator_answer.html')
         context = Context({
             "candidate":self.candidato1,
-            "twitter":"http://twitter.com/candidato1_twitter"
+            "twitter":"candidato1_twitter"
             })
         expected_twitter_button = template_str.render(context)
         actual_twitter_button_template = Template("{% load votainteligente_extras %}{% no_ha_respondido_twitter_button %}")

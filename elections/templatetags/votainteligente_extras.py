@@ -69,7 +69,7 @@ def no_ha_respondido_twitter_button(context):
 	twitter = context["candidate"].relation.twitter
 	if twitter:
 		return {
-			'twitter':twitter,
+			'twitter':regex.match(twitter).groups()[2],
 			'candidate':context['candidate']
 			}
 	return {

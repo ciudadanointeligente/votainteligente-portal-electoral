@@ -2,12 +2,14 @@
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django.test.utils import override_settings
 from elections.models import CandidatePerson, Election
-from candideitorg.models import Candidate as CanCandidate, Election as CanElection
+from candideitorg.models import Candidate as CanCandidate, Election as CanElection, Link
 from django.utils.unittest import skip
 from popit.models import Person, ApiInstance as PopitApiInstance
 from django.db import IntegrityError
 from django.conf import settings
 import simplejson as json
+from django.template.loader import get_template
+from django.template import Context, Template
 from writeit.models import WriteItInstance, WriteItApiInstance
 import urllib
 import re
@@ -37,6 +39,79 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertEquals(self.candidato1.relation, candidate_person)
         self.assertFalse(candidate_person.reachable)
         self.assertFalse(candidate_person.description)
+
+    def test_it_creates_a_link_to_the_candidate_twitter(self):
+        link = Link.objects.create(url = 'twitter.com/candidato1',\
+            name = 'twitter',\
+            candidate = self.candidato1,\
+            remote_id = 1,\
+            resource_uri = 'string')
+        candidate_person, created = CandidatePerson.objects.get_or_create(
+            person=self.pedro,
+            candidate=self.candidato1
+            )
+        self.assertEquals(candidate_person.twitter, 'twitter.com/candidato1')
+
+    def test_it_returns_none_if_there_is_no_twitter_link(self):
+        candidate_person, created = CandidatePerson.objects.get_or_create(
+            person=self.pedro,
+            candidate=self.candidato1
+            )
+        self.assertIsNone(candidate_person.twitter)
+
+    def test_it_only_returns_one_twitter_link(self):
+        link = Link.objects.create(url = 'twitter.com/candidato1',\
+            name = 'twitter',\
+            candidate = self.candidato1,\
+            remote_id = 1,\
+            resource_uri = 'string')
+        link = Link.objects.create(url = 'twitter.com/candidato1_twitter2',\
+            name = 'twitter',\
+            candidate = self.candidato1,\
+            remote_id = 1,\
+            resource_uri = 'string')
+        candidate_person, created = CandidatePerson.objects.get_or_create(
+            person=self.pedro,
+            candidate=self.candidato1
+            )
+        self.assertEquals(candidate_person.twitter, 'twitter.com/candidato1')
+
+    def test_tweet_if_candidator_unanswered(self):
+        link = Link.objects.create(url = 'http://twitter.com/candidato1_twitter',\
+            name = 'twitter',\
+            candidate = self.candidato1,\
+            remote_id = 1,\
+            resource_uri = 'string')
+        self.candidato1.has_answered = False
+        self.candidato1.save()
+        candidate_person, created = CandidatePerson.objects.get_or_create(
+            person=self.pedro,
+            candidate=self.candidato1
+            )
+        template_str = get_template('elections/twitter/no_candidator_answer.html')
+        context = Context({
+            "candidate":self.candidato1,
+            "twitter":"http://twitter.com/candidato1_twitter"
+            })
+        expected_twitter_button = template_str.render(context)
+        actual_twitter_button_template = Template("{% load votainteligente_extras %}{% no_ha_respondido_twitter_button %}")
+        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate":self.candidato1}))
+        self.assertEquals(actual_twitter_button, expected_twitter_button)
+
+    def test_no_tweet_if_candidate_has_no_twitter(self):
+        self.candidato1.has_answered = False
+        self.candidato1.save()
+        candidate_person, created = CandidatePerson.objects.get_or_create(
+            person=self.pedro,
+            candidate=self.candidato1
+            )
+        expected_twitter_button = ""
+        actual_twitter_button_template = Template("{% load votainteligente_extras %}{% no_ha_respondido_twitter_button %}")
+        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate":self.candidato1}))
+        print "actual_twitter_button"
+        print actual_twitter_button
+        print "/actual_twitter_button"
+        self.assertEquals(actual_twitter_button, expected_twitter_button)
 
     def test_unicode(self):
         candidate_person, created = CandidatePerson.objects.get_or_create(

@@ -2,7 +2,7 @@
 from django.db import models
 from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
-from candideitorg.models import Election as CanElection, Candidate as CanCandidate
+from candideitorg.models import Election as CanElection, Candidate as CanCandidate, Link
 from django.core.urlresolvers import reverse
 from popit.models import Person, ApiInstance as PopitApiInstance
 from django.db.models.signals import post_save
@@ -57,6 +57,13 @@ class CandidatePerson(models.Model):
         return u'Extra info de %(candidate)s'%{
             "candidate":self.candidate.name
             }
+
+    def _get_twitter_(self):
+        try:
+            return self.candidate.link_set.filter(url__contains='twitter')[0].url
+        except:
+            return None
+    twitter = property(_get_twitter_)
 
     class Meta:
             verbose_name = _(u'Extra Info de candidato')

@@ -8,6 +8,7 @@ from elections.models import Election
 import simplejson as json
 from django.conf import settings
 from django.contrib.sites.models import Site
+import re
 
 @register.simple_tag
 def elections_json():
@@ -32,7 +33,7 @@ def val_navbars(section):
 		return True
 
 @register.simple_tag
-def title(election, name):
+def title(election, name):	
 	return election + ' - ' + name;
 
 @register.simple_tag
@@ -62,3 +63,20 @@ def ga(value):
 	if value in settings.WEBSITE_GA:
 		return settings.WEBSITE_GA[value]
 	return ''
+
+def no_ha_respondido_twitter_button(context):
+	#regular expression is
+	#^https?://(www\.)?twitter\.com/(#!/)?(?<name>[^/]+)(/\w+)*$
+	regex = re.compile(r"^https?://(www\.)?twitter\.com/(#!/)?([^/]+)(/\w+)*$")
+	twitter = context["candidate"].relation.twitter
+	if twitter:
+		return {
+			'twitter':twitter,
+			'candidate':context['candidate']
+			}
+	return {
+		'twitter':None,
+		'candidate':context['candidate']
+		}
+register.inclusion_tag('elections/twitter/no_candidator_answer.html', 
+	takes_context=True)(no_ha_respondido_twitter_button)

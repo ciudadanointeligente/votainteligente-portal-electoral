@@ -2,7 +2,7 @@
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django.test.utils import override_settings
 from elections.models import CandidatePerson, Election
-from candideitorg.models import Candidate as CanCandidate, Election as CanElection
+from candideitorg.models import Candidate as CanCandidate, Election as CanElection, Link
 from django.utils.unittest import skip
 from popit.models import Person, ApiInstance as PopitApiInstance
 from django.db import IntegrityError

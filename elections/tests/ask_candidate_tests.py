@@ -162,9 +162,51 @@ class VotaInteligenteMessageTestCase(TestCase):
         # 
         message.accept_moderation()
 
-        self.assertTrue(message.remote_id)
-        self.assertTrue(message.url)
+        self.assertIsNone(message.remote_id)
+        self.assertFalse(message.url)
         self.assertTrue(message.moderated)
+
+
+    def test_the_class_has_a_function_that_will_push_the_messages_to_the_api(self):
+        message1 = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+            , author_name='author'
+            , author_email='author email'
+            , subject = u'subject test_accept_message'
+            , content = u'Qué opina usted sobre el test_accept_message'
+            , writeitinstance=self.election.writeitinstance
+            , slug = 'subject-slugified'
+            , moderated = True
+            )
+        message1.people.add(self.candidate1)
+        message1.people.add(self.candidate2)
+
+
+        message2 = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+            , author_name='author'
+            , author_email='author email'
+            , subject = u'subject test_accept_message'
+            , content = u'Qué opina usted sobre el test_accept_message'
+            , writeitinstance=self.election.writeitinstance
+            , slug = 'subject-slugified'
+            )
+        message2.people.add(self.candidate1)
+        message2.people.add(self.candidate2)
+
+
+        VotaInteligenteMessage.push_moderated_messages_to_writeit()
+
+        message1 = VotaInteligenteMessage.objects.get(id=message1.id)
+        message2 = VotaInteligenteMessage.objects.get(id=message2.id)
+
+        self.assertTrue(message1.url)
+        self.assertTrue(message1.remote_id)
+
+        self.assertFalse(message2.url)
+        self.assertFalse(message2.remote_id)
+
+
+
+
 
 
     def test_reject_message(self):

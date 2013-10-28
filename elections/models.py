@@ -14,6 +14,7 @@ from writeit.models import WriteItApiInstance, WriteItInstance
 from candideitorg.models import election_finished
 from writeit.models import Message as WriteItMessage
 import datetime
+from django.db.models import Q
 
 
 class Election(models.Model):
@@ -151,7 +152,6 @@ class VotaInteligenteMessage(WriteItMessage):
 
 
     def accept_moderation(self):
-        self.push_to_the_api()
         self.moderated = True
         self.save()
 
@@ -165,6 +165,13 @@ class VotaInteligenteMessage(WriteItMessage):
         'subject':self.subject,
         'election':self.writeitinstance.election
         }
+
+    @classmethod
+    def push_moderated_messages_to_writeit(cls):
+        query = Q(moderated=True)&Q(remote_id=None)
+        messages = VotaInteligenteMessage.objects.filter(query)
+        for message in messages:
+            message.push_to_the_api()
 
 class VotaInteligenteAnswer(models.Model):
     message = models.ForeignKey(VotaInteligenteMessage, related_name='answers')

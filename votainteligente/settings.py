@@ -3,6 +3,9 @@ import sys
 # Django settings for votainteligente project.
 import os
 
+import djcelery
+djcelery.setup_loader()
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -157,6 +160,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'tinymce',
+    'djcelery'
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -226,6 +230,10 @@ LOGGING = {
         },
     }
 }
+#CELERY STUFF
+BROKER_URL = 'amqp://guest:guest@localhost:5672/'
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+
 #django tinyMCE
 TINYMCE_JS_URL = os.path.join(STATIC_URL, 'js/tiny_mce/tiny_mce.js')
 TINYMCE_JS_ROOT = os.path.join(STATIC_URL, 'js/tiny_mce')

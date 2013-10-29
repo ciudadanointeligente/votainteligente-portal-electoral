@@ -60,7 +60,7 @@
 			
 			<div class="row">
 				<div class="antecedentes col-md-12">
-					<p id="info">
+					<div class="info">
 					{% for background_category in election.can_election.backgroundcategory_set.all %}
 			 			{% for background in background_category.background_set.all %}
 			 				{% for background_candidate in background.backgroundcandidate_set.all %}
@@ -72,7 +72,7 @@
 			 		{% if candidate.relation.description %}
 					{{ candidate.relation.description|linebreaks }}
 					{% endif %}
-			 		</p>
+			 		</div>
 			 	</div>
 			</div>
 		</div>
@@ -128,7 +128,7 @@
 
 {% block extrajs %}
 	$(document).ready(function() {
-		$('div.antecedentes p.info').expander({
+		$('div.antecedentes div.info').expander({
 			expandText: '<i class="icon-chevron-down"></i>',
 			userCollapseText: '<i class="icon-chevron-up"></i>',
 			slicePoint: 180,

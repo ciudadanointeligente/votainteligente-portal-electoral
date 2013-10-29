@@ -5,7 +5,22 @@ angular.module('votainteligente').config(function($interpolateProvider) {
   $interpolateProvider.endSymbol(']]');
 });
 
+app.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                        if ((element.val().length > 0) && (scope.filteredItems!=undefined)){
+                                link = scope.filteredItems[0]['detaillink']
+                                window.location = link
+                        }
+                });
 
+                event.preventDefault();
+            }
+        });
+    };
+});
 
 var searchFormController = function($scope, $http, $filter, $log){
 	$scope.elections = {% elections_json %}

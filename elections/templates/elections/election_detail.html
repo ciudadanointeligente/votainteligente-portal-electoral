@@ -23,7 +23,7 @@
 			
 			<p class="text-center">
 				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a>
-				{% no_ha_respondido_twitter_button %}
+				{% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}
 			</p>
 
 		</div>

@@ -60,7 +60,7 @@
 			
 			<div class="row">
 				<div class="antecedentes col-md-12">
-					<p>
+					<p id="info">
 					{% for background_category in election.can_election.backgroundcategory_set.all %}
 			 			{% for background in background_category.background_set.all %}
 			 				{% for background_candidate in background.backgroundcandidate_set.all %}
@@ -128,7 +128,7 @@
 
 {% block extrajs %}
 	$(document).ready(function() {
-		$('div.antecedentes p').expander({
+		$('div.antecedentes p.info').expander({
 			expandText: '<i class="icon-chevron-down"></i>',
 			userCollapseText: '<i class="icon-chevron-up"></i>',
 			slicePoint: 180,

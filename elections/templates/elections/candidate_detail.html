@@ -46,6 +46,7 @@
 							<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate" target="_blank"><i class="{{ link.icon_class }}"></i> {{link.name}}</a></li>
 						{% endfor %}
 					</ul>
+					
 
 					{% if 'ask'|val_navbars  %}
 					<button type="button" class="btn btn-success btn-lg btn-block" onClick="location.href='{% url 'ask_detail_view' slug=election.slug %}'"><i class="icon-edit"></i> {% trans "Hazle una pregunta" %}</button>
@@ -53,7 +54,7 @@
 					{% if 'facetoface'|val_navbars  %}
 					<button type="button" class="btn btn-danger btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
 					{% endif %}
-					{% no_ha_respondido_twitter_button %}
+					
 				</div>
 			</div>
 			
@@ -79,7 +80,7 @@
 	</div>
 
 	<div class="questionary">
-		<h3>{% trans "Cuestionario" %}</h3>
+		<h3>{% trans "Cuestionario" %} {% no_ha_respondido_twitter_button %}</h3>
 
 		{% for category in election.can_election.category_set.all %}
 		<div class="panel panel-default">

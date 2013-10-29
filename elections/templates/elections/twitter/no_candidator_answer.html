@@ -1,1 +1,5 @@
-{% if twitter %} <a href="https://twitter.com/share" class="twitter-share-button" data-text="Responde el cuestionario de votainteligente" data-lang="en" data-related="{{ twitter }}">Pídele a {{ candidate.name }} que responda</a>{% else %}{% endif %}
+{% load i18n %}
+{% if twitter %} 
+<a href="#" onClick="window.open('https://twitter.com/share?text=@{{twitter}}{% trans '%20responde%20el%20cuestionario%20de%20votainteligente' %}&hashtags=cuestionario,votainteligente','Pídele','width=500,height=280')" class="btn btn-danger btn-xs"><i class="icon-twitter"></i> {% trans "Pídele su postura" %}</a>
+{% else %}
+{% endif %}

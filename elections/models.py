@@ -30,6 +30,12 @@ class Election(models.Model):
     extra_info_title = models.CharField(max_length = 50, blank = True, null = True)
     extra_info_content = models.TextField(max_length = 3000, blank = True, null = True, help_text=_("Puedes usar Markdown. <br/> ") 
             + markdown_allowed())
+    uses_preguntales = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar preguntales?"))
+    uses_ranking = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar ranking"))
+    uses_face_to_face = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar frente a frente"))
+    uses_soul_mate = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar 1/2 naranja"))
+    uses_questionary = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar cuestionario"))
+
 
 
     def __unicode__(self):

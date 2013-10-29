@@ -160,25 +160,22 @@
 
   <!-- Searchable Elections  -->
   {% if searchable_elections_enabled %}
-    <div id="home-search" class="row" data-ng-controller="searchFormController">
-        <!--form action="{% url 'tags_search' %}" method="get" class="form-horizontal" role="form"-->          
+    <div id="home-search" class="row" data-ng-controller="searchFormController">      
           <div class="form-group">
             <div class="col-md-8 col-md-offset-2">
               <div class="input-group">
                 <span class="input-group-btn">
                   <button class="btn btn-default"><i class="icon-search"></i></button>
                 </span>
-                <input type="text" ng-enter="console.log('olinwi');$window.alert(link)" class="form-control" id="id_q" name="q" placeholder="{% trans "Ingresa el nombre de tu comuna" %}" autocomplete="off" data-ng-model="searchElection">
+                <input type="text" class="form-control" ng-enter="console.log('something')" id="id_q" name="q" placeholder="{% trans "Ingresa el nombre de tu comuna" %}" autocomplete="off" data-ng-model="searchElection">
                 <span class="input-group-btn">
                   <button class="btn btn-default" type="button">{% trans "Buscar" %}</button>
                 </span>
               </div>
             </div>
           </div>
-        <!--/form-->
         <div class="elections-results">
             <ul class="list-inline" data-ng-show="searchElection">
-
                 <li data-ng-repeat="election in (filteredItems = (elections | filter:searchElection:comperator))">
                   <a href="[[election.detaillink]]">[[election.name]]</a>
                     <ul>

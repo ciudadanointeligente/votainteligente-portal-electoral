@@ -10,10 +10,10 @@ app.directive('ngEnter', function () {
         element.bind("keydown keypress", function (event) {
             if(event.which === 13) {
                 scope.$apply(function (){
-                	if ((element.val().length > 0) && (scope.filteredItems!=undefined)){
-                		link = scope.filteredItems[0]['detaillink']
-                		window.location = link
-                	}
+                        if ((element.val().length > 0) && (scope.filteredItems!=undefined)){
+                                link = scope.filteredItems[0]['detaillink']
+                                window.location = link
+                        }
                 });
 
                 event.preventDefault();

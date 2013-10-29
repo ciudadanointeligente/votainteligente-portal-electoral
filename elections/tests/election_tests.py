@@ -34,6 +34,12 @@ class ElectionTestCase(TestCase):
 		self.assertEqual(election.can_election, self.can_election)
 		self.assertTrue(election.searchable)
 		self.assertFalse(election.highlighted)
+		self.assertTrue(election.uses_preguntales)
+		self.assertTrue(election.uses_ranking)
+		self.assertTrue(election.uses_face_to_face)
+		self.assertTrue(election.uses_soul_mate)
+		self.assertTrue(election.uses_questionary)
+
 
 	def test_it_can_have_a_popit_instance(self):
 		election = Election.objects.create(

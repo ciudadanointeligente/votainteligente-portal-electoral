@@ -161,7 +161,8 @@
   <!-- Searchable Elections  -->
   {% if searchable_elections_enabled %}
     <div id="home-search" class="row" data-ng-controller="searchFormController">      
-          <div class="form-group">
+
+          <div class="row form-group">
             <div class="col-md-8 col-md-offset-2">
               <div class="input-group">
                 <span class="input-group-btn">
@@ -174,6 +175,7 @@
               </div>
             </div>
           </div>
+    
         <div class="elections-results">
             <ul class="list-inline" data-ng-show="searchElection">
                 <li data-ng-repeat="election in (filteredItems = (elections | filter:searchElection:comperator))">

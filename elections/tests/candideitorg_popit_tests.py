@@ -108,7 +108,7 @@ class CandideitorCandideitPopitPerson(TestCase):
         expected_twitter_button = ""
         actual_twitter_button_template = Template("{% load votainteligente_extras %}{% no_ha_respondido_twitter_button %}")
         actual_twitter_button = actual_twitter_button_template.render(Context({"candidate":self.candidato1}))
-
+        actual_twitter_button = actual_twitter_button.strip()
         self.assertEquals(actual_twitter_button, expected_twitter_button)
 
     def test_unicode(self):

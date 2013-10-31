@@ -29,6 +29,32 @@
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
         <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
         <link type="text/plain" rel="author" href="{% static 'humans.txt' %}" />
+        <!--<link rel="stylesheet" href="{% static 'css/interactioncam.css' %}"-->
+        <style>
+        #videocontainer, canvas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 578px;
+            min-height: 450px;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+        #videocontainer img {
+            position: absolute;
+            display: block;
+            bottom: -5px;
+            left: 0px;
+        }
+        .container_pic {
+            overflow: hidden;
+            width: 578px;
+            height: 450px;
+        }
+        </style>
 
     </head>
 
@@ -126,5 +152,6 @@
           ga('create', '{{ 'code'|ga }}', '{{ 'name'|ga }}');
           ga('send', 'pageview');
         </script>
+        
     </body>
 </html>

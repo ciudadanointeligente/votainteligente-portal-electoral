@@ -1018,6 +1018,11 @@ tr.primary p:first-child, tr.danger p:first-child {
 	display: none;
 }
 
+.container_pic #text-support {
+	position: absolute;
+	z-index: 10;
+}
+
 @media (max-width: 480px) {
 	.navbar-brand img {
 		width: 198px;

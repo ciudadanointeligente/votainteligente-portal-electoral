@@ -18,6 +18,7 @@
 		<div class="profile-candidate">
 			<div class="row">
 				<div class="col-md-3">
+					<div id="candidate-img-profile">
 					{% if candidate.photo %}
 					{% thumbnail candidate.photo "300x300" crop="center" as im %}
 					<img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive">
@@ -25,6 +26,10 @@
 					{% else %}
 					<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">
 					{% endif %}
+					
+					<img id="apoya" src="{% static 'img/hover-caraacara.png' %}" alt="{% trans "Apoya a tu candidato" %}" title="{% trans "Apoya a tu candidato" %}">
+					
+					</div>
 					
 					{% if candidate.relation.portrait_photo %}
 					<a class="btn btn-default button_pic" data-toggle="modal" href="#myModal" style="margin-bottom:5px"><i class="icon-camera"></i> Apoya a tu candidato</a>
@@ -70,14 +75,13 @@
 					</table>
 				</div>
 				
-				<div class="col-md-4">
+				<div class="col-md-4 social-side">
 					<ul class="list-unstyled">
 						{% for link in candidate.link_set.all %}
 							<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate" target="_blank"><i class="{{ link.icon_class }}"></i> {{link.name}}</a></li>
 						{% endfor %}
 					</ul>
 					
-
 					{% if 'ask'|val_navbars  %}
 					<button type="button" class="btn btn-success btn-lg btn-block" onClick="location.href='{% url 'ask_detail_view' slug=election.slug %}'"><i class="icon-edit"></i> {% trans "Hazle una pregunta" %}</button>
 					{% endif %}
@@ -307,6 +311,15 @@
         takepicture();
       }
   },false);
+
+	button_pic.addEventListener('mouseover', function() {
+		//console.log('mouseup');
+		document.getElementById('apoya').setAttribute('style','display:block');
+	},false);
+	button_pic.addEventListener('mouseout', function() {
+		//console.log('mouseup');
+		document.getElementById('apoya').setAttribute('style','display:none');
+	},false);
 
   takepicbutton.addEventListener('click', function(ev) {
     ev.preventDefault();

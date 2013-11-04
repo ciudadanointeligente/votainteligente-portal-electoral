@@ -799,13 +799,13 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 	font-weight: 300;
 }
 
-/*.profile-candidate .btn-success {
+.social-side button.btn-success {
 	margin: 10px 0;
-}*/
+}
 
-/*.profile-candidate .btn-primary {
+.social-side button.btn-primary {
 	margin: 10px 0 25px;
-}*/
+}
 
 .social-link-candidate {
 	color: #FFF;
@@ -1007,6 +1007,15 @@ tr.primary p:first-child, tr.danger p:first-child {
 /*breadscrumb-social*/
 .breadscrumb-social .social-button {
 	padding-top: 8px;
+}
+
+#apoya {
+	position: absolute;
+	top: 0px;
+	left: 15px;
+	width: 253px;
+	height: 253px;
+	display: none;
 }
 
 @media (max-width: 480px) {

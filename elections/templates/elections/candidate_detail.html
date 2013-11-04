@@ -32,19 +32,19 @@
 					</div>
 					
 					{% if candidate.relation.portrait_photo %}
-					<a class="btn btn-default button_pic" data-toggle="modal" href="#myModal" style="margin-bottom:5px"><i class="icon-camera"></i> Apoya a tu candidato</a>
+					<a class="btn btn-default button_pic" data-toggle="modal" href="#myModal" style="margin-bottom:5px"><i class="icon-camera"></i> Da la cara por tu candidato</a>
 					
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h4 class="modal-title">Modal title</h4>
+									<h4 class="modal-title">Da la cara por tu candidato</h4>
 								</div>
 								<div class="modal-body container_pic">
 									<div id="text-support" class="alert alert-warning alert-dismissable">
 										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-										{% trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, commodi, minima similique asperiores quis eius molestias ex deleniti dignissimos voluptas explicabo magni porro maxime suscipit quod voluptatibus nisi odio tempora!" %}
+										{% trans "Recuerda activar tu cámara" %} <i class="icon-arrow-up"></i>
 									</div>
 									<div id="videocontainer">
 										<video id="video"></video>
@@ -56,9 +56,9 @@
 									<div id="cover"></div>
 								</div>
 								<div id="controls" class="modal-footer">
-									<button type="button" class="btn btn-warning" id="resetbutton"><i id="icon-repeat" class="icon-repeat"></i> Aww, volver a intentar</button>
-									<button type="button" class="btn btn-primary" id="takepicbutton"><i class="icon-camera"></i> Crear mi 1/2 naranja</button>
-									<button type="button" class="btn btn-success" id="uploadbutton" style="display:none"><i class="icon-twitter"></i> Comparti mi <3 por {{candidate.name}}</button>
+									<button type="button" class="btn btn-default" id="resetbutton"><i id="icon-repeat" class="icon-repeat"></i> {% trans "Tomar otra foto" %}</button>
+									<button type="button" class="btn btn-primary" id="takepicbutton"><i class="icon-camera"></i> {% trans "Tomar foto" %}</button>
+									<button type="button" class="btn btn-success" id="uploadbutton" style="display:none"><i class="icon-twitter"></i> {% trans "Compartir mi &lt;3 por" %} {{candidate.name}}</button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->

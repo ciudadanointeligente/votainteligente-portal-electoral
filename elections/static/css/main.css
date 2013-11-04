@@ -82,6 +82,12 @@ strong {
 	border-color: #AFE9F3;
 }
 
+.alert-warning {
+	color: #b79800;
+	background-color: #FFED93;
+	border-color: #ffd200;
+}
+
 .form-control::-webkit-input-placeholder {
    font-weight: 300;
 }
@@ -1013,14 +1019,31 @@ tr.primary p:first-child, tr.danger p:first-child {
 	position: absolute;
 	top: 0px;
 	left: 15px;
-	width: 253px;
+	width: 253px;	
 	height: 253px;
 	display: none;
 }
 
+/*Cara a cara*/
+
+
 .container_pic #text-support {
 	position: absolute;
 	z-index: 10;
+	right: 15px;
+}
+
+.modal-header {
+	background-color: #323a45;
+	border-radius: 3px 3px 0px 0px;
+}
+
+.btn.btn-default.button_pic {
+	width: 100%;
+}
+
+.btn.btn-default.button_pic i {
+	color: #fe635f;
 }
 
 @media (max-width: 480px) {

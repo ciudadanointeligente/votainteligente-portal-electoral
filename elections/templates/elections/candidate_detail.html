@@ -27,7 +27,7 @@
 					{% endif %}
 					
 					{% if candidate.relation.portrait_photo %}
-					<a class="button_pic" data-toggle="modal" href="#myModal"><i class="icon-camera"></i></a>
+					<a class="btn btn-default button_pic" data-toggle="modal" href="#myModal" style="margin-bottom:5px"><i class="icon-camera"></i> Apoya a tu candidato</a>
 					
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
@@ -39,8 +39,8 @@
 								<div class="modal-body container_pic">
 									<div id="videocontainer">
 										<video id="video"></video>
-										{% thumbnail candidate.relation.portrait_photo "578x450" crop="left" as im %}
-										<img src="{{im.url}}" id="soulmatelalo" alt="vi-cl">
+										{% thumbnail candidate.relation.portrait_photo "320x450" crop="left" as im %}
+										<img src="{{im.url}}" id="soulmate-pic" alt="{{candidate.name}}" title="{{candidate.name}}">
 										{% endthumbnail %}
 									</div>
 									<canvas id="canvas"></canvas>
@@ -188,6 +188,7 @@
       urllink      = document.querySelector('#uploaded a'),
       button_pic    = document.querySelector('a.button_pic'),
       takepicbutton = document.querySelector('#takepicbutton'),
+      closebutton = document.querySelector('.close'),
       width = 600,
       height = 0,
       finalheight = 0,
@@ -224,8 +225,8 @@
     canvas.height = finalheight;
     canvas.getContext('2d').drawImage(video, 0, 0, width, finalheight);
     var img = new Image();
-    img.src = document.getElementById('soulmatelalo').getAttribute("src");
-    canvas.getContext('2d').drawImage(img, 0, 0, 300, 450); //output picture
+    img.src = document.getElementById('soulmate-pic').getAttribute("src");
+    canvas.getContext('2d').drawImage(img, 0, 0, 320, 450); //output picture
     document.getElementById('videocontainer').setAttribute('style','display:none');
     document.getElementById('canvas').setAttribute('style','');
     document.getElementById('uploadbutton').setAttribute('style','');
@@ -343,6 +344,12 @@
     //}
     ev.preventDefault();
   }, false);
+
+	closebutton.addEventListener('click', function(){
+		//console.log(video);
+		//video.stop();
+		
+	}, false);
 
 })();
 

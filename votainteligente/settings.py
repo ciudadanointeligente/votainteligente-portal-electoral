@@ -292,6 +292,14 @@ WEBSITE_GA = {
     'code' : 'UA-XXXXX-X',
     'name' : 'ga_name'
 }
+#imgur
+WEBSITE_IMGUR = {
+    'client_id' : 'eb18642b5b220484864483b8e21386c3' #example client_id, only works with 50 pic a day
+}
+#settings for global site
+WEBSITE_GENERAL_SETTINGS = {
+    'home_title' : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+}
 
 USE_POPIT = True
 #if you set USE_POPIT to False the USE_WRITEIT param will automatically be interpreted as False

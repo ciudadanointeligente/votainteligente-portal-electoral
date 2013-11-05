@@ -78,3 +78,10 @@ def no_ha_respondido_twitter_button(context):
 		}
 register.inclusion_tag('elections/twitter/no_candidator_answer.html', 
 	takes_context=True)(no_ha_respondido_twitter_button)
+
+@register.filter
+#website general settings
+def website_gs(value):
+	if value in settings.WEBSITE_GENERAL_SETTINGS:
+		return settings.WEBSITE_GENERAL_SETTINGS[value]
+	return ''

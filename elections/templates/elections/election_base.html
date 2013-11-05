@@ -51,26 +51,26 @@
 			<div class="col-md-12">
 				<ul class="list-inline">
 					{% if 'profiles'|val_navbars  %}
-					<li><a href="{% url 'election_view' slug=election.slug %}" accesskey="p" title="{% trans "Perfiles" %} (Alt+p)"><i class="icon-group"></i> {% trans "Perfiles" %}</a></li>
+					<li {% block tab_profile %}{% endblock %}><a href="{% url 'election_view' slug=election.slug %}" accesskey="p" title="{% trans "Perfiles" %} (Alt+p)"><i class="icon-group"></i> {% trans "Perfiles" %}</a></li>
 					{% endif %}
 					{% if 'questionary'|val_navbars and election.uses_questionary  %}
-					<li><a href="{% url 'questionary_detail_view' slug=election.slug %}" accesskey="c" title="{% trans "Cuestionario" %} (Alt+c)"><i class="icon-list"></i> {% trans "Cuestionario" %}</a></li>
+					<li {% block tab_questionary %}{% endblock %}><a href="{% url 'questionary_detail_view' slug=election.slug %}" accesskey="c" title="{% trans "Cuestionario" %} (Alt+c)"><i class="icon-list"></i> {% trans "Cuestionario" %}</a></li>
 					{% endif %}
 					{% if 'soulmate'|val_navbars and election.uses_soul_mate  %}
-					<li><a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)"><i class="icon-heart"></i> {% trans "1/2 Naranja" %}</a></li>
+					<li {% block tab_soulmate %}{% endblock %}><a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)"><i class="icon-heart"></i> {% trans "1/2 Naranja" %}</a></li>
 					{% endif %}
 					{% if 'facetoface'|val_navbars and election.uses_face_to_face  %}
-					<li><a href="{% block url_face_to_face %}{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}{% endblock url_face_to_face %}" accesskey="f" title="{% trans "Frente a Frente" %} (Alt+f)"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a></li>
+					<li {% block tab_facetoface %}{% endblock %}><a href="{% block url_face_to_face %}{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}{% endblock url_face_to_face %}" accesskey="f" title="{% trans "Frente a Frente" %} (Alt+f)"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a></li>
 					{% endif %}
 					{% if 'ask'|val_navbars and election.uses_preguntales  %}
-					<li><a href="{% url 'ask_detail_view' slug=election.slug %}" accesskey="a" title="{% trans "Pregúntales" %} (Alt+a)"><i class="icon-edit"></i> {% trans "Pregúntales" %}</a></li>
+					<li {% block tab_ask %}{% endblock %}><a href="{% url 'ask_detail_view' slug=election.slug %}" accesskey="a" title="{% trans "Pregúntales" %} (Alt+a)"><i class="icon-edit"></i> {% trans "Pregúntales" %}</a></li>
 					{% endif %}
 					{% if 'ranking'|val_navbars and election.uses_ranking %}
-					<li><a href="{% url 'ranking_detail_view' slug=election.slug %}" accesskey="r" title="{% trans "Ranking" %} (Alt+r)"><i class="icon-trophy"></i> {% trans "Ranking" %}</a></li>
+					<li {% block tab_ranking %}{% endblock %}><a href="{% url 'ranking_detail_view' slug=election.slug %}" accesskey="r" title="{% trans "Ranking" %} (Alt+r)"><i class="icon-trophy"></i> {% trans "Ranking" %}</a></li>
 					{% endif %}
 					
 					{% if election.extra_info_title %}
-					<li><a href="{% url 'election_extra_info' slug=election.slug %}"><i class="icon-info"></i> {{election.extra_info_title}} </a></li>
+					<li {% block tab_extrainfo %}{% endblock %}><a href="{% url 'election_extra_info' slug=election.slug %}"><i class="icon-info"></i> {{election.extra_info_title}} </a></li>
 					{% endif %}
 					
 				</ul>

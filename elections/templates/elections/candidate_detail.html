@@ -9,8 +9,9 @@
 
 {% block title %} - {{election}} - {{candidate.name}}{% endblock title%}
 
-{% block mainelection %}
+{% block tab_profile %}class="active"{% endblock %}
 
+{% block mainelection %}
 	<div class="container-profile">
 		<div>
 			<h3>{{ candidate.name }}</h3>
@@ -26,6 +27,44 @@
 					{% else %}
 					<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">
 					{% endif %}
+					
+					<img id="apoya" src="{% static 'img/hover-caraacara.png' %}" alt="{% trans "Apoya a tu candidato" %}" title="{% trans "Apoya a tu candidato" %}">
+					
+					
+					{% if candidate.relation.portrait_photo %}
+					<a class="btn btn-default button_pic" data-toggle="modal" href="#myModal" style="margin-bottom:5px"><i class="icon-camera"></i> Da la cara por tu candidato</a>
+					
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title">Da la cara por tu candidato</h4>
+								</div>
+								<div class="modal-body container_pic">
+									<div id="text-support" class="alert alert-warning alert-dismissable">
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+										{% trans "Recuerda activar tu cámara" %} <i class="icon-arrow-up"></i>
+									</div>
+									<div id="videocontainer">
+										<video id="video"></video>
+										{% thumbnail candidate.relation.portrait_photo "320x450" crop="left" as im %}
+										<img src="{{im.url}}" id="soulmate-pic" alt="{{candidate.name}}" title="{{candidate.name}}">
+										{% endthumbnail %}
+									</div>
+									<canvas id="canvas"></canvas>
+									<div id="cover"></div>
+								</div>
+								<div id="controls" class="modal-footer">
+									<button type="button" class="btn btn-default" id="resetbutton"><i id="icon-repeat" class="icon-repeat"></i> {% trans "Tomar otra foto" %}</button>
+									<button type="button" class="btn btn-primary" id="takepicbutton"><i class="icon-camera"></i> {% trans "Tomar foto" %}</button>
+									<button type="button" class="btn btn-success" id="uploadbutton" style="display:none"><i class="icon-twitter"></i> {% trans "Compartir mi &lt;3 por" %} {{candidate.name}}</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+					{% endif %}
+
 				</div>
 				<div class="col-md-5">
 					<table class="table">
@@ -40,14 +79,13 @@
 					</table>
 				</div>
 				
-				<div class="col-md-4">
+				<div class="col-md-4 social-side">
 					<ul class="list-unstyled">
 						{% for link in candidate.link_set.all %}
 							<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate" target="_blank"><i class="{{ link.icon_class }}"></i> {{link.name}}</a></li>
 						{% endfor %}
 					</ul>
 					
-
 					{% if 'ask'|val_navbars and election.uses_preguntales  %}
 					<button type="button" class="btn btn-success btn-lg btn-block" onClick="location.href='{% url 'ask_detail_view' slug=election.slug %}'"><i class="icon-edit"></i> {% trans "Hazle una pregunta" %}</button>
 					{% endif %}
@@ -122,7 +160,10 @@
 	    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 	    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 	</div>
+
+	
 	{% endif %}
+	<!--<script src="{% static 'js/interactioncam.js' %}"></script>-->
 	
 {% endblock mainelection %}
 
@@ -136,4 +177,197 @@
 
 		$('.pop-fuente').popover();
 	});
+
+
+
+(function() {
+
+  var API_KEY = 'eb18642b5b220484864483b8e21386c3';
+      //  ^ get your own at https://imgur.com/register/api_anon
+      //    as it is limited to 50 uploads an hour!
+  var streaming = false,
+      video        = document.querySelector('#video'),
+      cover        = document.querySelector('#cover'),
+      canvas       = document.querySelector('#canvas'),
+      resetbutton  = document.querySelector('#resetbutton'),
+      //startbutton  = document.querySelector('#startbutton'),
+      uploadbutton = document.querySelector('#uploadbutton'),
+      urlfield     = document.querySelector('#uploaded input'),
+      urllink      = document.querySelector('#uploaded a'),
+      button_pic    = document.querySelector('a.button_pic'),
+      takepicbutton = document.querySelector('#takepicbutton'),
+      closebutton = document.querySelector('.close'),
+      width = 600,
+      height = 0,
+      finalheight = 0,
+      state = 'intro';
+      setstate(state);
+  function init() {
+    navigator.getMedia = ( navigator.getUserMedia ||
+                           navigator.webkitGetUserMedia ||
+                           navigator.mozGetUserMedia ||
+                           navigator.msGetUserMedia);
+
+    navigator.getMedia(
+      {
+        video: true,
+        audio: false
+      },
+      function(stream) {
+        if (navigator.mozGetUserMedia) {
+          video.mozSrcObject = stream;
+        } else {
+          var vendorURL = window.URL || window.webkitURL;
+          video.src = vendorURL ? vendorURL.createObjectURL(stream) : stream;
+        }
+        video.play();
+      },
+      function(err) {
+        console.log("An error occured! " + err);
+      }
+    );
+  }
+
+  function takepicture() {
+    canvas.width = width;
+    canvas.height = finalheight;
+    canvas.getContext('2d').drawImage(video, 0, 0, width, finalheight);
+    var img = new Image();
+    img.src = document.getElementById('soulmate-pic').getAttribute("src");
+    canvas.getContext('2d').drawImage(img, 0, 0, 320, 450); //output picture
+    document.getElementById('videocontainer').setAttribute('style','display:none');
+    document.getElementById('canvas').setAttribute('style','');
+    document.getElementById('uploadbutton').setAttribute('style','');
+    document.getElementById('takepicbutton').setAttribute('style','display:none');
+    document.getElementById('icon-repeat').classList.add('icon-spin');
+  }
+
+  function reshoot() {
+    if (state === 'reviewing' || state === 'uploaded') {
+      setstate('playing');
+    }
+  }
+
+  function initiateupload() {
+    if (state === 'reviewing') {
+      setstate('uploading');
+      upload();
+    }
+  }
+
+  function upload() {
+    
+    var head = /^data:image\/(png|jpg);base64,/,
+        fd = new FormData(),toSend,
+        xhr = new XMLHttpRequest(),
+        links = '',
+        data = '',
+        originalImage= '';
+
+    setstate('uploading');
+    data = ('mozGetAsFile' in canvas) ?
+           canvas.mozGetAsFile('webcam.png') :
+           canvas.toDataURL('image/png').replace(head, '');
+    fd.append('image', data);
+    fd.append('key', API_KEY);
+    xhr.open('POST', 'http://api.imgur.com/2/upload.json');
+    xhr.addEventListener('error', function(ev) {
+      console.log('Upload Error :');
+    }, false);
+    xhr.addEventListener('load', function(ev) {
+      try {
+        var links = JSON.parse(xhr.responseText).upload.links;
+        
+        setstate('uploaded');
+        window.open("https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}&text={{candidate.name}}+%3C3+"+links.imgur_page+"&hashtags=medianaranja,votainteligente", 'twitter-share-dialog', 'width=626,height=436');
+      } catch(e) {
+        console.log('Upload Error :' + e);
+      }
+    }, false);
+    xhr.send(fd);
+  }
+
+  function setstate(newstate) {
+    state = newstate;
+    document.body.className = newstate;  
+  } 
+
+  /* Event Handlers */
+
+  video.addEventListener('canplay', function(ev){
+    if (!streaming) {
+      finalheight = video.videoHeight / (video.videoWidth/width);
+      video.setAttribute('width', width);
+      video.setAttribute('height', finalheight);
+      canvas.setAttribute('width', width);
+      canvas.setAttribute('height', finalheight);
+      streaming = true;
+    }
+  }, false);
+
+  button_pic.addEventListener('click', function(ev) {
+    ev.preventDefault();
+    if (state === 'intro') {
+        setstate('playing');
+        init();
+      } else {
+        setstate('reviewing');
+        takepicture();
+      }
+  },false);
+
+	button_pic.addEventListener('mouseover', function() {
+		//console.log('mouseup');
+		document.getElementById('apoya').setAttribute('style','display:block');
+	},false);
+	button_pic.addEventListener('mouseout', function() {
+		//console.log('mouseup');
+		document.getElementById('apoya').setAttribute('style','display:none');
+	},false);
+
+  takepicbutton.addEventListener('click', function(ev) {
+    ev.preventDefault();
+    takepicture();
+  },false);
+
+  video.addEventListener('click', function(ev){
+    setstate('reviewing');
+    takepicture();
+  }, false);
+
+  resetbutton.addEventListener('click', function(ev){
+    if (state === 'reviewing') {
+      setstate('playing');
+    }
+    document.getElementById('videocontainer').setAttribute('style','');
+    document.getElementById('canvas').setAttribute('style','display:none');
+    document.getElementById('uploadbutton').setAttribute('style','display:none');
+    document.getElementById('takepicbutton').setAttribute('style','');
+    document.getElementById('icon-repeat').classList.remove('icon-spin');
+    ev.preventDefault();
+  }, false);
+
+  /*startbutton.addEventListener('click', function(ev){
+    if (state === 'uploaded') {
+      setstate('playing');
+    }
+    ev.preventDefault();
+  }, false);*/
+
+  uploadbutton.addEventListener('click', function(ev){
+    //if (state === 'reviewing') {
+      setstate('uploading');
+      upload();
+    //}
+    ev.preventDefault();
+  }, false);
+
+	closebutton.addEventListener('click', function(){
+		//console.log(video);
+		//video.stop();
+		
+	}, false);
+
+})();
+
 {% endblock extrajs %}

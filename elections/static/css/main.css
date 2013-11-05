@@ -1031,6 +1031,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 	position: absolute;
 	z-index: 10;
 	right: 15px;
+	width: 60%;
 }
 
 .modal-header {

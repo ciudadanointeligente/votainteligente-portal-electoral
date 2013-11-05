@@ -292,6 +292,10 @@ WEBSITE_GA = {
     'code' : 'UA-XXXXX-X',
     'name' : 'ga_name'
 }
+#settings for global site
+WEBSITE_GENERAL_SETTINGS = {
+    'home_title' : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+}
 
 USE_POPIT = True
 #if you set USE_POPIT to False the USE_WRITEIT param will automatically be interpreted as False

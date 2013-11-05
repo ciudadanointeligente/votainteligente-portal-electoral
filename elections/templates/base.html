@@ -6,7 +6,7 @@
 <html prefix="og: http://ogp.me/ns/{{ 'type'|ogpdata }}#">
     <head>
         <meta charset="utf-8">
-        <title>{% trans "Vota Inteligente" %} {% block title %}- {% trans "Portada" %}{% endblock title %}</title>
+        <title>{% trans "Vota Inteligente" %} {% block title %}- {{ 'home_title'|website_gs }}{% endblock title %}</title>
         <meta name="author" content="{{ 'author'|metadata }}">
         <meta name="description" content="{{ 'description'|metadata }}">
         <meta name="keywords" content="{{ 'keywords'|metadata }}">

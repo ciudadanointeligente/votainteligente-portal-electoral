@@ -11,12 +11,9 @@ from tinymce.widgets import TinyMCE
 from django.utils.translation import ugettext_lazy as _
 
 class ElectionAdmin(admin.ModelAdmin):
-	search_fields = ['name', 'tags']
+    search_fields = ['name', 'tags']
 	
 admin.site.register(Election, ElectionAdmin)
-
-
-
 
 class PageForm(FlatpageForm):
 
@@ -25,7 +22,6 @@ class PageForm(FlatpageForm):
         widgets = {
             'content' : TinyMCE(),
         }
-
 
 class PageAdmin(FlatPageAdmin):
     """
@@ -56,18 +52,6 @@ class MensajesAdmin(admin.ModelAdmin):
     inlines = [
     AnswerInline
     ]
-
-    # def changelist_view(self, request, extra_context=None):
-
-    #     if not request.GET.has_key('moderated__exact'):
-
-    #         q = request.GET.copy()
-    #         q['moderated__exact'] = 0
-    #         request.GET = q
-    #         request.META['QUERY_STRING'] = request.GET.urlencode()
-    #     else:
-    #         request.GET['moderated__exact']
-    #     return super(MensajesAdmin,self).changelist_view(request, extra_context=extra_context)
 
     actions = ['accept_moderation']
 

@@ -25,10 +25,10 @@
   <div class="hidden-xs">
   {% if featured_elections|length = 1 %}
     <!-- Featured Election block -->
-    <div class="contenedorDestacado">
+    <div class="contenedorDestacado fondo-blanco">
       <ul>
         {% for featured_election in featured_elections %}
-          <li class="col-md-10 col-md-offset-1 containerAccordion">
+          <li class="containerAccordion">
             <script type="text/javascript">
             jQuery(document).ready(function($){
               screenwidth = $(".containerAccordion").width();
@@ -160,6 +160,7 @@
 
   <!-- Searchable Elections  -->
   {% if searchable_elections_enabled %}
+  <h2>{% trans "Encuentra tus candidatos al Parlamento y Core" %}</h2>
     <div id="home-search" class="row" data-ng-controller="searchFormController">      
 
           <div class="row form-group">

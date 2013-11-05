@@ -121,9 +121,14 @@ strong {
 
 /*Elecciones destacadas*/
 
+.text-center.intro-home {
+	margin: 65px 0px 45px;
+}
+
 .contenedorDestacado {
 	*zoom: 1;
 	margin: 20px 0 60px;
+	padding: 30px;
 }
 
 .contenedorDestacado:after {
@@ -134,6 +139,7 @@ strong {
 
 .contenedorDestacado ul {
 	list-style: none;
+	-webkit-padding-start: 0px;
 }
 
 .accordion
@@ -203,6 +209,10 @@ strong {
 .accordion .caption p a
 {
 	color:#FFF;
+}
+
+#home-search {
+	margin: 50px 0;
 }
 
 

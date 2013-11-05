@@ -6,7 +6,7 @@
 <html prefix="og: http://ogp.me/ns/{{ 'type'|ogpdata }}#">
     <head>
         <meta charset="utf-8">
-        <title>{% trans "Vota Inteligente" %} {% block title %}- {% trans "Portada" %}{% endblock title %}</title>
+        <title>{% trans "Vota Inteligente" %} {% block title %}- {{ 'home_title'|website_gs }}{% endblock title %}</title>
         <meta name="author" content="{{ 'author'|metadata }}">
         <meta name="description" content="{{ 'description'|metadata }}">
         <meta name="keywords" content="{{ 'keywords'|metadata }}">
@@ -21,7 +21,18 @@
         <!--eoff-->
 
         <link rel="shortcut icon" sizes="196x196" href="{% static 'img/votai-196.png' %}">
-        
+        <!-- Browser out of date -->
+        <script type="text/javascript"> 
+        var $buoop = {} 
+        $buoop.ol = window.onload; 
+        window.onload=function(){ 
+         try {if ($buoop.ol) $buoop.ol();}catch (e) {} 
+         var e = document.createElement("script"); 
+         e.setAttribute("type", "text/javascript"); 
+         e.setAttribute("src", "http://browser-update.org/update.js"); 
+         document.body.appendChild(e); 
+        } 
+        </script> 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">

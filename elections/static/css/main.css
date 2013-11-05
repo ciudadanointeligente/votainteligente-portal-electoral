@@ -1019,6 +1019,21 @@ tr.primary p:first-child, tr.danger p:first-child {
 	padding-top: 8px;
 }
 
+/*404*/
+
+.ups.fondo-blanco {
+	text-align: center;
+	margin: 40px 0px;
+}
+
+.ups p {
+	font-weight: 200;
+}
+
+.ups i {
+	color: #fe635f;
+}
+
 @media (max-width: 480px) {
 	.navbar-brand img {
 		width: 198px;

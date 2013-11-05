@@ -82,6 +82,12 @@ strong {
 	border-color: #AFE9F3;
 }
 
+.alert-warning {
+	color: #b79800;
+	background-color: #FFED93;
+	border-color: #ffd200;
+}
+
 .form-control::-webkit-input-placeholder {
    font-weight: 300;
 }
@@ -809,11 +815,11 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 	font-weight: 300;
 }
 
-.profile-candidate .btn-success {
+.social-side button.btn-success {
 	margin: 10px 0;
 }
 
-.profile-candidate .btn-primary {
+.social-side button.btn-primary {
 	margin: 10px 0 25px;
 }
 
@@ -1017,6 +1023,37 @@ tr.primary p:first-child, tr.danger p:first-child {
 /*breadscrumb-social*/
 .breadscrumb-social .social-button {
 	padding-top: 8px;
+}
+
+#apoya {
+	position: absolute;
+	top: 0px;
+	left: 15px;
+	width: 253px;	
+	height: 253px;
+	display: none;
+}
+
+/*Cara a cara*/
+
+
+.container_pic #text-support {
+	position: absolute;
+	z-index: 10;
+	right: 15px;
+}
+
+.modal-header {
+	background-color: #323a45;
+	border-radius: 3px 3px 0px 0px;
+}
+
+.btn.btn-default.button_pic {
+	width: 100%;
+}
+
+.btn.btn-default.button_pic i {
+	color: #fe635f;
 }
 
 @media (max-width: 480px) {

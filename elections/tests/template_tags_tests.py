@@ -115,3 +115,9 @@ class TemplateTagsTestCase(TestCase):
 		context = Context({})
 
 		self.assertEqual(template.render(context), u'UA-XXXXX-X')
+
+	def test_website_general_settings(self):
+		template = Template("{% load votainteligente_extras %}{{ 'home_title'|website_gs }}")
+		context = Context({})
+
+		self.assertEqual(template.render(context), u'Elecciones Presidenciales, Sendores, Diputados y COREs Chile 2013')

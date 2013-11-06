@@ -232,10 +232,16 @@
   function takepicture() {
     canvas.width = width;
     canvas.height = finalheight;
+    
+    video.setAttribute("style", "transform: scaleX(-1);-ms-transform: scaleX(-1);-webkit-transform: scaleX(-1)");
+
     canvas.getContext('2d').drawImage(video, 0, 0, width, finalheight);
     var img = new Image();
     img.src = document.getElementById('soulmate-pic').getAttribute("src");
+    img.crossOrigin = "Anonymous";
+
     canvas.getContext('2d').drawImage(img, 0, 0, 320, 450); //output picture
+
     document.getElementById('videocontainer').setAttribute('style','display:none');
     document.getElementById('canvas').setAttribute('style','');
     document.getElementById('uploadbutton').setAttribute('style','');
@@ -265,10 +271,8 @@
         data = '',
         originalImage= '';
 
-    setstate('uploading');
-    data = ('mozGetAsFile' in canvas) ?
-           canvas.mozGetAsFile('webcam.png') :
-           canvas.toDataURL('image/png').replace(head, '');
+    data = ('mozGetAsFile' in canvas) ? canvas.mozGetAsFile('webcam.png') : canvas.toDataURL('image/png').replace(head, '');
+    
     fd.append('image', data);
     fd.append('key', API_KEY);
     xhr.open('POST', 'http://api.imgur.com/2/upload.json');
@@ -298,13 +302,15 @@
   video.addEventListener('canplay', function(ev){
     if (!streaming) {
       finalheight = video.videoHeight / (video.videoWidth/width);
+
       video.setAttribute('width', width);
       video.setAttribute('height', finalheight);
-      video.setAttribute("style", "transform: scaleX(-1)");
-      video.setAttribute("style", "-ms-transform: scaleX(-1)");
-      video.setAttribute("style", "-webkit-transform: scaleX(-1)");
+      video.setAttribute("style", "transform: scaleX(-1);-ms-transform: scaleX(-1);-webkit-transform: scaleX(-1)");
+
       canvas.setAttribute('width', width);
       canvas.setAttribute('height', finalheight);
+      canvas.setAttribute("style", "transform: scaleX(-1);-ms-transform: scaleX(-1);-webkit-transform: scaleX(-1)");
+
       streaming = true;
     }
   }, false);

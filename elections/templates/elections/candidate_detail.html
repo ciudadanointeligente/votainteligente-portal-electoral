@@ -238,7 +238,7 @@
     canvas.getContext('2d').drawImage(video, 0, 0, width, finalheight);
     var img = new Image();
     img.src = document.getElementById('soulmate-pic').getAttribute("src");
-    img.crossOrigin = "Anonymous";
+    img.crossOrigin = '';
 
     canvas.getContext('2d').drawImage(img, 0, 0, 320, 450); //output picture
 

@@ -120,7 +120,7 @@
 	</div>
 
 	<div class="questionary">
-		<h3>{% trans "Cuestionario" %} {% no_ha_respondido_twitter_button %}</h3>
+		<h3>{% trans "Cuestionario" %} {% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
 
 		{% for category in election.can_election.category_set.all %}
 		<div class="panel panel-default">
@@ -301,6 +301,9 @@
       finalheight = video.videoHeight / (video.videoWidth/width);
       video.setAttribute('width', width);
       video.setAttribute('height', finalheight);
+      video.setAttribute("style", "transform: scaleX(-1)");
+      video.setAttribute("style", "-ms-transform: scaleX(-1)");
+      video.setAttribute("style", "-webkit-transform: scaleX(-1)");
       canvas.setAttribute('width', width);
       canvas.setAttribute('height', finalheight);
       streaming = true;

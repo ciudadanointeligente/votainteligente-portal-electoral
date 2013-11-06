@@ -30,6 +30,9 @@ class TemplateTagsTestCase(TestCase):
 		WEBSITE_GA = {
 		    'code' : 'UA-XXXXX-X'
 		}
+		WEBSITE_GENERAL_SETTINGS = {
+		    'home_title' : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+		}
 
 	def test_bring_all_elections_with_their_tags_as_json(self):
 		expected_elections = []

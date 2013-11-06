@@ -1020,6 +1020,22 @@ tr.primary p:first-child, tr.danger p:first-child {
    color: #eaedf2;
 }
 
+/*No responde*/
+
+.not_answered_small a:after {
+	content: url(../img/no-responde-small.png);
+	position: absolute;
+	top: 35px;
+	left: 16px;
+}
+
+.not_answered:after {
+	content: url(../img/no-responde.png);
+	position: absolute;
+	top: 52px;
+	left: 8px;
+}
+
 /*breadscrumb-social*/
 .breadscrumb-social .social-button {
 	padding-top: 8px;

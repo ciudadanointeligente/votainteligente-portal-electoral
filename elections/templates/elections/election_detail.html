@@ -13,7 +13,7 @@
 <div class="row">
 	<div class="container-candidates">
 		{% for candidate in election.can_election.candidate_set.all %}
-		<div class="col-md-2">
+		<div class="col-md-2 {% if not candidate.has_answered %}not_answered_small{% endif %}">
 			
 			{% if candidate.photo %}
 				{% thumbnail candidate.photo "300x300" crop="center" as im %}

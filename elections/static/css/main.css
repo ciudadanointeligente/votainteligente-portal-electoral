@@ -1072,9 +1072,13 @@ tr.primary p:first-child, tr.danger p:first-child {
 	right: 15px;
 }
 
-.modal-header {
+#myCandidate .modal-header {
 	background-color: #323a45;
 	border-radius: 3px 3px 0px 0px;
+}
+
+#myCandidate .modal-footer {
+	background-color: #4b4b4b;
 }
 
 .btn.btn-default.button_pic {
@@ -1083,6 +1087,31 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 .btn.btn-default.button_pic i {
 	color: #fe635f;
+}
+
+/*video*/
+#videocontainer, canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 578px;
+    min-height: 450px;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+#videocontainer img {
+    position: absolute;
+    display: block;
+    bottom: -5px;
+    left: 0px;
+}
+.container_pic {
+    overflow: hidden;
+    width: 578px;
+    height: 450px;
 }
 
 @media (max-width: 480px) {
@@ -1097,6 +1126,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 	.other-soulmate-box {
 		margin-top: 5px;
 	}
+
 }
 
 @media (max-width: 604px) {

@@ -33,14 +33,14 @@
 					</div>
 					
 					{% if candidate.relation.portrait_photo %}
-					<a class="btn btn-default button_pic" data-toggle="modal" href="#myModal" class="hidden-xs" style="margin-bottom:5px"><i class="icon-camera"></i> Da la cara por tu candidato</a>
+					<a class="btn btn-default button_pic" data-toggle="modal" href="#myCandidate" class="hidden-xs" style="margin-bottom:5px"><i class="icon-camera"></i> Da la cara por tu candidato</a>
 					
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal fade" id="myCandidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h4 class="modal-title">Da la cara por tu candidato</h4>
+									<h4 class="modal-title"><i class="icon-camera"></i> Da la cara por tu candidato</h4>
 								</div>
 								<div class="modal-body container_pic">
 									<div id="text-support" class="alert alert-warning alert-dismissable">
@@ -49,17 +49,22 @@
 									</div>
 									<div id="videocontainer">
 										<video id="video"></video>
-										{% thumbnail candidate.relation.portrait_photo "320x450" crop="left" as im %}
-										<img src="{{im.url}}" id="soulmate-pic" alt="{{candidate.name}}" title="{{candidate.name}}">
-										{% endthumbnail %}
+										
+										<img src="{{candidate.relation.portrait_photo}}" id="soulmate-pic" alt="{{candidate.name}}" title="{{candidate.name}}">
+										
 									</div>
 									<canvas id="canvas"></canvas>
 									<div id="cover"></div>
 								</div>
 								<div id="controls" class="modal-footer">
-									<button type="button" class="btn btn-default" id="resetbutton"><i id="icon-repeat" class="icon-repeat"></i> {% trans "Tomar otra foto" %}</button>
+									<span id="socialsharehalfface" class="text-left" style="display:none">
+										<input type="text" id="shareurl" value="" style="width:39%" onclick="this.select();">
+										 <a href="#" id="shareurltwitter" onClick="#"><i class="icon-twitter-sign"></i> compartir</a>
+										 <a href="#" id="shareurlfacebook" onClick="#"><i class="icon-facebook-sign"></i> publicar</a>
+									</span>
+									<button type="button" class="btn btn-default" id="resetbutton" style="display:none"><i id="icon-repeat" class="icon-repeat"></i> {% trans "Tomar otra foto" %}</button>
 									<button type="button" class="btn btn-primary" id="takepicbutton"><i class="icon-camera"></i> {% trans "Tomar foto" %}</button>
-									<button type="button" class="btn btn-success" id="uploadbutton" style="display:none"><i class="icon-twitter"></i> {% trans "Compartir mi &lt;3 por" %} {{candidate.name}}</button>
+									<button type="button" class="btn btn-success" id="uploadbutton" style="display:none">{% trans "OK" %}</button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
@@ -83,7 +88,7 @@
 				<div class="col-md-4 social-side">
 					<ul class="list-unstyled">
 						{% for link in candidate.link_set.all %}
-							<li><a href="{{link.url}}" onclick="_gaq.push(['_trackEvent', 'SocialButtonCandidate', click]);" class="social-link-candidate" target="_blank"><i class="{{ link.icon_class }}"></i> {{link.name}}</a></li>
+							<li><a href="{{link.url}}" class="social-link-candidate" target="_blank"><i class="{{ link.icon_class }}"></i> {{link.name}}</a></li>
 						{% endfor %}
 					</ul>
 					
@@ -179,19 +184,14 @@
 		$('.pop-fuente').popover();
 	});
 
-
-
 (function() {
 
-  var API_KEY = 'eb18642b5b220484864483b8e21386c3';
-      //  ^ get your own at https://imgur.com/register/api_anon
-      //    as it is limited to 50 uploads an hour!
+  var API_KEY = '{{ 'client_id'|website_imgur }}';
   var streaming = false,
       video        = document.querySelector('#video'),
       cover        = document.querySelector('#cover'),
       canvas       = document.querySelector('#canvas'),
       resetbutton  = document.querySelector('#resetbutton'),
-      //startbutton  = document.querySelector('#startbutton'),
       uploadbutton = document.querySelector('#uploadbutton'),
       urlfield     = document.querySelector('#uploaded input'),
       urllink      = document.querySelector('#uploaded a'),
@@ -232,29 +232,28 @@
   function takepicture() {
     canvas.width = width;
     canvas.height = finalheight;
+
+    context = canvas.getContext('2d');
+    //context.scale(-1, 1);
+
+    context.drawImage(video, 0, 0, width, finalheight);
     
-    video.setAttribute("style", "transform: scaleX(-1);-ms-transform: scaleX(-1);-webkit-transform: scaleX(-1)");
-
-    canvas.getContext('2d').drawImage(video, 0, 0, width, finalheight);
     var img = new Image();
+    img.crossOrigin = 'anonymous';
     img.src = document.getElementById('soulmate-pic').getAttribute("src");
-    img.crossOrigin = '';
 
-    canvas.getContext('2d').drawImage(img, 0, 0, 320, 450); //output picture
+    context = canvas.getContext('2d');
+    context.drawImage(img, 0, 0, 320, 450); //output picture
 
     document.getElementById('videocontainer').setAttribute('style','display:none');
     document.getElementById('canvas').setAttribute('style','');
     document.getElementById('uploadbutton').setAttribute('style','');
     document.getElementById('takepicbutton').setAttribute('style','display:none');
     document.getElementById('icon-repeat').classList.add('icon-spin');
+    document.getElementById('resetbutton').setAttribute('style','');
   }
 
-  function reshoot() {
-    if (state === 'reviewing' || state === 'uploaded') {
-      setstate('playing');
-    }
-  }
-
+  
   function initiateupload() {
     if (state === 'reviewing') {
       setstate('uploading');
@@ -263,6 +262,9 @@
   }
 
   function upload() {
+
+	document.getElementById('resetbutton').setAttribute('style','display:none');
+  	document.getElementById('uploadbutton').innerHTML = '<i class="icon-gear icon-spin"></i> Cargando';
     
     var head = /^data:image\/(png|jpg);base64,/,
         fd = new FormData(),toSend,
@@ -283,8 +285,16 @@
       try {
         var links = JSON.parse(xhr.responseText).upload.links;
         
-        setstate('uploaded');
-        window.open("https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}&text={{candidate.name}}+%3C3+"+links.imgur_page+"&hashtags=medianaranja,votainteligente", 'twitter-share-dialog', 'width=626,height=436');
+        var twtwindow = "https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}&text={{candidate.name}}+%3C3+"+links.original+"&hashtags=medianaranja,votainteligente";
+        var fcbkwindow = "https://www.facebook.com/sharer/sharer.php?u="+links.original;
+
+        document.getElementById('socialsharehalfface').setAttribute('style','');
+        document.getElementById('shareurl').setAttribute('value', links.original);
+        document.getElementById('shareurltwitter').setAttribute('onClick','window.open(\''+twtwindow+'\', \'twitter-share-dialog\', \'width=626,height=436\')');
+        document.getElementById('shareurlfacebook').setAttribute('onClick','window.open(\''+fcbkwindow+'\', \'twitter-share-dialog\', \'width=626,height=436\')');
+        document.getElementById('uploadbutton').innerHTML = 'OK';
+        document.getElementById('uploadbutton').setAttribute('style','display:none');
+        document.getElementById('resetbutton').setAttribute('style','');
       } catch(e) {
         console.log('Upload Error :' + e);
       }
@@ -295,87 +305,71 @@
   function setstate(newstate) {
     state = newstate;
     document.body.className = newstate;  
-  } 
+  }
 
+	 
   /* Event Handlers */
 
-  video.addEventListener('canplay', function(ev){
-    if (!streaming) {
-      finalheight = video.videoHeight / (video.videoWidth/width);
-
-      video.setAttribute('width', width);
-      video.setAttribute('height', finalheight);
-      video.setAttribute("style", "transform: scaleX(-1);-ms-transform: scaleX(-1);-webkit-transform: scaleX(-1)");
-
-      canvas.setAttribute('width', width);
-      canvas.setAttribute('height', finalheight);
-      canvas.setAttribute("style", "transform: scaleX(-1);-ms-transform: scaleX(-1);-webkit-transform: scaleX(-1)");
-
-      streaming = true;
-    }
-  }, false);
-
-  button_pic.addEventListener('click', function(ev) {
-    ev.preventDefault();
-    if (state === 'intro') {
-        setstate('playing');
-        init();
-      } else {
-        setstate('reviewing');
-        takepicture();
-      }
-  },false);
-
 	button_pic.addEventListener('mouseover', function() {
-		//console.log('mouseup');
 		document.getElementById('apoya').setAttribute('style','display:block');
 	},false);
+
 	button_pic.addEventListener('mouseout', function() {
-		//console.log('mouseup');
 		document.getElementById('apoya').setAttribute('style','display:none');
 	},false);
 
-  takepicbutton.addEventListener('click', function(ev) {
-    ev.preventDefault();
-    takepicture();
-  },false);
+	button_pic.addEventListener('click', function(ev) {
+		console.log('1- '+state);
+		if (state === 'intro') {
+			setstate('playing');
+			init();
+		} else {
+			setstate('reviewing');
+			takepicture();
+		}
+		console.log('2- '+state);
+		ev.preventDefault();
+	},false);
 
-  video.addEventListener('click', function(ev){
-    setstate('reviewing');
-    takepicture();
-  }, false);
+	takepicbutton.addEventListener('click', function(ev) {
+		ev.preventDefault();
+		takepicture();
+		console.log('3- '+state);
+	},false);
 
-  resetbutton.addEventListener('click', function(ev){
-    if (state === 'reviewing') {
-      setstate('playing');
-    }
-    document.getElementById('videocontainer').setAttribute('style','');
-    document.getElementById('canvas').setAttribute('style','display:none');
-    document.getElementById('uploadbutton').setAttribute('style','display:none');
-    document.getElementById('takepicbutton').setAttribute('style','');
-    document.getElementById('icon-repeat').classList.remove('icon-spin');
-    ev.preventDefault();
-  }, false);
+	resetbutton.addEventListener('click', function(ev){
+		console.log('4- '+state);
+		if (state === 'reviewing') {
+			setstate('playing');
+		}
 
-  /*startbutton.addEventListener('click', function(ev){
-    if (state === 'uploaded') {
-      setstate('playing');
-    }
-    ev.preventDefault();
-  }, false);*/
+		document.getElementById('videocontainer').setAttribute('style','');
+		document.getElementById('canvas').setAttribute('style','display:none');
+		document.getElementById('uploadbutton').setAttribute('style','display:none');
+		document.getElementById('takepicbutton').setAttribute('style','');
+		document.getElementById('icon-repeat').classList.remove('icon-spin');
+		document.getElementById('resetbutton').setAttribute('style','display:none');
+		document.getElementById('socialsharehalfface').setAttribute('style','display:none');
+		ev.preventDefault();
+	}, false);
 
-  uploadbutton.addEventListener('click', function(ev){
-    //if (state === 'reviewing') {
-      setstate('uploading');
-      upload();
-    //}
-    ev.preventDefault();
-  }, false);
+	uploadbutton.addEventListener('click', function(ev){
+		upload();
+		ev.preventDefault();
+	}, false);
 
-	closebutton.addEventListener('click', function(){
-		//console.log(video);
-		//video.stop();
-		
+	video.addEventListener('canplay', function(ev){
+		if (!streaming) {
+			finalheight = video.videoHeight / (video.videoWidth/width);
+
+			video.setAttribute('width', width);
+			video.setAttribute('height', finalheight);
+
+			canvas.setAttribute('width', width);
+			canvas.setAttribute('height', finalheight);
+
+			streaming = true;
+		}
 	}, false);
 
 })();

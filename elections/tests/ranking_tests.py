@@ -5,6 +5,7 @@ from candideitorg.models import Candidate
 from elections.views import RankingMixin
 
 from django.core.urlresolvers import reverse
+from popit.models import Person
 
 
 
@@ -22,6 +23,13 @@ class RankingBaseTestCase(TestCase):
             self.candidate3.id,
             self.candidate4.id
             ]).delete()
+
+        Person.objects.exclude(id__in=[self.candidate1.relation.person.id,
+            self.candidate2.relation.person.id,
+            self.candidate3.relation.person.id,
+            self.candidate4.relation.person.id
+            ]
+            ).delete()
         #Trying to copy it from
         #https://github.com/ciudadanointeligente/votainteligente-primarias/blob/master/elecciones/tests/ranking.py
 
@@ -161,25 +169,25 @@ class RankingBaseTestCase(TestCase):
 
         self.assertEquals(clasified[0]['id'], self.candidate1.id)
         self.assertEquals(clasified[0]['name'], self.candidate1.name)
-        self.assertEquals(clasified[0]['candidate'], self.candidate1)
+        self.assertEquals(clasified[0]['candidate'], self.candidate1.relation.candidate)
         self.assertEquals(clasified[0]['possible_answers'], 4)
         
 
         self.assertEquals(clasified[1]['name'], self.candidate2.name)
         self.assertEquals(clasified[1]['id'], self.candidate2.id)
-        self.assertEquals(clasified[1]['candidate'], self.candidate2)
+        self.assertEquals(clasified[1]['candidate'], self.candidate2.relation.candidate)
         self.assertEquals(clasified[1]['possible_answers'], 4)
         
 
         self.assertEquals(clasified[2]['name'], self.candidate3.name)
         self.assertEquals(clasified[2]['id'], self.candidate3.id)
-        self.assertEquals(clasified[2]['candidate'], self.candidate3)
+        self.assertEquals(clasified[2]['candidate'], self.candidate3.relation.candidate)
         self.assertEquals(clasified[2]['possible_answers'], 4)
         
 
         self.assertEquals(clasified[3]['name'], self.candidate4.name)
         self.assertEquals(clasified[3]['id'], self.candidate4.id)
-        self.assertEquals(clasified[3]['candidate'], self.candidate4)
+        self.assertEquals(clasified[3]['candidate'], self.candidate4.relation.candidate)
         self.assertEquals(clasified[3]['possible_answers'], 3)
 
 
@@ -233,8 +241,8 @@ class RankingBaseTestCase(TestCase):
 
         ordered = ranking_view.get_ordered()
 
-        self.assertEquals(ordered[0]['candidate'], self.candidate1)
-        self.assertEquals(ordered[3]['candidate'], self.candidate3)
+        self.assertEquals(ordered[0]['candidate'], self.candidate1.relation.candidate)
+        self.assertEquals(ordered[3]['candidate'], self.candidate3.relation.candidate)
 
     def test_get_good_ones(self):
         ranking_view = RankingMixin()
@@ -242,8 +250,9 @@ class RankingBaseTestCase(TestCase):
 
         good = ranking_view.get_good()
         self.assertEquals(len(good), 2)
-        self.assertEquals(good[0]['candidate'], self.candidate1)
-        is_candidate2_or_4 = good[1]['candidate'] == self.candidate2 or good[1]['candidate'] == self.candidate4
+        self.assertEquals(good[0]['candidate'], self.candidate1.relation.candidate)
+        is_candidate2_or_4 = good[1]['candidate'] == self.candidate2.relation.candidate \
+        or good[1]['candidate'] == self.candidate4.relation.candidate
         self.assertTrue(is_candidate2_or_4)
 
     def test_get_bad_ones(self):
@@ -252,8 +261,9 @@ class RankingBaseTestCase(TestCase):
 
         bad = ranking_view.get_bad()
         self.assertEquals(len(bad), 2)
-        self.assertEquals(bad[0]['candidate'], self.candidate3)
-        is_candidate2_or_4 = bad[1]['candidate'] == self.candidate2 or bad[1]['candidate'] == self.candidate4
+        self.assertEquals(bad[0]['candidate'], self.candidate3.relation.candidate)
+        is_candidate2_or_4 = bad[1]['candidate'] == self.candidate2.relation.candidate \
+        or bad[1]['candidate'] == self.candidate4.relation.candidate
         self.assertTrue(is_candidate2_or_4)
 
         

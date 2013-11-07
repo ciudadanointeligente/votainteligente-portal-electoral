@@ -65,11 +65,10 @@ def ga(value):
 	return ''
 
 def no_ha_respondido_twitter_button(context):
-	regex = re.compile(r"^https?://(www\.)?twitter\.com/(#!/)?([^/]+)(/\w+)*$")
 	twitter = context["candidate"].relation.twitter
 	if twitter:
 		return {
-			'twitter':regex.match(twitter).groups()[2],
+			'twitter':twitter,
 			'candidate':context['candidate']
 			}
 	return {
@@ -78,6 +77,21 @@ def no_ha_respondido_twitter_button(context):
 		}
 register.inclusion_tag('elections/twitter/no_candidator_answer.html', 
 	takes_context=True)(no_ha_respondido_twitter_button)
+
+
+def follow_on_twitter(context):
+	twitter = context["candidate"].relation.twitter
+	if twitter:
+		return {
+			'twitter':twitter,
+			'candidate':context['candidate']
+			}
+	return {
+		'twitter':None,
+		'candidate':context['candidate']
+		}
+register.inclusion_tag('elections/twitter/follow_the_conversation.html', 
+	takes_context=True)(follow_on_twitter)
 
 @register.filter
 #website general settings

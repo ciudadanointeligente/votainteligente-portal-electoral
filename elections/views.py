@@ -200,14 +200,14 @@ class RankingMixin():
             return []
         success_index = self.success_index()
         for candidate in self.candidate_queryset:
-            possible_answers = VotaInteligenteMessage.objects.filter(Q(people=candidate.relation.person)).count()
+            possible_answers = VotaInteligenteMessage.objects.filter(Q(people=candidate)).count()
             actual_answers = VotaInteligenteAnswer.objects.filter(Q(person=candidate) & Q(message__in=messages)).count()
             points = (success_index + 1)*possible_answers*actual_answers\
                                                          - possible_answers*possible_answers
             clasified.append({
                 'id':candidate.id,
                 'name':candidate.name,
-                'candidate':candidate.relation.person,
+                'candidate':candidate,
                 'possible_answers':possible_answers,
                 'actual_answers':actual_answers,
                 'points':points
@@ -238,7 +238,7 @@ class ElectionRankingView(DetailView, RankingMixin):
 
     def get_object(self, queryset=None):
         the_object = super(ElectionRankingView, self).get_object(queryset)
-        queryset = the_object.can_election.candidate_set.all()
+        queryset = the_object.popit_api_instance.person_set.all()
         self.candidate_queryset = queryset
         return the_object
 

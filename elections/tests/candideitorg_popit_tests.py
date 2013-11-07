@@ -48,7 +48,7 @@ class CandideitorCandideitPopitPerson(TestCase):
         # self.assertTrue(False)
 
     def test_it_creates_a_link_to_the_candidate_twitter(self):
-        link = Link.objects.create(url = 'twitter.com/candidato1',\
+        link = Link.objects.create(url = 'http://twitter.com/candidato1',\
             name = 'twitter',\
             candidate = self.candidato1,\
             remote_id = 1,\
@@ -57,7 +57,7 @@ class CandideitorCandideitPopitPerson(TestCase):
             person=self.pedro,
             candidate=self.candidato1
             )
-        self.assertEquals(candidate_person.twitter, 'twitter.com/candidato1')
+        self.assertEquals(candidate_person.twitter, 'candidato1')
 
     def test_it_returns_none_if_there_is_no_twitter_link(self):
         candidate_person, created = CandidatePerson.objects.get_or_create(
@@ -67,12 +67,12 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertIsNone(candidate_person.twitter)
 
     def test_it_only_returns_one_twitter_link(self):
-        link = Link.objects.create(url = 'twitter.com/candidato1',\
+        link = Link.objects.create(url = 'http://twitter.com/candidato1',\
             name = 'twitter',\
             candidate = self.candidato1,\
             remote_id = 1,\
             resource_uri = 'string')
-        link = Link.objects.create(url = 'twitter.com/candidato1_twitter2',\
+        link = Link.objects.create(url = 'http://twitter.com/candidato1_twitter2',\
             name = 'twitter',\
             candidate = self.candidato1,\
             remote_id = 1,\
@@ -81,7 +81,7 @@ class CandideitorCandideitPopitPerson(TestCase):
             person=self.pedro,
             candidate=self.candidato1
             )
-        self.assertEquals(candidate_person.twitter, 'twitter.com/candidato1')
+        self.assertEquals(candidate_person.twitter, 'candidato1')
 
     def test_tweet_if_candidator_unanswered(self):
         link = Link.objects.create(url = 'http://twitter.com/candidato1_twitter',\
@@ -117,6 +117,28 @@ class CandideitorCandideitPopitPerson(TestCase):
         actual_twitter_button = actual_twitter_button_template.render(Context({"candidate":self.candidato1}))
         actual_twitter_button = actual_twitter_button.strip()
         self.assertEquals(actual_twitter_button, expected_twitter_button)
+
+    def test_follow_the_conversation_in_twitter(self):
+        link = Link.objects.create(url = 'http://twitter.com/candidato1_twitter',\
+            name = 'twitter',\
+            candidate = self.candidato1,\
+            remote_id = 1,\
+            resource_uri = 'string')
+        candidate_person, created = CandidatePerson.objects.get_or_create(
+            person=self.pedro,
+            candidate=self.candidato1
+            )
+        template_str = get_template('elections/twitter/follow_the_conversation.html')
+        context = Context({
+            "twitter":"candidato1_twitter",
+            "candidate":self.candidato1
+            })
+        expected_twitter_button = template_str.render(context)
+        actual_twitter_button_template = Template("{% load votainteligente_extras %}{% follow_on_twitter %}")
+        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate":self.candidato1}))
+        self.assertEquals(actual_twitter_button, expected_twitter_button)
+
+
 
     def test_unicode(self):
         candidate_person, created = CandidatePerson.objects.get_or_create(

@@ -15,6 +15,7 @@ from candideitorg.models import election_finished
 from writeit.models import Message as WriteItMessage
 import datetime
 from django.db.models import Q, Count
+import re
 
 
 class Election(models.Model):
@@ -66,7 +67,9 @@ class CandidatePerson(models.Model):
 
     def _get_twitter_(self):
         try:
-            return self.candidate.link_set.filter(url__contains='twitter')[0].url
+            twitter = self.candidate.link_set.filter(url__contains='twitter')[0].url
+            regex = re.compile(r"^https?://(www\.)?twitter\.com/(#!/)?([^/]+)(/\w+)*$")
+            return regex.match(twitter).groups()[2]
         except:
             return None
     twitter = property(_get_twitter_)

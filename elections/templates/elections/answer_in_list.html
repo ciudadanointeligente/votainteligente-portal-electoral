@@ -1,3 +1,4 @@
+{% load votainteligente_extras %}
 <div class="candidate-answer">
     <div class="row">
         <div class="col-md-12">
@@ -5,6 +6,11 @@
                 {% comment %}
                 <button type="submit" class="btn btn-primary"><i class="icon-twitter"></i>{% trans "Twittea al candidato" %}</button>
                 {% endcomment %}
+                <!--
+                {% with candidate=answer.person.relation.candidate %}
+                {% follow_on_twitter %}
+                {% endwith %}
+                -->
         </div>
     </div>
         <p><i class="icon-quote-left"></i>{{ answer.content|linebreaksbr }}<i class="icon-quote-right"></i></p>

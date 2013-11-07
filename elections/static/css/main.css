@@ -1075,10 +1075,12 @@ tr.primary p:first-child, tr.danger p:first-child {
 #myCandidate .modal-header {
 	background-color: #323a45;
 	border-radius: 3px 3px 0px 0px;
+	border-bottom: 0px;
 }
 
 #myCandidate .modal-footer {
 	background-color: #4b4b4b;
+	margin-top: -4px;
 }
 
 .btn.btn-default.button_pic {

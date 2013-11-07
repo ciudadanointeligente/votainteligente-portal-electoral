@@ -232,14 +232,18 @@
   function takepicture() {
     canvas.width = width;
     canvas.height = finalheight;
-    
-    canvas.getContext('2d').drawImage(video, 0, 0, width, finalheight);
+
+    context = canvas.getContext('2d');
+    //context.scale(-1, 1);
+
+    context.drawImage(video, 0, 0, width, finalheight);
     
     var img = new Image();
     img.crossOrigin = 'anonymous';
     img.src = document.getElementById('soulmate-pic').getAttribute("src");
-	
-    canvas.getContext('2d').drawImage(img, 0, 0, 320, 450); //output picture
+
+    context = canvas.getContext('2d');
+    context.drawImage(img, 0, 0, 320, 450); //output picture
 
     document.getElementById('videocontainer').setAttribute('style','display:none');
     document.getElementById('canvas').setAttribute('style','');
@@ -315,7 +319,7 @@
 	},false);
 
 	button_pic.addEventListener('click', function(ev) {
-
+		console.log('1- '+state);
 		if (state === 'intro') {
 			setstate('playing');
 			init();
@@ -323,16 +327,18 @@
 			setstate('reviewing');
 			takepicture();
 		}
-
+		console.log('2- '+state);
 		ev.preventDefault();
 	},false);
 
 	takepicbutton.addEventListener('click', function(ev) {
 		ev.preventDefault();
 		takepicture();
+		console.log('3- '+state);
 	},false);
 
 	resetbutton.addEventListener('click', function(ev){
+		console.log('4- '+state);
 		if (state === 'reviewing') {
 			setstate('playing');
 		}

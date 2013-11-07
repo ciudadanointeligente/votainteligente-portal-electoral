@@ -33,6 +33,11 @@ class Migration(SchemaMigration):
                       self.gf('django.db.models.fields.BooleanField')(default=True),
                       keep_default=False)
 
+        # Adding field 'CandidatePerson.portrait_photo'
+        db.add_column(u'elections_candidateperson', 'portrait_photo',
+                      self.gf('django.db.models.fields.CharField')(default='', max_length=256, blank=True),
+                      keep_default=False)
+
 
     def backwards(self, orm):
         # Deleting field 'Election.uses_preguntales'
@@ -49,6 +54,9 @@ class Migration(SchemaMigration):
 
         # Deleting field 'Election.uses_questionary'
         db.delete_column(u'elections_election', 'uses_questionary')
+
+        # Deleting field 'CandidatePerson.portrait_photo'
+        db.delete_column(u'elections_candidateperson', 'portrait_photo')
 
 
     models = {
@@ -115,6 +123,7 @@ class Migration(SchemaMigration):
             'description': ('django.db.models.fields.TextField', [], {'default': "''", 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'person': ('django.db.models.fields.related.OneToOneField', [], {'related_name': "'relation'", 'unique': 'True', 'to': u"orm['popit.Person']"}),
+            'portrait_photo': ('django.db.models.fields.CharField', [], {'max_length': '256', 'blank': 'True'}),
             'reachable': ('django.db.models.fields.BooleanField', [], {'default': 'False'})
         },
         u'elections.election': {

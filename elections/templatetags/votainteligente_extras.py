@@ -85,3 +85,10 @@ def website_gs(value):
 	if value in settings.WEBSITE_GENERAL_SETTINGS:
 		return settings.WEBSITE_GENERAL_SETTINGS[value]
 	return ''
+
+@register.filter
+#website general settings
+def website_imgur(value):
+	if value in settings.WEBSITE_IMGUR:
+		return settings.WEBSITE_IMGUR[value]
+	return ''

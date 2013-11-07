@@ -27,11 +27,15 @@ class TemplateTagsTestCase(TestCase):
 		    'shortname' : 'votainteligente',
 		    'dev' : 1,
 		}
-		WEBSITE_GA = {
+		settings.WEBSITE_GA = {
 		    'code' : 'UA-XXXXX-X'
 		}
-		WEBSITE_GENERAL_SETTINGS = {
+		settings.WEBSITE_GENERAL_SETTINGS = {
 		    'home_title' : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+		}
+		#imgur
+		settings.WEBSITE_IMGUR = {
+		    'client_id' : 'eb18642b5b220484864483b8e21386c3' #example client_id, only works with 50 pic a day
 		}
 
 	def test_bring_all_elections_with_their_tags_as_json(self):
@@ -123,4 +127,10 @@ class TemplateTagsTestCase(TestCase):
 		template = Template("{% load votainteligente_extras %}{{ 'home_title'|website_gs }}")
 		context = Context({})
 
-		self.assertEqual(template.render(context), u'Elecciones Presidenciales, Sendores, Diputados y COREs Chile 2013')
+		self.assertEqual(template.render(context), u'Lorem ipsum dolor sit amet, consectetur adipisicing elit.')
+
+	def test_website_imgur(self):
+		template = Template("{% load votainteligente_extras %}{{ 'client_id'|website_imgur }}")
+		context = Context({})
+
+		self.assertEqual(template.render(context), u'eb18642b5b220484864483b8e21386c3')

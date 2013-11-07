@@ -5,7 +5,7 @@ from haystack.views import SearchView
 from elections.forms import ElectionForm
 from elections.views import ElectionsSearchByTagView, HomeView, ElectionDetailView,\
 							CandidateDetailView, SoulMateDetailView, ElectionAskCreateView,\
-							AnswerWebHook
+							AnswerWebHook, ElectionRankingView
 
 from django.conf import settings
 
@@ -50,7 +50,7 @@ urlpatterns = patterns('',
 		name='ask_detail_view'),
 	#ranking
 	url(r'^election/(?P<slug>[-\w]+)/ranking/?$',
-		ElectionDetailView.as_view(template_name='elections/ranking_candidates.html'), 
+		ElectionRankingView.as_view(template_name='elections/ranking_candidates.html'), 
 		name='ranking_detail_view'),
 	url(r'^election/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/?$', 
 		CandidateDetailView.as_view(template_name='elections/candidate_detail.html'),

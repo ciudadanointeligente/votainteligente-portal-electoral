@@ -118,6 +118,13 @@ strong {
 	color: #9fa7b4;
 }
 
+/*Tablas */
+
+td {
+	border: 1px solid #9fa7b4;
+	padding: 10px;
+}
+
 
 /*Elecciones destacadas*/
 
@@ -808,6 +815,8 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 	border-top: none;
 	font-weight: 400;
 	padding: 4px;
+	border-left: none;
+	border-right: none;
 }
 
 .profile-candidate .table tbody>tr>td span {

@@ -10,104 +10,77 @@
 {% block mainelection %}
 <!-- ranking -->
 <div class="row">
-	<div class="col-md-6">
+	{% if not good %}
+	<div class="col-md-12">
 		<div class="panel panel-primary responden">
 			<div class="panel-heading">
 				<h4>
-					{% trans "Candidatos que más responden a los ciudadanos" %}
+					{% trans "Todavía no hay preguntas suficientes para construir el ranking" %}
 				</h4>
 			</div>
 			<div class="panel-body">
-				<table class="table">
-					<tr class="primary">
-						<td class="ranking-icon">
-							<i class="icon-smile"></i>
-						</td>
-						<td>
-							<p><strong> 1. Perico los Palotes </strong>de Presidenciales</p>
-							<p><span>Ha respondido <strong>30 de 31</strong> preguntas</span></p>
-						</td>
-						<td>
-							<div class="bt-twitter"><i class="icon-twitter"></i> Felicitalo(a)</div>
-						</td>
-					</tr>
-					<tr class="primary">
-						<td class="ranking-icon">
-							<i class="icon-smile"></i>
-						</td>
-						<td>
-							<p><strong> 2. Perico los Palotes </strong>de Presidenciales</p>
-							<p><span>Ha respondido <strong>20 de 31</strong> preguntas</span></p>
-						</td>
-						<td>
-							<div class="bt-twitter"><i class="icon-twitter"></i> Felicitalo(a)</div>
-						</td>
-					</tr>
-					<tr class="primary">
-						<td class="ranking-icon">
-							<i class="icon-smile"></i>
-						</td>
-						<td>
-							<p><strong> 3. Perico los Palotes </strong>de Presidenciales</p>
-							<p><span>Ha respondido <strong>10 de 31</strong> preguntas</span></p>
-						</td>
-						<td>
-							<div class="bt-twitter"><i class="icon-twitter"></i> Felicitalo(a)</div>
-						</td>
-					</tr>
-				</table>
+				{% trans "haz tu la primera"%}
 			</div>
 		</div>
 	</div>
-	<div class="col-md-6">
-		<div class="panel panel-danger no-responden">
-			<div class="panel-heading">
-				<h4>
-					{% trans "Candidatos que menos responden a los ciudadanos" %}
-				</h4>
-			</div>
-			<div class="panel-body">
-				<table class="table">
-					<tr class="danger">
-						<td class="ranking-icon">
-							<i class="icon-frown"></i>
-						</td>
-						<td>
-							<p><strong>1. Perico los Palotes </strong>de Presidenciales</p>
-							<p><span>Ha respondido <strong>1 de 31</strong> preguntas</span></p>
-						</td>
-						<td>
-							<div class="bt-twitter"><i class="icon-twitter"></i> Exígele</div>
-						</td>
-					</tr>
-					<tr class="danger">
-						<td class="ranking-icon">
-							<i class="icon-frown"></i>
-						</td>
-						<td>
-							<p><strong>2. Perico los Palotes </strong>de Presidenciales</p>
-							<p><span>Ha respondido <strong>8 de 31</strong> preguntas</span></p>
-						</td>
-						<td>
-							<div class="bt-twitter"><i class="icon-twitter"></i> Exígele</div>
-						</td>
-					</tr>
-					<tr class="danger">
-						<td class="ranking-icon">
-							<i class="icon-frown"></i>
-						</td>
-						<td>
-							<p><strong>3. Perico los Palotes </strong>de Presidenciales</p>
-							<p><span>Ha respondido <strong>14 de 31</strong> preguntas</span></p>
-						</td>
-						<td>
-							<div class="bt-twitter"><i class="icon-twitter"></i> Exígele</div>
-						</td>
-					</tr>
-				</table>
+	{% else %}
+		<div class="col-md-6">
+			<div class="panel panel-primary responden">
+				<div class="panel-heading">
+					<h4>
+						{% trans "Candidatos que más responden a los ciudadanos" %}
+					</h4>
+				</div>
+
+				<div class="panel-body">
+					<table class="table">
+						{% for bueno in good %}
+						<tr class="primary">
+							<td class="ranking-icon">
+								<i class="icon-smile"></i>
+							</td>
+							<td>
+								<p><strong>{{bueno.name}} </strong>de {{bueno.candidate.api_instance.election}}</p>
+								<p><span>{% trans "Ha respondido" %} <strong>{{bueno.actual_answers}} de {{bueno.possible_answers}}</strong> {% trans "preguntas" %} </span></p>
+							</td>
+							<td>
+								<div class="bt-twitter"><i class="icon-twitter"></i> Felicitalo(a)</div>
+							</td>
+						</tr>
+						{% endfor %}
+					</table>
+				</div>
 			</div>
 		</div>
-	</div>
+		<div class="col-md-6">
+			<div class="panel panel-danger no-responden">
+				<div class="panel-heading">
+					<h4>
+						{% trans "Candidatos que menos responden a los ciudadanos" %}
+					</h4>
+				</div>
+				<div class="panel-body">
+					<table class="table">
+						{% for malo in bad %}
+						<tr class="danger">
+							<td class="ranking-icon">
+								<i class="icon-frown"></i>
+							</td>
+							<td>
+								<p><strong>{{malo.name}} </strong>de {{malo.candidate.api_instance.election}}</p>
+								<p><span>{% trans "Ha respondido" %} <strong>{{malo.actual_answers}} de {{malo.possible_answers}}</strong> {% trans "preguntas" %} </span></p>
+							</td>
+							<td>
+								<div class="bt-twitter"><i class="icon-twitter"></i> Exígele</div>
+							</td>
+						</tr>
+						{% endfor %}
+					</table>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+	
 </div>
 <div class="row">
 	<div class="col-md-12 right">

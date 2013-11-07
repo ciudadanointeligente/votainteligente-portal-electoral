@@ -11,6 +11,8 @@ from writeit.models import Message
 from django.views.generic.base import View
 import logging
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Count, Q
+from operator import itemgetter
 
 logger = logging.getLogger(__name__)
 
@@ -158,3 +160,91 @@ class AnswerWebHook(View):
 
         response = HttpResponse(content_type="text/plain", status=200)
         return response
+
+class RankingMixin():
+    candidate_queryset = None
+
+
+    def get_ranking(self):
+        return self.candidate_queryset
+
+    def all_messages(self):
+        return VotaInteligenteMessage.objects\
+                    .filter(people__in=self.candidate_queryset)
+
+    def all_possible_answers(self):
+        answers = self.all_messages()
+        total_possible_answers=0
+        for answer in answers:
+            total_possible_answers += answer.people.count()
+
+        return total_possible_answers
+
+
+    def actual_answers(self):
+
+        messages = self.all_messages()
+        actual_count = 0
+        for message in messages:
+            actual_count += message.answers.count()
+        return actual_count
+
+    def success_index(self):
+        return float(self.actual_answers())/float(self.all_possible_answers())
+
+
+    def get_clasified(self):
+        clasified = []
+        messages = self.all_messages()
+        if not messages:
+            return []
+        success_index = self.success_index()
+        for candidate in self.candidate_queryset:
+            possible_answers = VotaInteligenteMessage.objects.filter(Q(people=candidate)).count()
+            actual_answers = VotaInteligenteAnswer.objects.filter(Q(person=candidate) & Q(message__in=messages)).count()
+            points = (success_index + 1)*possible_answers*actual_answers\
+                                                         - possible_answers*possible_answers
+            clasified.append({
+                'id':candidate.id,
+                'name':candidate.name,
+                'candidate':candidate,
+                'possible_answers':possible_answers,
+                'actual_answers':actual_answers,
+                'points':points
+                })
+        return clasified
+
+    def get_ordered(self):
+        clasified = self.get_clasified()
+        clasified = sorted(clasified,  key=itemgetter('points'), reverse=True)
+
+        return clasified
+
+
+    def get_good(self):
+        amount_of_good_ones = self.candidate_queryset.count()/2
+        good = self.get_ordered()[:amount_of_good_ones]
+        return good
+
+    def get_bad(self):
+        amount_of_bad_ones = -self.candidate_queryset.count()/2
+        bad = self.get_ordered()[::-1][:amount_of_bad_ones]
+        return bad
+
+
+class ElectionRankingView(DetailView, RankingMixin):
+    model = Election
+
+
+    def get_object(self, queryset=None):
+        the_object = super(ElectionRankingView, self).get_object(queryset)
+        queryset = the_object.popit_api_instance.person_set.all()
+        self.candidate_queryset = queryset
+        return the_object
+
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailView, self).get_context_data(**kwargs)
+        context['good'] = self.get_good()
+        context['bad'] = self.get_bad()
+        return context

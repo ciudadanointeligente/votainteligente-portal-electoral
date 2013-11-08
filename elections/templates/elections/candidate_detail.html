@@ -284,20 +284,21 @@
     data = ('mozGetAsFile' in canvas) ? canvas.mozGetAsFile('webcam.png') : canvas.toDataURL('image/png').replace(head, '');
     
     fd.append('image', data);
-    fd.append('key', API_KEY);
-    xhr.open('POST', 'http://api.imgur.com/2/upload.json');
+    
+    xhr.open('POST', 'https://api.imgur.com/3/image');
+    
     xhr.addEventListener('error', function(ev) {
-      console.log('Upload Error :');
+      console.log('Upload Error :'+ev);
     }, false);
     xhr.addEventListener('load', function(ev) {
       try {
-        var links = JSON.parse(xhr.responseText).upload.links;
+        var links = JSON.parse(xhr.responseText).data.link;
         
-        var twtwindow = "https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}&text={{candidate.name}}+%3C3+"+links.original+"&hashtags=medianaranja,votainteligente";
-        var fcbkwindow = "https://www.facebook.com/sharer/sharer.php?u="+links.original;
+        var twtwindow = "https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}&text={{candidate.name}}+%3C3+"+links+"&hashtags=medianaranja,votainteligente";
+        var fcbkwindow = "https://www.facebook.com/sharer/sharer.php?u="+links;
 
         document.getElementById('socialsharehalfface').setAttribute('style','');
-        document.getElementById('shareurl').setAttribute('value', links.original);
+        document.getElementById('shareurl').setAttribute('value', links);
         document.getElementById('shareurltwitter').setAttribute('onClick','window.open(\''+twtwindow+'\', \'twitter-share-dialog\', \'width=626,height=436\')');
         document.getElementById('shareurlfacebook').setAttribute('onClick','window.open(\''+fcbkwindow+'\', \'twitter-share-dialog\', \'width=626,height=436\')');
         document.getElementById('uploadbutton').innerHTML = 'OK';
@@ -307,6 +308,7 @@
         console.log('Upload Error :' + e);
       }
     }, false);
+    xhr.setRequestHeader('Authorization', "Client-ID " + API_KEY);
     xhr.send(fd);
   }
 

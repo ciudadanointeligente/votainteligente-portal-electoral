@@ -319,7 +319,6 @@
 	},false);
 
 	button_pic.addEventListener('click', function(ev) {
-		console.log('1- '+state);
 		if (state === 'intro') {
 			setstate('playing');
 			init();
@@ -327,18 +326,15 @@
 			setstate('reviewing');
 			takepicture();
 		}
-		console.log('2- '+state);
 		ev.preventDefault();
 	},false);
 
 	takepicbutton.addEventListener('click', function(ev) {
 		ev.preventDefault();
 		takepicture();
-		console.log('3- '+state);
 	},false);
 
 	resetbutton.addEventListener('click', function(ev){
-		console.log('4- '+state);
 		if (state === 'reviewing') {
 			setstate('playing');
 		}

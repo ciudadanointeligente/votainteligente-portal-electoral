@@ -156,7 +156,7 @@ class RankingBaseTestCase(TestCase):
         ranking_view = RankingMixin()
         ranking_view.candidate_queryset = Candidate.objects.all()
 
-        expected_index = float(6)/float(15)
+        expected_index = float(15)/float(6)
         self.assertEquals(ranking_view.success_index(), expected_index)
 
 
@@ -208,29 +208,25 @@ class RankingBaseTestCase(TestCase):
 
         possible_answers = clasified[0]["possible_answers"]
         actual_answers = clasified[0]["actual_answers"]
-        expected_points1 = (success_index + 1)*possible_answers*actual_answers\
-                                                         - possible_answers*possible_answers
+        expected_points1 = (success_index*actual_answers - (possible_answers-actual_answers))*possible_answers
 
         self.assertEquals(clasified[0]['points'], expected_points1)
 
         possible_answers = clasified[1]["possible_answers"]
         actual_answers = clasified[1]["actual_answers"]
-        expected_points1 = (success_index + 1)*possible_answers*actual_answers\
-                                                         - possible_answers*possible_answers
+        expected_points1 = (success_index*actual_answers - (possible_answers-actual_answers))*possible_answers
 
         self.assertEquals(clasified[1]['points'], expected_points1)
         
         possible_answers = clasified[2]["possible_answers"]
         actual_answers = clasified[2]["actual_answers"]
-        expected_points1 = (success_index + 1)*possible_answers*actual_answers\
-                                                         - possible_answers*possible_answers
+        expected_points1 = (success_index*actual_answers - (possible_answers-actual_answers))*possible_answers
 
         self.assertEquals(clasified[2]['points'], expected_points1)
 
         possible_answers = clasified[3]["possible_answers"]
         actual_answers = clasified[3]["actual_answers"]
-        expected_points1 = (success_index + 1)*possible_answers*actual_answers\
-                                                         - possible_answers*possible_answers
+        expected_points1 = (success_index*actual_answers - (possible_answers-actual_answers))*possible_answers
 
         self.assertEquals(clasified[3]['points'], expected_points1)
 

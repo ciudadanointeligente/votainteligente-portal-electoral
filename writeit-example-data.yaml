@@ -526,121 +526,121 @@
   model: nuntium.membership
   pk: 142
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 1}
   model: nuntium.newanswernotificationtemplate
   pk: 1
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 2}
   model: nuntium.newanswernotificationtemplate
   pk: 2
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 3}
   model: nuntium.newanswernotificationtemplate
   pk: 3
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 4}
   model: nuntium.newanswernotificationtemplate
   pk: 4
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 5}
   model: nuntium.newanswernotificationtemplate
   pk: 5
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 6}
   model: nuntium.newanswernotificationtemplate
   pk: 6
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 7}
   model: nuntium.newanswernotificationtemplate
   pk: 7
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 8}
   model: nuntium.newanswernotificationtemplate
   pk: 8
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 9}
   model: nuntium.newanswernotificationtemplate
   pk: 9
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 10}
   model: nuntium.newanswernotificationtemplate
   pk: 10
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 11}
   model: nuntium.newanswernotificationtemplate
   pk: 11
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 12}
   model: nuntium.newanswernotificationtemplate
   pk: 12
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 13}
   model: nuntium.newanswernotificationtemplate
   pk: 13
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 14}
   model: nuntium.newanswernotificationtemplate
   pk: 14
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 15}
   model: nuntium.newanswernotificationtemplate
   pk: 15
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 16}
   model: nuntium.newanswernotificationtemplate
   pk: 16
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 17}
   model: nuntium.newanswernotificationtemplate
   pk: 17
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 18}
   model: nuntium.newanswernotificationtemplate
   pk: 18
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 19}
   model: nuntium.newanswernotificationtemplate
   pk: 19
 - fields: {subject_template: '%(person)s has answered to your message %(message)s',
-    template: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
+    template_html: "Dear {{user}}:\n\nWe received an answer from {{person}} to your message\
       \ \"{{message.subject}}\" and the answer is:\n\n{{answer.content}}\n\nThanks\
       \ for using Write-It\n-- \nThe Write-it Team", writeitinstance: 20}
   model: nuntium.newanswernotificationtemplate

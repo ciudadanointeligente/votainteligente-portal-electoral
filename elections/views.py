@@ -190,7 +190,7 @@ class RankingMixin():
         return actual_count
 
     def success_index(self):
-        return float(self.actual_answers())/float(self.all_possible_answers())
+        return float(self.all_possible_answers())/float(self.actual_answers())
 
 
     def get_clasified(self):

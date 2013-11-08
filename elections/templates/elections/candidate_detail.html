@@ -199,10 +199,11 @@
       takepicbutton = document.querySelector('#takepicbutton'),
       closebutton = document.querySelector('.close'),
       width = 600,
-      height = 0,
-      finalheight = 0,
+      height = 450,
+      finalheight = 450,
       state = 'intro';
       setstate(state);
+
   function init() {
     navigator.getMedia = ( navigator.getUserMedia ||
                            navigator.webkitGetUserMedia ||
@@ -222,6 +223,7 @@
           video.src = vendorURL ? vendorURL.createObjectURL(stream) : stream;
         }
         video.play();
+        firsttake();
       },
       function(err) {
         console.log("An error occured! " + err);
@@ -230,20 +232,19 @@
   }
 
   function takepicture() {
+    
     canvas.width = width;
     canvas.height = finalheight;
 
-    context = canvas.getContext('2d');
-    //context.scale(-1, 1);
+	context = canvas.getContext('2d');
+    context.drawImage(video, 0, 0, width, finalheight);    
 
-    context.drawImage(video, 0, 0, width, finalheight);
-    
     var img = new Image();
     img.crossOrigin = 'anonymous';
     img.src = document.getElementById('soulmate-pic').getAttribute("src");
 
     context = canvas.getContext('2d');
-    context.drawImage(img, 0, 0, 289, 450); //output picture
+    context.drawImage(img, 0, 0, 320, 450); //output picture
 
     document.getElementById('videocontainer').setAttribute('style','display:none');
     document.getElementById('canvas').setAttribute('style','');
@@ -252,6 +253,13 @@
     document.getElementById('icon-repeat').classList.add('icon-spin');
     document.getElementById('resetbutton').setAttribute('style','');
   }
+
+	function firsttake() 
+	{
+		var img = new Image();
+		img.crossOrigin = 'anonymous';
+		img.src = document.getElementById('soulmate-pic').getAttribute("src");
+	}
 
   
   function initiateupload() {

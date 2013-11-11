@@ -138,7 +138,27 @@ class CandideitorCandideitPopitPerson(TestCase):
         actual_twitter_button = actual_twitter_button_template.render(Context({"candidate":self.candidato1}))
         self.assertEquals(actual_twitter_button, expected_twitter_button)
 
-
+    def test_ranking_twitter_button(self):
+        link = Link.objects.create(url = 'http://twitter.com/candidato1_twitter',\
+            name = 'twitter',\
+            candidate = self.candidato1,\
+            remote_id = 1,\
+            resource_uri = 'string')
+        candidate_person, created = CandidatePerson.objects.get_or_create(
+            person=self.pedro,
+            candidate=self.candidato1
+            )
+        template_str = get_template('elections/twitter/ranking_twitter.html')
+        context = Context({
+            "twitter":"candidato1_twitter",
+            "candidate":self.candidato1,
+            'btn_text' : 'message button',
+            'popup_text' : 'message twitter window'
+            })
+        expected_twitter_button = template_str.render(context)
+        actual_twitter_button_template = Template("{% load votainteligente_extras %}{% twitter_on_ranking 'message button' 'message twitter window' %}")
+        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate":self.candidato1}))
+        self.assertEquals(actual_twitter_button, expected_twitter_button)
 
     def test_unicode(self):
         candidate_person, created = CandidatePerson.objects.get_or_create(

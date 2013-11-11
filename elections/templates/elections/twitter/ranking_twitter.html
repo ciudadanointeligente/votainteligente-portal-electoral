@@ -1,0 +1,5 @@
+{% load i18n %}{% if twitter %}
+<div class="btn btn-default" onclick="window.open('https://twitter.com/share?text={{popup_text}}%20@{{twitter}}&hashtags=ranking,votainteligente','{% trans 'Ventana twitter' %}','width=500,height=280')">
+	<i class="icon-twitter"></i> {{btn_text}}
+</div>
+{% else %}{% endif %}

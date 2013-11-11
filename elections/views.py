@@ -198,6 +198,9 @@ class RankingMixin():
         messages = self.all_messages()
         if not messages:
             return []
+        are_there_answers = VotaInteligenteAnswer.objects.filter(message__in=messages).exists()
+        if not are_there_answers:
+            return []
         success_index = self.success_index()
         for candidate in self.candidate_queryset:
             possible_answers = VotaInteligenteMessage.objects.filter(Q(people=candidate)).count()

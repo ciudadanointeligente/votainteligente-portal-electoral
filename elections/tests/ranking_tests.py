@@ -306,3 +306,14 @@ class RankingBaseTestCase(TestCase):
 
         
 
+    def test_if_there_are_no_answers_then_good_and_bad_are_empty(self):
+        VotaInteligenteAnswer.objects.all().delete()
+        ranking_view = RankingMixin()
+        ranking_view.candidate_queryset = Candidate.objects.all()
+
+        good = ranking_view.get_good()
+        self.assertEquals(len(good), 0)
+
+
+        bad = ranking_view.get_bad()
+        self.assertEquals(len(bad), 0)

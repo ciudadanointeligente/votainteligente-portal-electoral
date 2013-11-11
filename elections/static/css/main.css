@@ -878,11 +878,15 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 .responden .table tbody>tr>td {
 	border-bottom: 1px solid #0e778a;
 	border-top: none;
+	border-left: none;
+	border-right: none;
 }
 
 .no-responden .table tbody>tr>td {
 	border-bottom: 1px solid #af373c;
 	border-top: none;
+	border-left: none;
+	border-right: none;
 }
 
 .no-responden .panel-body {
@@ -936,13 +940,18 @@ tr.primary p:first-child, tr.danger p:first-child {
 	color: #323a45;
 	text-align: center;
 	font-size: 12px;
-	padding: 2px;
+	padding: 3px 6px;
 	cursor: pointer;
+	display: inline-flex;
 }
 
 .bt-twitter:hover {
 	background: #323a45;
 	color: #eaedf2;
+}
+
+.bt-twitter i {
+	margin: 3px 3px 0px 0px;
 }
 
 .responden h4, .no-responden h4 {

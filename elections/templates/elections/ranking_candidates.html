@@ -10,7 +10,7 @@
 {% block mainelection %}
 <!-- ranking -->
 <div class="row">
-	{% comment %}{% if not good %}
+	{% if not good %}
 	<div class="col-md-12">
 		<div class="panel panel-primary responden">
 			<div class="panel-heading">
@@ -23,7 +23,7 @@
 			</div>
 		</div>
 	</div>
-	{% else %}{% endcomment %}
+	{% else %}
 		<div class="col-md-6">
 			<div class="panel panel-primary responden">
 				<div class="panel-heading">
@@ -79,7 +79,7 @@
 				</div>
 			</div>
 		</div>
-	{% comment %}{% endif %}{% endcomment %}
+	{% endif %}
 	
 </div>
 <div class="row">

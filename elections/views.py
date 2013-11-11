@@ -237,8 +237,6 @@ class RankingMixin():
         amount_of_bad_ones = -self.candidate_queryset.count()/2
         ordered = self.get_ordered()[::-1]
         bad = ordered[:amount_of_bad_ones]
-        print bad
-        #print self.get_ordered()[::-1][amount_of_bad_ones:]
         for item in ordered[amount_of_bad_ones:]:
             if item["actual_answers"] > 0:
                 break

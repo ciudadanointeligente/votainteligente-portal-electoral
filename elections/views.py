@@ -198,6 +198,9 @@ class RankingMixin():
         messages = self.all_messages()
         if not messages:
             return []
+        are_there_answers = VotaInteligenteAnswer.objects.filter(message__in=messages).exists()
+        if not are_there_answers:
+            return []
         success_index = self.success_index()
         for candidate in self.candidate_queryset:
             possible_answers = VotaInteligenteMessage.objects.filter(Q(people=candidate)).count()
@@ -223,12 +226,21 @@ class RankingMixin():
 
     def get_good(self):
         amount_of_good_ones = self.candidate_queryset.count()/2
-        good = self.get_ordered()[:amount_of_good_ones]
+        good = []
+        ordered = self.get_ordered()
+        for i in range(0, min(amount_of_good_ones, len(ordered))):
+            if ordered[i]["actual_answers"] > 0:
+                good.append(ordered[i])
         return good
 
     def get_bad(self):
         amount_of_bad_ones = -self.candidate_queryset.count()/2
-        bad = self.get_ordered()[::-1][:amount_of_bad_ones]
+        ordered = self.get_ordered()[::-1]
+        bad = ordered[:amount_of_bad_ones]
+        for item in ordered[amount_of_bad_ones:]:
+            if item["actual_answers"] > 0:
+                break
+            bad.append(item)
         return bad
 
 

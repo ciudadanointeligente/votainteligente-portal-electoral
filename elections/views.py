@@ -226,7 +226,11 @@ class RankingMixin():
 
     def get_good(self):
         amount_of_good_ones = self.candidate_queryset.count()/2
-        good = self.get_ordered()[:amount_of_good_ones]
+        good = []
+        ordered = self.get_ordered()
+        for i in range(0, min(amount_of_good_ones, len(ordered))):
+            if ordered[i]["actual_answers"] > 0:
+                good.append(ordered[i])
         return good
 
     def get_bad(self):

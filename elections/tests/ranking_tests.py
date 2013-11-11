@@ -332,4 +332,4 @@ class RankingBaseTestCase(TestCase):
 
 
         bad = ranking_view.get_bad()
-        self.assertEquals(len(bad), 2)
+        self.assertEquals(len(bad), 3)

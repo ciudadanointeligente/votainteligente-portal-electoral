@@ -118,14 +118,6 @@ strong {
 	color: #9fa7b4;
 }
 
-/*Tablas */
-
-td {
-	border: 1px solid #9fa7b4;
-	padding: 10px;
-}
-
-
 /*Elecciones destacadas*/
 
 .text-center.intro-home {
@@ -1136,6 +1128,11 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 	.other-soulmate-box {
 		margin-top: 5px;
+	}
+
+	.not_answered_small a:after {
+		top: 65px;
+		left: 75px;
 	}
 
 }

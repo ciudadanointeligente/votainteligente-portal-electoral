@@ -118,14 +118,6 @@ strong {
 	color: #9fa7b4;
 }
 
-/*Tablas */
-
-td {
-	border: 1px solid #9fa7b4;
-	padding: 10px;
-}
-
-
 /*Elecciones destacadas*/
 
 .text-center.intro-home {
@@ -878,11 +870,15 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 .responden .table tbody>tr>td {
 	border-bottom: 1px solid #0e778a;
 	border-top: none;
+	border-left: none;
+	border-right: none;
 }
 
 .no-responden .table tbody>tr>td {
 	border-bottom: 1px solid #af373c;
 	border-top: none;
+	border-left: none;
+	border-right: none;
 }
 
 .no-responden .panel-body {
@@ -936,13 +932,18 @@ tr.primary p:first-child, tr.danger p:first-child {
 	color: #323a45;
 	text-align: center;
 	font-size: 12px;
-	padding: 2px;
+	padding: 3px 6px;
 	cursor: pointer;
+	display: inline-flex;
 }
 
 .bt-twitter:hover {
 	background: #323a45;
 	color: #eaedf2;
+}
+
+.bt-twitter i {
+	margin: 3px 3px 0px 0px;
 }
 
 .responden h4, .no-responden h4 {
@@ -1094,10 +1095,30 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 .btn.btn-default.button_pic {
 	width: 100%;
+	border: none;
+	font-weight: 500;
 }
 
-.btn.btn-default.button_pic i {
-	color: #fe635f;
+.btn.btn-default.button_pic
+{
+animation: doscaras 4s infinite;
+-webkit-animation: doscaras 4s infinite; /* Safari and Chrome */
+}
+
+@keyframes doscaras
+{
+0%   {background-color: #fff;}
+50%  {background-color: #fff;}
+75%  {background-color: #ffd200;}
+100% {background-color: #fff;}
+}
+
+@-webkit-keyframes doscaras /* Safari and Chrome */
+{
+0%   {background-color: #fff;}
+50%  {background-color: #fff;}
+75%  {background-color: #ffd200;}
+100% {background-color: #fff;}
 }
 
 /*video*/
@@ -1138,6 +1159,18 @@ tr.primary p:first-child, tr.danger p:first-child {
 		margin-top: 5px;
 	}
 
+	.not_answered_small a:after {
+		top: 65px;
+		left: 75px;
+	}
+	
+	.not_answered_small a:after {
+		content: url(../img/no-responde.png);
+		position: absolute;
+		top: 55px;
+		left: 30px;
+	}
+
 }
 
 @media (max-width: 604px) {
@@ -1151,3 +1184,26 @@ tr.primary p:first-child, tr.danger p:first-child {
 	}
 
 }
+
+@media (max-width: 800px) {
+	.not_answered:after {
+		top: 75px;
+		left: 35px;
+	}
+
+	.not_answered_small a:after {
+		content: url(../img/no-responde.png);
+		position: absolute;
+		top: 80px;
+		left: 30px;
+	}
+}
+
+@media (max-height: 600px) {
+	#apoya {
+		width: 203px;
+		height: 203px;
+	}
+}
+
+

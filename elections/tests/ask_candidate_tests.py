@@ -6,7 +6,7 @@ from elections.forms import MessageForm
 from writeit.models import Message, WriteItApiInstance
 from datetime import datetime
 from popit.models import Person
-
+from django.contrib.sites.models import Site
 
 
 class AskTestCase(TestCase):
@@ -136,6 +136,32 @@ class VotaInteligenteMessageTestCase(TestCase):
 
         expected_unicode = u'author preguntó "subject" en 2a Circunscripcion Antofagasta'
         self.assertEquals(message.__unicode__(), expected_unicode)
+
+
+    def test_a_message_has_a_message_detail_url(self):
+        message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+            , author_name='author'
+            , author_email='author email'
+            , subject = 'subject'
+            , content = 'content'
+            , writeitinstance=self.election.writeitinstance
+            , slug = 'subject-slugified'
+            )
+
+        url = reverse('message_detail',kwargs={'election_slug':self.election.slug, 'pk':message.id})
+        self.assertTrue(url)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('election', response.context)
+        self.assertIn('votainteligentemessage', response.context)
+        self.assertEquals(response.context['election'], self.election)
+        self.assertEquals(response.context['votainteligentemessage'], message)
+        self.assertTemplateUsed(response, 'elections/message_detail.html')
+        site = Site.objects.get_current()
+        self.assertEquals("http://%s%s"%(site.domain,url), message.get_absolute_url())
+
+
+
 
 
     def test_accept_message(self):

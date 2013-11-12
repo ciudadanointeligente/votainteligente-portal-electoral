@@ -8,15 +8,22 @@
 
 {% block title %} - {{candidate}} - {% trans "Preguntas"%}{% endblock title%}
 
-{% block content %}
-{{ candidate }}
-<br />
+{% block last_breadcrumb %}{{ candidate }}{% endblock last_breadcrumb %}
 
-{% autopaginate questions 10 %}
-{% paginate %}
-{% for question in questions %}
-    {% include 'elections/message_in_list.html' with message=question %}
-{% endfor %}
-<br />
-{% paginate %}
-{% endblock content %}
+{% block mainelection %}
+<section id="election">
+	<div>
+		<h3>{% trans "Preguntas para" %} {{ candidate }}</h3>
+	</div>
+
+	{% autopaginate questions 10 %}
+
+	{% paginate %}
+
+	{% for question in questions %}
+	    {% include 'elections/message_in_list.html' with message=question %}
+	{% endfor %}
+
+	{% paginate %}
+</section>
+{% endblock mainelection %}

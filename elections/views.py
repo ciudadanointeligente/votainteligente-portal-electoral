@@ -275,3 +275,13 @@ class ElectionRankingView(DetailView, RankingMixin):
         context['good'] = self.get_good()
         context['bad'] = self.get_bad()
         return context
+
+
+class MessageDetailView(DetailView):
+    model = VotaInteligenteMessage
+
+    def get_context_data(self, **kwargs):
+        context = super(MessageDetailView, self).get_context_data(**kwargs)
+        context['election'] = self.object.writeitinstance.election
+        return context
+

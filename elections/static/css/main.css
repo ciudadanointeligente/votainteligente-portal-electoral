@@ -1143,6 +1143,13 @@ tr.primary p:first-child, tr.danger p:first-child {
 		top: 65px;
 		left: 75px;
 	}
+	
+	.not_answered_small a:after {
+		content: url(../img/no-responde.png);
+		position: absolute;
+		top: 55px;
+		left: 30px;
+	}
 
 }
 
@@ -1157,3 +1164,26 @@ tr.primary p:first-child, tr.danger p:first-child {
 	}
 
 }
+
+@media (max-width: 800px) {
+	.not_answered:after {
+		top: 75px;
+		left: 35px;
+	}
+
+	.not_answered_small a:after {
+		content: url(../img/no-responde.png);
+		position: absolute;
+		top: 80px;
+		left: 30px;
+	}
+}
+
+@media (max-height: 600px) {
+	#apoya {
+		width: 203px;
+		height: 203px;
+	}
+}
+
+

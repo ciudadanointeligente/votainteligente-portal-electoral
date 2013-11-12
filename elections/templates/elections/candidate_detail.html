@@ -123,6 +123,7 @@
 
 	</div>
 
+	{% if 'questionary'|val_navbars and election.uses_questionary  %}
 	<div class="questionary">
 		<h3>{% trans "Cuestionario" %} {% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
 
@@ -146,8 +147,8 @@
 			</div>
 		</div>
 		{% endfor %}
-
 	</div>
+	{% endif %}
 
 	{% if 'enabled'|disqus and 'shortname'|disqus %}
 	<div class="disqus">

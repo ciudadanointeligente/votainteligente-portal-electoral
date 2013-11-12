@@ -1,4 +1,4 @@
-# Create your views here.
+# coding=utf-8
 from django.views.generic.edit import FormView
 from elections.forms import ElectionSearchByTagsForm
 from django.core.urlresolvers import reverse
@@ -92,6 +92,12 @@ class QuestionsPerCandidateView(CandidateDetailView):
         queryset.filter(Q(election__slug=election_slug))
         return queryset
         
+
+    def get_context_data(self, **kwargs):
+        context = super(QuestionsPerCandidateView, self).get_context_data(**kwargs)
+        context['questions'] = VotaInteligenteMessage.objects.filter(people=self.object.relation.person)
+        return context
+
 class ElectionAskCreateView(CreateView):
     model = Message
     form_class = MessageForm

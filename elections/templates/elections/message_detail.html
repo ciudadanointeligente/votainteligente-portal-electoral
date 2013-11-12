@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+
+{% block tab_extrainfo %}class="active"{% endblock %}
+
+{% block content %}
+{% with message=votainteligentemessage %}
+{% include 'elections/message_in_list.html' %}
+{% endwith %}
+
+{% endblock %}

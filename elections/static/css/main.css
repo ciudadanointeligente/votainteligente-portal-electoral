@@ -282,9 +282,10 @@ input, button, select, textarea {
 /*Menu Interno*/
 
 .nav-candidator .list-inline>li {
-	padding: 9px 0px 8px;
+	padding: 0px;
 	margin-left: -4px;
 	height: auto;
+	display: inline-flex;
 }
 
 .nav-candidator .list-inline>li a {

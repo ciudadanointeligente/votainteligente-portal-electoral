@@ -61,9 +61,9 @@
     </div><!-- /contenedorDestacado -->
     <!-- /FeaturedBlock -->
 
-    {% elif featured_elections|length = 2 %}
+  {% elif featured_elections|length = 2 %}
     <!-- Featured Election block -->
-    <div class="contenedorDestacado">
+    <div class="contenedorDestacado fondo-blanco">
       <ul>
         {% for featured_election in featured_elections %}
           <li class="col-md-6 containerAccordion">
@@ -99,9 +99,9 @@
       </ul>
     </div><!-- /contenedorDestacado -->
 
-    {% elif featured_elections|length >= 3 %}
+  {% elif featured_elections|length >= 3 %}
       <!-- Featured Election block -->
-    <div class="contenedorDestacado">
+    <div class="contenedorDestacado fondo-blanco">
       <ul>
         {% for featured_election in featured_elections %}
         <li class="col-md-4 containerAccordion">

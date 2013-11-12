@@ -54,9 +54,9 @@
 					<div class="visible-xs visible-sm">
 						<div >
 							<div>
-									<div>
-										<i class="icon-quote-left"></i> {{answer.caption}} <i class="icon-quote-right"></i>
-									</div>
+								<div>
+									<i class="icon-quote-left"></i> {{answer.caption}} <i class="icon-quote-right"></i>
+								</div>
 								{% for candidate in answer.candidate_set.all %}
 									{% if forloop.first %}
 										<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a>
@@ -66,10 +66,11 @@
 										, <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a>
 									{% endif %}
 								{% endfor %}
-								</ul>
+								<hr>
 							</div>
 						</div>
 					</div>
+					
 						<!-- end mobile version -->
 					{% endfor %}
 				</div>

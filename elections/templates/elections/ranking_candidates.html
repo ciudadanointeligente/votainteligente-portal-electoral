@@ -101,6 +101,7 @@
 				<h4 class="modal-title">{% trans "Cómo se calcula el ranking?" %}</h4>
 			</div>
 			<div class="modal-body">
+				{% blocktrans %}
 				<p>Ordenamos a los candidatos por un índice que describe cuanto está respondiendo y cuanto es el interés que genera entre los ciudadanos.</p>
 				<p>Este índice se calcula como se explica acá:</p>
 				<p><strong>pr = Preguntas respondidas por el candidato</strong></p>
@@ -112,6 +113,7 @@
 				<p><strong>indice_de_premio = P/R</strong></p>
 				<p>Si quieres ser parte de la discusión sobre el cálculo del índice puedes <a href="https://github.com/ciudadanointeligente/votainteligente-portal-electoral/issues/145" target="blank">seguir el issue #145 en github</a>
 				</p>
+				{% endblocktrans %}
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->

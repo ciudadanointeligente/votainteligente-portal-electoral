@@ -1,6 +1,7 @@
 {% extends "elections/election_base.html" %}
 {% load i18n %}
 {% load votainteligente_extras %}
+{% load pagination_tags %}
 
 {% block extrajs %}
 {% endblock extrajs %}
@@ -9,8 +10,13 @@
 
 {% block content %}
 {{ candidate }}
+<br />
 
-{% for message in candidate.relation.person.messages.all %}
-    {% include 'elections/message_in_list.html' with message=message %}
+{% autopaginate questions 10 %}
+{% paginate %}
+{% for question in questions %}
+    {% include 'elections/message_in_list.html' with message=question %}
 {% endfor %}
+<br />
+{% paginate %}
 {% endblock content %}

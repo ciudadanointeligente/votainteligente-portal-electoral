@@ -27,15 +27,13 @@ class QuestionsPerCandidateViewTestCase(TestCase):
             self.candidate4.relation.person.id
             ]
             ).delete()
-        #Trying to copy it from
-        #https://github.com/ciudadanointeligente/votainteligente-primarias/blob/master/elecciones/tests/ranking.py
 
 
         self.message1 = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
             , author_name='author'
             , author_email='author email'
             , subject = u'subject test_accept_message'
-            , content = u'Qué opina usted sobre el test_accept_message'
+            , content = u'Que opina usted sobre el test_accept_message'
             , writeitinstance=self.election.writeitinstance
             , slug = 'subject-slugified'
             )
@@ -54,7 +52,7 @@ class QuestionsPerCandidateViewTestCase(TestCase):
             , author_name='author'
             , author_email='author email'
             , subject = u'subject test_accept_message2'
-            , content = u'Qué opina usted sobre el test_accept_message2'
+            , content = u'Que opina usted sobre el test_accept_message2'
             , writeitinstance=self.election.writeitinstance
             , slug = 'subject-slugified'
             )
@@ -78,7 +76,7 @@ class QuestionsPerCandidateViewTestCase(TestCase):
             , author_name='author'
             , author_email='author email'
             , subject = u'subject test_accept_message3'
-            , content = u'Qué opina usted sobre el test_accept_message3'
+            , content = u'Que opina usted sobre el test_accept_message3'
             , writeitinstance=self.election.writeitinstance
             , slug = 'subject-slugified'
             )
@@ -107,23 +105,23 @@ class QuestionsPerCandidateViewTestCase(TestCase):
             , author_name='author'
             , author_email='author email'
             , subject = u'subject test_accept_message4'
-            , content = u'Qué opina usted sobre el test_accept_message4'
+            , content = u'Que opina usted sobre el test_accept_message4'
             , writeitinstance=self.election.writeitinstance
             , slug = 'subject-slugified'
             )
         self.message4.people.add(self.candidate1)
         self.message4.people.add(self.candidate2)
         self.message4.people.add(self.candidate3)
-        #this question wasn't asked to candidate 4
 
 
     def test_it_is_reachable(self):
         reverse_url = reverse('questions_per_candidate', kwargs={'election_slug':self.election.slug,
-            'slug':self.candidate1.relation.candidate.slug})#This is FUCKING UGLY
-        #there must be a way to rearchitect this shit so writing tests is easy
+            'slug':self.candidate1.relation.candidate.slug})
 
         response = self.client.get(reverse_url)
         self.assertEquals(response.status_code,200)
         self.assertIn('candidate', response.context)
         self.assertEquals(response.context['candidate'], self.candidate1.relation.candidate)
         self.assertTemplateUsed(response, 'elections/questions_per_candidate.html')
+        self.assertIn('questions', response.context)
+        self.assertEquals(list(response.context['questions']), list(VotaInteligenteMessage.objects.filter(people=self.candidate1)))

@@ -67,14 +67,10 @@ def ga(value):
 def no_ha_respondido_twitter_button(context):
 	twitter = context["candidate"].relation.twitter
 	if twitter:
-		return {
-			'twitter':twitter,
-			'candidate':context['candidate']
-			}
-	return {
-		'twitter':None,
-		'candidate':context['candidate']
-		}
+		context["twitter"] = twitter
+		return context
+	context["twitter"] = None
+	return context
 register.inclusion_tag('elections/twitter/no_candidator_answer.html', 
 	takes_context=True)(no_ha_respondido_twitter_button)
 
@@ -82,14 +78,10 @@ register.inclusion_tag('elections/twitter/no_candidator_answer.html',
 def follow_on_twitter(context):
 	twitter = context["candidate"].relation.twitter
 	if twitter:
-		return {
-			'twitter':twitter,
-			'candidate':context['candidate']
-			}
-	return {
-		'twitter':None,
-		'candidate':context['candidate']
-		}
+		context["twitter"] = twitter
+		return context
+	context["twitter"] = None
+	return context
 register.inclusion_tag('elections/twitter/follow_the_conversation.html', 
 	takes_context=True)(follow_on_twitter)
 

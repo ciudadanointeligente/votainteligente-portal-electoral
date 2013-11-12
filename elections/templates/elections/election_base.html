@@ -11,13 +11,13 @@
 <section id="election">
 	<div class="row breadscrumb-social hidden-xs">
 		<div class="col-md-9">
-			<ol class="breadcrumb">
+			<ul class="breadcrumb">
 				<li><a href="/">{% trans "Portada" %}</a></li>
 				<li><a href="{% url 'election_view' slug=election.slug %}">{{ election }}</a></li>
 				<li class="active">{% block last_breadcrumb %}{% trans "Perfiles"%}{% endblock last_breadcrumb %}</li>
-			</ol>
+			</ul>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-3 hidden-xs">
 			<div class="row social-button">
 				<div class="col-md-4">
 					<script src="https://apis.google.com/js/plusone.js"></script>
@@ -48,7 +48,7 @@
 
 	<div class="row">
 		<div class="nav-candidator">
-			<div class="col-md-12">
+			<nav class="col-md-12">
 				<ul class="list-inline">
 					{% if 'profiles'|val_navbars  %}
 					<li {% block tab_profile %}{% endblock %}><a href="{% url 'election_view' slug=election.slug %}" accesskey="p" title="{% trans "Perfiles" %} (Alt+p)"><i class="icon-group"></i> {% trans "Perfiles" %}</a></li>
@@ -74,7 +74,7 @@
 					{% endif %}
 					
 				</ul>
-			</div>
+			</nav>
 		</div>
 	</div>
 

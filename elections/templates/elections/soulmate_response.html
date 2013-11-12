@@ -7,12 +7,51 @@
 <div id="soulmate-result">
 	<div class="row">
 		<div class="col-md-3">
+			<div id="candidate-img-profile">
 			{% if winner.candidate.photo %}
-			{% thumbnail winner.candidate.photo "x300" crop="center" as im %}
-			<img src="{{winner.candidate.photo}}" alt="{{winner.candidate.name}}" class="img-responsive">
-			{% endthumbnail %}
+				{% thumbnail winner.candidate.photo "x300" crop="center" as im %}
+				<img src="{{winner.candidate.photo}}" alt="{{winner.candidate.name}}" class="img-responsive">
+				{% endthumbnail %}
 			{% else %}
-			<img src="{% static 'img/candidate-default.jpg' %}" alt="{{winner.candidate.name}}" class="img-responsive">
+				<img src="{% static 'img/candidate-default.jpg' %}" alt="{{winner.candidate.name}}" class="img-responsive">
+			{% endif %}
+			</div>
+			{% if winner.candidate.relation.portrait_photo %}
+			<a class="btn btn-default button_pic hidden-xs" data-toggle="modal" href="#myCandidate" style="margin-bottom:5px"><i class="icon-camera"></i> Da la cara por tu candidato</a>
+			
+			<div class="modal fade" id="myCandidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title"><i class="icon-camera"></i> Da la cara por tu candidato</h4>
+						</div>
+						<div class="modal-body container_pic">
+							<div id="text-support" class="alert alert-warning alert-dismissable">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								{% trans "Recuerda activar tu cámara" %} <i class="icon-arrow-up"></i>
+							</div>
+							<div id="videocontainer">
+								<video id="video"></video>
+								<img src="{{winner.candidate.relation.portrait_photo}}" id="soulmate-pic" alt="{{winner.candidate.name}}" title="{{winner.candidate.name}}">
+							</div>
+							<canvas id="canvas"></canvas>
+							<div id="cover"></div>
+						</div>
+						<div id="controls" class="modal-footer">
+							<span id="socialsharehalfface" class="text-left" style="display:none">
+								<input type="text" id="shareurl" value="" style="width:39%" onclick="this.select();">
+								 <a href="#" id="shareurltwitter" onClick="#"><i class="icon-twitter-sign"></i> compartir</a>
+								 <a href="#" id="shareurlfacebook" onClick="#"><i class="icon-facebook-sign"></i> publicar</a>
+							</span>
+							<button type="button" class="btn btn-default" id="resetbutton" style="display:none"><i id="icon-repeat" class="icon-repeat"></i> {% trans "Tomar otra foto" %}</button>
+							<button type="button" class="btn btn-primary" id="takepicbutton"><i class="icon-camera"></i> {% trans "Tomar foto" %}</button>
+							<button type="button" class="btn btn-success" id="uploadbutton" style="display:none">{% trans "OK" %}</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal -->
 			{% endif %}
 		</div>
 		<div class="col-md-5">
@@ -70,3 +109,9 @@
 		{% endfor %}
 	</div>
 </div>
+<script type="text/javascript">
+var API_KEY = '{{ 'client_id'|website_imgur }}';
+var candidate_name = '{{winner.candidate.name}}'
+var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}';
+</script>
+<script type="text/javascript" src="{% static 'js/video.js' %}"></script>

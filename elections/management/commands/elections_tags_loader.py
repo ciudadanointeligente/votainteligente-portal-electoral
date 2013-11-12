@@ -12,12 +12,13 @@ class Command(BaseCommand):
     # Remove header
     tags_lines.next()
     for line in tags_lines:
-      election_name, election_type, tags = line[0].decode('utf-8'), line[1].decode('utf-8'), line[2]
-      try:
-        election = Election.objects.get(name=election_name)
-        for tag in tags.split(','):
-          tag = tag.decode('utf-8').strip()
-          election.tags.add(tag)
-      except Exception:
-        print u'excepción con la elección ' + election_name 
-        pass
+      if line:
+        election_name, tags = line[0].decode('utf-8'), line[1]
+        try:
+          election = Election.objects.get(name=election_name)
+          for tag in tags.split(','):
+            tag = tag.decode('utf8').strip().lower()
+            election.tags.add(tag)
+        except Exception:
+          print u'excepción con la elección ' + election_name 
+          pass

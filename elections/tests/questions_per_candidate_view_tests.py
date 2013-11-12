@@ -125,3 +125,4 @@ class QuestionsPerCandidateViewTestCase(TestCase):
         self.assertTemplateUsed(response, 'elections/questions_per_candidate.html')
         self.assertIn('questions', response.context)
         self.assertEquals(list(response.context['questions']), list(VotaInteligenteMessage.objects.filter(people=self.candidate1)))
+

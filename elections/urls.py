@@ -3,10 +3,11 @@ from django.conf.urls import patterns, url, include
 from django.views.generic import TemplateView
 from haystack.views import SearchView
 from elections.forms import ElectionForm
+from django.views.generic import DetailView
 from elections.views import ElectionsSearchByTagView, HomeView, ElectionDetailView,\
 							CandidateDetailView, SoulMateDetailView, ElectionAskCreateView,\
-							AnswerWebHook, ElectionRankingView, QuestionsPerCandidateView
-
+							AnswerWebHook, ElectionRankingView, QuestionsPerCandidateView, MessageDetailView 
+from elections.models import VotaInteligenteMessage
 from .sitemaps import ElectionsSitemap
 
 from django.conf import settings
@@ -71,6 +72,10 @@ urlpatterns = patterns('',
 	url(r'^election/(?P<slug>[-\w]+)/extra_info.html$',
 		ElectionDetailView.as_view(template_name='elections/extra_info.html'), 
 		name='election_extra_info'),
+	#message_detail
+	url(r'^election/(?P<election_slug>[-\w]+)/messages/(?P<pk>\d+)/?$',
+		MessageDetailView.as_view(template_name='elections/message_detail.html'), 
+		name='message_detail'),
 	url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 )
 

@@ -15,6 +15,7 @@ from candideitorg.models import election_finished
 from writeit.models import Message as WriteItMessage
 import datetime
 from django.db.models import Q, Count
+from django.contrib.sites.models import Site
 import re
 
 
@@ -188,6 +189,12 @@ class VotaInteligenteMessage(WriteItMessage):
         messages = VotaInteligenteMessage.objects.filter(query)
         for message in messages:
             message.push_to_the_api()
+
+
+    def get_absolute_url(self):
+        path = reverse('message_detail',kwargs={'election_slug':self.writeitinstance.election.slug, 'pk':self.id})
+        site = Site.objects.get_current()
+        return "http://%s%s"%(site.domain,path)
 
 class VotaInteligenteAnswer(models.Model):
     message = models.ForeignKey(VotaInteligenteMessage, related_name='answers')

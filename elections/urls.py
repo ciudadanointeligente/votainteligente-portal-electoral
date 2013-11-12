@@ -5,7 +5,7 @@ from haystack.views import SearchView
 from elections.forms import ElectionForm
 from elections.views import ElectionsSearchByTagView, HomeView, ElectionDetailView,\
 							CandidateDetailView, SoulMateDetailView, ElectionAskCreateView,\
-							AnswerWebHook, ElectionRankingView
+							AnswerWebHook, ElectionRankingView, QuestionsPerCandidateView
 
 from .sitemaps import ElectionsSitemap
 
@@ -63,6 +63,10 @@ urlpatterns = patterns('',
 	url(r'^election/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/?$', 
 		CandidateDetailView.as_view(template_name='elections/candidate_detail.html'),
 		name='candidate_detail_view'
+		),
+	url(r'^election/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/questions?$', 
+		QuestionsPerCandidateView.as_view(template_name='elections/questions_per_candidate.html'),
+		name='questions_per_candidate'
 		),
 	url(r'^election/(?P<slug>[-\w]+)/extra_info.html$',
 		ElectionDetailView.as_view(template_name='elections/extra_info.html'), 

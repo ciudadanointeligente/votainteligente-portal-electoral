@@ -82,6 +82,15 @@ class CandidateDetailView(DetailView):
         #so that's why it says election.election
         context['election'] = self.object.election.election
         return context
+
+
+class QuestionsPerCandidateView(CandidateDetailView):
+    def get_queryset(self):
+
+        queryset = super(QuestionsPerCandidateView, self).get_queryset()
+        election_slug = self.kwargs['election_slug']
+        queryset.filter(Q(election__slug=election_slug))
+        return queryset
         
 class ElectionAskCreateView(CreateView):
     model = Message

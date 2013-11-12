@@ -1,0 +1,16 @@
+{% extends "elections/election_base.html" %}
+{% load i18n %}
+{% load votainteligente_extras %}
+
+{% block extrajs %}
+{% endblock extrajs %}
+
+{% block title %} - {{candidate}} - {% trans "Preguntas"%}{% endblock title%}
+
+{% block content %}
+{{ candidate }}
+
+{% for message in candidate.relation.person.messages.all %}
+    {% include 'elections/message_in_list.html' with message=message %}
+{% endfor %}
+{% endblock content %}

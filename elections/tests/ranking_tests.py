@@ -251,6 +251,8 @@ class RankingBaseTestCase(TestCase):
         or good[1]['candidate'] == self.candidate4.relation.candidate
         self.assertTrue(is_candidate2_or_4)
 
+
+
     def test_get_bad_ones(self):
         ranking_view = RankingMixin()
         ranking_view.candidate_queryset = Candidate.objects.all()
@@ -306,3 +308,28 @@ class RankingBaseTestCase(TestCase):
 
         
 
+    def test_if_there_are_no_answers_then_good_and_bad_are_empty(self):
+        VotaInteligenteAnswer.objects.all().delete()
+        ranking_view = RankingMixin()
+        ranking_view.candidate_queryset = Candidate.objects.all()
+
+        good = ranking_view.get_good()
+        self.assertEquals(len(good), 0)
+
+
+        bad = ranking_view.get_bad()
+        self.assertEquals(len(bad), 0)
+
+
+    def test_it_does_only_include_persons_with_answers_in_the_good_ones(self):
+        VotaInteligenteAnswer.objects.exclude(person=self.candidate1).delete()
+
+        ranking_view = RankingMixin()
+        ranking_view.candidate_queryset = Candidate.objects.all()
+
+        good = ranking_view.get_good()
+        self.assertEquals(len(good), 1)
+
+
+        bad = ranking_view.get_bad()
+        self.assertEquals(len(bad), 3)

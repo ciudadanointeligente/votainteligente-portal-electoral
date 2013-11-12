@@ -33,7 +33,7 @@
 					</div>
 					
 					{% if candidate.relation.portrait_photo %}
-					<a class="btn btn-default button_pic" data-toggle="modal" href="#myCandidate" class="hidden-xs" style="margin-bottom:5px"><i class="icon-camera"></i> Da la cara por tu candidato</a>
+					<a class="btn btn-default button_pic hidden-xs" data-toggle="modal" href="#myCandidate" style="margin-bottom:5px"><i class="icon-camera"></i> Da la cara por tu candidato</a>
 					
 					<div class="modal fade" id="myCandidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
@@ -49,9 +49,7 @@
 									</div>
 									<div id="videocontainer">
 										<video id="video"></video>
-										
 										<img src="{{candidate.relation.portrait_photo}}" id="soulmate-pic" alt="{{candidate.name}}" title="{{candidate.name}}">
-										
 									</div>
 									<canvas id="canvas"></canvas>
 									<div id="cover"></div>
@@ -66,9 +64,10 @@
 									<button type="button" class="btn btn-primary" id="takepicbutton"><i class="icon-camera"></i> {% trans "Tomar foto" %}</button>
 									<button type="button" class="btn btn-success" id="uploadbutton" style="display:none">{% trans "OK" %}</button>
 								</div>
-							</div><!-- /.modal-content -->
-						</div><!-- /.modal-dialog -->
-					</div><!-- /.modal -->
+							</div>
+						</div>
+					</div>
+					<!-- /.modal -->
 					{% endif %}
 
 				</div>
@@ -103,6 +102,7 @@
 			</div>
 			
 			<div class="row">
+
 				<div class="antecedentes col-md-12">
 					<div class="info">
 					{% for background_category in election.can_election.backgroundcategory_set.all %}
@@ -166,11 +166,13 @@
 	    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 	    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 	</div>
-
-	
 	{% endif %}
-	<!--<script src="{% static 'js/interactioncam.js' %}"></script>-->
-	
+	<script type="text/javascript">
+	var API_KEY = '{{ 'client_id'|website_imgur }}';
+	var candidate_name = '{{candidate.name}}';
+	var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}';
+	</script>
+	<script type="text/javascript" src="{% static 'js/video.js' %}"></script>
 {% endblock mainelection %}
 
 {% block extrajs %}
@@ -183,201 +185,4 @@
 
 		$('.pop-fuente').popover();
 	});
-
-(function() {
-
-  var API_KEY = '{{ 'client_id'|website_imgur }}';
-  var streaming = false,
-      video        = document.querySelector('#video'),
-      cover        = document.querySelector('#cover'),
-      canvas       = document.querySelector('#canvas'),
-      resetbutton  = document.querySelector('#resetbutton'),
-      uploadbutton = document.querySelector('#uploadbutton'),
-      urlfield     = document.querySelector('#uploaded input'),
-      urllink      = document.querySelector('#uploaded a'),
-      button_pic    = document.querySelector('a.button_pic'),
-      takepicbutton = document.querySelector('#takepicbutton'),
-      closebutton = document.querySelector('.close'),
-      width = 600,
-      height = 450,
-      finalheight = 450,
-      state = 'intro';
-      setstate(state);
-
-  function init() {
-    navigator.getMedia = ( navigator.getUserMedia ||
-                           navigator.webkitGetUserMedia ||
-                           navigator.mozGetUserMedia ||
-                           navigator.msGetUserMedia);
-
-    navigator.getMedia(
-      {
-        video: true,
-        audio: false
-      },
-      function(stream) {
-        if (navigator.mozGetUserMedia) {
-          video.mozSrcObject = stream;
-        } else {
-          var vendorURL = window.URL || window.webkitURL;
-          video.src = vendorURL ? vendorURL.createObjectURL(stream) : stream;
-        }
-        video.play();
-        firsttake();
-      },
-      function(err) {
-        console.log("An error occured! " + err);
-      }
-    );
-  }
-
-  function takepicture() {
-    
-    canvas.width = width;
-    canvas.height = finalheight;
-
-	context = canvas.getContext('2d');
-    context.drawImage(video, 0, 0, width, finalheight);    
-
-    var img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.src = document.getElementById('soulmate-pic').getAttribute("src");
-
-    context = canvas.getContext('2d');
-    context.drawImage(img, 0, 0, 320, 450); //output picture
-
-    document.getElementById('videocontainer').setAttribute('style','display:none');
-    document.getElementById('canvas').setAttribute('style','');
-    document.getElementById('uploadbutton').setAttribute('style','');
-    document.getElementById('takepicbutton').setAttribute('style','display:none');
-    document.getElementById('icon-repeat').classList.add('icon-spin');
-    document.getElementById('resetbutton').setAttribute('style','');
-  }
-
-	function firsttake() 
-	{
-		var img = new Image();
-		img.crossOrigin = 'anonymous';
-		img.src = document.getElementById('soulmate-pic').getAttribute("src");
-	}
-
-  
-  function initiateupload() {
-    if (state === 'reviewing') {
-      setstate('uploading');
-      upload();
-    }
-  }
-
-  function upload() {
-
-	document.getElementById('resetbutton').setAttribute('style','display:none');
-  	document.getElementById('uploadbutton').innerHTML = '<i class="icon-gear icon-spin"></i> Cargando';
-    
-    var head = /^data:image\/(png|jpg);base64,/,
-        fd = new FormData(),toSend,
-        xhr = new XMLHttpRequest(),
-        links = '',
-        data = '',
-        originalImage= '';
-
-    data = ('mozGetAsFile' in canvas) ? canvas.mozGetAsFile('webcam.png') : canvas.toDataURL('image/png').replace(head, '');
-    
-    fd.append('image', data);
-    
-    xhr.open('POST', 'https://api.imgur.com/3/image');
-    
-    xhr.addEventListener('error', function(ev) {
-      console.log('Upload Error :'+ev);
-    }, false);
-    xhr.addEventListener('load', function(ev) {
-      try {
-        var links = JSON.parse(xhr.responseText).data.link;
-        
-        var twtwindow = "https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}&text={{candidate.name}}+%3C3+"+links+"&hashtags=medianaranja,votainteligente";
-        var fcbkwindow = "https://www.facebook.com/sharer/sharer.php?u="+links;
-
-        document.getElementById('socialsharehalfface').setAttribute('style','');
-        document.getElementById('shareurl').setAttribute('value', links);
-        document.getElementById('shareurltwitter').setAttribute('onClick','window.open(\''+twtwindow+'\', \'twitter-share-dialog\', \'width=626,height=436\')');
-        document.getElementById('shareurlfacebook').setAttribute('onClick','window.open(\''+fcbkwindow+'\', \'twitter-share-dialog\', \'width=626,height=436\')');
-        document.getElementById('uploadbutton').innerHTML = 'OK';
-        document.getElementById('uploadbutton').setAttribute('style','display:none');
-        document.getElementById('resetbutton').setAttribute('style','');
-      } catch(e) {
-        console.log('Upload Error :' + e);
-      }
-    }, false);
-    xhr.setRequestHeader('Authorization', "Client-ID " + API_KEY);
-    xhr.send(fd);
-  }
-
-  function setstate(newstate) {
-    state = newstate;
-    document.body.className = newstate;  
-  }
-
-	 
-  /* Event Handlers */
-
-	button_pic.addEventListener('mouseover', function() {
-		document.getElementById('apoya').setAttribute('style','display:block');
-	},false);
-
-	button_pic.addEventListener('mouseout', function() {
-		document.getElementById('apoya').setAttribute('style','display:none');
-	},false);
-
-	button_pic.addEventListener('click', function(ev) {
-		if (state === 'intro') {
-			setstate('playing');
-			init();
-		} else {
-			setstate('reviewing');
-			takepicture();
-		}
-		ev.preventDefault();
-	},false);
-
-	takepicbutton.addEventListener('click', function(ev) {
-		ev.preventDefault();
-		takepicture();
-	},false);
-
-	resetbutton.addEventListener('click', function(ev){
-		if (state === 'reviewing') {
-			setstate('playing');
-		}
-
-		document.getElementById('videocontainer').setAttribute('style','');
-		document.getElementById('canvas').setAttribute('style','display:none');
-		document.getElementById('uploadbutton').setAttribute('style','display:none');
-		document.getElementById('takepicbutton').setAttribute('style','');
-		document.getElementById('icon-repeat').classList.remove('icon-spin');
-		document.getElementById('resetbutton').setAttribute('style','display:none');
-		document.getElementById('socialsharehalfface').setAttribute('style','display:none');
-		ev.preventDefault();
-	}, false);
-
-	uploadbutton.addEventListener('click', function(ev){
-		upload();
-		ev.preventDefault();
-	}, false);
-
-	video.addEventListener('canplay', function(ev){
-		if (!streaming) {
-			finalheight = video.videoHeight / (video.videoWidth/width);
-
-			video.setAttribute('width', width);
-			video.setAttribute('height', finalheight);
-
-			canvas.setAttribute('width', width);
-			canvas.setAttribute('height', finalheight);
-
-			streaming = true;
-		}
-	}, false);
-
-})();
-
 {% endblock extrajs %}

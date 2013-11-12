@@ -13,15 +13,15 @@ class ElectionsTagsLoaderTestCase(TestCase):
 		call_command('elections_tags_loader', 'elections/tests/fixtures/elections_tags.csv', verbosity=0)
 		self.assertEquals(self.antofa.tags.all().count(), 9)
 		expected_existing_tags = [
-															u'Antofagasta', 
-															u'Calama', 
-															u'María Elena', 
-															u'Mejillones', 
-															u'Ollagüe', 
-															u'San Pedro de Atacama', 
-															u'Sierra Gorda', 
-															u'Taltal', 
-															u'Tocopilla']
+															u'antofagasta', 
+															u'calama', 
+															u'maría elena', 
+															u'mejillones', 
+															u'ollagüe', 
+															u'san pedro de atacama', 
+															u'sierra gorda', 
+															u'taltal', 
+															u'tocopilla']
 		for tag in expected_existing_tags:
 			election = Election.objects.get(tags__name=tag)
 			self.assertEquals(self.antofa, election)

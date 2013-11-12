@@ -5,7 +5,9 @@ from haystack.views import SearchView
 from elections.forms import ElectionForm
 from elections.views import ElectionsSearchByTagView, HomeView, ElectionDetailView,\
 							CandidateDetailView, SoulMateDetailView, ElectionAskCreateView,\
-							AnswerWebHook, ElectionRankingView
+							AnswerWebHook, ElectionRankingView, QuestionsPerCandidateView
+
+from .sitemaps import ElectionsSitemap
 
 from django.conf import settings
 
@@ -13,6 +15,12 @@ media_root = getattr(settings, 'MEDIA_ROOT', '/')
 
 
 new_answer_endpoint = r"^new_answer/%s/?$" % (settings.NEW_ANSWER_ENDPOINT)
+
+
+
+sitemaps = {
+    'static': ElectionsSitemap,
+}
 
 urlpatterns = patterns('',
 	url(new_answer_endpoint,AnswerWebHook.as_view(), name='new_answer_endpoint' ),
@@ -56,9 +64,14 @@ urlpatterns = patterns('',
 		CandidateDetailView.as_view(template_name='elections/candidate_detail.html'),
 		name='candidate_detail_view'
 		),
+	url(r'^election/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/questions?$', 
+		QuestionsPerCandidateView.as_view(template_name='elections/questions_per_candidate.html'),
+		name='questions_per_candidate'
+		),
 	url(r'^election/(?P<slug>[-\w]+)/extra_info.html$',
 		ElectionDetailView.as_view(template_name='elections/extra_info.html'), 
 		name='election_extra_info'),
+	url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 )
 
 urlpatterns += patterns('', 

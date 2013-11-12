@@ -106,3 +106,21 @@ def website_imgur(value):
 	if value in settings.WEBSITE_IMGUR:
 		return settings.WEBSITE_IMGUR[value]
 	return ''
+
+def twitter_on_ranking(context,btn_text,popup_text):
+	twitter = context["candidate"].relation.twitter
+	if twitter:
+		return {
+			'twitter':twitter,
+			'candidate':context['candidate'],
+			'btn_text' : btn_text,
+			'popup_text' : popup_text
+			}
+	return {
+		'twitter':None,
+		'candidate':context['candidate'],
+		'btn_text' : btn_text,
+		'popup_text' : popup_text
+		}
+
+register.inclusion_tag('elections/twitter/ranking_twitter.html', takes_context=True)(twitter_on_ranking)

@@ -145,6 +145,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
     'django_nose',
+    'django.contrib.sitemaps',
     'south',
     'taggit',
     'haystack',

@@ -95,7 +95,7 @@
 			try {
 				var links = JSON.parse(xhr.responseText).data.link;
 
-				var twtwindow = "https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}&text={{candidate.name}}+%3C3+"+links+"&hashtags=medianaranja,votainteligente";
+				var twtwindow = "https://twitter.com/share?url=http://"+twitter_url+"&text="+candidate_name+"+%3C3+"+links+"&hashtags=medianaranja,votainteligente";
 				var fcbkwindow = "https://www.facebook.com/sharer/sharer.php?u="+links;
 
 				document.getElementById('socialsharehalfface').setAttribute('style','');

@@ -169,6 +169,8 @@
 	{% endif %}
 	<script type="text/javascript">
 	var API_KEY = '{{ 'client_id'|website_imgur }}';
+	var candidate_name = '{{candidate.name}}';
+	var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}';
 	</script>
 	<script type="text/javascript" src="{% static 'js/video.js' %}"></script>
 {% endblock mainelection %}

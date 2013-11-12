@@ -176,16 +176,22 @@ class AnswerWebHook(View):
         response = HttpResponse(content_type="text/plain", status=200)
         return response
 
-class RankingMixin():
+class RankingMixin(object):
     candidate_queryset = None
+    votainteligentemessages = None
 
+    def __init__(self, *args, **kwargs):
+        super(RankingMixin, self).__init__(*args, **kwargs)
+        
 
     def get_ranking(self):
         return self.candidate_queryset
 
     def all_messages(self):
-        return VotaInteligenteMessage.objects\
+        if not self.votainteligentemessages:
+            self.votainteligentemessages = VotaInteligenteMessage.objects\
                     .filter(people__in=self.candidate_queryset)
+        return self.votainteligentemessages
 
     def all_possible_answers(self):
         answers = self.all_messages()

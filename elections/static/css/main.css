@@ -1095,10 +1095,30 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 .btn.btn-default.button_pic {
 	width: 100%;
+	border: none;
+	font-weight: 500;
 }
 
-.btn.btn-default.button_pic i {
-	color: #fe635f;
+.btn.btn-default.button_pic
+{
+animation: doscaras 4s infinite;
+-webkit-animation: doscaras 4s infinite; /* Safari and Chrome */
+}
+
+@keyframes doscaras
+{
+0%   {background-color: #fff;}
+50%  {background-color: #fff;}
+75%  {background-color: #ffd200;}
+100% {background-color: #fff;}
+}
+
+@-webkit-keyframes doscaras /* Safari and Chrome */
+{
+0%   {background-color: #fff;}
+50%  {background-color: #fff;}
+75%  {background-color: #ffd200;}
+100% {background-color: #fff;}
 }
 
 /*video*/

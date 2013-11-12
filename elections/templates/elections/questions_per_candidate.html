@@ -10,10 +10,13 @@
 
 {% block content %}
 {{ candidate }}
-{% autopaginate questions 2 %}
+<br />
+
+{% autopaginate questions 10 %}
 {% paginate %}
 {% for question in questions %}
     {% include 'elections/message_in_list.html' with message=question %}
 {% endfor %}
+<br />
 {% paginate %}
 {% endblock content %}

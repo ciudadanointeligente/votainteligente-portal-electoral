@@ -494,6 +494,10 @@ input, button, select, textarea {
 	font-weight: 900;
 }
 
+.questionary-text-right {
+	margin-top: 25px;
+}
+
 .question-answer {
 	background-color: #ebedf2;
 	padding: 10px;

@@ -32,10 +32,25 @@ class CandideitorCandideitPopitPerson(TestCase):
             candidate=self.candidato1
             )
 
-        candidate_person.portrait_photo = 'http://imgur.com/0tJAgHo'
-        candidate_person.save()
+        self.assertEquals(candidate_person.person, self.pedro)
+        self.assertEquals(candidate_person.candidate, self.candidato1)
 
-        candidate_photo = CandidatePerson.objects.get(portrait_photo='http://imgur.com/0tJAgHo')
+        self.assertEquals(self.pedro.relation, candidate_person)
+        self.assertEquals(self.candidato1.relation, candidate_person)
+
+    def test_realtion_stores_extra_atributes(self):
+        candidate_person = CandidatePerson.objects.get(
+            person=self.pedro,
+            candidate=self.candidato1
+            )
+        #Deletes created relation
+        candidate_person.delete()
+        candidate_person = CandidatePerson.objects.create(
+            person=self.pedro,
+            candidate=self.candidato1,
+            portrait_photo ='http://imgur.com/0tJAgHo',
+            custom_ribbon = 'ribbon text'
+            )
 
         self.assertEquals(candidate_person.person, self.pedro)
         self.assertEquals(candidate_person.candidate, self.candidato1)
@@ -44,8 +59,9 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertEquals(self.candidato1.relation, candidate_person)
         self.assertFalse(candidate_person.reachable)
         self.assertFalse(candidate_person.description)
-        self.assertEquals(candidate_photo.portrait_photo, 'http://imgur.com/0tJAgHo')
+        self.assertEquals(candidate_person.portrait_photo, 'http://imgur.com/0tJAgHo')
         # self.assertTrue(False)
+
 
     def test_it_creates_a_link_to_the_candidate_twitter(self):
         link = Link.objects.create(url = 'http://twitter.com/candidato1',\

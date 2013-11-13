@@ -101,11 +101,11 @@
 </div>
 <div class="row">
 	<div class="col-md-12 right">
-			<a data-toggle="modal" href="#myModal">{% trans "¿Cómo se calcula el ranking?" %}</a>
+			<a data-toggle="modal" href="#rankingModal" onClick="ga('send', 'event', 'howto-ranking-modal', 'click');">{% trans "¿Cómo se calcula el ranking?" %}</a>
 	</div>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="rankingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">

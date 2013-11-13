@@ -82,11 +82,11 @@ $(document).ready(function(){
 					<div class="col-md-4">
 						<p class="question">{% trans "Que importancia le das a esta pregunta?" %}</p>
 						<ul id="importancia" class="list-inline">
-							<li><input type="radio" name="importance-{{question.remote_id}}" value="1"> 1</li>
-							<li><input type="radio" name="importance-{{question.remote_id}}" value="2"> 2</li>
-							<li><input type="radio" name="importance-{{question.remote_id}}" value="3" checked="checked"> 3</li>
-							<li><input type="radio" name="importance-{{question.remote_id}}" value="4"> 4</li>
-							<li><input type="radio" name="importance-{{question.remote_id}}" value="5"> 5</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="1" onClick="ga('send', 'event', 'soulmate-importance', 'click', 'one');"> 1</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="2" onClick="ga('send', 'event', 'soulmate-importance', 'click', 'two');"> 2</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="3" checked="checked" onClick="ga('send', 'event', 'soulmate-importance', 'click', 'three');"> 3</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="4" onClick="ga('send', 'event', 'soulmate-importance', 'click', 'four');"> 4</li>
+							<li><input type="radio" name="importance-{{question.remote_id}}" value="5" onClick="ga('send', 'event', 'soulmate-importance', 'click', 'five');"> 5</li>
 						</ul>
 					</div>
 				</div>

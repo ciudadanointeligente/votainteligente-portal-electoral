@@ -81,7 +81,7 @@
 							</td>
 						</tr>
 						{% endfor %}
-					</table>
+					</table>			
 				</div>
 				
 				<div class="col-md-4 social-side">
@@ -125,8 +125,15 @@
 
 	{% if 'questionary'|val_navbars and election.uses_questionary  %}
 	<div class="questionary">
-		<h3>{% trans "Cuestionario" %} {% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
-
+		<div class="row">
+			<div class="col-md-6">
+				<h3>{% trans "Cuestionario" %} {% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
+			</div>
+			<div class="col-md-6">
+				<p class="text-right questionary-text-right"><a href="{% url 'questions_per_candidate' election_slug=election.slug slug=candidate.slug %}">{% trans "Revisa otras preguntas que le han hecho" %} <i class="icon-caret-right"></i></a></p>
+			</div>
+		</div>
+				
 		{% for category in election.can_election.category_set.all %}
 		<div class="panel panel-default">
 			<div class="panel-heading">{{category.name}}</div>

@@ -35,7 +35,7 @@ class Migration(SchemaMigration):
 
         # Adding field 'CandidatePerson.portrait_photo'
         db.add_column(u'elections_candidateperson', 'portrait_photo',
-                      self.gf('django.db.models.fields.CharField')(default='', max_length=256, blank=True),
+                      self.gf('django.db.models.fields.CharField')(default='', max_length=256, null = True, blank=True),
                       keep_default=False)
 
 

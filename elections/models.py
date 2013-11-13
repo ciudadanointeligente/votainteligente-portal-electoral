@@ -59,7 +59,7 @@ class CandidatePerson(models.Model):
     candidate = models.OneToOneField(CanCandidate, related_name="relation")
     reachable = models.BooleanField(default=False)
     description = models.TextField(default='', blank=True)
-    portrait_photo = models.CharField(max_length=256, blank=True)
+    portrait_photo = models.CharField(max_length=256, blank=True, null=True)
 
     def __unicode__(self):
         return u'Extra info de %(candidate)s'%{

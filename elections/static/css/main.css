@@ -864,18 +864,39 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 	color: #006577;
 }
 
+.responden .panel-body p a {
+	color: #FFF;
+	font-size: 12px;
+}
+
 .no-responden .panel-body p span {
 	color: #920006;
 }
 
+.no-responden .panel-body p a {
+	color: #FFF;
+	font-size: 12px;
+}
+
 .responden .table tbody>tr>td {
-	border-bottom: 1px solid #0e778a;
+	border-bottom: none;
 	border-top: none;
 	border-left: none;
 	border-right: none;
 }
 
+.responden .table tbody>tr>td.second {
+	border-bottom: 1px solid #0e778a;
+}
+
 .no-responden .table tbody>tr>td {
+	border-bottom: none;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+.no-responden .table tbody>tr>td.second {
 	border-bottom: 1px solid #af373c;
 	border-top: none;
 	border-left: none;
@@ -1181,15 +1202,15 @@ animation: doscaras 4s infinite;
 	}
 
 	.nav-candidator .list-inline>li {
-		padding: 9px 0px 10px;
+		padding: 1px 0px;
 	}
 
 }
 
 @media (max-width: 800px) {
 	.not_answered:after {
-		top: 75px;
-		left: 35px;
+		/*top: 75px;
+		left: 35px;*/
 	}
 
 	.not_answered_small a:after {

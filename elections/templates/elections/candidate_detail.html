@@ -62,7 +62,7 @@
 									</span>
 									<button type="button" class="btn btn-default" id="resetbutton" style="display:none"><i id="icon-repeat" class="icon-repeat"></i> {% trans "Tomar otra foto" %}</button>
 									<button type="button" class="btn btn-primary" id="takepicbutton"><i class="icon-camera"></i> {% trans "Tomar foto" %}</button>
-									<button type="button" class="btn btn-success" id="uploadbutton" style="display:none">{% trans "OK" %}</button>
+									<button type="button" class="btn btn-success" id="uploadbutton" onClick="ga('send', 'event', 'share-halfface', 'click');" style="display:none">{% trans "Compartir" %}</button>
 								</div>
 							</div>
 						</div>

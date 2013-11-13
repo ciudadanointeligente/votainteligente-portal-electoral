@@ -64,9 +64,9 @@
 				</div>
 				<div class="col-md-7">
 					<ul class="list-inline">
-						<li><a href="#" onclick="window.open('https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}&text={{winner.candidate.name}}+<3&hashtags=medianaranja,votainteligente', 'twitter-share-dialog', 'width=626,height=436'); return false;"><i class="icon-twitter-sign icon-4x"></i></a></li>
-						<li><a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}', 'facebook-share-dialog', 'width=626,height=436'); return false;"><i class="icon-facebook-sign icon-4x"></i></a></li>
-						<li><a href="#" onclick="window.open('https://plus.google.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}&hl=es-419', 'googleplus-share-dialog', 'width=626,height=436'); return false;"><i class="icon-google-plus-sign icon-4x"></i></a></li>
+						<li><a href="#" onclick="window.open('https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}&text={{winner.candidate.name}}+<3&hashtags=medianaranja,votainteligente', 'twitter-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-twitter', 'click');"><i class="icon-twitter-sign icon-4x"></i></a></li>
+						<li><a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}', 'facebook-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-facebook', 'click');"><i class="icon-facebook-sign icon-4x"></i></a></li>
+						<li><a href="#" onclick="window.open('https://plus.google.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}&hl=es-419', 'googleplus-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-gplus', 'click');"><i class="icon-google-plus-sign icon-4x"></i></a></li>
 					</ul>
 				</div>
 			</div>

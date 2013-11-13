@@ -100,8 +100,8 @@
 
 				document.getElementById('socialsharehalfface').setAttribute('style','');
 				document.getElementById('shareurl').setAttribute('value', links);
-				document.getElementById('shareurltwitter').setAttribute('onClick','window.open(\''+twtwindow+'\', \'twitter-share-dialog\', \'width=626,height=436\')');
-				document.getElementById('shareurlfacebook').setAttribute('onClick','window.open(\''+fcbkwindow+'\', \'twitter-share-dialog\', \'width=626,height=436\')');
+				document.getElementById('shareurltwitter').setAttribute('onClick','window.open(\''+twtwindow+'\', \'twitter-share-dialog\', \'width=626,height=436\'); ga(\'send\', \'event\', \'share-halfface-twitter\', \'click\');');
+				document.getElementById('shareurlfacebook').setAttribute('onClick','window.open(\''+fcbkwindow+'\', \'twitter-share-dialog\', \'width=626,height=436\'); ga(\'send\', \'event\', \'share-halfface-facebook\', \'click\');');
 				document.getElementById('uploadbutton').innerHTML = 'OK';
 				document.getElementById('uploadbutton').setAttribute('style','display:none');
 				document.getElementById('resetbutton').setAttribute('style','');

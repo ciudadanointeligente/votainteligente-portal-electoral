@@ -97,7 +97,7 @@ $(document).ready(function(){
 		{% endfor %}
 
 		<div>
-			<button type="submit" id="btn-find-soulmate" class="btn btn-success"><i class="icon-heart"></i> {% trans "Encontrar mi 1/2 naranja" %}</button>
+			<button type="submit" id="btn-find-soulmate" class="btn btn-success" onClick="ga('send', 'event', 'find-soulmate', 'click');"><i class="icon-heart"></i> {% trans "Encontrar mi 1/2 naranja" %}</button>
 		</div>
 		{% csrf_token %}
 		</form>

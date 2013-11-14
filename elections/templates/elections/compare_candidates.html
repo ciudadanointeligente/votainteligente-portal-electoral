@@ -73,6 +73,7 @@
 	<!-- EOF hidden for small devices -->
 	<!-- display only for small devices -->
 	<div class="visible-xs">
+		{% if first_candidate.slug and second_candidate.slug %}
 		{% for category in election.can_election.category_set.all %}
 			{% for question in category.question_set.all %}
 		<div class="panel panel-default">
@@ -98,6 +99,9 @@
 		</div>
 			{% endfor %}
 		{% endfor %}
+		{% else %}
+		<div class="alert alert-info">{% trans "Aquí se mostraran las diferencias y similitudes entre los candidatos que selecciones." %}</div>
+		{% endif %}
 	</div>
 	<!-- display only for small devices -->
 	

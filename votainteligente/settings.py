@@ -305,6 +305,13 @@ WEBSITE_GENERAL_SETTINGS = {
 USE_POPIT = True
 #if you set USE_POPIT to False the USE_WRITEIT param will automatically be interpreted as False
 USE_WRITEIT = True
+CACHE_MINUTES = 0
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
 
 try:
     from local_settings import *

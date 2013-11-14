@@ -11,6 +11,7 @@ from elections.models import VotaInteligenteMessage
 from .sitemaps import ElectionsSitemap
 
 from django.conf import settings
+from django.views.decorators.cache import cache_page
 
 media_root = getattr(settings, 'MEDIA_ROOT', '/') 
 
@@ -59,7 +60,7 @@ urlpatterns = patterns('',
 		name='ask_detail_view'),
 	#ranking
 	url(r'^election/(?P<slug>[-\w]+)/ranking/?$',
-		ElectionRankingView.as_view(template_name='elections/ranking_candidates.html'), 
+		cache_page(ElectionRankingView.as_view(template_name='elections/ranking_candidates.html'), 60 * settings.CACHE_MINUTES),
 		name='ranking_detail_view'),
 	url(r'^election/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/?$', 
 		CandidateDetailView.as_view(template_name='elections/candidate_detail.html'),

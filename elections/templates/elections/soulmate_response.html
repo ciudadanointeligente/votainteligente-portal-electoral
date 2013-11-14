@@ -17,14 +17,14 @@
 			{% endif %}
 			</div>
 			{% if winner.candidate.relation.portrait_photo %}
-			<a class="btn btn-default button_pic hidden-xs" data-toggle="modal" href="#myCandidate" style="margin-bottom:5px"><i class="icon-camera"></i> Da la cara por tu candidato</a>
+			<a class="btn btn-default button_pic hidden-xs" data-toggle="modal" href="#myCandidate" style="margin-bottom:5px" onClick="ga('send', 'event', 'support-candidate-soulmate', 'click');"><i class="icon-camera"></i> {% trans "Da la cara por tu candidato" %}</a>
 			
 			<div class="modal fade" id="myCandidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4 class="modal-title"><i class="icon-camera"></i> Da la cara por tu candidato</h4>
+							<h4 class="modal-title"><i class="icon-camera"></i> {% trans "Da la cara por tu candidato" %}</h4>
 						</div>
 						<div class="modal-body container_pic">
 							<div id="text-support" class="alert alert-warning alert-dismissable">
@@ -41,12 +41,12 @@
 						<div id="controls" class="modal-footer">
 							<span id="socialsharehalfface" class="text-left" style="display:none">
 								<input type="text" id="shareurl" value="" style="width:39%" onclick="this.select();">
-								 <a href="#" id="shareurltwitter" onClick="#"><i class="icon-twitter-sign"></i> compartir</a>
-								 <a href="#" id="shareurlfacebook" onClick="#"><i class="icon-facebook-sign"></i> publicar</a>
+								 <a href="#" id="shareurltwitter" onClick="#"><i class="icon-twitter-sign"></i> {% trans "compartir" %}</a>
+								 <a href="#" id="shareurlfacebook" onClick="#"><i class="icon-facebook-sign"></i> {% trans "publicar" %}</a>
 							</span>
 							<button type="button" class="btn btn-default" id="resetbutton" style="display:none"><i id="icon-repeat" class="icon-repeat"></i> {% trans "Tomar otra foto" %}</button>
 							<button type="button" class="btn btn-primary" id="takepicbutton"><i class="icon-camera"></i> {% trans "Tomar foto" %}</button>
-							<button type="button" class="btn btn-success" id="uploadbutton" style="display:none">{% trans "OK" %}</button>
+							<button type="button" class="btn btn-success" id="uploadbutton" style="display:none">{% trans "Compartir" %}</button>
 						</div>
 					</div>
 				</div>

@@ -26,7 +26,7 @@ sitemaps = {
 
 urlpatterns = patterns('',
 	url(new_answer_endpoint,AnswerWebHook.as_view(), name='new_answer_endpoint' ),
-	url(r'^/?$', cache_page(HomeView.as_view(template_name='elections/home.html'), 60 * settings.CACHE_MINUTES) name='home' ),
+	url(r'^/?$', cache_page(HomeView.as_view(template_name='elections/home.html'), 60 * settings.CACHE_MINUTES), name='home' ),
 	url(r'^buscar/?$', SearchView(
 	        template='search.html',
 	        form_class=ElectionForm

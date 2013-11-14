@@ -1172,6 +1172,35 @@ animation: doscaras 4s infinite;
     height: 450px;
 }
 
+/*Custom ribbon */
+
+.ribbon {
+	position: absolute;
+	top: 32%;
+	left: 0%;
+	width: 100%;
+	height: 20%;
+	background: #ffd200;
+	align-content: center;
+	text-align: center;
+	transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	max-width: 300px;
+	padding: 10px;
+	font-size: 24px;
+	color: #9e8000;
+}
+
+.container-candidates .ribbon {
+	font-size: 18px;
+	top: 30%;
+	left: 5%;
+	width: 90%;
+	padding: 7px;
+}
+
+
 @media (max-width: 480px) {
 	.navbar-brand img {
 		width: 198px;

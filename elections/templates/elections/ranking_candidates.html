@@ -13,14 +13,14 @@
 <div class="row">
 	{% if not good %}
 	<div class="col-md-12">
-		<div class="panel panel-primary responden">
+		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h4>
 					{% trans "Todavía no hay preguntas suficientes para construir el ranking" %}
 				</h4>
 			</div>
 			<div class="panel-body">
-				{% trans "haz tu la primera"%}
+				<a href="{% url 'ask_detail_view' slug=election.slug %}">{% trans "haz tu la primera" %}</a>
 			</div>
 		</div>
 	</div>

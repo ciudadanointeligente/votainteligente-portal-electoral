@@ -75,6 +75,12 @@ class ElectionDetailView(DetailView):
 class CandidateDetailView(DetailView):
     model = Candidate
 
+    def get_queryset(self):
+        queryset = super(CandidateDetailView, self).get_queryset()
+        queryset = queryset.filter(election__slug=self.kwargs['election_slug'])
+
+        return queryset
+
     def get_context_data(self, **kwargs):
         context = super(CandidateDetailView, self).get_context_data(**kwargs)
         #I know this is weird but this is basically

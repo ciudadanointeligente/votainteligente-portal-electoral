@@ -1179,7 +1179,7 @@ animation: doscaras 4s infinite;
 	top: 32%;
 	left: 0%;
 	width: 100%;
-	height: 20%;
+	height: 40px;
 	background: #ffd200;
 	align-content: center;
 	text-align: center;
@@ -1193,11 +1193,11 @@ animation: doscaras 4s infinite;
 }
 
 .container-candidates .ribbon {
-	font-size: 18px;
-	top: 30%;
-	left: 5%;
+	font-size: 16px;
+	top: 62px;
+	left: 10px;
 	width: 90%;
-	padding: 7px;
+	padding: 8px;
 }
 
 

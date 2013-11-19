@@ -60,7 +60,7 @@ class CandidatePerson(models.Model):
     reachable = models.BooleanField(default=False)
     description = models.TextField(default='', blank=True)
     portrait_photo = models.CharField(max_length=256, blank=True, null=True)
-    custom_ribbon = models.CharField(max_length=15, blank=True, null=True)
+    custom_ribbon = models.CharField(max_length=18, blank=True, null=True)
 
     def __unicode__(self):
         return u'Extra info de %(candidate)s'%{

@@ -8,6 +8,7 @@ class CandidateInElectionsViewsTestCase(TestCase):
 	def setUp(self):
 		super(CandidateInElectionsViewsTestCase, self).setUp()
 		self.tarapaca = Election.objects.get(id=1)
+		self.coquimbo = Election.objects.get(id=2)
 
 	def test_url_candidate(self):
 		url = reverse('candidate_detail_view', kwargs={
@@ -17,6 +18,20 @@ class CandidateInElectionsViewsTestCase(TestCase):
 		
 		self.assertTrue(url)
 
+	def test_url_duplicated(self):
+		candidate = self.coquimbo.can_election.candidate_set.all()[0]
+		candidate.slug = self.tarapaca.can_election.candidate_set.all()[0].slug
+		candidate.save()
+
+		url_2 = reverse('candidate_detail_view', kwargs={
+			'election_slug':self.coquimbo.slug,
+			'slug':self.coquimbo.can_election.candidate_set.all()[0].slug
+			})
+
+		response = self.client.get(url_2)
+		self.assertEquals(response.status_code, 200)
+		self.assertEqual(response.context['election'], self.coquimbo)
+		self.assertEqual(response.context['candidate'], candidate)
 	
 	def test_url_is_reachable(self):
 		url = reverse('candidate_detail_view', kwargs={

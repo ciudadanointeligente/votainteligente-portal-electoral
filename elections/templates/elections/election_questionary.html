@@ -33,11 +33,11 @@
 									<li>
 									{% if candidate.photo %}
 										{% thumbnail candidate.photo "100x100" crop="center" as im %}
-										<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+										<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
 										{% endthumbnail %}
 									{% else %}
 										{% thumbnail 'static/img/candidate-default.jpg' "100x100" crop="center" as im %}
-										<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+										<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
 										{% endthumbnail %}
 									{% endif %}
 									</li>

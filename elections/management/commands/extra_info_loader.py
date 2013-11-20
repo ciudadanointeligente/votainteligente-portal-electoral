@@ -9,16 +9,15 @@ class Command(BaseCommand):
 
 	def handle(self, *args, **options):
 		file_path = args[0]
-		extrainfo = csv.reader(open(file_path, 'rb'), delimiter=',')
+		extrainfo = csv.reader(open(file_path, 'rb'), delimiter=',', quotechar='"', lineterminator='\n')
 		# Remove header
 		extrainfo.next()
 		for line in extrainfo:
 			if line:
-				election_name, extra_info_title, extra_info_content = line[0].decode('utf-8'), line[1], line[2]
+				election_name, extra_info_title, extra_info_content = line[0].decode('utf-8').strip(), line[1].strip(), line[2].strip()
 				try:
 					election = Election.objects.get(name=election_name)
 					election.extra_info_title = extra_info_title
-					print extra_info_content
 					election.extra_info_content = extra_info_content
 					election.save()
 				except Exception,e:

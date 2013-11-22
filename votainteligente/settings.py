@@ -291,7 +291,8 @@ WEBSITE_DISQUS = {
 #google analytics
 WEBSITE_GA = {
     'code' : 'UA-XXXXX-X',
-    'name' : 'ga_name'
+    'name' : 'ga_name',
+    'gsite-verification' : 'BCyMskdezWX8ObDCMsm_1zIQAayxYzEGbLve8MJmxHk'
 }
 #imgur
 WEBSITE_IMGUR = {

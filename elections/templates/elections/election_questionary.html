@@ -23,6 +23,7 @@
 					<p class="question">
 						{{question.question}}
 					</p>
+					{% if question.number_of_answers > 0%}
 
 					{% for answer in question.answer_set.all %}
 						{% if answer.candidate_set.all|length > 0 %}
@@ -76,6 +77,9 @@
 					
 						<!-- end mobile version -->
 					{% endfor %}
+					{% else %}
+					<div>{% trans "Ningún candidato ha respondido." %}</div>
+					{% endif %}
 				</div>
 				{% endfor %}
 			</div>

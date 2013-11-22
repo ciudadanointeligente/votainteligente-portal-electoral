@@ -9,10 +9,10 @@
         <title>{% trans "Vota Inteligente" %} {% block title %}- {{ 'home_title'|website_gs }}{% endblock title %}</title>
         <meta name="author" content="{{ 'author'|metadata }}">
         <meta name="description" content="{{ 'description'|metadata }}">
-        <meta name="keywords" content="{{ 'keywords'|metadata }}">
+        <meta name="keywords" content="{{ 'keywords'|metadata }}{% block keywords %}{% endblock keywords %}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="mobile-web-app-capable" content="yes">
-        <meta name="msvalidate.01" content="C6FA1DD2E40865EF714B163F36CBEB92">
+        <meta name="google-site-verification" content="{{ 'gsite-verification'|ga }}">
 
         <!--for facebook fans-->
         <meta property="og:title" content="{{ 'title'|ogpdata }}">

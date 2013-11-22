@@ -68,6 +68,10 @@ strong {
 	padding: 10px;
 }
 
+.contenedor {
+	background-color: #eaedf2;
+}
+
 .container {
 	margin-bottom: 20px;
 }

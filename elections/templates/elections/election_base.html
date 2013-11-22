@@ -7,6 +7,8 @@
 
 {% block title %} - {{election}} - {% trans "Perfiles"%}{% endblock title%}
 
+{% block keywords %}{% for tag in election.tags.all %}, {{tag}}{% endfor %}{% endblock keywords %}
+
 {% block content %}
 <section id="election">
 	<div class="row breadscrumb-social hidden-xs">

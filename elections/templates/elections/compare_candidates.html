@@ -41,7 +41,7 @@
 			{% for category in election.can_election.category_set.all %}
 
 			<div class="panel panel-default">
-			<div class="panel-heading">{{category.name}}</div>
+			<div class="panel-heading" id="{{category.slug}}">{{category.name}}</div>
 				<div class="panel-body">
 				{% for question in category.question_set.all %}
 					<div class="row">

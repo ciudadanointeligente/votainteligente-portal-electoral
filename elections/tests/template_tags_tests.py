@@ -37,6 +37,9 @@ class TemplateTagsTestCase(TestCase):
 		settings.WEBSITE_IMGUR = {
 		    'client_id' : 'eb18642b5b220484864483b8e21386c3' #example client_id, only works with 50 pic a day
 		}
+		settings.WEBSITE_TWITTER = {
+			'hashtags' : 'votainformado,eslaloslas'
+		}
 
 	def test_bring_all_elections_with_their_tags_as_json(self):
 		expected_elections = []
@@ -134,3 +137,9 @@ class TemplateTagsTestCase(TestCase):
 		context = Context({})
 
 		self.assertEqual(template.render(context), u'eb18642b5b220484864483b8e21386c3')
+
+	def test_website_twitter(self):
+		template = Template("{% load votainteligente_extras %}{{ 'hashtags'|website_twitter }}")
+		context = Context({})
+
+		self.assertEqual(template.render(context), u'votainformado,eslaloslas')

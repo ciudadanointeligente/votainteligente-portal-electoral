@@ -9,6 +9,8 @@
 
 {% block keywords %}{% for tag in election.tags.all %}, {{tag}}{% endfor %}{% endblock keywords %}
 
+{% block description %}{{election.description|truncatewords:100}}{% endblock description %}
+
 {% block content %}
 <section id="election">
 	<div class="row breadscrumb-social hidden-xs">

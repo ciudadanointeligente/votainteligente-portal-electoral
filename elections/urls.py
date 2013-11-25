@@ -8,20 +8,18 @@ from elections.views import ElectionsSearchByTagView, HomeView, ElectionDetailVi
 							CandidateDetailView, SoulMateDetailView, ElectionAskCreateView,\
 							AnswerWebHook, ElectionRankingView, QuestionsPerCandidateView, MessageDetailView 
 from elections.models import VotaInteligenteMessage
-from .sitemaps import ElectionsSitemap
+from sitemaps import *
 
 from django.conf import settings
 from django.views.decorators.cache import cache_page
 
 media_root = getattr(settings, 'MEDIA_ROOT', '/') 
 
-
 new_answer_endpoint = r"^new_answer/%s/?$" % (settings.NEW_ANSWER_ENDPOINT)
 
-
-
 sitemaps = {
-    'static': ElectionsSitemap,
+    'elections': ElectionsSitemap,
+    'candidates': CandidatesSitemap,
 }
 
 urlpatterns = patterns('',

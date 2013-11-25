@@ -645,6 +645,10 @@ input, button, select, textarea {
 	font-weight: 900;	
 }
 
+#form-soulmate label {
+	font-weight: normal;
+}
+
 /*Frente a frente*/
 
 .porcentaje-similitud {

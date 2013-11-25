@@ -145,6 +145,31 @@ class FaceToFaceViewTestCase(TestCase):
 		self.assertEquals(response.context['similitude'], (1/3)*100)
 
 
+	def test_it_returns_zero_if_there_are_no_questions(self):
+
+		candidate1 = self.tarapaca.can_election.candidate_set.all()[0]
+		candidate2 = self.tarapaca.can_election.candidate_set.all()[1]
+
+		Question.objects.filter(category__election=self.tarapaca.can_election).delete()
+
+
+
+		url = reverse('face_to_face_two_candidates_detail_view', 
+			kwargs={
+			'slug':self.tarapaca.slug,
+			'slug_candidate_one':candidate1.slug,
+			'slug_candidate_two':candidate2.slug,
+			})
+		
+		response = self.client.get(url)
+		self.assertEquals(response.status_code, 200)
+
+		self.assertIn('similitude', response.context)
+
+		self.assertEquals(response.context['similitude'], 0)
+
+
+
 class SoulMateTestCase(TestCase):
 	def setUp(self):
 		super(SoulMateTestCase, self).setUp()

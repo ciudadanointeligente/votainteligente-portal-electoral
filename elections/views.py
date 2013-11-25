@@ -89,7 +89,10 @@ class FaceToFaceView(ElectionDetailView):
                     equal_answers += 1
                 except:
                   pass
-            context['similitude'] = (equal_answers/total_questions)*100
+            if total_questions:
+                context['similitude'] = (equal_answers/total_questions)*100
+            else:
+                context['similitude'] = 0
         return context
 
 class CandidateDetailView(DetailView):

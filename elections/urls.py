@@ -6,7 +6,7 @@ from elections.forms import ElectionForm
 from django.views.generic import DetailView
 from elections.views import ElectionsSearchByTagView, HomeView, ElectionDetailView,\
 							CandidateDetailView, SoulMateDetailView, ElectionAskCreateView,\
-							AnswerWebHook, ElectionRankingView, QuestionsPerCandidateView, MessageDetailView 
+							AnswerWebHook, ElectionRankingView, QuestionsPerCandidateView, MessageDetailView, FaceToFaceView
 from elections.models import VotaInteligenteMessage
 from .sitemaps import ElectionsSitemap
 
@@ -40,7 +40,7 @@ urlpatterns = patterns('',
 		name='questionary_detail_view'),
 	#compare two candidates
 	url(r'^election/(?P<slug>[-\w]+)/face-to-face/(?P<slug_candidate_one>[-\w]+)/(?P<slug_candidate_two>[-\w]+)/?$',
-		cache_page(ElectionDetailView.as_view(template_name='elections/compare_candidates.html'), 60 * settings.CACHE_MINUTES),
+		cache_page(FaceToFaceView.as_view(template_name='elections/compare_candidates.html'), 60 * settings.CACHE_MINUTES),
 		name='face_to_face_two_candidates_detail_view'),
 	#one candidate for compare
 	url(r'^election/(?P<slug>[-\w]+)/face-to-face/(?P<slug_candidate_one>[-\w]+)/?$',

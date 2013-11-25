@@ -72,6 +72,26 @@ class ElectionDetailView(DetailView):
             context['second_candidate'] = self.object.can_election.candidate_set.get(slug=self.kwargs['slug_candidate_two'])
         return context
 
+
+class FaceToFaceView(ElectionDetailView):
+    def get_context_data(self, **kwargs):
+        context = super(FaceToFaceView, self).get_context_data(**kwargs)
+        if 'first_candidate' in context and 'second_candidate' in context:
+            candidate1, candidate2 = context['first_candidate'], context['second_candidate']
+            categories = self.object.can_election.category_set.all()
+            equal_answers = 0
+            total_questions = 0
+            for cat in categories:
+              for question in cat.question_set.all():
+                total_questions += 1
+                try:
+                  if candidate2.answers.get(question=question) == candidate1.answers.get(question=question):
+                    equal_answers += 1
+                except:
+                  pass
+            context['similitude'] = (equal_answers/total_questions)*100
+        return context
+
 class CandidateDetailView(DetailView):
     model = Candidate
 

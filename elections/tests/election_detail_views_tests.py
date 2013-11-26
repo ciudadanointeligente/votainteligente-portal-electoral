@@ -142,7 +142,7 @@ class FaceToFaceViewTestCase(TestCase):
 
 		self.assertIn('similitude', response.context)
 
-		self.assertEquals(response.context['similitude'], (1/3)*100)
+		self.assertEquals(response.context['similitude'], 33)
 
 
 	def test_it_returns_zero_if_there_are_no_questions(self):

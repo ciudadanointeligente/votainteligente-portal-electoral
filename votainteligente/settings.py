@@ -302,7 +302,10 @@ WEBSITE_IMGUR = {
 WEBSITE_GENERAL_SETTINGS = {
     'home_title' : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
 }
-
+#twitter sepparated by comma, eg: votainteligente,votainformado,othertag
+WEBSITE_TWITTER = {
+    'hashtags' : 'votainteligente'
+}
 USE_POPIT = True
 #if you set USE_POPIT to False the USE_WRITEIT param will automatically be interpreted as False
 USE_WRITEIT = True

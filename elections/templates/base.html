@@ -8,7 +8,7 @@
         <meta charset="utf-8">
         <title>{% trans "Vota Inteligente" %} {% block title %}- {{ 'home_title'|website_gs }}{% endblock title %}</title>
         <meta name="author" content="{{ 'author'|metadata }}">
-        <meta name="description" content="{{ 'description'|metadata }}">
+        <meta name="description" content="{% block description %}{{ 'description'|metadata }}{% endblock description %}">
         <meta name="keywords" content="{{ 'keywords'|metadata }}{% block keywords %}{% endblock keywords %}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="mobile-web-app-capable" content="yes">

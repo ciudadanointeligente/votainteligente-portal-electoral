@@ -9,6 +9,8 @@
 
 {% block keywords %}{% for tag in election.tags.all %}, {{tag}}{% endfor %}{% endblock keywords %}
 
+{% block description %}{{election.description|truncatewords:100}}{% endblock description %}
+
 {% block content %}
 <section id="election">
 	<div class="row breadscrumb-social hidden-xs">
@@ -26,7 +28,7 @@
 					<div class="g-plus" data-action="share" data-annotation="none" data-lang="es-419"></div>
 				</div>
 				<div class="col-md-4">
-					<a href="https://twitter.com/share" class="twitter-share-button" data-lang="es" data-count="none" data-hashtags="votainteligente">Tweet</a>
+					<a href="https://twitter.com/share" class="twitter-share-button" data-lang="es" data-count="none" data-hashtags="{{ 'hashtags'|website_twitter }}">Tweet</a>
 					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 				</div>
 				<div class="col-md-4">

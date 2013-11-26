@@ -116,3 +116,10 @@ def twitter_on_ranking(context,btn_text,popup_text):
 		}
 
 register.inclusion_tag('elections/twitter/ranking_twitter.html', takes_context=True)(twitter_on_ranking)
+
+@register.filter
+#website general settings
+def website_twitter(value):
+	if value in settings.WEBSITE_TWITTER:
+		return settings.WEBSITE_TWITTER[value]
+	return ''

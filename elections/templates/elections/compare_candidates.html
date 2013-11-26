@@ -11,8 +11,17 @@
 {% block mainelection %}
 <!-- face-to-face -->
 <div id="compare-candidates">
-	<!-- el porcentaje de similitud es {{similitude|floatformat}}% -->
+	
 	<div class="row">
+		{% if first_candidate.slug and second_candidate.slug %}
+		<div class="col-md-12">
+			<div class="candidate-percentage-txt">
+				<p class="text-center">
+					{% trans "El porcentaje de similitud es" %} {{similitude|floatformat}}%
+				</p>
+			</div>
+		</div>
+		{% endif %}
 		<div class="col-md-6">
 			<select data-placeholder="{% trans "Selecciona un candidato" %}" name="candidate_one" id="candidate_one" class="chosen-select" style="width:100%">
 				<option value=""></option>

@@ -1208,6 +1208,18 @@ animation: doscaras 4s infinite;
 	padding: 8px;
 }
 
+/*percentage facetoface*/
+#compare-candidates .candidate-percentage-txt {
+	background: #14b9d5;
+	border-radius: 3px;
+}
+
+#compare-candidates .candidate-percentage-txt p.text-center {
+	color: #FFF;
+	font-size: 14px;
+	font-weight: bolder;
+	padding: 5px 0px;
+}
 
 @media (max-width: 480px) {
 	.navbar-brand img {

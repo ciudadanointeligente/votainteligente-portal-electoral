@@ -6,7 +6,7 @@ loremipsum
 South
 pyelasticsearch
 django-haystack
--e git://github.com/ciudadanointeligente/candideitorg-django.git#egg=candideitorg-django
+candideitorg-django
 PyYAML
 django-markdown-deux==1.0.4
 django-extensions

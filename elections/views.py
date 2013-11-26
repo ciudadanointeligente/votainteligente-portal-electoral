@@ -90,7 +90,7 @@ class FaceToFaceView(ElectionDetailView):
                 except:
                   pass
             if total_questions:
-                context['similitude'] = (equal_answers/total_questions)*100
+                context['similitude'] = equal_answers*100/total_questions
             else:
                 context['similitude'] = 0
         return context

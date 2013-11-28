@@ -57,7 +57,7 @@ class HomeView(TemplateView):
         context['form'] = ElectionSearchByTagsForm()
         context['featured_elections'] = Election.objects.filter(highlighted = True)
         context['searchable_elections_enabled'] = True
-        if Election.objects.filter(searchable = True) < 1:
+        if Election.objects.filter(searchable = True).count() < 1:
             context['searchable_elections_enabled'] = False
         return context
 

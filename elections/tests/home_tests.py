@@ -1,8 +1,9 @@
-from django.test import TestCase
+from elections.tests import VotaInteligenteTestCase as TestCase
 from django.core.urlresolvers import reverse
 from elections.views import HomeView
 from elections.forms import ElectionSearchByTagsForm
 from django.utils.unittest import skip
+from elections.models import Election
 
 class HomeTestCase(TestCase):
 	def setUp(self):
@@ -24,4 +25,11 @@ class HomeTestCase(TestCase):
 		self.assertIn('form', context)
 		self.assertIn('featured_elections', context)
 		self.assertIn('searchable_elections_enabled', context)
+		self.assertTrue(context['searchable_elections_enabled'])
 		self.assertIsInstance(context['form'], ElectionSearchByTagsForm)
+
+	def test_searchable_elections_disabled(self):
+		Election.objects.all().update(searchable=False)
+		view = HomeView()
+		context = view.get_context_data()
+		self.assertFalse(context['searchable_elections_enabled'])

@@ -111,3 +111,7 @@ And in your project in your local_settings.py file you have to add the following
 ## Localization
 
 If you want to help us translate votainteligente please join our project in [poeditor.com](https://poeditor.com/join/project?hash=6a3a384490bd4d69669db94c1cc22d78)
+
+## Licensing
+
+VotaInteligente is free and released as open source software covered by the terms of the [GNU Public License](http://www.gnu.org/licenses/gpl-3.0.html) (GPL v3)

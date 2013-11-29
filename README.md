@@ -87,3 +87,23 @@ You need to run the following command
 
 And hit http://localhost:8000/.
 
+## Theming
+
+### Previously created themes
+
+* [votainteligente-venezuela-theme](https://github.com/ciudadanointeligente/votainteligente-venezuela-theme) is the theme for [eligetucandidato.org](http://eligetucandidato.org/)
+
+### Creating your own custom theme
+
+If you want to create a new theme you have to create a directory containing two different subdirectories templates and static, and copy the templates that you want to replace.
+
+And in your project in your local_settings.py file you have to add the following
+
+```
+ STATICFILES_DIRS = (
+     '/full/path/to/your/theme/static/',
+ )
+ TEMPLATE_DIRS = (
+     '/full/path/to/your/theme/templates/',
+ )
+```

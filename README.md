@@ -107,3 +107,7 @@ And in your project in your local_settings.py file you have to add the following
      '/full/path/to/your/theme/templates/',
  )
 ```
+
+## Localization
+
+If you want to help us translate votainteligente please join our project in [poeditor.com](https://poeditor.com/join/project?hash=6a3a384490bd4d69669db94c1cc22d78)

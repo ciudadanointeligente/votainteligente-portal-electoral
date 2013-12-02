@@ -88,7 +88,7 @@ class AskTestCase(TestCase):
         self.assertEquals(new_message.people.all().count(), 2)
 
     def test_persons_belongs_to_instance_and_is_reachable(self):
-        message_form = MessageForm(writeitinstance = self.election.writeitinstance)
+        message_form = MessageForm(election=self.election)
 
         alejandro_guille = Person.objects.get(name='Alejandro Guillier')
         alejandro_guille.relation.reachable = True

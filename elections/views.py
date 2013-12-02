@@ -141,7 +141,8 @@ class ElectionAskCreateView(CreateView):
     def get_form_kwargs(self):
         kwargs = super(ElectionAskCreateView, self).get_form_kwargs()
         election_slug = self.kwargs['slug']
-        kwargs['writeitinstance'] = Election.objects.get(slug = election_slug).writeitinstance 
+        election = Election.objects.get(slug = election_slug)
+        kwargs['election'] = election
         return kwargs
 
     def get_success_url(self):
@@ -317,6 +318,7 @@ class MessageDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(MessageDetailView, self).get_context_data(**kwargs)
-        context['election'] = self.object.writeitinstance.election
+        election = Election.objects.get(slug=self.kwargs['election_slug'])
+        context['election'] = election
         return context
 

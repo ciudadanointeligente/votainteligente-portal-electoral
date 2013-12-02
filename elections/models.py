@@ -27,8 +27,8 @@ class Election(models.Model):
     can_election = models.OneToOneField(CanElection, null=True, blank=True)
     searchable = models.BooleanField(default=True)
     highlighted = models.BooleanField(default=False)
-    popit_api_instance = models.OneToOneField(PopitApiInstance, null=True, blank=True)
-    writeitinstance = models.OneToOneField(WriteItInstance, null=True, blank=True)
+    popit_api_instance = models.ForeignKey(PopitApiInstance, null=True, blank=True)
+    writeitinstance = models.ForeignKey(WriteItInstance, null=True, blank=True)
     extra_info_title = models.CharField(max_length = 50, blank = True, null = True)
     extra_info_content = models.TextField(max_length = 3000, blank = True, null = True, help_text=_("Puedes usar Markdown. <br/> ") 
             + markdown_allowed())
@@ -181,7 +181,7 @@ class VotaInteligenteMessage(WriteItMessage):
         return u'%(author_name)s preguntó "%(subject)s" en %(election)s' % {
         'author_name':self.author_name,
         'subject':self.subject,
-        'election':self.writeitinstance.election
+        'election':self.writeitinstance.name
         }
 
     @classmethod
@@ -193,7 +193,8 @@ class VotaInteligenteMessage(WriteItMessage):
 
 
     def get_absolute_url(self):
-        path = reverse('message_detail',kwargs={'election_slug':self.writeitinstance.election.slug, 'pk':self.id})
+        election = self.writeitinstance.election_set.all()[0]
+        path = reverse('message_detail',kwargs={'election_slug':election.slug, 'pk':self.id})
         site = Site.objects.get_current()
         return "http://%s%s"%(site.domain,path)
 

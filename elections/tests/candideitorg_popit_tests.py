@@ -297,6 +297,27 @@ class AutomaticCreationOfThingsWhenLoadingCandideitorgs(TestCase):
         expected_url = settings.POPIT_API_URL % ( short_slug )
         self.assertEquals(api_instance.url, expected_url)
 
+    def test_a_popit_api_can_be_related_to_two_elections(self):
+        can_election = CanElection.objects.create(
+            description = "Elecciones CEI 2012",
+            remote_id = 1,
+            information_source = "",
+            logo = "/media/photos/dummy.jpg",
+            name = "cei 2012",
+            resource_uri = "/api/v2/election/1/",
+            slug = "cei-2012",
+            use_default_media_naranja_option = True
+            )
+
+        election = can_election.election
+        api_instance = can_election.election.popit_api_instance
+
+        other_election = Election.objects.all()[0]
+        other_election.popit_api_instance = api_instance
+        other_election.save()
+
+        self.assertEquals(other_election.popit_api_instance, election.popit_api_instance)
+
 
 class AutomaticCreationOfAPopitPerson(TestCase):
     def setUp(self):
@@ -327,7 +348,7 @@ class AutomaticCreationOfAPopitPerson(TestCase):
 
         self.assertIsNotNone(can_candidate.relation)
         self.assertEquals(can_candidate.relation.person.name, can_candidate.name)
-        self.assertEquals(can_candidate.relation.person.api_instance.election, self.can_election.election)
+        self.assertEquals(can_candidate.relation.person.api_instance.election_set.all()[0], self.can_election.election)
 
 
     def test_it_does_not_create_two_relations(self):
@@ -411,6 +432,33 @@ class AutomaticCreationOfAWriteitInstance(TestCase):
 
         self.assertIsInstance(instance, WriteItApiInstance)
         self.assertEquals(instance.url, settings.WRITEIT_API_URL)
+
+
+    def test_a_writeitinstance_can_be_related_to_more_than_one_election(self):
+        #WriteitInstance.objects.get()
+        can_election = CanElection.objects.create(
+            description = "Elecciones CEI 2012",
+            remote_id = 1,
+            information_source = "",
+            logo = "/media/photos/dummy.jpg",
+            name = "cei 2012",
+            resource_uri = "/api/v2/election/1/",
+            slug = "cei-2012",
+            use_default_media_naranja_option = True
+            )
+        election = Election.objects.get(can_election=can_election)
+
+
+        writeitinstance = election.writeitinstance
+
+        election2 = Election.objects.all()[0]
+
+        election2.writeitinstance = writeitinstance
+        election2.save()
+
+
+
+        self.assertEquals(election.writeitinstance, election2.writeitinstance)
 
     #@skip("creating api instances automatically")
     def test_it_creates_a_writeit_instance(self):

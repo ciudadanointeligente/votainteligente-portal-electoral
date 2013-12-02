@@ -142,7 +142,6 @@ class ElectionAskCreateView(CreateView):
         kwargs = super(ElectionAskCreateView, self).get_form_kwargs()
         election_slug = self.kwargs['slug']
         election = Election.objects.get(slug = election_slug)
-        kwargs['writeitinstance'] = election.writeitinstance
         kwargs['election'] = election
         return kwargs
 

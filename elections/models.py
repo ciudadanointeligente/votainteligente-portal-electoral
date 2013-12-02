@@ -27,7 +27,7 @@ class Election(models.Model):
     can_election = models.OneToOneField(CanElection, null=True, blank=True)
     searchable = models.BooleanField(default=True)
     highlighted = models.BooleanField(default=False)
-    popit_api_instance = models.OneToOneField(PopitApiInstance, null=True, blank=True)
+    popit_api_instance = models.ForeignKey(PopitApiInstance, null=True, blank=True)
     writeitinstance = models.ForeignKey(WriteItInstance, null=True, blank=True)
     extra_info_title = models.CharField(max_length = 50, blank = True, null = True)
     extra_info_content = models.TextField(max_length = 3000, blank = True, null = True, help_text=_("Puedes usar Markdown. <br/> ") 

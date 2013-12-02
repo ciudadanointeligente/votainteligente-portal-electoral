@@ -60,6 +60,10 @@ urlpatterns = patterns('',
 	url(r'^election/(?P<slug>[-\w]+)/ranking/?$',
 		cache_page(ElectionRankingView.as_view(template_name='elections/ranking_candidates.html'), 60 * settings.CACHE_MINUTES),
 		name='ranking_detail_view'),
+	#message_detail
+	url(r'^election/(?P<election_slug>[-\w]+)/messages/(?P<pk>\d+)/?$',
+		MessageDetailView.as_view(template_name='elections/message_detail.html'), 
+		name='message_detail'),
 	url(r'^election/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/?$', 
 		cache_page(CandidateDetailView.as_view(template_name='elections/candidate_detail.html'), 60 * settings.CACHE_MINUTES),
 		name='candidate_detail_view'
@@ -71,10 +75,7 @@ urlpatterns = patterns('',
 	url(r'^election/(?P<slug>[-\w]+)/extra_info.html$',
 		ElectionDetailView.as_view(template_name='elections/extra_info.html'), 
 		name='election_extra_info'),
-	#message_detail
-	url(r'^election/(?P<election_slug>[-\w]+)/messages/(?P<pk>\d+)/?$',
-		MessageDetailView.as_view(template_name='elections/message_detail.html'), 
-		name='message_detail'),
+	
 	url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 )
 

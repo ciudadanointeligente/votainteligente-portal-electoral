@@ -412,6 +412,33 @@ class AutomaticCreationOfAWriteitInstance(TestCase):
         self.assertIsInstance(instance, WriteItApiInstance)
         self.assertEquals(instance.url, settings.WRITEIT_API_URL)
 
+
+    def test_a_writeitinstance_can_be_related_to_more_than_one_election(self):
+        #WriteitInstance.objects.get()
+        can_election = CanElection.objects.create(
+            description = "Elecciones CEI 2012",
+            remote_id = 1,
+            information_source = "",
+            logo = "/media/photos/dummy.jpg",
+            name = "cei 2012",
+            resource_uri = "/api/v2/election/1/",
+            slug = "cei-2012",
+            use_default_media_naranja_option = True
+            )
+        election = Election.objects.get(can_election=can_election)
+
+
+        writeitinstance = election.writeitinstance
+
+        election2 = Election.objects.all()[0]
+
+        election2.writeitinstance = writeitinstance
+        election2.save()
+
+
+
+        self.assertEquals(election.writeitinstance, election2.writeitinstance)
+
     #@skip("creating api instances automatically")
     def test_it_creates_a_writeit_instance(self):
         #WriteitInstance.objects.get()

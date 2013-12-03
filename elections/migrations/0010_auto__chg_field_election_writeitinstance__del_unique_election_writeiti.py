@@ -9,17 +9,9 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Removing unique constraint on 'Election', fields ['popit_api_instance']
-        db.delete_unique(u'elections_election', ['popit_api_instance_id'])
 
-        # Removing unique constraint on 'Election', fields ['writeitinstance']
-        db.delete_unique(u'elections_election', ['writeitinstance_id'])
-
-
-        # Changing field 'Election.writeitinstance'
-        db.alter_column(u'elections_election', 'writeitinstance_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['writeit.WriteItInstance'], null=True))
-
-        # Changing field 'Election.popit_api_instance'
-        db.alter_column(u'elections_election', 'popit_api_instance_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['popit.ApiInstance'], null=True))
+        db.execute(u"ALTER TABLE elections_election DROP INDEX popit_api_instance_id;", params=[])
+        db.execute(u"ALTER TABLE elections_election DROP INDEX writeitinstance_id;", params=[])
 
     def backwards(self, orm):
 

@@ -3,15 +3,27 @@ import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
+from django.conf import settings
 
 
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Removing unique constraint on 'Election', fields ['popit_api_instance']
-
-        db.execute(u"ALTER TABLE elections_election DROP INDEX popit_api_instance_id;", params=[])
-        db.execute(u"ALTER TABLE elections_election DROP INDEX writeitinstance_id;", params=[])
+        if settings.DATABASES[db.db_alias]['ENGINE'].endswith('mysql'):
+            db.execute(u"ALTER TABLE elections_election DROP INDEX popit_api_instance_id;", params=[])
+            db.execute(u"ALTER TABLE elections_election DROP INDEX writeitinstance_id;", params=[])
+        else:
+            # Removing unique constraint on 'Election', fields
+            # ['popit_api_instance']
+            db.delete_unique(u'elections_election', ['popit_api_instance_id'])
+            # Removing unique constraint on 'Election', fields
+            # ['writeitinstance']
+            db.delete_unique(u'elections_election', ['writeitinstance_id'])
+            # Changing field 'Election.writeitinstance'
+            db.alter_column(u'elections_election', 'writeitinstance_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['writeit.WriteItInstance'], null=True))
+            # Changing field 'Election.popit_api_instance'
+            db.alter_column(u'elections_election', 'popit_api_instance_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['popit.ApiInstance'], null=True))
 
     def backwards(self, orm):
 

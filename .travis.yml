@@ -1,6 +1,7 @@
 language: python
 services:
   - mongodb
+  - elasticsearch
 python:
   - "2.7"
 before_install:

@@ -14,7 +14,7 @@ class ElectionSearchFormTestCase(TestCase):
         self.candidate2 = self.election.popit_api_instance.person_set.all()[1]
         self.message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
             , author_name='author'
-            , author_email='author email'
+            , author_email='author@email.com'
             , subject = u'subject test_accept_message'
             , content = u'Qué opina usted sobre el test_accept_message'
             , writeitinstance=self.election.writeitinstance

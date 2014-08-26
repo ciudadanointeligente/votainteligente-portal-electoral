@@ -110,7 +110,7 @@ class VotaInteligenteMessageTestCase(TestCase):
     def test_can_create_a_message_with_a_modetation(self):
         message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
             , author_name='author'
-            , author_email='author email'
+            , author_email='author@email.com'
             , subject = 'subject'
             , content = 'content'
             , writeitinstance=self.election.writeitinstance
@@ -127,7 +127,7 @@ class VotaInteligenteMessageTestCase(TestCase):
     def test_unicode(self):
         message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
             , author_name='author'
-            , author_email='author email'
+            , author_email='author@email.com'
             , subject = 'subject'
             , content = 'content'
             , writeitinstance=self.election.writeitinstance
@@ -141,7 +141,7 @@ class VotaInteligenteMessageTestCase(TestCase):
     def test_a_message_has_a_message_detail_url(self):
         message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
             , author_name='author'
-            , author_email='author email'
+            , author_email='author@email.com'
             , subject = 'subject'
             , content = 'content'
             , writeitinstance=self.election.writeitinstance
@@ -167,7 +167,7 @@ class VotaInteligenteMessageTestCase(TestCase):
     def test_accept_message(self):
         message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
             , author_name='author'
-            , author_email='author email'
+            , author_email='author@email.com'
             , subject = u'subject test_accept_message'
             , content = u'Qué opina usted sobre el test_accept_message'
             , writeitinstance=self.election.writeitinstance
@@ -196,7 +196,7 @@ class VotaInteligenteMessageTestCase(TestCase):
     def test_the_class_has_a_function_that_will_push_the_messages_to_the_api(self):
         message1 = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
             , author_name='author'
-            , author_email='author email'
+            , author_email='author@email.com'
             , subject = u'subject test_accept_message'
             , content = u'Qué opina usted sobre el test_accept_message'
             , writeitinstance=self.election.writeitinstance
@@ -209,7 +209,7 @@ class VotaInteligenteMessageTestCase(TestCase):
 
         message2 = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
             , author_name='author'
-            , author_email='author email'
+            , author_email='author@email.com'
             , subject = u'subject test_accept_message'
             , content = u'Qué opina usted sobre el test_accept_message'
             , writeitinstance=self.election.writeitinstance
@@ -238,7 +238,7 @@ class VotaInteligenteMessageTestCase(TestCase):
     def test_reject_message(self):
         message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
             , author_name='author'
-            , author_email='author email'
+            , author_email='author@email.com'
             , subject = u'subject test_accept_message'
             , content = u'Qué opina usted sobre el test_accept_message'
             , writeitinstance=self.election.writeitinstance

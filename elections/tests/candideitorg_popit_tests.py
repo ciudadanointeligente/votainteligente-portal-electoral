@@ -1,20 +1,11 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from django.test.utils import override_settings
 from elections.models import CandidatePerson, Election
 from candideitorg.models import Candidate as CanCandidate, Election as CanElection, Link
-from django.utils.unittest import skip
-from popit.models import Person, ApiInstance as PopitApiInstance
+from popolo.models import Person
 from django.db import IntegrityError
-from django.conf import settings
-import simplejson as json
 from django.template.loader import get_template
 from django.template import Context, Template
-import urllib
-import re
-from popit.tests.instance_helpers import delete_api_database, get_api_database_name, get_api_client
-
-from candideitorg.models import election_finished
 
 
 class CandideitorCandideitPopitPerson(TestCase):
@@ -62,7 +53,7 @@ class CandideitorCandideitPopitPerson(TestCase):
         # self.assertTrue(False)
 
     def test_it_creates_a_link_to_the_candidate_twitter(self):
-        link = Link.objects.create(url='http://twitter.com/candidato1',
+        Link.objects.create(url='http://twitter.com/candidato1',
             name='twitter',
             candidate=self.candidato1,
             remote_id=1,
@@ -81,12 +72,12 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertIsNone(candidate_person.twitter)
 
     def test_it_only_returns_one_twitter_link(self):
-        link = Link.objects.create(url='http://twitter.com/candidato1',
+        Link.objects.create(url='http://twitter.com/candidato1',
             name='twitter',
             candidate=self.candidato1,
             remote_id=1,
             resource_uri='string')
-        link = Link.objects.create(url='http://twitter.com/candidato1_twitter2',
+        Link.objects.create(url='http://twitter.com/candidato1_twitter2',
             name='twitter',
             candidate=self.candidato1,
             remote_id=1,
@@ -98,7 +89,7 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertEquals(candidate_person.twitter, 'candidato1')
 
     def test_tweet_if_candidator_unanswered(self):
-        link = Link.objects.create(url='http://twitter.com/candidato1_twitter',
+        Link.objects.create(url='http://twitter.com/candidato1_twitter',
             name='twitter',
             candidate=self.candidato1,
             remote_id=1,
@@ -133,7 +124,7 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertEquals(actual_twitter_button, expected_twitter_button)
 
     def test_follow_the_conversation_in_twitter(self):
-        link = Link.objects.create(url='http://twitter.com/candidato1_twitter',
+        Link.objects.create(url='http://twitter.com/candidato1_twitter',
             name='twitter',
             candidate=self.candidato1,
             remote_id=1,
@@ -153,7 +144,7 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertEquals(actual_twitter_button, expected_twitter_button)
 
     def test_ranking_twitter_button(self):
-        link = Link.objects.create(url='http://twitter.com/candidato1_twitter',
+        Link.objects.create(url='http://twitter.com/candidato1_twitter',
             name='twitter',
             candidate=self.candidato1,
             remote_id=1,
@@ -245,7 +236,7 @@ class AutomaticCreationOfThingsWhenLoadingCandideitorgs(TestCase):
         #ok it now has a relation between a can_election and an election
         #if I try add another one it should simply throw an integrity error
 
-        with self.assertRaises(IntegrityError) as e:
+        with self.assertRaises(IntegrityError):
             Election.objects.create(description=can_election.description,
                     can_election=can_election,
                     name=can_election.name)

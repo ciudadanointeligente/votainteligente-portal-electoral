@@ -44,59 +44,41 @@
 - fields: {candidate: 12, person: 12}
   model: elections.candidateperson
   pk: 12
-- fields: {url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api'}
-  model: popit.apiinstance
+- fields: { name: Manuel Rojas , slug: person1}
+  model: popolo.person
   pk: 1
-- fields: {url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api'}
-  model: popit.apiinstance
+- fields: { name: Alejandro Guillier, slug: person2}
+  model: popolo.person
   pk: 2
-- fields: {api_instance: 1, image: '', name: Manuel Rojas, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524aee4a8201d0481d000001',
-    summary: ''}
-  model: popit.person
-  pk: 1
-- fields: {api_instance: 1, image: '', name: Alejandro Guillier, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524aee4e8201d0481d000002',
-    summary: ''}
-  model: popit.person
-  pk: 2
-- fields: {api_instance: 1, image: '', name: Pedro Araya, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524aee518201d0481d000003',
-    summary: ''}
-  model: popit.person
+- fields: { name: Pedro Araya, slug: person3}
+  model: popolo.person
   pk: 3
-- fields: {api_instance: 1, image: '', name: Gisela Contreras, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524aee548201d0481d000004',
-    summary: ''}
-  model: popit.person
+- fields: { name: Gisela Contreras, slug: person4}
+  model: popolo.person
   pk: 4
-- fields: {api_instance: 1, image: '', name: Carlos Cantero, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524aee588201d0481d000005',
-    summary: ''}
-  model: popit.person
+- fields: { name: Carlos Cantero, slug: person5}
+  model: popolo.person
   pk: 5
-- fields: {api_instance: 1, image: '', name: Daniel Guevara, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524aee5a8201d0481d000006',
-    summary: ''}
-  model: popit.person
+- fields: { name: Daniel Guevara, slug: person6}
+  model: popolo.person
   pk: 6
-- fields: {api_instance: 1, image: '', name: Jimena Orrego, popit_url: 'http://2a-circunscripcion-antofagasta.127.0.0.1.xip.io:3000/api/persons/524aee5d8201d0481d000007',
-    summary: ''}
-  model: popit.person
+- fields: { name: Jimena Orrego, slug: person7}
+  model: popolo.person
   pk: 7
-- fields: {api_instance: 2, image: '', name: Gonzalo Uriarte, popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524aee698201d0481d000008',
-    summary: ''}
-  model: popit.person
+- fields: { name: Gonzalo Uriarte, slug: person8}
+  model: popolo.person
   pk: 8
-- fields: {api_instance: 2, image: '', name: Mario Bertolino, popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524aee6c8201d0481d000009',
-    summary: ''}
-  model: popit.person
+- fields: { name: Mario Bertolino, slug: person9}
+  model: popolo.person
   pk: 9
-- fields: {api_instance: 2, image: '', name: Jorge Pizarro, popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524aee6f8201d0481d00000a',
-    summary: ''}
-  model: popit.person
+- fields: { name: Jorge Pizarro, slug: person10}
+  model: popolo.person
   pk: 10
-- fields: {api_instance: 2, image: '', name: "Adriana Munoz", popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524aee728201d0481d00000b',
-    summary: ''}
-  model: popit.person
+- fields: { name: "Adriana Munoz", slug: person11}
+  model: popolo.person
   pk: 11
-- fields: {api_instance: 2, image: '', name: Luis Vega, popit_url: 'http://4a-circunscripcion-coquimbo.127.0.0.1.xip.io:3000/api/persons/524aee758201d0481d00000c',
-    summary: ''}
-  model: popit.person
+- fields: { name: Luis Vega, slug: person12}
+  model: popolo.person
   pk: 12
 - fields: {description: '', information_source: '', logo: null, name: "2a Circunscripcio\
       n Antofagasta", remote_id: 1, resource_uri: /api/v2/election/1/, slug: 2a-circunscripcion-antofagasta,
@@ -132,7 +114,7 @@
     photo: http://placekitten.com/200/300
     remote_id: 1
     resource_uri: /api/v2/candidate/1/
-    slug: manuel-rojas
+    slug: person1
   model: candideitorg.candidate
   pk: 1
 - fields:
@@ -143,7 +125,7 @@
     photo: http://placekitten.com/200/300
     remote_id: 2
     resource_uri: /api/v2/candidate/2/
-    slug: alejandro-guillier
+    slug: person2
   model: candideitorg.candidate
   pk: 2
 - fields:
@@ -154,7 +136,7 @@
     photo: http://placekitten.com/200/300
     remote_id: 3
     resource_uri: /api/v2/candidate/3/
-    slug: pedro-araya
+    slug: person3
   model: candideitorg.candidate
   pk: 3
 - fields:
@@ -165,7 +147,7 @@
     photo: http://placekitten.com/200/300
     remote_id: 4
     resource_uri: /api/v2/candidate/4/
-    slug: gisela-contreras
+    slug: person4
   model: candideitorg.candidate
   pk: 4
 - fields:
@@ -176,7 +158,7 @@
     photo: http://placekitten.com/200/300
     remote_id: 5
     resource_uri: /api/v2/candidate/5/
-    slug: carlos-cantero
+    slug: person5
   model: candideitorg.candidate
   pk: 5
 - fields:
@@ -187,7 +169,7 @@
     photo: http://placekitten.com/200/300
     remote_id: 6
     resource_uri: /api/v2/candidate/6/
-    slug: daniel-guevara
+    slug: person6
   model: candideitorg.candidate
   pk: 6
 - fields:
@@ -198,7 +180,7 @@
     photo: http://placekitten.com/200/300
     remote_id: 7
     resource_uri: /api/v2/candidate/7/
-    slug: jimena-orrego
+    slug: person7
   model: candideitorg.candidate
   pk: 7
 - fields:
@@ -209,7 +191,7 @@
     photo: http://placekitten.com/200/300
     remote_id: 8
     resource_uri: /api/v2/candidate/8/
-    slug: gonzalo-uriarte
+    slug: person8
   model: candideitorg.candidate
   pk: 8
 - fields:
@@ -220,7 +202,7 @@
     photo: http://placekitten.com/200/300
     remote_id: 9
     resource_uri: /api/v2/candidate/9/
-    slug: mario-bertolino
+    slug: person9
   model: candideitorg.candidate
   pk: 9
 - fields:
@@ -231,7 +213,7 @@
     photo: http://placekitten.com/200/300
     remote_id: 10
     resource_uri: /api/v2/candidate/10/
-    slug: jorge-pizarro
+    slug: person10
   model: candideitorg.candidate
   pk: 10
 - fields:
@@ -242,7 +224,7 @@
     photo: http://placekitten.com/200/300
     remote_id: 11
     resource_uri: /api/v2/candidate/11/
-    slug: adriana-munoz
+    slug: person11
   model: candideitorg.candidate
   pk: 11
 - fields:
@@ -253,7 +235,7 @@
     photo: http://placekitten.com/200/300
     remote_id: 12
     resource_uri: /api/v2/candidate/12/
-    slug: luis-vega
+    slug: person12
   model: candideitorg.candidate
   pk: 12
 - fields: {election: 2, label: Partido, remote_id: 1, resource_uri: /api/v2/personal_data/1/}

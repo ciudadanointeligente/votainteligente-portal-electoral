@@ -4,7 +4,7 @@ from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
 from candideitorg.models import Election as CanElection, Candidate as CanCandidate
 from django.core.urlresolvers import reverse
-from popit.models import Person
+from popolo.models import Person
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import ugettext as _

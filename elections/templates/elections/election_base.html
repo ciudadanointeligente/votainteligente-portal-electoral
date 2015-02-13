@@ -66,12 +66,6 @@
 					{% if 'facetoface'|val_navbars and election.uses_face_to_face  %}
 					<li {% block tab_facetoface %}{% endblock %}><a href="{% block url_face_to_face %}{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}{% endblock url_face_to_face %}" accesskey="f" title="{% trans "Frente a Frente" %} (Alt+f)"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a></li>
 					{% endif %}
-					{% if 'ask'|val_navbars and election.uses_preguntales  %}
-					<li {% block tab_ask %}{% endblock %}><a href="{% url 'ask_detail_view' slug=election.slug %}" accesskey="a" title="{% trans "Pregúntales" %} (Alt+a)"><i class="icon-edit"></i> {% trans "Pregúntales" %}</a></li>
-					{% endif %}
-					{% if 'ranking'|val_navbars and election.uses_ranking %}
-					<li {% block tab_ranking %}{% endblock %}><a href="{% url 'ranking_detail_view' slug=election.slug %}" accesskey="r" title="{% trans "Ranking" %} (Alt+r)"><i class="icon-trophy"></i> {% trans "Ranking" %}</a></li>
-					{% endif %}
 					
 					{% if election.extra_info_title %}
 					<li {% block tab_extrainfo %}{% endblock %}><a href="{% url 'election_extra_info' slug=election.slug %}"><i class="icon-info"></i> {{election.extra_info_title}} </a></li>

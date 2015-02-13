@@ -1,101 +1,101 @@
 - fields: {can_election: 2, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: true, name: "2\xAA Circunscripci\xF3n Antofagasta", popit_api_instance: 1,
-    searchable: true, slug: 2a-circunscripcion-antofagasta, writeitinstance: 1}
+    searchable: true, slug: 2a-circunscripcion-antofagasta}
   model: elections.election
   pk: 1
 - fields: {can_election: 3, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: true, name: "4\xAA Circunscripci\xF3n Coquimbo", popit_api_instance: 2,
-    searchable: true, slug: 4a-circunscripcion-coquimbo, writeitinstance: 2}
+    searchable: true, slug: 4a-circunscripcion-coquimbo}
   model: elections.election
   pk: 2
 - fields: {can_election: 4, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "7\xAA Circunscripci\xF3n Santiago Poniente", popit_api_instance: 3,
-    searchable: true, slug: 7a-circunscripcion-santiago-poniente, writeitinstance: 3}
+    searchable: true, slug: 7a-circunscripcion-santiago-poniente}
   model: elections.election
   pk: 3
 - fields: {can_election: 5, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "8\xAA Circunscripci\xF3n Santiago Oriente", popit_api_instance: 4,
-    searchable: true, slug: 8a-circunscripcion-santiago-oriente, writeitinstance: 4}
+    searchable: true, slug: 8a-circunscripcion-santiago-oriente}
   model: elections.election
   pk: 4
 - fields: {can_election: 6, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "9\xAA Circunscripci\xF3n O'Higgins", popit_api_instance: 5,
-    searchable: true, slug: 9a-circunscripcion-ohiggins, writeitinstance: 5}
+    searchable: true, slug: 9a-circunscripcion-ohiggins}
   model: elections.election
   pk: 5
 - fields: {can_election: 7, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "12\xAA Circunscripci\xF3n Biob\xEDo Costa", popit_api_instance: 6,
-    searchable: true, slug: 12a-circunscripcion-biobio-costa, writeitinstance: 6}
+    searchable: true, slug: 12a-circunscripcion-biobio-costa}
   model: elections.election
   pk: 6
 - fields: {can_election: 8, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "13\xAA Circunscripci\xF3n Biob\xEDo Cord", popit_api_instance: 7,
-    searchable: true, slug: 13a-circunscripcion-biobio-cord, writeitinstance: 7}
+    searchable: true, slug: 13a-circunscripcion-biobio-cord}
   model: elections.election
   pk: 7
 - fields: {can_election: 9, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "16\xAA Circunscripci\xF3n Los R\xEDos", popit_api_instance: 8,
-    searchable: true, slug: 16a-circunscripcion-los-rios, writeitinstance: 8}
+    searchable: true, slug: 16a-circunscripcion-los-rios}
   model: elections.election
   pk: 8
 - fields: {can_election: 10, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "17\xAA Circunscripci\xF3n Los Lagos", popit_api_instance: 9,
-    searchable: true, slug: 17a-circunscripcion-los-lagos, writeitinstance: 9}
+    searchable: true, slug: 17a-circunscripcion-los-lagos}
   model: elections.election
   pk: 9
 - fields: {can_election: 11, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "19\xAA Circunscripci\xF3n Magallanes", popit_api_instance: 10,
-    searchable: true, slug: 19a-circunscripcion-magallanes, writeitinstance: 10}
+    searchable: true, slug: 19a-circunscripcion-magallanes}
   model: elections.election
   pk: 10
 - fields: {can_election: 12, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xB0 1", popit_api_instance: 11, searchable: true,
-    slug: distrito-n-1, writeitinstance: 11}
+    slug: distrito-n-1}
   model: elections.election
   pk: 11
 - fields: {can_election: 13, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xB0 2", popit_api_instance: 12, searchable: true,
-    slug: distrito-n-2, writeitinstance: 12}
+    slug: distrito-n-2}
   model: elections.election
   pk: 12
 - fields: {can_election: 14, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 3", popit_api_instance: 13, searchable: true,
-    slug: distrito-no-3, writeitinstance: 13}
+    slug: distrito-no-3}
   model: elections.election
   pk: 13
 - fields: {can_election: 15, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 4", popit_api_instance: 14, searchable: true,
-    slug: distrito-no-4, writeitinstance: 14}
+    slug: distrito-no-4}
   model: elections.election
   pk: 14
 - fields: {can_election: 16, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 5", popit_api_instance: 15, searchable: true,
-    slug: distrito-no-5, writeitinstance: 15}
+    slug: distrito-no-5}
   model: elections.election
   pk: 15
 - fields: {can_election: 17, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 6", popit_api_instance: 16, searchable: true,
-    slug: distrito-no-6, writeitinstance: 16}
+    slug: distrito-no-6}
   model: elections.election
   pk: 16
 - fields: {can_election: 18, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 7", popit_api_instance: 17, searchable: true,
-    slug: distrito-no-7, writeitinstance: 17}
+    slug: distrito-no-7}
   model: elections.election
   pk: 17
 - fields: {can_election: 19, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 8", popit_api_instance: 18, searchable: true,
-    slug: distrito-no-8, writeitinstance: 18}
+    slug: distrito-no-8}
   model: elections.election
   pk: 18
 - fields: {can_election: 20, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 9", popit_api_instance: 19, searchable: true,
-    slug: distrito-no-9, writeitinstance: 19}
+    slug: distrito-no-9}
   model: elections.election
   pk: 19
 - fields: {can_election: 21, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 10", popit_api_instance: 20, searchable: true,
-    slug: distrito-no-10, writeitinstance: 20}
+    slug: distrito-no-10}
   model: elections.election
   pk: 20
 - fields: {candidate: 1, person: 1}
@@ -7366,129 +7366,6 @@
     value: ''}
   model: candideitorg.personaldatacandidate
   pk: 852
-- fields: {url: 'http://localhost:3001/api/v1/'}
-  model: writeit.writeitapiinstance
-  pk: 1
-- fields: {api_instance: 1, remote_id: 1, url: /api/v1/instance/1/}
-  model: writeit.writeitdocument
-  pk: 1
-- fields: {api_instance: 1, remote_id: 2, url: /api/v1/instance/2/}
-  model: writeit.writeitdocument
-  pk: 2
-- fields: {api_instance: 1, remote_id: 3, url: /api/v1/instance/3/}
-  model: writeit.writeitdocument
-  pk: 3
-- fields: {api_instance: 1, remote_id: 4, url: /api/v1/instance/4/}
-  model: writeit.writeitdocument
-  pk: 4
-- fields: {api_instance: 1, remote_id: 5, url: /api/v1/instance/5/}
-  model: writeit.writeitdocument
-  pk: 5
-- fields: {api_instance: 1, remote_id: 6, url: /api/v1/instance/6/}
-  model: writeit.writeitdocument
-  pk: 6
-- fields: {api_instance: 1, remote_id: 7, url: /api/v1/instance/7/}
-  model: writeit.writeitdocument
-  pk: 7
-- fields: {api_instance: 1, remote_id: 8, url: /api/v1/instance/8/}
-  model: writeit.writeitdocument
-  pk: 8
-- fields: {api_instance: 1, remote_id: 9, url: /api/v1/instance/9/}
-  model: writeit.writeitdocument
-  pk: 9
-- fields: {api_instance: 1, remote_id: 10, url: /api/v1/instance/10/}
-  model: writeit.writeitdocument
-  pk: 10
-- fields: {api_instance: 1, remote_id: 11, url: /api/v1/instance/11/}
-  model: writeit.writeitdocument
-  pk: 11
-- fields: {api_instance: 1, remote_id: 12, url: /api/v1/instance/12/}
-  model: writeit.writeitdocument
-  pk: 12
-- fields: {api_instance: 1, remote_id: 13, url: /api/v1/instance/13/}
-  model: writeit.writeitdocument
-  pk: 13
-- fields: {api_instance: 1, remote_id: 14, url: /api/v1/instance/14/}
-  model: writeit.writeitdocument
-  pk: 14
-- fields: {api_instance: 1, remote_id: 15, url: /api/v1/instance/15/}
-  model: writeit.writeitdocument
-  pk: 15
-- fields: {api_instance: 1, remote_id: 16, url: /api/v1/instance/16/}
-  model: writeit.writeitdocument
-  pk: 16
-- fields: {api_instance: 1, remote_id: 17, url: /api/v1/instance/17/}
-  model: writeit.writeitdocument
-  pk: 17
-- fields: {api_instance: 1, remote_id: 18, url: /api/v1/instance/18/}
-  model: writeit.writeitdocument
-  pk: 18
-- fields: {api_instance: 1, remote_id: 19, url: /api/v1/instance/19/}
-  model: writeit.writeitdocument
-  pk: 19
-- fields: {api_instance: 1, remote_id: 20, url: /api/v1/instance/20/}
-  model: writeit.writeitdocument
-  pk: 20
-- fields: {name: "2\xAA Circunscripci\xF3n Antofagasta"}
-  model: writeit.writeitinstance
-  pk: 1
-- fields: {name: "4\xAA Circunscripci\xF3n Coquimbo"}
-  model: writeit.writeitinstance
-  pk: 2
-- fields: {name: "7\xAA Circunscripci\xF3n Santiago Poniente"}
-  model: writeit.writeitinstance
-  pk: 3
-- fields: {name: "8\xAA Circunscripci\xF3n Santiago Oriente"}
-  model: writeit.writeitinstance
-  pk: 4
-- fields: {name: "9\xAA Circunscripci\xF3n O'Higgins"}
-  model: writeit.writeitinstance
-  pk: 5
-- fields: {name: "12\xAA Circunscripci\xF3n Biob\xEDo Costa"}
-  model: writeit.writeitinstance
-  pk: 6
-- fields: {name: "13\xAA Circunscripci\xF3n Biob\xEDo Cord"}
-  model: writeit.writeitinstance
-  pk: 7
-- fields: {name: "16\xAA Circunscripci\xF3n Los R\xEDos"}
-  model: writeit.writeitinstance
-  pk: 8
-- fields: {name: "17\xAA Circunscripci\xF3n Los Lagos"}
-  model: writeit.writeitinstance
-  pk: 9
-- fields: {name: "19\xAA Circunscripci\xF3n Magallanes"}
-  model: writeit.writeitinstance
-  pk: 10
-- fields: {name: "Distrito N\xB0 1"}
-  model: writeit.writeitinstance
-  pk: 11
-- fields: {name: "Distrito N\xB0 2"}
-  model: writeit.writeitinstance
-  pk: 12
-- fields: {name: "Distrito N\xBA 3"}
-  model: writeit.writeitinstance
-  pk: 13
-- fields: {name: "Distrito N\xBA 4"}
-  model: writeit.writeitinstance
-  pk: 14
-- fields: {name: "Distrito N\xBA 5"}
-  model: writeit.writeitinstance
-  pk: 15
-- fields: {name: "Distrito N\xBA 6"}
-  model: writeit.writeitinstance
-  pk: 16
-- fields: {name: "Distrito N\xBA 7"}
-  model: writeit.writeitinstance
-  pk: 17
-- fields: {name: "Distrito N\xBA 8"}
-  model: writeit.writeitinstance
-  pk: 18
-- fields: {name: "Distrito N\xBA 9"}
-  model: writeit.writeitinstance
-  pk: 19
-- fields: {name: "Distrito N\xBA 10"}
-  model: writeit.writeitinstance
-  pk: 20
 - fields: {name: Antofagasta, slug: antofagasta}
   model: taggit.tag
   pk: 1

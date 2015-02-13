@@ -1,11 +1,11 @@
 - fields: {can_election: 2, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: true, name: "2a Circunscripcion Antofagasta", popit_api_instance: 1,
-    searchable: true, slug: 2a-circunscripcion-antofagasta, writeitinstance: 1}
+    searchable: true, slug: 2a-circunscripcion-antofagasta}
   model: elections.election
   pk: 1
 - fields: {can_election: 3, description: '', extra_info_content: null, extra_info_title: null,
     highlighted: true, name: "4a Circunscripcion Coquimbo", popit_api_instance: 2,
-    searchable: true, slug: 4a-circunscripcion-coquimbo, writeitinstance: 2}
+    searchable: true, slug: 4a-circunscripcion-coquimbo}
   model: elections.election
   pk: 2
 - fields: {candidate: 1, person: 1}
@@ -643,18 +643,3 @@
     value: ''}
   model: candideitorg.personaldatacandidate
   pk: 72
-- fields: {url: 'http://localhost:3001/api/v1/'}
-  model: writeit.writeitapiinstance
-  pk: 1
-- fields: {api_instance: 1, remote_id: 1, url: /api/v1/instance/1/}
-  model: writeit.writeitdocument
-  pk: 1
-- fields: {api_instance: 1, remote_id: 2, url: /api/v1/instance/2/}
-  model: writeit.writeitdocument
-  pk: 2
-- fields: {name: "2a Circunscripcion Antofagasta"}
-  model: writeit.writeitinstance
-  pk: 1
-- fields: {name: "4a Circunscripcion Coquimbo"}
-  model: writeit.writeitinstance
-  pk: 2

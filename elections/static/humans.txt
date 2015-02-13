@@ -29,4 +29,4 @@
     HTML5, CSS3
     jQuery, Bootstrap
     Django, WriteIt
-    PopIt, Candideit.org
+    Candideit.org

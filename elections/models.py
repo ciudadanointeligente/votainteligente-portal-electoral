@@ -4,10 +4,9 @@ from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
 from candideitorg.models import Election as CanElection, Candidate as CanCandidate
 from django.core.urlresolvers import reverse
-from popit.models import Person, ApiInstance as PopitApiInstance
+from popit.models import Person
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.conf import settings
 from django.utils.translation import ugettext as _
 from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
 import re
@@ -21,7 +20,6 @@ class Election(models.Model):
     can_election = models.OneToOneField(CanElection, null=True, blank=True)
     searchable = models.BooleanField(default=True)
     highlighted = models.BooleanField(default=False)
-    popit_api_instance = models.ForeignKey(PopitApiInstance, null=True, blank=True)
     extra_info_title = models.CharField(max_length=50, blank=True, null=True)
     extra_info_content = models.TextField(max_length=3000, blank=True, null=True, help_text=_("Puedes usar Markdown. <br/> ")
             + markdown_allowed())
@@ -81,30 +79,3 @@ def automatically_create_election(sender, instance, created, **kwargs):
         election = Election.objects.create(description=can_election.description,
                 can_election=can_election,
                 name=can_election.name,)
-        if getattr(settings, 'USE_POPIT', True):
-            popit_api_instance_url = settings.POPIT_API_URL % (election.slug)
-        if getattr(settings, 'USE_POPIT', True):
-            short_slug = hex(abs(hash(election.slug)))
-            popit_api_instance_url = settings.POPIT_API_URL % (short_slug)
-            popit_api_instance = PopitApiInstance.objects.create(
-                url=popit_api_instance_url
-                )
-            election.popit_api_instance = popit_api_instance
-
-
-@receiver(post_save, sender=CanCandidate)
-def automatically_create_popit_person(sender, instance, created, **kwargs):
-    if kwargs.get('raw', False):
-        return
-    should_be_using_popit = getattr(settings, 'USE_POPIT', True)
-    if not should_be_using_popit:
-        return
-    candidate = instance
-    api_instance = candidate.election.election.popit_api_instance
-    if created and api_instance:
-        person = Person.objects.create(
-            api_instance=api_instance,
-            name=candidate.name
-            )
-        person.post_to_the_api()
-        CandidatePerson.objects.create(person=person, candidate=candidate)

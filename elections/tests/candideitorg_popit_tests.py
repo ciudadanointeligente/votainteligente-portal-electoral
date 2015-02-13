@@ -47,8 +47,8 @@ class CandideitorCandideitPopitPerson(TestCase):
         candidate_person = CandidatePerson.objects.create(
             person=self.pedro,
             candidate=self.candidato1,
-            portrait_photo ='http://imgur.com/0tJAgHo',
-            custom_ribbon = 'ribbon text'
+            portrait_photo='http://imgur.com/0tJAgHo',
+            custom_ribbon='ribbon text'
             )
 
         self.assertEquals(candidate_person.person, self.pedro)
@@ -61,13 +61,12 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertEquals(candidate_person.portrait_photo, 'http://imgur.com/0tJAgHo')
         # self.assertTrue(False)
 
-
     def test_it_creates_a_link_to_the_candidate_twitter(self):
-        link = Link.objects.create(url = 'http://twitter.com/candidato1',\
-            name = 'twitter',\
-            candidate = self.candidato1,\
-            remote_id = 1,\
-            resource_uri = 'string')
+        link = Link.objects.create(url='http://twitter.com/candidato1',
+            name='twitter',
+            candidate=self.candidato1,
+            remote_id=1,
+            resource_uri='string')
         candidate_person, created = CandidatePerson.objects.get_or_create(
             person=self.pedro,
             candidate=self.candidato1
@@ -82,16 +81,16 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertIsNone(candidate_person.twitter)
 
     def test_it_only_returns_one_twitter_link(self):
-        link = Link.objects.create(url = 'http://twitter.com/candidato1',\
-            name = 'twitter',\
-            candidate = self.candidato1,\
-            remote_id = 1,\
-            resource_uri = 'string')
-        link = Link.objects.create(url = 'http://twitter.com/candidato1_twitter2',\
-            name = 'twitter',\
-            candidate = self.candidato1,\
-            remote_id = 1,\
-            resource_uri = 'string')
+        link = Link.objects.create(url='http://twitter.com/candidato1',
+            name='twitter',
+            candidate=self.candidato1,
+            remote_id=1,
+            resource_uri='string')
+        link = Link.objects.create(url='http://twitter.com/candidato1_twitter2',
+            name='twitter',
+            candidate=self.candidato1,
+            remote_id=1,
+            resource_uri='string')
         candidate_person, created = CandidatePerson.objects.get_or_create(
             person=self.pedro,
             candidate=self.candidato1
@@ -99,11 +98,11 @@ class CandideitorCandideitPopitPerson(TestCase):
         self.assertEquals(candidate_person.twitter, 'candidato1')
 
     def test_tweet_if_candidator_unanswered(self):
-        link = Link.objects.create(url = 'http://twitter.com/candidato1_twitter',\
-            name = 'twitter',\
-            candidate = self.candidato1,\
-            remote_id = 1,\
-            resource_uri = 'string')
+        link = Link.objects.create(url='http://twitter.com/candidato1_twitter',
+            name='twitter',
+            candidate=self.candidato1,
+            remote_id=1,
+            resource_uri='string')
         self.candidato1.has_answered = False
         self.candidato1.save()
         candidate_person, created = CandidatePerson.objects.get_or_create(
@@ -112,12 +111,12 @@ class CandideitorCandideitPopitPerson(TestCase):
             )
         template_str = get_template('elections/twitter/no_candidator_answer.html')
         context = Context({
-            "candidate":self.candidato1,
-            "twitter":"candidato1_twitter"
+            "candidate": self.candidato1,
+            "twitter": "candidato1_twitter"
             })
         expected_twitter_button = template_str.render(context)
         actual_twitter_button_template = Template("{% load votainteligente_extras %}{% no_ha_respondido_twitter_button %}")
-        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate":self.candidato1}))
+        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate": self.candidato1}))
         self.assertEquals(actual_twitter_button, expected_twitter_button)
 
     def test_no_tweet_if_candidate_has_no_twitter(self):
@@ -129,50 +128,50 @@ class CandideitorCandideitPopitPerson(TestCase):
             )
         expected_twitter_button = ""
         actual_twitter_button_template = Template("{% load votainteligente_extras %}{% no_ha_respondido_twitter_button %}")
-        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate":self.candidato1}))
+        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate": self.candidato1}))
         actual_twitter_button = actual_twitter_button.strip()
         self.assertEquals(actual_twitter_button, expected_twitter_button)
 
     def test_follow_the_conversation_in_twitter(self):
-        link = Link.objects.create(url = 'http://twitter.com/candidato1_twitter',\
-            name = 'twitter',\
-            candidate = self.candidato1,\
-            remote_id = 1,\
-            resource_uri = 'string')
+        link = Link.objects.create(url='http://twitter.com/candidato1_twitter',
+            name='twitter',
+            candidate=self.candidato1,
+            remote_id=1,
+            resource_uri='string')
         candidate_person, created = CandidatePerson.objects.get_or_create(
             person=self.pedro,
             candidate=self.candidato1
             )
         template_str = get_template('elections/twitter/follow_the_conversation.html')
         context = Context({
-            "twitter":"candidato1_twitter",
-            "candidate":self.candidato1
+            "twitter": "candidato1_twitter",
+            "candidate": self.candidato1
             })
         expected_twitter_button = template_str.render(context)
         actual_twitter_button_template = Template("{% load votainteligente_extras %}{% follow_on_twitter %}")
-        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate":self.candidato1}))
+        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate": self.candidato1}))
         self.assertEquals(actual_twitter_button, expected_twitter_button)
 
     def test_ranking_twitter_button(self):
-        link = Link.objects.create(url = 'http://twitter.com/candidato1_twitter',\
-            name = 'twitter',\
-            candidate = self.candidato1,\
-            remote_id = 1,\
-            resource_uri = 'string')
+        link = Link.objects.create(url='http://twitter.com/candidato1_twitter',
+            name='twitter',
+            candidate=self.candidato1,
+            remote_id=1,
+            resource_uri='string')
         candidate_person, created = CandidatePerson.objects.get_or_create(
             person=self.pedro,
             candidate=self.candidato1
             )
         template_str = get_template('elections/twitter/ranking_twitter.html')
         context = Context({
-            "twitter":"candidato1_twitter",
-            "candidate":self.candidato1,
-            'btn_text' : 'message button',
-            'popup_text' : 'message twitter window'
+            "twitter": "candidato1_twitter",
+            "candidate": self.candidato1,
+            'btn_text': 'message button',
+            'popup_text': 'message twitter window'
             })
         expected_twitter_button = template_str.render(context)
         actual_twitter_button_template = Template("{% load votainteligente_extras %}{% twitter_on_ranking 'message button' 'message twitter window' %}")
-        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate":self.candidato1}))
+        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate": self.candidato1}))
         self.assertEquals(actual_twitter_button, expected_twitter_button)
 
     def test_unicode(self):
@@ -180,9 +179,8 @@ class CandideitorCandideitPopitPerson(TestCase):
             person=self.pedro,
             candidate=self.candidato1
             )
-        
-        expected_unicode = 'Extra info de %(candidate)s'%{
-        "candidate":self.pedro.name
+        expected_unicode = 'Extra info de %(candidate)s' % {
+            "candidate": self.pedro.name
         }
 
         self.assertEquals(expected_unicode, candidate_person.__unicode__())
@@ -190,27 +188,25 @@ class CandideitorCandideitPopitPerson(TestCase):
 
 class AutomaticCreationOfThingsWhenLoadingCandideitorgs(TestCase):
     #Ya se que esto está terrible de mal escrito por que no describe niuna wea
-    #pero la idea es que cuando se cree una elección del candideitorg, que viene desde 
+    #pero la idea es que cuando se cree una elección del candideitorg, que viene desde
     #el django candideitorg se creen elecciones del votainteligente
     #y además se cree un popit API instance
     #Si a alguien se le ocurre un mejor nombre que lo cambie!
     def setUp(self):
         super(AutomaticCreationOfThingsWhenLoadingCandideitorgs, self).setUp()
 
-
     def test_it_creates_an_election_out_of_a_candideitorg_election(self):
         can_election = CanElection.objects.create(
-            description = "Elecciones CEI 2012",
-            remote_id = 1,
-            information_source = "",
-            logo = "/media/photos/dummy.jpg",
-            name = "cei 2012",
-            resource_uri = "/api/v2/election/1/",
-            slug = "cei-2012",
-            use_default_media_naranja_option = True
+            description="Elecciones CEI 2012",
+            remote_id=1,
+            information_source="",
+            logo="/media/photos/dummy.jpg",
+            name="cei 2012",
+            resource_uri="/api/v2/election/1/",
+            slug="cei-2012",
+            use_default_media_naranja_option=True
             )
         election = Election.objects.get(can_election=can_election)
-        
         self.assertIsNotNone(election)
         self.assertEquals(election.name, can_election.name)
         self.assertEquals(election.description, can_election.description)
@@ -218,14 +214,14 @@ class AutomaticCreationOfThingsWhenLoadingCandideitorgs(TestCase):
     #ya se me ocurrió wn!!
     def test_it_only_creates_one(self):
         can_election = CanElection.objects.create(
-            description = "Elecciones CEI 2012",
-            remote_id = 1,
-            information_source = "",
-            logo = "/media/photos/dummy.jpg",
-            name = "cei 2012",
-            resource_uri = "/api/v2/election/1/",
-            slug = "cei-2012",
-            use_default_media_naranja_option = True
+            description="Elecciones CEI 2012",
+            remote_id=1,
+            information_source="",
+            logo="/media/photos/dummy.jpg",
+            name="cei 2012",
+            resource_uri="/api/v2/election/1/",
+            slug="cei-2012",
+            use_default_media_naranja_option=True
             )
         can_election.save()
 
@@ -236,175 +232,35 @@ class AutomaticCreationOfThingsWhenLoadingCandideitorgs(TestCase):
 
     def test_can_election_to_election_is_one_to_one(self):
         can_election = CanElection.objects.create(
-            description = "Elecciones CEI 2012",
-            remote_id = 1,
-            information_source = "",
-            logo = "/media/photos/dummy.jpg",
-            name = "cei 2012",
-            resource_uri = "/api/v2/election/1/",
-            slug = "cei-2012",
-            use_default_media_naranja_option = True
+            description="Elecciones CEI 2012",
+            remote_id=1,
+            information_source="",
+            logo="/media/photos/dummy.jpg",
+            name="cei 2012",
+            resource_uri="/api/v2/election/1/",
+            slug="cei-2012",
+            use_default_media_naranja_option=True
             )
 
         #ok it now has a relation between a can_election and an election
         #if I try add another one it should simply throw an integrity error
 
         with self.assertRaises(IntegrityError) as e:
-            Election.objects.create(
-                    description = can_election.description,
+            Election.objects.create(description=can_election.description,
                     can_election=can_election,
-                    name = can_election.name,
-                    )
-
+                    name=can_election.name)
 
     def test_election_can_election_related_name(self):
         can_election = CanElection.objects.create(
-            description = "Elecciones CEI 2012",
-            remote_id = 1,
-            information_source = "",
-            logo = "/media/photos/dummy.jpg",
-            name = "cei 2012",
-            resource_uri = "/api/v2/election/1/",
-            slug = "cei-2012",
-            use_default_media_naranja_option = True
+            description="Elecciones CEI 2012",
+            remote_id=1,
+            information_source="",
+            logo="/media/photos/dummy.jpg",
+            name="cei 2012",
+            resource_uri="/api/v2/election/1/",
+            slug="cei-2012",
+            use_default_media_naranja_option=True
             )
-
 
         election = Election.objects.get(can_election=can_election)
         self.assertEquals(can_election.election, election)
-
-    def test_it_creates_a_popit_API_client(self):
-        can_election = CanElection.objects.create(
-            description = "Elecciones CEI 2012",
-            remote_id = 1,
-            information_source = "",
-            logo = "/media/photos/dummy.jpg",
-            name = "cei 2012",
-            resource_uri = "/api/v2/election/1/",
-            slug = "cei-2012",
-            use_default_media_naranja_option = True
-            )
-        #Create one ApiInstance for the love of the FSM
-
-        self.assertIsNotNone(can_election.election.popit_api_instance)
-        #manso webeo pa llegar a la APIinstance
-
-        api_instance = can_election.election.popit_api_instance
-
-        short_slug = hex(hash(can_election.election.slug))
-
-        expected_url = settings.POPIT_API_URL % ( short_slug )
-        self.assertEquals(api_instance.url, expected_url)
-
-    def test_a_popit_api_can_be_related_to_two_elections(self):
-        can_election = CanElection.objects.create(
-            description = "Elecciones CEI 2012",
-            remote_id = 1,
-            information_source = "",
-            logo = "/media/photos/dummy.jpg",
-            name = "cei 2012",
-            resource_uri = "/api/v2/election/1/",
-            slug = "cei-2012",
-            use_default_media_naranja_option = True
-            )
-
-        election = can_election.election
-        api_instance = can_election.election.popit_api_instance
-
-        other_election = Election.objects.all()[0]
-        other_election.popit_api_instance = api_instance
-        other_election.save()
-
-        self.assertEquals(other_election.popit_api_instance, election.popit_api_instance)
-
-
-class AutomaticCreationOfAPopitPerson(TestCase):
-    def setUp(self):
-        super(AutomaticCreationOfAPopitPerson, self).setUp()
-        self.can_election = CanElection.objects.create(
-            description = "Elecciones CEI 2012",
-            remote_id = 1,
-            information_source = "",
-            logo = "/media/photos/dummy.jpg",
-            name = "cei 2012",
-            resource_uri = "/api/v2/election/1/",
-            slug = "cei-2012",
-            use_default_media_naranja_option = True
-            )
-
-    def tearDown(self):
-        super(AutomaticCreationOfAPopitPerson, self).tearDown()
-        delete_api_database()
-
-
-    def test_when_creating_a_candidate_it_creates_a_person(self):
-        can_candidate = CanCandidate.objects.create(
-            remote_id=1,
-            resource_uri="/api/v2/candidate/1/",
-            name="Perico los Palotes",
-            election=self.can_election
-            )
-
-        self.assertIsNotNone(can_candidate.relation)
-        self.assertEquals(can_candidate.relation.person.name, can_candidate.name)
-        self.assertEquals(can_candidate.relation.person.api_instance.election_set.all()[0], self.can_election.election)
-
-
-    def test_it_does_not_create_two_relations(self):
-        can_candidate = CanCandidate.objects.create(
-            remote_id=1,
-            resource_uri="/api/v2/candidate/1/",
-            name="Perico los Palotes",
-            election=self.can_election
-            )
-        can_candidate.save()
-
-        self.assertTrue(can_candidate.relation)
-
-    def test_it_posts_to_the_popit_api(self):
-        
-
-        can_candidate = CanCandidate.objects.create(
-            remote_id=1,
-            resource_uri="/api/v2/candidate/1/",
-            name="Perico los Palotes",
-            election=self.can_election
-            )
-
-        person = can_candidate.relation.person
-        instance = person.api_instance
-        my_re = re.compile(instance.url + "/persons/([^/]+)/{0,1}")
-        self.assertIsNotNone(my_re.match(person.popit_url))
-
-        person_id = my_re.match(person.popit_url).groups()[0]
-        response = urllib.urlopen(person.popit_url)
-        self.assertEquals(response.code, 200)
-        response_as_json = json.loads(response.read())
-
-    @override_settings(USE_POPIT=False)
-    def test_if_there_is_a_setting_that_says_dont_use_popit_then_dont(self):
-        can_election = CanElection.objects.create(
-            description = "Elecciones CEI 2012",
-            remote_id = 1,
-            information_source = "",
-            logo = "/media/photos/dummy.jpg",
-            name = "cei 2012",
-            resource_uri = "/api/v2/election/1/",
-            slug = "cei-2012",
-            use_default_media_naranja_option = True
-            )
-        can_candidate = CanCandidate.objects.create(
-            remote_id=1,
-            resource_uri="/api/v2/candidate/1/",
-            name="Perico los Palotes",
-            election=can_election
-            )
-        with self.assertRaises(CandidatePerson.DoesNotExist) as e:
-            can_candidate.relation
-        self.assertFalse(Person.objects.filter(name=can_candidate.name).exists())
-        election_finished.send(sender=CanElection, instance=can_election, created=True)
-
-        #Don't create a writeit instance either
-
-        election = Election.objects.get(can_election=can_election)
-        self.assertIsNone(election.popit_api_instance)

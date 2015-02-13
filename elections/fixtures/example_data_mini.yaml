@@ -1,10 +1,10 @@
 - fields: {can_election: 2, description: '', extra_info_content: null, extra_info_title: null,
-    highlighted: true, name: "2a Circunscripcion Antofagasta", popit_api_instance: 1,
+    highlighted: true, name: "2a Circunscripcion Antofagasta",
     searchable: true, slug: 2a-circunscripcion-antofagasta}
   model: elections.election
   pk: 1
 - fields: {can_election: 3, description: '', extra_info_content: null, extra_info_title: null,
-    highlighted: true, name: "4a Circunscripcion Coquimbo", popit_api_instance: 2,
+    highlighted: true, name: "4a Circunscripcion Coquimbo",
     searchable: true, slug: 4a-circunscripcion-coquimbo}
   model: elections.election
   pk: 2

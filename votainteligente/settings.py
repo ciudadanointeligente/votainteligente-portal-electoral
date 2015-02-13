@@ -152,7 +152,6 @@ INSTALLED_APPS = (
     'elections',
     'candideitorg',
     'popit',
-    'writeit',
     'markdown_deux',
     'django_extensions',
     'pagination',
@@ -182,17 +181,6 @@ TEST_POPIT_API_URL = "http://%s.%s.xip.io:%s/api" % ( TEST_POPIT_API_SUBDOMAIN,
 POPIT_API_URL = "http://%s.127.0.0.1.xip.io:3000/api"
 
 ### POPIT DJANGO THINGS THINGS
-
-
-### WRITEIT API THINGS
-
-WRITEIT_API_URL = "http://localhost:3001/api/v1/"
-
-WRITEIT_USERNAME = 'admin'
-WRITEIT_KEY = 'a'
-NEW_ANSWER_ENDPOINT = 'NEW_ANSWER_ENDPOINT'
-
-### WRITEIT API THINGS
 
 
 ### CANDIDEITORG API THINGS
@@ -306,9 +294,6 @@ WEBSITE_GENERAL_SETTINGS = {
 WEBSITE_TWITTER = {
     'hashtags' : 'votainteligente'
 }
-USE_POPIT = True
-#if you set USE_POPIT to False the USE_WRITEIT param will automatically be interpreted as False
-USE_WRITEIT = True
 CACHE_MINUTES = 0
 CACHES = {
     'default': {

@@ -26,20 +26,5 @@ source $CANDIDATOR_VIRTUALENV/bin/activate;
 python manage.py syncdb --noinput;
 python manage.py loaddata ../candidator_example_data.yaml;
 
-cd ..
-
-#for WRITEIT
-export WRITEIT_DB_NAME=writeit.db;
-export WRITEIT_DIR=writeit-for-testing;
-export WRITEIT_VIRTUALENV=writeit-for-testing;
-
-cd $WRITEIT_DIR;
-
-if [ -e $WRITEIT_DB_NAME ]; then mv $WRITEIT_DB_NAME vi_backup.db; fi
-
-source $WRITEIT_VIRTUALENV/bin/activate;
-python manage.py syncdb --noinput;
-python manage.py migrate;
-python manage.py loaddata ../writeit-example-data.yaml;
 
 cd ..

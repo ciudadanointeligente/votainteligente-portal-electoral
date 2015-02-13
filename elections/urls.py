@@ -10,7 +10,6 @@ from django.views.decorators.cache import cache_page
 
 media_root = getattr(settings, 'MEDIA_ROOT', '/')
 
-new_answer_endpoint = r"^new_answer/%s/?$" % (settings.NEW_ANSWER_ENDPOINT)
 
 sitemaps = {
     'elections': ElectionsSitemap,

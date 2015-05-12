@@ -44,40 +44,40 @@
 - fields: {candidate: 12, person: 12}
   model: elections.candidateperson
   pk: 12
-- fields: { name: Manuel Rojas , slug: person1}
+- fields: { name: Manuel Rojas }
   model: popolo.person
   pk: 1
-- fields: { name: Alejandro Guillier, slug: person2}
+- fields: { name: Alejandro Guillier}
   model: popolo.person
   pk: 2
-- fields: { name: Pedro Araya, slug: person3}
+- fields: { name: Pedro Araya}
   model: popolo.person
   pk: 3
-- fields: { name: Gisela Contreras, slug: person4}
+- fields: { name: Gisela Contreras}
   model: popolo.person
   pk: 4
-- fields: { name: Carlos Cantero, slug: person5}
+- fields: { name: Carlos Cantero}
   model: popolo.person
   pk: 5
-- fields: { name: Daniel Guevara, slug: person6}
+- fields: { name: Daniel Guevara}
   model: popolo.person
   pk: 6
-- fields: { name: Jimena Orrego, slug: person7}
+- fields: { name: Jimena Orrego}
   model: popolo.person
   pk: 7
-- fields: { name: Gonzalo Uriarte, slug: person8}
+- fields: { name: Gonzalo Uriarte}
   model: popolo.person
   pk: 8
-- fields: { name: Mario Bertolino, slug: person9}
+- fields: { name: Mario Bertolino}
   model: popolo.person
   pk: 9
-- fields: { name: Jorge Pizarro, slug: person10}
+- fields: { name: Jorge Pizarro}
   model: popolo.person
   pk: 10
-- fields: { name: "Adriana Munoz", slug: person11}
+- fields: { name: "Adriana Munoz"}
   model: popolo.person
   pk: 11
-- fields: { name: Luis Vega, slug: person12}
+- fields: { name: Luis Vega}
   model: popolo.person
   pk: 12
 - fields: {description: '', information_source: '', logo: null, name: "2a Circunscripcio\

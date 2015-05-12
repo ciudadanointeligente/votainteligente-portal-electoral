@@ -12,6 +12,9 @@ class ElectionForm(SearchForm):
 class ElectionSearchByTagsForm(forms.Form):
     q = forms.CharField(required=False, label=_('Busca tu comuna'))
 
+    class Meta:
+        fields = ('q', )
+
     def get_search_result(self):
         cleaned_data = self.clean()
         queryed_element = cleaned_data['q']

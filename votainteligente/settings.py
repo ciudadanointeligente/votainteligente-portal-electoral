@@ -146,7 +146,7 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django_nose',
     'django.contrib.sitemaps',
-    'south',
+    # 'south',
     'taggit',
     'haystack',
     'elections',
@@ -235,7 +235,7 @@ else:
         },
     }
 
-SOUTH_TESTS_MIGRATE = False
+# SOUTH_TESTS_MIGRATE = False
 EXTRA_APPS = ()
 
 #navigation bar

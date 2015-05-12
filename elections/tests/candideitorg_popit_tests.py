@@ -1,9 +1,8 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from elections.models import CandidatePerson, Election
-from candideitorg.models import Candidate as CanCandidate, Election as CanElection, Link
+from elections.models import CandidatePerson
+from candideitorg.models import Candidate as CanCandidate, Link
 from popolo.models import Person
-from django.db import IntegrityError
 from django.template.loader import get_template
 from django.template import Context, Template
 
@@ -175,83 +174,3 @@ class CandideitorCandideitPopitPerson(TestCase):
         }
 
         self.assertEquals(expected_unicode, candidate_person.__unicode__())
-
-
-class AutomaticCreationOfThingsWhenLoadingCandideitorgs(TestCase):
-    #Ya se que esto está terrible de mal escrito por que no describe niuna wea
-    #pero la idea es que cuando se cree una elección del candideitorg, que viene desde
-    #el django candideitorg se creen elecciones del votainteligente
-    #y además se cree un popit API instance
-    #Si a alguien se le ocurre un mejor nombre que lo cambie!
-    def setUp(self):
-        super(AutomaticCreationOfThingsWhenLoadingCandideitorgs, self).setUp()
-
-    def test_it_creates_an_election_out_of_a_candideitorg_election(self):
-        can_election = CanElection.objects.create(
-            description="Elecciones CEI 2012",
-            remote_id=1,
-            information_source="",
-            logo="/media/photos/dummy.jpg",
-            name="cei 2012",
-            resource_uri="/api/v2/election/1/",
-            slug="cei-2012",
-            use_default_media_naranja_option=True
-            )
-        election = Election.objects.get(can_election=can_election)
-        self.assertIsNotNone(election)
-        self.assertEquals(election.name, can_election.name)
-        self.assertEquals(election.description, can_election.description)
-
-    #ya se me ocurrió wn!!
-    def test_it_only_creates_one(self):
-        can_election = CanElection.objects.create(
-            description="Elecciones CEI 2012",
-            remote_id=1,
-            information_source="",
-            logo="/media/photos/dummy.jpg",
-            name="cei 2012",
-            resource_uri="/api/v2/election/1/",
-            slug="cei-2012",
-            use_default_media_naranja_option=True
-            )
-        can_election.save()
-
-        self.assertEquals(Election.objects.filter(can_election=can_election).count(), 1)
-
-        election = Election.objects.get(can_election=can_election)
-        self.assertTrue(election)
-
-    def test_can_election_to_election_is_one_to_one(self):
-        can_election = CanElection.objects.create(
-            description="Elecciones CEI 2012",
-            remote_id=1,
-            information_source="",
-            logo="/media/photos/dummy.jpg",
-            name="cei 2012",
-            resource_uri="/api/v2/election/1/",
-            slug="cei-2012",
-            use_default_media_naranja_option=True
-            )
-
-        #ok it now has a relation between a can_election and an election
-        #if I try add another one it should simply throw an integrity error
-
-        with self.assertRaises(IntegrityError):
-            Election.objects.create(description=can_election.description,
-                    can_election=can_election,
-                    name=can_election.name)
-
-    def test_election_can_election_related_name(self):
-        can_election = CanElection.objects.create(
-            description="Elecciones CEI 2012",
-            remote_id=1,
-            information_source="",
-            logo="/media/photos/dummy.jpg",
-            name="cei 2012",
-            resource_uri="/api/v2/election/1/",
-            slug="cei-2012",
-            use_default_media_naranja_option=True
-            )
-
-        election = Election.objects.get(can_election=can_election)
-        self.assertEquals(can_election.election, election)

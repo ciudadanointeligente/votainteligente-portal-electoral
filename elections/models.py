@@ -5,11 +5,13 @@ from taggit.managers import TaggableManager
 from candideitorg.models import Election as CanElection, Candidate as CanCandidate
 from django.core.urlresolvers import reverse
 from popolo.models import Person
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.utils.translation import ugettext as _
 from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
 import re
+
+
+class Candidate(Person):
+    election = models.ForeignKey('Election', related_name='candidates', null=True)
 
 
 class Election(models.Model):
@@ -68,14 +70,3 @@ class CandidatePerson(models.Model):
     class Meta:
             verbose_name = _(u'Extra Info de candidato')
             verbose_name_plural = _(u'Extra Info de candidatos')
-
-
-@receiver(post_save, sender=CanElection)
-def automatically_create_election(sender, instance, created, **kwargs):
-    if kwargs.get('raw', False):
-        return
-    can_election = instance
-    if(created):
-        election = Election.objects.create(description=can_election.description,
-                can_election=can_election,
-                name=can_election.name,)

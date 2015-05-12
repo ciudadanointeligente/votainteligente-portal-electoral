@@ -1,13 +1,11 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import Election
-from django.db import IntegrityError
 from loremipsum import get_paragraphs
 from candideitorg.models import Election as CanElection
 from django.core.urlresolvers import reverse
 from elections.views import ElectionDetailView
 from django.views.generic import DetailView
-from django.utils.unittest import skip
 
 
 class ElectionTestCase(TestCase):
@@ -22,7 +20,7 @@ class ElectionTestCase(TestCase):
             slug='the-slug',
             description='this is a description',
             can_election=self.can_election,
-            extra_info_title = u'ver más',
+            extra_info_title=u'ver más',
             extra_info_content=u'Más Información')
 
         self.assertEquals(election.name, 'the name')
@@ -43,9 +41,7 @@ class ElectionTestCase(TestCase):
         election1 = Election.objects.create(
             slug='the-slug',
             )
-        election2 = Election.objects.create(
-                slug='the-slug',
-                )
+        election2 = Election.objects.create(slug='the-slug')
         self.assertNotEquals(election1.slug, election2.slug)
 
     def test_slug_based_on_the_name(self):
@@ -53,7 +49,6 @@ class ElectionTestCase(TestCase):
             name='the name'
             )
         self.assertEquals(election.slug, 'the-name')
-
 
     def test_description_is_very_long(self):
         paragraphs = get_paragraphs(25)
@@ -64,13 +59,11 @@ class ElectionTestCase(TestCase):
             )
         self.assertEquals(election.description, lorem_ipsum)
 
-
     def test_has_tags(self):
-        
         election = Election.objects.create(
             name='Distrito'
             )
-        election.tags.add('providencia','valdivia')
+        election.tags.add('providencia', 'valdivia')
         tags = [tag.name for tag in election.tags.all()]
 
         self.assertIn('providencia', tags)
@@ -88,15 +81,16 @@ class ElectionTestCase(TestCase):
             name='Distrito',
             slug='distrito'
             )
-        expected_url = reverse('election_view', kwargs={'slug':election.slug})
+        expected_url = reverse('election_view', kwargs={'slug': election.slug})
 
         self.assertEquals(election.get_absolute_url(), expected_url)
+
     def test_extra_info_reverse_url(self):
         election = Election.objects.create(
             name='Distrito',
             slug='distrito'
             )
-        reverse_url = reverse('election_extra_info', kwargs={'slug':election.slug})
+        reverse_url = reverse('election_extra_info', kwargs={'slug': election.slug})
         self.assertTrue(reverse_url)
 
     def test_election_extra_info_url_is_reachable(self):
@@ -104,22 +98,21 @@ class ElectionTestCase(TestCase):
             name='Distrito',
             slug='distrito'
             )
-        reverse_url = reverse('election_extra_info', kwargs={'slug':election.slug})
+        reverse_url = reverse('election_extra_info', kwargs={'slug': election.slug})
         response = self.client.get(reverse_url)
-        self.assertEquals(response.status_code,200)
-        self.assertEquals(response.context['election'],election)
-        self.assertTemplateUsed(response,"elections/extra_info.html")
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['election'], election)
+        self.assertTemplateUsed(response, "elections/extra_info.html")
 
-
-    
     def test_get_election_extra_info_url(self):
         election = Election.objects.create(
             name='Distrito',
             slug='distrito'
             )
-        expected_url = reverse('election_extra_info', kwargs={'slug':election.slug})
+        expected_url = reverse('election_extra_info', kwargs={'slug': election.slug})
 
         self.assertEquals(election.get_extra_info_url(), expected_url)
+
 
 class ElectionViewTestCase(TestCase):
     def setUp(self):
@@ -131,9 +124,8 @@ class ElectionViewTestCase(TestCase):
         self.assertIsInstance(view, DetailView)
         self.assertEquals(view.model, Election)
 
-
     def test_url_is_reachable(self):
-        url = reverse('election_view', kwargs={'slug':self.election.slug})
+        url = reverse('election_view', kwargs={'slug': self.election.slug})
         self.assertTrue(url)
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)

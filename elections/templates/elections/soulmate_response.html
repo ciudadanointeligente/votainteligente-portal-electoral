@@ -55,7 +55,7 @@
 			{% endif %}
 		</div>
 		<div class="col-md-5">
-			<h3><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}">{{winner.candidate.name}} </a><i class="icon-heart"></i></h3>
+			<h3><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}">{{winner.candidate.name}} </a><i class="icon-heart"></i></h3>
 			<h2>{{winner.global_score|floatformat}}<span>% </span></h2>
 				<div>{% trans "de afinidad" %}</div>
 			<div class="row fondo-azuloscuro">
@@ -64,9 +64,9 @@
 				</div>
 				<div class="col-md-7">
 					<ul class="list-inline">
-						<li><a href="#" onclick="window.open('https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}&text={{winner.candidate.name}}+<3&hashtags=medianaranja,votainteligente', 'twitter-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-twitter', 'click');"><i class="icon-twitter-sign icon-4x"></i></a></li>
-						<li><a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}', 'facebook-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-facebook', 'click');"><i class="icon-facebook-sign icon-4x"></i></a></li>
-						<li><a href="#" onclick="window.open('https://plus.google.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}&hl=es-419', 'googleplus-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-gplus', 'click');"><i class="icon-google-plus-sign icon-4x"></i></a></li>
+						<li><a href="#" onclick="window.open('https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}&text={{winner.candidate.name}}+<3&hashtags=medianaranja,votainteligente', 'twitter-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-twitter', 'click');"><i class="icon-twitter-sign icon-4x"></i></a></li>
+						<li><a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}', 'facebook-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-facebook', 'click');"><i class="icon-facebook-sign icon-4x"></i></a></li>
+						<li><a href="#" onclick="window.open('https://plus.google.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}&hl=es-419', 'googleplus-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-gplus', 'click');"><i class="icon-google-plus-sign icon-4x"></i></a></li>
 					</ul>
 				</div>
 			</div>
@@ -95,7 +95,7 @@
 		{% for other in others %}
 		<div class="col-md-4">
 			<div class="other-soulmate-box">
-				<h4>{{other.global_score|floatformat}}% <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=other.candidate.slug %}">{{other.candidate.name}}</a></h4>
+				<h4>{{other.global_score|floatformat}}% <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=other.candidate.id %}">{{other.candidate.name}}</a></h4>
 				<ul class="list-unstyled">
 					{% for other_cat in other.category_score %}
 					<li>{{other_cat.score|floatformat}}% {{other_cat.category}}</li>
@@ -112,6 +112,6 @@
 <script type="text/javascript">
 var API_KEY = '{{ 'client_id'|website_imgur }}';
 var candidate_name = '{{winner.candidate.name}}'
-var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}';
+var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}';
 </script>
 <script type="text/javascript" src="{% static 'js/video.js' %}"></script>

@@ -8,6 +8,8 @@ from candideitorg.models import Candidate
 import logging
 
 logger = logging.getLogger(__name__)
+from candidator.models import Topic, Position, TakenPosition
+from candidator.comparer import Comparer, InformationHolder
 
 
 class ElectionsSearchByTagView(FormView):
@@ -108,35 +110,63 @@ class CandidateDetailView(DetailView):
         context['election'] = self.object.election.election
         return context
 
-import simplejson as json
-import requests
-from django.conf import settings
+import re
+
+
+class VotaInteligenteAdapter():
+    def is_topic_category_the_same_as(self, topic, category):
+        return topic.category == category.category_ptr
 
 
 class SoulMateDetailView(DetailView):
     model = Election
+
+    def determine_taken_positions(self, positions_dict):
+        positions = []
+        for key in positions_dict:
+            p = re.compile('^question-id-(?P<id>\d+)$')
+            m = p.search(key)
+            if m:
+                _id = int(m.group('id'))
+                position_id = positions_dict["question-%d" % (_id)]
+                topic_id = positions_dict[key]
+                topic = Topic.objects.get(id=topic_id)
+                position = Position.objects.get(id=position_id)
+                positions.append(TakenPosition(
+                    topic=topic,
+                    position=position
+                    ))
+        return positions
+
+    def get_information_holder(self, data={}, adapter=VotaInteligenteAdapter):
+        holder = InformationHolder(adapter=VotaInteligenteAdapter)
+        for category in self.object.categories.all():
+            holder.add_category(category)
+        for candidate in self.object.candidates.all():
+            holder.add_person(candidate)
+        if data:
+            taken_positions = self.determine_taken_positions(data)
+            for taken_position in taken_positions:
+                holder.add_position(taken_position)
+        return holder
 
     def post(self, request, *args, **kwargs):
         self.template_name = "elections/soulmate_response.html"
         election = super(SoulMateDetailView, self).get_object(self.get_queryset())
         self.object = election
         context = self.get_context_data()
-        election_id = election.can_election.remote_id
-        payload = {
-            'data': request.POST,
-            "election-id": election_id
-        }
-        headers = {'content-type': 'application/json'}
-        response = requests.post(settings.CANDIDEITORG_URL + 'medianaranja/', data=json.dumps(payload), headers=headers)
-        result = json.loads(response.content)
+        information_holder = self.get_information_holder(data=request.POST, adapter=VotaInteligenteAdapter)
 
-        winner_candidate = election.can_election.candidate_set.get(remote_id=result['winner']['candidate'])
-        result["winner"]["candidate"] = winner_candidate
-        context['winner'] = result["winner"]
+        comparer = Comparer(adapter=VotaInteligenteAdapter)
+        result = comparer.compare(information_holder)
+
+        winner_candidate = result[0]['person']
+        context['winner'] = result[0]
+        context['winner']['candidate'] = winner_candidate
 
         others_candidates = []
-        for other in result['others']:
-            other_candidate = election.can_election.candidate_set.get(remote_id=other['candidate'])
+        for other in result[1:]:
+            other_candidate = other['person']
             other["candidate"] = other_candidate
             others_candidates.append(other)
 

@@ -7,11 +7,16 @@ from django.core.urlresolvers import reverse
 from popolo.models import Person
 from django.utils.translation import ugettext as _
 from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
+from candidator.models import Category
 import re
 
 
 class Candidate(Person):
     election = models.ForeignKey('Election', related_name='candidates', null=True)
+
+
+class QuestionCategory(Category):
+    election = models.ForeignKey('Election', related_name='categories', null=True)
 
 
 class Election(models.Model):

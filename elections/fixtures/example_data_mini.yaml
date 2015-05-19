@@ -520,8 +520,7 @@
   model: candideitorg.personaldatacandidate
   pk: 46
 - fields: {candidate: 8, personaldata: 11, remote_id: 47, resource_uri: /api/v2/personal_data_candidate/47/,
-    value: 'Diputado por el distrito 31 (2002-2011), en Enero 2011 ocupa el cupo senatorial
-      de Evelyn Matthei'}
+    value: 'Diputado por el distrito 31 (2002-2011), en Enero 2011 ocupa el cupo senatorial de Evelyn Matthei'}
   model: candideitorg.personaldatacandidate
   pk: 47
 - fields: {candidate: 8, personaldata: 12, remote_id: 48, resource_uri: /api/v2/personal_data_candidate/48/,

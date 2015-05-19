@@ -146,7 +146,7 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django_nose',
     'django.contrib.sitemaps',
-    # 'south',
+    'candidator',
     'taggit',
     'haystack',
     'elections',
@@ -284,6 +284,27 @@ CACHES = {
         'LOCATION': '127.0.0.1:11211',
     }
 }
+
+#LOGGING
+LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': True,
+        'formatters': {
+                    'simple':   {'format': '%(asctime)s %(levelname)s %(message)s'},
+                },
+        'handlers': {
+                    'console':     {'level': 'DEBUG', 'class': 'logging.StreamHandler', 'formatter': 'simple'},
+                    'null': {
+                                    'level': 'DEBUG',
+                                    'class': 'logging.NullHandler',
+                                },
+                },
+        'loggers': {
+                    'django.db.backends': {'level': 'DEBUG', 'handlers': ['null'], 'propagate': False},
+        }
+}
+#END LOGGING
+
 
 try:
     from local_settings import *

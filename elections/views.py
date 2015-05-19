@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, TemplateView
 from elections.models import Election
 from candideitorg.models import Candidate
+from elections.models import Candidate as VICandidate
 import logging
 
 logger = logging.getLogger(__name__)
@@ -94,7 +95,8 @@ class FaceToFaceView(ElectionDetailView):
 
 
 class CandidateDetailView(DetailView):
-    model = Candidate
+    model = VICandidate
+    slug_field = 'id'
 
     def get_queryset(self):
         queryset = super(CandidateDetailView, self).get_queryset()
@@ -107,7 +109,7 @@ class CandidateDetailView(DetailView):
         #I know this is weird but this is basically
         #me the candidate.candideitorg_election.votainteligente_election
         #so that's why it says election.election
-        context['election'] = self.object.election.election
+        context['election'] = self.object.election
         return context
 
 import re

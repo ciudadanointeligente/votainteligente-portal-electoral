@@ -2,7 +2,6 @@
 from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import Election
 from loremipsum import get_paragraphs
-from candideitorg.models import Election as CanElection
 from django.core.urlresolvers import reverse
 from elections.views import ElectionDetailView
 from django.views.generic import DetailView
@@ -11,15 +10,12 @@ from django.views.generic import DetailView
 class ElectionTestCase(TestCase):
     def setUp(self):
         super(ElectionTestCase, self).setUp()
-        self.can_election = CanElection.objects.all()[0]
-        self.can_election.election.delete()
 
     def test_election_create(self):
         election = Election.objects.create(
             name='the name',
             slug='the-slug',
             description='this is a description',
-            can_election=self.can_election,
             extra_info_title=u'ver más',
             extra_info_content=u'Más Información')
 
@@ -28,7 +24,6 @@ class ElectionTestCase(TestCase):
         self.assertEquals(election.description, 'this is a description')
         self.assertEquals(election.extra_info_title, u'ver más')
         self.assertEquals(election.extra_info_content, u'Más Información')
-        self.assertEqual(election.can_election, self.can_election)
         self.assertTrue(election.searchable)
         self.assertFalse(election.highlighted)
         self.assertTrue(election.uses_preguntales)

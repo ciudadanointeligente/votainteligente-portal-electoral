@@ -91,13 +91,13 @@
 - fields: {person_ptr: 3, name: Pedro Araya, election: 2}
   model: elections.candidate
   pk: 3
-- fields: {person_ptr: 4, name: Gisela Contreras}
+- fields: {person_ptr: 4, name: Gisela Contreras, election: 1}
   model: elections.candidate
   pk: 4
-- fields: {person_ptr: 5, name: Carlos Cantero}
+- fields: {person_ptr: 5, name: Carlos Cantero, election: 1}
   model: elections.candidate
   pk: 5
-- fields: {person_ptr: 6, name: Daniel Guevara}
+- fields: {person_ptr: 6, name: Daniel Guevara, election: 1}
   model: elections.candidate
   pk: 6
 - fields: {person_ptr: 7, name: Jimena Orrego}

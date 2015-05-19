@@ -13,21 +13,21 @@ class CandidateInElectionsViewsTestCase(TestCase):
     def test_url_candidate(self):
         url = reverse('candidate_detail_view', kwargs={
             'election_slug': self.tarapaca.slug,
-            'slug': self.tarapaca.can_election.candidate_set.all()[0].slug
+            'slug': self.tarapaca.candidates.all()[0].id
             })
         self.assertTrue(url)
 
     def test_url_is_reachable(self):
         url = reverse('candidate_detail_view', kwargs={
             'election_slug': self.tarapaca.slug,
-            'slug': self.tarapaca.can_election.candidate_set.all()[0].slug
+            'slug': self.tarapaca.candidates.all()[0].id
             })
         self.assertTrue(url)
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertIn('election', response.context)
         self.assertEqual(response.context['election'], self.tarapaca)
-        self.assertEqual(response.context['candidate'], self.tarapaca.can_election.candidate_set.all()[0])
+        self.assertEqual(response.context['candidate'], self.tarapaca.candidates.all()[0])
         self.assertTemplateUsed(response, 'elections/candidate_detail.html')
         self.assertTemplateUsed(response, 'base.html')
 

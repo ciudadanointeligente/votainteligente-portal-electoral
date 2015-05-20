@@ -14,7 +14,7 @@
 <div id="questionary">
 	<div class="questionary">		
 
-		{% for category in election.can_election.category_set.all %}
+		{% for category in election.categories.all %}
 		<div class="panel panel-default">
 			<div class="panel-heading">{{category.name}}</div>
 			<div class="panel-body">

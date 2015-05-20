@@ -5,7 +5,7 @@
 {% load thumbnail %}
 {% load votainteligente_extras %}
 
-{% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}{% endblock url_face_to_face %}
+{% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}{% endblock url_face_to_face %}
 
 {% block title %} - {{election}} - {{candidate.name}}{% endblock title%}
 
@@ -93,7 +93,7 @@
 					</ul>
 					
 					{% if 'facetoface'|val_navbars and election.uses_face_to_face  %}
-					<button type="button" class="btn btn-danger btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
+					<button type="button" class="btn btn-danger btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
 					{% endif %}
 					
 				</div>
@@ -173,7 +173,7 @@
 	<script type="text/javascript">
 	var API_KEY = '{{ 'client_id'|website_imgur }}';
 	var candidate_name = '{{candidate.name}}';
-	var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}';
+	var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}';
 	</script>
 	<script type="text/javascript" src="{% static 'js/video.js' %}"></script>
 {% endblock mainelection %}

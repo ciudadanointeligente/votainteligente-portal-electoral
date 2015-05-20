@@ -1,8 +1,8 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from elections.models import Election
+from elections.models import Election, QuestionCategory
 from django.core.urlresolvers import reverse
-from candideitorg.models import Question
+from candidator.models import Topic, Position, TakenPosition
 
 
 class CandidateInElectionsViewsTestCase(TestCase):
@@ -61,8 +61,8 @@ class FaceToFaceViewTestCase(TestCase):
         url = reverse('face_to_face_two_candidates_detail_view',
             kwargs={
                 'slug': self.tarapaca.slug,
-                'slug_candidate_one': self.tarapaca.can_election.candidate_set.all()[0].slug,
-                'slug_candidate_two': self.tarapaca.can_election.candidate_set.all()[1].slug,
+                'slug_candidate_one': self.tarapaca.candidates.all()[0].id,
+                'slug_candidate_two': self.tarapaca.candidates.all()[1].id,
             })
         self.assertTrue(url)
 
@@ -70,7 +70,7 @@ class FaceToFaceViewTestCase(TestCase):
         url = reverse('face_to_face_one_candidate_detail_view',
             kwargs={
                 'slug': self.tarapaca.slug,
-                'slug_candidate_one': self.tarapaca.can_election.candidate_set.all()[0].slug
+                'slug_candidate_one': self.tarapaca.candidates.all()[0].id
             })
         self.assertTrue(url)
 
@@ -85,8 +85,8 @@ class FaceToFaceViewTestCase(TestCase):
         url = reverse('face_to_face_two_candidates_detail_view',
             kwargs={
                 'slug': self.tarapaca.slug,
-                'slug_candidate_one': self.tarapaca.can_election.candidate_set.all()[0].slug,
-                'slug_candidate_two': self.tarapaca.can_election.candidate_set.all()[1].slug,
+                'slug_candidate_one': self.tarapaca.candidates.all()[0].id,
+                'slug_candidate_two': self.tarapaca.candidates.all()[1].id,
             })
         self.assertTrue(url)
         response = self.client.get(url)
@@ -97,7 +97,7 @@ class FaceToFaceViewTestCase(TestCase):
         url = reverse('face_to_face_one_candidate_detail_view',
             kwargs={
                 'slug': self.tarapaca.slug,
-                'slug_candidate_one': self.tarapaca.can_election.candidate_set.all()[0].slug,
+                'slug_candidate_one': self.tarapaca.candidates.all()[0].id,
             })
         self.assertTrue(url)
         response = self.client.get(url)
@@ -115,24 +115,26 @@ class FaceToFaceViewTestCase(TestCase):
         self.assertTemplateUsed(response, 'elections/compare_candidates.html')
 
     def test_it_has_a_percentage_of_similitude(self):
-        candidate1 = self.tarapaca.can_election.candidate_set.all()[0]
-        candidate2 = self.tarapaca.can_election.candidate_set.all()[1]
-
-        q_like_fiera = Question.objects.filter(category__election=self.tarapaca.can_election).get(question="Le gusta la Fiera??")
-        candidate1.answers.add(q_like_fiera.answer_set.all()[0])
-        candidate2.answers.add(q_like_fiera.answer_set.all()[0])
+        candidate1 = self.tarapaca.candidates.all()[0]
+        candidate2 = self.tarapaca.candidates.all()[1]
+        categories = QuestionCategory.objects.filter(election=self.tarapaca)
+        q_like_fiera = Topic.objects.filter(category__in=categories).get(label="Le gusta la Fiera??")
+        you_like_fiera_yes = Position.objects.get(topic=q_like_fiera, label="Si")
+        you_like_fiera_no = Position.objects.get(topic=q_like_fiera, label="No")
+        TakenPosition.objects.create(person=candidate1, position=you_like_fiera_yes, topic=q_like_fiera)
+        TakenPosition.objects.create(person=candidate2, position=you_like_fiera_no, topic=q_like_fiera)
         #this adds 1/3 to the similitude number
-        q_like_benito = Question.objects.filter(category__election=self.tarapaca.can_election).get(question="Le gusta Benito??")
-        candidate1.answers.add(q_like_benito.answer_set.all()[0])
-        candidate2.answers.add(q_like_benito.answer_set.all()[1])
+        q_like_benito = Topic.objects.filter(category__in=categories).get(label="Le gusta Benito??")
+        you_like_benito_yes = Position.objects.get(topic=q_like_benito, label="Si")
+        TakenPosition.objects.create(person=candidate1, position=you_like_benito_yes, topic=q_like_benito)
+        TakenPosition.objects.create(person=candidate2, position=you_like_benito_yes, topic=q_like_benito)
         #this guys didn't answer the same thing
-        Question.objects.filter(category__election=self.tarapaca.can_election).get(question="Libre para todos??")
         #no one has answered this question
         url = reverse('face_to_face_two_candidates_detail_view',
             kwargs={
                 'slug': self.tarapaca.slug,
-                'slug_candidate_one': candidate1.slug,
-                'slug_candidate_two': candidate2.slug,
+                'slug_candidate_one': candidate1.id,
+                'slug_candidate_two': candidate2.id,
             })
         response = self.client.get(url)
 
@@ -142,15 +144,15 @@ class FaceToFaceViewTestCase(TestCase):
 
     def test_it_returns_zero_if_there_are_no_questions(self):
 
-        candidate1 = self.tarapaca.can_election.candidate_set.all()[0]
-        candidate2 = self.tarapaca.can_election.candidate_set.all()[1]
-
-        Question.objects.filter(category__election=self.tarapaca.can_election).delete()
+        candidate1 = self.tarapaca.candidates.all()[0]
+        candidate2 = self.tarapaca.candidates.all()[1]
+        categories = QuestionCategory.objects.filter(election=self.tarapaca)
+        Topic.objects.filter(category___in=categories).delete()
         url = reverse('face_to_face_two_candidates_detail_view',
             kwargs={
                 'slug': self.tarapaca.slug,
-                'slug_candidate_one': candidate1.slug,
-                'slug_candidate_two': candidate2.slug,
+                'slug_candidate_one': candidate1.id,
+                'slug_candidate_two': candidate2.id,
             })
 
         response = self.client.get(url)

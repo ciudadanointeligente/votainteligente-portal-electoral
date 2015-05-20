@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from elections.models import Election, CandidatePerson
+from elections.models import Election
 # from django.contrib.flatpages.admin import FlatPageAdmin
 # from django.contrib.flatpages.models import FlatPage
 ## OOPS this is a custom widget that works for initializing
@@ -33,11 +33,3 @@ admin.site.register(Election, ElectionAdmin)
 
 # admin.site.unregister(FlatPage)
 # admin.site.register(FlatPage, PageAdmin)
-
-
-class CandidatePersonExtraInfoAdmin(admin.ModelAdmin):
-    readonly_fields = ('person',)
-    fields = ('reachable', 'description', 'portrait_photo', 'custom_ribbon')
-    search_fields = ['person__name', 'person__api_instance__election__name']
-
-admin.site.register(CandidatePerson, CandidatePersonExtraInfoAdmin)

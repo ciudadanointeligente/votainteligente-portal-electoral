@@ -1,99 +1,99 @@
-- fields: {can_election: 2, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: true, name: "2\xAA Circunscripci\xF3n Antofagasta", popit_api_instance: 1,
     searchable: true, slug: 2a-circunscripcion-antofagasta}
   model: elections.election
   pk: 1
-- fields: {can_election: 3, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: true, name: "4\xAA Circunscripci\xF3n Coquimbo", popit_api_instance: 2,
     searchable: true, slug: 4a-circunscripcion-coquimbo}
   model: elections.election
   pk: 2
-- fields: {can_election: 4, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "7\xAA Circunscripci\xF3n Santiago Poniente", popit_api_instance: 3,
     searchable: true, slug: 7a-circunscripcion-santiago-poniente}
   model: elections.election
   pk: 3
-- fields: {can_election: 5, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "8\xAA Circunscripci\xF3n Santiago Oriente", popit_api_instance: 4,
     searchable: true, slug: 8a-circunscripcion-santiago-oriente}
   model: elections.election
   pk: 4
-- fields: {can_election: 6, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "9\xAA Circunscripci\xF3n O'Higgins", popit_api_instance: 5,
     searchable: true, slug: 9a-circunscripcion-ohiggins}
   model: elections.election
   pk: 5
-- fields: {can_election: 7, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "12\xAA Circunscripci\xF3n Biob\xEDo Costa", popit_api_instance: 6,
     searchable: true, slug: 12a-circunscripcion-biobio-costa}
   model: elections.election
   pk: 6
-- fields: {can_election: 8, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "13\xAA Circunscripci\xF3n Biob\xEDo Cord", popit_api_instance: 7,
     searchable: true, slug: 13a-circunscripcion-biobio-cord}
   model: elections.election
   pk: 7
-- fields: {can_election: 9, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "16\xAA Circunscripci\xF3n Los R\xEDos", popit_api_instance: 8,
     searchable: true, slug: 16a-circunscripcion-los-rios}
   model: elections.election
   pk: 8
-- fields: {can_election: 10, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "17\xAA Circunscripci\xF3n Los Lagos", popit_api_instance: 9,
     searchable: true, slug: 17a-circunscripcion-los-lagos}
   model: elections.election
   pk: 9
-- fields: {can_election: 11, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "19\xAA Circunscripci\xF3n Magallanes", popit_api_instance: 10,
     searchable: true, slug: 19a-circunscripcion-magallanes}
   model: elections.election
   pk: 10
-- fields: {can_election: 12, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xB0 1", popit_api_instance: 11, searchable: true,
     slug: distrito-n-1}
   model: elections.election
   pk: 11
-- fields: {can_election: 13, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xB0 2", popit_api_instance: 12, searchable: true,
     slug: distrito-n-2}
   model: elections.election
   pk: 12
-- fields: {can_election: 14, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 3", popit_api_instance: 13, searchable: true,
     slug: distrito-no-3}
   model: elections.election
   pk: 13
-- fields: {can_election: 15, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 4", popit_api_instance: 14, searchable: true,
     slug: distrito-no-4}
   model: elections.election
   pk: 14
-- fields: {can_election: 16, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 5", popit_api_instance: 15, searchable: true,
     slug: distrito-no-5}
   model: elections.election
   pk: 15
-- fields: {can_election: 17, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 6", popit_api_instance: 16, searchable: true,
     slug: distrito-no-6}
   model: elections.election
   pk: 16
-- fields: {can_election: 18, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 7", popit_api_instance: 17, searchable: true,
     slug: distrito-no-7}
   model: elections.election
   pk: 17
-- fields: {can_election: 19, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 8", popit_api_instance: 18, searchable: true,
     slug: distrito-no-8}
   model: elections.election
   pk: 18
-- fields: {can_election: 20, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 9", popit_api_instance: 19, searchable: true,
     slug: distrito-no-9}
   model: elections.election
   pk: 19
-- fields: {can_election: 21, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: false, name: "Distrito N\xBA 10", popit_api_instance: 20, searchable: true,
     slug: distrito-no-10}
   model: elections.election

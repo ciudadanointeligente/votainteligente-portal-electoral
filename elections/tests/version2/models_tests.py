@@ -3,6 +3,8 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from popolo.models import Person
 from elections.models import Candidate, Election, QuestionCategory
 from candidator.models import Category
+from django.template.loader import get_template
+from django.template import Context, Template
 
 
 class Version2TestCase(TestCase):
@@ -25,6 +27,43 @@ class CandidaTeTestCase(Version2TestCase):
                                              election=self.election
                                              )
         self.assertIsInstance(candidate, Person)
+
+    def test_it_creates_a_link_to_the_candidate_twitter(self):
+        candidate = Candidate.objects.get(id=1)
+        candidate.links.create(url="http://twitter.com/candidato1")
+        self.assertEquals(candidate.twitter, 'candidato1')
+
+    def test_it_returns_none_if_there_is_no_twitter_link(self):
+        candidate = Candidate.objects.get(id=1)
+        self.assertIsNone(candidate.twitter)
+
+    def test_it_only_returns_one_twitter_link(self):
+        candidate = Candidate.objects.get(id=1)
+        candidate.links.create(url="http://twitter.com/candidato1")
+        candidate.links.create(url='http://twitter.com/candidato1_twitter2')
+
+        self.assertEquals(candidate.twitter, 'candidato1')
+
+    def test_tweet_if_candidator_unanswered(self):
+        candidate = Candidate.objects.get(id=1)
+        candidate.links.create(url="http://twitter.com/candidato1")
+        template_str = get_template('elections/twitter/no_candidator_answer.html')
+        context = Context({
+            "candidate": candidate,
+            "twitter": "candidato1"
+            })
+        expected_twitter_button = template_str.render(context)
+        actual_twitter_button_template = Template("{% load votainteligente_extras %}{% no_ha_respondido_twitter_button %}")
+        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate": candidate}))
+        self.assertEquals(actual_twitter_button, expected_twitter_button)
+
+    def test_no_tweet_if_candidate_has_no_twitter(self):
+        candidate = Candidate.objects.get(id=1)
+        expected_twitter_button = ""
+        actual_twitter_button_template = Template("{% load votainteligente_extras %}{% no_ha_respondido_twitter_button %}")
+        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate": candidate}))
+        actual_twitter_button = actual_twitter_button.strip()
+        self.assertEquals(actual_twitter_button, expected_twitter_button)
 
 
 class QuestionCategoryTestCase(Version2TestCase):

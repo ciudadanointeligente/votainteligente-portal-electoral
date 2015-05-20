@@ -1,49 +1,13 @@
-- fields: {can_election: 2, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: true, name: "2a Circunscripcion Antofagasta",
     searchable: true, slug: 2a-circunscripcion-antofagasta}
   model: elections.election
   pk: 1
-- fields: {can_election: 3, description: '', extra_info_content: null, extra_info_title: null,
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: true, name: "4a Circunscripcion Coquimbo",
     searchable: true, slug: 4a-circunscripcion-coquimbo}
   model: elections.election
   pk: 2
-- fields: {candidate: 1, person: 1}
-  model: elections.candidateperson
-  pk: 1
-- fields: {candidate: 2, person: 2}
-  model: elections.candidateperson
-  pk: 2
-- fields: {candidate: 3, person: 3}
-  model: elections.candidateperson
-  pk: 3
-- fields: {candidate: 4, person: 4}
-  model: elections.candidateperson
-  pk: 4
-- fields: {candidate: 5, person: 5}
-  model: elections.candidateperson
-  pk: 5
-- fields: {candidate: 6, person: 6}
-  model: elections.candidateperson
-  pk: 6
-- fields: {candidate: 7, person: 7}
-  model: elections.candidateperson
-  pk: 7
-- fields: {candidate: 8, person: 8}
-  model: elections.candidateperson
-  pk: 8
-- fields: {candidate: 9, person: 9}
-  model: elections.candidateperson
-  pk: 9
-- fields: {candidate: 10, person: 10}
-  model: elections.candidateperson
-  pk: 10
-- fields: {candidate: 11, person: 11}
-  model: elections.candidateperson
-  pk: 11
-- fields: {candidate: 12, person: 12}
-  model: elections.candidateperson
-  pk: 12
 - fields: { name: Manuel Rojas }
   model: popolo.person
   pk: 1

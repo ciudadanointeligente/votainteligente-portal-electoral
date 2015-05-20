@@ -18,18 +18,18 @@ class CandidateInElectionsViewsTestCase(TestCase):
     def test_url_candidate(self):
         url = reverse('candidate_detail_view', kwargs={
             'election_slug': self.tarapaca.slug,
-            'slug': self.tarapaca.can_election.candidate_set.all()[0].slug
+            'slug': self.tarapaca.candidates.all()[0].id
             })
         self.assertTrue(url)
 
     def test_url_duplicated(self):
-        candidate = self.coquimbo.can_election.candidate_set.all()[0]
-        candidate.slug = self.tarapaca.can_election.candidate_set.all()[0].slug
+        candidate = self.coquimbo.candidates.all()[0]
+        candidate.slug = self.tarapaca.candidates.all()[0].id
         candidate.save()
 
         url_2 = reverse('candidate_detail_view', kwargs={
             'election_slug': self.coquimbo.slug,
-            'slug': self.coquimbo.can_election.candidate_set.all()[0].slug
+            'slug': self.coquimbo.candidates.all()[0].id
             })
 
         response = self.client.get(url_2)
@@ -40,14 +40,14 @@ class CandidateInElectionsViewsTestCase(TestCase):
     def test_url_is_reachable(self):
         url = reverse('candidate_detail_view', kwargs={
             'election_slug': self.tarapaca.slug,
-            'slug': self.tarapaca.can_election.candidate_set.all()[0].slug
+            'slug': self.tarapaca.candidates.all()[0].id
             })
         self.assertTrue(url)
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertIn('election', response.context)
         self.assertEqual(response.context['election'], self.tarapaca)
-        self.assertEqual(response.context['candidate'], self.tarapaca.can_election.candidate_set.all()[0])
+        self.assertEqual(response.context['candidate'], self.tarapaca.candidates.all()[0])
         self.assertTemplateUsed(response, 'elections/candidate_detail.html')
         self.assertTemplateUsed(response, 'base.html')
 
@@ -81,8 +81,8 @@ class FaceToFaceViewTestCase(TestCase):
         url = reverse('face_to_face_two_candidates_detail_view',
             kwargs={
                 'slug': self.tarapaca.slug,
-                'slug_candidate_one': self.tarapaca.can_election.candidate_set.all()[0].slug,
-                'slug_candidate_two': self.tarapaca.can_election.candidate_set.all()[1].slug,
+                'slug_candidate_one': self.tarapaca.candidates.all()[0].id,
+                'slug_candidate_two': self.tarapaca.candidates.all()[1].id,
             })
         self.assertTrue(url)
 
@@ -90,7 +90,7 @@ class FaceToFaceViewTestCase(TestCase):
         url = reverse('face_to_face_one_candidate_detail_view',
             kwargs={
                 'slug': self.tarapaca.slug,
-                'slug_candidate_one': self.tarapaca.can_election.candidate_set.all()[0].slug
+                'slug_candidate_one': self.tarapaca.candidates.all()[0].id
             })
         self.assertTrue(url)
 
@@ -105,30 +105,30 @@ class FaceToFaceViewTestCase(TestCase):
         url = reverse('face_to_face_two_candidates_detail_view',
             kwargs={
                 'slug': self.tarapaca.slug,
-                'slug_candidate_one': self.tarapaca.can_election.candidate_set.all()[0].slug,
-                'slug_candidate_two': self.tarapaca.can_election.candidate_set.all()[1].slug,
+                'slug_candidate_one': self.tarapaca.candidates.all()[0].id,
+                'slug_candidate_two': self.tarapaca.candidates.all()[1].id,
             })
         self.assertTrue(url)
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'elections/compare_candidates.html')
         self.assertIn('first_candidate', response.context)
-        self.assertEqual(response.context['first_candidate'], self.tarapaca.can_election.candidate_set.all()[0])
+        self.assertEqual(response.context['first_candidate'], self.tarapaca.candidates.all()[0])
         self.assertIn('second_candidate', response.context)
-        self.assertEqual(response.context['second_candidate'], self.tarapaca.can_election.candidate_set.all()[1])
+        self.assertEqual(response.context['second_candidate'], self.tarapaca.candidates.all()[1])
 
     def test_url_is_reachable_for_one_candidates(self):
         url = reverse('face_to_face_one_candidate_detail_view',
             kwargs={
                 'slug': self.tarapaca.slug,
-                'slug_candidate_one': self.tarapaca.can_election.candidate_set.all()[1].slug,
+                'slug_candidate_one': self.tarapaca.candidates.all()[1].id,
             })
         self.assertTrue(url)
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'elections/compare_candidates.html')
         self.assertIn('first_candidate', response.context)
-        self.assertEqual(response.context['first_candidate'], self.tarapaca.can_election.candidate_set.all()[1])
+        self.assertEqual(response.context['first_candidate'], self.tarapaca.candidates.all()[1])
 
     def test_url_is_reachable_for_no_one_candidates(self):
         url = reverse('face_to_face_no_candidate_detail_view',
@@ -294,5 +294,5 @@ class SoulMateTestCase(TestCase):
         self.assertIsInstance(response.context["winner"]["candidate"], Candidate)
         self.assertIn("others", response.context)
 
-        candidatos_antofa = self.antofa.can_election.candidate_set.all()
+        candidatos_antofa = self.antofa.candidates.all()
         self.assertIn(response.context["winner"]["candidate"], candidatos_antofa)

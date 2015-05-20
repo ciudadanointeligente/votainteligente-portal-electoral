@@ -4,8 +4,7 @@ from elections.forms import ElectionSearchByTagsForm
 from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, TemplateView
 from elections.models import Election
-from candideitorg.models import Candidate
-from elections.models import Candidate as VICandidate
+from elections.models import Candidate, QuestionCategory
 import logging
 
 logger = logging.getLogger(__name__)
@@ -64,10 +63,10 @@ class ElectionDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ElectionDetailView, self).get_context_data(**kwargs)
-        if self.object.can_election and 'slug_candidate_one' in self.kwargs:
-            context['first_candidate'] = self.object.can_election.candidate_set.get(slug=self.kwargs['slug_candidate_one'])
-        if self.object.can_election and 'slug_candidate_two' in self.kwargs:
-            context['second_candidate'] = self.object.can_election.candidate_set.get(slug=self.kwargs['slug_candidate_two'])
+        if 'slug_candidate_one' in self.kwargs:
+            context['first_candidate'] = self.object.candidates.get(id=self.kwargs['slug_candidate_one'])
+        if 'slug_candidate_two' in self.kwargs:
+            context['second_candidate'] = self.object.candidates.get(id=self.kwargs['slug_candidate_two'])
         return context
 
 
@@ -76,17 +75,20 @@ class FaceToFaceView(ElectionDetailView):
         context = super(FaceToFaceView, self).get_context_data(**kwargs)
         if 'first_candidate' in context and 'second_candidate' in context:
             candidate1, candidate2 = context['first_candidate'], context['second_candidate']
-            categories = self.object.can_election.category_set.all()
+            categories = self.object.categories.all()
             equal_answers = 0
-            total_questions = 0
-            for cat in categories:
-                for question in cat.question_set.all():
-                    total_questions += 1
-                    try:
-                        if candidate2.answers.get(question=question) == candidate1.answers.get(question=question):
-                            equal_answers += 1
-                    except:
-                        pass
+            categories = QuestionCategory.objects.filter(election=self.object)
+            topics = Topic.objects.filter(category__in=categories)
+            total_questions = topics.count()
+            taken_positions = TakenPosition.objects.filter(topic__in=topics)
+            for topic in topics:
+                try:
+                    taken_position1 = taken_positions.get(person=candidate1, topic=topic)
+                    taken_position2 = taken_positions.get(person=candidate2, topic=topic)
+                    if taken_position2.position == taken_position1.position:
+                        equal_answers += 1
+                except TakenPosition.DoesNotExist:
+                    pass
             if total_questions:
                 context['similitude'] = equal_answers * 100 / total_questions
             else:
@@ -95,7 +97,7 @@ class FaceToFaceView(ElectionDetailView):
 
 
 class CandidateDetailView(DetailView):
-    model = VICandidate
+    model = Candidate
     slug_field = 'id'
 
     def get_queryset(self):

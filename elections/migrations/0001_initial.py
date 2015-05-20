@@ -47,7 +47,6 @@ class Migration(migrations.Migration):
                 ('uses_face_to_face', models.BooleanField(default=True, help_text='Esta elecci\xf3n debe usar frente a frente')),
                 ('uses_soul_mate', models.BooleanField(default=True, help_text='Esta elecci\xf3n debe usar 1/2 naranja')),
                 ('uses_questionary', models.BooleanField(default=True, help_text='Esta elecci\xf3n debe usar cuestionario')),
-                ('can_election', models.OneToOneField(null=True, blank=True, to='candideitorg.Election')),
                 ('tags', taggit.managers.TaggableManager(to='taggit.Tag', through='taggit.TaggedItem', blank=True, help_text='A comma-separated list of tags.', verbose_name='Tags')),
             ],
             options={

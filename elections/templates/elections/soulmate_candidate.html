@@ -61,7 +61,7 @@ $(document).ready(function(){
 	</div>
 	<div class="row">
 		<form id="form-soulmate" role="form">
-		{% for category in election.can_election.category_set.all %}
+		{% for category in election.categories.all %}
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">{{category.name}}</h3>

@@ -65,6 +65,34 @@ class CandidaTeTestCase(Version2TestCase):
         actual_twitter_button = actual_twitter_button.strip()
         self.assertEquals(actual_twitter_button, expected_twitter_button)
 
+    def test_follow_the_conversation_in_twitter(self):
+        candidate = Candidate.objects.get(id=1)
+        candidate.links.create(url="http://twitter.com/candidato1_twitter")
+        template_str = get_template('elections/twitter/follow_the_conversation.html')
+        context = Context({
+            "twitter": "candidato1_twitter",
+            "candidate": candidate
+            })
+        expected_twitter_button = template_str.render(context)
+        actual_twitter_button_template = Template("{% load votainteligente_extras %}{% follow_on_twitter %}")
+        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate": candidate}))
+        self.assertEquals(actual_twitter_button, expected_twitter_button)
+
+    def test_ranking_twitter_button(self):
+        candidate = Candidate.objects.get(id=1)
+        candidate.links.create(url="http://twitter.com/candidato1_twitter")
+        template_str = get_template('elections/twitter/ranking_twitter.html')
+        context = Context({
+            "twitter": "candidato1_twitter",
+            "candidate": candidate,
+            'btn_text': 'message button',
+            'popup_text': 'message twitter window'
+            })
+        expected_twitter_button = template_str.render(context)
+        actual_twitter_button_template = Template("{% load votainteligente_extras %}{% twitter_on_ranking 'message button' 'message twitter window' %}")
+        actual_twitter_button = actual_twitter_button_template.render(Context({"candidate": candidate}))
+        self.assertEquals(actual_twitter_button, expected_twitter_button)
+
 
 class QuestionCategoryTestCase(Version2TestCase):
     def setUp(self):

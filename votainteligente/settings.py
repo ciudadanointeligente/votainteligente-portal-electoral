@@ -150,7 +150,6 @@ INSTALLED_APPS = (
     'taggit',
     'haystack',
     'elections',
-    'candideitorg',
     'popolo',
     'markdown_deux',
     'django_extensions',

@@ -1,7 +1,6 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 #from elections.models import CandidatePerson
-from candideitorg.models import Candidate as CanCandidate, Link
 from popolo.models import Person
 from django.template.loader import get_template
 from django.template import Context, Template

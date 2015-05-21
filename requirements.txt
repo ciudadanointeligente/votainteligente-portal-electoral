@@ -5,7 +5,6 @@ django-taggit
 loremipsum
 elasticsearch
 django-haystack
--e git://github.com/ciudadanointeligente/candideitorg-django.git#egg=candideitorg-django
 -e git://github.com/lfalvarez/django-candidator.git#egg=django-candidator
 PyYAML
 django-markdown-deux==1.0.4

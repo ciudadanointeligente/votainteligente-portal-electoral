@@ -1,6 +1,5 @@
 {% extends "elections/election_base.html" %}
 {% load staticfiles %}
-{% load candideitorg_templetags %}
 {% load i18n %}
 {% load thumbnail %}
 {% load votainteligente_extras %}
@@ -74,6 +73,7 @@
 				</div>
 				<div class="col-md-5">
 					<table class="table">
+						{% comment "hay que ver como reemplazamos nuestro antiguo concepto de personal_data con algo popolistico" %}
 						{% for personal_data in election.can_election.personaldata_set.all %}
 						<tr>
 							<td>
@@ -82,6 +82,7 @@
 							</td>
 						</tr>
 						{% endfor %}
+						{% endcomment %}
 					</table>			
 				</div>
 				
@@ -128,7 +129,7 @@
 				<h3>{% trans "Cuestionario" %} {% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
 			</div>
 		</div>
-				
+		{% comment "Hay que reemplazar las categorías antiguas por unas del nuevo django-candidator" %}
 		{% for category in election.can_election.category_set.all %}
 		<div class="panel panel-default">
 			<div class="panel-heading">{{category.name}}</div>
@@ -149,6 +150,7 @@
 			</div>
 		</div>
 		{% endfor %}
+		{% endcomment %}
 	</div>
 	{% endif %}
 

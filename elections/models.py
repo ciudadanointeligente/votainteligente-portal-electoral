@@ -2,7 +2,6 @@
 from django.db import models
 from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
-from candideitorg.models import Candidate as CanCandidate
 from django.core.urlresolvers import reverse
 from popolo.models import Person
 from django.utils.translation import ugettext as _
@@ -55,30 +54,3 @@ class Election(models.Model):
     class Meta:
             verbose_name = _(u'Mi Elección')
             verbose_name_plural = _(u'Mis Elecciones')
-
-
-# class CandidatePerson(models.Model):
-#     person = models.OneToOneField(Person, related_name="relation")
-#     candidate = models.OneToOneField(CanCandidate, related_name="relation")
-#     reachable = models.BooleanField(default=False)
-#     description = models.TextField(default='', blank=True)
-#     portrait_photo = models.CharField(max_length=256, blank=True, null=True)
-#     custom_ribbon = models.CharField(max_length=18, blank=True, null=True)
-
-#     def __unicode__(self):
-#         return u'Extra info de %(candidate)s' % {
-#             "candidate": self.candidate.name
-#             }
-
-#     def _get_twitter_(self):
-#         try:
-#             twitter = self.candidate.link_set.filter(url__contains='twitter')[0].url
-#             regex = re.compile(r"^https?://(www\.)?twitter\.com/(#!/)?([^/]+)(/\w+)*$")
-#             return regex.match(twitter).groups()[2]
-#         except:
-#             return None
-#     twitter = property(_get_twitter_)
-
-#     class Meta:
-#             verbose_name = _(u'Extra Info de candidato')
-#             verbose_name_plural = _(u'Extra Info de candidatos')

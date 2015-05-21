@@ -11,26 +11,9 @@ class Migration(migrations.Migration):
     dependencies = [
         ('taggit', '0001_initial'),
         ('popolo', '__first__'),
-        ('candideitorg', '__first__'),
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='CandidatePerson',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('reachable', models.BooleanField(default=False)),
-                ('description', models.TextField(default=b'', blank=True)),
-                ('portrait_photo', models.CharField(max_length=256, null=True, blank=True)),
-                ('custom_ribbon', models.CharField(max_length=18, null=True, blank=True)),
-                ('candidate', models.OneToOneField(related_name='relation', to='candideitorg.Candidate')),
-                ('person', models.OneToOneField(related_name='relation', to='popolo.Person')),
-            ],
-            options={
-                'verbose_name': 'Extra Info de candidato',
-                'verbose_name_plural': 'Extra Info de candidatos',
-            },
-        ),
         migrations.CreateModel(
             name='Election',
             fields=[

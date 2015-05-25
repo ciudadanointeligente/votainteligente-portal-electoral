@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load votainteligente_extras %}
-{% load static %}
+{% load staticfiles %}
 
 {% block title %} - {{election}} - {% trans "Cuestionario"%}{% endblock title%}
 
@@ -18,38 +18,35 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">{{category.name}}</div>
 			<div class="panel-body">
-				{% for question in category.question_set.all %}
+				{% for topic in category.topics.all %}
 				<div class="question-answer" {% if forloop.counter >= 2 %}style="margin-top:5px;" {% endif %}>
 					<p class="question">
-						{{question.question}}
+						{{topic.label}}
 					</p>
-					{% if question.number_of_answers > 0%}
 
-					{% for answer in question.answer_set.all %}
-						{% if answer.candidate_set.all|length > 0 %}
+					{% for position in topic.positions.all %}
+						{% if position.taken_positions.all|length > 0 %}
 
 						<div class="row hidden-xs hidden-sm">
 							<div class="col-md-5">
 								<ul class="list-inline">
-								{% for candidate in answer.candidate_set.all %}
+								{% for taken_position in position.taken_positions.all %}
 									<li>
-									{% if candidate.photo %}
-										{% thumbnail candidate.photo "100x100" crop="center" as im %}
-										<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
-										{% endthumbnail %}
-									{% else %}
-										{% static "img/candidate-default.jpg" as candidate_default %}
-										{% thumbnail candidate_default "100x100" crop="center" as im %}
-										<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
-										<span>{{candidate.name}}</span>
-										{% endthumbnail %}
-									{% endif %}
+									{% with candidate=taken_position.person %}
+										{% if candidate.image %}
+											<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{candidate.image}}" height="100" width="100" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
+										{% else %}
+											{% static "img/candidate-default.jpg" as candidate_default %}
+											<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{candidate_default}}"  height="100" width="100" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
+											<span>{{candidate.name}}</span>
+										{% endif %}
+									{% endwith %}
 									</li>
 								{% endfor %}
 								</ul>
 							</div>
 							<div class="col-md-7">
-								<i class="icon-quote-left"></i> {{answer.caption}} <i class="icon-quote-right"></i>
+								<i class="icon-quote-left"></i> {{position.label}} <i class="icon-quote-right"></i>
 							</div>
 						</div>
 						{% endif %}
@@ -59,16 +56,18 @@
 						<div >
 							<div>
 								<div>
-									<i class="icon-quote-left"></i> {{answer.caption}} <i class="icon-quote-right"></i>
+									<i class="icon-quote-left"></i> {{position.label}} <i class="icon-quote-right"></i>
 								</div>
-								{% for candidate in answer.candidate_set.all %}
-									{% if forloop.first %}
-										<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a>
-									{% elif forloop.last %}
-										{% trans "y" %} <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a>
-									{% else %}
-										, <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}">{{candidate.name}}</a>
-									{% endif %}
+								{% for taken_position in position.taken_positions.all %}
+									{% with candidate=taken_position.person %}
+										{% if forloop.first %}
+											<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}">{{candidate.name}}</a>
+										{% elif forloop.last %}
+											{% trans "y" %} <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}">{{candidate.name}}</a>
+										{% else %}
+											, <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}">{{candidate.name}}</a>
+										{% endif %}
+									{% endwith %}
 								{% endfor %}
 								<hr>
 							</div>
@@ -77,9 +76,7 @@
 					
 						<!-- end mobile version -->
 					{% endfor %}
-					{% else %}
-					<div>{% trans "Ningún candidato ha respondido." %}</div>
-					{% endif %}
+					
 				</div>
 				{% endfor %}
 			</div>

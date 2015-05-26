@@ -4,7 +4,7 @@ register = template.Library()
 
 from django.utils.safestring import mark_safe
 from elections.models import Election
-import simplejson as json
+import json
 from django.conf import settings
 from django.contrib.sites.models import Site
 

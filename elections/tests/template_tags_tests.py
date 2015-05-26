@@ -1,7 +1,7 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import Election, Candidate
-import simplejson as json
+import json
 from django.template import Template, Context
 from django.conf import settings
 from django.contrib.sites.models import Site

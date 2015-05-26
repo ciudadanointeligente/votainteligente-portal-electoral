@@ -1,6 +1,5 @@
 language: python
 services:
-  - mongodb
   - elasticsearch
 python:
   - "2.7"
@@ -10,10 +9,6 @@ install:
   - pip install -r requirements.txt 
   - pip install coveralls
 # command to run tests
-env:
-  - DJANGO_VERSION=1.5
-before_script:
-  - ./start_local_candidator.bash
 script:
   - coverage run --source=elections manage.py test elections
   - coverage report -m

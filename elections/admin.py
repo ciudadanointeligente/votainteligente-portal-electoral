@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from elections.models import Election
+from elections.models import Election, Candidate
 # from django.contrib.flatpages.admin import FlatPageAdmin
 # from django.contrib.flatpages.models import FlatPage
 ## OOPS this is a custom widget that works for initializing
@@ -16,6 +16,10 @@ class ElectionAdmin(admin.ModelAdmin):
 
 admin.site.register(Election, ElectionAdmin)
 
+
+class CandidateAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Candidate, CandidateAdmin)
 
 # class PageForm(FlatpageForm):
 #     class Meta:

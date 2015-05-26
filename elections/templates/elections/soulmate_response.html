@@ -2,6 +2,8 @@
 {% load thumbnail %}
 {% load votainteligente_extras %}
 {% load staticfiles %}
+{% load mathfilters %}
+
 
 <div id="soulmate-result">
 	<div class="row">
@@ -55,7 +57,7 @@
 		</div>
 		<div class="col-md-5">
 			<h3><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}">{{winner.candidate.name}} </a><i class="icon-heart"></i></h3>
-			<h2>{{winner.global_score|floatformat}}<span>% </span></h2>
+			<h2>{{winner.percentage|mul:100|floatformat}}<span>% </span></h2>
 				<div>{% trans "de afinidad" %}</div>
 			<div class="row fondo-azuloscuro">
 				<div class="col-md-5">
@@ -94,10 +96,10 @@
 		{% for other in others %}
 		<div class="col-md-4">
 			<div class="other-soulmate-box">
-				<h4>{{other.global_score|floatformat}}% <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=other.candidate.id %}">{{other.candidate.name}}</a></h4>
+				<h4>{{other.percentage|mul:100|floatformat}}% <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=other.candidate.id %}">{{other.candidate.name}}</a></h4>
 				<ul class="list-unstyled">
 					{% for other_cat in other.category_score %}
-					<li>{{other_cat.score|floatformat}}% {{other_cat.category}}</li>
+					<li>{{other_cat.percentage|floatformat}}% {{other_cat.category}}</li>
 					{% endfor %}
 				</ul>
 			</div>

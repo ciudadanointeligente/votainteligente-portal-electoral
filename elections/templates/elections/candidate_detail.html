@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
+{% load markdown_deux_tags %}
 {% load votainteligente_extras %}
 
 {% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}{% endblock url_face_to_face %}
@@ -73,16 +74,7 @@
 				</div>
 				<div class="col-md-5">
 					<table class="table">
-						{% comment "hay que ver como reemplazamos nuestro antiguo concepto de personal_data con algo popolistico" %}
-						{% for personal_data in election.can_election.personaldata_set.all %}
-						<tr>
-							<td>
-								<span>{{personal_data.label}}:</span>
-									{% relation_personal_data_candidate candidate personal_data %}
-							</td>
-						</tr>
-						{% endfor %}
-						{% endcomment %}
+						{{ candidate.biography|markdown }}
 					</table>			
 				</div>
 				
@@ -129,20 +121,18 @@
 				<h3>{% trans "Cuestionario" %} {% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
 			</div>
 		</div>
-		{% comment "Hay que reemplazar las categorías antiguas por unas del nuevo django-candidator" %}
-		{% for category in election.can_election.category_set.all %}
+		{% for category in election.categories.all %}
 		<div class="panel panel-default">
 			<div class="panel-heading">{{category.name}}</div>
 			<div class="panel-body">
-				{% for question in category.question_set.all %}
+				{% for topic in category.topics.all %}
 				<div class="question-answer" {% if forloop.counter >= 2 %}style="margin-top:5px;" {% endif %}>
 					<p class="question">
-						{{question.question}}
+						{{topic.label}}
 					</p>
 					<p class="answer">
-						<i class="icon-quote-left"></i> {% answer_for_candidate_and_question candidate question %} <i class="icon-quote-right"></i>
+						{% get_taken_position_for topic candidate %}
 						<!-- source -->
-						{% get_information_source candidate question %} 
 						<!-- eosource -->
 					</p>
 				</div>
@@ -150,7 +140,6 @@
 			</div>
 		</div>
 		{% endfor %}
-		{% endcomment %}
 	</div>
 	{% endif %}
 

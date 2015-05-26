@@ -134,3 +134,10 @@ def website_twitter(value):
     if value in settings.WEBSITE_TWITTER:
         return settings.WEBSITE_TWITTER[value]
     return ''
+
+
+@register.inclusion_tag('elections/taken_position.html')
+def get_taken_position_for(topic, candidate, only_text=False):
+    return {'taken_position': topic.get_taken_position_for(candidate),
+            'only_text': only_text
+            }

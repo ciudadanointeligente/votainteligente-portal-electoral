@@ -21,16 +21,14 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div id="candidate-img-profile">
-						{% if candidate.photo %}
-						{% thumbnail candidate.photo "300x300" crop="center" as im %}
-						<img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive">
-						{% endthumbnail %}
+						{% if candidate.image %}
+						<img src="{{candidate.image}}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive">
 						{% else %}
 						<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">
 						{% endif %}
 						
 						<img id="apoya" src="{% static 'img/hover-caraacara.png' %}" alt="{% trans "Apoya a tu candidato" %}" title="{% trans "Apoya a tu candidato" %}">
-						{% if candidate.relation.custom_ribbon %}<div class="ribbon">{{ candidate.relation.custom_ribbon }}</div>{% endif %}
+						{% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %}
 					</div>
 					
 					{% if candidate.image %}
@@ -50,7 +48,7 @@
 									</div>
 									<div id="videocontainer">
 										<video id="video"></video>
-										<img src="{{candidate.relation.portrait_photo}}" id="soulmate-pic" alt="{{candidate.name}}" title="{{candidate.name}}">
+										<img src="{{candidate.image}}" id="soulmate-pic" alt="{{candidate.name}}" title="{{candidate.name}}">
 									</div>
 									<canvas id="canvas"></canvas>
 									<div id="cover"></div>
@@ -74,16 +72,13 @@
 				</div>
 				<div class="col-md-5">
 					<table class="table">
-						{% include 'elections/personal_data_candidate.html' with candidate=candidate %}
+						{% include 'elections/candidates/personal_data_candidate.html' with candidate=candidate %}
 					</table>			
 				</div>
 				
 				<div class="col-md-4 social-side">
-					<ul class="list-unstyled">
-						{% for contact_detail in candidate.contact_details.all %}
-							<li><a href="{{contact_detail.value}}" class="social-link-candidate" target="_blank"><i class="{{ link.icon_class }}"></i> {{contact_detail.label}}</a></li>
-						{% endfor %}
-					</ul>
+					{% include 'elections/candidates/contacts.html' with candidate=candidate %}
+					
 					
 					{% if 'facetoface'|val_navbars and election.uses_face_to_face  %}
 					<button type="button" class="btn btn-danger btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>

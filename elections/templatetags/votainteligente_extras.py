@@ -141,3 +141,12 @@ def get_taken_position_for(topic, candidate, only_text=False):
     return {'taken_position': topic.get_taken_position_for(candidate),
             'only_text': only_text
             }
+
+
+@register.inclusion_tag('elections/candidates/personal_data_detail.html')
+def display_personal_data(item):
+    return {
+        'label': item[0],
+        'display': item[1]['display'],
+        'value': item[1]['value']
+    }

@@ -144,6 +144,16 @@ class TemplateTagsTestCase(TestCase):
 
         self.assertEqual(template.render(context), u'votainformado,eslaloslas')
 
+    def test_display_personal_data(self):
+        template = Template("{% load votainteligente_extras %}{% display_personal_data item %}")
+        context = Context({'item': ('nacionalidad', {'display': 'Nacionalidad',
+                                                     'value': 'Es un ciudadano del mundo'})
+                           })
+        actual_rendered_template = template.render(context)
+        self.assertIn('nacionalidad', actual_rendered_template)
+        self.assertIn('Nacionalidad', actual_rendered_template)
+        self.assertIn('Es un ciudadano del mundo', actual_rendered_template)
+
     def test_get_taken_position_by_candidate(self):
         topic = Topic.objects.create(
             label=u"Should marijuana be legalized?",

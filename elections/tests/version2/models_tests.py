@@ -1,10 +1,11 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from popolo.models import Person
+from popolo.models import Person, ContactDetail
 from elections.models import Candidate, Election, QuestionCategory
 from candidator.models import Category
 from django.template.loader import get_template
 from django.template import Context, Template
+from django.test import override_settings
 
 
 class Version2TestCase(TestCase):
@@ -28,10 +29,20 @@ class CandidaTeTestCase(Version2TestCase):
                                              )
         self.assertIsInstance(candidate, Person)
 
+    def test_get_twitter(self):
+        candidate = Candidate.objects.get(id=1)
+        candidate.add_contact_detail(contact_type="TWITTER", label="@candidato1", value="http://twitter.com/candidato1")
+        twitter = candidate.twitter
+        self.assertIsInstance(twitter, ContactDetail)
+        self.assertEquals(twitter.contact_type, "TWITTER")
+        self.assertEquals(twitter.label, "@candidato1")
+        self.assertEquals(twitter.value, "http://twitter.com/candidato1")
+
     def test_it_creates_a_link_to_the_candidate_twitter(self):
         candidate = Candidate.objects.get(id=1)
-        candidate.links.create(url="http://twitter.com/candidato1")
-        self.assertEquals(candidate.twitter, 'candidato1')
+        candidate.add_contact_detail(contact_type="TWITTER", label="@candidato1", value="http://twitter.com/candidato1")
+        twitter = candidate.contact_details.get(label="@candidato1")
+        self.assertEquals(candidate.twitter, twitter)
 
     def test_it_returns_none_if_there_is_no_twitter_link(self):
         candidate = Candidate.objects.get(id=1)
@@ -39,18 +50,22 @@ class CandidaTeTestCase(Version2TestCase):
 
     def test_it_only_returns_one_twitter_link(self):
         candidate = Candidate.objects.get(id=1)
-        candidate.links.create(url="http://twitter.com/candidato1")
-        candidate.links.create(url='http://twitter.com/candidato1_twitter2')
+        candidate.add_contact_detail(contact_type="TWITTER", label="@candidato1", value="http://twitter.com/candidato1")
+        candidate.add_contact_detail(contact_type="TWITTER", label="@candidato1_twitter2", value='http://twitter.com/candidato1_twitter2')
 
-        self.assertEquals(candidate.twitter, 'candidato1')
+        twitter = candidate.twitter
+        self.assertEquals(twitter.contact_type, "TWITTER")
+        self.assertEquals(twitter.label, "@candidato1")
+        self.assertEquals(twitter.value, "http://twitter.com/candidato1")
 
     def test_tweet_if_candidator_unanswered(self):
         candidate = Candidate.objects.get(id=1)
-        candidate.links.create(url="http://twitter.com/candidato1")
+        candidate.add_contact_detail(contact_type="TWITTER", label="@candidato1", value="http://twitter.com/candidato1")
+        twitter = candidate.contact_details.get(label="@candidato1")
         template_str = get_template('elections/twitter/no_candidator_answer.html')
         context = Context({
             "candidate": candidate,
-            "twitter": "candidato1"
+            "twitter": twitter
             })
         expected_twitter_button = template_str.render(context)
         actual_twitter_button_template = Template("{% load votainteligente_extras %}{% no_ha_respondido_twitter_button %}")
@@ -67,10 +82,11 @@ class CandidaTeTestCase(Version2TestCase):
 
     def test_follow_the_conversation_in_twitter(self):
         candidate = Candidate.objects.get(id=1)
-        candidate.links.create(url="http://twitter.com/candidato1_twitter")
+        candidate.add_contact_detail(contact_type="TWITTER", label="@candidato1_twitter", value="http://twitter.com/candidato1_twitter")
+        twitter = candidate.contact_details.get(label="@candidato1_twitter")
         template_str = get_template('elections/twitter/follow_the_conversation.html')
         context = Context({
-            "twitter": "candidato1_twitter",
+            "twitter": twitter,
             "candidate": candidate
             })
         expected_twitter_button = template_str.render(context)
@@ -80,10 +96,11 @@ class CandidaTeTestCase(Version2TestCase):
 
     def test_ranking_twitter_button(self):
         candidate = Candidate.objects.get(id=1)
-        candidate.links.create(url="http://twitter.com/candidato1_twitter")
+        candidate.add_contact_detail(contact_type="TWITTER", label="@candidato1_twitter", value="http://twitter.com/candidato1_twitter")
         template_str = get_template('elections/twitter/ranking_twitter.html')
+        twitter = candidate.contact_details.get(label="@candidato1_twitter")
         context = Context({
-            "twitter": "candidato1_twitter",
+            "twitter": twitter,
             "candidate": candidate,
             'btn_text': 'message button',
             'popup_text': 'message twitter window'
@@ -92,6 +109,28 @@ class CandidaTeTestCase(Version2TestCase):
         actual_twitter_button_template = Template("{% load votainteligente_extras %}{% twitter_on_ranking 'message button' 'message twitter window' %}")
         actual_twitter_button = actual_twitter_button_template.render(Context({"candidate": candidate}))
         self.assertEquals(actual_twitter_button, expected_twitter_button)
+
+
+class CandidateExtraInfoTestCase(Version2TestCase):
+    def test_can_have_extra_info(self):
+        candidate = Candidate.objects.get(id=1)
+        candidate.extra_info['ribbon'] = "perrito"
+        candidate.save()
+        self.assertEquals(candidate.extra_info['ribbon'], "perrito")
+
+    @override_settings(DEFAULT_CANDIDATE_EXTRA_INFO={'ribbon': 'perrito'})
+    def test_default_candidate_extra_info(self):
+        candidate = Candidate.objects.get(id=1)
+        self.assertEquals(candidate.extra_info['ribbon'], 'perrito')
+
+    @override_settings(DEFAULT_CANDIDATE_EXTRA_INFO={'ribbon': 'perrito'})
+    def test_do_not_override_settings(self):
+        candidate = Candidate.objects.get(id=1)
+        candidate.extra_info['ribbon'] = 'Perro grande'
+        candidate.save()
+
+        candidate_again = Candidate.objects.get(id=1)
+        self.assertEquals(candidate_again.extra_info['ribbon'], 'Perro grande')
 
 
 class QuestionCategoryTestCase(Version2TestCase):

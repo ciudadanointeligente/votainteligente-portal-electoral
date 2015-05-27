@@ -33,7 +33,7 @@
 						{% if candidate.relation.custom_ribbon %}<div class="ribbon">{{ candidate.relation.custom_ribbon }}</div>{% endif %}
 					</div>
 					
-					{% if candidate.relation.portrait_photo %}
+					{% if candidate.image %}
 					<a class="btn btn-default button_pic hidden-xs" data-toggle="modal" href="#myCandidate" style="margin-bottom:5px" onClick="ga('send', 'event', 'support-candidate', 'click');"><i class="icon-camera"></i> {% trans "Da la cara por tu candidato" %}</a>
 					
 					<div class="modal fade" id="myCandidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -74,14 +74,14 @@
 				</div>
 				<div class="col-md-5">
 					<table class="table">
-						{{ candidate.biography|markdown }}
+						{% include 'elections/personal_data_candidate.html' with candidate=candidate %}
 					</table>			
 				</div>
 				
 				<div class="col-md-4 social-side">
 					<ul class="list-unstyled">
-						{% for link in candidate.link_set.all %}
-							<li><a href="{{link.url}}" class="social-link-candidate" target="_blank"><i class="{{ link.icon_class }}"></i> {{link.name}}</a></li>
+						{% for contact_detail in candidate.contact_details.all %}
+							<li><a href="{{contact_detail.value}}" class="social-link-candidate" target="_blank"><i class="{{ link.icon_class }}"></i> {{contact_detail.label}}</a></li>
 						{% endfor %}
 					</ul>
 					
@@ -104,9 +104,8 @@
 			 			{% endfor %}
 			 		{% endfor %}
 
-			 		{% if candidate.relation.description %}
-					{{ candidate.relation.description|linebreaks }}
-					{% endif %}
+			 		
+					{{ candidate.biography|markdown }}
 			 		</div>
 			 	</div>
 			</div>

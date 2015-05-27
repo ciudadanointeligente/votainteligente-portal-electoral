@@ -1,6 +1,8 @@
 
 from django.contrib import admin
 from elections.models import Election, Candidate
+from popolo.models import Organization, Membership, ContactDetail, OtherName
+from django.contrib.contenttypes.admin import GenericTabularInline
 # from django.contrib.flatpages.admin import FlatPageAdmin
 # from django.contrib.flatpages.models import FlatPage
 ## OOPS this is a custom widget that works for initializing
@@ -17,8 +19,29 @@ class ElectionAdmin(admin.ModelAdmin):
 admin.site.register(Election, ElectionAdmin)
 
 
-class CandidateAdmin(admin.ModelAdmin):
+class OrgnizationAdmin(admin.ModelAdmin):
     pass
+admin.site.register(Organization, OrgnizationAdmin)
+
+
+class ContactDetailInline(GenericTabularInline):
+    model = ContactDetail
+
+
+class MembershipInline(admin.TabularInline):
+    model = Membership
+
+
+class OtherNameInline(GenericTabularInline):
+    model = OtherName
+
+
+class CandidateAdmin(admin.ModelAdmin):
+    inlines = [
+        ContactDetailInline,
+        MembershipInline,
+        OtherNameInline
+    ]
 admin.site.register(Candidate, CandidateAdmin)
 
 # class PageForm(FlatpageForm):

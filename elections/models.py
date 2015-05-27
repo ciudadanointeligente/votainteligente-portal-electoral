@@ -7,19 +7,33 @@ from popolo.models import Person
 from django.utils.translation import ugettext as _
 from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
 from candidator.models import Category
-import re
+from picklefield.fields import PickledObjectField
+from django.conf import settings
 
 
-class Candidate(Person):
+class ExtraInfoMixin(models.Model):
+    extra_info = PickledObjectField(default={})
+
+    class Meta:
+        abstract = True
+
+    def __init__(self, *args, **kwargs):
+        super(ExtraInfoMixin, self).__init__(*args, **kwargs)
+        default_extra_info = self.default_extra_info
+        default_extra_info.update(self.extra_info)
+        self.extra_info = default_extra_info
+
+
+class Candidate(Person, ExtraInfoMixin):
     election = models.ForeignKey('Election', related_name='candidates', null=True)
+
+    default_extra_info = settings.DEFAULT_CANDIDATE_EXTRA_INFO
 
     @property
     def twitter(self):
-        links = self.links.filter(url__contains='twitter.com')
+        links = self.contact_details.filter(contact_type="TWITTER")
         if links:
-            link = links.first()
-            regex = re.compile(r"^https?://(www\.)?twitter\.com/(#!/)?([^/]+)(/\w+)*$")
-            return regex.match(link.url).groups()[2]
+            return links.first()
 
 
 class QuestionCategory(Category):

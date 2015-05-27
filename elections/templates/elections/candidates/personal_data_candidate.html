@@ -1,0 +1,16 @@
+{% load i18n %}
+{% load votainteligente_extras %}
+{% if candidate.birth_date %}
+<tr>
+    <td>
+        <span>{% trans 'Nacimiento' %}:</span> {{candidate.birth_date}}
+    </td>
+</tr>
+{% endif %}
+{% for personal_data in candidate.personal_datas.all %}
+<tr>
+    <td>
+        <span>{{personal_data.label}}:</span> {{personal_data.value}}
+    </td>
+</tr>
+{% endfor %}

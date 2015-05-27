@@ -1,7 +1,7 @@
 
 from django.contrib import admin
-from elections.models import Election, Candidate
-from popolo.models import Organization, Membership, ContactDetail, OtherName
+from elections.models import Election, Candidate, PersonalData
+from popolo.models import Organization, Membership, ContactDetail, OtherName, Post, Area
 from django.contrib.contenttypes.admin import GenericTabularInline
 # from django.contrib.flatpages.admin import FlatPageAdmin
 # from django.contrib.flatpages.models import FlatPage
@@ -36,14 +36,28 @@ class OtherNameInline(GenericTabularInline):
     model = OtherName
 
 
+class PersonalDataInline(admin.TabularInline):
+    model = PersonalData
+
+
 class CandidateAdmin(admin.ModelAdmin):
     inlines = [
         ContactDetailInline,
         MembershipInline,
-        OtherNameInline
+        OtherNameInline,
+        PersonalDataInline,
     ]
 admin.site.register(Candidate, CandidateAdmin)
 
+
+class PostAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Post, PostAdmin)
+
+
+class AreaAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Area, AreaAdmin)
 # class PageForm(FlatpageForm):
 #     class Meta:
 #         model = FlatPage

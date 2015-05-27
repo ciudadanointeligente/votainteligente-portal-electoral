@@ -9,14 +9,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEFAULT_CANDIDATE_EXTRA_INFO = {
     "portrait_photo": "http://votainteligente.cl/static/img/candidate-default.jpg",
-    'custom_ribbon': 'ribbon text',
-    'personal_data': {'nacionalidad': {"display": "Nacionalidad",
-                                       "value": "Es un ciudadano del mundo"
-                                       },
-                      'edad': {"display": "Edad",
-                               "value": "31 años"
-                               }
-                      }
+    'custom_ribbon': 'ribbon text'
 }
 
 TESTING = 'test' in sys.argv

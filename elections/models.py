@@ -36,6 +36,12 @@ class Candidate(Person, ExtraInfoMixin):
             return links.first()
 
 
+class PersonalData(models.Model):
+    candidate = models.ForeignKey('Candidate', related_name="personal_datas")
+    label = models.CharField(max_length=512)
+    value = models.CharField(max_length=1024)
+
+
 class QuestionCategory(Category):
     election = models.ForeignKey('Election', related_name='categories', null=True)
 

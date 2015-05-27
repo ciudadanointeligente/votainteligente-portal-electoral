@@ -1,7 +1,7 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from popolo.models import Person, ContactDetail
-from elections.models import Candidate, Election, QuestionCategory
+from elections.models import Candidate, Election, QuestionCategory, PersonalData
 from candidator.models import Category
 from django.template.loader import get_template
 from django.template import Context, Template
@@ -131,6 +131,13 @@ class CandidateExtraInfoTestCase(Version2TestCase):
 
         candidate_again = Candidate.objects.get(id=1)
         self.assertEquals(candidate_again.extra_info['ribbon'], 'Perro grande')
+
+    def test_instanciate_a_personal_data(self):
+        candidate = Candidate.objects.get(id=1)
+        personal_data = PersonalData.objects.create(candidate=candidate, label='Edad', value=u'31 años')
+        self.assertEquals(personal_data.label, 'Edad')
+        self.assertEquals(personal_data.value, u'31 años')
+        self.assertIn(personal_data, candidate.personal_datas.all())
 
 
 class QuestionCategoryTestCase(Version2TestCase):

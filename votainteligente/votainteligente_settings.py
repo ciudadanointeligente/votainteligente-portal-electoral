@@ -11,6 +11,9 @@ DEFAULT_CANDIDATE_EXTRA_INFO = {
     "portrait_photo": "http://votainteligente.cl/static/img/candidate-default.jpg",
     'custom_ribbon': 'ribbon text'
 }
+DEFAULT_ELECTION_EXTRA_INFO = {
+    "extra": "Extra extra extra"
+}
 
 TESTING = 'test' in sys.argv
 INSTALLED_APPS = (

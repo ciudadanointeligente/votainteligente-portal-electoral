@@ -26,10 +26,12 @@ admin.site.register(Organization, OrgnizationAdmin)
 
 class ContactDetailInline(GenericTabularInline):
     model = ContactDetail
+    fields = ('label', 'contact_type', 'value')
 
 
 class MembershipInline(admin.TabularInline):
     model = Membership
+    fields = ('label', 'role', 'organization', 'on_behalf_of', 'post', 'start_date', 'end_date', 'area')
 
 
 class OtherNameInline(GenericTabularInline):

@@ -5,6 +5,7 @@ from loremipsum import get_paragraphs
 from django.core.urlresolvers import reverse
 from elections.views import ElectionDetailView
 from django.views.generic import DetailView
+from django.test import override_settings
 
 
 class ElectionTestCase(TestCase):
@@ -107,6 +108,27 @@ class ElectionTestCase(TestCase):
         expected_url = reverse('election_extra_info', kwargs={'slug': election.slug})
 
         self.assertEquals(election.get_extra_info_url(), expected_url)
+
+
+class ElectionExtraInfo(TestCase):
+
+    def test_an_election_has_extra_info(self):
+        election = Election.objects.create(name='the name',
+                                           slug='the-slug',
+                                           description='this is a description',
+                                           extra_info_title=u'ver más',
+                                           extra_info_content=u'Más Información')
+        election.extra_info['ribbon'] = "perrito"
+        election.save()
+        self.assertEquals(election.extra_info['ribbon'], "perrito")
+
+    def test_election_has_default_info(self):
+        election = Election.objects.create(name='the name',
+                                           slug='the-slug',
+                                           description='this is a description',
+                                           extra_info_title=u'ver más',
+                                           extra_info_content=u'Más Información')
+        self.assertEquals(election.extra_info['extra'], 'Extra extra extra')
 
 
 class ElectionViewTestCase(TestCase):

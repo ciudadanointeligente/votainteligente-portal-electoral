@@ -14,3 +14,13 @@
     </td>
 </tr>
 {% endfor %}
+{% for membership in candidate.memberships.all %}
+<tr>
+    <td>
+        <span>{{membership.organization.name}}:</span> {{membership.label}} 
+        {% if membership.start_date %}
+            ({{membership.start_date}} - {{membership.end_date}})
+        {% endif %}
+    </td>
+</tr>
+{% endfor %}

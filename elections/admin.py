@@ -14,6 +14,29 @@ from django.conf import settings
 # from tinymce.widgets import TinyMCE
 
 
+class CandidateModelForm(forms.ModelForm):
+    model = Candidate
+
+    def __init__(self, *args, **kwargs):
+        super(CandidateModelForm, self).__init__(*args, **kwargs)
+        self.extra_info_fields = settings.DEFAULT_CANDIDATE_EXTRA_INFO.keys()
+        for key in self.extra_info_fields:
+            self.fields.update({key: forms.CharField(max_length=512,
+                                                     label=key,
+                                                     required=False,
+                                                     widget=forms.TextInput(),
+                                                     initial=self.instance.extra_info[key]
+                                                     )})
+
+    def save(self, commit=True, *args, **kwargs):
+        instance = super(CandidateModelForm, self).save(commit, *args, **kwargs)
+        for key in self.extra_info_fields:
+            instance.extra_info[key] = self.cleaned_data.get(key, None)
+        if commit:
+            instance.save()
+        return instance
+
+
 class ElectionModelForm(forms.ModelForm):
     model = Election
 
@@ -76,12 +99,22 @@ class PersonalDataInline(admin.TabularInline):
 
 
 class CandidateAdmin(admin.ModelAdmin):
+    form = CandidateModelForm
     inlines = [
         ContactDetailInline,
         MembershipInline,
         OtherNameInline,
         PersonalDataInline,
     ]
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super(CandidateAdmin, self).get_fieldsets(request, obj)
+        if hasattr(request, "_gfs_marker"):
+            for key in settings.DEFAULT_CANDIDATE_EXTRA_INFO.keys():
+                fieldsets[0][1]['fields'] += (key,)
+        setattr(request, "_gfs_marker", 1)
+        return fieldsets
+
 admin.site.register(Candidate, CandidateAdmin)
 
 

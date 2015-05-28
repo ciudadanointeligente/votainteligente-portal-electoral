@@ -64,9 +64,6 @@ class Election(ExtraInfoMixin, models.Model):
 
     default_extra_info = settings.DEFAULT_ELECTION_EXTRA_INFO
 
-    # def __init__(self, *args, **kwargs):
-    #     super(Election, self).__init__(*args, **kwargs)
-
     def __unicode__(self):
         return self.name
 

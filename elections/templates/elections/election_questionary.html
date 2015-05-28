@@ -34,12 +34,15 @@
 									<li>
 									{% with candidate=taken_position.person %}
 										{% if candidate.image %}
-											<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{candidate.image}}" height="100" width="100" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
+											{% thumbnail candidate.image "100x100" crop="center" as im %}
+											<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{im.url}}" height="100" width="100" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
+											{% endthumbnail %}
 										{% else %}
-											{% static "img/candidate-default.jpg" as candidate_default %}
-											<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{candidate_default}}"  height="100" width="100" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
-											<span>{{candidate.name}}</span>
+											{% thumbnail "http://votainteligente.cl/static/img/candidate-default.jpg" "100x100" crop="center" as im %}
+											<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{im.url}}"  height="100" width="100" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
+											{% endthumbnail %}
 										{% endif %}
+										<span>{{candidate.name}}</span>
 									{% endwith %}
 									</li>
 								{% endfor %}

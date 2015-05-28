@@ -4,6 +4,7 @@
 {% load thumbnail %}
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
+{% load thumbnail %}
 
 {% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}{% endblock url_face_to_face %}
 
@@ -22,7 +23,11 @@
 				<div class="col-md-3">
 					<div id="candidate-img-profile">
 						{% if candidate.image %}
-						<img src="{{candidate.image}}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive">
+
+						{% thumbnail candidate.image "300x300" crop="center" as im %}
+						    <img src="{{ im.url }}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive">
+						{% endthumbnail %}
+						
 						{% else %}
 						<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">
 						{% endif %}
@@ -48,7 +53,9 @@
 									</div>
 									<div id="videocontainer">
 										<video id="video"></video>
-										<img src="{{candidate.image}}" id="soulmate-pic" alt="{{candidate.name}}" title="{{candidate.name}}">
+										{% thumbnail candidate.image "300x640" crop="center" as im %}
+										<img src="{{im.url}}" id="soulmate-pic" alt="{{candidate.name}}" title="{{candidate.name}}">
+										{% endthumbnail %}
 									</div>
 									<canvas id="canvas"></canvas>
 									<div id="cover"></div>

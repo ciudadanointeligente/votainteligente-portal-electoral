@@ -9,9 +9,9 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div id="candidate-img-profile">
-			{% if winner.candidate.photo %}
-				{% thumbnail winner.candidate.photo "x300" crop="center" as im %}
-				<img src="{{winner.candidate.photo}}" alt="{{winner.candidate.name}}" class="img-responsive">
+			{% if winner.candidate.image %}
+				{% thumbnail winner.candidate.image "x300" crop="center" as im %}
+				<img src="{{im.url}}" alt="{{winner.candidate.name}}" class="img-responsive">
 				{% endthumbnail %}
 			{% else %}
 				<img src="{% static 'img/candidate-default.jpg' %}" alt="{{winner.candidate.name}}" class="img-responsive">
@@ -36,7 +36,7 @@
 								<video id="video"></video>
 								{% comment "Hay que dividir esta wea por la mitad y agrandarlo" %}
 								{% endcomment %}
-								<img src="{{winner.candidate.extra_info.portrait_photo}}" id="soulmate-pic" alt="{{winner.candidate.name}}" title="{{winner.candidate.name}}">
+								<img src="{{winner.candidate.image}}" id="soulmate-pic" alt="{{winner.candidate.name}}" title="{{winner.candidate.name}}">
 							</div>
 							<canvas id="canvas"></canvas>
 							<div id="cover"></div>

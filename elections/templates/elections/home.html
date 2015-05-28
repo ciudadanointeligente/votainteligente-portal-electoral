@@ -40,8 +40,8 @@
             <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
               {% for candidate in featured_election.candidates.all %}
               <li>
-                  {% if candidate.photo %}
-                  {% thumbnail candidate.photo "x300" as im %}
+                  {% if candidate.image %}
+                  {% thumbnail candidate.image "x300" as im %}
                     <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
                   {% endthumbnail %}
                   {% else %}
@@ -79,8 +79,8 @@
             <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
               {% for candidate in featured_election.candidates.all %}
               <li>
-                {% if candidate.photo %}
-                  {% thumbnail candidate.photo "x300" as im %}
+                {% if candidate.image %}
+                  {% thumbnail candidate.image "300x300" crop="center" as im %}
                     <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
                   {% endthumbnail %}
                 {% else %}

@@ -105,4 +105,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/cache/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'cache')
 
+
 from votainteligente.votainteligente_settings import *
+
+try:
+    from local_settings import *  # noqa
+    INSTALLED_APPS += EXTRA_APPS
+except ImportError:
+    pass

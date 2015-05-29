@@ -1,63 +1,144 @@
 
 from django.contrib import admin
-from elections.models import Election, VotaInteligenteMessage, VotaInteligenteAnswer, CandidatePerson
-from django.contrib.flatpages.admin import FlatpageForm, FlatPageAdmin
-from django.contrib.flatpages.models import FlatPage
+from elections.models import Election, Candidate, PersonalData
+from popolo.models import Organization, Membership, ContactDetail, OtherName, Post, Area
+from django.contrib.contenttypes.admin import GenericTabularInline
+from django import forms
+from django.conf import settings
+# from django.contrib.flatpages.admin import FlatPageAdmin
+# from django.contrib.flatpages.models import FlatPage
 ## OOPS this is a custom widget that works for initializing
 ## tinymce instances on stacked and tabular inlines
 ## for flatpages, just use the tinymce packaged one.
-#from content.widgets import TinyMCE 
-from tinymce.widgets import TinyMCE
-from django.utils.translation import ugettext_lazy as _
+#from content.widgets import TinyMCE
+# from tinymce.widgets import TinyMCE
+
+
+class CandidateModelForm(forms.ModelForm):
+    model = Candidate
+
+    def __init__(self, *args, **kwargs):
+        super(CandidateModelForm, self).__init__(*args, **kwargs)
+        self.extra_info_fields = settings.DEFAULT_CANDIDATE_EXTRA_INFO.keys()
+        for key in self.extra_info_fields:
+            self.fields.update({key: forms.CharField(max_length=512,
+                                                     label=key,
+                                                     required=False,
+                                                     widget=forms.TextInput(),
+                                                     initial=self.instance.extra_info[key]
+                                                     )})
+
+    def save(self, commit=True, *args, **kwargs):
+        instance = super(CandidateModelForm, self).save(commit, *args, **kwargs)
+        for key in self.extra_info_fields:
+            instance.extra_info[key] = self.cleaned_data.get(key, None)
+        if commit:
+            instance.save()
+        return instance
+
+
+class ElectionModelForm(forms.ModelForm):
+    model = Election
+
+    def __init__(self, *args, **kwargs):
+        super(ElectionModelForm, self).__init__(*args, **kwargs)
+        self.extra_info_fields = settings.DEFAULT_ELECTION_EXTRA_INFO.keys()
+        for key in self.extra_info_fields:
+            self.fields.update({key: forms.CharField(max_length=512,
+                                                     label=key,
+                                                     required=False,
+                                                     widget=forms.TextInput(),
+                                                     initial=self.instance.extra_info[key]
+                                                     )})
+
+    def save(self, commit=True, *args, **kwargs):
+        instance = super(ElectionModelForm, self).save(commit, *args, **kwargs)
+        for key in self.extra_info_fields:
+            instance.extra_info[key] = self.cleaned_data.get(key, None)
+        if commit:
+            instance.save()
+        return instance
+
 
 class ElectionAdmin(admin.ModelAdmin):
+    form = ElectionModelForm
     search_fields = ['name', 'tags']
-	
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super(ElectionAdmin, self).get_fieldsets(request, obj)
+        if hasattr(request, "_gfs_marker"):
+            for key in settings.DEFAULT_ELECTION_EXTRA_INFO.keys():
+                fieldsets[0][1]['fields'] += (key,)
+        setattr(request, "_gfs_marker", 1)
+        return fieldsets
+
 admin.site.register(Election, ElectionAdmin)
 
-class PageForm(FlatpageForm):
 
-    class Meta:
-        model = FlatPage
-        widgets = {
-            'content' : TinyMCE(),
-        }
-
-class PageAdmin(FlatPageAdmin):
-    """
-    Page Admin
-    """
-    form = PageForm
-
-admin.site.unregister(FlatPage)
-admin.site.register(FlatPage, PageAdmin)
-
-class AnswerInline(admin.TabularInline):
-    model = VotaInteligenteAnswer
-    fields = ['content','person']
-    extra = 0
-
-class CandidatePersonExtraInfoAdmin(admin.ModelAdmin):
-    readonly_fields = ('person',)
-    fields = ('reachable','description', 'portrait_photo', 'custom_ribbon')
-    search_fields = ['person__name', 'person__api_instance__election__name']
-
-admin.site.register(CandidatePerson, CandidatePersonExtraInfoAdmin)
+class OrgnizationAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Organization, OrgnizationAdmin)
 
 
-class MensajesAdmin(admin.ModelAdmin):
-    fields = ['author_name','author_email', 'subject', 'content', 'people', 'moderated']
-    list_filter = ('moderated', )
-    search_fields = ['author_name', 'author_email', 'subject', 'writeitinstance__name', 'people__name']
+class ContactDetailInline(GenericTabularInline):
+    model = ContactDetail
+    fields = ('label', 'contact_type', 'value')
+
+
+class MembershipInline(admin.TabularInline):
+    model = Membership
+    fields = ('label', 'role', 'organization', 'on_behalf_of', 'post', 'start_date', 'end_date', 'area')
+
+
+class OtherNameInline(GenericTabularInline):
+    model = OtherName
+
+
+class PersonalDataInline(admin.TabularInline):
+    model = PersonalData
+
+
+class CandidateAdmin(admin.ModelAdmin):
+    form = CandidateModelForm
     inlines = [
-    AnswerInline
+        ContactDetailInline,
+        MembershipInline,
+        OtherNameInline,
+        PersonalDataInline,
     ]
 
-    actions = ['accept_moderation']
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super(CandidateAdmin, self).get_fieldsets(request, obj)
+        if hasattr(request, "_gfs_marker"):
+            for key in settings.DEFAULT_CANDIDATE_EXTRA_INFO.keys():
+                fieldsets[0][1]['fields'] += (key,)
+        setattr(request, "_gfs_marker", 1)
+        return fieldsets
 
-    def accept_moderation(self, request, queryset):
-        for message in queryset:
-            message.accept_moderation()
-    accept_moderation.short_description = "Aceptar Mensajes para ser enviados"
+admin.site.register(Candidate, CandidateAdmin)
 
-admin.site.register(VotaInteligenteMessage, MensajesAdmin)
+
+class PostAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Post, PostAdmin)
+
+
+class AreaAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Area, AreaAdmin)
+# class PageForm(FlatpageForm):
+#     class Meta:
+#         model = FlatPage
+#         widgets = {
+#             'content': TinyMCE(),
+#         }
+
+
+# class PageAdmin(FlatPageAdmin):
+#     """
+#     Page Admin
+#     """
+#     form = PageForm
+
+# admin.site.unregister(FlatPage)
+# admin.site.register(FlatPage, PageAdmin)

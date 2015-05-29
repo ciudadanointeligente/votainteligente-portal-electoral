@@ -1,22 +1,23 @@
 {% load i18n %}
 {% load thumbnail %}
-{% load candideitorg_templetags %}
 {% load votainteligente_extras %}
 {% load staticfiles %}
+{% load mathfilters %}
+
 
 <div id="soulmate-result">
 	<div class="row">
 		<div class="col-md-3">
 			<div id="candidate-img-profile">
-			{% if winner.candidate.photo %}
-				{% thumbnail winner.candidate.photo "x300" crop="center" as im %}
-				<img src="{{winner.candidate.photo}}" alt="{{winner.candidate.name}}" class="img-responsive">
+			{% if winner.candidate.image %}
+				{% thumbnail winner.candidate.image "x300" crop="center" as im %}
+				<img src="{{im.url}}" alt="{{winner.candidate.name}}" class="img-responsive">
 				{% endthumbnail %}
 			{% else %}
 				<img src="{% static 'img/candidate-default.jpg' %}" alt="{{winner.candidate.name}}" class="img-responsive">
 			{% endif %}
 			</div>
-			{% if winner.candidate.relation.portrait_photo %}
+			{% if winner.candidate.image %}
 			<a class="btn btn-default button_pic hidden-xs" data-toggle="modal" href="#myCandidate" style="margin-bottom:5px" onClick="ga('send', 'event', 'support-candidate-soulmate', 'click');"><i class="icon-camera"></i> {% trans "Da la cara por tu candidato" %}</a>
 			
 			<div class="modal fade" id="myCandidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -33,7 +34,9 @@
 							</div>
 							<div id="videocontainer">
 								<video id="video"></video>
-								<img src="{{winner.candidate.relation.portrait_photo}}" id="soulmate-pic" alt="{{winner.candidate.name}}" title="{{winner.candidate.name}}">
+								{% comment "Hay que dividir esta wea por la mitad y agrandarlo" %}
+								{% endcomment %}
+								<img src="{{winner.candidate.image}}" id="soulmate-pic" alt="{{winner.candidate.name}}" title="{{winner.candidate.name}}">
 							</div>
 							<canvas id="canvas"></canvas>
 							<div id="cover"></div>
@@ -55,8 +58,8 @@
 			{% endif %}
 		</div>
 		<div class="col-md-5">
-			<h3><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}">{{winner.candidate.name}} </a><i class="icon-heart"></i></h3>
-			<h2>{{winner.global_score|floatformat}}<span>% </span></h2>
+			<h3><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}">{{winner.candidate.name}} </a><i class="icon-heart"></i></h3>
+			<h2>{{winner.percentage|mul:100|floatformat}}<span>% </span></h2>
 				<div>{% trans "de afinidad" %}</div>
 			<div class="row fondo-azuloscuro">
 				<div class="col-md-5">
@@ -64,9 +67,9 @@
 				</div>
 				<div class="col-md-7">
 					<ul class="list-inline">
-						<li><a href="#" onclick="window.open('https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}&text={{winner.candidate.name}}+<3&hashtags=medianaranja,votainteligente', 'twitter-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-twitter', 'click');"><i class="icon-twitter-sign icon-4x"></i></a></li>
-						<li><a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}', 'facebook-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-facebook', 'click');"><i class="icon-facebook-sign icon-4x"></i></a></li>
-						<li><a href="#" onclick="window.open('https://plus.google.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}&hl=es-419', 'googleplus-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-gplus', 'click');"><i class="icon-google-plus-sign icon-4x"></i></a></li>
+						<li><a href="#" onclick="window.open('https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}&text={{winner.candidate.name}}+<3&hashtags=medianaranja,votainteligente', 'twitter-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-twitter', 'click');"><i class="icon-twitter-sign icon-4x"></i></a></li>
+						<li><a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}', 'facebook-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-facebook', 'click');"><i class="icon-facebook-sign icon-4x"></i></a></li>
+						<li><a href="#" onclick="window.open('https://plus.google.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}&hl=es-419', 'googleplus-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-gplus', 'click');"><i class="icon-google-plus-sign icon-4x"></i></a></li>
 					</ul>
 				</div>
 			</div>
@@ -95,10 +98,10 @@
 		{% for other in others %}
 		<div class="col-md-4">
 			<div class="other-soulmate-box">
-				<h4>{{other.global_score|floatformat}}% <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=other.candidate.slug %}">{{other.candidate.name}}</a></h4>
+				<h4>{{other.percentage|mul:100|floatformat}}% <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=other.candidate.id %}">{{other.candidate.name}}</a></h4>
 				<ul class="list-unstyled">
 					{% for other_cat in other.category_score %}
-					<li>{{other_cat.score|floatformat}}% {{other_cat.category}}</li>
+					<li>{{other_cat.percentage|floatformat}}% {{other_cat.category}}</li>
 					{% endfor %}
 				</ul>
 			</div>
@@ -112,6 +115,6 @@
 <script type="text/javascript">
 var API_KEY = '{{ 'client_id'|website_imgur }}';
 var candidate_name = '{{winner.candidate.name}}'
-var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.slug %}';
+var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}';
 </script>
 <script type="text/javascript" src="{% static 'js/video.js' %}"></script>

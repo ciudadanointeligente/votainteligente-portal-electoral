@@ -61,36 +61,26 @@ $(document).ready(function(){
 	</div>
 	<div class="row">
 		<form id="form-soulmate" role="form">
-		{% for category in election.can_election.category_set.all %}
+		{% for category in election.categories.all %}
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">{{category.name}}</h3>
 			</div>
 			<div class="panel-body">
-				{% for question in category.question_set.all %}
+				{% for topic in category.topics.all %}
 				<div class="row fondo-gris">
 					<div class="col-md-8">
-					<p class="question">{{question.question}}</p>
+					<p class="question">{{topic.label}}</p>
 						<ul class="list-unstyled">
-							{% for answer in question.answer_set.all %}
+							{% for position in topic.positions.all %}
 							<li>
-								<label for="answer-{{question.remote_id}}-{{answer.remote_id}}"><input name="answer-{{question.remote_id}}" value="{{answer.remote_id}}" id="answer-{{question.remote_id}}-{{answer.remote_id}}" type="radio"> {{answer.caption}}</label>
+								<label for="answer-{{topic.id}}-{{position.id}}"><input name="answer-{{topic.id}}" value="{{position.id}}" id="answer-{{topic.id}}-{{position.id}}" type="radio"> {{position.label}}</label>
 							</li>
 							{% endfor %}
 						</ul>
 					</div>
-					<div class="col-md-4">
-						<p class="question">{% trans "¿Qué importancia le das a esta pregunta?" %}</p>
-						<ul id="importancia" class="list-inline">
-							<span style="margin-right: 5px;"><i class="icon-minus-sign"></i></span><input type="radio" name="importance-{{question.remote_id}}" value="1" onClick="ga('send', 'event', 'soulmate-importance', 'click', 'one');">
-							<input type="radio" name="importance-{{question.remote_id}}" value="2" onClick="ga('send', 'event', 'soulmate-importance', 'click', 'two');">
-							<input type="radio" name="importance-{{question.remote_id}}" value="3" checked="checked" onClick="ga('send', 'event', 'soulmate-importance', 'click', 'three');">
-							<input type="radio" name="importance-{{question.remote_id}}" value="4" onClick="ga('send', 'event', 'soulmate-importance', 'click', 'four');">
-							<input type="radio" name="importance-{{question.remote_id}}" value="5" onClick="ga('send', 'event', 'soulmate-importance', 'click', 'five');"><span style="margin-left: 5px;"><i class="icon-plus-sign"></i></span>
-						</ul>
-					</div>
 				</div>
-				<input type="hidden" name="question-{{question.remote_id}}" value="{{question.remote_id}}">
+				<input type="hidden" name="question-{{topic.id}}" value="{{topic.id}}">
 				{% endfor %}
 			</div>
 		</div>

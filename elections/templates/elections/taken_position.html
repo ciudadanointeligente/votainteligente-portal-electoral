@@ -1,0 +1,10 @@
+{% load i18n %}
+{% if taken_position %}
+    {% if only_text %}
+        {{taken_position.position.label}}
+    {% else %}
+        <i class="icon-quote-left"></i>{{taken_position.position.label}}<i class="icon-quote-right"></i>
+    {% endif %}
+{% else %}
+    {% trans "Esta(e) candidata(o) aún no responde" %} 
+{% endif %}

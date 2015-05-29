@@ -1,12 +1,11 @@
-Django==1.5.1
+Django==1.8.1
 django-nose
 django-autoslug
 django-taggit
 loremipsum
-South
 elasticsearch
 django-haystack
--e git://github.com/ciudadanointeligente/candideitorg-django.git#egg=candideitorg-django
+-e git://github.com/lfalvarez/django-candidator.git#egg=django-candidator
 PyYAML
 django-markdown-deux==1.0.4
 django-extensions
@@ -15,11 +14,12 @@ pillow
 pgmagick
 django_admin_bootstrapped
 django-tinymce
--e git://github.com/ciudadanointeligente/popit-django.git@posts_a_person_to_the_api#egg=popit-django
--e git://github.com/ciudadanointeligente/writeit-django.git#egg=writeit-django
 django-registration
 mimeparse
 django-tastypie
 django-pagination==1.0.5
 django-celery
 python-memcached
+-e git+https://github.com/openpolis/django-popolo.git#egg=django_popolo-dev
+django-mathfilters
+django-picklefield

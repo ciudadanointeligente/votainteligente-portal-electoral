@@ -4,7 +4,6 @@
 local_settings.py
 .coverage
 *.db
-writeit-for-testing
 popit-api-for-testing
 cache/*
 .DS_Store

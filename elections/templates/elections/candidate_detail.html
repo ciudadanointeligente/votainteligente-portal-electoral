@@ -1,11 +1,12 @@
 {% extends "elections/election_base.html" %}
 {% load staticfiles %}
-{% load candideitorg_templetags %}
 {% load i18n %}
 {% load thumbnail %}
+{% load markdown_deux_tags %}
 {% load votainteligente_extras %}
+{% load thumbnail %}
 
-{% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}{% endblock url_face_to_face %}
+{% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}{% endblock url_face_to_face %}
 
 {% block title %} - {{election}} - {{candidate.name}}{% endblock title%}
 
@@ -21,19 +22,21 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div id="candidate-img-profile">
-						{% if candidate.photo %}
-						{% thumbnail candidate.photo "300x300" crop="center" as im %}
-						<img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive">
+						{% if candidate.image %}
+
+						{% thumbnail candidate.image "300x300" crop="center" as im %}
+						    <img src="{{ im.url }}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive">
 						{% endthumbnail %}
+						
 						{% else %}
 						<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">
 						{% endif %}
 						
 						<img id="apoya" src="{% static 'img/hover-caraacara.png' %}" alt="{% trans "Apoya a tu candidato" %}" title="{% trans "Apoya a tu candidato" %}">
-						{% if candidate.relation.custom_ribbon %}<div class="ribbon">{{ candidate.relation.custom_ribbon }}</div>{% endif %}
+						{% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %}
 					</div>
 					
-					{% if candidate.relation.portrait_photo %}
+					{% if candidate.image %}
 					<a class="btn btn-default button_pic hidden-xs" data-toggle="modal" href="#myCandidate" style="margin-bottom:5px" onClick="ga('send', 'event', 'support-candidate', 'click');"><i class="icon-camera"></i> {% trans "Da la cara por tu candidato" %}</a>
 					
 					<div class="modal fade" id="myCandidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -50,7 +53,9 @@
 									</div>
 									<div id="videocontainer">
 										<video id="video"></video>
-										<img src="{{candidate.relation.portrait_photo}}" id="soulmate-pic" alt="{{candidate.name}}" title="{{candidate.name}}">
+										{% thumbnail candidate.image "300x640" crop="center" as im %}
+										<img src="{{im.url}}" id="soulmate-pic" alt="{{candidate.name}}" title="{{candidate.name}}">
+										{% endthumbnail %}
 									</div>
 									<canvas id="canvas"></canvas>
 									<div id="cover"></div>
@@ -74,29 +79,16 @@
 				</div>
 				<div class="col-md-5">
 					<table class="table">
-						{% for personal_data in election.can_election.personaldata_set.all %}
-						<tr>
-							<td>
-								<span>{{personal_data.label}}:</span>
-									{% relation_personal_data_candidate candidate personal_data %}
-							</td>
-						</tr>
-						{% endfor %}
+						{% include 'elections/candidates/personal_data_candidate.html' with candidate=candidate %}
 					</table>			
 				</div>
 				
 				<div class="col-md-4 social-side">
-					<ul class="list-unstyled">
-						{% for link in candidate.link_set.all %}
-							<li><a href="{{link.url}}" class="social-link-candidate" target="_blank"><i class="{{ link.icon_class }}"></i> {{link.name}}</a></li>
-						{% endfor %}
-					</ul>
+					{% include 'elections/candidates/contacts.html' with candidate=candidate %}
 					
-					{% if 'ask'|val_navbars and election.uses_preguntales  %}
-					<button type="button" class="btn btn-success btn-lg btn-block" onClick="location.href='{% url 'ask_detail_view' slug=election.slug %}'"><i class="icon-edit"></i> {% trans "Hazle una pregunta" %}</button>
-					{% endif %}
+					
 					{% if 'facetoface'|val_navbars and election.uses_face_to_face  %}
-					<button type="button" class="btn btn-danger btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
+					<button type="button" class="btn btn-danger btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
 					{% endif %}
 					
 				</div>
@@ -114,9 +106,8 @@
 			 			{% endfor %}
 			 		{% endfor %}
 
-			 		{% if candidate.relation.description %}
-					{{ candidate.relation.description|linebreaks }}
-					{% endif %}
+			 		
+					{{ candidate.biography|markdown }}
 			 		</div>
 			 	</div>
 			</div>
@@ -130,24 +121,19 @@
 			<div class="col-md-6">
 				<h3>{% trans "Cuestionario" %} {% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
 			</div>
-			<div class="col-md-6">
-				<p class="text-right questionary-text-right"><a href="{% url 'questions_per_candidate' election_slug=election.slug slug=candidate.slug %}">{% trans "Revisa otras preguntas que le han hecho" %} <i class="icon-caret-right"></i></a></p>
-			</div>
 		</div>
-				
-		{% for category in election.can_election.category_set.all %}
+		{% for category in election.categories.all %}
 		<div class="panel panel-default">
 			<div class="panel-heading">{{category.name}}</div>
 			<div class="panel-body">
-				{% for question in category.question_set.all %}
+				{% for topic in category.topics.all %}
 				<div class="question-answer" {% if forloop.counter >= 2 %}style="margin-top:5px;" {% endif %}>
 					<p class="question">
-						{{question.question}}
+						{{topic.label}}
 					</p>
 					<p class="answer">
-						<i class="icon-quote-left"></i> {% answer_for_candidate_and_question candidate question %} <i class="icon-quote-right"></i>
+						{% get_taken_position_for topic candidate %}
 						<!-- source -->
-						{% get_information_source candidate question %} 
 						<!-- eosource -->
 					</p>
 				</div>
@@ -179,7 +165,7 @@
 	<script type="text/javascript">
 	var API_KEY = '{{ 'client_id'|website_imgur }}';
 	var candidate_name = '{{candidate.name}}';
-	var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.slug %}';
+	var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}';
 	</script>
 	<script type="text/javascript" src="{% static 'js/video.js' %}"></script>
 {% endblock mainelection %}

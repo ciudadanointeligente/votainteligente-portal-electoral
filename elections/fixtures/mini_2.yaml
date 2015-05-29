@@ -1,0 +1,147 @@
+- fields: {name: Perros y gatos, slug: perros-y-gatos}
+  model: candidator.category
+  pk: 1
+- fields: {election: 1, category_ptr: 1}
+  model: elections.questioncategory
+  pk: 1
+- fields: {name: "Educacion", slug: educacion}
+  model: candidator.category
+  pk: 2
+- fields: {election: 1, category_ptr: 2}
+  model: elections.questioncategory
+  pk: 2
+- fields: {name: Perros y gatos, slug: perros-y-gatos}
+  model: candidator.category
+  pk: 3
+- fields: {election: 2, category_ptr: 3}
+  model: elections.questioncategory
+  pk: 3
+- fields: {name: "Educacion", slug: educacion}
+  model: candidator.category
+  pk: 4
+- fields: {election: 2, category_ptr: 4}
+  model: elections.questioncategory
+  pk: 4
+- fields: {category: 1, label: 'Le gusta la Fiera??', slug: 'fiera1'}
+  model: candidator.topic
+  pk: 1
+- fields: {category: 1, label: 'Le gusta Benito??', slug: 'benito1'}
+  model: candidator.topic
+  pk: 2
+- fields: {category: 2, label: 'Libre para todos??', slug: 'freedom1'}
+  model: candidator.topic
+  pk: 3
+- fields: {category: 3, label: 'Le gusta la Fiera2??', slug: 'fiera2'}
+  model: candidator.topic
+  pk: 4
+- fields: {category: 3, label: 'Le gusta Benito2??', slug: 'benito2'}
+  model: candidator.topic
+  pk: 5
+- fields: {category: 4, label: 'Libre para todos2??', slug: 'freedom2'}
+  model: candidator.topic
+  pk: 6
+- fields: {label: "Si", topic: 1}
+  model: candidator.position
+  pk: 1
+- fields: {label: 'No', topic: 1}
+  model: candidator.position
+  pk: 2
+- fields: {label: A veces, topic: 1}
+  model: candidator.position
+  pk: 3
+- fields: {label: "Si", topic: 2}
+  model: candidator.position
+  pk: 4
+- fields: {label: 'no', topic: 2}
+  model: candidator.position
+  pk: 5
+- fields: {label: "Si", topic: 3}
+  model: candidator.position
+  pk: 6
+- fields: {label: 'no', topic: 3}
+  model: candidator.position
+  pk: 7
+- fields: {label: "Si", topic: 4}
+  model: candidator.position
+  pk: 8
+- fields: {label: 'No', topic: 4}
+  model: candidator.position
+  pk: 9
+- fields: {label: A veces, topic: 4}
+  model: candidator.position
+  pk: 10
+- fields: {label: "Si", topic: 5}
+  model: candidator.position
+  pk: 11
+- fields: {label: 'no', topic: 5}
+  model: candidator.position
+  pk: 12
+- fields: {label: "Si", topic: 6}
+  model: candidator.position
+  pk: 13
+- fields: {label: 'no', topic: 6}
+  model: candidator.position
+  pk: 14
+- fields: {person_ptr: 1, name: Manuel Rojas, election: 2, extra_info: {}}
+  model: elections.candidate
+  pk: 1
+- fields: {person_ptr: 2, name: Alejandro Guillier, election: 2, extra_info: {}}
+  model: elections.candidate
+  pk: 2
+- fields: {person_ptr: 3, name: Pedro Araya, election: 2, extra_info: {}}
+  model: elections.candidate
+  pk: 3
+- fields: {person_ptr: 4, name: Gisela Contreras, election: 1, extra_info: {}}
+  model: elections.candidate
+  pk: 4
+- fields: {person_ptr: 5, name: Carlos Cantero, election: 1, extra_info: {}}
+  model: elections.candidate
+  pk: 5
+- fields: {person_ptr: 6, name: Daniel Guevara, election: 1, extra_info: {}}
+  model: elections.candidate
+  pk: 6
+- fields: {person_ptr: 7, name: Jimena Orrego}
+  model: elections.candidate
+  pk: 7
+- fields: {person_ptr: 8, name: Gonzalo Uriarte}
+  model: elections.candidate
+  pk: 8
+- fields: {person_ptr: 9, name: Mario Bertolino}
+  model: elections.candidate
+  pk: 9
+- fields: {person_ptr: 10, name: Jorge Pizarro}
+  model: elections.candidate
+  pk: 10
+- fields: {person_ptr: 11, name: "Adriana Munoz"}
+  model: elections.candidate
+  pk: 11
+- fields: {person_ptr: 12, name: Luis Vega}
+  model: elections.candidate
+  pk: 12
+- fields: {topic: 4, position: 8, person: 1}
+  model: candidator.takenposition
+  pk: 1
+- fields: {topic: 5, position: 11, person: 1}
+  model: candidator.takenposition
+  pk: 2
+- fields: {topic: 6, position: 14, person: 1}
+  model: candidator.takenposition
+  pk: 3
+- fields: {topic: 4, position: 9, person: 2}
+  model: candidator.takenposition
+  pk: 4
+- fields: {topic: 5, position: 12, person: 2}
+  model: candidator.takenposition
+  pk: 5
+- fields: {topic: 6, position: 13, person: 2}
+  model: candidator.takenposition
+  pk: 6
+- fields: {topic: 4, position: 10, person: 3}
+  model: candidator.takenposition
+  pk: 7
+- fields: {topic: 5, position: 12, person: 3}
+  model: candidator.takenposition
+  pk: 8
+- fields: {topic: 6, position: 13, person: 3}
+  model: candidator.takenposition
+  pk: 9

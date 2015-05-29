@@ -4,9 +4,6 @@ export DB_NAME="votainteligente.db"
 
 pip install -r requirements.txt
 python manage.py migrate
-
-./start_local_popit_api.bash
-./start_local_writeit.bash
 ./start_local_candidator.bash
 
 

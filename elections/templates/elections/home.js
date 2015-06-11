@@ -23,7 +23,7 @@ app.directive('ngEnter', function () {
 });
 
 var searchFormController = function($scope, $http, $filter, $log){
-	$scope.elections = {% elections_json %}
+	$scope.elections = {% areas_json %}
 	$scope.comperator = function(obj, text){
 		text = removeDiacritics((''+text).toLowerCase());
 		text_arr = text.split(/,| /).filter(String)

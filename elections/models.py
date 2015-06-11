@@ -3,7 +3,7 @@ from django.db import models
 from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
 from django.core.urlresolvers import reverse
-from popolo.models import Person
+from popolo.models import Person, Area
 from django.utils.translation import ugettext as _
 from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
 from candidator.models import Category
@@ -63,6 +63,7 @@ class Election(ExtraInfoMixin, models.Model):
     uses_questionary = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar cuestionario"))
 
     default_extra_info = settings.DEFAULT_ELECTION_EXTRA_INFO
+    area = models.ForeignKey(Area, null=True, related_name="elections")
 
     def __unicode__(self):
         return self.name

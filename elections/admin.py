@@ -1,10 +1,11 @@
 
 from django.contrib import admin
-from elections.models import Election, Candidate, PersonalData
+from elections.models import Election, Candidate, PersonalData, QuestionCategory
 from popolo.models import Organization, Membership, ContactDetail, OtherName, Post, Area
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django import forms
 from django.conf import settings
+from candidator.models import Topic, Position, TakenPosition
 # from django.contrib.flatpages.admin import FlatPageAdmin
 # from django.contrib.flatpages.models import FlatPage
 ## OOPS this is a custom widget that works for initializing
@@ -12,6 +13,43 @@ from django.conf import settings
 ## for flatpages, just use the tinymce packaged one.
 #from content.widgets import TinyMCE
 # from tinymce.widgets import TinyMCE
+
+
+class TakenPositionAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(TakenPosition, TakenPositionAdmin)
+
+
+class TakenPositionInline(admin.TabularInline):
+    model = TakenPosition
+
+
+class PositionAdmin(admin.ModelAdmin):
+    inlines = [TakenPositionInline, ]
+
+admin.site.register(Position, PositionAdmin)
+
+
+class PositionInline(admin.TabularInline):
+    model = Position
+
+
+class TopicAdmin(admin.ModelAdmin):
+    inlines = [PositionInline, ]
+admin.site.register(Topic, TopicAdmin)
+
+
+class TopicInline(admin.TabularInline):
+    model = Topic
+
+
+class QuestionCategoryAdmin(admin.ModelAdmin):
+    inlines = [TopicInline, ]
+admin.site.register(QuestionCategory, QuestionCategoryAdmin)
+
+
+class QuestionCategoryInline(admin.TabularInline):
+    model = QuestionCategory
 
 
 class CandidateModelForm(forms.ModelForm):
@@ -63,6 +101,7 @@ class ElectionModelForm(forms.ModelForm):
 class ElectionAdmin(admin.ModelAdmin):
     form = ElectionModelForm
     search_fields = ['name', 'tags']
+    inlines = [QuestionCategoryInline, ]
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super(ElectionAdmin, self).get_fieldsets(request, obj)

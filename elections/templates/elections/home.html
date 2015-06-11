@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <h2 class="text-center intro-home">
-        {% trans "Este 17 de Noviembre los chilenos elegiremos <strong>Presidente, Senadores, Diputados y Consejeros Regionales (CORE).</strong> Aquí encontrarás info para votar informado:" %}
+        {% trans "En las próximas elecciones elegiremos <strong>nuestros representantes.</strong> Aquí encontrarás info para votar informado:" %}
       </h2>
     </div>
   </div>
@@ -117,8 +117,8 @@
           <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
             {% for candidate in featured_election.candidates.all %}
             <li>
-              {% if candidate.photo %}
-                {% thumbnail candidate.photo "x300" as im %}
+              {% if candidate.image %}
+                {% thumbnail candidate.image "x300" as im %}
                   <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
                 {% endthumbnail %}
               {% else %}
@@ -160,7 +160,7 @@
   <!-- Searchable Elections  -->
   {% if searchable_elections_enabled %}
 
-  <h2>{% trans "Encuentra tus candidatos al Parlamento y Core" %}</h2>
+  <h2>{% trans "Encuentra tus candidatos" %}</h2>
 
     <div id="home-search" class="row" data-ng-controller="searchFormController">      
 

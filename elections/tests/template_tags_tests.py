@@ -7,6 +7,8 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from django.template.loader import get_template
 from candidator.models import Topic, Position, TakenPosition
+from django.core.urlresolvers import reverse
+from popolo.models import Area
 
 
 class TemplateTagsTestCase(TestCase):
@@ -61,6 +63,23 @@ class TemplateTagsTestCase(TestCase):
         context = Context({})
 
         self.assertEqual(template.render(context), json.dumps(expected_elections))
+
+    def test_areas_json_template_tag(self):
+        expected_areas = []
+        Area.objects.create(name="Chile")
+        Area.objects.create(name="Mar para Bolivia")
+        Area.objects.create(name="Guatemala")
+        for area in Area.objects.all():
+            area_dict = {'slug': area.id,
+                         'name': area.name,
+                         'detaillink': reverse('area', kwargs={'slug': area.id})
+                         }
+            expected_areas.append(area_dict)
+
+        template = Template("{% load votainteligente_extras %}{% areas_json %}")
+        context = Context({})
+
+        self.assertEqual(json.loads(template.render(context)), expected_areas)
 
     def test_get_navbar_in_setting_vars(self):
 

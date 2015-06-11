@@ -10,6 +10,7 @@ import logging
 logger = logging.getLogger(__name__)
 from candidator.models import Topic, Position, TakenPosition
 from candidator.comparer import Comparer, InformationHolder
+from popolo.models import Area
 
 
 class ElectionsSearchByTagView(FormView):
@@ -173,3 +174,10 @@ class SoulMateDetailView(DetailView):
 
         context['others'] = others_candidates
         return self.render_to_response(context)
+
+
+class AreaDetailView(DetailView):
+    model = Area
+    context_object_name = 'area'
+    template_name = 'area.html'
+    slug_field = 'id'

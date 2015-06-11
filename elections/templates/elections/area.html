@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block extrajs %}
+{% endblock extrajs %}
+
+{% block content %}
+<div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
+  <h1>{{area.name}}</h1>
+  <!-- Featured Elections  -->
+  <div class="hidden-xs">
+
+    <div class="contenedorDestacado fondo-blanco">
+      <ul>
+        {% for election in area.elections.all %}
+        <li class="col-md-4 containerAccordion">
+          <script type="text/javascript">
+          jQuery(document).ready(function($){
+            screenwidth = $(".containerAccordion").width();
+            $('#gridaccordion-{{forloop.counter}}').gridAccordion({
+              width:screenwidth, height:250, columns:{{election.candidates.all|length}}, 
+              distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true
+            });
+          });
+          </script>
+          <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
+            {% for candidate in election.candidates.all %}
+            <li>
+              {% if candidate.image %}
+                {% thumbnail candidate.image "x300" as im %}
+                  <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
+                {% endthumbnail %}
+              {% else %}
+                <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+              {% endif %}
+              <div class="caption">{{ candidate.name }}</div>
+            </li>
+            {% endfor %}
+          </ul>
+          <a href="{{ election.get_absolute_url }}"><h3 class="portada">{{ election.name }}</h3></a>
+          <div class="election-description">
+            <p>{{ election.description|truncatewords:33 }}</p> 
+          </div>
+        </li>
+         {% if forloop.counter|divisibleby:3 %}
+      </ul>
+      <ul>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+  <!-- /contenedorDestacado -->
+
+  <!-- mobile version -->
+  <div class="visible-xs">
+    {% for election in elections %}
+      <h3><a href="{{ election.get_absolute_url }}">{{election.name}}</a></h3>
+
+      <ul>
+      {% for candidate in election.candidates.all %}
+        <li><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}">{{ candidate.name }}</a></li>
+      {% endfor %}
+      </ul>
+    {% endfor %}
+  </div>
+  <!-- end mobile version -->
+
+</div>
+{% endblock content %}
+
+{% block extrafooter %}
+{% endblock extrafooter %}

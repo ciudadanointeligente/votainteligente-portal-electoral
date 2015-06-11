@@ -35,12 +35,11 @@ Enter the installation directory
 
 * Create a virtual environment
 
-`mkvirtualenv votainteligente`
+`virtualenv votainteligente`
 
-Here you can optionally give the command the full path to the installation directory by adding -a <full_path>.
-* If you didn't use the -a option you'll have to cd into the directory.
+* Activate your virtual environment
 
-`cd votainteligente-portal-electoral`
+`sorce votainteligente/bin/activate`
 
 * Install the requirements that votainteligente needs in the current virtualenvironment
 

@@ -1,6 +1,5 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from unittest import skip
 from elections.models import Election, QuestionCategory, Candidate
 from django.core.urlresolvers import reverse
 from elections.views import SoulMateDetailView
@@ -244,37 +243,6 @@ class SoulMateTestCase(TestCase):
             "question-0": "8",
             "question-1": "11",
             "question-2": "13",
-            "question-id-0": "4",
-            "question-id-1": "5",
-            "question-id-2": "6"
-        }
-        url = reverse('soul_mate_detail_view',
-            kwargs={
-                'slug': self.antofa.slug,
-            })
-
-        response = self.client.post(url, data=data)
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed("elections/soulmate_response.html")
-        self.assertIn("election", response.context)
-        self.assertEquals(response.context["election"], self.antofa)
-        self.assertIn("winner", response.context)
-        self.assertIn("candidate", response.context["winner"])
-        self.assertIsInstance(response.context["winner"]["candidate"], Candidate)
-        self.assertIn("others", response.context)
-
-        candidatos_antofa = self.antofa.candidates.all()
-        self.assertIn(response.context["winner"]["candidate"], candidatos_antofa)
-
-    @skip("perrito")
-    def test_post_with_data_from_html(self):
-        data = {
-            "importance-0": "3",
-            "importance-1": "3",
-            "importance-2": "3",
-            "question-0": "8",
-            "question-1": "11",
-            "question-2": "14",
             "question-id-0": "4",
             "question-id-1": "5",
             "question-id-2": "6"

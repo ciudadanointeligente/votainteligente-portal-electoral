@@ -7,6 +7,8 @@ from elections.models import Election
 import json
 from django.conf import settings
 from django.contrib.sites.models import Site
+from popolo.models import Area
+from django.core.urlresolvers import reverse
 
 
 @register.simple_tag
@@ -25,6 +27,18 @@ def elections_json():
         }
         expected_elections.append(election_dict)
     return mark_safe(json.dumps(expected_elections))
+
+
+@register.simple_tag
+def areas_json():
+    areas = []
+    for area in Area.objects.all():
+        area_dict = {'slug': area.id,
+                     'name': area.name,
+                     'detaillink': reverse('area', kwargs={'slug': area.id}),
+                     }
+        areas.append(area_dict)
+    return mark_safe(json.dumps(areas))
 
 
 @register.filter

@@ -22,3 +22,10 @@ urlpatterns = patterns('',
     ('^pages/', include('django.contrib.flatpages.urls')),
     (r'^tinymce/', include('tinymce.urls')),
 )
+
+
+from django.conf import settings
+if settings.THEME:
+    urlpatterns += patterns('',
+        ('^theme/', include('%s.urls'%(settings.THEME)))
+        )

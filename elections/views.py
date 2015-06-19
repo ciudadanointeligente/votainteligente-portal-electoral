@@ -10,6 +10,7 @@ import logging
 logger = logging.getLogger(__name__)
 from candidator.models import Topic, Position, TakenPosition
 from candidator.comparer import Comparer, InformationHolder
+from candidator.adapters import CandidatorCalculator, CandidatorAdapter
 from popolo.models import Area
 
 
@@ -115,13 +116,15 @@ class CandidateDetailView(DetailView):
 import re
 
 
-class VotaInteligenteAdapter():
+class VotaInteligenteAdapter(CandidatorAdapter):
     def is_topic_category_the_same_as(self, topic, category):
         return topic.category == category.category_ptr
 
 
 class SoulMateDetailView(DetailView):
     model = Election
+    adapter_class = VotaInteligenteAdapter
+    calculator_class = CandidatorCalculator
 
     def determine_taken_positions(self, positions_dict):
         positions = []
@@ -140,8 +143,8 @@ class SoulMateDetailView(DetailView):
                     ))
         return positions
 
-    def get_information_holder(self, data={}, adapter=VotaInteligenteAdapter):
-        holder = InformationHolder(adapter=VotaInteligenteAdapter)
+    def get_information_holder(self, data={}):
+        holder = InformationHolder(adapter=self.adapter_class)
         for category in self.object.categories.all():
             holder.add_category(category)
         for candidate in self.object.candidates.all():
@@ -157,9 +160,10 @@ class SoulMateDetailView(DetailView):
         election = super(SoulMateDetailView, self).get_object(self.get_queryset())
         self.object = election
         context = self.get_context_data()
-        information_holder = self.get_information_holder(data=request.POST, adapter=VotaInteligenteAdapter)
+        information_holder = self.get_information_holder(data=request.POST)
 
-        comparer = Comparer(adapter=VotaInteligenteAdapter)
+        comparer = Comparer(adapter_class=self.adapter_class,
+                            calculator_class=self.calculator_class)
         result = comparer.compare(information_holder)
 
         winner_candidate = result[0]['person']

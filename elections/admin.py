@@ -164,6 +164,8 @@ class CandidateAdmin(admin.ModelAdmin):
         OtherNameInline,
         PersonalDataInline,
     ]
+    search_fields = ['name', 'election__name']
+    ordering = ['name']
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super(CandidateAdmin, self).get_fieldsets(request, obj)

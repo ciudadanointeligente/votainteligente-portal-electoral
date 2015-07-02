@@ -6,6 +6,7 @@ from candidator.models import Category
 from django.template.loader import get_template
 from django.template import Context, Template
 from django.test import override_settings
+from elections.models import Topic
 
 
 class Version2TestCase(TestCase):
@@ -147,3 +148,17 @@ class QuestionCategoryTestCase(Version2TestCase):
     def test_instanciate_one(self):
         category = QuestionCategory.objects.create(name="Perros", election=self.election)
         self.assertIsInstance(category, Category)
+
+
+class TopicTestCase(Version2TestCase):
+    def setUp(self):
+        super(TopicTestCase, self).setUp()
+
+    def test_election(self):
+        category = QuestionCategory.objects.create(name="Perros", election=self.election)
+        topic = Topic.objects.create(
+            label=u"Should marijuana be legalized?",
+            category=category,
+            description=u"This is a description of the topic of marijuana")
+
+        self.assertEquals(topic.election, self.election)

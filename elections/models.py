@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from popolo.models import Person, Area
 from django.utils.translation import ugettext as _
 from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
-from candidator.models import Category
+from candidator.models import Category, Topic as CanTopic
 from picklefield.fields import PickledObjectField
 from django.conf import settings
 
@@ -40,6 +40,16 @@ class PersonalData(models.Model):
     candidate = models.ForeignKey('Candidate', related_name="personal_datas")
     label = models.CharField(max_length=512)
     value = models.CharField(max_length=1024)
+
+
+class Topic(CanTopic):
+    class Meta:
+        proxy = True
+
+    @property
+    def election(self):
+        category = QuestionCategory.objects.get(category_ptr=self.category)
+        return category.election
 
 
 class QuestionCategory(Category):

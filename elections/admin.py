@@ -5,7 +5,8 @@ from popolo.models import Organization, Membership, ContactDetail, OtherName, Po
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django import forms
 from django.conf import settings
-from candidator.models import Topic, Position, TakenPosition
+from candidator.models import Position, TakenPosition
+from elections.models import Topic
 # from django.contrib.flatpages.admin import FlatPageAdmin
 # from django.contrib.flatpages.models import FlatPage
 ## OOPS this is a custom widget that works for initializing
@@ -36,6 +37,7 @@ class PositionInline(admin.TabularInline):
 
 class TopicAdmin(admin.ModelAdmin):
     inlines = [PositionInline, ]
+    list_display = ('__str__', 'election')
 admin.site.register(Topic, TopicAdmin)
 
 
@@ -50,6 +52,8 @@ admin.site.register(QuestionCategory, QuestionCategoryAdmin)
 
 class QuestionCategoryInline(admin.TabularInline):
     model = QuestionCategory
+
+    list_display = ('__str__', 'election')
 
 
 class CandidateModelForm(forms.ModelForm):

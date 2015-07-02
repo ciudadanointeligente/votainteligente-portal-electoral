@@ -47,6 +47,7 @@ class TopicInline(admin.TabularInline):
 
 class QuestionCategoryAdmin(admin.ModelAdmin):
     inlines = [TopicInline, ]
+    list_display = ('__str__', 'election')
 admin.site.register(QuestionCategory, QuestionCategoryAdmin)
 
 

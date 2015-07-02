@@ -16,8 +16,22 @@ from elections.models import Topic
 # from tinymce.widgets import TinyMCE
 
 
+class TakenPositionModelForm(forms.ModelForm):
+    # position = forms.ModelChoiceField(queryset=Topic.objects.none())
+
+    def __init__(self, *args, **kwargs):
+        super(TakenPositionModelForm, self).__init__(*args, **kwargs)
+        if self.instance.id:
+            positions = self.instance.topic.positions.all()
+            self.fields['position'].queryset = positions
+
+    class Meta:
+        model = TakenPosition
+        fields = ('topic', 'position', 'person')
+
+
 class TakenPositionAdmin(admin.ModelAdmin):
-    pass
+    form = TakenPositionModelForm
 admin.site.register(TakenPosition, TakenPositionAdmin)
 
 

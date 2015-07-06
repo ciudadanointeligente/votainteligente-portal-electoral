@@ -30,6 +30,37 @@ class TakenPositionModelForm(forms.ModelForm):
         fields = ('topic', 'position', 'person')
 
 
+class TakenPositionInlineModelForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(TakenPositionInlineModelForm, self).__init__(*args, **kwargs)
+        if 'instance' in kwargs:
+            election = QuestionCategory.objects.get(id=kwargs['instance'].topic.category.id).election
+            category_ids = [cat.id for cat in election.categories.all()]
+            positions_qs = Position.objects.filter(topic__category_id__in=category_ids)
+            self.fields['position'].queryset = positions_qs
+
+    class Meta:
+        model = TakenPosition
+        fields = ('position', 'description')
+
+    def save(self, force_insert=False, force_update=False, commit=True):
+        m = super(TakenPositionInlineModelForm, self).save(commit=False)
+        if m.position is not None:
+            m.topic = m.position.topic
+        m.save()
+        return m
+
+
+class TakenPositionCandidateInline(admin.TabularInline):
+    model = TakenPosition
+    form = TakenPositionInlineModelForm
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == 'position':
+            pass
+        return super(TakenPositionCandidateInline, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+
 class TakenPositionAdmin(admin.ModelAdmin):
     form = TakenPositionModelForm
 admin.site.register(TakenPosition, TakenPositionAdmin)
@@ -163,6 +194,7 @@ class CandidateAdmin(admin.ModelAdmin):
         MembershipInline,
         OtherNameInline,
         PersonalDataInline,
+        TakenPositionCandidateInline,
     ]
     search_fields = ['name', 'election__name']
     ordering = ['name']

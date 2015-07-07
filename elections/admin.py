@@ -74,6 +74,14 @@ class PositionInline(admin.TabularInline):
 class TopicAdmin(admin.ModelAdmin):
     inlines = [PositionInline, ]
     list_display = ('__str__', 'election')
+
+    def save_model(self, request, obj, form, change):
+        creating = not change
+        obj.save()
+        if creating:
+            for candidate in obj.election.candidates.all():
+                TakenPosition.objects.get_or_create(topic=obj, person=candidate)
+
 admin.site.register(Topic, TopicAdmin)
 
 
@@ -205,7 +213,6 @@ class CandidateAdmin(admin.ModelAdmin):
         if creating:
             for cat in obj.election.categories.all():
                 for topic in cat.topics.all():
-                    print topic
                     TakenPosition.objects.get_or_create(topic=topic, person=obj)
 
 admin.site.register(Candidate, CandidateAdmin)

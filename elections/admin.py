@@ -7,17 +7,9 @@ from django import forms
 from django.conf import settings
 from candidator.models import Position, TakenPosition
 from elections.models import Topic
-# from django.contrib.flatpages.admin import FlatPageAdmin
-# from django.contrib.flatpages.models import FlatPage
-## OOPS this is a custom widget that works for initializing
-## tinymce instances on stacked and tabular inlines
-## for flatpages, just use the tinymce packaged one.
-#from content.widgets import TinyMCE
-# from tinymce.widgets import TinyMCE
 
 
 class TakenPositionModelForm(forms.ModelForm):
-    # position = forms.ModelChoiceField(queryset=Topic.objects.none())
 
     def __init__(self, *args, **kwargs):
         super(TakenPositionModelForm, self).__init__(*args, **kwargs)
@@ -28,6 +20,36 @@ class TakenPositionModelForm(forms.ModelForm):
     class Meta:
         model = TakenPosition
         fields = ('topic', 'position', 'person')
+
+
+class TakenPositionInlineModelForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(TakenPositionInlineModelForm, self).__init__(*args, **kwargs)
+        if 'instance' in kwargs:
+            positions_qs = kwargs['instance'].topic.positions.all()
+            self.fields['position'].queryset = positions_qs
+
+    class Meta:
+        model = TakenPosition
+        fields = ('position', 'description')
+
+    def save(self, force_insert=False, force_update=False, commit=True):
+        m = super(TakenPositionInlineModelForm, self).save(commit=False)
+        if m.position is not None:
+            m.topic = m.position.topic
+        m.save()
+        return m
+
+
+class TakenPositionCandidateInline(admin.TabularInline):
+    model = TakenPosition
+    form = TakenPositionInlineModelForm
+    extra = 0
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == 'position':
+            pass
+        return super(TakenPositionCandidateInline, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 
 class TakenPositionAdmin(admin.ModelAdmin):
@@ -52,6 +74,14 @@ class PositionInline(admin.TabularInline):
 class TopicAdmin(admin.ModelAdmin):
     inlines = [PositionInline, ]
     list_display = ('__str__', 'election')
+
+    def save_model(self, request, obj, form, change):
+        creating = not change
+        obj.save()
+        if creating:
+            for candidate in obj.election.candidates.all():
+                TakenPosition.objects.get_or_create(topic=obj, person=candidate)
+
 admin.site.register(Topic, TopicAdmin)
 
 
@@ -91,6 +121,7 @@ class CandidateModelForm(forms.ModelForm):
             instance.extra_info[key] = self.cleaned_data.get(key, None)
         if commit:
             instance.save()
+
         return instance
 
 
@@ -163,6 +194,7 @@ class CandidateAdmin(admin.ModelAdmin):
         MembershipInline,
         OtherNameInline,
         PersonalDataInline,
+        TakenPositionCandidateInline,
     ]
     search_fields = ['name', 'election__name']
     ordering = ['name']
@@ -175,6 +207,14 @@ class CandidateAdmin(admin.ModelAdmin):
         setattr(request, "_gfs_marker", 1)
         return fieldsets
 
+    def save_model(self, request, obj, form, change):
+        creating = not change
+        obj.save()
+        if creating:
+            for cat in obj.election.categories.all():
+                for topic in cat.topics.all():
+                    TakenPosition.objects.get_or_create(topic=topic, person=obj)
+
 admin.site.register(Candidate, CandidateAdmin)
 
 
@@ -186,19 +226,3 @@ admin.site.register(Post, PostAdmin)
 class AreaAdmin(admin.ModelAdmin):
     pass
 admin.site.register(Area, AreaAdmin)
-# class PageForm(FlatpageForm):
-#     class Meta:
-#         model = FlatPage
-#         widgets = {
-#             'content': TinyMCE(),
-#         }
-
-
-# class PageAdmin(FlatPageAdmin):
-#     """
-#     Page Admin
-#     """
-#     form = PageForm
-
-# admin.site.unregister(FlatPage)
-# admin.site.register(FlatPage, PageAdmin)

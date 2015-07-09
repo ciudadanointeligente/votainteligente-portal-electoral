@@ -38,7 +38,8 @@ msgstr "Mis Elecciones"
 
 #: templates/base.html:9
 msgid "Vota Inteligente"
-msgstr "A Quien Elegimos"
+msgstr "Yo Quiero Saber"
+
 
 #: templates/base.html:9 templates/elections/election_base.html:15
 msgid "Portada"
@@ -46,7 +47,7 @@ msgstr "Portada"
 
 #: templates/base.html:44
 msgid "VotaInteligente"
-msgstr "A Quien Elegimos"
+msgstr "YoQuieroSaber"
 
 #: templates/base.html:68
 msgid "Revisa nuestro código en Github"

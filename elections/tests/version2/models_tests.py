@@ -147,7 +147,9 @@ class QuestionCategoryTestCase(Version2TestCase):
 
     def test_instanciate_one(self):
         category = QuestionCategory.objects.create(name="Perros", election=self.election)
+
         self.assertIsInstance(category, Category)
+        self.assertEquals(category.__str__(), u"<Perros> in <the name>")
 
 
 class TopicTestCase(Version2TestCase):

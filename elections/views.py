@@ -4,7 +4,7 @@ from elections.forms import ElectionSearchByTagsForm
 from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, TemplateView
 from elections.models import Election
-from elections.models import Candidate, QuestionCategory
+from elections.models import Candidate, QuestionCategory, CandidateFlatPage
 import logging
 
 logger = logging.getLogger(__name__)
@@ -184,4 +184,11 @@ class AreaDetailView(DetailView):
     model = Area
     context_object_name = 'area'
     template_name = 'area.html'
+    slug_field = 'id'
+
+
+class CandidateFlatPageDetailView(DetailView):
+    model = CandidateFlatPage
+    context_object_name = 'flatpage'
+    template_name = 'flatpages/candidate_flatpages.html'
     slug_field = 'id'

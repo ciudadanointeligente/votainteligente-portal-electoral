@@ -10,6 +10,7 @@ from candidator.models import Category, Topic as CanTopic
 from picklefield.fields import PickledObjectField
 from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
+from django.contrib.flatpages.models import FlatPage
 import copy
 
 
@@ -36,6 +37,17 @@ class Candidate(Person, ExtraInfoMixin):
         links = self.contact_details.filter(contact_type="TWITTER")
         if links:
             return links.first()
+
+
+class CandidateFlatPage(FlatPage):
+    candidate = models.ForeignKey(Candidate, related_name='flatpages')
+
+    def get_absolute_url(self):
+        return reverse('candidate_flatpage', kwargs={'election_slug': self.candidate.election.slug,
+                                                     'slug': self.candidate.id,
+                                                     'url': self.url
+                                                     }
+                       )
 
 
 class PersonalData(models.Model):

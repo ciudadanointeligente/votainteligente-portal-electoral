@@ -140,6 +140,15 @@ class CandidateExtraInfoTestCase(Version2TestCase):
         self.assertEquals(personal_data.value, u'31 años')
         self.assertIn(personal_data, candidate.personal_datas.all())
 
+    def test_bug_258(self):
+        candidate = Candidate.objects.get(id=1)
+        candidate.extra_info['custom_ribbon'] = 'Perro grande'
+        candidate.extra_info['other_thing'] = 'This is something else'
+        candidate.save()
+        candidate2 = Candidate.objects.get(id=2)
+        self.assertEquals(candidate2.extra_info['custom_ribbon'], 'ribbon text')
+        self.assertNotIn('other_thing', candidate2.extra_info.keys())
+
 
 class QuestionCategoryTestCase(Version2TestCase):
     def setUp(self):

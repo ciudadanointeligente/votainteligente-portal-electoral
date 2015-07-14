@@ -9,6 +9,8 @@ from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
 from candidator.models import Category, Topic as CanTopic
 from picklefield.fields import PickledObjectField
 from django.conf import settings
+from django.utils.encoding import python_2_unicode_compatible
+import copy
 
 
 class ExtraInfoMixin(models.Model):
@@ -19,7 +21,7 @@ class ExtraInfoMixin(models.Model):
 
     def __init__(self, *args, **kwargs):
         super(ExtraInfoMixin, self).__init__(*args, **kwargs)
-        default_extra_info = self.default_extra_info
+        default_extra_info = copy.copy(self.default_extra_info)
         default_extra_info.update(self.extra_info)
         self.extra_info = default_extra_info
 
@@ -52,8 +54,12 @@ class Topic(CanTopic):
         return category.election
 
 
+@python_2_unicode_compatible
 class QuestionCategory(Category):
     election = models.ForeignKey('Election', related_name='categories', null=True)
+
+    def __str__(self):
+        return u'<%s> in <%s>' % (self.name, self.election.name)
 
 
 class Election(ExtraInfoMixin, models.Model):

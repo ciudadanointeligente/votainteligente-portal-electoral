@@ -45,6 +45,7 @@ class TakenPositionCandidateInline(admin.TabularInline):
     model = TakenPosition
     form = TakenPositionInlineModelForm
     extra = 0
+    can_delete = False
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'position':

@@ -119,10 +119,10 @@ class CandidateExtraInfoTestCase(Version2TestCase):
         candidate.save()
         self.assertEquals(candidate.extra_info['ribbon'], "perrito")
 
-    @override_settings(DEFAULT_CANDIDATE_EXTRA_INFO={'ribbon': 'perrito'})
+    @override_settings(DEFAULT_CANDIDATE_EXTRA_INFO={'custom_ribbon': 'ribbon text'})
     def test_default_candidate_extra_info(self):
         candidate = Candidate.objects.get(id=1)
-        self.assertEquals(candidate.extra_info['ribbon'], 'perrito')
+        self.assertEquals(candidate.extra_info['custom_ribbon'], 'ribbon text')
 
     @override_settings(DEFAULT_CANDIDATE_EXTRA_INFO={'ribbon': 'perrito'})
     def test_do_not_override_settings(self):

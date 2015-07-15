@@ -6,7 +6,7 @@ from django.contrib.contenttypes.admin import GenericTabularInline
 from django import forms
 from django.conf import settings
 from candidator.models import Position, TakenPosition
-from elections.models import Topic
+from elections.models import Topic, CandidateFlatPage
 
 
 class TakenPositionModelForm(forms.ModelForm):
@@ -217,6 +217,11 @@ class CandidateAdmin(admin.ModelAdmin):
                     TakenPosition.objects.get_or_create(topic=topic, person=obj)
 
 admin.site.register(Candidate, CandidateAdmin)
+
+
+class CandidateFlatPageAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(CandidateFlatPage, CandidateFlatPageAdmin)
 
 
 class PostAdmin(admin.ModelAdmin):

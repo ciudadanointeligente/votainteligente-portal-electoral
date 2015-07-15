@@ -4,12 +4,13 @@ from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
 from django.core.urlresolvers import reverse
 from popolo.models import Person, Area
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
 from candidator.models import Category, Topic as CanTopic
 from picklefield.fields import PickledObjectField
 from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
+from django.contrib.flatpages.models import FlatPage
 import copy
 
 
@@ -37,6 +38,25 @@ class Candidate(Person, ExtraInfoMixin):
         if links:
             return links.first()
 
+    class Meta:
+        verbose_name = _("Candidato")
+        verbose_name_plural = _("Candidatos")
+
+
+class CandidateFlatPage(FlatPage):
+    candidate = models.ForeignKey(Candidate, related_name='flatpages')
+
+    class Meta:
+        verbose_name = _(u"Página estáticas por candidato")
+        verbose_name_plural = _(u"Páginas estáticas por candidato")
+
+    def get_absolute_url(self):
+        return reverse('candidate_flatpage', kwargs={'election_slug': self.candidate.election.slug,
+                                                     'slug': self.candidate.id,
+                                                     'url': self.url
+                                                     }
+                       )
+
 
 class PersonalData(models.Model):
     candidate = models.ForeignKey('Candidate', related_name="personal_datas")
@@ -47,6 +67,8 @@ class PersonalData(models.Model):
 class Topic(CanTopic):
     class Meta:
         proxy = True
+        verbose_name = _(u"Pregunta")
+        verbose_name_plural = _(u"Preguntas")
 
     @property
     def election(self):
@@ -60,6 +82,10 @@ class QuestionCategory(Category):
 
     def __str__(self):
         return u'<%s> in <%s>' % (self.name, self.election.name)
+
+    class Meta:
+        verbose_name = _(u"Categoría de pregunta")
+        verbose_name_plural = _(u"Categorías de pregunta")
 
 
 class Election(ExtraInfoMixin, models.Model):

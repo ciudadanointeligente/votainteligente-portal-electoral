@@ -55,6 +55,7 @@ class TakenPositionCandidateInline(admin.TabularInline):
 
 class TakenPositionAdmin(admin.ModelAdmin):
     form = TakenPositionModelForm
+    search_fields = ['position__label', 'position__topic__label', 'position__topic__category__name']
 admin.site.register(TakenPosition, TakenPositionAdmin)
 
 
@@ -64,6 +65,7 @@ class TakenPositionInline(admin.TabularInline):
 
 class PositionAdmin(admin.ModelAdmin):
     inlines = [TakenPositionInline, ]
+    search_fields = ['label', 'topic__label', 'topic__category__name']
 
 admin.site.register(Position, PositionAdmin)
 
@@ -75,6 +77,7 @@ class PositionInline(admin.TabularInline):
 class TopicAdmin(admin.ModelAdmin):
     inlines = [PositionInline, ]
     list_display = ('__str__', 'election')
+    search_fields = ['label', 'category__name']
 
     def save_model(self, request, obj, form, change):
         creating = not change

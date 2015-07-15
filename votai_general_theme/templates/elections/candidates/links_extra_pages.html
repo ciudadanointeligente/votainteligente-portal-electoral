@@ -1,0 +1,8 @@
+{% if candidate.flatpages.count %}
+<ul class="list-unstyled">
+    {% for flatpage in candidate.flatpages.all %}
+    <li><a class="social-link-candidate" href="{{ flatpage.get_absolute_url }}"><i class="fa fa-link"></i>
+{{ flatpage.title }}</a></li>
+    {% endfor%}
+</ul>
+{% endif %}

@@ -191,4 +191,18 @@ class CandidateFlatPageDetailView(DetailView):
     model = CandidateFlatPage
     context_object_name = 'flatpage'
     template_name = 'flatpages/candidate_flatpages.html'
-    slug_field = 'id'
+
+    def get_queryset(self):
+        qs = CandidateFlatPage.objects.filter(candidate__id=self.kwargs['slug'])
+        return qs
+
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+        return queryset.get(url=self.kwargs['url'])
+
+    def get_context_data(self, **kwargs):
+        context = super(CandidateFlatPageDetailView, self).get_context_data(**kwargs)
+        context['election'] = self.object.candidate.election
+        context['candidate'] = self.object.candidate
+        return context

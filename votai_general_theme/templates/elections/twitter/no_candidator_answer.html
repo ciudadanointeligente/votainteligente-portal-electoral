@@ -1,3 +1,3 @@
 {% load i18n %}{% if twitter %}
-<a href="#" onClick="window.open('https://twitter.com/share?text=@{{twitter.label}}{% trans '%20responde%20el%20cuestionario%20de%20votainteligente' %}&hashtags=cuestionario,votainteligente','Pídele','width=500,height=280'); ga('send', 'event', 'ask-their-position', 'click');" class="btn btn-default btn-xs"><i class="icon-twitter"></i> {% trans "Pídele su postura" %}</a>
+<a href="#" onClick="window.open('https://twitter.com/share?text={{twitter.label}}{% trans '%20responde%20el%20cuestionario%20de%20votainteligente' %}&hashtags=cuestionario,votainteligente','Pídele','width=500,height=280'); ga('send', 'event', 'ask-their-position', 'click');" class="btn btn-default btn-xs"><i class="icon-twitter"></i> {% trans "Pídele su postura" %}</a>
 {% else %}{% endif %}

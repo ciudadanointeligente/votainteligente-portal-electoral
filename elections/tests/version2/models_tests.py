@@ -6,6 +6,7 @@ from candidator.models import Category
 from django.template.loader import get_template
 from django.template import Context, Template
 from django.test import override_settings
+from elections.models import Topic
 
 
 class Version2TestCase(TestCase):
@@ -118,10 +119,10 @@ class CandidateExtraInfoTestCase(Version2TestCase):
         candidate.save()
         self.assertEquals(candidate.extra_info['ribbon'], "perrito")
 
-    @override_settings(DEFAULT_CANDIDATE_EXTRA_INFO={'ribbon': 'perrito'})
+    @override_settings(DEFAULT_CANDIDATE_EXTRA_INFO={'custom_ribbon': 'ribbon text'})
     def test_default_candidate_extra_info(self):
         candidate = Candidate.objects.get(id=1)
-        self.assertEquals(candidate.extra_info['ribbon'], 'perrito')
+        self.assertEquals(candidate.extra_info['custom_ribbon'], 'ribbon text')
 
     @override_settings(DEFAULT_CANDIDATE_EXTRA_INFO={'ribbon': 'perrito'})
     def test_do_not_override_settings(self):
@@ -139,6 +140,15 @@ class CandidateExtraInfoTestCase(Version2TestCase):
         self.assertEquals(personal_data.value, u'31 años')
         self.assertIn(personal_data, candidate.personal_datas.all())
 
+    def test_bug_258(self):
+        candidate = Candidate.objects.get(id=1)
+        candidate.extra_info['custom_ribbon'] = 'Perro grande'
+        candidate.extra_info['other_thing'] = 'This is something else'
+        candidate.save()
+        candidate2 = Candidate.objects.get(id=2)
+        self.assertEquals(candidate2.extra_info['custom_ribbon'], 'ribbon text')
+        self.assertNotIn('other_thing', candidate2.extra_info.keys())
+
 
 class QuestionCategoryTestCase(Version2TestCase):
     def setUp(self):
@@ -146,4 +156,20 @@ class QuestionCategoryTestCase(Version2TestCase):
 
     def test_instanciate_one(self):
         category = QuestionCategory.objects.create(name="Perros", election=self.election)
+
         self.assertIsInstance(category, Category)
+        self.assertEquals(category.__str__(), u"<Perros> in <the name>")
+
+
+class TopicTestCase(Version2TestCase):
+    def setUp(self):
+        super(TopicTestCase, self).setUp()
+
+    def test_election(self):
+        category = QuestionCategory.objects.create(name="Perros", election=self.election)
+        topic = Topic.objects.create(
+            label=u"Should marijuana be legalized?",
+            category=category,
+            description=u"This is a description of the topic of marijuana")
+
+        self.assertEquals(topic.election, self.election)

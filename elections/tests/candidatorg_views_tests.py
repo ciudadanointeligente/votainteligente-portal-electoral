@@ -264,3 +264,21 @@ class SoulMateTestCase(TestCase):
 
         candidatos_antofa = self.antofa.candidates.all()
         self.assertIn(response.context["winner"]["candidate"], candidatos_antofa)
+
+    def test_if_no_taken_position_provided(self):
+        '''If there is no taken prosition provided'''
+        data = {
+            "question-0": "8",
+            "question-1": "0",  # This data is missing
+            "question-2": "13",
+            "question-id-0": "4",
+            "question-id-1": "5",
+            "question-id-2": "6"
+        }
+        url = reverse('soul_mate_detail_view',
+            kwargs={
+                'slug': self.antofa.slug,
+            })
+
+        response = self.client.post(url, data=data)
+        self.assertEquals(response.status_code, 200)

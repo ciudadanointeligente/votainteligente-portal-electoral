@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from elections.models import Election, Candidate, PersonalData, QuestionCategory
-from popolo.models import Organization, Membership, ContactDetail, OtherName, Post, Area
+from popolo.models import Organization, Membership, ContactDetail, OtherName, Post, Area, Link
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django import forms
 from django.conf import settings
@@ -53,9 +53,14 @@ class TakenPositionCandidateInline(admin.TabularInline):
         return super(TakenPositionCandidateInline, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 
+class LinkInline(GenericTabularInline):
+    model = Link
+
+
 class TakenPositionAdmin(admin.ModelAdmin):
     form = TakenPositionModelForm
     search_fields = ['position__label', 'position__topic__label', 'position__topic__category__name']
+    inlines = [LinkInline, ]
 admin.site.register(TakenPosition, TakenPositionAdmin)
 
 

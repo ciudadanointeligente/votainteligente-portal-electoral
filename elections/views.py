@@ -136,11 +136,14 @@ class SoulMateDetailView(DetailView):
                 position_id = positions_dict["question-%d" % (_id)]
                 topic_id = positions_dict[key]
                 topic = Topic.objects.get(id=topic_id)
-                position = Position.objects.get(id=position_id)
-                positions.append(TakenPosition(
-                    topic=topic,
-                    position=position
-                    ))
+                try:
+                    position = Position.objects.get(id=position_id)
+                    positions.append(TakenPosition(
+                        topic=topic,
+                        position=position
+                        ))
+                except Position.DoesNotExist:
+                    pass
         return positions
 
     def get_information_holder(self, data={}):

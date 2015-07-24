@@ -2,7 +2,7 @@
 from elections.tests import VotaInteligenteTestCase as TestCase
 from popolo.models import Person, ContactDetail
 from elections.models import Candidate, Election, QuestionCategory, PersonalData
-from candidator.models import Category
+from candidator.models import Category, Position, TakenPosition
 from django.template.loader import get_template
 from django.template import Context, Template
 from django.test import override_settings
@@ -110,6 +110,26 @@ class CandidaTeTestCase(Version2TestCase):
         actual_twitter_button_template = Template("{% load votainteligente_extras %}{% twitter_on_ranking 'message button' 'message twitter window' %}")
         actual_twitter_button = actual_twitter_button_template.render(Context({"candidate": candidate}))
         self.assertEquals(actual_twitter_button, expected_twitter_button)
+
+    def test_candidate_has_answered(self):
+        TakenPosition.objects.all().delete()
+        candidate = Candidate.objects.get(id=1)
+        category = QuestionCategory.objects.create(name="Perros", election=self.election)
+        topic = Topic.objects.create(
+            label=u"Should marijuana be legalized?",
+            category=category,
+            description=u"This is a description of the topic of marijuana")
+        position = Position.objects.create(
+            topic=topic,
+            label=u"Yes",
+            description=u"Yes, means that it is considered a good thing for marijuana to be legalized"
+        )
+        taken_position = TakenPosition.objects.create(topic=topic,
+                                                      person=candidate)
+        self.assertFalse(candidate.has_answered)
+        taken_position.position = position
+        taken_position.save()
+        self.assertTrue(candidate.has_answered)
 
 
 class CandidateExtraInfoTestCase(Version2TestCase):

@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from popolo.models import Person, Area
 from django.utils.translation import ugettext_lazy as _
 from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
-from candidator.models import Category, Topic as CanTopic
+from candidator.models import Category, Topic as CanTopic, TakenPosition
 from picklefield.fields import PickledObjectField
 from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
@@ -37,6 +37,11 @@ class Candidate(Person, ExtraInfoMixin):
         links = self.contact_details.filter(contact_type="TWITTER")
         if links:
             return links.first()
+
+    @property
+    def has_answered(self):
+        are_there_answers = TakenPosition.objects.filter(person=self, position__isnull=False).exists()
+        return are_there_answers
 
     class Meta:
         verbose_name = _("Candidato")

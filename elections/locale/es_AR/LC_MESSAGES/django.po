@@ -197,7 +197,7 @@ msgstr "Perfiles"
 #: templates/elections/soulmate_candidate.html:47
 #: templates/elections/soulmate_candidate.html:49
 msgid "1/2 Naranja"
-msgstr "1/2 Naranja"
+msgstr "Jugar"
 
 #: templates/elections/election_base.html:69
 #: templates/elections/ranking_candidates.html:4

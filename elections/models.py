@@ -69,6 +69,7 @@ class PersonalData(models.Model):
     value = models.CharField(max_length=1024)
 
 
+@python_2_unicode_compatible
 class Topic(CanTopic):
     class Meta:
         proxy = True
@@ -79,6 +80,9 @@ class Topic(CanTopic):
     def election(self):
         category = QuestionCategory.objects.get(category_ptr=self.category)
         return category.election
+
+    def __str__(self):
+        return u'<%s> en <%s>' % (self.label, self.election.name)
 
 
 @python_2_unicode_compatible

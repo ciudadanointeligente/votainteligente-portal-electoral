@@ -29,6 +29,8 @@ class ExtraInfoMixin(models.Model):
 
 class Candidate(Person, ExtraInfoMixin):
     election = models.ForeignKey('Election', related_name='candidates', null=True)
+    force_has_answer = models.BooleanField(default=False,
+                                           help_text=_('Marca esto si quieres que el candidato aparezca como que no ha respondido'))
 
     default_extra_info = settings.DEFAULT_CANDIDATE_EXTRA_INFO
 
@@ -40,6 +42,8 @@ class Candidate(Person, ExtraInfoMixin):
 
     @property
     def has_answered(self):
+        if self.force_has_answer:
+            return False
         are_there_answers = TakenPosition.objects.filter(person=self, position__isnull=False).exists()
         return are_there_answers
 

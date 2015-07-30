@@ -195,7 +195,9 @@ class TemplateTagsTestCase(TestCase):
                            })
         actual_rendered_template = template.render(context)
         template_str = get_template('elections/taken_position.html')
-        expected_template = template_str.render(Context({'taken_position': taken_position, 'only_text': False}))
+        expected_template = template_str.render(Context({'taken_position': taken_position,
+                                                         'candidate': candidate,
+                                                         'only_text': False}))
         self.assertTrue(expected_template)
         self.assertEqual(actual_rendered_template, expected_template)
         template_str = get_template('elections/taken_position.html')

@@ -1,10 +1,23 @@
 {% load i18n %}
-{% if taken_position %}
-    {% if only_text %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+
+{% if taken_position.position %}
         {{taken_position.position.label}}
-    {% else %}
-        <i class="icon-quote-left"></i>{{taken_position.position.label}}<i class="icon-quote-right"></i>
+    <p class="position_description">
+     {{taken_position.description}}
+    </p>
+    {% if taken_position.sources.all %}
+        {% for source in taken_position.sources.all %}
+            
+            <small>{{source.note}} (<a href="{{source.url}}" target="_blank">Fuente</a>)</small>
+            
+        {% endfor %}
     {% endif %}
+    
 {% else %}
-    {% trans "Esta(e) candidata(o) aún no responde" %} 
+    {% trans "Esta(e) candidata(o) aún no responde" %}
+    
+    {% include 'elections/twitter/answer_this_question.html' with taken_position=taken_position candidate=candidate %}
 {% endif %}

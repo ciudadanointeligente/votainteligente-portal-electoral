@@ -153,7 +153,8 @@ def website_twitter(value):
 @register.inclusion_tag('elections/taken_position.html')
 def get_taken_position_for(topic, candidate, only_text=False):
     return {'taken_position': topic.get_taken_position_for(candidate),
-            'only_text': only_text
+            'only_text': only_text,
+            'candidate': candidate
             }
 
 

@@ -1,12 +1,53 @@
 
 from django.contrib import admin
 from elections.models import Election, Candidate, PersonalData, QuestionCategory
-from popolo.models import Organization, Membership, ContactDetail, OtherName, Post, Area, Link
+from popolo.models import Organization, Membership, ContactDetail, OtherName, Post, Area, Link, Person
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django import forms
 from django.conf import settings
-from candidator.models import Position, TakenPosition
+from candidator.models import Position as CanPosition, TakenPosition as CanTakenPosition
 from elections.models import Topic, CandidateFlatPage
+from django.utils.encoding import python_2_unicode_compatible
+
+
+@python_2_unicode_compatible
+class Position(CanPosition):
+    @property
+    def election(self):
+        topic = Topic.objects.get(id=self.topic.id)
+        return topic.election
+
+    def __str__(self):
+        return u'<%s> a <%s> en <%s>' % (self.label, self.topic.label, self.election.name)
+
+    class Meta:
+        proxy = True
+        verbose_name = u"Position"
+        verbose_name_plural = u"Positions"
+
+
+@python_2_unicode_compatible
+class TakenPosition(CanTakenPosition):
+    @property
+    def election(self):
+        topic = Topic.objects.get(id=self.topic.id)
+        return topic.election
+
+    def __str__(self):
+        template_str = u'<%s> dice <%s> a <%s> en <%s>'
+        topic = self.topic.label
+        election = self.election
+        if self.position is None:
+            template_str = u"<%s> doesn't have an opinion in <%s> en <%s>"
+            return template_str % (self.person, topic, election.name)
+        label = self.position.label
+        try:
+            return template_str % (self.person, label, topic, election.name)
+        except Person.DoesNotExist:
+            return template_str % ('Unknown', self.position.label, self.topic.label, election.name)
+
+    class Meta:
+        proxy = True
 
 
 class TakenPositionModelForm(forms.ModelForm):

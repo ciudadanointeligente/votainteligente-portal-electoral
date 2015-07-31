@@ -130,6 +130,17 @@ class CandidaTeTestCase(Version2TestCase):
         taken_position.position = position
         taken_position.save()
         self.assertTrue(candidate.has_answered)
+        # The admin can force that the candidate hasnt answered
+        candidate.force_has_answer = True
+        candidate.save()
+        self.assertFalse(candidate.has_answered)
+
+    def test_force_has_answer_false(self):
+        '''The possibility for the administrator to display that a candidate hasnt answer'''
+        candidate = Candidate.objects.create(name="Felipe Feroz",
+                                             election=self.election
+                                             )
+        self.assertFalse(candidate.force_has_answer)
 
 
 class CandidateExtraInfoTestCase(Version2TestCase):

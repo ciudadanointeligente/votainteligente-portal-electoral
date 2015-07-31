@@ -1,0 +1,5 @@
+{% load i18n %}
+{% if candidate.twitter %}
+<a href="#" onClick="window.open('https://twitter.com/share?text={% blocktrans with twitter=candidate.twitter.label topic=taken_position.topic.label|truncatechars:90 %}.{{twitter}} {{topic}}{% endblocktrans %}&hashtags=votainteligente','Necesitamos respuestas','width=500,height=280'); ga('send', 'event', 'continues-conversation', 'click');" class="btn btn-default btn-xs"><i class="icon-twitter"></i> {% trans "preguntale, ¿qué opinas?" %}</a>
+{% else %}
+{% endif %}

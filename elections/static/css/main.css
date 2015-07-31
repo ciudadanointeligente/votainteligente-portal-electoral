@@ -1282,3 +1282,12 @@ animation: doscaras 4s infinite;
 }
 
 
+.explanation-container {
+	color: #323a45;
+}
+.category_name .red {
+	background-color: #FE635F;
+}
+.category_name .green {
+	background-color: #41FF35;
+}

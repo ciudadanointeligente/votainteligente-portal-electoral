@@ -165,3 +165,10 @@ def display_personal_data(item):
         'display': item[1]['display'],
         'value': item[1]['value']
     }
+
+
+@register.inclusion_tag('elections/soulmate_explanation.html')
+def display_explanation(explanation, election):
+    return {
+        'explanation_container': explanation
+    }

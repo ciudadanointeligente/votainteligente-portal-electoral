@@ -6,9 +6,10 @@ from django.template import Template, Context
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.template.loader import get_template
-from candidator.models import Topic, Position, TakenPosition
+from candidator.models import Position, TakenPosition
 from django.core.urlresolvers import reverse
 from popolo.models import Area
+from elections.models import QuestionCategory, Topic
 
 
 class TemplateTagsTestCase(TestCase):
@@ -205,3 +206,37 @@ class TemplateTagsTestCase(TestCase):
         template = Template("{% load votainteligente_extras %}{% get_taken_position_for topic candidate only_text=True %}")
         actual_rendered_template = template.render(context)
         self.assertEqual(expected_template, actual_rendered_template)
+
+    def test_explanation_template_tag(self):
+        '''Given an explanation of 1/2 naranja display it'''
+
+        antofa = Election.objects.get(id=2)
+        data = {
+            "question-0": "8",
+            "question-1": "11",
+            "question-2": "13",
+            "question-id-0": "4",
+            "question-id-1": "5",
+            "question-id-2": "6"
+        }
+        url = reverse('soul_mate_detail_view',
+            kwargs={
+                'slug': antofa.slug,
+            })
+
+        response = self.client.post(url, data=data)
+        explanation_from_html = response.context["winner"]['explanation']
+        education_cat = QuestionCategory.objects.get(slug='educacion', election=antofa)
+        perros_y_gatos_cat = QuestionCategory.objects.get(slug='perros-y-gatos', election=antofa)
+        freedom2_topic = Topic.objects.get(slug='freedom2')
+        benito2_topic = Topic.objects.get(slug='benito2')
+        fiera2_topic = Topic.objects.get(slug='fiera2')
+        template_str = get_template('elections/soulmate_explanation.html')
+
+        rendered_template = template_str.render(Context({'explanation_container': explanation_from_html,
+                                                         'election': antofa}))
+        self.assertIn(education_cat.name, rendered_template)
+        self.assertIn(perros_y_gatos_cat.name, rendered_template)
+        self.assertIn(freedom2_topic.label, rendered_template)
+        self.assertIn(benito2_topic.label, rendered_template)
+        self.assertIn(fiera2_topic.label, rendered_template)

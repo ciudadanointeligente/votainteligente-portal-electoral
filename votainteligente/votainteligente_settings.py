@@ -41,9 +41,25 @@ INSTALLED_APPS = (
     'tinymce',
     'djcelery',
     'mathfilters',
+    'newsletter',
     # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    #'django.contrib.admindocs',
 )
+
+
+NEWSLETTER_CONFIRM_EMAIL = False
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
+# Using django-tinymce
+#NEWSLETTER_RICHTEXT_WIDGET = "tinymce.widgets.TinyMCE"
+
+# Send YoQuieroSaber_Juego mails to Cuttlefish (see http://cuttlefish.io)
+EMAIL_HOST = 'cuttlefish.oaf.org.au'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
+
 
 THUMBNAIL_DEBUG = True
 

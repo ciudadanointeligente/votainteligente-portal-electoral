@@ -23,3 +23,4 @@ python-memcached
 -e git+https://github.com/openpolis/django-popolo.git#egg=django_popolo-dev
 django-mathfilters
 django-picklefield
+django-newsletter

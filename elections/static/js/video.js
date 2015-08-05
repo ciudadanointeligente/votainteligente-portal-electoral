@@ -65,7 +65,7 @@
 		document.getElementById('canvas').setAttribute('style','');
 		document.getElementById('uploadbutton').setAttribute('style','');
 		document.getElementById('takepicbutton').setAttribute('style','display:none');
-		document.getElementById('icon-repeat').classList.add('icon-spin');
+		// document.getElementById('icon-repeat').classList.add('icon-spin');
 		document.getElementById('resetbutton').setAttribute('style','');
 	}
 

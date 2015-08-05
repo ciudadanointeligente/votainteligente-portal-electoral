@@ -105,4 +105,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/cache/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'cache')
 
+
 from votainteligente.votainteligente_settings import *
+if THEME:
+    INSTALLED_APPS += (THEME, )
+INSTALLED_APPS += ('votai_general_theme', )
+

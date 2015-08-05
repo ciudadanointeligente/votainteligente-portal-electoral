@@ -3,7 +3,8 @@ from django.conf.urls import patterns, url
 from haystack.views import SearchView
 from elections.forms import ElectionForm
 from elections.views import ElectionsSearchByTagView, HomeView, ElectionDetailView,\
-    CandidateDetailView, SoulMateDetailView, FaceToFaceView
+    CandidateDetailView, SoulMateDetailView, FaceToFaceView, AreaDetailView, \
+    CandidateFlatPageDetailView
 from sitemaps import *
 
 from django.views.decorators.cache import cache_page
@@ -47,9 +48,16 @@ urlpatterns = patterns('',
         cache_page(60 * settings.CACHE_MINUTES)(CandidateDetailView.as_view(template_name='elections/candidate_detail.html')),
         name='candidate_detail_view'
         ),
+    url(r'^election/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/(?P<url>[-\w]+)/?$',
+        cache_page(60 * settings.CACHE_MINUTES)(CandidateFlatPageDetailView.as_view()),
+        name='candidate_flatpage'
+        ),
     url(r'^election/(?P<slug>[-\w]+)/extra_info.html$',
         ElectionDetailView.as_view(template_name='elections/extra_info.html'),
         name='election_extra_info'),
+    url(r'^area/(?P<slug>[-\w]+)/?$',
+        AreaDetailView.as_view(template_name='elections/area.html'),
+        name='area'),
 
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 )

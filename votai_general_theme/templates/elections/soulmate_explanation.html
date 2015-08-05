@@ -1,0 +1,58 @@
+{% load i18n %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content container-fluid explanation-container">
+      <div class="explanation-all">
+        {% for key, value in explanation_container.items %}
+            <div class="explanation">
+                <div class="category_name {{key}} panel panel-default">
+                  <div class="category-header panel-heading">{{ value.category.name }}</div>
+                   <div class="panel-body">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>
+                              Mi opinión
+                            </th>
+                            <th>
+                              La opinión del candidato
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                    {% for topic_slug, topic_match in value.per_topic.items %}
+                          <tr class="active">
+                            <td colspan="2" title="{% if topic_match.my_position %}Tu opinión fue: {{topic_match.my_position.label}}{% else %} No tuviste opinión{% endif %} y {% if topic_match.their_position %} el candidato dijo: {{topic_match.their_position.label}}{% else %}El candidato no tiene posición.{% endif %}">
+                              <strong>{{topic_match.topic.label}}</strong></td>
+                          </tr>
+                          <tr class="{% if topic_match.match %}success{% else %}info{% endif %}">
+                            <td>
+                              {% if topic_match.my_position %}
+                              {{topic_match.my_position.label}}
+                            {% else %}
+                              No tuviste opinión
+                            {% endif %}
+                            </td>
+                            <td>
+                              {% if topic_match.their_position %}
+                                {{topic_match.their_position.label}}
+                              {% else %}
+                                El candidato no tiene posición.
+                              {% endif %}  
+                            </td>
+                          </tr>
+                      
+                    {% endfor %}
+                        </tbody>
+                      </table>
+                  </div>
+              </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>

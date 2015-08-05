@@ -179,3 +179,10 @@ LOGGING = {'version': 1,
            'loggers': {'django.db.backends': {'level': 'DEBUG', 'handlers': ['null'], 'propagate': False}}
            }
 #END LOGGING
+
+THEME = None
+
+try:
+    from local_settings import *
+except ImportError, e:
+    pass

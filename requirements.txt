@@ -24,3 +24,6 @@ python-memcached
 django-mathfilters
 django-picklefield
 -e git+https://github.com/dokterbob/django-newsletter#egg=django_newsletter
+djangorestframework
+-e git+https://github.com/ciudadanointeligente/popolorest@redisplaying_info_as_popit_does#egg=popolorest
+

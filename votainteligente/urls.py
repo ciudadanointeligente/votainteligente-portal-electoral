@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     ('^pages/', include('django.contrib.flatpages.urls')),
     (r'^tinymce/', include('tinymce.urls')),
     (r'^newsletter/', include('newsletter.urls')),
+    (r'^api/', include('popolorest.urls')),
 )
 
 

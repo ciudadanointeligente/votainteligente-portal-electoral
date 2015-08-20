@@ -14,6 +14,7 @@ from django.contrib.flatpages.models import FlatPage
 import copy
 from writeit.models import Message
 from elections import get_writeit_instance
+from django.utils.encoding import python_2_unicode_compatible
 
 
 class ExtraInfoMixin(models.Model):
@@ -136,10 +137,22 @@ class Election(ExtraInfoMixin, models.Model):
             verbose_name_plural = _(u'Mis Elecciones')
 
 
+@python_2_unicode_compatible
 class VotaInteligenteMessage(Message):
     moderated = models.BooleanField(default=False)
     election = models.ForeignKey(Election, related_name='messages', default=None)
     created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _(u'Mensaje de preguntales')
+        verbose_name_plural = _(u'Mensajes de preguntales')
+
+    def __str__(self):
+        return u'%(author_name)s preguntó "%(subject)s" en %(election)s' % {
+        'author_name':self.author_name,
+        'subject':self.subject,
+        'election':self.election.name
+        }
 
     def save(self, *args, **kwargs):
 

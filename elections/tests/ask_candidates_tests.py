@@ -4,6 +4,7 @@ from elections import get_writeit_instance
 from django.test.utils import override_settings
 from elections.models import Election, Candidate, VotaInteligenteMessage
 from writeit.models import Message
+from datetime import datetime
 
 
 @override_settings(WRITEIT_NAME='votainteligente',
@@ -51,3 +52,18 @@ class VotaInteligenteMessageTestCase(WriteItTestCase):
 
         self.assertTrue(message)
         self.assertIsInstance(message, Message)
+        self.assertFalse(message.moderated)
+        self.assertTrue(message.created)
+        self.assertIsInstance(message.created,datetime)
+
+    def test_str(self):
+        message = VotaInteligenteMessage.objects.create(election=self.election,
+                                                        author_name='author',
+                                                        author_email='author@email.com',
+                                                        subject='subject',
+                                                        content='content',
+                                                        slug='subject-slugified'
+                                                        )
+
+        expected_unicode = 'author preguntó "subject" en 2a Circunscripcion Antofagasta'
+        self.assertEquals(message.__str__(), expected_unicode)

@@ -8,6 +8,7 @@ from elections.views import ElectionsSearchByTagView, HomeView, ElectionDetailVi
 from sitemaps import *
 
 from django.views.decorators.cache import cache_page
+from elections.preguntales_views import MessageDetailView
 
 media_root = getattr(settings, 'MEDIA_ROOT', '/')
 
@@ -48,6 +49,11 @@ urlpatterns = patterns('',
         cache_page(60 * settings.CACHE_MINUTES)(CandidateDetailView.as_view(template_name='elections/candidate_detail.html')),
         name='candidate_detail_view'
         ),
+    # Preguntales
+    url(r'^election/(?P<election_slug>[-\w]+)/messages/(?P<pk>\d+)/?$',
+        MessageDetailView.as_view(template_name='elections/message_detail.html'),
+        name='message_detail'),
+    # End Preguntales
     url(r'^election/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/(?P<url>[-\w]+)/?$',
         cache_page(60 * settings.CACHE_MINUTES)(CandidateFlatPageDetailView.as_view()),
         name='candidate_flatpage'

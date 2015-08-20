@@ -15,6 +15,7 @@ import copy
 from writeit.models import Message
 from elections import get_writeit_instance
 from django.utils.encoding import python_2_unicode_compatible
+from django.contrib.sites.models import Site
 
 
 class ExtraInfoMixin(models.Model):
@@ -161,3 +162,9 @@ class VotaInteligenteMessage(Message):
             self.api_instance = writeit_instance.api_instance
             self.writeitinstance = writeit_instance
         super(VotaInteligenteMessage, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        election = self.election
+        path = reverse('message_detail',kwargs={'election_slug':election.slug, 'pk':self.id})
+        site = Site.objects.get_current()
+        return "http://%s%s"%(site.domain,path)

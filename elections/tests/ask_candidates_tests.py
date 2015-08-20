@@ -5,6 +5,8 @@ from django.test.utils import override_settings
 from elections.models import Election, Candidate, VotaInteligenteMessage
 from writeit.models import Message
 from datetime import datetime
+from django.core.urlresolvers import reverse
+from django.contrib.sites.models import Site
 
 
 @override_settings(WRITEIT_NAME='votainteligente',
@@ -67,3 +69,24 @@ class VotaInteligenteMessageTestCase(WriteItTestCase):
 
         expected_unicode = 'author preguntó "subject" en 2a Circunscripcion Antofagasta'
         self.assertEquals(message.__str__(), expected_unicode)
+
+    def test_a_message_has_a_message_detail_url(self):
+        message = VotaInteligenteMessage.objects.create(election=self.election,
+                                                        author_name='author',
+                                                        author_email='author@email.com',
+                                                        subject='subject',
+                                                        content='content',
+                                                        slug='subject-slugified'
+                                                        )
+
+        url = reverse('message_detail',kwargs={'election_slug':self.election.slug, 'pk':message.id})
+        self.assertTrue(url)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('election', response.context)
+        self.assertIn('votainteligentemessage', response.context)
+        self.assertEquals(response.context['election'], self.election)
+        self.assertEquals(response.context['votainteligentemessage'], message)
+        self.assertTemplateUsed(response, 'elections/message_detail.html')
+        site = Site.objects.get_current()
+        self.assertEquals("http://%s%s"%(site.domain,url), message.get_absolute_url())

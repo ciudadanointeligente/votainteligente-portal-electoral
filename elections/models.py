@@ -12,6 +12,8 @@ from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.flatpages.models import FlatPage
 import copy
+from writeit.models import Message
+from elections import get_writeit_instance
 
 
 class ExtraInfoMixin(models.Model):
@@ -132,3 +134,17 @@ class Election(ExtraInfoMixin, models.Model):
     class Meta:
             verbose_name = _(u'Mi Elección')
             verbose_name_plural = _(u'Mis Elecciones')
+
+
+class VotaInteligenteMessage(Message):
+    moderated = models.BooleanField(default=False)
+    election = models.ForeignKey(Election, related_name='messages', default=None)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+
+        if self.api_instance_id is None or self.writeitinstance_id is None:
+            writeit_instance = get_writeit_instance()
+            self.api_instance = writeit_instance.api_instance
+            self.writeitinstance = writeit_instance
+        super(VotaInteligenteMessage, self).save(*args, **kwargs)

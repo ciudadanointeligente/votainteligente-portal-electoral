@@ -199,11 +199,11 @@ LOGGING = {'version': 1,
            }
 #END LOGGING
 
-WRITEIT_NAME='votainteligente'
-INSTANCE_URL="/api/v1/instance/<THE_INSTANCE_ID>/"
-WRITEIT_ENDPOINT='http://writeit.ciudadanointeligente.org'
-WRITEIT_USERNAME='<YOUR_USERNAME>'
-WRITEIT_KEY='<YOUR_API_KEY>'
+WRITEIT_NAME = 'votainteligente'
+INSTANCE_URL = "/api/v1/instance/<THE_INSTANCE_ID>/"
+WRITEIT_ENDPOINT = 'http://writeit.ciudadanointeligente.org'
+WRITEIT_USERNAME = '<YOUR_USERNAME>'
+WRITEIT_KEY = '<YOUR_API_KEY>'
 
 THEME = None
 

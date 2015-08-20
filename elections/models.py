@@ -16,6 +16,7 @@ from writeit.models import Message
 from elections import get_writeit_instance
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.sites.models import Site
+from django.db.models import Q, Count
 
 
 class ExtraInfoMixin(models.Model):
@@ -138,11 +139,20 @@ class Election(ExtraInfoMixin, models.Model):
             verbose_name_plural = _(u'Mis Elecciones')
 
 
+class VotaInteligenteMessageManager(models.Manager):
+    def get_queryset(self):
+        queryset = super(VotaInteligenteMessageManager, self).get_queryset().annotate(num_answers=Count('answers'))
+        return queryset.order_by('-num_answers','-moderated', '-created')
+
+
 @python_2_unicode_compatible
 class VotaInteligenteMessage(Message):
-    moderated = models.BooleanField(default=False)
+    moderated = models.NullBooleanField(default=None)
     election = models.ForeignKey(Election, related_name='messages', default=None)
     created = models.DateTimeField(auto_now_add=True)
+
+    objects = models.Manager()
+    ordered = VotaInteligenteMessageManager()
 
     class Meta:
         verbose_name = _(u'Mensaje de preguntales')
@@ -154,6 +164,10 @@ class VotaInteligenteMessage(Message):
         'subject':self.subject,
         'election':self.election.name
         }
+
+    def accept_moderation(self):
+        self.moderated = True
+        self.save()
 
     def save(self, *args, **kwargs):
 
@@ -168,3 +182,21 @@ class VotaInteligenteMessage(Message):
         path = reverse('message_detail',kwargs={'election_slug':election.slug, 'pk':self.id})
         site = Site.objects.get_current()
         return "http://%s%s"%(site.domain,path)
+
+    @classmethod
+    def push_moderated_messages_to_writeit(cls):
+        query = Q(moderated=True) & Q(remote_id=None)
+        messages = VotaInteligenteMessage.objects.filter(query)
+        for message in messages:
+            message.push_to_the_api()
+
+    def reject_moderation(self):
+        self.moderated = True
+        self.save()
+
+
+class VotaInteligenteAnswer(models.Model):
+    message = models.ForeignKey(VotaInteligenteMessage, related_name='answers')
+    content = models.TextField()
+    created = models.DateTimeField(editable=False, auto_now_add=True)
+    person = models.ForeignKey(Person, related_name='answers')

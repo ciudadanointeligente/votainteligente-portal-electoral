@@ -28,3 +28,4 @@ djangorestframework
 slumber
 -e git+https://github.com/ciudadanointeligente/writeit-django.git#egg=writeit-django
 -e git+https://github.com/ciudadanointeligente/popolorest@redisplaying_info_as_popit_does#egg=popolorest
+mock

@@ -26,5 +26,5 @@ django-picklefield
 -e git+https://github.com/dokterbob/django-newsletter#egg=django_newsletter
 djangorestframework
 slumber
--e git+https://github.com/ciudadanointeligente/writeit-django.git@wip#egg=writeit-django
+-e git+https://github.com/ciudadanointeligente/writeit-django.git#egg=writeit-django
 -e git+https://github.com/ciudadanointeligente/popolorest@redisplaying_info_as_popit_does#egg=popolorest

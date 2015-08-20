@@ -8,6 +8,7 @@ from datetime import datetime
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from mock import patch, call
+from elections.preguntales_forms import MessageForm
 
 
 @override_settings(WRITEIT_NAME='votainteligente',
@@ -281,3 +282,28 @@ class VotaInteligenteMessagesOrderedList(TestCase):
         self.assertEquals(messages[2], self.message2)#the third should not appear here because it has not been moderated
         self.assertEquals(messages[3], self.message1)
         self.assertEquals(messages[4], self.message3)#this hasn't been moderated
+
+
+class PreguntalesWebTestCase(WriteItTestCase):
+    def setUp(self):
+        self.election = Election.objects.all()[0]
+        self.candidate1 = Candidate.objects.get(id=4)
+        self.candidate2 = Candidate.objects.get(id=5)
+        self.candidate3 = Candidate.objects.get(id=6)
+
+    def tearDown(self):
+        pass
+
+    def test_get_the_url(self):
+        url = reverse('ask_detail_view', 
+            kwargs={
+            'slug':self.election.slug
+            })
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('election', response.context)
+        self.assertEquals(response.context['election'], self.election)
+        self.assertIn('form', response.context)
+        self.assertIsInstance(response.context['form'],MessageForm)
+        self.assertIn('messages', response.context)
+        self.assertTemplateUsed(response, 'elections/ask_candidate.html')

@@ -11,3 +11,4 @@ cache/*
 .tm_properties
 candidator
 src/
+*.sqlite3

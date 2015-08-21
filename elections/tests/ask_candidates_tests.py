@@ -335,3 +335,15 @@ class PreguntalesWebTestCase(WriteItTestCase):
         self.assertEquals(new_message.content, 'this is a very important message')
         self.assertEquals(new_message.subject, 'this important issue')
         self.assertEquals(new_message.people.all().count(), 2)
+
+    def test_persons_belongs_to_instance_and_is_reachable(self):
+        message_form = MessageForm(election=self.election)
+
+        alejandro_guille = Candidate.objects.get(name='Alejandro Guillier')
+        alejandro_guille.email = 'eduardo@guillier.cl'
+        alejandro_guille.save()
+
+
+        election_candidates = self.election.candidates.exclude(email__isnull=True).exclude(email="")
+
+        self.assertQuerysetEqual(election_candidates,[repr(r) for r in message_form.fields['people'].queryset])

@@ -307,3 +307,31 @@ class PreguntalesWebTestCase(WriteItTestCase):
         self.assertIsInstance(response.context['form'],MessageForm)
         self.assertIn('messages', response.context)
         self.assertTemplateUsed(response, 'elections/ask_candidate.html')
+
+
+    def test_submit_message(self):
+        url = reverse('ask_detail_view', kwargs={'slug':self.election.slug,})
+        self.candidate1.email = "email@email.com"
+        self.candidate1.save()
+        self.candidate2.email = "email@email.com"
+        self.candidate2.save()
+        response = self.client.post(url, {'people': [self.candidate1.pk, self.candidate2.pk],
+                                            'subject': 'this important issue',
+                                            'content': 'this is a very important message', 
+                                            'author_name': 'my name',
+                                            'author_email': 'mail@mail.er',
+                                            # 'recaptcha_response_field': 'PASSED'
+                                            }, follow=True
+                                            )
+
+
+
+        self.assertTemplateUsed(response, 'elections/ask_candidate.html')
+        self.assertEquals(Message.objects.count(), 1)
+        new_message = VotaInteligenteMessage.objects.all()[0]
+        self.assertFalse(new_message.remote_id) 
+        self.assertFalse(new_message.url)
+        self.assertFalse(new_message.moderated)
+        self.assertEquals(new_message.content, 'this is a very important message')
+        self.assertEquals(new_message.subject, 'this important issue')
+        self.assertEquals(new_message.people.all().count(), 2)

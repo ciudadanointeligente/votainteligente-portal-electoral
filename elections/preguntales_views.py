@@ -1,9 +1,14 @@
 # coding=utf-8
 from django.views.generic import DetailView, CreateView
-from elections.models import VotaInteligenteMessage, Election
+from elections.models import VotaInteligenteMessage, Election, Candidate, VotaInteligenteAnswer
 from elections.preguntales_forms import MessageForm
 from django.core.urlresolvers import reverse
-    
+from django.views.generic.base import View
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+from elections.writeit_functions import reverse_person_url
+from django.core.mail import mail_admins
+
 
 class MessageDetailView(DetailView):
     model = VotaInteligenteMessage
@@ -44,3 +49,25 @@ class ElectionAskCreateView(CreateView):
     def get_success_url(self):
         election_slug = self.kwargs['slug']
         return reverse('ask_detail_view', kwargs={'slug':election_slug,})
+
+
+class AnswerWebHook(View):
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(AnswerWebHook, self).dispatch(request, *args, **kwargs)
+
+
+    def post(self, *args, **kwargs):
+        person_id = self.request.POST.get('person_id')
+        content = self.request.POST.get('content')
+
+        message_id = self.request.POST.get('message_id')
+        try:
+            message = VotaInteligenteMessage.objects.get(url=message_id)
+            person_id = reverse_person_url(person_id)
+            person = Candidate.objects.get(id=person_id)
+            VotaInteligenteAnswer.objects.create(person =person, message=message, content=content)
+        except Exception, e:
+            mail_admins('Error recibiendo una respuesta', e)
+
+        return HttpResponse(content_type="text/plain", status=200)

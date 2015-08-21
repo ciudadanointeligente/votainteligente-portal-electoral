@@ -8,10 +8,11 @@ from elections.views import ElectionsSearchByTagView, HomeView, ElectionDetailVi
 from sitemaps import *
 
 from django.views.decorators.cache import cache_page
-from elections.preguntales_views import MessageDetailView, ElectionAskCreateView
+from elections.preguntales_views import MessageDetailView, ElectionAskCreateView, AnswerWebHook
 
 media_root = getattr(settings, 'MEDIA_ROOT', '/')
 
+new_answer_endpoint = r"^new_answer/%s/?$" % (settings.NEW_ANSWER_ENDPOINT)
 
 sitemaps = {
     'elections': ElectionsSitemap,
@@ -19,6 +20,7 @@ sitemaps = {
 }
 
 urlpatterns = patterns('',
+    url(new_answer_endpoint,AnswerWebHook.as_view(), name='new_answer_endpoint' ),
     url(r'^/?$', cache_page(60 * settings.CACHE_MINUTES)(HomeView.as_view(template_name='elections/home.html')), name='home'),
     url(r'^buscar/?$', SearchView(template='search.html',
             form_class=ElectionForm), name='search'),

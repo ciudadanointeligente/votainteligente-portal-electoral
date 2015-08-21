@@ -27,7 +27,7 @@ class ElectionTestCase(TestCase):
         self.assertEquals(election.extra_info_content, u'Más Información')
         self.assertTrue(election.searchable)
         self.assertFalse(election.highlighted)
-        self.assertTrue(election.uses_preguntales)
+        self.assertFalse(election.uses_preguntales)
         self.assertTrue(election.uses_ranking)
         self.assertTrue(election.uses_face_to_face)
         self.assertTrue(election.uses_soul_mate)

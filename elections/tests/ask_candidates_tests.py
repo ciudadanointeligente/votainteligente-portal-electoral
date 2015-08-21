@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from mock import patch, call
 from elections.preguntales_forms import MessageForm
+from elections.writeit_functions import get_api_url_for_person, reverse_person_url
 
 
 @override_settings(WRITEIT_NAME='votainteligente',
@@ -347,3 +348,90 @@ class PreguntalesWebTestCase(WriteItTestCase):
         election_candidates = self.election.candidates.exclude(email__isnull=True).exclude(email="")
 
         self.assertQuerysetEqual(election_candidates,[repr(r) for r in message_form.fields['people'].queryset])
+
+
+class AnswerWebhookTestCase(TestCase):
+
+    def setUp(self):
+        super(AnswerWebhookTestCase, self).setUp()
+        self.election = Election.objects.all()[0]
+        self.candidate1 = Candidate.objects.get(id=4)
+        self.candidate2 = Candidate.objects.get(id=5)
+        self.candidate3 = Candidate.objects.get(id=6)
+        # self.message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+        #     , author_name='author'
+        #     , author_email='author@email.com'
+        #     , subject = u'subject test_accept_message'
+        #     , content = u'Qué opina usted sobre el test_accept_message'
+        #     , writeitinstance=self.election.writeitinstance
+        #     , slug = 'subject-slugified'
+        #     )
+        self.message = VotaInteligenteMessage.objects.create(election=self.election, 
+                                                             author_name='author', 
+                                                             author_email='author email', 
+                                                             subject = u'I\'m moderated', 
+                                                             content = u'Qué opina usted sobre el test_accept_message', 
+                                                             slug = 'subject-slugified', 
+                                                             moderated = True
+                                                             )
+        self.message.people.add(self.candidate1)
+
+        # Ahora emularé la pasada por writeit
+        # Al hacer push_to_the_api writeit le devuelve a
+        # writeit-django el identificador y su url para acceder a la API
+
+        self.message.url = '/api/v1/message/1/'
+        self.message.remote_id = 1
+        self.message.save()
+
+    def test_reverse_person_id(self):
+        site = Site.objects.get_current()
+        site.domain = 'localhost:8000'
+        site.save()
+
+        self.assertEquals(reverse_person_url('http://localhost:8000/api/persons/fiera-feroz'), 'fiera-feroz')
+
+
+    @override_settings(NEW_ANSWER_ENDPOINT = 'new_answer_comming_expected_to_be_a_hash')
+    def test_when_i_post_to_a_point_it_creates_an_answer(self):
+        # This comes from writeit
+        # Webhooks
+        # payload = {
+        #     'message_id': '/api/v1/message/{0}/'.format(answer.message.id),
+        #     'content': answer.content,
+        #     'person': answer.person.name,
+        #     'person_id': answer.person.popit_url,
+        #     }
+
+        data = {
+                'content': 'Example Answer', \
+                'person': self.candidate1.name, \
+                'person_id': get_api_url_for_person(self.candidate1), \
+                'message_id': '/api/v1/message/1/'
+            }
+        response = self.client.post(reverse('new_answer_endpoint') , 
+            format='json', 
+            data = data
+        )
+
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(self.message.answers.count(), 1)
+        answer = self.message.answers.all()[0]
+        self.assertEquals(answer.content, 'Example Answer')
+        self.assertEquals(answer.person, self.candidate1)
+
+
+    @override_settings(NEW_ANSWER_ENDPOINT = 'new_answer_comming_expected_to_be_a_hash')
+    def test_when_I_send_anything_else_it_doesnt_crash(self):
+        data = {
+                'content': 'Example Answer', \
+                'person': self.candidate1.name, \
+                'person_id': 'non_existing_id', \
+                'message_id': self.message.url
+            }
+
+        response = self.client.post(reverse('new_answer_endpoint') , 
+            format='json', 
+            data = data
+        )
+        self.assertEquals(response.status_code, 200)

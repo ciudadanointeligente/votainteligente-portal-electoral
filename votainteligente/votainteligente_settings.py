@@ -24,6 +24,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
+    'djcelery',
     'django_nose',
     'django.contrib.sitemaps',
     'candidator',
@@ -39,7 +40,6 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'tinymce',
-    'djcelery',
     'mathfilters',
     'newsletter',
     'rest_framework',
@@ -105,6 +105,7 @@ LOGGING = {
 #CELERY STUFF
 BROKER_URL = 'amqp://guest:guest@localhost:5672/'
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+CELERY_ALWAYS_EAGER = True
 
 #django tinyMCE
 TINYMCE_JS_URL = os.path.join(settings.STATIC_URL, 'js/tiny_mce/tiny_mce.js')

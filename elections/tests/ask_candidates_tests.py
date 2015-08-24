@@ -10,6 +10,7 @@ from django.contrib.sites.models import Site
 from mock import patch, call
 from elections.preguntales_forms import MessageForm
 from elections.writeit_functions import get_api_url_for_person, reverse_person_url
+from elections.tasks import send_mails_using_writeit
 
 
 @override_settings(WRITEIT_NAME='votainteligente',
@@ -112,7 +113,7 @@ class VotaInteligenteMessageTestCase(WriteItTestCase):
 
         # Now I moderate this
         # which means push this to the API and then
-        # 
+        #
         message.accept_moderation()
 
         self.assertIsNone(message.remote_id)
@@ -226,50 +227,50 @@ class VotaInteligenteMessagesOrderedList(TestCase):
         self.candidate1 = Candidate.objects.get(id=4)
         self.candidate2 = Candidate.objects.get(id=5)
         self.candidate3 = Candidate.objects.get(id=6)
-        
-        self.message1 = VotaInteligenteMessage.objects.create(election=self.election, 
-                                                              author_name='author', 
-                                                              author_email='author email', 
-                                                              subject = u'I\'m moderated', 
-                                                              content = u'Qué opina usted sobre el test_accept_message', 
-                                                              slug = 'subject-slugified', 
+
+        self.message1 = VotaInteligenteMessage.objects.create(election=self.election,
+                                                              author_name='author',
+                                                              author_email='author email',
+                                                              subject = u'I\'m moderated',
+                                                              content = u'Qué opina usted sobre el test_accept_message',
+                                                              slug = 'subject-slugified',
                                                               moderated = True
                                                               )
-        self.message2 = VotaInteligenteMessage.objects.create(election=self.election, 
-                                                              author_name='author', 
-                                                              author_email='author email', 
-                                                              subject = u'message 3', 
-                                                              content = u'Qué opina usted sobre el test_accept_message', 
-                                                              slug = 'subject-slugified', 
+        self.message2 = VotaInteligenteMessage.objects.create(election=self.election,
+                                                              author_name='author',
+                                                              author_email='author email',
+                                                              subject = u'message 3',
+                                                              content = u'Qué opina usted sobre el test_accept_message',
+                                                              slug = 'subject-slugified',
                                                               moderated = True
                                                               )
-        self.message3 = VotaInteligenteMessage.objects.create(election=self.election, 
-                                                              author_name='author', 
-                                                              author_email='author email', 
-                                                              subject = u'please don\'t moderate me', 
-                                                              content = u'Qué opina usted sobre el test_accept_message', 
+        self.message3 = VotaInteligenteMessage.objects.create(election=self.election,
+                                                              author_name='author',
+                                                              author_email='author email',
+                                                              subject = u'please don\'t moderate me',
+                                                              content = u'Qué opina usted sobre el test_accept_message',
                                                               slug = 'subject-slugified'
                                                               )
-        self.message4 = VotaInteligenteMessage.objects.create(election=self.election, 
-                                                              author_name='author', 
-                                                              author_email='author email', 
-                                                              subject = u'message 4', 
-                                                              content = u'Que opina usted sobre el test_accept_message', 
-                                                              slug = 'subject-slugified', 
+        self.message4 = VotaInteligenteMessage.objects.create(election=self.election,
+                                                              author_name='author',
+                                                              author_email='author email',
+                                                              subject = u'message 4',
+                                                              content = u'Que opina usted sobre el test_accept_message',
+                                                              slug = 'subject-slugified',
                                                               moderated = True
                                                               )
         self.message4.people.add(self.candidate1)
 
-        self.answer1 = VotaInteligenteAnswer.objects.create(message=self.message4, 
+        self.answer1 = VotaInteligenteAnswer.objects.create(message=self.message4,
                                                             person=self.candidate1,
                                                             content=u'answerto message4'
                                                             )
-        self.message5 = VotaInteligenteMessage.objects.create(election=self.election, 
-                                                              author_name='author', 
-                                                              author_email='author email', 
-                                                              subject = u'message 5', 
-                                                              content = u'Que opina usted sobre el test_accept_message', 
-                                                              slug = 'subject-slugified', 
+        self.message5 = VotaInteligenteMessage.objects.create(election=self.election,
+                                                              author_name='author',
+                                                              author_email='author email',
+                                                              subject = u'message 5',
+                                                              content = u'Que opina usted sobre el test_accept_message',
+                                                              slug = 'subject-slugified',
                                                               moderated = True
                                                               )
 
@@ -296,7 +297,7 @@ class PreguntalesWebTestCase(WriteItTestCase):
         pass
 
     def test_get_the_url(self):
-        url = reverse('ask_detail_view', 
+        url = reverse('ask_detail_view',
             kwargs={
             'slug':self.election.slug
             })
@@ -318,7 +319,7 @@ class PreguntalesWebTestCase(WriteItTestCase):
         self.candidate2.save()
         response = self.client.post(url, {'people': [self.candidate1.pk, self.candidate2.pk],
                                             'subject': 'this important issue',
-                                            'content': 'this is a very important message', 
+                                            'content': 'this is a very important message',
                                             'author_name': 'my name',
                                             'author_email': 'mail@mail.er',
                                             # 'recaptcha_response_field': 'PASSED'
@@ -330,7 +331,7 @@ class PreguntalesWebTestCase(WriteItTestCase):
         self.assertTemplateUsed(response, 'elections/ask_candidate.html')
         self.assertEquals(Message.objects.count(), 1)
         new_message = VotaInteligenteMessage.objects.all()[0]
-        self.assertFalse(new_message.remote_id) 
+        self.assertFalse(new_message.remote_id)
         self.assertFalse(new_message.url)
         self.assertFalse(new_message.moderated)
         self.assertEquals(new_message.content, 'this is a very important message')
@@ -366,12 +367,12 @@ class AnswerWebhookTestCase(TestCase):
         #     , writeitinstance=self.election.writeitinstance
         #     , slug = 'subject-slugified'
         #     )
-        self.message = VotaInteligenteMessage.objects.create(election=self.election, 
-                                                             author_name='author', 
-                                                             author_email='author email', 
-                                                             subject = u'I\'m moderated', 
-                                                             content = u'Qué opina usted sobre el test_accept_message', 
-                                                             slug = 'subject-slugified', 
+        self.message = VotaInteligenteMessage.objects.create(election=self.election,
+                                                             author_name='author',
+                                                             author_email='author email',
+                                                             subject = u'I\'m moderated',
+                                                             content = u'Qué opina usted sobre el test_accept_message',
+                                                             slug = 'subject-slugified',
                                                              moderated = True
                                                              )
         self.message.people.add(self.candidate1)
@@ -409,8 +410,8 @@ class AnswerWebhookTestCase(TestCase):
                 'person_id': get_api_url_for_person(self.candidate1), \
                 'message_id': '/api/v1/message/1/'
             }
-        response = self.client.post(reverse('new_answer_endpoint') , 
-            format='json', 
+        response = self.client.post(reverse('new_answer_endpoint') ,
+            format='json',
             data = data
         )
 
@@ -430,8 +431,59 @@ class AnswerWebhookTestCase(TestCase):
                 'message_id': self.message.url
             }
 
-        response = self.client.post(reverse('new_answer_endpoint') , 
-            format='json', 
+        response = self.client.post(reverse('new_answer_endpoint') ,
+            format='json',
             data = data
         )
         self.assertEquals(response.status_code, 200)
+
+
+class MessagePusherTestCase(TestCase):
+    '''
+    This TestCase is intended to provide testing for the periodically
+    push VotaInteligente Messages to WriteIt (writeit.ciudadanointeligente.org).
+    '''
+    def setUp(self):
+        self.instance = get_writeit_instance()
+        self.election = Election.objects.get(id=1)
+        self.candidate1 = Candidate.objects.get(id=4)
+        self.candidate2 = Candidate.objects.get(id=5)
+        self.candidate3 = Candidate.objects.get(id=6)
+
+    def test_push_moderated_messages(self):
+        '''Push moderated messages'''
+        message = VotaInteligenteMessage.objects.create(election=self.election,
+                                                        author_name='author',
+                                                        author_email='author@email.com',
+                                                        subject='subject',
+                                                        content='content',
+                                                        slug='subject-slugified',
+                                                        moderated=True
+                                                        )
+        message.people.add(self.candidate1)
+        message.people.add(self.candidate2)
+
+        message2 = VotaInteligenteMessage.objects.create(election=self.election,
+                                                        author_name='author',
+                                                        author_email='author@email.com',
+                                                        subject='subject',
+                                                        content='content',
+                                                        slug='subject-slugified',
+                                                        moderated=True
+                                                        )
+        message2.people.add(self.candidate1)
+        message2.people.add(self.candidate2)
+
+        message3 = VotaInteligenteMessage.objects.create(election=self.election,
+                                                        author_name='author',
+                                                        author_email='author@email.com',
+                                                        subject='subject',
+                                                        content='content',
+                                                        slug='subject-slugified'
+                                                        )
+        message3.people.add(self.candidate1)
+        message3.people.add(self.candidate2)
+
+        with patch('elections.models.VotaInteligenteMessage.push_to_the_api') as method_mock:
+            send_mails_using_writeit.delay()
+            self.assertEquals(method_mock.call_count, 2)

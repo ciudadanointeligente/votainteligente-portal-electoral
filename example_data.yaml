@@ -1,3 +1,6 @@
+- fields: {domain: localhost:8000, name: localhost:8000}
+    model: sites.site
+    pk: 1
 - fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: true, name: "2\xAA Circunscripci\xF3n Antofagasta", popit_api_instance: 1,
     searchable: true, slug: 2a-circunscripcion-antofagasta}

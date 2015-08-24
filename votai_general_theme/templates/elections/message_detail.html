@@ -1,0 +1,17 @@
+{% extends "elections/election_base.html" %}
+{% load i18n %}
+{% load markdown_deux_tags %}
+
+{% block tab_extrainfo %}class="active"{% endblock tab_extrainfo %}
+
+{% block title %} - {{election}} - {% trans "Mensaje" %} {{votainteligentemessage.subject}}{% endblock title%}
+
+{% block last_breadcrumb %}{{votainteligentemessage.subject}}{% endblock last_breadcrumb %}
+
+{% block mainelection %}
+
+	{% with message=votainteligentemessage %}
+		{% include 'elections/message_in_list.html' %}
+	{% endwith %}
+
+{% endblock mainelection %}

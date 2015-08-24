@@ -200,6 +200,7 @@ class CandidateFlatPageDetailView(DetailView):
         return qs
 
     def get_object(self, queryset=None):
+        print self.kwargs['url']
         if queryset is None:
             queryset = self.get_queryset()
         return queryset.get(url=self.kwargs['url'])

@@ -4,6 +4,7 @@ import os
 import djcelery
 from django.conf import settings
 djcelery.setup_loader()
+from datetime import timedelta
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -106,6 +107,16 @@ LOGGING = {
 BROKER_URL = 'amqp://guest:guest@localhost:5672/'
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 CELERY_ALWAYS_EAGER = True
+
+CELERYBEAT_SCHEDULE = {
+        'pushing-to-writeit-every-2-minutes': {
+            'task': 'elections.tasks.send_mails_using_writeit',
+                    'schedule': timedelta(minutes=2),
+                },
+}
+
+CELERY_TIMEZONE = 'UTC'
+
 
 #django tinyMCE
 TINYMCE_JS_URL = os.path.join(settings.STATIC_URL, 'js/tiny_mce/tiny_mce.js')

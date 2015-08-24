@@ -21,8 +21,8 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
     'djcelery',
@@ -50,7 +50,8 @@ INSTALLED_APPS = (
     #'django.contrib.admindocs',
 )
 
-
+#SITE_ID
+SITE_ID = 1
 NEWSLETTER_CONFIRM_EMAIL = False
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 

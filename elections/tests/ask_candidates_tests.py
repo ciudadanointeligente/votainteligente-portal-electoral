@@ -9,7 +9,6 @@ from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from mock import patch, call
 from elections.preguntales_forms import MessageForm
-from elections.writeit_functions import get_api_url_for_person, reverse_person_url
 from elections.tasks import send_mails_using_writeit
 
 
@@ -386,6 +385,7 @@ class AnswerWebhookTestCase(TestCase):
         self.message.save()
 
     def test_reverse_person_id(self):
+        from elections.writeit_functions import get_api_url_for_person, reverse_person_url
         site = Site.objects.get_current()
         site.domain = 'localhost:8000'
         site.save()
@@ -404,6 +404,7 @@ class AnswerWebhookTestCase(TestCase):
         #     'person_id': answer.person.popit_url,
         #     }
 
+        from elections.writeit_functions import get_api_url_for_person, reverse_person_url
         data = {
                 'content': 'Example Answer', \
                 'person': self.candidate1.name, \

@@ -12,3 +12,4 @@ cache/*
 candidator
 src/
 *.sqlite3
+*.swp

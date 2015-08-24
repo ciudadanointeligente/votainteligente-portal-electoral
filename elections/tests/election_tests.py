@@ -28,7 +28,7 @@ class ElectionTestCase(TestCase):
         self.assertTrue(election.searchable)
         self.assertFalse(election.highlighted)
         self.assertFalse(election.uses_preguntales)
-        self.assertTrue(election.uses_ranking)
+        self.assertFalse(election.uses_ranking)
         self.assertTrue(election.uses_face_to_face)
         self.assertTrue(election.uses_soul_mate)
         self.assertTrue(election.uses_questionary)

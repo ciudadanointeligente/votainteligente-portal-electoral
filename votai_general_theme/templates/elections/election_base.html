@@ -70,7 +70,7 @@
 					<li {% block tab_ask %}{% endblock %}><a href="{% url 'ask_detail_view' slug=election.slug %}" accesskey="a" title="{% trans "Pregúntales" %} (Alt+a)"><i class="icon-edit"></i> {% trans "Pregúntales" %}</a></li>
 					{% endif %}
 					{% if 'ranking'|val_navbars and election.uses_ranking %}
-					<li {% block tab_ranking %}{% endblock %}><a href="{% url 'ranking_detail_view' slug=election.slug %}" accesskey="r" title="{% trans "Ranking" %} (Alt+r)"><i class="icon-trophy"></i> {% trans "Ranking" %}</a></li>
+					<li {% block tab_ranking %}{% endblock %}><a href="{% url 'ranking_view' slug=election.slug %}" accesskey="r" title="{% trans "Ranking" %} (Alt+r)"><i class="icon-trophy"></i> {% trans "Ranking" %}</a></li>
 					{% endif %}
 					{% if election.extra_info_title %}
 					<li {% block tab_extrainfo %}{% endblock %}><a href="{% url 'election_extra_info' slug=election.slug %}"><i class="icon-info"></i> {{election.extra_info_title}} </a></li>

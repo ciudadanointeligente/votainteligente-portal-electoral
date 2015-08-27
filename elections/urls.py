@@ -4,7 +4,7 @@ from haystack.views import SearchView
 from elections.forms import ElectionForm
 from elections.views import ElectionsSearchByTagView, HomeView, ElectionDetailView,\
     CandidateDetailView, SoulMateDetailView, FaceToFaceView, AreaDetailView, \
-    CandidateFlatPageDetailView
+    CandidateFlatPageDetailView, ElectionRankingView, QuestionsPerCandidateView
 from sitemaps import *
 
 from django.views.decorators.cache import cache_page
@@ -51,6 +51,14 @@ urlpatterns = patterns('',
     url(r'^election/(?P<election_slug>[-\w]+)/messages/(?P<pk>\d+)/?$',
         MessageDetailView.as_view(template_name='elections/message_detail.html'),
         name='message_detail'),
+    #ranking
+    url(r'^election/(?P<slug>[-\w]+)/ranking/?$',
+        cache_page(60 * settings.CACHE_MINUTES)(ElectionRankingView.as_view(template_name='elections/ranking_candidates.html')),
+        name='ranking_view'),
+    url(r'^election/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/questions?$',
+        QuestionsPerCandidateView.as_view(template_name='elections/questions_per_candidate.html'),
+        name='questions_per_candidate'
+        ),
     #ask
     url(r'^election/(?P<slug>[-\w]+)/ask/?$',
         ElectionAskCreateView.as_view(template_name='elections/ask_candidate.html'),

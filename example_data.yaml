@@ -1,4 +1,4 @@
-- fields: {domain: localhost:8000, name: localhost:8000}
+- fields: {domain: 'localhost:8000', name: 'localhost:8000'}
   model: sites.site
   pk: 1
 - fields: {additional_name: '', biography: "\r\n* Naci\xF3 el 9 de marzo de 1956 en

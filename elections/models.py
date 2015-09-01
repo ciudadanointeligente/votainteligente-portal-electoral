@@ -31,6 +31,8 @@ class Candidate(Person, ExtraInfoMixin):
     election = models.ForeignKey('Election', related_name='candidates', null=True)
     force_has_answer = models.BooleanField(default=False,
                                            help_text=_('Marca esto si quieres que el candidato aparezca como que no ha respondido'))
+    did_not_pass_primaries = models.BooleanField(default=False,
+                                          help_text=_('Marca esto si quieres el candidato no pas&oacute; las primarias'))
 
     default_extra_info = settings.DEFAULT_CANDIDATE_EXTRA_INFO
 

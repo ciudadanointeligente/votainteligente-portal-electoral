@@ -21,7 +21,7 @@ django-pagination==1.0.5
 celery==3.1.18
 django-celery==3.1.16
 python-memcached
--e git+https://github.com/openpolis/django-popolo.git#egg=django_popolo-dev
+-e git+https://github.com/openpolis/django-popolo.git@5cabccf946006ab6306f90ba5dd51f3e0cf7db82#egg=django_popolo-dev
 django-mathfilters
 django-picklefield
 -e git+https://github.com/dokterbob/django-newsletter#egg=django_newsletter

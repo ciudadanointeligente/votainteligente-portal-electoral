@@ -12,6 +12,11 @@ from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.flatpages.models import FlatPage
 import copy
+from writeit.models import Message
+from elections import get_writeit_instance
+from django.utils.encoding import python_2_unicode_compatible
+from django.contrib.sites.models import Site
+from django.db.models import Q, Count
 
 
 class ExtraInfoMixin(models.Model):
@@ -111,8 +116,8 @@ class Election(ExtraInfoMixin, models.Model):
     extra_info_title = models.CharField(max_length=50, blank=True, null=True)
     extra_info_content = models.TextField(max_length=3000, blank=True, null=True, help_text=_("Puedes usar Markdown. <br/> ")
             + markdown_allowed())
-    uses_preguntales = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar preguntales?"))
-    uses_ranking = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar ranking"))
+    uses_preguntales = models.BooleanField(default=False, help_text=_(u"Esta elección debe usar preguntales?"))
+    uses_ranking = models.BooleanField(default=False, help_text=_(u"Esta elección debe usar ranking"))
     uses_face_to_face = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar frente a frente"))
     uses_soul_mate = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar 1/2 naranja"))
     uses_questionary = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar cuestionario"))
@@ -132,3 +137,66 @@ class Election(ExtraInfoMixin, models.Model):
     class Meta:
             verbose_name = _(u'Mi Elección')
             verbose_name_plural = _(u'Mis Elecciones')
+
+
+class VotaInteligenteMessageManager(models.Manager):
+    def get_queryset(self):
+        queryset = super(VotaInteligenteMessageManager, self).get_queryset().annotate(num_answers=Count('answers'))
+        return queryset.order_by('-num_answers','-moderated', '-created')
+
+
+@python_2_unicode_compatible
+class VotaInteligenteMessage(Message):
+    moderated = models.NullBooleanField(default=None)
+    election = models.ForeignKey(Election, related_name='messages', default=None)
+    created = models.DateTimeField(auto_now_add=True)
+
+    objects = models.Manager()
+    ordered = VotaInteligenteMessageManager()
+
+    class Meta:
+        verbose_name = _(u'Mensaje de preguntales')
+        verbose_name_plural = _(u'Mensajes de preguntales')
+
+    def __str__(self):
+        return u'%(author_name)s preguntó "%(subject)s" en %(election)s' % {
+        'author_name':self.author_name,
+        'subject':self.subject,
+        'election':self.election.name
+        }
+
+    def accept_moderation(self):
+        self.moderated = True
+        self.save()
+
+    def save(self, *args, **kwargs):
+
+        if self.api_instance_id is None or self.writeitinstance_id is None:
+            writeit_instance = get_writeit_instance()
+            self.api_instance = writeit_instance.api_instance
+            self.writeitinstance = writeit_instance
+        super(VotaInteligenteMessage, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        election = self.election
+        path = reverse('message_detail',kwargs={'election_slug':election.slug, 'pk':self.id})
+        site = Site.objects.get_current()
+        return "http://%s%s"%(site.domain,path)
+
+    @classmethod
+    def push_moderated_messages_to_writeit(cls):
+        query = Q(moderated=True) & Q(remote_id=None)
+        messages = VotaInteligenteMessage.objects.filter(query)
+        for message in messages:
+            message.push_to_the_api()
+
+    def reject_moderation(self):
+        self.moderated = True
+        self.save()
+
+
+class VotaInteligenteAnswer(models.Model):
+    message = models.ForeignKey(VotaInteligenteMessage, related_name='answers')
+    content = models.TextField()
+    created = models.DateTimeField(editable=False, auto_now_add=True)
+    person = models.ForeignKey(Candidate, related_name='answers')

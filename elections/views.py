@@ -190,6 +190,8 @@ class SoulMateDetailView(DetailView):
             others_candidates.append(other)
 
         context['others'] = others_candidates
+        print context['winner']
+        print context['others']
         return self.render_to_response(context)
 
 

@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from elections.models import Election, Candidate, PersonalData, QuestionCategory
-from popolo.models import Organization, Membership, ContactDetail, OtherName, Post, Area, Link, Person
+from popolo.models import Membership, ContactDetail, OtherName, Area, Link, Person
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django import forms
 from django.conf import settings
@@ -215,11 +215,6 @@ class ElectionAdmin(admin.ModelAdmin):
 admin.site.register(Election, ElectionAdmin)
 
 
-class OrgnizationAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(Organization, OrgnizationAdmin)
-
-
 class ContactDetailInline(GenericTabularInline):
     model = ContactDetail
     fields = ('label', 'contact_type', 'value')
@@ -272,11 +267,6 @@ admin.site.register(Candidate, CandidateAdmin)
 class CandidateFlatPageAdmin(admin.ModelAdmin):
     pass
 admin.site.register(CandidateFlatPage, CandidateFlatPageAdmin)
-
-
-class PostAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(Post, PostAdmin)
 
 
 class AreaAdmin(admin.ModelAdmin):

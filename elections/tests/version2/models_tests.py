@@ -25,10 +25,18 @@ class CandidaTeTestCase(Version2TestCase):
         super(CandidaTeTestCase, self).setUp()
 
     def test_instanciate(self):
-        candidate = Candidate.objects.create(name="Felipe Feroz",
-                                             election=self.election
-                                             )
+        candidate = Candidate.objects.create(name="Felipe Feroz")
+        self.election.candidates.add(candidate)
         self.assertIsInstance(candidate, Person)
+
+    def test_a_candidate_can_belong_to_more_than_one_election(self):
+        candidate = Candidate.objects.create(name="Felipe Feroz")
+        '''This is for the very specific case of a second round election'''
+        second_round = Election.objects.create(name="SecondRound")
+        second_round.candidates.add(candidate)
+        self.election.candidates.add(candidate)
+        self.assertIn(candidate, second_round.candidates.all())
+        self.assertIn(candidate, self.election.candidates.all())
 
     def test_get_twitter(self):
         candidate = Candidate.objects.get(id=1)
@@ -137,9 +145,8 @@ class CandidaTeTestCase(Version2TestCase):
 
     def test_force_has_answer_false(self):
         '''The possibility for the administrator to display that a candidate hasnt answer'''
-        candidate = Candidate.objects.create(name="Felipe Feroz",
-                                             election=self.election
-                                             )
+        candidate = Candidate.objects.create(name="Felipe Feroz")
+        self.election.candidates.add(candidate)
         self.assertFalse(candidate.force_has_answer)
 
 

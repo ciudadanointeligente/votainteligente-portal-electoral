@@ -82,22 +82,22 @@
 - fields: {label: 'no', topic: 6}
   model: candidator.position
   pk: 14
-- fields: {person_ptr: 1, name: Manuel Rojas, election: 2, extra_info: {}}
+- fields: {person_ptr: 1, name: Manuel Rojas, election: 2, elections: [2], extra_info: {}}
   model: elections.candidate
   pk: 1
-- fields: {person_ptr: 2, name: Alejandro Guillier, election: 2, extra_info: {}}
+- fields: {person_ptr: 2, name: Alejandro Guillier, election: 2, elections: [2], extra_info: {}}
   model: elections.candidate
   pk: 2
-- fields: {person_ptr: 3, name: Pedro Araya, election: 2, extra_info: {}}
+- fields: {person_ptr: 3, name: Pedro Araya, election: 2, elections: [2], extra_info: {}}
   model: elections.candidate
   pk: 3
-- fields: {person_ptr: 4, name: Gisela Contreras, election: 1, extra_info: {}}
+- fields: {person_ptr: 4, name: Gisela Contreras, election: 1, elections: [1], extra_info: {}}
   model: elections.candidate
   pk: 4
-- fields: {person_ptr: 5, name: Carlos Cantero, election: 1, extra_info: {}}
+- fields: {person_ptr: 5, name: Carlos Cantero, election: 1, elections: [1], extra_info: {}}
   model: elections.candidate
   pk: 5
-- fields: {person_ptr: 6, name: Daniel Guevara, election: 1, extra_info: {}}
+- fields: {person_ptr: 6, name: Daniel Guevara, election: 1, elections: [1], extra_info: {}}
   model: elections.candidate
   pk: 6
 - fields: {person_ptr: 7, name: Jimena Orrego}

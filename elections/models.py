@@ -14,7 +14,6 @@ from django.contrib.flatpages.models import FlatPage
 import copy
 from writeit.models import Message
 from elections import get_writeit_instance
-from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.sites.models import Site
 from django.db.models import Q, Count
 
@@ -33,7 +32,7 @@ class ExtraInfoMixin(models.Model):
 
 
 class Candidate(Person, ExtraInfoMixin):
-    election = models.ForeignKey('Election', related_name='candidates', null=True)
+    election = models.ManyToManyField('Election', related_name='candidates', null=True)
     force_has_answer = models.BooleanField(default=False,
                                            help_text=_('Marca esto si quieres que el candidato aparezca como que no ha respondido'))
 
@@ -142,7 +141,7 @@ class Election(ExtraInfoMixin, models.Model):
 class VotaInteligenteMessageManager(models.Manager):
     def get_queryset(self):
         queryset = super(VotaInteligenteMessageManager, self).get_queryset().annotate(num_answers=Count('answers'))
-        return queryset.order_by('-num_answers','-moderated', '-created')
+        return queryset.order_by('-num_answers', '-moderated', '-created')
 
 
 @python_2_unicode_compatible
@@ -159,11 +158,10 @@ class VotaInteligenteMessage(Message):
         verbose_name_plural = _(u'Mensajes de preguntales')
 
     def __str__(self):
-        return u'%(author_name)s preguntó "%(subject)s" en %(election)s' % {
-        'author_name':self.author_name,
-        'subject':self.subject,
-        'election':self.election.name
-        }
+        return u'%(author_name)s preguntó "%(subject)s" en %(election)s' % {'author_name': self.author_name,
+                                                                            'subject': self.subject,
+                                                                            'election': self.election.name
+                                                                             }
 
     def accept_moderation(self):
         self.moderated = True
@@ -179,9 +177,9 @@ class VotaInteligenteMessage(Message):
 
     def get_absolute_url(self):
         election = self.election
-        path = reverse('message_detail',kwargs={'election_slug':election.slug, 'pk':self.id})
+        path = reverse('message_detail', kwargs={'election_slug': election.slug, 'pk': self.id})
         site = Site.objects.get_current()
-        return "http://%s%s"%(site.domain,path)
+        return "http://%s%s" % (site.domain, path)
 
     @classmethod
     def push_moderated_messages_to_writeit(cls):

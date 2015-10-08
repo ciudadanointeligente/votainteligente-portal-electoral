@@ -139,12 +139,6 @@ if TESTING:
             'INDEX_NAME': 'votainteligente_test',
         },
     }
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:',
-        }
-    }
 else:
     HAYSTACK_CONNECTIONS = {
         'default': {

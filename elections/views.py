@@ -113,7 +113,7 @@ class CandidateDetailView(DetailView):
 
     def get_queryset(self):
         queryset = super(CandidateDetailView, self).get_queryset()
-        queryset = queryset.filter(election__slug=self.kwargs['election_slug'])
+        queryset = queryset.filter(elections__slug=self.kwargs['election_slug'])
 
         return queryset
 
@@ -333,7 +333,7 @@ class QuestionsPerCandidateView(CandidateDetailView):
 
         queryset = super(QuestionsPerCandidateView, self).get_queryset()
         election_slug = self.kwargs['election_slug']
-        queryset.filter(Q(election__slug=election_slug))
+        queryset.filter(Q(elections__slug=election_slug))
         return queryset
 
     def get_context_data(self, **kwargs):

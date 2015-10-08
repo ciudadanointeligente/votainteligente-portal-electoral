@@ -12,8 +12,8 @@ class RankingTestCaseBase(TestCase):
         self.candidate1 = Candidate.objects.get(id=4)
         self.candidate2 = Candidate.objects.get(id=5)
         self.candidate3 = Candidate.objects.get(id=6)
-        self.candidate4 = Candidate.objects.create(election=self.election,
-                                                   name="Fiera")
+        self.candidate4 = Candidate.objects.create(name="Fiera")
+        self.election.candidates.add(self.candidate4)
         self.message = VotaInteligenteMessage.objects.\
             create(election=self.election,
                    author_name='author',

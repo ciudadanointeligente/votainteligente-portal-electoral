@@ -32,11 +32,16 @@ class ExtraInfoMixin(models.Model):
 
 
 class Candidate(Person, ExtraInfoMixin):
-    election = models.ManyToManyField('Election', related_name='candidates', null=True)
+    elections = models.ManyToManyField('Election', related_name='candidates', null=True)
     force_has_answer = models.BooleanField(default=False,
                                            help_text=_('Marca esto si quieres que el candidato aparezca como que no ha respondido'))
 
     default_extra_info = settings.DEFAULT_CANDIDATE_EXTRA_INFO
+
+    @property
+    def election(self):
+        if self.elections.count() == 1:
+            return self.elections.get()
 
     @property
     def twitter(self):

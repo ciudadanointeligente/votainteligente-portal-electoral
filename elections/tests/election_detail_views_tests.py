@@ -121,13 +121,21 @@ class FaceToFaceViewTestCase(TestCase):
         q_like_fiera = Topic.objects.filter(category__in=categories).get(label="Le gusta la Fiera??")
         you_like_fiera_yes = Position.objects.get(topic=q_like_fiera, label="Si")
         you_like_fiera_no = Position.objects.get(topic=q_like_fiera, label="No")
-        TakenPosition.objects.create(person=candidate1, position=you_like_fiera_yes, topic=q_like_fiera)
-        TakenPosition.objects.create(person=candidate2, position=you_like_fiera_no, topic=q_like_fiera)
+        tpf1 = TakenPosition.objects.get(person=candidate1, topic=q_like_fiera)
+        tpf1.position = you_like_fiera_yes
+        tpf1.save()
+        tpf2 = TakenPosition.objects.get(person=candidate2, topic=q_like_fiera)
+        tpf2.position = you_like_fiera_no
+        tpf2.save()
         #this adds 1/3 to the similitude number
         q_like_benito = Topic.objects.filter(category__in=categories).get(label="Le gusta Benito??")
         you_like_benito_yes = Position.objects.get(topic=q_like_benito, label="Si")
-        TakenPosition.objects.create(person=candidate1, position=you_like_benito_yes, topic=q_like_benito)
-        TakenPosition.objects.create(person=candidate2, position=you_like_benito_yes, topic=q_like_benito)
+        tpb1 = TakenPosition.objects.get(person=candidate1, topic=q_like_benito)
+        tpb1.position = you_like_benito_yes
+        tpb1.save()
+        tpb2 = TakenPosition.objects.get(person=candidate2, topic=q_like_benito)
+        tpb2.position = you_like_benito_yes
+        tpb2.save()
         #this guys didn't answer the same thing
         #no one has answered this question
         url = reverse('face_to_face_two_candidates_detail_view',

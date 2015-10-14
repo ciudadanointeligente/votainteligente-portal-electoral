@@ -3,6 +3,8 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import Election, Candidate, VotaInteligenteMessage, VotaInteligenteAnswer
 from elections.bin import SecondRoundCreator
 from candidator.models import TakenPosition
+from django.core.management import call_command
+from django.utils.six import StringIO
 
 
 class SecondRoundCreationTestCase(TestCase):
@@ -24,6 +26,7 @@ class SecondRoundCreationTestCase(TestCase):
         self.assertIsInstance(second_round, Election)
 
         self.assertEquals(second_round.name, 'second Round election')
+        self.assertNotEquals(second_round.slug, self.tarapaca.slug)
         self.assertEquals(second_round.candidates.count(), 2)
         self.assertIn(self.adela, second_round.candidates.all())
         self.assertIn(self.carlos, second_round.candidates.all())
@@ -76,3 +79,13 @@ class SecondRoundCreationTestCase(TestCase):
         self.assertEquals(the_copied_answer.content, answer.content)
         self.assertEquals(the_copied_answer.person, self.adela)
 
+    def test_management_command(self):
+        out = StringIO()
+        previous_count = Election.objects.all().count()
+        call_command('cloneelection', self.tarapaca.slug, self.adela.id, self.carlos.id, stdout=out)
+        after_count = Election.objects.all().count()
+        self.assertEquals(after_count, previous_count + 1)
+        second_round = Election.objects.last()
+        self.assertEquals(second_round.name, self.tarapaca.name)
+        self.assertIn(second_round.name, out.getvalue())
+        self.assertIn(second_round.get_absolute_url(), out.getvalue())

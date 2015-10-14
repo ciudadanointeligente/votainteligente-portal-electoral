@@ -1,6 +1,6 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from elections.models import Election
+from elections.models import Election, Candidate, VotaInteligenteMessage, VotaInteligenteAnswer
 from elections.bin import SecondRoundCreator
 from candidator.models import TakenPosition
 
@@ -43,4 +43,36 @@ class SecondRoundCreationTestCase(TestCase):
                 self.assertTrue(TakenPosition.objects.filter(topic=_topic, person=self.carlos))
                 for position in topic.positions.all():
                     self.assertTrue(_topic.positions.filter(label=position.label))
+
+    def test_copy_messages_and_answers(self):
+        candidate3 = Candidate.objects.get(id=6)
+        message = VotaInteligenteMessage.objects.create(election=self.tarapaca,
+                                                        author_name='author',
+                                                        author_email='author@email.com',
+                                                        subject='subject',
+                                                        content='content',
+                                                        slug='subject-slugified',
+                                                        moderated=True
+                                                        )
+        message.people.add(self.adela)
+        message.people.add(self.carlos)
+        message.people.add(candidate3)
+
+        answer = VotaInteligenteAnswer.objects.create(content=u'Hey I\'ve had to speak english in the last couple of days',
+                                                      message=message,
+                                                      person=self.adela
+                                                      )
+        sc = SecondRoundCreator(self.tarapaca)
+        sc.pick_one(self.adela)
+        sc.pick_one(self.carlos)
+        second_round = sc.get_second_round()
+        the_copied_message = second_round.messages.get()
+        self.assertNotEquals(the_copied_message.id, message.id)
+        self.assertEquals(the_copied_message.author_name, message.author_name)
+        self.assertEquals(the_copied_message.subject, message.subject)
+        self.assertEquals(the_copied_message.content, message.content)
+        the_copied_answer = the_copied_message.answers.get()
+        self.assertNotEquals(the_copied_answer.id, answer.id)
+        self.assertEquals(the_copied_answer.content, answer.content)
+        self.assertEquals(the_copied_answer.person, self.adela)
 

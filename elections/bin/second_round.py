@@ -1,4 +1,6 @@
 from django.db.models import AutoField
+
+
 def copy_model_instance(obj):
     initial = dict([(f.name, getattr(obj, f.name))
                     for f in obj._meta.fields
@@ -28,7 +30,24 @@ class SecondRoundCreator(object):
         for candidate in self.candidates:
             second_round.candidates.add(candidate)
         self.copy_categories(second_round)
+        self.copy_messages(second_round)
         return second_round
+
+    def copy_messages(self, second_round):
+        for message in self.election.messages.all():
+            _writeit_document = copy_model_instance(message.writeitdocument_ptr)
+            _writeit_document.id = None
+            _writeit_document.save()
+            _message = copy_model_instance(message)
+            _message.writeitdocument_ptr = _writeit_document
+            _message.id = None
+            _message.election = second_round
+            _message.save()
+            for answer in message.answers.all():
+                _answer = copy_model_instance(answer)
+                _answer.id = None
+                _answer.message = _message
+                _answer.save()
 
     def copy_categories(self, second_round):
         for category in self.election.categories.all():
@@ -53,5 +72,4 @@ class SecondRoundCreator(object):
                         _taken_position.topic = _topic
                         _taken_position.person = taken_position.person
                         _taken_position.save()
-                        print _taken_position, _taken_position.topic.id, taken_position.person.id
 

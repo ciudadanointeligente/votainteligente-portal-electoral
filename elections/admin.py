@@ -121,8 +121,16 @@ class PositionInline(admin.TabularInline):
     model = Position
 
 
+class TopicModelForm(forms.ModelForm):
+    model = Topic
+    def __init__(self, *args, **kwargs):
+        super(TopicModelForm, self).__init__(*args, **kwargs)
+        self.fields['category'].queryset = QuestionCategory.objects.all()
+
+
 class TopicAdmin(admin.ModelAdmin):
     inlines = [PositionInline, ]
+    form = TopicModelForm
     list_display = ('__str__', 'election')
     search_fields = ['label', 'category__name']
 

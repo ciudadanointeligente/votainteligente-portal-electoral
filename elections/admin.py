@@ -223,11 +223,6 @@ class ElectionAdmin(admin.ModelAdmin):
 admin.site.register(Election, ElectionAdmin)
 
 
-class OrgnizationAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(Organization, OrgnizationAdmin)
-
-
 class ContactDetailInline(GenericTabularInline):
     model = ContactDetail
     fields = ('label', 'contact_type', 'value')
@@ -280,11 +275,6 @@ admin.site.register(Candidate, CandidateAdmin)
 class CandidateFlatPageAdmin(admin.ModelAdmin):
     pass
 admin.site.register(CandidateFlatPage, CandidateFlatPageAdmin)
-
-
-class PostAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(Post, PostAdmin)
 
 
 class AreaAdmin(admin.ModelAdmin):

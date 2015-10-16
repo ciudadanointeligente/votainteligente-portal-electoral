@@ -55,6 +55,8 @@ class TakenPositionModelForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(TakenPositionModelForm, self).__init__(*args, **kwargs)
+        self.fields['topic'].queryset = Topic.objects.all()
+        self.fields['position'].queryset = Position.objects.all()
         if self.instance.id:
             positions = self.instance.topic.positions.all()
             self.fields['position'].queryset = positions

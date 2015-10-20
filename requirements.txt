@@ -3,8 +3,8 @@ django-nose
 django-autoslug==1.8.0
 django-taggit
 loremipsum
-elasticsearch
-django-haystack
+elasticsearch==1.6.0
+django-haystack==2.4.0
 -e git://github.com/lfalvarez/django-candidator.git#egg=django-candidator
 PyYAML
 django-markdown-deux==1.0.4

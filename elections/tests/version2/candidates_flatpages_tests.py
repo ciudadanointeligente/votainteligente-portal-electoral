@@ -9,9 +9,11 @@ class CandidateFlatpagesTestCase(TestCase):
         pass
 
     def test_instanciate_a_flatpage(self):
+
         candidate = Candidate.objects.get(id=1)
-        candidate.id = 'manuel-rojas'
-        candidate.save()
+        candidate.person_ptr.id = 'manuel-rojas'
+        candidate.person_ptr.save()
+
         page = CandidateFlatPage.objects.create(candidate=candidate,
                                                 url="problems",
                                                 title="Problems",

@@ -40,8 +40,8 @@ class Candidate(Person, ExtraInfoMixin):
 
     @property
     def election(self):
-        if self.elections.all():
-            return self.elections.last()
+        if self.elections.count() == 1:
+            return self.elections.get()
 
     @property
     def twitter(self):

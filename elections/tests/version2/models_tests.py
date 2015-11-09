@@ -38,16 +38,6 @@ class CandidaTeTestCase(Version2TestCase):
         self.assertIn(candidate, second_round.candidates.all())
         self.assertIn(candidate, self.election.candidates.all())
 
-        self.assertIn(self.election, candidate.elections.all())
-        self.assertIn(second_round, candidate.elections.all())
-
-    def test_candidate_has_election_as_a_property(self):
-        candidate = Candidate.objects.create(name="Felipe Feroz")
-        '''This is for the very specific case of a second round election'''
-        first_round = Election.objects.create(name="FirstRound")
-        first_round.candidates.add(candidate)
-        self.assertEquals(candidate.election, first_round)
-
     def test_get_twitter(self):
         candidate = Candidate.objects.get(id=1)
         candidate.add_contact_detail(contact_type="TWITTER", label="@candidato1", value="http://twitter.com/candidato1")

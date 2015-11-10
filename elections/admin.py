@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from elections.models import Election, Candidate, PersonalData, QuestionCategory
-from popolo.models import Organization, Membership, ContactDetail, OtherName, Post, Area, Link, Person
+from popolo.models import Membership, ContactDetail, OtherName, Area, Link, Person
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django import forms
 from django.conf import settings

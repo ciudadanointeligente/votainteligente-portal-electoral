@@ -1,3 +1,49 @@
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: true, name: "2a Circunscripcion Antofagasta",
+    searchable: true, slug: 2a-circunscripcion-antofagasta}
+  model: elections.election
+  pk: 1
+- fields: {description: '', extra_info_content: null, extra_info_title: null,
+    highlighted: true, name: "4a Circunscripcion Coquimbo",
+    searchable: true, slug: 4a-circunscripcion-coquimbo}
+  model: elections.election
+  pk: 2
+- fields: { name: Manuel Rojas }
+  model: popolo.person
+  pk: 1
+- fields: { name: Alejandro Guillier}
+  model: popolo.person
+  pk: 2
+- fields: { name: Pedro Araya}
+  model: popolo.person
+  pk: 3
+- fields: { name: Gisela Contreras}
+  model: popolo.person
+  pk: 4
+- fields: { name: Carlos Cantero}
+  model: popolo.person
+  pk: 5
+- fields: { name: Daniel Guevara}
+  model: popolo.person
+  pk: 6
+- fields: { name: Jimena Orrego}
+  model: popolo.person
+  pk: 7
+- fields: { name: Gonzalo Uriarte}
+  model: popolo.person
+  pk: 8
+- fields: { name: Mario Bertolino}
+  model: popolo.person
+  pk: 9
+- fields: { name: Jorge Pizarro}
+  model: popolo.person
+  pk: 10
+- fields: { name: "Adriana Munoz"}
+  model: popolo.person
+  pk: 11
+- fields: { name: Luis Vega}
+  model: popolo.person
+  pk: 12
 - fields: {name: Perros y gatos, slug: perros-y-gatos}
   model: candidator.category
   pk: 1
@@ -145,3 +191,21 @@
 - fields: {topic: 6, position: 13, person: 3}
   model: candidator.takenposition
   pk: 9
+- fields: {topic: 1, position: 1, person: 4}
+  model: candidator.takenposition
+  pk: 10
+- fields: {topic: 1, position: 2, person: 5}
+  model: candidator.takenposition
+  pk: 11
+- fields: {topic: 2, position: 4, person: 4}
+  model: candidator.takenposition
+  pk: 12
+- fields: {topic: 2, position: 5, person: 5}
+  model: candidator.takenposition
+  pk: 13
+- fields: {topic: 3, position: 6, person: 4}
+  model: candidator.takenposition
+  pk: 14
+- fields: {topic: 3, position: 7, person: 5}
+  model: candidator.takenposition
+  pk: 15

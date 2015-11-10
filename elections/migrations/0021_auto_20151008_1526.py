@@ -13,7 +13,6 @@ def from_election_to_elections(apps, schema_editor):
         candidate.elections.add(candidate.election)
 
 
-
 class Migration(migrations.Migration):
 
     dependencies = [

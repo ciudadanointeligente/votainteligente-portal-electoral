@@ -22,6 +22,7 @@ Before the installation process is started a number of requirements is needed
 - [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/)
 - [Git](http://git-scm.com/)
 - The requirements that [sorl-thumbnail has](http://sorl-thumbnail.readthedocs.org/en/latest/requirements.html)
+- The requirements that [Pillow](http://pillow.readthedocs.org/en/3.1.x/installation.html#linux-installation) has for your distribution.
 
 ## Installation process
 

@@ -30,3 +30,4 @@ if settings.THEME:
     urlpatterns += patterns('',
         ('^theme/', include('%s.urls' % (settings.THEME)))
         )
+

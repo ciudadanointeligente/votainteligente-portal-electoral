@@ -57,30 +57,6 @@ Update the tables with migrations
 
 `python manage.py migrate`
 
-## Bringing elections from candideit.org
-
-Elections in VotaInteligente have a one-to-one relation with elections in candideit.org, so for your installation you'll first need to create an election in [candideit.org](http://candideit.org) and follow the next steps.
-
-Specifically for this installation we are not using popit (But we'll soon be doing so).
-
-* Create the file votainteligente/local_settings.py with the following content.
-
-```
-USE_POPIT = False
-
-CANDIDEITORG_URL = http://candideit.org/api/v2/'
-
-CANDIDEITORG_USERNAME = 'YOUR-CANDIDEITORG-USERNAME'
-
-CANDIDEITORG_API_KEY = 'YOUR-CANDIDEITORG-APIKEY'
-
-```
-
-* Getting your elections from candideit.org into your installation.
-
-You need to run the following command
-
-`python manage.py update_from_candidator`
 
 * Running VotaInteligente
 

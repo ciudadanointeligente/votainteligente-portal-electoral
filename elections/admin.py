@@ -265,11 +265,11 @@ class CandidateAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         creating = not change
-        obj.save()
+        candidate = form.save()
         if creating:
-            for cat in obj.election.categories.all():
+            for cat in candidate.election.categories.all():
                 for topic in cat.topics.all():
-                    TakenPosition.objects.get_or_create(topic=topic, person=obj)
+                    TakenPosition.objects.get_or_create(topic=topic, person=candidate)
 
 admin.site.register(Candidate, CandidateAdmin)
 

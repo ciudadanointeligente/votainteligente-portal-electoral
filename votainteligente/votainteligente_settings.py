@@ -9,7 +9,7 @@ from datetime import timedelta
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEFAULT_CANDIDATE_EXTRA_INFO = {
-    "portrait_photo": "http://votainteligente.cl/static/img/candidate-default.jpg",
+    "portrait_photo": "/static/img/candidate-default.jpg",
     'custom_ribbon': 'ribbon text'
 }
 DEFAULT_ELECTION_EXTRA_INFO = {
@@ -18,11 +18,11 @@ DEFAULT_ELECTION_EXTRA_INFO = {
 
 TESTING = 'test' in sys.argv
 INSTALLED_APPS = (
+    'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.sites',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
     'djcelery',
@@ -46,9 +46,11 @@ INSTALLED_APPS = (
     'rest_framework',
     'popolorest',
     'writeit',
+    'preguntales',
     # Uncomment the next line to enable admin documentation:
     #'django.contrib.admindocs',
 )
+
 
 #SITE_ID
 SITE_ID = 1
@@ -222,7 +224,6 @@ NEW_ANSWER_ENDPOINT = 'NEW_ANSWER_ENDPOINT'
 THEME = None
 
 
-#Testing without migrations
 from django.conf import settings
 from django_nose import NoseTestSuiteRunner
 

@@ -13,6 +13,7 @@ logger = logging.getLogger(__name__)
 from candidator.models import Topic, Position, TakenPosition
 from candidator.comparer import Comparer, InformationHolder
 from candidator.adapters import CandidatorCalculator, CandidatorAdapter
+from django.shortcuts import get_object_or_404
 from popolo.models import Area
 
 
@@ -210,10 +211,9 @@ class CandidateFlatPageDetailView(DetailView):
         return qs
 
     def get_object(self, queryset=None):
-        print self.kwargs['url']
         if queryset is None:
             queryset = self.get_queryset()
-        return queryset.get(url=self.kwargs['url'])
+        return get_object_or_404(self.model, url=self.kwargs['url'])
 
     def get_context_data(self, **kwargs):
         context = super(CandidateFlatPageDetailView, self)\
@@ -327,18 +327,3 @@ class ElectionRankingView(DetailView, RankingMixin):
         context['bad'] = self.get_bad()
         return context
 
-
-class QuestionsPerCandidateView(CandidateDetailView):
-    def get_queryset(self):
-
-        queryset = super(QuestionsPerCandidateView, self).get_queryset()
-        election_slug = self.kwargs['election_slug']
-        queryset.filter(Q(elections__slug=election_slug))
-        return queryset
-
-    def get_context_data(self, **kwargs):
-        context = super(QuestionsPerCandidateView, self)\
-            .get_context_data(**kwargs)
-        messages = VotaInteligenteMessage.objects.filter(people=self.object)
-        context['questions'] = messages
-        return context

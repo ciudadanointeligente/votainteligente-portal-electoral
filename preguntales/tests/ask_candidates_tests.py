@@ -8,8 +8,8 @@ from datetime import datetime
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from mock import patch, call
-from elections.preguntales_forms import MessageForm
-from elections.tasks import send_mails_using_writeit
+from preguntales.forms import MessageForm
+from preguntales.tasks import send_mails_using_writeit
 
 
 @override_settings(WRITEIT_NAME='votainteligente',

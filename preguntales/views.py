@@ -1,13 +1,15 @@
 # coding=utf-8
 from django.views.generic import DetailView, CreateView
 from elections.models import VotaInteligenteMessage, Election, Candidate, VotaInteligenteAnswer
-from elections.preguntales_forms import MessageForm
+from preguntales.forms import MessageForm
 from django.core.urlresolvers import reverse
 from django.views.generic.base import View
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from elections.writeit_functions import reverse_person_url
 from django.core.mail import mail_admins
+from elections.views import CandidateDetailView
+from django.db.models import Q
 
 
 class MessageDetailView(DetailView):
@@ -71,3 +73,18 @@ class AnswerWebHook(View):
             mail_admins('Error recibiendo una respuesta', e)
 
         return HttpResponse(content_type="text/plain", status=200)
+
+class QuestionsPerCandidateView(CandidateDetailView):
+    def get_queryset(self):
+
+        queryset = super(QuestionsPerCandidateView, self).get_queryset()
+        election_slug = self.kwargs['election_slug']
+        queryset.filter(Q(elections__slug=election_slug))
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(QuestionsPerCandidateView, self)\
+            .get_context_data(**kwargs)
+        messages = VotaInteligenteMessage.objects.filter(people=self.object)
+        context['questions'] = messages
+        return context

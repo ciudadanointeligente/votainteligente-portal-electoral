@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('elections', '0022_remove_candidate_election'),
+        ('elections', '0023_auto_20160224_2130'),
         ('writeit', '__first__'),
     ]
 

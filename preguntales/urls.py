@@ -1,6 +1,13 @@
 from django.conf import settings
 from django.conf.urls import patterns, url
-from preguntales.views import MessageDetailView, ElectionAskCreateView, AnswerWebHook, QuestionsPerCandidateView
+from preguntales.views import (
+    MessageDetailView,
+    ElectionAskCreateView,
+    AnswerWebHook,
+    QuestionsPerCandidateView,
+    ElectionRankingView)
+from django.views.decorators.cache import cache_page
+
 new_answer_endpoint = r"^new_answer/%s/?$" % (settings.NEW_ANSWER_ENDPOINT)
 
 urlpatterns = patterns('',
@@ -16,4 +23,8 @@ urlpatterns = patterns('',
     url(r'^election/(?P<slug>[-\w]+)/ask/?$',
         ElectionAskCreateView.as_view(template_name='elections/ask_candidate.html'),
         name='ask_detail_view'),
+    #ranking
+    url(r'^election/(?P<slug>[-\w]+)/ranking/?$',
+        cache_page(60 * settings.CACHE_MINUTES)(ElectionRankingView.as_view(template_name='elections/ranking_candidates.html')),
+        name='ranking_view'),
 )

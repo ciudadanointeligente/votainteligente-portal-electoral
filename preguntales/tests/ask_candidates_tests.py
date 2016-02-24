@@ -2,8 +2,9 @@
 from elections.tests import VotaInteligenteTestCase as TestCase
 from elections import get_writeit_instance
 from django.test.utils import override_settings
-from elections.models import Election, Candidate, VotaInteligenteMessage, VotaInteligenteAnswer
-from writeit.models import Message
+from elections.models import Election, Candidate
+from preguntales.models import Message, Answer
+from writeit.models import Message as WriteItMessage
 from datetime import datetime
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
@@ -38,7 +39,7 @@ class GloballyCreatedWriteItApi(WriteItTestCase):
         self.assertEquals(instance.api_instance.url, 'http://writeit.ciudadanointeligente.org')
 
 
-class VotaInteligenteMessageTestCase(WriteItTestCase):
+class MessageTestCase(WriteItTestCase):
     def setUp(self):
         self.instance = get_writeit_instance()
         self.election = Election.objects.get(id=1)
@@ -47,7 +48,7 @@ class VotaInteligenteMessageTestCase(WriteItTestCase):
         self.candidate3 = Candidate.objects.get(id=6)
 
     def test_instanciate_a_message(self):
-        message = VotaInteligenteMessage.objects.create(election=self.election,
+        message = Message.objects.create(election=self.election,
                                                         author_name='author',
                                                         author_email='author@email.com',
                                                         subject='subject',
@@ -62,7 +63,7 @@ class VotaInteligenteMessageTestCase(WriteItTestCase):
         self.assertIsInstance(message.created,datetime)
 
     def test_str(self):
-        message = VotaInteligenteMessage.objects.create(election=self.election,
+        message = Message.objects.create(election=self.election,
                                                         author_name='author',
                                                         author_email='author@email.com',
                                                         subject='subject',
@@ -74,7 +75,7 @@ class VotaInteligenteMessageTestCase(WriteItTestCase):
         self.assertEquals(message.__str__(), expected_unicode)
 
     def test_a_message_has_a_message_detail_url(self):
-        message = VotaInteligenteMessage.objects.create(election=self.election,
+        message = Message.objects.create(election=self.election,
                                                         author_name='author',
                                                         author_email='author@email.com',
                                                         subject='subject',
@@ -95,7 +96,7 @@ class VotaInteligenteMessageTestCase(WriteItTestCase):
         self.assertEquals("http://%s%s"%(site.domain,url), message.get_absolute_url())
 
     def test_accept_message(self):
-        message = VotaInteligenteMessage.objects.create(election=self.election,
+        message = Message.objects.create(election=self.election,
                                                         author_name='author',
                                                         author_email='author@email.com',
                                                         subject='subject',
@@ -122,7 +123,7 @@ class VotaInteligenteMessageTestCase(WriteItTestCase):
         self.assertTrue(message.moderated)
 
     def test_the_class_has_a_function_that_will_push_the_messages_to_the_api(self):
-        message = VotaInteligenteMessage.objects.create(election=self.election,
+        message = Message.objects.create(election=self.election,
                                                         author_name='author',
                                                         author_email='author@email.com',
                                                         subject='subject',
@@ -133,7 +134,7 @@ class VotaInteligenteMessageTestCase(WriteItTestCase):
         message.people.add(self.candidate1)
         message.people.add(self.candidate2)
 
-        message2 = VotaInteligenteMessage.objects.create(election=self.election,
+        message2 = Message.objects.create(election=self.election,
                                                         author_name='author',
                                                         author_email='author@email.com',
                                                         subject='subject',
@@ -144,7 +145,7 @@ class VotaInteligenteMessageTestCase(WriteItTestCase):
         message2.people.add(self.candidate1)
         message2.people.add(self.candidate2)
 
-        message3 = VotaInteligenteMessage.objects.create(election=self.election,
+        message3 = Message.objects.create(election=self.election,
                                                         author_name='author',
                                                         author_email='author@email.com',
                                                         subject='subject',
@@ -154,17 +155,17 @@ class VotaInteligenteMessageTestCase(WriteItTestCase):
         message3.people.add(self.candidate1)
         message3.people.add(self.candidate2)
 
-        with patch('elections.models.VotaInteligenteMessage.push_to_the_api') as method_mock:
+        with patch('elections.models.Message.push_to_the_api') as method_mock:
             # instance = method_mock.return_value
             method_mock.return_value = 'Fiera feroz'
 
 
-            VotaInteligenteMessage.push_moderated_messages_to_writeit()
+            Message.push_moderated_messages_to_writeit()
 
             method_mock.assert_has_calls([call(), call()])
 
     def test_reject_message(self):
-        message = VotaInteligenteMessage.objects.create(election=self.election,
+        message = Message.objects.create(election=self.election,
                                                         author_name='author',
                                                         author_email='author@email.com',
                                                         subject='subject',
@@ -183,26 +184,26 @@ class VotaInteligenteMessageTestCase(WriteItTestCase):
         self.assertTrue(message.moderated)
 
 
-class VotaInteligenteAnswerTestCase(TestCase):
+class AnswerTestCase(TestCase):
     def setUp(self):
         self.instance = get_writeit_instance()
         self.election = Election.objects.get(id=1)
         self.candidate1 = Candidate.objects.get(id=4)
         self.candidate2 = Candidate.objects.get(id=5)
         self.candidate3 = Candidate.objects.get(id=6)
-        self.message = VotaInteligenteMessage.objects.create(election=self.election,
-                                                        author_name='author',
-                                                        author_email='author@email.com',
-                                                        subject='subject',
-                                                        content='content',
-                                                        slug='subject-slugified',
-                                                        moderated=True
-                                                        )
+        self.message = Message.objects.create(election=self.election,
+                                              author_name='author',
+                                              author_email='author@email.com',
+                                              subject='subject',
+                                              content='content',
+                                              slug='subject-slugified',
+                                              moderated=True
+                                              )
         self.message.people.add(self.candidate1)
         self.message.people.add(self.candidate2)
 
     def test_create_an_answer(self):
-        answer = VotaInteligenteAnswer.objects.create(
+        answer = Answer.objects.create(
             content=u'Hey I\'ve had to speak english in the last couple of days',
             message=self.message,
             person=self.candidate1
@@ -215,19 +216,19 @@ class VotaInteligenteAnswerTestCase(TestCase):
         self.assertIsNotNone(answer.created)
         self.assertIsInstance(answer.created, datetime)
 
-        self.assertIn(answer, self.message.answers.all())
-        self.assertIn(answer, self.candidate1.answers.all())
+        self.assertIn(answer, self.message.answers_.all())
+        self.assertIn(answer, self.candidate1.answers_.all())
 
 
-class VotaInteligenteMessagesOrderedList(TestCase):
+class MessagesOrderedList(TestCase):
     def setUp(self):
-        super(VotaInteligenteMessagesOrderedList, self).setUp()
+        super(MessagesOrderedList, self).setUp()
         self.election = Election.objects.all()[0]
         self.candidate1 = Candidate.objects.get(id=4)
         self.candidate2 = Candidate.objects.get(id=5)
         self.candidate3 = Candidate.objects.get(id=6)
 
-        self.message1 = VotaInteligenteMessage.objects.create(election=self.election,
+        self.message1 = Message.objects.create(election=self.election,
                                                               author_name='author',
                                                               author_email='author email',
                                                               subject = u'I\'m moderated',
@@ -235,7 +236,7 @@ class VotaInteligenteMessagesOrderedList(TestCase):
                                                               slug = 'subject-slugified',
                                                               moderated = True
                                                               )
-        self.message2 = VotaInteligenteMessage.objects.create(election=self.election,
+        self.message2 = Message.objects.create(election=self.election,
                                                               author_name='author',
                                                               author_email='author email',
                                                               subject = u'message 3',
@@ -243,14 +244,14 @@ class VotaInteligenteMessagesOrderedList(TestCase):
                                                               slug = 'subject-slugified',
                                                               moderated = True
                                                               )
-        self.message3 = VotaInteligenteMessage.objects.create(election=self.election,
+        self.message3 = Message.objects.create(election=self.election,
                                                               author_name='author',
                                                               author_email='author email',
                                                               subject = u'please don\'t moderate me',
                                                               content = u'Qué opina usted sobre el test_accept_message',
                                                               slug = 'subject-slugified'
                                                               )
-        self.message4 = VotaInteligenteMessage.objects.create(election=self.election,
+        self.message4 = Message.objects.create(election=self.election,
                                                               author_name='author',
                                                               author_email='author email',
                                                               subject = u'message 4',
@@ -260,11 +261,11 @@ class VotaInteligenteMessagesOrderedList(TestCase):
                                                               )
         self.message4.people.add(self.candidate1)
 
-        self.answer1 = VotaInteligenteAnswer.objects.create(message=self.message4,
+        self.answer1 = Answer.objects.create(message=self.message4,
                                                             person=self.candidate1,
                                                             content=u'answerto message4'
                                                             )
-        self.message5 = VotaInteligenteMessage.objects.create(election=self.election,
+        self.message5 = Message.objects.create(election=self.election,
                                                               author_name='author',
                                                               author_email='author email',
                                                               subject = u'message 5',
@@ -275,7 +276,7 @@ class VotaInteligenteMessagesOrderedList(TestCase):
 
 
     def test_message_class_has_a_manager(self):
-        messages = VotaInteligenteMessage.ordered.all()
+        messages = Message.ordered.all()
 
         self.assertEquals(messages.count(), 5)
         self.assertEquals(messages[0], self.message4)#because it has answers
@@ -325,11 +326,9 @@ class PreguntalesWebTestCase(WriteItTestCase):
                                             }, follow=True
                                             )
 
-
-
         self.assertTemplateUsed(response, 'elections/ask_candidate.html')
         self.assertEquals(Message.objects.count(), 1)
-        new_message = VotaInteligenteMessage.objects.all()[0]
+        new_message = Message.objects.all()[0]
         self.assertFalse(new_message.remote_id)
         self.assertFalse(new_message.url)
         self.assertFalse(new_message.moderated)
@@ -358,7 +357,7 @@ class AnswerWebhookTestCase(TestCase):
         self.candidate1 = Candidate.objects.get(id=4)
         self.candidate2 = Candidate.objects.get(id=5)
         self.candidate3 = Candidate.objects.get(id=6)
-        # self.message = VotaInteligenteMessage.objects.create(api_instance=self.election.writeitinstance.api_instance
+        # self.message = Message.objects.create(api_instance=self.election.writeitinstance.api_instance
         #     , author_name='author'
         #     , author_email='author@email.com'
         #     , subject = u'subject test_accept_message'
@@ -366,7 +365,7 @@ class AnswerWebhookTestCase(TestCase):
         #     , writeitinstance=self.election.writeitinstance
         #     , slug = 'subject-slugified'
         #     )
-        self.message = VotaInteligenteMessage.objects.create(election=self.election,
+        self.message = Message.objects.create(election=self.election,
                                                              author_name='author',
                                                              author_email='author email',
                                                              subject = u'I\'m moderated',
@@ -417,8 +416,8 @@ class AnswerWebhookTestCase(TestCase):
         )
 
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(self.message.answers.count(), 1)
-        answer = self.message.answers.all()[0]
+        self.assertEquals(self.message.answers_.count(), 1)
+        answer = self.message.answers_.all()[0]
         self.assertEquals(answer.content, 'Example Answer')
         self.assertEquals(answer.person, self.candidate1)
 
@@ -453,7 +452,7 @@ class MessagePusherTestCase(TestCase):
 
     def test_push_moderated_messages(self):
         '''Push moderated messages'''
-        message = VotaInteligenteMessage.objects.create(election=self.election,
+        message = Message.objects.create(election=self.election,
                                                         author_name='author',
                                                         author_email='author@email.com',
                                                         subject='subject',
@@ -464,7 +463,7 @@ class MessagePusherTestCase(TestCase):
         message.people.add(self.candidate1)
         message.people.add(self.candidate2)
 
-        message2 = VotaInteligenteMessage.objects.create(election=self.election,
+        message2 = Message.objects.create(election=self.election,
                                                         author_name='author',
                                                         author_email='author@email.com',
                                                         subject='subject',
@@ -475,7 +474,7 @@ class MessagePusherTestCase(TestCase):
         message2.people.add(self.candidate1)
         message2.people.add(self.candidate2)
 
-        message3 = VotaInteligenteMessage.objects.create(election=self.election,
+        message3 = Message.objects.create(election=self.election,
                                                         author_name='author',
                                                         author_email='author@email.com',
                                                         subject='subject',
@@ -485,6 +484,6 @@ class MessagePusherTestCase(TestCase):
         message3.people.add(self.candidate1)
         message3.people.add(self.candidate2)
 
-        with patch('elections.models.VotaInteligenteMessage.push_to_the_api') as method_mock:
+        with patch('preguntales.models.Message.push_to_the_api') as method_mock:
             send_mails_using_writeit.delay()
             self.assertEquals(method_mock.call_count, 2)

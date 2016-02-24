@@ -1,8 +1,8 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from elections.models import Election, Candidate, VotaInteligenteMessage,\
-    VotaInteligenteAnswer
-from elections.views import RankingMixin
+from elections.models import Election, Candidate
+from preguntales.models import Message, Answer
+from preguntales.views import RankingMixin
 from django.core.urlresolvers import reverse
 
 
@@ -14,7 +14,7 @@ class RankingTestCaseBase(TestCase):
         self.candidate3 = Candidate.objects.get(id=6)
         self.candidate4 = Candidate.objects.create(name="Fiera")
         self.candidate4.elections.add(self.election)
-        self.message = VotaInteligenteMessage.objects.\
+        self.message = Message.objects.\
             create(election=self.election,
                    author_name='author',
                    author_email='author@email.com',
@@ -28,12 +28,12 @@ class RankingTestCaseBase(TestCase):
         self.message.people.add(self.candidate2)
         self.message.people.add(self.candidate3)
         self.message.people.add(self.candidate4)
-        self.ans11 = VotaInteligenteAnswer.objects.create(content=u'a11',
+        self.ans11 = Answer.objects.create(content=u'a11',
                                                           message=self.message,
                                                           person=self.candidate1
                                                           )
 
-        self.message2 = VotaInteligenteMessage.objects\
+        self.message2 = Message.objects\
             .create(election=self.election,
                     author_name='author',
                     author_email='author@email.com',
@@ -46,16 +46,16 @@ class RankingTestCaseBase(TestCase):
         self.message2.people.add(self.candidate2)
         self.message2.people.add(self.candidate3)
         self.message2.people.add(self.candidate4)
-        self.ans21 = VotaInteligenteAnswer.objects.create(content=u'a21',
+        self.ans21 = Answer.objects.create(content=u'a21',
                                                           message=self.message2,
                                                           person=self.candidate1
                                                           )
-        self.ans22 = VotaInteligenteAnswer.objects.create(content=u'a22',
+        self.ans22 = Answer.objects.create(content=u'a22',
                                                           message=self.message2,
                                                           person=self.candidate2
                                                           )
 
-        self.message3 = VotaInteligenteMessage.objects\
+        self.message3 = Message.objects\
             .create(election=self.election,
                     author_name='author',
                     author_email='author@email.com',
@@ -68,21 +68,21 @@ class RankingTestCaseBase(TestCase):
         self.message3.people.add(self.candidate3)
         self.message3.people.add(self.candidate4)
 
-        self.ans31 = VotaInteligenteAnswer.objects.create(content=u'a31',
+        self.ans31 = Answer.objects.create(content=u'a31',
                                                           message=self.message3,
                                                           person=self.candidate1
                                                           )
 
-        self.ans32 = VotaInteligenteAnswer.objects.create(content=u'a32',
+        self.ans32 = Answer.objects.create(content=u'a32',
                                                           message=self.message3,
                                                           person=self.candidate2
                                                           )
 
-        self.ans34 = VotaInteligenteAnswer.objects.create(content=u'a34',
+        self.ans34 = Answer.objects.create(content=u'a34',
                                                           message=self.message3,
                                                           person=self.candidate4
                                                           )
-        self.message4 = VotaInteligenteMessage.objects\
+        self.message4 = Message.objects\
             .create(election=self.election,
                     author_name='author',
                     author_email='author@email.com',
@@ -267,7 +267,7 @@ class QuestionsPerCandidateViewTestCase(RankingTestCaseBase):
         self.assertTemplateUsed(response,
                                 'elections/questions_per_candidate.html')
         self.assertIn('questions', response.context)
-        expected_messages = list(VotaInteligenteMessage.objects.
+        expected_messages = list(Message.objects.
                                  filter(people=self.candidate1))
         actual_messages = list(response.context['questions'])
         self.assertEquals(actual_messages, expected_messages)

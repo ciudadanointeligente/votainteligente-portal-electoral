@@ -2,9 +2,16 @@ from django.conf import settings
 from django.conf.urls import patterns, url
 from haystack.views import SearchView
 from elections.forms import ElectionForm
-from elections.views import ElectionsSearchByTagView, HomeView, ElectionDetailView,\
-    CandidateDetailView, SoulMateDetailView, FaceToFaceView, AreaDetailView, \
-    CandidateFlatPageDetailView, ElectionRankingView
+from elections.views import (
+    ElectionsSearchByTagView,
+    HomeView,
+    ElectionDetailView,
+    CandidateDetailView,
+    SoulMateDetailView,
+    FaceToFaceView,
+    AreaDetailView,
+    CandidateFlatPageDetailView,
+    )
 from sitemaps import *
 
 from django.views.decorators.cache import cache_page
@@ -44,10 +51,6 @@ urlpatterns = patterns('',
     url(r'^election/(?P<slug>[-\w]+)/soul-mate/?$',
         SoulMateDetailView.as_view(template_name='elections/soulmate_candidate.html'),
         name='soul_mate_detail_view'),
-    #ranking
-    url(r'^election/(?P<slug>[-\w]+)/ranking/?$',
-        cache_page(60 * settings.CACHE_MINUTES)(ElectionRankingView.as_view(template_name='elections/ranking_candidates.html')),
-        name='ranking_view'),
 
     url(r'^election/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/?$',
         cache_page(60 * settings.CACHE_MINUTES)(CandidateDetailView.as_view(template_name='elections/candidate_detail.html')),

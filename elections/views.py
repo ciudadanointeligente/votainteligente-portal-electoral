@@ -3,8 +3,7 @@ from django.views.generic.edit import FormView
 from elections.forms import ElectionSearchByTagsForm
 from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, TemplateView
-from elections.models import Election, VotaInteligenteMessage,\
-    VotaInteligenteAnswer
+from elections.models import Election
 from elections.models import Candidate, QuestionCategory, CandidateFlatPage
 import logging
 from django.db.models import Q

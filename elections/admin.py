@@ -8,7 +8,6 @@ from django.conf import settings
 from candidator.models import Position as CanPosition, TakenPosition as CanTakenPosition
 from elections.models import Topic, CandidateFlatPage
 from django.utils.encoding import python_2_unicode_compatible
-from elections.models import VotaInteligenteMessage, VotaInteligenteAnswer
 
 
 @python_2_unicode_compatible
@@ -283,26 +282,4 @@ class AreaAdmin(admin.ModelAdmin):
     pass
 admin.site.register(Area, AreaAdmin)
 
-
-class AnswerInline(admin.TabularInline):
-    model = VotaInteligenteAnswer
-    fields = ['content','person']
-    extra = 0
-
-
-
-class MensajesAdmin(admin.ModelAdmin):
-    fields = ['author_name','author_email', 'subject', 'content', 'people', 'moderated']
-    list_filter = ('moderated', )
-    search_fields = ['author_name', 'author_email', 'subject', 'people__name']
-    inlines = [AnswerInline]
-
-    actions = ['accept_moderation']
-
-    def accept_moderation(self, request, queryset):
-        for message in queryset:
-            message.accept_moderation()
-    accept_moderation.short_description = "Aceptar Mensajes para ser enviados"
-
-admin.site.register(VotaInteligenteMessage, MensajesAdmin)
 

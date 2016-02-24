@@ -1,1 +1,1 @@
-python manage.py test elections
+python manage.py test elections preguntales

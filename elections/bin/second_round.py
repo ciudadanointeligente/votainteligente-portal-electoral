@@ -34,7 +34,7 @@ class SecondRoundCreator(object):
         return second_round
 
     def copy_messages(self, second_round):
-        for message in self.election.messages.all():
+        for message in self.election.messages_.all():
             _writeit_document = copy_model_instance(message.writeitdocument_ptr)
             _writeit_document.id = None
             _writeit_document.save()
@@ -43,7 +43,7 @@ class SecondRoundCreator(object):
             _message.id = None
             _message.election = second_round
             _message.save()
-            for answer in message.answers.all():
+            for answer in message.answers_.all():
                 _answer = copy_model_instance(answer)
                 _answer.id = None
                 _answer.message = _message

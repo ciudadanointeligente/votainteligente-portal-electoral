@@ -1,26 +1,35 @@
 # coding=utf-8
 from django.db import models
 from writeit.models import Message as WriteItMessage
-from elections.models import Election
-from elections.models import Candidate
+from elections.models import Election, Candidate
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
-from elections import get_writeit_instance
 from django.db.models import Q, Count
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
+from autoslug import AutoSlugField
+from django.core.mail import EmailMessage
+from django.template import Context
+from django.template.loader import get_template
+from django.conf import settings
 
 
 class MessageManager(models.Manager):
     def get_queryset(self):
         queryset = super(MessageManager, self).get_queryset().annotate(num_answers=Count('answers_'))
-        return queryset.order_by('-num_answers', '-moderated', '-created')
+        return queryset.order_by('-num_answers', '-accepted', '-created')
 
 
 @python_2_unicode_compatible
-class Message(WriteItMessage):
-    message = models.OneToOneField(WriteItMessage, related_name="%(app_label)s_%(class)s_related")
-    moderated = models.NullBooleanField(default=None)
+class Message(models.Model):
+    author_name = models.CharField(max_length=256)
+    author_email = models.EmailField(max_length=512)
+    content = models.TextField()
+    people = models.ManyToManyField(Candidate)
+    subject = models.CharField(max_length=255)
+    slug = AutoSlugField(populate_from='subject', unique=True)
+    accepted = models.NullBooleanField(default=None)
+    sent = models.BooleanField(default=False)
     election = models.ForeignKey(Election, related_name='messages_', default=None)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -38,15 +47,11 @@ class Message(WriteItMessage):
                                                                              }
 
     def accept_moderation(self):
-        self.moderated = True
+        self.accepted = True
         self.save()
 
     def save(self, *args, **kwargs):
 
-        if self.api_instance_id is None or self.writeitinstance_id is None:
-            writeit_instance = get_writeit_instance()
-            self.api_instance = writeit_instance.api_instance
-            self.writeitinstance = writeit_instance
         super(Message, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -55,15 +60,37 @@ class Message(WriteItMessage):
         site = Site.objects.get_current()
         return "http://%s%s" % (site.domain, path)
 
+    #@classmethod
+    #def push_moderated_messages_to_writeit(cls):
+    #    query = Q(moderated=True) & Q(remote_id=None)
+    #    messages = Message.objects.filter(query)
+    #    for message in messages:
+    #        message.push_to_the_api()
+
+    def send(self):
+        for person in self.people.all():
+            context = Context({'election':self.election, 'candidate': person, 'message': self})
+            template_body = get_template('mails/nueva_pregunta_candidato_body.html')
+            body = template_body.render(context)
+            template_subject= get_template('mails/nueva_pregunta_candidato_subject.html')
+            subject = template_subject.render(context).replace('\n', '').replace('\r', '')
+            email = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL,
+                             [person.email], [],
+                             reply_to=[settings.DEFAULT_FROM_EMAIL], headers={})
+            email.send()
+            self.sent = True
+            self.save()
+
     @classmethod
-    def push_moderated_messages_to_writeit(cls):
-        query = Q(moderated=True) & Q(remote_id=None)
+    def send_mails(cls):
+        query = Q(accepted=True) & Q(sent=False)
         messages = Message.objects.filter(query)
         for message in messages:
-            message.push_to_the_api()
+            message.send()
+
 
     def reject_moderation(self):
-        self.moderated = True
+        self.accepted = False
         self.save()
 
 

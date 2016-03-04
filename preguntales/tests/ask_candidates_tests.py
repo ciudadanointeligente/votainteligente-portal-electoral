@@ -1,7 +1,7 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from elections import get_writeit_instance
 from django.test.utils import override_settings
+from django.core import mail
 from elections.models import Election, Candidate
 from preguntales.models import Message, Answer
 from writeit.models import Message as WriteItMessage
@@ -10,38 +10,17 @@ from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from mock import patch, call
 from preguntales.forms import MessageForm
-from preguntales.tasks import send_mails_using_writeit
+from preguntales.tasks import send_mails
+from django.template import Context
+from django.template.loader import get_template
+from unittest import skip
 
-
-@override_settings(WRITEIT_NAME='votainteligente',
-                   INSTANCE_URL="/api/v1/instance/1/",
-                   WRITEIT_ENDPOINT='http://writeit.ciudadanointeligente.org',
-                   WRITEIT_USERNAME='admin',
-                   WRITEIT_KEY='a',
-
-                   )
 class WriteItTestCase(TestCase):
     pass
 
 
-class GloballyCreatedWriteItApi(WriteItTestCase):
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def test_get_writeit_instance_from_globally_set_variables(self):
-        '''There is a function that returns a writeit instance where to push messages'''
-        instance = get_writeit_instance()
-        self.assertEquals(instance.name, 'votainteligente')
-        self.assertEquals(instance.url, "/api/v1/instance/1/")
-        self.assertEquals(instance.api_instance.url, 'http://writeit.ciudadanointeligente.org')
-
-
 class MessageTestCase(WriteItTestCase):
     def setUp(self):
-        self.instance = get_writeit_instance()
         self.election = Election.objects.get(id=1)
         self.candidate1 = Candidate.objects.get(id=4)
         self.candidate2 = Candidate.objects.get(id=5)
@@ -49,18 +28,24 @@ class MessageTestCase(WriteItTestCase):
 
     def test_instanciate_a_message(self):
         message = Message.objects.create(election=self.election,
-                                                        author_name='author',
-                                                        author_email='author@email.com',
-                                                        subject='subject',
-                                                        content='content',
-                                                        slug='subject-slugified'
-                                                        )
+                                         author_name='author',
+                                         author_email='author@email.com',
+                                         subject='Perrito',
+                                         content='content',
+                                         )
 
-        self.assertTrue(message)
-        self.assertIsInstance(message, Message)
-        self.assertFalse(message.moderated)
-        self.assertTrue(message.created)
+        self.assertIsNone(message.accepted)
+        self.assertFalse(message.sent)
+        self.assertTrue(message.slug)
+        self.assertIn(message.slug, 'perrito')
         self.assertIsInstance(message.created,datetime)
+        message2 = Message.objects.create(election=self.election,
+                                          author_name='author',
+                                          author_email='author@email.com',
+                                          subject='Perrito',
+                                          content='content',
+                                          )
+        self.assertNotEquals(message.slug, message2.slug)
 
     def test_str(self):
         message = Message.objects.create(election=self.election,
@@ -97,72 +82,94 @@ class MessageTestCase(WriteItTestCase):
 
     def test_accept_message(self):
         message = Message.objects.create(election=self.election,
-                                                        author_name='author',
-                                                        author_email='author@email.com',
-                                                        subject='subject',
-                                                        content='content',
-                                                        slug='subject-slugified'
-                                                        )
+                                         author_name='author',
+                                         author_email='author@email.com',
+                                         subject='subject',
+                                         content='content',
+                                         )
         message.people.add(self.candidate1)
         message.people.add(self.candidate2)
 
-
-        self.assertFalse(message.remote_id)
-        self.assertFalse(message.url)
-        self.assertFalse(message.moderated)
+        self.assertFalse(message.accepted)
 
         # Now I moderate this
-        # which means push this to the API and then
+        # which means I send an email with a confirmation email
         #
         message.accept_moderation()
 
-        self.assertIsNone(message.remote_id)
-        self.assertFalse(message.url)
+        self.assertFalse(message.sent)
+        self.assertTrue(message.accepted)
 
-
-        self.assertTrue(message.moderated)
-
-    def test_the_class_has_a_function_that_will_push_the_messages_to_the_api(self):
+    def test_send_mail(self):
         message = Message.objects.create(election=self.election,
-                                                        author_name='author',
-                                                        author_email='author@email.com',
-                                                        subject='subject',
-                                                        content='content',
-                                                        slug='subject-slugified',
-                                                        moderated=True
-                                                        )
+                                         author_name='author',
+                                         author_email='author@email.com',
+                                         subject='subject',
+                                         content='content',
+                                         slug='subject-slugified',
+                                         accepted=True
+                                         )
+        message.people.add(self.candidate1)
+        message.people.add(self.candidate2)
+
+        self.assertEquals(len(mail.outbox), 0)
+        message.send()
+        self.assertEquals(len(mail.outbox), 2)
+        the_mail = mail.outbox[0]
+        self.assertIn(the_mail.to[0], [self.candidate1.email, self.candidate2.email])
+        context = Context({'election': self.election,
+                           'candidate': self.candidate1,
+                           'message': message
+                          })
+        template_body = get_template('mails/nueva_pregunta_candidato_body.html')
+        expected_content= template_body.render(context)
+        self.assertEquals(the_mail.body, expected_content)
+        template_subject = get_template('mails/nueva_pregunta_candidato_subject.html')
+        expected_subject = template_subject.render(context).replace('\n', '').replace('\r', '')
+        self.assertEquals(the_mail.subject, expected_subject)
+        message = Message.objects.get(id=message.id)
+        self.assertTrue(message.sent)
+
+    def test_the_class_has_a_function_that_will_send_mails(self):
+        message = Message.objects.create(election=self.election,
+                                         author_name='author',
+                                         author_email='author@email.com',
+                                         subject='subject',
+                                         content='content',
+                                         slug='subject-slugified',
+                                         accepted=True
+                                         )
         message.people.add(self.candidate1)
         message.people.add(self.candidate2)
 
         message2 = Message.objects.create(election=self.election,
-                                                        author_name='author',
-                                                        author_email='author@email.com',
-                                                        subject='subject',
-                                                        content='content',
-                                                        slug='subject-slugified',
-                                                        moderated=True
-                                                        )
+                                          author_name='author',
+                                          author_email='author@email.com',
+                                          subject='subject',
+                                          content='content',
+                                          slug='subject-slugified',
+                                          accepted=True
+                                          )
         message2.people.add(self.candidate1)
         message2.people.add(self.candidate2)
 
         message3 = Message.objects.create(election=self.election,
-                                                        author_name='author',
-                                                        author_email='author@email.com',
-                                                        subject='subject',
-                                                        content='content',
-                                                        slug='subject-slugified'
-                                                        )
+                                          author_name='author',
+                                          author_email='author@email.com',
+                                          subject='subject',
+                                          content='content',
+                                          slug='subject-slugified'
+                                          )
         message3.people.add(self.candidate1)
         message3.people.add(self.candidate2)
 
-        with patch('elections.models.Message.push_to_the_api') as method_mock:
-            # instance = method_mock.return_value
-            method_mock.return_value = 'Fiera feroz'
-
-
-            Message.push_moderated_messages_to_writeit()
-
-            method_mock.assert_has_calls([call(), call()])
+        self.assertEquals(len(mail.outbox), 0)
+        Message.send_mails()
+        sent_mails = Message.objects.filter(sent=True)
+        self.assertEquals(len(sent_mails), 2)
+        self.assertTrue(Message.objects.get(id=message.id).sent)
+        self.assertTrue(Message.objects.get(id=message2.id).sent)
+        self.assertEquals(len(mail.outbox), 4)
 
     def test_reject_message(self):
         message = Message.objects.create(election=self.election,
@@ -175,18 +182,14 @@ class MessageTestCase(WriteItTestCase):
         message.people.add(self.candidate1)
         message.people.add(self.candidate2)
 
-        self.assertIsNone(message.moderated)
+        self.assertIsNone(message.accepted)
 
         message.reject_moderation()
         #the message has been moderated
-        self.assertFalse(message.remote_id)
-        self.assertFalse(message.url)
-        self.assertTrue(message.moderated)
-
+        self.assertFalse(message.accepted)
 
 class AnswerTestCase(TestCase):
     def setUp(self):
-        self.instance = get_writeit_instance()
         self.election = Election.objects.get(id=1)
         self.candidate1 = Candidate.objects.get(id=4)
         self.candidate2 = Candidate.objects.get(id=5)
@@ -197,7 +200,7 @@ class AnswerTestCase(TestCase):
                                               subject='subject',
                                               content='content',
                                               slug='subject-slugified',
-                                              moderated=True
+                                              accepted=True
                                               )
         self.message.people.add(self.candidate1)
         self.message.people.add(self.candidate2)
@@ -231,48 +234,48 @@ class MessagesOrderedList(TestCase):
         self.message1 = Message.objects.create(election=self.election,
                                                               author_name='author',
                                                               author_email='author email',
-                                                              subject = u'I\'m moderated',
-                                                              content = u'Qué opina usted sobre el test_accept_message',
-                                                              slug = 'subject-slugified',
-                                                              moderated = True
+                                                              subject=u'I\'m moderated',
+                                                              content=u'Qué opina usted sobre el test_accept_message',
+                                                              slug='subject-slugified',
+                                                              accepted=True
                                                               )
         self.message2 = Message.objects.create(election=self.election,
                                                               author_name='author',
                                                               author_email='author email',
-                                                              subject = u'message 3',
-                                                              content = u'Qué opina usted sobre el test_accept_message',
-                                                              slug = 'subject-slugified',
-                                                              moderated = True
+                                                              subject=u'message 3',
+                                                              content=u'Qué opina usted sobre el test_accept_message',
+                                                              slug='subject-slugified',
+                                                              accepted=True
                                                               )
         self.message3 = Message.objects.create(election=self.election,
                                                               author_name='author',
                                                               author_email='author email',
-                                                              subject = u'please don\'t moderate me',
-                                                              content = u'Qué opina usted sobre el test_accept_message',
-                                                              slug = 'subject-slugified'
+                                                              subject=u'please don\'t moderate me',
+                                                              content=u'Qué opina usted sobre el test_accept_message',
+                                                              slug='subject-slugified'
                                                               )
         self.message4 = Message.objects.create(election=self.election,
                                                               author_name='author',
                                                               author_email='author email',
-                                                              subject = u'message 4',
-                                                              content = u'Que opina usted sobre el test_accept_message',
-                                                              slug = 'subject-slugified',
-                                                              moderated = True
+                                                              subject=u'message 4',
+                                                              content=u'Que opina usted sobre el test_accept_message',
+                                                              slug='subject-slugified',
+                                                              accepted=True
                                                               )
         self.message4.people.add(self.candidate1)
 
         self.answer1 = Answer.objects.create(message=self.message4,
-                                                            person=self.candidate1,
-                                                            content=u'answerto message4'
-                                                            )
+                                             person=self.candidate1,
+                                             content=u'answerto message4'
+                                             )
         self.message5 = Message.objects.create(election=self.election,
-                                                              author_name='author',
-                                                              author_email='author email',
-                                                              subject = u'message 5',
-                                                              content = u'Que opina usted sobre el test_accept_message',
-                                                              slug = 'subject-slugified',
-                                                              moderated = True
-                                                              )
+                                               author_name='author',
+                                               author_email='author email',
+                                               subject=u'message 5',
+                                               content=u'Que opina usted sobre el test_accept_message',
+                                               slug='subject-slugified',
+                                               accepted=True
+                                               )
 
 
     def test_message_class_has_a_manager(self):
@@ -329,9 +332,8 @@ class PreguntalesWebTestCase(WriteItTestCase):
         self.assertTemplateUsed(response, 'elections/ask_candidate.html')
         self.assertEquals(Message.objects.count(), 1)
         new_message = Message.objects.all()[0]
-        self.assertFalse(new_message.remote_id)
-        self.assertFalse(new_message.url)
-        self.assertFalse(new_message.moderated)
+        self.assertFalse(new_message.sent)
+        self.assertFalse(new_message.accepted)
         self.assertEquals(new_message.content, 'this is a very important message')
         self.assertEquals(new_message.subject, 'this important issue')
         self.assertEquals(new_message.people.all().count(), 2)
@@ -346,42 +348,28 @@ class PreguntalesWebTestCase(WriteItTestCase):
 
         election_candidates = self.election.candidates.exclude(email__isnull=True).exclude(email="")
 
-        self.assertQuerysetEqual(election_candidates,[repr(r) for r in message_form.fields['people'].queryset])
+        self.assertQuerysetEqual(election_candidates,
+                                 [repr(r) for r in message_form.fields['people'].queryset],
+                                 ordered=False)
 
 
+@skip("Estoy sacando todo lo que tenga que ver con writeit lo que implica que no reciviremos mails")
 class AnswerWebhookTestCase(TestCase):
-
     def setUp(self):
         super(AnswerWebhookTestCase, self).setUp()
         self.election = Election.objects.all()[0]
         self.candidate1 = Candidate.objects.get(id=4)
         self.candidate2 = Candidate.objects.get(id=5)
         self.candidate3 = Candidate.objects.get(id=6)
-        # self.message = Message.objects.create(api_instance=self.election.writeitinstance.api_instance
-        #     , author_name='author'
-        #     , author_email='author@email.com'
-        #     , subject = u'subject test_accept_message'
-        #     , content = u'Qué opina usted sobre el test_accept_message'
-        #     , writeitinstance=self.election.writeitinstance
-        #     , slug = 'subject-slugified'
-        #     )
         self.message = Message.objects.create(election=self.election,
-                                                             author_name='author',
-                                                             author_email='author email',
-                                                             subject = u'I\'m moderated',
-                                                             content = u'Qué opina usted sobre el test_accept_message',
-                                                             slug = 'subject-slugified',
-                                                             moderated = True
-                                                             )
+                                              author_name='author',
+                                              author_email='author email',
+                                              subject=u'I\'m moderated',
+                                              content=u'Qué opina usted sobre el test_accept_message',
+                                              slug='subject-slugified',
+                                              accepted=True
+                                              )
         self.message.people.add(self.candidate1)
-
-        # Ahora emularé la pasada por writeit
-        # Al hacer push_to_the_api writeit le devuelve a
-        # writeit-django el identificador y su url para acceder a la API
-
-        self.message.url = '/api/v1/message/1/'
-        self.message.remote_id = 1
-        self.message.save()
 
     def test_reverse_person_id(self):
         from elections.writeit_functions import get_api_url_for_person, reverse_person_url
@@ -438,13 +426,12 @@ class AnswerWebhookTestCase(TestCase):
         self.assertEquals(response.status_code, 200)
 
 
-class MessagePusherTestCase(TestCase):
+class MessageSenderTestCase(TestCase):
     '''
     This TestCase is intended to provide testing for the periodically
     push VotaInteligente Messages to WriteIt (writeit.ciudadanointeligente.org).
     '''
     def setUp(self):
-        self.instance = get_writeit_instance()
         self.election = Election.objects.get(id=1)
         self.candidate1 = Candidate.objects.get(id=4)
         self.candidate2 = Candidate.objects.get(id=5)
@@ -453,24 +440,24 @@ class MessagePusherTestCase(TestCase):
     def test_push_moderated_messages(self):
         '''Push moderated messages'''
         message = Message.objects.create(election=self.election,
-                                                        author_name='author',
-                                                        author_email='author@email.com',
-                                                        subject='subject',
-                                                        content='content',
-                                                        slug='subject-slugified',
-                                                        moderated=True
-                                                        )
+                                         author_name='author',
+                                         author_email='author@email.com',
+                                         subject='subject',
+                                         content='content',
+                                         slug='subject-slugified',
+                                         accepted=True
+                                         )
         message.people.add(self.candidate1)
         message.people.add(self.candidate2)
 
         message2 = Message.objects.create(election=self.election,
-                                                        author_name='author',
-                                                        author_email='author@email.com',
-                                                        subject='subject',
-                                                        content='content',
-                                                        slug='subject-slugified',
-                                                        moderated=True
-                                                        )
+                                          author_name='author',
+                                          author_email='author@email.com',
+                                          subject='subject',
+                                          content='content',
+                                          slug='subject-slugified',
+                                          accepted=True
+                                          )
         message2.people.add(self.candidate1)
         message2.people.add(self.candidate2)
 
@@ -483,7 +470,9 @@ class MessagePusherTestCase(TestCase):
                                                         )
         message3.people.add(self.candidate1)
         message3.people.add(self.candidate2)
+        send_mails.delay()
+        self.assertEquals(Message.objects.filter(sent=True).count(), 2)
+        self.assertIn(message, Message.objects.filter(sent=True))
+        self.assertIn(message2, Message.objects.filter(sent=True))
+        self.assertEquals(len(mail.outbox), 4)
 
-        with patch('preguntales.models.Message.push_to_the_api') as method_mock:
-            send_mails_using_writeit.delay()
-            self.assertEquals(method_mock.call_count, 2)

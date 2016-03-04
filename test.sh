@@ -1,1 +1,1 @@
-python manage.py test elections preguntales
+DONT_USE_MIGRATIONS=1 python manage.py test elections preguntales

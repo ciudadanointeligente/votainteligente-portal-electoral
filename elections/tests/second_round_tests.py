@@ -56,7 +56,7 @@ class SecondRoundCreationTestCase(TestCase):
                                          subject='subject',
                                          content='content',
                                          slug='subject-slugified',
-                                         moderated=True
+                                         accepted=True
                                          )
         message.people.add(self.adela)
         message.people.add(self.carlos)

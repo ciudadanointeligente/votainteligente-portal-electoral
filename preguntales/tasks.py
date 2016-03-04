@@ -9,6 +9,6 @@ logger = logging.getLogger(__name__)
 
 
 @app.task
-def send_mails_using_writeit():
+def send_mails():
     logger.info('Sending mails to writeit')
-    Message.push_moderated_messages_to_writeit()
+    Message.send_mails()

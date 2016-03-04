@@ -13,7 +13,6 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.flatpages.models import FlatPage
 import copy
 from writeit.models import Message
-from elections import get_writeit_instance
 from django.contrib.sites.models import Site
 from django.db.models import Q, Count
 

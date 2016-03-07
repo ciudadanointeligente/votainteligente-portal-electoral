@@ -31,7 +31,7 @@ class ExtraInfoMixin(models.Model):
 
 
 class Candidate(Person, ExtraInfoMixin):
-    elections = models.ManyToManyField('Election', related_name='candidates', null=True)
+    elections = models.ManyToManyField('Election', related_name='candidates', null=True, default=None)
     force_has_answer = models.BooleanField(default=False,
                                            help_text=_('Marca esto si quieres que el candidato aparezca como que no ha respondido'))
 

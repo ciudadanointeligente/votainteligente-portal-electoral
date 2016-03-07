@@ -21,7 +21,7 @@ class RankingTestCaseBase(TestCase):
                    subject='subject',
                    content='content',
                    slug='subject-slugified',
-                   moderated=True
+                   accepted=True
                    )
 
         self.message.people.add(self.candidate1)
@@ -40,7 +40,7 @@ class RankingTestCaseBase(TestCase):
                     subject='subject',
                     content='content',
                     slug='subject-slugified',
-                    moderated=True
+                    accepted=True
                     )
         self.message2.people.add(self.candidate1)
         self.message2.people.add(self.candidate2)

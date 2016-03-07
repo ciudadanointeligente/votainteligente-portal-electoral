@@ -17,19 +17,18 @@ from django.conf import settings
 class MessageManager(models.Manager):
     def get_queryset(self):
         queryset = super(MessageManager, self).get_queryset().annotate(num_answers=Count('answers_'))
-        return queryset.order_by('-num_answers', '-accepted', '-created')
+        return queryset.order_by('-num_answers', '-status__accepted', '-created')
 
 
 @python_2_unicode_compatible
 class Message(models.Model):
-    author_name = models.CharField(max_length=256)
-    author_email = models.EmailField(max_length=512)
-    content = models.TextField()
+    author_name = models.CharField(max_length=256, default='')
+    author_email = models.EmailField(max_length=512, default='')
+    content = models.TextField(default='')
     people = models.ManyToManyField(Candidate)
     subject = models.CharField(max_length=255)
-    slug = AutoSlugField(populate_from='subject', unique=True)
-    accepted = models.NullBooleanField(default=None)
-    sent = models.BooleanField(default=False)
+    slug = AutoSlugField(populate_from='subject', unique=True, null=False)
+
     election = models.ForeignKey(Election, related_name='messages_', default=None)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -50,9 +49,27 @@ class Message(models.Model):
         self.accepted = True
         self.save()
 
-    def save(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
+        super(Message, self).__init__(*args, **kwargs)
+        self.possible_status = {}
+        self.possible_status['accepted'] = kwargs.get('accepted', None)
+        self.possible_status['sent'] = kwargs.get('sent', None)
+        self.possible_status['confirmed'] = kwargs.get('confirmed', None)
 
+    def save(self, *args, **kwargs):
+        creating = False
+        if self.pk is None:
+            creating = True
         super(Message, self).save(*args, **kwargs)
+        if creating:
+            status = MessageStatus.objects.create(message=self)
+        if self.possible_status['accepted'] is not None:
+            self.accepted = self.possible_status['accepted']
+        if self.possible_status['sent'] is not None:
+            self.sent = self.possible_status['sent']
+        if self.possible_status['accepted'] is not None:
+            self.confirmed = self.possible_status['confirmed']
+
 
     def get_absolute_url(self):
         election = self.election
@@ -60,12 +77,32 @@ class Message(models.Model):
         site = Site.objects.get_current()
         return "http://%s%s" % (site.domain, path)
 
-    #@classmethod
-    #def push_moderated_messages_to_writeit(cls):
-    #    query = Q(moderated=True) & Q(remote_id=None)
-    #    messages = Message.objects.filter(query)
-    #    for message in messages:
-    #        message.push_to_the_api()
+    def get_sent(self):
+        return self.status.sent
+
+    def set_sent(self, sent):
+        self.status.sent = sent
+        self.status.save()
+
+    sent = property(get_sent, set_sent)
+
+    def get_accepted(self):
+        return self.status.accepted
+
+    def set_accepted(self, accepted):
+        self.status.accepted = accepted
+        self.status.save()
+
+    accepted = property(get_accepted, set_accepted)
+
+    def get_confirmed(self):
+        return self.status.confirmed
+
+    def set_confirmed(self, confirmed):
+        self.status.confirmed = confirmed
+        self.status.save()
+
+    confirmed = property(get_confirmed, set_confirmed)
 
     def send(self):
         for person in self.people.all():
@@ -78,12 +115,12 @@ class Message(models.Model):
                              [person.email], [],
                              reply_to=[settings.DEFAULT_FROM_EMAIL], headers={})
             email.send()
-            self.sent = True
-            self.save()
+            self.status.sent = True
+            self.status.save()
 
     @classmethod
     def send_mails(cls):
-        query = Q(accepted=True) & Q(sent=False)
+        query = Q(status__accepted=True) & Q(status__sent=False)
         messages = Message.objects.filter(query)
         for message in messages:
             message.send()
@@ -99,3 +136,9 @@ class Answer(models.Model):
     content = models.TextField()
     created = models.DateTimeField(editable=False, auto_now_add=True)
     person = models.ForeignKey(Candidate, related_name='answers_')
+
+class MessageStatus(models.Model):
+    message = models.OneToOneField(Message, related_name='status')
+    accepted = models.NullBooleanField(default=None)
+    sent = models.BooleanField(default=False)
+    confirmed = models.NullBooleanField(default=None)

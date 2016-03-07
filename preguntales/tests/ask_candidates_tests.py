@@ -3,7 +3,7 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from django.test.utils import override_settings
 from django.core import mail
 from elections.models import Election, Candidate
-from preguntales.models import Message, Answer
+from preguntales.models import Message, Answer, MessageStatus
 from writeit.models import Message as WriteItMessage
 from datetime import datetime
 from django.core.urlresolvers import reverse
@@ -36,6 +36,7 @@ class MessageTestCase(WriteItTestCase):
 
         self.assertIsNone(message.accepted)
         self.assertFalse(message.sent)
+        self.assertIsNone(message.confirmed)
         self.assertTrue(message.slug)
         self.assertIn(message.slug, 'perrito')
         self.assertIsInstance(message.created,datetime)
@@ -165,7 +166,7 @@ class MessageTestCase(WriteItTestCase):
 
         self.assertEquals(len(mail.outbox), 0)
         Message.send_mails()
-        sent_mails = Message.objects.filter(sent=True)
+        sent_mails = Message.objects.filter(status__sent=True)
         self.assertEquals(len(sent_mails), 2)
         self.assertTrue(Message.objects.get(id=message.id).sent)
         self.assertTrue(Message.objects.get(id=message2.id).sent)
@@ -187,6 +188,49 @@ class MessageTestCase(WriteItTestCase):
         message.reject_moderation()
         #the message has been moderated
         self.assertFalse(message.accepted)
+
+
+class MessageStatusTestCase(TestCase):
+    def setUp(self):
+        self.election = Election.objects.get(id=1)
+        self.candidate1 = Candidate.objects.get(id=4)
+        self.candidate2 = Candidate.objects.get(id=5)
+        self.candidate3 = Candidate.objects.get(id=6)
+        self.message = Message.objects.create(election=self.election,
+                                              author_name='author',
+                                              author_email='author@email.com',
+                                              subject='Perrito',
+                                              content='content',
+                                              )
+
+    def test_instanciate(self):
+        ## Deleting things before creating anything
+        MessageStatus.objects.all().delete()
+        status = MessageStatus.objects.create(message=self.message)
+        self.assertIsNone(status.accepted)
+        self.assertFalse(status.sent)
+        self.assertIsNone(status.confirmed)
+        self.assertEquals(status.message, self.message)
+
+    def test_automatically_create_status(self):
+        message = Message.objects.create(election=self.election,
+                                         author_name='author',
+                                         author_email='author@email.com',
+                                         subject='Perrito',
+                                         content='content',
+                                         )
+        self.assertTrue(message.status)
+
+    def test_passing_variables_to_status(self):
+        message = Message.objects.create(election=self.election,
+                                         author_name='author',
+                                         author_email='author@email.com',
+                                         subject='Perrito',
+                                         content='content',
+                                         accepted=True
+                                         )
+        self.assertTrue(message.status.accepted)
+
 
 class AnswerTestCase(TestCase):
     def setUp(self):
@@ -445,10 +489,11 @@ class MessageSenderTestCase(TestCase):
                                          subject='subject',
                                          content='content',
                                          slug='subject-slugified',
-                                         accepted=True
                                          )
         message.people.add(self.candidate1)
         message.people.add(self.candidate2)
+        message.status.accepted = True
+        message.status.save()
 
         message2 = Message.objects.create(election=self.election,
                                           author_name='author',
@@ -456,8 +501,9 @@ class MessageSenderTestCase(TestCase):
                                           subject='subject',
                                           content='content',
                                           slug='subject-slugified',
-                                          accepted=True
                                           )
+        message2.status.accepted = True
+        message2.status.save()
         message2.people.add(self.candidate1)
         message2.people.add(self.candidate2)
 
@@ -471,8 +517,8 @@ class MessageSenderTestCase(TestCase):
         message3.people.add(self.candidate1)
         message3.people.add(self.candidate2)
         send_mails.delay()
-        self.assertEquals(Message.objects.filter(sent=True).count(), 2)
-        self.assertIn(message, Message.objects.filter(sent=True))
-        self.assertIn(message2, Message.objects.filter(sent=True))
+        self.assertEquals(Message.objects.filter(status__sent=True).count(), 2)
+        self.assertIn(message, Message.objects.filter(status__sent=True))
+        self.assertIn(message2, Message.objects.filter(status__sent=True))
         self.assertEquals(len(mail.outbox), 4)
 

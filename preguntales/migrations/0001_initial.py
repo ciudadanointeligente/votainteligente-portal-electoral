@@ -2,13 +2,13 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import autoslug.fields
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('elections', '0023_auto_20160224_2130'),
-        ('writeit', '__first__'),
+        ('elections', '0024_auto_20160307_2049'),
     ]
 
     operations = [
@@ -23,16 +23,30 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Message',
             fields=[
-                ('message', models.OneToOneField(related_name='preguntales_message_related', primary_key=True, serialize=False, to='writeit.Message')),
-                ('moderated', models.NullBooleanField(default=None)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('author_name', models.CharField(default=b'', max_length=256)),
+                ('author_email', models.EmailField(default=b'', max_length=512)),
+                ('content', models.TextField(default=b'')),
+                ('subject', models.CharField(max_length=255)),
+                ('slug', autoslug.fields.AutoSlugField(populate_from=b'subject', unique=True, editable=False)),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('election', models.ForeignKey(related_name='messages_', default=None, to='elections.Election')),
+                ('people', models.ManyToManyField(to='elections.Candidate')),
             ],
             options={
                 'verbose_name': 'Mensaje de preguntales',
                 'verbose_name_plural': 'Mensajes de preguntales',
             },
-            bases=('writeit.message',),
+        ),
+        migrations.CreateModel(
+            name='MessageStatus',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('accepted', models.NullBooleanField(default=None)),
+                ('sent', models.BooleanField(default=False)),
+                ('confirmed', models.NullBooleanField(default=None)),
+                ('message', models.OneToOneField(related_name='status', to='preguntales.Message')),
+            ],
         ),
         migrations.AddField(
             model_name='answer',

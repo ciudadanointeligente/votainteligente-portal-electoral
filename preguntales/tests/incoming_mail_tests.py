@@ -9,7 +9,6 @@ from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from mock import patch, call
 from preguntales.forms import MessageForm
-from preguntales.tasks import send_mails_using_writeit
 
 
 class IncomingTest(TestCase):

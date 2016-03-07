@@ -9,8 +9,8 @@ class AnswerInline(admin.TabularInline):
 
 
 class MensajesAdmin(admin.ModelAdmin):
-    fields = ['author_name','author_email', 'subject', 'content', 'people', 'moderated']
-    list_filter = ('moderated', )
+    fields = ['author_name','author_email', 'subject', 'content', 'people', 'status__moderated']
+    list_filter = ()
     search_fields = ['author_name', 'author_email', 'subject', 'people__name']
     inlines = [AnswerInline]
 

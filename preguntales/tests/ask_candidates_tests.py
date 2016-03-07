@@ -4,7 +4,6 @@ from django.test.utils import override_settings
 from django.core import mail
 from elections.models import Election, Candidate
 from preguntales.models import Message, Answer, MessageStatus
-from writeit.models import Message as WriteItMessage
 from datetime import datetime
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site

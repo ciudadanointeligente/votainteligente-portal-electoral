@@ -6,7 +6,6 @@ from django.core.urlresolvers import reverse
 from django.views.generic.base import View
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
-from elections.writeit_functions import reverse_person_url
 from django.core.mail import mail_admins
 from elections.views import CandidateDetailView
 from django.db.models import Q

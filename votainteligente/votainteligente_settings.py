@@ -45,7 +45,6 @@ INSTALLED_APPS = (
     'newsletter',
     'rest_framework',
     'popolorest',
-    'writeit',
     'preguntales',
     # Uncomment the next line to enable admin documentation:
     #'django.contrib.admindocs',
@@ -112,8 +111,8 @@ CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 CELERY_ALWAYS_EAGER = True
 
 CELERYBEAT_SCHEDULE = {
-        'pushing-to-writeit-every-2-minutes': {
-            'task': 'elections.tasks.send_mails_using_writeit',
+        'sending-mails-every-2-minutes': {
+            'task': 'elections.tasks.send_mails',
                     'schedule': timedelta(minutes=2),
                 },
 }
@@ -214,11 +213,6 @@ LOGGING = {'version': 1,
            }
 #END LOGGING
 
-WRITEIT_NAME = 'votainteligente'
-INSTANCE_URL = "/api/v1/instance/<THE_INSTANCE_ID>/"
-WRITEIT_ENDPOINT = 'http://writeit.ciudadanointeligente.org'
-WRITEIT_USERNAME = '<YOUR_USERNAME>'
-WRITEIT_KEY = '<YOUR_API_KEY>'
 NEW_ANSWER_ENDPOINT = 'NEW_ANSWER_ENDPOINT'
 
 THEME = None

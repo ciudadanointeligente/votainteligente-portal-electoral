@@ -8,20 +8,10 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('candidator', '0004_auto_20150714_1756'),
-        ('writeit', '__first__'),
         ('elections', '0012_candidate_force_has_answer'),
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='VotaInteligenteMessage',
-            fields=[
-                ('message_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='writeit.Message')),
-                ('moderated', models.BooleanField(default=False)),
-                ('created', models.DateTimeField(auto_now_add=True)),
-            ],
-            bases=('writeit.message',),
-        ),
         migrations.CreateModel(
             name='Position',
             fields=[

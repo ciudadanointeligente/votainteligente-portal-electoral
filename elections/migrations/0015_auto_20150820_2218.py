@@ -12,18 +12,9 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterModelOptions(
-            name='votainteligentemessage',
-            options={'verbose_name': 'Mensaje de preguntales', 'verbose_name_plural': 'Mensajes de preguntales'},
-        ),
         migrations.AlterField(
             model_name='election',
             name='slug',
             field=autoslug.fields.AutoSlugField(populate_from=b'name', unique=True, editable=False),
-        ),
-        migrations.AlterField(
-            model_name='votainteligentemessage',
-            name='moderated',
-            field=models.NullBooleanField(default=None),
         ),
     ]

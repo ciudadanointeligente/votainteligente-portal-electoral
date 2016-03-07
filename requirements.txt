@@ -1,4 +1,4 @@
-Django==1.8.1
+Django==1.9.2
 django-nose
 django-autoslug==1.8.0
 django-taggit

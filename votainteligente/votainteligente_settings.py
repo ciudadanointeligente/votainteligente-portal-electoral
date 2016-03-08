@@ -1,10 +1,9 @@
 # coding=utf-8
 import sys
 import os
-import djcelery
 from django.conf import settings
-djcelery.setup_loader()
 from datetime import timedelta
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -25,7 +24,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
-    'djcelery',
     'django_nose',
     'django.contrib.sitemaps',
     'candidator',

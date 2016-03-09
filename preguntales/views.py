@@ -11,6 +11,7 @@ from elections.views import CandidateDetailView
 from django.db.models import Q
 from preguntales.models import Message, Answer
 from operator import itemgetter
+from django.shortcuts import get_object_or_404
 
 
 class MessageDetailView(DetailView):
@@ -195,3 +196,20 @@ class ElectionRankingView(DetailView, RankingMixin):
         context['good'] = self.get_good()
         context['bad'] = self.get_bad()
         return context
+
+
+class ConfirmationView(DetailView):
+    model = Message
+    template_name = 'preguntales/confirmation.html'
+
+    def get_queryset(self):
+        return self.model.objects.filter(confirmation__isnull=False).filter(confirmation__when_confirmed__isnull=True)
+
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+        self.key = self.kwargs['key']
+        message = get_object_or_404(queryset, confirmation__key=self.key)
+        message.confirm()
+        return message
+

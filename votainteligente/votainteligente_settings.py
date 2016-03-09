@@ -215,6 +215,8 @@ NEW_ANSWER_ENDPOINT = 'NEW_ANSWER_ENDPOINT'
 
 THEME = None
 
+NO_REPLY_MAIL="no-reply@localhost"
+
 
 from django.conf import settings
 from django_nose import NoseTestSuiteRunner

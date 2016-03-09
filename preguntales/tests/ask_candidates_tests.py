@@ -1,9 +1,9 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from django.test.utils import override_settings
+from django.test import override_settings
 from django.core import mail
 from elections.models import Election, Candidate
-from preguntales.models import Message, Answer, MessageStatus
+from preguntales.models import Message, Answer, MessageStatus, MessageConfirmation
 from datetime import datetime
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
@@ -13,6 +13,7 @@ from preguntales.tasks import send_mails
 from django.template import Context
 from django.template.loader import get_template
 from unittest import skip
+
 
 class WriteItTestCase(TestCase):
     pass
@@ -229,6 +230,73 @@ class MessageStatusTestCase(TestCase):
                                          accepted=True
                                          )
         self.assertTrue(message.status.accepted)
+
+
+@override_settings(NO_REPLY_MAIL="no-reply@votainteligente.cl")
+class ConfirmationTestCase(TestCase):
+    def setUp(self):
+        self.election = Election.objects.get(id=1)
+        self.candidate1 = Candidate.objects.get(id=4)
+        self.candidate2 = Candidate.objects.get(id=5)
+        self.candidate3 = Candidate.objects.get(id=6)
+        self.message = Message.objects.create(election=self.election,
+                                              author_name='author',
+                                              author_email='author@email.com',
+                                              subject='subject',
+                                              content='content',
+                                              slug='subject-slugified',
+                                              )
+        self.message.people.add(self.candidate1)
+        self.message.people.add(self.candidate2)
+
+    def test_instanciate(self):
+        confirmation = MessageConfirmation.objects.create(message=self.message)
+        self.assertTrue(confirmation.key)
+        self.assertIsNone(confirmation.when_confirmed)
+        self.assertTrue(confirmation.created)
+        self.assertTrue(confirmation.updated)
+
+    def test_message_create_confirmation(self):
+        self.message.create_confirmation()
+        self.assertTrue(self.message.confirmation)
+        self.assertEquals(len(mail.outbox), 1)
+        context = Context({'election': self.election, 'message': self.message})
+        template_subject = get_template('mails/confirmation_subject.html')
+        template_body = get_template('mails/confirmation_body.html')
+        expected_subject = template_subject.render(context)
+        expected_body = template_body.render(context)
+        the_mail = mail.outbox[0]
+        self.assertIn(self.message.author_email, the_mail.to)
+        self.assertEquals(expected_body, the_mail.body)
+        self.assertEquals("no-reply@votainteligente.cl", the_mail.from_email)
+
+    def test_confirm_message(self):
+        self.message.create_confirmation()
+        self.message.confirm()
+        self.assertTrue(self.message.confirmation.when_confirmed)
+        self.assertTrue(self.message.confirmed)
+        ## Deleting confirmation
+        self.message.confirmation.delete()
+        ## Creating a new one
+        self.message.create_confirmation()
+        url = reverse('confirmation', kwargs={'key': self.message.confirmation.key})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed('preguntales/confirmation.html')
+        self.assertEquals(response.context['message'], self.message)
+        self.message = Message.objects.get(id=self.message.id)
+        self.assertTrue(self.message.confirmation.when_confirmed)
+        self.assertTrue(self.message.confirmed)
+        #I cannot get the same address again
+        self.assertEquals(self.client.get(url).status_code, 404)
+
+    def test_confirmation_url(self):
+        self.message.create_confirmation()
+        confirmation = self.message.confirmation
+        url = confirmation.get_absolute_url()
+        response = self.client.get(url)
+        self.message = Message.objects.get(id=self.message.id)
+        self.assertTrue(self.message.confirmed)
 
 
 class AnswerTestCase(TestCase):

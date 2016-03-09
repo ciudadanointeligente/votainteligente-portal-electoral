@@ -5,7 +5,9 @@ from preguntales.views import (
     ElectionAskCreateView,
     AnswerWebHook,
     QuestionsPerCandidateView,
-    ElectionRankingView)
+    ElectionRankingView,
+    ConfirmationView,
+)
 from django.views.decorators.cache import cache_page
 
 new_answer_endpoint = r"^new_answer/%s/?$" % (settings.NEW_ANSWER_ENDPOINT)
@@ -27,4 +29,8 @@ urlpatterns = patterns('',
     url(r'^election/(?P<slug>[-\w]+)/ranking/?$',
         cache_page(60 * settings.CACHE_MINUTES)(ElectionRankingView.as_view(template_name='elections/ranking_candidates.html')),
         name='ranking_view'),
+    #confirmation
+    url(r'^confirmation/(?P<key>[-\w]+)/?$',
+        ConfirmationView.as_view(),
+        name='confirmation'),
 )

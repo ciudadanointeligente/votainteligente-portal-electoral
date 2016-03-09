@@ -11,7 +11,21 @@ from django.core.mail import EmailMessage
 from django.template import Context
 from django.template.loader import get_template
 from django.conf import settings
+import uuid
+from django.utils import timezone
 
+def send_mail(context_dict, template_prefix, to=[], reply_to=None, from_email=settings.DEFAULT_FROM_EMAIL):
+    context = Context(context_dict)
+    template_prefix_dict = {'template_prefix': template_prefix}
+    template_body = get_template('mails/%(template_prefix)s_body.html' % template_prefix_dict)
+    body = template_body.render(context)
+    template_subject= get_template('mails/%(template_prefix)s_subject.html' % template_prefix_dict)
+    subject = template_subject.render(context).replace('\n', '').replace('\r', '')
+    email = EmailMessage(subject, body, from_email,
+                        to)
+    if reply_to is not None:
+        email.reply_to = [reply_to]
+    email.send()
 
 class MessageManager(models.Manager):
     def get_queryset(self):
@@ -69,6 +83,15 @@ class Message(models.Model):
         if self.possible_status['accepted'] is not None:
             self.confirmed = self.possible_status['confirmed']
 
+    def create_confirmation(self):
+        confirmation = MessageConfirmation.objects.create(message=self)
+        context = {'election':self.election, 'message': self}
+        send_mail(context, 'confirmation', to=[self.author_email], from_email=settings.NO_REPLY_MAIL)
+
+    def confirm(self):
+        self.confirmed = True
+        self.confirmation.when_confirmed = timezone.now()
+        self.confirmation.save()
 
     def get_absolute_url(self):
         election = self.election
@@ -105,15 +128,9 @@ class Message(models.Model):
 
     def send(self):
         for person in self.people.all():
-            context = Context({'election':self.election, 'candidate': person, 'message': self})
-            template_body = get_template('mails/nueva_pregunta_candidato_body.html')
-            body = template_body.render(context)
-            template_subject= get_template('mails/nueva_pregunta_candidato_subject.html')
-            subject = template_subject.render(context).replace('\n', '').replace('\r', '')
-            email = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL,
-                             [person.email], [],
-                             reply_to=[settings.DEFAULT_FROM_EMAIL], headers={})
-            email.send()
+            context = {'election':self.election, 'candidate': person, 'message': self}
+            send_mail(context, 'nueva_pregunta_candidato', to=[person.email], \
+                      reply_to=settings.DEFAULT_FROM_EMAIL)
             self.status.sent = True
             self.status.save()
 
@@ -129,15 +146,26 @@ class Message(models.Model):
         self.accepted = False
         self.save()
 
-
 class Answer(models.Model):
     message = models.ForeignKey(Message, related_name='answers_')
     content = models.TextField()
     created = models.DateTimeField(editable=False, auto_now_add=True)
     person = models.ForeignKey(Candidate, related_name='answers_')
 
+
 class MessageStatus(models.Model):
     message = models.OneToOneField(Message, related_name='status')
     accepted = models.NullBooleanField(default=None)
     sent = models.BooleanField(default=False)
     confirmed = models.NullBooleanField(default=None)
+
+
+class MessageConfirmation(models.Model):
+    message = models.OneToOneField(Message, related_name='confirmation')
+    key = models.CharField(max_length=255, default=uuid.uuid4)
+    when_confirmed = models.DateTimeField(default=None, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('confirmation', kwargs={'key': self.key})

@@ -33,7 +33,6 @@ INSTALLED_APPS = (
     'popolo',
     'markdown_deux',
     'django_extensions',
-    'pagination',
     'sorl.thumbnail',
     'django_admin_bootstrapped',
     # Uncomment the next line to enable the admin:
@@ -105,7 +104,6 @@ LOGGING = {
 }
 #CELERY STUFF
 BROKER_URL = 'amqp://guest:guest@localhost:5672/'
-CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 CELERY_ALWAYS_EAGER = True
 
 CELERYBEAT_SCHEDULE = {

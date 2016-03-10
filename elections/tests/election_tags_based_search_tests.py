@@ -1,7 +1,7 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django import forms
-from django.utils.unittest import skip
+from unittest import skip
 from django.core.urlresolvers import reverse
 from elections.forms import ElectionSearchByTagsForm
 from elections.views import ElectionsSearchByTagView
@@ -65,6 +65,6 @@ class ElectionSearchByTagsFormTestCase(TestCase):
 		#the view does this for me
 		form.full_clean()
 		#the view does this for me
-		
+
 		search_result = form.get_search_result()
 		self.assertQuerysetEqual(search_result, [repr(r) for r in expected_result])

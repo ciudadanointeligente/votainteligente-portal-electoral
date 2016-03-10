@@ -155,7 +155,7 @@ class FaceToFaceViewTestCase(TestCase):
         candidate1 = self.tarapaca.candidates.all()[0]
         candidate2 = self.tarapaca.candidates.all()[1]
         categories = QuestionCategory.objects.filter(election=self.tarapaca)
-        Topic.objects.filter(category___in=categories).delete()
+        Topic.objects.filter(category__in=categories).delete()
         url = reverse('face_to_face_two_candidates_detail_view',
             kwargs={
                 'slug': self.tarapaca.slug,

@@ -1,7 +1,6 @@
 {% extends "elections/election_base.html" %}
 {% load i18n %}
 {% load votainteligente_extras %}
-{% load pagination_tags %}
 
 {% block extrajs %}
 {% endblock extrajs %}
@@ -16,14 +15,11 @@
 		<h3>{% trans "Preguntas para" %} {{ candidate }}</h3>
 	</div>
 
-	{% autopaginate questions 10 %}
 
-	{% paginate %}
 
 	{% for question in questions %}
 	    {% include 'elections/message_in_list.html' with message=question %}
 	{% endfor %}
 
-	{% paginate %}
 </section>
 {% endblock mainelection %}

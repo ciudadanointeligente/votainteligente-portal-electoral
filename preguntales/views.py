@@ -79,7 +79,6 @@ class AnswerWebHook(View):
 
 class QuestionsPerCandidateView(CandidateDetailView):
     def get_queryset(self):
-
         queryset = super(QuestionsPerCandidateView, self).get_queryset()
         election_slug = self.kwargs['election_slug']
         queryset.filter(Q(elections__slug=election_slug))

@@ -34,7 +34,7 @@ class ElectionsSearchByTagView(FormView):
 
     def get_form_kwargs(self):
         kwargs = super(ElectionsSearchByTagView, self).get_form_kwargs()
-
+        print self.request.GET
         kwargs.update({
             'data': self.request.GET
         })

@@ -1,6 +1,6 @@
 Django==1.9.2
 django-nose
-django-autoslug==1.8.0
+django-autoslug==1.9.3
 django-taggit
 loremipsum
 elasticsearch==1.6.0

@@ -15,11 +15,7 @@ from django.template.loader import get_template
 from unittest import skip
 
 
-class WriteItTestCase(TestCase):
-    pass
-
-
-class MessageTestCase(WriteItTestCase):
+class MessageTestCase(TestCase):
     def setUp(self):
         self.election = Election.objects.get(id=1)
         self.candidate1 = Candidate.objects.get(id=4)
@@ -400,7 +396,7 @@ class MessagesOrderedList(TestCase):
         self.assertEquals(messages[4], self.message3)#this hasn't been moderated
 
 
-class PreguntalesWebTestCase(WriteItTestCase):
+class PreguntalesWebTestCase(TestCase):
     def setUp(self):
         self.election = Election.objects.all()[0]
         self.candidate1 = Candidate.objects.get(id=4)

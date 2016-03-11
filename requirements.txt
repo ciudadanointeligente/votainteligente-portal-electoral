@@ -28,3 +28,5 @@ djangorestframework==3.2.3
 slumber
 -e git+https://github.com/ciudadanointeligente/popolorest@redisplaying_info_as_popit_does#egg=popolorest
 mock==1.3.0
+email_reply_parser==0.3.0
+flufl.bounce==2.3

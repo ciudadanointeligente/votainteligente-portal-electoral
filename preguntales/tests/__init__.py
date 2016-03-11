@@ -1,5 +1,4 @@
 import os
-from django.core.files import File
 
 
 __testing_mails__ = os.path.dirname(os.path.abspath(__file__)) + '/testing_mails/'

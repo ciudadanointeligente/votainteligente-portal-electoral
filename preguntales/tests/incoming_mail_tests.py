@@ -8,10 +8,11 @@ from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from mock import patch, call
 from preguntales.forms import MessageForm
-from preguntales.email_parser import EmailAnswer
+from preguntales.email_parser import EmailAnswer, EmailHandler
 from unittest import skip
-from preguntales.tests import __testing_mails__, __attachrments_dir__
+from preguntales.tests import __testing_mails__, __attachrments_dir__, read_lines
 from django.core.files import File
+from django.core.management import call_command
 
 def read_mail(mail):
     return read_lines(__testing_mails__ + mail + '.txt')
@@ -52,13 +53,13 @@ class IncomingEmailBase(TestCase):
         self.message.people.add(self.candidate1)
         self.message.people.add(self.candidate2)
         self.message.send()
+        Answer.objects.all().delete()
 
 class AnswerHandlerTestCase(IncomingEmailBase):
     def setUp(self):
         super(AnswerHandlerTestCase, self).setUp()
         self.photo_fiera = File(open(__attachrments_dir__ +"fiera_parque.jpg", 'rb'))
         self.pdf_file = File(open(__attachrments_dir__ + "hello.pd.pdf", 'rb'))
-        Answer.objects.all().delete()
 
     def test_class_answer(self):
         email_answer = EmailAnswer()
@@ -150,10 +151,46 @@ class AnswerHandlerTestCase(IncomingEmailBase):
         self.assertTrue(answer.attachments.filter(name=self.pdf_file.name))
 
 
-@skip('EmailAnswer first')
-class IncomingTest(TestCase):
+class IncomingTest(IncomingEmailBase):
     def setUp(self):
         super(IncomingTest, self).setUp()
+        self.handler = EmailHandler()
+
+    def test_handles_email(self):
+        answer_email = self.handler.handle(read_mail('mail'))
+        self.assertEquals(answer_email.subject, 'prueba4')
+        self.assertIn('prueba4lafieri', answer_email.content_html)
+        self.assertEquals(answer_email.answer_identifier, "4aaaabbb")
+        self.assertEquals(answer_email.email_from, '=?ISO-8859-1?Q?Felipe_=C1lvarez?= <falvarez@ciudadanointeligente.cl>')
+        self.assertEquals(answer_email.when, 'Wed, 26 Jun 2013 17:05:30 -0400')
+        self.assertEquals(answer_email.message_id, '<CAA5PczfGfdhf29wgK=8t6j7hm8HYsBy8Qg87iTU2pF42Ez3VcQ@mail.gmail.com>')
+
+    def test_logs_the_incoming_email(self):
+        with patch('logging.info') as info:
+            info.return_value = None
+
+            answer_email = self.handler.handle(read_mail('mail'))
+            expected_log = 'New incoming email from %(from)s sent on %(date)s with subject %(subject)s and content %(content)s'
+            expected_log = expected_log % {
+                'from': answer_email.email_from,
+                'date': answer_email.when,
+                'subject': answer_email.subject,
+                'content': answer_email.content_text,
+                }
+            info.assert_called_with(expected_log)
 
     def test_mail_reading_management_command(self):
-        self.fail()
+        outbound_message = self.message.outbound_identifiers.first()
+        outbound_message.key = '4aaaabbb'
+        outbound_message.save()
+
+        with patch('sys.stdin') as stdin:
+            stdin.attach_mock(readlines1_mock, 'readlines')
+            call_command('handleemail')
+            self.assertEquals(Answer.objects.count(), 1)
+            answer = Answer.objects.first()
+
+            self.assertEquals(answer.message, self.message)
+            self.assertEquals(answer.person.person_ptr, outbound_message.person )
+            self.assertEquals(answer.content, 'prueba4lafieri')
+

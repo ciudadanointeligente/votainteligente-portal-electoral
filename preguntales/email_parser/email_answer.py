@@ -6,6 +6,11 @@ from preguntales.models import (Answer,
                                 Attachment
                                 )
 from elections.models import Candidate
+from .froide_email_utils import FroideEmailParser
+import email
+from email_reply_parser import EmailReplyParser
+from flufl.bounce import all_failures, scan_message
+import logging
 
 class EmailAnswer(object):
     def __init__(self):
@@ -76,4 +81,77 @@ class EmailAnswer(object):
 
     def add_attachment(self, attachment):
         self.attachments.append(attachment)
+
+class EmailHandler(FroideEmailParser):
+    def __init__(self, answer_class=EmailAnswer):
+        self.message = None
+        self.content_types_attrs = {
+            'text/plain': 'content_text',
+            'text/html': 'content_html',
+        }
+
+    def instanciate_answer(self, lines):
+        answer = EmailAnswer()
+        msgtxt = ''.join(lines)
+
+        msg = email.message_from_string(msgtxt)
+        temporary, permanent = all_failures(msg)
+
+        if temporary or permanent:
+            answer.is_bounced = True
+            answer.email_from = scan_message(msg).pop()
+        else:
+            answer.email_from = msg["From"]
+
+        the_recipient = msg["To"]
+        answer.subject = msg["Subject"]
+        answer.when = msg["Date"]
+        answer.message_id = msg["Message-ID"]
+
+        the_recipient = re.sub(r"\n", "", the_recipient)
+
+        regex = re.compile(r".*[\+\-](.*)@.*")
+        the_match = regex.match(the_recipient)
+        if the_match is None:
+            raise CouldNotFindIdentifier
+        answer.email_to = the_recipient
+        answer.answer_identifier = the_match.groups()[0]
+        logging.info("Reading the parts")
+        for part in msg.walk():
+            logging.info("Part of type " + part.get_content_type())
+
+            content_type_attr = self.content_types_attrs.get(part.get_content_type())
+            if content_type_attr:
+                charset = part.get_content_charset() or "ISO-8859-1"
+                data = part.get_payload(decode=True).decode(charset)
+
+                setattr(
+                    answer,
+                    content_type_attr,
+                    EmailReplyParser.parse_reply(data).strip(),
+                    )
+            else:
+                self.handle_not_processed_part(part)
+
+            attachment = self.parse_attachment(part)
+            if attachment:
+                answer.add_attachment(attachment)
+
+        log = 'New incoming email from %(from)s sent on %(date)s with subject %(subject)s and content %(content)s'
+        log = log % {
+            'from': answer.email_from,
+            'date': answer.when,
+            'subject': answer.subject,
+            'content': answer.content_text,
+            }
+        logging.info(log)
+        return answer
+
+    def handle_not_processed_part(self, part):
+        pass
+
+    def handle(self, lines):
+        email_answer = self.instanciate_answer(lines)
+
+        return email_answer
 

@@ -11,6 +11,7 @@ import email
 from email_reply_parser import EmailReplyParser
 from flufl.bounce import all_failures, scan_message
 import logging
+from preguntales.exceptions import CouldNotFindIdentifier
 
 class EmailAnswer(object):
     def __init__(self):

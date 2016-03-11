@@ -1,0 +1,2 @@
+class CouldNotFindIdentifier(Exception):
+        pass

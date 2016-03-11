@@ -3,7 +3,13 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from django.test import override_settings
 from django.core import mail
 from elections.models import Election, Candidate
-from preguntales.models import Message, Answer, MessageStatus, MessageConfirmation
+from preguntales.models import (Message,
+                                Answer,
+                                MessageStatus,
+                                MessageConfirmation,
+                                OutboundMessage,
+                                Attachment
+                                )
 from datetime import datetime
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
@@ -13,6 +19,8 @@ from preguntales.tasks import send_mails
 from django.template import Context
 from django.template.loader import get_template
 from unittest import skip
+from django.core.files import File
+from preguntales.tests import __testing_mails__, __attachrments_dir__
 
 
 class MessageTestCase(TestCase):
@@ -126,6 +134,9 @@ class MessageTestCase(TestCase):
         self.assertEquals(the_mail.subject, expected_subject)
         message = Message.objects.get(id=message.id)
         self.assertTrue(message.sent)
+        self.assertTrue(message.outbound_identifiers.all())
+        self.assertTrue(message.outbound_identifiers.filter(person=self.candidate1))
+        self.assertTrue(message.outbound_identifiers.filter(person=self.candidate2))
 
     def test_the_class_has_a_function_that_will_send_mails(self):
         message = Message.objects.create(election=self.election,
@@ -185,6 +196,56 @@ class MessageTestCase(TestCase):
         #the message has been moderated
         self.assertFalse(message.accepted)
 
+class MessageOutboundIdentifier(TestCase):
+    def setUp(self):
+        self.election = Election.objects.get(id=1)
+        self.candidate1 = Candidate.objects.get(id=4)
+        self.candidate2 = Candidate.objects.get(id=5)
+        self.candidate3 = Candidate.objects.get(id=6)
+        self.message = Message.objects.create(election=self.election,
+                                              author_name='author',
+                                              author_email='author@email.com',
+                                              subject='Perrito',
+                                              content='content',
+                                              )
+        self.message.people.add(self.candidate1)
+        self.message.people.add(self.candidate2)
+
+    def test_instantiate(self):
+        outbound = OutboundMessage.objects.create(message=self.message, person=self.candidate1)
+        self.assertTrue(outbound)
+        self.assertIn(outbound, self.message.outbound_identifiers.all())
+        self.assertTrue(outbound.key)
+
+
+class AnswerAttachmentTestCase(TestCase):
+    def setUp(self):
+        super(AnswerAttachmentTestCase, self).setUp()
+        self.election = Election.objects.get(id=1)
+        self.candidate1 = Candidate.objects.get(id=4)
+        self.candidate2 = Candidate.objects.get(id=5)
+        self.candidate3 = Candidate.objects.get(id=6)
+        self.message = Message.objects.create(election=self.election,
+                                              author_name='author',
+                                              author_email='author@email.com',
+                                              subject='Perrito',
+                                              content='content',
+                                              )
+        self.message.people.add(self.candidate1)
+        self.message.people.add(self.candidate2)
+        self.answer = Answer.objects.create(message=self.message,
+                                            person=self.candidate1,
+                                            content='This is a content')
+        self.pdf_file = File(open(__attachrments_dir__ + "hello.pd.pdf", 'rb'))
+        self.photo_fiera = File(open(__attachrments_dir__ + "fiera_parque.jpg", 'rb'))
+
+
+    def test_instantiate(self):
+        attachment = Attachment.objects.create(answer=self.answer,
+                                               content=self.photo_fiera,
+                                               name="foto-fiera.jpg"
+                                               )
+        self.assertTrue(attachment)
 
 class MessageStatusTestCase(TestCase):
     def setUp(self):

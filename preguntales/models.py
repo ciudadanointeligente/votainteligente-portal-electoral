@@ -13,6 +13,7 @@ from django.template.loader import get_template
 from django.conf import settings
 import uuid
 from django.utils import timezone
+from popolo.models import Person
 
 def send_mail(context_dict, template_prefix, to=[], reply_to=None, from_email=settings.DEFAULT_FROM_EMAIL):
     context = Context(context_dict)
@@ -133,6 +134,7 @@ class Message(models.Model):
                       reply_to=settings.DEFAULT_FROM_EMAIL)
             self.status.sent = True
             self.status.save()
+            OutboundMessage.objects.create(message=self, person=person)
 
     @classmethod
     def send_mails(cls):
@@ -152,6 +154,15 @@ class Answer(models.Model):
     created = models.DateTimeField(editable=False, auto_now_add=True)
     person = models.ForeignKey(Candidate, related_name='answers_')
 
+class Attachment(models.Model):
+    answer = models.ForeignKey(Answer, related_name='attachments')
+    content = models.FileField(upload_to="attachments/%Y/%m/%d")
+    name = models.CharField(max_length=255)
+
+class OutboundMessage(models.Model):
+    message = models.ForeignKey(Message, related_name='outbound_identifiers')
+    person = models.ForeignKey(Person)
+    key = models.CharField(max_length=255, default=uuid.uuid4)
 
 class MessageStatus(models.Model):
     message = models.OneToOneField(Message, related_name='status')

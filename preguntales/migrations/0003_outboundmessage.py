@@ -10,7 +10,6 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('popolo', '0002_auto_20160311_1609'),
         ('preguntales', '0002_messageconfirmation'),
     ]
 

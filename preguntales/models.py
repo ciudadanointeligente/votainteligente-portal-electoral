@@ -34,6 +34,11 @@ class MessageManager(models.Manager):
         return queryset.order_by('-num_answers', '-status__accepted', '-created')
 
 
+def uuid_with_no_dashes():
+    u = uuid.uuid4()
+    return str(u).replace('-', '')
+
+
 @python_2_unicode_compatible
 class Message(models.Model):
     author_name = models.CharField(max_length=256, default='')
@@ -129,12 +134,15 @@ class Message(models.Model):
 
     def send(self):
         for person in self.people.all():
+            outbound_message = OutboundMessage.objects.create(message=self, person=person)
+            reply_to = '%(localpart)s+%(key)s@%(domain)s' % {'localpart': settings.EMAIL_LOCALPART,
+                                                             'key': outbound_message.key,
+                                                             'domain': settings.EMAIL_DOMAIN}
             context = {'election':self.election, 'candidate': person, 'message': self}
             send_mail(context, 'nueva_pregunta_candidato', to=[person.email], \
-                      reply_to=settings.DEFAULT_FROM_EMAIL)
+                      reply_to=reply_to)
             self.status.sent = True
             self.status.save()
-            OutboundMessage.objects.create(message=self, person=person)
 
     @classmethod
     def send_mails(cls):
@@ -162,7 +170,7 @@ class Attachment(models.Model):
 class OutboundMessage(models.Model):
     message = models.ForeignKey(Message, related_name='outbound_identifiers')
     person = models.ForeignKey(Person)
-    key = models.CharField(max_length=255, default=uuid.uuid4)
+    key = models.CharField(max_length=255, default=uuid_with_no_dashes)
 
 class MessageStatus(models.Model):
     message = models.OneToOneField(Message, related_name='status')

@@ -23,6 +23,11 @@ from django.core.files import File
 from preguntales.tests import __testing_mails__, __attachrments_dir__
 
 
+EMAIL_LOCALPART='municipales2016'
+EMAIL_DOMAIN='votainteligente.cl'
+
+@override_settings(EMAIL_DOMAIN=EMAIL_DOMAIN,
+                   EMAIL_LOCALPART=EMAIL_LOCALPART)
 class MessageTestCase(TestCase):
     def setUp(self):
         self.election = Election.objects.get(id=1)
@@ -137,6 +142,16 @@ class MessageTestCase(TestCase):
         self.assertTrue(message.outbound_identifiers.all())
         self.assertTrue(message.outbound_identifiers.filter(person=self.candidate1))
         self.assertTrue(message.outbound_identifiers.filter(person=self.candidate2))
+        #reply-to
+        reply_to_arrays = [ '%(localpart)s+%(key)s@%(domain)s' % {'localpart': EMAIL_LOCALPART,
+                                                                  'domain': EMAIL_DOMAIN,
+                                                                  'key':message.outbound_identifiers.all()[0].key},
+                           '%(localpart)s+%(key)s@%(domain)s' % {'localpart': EMAIL_LOCALPART,
+                                                                 'domain': EMAIL_DOMAIN,
+                                                                 'key':message.outbound_identifiers.all()[1].key}]
+        for the_mail in mail.outbox:
+            self.assertEquals(len(the_mail.reply_to), 1)
+            self.assertIn(the_mail.reply_to[0], reply_to_arrays)
 
     def test_the_class_has_a_function_that_will_send_mails(self):
         message = Message.objects.create(election=self.election,
@@ -216,6 +231,13 @@ class MessageOutboundIdentifier(TestCase):
         self.assertTrue(outbound)
         self.assertIn(outbound, self.message.outbound_identifiers.all())
         self.assertTrue(outbound.key)
+        self.assertIsInstance(outbound.key, str)
+        self.assertNotIn('-', outbound.key)
+
+    def test_no_two_equal_keys(self):
+        outbound1 = OutboundMessage.objects.create(message=self.message, person=self.candidate1)
+        outbound2 = OutboundMessage.objects.create(message=self.message, person=self.candidate1)
+        self.assertNotEqual(outbound1.key, outbound2.key)
 
 
 class AnswerAttachmentTestCase(TestCase):

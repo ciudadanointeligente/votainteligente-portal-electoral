@@ -214,6 +214,8 @@ NEW_ANSWER_ENDPOINT = 'NEW_ANSWER_ENDPOINT'
 THEME = None
 
 NO_REPLY_MAIL="no-reply@localhost"
+EMAIL_LOCALPART='municipales2016'
+EMAIL_DOMAIN='votainteligente.cl'
 
 
 from django.conf import settings

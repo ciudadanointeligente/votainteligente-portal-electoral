@@ -535,85 +535,11 @@ class PreguntalesWebTestCase(TestCase):
         alejandro_guille.email = 'eduardo@guillier.cl'
         alejandro_guille.save()
 
-
         election_candidates = self.election.candidates.exclude(email__isnull=True).exclude(email="")
 
         self.assertQuerysetEqual(election_candidates,
                                  [repr(r) for r in message_form.fields['people'].queryset],
                                  ordered=False)
-
-
-@skip("Estoy sacando todo lo que tenga que ver con writeit lo que implica que no reciviremos mails")
-class AnswerWebhookTestCase(TestCase):
-    def setUp(self):
-        super(AnswerWebhookTestCase, self).setUp()
-        self.election = Election.objects.all()[0]
-        self.candidate1 = Candidate.objects.get(id=4)
-        self.candidate2 = Candidate.objects.get(id=5)
-        self.candidate3 = Candidate.objects.get(id=6)
-        self.message = Message.objects.create(election=self.election,
-                                              author_name='author',
-                                              author_email='author email',
-                                              subject=u'I\'m moderated',
-                                              content=u'Qué opina usted sobre el test_accept_message',
-                                              slug='subject-slugified',
-                                              accepted=True
-                                              )
-        self.message.people.add(self.candidate1)
-
-    def test_reverse_person_id(self):
-        from elections.writeit_functions import get_api_url_for_person, reverse_person_url
-        site = Site.objects.get_current()
-        site.domain = 'localhost:8000'
-        site.save()
-
-        self.assertEquals(reverse_person_url('http://localhost:8000/api/persons/fiera-feroz'), 'fiera-feroz')
-
-
-    @override_settings(NEW_ANSWER_ENDPOINT = 'new_answer_comming_expected_to_be_a_hash')
-    def test_when_i_post_to_a_point_it_creates_an_answer(self):
-        # This comes from writeit
-        # Webhooks
-        # payload = {
-        #     'message_id': '/api/v1/message/{0}/'.format(answer.message.id),
-        #     'content': answer.content,
-        #     'person': answer.person.name,
-        #     'person_id': answer.person.popit_url,
-        #     }
-
-        from elections.writeit_functions import get_api_url_for_person, reverse_person_url
-        data = {
-                'content': 'Example Answer', \
-                'person': self.candidate1.name, \
-                'person_id': get_api_url_for_person(self.candidate1), \
-                'message_id': '/api/v1/message/1/'
-            }
-        response = self.client.post(reverse('new_answer_endpoint') ,
-            format='json',
-            data = data
-        )
-
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(self.message.answers_.count(), 1)
-        answer = self.message.answers_.all()[0]
-        self.assertEquals(answer.content, 'Example Answer')
-        self.assertEquals(answer.person, self.candidate1)
-
-
-    @override_settings(NEW_ANSWER_ENDPOINT = 'new_answer_comming_expected_to_be_a_hash')
-    def test_when_I_send_anything_else_it_doesnt_crash(self):
-        data = {
-                'content': 'Example Answer', \
-                'person': self.candidate1.name, \
-                'person_id': 'non_existing_id', \
-                'message_id': self.message.url
-            }
-
-        response = self.client.post(reverse('new_answer_endpoint') ,
-            format='json',
-            data = data
-        )
-        self.assertEquals(response.status_code, 200)
 
 
 class MessageSenderTestCase(TestCase):

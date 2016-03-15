@@ -56,27 +56,6 @@ class ElectionAskCreateView(CreateView):
         return reverse('ask_detail_view', kwargs={'slug':election_slug,})
 
 
-class AnswerWebHook(View):
-    @csrf_exempt
-    def dispatch(self, request, *args, **kwargs):
-        return super(AnswerWebHook, self).dispatch(request, *args, **kwargs)
-
-
-    def post(self, *args, **kwargs):
-        person_id = self.request.POST.get('person_id')
-        content = self.request.POST.get('content')
-
-        message_id = self.request.POST.get('message_id')
-        try:
-            message = Message.objects.get(url=message_id)
-            person_id = reverse_person_url(person_id)
-            person = Candidate.objects.get(id=person_id)
-            Answer.objects.create(person =person, message=message, content=content)
-        except Exception, e:
-            mail_admins('Error recibiendo una respuesta', e)
-
-        return HttpResponse(content_type="text/plain", status=200)
-
 class QuestionsPerCandidateView(CandidateDetailView):
     def get_queryset(self):
         queryset = super(QuestionsPerCandidateView, self).get_queryset()

@@ -3,7 +3,6 @@ from django.conf.urls import patterns, url
 from preguntales.views import (
     MessageDetailView,
     ElectionAskCreateView,
-    AnswerWebHook,
     QuestionsPerCandidateView,
     ElectionRankingView,
     ConfirmationView,
@@ -13,7 +12,6 @@ from django.views.decorators.cache import cache_page
 new_answer_endpoint = r"^new_answer/%s/?$" % (settings.NEW_ANSWER_ENDPOINT)
 
 urlpatterns = patterns('',
-    url(new_answer_endpoint,AnswerWebHook.as_view(), name='new_answer_endpoint' ),
     url(r'^election/(?P<election_slug>[-\w]+)/messages/(?P<pk>\d+)/?$',
         MessageDetailView.as_view(template_name='elections/message_detail.html'),
         name='message_detail'),

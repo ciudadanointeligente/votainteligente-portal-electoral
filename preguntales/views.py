@@ -98,7 +98,7 @@ class RankingMixin(object):
             messages = self.all_messages()
             actual_count = 0
             for message in messages:
-                actual_count += message.answers_.count()
+                actual_count += message.answers.count()
             return actual_count
 
         def success_index(self):

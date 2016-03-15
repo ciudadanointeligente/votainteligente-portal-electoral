@@ -409,8 +409,8 @@ class AnswerTestCase(TestCase):
         self.assertIsNotNone(answer.created)
         self.assertIsInstance(answer.created, datetime)
 
-        self.assertIn(answer, self.message.answers_.all())
-        self.assertIn(answer, self.candidate1.answers_.all())
+        self.assertIn(answer, self.message.answers.all())
+        self.assertIn(answer, self.candidate1.answers.all())
 
 
 class MessagesOrderedList(TestCase):

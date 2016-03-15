@@ -30,7 +30,7 @@ def send_mail(context_dict, template_prefix, to=[], reply_to=None, from_email=se
 
 class MessageManager(models.Manager):
     def get_queryset(self):
-        queryset = super(MessageManager, self).get_queryset().annotate(num_answers=Count('answers_'))
+        queryset = super(MessageManager, self).get_queryset().annotate(num_answers=Count('answers'))
         return queryset.order_by('-num_answers', '-status__accepted', '-created')
 
 
@@ -47,7 +47,7 @@ class Message(models.Model):
     subject = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='subject', unique=True, null=False)
 
-    election = models.ForeignKey(Election, related_name='messages_', default=None)
+    election = models.ForeignKey(Election, related_name='messages', default=None)
     created = models.DateTimeField(auto_now_add=True)
 
     objects = models.Manager()
@@ -156,10 +156,10 @@ class Message(models.Model):
         self.save()
 
 class Answer(models.Model):
-    message = models.ForeignKey(Message, related_name='answers_')
+    message = models.ForeignKey(Message, related_name='answers')
     content = models.TextField()
     created = models.DateTimeField(editable=False, auto_now_add=True)
-    person = models.ForeignKey(Candidate, related_name='answers_')
+    person = models.ForeignKey(Candidate, related_name='answers')
 
 class Attachment(models.Model):
     answer = models.ForeignKey(Answer, related_name='attachments')

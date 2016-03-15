@@ -11,7 +11,7 @@ from django.core.mail import EmailMessage
 from django.template import Context
 from django.template.loader import get_template
 from django.conf import settings
-import uuid
+from uuid import uuid4
 from django.utils import timezone
 from popolo.models import Person
 
@@ -35,8 +35,7 @@ class MessageManager(models.Manager):
 
 
 def uuid_with_no_dashes():
-    u = uuid.uuid4()
-    return str(u).replace('-', '')
+    return uuid4().hex
 
 
 @python_2_unicode_compatible
@@ -141,8 +140,8 @@ class Message(models.Model):
             context = {'election':self.election, 'candidate': person, 'message': self}
             send_mail(context, 'nueva_pregunta_candidato', to=[person.email], \
                       reply_to=reply_to)
-            self.status.sent = True
-            self.status.save()
+        self.status.sent = True
+        self.status.save()
 
     @classmethod
     def send_mails(cls):
@@ -181,7 +180,7 @@ class MessageStatus(models.Model):
 
 class MessageConfirmation(models.Model):
     message = models.OneToOneField(Message, related_name='confirmation')
-    key = models.CharField(max_length=255, default=uuid.uuid4)
+    key = models.CharField(max_length=255, default=uuid_with_no_dashes)
     when_confirmed = models.DateTimeField(default=None, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

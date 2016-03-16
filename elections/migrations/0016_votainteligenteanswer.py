@@ -12,14 +12,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='VotaInteligenteAnswer',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('content', models.TextField()),
-                ('created', models.DateTimeField(editable=False)),
-                ('message', models.ForeignKey(related_name='answers', to='elections.VotaInteligenteMessage')),
-                ('person', models.ForeignKey(related_name='answers', to='popolo.Person')),
-            ],
-        ),
     ]

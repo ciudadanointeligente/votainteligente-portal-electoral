@@ -1,10 +1,11 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from elections.models import Election, Candidate, VotaInteligenteMessage, VotaInteligenteAnswer
+from elections.models import Election, Candidate
 from elections.bin import SecondRoundCreator
 from candidator.models import TakenPosition
 from django.core.management import call_command
 from django.utils.six import StringIO
+from preguntales.models import Message, Answer
 
 
 class SecondRoundCreationTestCase(TestCase):
@@ -49,22 +50,22 @@ class SecondRoundCreationTestCase(TestCase):
 
     def test_copy_messages_and_answers(self):
         candidate3 = Candidate.objects.get(id=6)
-        message = VotaInteligenteMessage.objects.create(election=self.tarapaca,
-                                                        author_name='author',
-                                                        author_email='author@email.com',
-                                                        subject='subject',
-                                                        content='content',
-                                                        slug='subject-slugified',
-                                                        moderated=True
-                                                        )
+        message = Message.objects.create(election=self.tarapaca,
+                                         author_name='author',
+                                         author_email='author@email.com',
+                                         subject='subject',
+                                         content='content',
+                                         slug='subject-slugified',
+                                         accepted=True
+                                         )
         message.people.add(self.adela)
         message.people.add(self.carlos)
         message.people.add(candidate3)
 
-        answer = VotaInteligenteAnswer.objects.create(content=u'Hey I\'ve had to speak english in the last couple of days',
-                                                      message=message,
-                                                      person=self.adela
-                                                      )
+        answer = Answer.objects.create(content=u'Hey I\'ve had to speak english in the last couple of days',
+                                       message=message,
+                                       person=self.adela
+                                       )
         sc = SecondRoundCreator(self.tarapaca)
         sc.pick_one(self.adela)
         sc.pick_one(self.carlos)

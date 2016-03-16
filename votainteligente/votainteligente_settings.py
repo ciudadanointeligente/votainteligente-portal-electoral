@@ -1,15 +1,14 @@
 # coding=utf-8
 import sys
 import os
-import djcelery
 from django.conf import settings
-djcelery.setup_loader()
 from datetime import timedelta
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEFAULT_CANDIDATE_EXTRA_INFO = {
-    "portrait_photo": "http://votainteligente.cl/static/img/candidate-default.jpg",
+    "portrait_photo": "/static/img/candidate-default.jpg",
     'custom_ribbon': 'ribbon text'
 }
 DEFAULT_ELECTION_EXTRA_INFO = {
@@ -18,14 +17,13 @@ DEFAULT_ELECTION_EXTRA_INFO = {
 
 TESTING = 'test' in sys.argv
 INSTALLED_APPS = (
+    'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.sites',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
-    'djcelery',
     'django_nose',
     'django.contrib.sitemaps',
     'candidator',
@@ -35,7 +33,6 @@ INSTALLED_APPS = (
     'popolo',
     'markdown_deux',
     'django_extensions',
-    'pagination',
     'sorl.thumbnail',
     'django_admin_bootstrapped',
     # Uncomment the next line to enable the admin:
@@ -45,10 +42,11 @@ INSTALLED_APPS = (
     'newsletter',
     'rest_framework',
     'popolorest',
-    'writeit',
+    'preguntales',
     # Uncomment the next line to enable admin documentation:
     #'django.contrib.admindocs',
 )
+
 
 #SITE_ID
 SITE_ID = 1
@@ -106,12 +104,11 @@ LOGGING = {
 }
 #CELERY STUFF
 BROKER_URL = 'amqp://guest:guest@localhost:5672/'
-CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 CELERY_ALWAYS_EAGER = True
 
 CELERYBEAT_SCHEDULE = {
-        'pushing-to-writeit-every-2-minutes': {
-            'task': 'elections.tasks.send_mails_using_writeit',
+        'sending-mails-every-2-minutes': {
+            'task': 'elections.tasks.send_mails',
                     'schedule': timedelta(minutes=2),
                 },
 }
@@ -212,17 +209,15 @@ LOGGING = {'version': 1,
            }
 #END LOGGING
 
-WRITEIT_NAME = 'votainteligente'
-INSTANCE_URL = "/api/v1/instance/<THE_INSTANCE_ID>/"
-WRITEIT_ENDPOINT = 'http://writeit.ciudadanointeligente.org'
-WRITEIT_USERNAME = '<YOUR_USERNAME>'
-WRITEIT_KEY = '<YOUR_API_KEY>'
 NEW_ANSWER_ENDPOINT = 'NEW_ANSWER_ENDPOINT'
 
 THEME = None
 
+NO_REPLY_MAIL="no-reply@localhost"
+EMAIL_LOCALPART='municipales2016'
+EMAIL_DOMAIN='votainteligente.cl'
 
-#Testing without migrations
+
 from django.conf import settings
 from django_nose import NoseTestSuiteRunner
 

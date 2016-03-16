@@ -1,6 +1,6 @@
 # coding=utf-8
 from django.forms import ModelForm, CheckboxSelectMultiple
-from elections.models import VotaInteligenteMessage
+from preguntales.models import Message
 from django.utils.translation import ugettext as _
 
 class MessageForm(ModelForm):
@@ -11,7 +11,7 @@ class MessageForm(ModelForm):
         self.fields['people'].queryset = self.election.candidates.exclude(email__isnull=True).exclude(email__exact='')
 
     class Meta:
-        model = VotaInteligenteMessage
+        model = Message
         fields = ('author_name', 'author_email', 'subject', 'content','people')
         widgets = {
             'people': CheckboxSelectMultiple(),

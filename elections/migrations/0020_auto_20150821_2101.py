@@ -11,9 +11,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='votainteligenteanswer',
-            name='person',
-            field=models.ForeignKey(related_name='answers', to='elections.Candidate'),
-        ),
     ]

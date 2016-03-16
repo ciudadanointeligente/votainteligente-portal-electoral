@@ -2,7 +2,7 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from django.core.urlresolvers import reverse
 from elections.views import HomeView
 from elections.forms import ElectionSearchByTagsForm
-from django.utils.unittest import skip
+from unittest import skip
 from elections.models import Election
 
 class HomeTestCase(TestCase):

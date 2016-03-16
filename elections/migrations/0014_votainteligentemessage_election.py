@@ -11,9 +11,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='votainteligentemessage',
-            name='election',
-            field=models.ForeignKey(related_name='messages', default=None, to='elections.Election'),
-        ),
     ]

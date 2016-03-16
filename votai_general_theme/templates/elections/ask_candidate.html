@@ -1,6 +1,5 @@
 {% extends "elections/election_base.html" %}
 {% load i18n %}
-{% load pagination_tags %}
 
 
 {% block title %} - {{election}} - {% trans "Pregúntales"%}{% endblock title%}
@@ -58,7 +57,6 @@
 <div>
 	
 	{% if writeitmessages %}
-	{% autopaginate writeitmessages 10 %}
 	
 	<div class="row">
 		<div class="col-md-8 recent-questions">
@@ -78,7 +76,6 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12 text-center">
-			{% paginate %}
 		</div>
 	</div>
 	<div class="row">
@@ -90,7 +87,6 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12 text-center">
-			{% paginate %}
 		</div>
 	</div>
 	{% else %}

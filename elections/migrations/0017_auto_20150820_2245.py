@@ -11,9 +11,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='votainteligenteanswer',
-            name='created',
-            field=models.DateTimeField(auto_now_add=True),
-        ),
     ]

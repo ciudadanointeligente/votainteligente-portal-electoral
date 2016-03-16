@@ -3,7 +3,8 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import Election, QuestionCategory, Candidate
 from django.core.urlresolvers import reverse
 from elections.views import SoulMateDetailView
-from candidator.models import TakenPosition, Position, Topic
+from candidator.models import TakenPosition, Position
+from elections.models import Topic
 from popolo.models import Person
 from candidator.comparer import InformationHolder
 
@@ -197,6 +198,11 @@ class SoulMateTestCase(TestCase):
         self.assertEquals(taken_positions[2].position, no_freedom)
         with self.assertRaises(Person.DoesNotExist):
             taken_positions[2].person
+
+    def test_topic_str(self):
+        freedom_topic = Topic.objects.get(id=6)
+        self.assertIn(str(freedom_topic.election), str(freedom_topic))
+        self.assertIn(freedom_topic.label, str(freedom_topic))
 
     def test_get_information_holder(self):
         view = SoulMateDetailView()

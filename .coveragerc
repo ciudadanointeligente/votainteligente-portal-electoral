@@ -1,4 +1,4 @@
 # .coveragerc to control coverage.py
 [run]
-source=elections
-omit = ../*migrations*
+source=elections,preguntales
+omit = ../*migrations*,../*admin.py

@@ -1,5 +1,6 @@
 # coding=utf-8
 from django import forms
+from iniciativa_popular.models import ProposalTemporaryData
 
 WHEN_CHOICES = [
     ('6_months', u'6 Meses'),
@@ -10,8 +11,18 @@ WHEN_CHOICES = [
 ]
 class ProposalForm(forms.Form):
     your_name = forms.CharField(label=u'Tu nombre o el de tu organización')
-    email = forms.EmailField()
     problem = forms.CharField()
     solution = forms.CharField()
     when = forms.ChoiceField(choices=WHEN_CHOICES)
     allies =  forms.CharField()
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        self.area = kwargs.pop('area')
+        super(ProposalForm, self).__init__(*args, **kwargs)
+
+    def save(self):
+        return ProposalTemporaryData.objects.create(user=self.user,
+                                                    area=self.area,
+                                                    data=self.cleaned_data)
+

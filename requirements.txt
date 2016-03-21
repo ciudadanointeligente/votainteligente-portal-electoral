@@ -22,7 +22,7 @@ celery==3.1.18
 python-memcached
 -e git+https://github.com/openpolis/django-popolo.git#egg=django_popolo-dev
 django-mathfilters
-django-picklefield
+django-picklefield==0.3.2
 -e git+https://github.com/dokterbob/django-newsletter#egg=django_newsletter
 djangorestframework==3.2.3
 slumber

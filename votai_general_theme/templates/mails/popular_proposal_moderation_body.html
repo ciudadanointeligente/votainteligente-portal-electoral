@@ -1,0 +1,14 @@
+Hola {{temporary_data.proposer.first_name}}!
+Hemos leido y moderado tu propuesta ciudadana y tenemos los siguientes comentarios:
+
+{% for key, item in comments.items %}{% if item.comments %}
+* Para tu respuesta: {{item.original}}, nuestros comentarios son:
+
+{{ item.comments }}
+
+{% else %}* En cuanto a : {{item.original}}, está maravillosa y no queremos cambiarla.{% endif %}
+{% endfor %}
+
+Gracias por querer hacer de {{area}} un lugar mejor.
+
+Estos comentarios fueron hechos por nuestro moderador(a) {{moderator.name}}.

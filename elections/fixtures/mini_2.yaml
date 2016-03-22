@@ -20,8 +20,8 @@
     last_login: null
     is_superuser: false
     username: fiera
-    first_name: ''
-    last_name: ''
+    first_name: 'Fiera'
+    last_name: 'Feroz'
     email: fiera@ciudadanoi.org
     is_staff: true
     is_active: true

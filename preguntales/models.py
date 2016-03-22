@@ -7,26 +7,11 @@ from django.db.models import Q, Count
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
-from django.core.mail import EmailMessage
-from django.template import Context
-from django.template.loader import get_template
 from django.conf import settings
 from uuid import uuid4
 from django.utils import timezone
 from popolo.models import Person
-
-def send_mail(context_dict, template_prefix, to=[], reply_to=None, from_email=settings.DEFAULT_FROM_EMAIL):
-    context = Context(context_dict)
-    template_prefix_dict = {'template_prefix': template_prefix}
-    template_body = get_template('mails/%(template_prefix)s_body.html' % template_prefix_dict)
-    body = template_body.render(context)
-    template_subject= get_template('mails/%(template_prefix)s_subject.html' % template_prefix_dict)
-    subject = template_subject.render(context).replace('\n', '').replace('\r', '')
-    email = EmailMessage(subject, body, from_email,
-                        to)
-    if reply_to is not None:
-        email.reply_to = [reply_to]
-    email.send()
+from votainteligente.send_mails import send_mail
 
 class MessageManager(models.Manager):
     def get_queryset(self):

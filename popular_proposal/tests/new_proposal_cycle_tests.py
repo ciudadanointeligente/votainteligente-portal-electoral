@@ -1,6 +1,6 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from popolo.models import Area
+from popolo.models import Area, Organization
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData
 
@@ -18,7 +18,7 @@ class TemporaryDataForPromise(TestCase):
         }
 
     def test_instanciate_one(self):
-        temporary_area = ProposalTemporaryData.objects.create(user=self.fiera,
+        temporary_area = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
                                                               data=self.data)
         self.assertTrue(temporary_area)
@@ -28,4 +28,13 @@ class TemporaryDataForPromise(TestCase):
         self.assertIsNotNone(temporary_area.comments['solution'])
         self.assertIsNotNone(temporary_area.comments['when'])
         self.assertIsNotNone(temporary_area.comments['allies'])
+
+    def test_proposing_with_an_organization(self):
+        local_org = Organization.objects.create(name="Local Organization")
+        temporary_area = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              organization=local_org,
+                                                              area=self.arica,
+                                                              data=self.data)
+        self.assertTrue(temporary_area)
+        self.assertEquals(temporary_area.organization, local_org)
 

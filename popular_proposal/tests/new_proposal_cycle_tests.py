@@ -2,7 +2,7 @@
 from elections.tests import VotaInteligenteTestCase as TestCase
 from popolo.models import Area
 from django.contrib.auth.models import User
-from iniciativa_popular.models import ProposalTemporaryData
+from popular_proposal.models import ProposalTemporaryData
 
 
 class TemporaryDataForPromise(TestCase):

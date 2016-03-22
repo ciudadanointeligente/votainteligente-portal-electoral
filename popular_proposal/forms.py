@@ -1,6 +1,6 @@
 # coding=utf-8
 from django import forms
-from iniciativa_popular.models import ProposalTemporaryData
+from popular_proposal.models import ProposalTemporaryData
 
 WHEN_CHOICES = [
     ('6_months', u'6 Meses'),

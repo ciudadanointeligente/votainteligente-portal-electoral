@@ -1,10 +1,10 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from iniciativa_popular.forms import ProposalForm, CommentsForm
+from popular_proposal.forms import ProposalForm, CommentsForm
 from django.contrib.auth.models import User
 from popolo.models import Area
 from django.forms import CharField
-from iniciativa_popular.models import ProposalTemporaryData
+from popular_proposal.models import ProposalTemporaryData
 
 class FormTestCase(TestCase):
     def setUp(self):

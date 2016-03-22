@@ -26,3 +26,9 @@ class ProposalForm(forms.Form):
                                                     area=self.area,
                                                     data=self.cleaned_data)
 
+class CommentsForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.temporary_data = kwargs.pop('temporary_area')
+        super(CommentsForm, self).__init__(*args, **kwargs)
+        for field in self.temporary_data.comments.keys():
+            self.fields[field] = forms.CharField()

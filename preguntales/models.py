@@ -13,7 +13,14 @@ from django.utils import timezone
 from popolo.models import Person
 from votainteligente.send_mails import send_mail
 
-class MessageManager(models.Manager):
+
+class MessageManagerBase(models.Manager):
+    def needing_moderation_messages(self):
+        qs = self.filter(status__accepted__isnull=True)
+        return qs
+
+
+class MessageManager(MessageManagerBase):
     def get_queryset(self):
         queryset = super(MessageManager, self).get_queryset().annotate(num_answers=Count('answers'))
         return queryset.order_by('-num_answers', '-status__accepted', '-created')
@@ -35,7 +42,7 @@ class Message(models.Model):
     election = models.ForeignKey(Election, related_name='messages', default=None)
     created = models.DateTimeField(auto_now_add=True)
 
-    objects = models.Manager()
+    objects = MessageManagerBase()
     ordered = MessageManager()
 
     class Meta:

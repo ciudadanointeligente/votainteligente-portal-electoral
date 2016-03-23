@@ -12,7 +12,6 @@ django-extensions
 sorl-thumbnail
 pillow
 pgmagick
-django_admin_bootstrapped
 django-tinymce
 django-registration
 mimeparse

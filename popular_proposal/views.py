@@ -3,12 +3,15 @@ from popular_proposal.forms import ProposalForm
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from popolo.models import Area
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 class ProposalCreationView(FormView):
     template_name = 'popular_proposal/create.html'
     form_class = ProposalForm
 
+    @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         self.area = get_object_or_404(Area, id=self.kwargs['pk'])
         return super(ProposalCreationView, self).dispatch(*args, **kwargs)

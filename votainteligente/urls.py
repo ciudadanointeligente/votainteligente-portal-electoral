@@ -25,6 +25,7 @@ urlpatterns = patterns('',
     (r'^newsletter/', include('newsletter.urls')),
     (r'^api/', include('popolorest.urls')),
     (r'^backend_staff/', include('backend_staff.urls', namespace='backend_staff')),
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
 )
 
 

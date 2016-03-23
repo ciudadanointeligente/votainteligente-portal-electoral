@@ -55,6 +55,9 @@ class ProposingViewTestCase(ProposingCycleTestCaseBase):
 
     def test_proposing_view(self):
         url = reverse('popular_proposals:propose', kwargs={'pk': self.arica.id})
+        #need to be loggedin
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 302)
 
         self.client.login(username=self.feli,
                           password='alvarez')
@@ -63,4 +66,6 @@ class ProposingViewTestCase(ProposingCycleTestCaseBase):
         form = response.context['form']
         self.assertEquals(self.arica, response.context['area'])
         self.assertIsInstance(form, ProposalForm)
+
+
 

@@ -34,7 +34,6 @@ INSTALLED_APPS = (
     'markdown_deux',
     'django_extensions',
     'sorl.thumbnail',
-    'django_admin_bootstrapped',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'tinymce',
@@ -48,7 +47,8 @@ INSTALLED_APPS = (
     'popular_proposal',
     'backend_staff',
 )
-
+# REGISTRATION
+ACCOUNT_ACTIVATION_DAYS = 7
 
 #SITE_ID
 SITE_ID = 1

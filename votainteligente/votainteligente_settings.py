@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     #'django.contrib.admindocs',
     'popular_proposal',
+    'backend_staff',
 )
 
 

@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     #'django.contrib.admindocs',
     'popular_proposal',
     'backend_staff',
+    "registration_defaults",
 )
 # REGISTRATION
 ACCOUNT_ACTIVATION_DAYS = 7

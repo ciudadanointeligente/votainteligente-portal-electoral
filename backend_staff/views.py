@@ -17,5 +17,5 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['proposals'] = ProposalTemporaryData.objects.all()
-        context['needing_moderation_messages'] = Message.objects.all()
+        context['needing_moderation_messages'] = Message.objects.needing_moderation_messages()
         return context

@@ -18,12 +18,13 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('elections.urls')),
-    (r'^preguntales', include('preguntales.urls')),
+    (r'^preguntales/', include('preguntales.urls')),
+    (r'^propuestas/', include('popular_proposal.urls', namespace='popular_proposals')),
     ('^pages/', include('django.contrib.flatpages.urls')),
     (r'^tinymce/', include('tinymce.urls')),
     (r'^newsletter/', include('newsletter.urls')),
     (r'^api/', include('popolorest.urls')),
-    (r'^backend_staff', include('backend_staff.urls', namespace='backend_staff')),
+    (r'^backend_staff/', include('backend_staff.urls', namespace='backend_staff')),
 )
 
 

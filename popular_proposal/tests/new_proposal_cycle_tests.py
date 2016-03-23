@@ -3,11 +3,13 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from popolo.models import Area, Organization
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData
+from popular_proposal.forms import ProposalForm
+from django.core.urlresolvers import reverse
 
 
-class TemporaryDataForPromise(TestCase):
+class ProposingCycleTestCaseBase(TestCase):
     def setUp(self):
-        super(TemporaryDataForPromise, self).setUp()
+        super(ProposingCycleTestCaseBase, self).setUp()
         self.fiera = User.objects.get(username='fiera')
         self.arica = Area.objects.get(id='arica-15101')
         self.data = {
@@ -16,6 +18,11 @@ class TemporaryDataForPromise(TestCase):
             'when': u'1_year',
             'allies': u'El Feli y el resto de los cabros de la FCI'
         }
+
+
+class TemporaryDataForPromise(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(TemporaryDataForPromise, self).setUp()
 
     def test_instanciate_one(self):
         temporary_area = ProposalTemporaryData.objects.create(proposer=self.fiera,
@@ -37,4 +44,23 @@ class TemporaryDataForPromise(TestCase):
                                                               data=self.data)
         self.assertTrue(temporary_area)
         self.assertEquals(temporary_area.organization, local_org)
+
+
+class ProposingViewTestCase(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(ProposingViewTestCase, self).setUp()
+        self.feli = User.objects.get(username='feli')
+        self.feli.set_password('alvarez')
+        self.feli.save()
+
+    def test_proposing_view(self):
+        url = reverse('popular_proposals:propose', kwargs={'pk': self.arica.id})
+
+        self.client.login(username=self.feli,
+                          password='alvarez')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        form = response.context['form']
+        self.assertEquals(self.arica, response.context['area'])
+        self.assertIsInstance(form, ProposalForm)
 

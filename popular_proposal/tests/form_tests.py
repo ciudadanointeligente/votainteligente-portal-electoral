@@ -16,7 +16,6 @@ class FormTestCase(TestCase):
         self.fiera = User.objects.get(username='fiera')
         self.arica = Area.objects.get(id='arica-15101')
         self.data = {
-            'your_name': u'Fiera Feroz',
             'email': u'fiera@ciudadanointeligente.org',
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
             'solution': u'Viajar a ver al Feli una vez al mes',
@@ -32,7 +31,6 @@ class FormTestCase(TestCase):
                             area=self.arica)
         self.assertTrue(form.is_valid())
         cleaned_data = form.cleaned_data
-        self.assertEquals(cleaned_data['your_name'], self.data['your_name'])
         self.assertEquals(cleaned_data['problem'], self.data['problem'])
         self.assertEquals(cleaned_data['solution'], self.data['solution'])
         self.assertEquals(cleaned_data['when'], self.data['when'])
@@ -41,7 +39,6 @@ class FormTestCase(TestCase):
         self.assertEquals(temporary_data.proposer, self.fiera)
         self.assertEquals(temporary_data.area, self.arica)
         t_data = temporary_data.data
-        self.assertEquals(t_data['your_name'], self.data['your_name'])
         self.assertEquals(t_data['problem'], self.data['problem'])
         self.assertEquals(t_data['solution'], self.data['solution'])
         self.assertEquals(t_data['when'], self.data['when'])
@@ -100,4 +97,3 @@ class FormTestCase(TestCase):
         self.assertTrue(the_mail.subject)
         self.assertEquals(len(the_mail.to), 1)
         self.assertIn(self.fiera.email, the_mail.to)
-

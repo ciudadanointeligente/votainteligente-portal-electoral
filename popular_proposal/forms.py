@@ -4,6 +4,7 @@ from popular_proposal.models import ProposalTemporaryData
 from votainteligente.send_mails import send_mail
 
 WHEN_CHOICES = [
+    ('1_month', u'1 mes después de ingresado'),
     ('6_months', u'6 Meses'),
     ('1_year', u'1 año'),
     ('2_year', u'2 años'),
@@ -11,7 +12,6 @@ WHEN_CHOICES = [
     ('4_year', u'4 años'),
 ]
 class ProposalForm(forms.Form):
-    your_name = forms.CharField(label=u'Tu nombre o el de tu organización')
     problem = forms.CharField()
     solution = forms.CharField()
     when = forms.ChoiceField(choices=WHEN_CHOICES)

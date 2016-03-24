@@ -17,6 +17,26 @@
     <h2>{% blocktrans %}¡Eres parte de nuestro equipo!{% endblocktrans %}</h2>
     <p>Aquí podrás ver y moderar los elementos de VotaInteligente </p>
 
+    <table class="table">
+        <tr>
+            <td>Area</td>
+            <td>Problema</td>
+            <td>Solución</td>
+            <td>Cuándo?</td>
+            <td>Aliados</td>
+            <td>Acciones</td>
+        </tr>
+    {% for proposal in proposals.all %}
+        <tr>
+            <td>{{proposal.area}}</td>
+            <td>{{proposal.data.problem}}</td>
+            <td>{{proposal.data.solution}}</td>
+            <td>{{proposal.data.when}}</td>
+            <td>{{proposal.data.allies}}</td>
+            <td><a href="#"><i class="fa fa-pencil-square-o"></i> Editame!</a><a href=""><i class="fa fa-thumbs-up"></i> Está bacán!</a></td>
+        </tr>
+    {% endfor %}
+    </table>
   </div>
 
 </div>

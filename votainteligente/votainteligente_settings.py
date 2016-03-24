@@ -26,6 +26,7 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django_nose',
     'django.contrib.sitemaps',
+    'linaro_django_pagination',
     'candidator',
     'taggit',
     'haystack',
@@ -48,8 +49,22 @@ INSTALLED_APPS = (
     'backend_staff',
     "registration_defaults",
 )
+
 # REGISTRATION
 ACCOUNT_ACTIVATION_DAYS = 7
+
+MIDDLEWARE_CLASSES = (
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'linaro_django_pagination.middleware.PaginationMiddleware',
+)
+
 
 #SITE_ID
 SITE_ID = 1

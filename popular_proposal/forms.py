@@ -2,6 +2,8 @@
 from django import forms
 from popular_proposal.models import ProposalTemporaryData
 from votainteligente.send_mails import send_mail
+from django.utils.translation import ugettext as _
+
 
 WHEN_CHOICES = [
     ('1_month', u'1 mes después de ingresado'),
@@ -11,11 +13,15 @@ WHEN_CHOICES = [
     ('3_year', u'3 años'),
     ('4_year', u'4 años'),
 ]
+
+
 class ProposalForm(forms.Form):
-    problem = forms.CharField()
-    solution = forms.CharField()
-    when = forms.ChoiceField(choices=WHEN_CHOICES)
-    allies =  forms.CharField()
+    problem = forms.CharField(label=_(u'Según la óptica de tu organización, describe un problema de tu comuna que quieras solucionar. líneas)'),
+        help_text=_(u'Ej: Poca participación en el Plan Regulador, falta de transparencia en el trabajo de la municipalidad, pocos puntos de reciclaje, etc.'))
+    solution = forms.CharField(label=_(u'Qué quieres que haga tu autoridad para solucionar el problema? (3 líneas)'),
+        help_text=_(u'Ejemplo: "Que se aumenten en 30% las horas de atención de la especialidad Cardiología en los Cesfam y consultorios de la comuna", "Que se publiquen todos los concejos municipales en el sitio web del municipio".'))
+    when = forms.ChoiceField(choices=WHEN_CHOICES, label=_(u'¿En qué plazo te gustaría que esté solucionado?'))
+    allies = forms.CharField(label=_(u'¿Quiénes son tus posibles aliados?'))
 
     def __init__(self, *args, **kwargs):
         self.proposer = kwargs.pop('proposer')
@@ -26,6 +32,7 @@ class ProposalForm(forms.Form):
         return ProposalTemporaryData.objects.create(proposer=self.proposer,
                                                     area=self.area,
                                                     data=self.cleaned_data)
+
 
 class CommentsForm(forms.Form):
     def __init__(self, *args, **kwargs):

@@ -5,8 +5,9 @@ from django.shortcuts import get_object_or_404
 from popolo.models import Area
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.views.generic.base import TemplateView
 
-# Create your views here.
+
 class ProposalCreationView(FormView):
     template_name = 'popular_proposal/create.html'
     form_class = ProposalForm
@@ -27,3 +28,13 @@ class ProposalCreationView(FormView):
         kwargs['area'] = self.area
         return kwargs
 
+    def form_valid(self, form):
+        form.save()
+        return super(ProposalCreationView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('popular_proposals:thanks', kwargs={'pk': self.area.id})
+
+
+class ThanksForProposingView(TemplateView):
+    template_name = 'popular_proposal/thanks.html'

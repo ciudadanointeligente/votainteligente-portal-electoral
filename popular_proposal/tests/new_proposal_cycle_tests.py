@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData
 from popular_proposal.forms import ProposalForm
 from django.core.urlresolvers import reverse
+from django.core import mail
 
 
 class ProposingCycleTestCaseBase(TestCase):
@@ -53,7 +54,7 @@ class ProposingViewTestCase(ProposingCycleTestCaseBase):
         self.feli.set_password('alvarez')
         self.feli.save()
 
-    def test_proposing_view(self):
+    def test_get_proposing_view(self):
         url = reverse('popular_proposals:propose', kwargs={'pk': self.arica.id})
         #need to be loggedin
         response = self.client.get(url)
@@ -67,5 +68,14 @@ class ProposingViewTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(self.arica, response.context['area'])
         self.assertIsInstance(form, ProposalForm)
 
+    def test_post_proposing_view(self):
+        url = reverse('popular_proposals:propose', kwargs={'pk': self.arica.id})
 
-
+        self.client.login(username=self.feli,
+                          password='alvarez')
+        self.assertFalse(ProposalTemporaryData.objects.all())
+        response = self.client.post(url, data=self.data, follow=True)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed('popular_proposal/thanks.html')
+        temporary_data = ProposalTemporaryData.objects.get()
+        self.assertTrue(temporary_data)

@@ -65,7 +65,24 @@
                                     <li><a href="{{ page.url }}">{{ page.title }}</a></li>
                             {% endfor %}
                         </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if user.is_authenticated %}
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}}<span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                {% if user.is_superuser %}
+                                <li><a href="/admin">{% blocktrans %}Sección de administración{% endblocktrans %}</a></li>
+                                {% endif %}
+                                {% if user.is_staff %}
+                                <li><a href="{% url 'backend_staff:index' %}">{% blocktrans %}Sección del Staff{% endblocktrans %}</a></li>
+                                {% endif %}
+                                <li><a href="#">{% blocktrans %}Tu perfil ciudadano{% endblocktrans %}</a></li>
+                              </ul>
+                            </li>
+                            {% endif %}
+                          </ul>
                     </div><!--/.nav-collapse -->
+
                 </div>
             </div>
 

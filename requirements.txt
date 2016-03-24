@@ -17,7 +17,7 @@ django-registration
 django-registration-defaults
 mimeparse
 django-tastypie
-linaro-django-pagination==2.0.2
+linaro-django-pagination==2.0.3
 celery==3.1.18
 python-memcached
 -e git+https://github.com/openpolis/django-popolo.git#egg=django_popolo-dev

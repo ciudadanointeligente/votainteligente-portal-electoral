@@ -27,6 +27,7 @@ INSTALLED_APPS = (
     'django_nose',
     'django.contrib.sitemaps',
     'linaro_django_pagination',
+    'django_forms_bootstrap', 
     'candidator',
     'taggit',
     'haystack',

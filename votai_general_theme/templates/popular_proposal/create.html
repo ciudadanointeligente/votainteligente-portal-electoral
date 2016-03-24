@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
-
+{% load bootstrap_tags %}
 {% block extrajs %}
 {% endblock extrajs %}
 
@@ -43,7 +43,11 @@
                 <input id="id_allies" name="allies" type="text"  class="form-control"  />
                 <p class="help-block">Ej: Mi junta de vecinos, la agrupación de pescadores de mi comuna.</p>
             </div>
-        </form>
+    </form>
+    <form>
+
+	    {{ form|as_bootstrap }}
+    </form>
     </div>
 
   </div>

@@ -1,0 +1,12 @@
+{% load bootstrap_tags %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+
+<form>
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">{% trans 'Envía estos comentarios a su autor'%}</button>
+    </div>
+</form>

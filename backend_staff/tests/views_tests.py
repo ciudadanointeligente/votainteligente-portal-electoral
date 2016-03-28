@@ -34,8 +34,9 @@ class StaffHomeViewTest(TestCase):
         self.candidate2 = Candidate.objects.get(id=5)
         self.candidate3 = Candidate.objects.get(id=6)
 
-    def test_home_view_only_reachable_by_staff_members(self):
-        url = reverse('backend_staff:index')
+    def is_reachable_only_by_staff(self, url, url_kwargs=None):
+        url = reverse(url, kwargs=url_kwargs)
+
         # I'm not logged in
         response = self.client.get(url)
         self.assertEquals(response.status_code, 302)
@@ -51,7 +52,20 @@ class StaffHomeViewTest(TestCase):
                           password=STAFF_PASSWORD)
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
+        return response
+
+    def test_home_view_only_reachable_by_staff_members(self):
+        response = self.is_reachable_only_by_staff('backend_staff:index')
         self.assertTemplateUsed(response, 'backend_staff/index.html')
+
+    def test_get_comments_staff_form_for_popular_proposal(self):
+        temporary_area = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              area=self.arica,
+                                                              data=self.data)
+        response = self.is_reachable_only_by_staff('backend_staff:popular_proposal_comments',
+                                                   url_kwargs={'pk': temporary_area.id})
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'backend_staff/popular_proposal_comments.html')
 
     def test_context(self):
         data = {

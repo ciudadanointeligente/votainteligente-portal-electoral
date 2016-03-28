@@ -7,6 +7,21 @@
 {% endblock extrajs %}
 
 {% block content %}
+<!-- Modal -->
+<div class="modal fade" id="proposalComments" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{% trans 'Actualiza los comentarios' %}</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
 <div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -33,13 +48,23 @@
             <td>{{proposal.data.solution}}</td>
             <td>{{proposal.data.when}}</td>
             <td>{{proposal.data.allies}}</td>
-            <td><a href="#"><i class="fa fa-pencil-square-o"></i> Editame!</a><a href=""><i class="fa fa-thumbs-up"></i> Está bacán!</a></td>
+            <td><a data-toggle="modal" data-target="#proposalComments" data-url="{% url 'backend_staff:popular_proposal_comments' pk=proposal.id %}"><i class="fa fa-pencil-square-o"></i> Editame!</a><a href=""><i class="fa fa-thumbs-up"></i> Está bacán!</a></td>
         </tr>
     {% endfor %}
     </table>
   </div>
 
 </div>
+<script>
+$(function(){
+    $('#proposalComments').on('show.bs.modal', function (event) {
+      var anchor = $(event.relatedTarget) // Button that triggered the modal
+      var modal = $(this)
+      var body = modal.find('.modal-body');
+      body.load(anchor.data('url'));
+    })
+});
+</script>
 {% endblock content %}
 
 {% block extrafooter %}

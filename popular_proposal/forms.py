@@ -40,7 +40,8 @@ class CommentsForm(forms.Form):
         self.moderator = kwargs.pop('moderator')
         super(CommentsForm, self).__init__(*args, **kwargs)
         for field in self.temporary_data.comments.keys():
-            self.fields[field] = forms.CharField(required=False)
+            help_text = u'La ciudadana dijo: %s' % self.temporary_data.data[field]
+            self.fields[field] = forms.CharField(required=False, help_text=help_text)
 
     def save(self, *args, **kwargs):
         for field_key in self.cleaned_data.keys():

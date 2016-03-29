@@ -2,7 +2,7 @@
 from elections.tests import VotaInteligenteTestCase as TestCase
 from popolo.models import Area, Organization
 from django.contrib.auth.models import User
-from popular_proposal.models import ProposalTemporaryData
+from popular_proposal.models import ProposalTemporaryData, PopularProposal
 from popular_proposal.forms import ProposalForm
 from django.core.urlresolvers import reverse
 from django.core import mail
@@ -62,6 +62,15 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         self.assertIn(td_waiting_for_moderation2, ProposalTemporaryData.needing_moderation.all())
         self.assertNotIn(needs_citizen_action, ProposalTemporaryData.needing_moderation.all())
 
+    def test_rejecting_a_proposal(self):
+        temporary_area = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              area=self.arica,
+                                                              data=self.data)
+        temporary_area.reject('es muy mala la cosa')
+        temporary_area = ProposalTemporaryData.objects.get(id=temporary_area.id)
+        self.assertEquals(temporary_area.rejected_reason, 'es muy mala la cosa')
+        self.assertEquals(temporary_area.status, ProposalTemporaryData.Statuses.Rejected)
+
 
 class ProposingViewTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
@@ -95,3 +104,29 @@ class ProposingViewTestCase(ProposingCycleTestCaseBase):
         self.assertTemplateUsed('popular_proposal/thanks.html')
         temporary_data = ProposalTemporaryData.objects.get()
         self.assertTrue(temporary_data)
+
+
+class PopularProposalTestCase(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(PopularProposalTestCase, self).setUp()
+
+    def test_instantiate_one(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          )
+        self.assertTrue(popular_proposal.created)
+        self.assertTrue(popular_proposal.updated)
+        self.assertIn(popular_proposal, self.fiera.proposals.all())
+        self.assertIn(popular_proposal, self.arica.proposals.all())
+
+    def test_create_popular_proposal_from_temporary_data(self):
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              area=self.arica,
+                                                              data=self.data)
+        popular_proposal = temporary_data.create_proposal()
+        self.assertEquals(popular_proposal.proposer, self.fiera)
+        self.assertEquals(popular_proposal.area, self.arica)
+        self.assertEquals(popular_proposal.data, self.data)
+        temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
+        self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.Accepted)

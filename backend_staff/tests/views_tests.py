@@ -2,7 +2,8 @@
 from django.core.urlresolvers import reverse
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django.contrib.auth.models import User
-from popular_proposal.models import ProposalTemporaryData
+from popular_proposal.models import ProposalTemporaryData, PopularProposal
+from popular_proposal.forms import RejectionForm
 from popolo.models import Area
 from elections.models import Election, Candidate
 from preguntales.models import Message
@@ -88,7 +89,6 @@ class StaffHomeViewTest(TestCase):
         self.assertIn(self.fiera.email, the_mail.to)
         self.assertEquals(len(the_mail.to), 1)
 
-
     def test_context(self):
         data = {
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
@@ -127,3 +127,79 @@ class StaffHomeViewTest(TestCase):
         self.assertIn(temporary_data2, response.context['proposals'])
         self.assertNotIn(temporary_data3, response.context['proposals'])
         self.assertIn(message, response.context['needing_moderation_messages'].all())
+
+    def test_get_proposal_moderation_view(self):
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.feli,
+                                                              area=self.arica,
+                                                              data=self.data)
+        url = reverse('backend_staff:moderate_proposal', kwargs={'pk': temporary_data.id})
+        # Credentials checking
+        self.assertEquals(self.client.post(url).status_code, 302)
+        self.client.login(username=self.non_staff.username,
+                          password=NON_STAFF_PASSWORD)
+        response = self.client.post(url)
+        self.assertEquals(response.status_code, 302)
+        self.assertTemplateNotUsed('backend_staff/index.html')
+
+        self.client.login(username=self.fiera.username,
+                          password=STAFF_PASSWORD)
+        # It does have a get method
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'backend_staff/proposal_moderation.html')
+        form = response.context['form']
+        self.assertIsInstance(form, RejectionForm)
+        self.assertEquals(form.temporary_data, temporary_data)
+        self.assertEquals(form.moderator, self.fiera)
+
+    def test_accept_popular_proposal(self):
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.feli,
+                                                              area=self.arica,
+                                                              data=self.data)
+        url = reverse('backend_staff:accept_proposal', kwargs={'pk': temporary_data.id})
+        # Credentials checking
+        self.assertEquals(self.client.post(url).status_code, 302)
+        self.client.login(username=self.non_staff.username,
+                          password=NON_STAFF_PASSWORD)
+        response = self.client.post(url)
+        self.assertEquals(response.status_code, 302)
+        self.assertTemplateNotUsed('backend_staff/index.html')
+        self.client.login(username=self.fiera.username,
+                          password=STAFF_PASSWORD)
+        # It does not have a get method
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 405)
+
+        response = self.client.post(url, follow=True)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed('backend_staff/index.html')
+        proposal = PopularProposal.objects.get(data=self.data,
+                                               proposer=self.feli,
+                                               area=self.arica
+                                               )
+        self.assertTrue(proposal)
+
+    def test_reject_popular_proposal(self):
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.feli,
+                                                              area=self.arica,
+                                                              data=self.data)
+        url = reverse('backend_staff:reject_proposal', kwargs={'pk': temporary_data.id})
+        # Credentials checking
+        self.assertEquals(self.client.post(url).status_code, 302)
+        self.client.login(username=self.non_staff.username,
+                          password=NON_STAFF_PASSWORD)
+        response = self.client.post(url)
+        self.assertEquals(response.status_code, 302)
+        self.assertTemplateNotUsed('backend_staff/index.html')
+        self.client.login(username=self.fiera.username,
+                          password=STAFF_PASSWORD)
+        # It does not have a get method
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 405)
+        data = {'reason': 'es muy mala'}
+        response = self.client.post(url, data=data, follow=True)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'backend_staff/index.html')
+        temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
+        self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.Rejected)
+        self.assertEquals(temporary_data.rejected_reason, data['reason'])

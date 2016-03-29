@@ -1,6 +1,8 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from popular_proposal.forms import ProposalForm, CommentsForm
+from popular_proposal.forms import (ProposalForm,
+                                    CommentsForm,
+                                    RejectionForm)
 from django.contrib.auth.models import User
 from popolo.models import Area
 from django.forms import CharField
@@ -98,3 +100,18 @@ class FormTestCase(TestCase):
         self.assertTrue(the_mail.subject)
         self.assertEquals(len(the_mail.to), 1)
         self.assertIn(self.fiera.email, the_mail.to)
+
+    def test_rejection_form(self):
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              area=self.arica,
+                                                              data=self.data)
+        data = {'reason': u'No es un buen ejemplo'}
+        form = RejectionForm(data=data,
+                             moderator=self.feli,
+                             temporary_area=temporary_data)
+        self.assertTrue(form.is_valid())
+        form.reject()
+        temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
+        self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.Rejected)
+        self.assertEquals(temporary_data.rejected_reason, data['reason'])
+

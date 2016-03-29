@@ -11,7 +11,6 @@ class NeedingModerationManager(models.Manager):
     def get_queryset(self):
         qs = super(NeedingModerationManager, self).get_queryset()
         qs = qs.filter(status=ProposalTemporaryData.Statuses.InOurSide)
-        print qs
         return qs
 
 
@@ -20,6 +19,7 @@ class ProposalTemporaryData(models.Model):
         InOurSide = ChoiceItem('in_our_side')
         InTheirSide = ChoiceItem('in_their_side')
         Rejected = ChoiceItem('rejected')
+        Accepted = ChoiceItem('accepted')
     proposer = models.ForeignKey(User, related_name='temporary_proposals')
     organization = models.ForeignKey(Organization,
                                      related_name='temporary_proposals',
@@ -47,3 +47,26 @@ class ProposalTemporaryData(models.Model):
                 self.comments[key] = ''
 
         return super(ProposalTemporaryData, self).save(*args, **kwargs)
+
+    def create_proposal(self):
+        self.status = ProposalTemporaryData.Statuses.Accepted
+        self.save()
+        popular_proposal = PopularProposal(proposer=self.proposer,
+                                           area=self.area,
+                                           data=self.data)
+
+        popular_proposal.save()
+        return popular_proposal
+
+    def reject(self, reason):
+        self.rejected_reason = reason
+        self.status = ProposalTemporaryData.Statuses.Rejected
+        self.save()
+
+
+class PopularProposal(models.Model):
+    proposer = models.ForeignKey(User, related_name='proposals')
+    area = models.ForeignKey(Area, related_name='proposals')
+    data = PickledObjectField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=True)

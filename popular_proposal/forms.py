@@ -64,3 +64,14 @@ class CommentsForm(forms.Form):
         send_mail(mail_context, 'popular_proposal_moderation', to=[self.temporary_data.proposer.email])
         return self.temporary_data
 
+
+class RejectionForm(forms.Form):
+    reason = forms.CharField()
+
+    def __init__(self, *args, **kwargs):
+        self.temporary_data = kwargs.pop('temporary_area')
+        self.moderator = kwargs.pop('moderator')
+        super(RejectionForm, self).__init__(*args, **kwargs)
+
+    def reject(self):
+        self.temporary_data.reject(self.cleaned_data['reason'])

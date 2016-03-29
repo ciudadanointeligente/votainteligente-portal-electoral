@@ -36,6 +36,7 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         self.assertIsNotNone(temporary_area.comments['solution'])
         self.assertIsNotNone(temporary_area.comments['when'])
         self.assertIsNotNone(temporary_area.comments['allies'])
+        self.assertEquals(temporary_area.status, ProposalTemporaryData.Statuses.InOurSide)
 
     def test_proposing_with_an_organization(self):
         local_org = Organization.objects.create(name="Local Organization")
@@ -45,6 +46,21 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
                                                               data=self.data)
         self.assertTrue(temporary_area)
         self.assertEquals(temporary_area.organization, local_org)
+
+    def test_needing_moderation_proposals(self):
+        td_waiting_for_moderation = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                                         area=self.arica,
+                                                                         data=self.data)
+        td_waiting_for_moderation2 = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                                          area=self.arica,
+                                                                          data=self.data)
+        needs_citizen_action = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                                    status=ProposalTemporaryData.Statuses.InTheirSide,
+                                                                    area=self.arica,
+                                                                    data=self.data)
+        self.assertIn(td_waiting_for_moderation, ProposalTemporaryData.needing_moderation.all())
+        self.assertIn(td_waiting_for_moderation2, ProposalTemporaryData.needing_moderation.all())
+        self.assertNotIn(needs_citizen_action, ProposalTemporaryData.needing_moderation.all())
 
 
 class ProposingViewTestCase(ProposingCycleTestCaseBase):

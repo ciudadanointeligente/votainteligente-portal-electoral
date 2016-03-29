@@ -74,6 +74,7 @@ class FormTestCase(TestCase):
         self.assertEquals(t_data.comments['allies'], data['allies'])
         self.assertFalse(t_data.comments['problem'])
         self.assertFalse(t_data.comments['solution'])
+        self.assertEquals(t_data.status, ProposalTemporaryData.Statuses.InTheirSide)
 
         #sends an email
         self.assertEquals(len(mail.outbox), 1)

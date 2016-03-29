@@ -46,6 +46,7 @@ class CommentsForm(forms.Form):
     def save(self, *args, **kwargs):
         for field_key in self.cleaned_data.keys():
             self.temporary_data.comments[field_key] = self.cleaned_data[field_key]
+        self.temporary_data.status = ProposalTemporaryData.Statuses.InTheirSide
         self.temporary_data.save()
         comments = {}
         for key in self.temporary_data.data.keys():

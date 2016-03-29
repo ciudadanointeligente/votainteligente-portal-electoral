@@ -102,6 +102,10 @@ class StaffHomeViewTest(TestCase):
         temporary_data2 = ProposalTemporaryData.objects.create(proposer=self.feli,
                                                                area=self.arica,
                                                                data=data)
+        temporary_data3 = ProposalTemporaryData.objects.create(proposer=self.feli,
+                                                               status=ProposalTemporaryData.Statuses.InTheirSide,
+                                                               area=self.arica,
+                                                               data=data)
 
         # Temporary datas are listed in the index so we can moderate them
         # or update them.
@@ -119,6 +123,7 @@ class StaffHomeViewTest(TestCase):
 
         response = self.client.get(url)
 
-        self.assertIn(temporary_data, response.context['proposals'].all())
-        self.assertIn(temporary_data2, response.context['proposals'].all())
+        self.assertIn(temporary_data, response.context['proposals'])
+        self.assertIn(temporary_data2, response.context['proposals'])
+        self.assertNotIn(temporary_data3, response.context['proposals'])
         self.assertIn(message, response.context['needing_moderation_messages'].all())

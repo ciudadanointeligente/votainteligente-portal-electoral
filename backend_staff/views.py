@@ -8,6 +8,7 @@ from preguntales.models import Message
 from django.views.generic.edit import FormView
 from popular_proposal.forms import CommentsForm
 from django.shortcuts import get_object_or_404
+from django.core.urlresolvers import reverse
 
 
 class IndexView(TemplateView):
@@ -39,3 +40,10 @@ class PopularProposalCommentsView(FormView):
         kwargs['temporary_area'] = temporary_data
         kwargs['moderator'] = self.request.user
         return kwargs
+
+    def form_valid(self, form):
+        form.save()
+        return super(PopularProposalCommentsView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('backend_staff:index')

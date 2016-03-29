@@ -6,6 +6,7 @@ from popular_proposal.models import ProposalTemporaryData
 from popolo.models import Area
 from elections.models import Election, Candidate
 from preguntales.models import Message
+from django.core import mail
 
 
 NON_STAFF_PASSWORD = 'gatito'
@@ -66,6 +67,27 @@ class StaffHomeViewTest(TestCase):
                                                    url_kwargs={'pk': temporary_area.id})
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'backend_staff/popular_proposal_comments.html')
+
+    def test_post_comments_on_popular_proposals(self):
+        temporary_area = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              area=self.arica,
+                                                              data=self.data)
+        data = {'problem': u'',
+                'when': u'el plazo no está tan weno',
+                'solution': u'',
+                'allies': u'Los aliados podrían ser mejores'}
+
+        url = reverse('backend_staff:popular_proposal_comments', kwargs={'pk': temporary_area.id})
+        self.client.login(username=self.fiera.username,
+                          password=STAFF_PASSWORD)
+        response = self.client.post(url, data=data, follow=True)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'backend_staff/index.html')
+        self.assertEquals(len(mail.outbox), 1)
+        the_mail = mail.outbox[0]
+        self.assertIn(self.fiera.email, the_mail.to)
+        self.assertEquals(len(the_mail.to), 1)
+
 
     def test_context(self):
         data = {

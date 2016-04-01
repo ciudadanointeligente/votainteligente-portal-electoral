@@ -49,10 +49,12 @@ INSTALLED_APPS = (
     #'django.contrib.admindocs',
     'popular_proposal',
     'backend_staff',
+    'backend_citizen',
 )
 
 # REGISTRATION
 ACCOUNT_ACTIVATION_DAYS = 7
+LOGIN_REDIRECT_URL='backend_citizen:index'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

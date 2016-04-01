@@ -1,0 +1,3 @@
+{% load i18n %}
+{% load bootstrap_tags %}
+{% blocktrans with sitename=site.name %}Account registration for {{ sitename }}{% endblocktrans %}

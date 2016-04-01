@@ -34,15 +34,20 @@ class PopularProposalCommentsView(FormView):
 
     @method_decorator(staff_member_required)
     def dispatch(self, *args, **kwargs):
+        pk = self.kwargs.pop('pk')
+        self.temporary_data = get_object_or_404(ProposalTemporaryData, pk=pk)
         return super(PopularProposalCommentsView, self).dispatch(*args, **kwargs)
 
     def get_form_kwargs(self):
         kwargs = super(PopularProposalCommentsView, self).get_form_kwargs()
-        pk = self.kwargs.pop('pk')
-        temporary_data = get_object_or_404(ProposalTemporaryData, pk=pk)
-        kwargs['temporary_area'] = temporary_data
+        kwargs['temporary_area'] = self.temporary_data
         kwargs['moderator'] = self.request.user
         return kwargs
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(PopularProposalCommentsView, self).get_context_data(*args, **kwargs)
+        context['temporary_data'] = self.temporary_data
+        return context
 
     def form_valid(self, form):
         form.save()

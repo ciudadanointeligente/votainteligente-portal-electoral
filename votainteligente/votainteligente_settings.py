@@ -28,6 +28,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'linaro_django_pagination',
     'django_forms_bootstrap',
+    ##"registration_defaults",
     'candidator',
     'taggit',
     'haystack',
@@ -48,7 +49,6 @@ INSTALLED_APPS = (
     #'django.contrib.admindocs',
     'popular_proposal',
     'backend_staff',
-    "registration_defaults",
 )
 
 # REGISTRATION

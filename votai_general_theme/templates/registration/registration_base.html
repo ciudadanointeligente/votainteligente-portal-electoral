@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block everything %}
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		    <h3 class="panel-title">{% block title %}{% endblock %}</h3>
+		  </div>
+	  <div class="panel-body">
+	    {% block content %}
+	    {% endblock content %}
+	  </div>
+	</div>
+</div>
+{% endblock everything %}

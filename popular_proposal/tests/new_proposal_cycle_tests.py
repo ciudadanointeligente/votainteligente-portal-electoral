@@ -37,6 +37,7 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         self.assertIsNotNone(temporary_area.comments['when'])
         self.assertIsNotNone(temporary_area.comments['allies'])
         self.assertEquals(temporary_area.status, ProposalTemporaryData.Statuses.InOurSide)
+        self.assertIn(temporary_area, self.fiera.temporary_proposals.all())
 
     def test_proposing_with_an_organization(self):
         local_org = Organization.objects.create(name="Local Organization")

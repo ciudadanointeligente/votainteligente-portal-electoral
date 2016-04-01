@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "backend_base.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
@@ -19,18 +19,6 @@
       <h1>{% blocktrans %}¡Bienvenid@ {{user}}!{% endblocktrans %}</h1>
 
 </div>
-<script>
-$(function(){
-    $('.loadFromUrl').on('show.bs.modal', function (event) {
-      var anchor = $(event.relatedTarget) // Button that triggered the modal
-      var modal = $(this)
-      var body = modal.find('.modal-body');
-      body.load(anchor.data('url'));
-    })
-});
-</script>
 {% endblock content %}
 
-{% block extrafooter %}
-{% endblock extrafooter %}
 

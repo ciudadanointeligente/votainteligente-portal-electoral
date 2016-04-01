@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap_tags %}
+{% block extrajs %}
+{% endblock extrajs %}
+
+{% block content %}
+<div>
+
+  <h1>{% blocktrans with area=area.name %}Creando una propuesta para {{area}}{% endblocktrans %}</h1>
+  <!-- Featured Elections  -->
+  <div class="contenedorDestacado fondo-blanco">
+        <form role="form" action="" method="post">
+            {% csrf_token %}
+            {{ form|as_bootstrap }}
+            <div class="form-actions">
+            <input type="submit" class="btn btn-primary" id="Guardar" value="Guardar"/>
+          </div>
+          
+        </form>
+
+    </div>
+  <!-- end mobile version -->
+
+</div>
+{% endblock content %}
+
+{% block extrafooter %}
+{% endblock extrafooter %}

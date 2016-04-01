@@ -194,6 +194,45 @@ class MessageTestCase(TestCase):
         self.assertTrue(Message.objects.get(id=message2.id).sent)
         self.assertEquals(len(mail.outbox), 4)
 
+    def test_messages_listing_needing_moderation_messages(self):
+        message = Message.objects.create(election=self.election,
+                                         author_name='author',
+                                         author_email='author@email.com',
+                                         subject='subject',
+                                         content='content',
+                                         slug='subject-slugified',
+                                         accepted=True
+                                         )
+        message.people.add(self.candidate1)
+        message.people.add(self.candidate2)
+
+        message2 = Message.objects.create(election=self.election,
+                                          author_name='author',
+                                          author_email='author@email.com',
+                                          subject='subject',
+                                          content='content',
+                                          slug='subject-slugified',
+                                          accepted=True
+                                          )
+        message2.people.add(self.candidate1)
+        message2.people.add(self.candidate2)
+
+        message3 = Message.objects.create(election=self.election,
+                                          author_name='author',
+                                          author_email='author@email.com',
+                                          subject='subject',
+                                          content='content',
+                                          slug='subject-slugified'
+                                          )
+        message3.people.add(self.candidate1)
+        message3.people.add(self.candidate2)
+
+        messages = Message.objects.needing_moderation_messages()
+
+        self.assertIn(message3, messages)
+        self.assertEquals(len(messages), 1)
+
+
     def test_reject_message(self):
         message = Message.objects.create(election=self.election,
                                                         author_name='author',

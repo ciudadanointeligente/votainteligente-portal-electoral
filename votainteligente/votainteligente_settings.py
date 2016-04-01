@@ -27,6 +27,7 @@ INSTALLED_APPS = (
     'django_nose',
     'django.contrib.sitemaps',
     'linaro_django_pagination',
+    'django_forms_bootstrap',
     'candidator',
     'taggit',
     'haystack',
@@ -35,7 +36,6 @@ INSTALLED_APPS = (
     'markdown_deux',
     'django_extensions',
     'sorl.thumbnail',
-    'django_admin_bootstrapped',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'tinymce',
@@ -46,7 +46,13 @@ INSTALLED_APPS = (
     'preguntales',
     # Uncomment the next line to enable admin documentation:
     #'django.contrib.admindocs',
+    'popular_proposal',
+    'backend_staff',
+    "registration_defaults",
 )
+
+# REGISTRATION
+ACCOUNT_ACTIVATION_DAYS = 7
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -59,6 +65,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'linaro_django_pagination.middleware.PaginationMiddleware',
 )
+
 
 #SITE_ID
 SITE_ID = 1

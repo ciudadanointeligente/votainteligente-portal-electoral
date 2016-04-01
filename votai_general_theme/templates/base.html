@@ -46,7 +46,7 @@
 
     </head>
 
-    <body data-ng-app="votainteligente">
+    <body>
         <div id="wrapper">
             <div class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container">
@@ -65,7 +65,24 @@
                                     <li><a href="{{ page.url }}">{{ page.title }}</a></li>
                             {% endfor %}
                         </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if user.is_authenticated %}
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}}<span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                {% if user.is_superuser %}
+                                <li><a href="/admin">{% blocktrans %}Sección de administración{% endblocktrans %}</a></li>
+                                {% endif %}
+                                {% if user.is_staff %}
+                                <li><a href="{% url 'backend_staff:index' %}">{% blocktrans %}Sección del Staff{% endblocktrans %}</a></li>
+                                {% endif %}
+                                <li><a href="#">{% blocktrans %}Tu perfil ciudadano{% endblocktrans %}</a></li>
+                              </ul>
+                            </li>
+                            {% endif %}
+                          </ul>
                     </div><!--/.nav-collapse -->
+
                 </div>
             </div>
 
@@ -130,7 +147,7 @@
             $('.email-prensa').attr('href','mailto:'+'prensa'+'@'+'ciudadanointeligente.org?'+'Subject=Prensa%20votainteligente');
          })
         </script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.3.1/jquery.cookie.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.0/js.cookie.js" type="text/javascript"></script>
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -1,0 +1,31 @@
+{% load i18n %}
+{% load bootstrap_tags %}
+   {{object}}
+
+   <button id="acceptModeration_{{object.id}}" type="button" class="btn btn-primary">{% trans 'Sí, acepto' %} <i class="fa fa-thumbs-up"></i>
+</button>
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+ {% trans 'No, la rechazaré!' %} <i class="fa fa-thumbs-down"></i>
+</button>
+<div class="collapse" id="collapseExample">
+  <div class="well">
+  <form role="form" action="{% url 'backend_staff:reject_proposal' pk=object.pk %}" method="post">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">{% trans 'Rechaza esta propuesta ciudadana'%}</button>
+    </div>
+</form>
+  </div>
+</div>
+<script>
+$(function(){
+    $('#acceptModeration_{{object.id}}').click(function(){
+            $.post("{% url 'backend_staff:accept_proposal' pk=object.pk %}", {
+                    'csrfmiddlewaretoken': "{{ csrf_token }}"
+                    }, function(){
+                        window.location.replace("{% url 'backend_staff:index' %}");
+                    })
+    })
+});
+</script>

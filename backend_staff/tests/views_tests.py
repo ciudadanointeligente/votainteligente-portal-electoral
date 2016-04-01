@@ -61,12 +61,13 @@ class StaffHomeViewTest(TestCase):
         self.assertTemplateUsed(response, 'backend_staff/index.html')
 
     def test_get_comments_staff_form_for_popular_proposal(self):
-        temporary_area = ProposalTemporaryData.objects.create(proposer=self.fiera,
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
                                                               data=self.data)
         response = self.is_reachable_only_by_staff('backend_staff:popular_proposal_comments',
-                                                   url_kwargs={'pk': temporary_area.id})
+                                                   url_kwargs={'pk': temporary_data.id})
         self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['temporary_data'], temporary_data)
         self.assertTemplateUsed(response, 'backend_staff/popular_proposal_comments.html')
 
     def test_post_comments_on_popular_proposals(self):

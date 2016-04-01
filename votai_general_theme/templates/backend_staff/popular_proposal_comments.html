@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load thumbnail %}
 
-<form>
+<form action="{% url 'backend_staff:popular_proposal_comments' pk=temporary_data.id %}" method="POST" role="form">
     {% csrf_token %}
     {{ form|as_bootstrap }}
     <div class="form-actions">

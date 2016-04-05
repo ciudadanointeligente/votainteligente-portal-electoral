@@ -15,7 +15,7 @@ WHEN_CHOICES = [
 ]
 
 
-class ProposalForm(forms.Form):
+class ProposalFormBase(forms.Form):
     problem = forms.CharField(label=_(u'Según la óptica de tu organización, describe un problema de tu comuna que quieras solucionar. líneas)'),
         help_text=_(u'Ej: Poca participación en el Plan Regulador, falta de transparencia en el trabajo de la municipalidad, pocos puntos de reciclaje, etc.'))
     solution = forms.CharField(label=_(u'Qué quieres que haga tu autoridad para solucionar el problema? (3 líneas)'),
@@ -23,6 +23,8 @@ class ProposalForm(forms.Form):
     when = forms.ChoiceField(choices=WHEN_CHOICES, label=_(u'¿En qué plazo te gustaría que esté solucionado?'))
     allies = forms.CharField(label=_(u'¿Quiénes son tus posibles aliados?'))
 
+
+class ProposalForm(ProposalFormBase):
     def __init__(self, *args, **kwargs):
         self.proposer = kwargs.pop('proposer')
         self.area = kwargs.pop('area')
@@ -75,3 +77,17 @@ class RejectionForm(forms.Form):
 
     def reject(self):
         self.temporary_data.reject(self.cleaned_data['reason'])
+
+
+class ProposalTemporaryDataUpdateForm(ProposalFormBase):
+    def __init__(self, *args, **kwargs):
+        self.proposer = kwargs.pop('proposer')
+        self.area = kwargs.pop('area')
+        self.temporary_data = kwargs.pop('temporary_data')
+        super(ProposalTemporaryDataUpdateForm, self).__init__(*args, **kwargs)
+
+    def save(self):
+        self.temporary_data.data = self.cleaned_data
+        self.temporary_data.status = ProposalTemporaryData.Statuses.InOurSide
+        self.temporary_data.save()
+        return self.temporary_data

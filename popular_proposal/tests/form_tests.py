@@ -2,7 +2,8 @@
 from elections.tests import VotaInteligenteTestCase as TestCase
 from popular_proposal.forms import (ProposalForm,
                                     CommentsForm,
-                                    RejectionForm)
+                                    RejectionForm,
+                                    ProposalTemporaryDataUpdateForm)
 from django.contrib.auth.models import User
 from popolo.models import Area
 from django.forms import CharField
@@ -18,7 +19,6 @@ class FormTestCase(TestCase):
         self.fiera = User.objects.get(username='fiera')
         self.arica = Area.objects.get(id='arica-15101')
         self.data = {
-            'email': u'fiera@ciudadanointeligente.org',
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
             'solution': u'Viajar a ver al Feli una vez al mes',
             'when': u'1_year',
@@ -114,4 +114,26 @@ class FormTestCase(TestCase):
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
         self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.Rejected)
         self.assertEquals(temporary_data.rejected_reason, data['reason'])
+
+    def test_temporary_popular_proposal(self):
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              area=self.arica,
+                                                              data=self.data,
+                                                              status=ProposalTemporaryData.Statuses.InTheirSide)
+
+        data = {
+            'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
+            'solution': u'Viajar a ver al equipo una vez al mes',
+            'when': u'1_year',
+            'allies': u'El Feli y el resto de los cabros de la FCI'
+        }
+        form = ProposalTemporaryDataUpdateForm(data=data,
+                                               temporary_data=temporary_data,
+                                               area=self.arica,
+                                               proposer=self.fiera)
+        self.assertTrue(form.is_valid())
+        temporary_data = form.save()
+        temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
+        self.assertEquals(temporary_data.data, data)
+        self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.InOurSide)
 

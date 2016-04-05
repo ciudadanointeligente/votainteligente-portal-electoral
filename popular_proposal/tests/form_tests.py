@@ -129,7 +129,6 @@ class FormTestCase(TestCase):
         }
         form = ProposalTemporaryDataUpdateForm(data=data,
                                                temporary_data=temporary_data,
-                                               area=self.arica,
                                                proposer=self.fiera)
         self.assertTrue(form.is_valid())
         temporary_data = form.save()

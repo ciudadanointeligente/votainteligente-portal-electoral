@@ -82,7 +82,6 @@ class RejectionForm(forms.Form):
 class ProposalTemporaryDataUpdateForm(ProposalFormBase):
     def __init__(self, *args, **kwargs):
         self.proposer = kwargs.pop('proposer')
-        self.area = kwargs.pop('area')
         self.temporary_data = kwargs.pop('temporary_data')
         super(ProposalTemporaryDataUpdateForm, self).__init__(*args, **kwargs)
 

@@ -32,3 +32,4 @@ email_reply_parser==0.3.0
 flufl.bounce==2.3
 django-forms-bootstrap==3.0.1
 django-choices==1.4.2
+python-social-auth==0.2.14

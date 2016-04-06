@@ -28,7 +28,9 @@ urlpatterns = patterns('',
     (r'^backend_citizen/', include('backend_citizen.urls', namespace='backend_citizen')),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
 )
-
+urlpatterns += patterns('',
+                        url('', include('social.apps.django_app.urls', namespace='social'))
+                        )
 
 from django.conf import settings
 if settings.THEME:

@@ -84,6 +84,7 @@ class ProposalTemporaryDataUpdateForm(ProposalFormBase):
         self.proposer = kwargs.pop('proposer')
         self.temporary_data = kwargs.pop('temporary_data')
         super(ProposalTemporaryDataUpdateForm, self).__init__(*args, **kwargs)
+        self.initial = self.temporary_data.data
 
     def save(self):
         self.temporary_data.data = self.cleaned_data

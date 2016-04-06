@@ -115,7 +115,7 @@ class FormTestCase(TestCase):
         self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.Rejected)
         self.assertEquals(temporary_data.rejected_reason, data['reason'])
 
-    def test_temporary_popular_proposal(self):
+    def test_update_temporary_popular_proposal(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
                                                               data=self.data,
@@ -130,6 +130,7 @@ class FormTestCase(TestCase):
         form = ProposalTemporaryDataUpdateForm(data=data,
                                                temporary_data=temporary_data,
                                                proposer=self.fiera)
+        self.assertTrue(form.initial)
         self.assertTrue(form.is_valid())
         temporary_data = form.save()
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)

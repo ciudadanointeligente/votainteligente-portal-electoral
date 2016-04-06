@@ -46,3 +46,41 @@ class BackendCitizenViewsTests(TestCase):
         self.assertIsInstance(response.context['form'], ProposalTemporaryDataUpdateForm)
         form = response.context['form']
         self.assertEquals(form.temporary_data, temporary_data)
+
+        data = {
+            'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
+            'solution': u'Viajar a ver al equipo una vez al mes',
+            'when': u'1_year',
+            'allies': u'El Feli y el resto de los cabros de la FCI'
+        }
+        response = self.client.post(url, data=data, follow=True)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed('backend_citizen/index.html')
+        temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
+        self.assertEquals(temporary_data.data['solution'], data['solution'])
+
+    def test_brings_all_the_proposals_that_are_in_my_side(self):
+        t_d1 = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                    area=self.arica,
+                                                    status=ProposalTemporaryData.Statuses.InOurSide,
+                                                    data=self.data)
+        t_d2 = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                    area=self.arica,
+                                                    status=ProposalTemporaryData.Statuses.InTheirSide,
+                                                    data=self.data)
+        t_d3 = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                    area=self.arica,
+                                                    status=ProposalTemporaryData.Statuses.Rejected,
+                                                    data=self.data)
+        t_d4 = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                    area=self.arica,
+                                                    status=ProposalTemporaryData.Statuses.Accepted,
+                                                    data=self.data)
+        url = reverse('backend_citizen:index')
+        self.client.login(username=self.fiera.username, password=PASSWORD)
+        response = self.client.get(url)
+        temporary_proposals = response.context['temporary_proposals']
+        self.assertIn(t_d1, temporary_proposals)
+        self.assertIn(t_d2, temporary_proposals)
+        self.assertIn(t_d3, temporary_proposals)
+        self.assertIn(t_d4, temporary_proposals)

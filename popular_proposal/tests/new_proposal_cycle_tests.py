@@ -6,12 +6,15 @@ from popular_proposal.models import ProposalTemporaryData, PopularProposal
 from popular_proposal.forms import ProposalForm
 from django.core.urlresolvers import reverse
 from django.core import mail
+from django.template.loader import get_template
+from django.template import Context
 
 
 class ProposingCycleTestCaseBase(TestCase):
     def setUp(self):
         super(ProposingCycleTestCaseBase, self).setUp()
         self.fiera = User.objects.get(username='fiera')
+        self.feli = User.objects.get(username='feli')
         self.arica = Area.objects.get(id='arica-15101')
         self.data = {
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
@@ -64,13 +67,28 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         self.assertNotIn(needs_citizen_action, ProposalTemporaryData.needing_moderation.all())
 
     def test_rejecting_a_proposal(self):
-        temporary_area = ProposalTemporaryData.objects.create(proposer=self.fiera,
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
                                                               data=self.data)
-        temporary_area.reject('es muy mala la cosa')
-        temporary_area = ProposalTemporaryData.objects.get(id=temporary_area.id)
-        self.assertEquals(temporary_area.rejected_reason, 'es muy mala la cosa')
-        self.assertEquals(temporary_area.status, ProposalTemporaryData.Statuses.Rejected)
+        temporary_data.reject('es muy mala la cosa')
+        temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
+        self.assertEquals(temporary_data.rejected_reason, 'es muy mala la cosa')
+        self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.Rejected)
+        self.assertEquals(len(mail.outbox), 1)
+
+        the_mail = mail.outbox[0]
+        self.assertIn(self.fiera.email, the_mail.to)
+        self.assertEquals(len(the_mail.to), 1)
+        context = Context({'area': self.arica,
+                           'temporary_data': temporary_data,
+                           'moderator': self.feli
+                          })
+        template_body = get_template('mails/popular_proposal_rejected_body.html')
+        template_subject = get_template('mails/popular_proposal_rejected_subject.html')
+        expected_content= template_body.render(context)
+        expected_subject = template_subject.render(context)
+        self.assertTrue(the_mail.body)
+        self.assertTrue(the_mail.subject)
 
 
 class ProposingViewTestCase(ProposingCycleTestCaseBase):
@@ -120,14 +138,33 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(popular_proposal.updated)
         self.assertIn(popular_proposal, self.fiera.proposals.all())
         self.assertIn(popular_proposal, self.arica.proposals.all())
+        self.assertIsNone(popular_proposal.temporary)
 
     def test_create_popular_proposal_from_temporary_data(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
                                                               data=self.data)
-        popular_proposal = temporary_data.create_proposal()
+        popular_proposal = temporary_data.create_proposal(moderator=self.feli)
         self.assertEquals(popular_proposal.proposer, self.fiera)
         self.assertEquals(popular_proposal.area, self.arica)
         self.assertEquals(popular_proposal.data, self.data)
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
+        self.assertEquals(temporary_data.created_proposal, popular_proposal)
         self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.Accepted)
+        # There was a mail sent to Fiera because
+        # her proposal was accepted
+        self.assertEquals(len(mail.outbox), 1)
+        the_mail = mail.outbox[0]
+        self.assertIn(self.fiera.email, the_mail.to)
+        self.assertEquals(len(the_mail.to), 1)
+
+        context = Context({'area': self.arica,
+                           'temporary_data': temporary_data,
+                           'moderator': self.feli
+                          })
+        template_body = get_template('mails/popular_proposal_accepted_body.html')
+        template_subject = get_template('mails/popular_proposal_accepted_subject.html')
+        expected_content= template_body.render(context)
+        expected_subject = template_subject.render(context)
+        self.assertTrue(the_mail.body)
+        self.assertTrue(the_mail.subject)

@@ -5,6 +5,7 @@ from picklefield.fields import PickledObjectField
 from django.contrib.auth.models import User
 from popolo.models import Area, Organization
 from djchoices import DjangoChoices, ChoiceItem
+from votainteligente.send_mails import send_mail
 
 
 class NeedingModerationManager(models.Manager):
@@ -48,20 +49,33 @@ class ProposalTemporaryData(models.Model):
 
         return super(ProposalTemporaryData, self).save(*args, **kwargs)
 
-    def create_proposal(self):
+    def create_proposal(self, moderator=None):
         self.status = ProposalTemporaryData.Statuses.Accepted
         self.save()
         popular_proposal = PopularProposal(proposer=self.proposer,
                                            area=self.area,
+                                           temporary=self,
                                            data=self.data)
 
         popular_proposal.save()
+        mail_context = {
+            'area': self.area,
+            'temporary_data': self,
+            'moderator': moderator,
+        }
+        send_mail(mail_context, 'popular_proposal_accepted', to=[self.proposer.email])
         return popular_proposal
 
-    def reject(self, reason):
+    def reject(self, reason, moderator=None):
         self.rejected_reason = reason
         self.status = ProposalTemporaryData.Statuses.Rejected
         self.save()
+        mail_context = {
+            'area': self.area,
+            'temporary_data': self,
+            'moderator': moderator,
+        }
+        send_mail(mail_context, 'popular_proposal_accepted', to=[self.proposer.email])
 
 
 class PopularProposal(models.Model):
@@ -70,3 +84,8 @@ class PopularProposal(models.Model):
     data = PickledObjectField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
+    temporary = models.OneToOneField(ProposalTemporaryData,
+                                     related_name='created_proposal',
+                                     blank=True,
+                                     null=True,
+                                     default=None)

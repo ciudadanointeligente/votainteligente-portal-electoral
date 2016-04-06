@@ -1,0 +1,54 @@
+{% extends "backend_base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap_tags %}
+
+{% block content %}
+
+{% include 'modal.html' with modalId='proposalUpdate' title='Actualiza tu propuesta' %}
+<div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
+  <!-- Featured Elections  -->
+  <div class="contenedorDestacado fondo-blanco">
+      <h1>{% blocktrans %}¡Bienvenid@ {{user}}!{% endblocktrans %}</h1>
+    
+      
+      <table class="table">
+        <tr>
+            <td>Area</td>
+            <td>Problema</td>
+            <td>Solución</td>
+            <td>Cuándo?</td>
+            <td>Aliados</td>
+            <td>Estado</td>
+        </tr>
+    {% for proposal in temporary_proposals %}
+        <tr>
+            <td>{{proposal.area}}</td>
+            <td>{{proposal.data.problem}}</td>
+            <td>{{proposal.data.solution}}</td>
+            <td>{{proposal.data.when}}</td>
+            <td>{{proposal.data.allies}}</td>
+            <td>
+                {% if proposal.status == 'in_our_side' %}
+                {% blocktrans %}<i class="fa fa-clock-o"></i>Esperando moderación{% endblocktrans %}     
+                {% endif %}
+                {% if proposal.status == 'in_their_side' %}
+                <a data-toggle="modal" data-target="#proposalUpdate" 
+                    data-url="{% url 'backend_citizen:temporary_data_update' pk=proposal.id %}">
+                    <i class="fa fa-pencil"></i>
+                    {% blocktrans %}Modifíca tu propuesta{% endblocktrans %}     
+                </a>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+
+</div>
+{% endblock content %}
+
+

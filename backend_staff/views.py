@@ -83,7 +83,7 @@ class AcceptPopularProposalView(View, SingleObjectMixin):
 
     def post(self, request, *args, **kwargs):
         temporary_data = self.get_object()
-        temporary_data.create_proposal()
+        temporary_data.create_proposal(moderator=self.request.user)
         return HttpResponseRedirect(reverse('backend_staff:index'))
 
 class RejectPopularProposalView(FormView):

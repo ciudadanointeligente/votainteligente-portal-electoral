@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap_tags %}
+
+{% block content %}
+{% endblock content %}
+
+{% block extrajs %}
+$(function(){
+    $('.loadFromUrl').on('show.bs.modal', function (event) {
+      var anchor = $(event.relatedTarget) // Button that triggered the modal
+      var modal = $(this)
+      var body = modal.find('.modal-body');
+      body.load(anchor.data('url'));
+    })
+});
+{% endblock extrajs %}
+

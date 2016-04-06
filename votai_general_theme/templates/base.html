@@ -76,7 +76,8 @@
                                 {% if user.is_staff %}
                                 <li><a href="{% url 'backend_staff:index' %}">{% blocktrans %}Sección del Staff{% endblocktrans %}</a></li>
                                 {% endif %}
-                                <li><a href="#">{% blocktrans %}Tu perfil ciudadano{% endblocktrans %}</a></li>
+                                <li><a href="{% url 'backend_citizen:index' %}">{% blocktrans %}Tu perfil ciudadano{% endblocktrans %}</a></li>
+                                <li><a href="{% url 'auth_logout' %}">{% blocktrans %}Salir{% endblocktrans %}</a></li>
                               </ul>
                             </li>
                             {% endif %}

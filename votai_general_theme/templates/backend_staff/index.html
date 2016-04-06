@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "backend_base.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
@@ -7,34 +7,8 @@
 {% endblock extrajs %}
 
 {% block content %}
-<!-- ModalCommentsForAProposal -->
-<div class="modal fade loadFromUrl" id="proposalComments" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">{% trans 'Actualiza los comentarios' %}</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal ModerateProposal -->
-<div class="modal fade loadFromUrl" id="moderateProposal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">{% trans '¿Deseas aceptar Propuesta Popular?' %}</h4>
-      </div>
-      <div class="modal-body">
-          ...
-      </div>
-    </div>
-  </div>
-</div>
+{% include 'modal.html' with modalId='proposalComments' title='Actualiza los comentarios' %}
+{% include 'modal.html' with modalId='moderateProposal' title='¿Deseas aceptar la Propuesta Popular?' %}
 
 <div>
 

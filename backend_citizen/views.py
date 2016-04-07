@@ -14,7 +14,6 @@ class IndexView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super(IndexView, self).get_context_data(*args, **kwargs)
         context['temporary_proposals'] = ProposalTemporaryData.objects.filter(proposer=self.request.user)
-        print context['temporary_proposals']
         return context
 
 

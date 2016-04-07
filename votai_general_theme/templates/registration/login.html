@@ -1,10 +1,15 @@
 {% extends "registration/registration_base.html" %}
 {% load i18n %}
 {% load bootstrap_tags %}
+{% load staticfiles %}
 {% block title %}{% trans "Login" %}{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
+{% endblock extra_css %}
 {% block content %}
 {% url 'auth_password_reset' as auth_pwd_reset_url %}
 {% url 'registration_register' as register_url%}
+
 
 {% if form.errors %}
 <p>{% blocktrans %}Your username and password didn't match. Please try again.{% endblocktrans %}</p>
@@ -12,11 +17,16 @@
 
 <form method="post" action="{% url 'auth_login' %}">{% csrf_token %}
 {{ form|as_bootstrap }}
-<p>{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">Forgot</a> your password?
-    <a href="{{ register_url }}">Need an account</a>?{% endblocktrans %}</p>
+<p>{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">¿Olvidaste tu password?</a> ó 
+    <a href="{{ register_url }}">¿Quieres una cuenta?</a>{% endblocktrans %}</p>
 
-<input type="submit" value="{% trans "login" %}" />
+<input type="submit" value="{% trans "login" %}"  class="btn btn-default" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
+<div>
+
+        <a class="btn btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}?next={% url 'backend_citizen:index' %}">
+            <span class="fa fa-facebook"></span>{% trans 'Entra con Facebook' %}
+        </a>
 </div>
 {% endblock %}

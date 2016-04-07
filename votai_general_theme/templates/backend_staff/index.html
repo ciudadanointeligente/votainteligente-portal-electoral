@@ -3,8 +3,6 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load bootstrap_tags %}
-{% block extrajs %}
-{% endblock extrajs %}
 
 {% block content %}
 {% include 'modal.html' with modalId='proposalComments' title='Actualiza los comentarios' %}
@@ -56,17 +54,6 @@
   </div>
 
 </div>
-<script>
-$(function(){
-    $('.loadFromUrl').on('show.bs.modal', function (event) {
-      var anchor = $(event.relatedTarget) // Button that triggered the modal
-      var modal = $(this)
-      var body = modal.find('.modal-body');
-      body.load(anchor.data('url'));
-    });
-    $('[data-toggle="tooltip"]').tooltip();
-});
-</script>
 {% endblock content %}
 
 {% block extrafooter %}

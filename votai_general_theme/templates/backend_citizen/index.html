@@ -42,14 +42,21 @@
             </td>
             <td>
                 {% if proposal.status == 'in_our_side' %}
-                {% blocktrans %}<i class="fa fa-clock-o"></i>Esperando moderación{% endblocktrans %}     
+                {% blocktrans %}<span class="label label-default"><i class="fa fa-clock-o"></i> Esperando moderación</span>{% endblocktrans %}     
                 {% endif %}
                 {% if proposal.status == 'in_their_side' %}
                 <a data-toggle="modal" data-target="#proposalUpdate" 
                     data-url="{% url 'backend_citizen:temporary_data_update' pk=proposal.id %}">
-                    <i class="fa fa-pencil"></i>
-                    {% blocktrans %}Modifíca tu propuesta{% endblocktrans %}     
+                    <span class="label label-primary"><i class="fa fa-pencil"></i>
+                    {% blocktrans %}Modifíca tu propuesta{% endblocktrans %}
+                    </span> 
                 </a>
+                {% endif %}
+                {% if proposal.status == 'accepted' %}
+                <span class="label label-success">{% trans '¡Aceptada!' %}</span>
+                {% endif %}
+                {% if proposal.status == 'rejected' %}
+                <span class="label label-danger">{% trans '¡Rechazada!' %}</span>
                 {% endif %}
             </td>
         </tr>

@@ -6,7 +6,7 @@
 {% url 'auth_password_reset' as auth_pwd_reset_url %}
 {% url 'registration_register' as register_url%}
 
-<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Entra con Facebook</a>
+<a href="{% url 'social:begin' 'facebook' %}?next={% url 'backend_citizen:index' %}">Entra con Facebook</a>
 
 {% if form.errors %}
 <p>{% blocktrans %}Your username and password didn't match. Please try again.{% endblocktrans %}</p>

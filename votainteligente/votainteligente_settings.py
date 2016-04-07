@@ -58,6 +58,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 LOGIN_REDIRECT_URL='backend_citizen:index'
 
 #SOCIAL AUTH
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = LOGIN_REDIRECT_URL
 
 AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
@@ -67,14 +68,17 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_FACEBOOK_KEY = ''
 SOCIAL_AUTH_FACEBOOK_SECRET = ''
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id,name,email',
+}
 SOCIAL_AUTH_PIPELINE = (
         'social.pipeline.social_auth.social_details',
         'social.pipeline.social_auth.social_uid',
         'social.pipeline.social_auth.auth_allowed',
         'social.pipeline.social_auth.social_user',
         'social.pipeline.user.get_username',
-        'social.pipeline.social_auth.associate_by_email',  # <--- enable this one
         'social.pipeline.user.create_user',
+        'social.pipeline.social_auth.associate_by_email',  # <--- enable this one
         'social.pipeline.social_auth.associate_user',
         'social.pipeline.social_auth.load_extra_data',
         'social.pipeline.user.user_details',

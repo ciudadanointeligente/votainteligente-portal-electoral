@@ -42,7 +42,10 @@ class CommentsForm(forms.Form):
         self.moderator = kwargs.pop('moderator')
         super(CommentsForm, self).__init__(*args, **kwargs)
         for field in self.temporary_data.comments.keys():
-            help_text = u'La ciudadana dijo: %s' % self.temporary_data.data[field]
+            help_text = _(u'La ciudadana dijo: %s') % self.temporary_data.data[field]
+            comments = self.temporary_data.comments[field]
+            if comments:
+                help_text += _(u' <b>Y tus comentarios fueron: %s </b>') % comments
             self.fields[field] = forms.CharField(required=False, help_text=help_text)
 
     def save(self, *args, **kwargs):
@@ -85,6 +88,10 @@ class ProposalTemporaryDataUpdateForm(ProposalFormBase):
         self.temporary_data = kwargs.pop('temporary_data')
         super(ProposalTemporaryDataUpdateForm, self).__init__(*args, **kwargs)
         self.initial = self.temporary_data.data
+        for comment_key in self.temporary_data.comments.keys():
+            comment = self.temporary_data.comments[comment_key]
+            if comment:
+                self.fields[comment_key].help_text += _(' <b>Commentarios: %s </b>') % (comment)
 
     def save(self):
         self.temporary_data.data = self.cleaned_data

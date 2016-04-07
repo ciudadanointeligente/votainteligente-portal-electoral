@@ -101,6 +101,25 @@ class FormTestCase(TestCase):
         self.assertEquals(len(the_mail.to), 1)
         self.assertIn(self.fiera.email, the_mail.to)
 
+    def test_comments_form_with_previous_comments_in(self):
+        comments = {
+            'problem': '',
+            'solution': '',
+            'when': u'El plazo no está tan bueno',
+            'allies': ''
+        }
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              area=self.arica,
+                                                              data=self.data,
+                                                              comments=comments,
+                                                              status=ProposalTemporaryData.Statuses.InTheirSide)
+        form = CommentsForm(moderator=self.feli,
+                            temporary_area=temporary_data)
+
+        self.assertIn(comments['when'], form.fields['when'].help_text)
+
+
+
     def test_rejection_form(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
@@ -116,9 +135,16 @@ class FormTestCase(TestCase):
         self.assertEquals(temporary_data.rejected_reason, data['reason'])
 
     def test_update_temporary_popular_proposal(self):
+        comments = {
+            'problem': '',
+            'solution': '',
+            'when': u'El plazo no está tan bueno',
+            'allies': ''
+        }
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
                                                               data=self.data,
+                                                              comments=comments,
                                                               status=ProposalTemporaryData.Statuses.InTheirSide)
 
         data = {
@@ -131,6 +157,7 @@ class FormTestCase(TestCase):
                                                temporary_data=temporary_data,
                                                proposer=self.fiera)
         self.assertTrue(form.initial)
+        self.assertIn(comments['when'], form.fields['when'].help_text)
         self.assertTrue(form.is_valid())
         temporary_data = form.save()
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)

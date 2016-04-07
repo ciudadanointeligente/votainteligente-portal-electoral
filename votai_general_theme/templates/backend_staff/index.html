@@ -32,10 +32,14 @@
     {% for proposal in proposals.all %}
         <tr>
             <td>{{proposal.area}}</td>
-            <td>{{proposal.data.problem}}</td>
-            <td>{{proposal.data.solution}}</td>
-            <td>{{proposal.data.when}}</td>
-            <td>{{proposal.data.allies}}</td>
+            <td>{{proposal.data.problem}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.problem %}
+            </td>
+            <td>{{proposal.data.solution}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.solution %}
+            </td>
+            <td>{{proposal.data.when}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.when %}
+            </td>
+            <td>{{proposal.data.allies}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.allies %}
+            </td>
             <td>
                 <a data-toggle="modal" data-target="#proposalComments" 
                     data-url="{% url 'backend_staff:popular_proposal_comments' pk=proposal.id %}">
@@ -59,7 +63,8 @@ $(function(){
       var modal = $(this)
       var body = modal.find('.modal-body');
       body.load(anchor.data('url'));
-    })
+    });
+    $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
 {% endblock content %}

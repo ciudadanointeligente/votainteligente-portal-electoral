@@ -6,7 +6,9 @@
 <table>
     <form method='post' action=''>{% csrf_token %}
         {{ form|as_bootstrap }}
-        <tr><td></td><td><input type="submit" value="{% trans "Send activation email" %}" /></td>
+        <tr><td></td><td>
+                <input type="submit" value="{% trans "Envíame un mail de activación" %}"  class="btn btn-default" />
+            </td>
     </form>
 </table>
 {% endblock %}

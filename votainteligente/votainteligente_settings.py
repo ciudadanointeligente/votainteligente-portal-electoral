@@ -103,6 +103,9 @@ SITE_ID = 1
 NEWSLETTER_CONFIRM_EMAIL = False
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
+LANGUAGE_CODE = 'es-cl'
+
+TIME_ZONE = 'UTC'
 # Using django-tinymce
 #NEWSLETTER_RICHTEXT_WIDGET = "tinymce.widgets.TinyMCE"
 

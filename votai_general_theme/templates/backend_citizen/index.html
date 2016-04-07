@@ -28,10 +28,18 @@
     {% for proposal in temporary_proposals %}
         <tr>
             <td>{{proposal.area}}</td>
-            <td>{{proposal.data.problem}}</td>
-            <td>{{proposal.data.solution}}</td>
-            <td>{{proposal.data.when}}</td>
-            <td>{{proposal.data.allies}}</td>
+            <td>{{proposal.data.problem}}
+                {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.problem %}
+            </td>
+            <td>{{proposal.data.solution}}
+                {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.solution %}
+            </td>
+            <td>{{proposal.data.when}}
+                {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.when %}
+            </td>
+            <td>{{proposal.data.allies}}
+                {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.allies %}
+            </td>
             <td>
                 {% if proposal.status == 'in_our_side' %}
                 {% blocktrans %}<i class="fa fa-clock-o"></i>Esperando moderación{% endblocktrans %}     

@@ -19,6 +19,7 @@ class FormTestCase(TestCase):
         self.fiera = User.objects.get(username='fiera')
         self.arica = Area.objects.get(id='arica-15101')
         self.data = {
+            'title': u'Fiera a Santiago',
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
             'solution': u'Viajar a ver al Feli una vez al mes',
             'when': u'1_year',
@@ -33,6 +34,7 @@ class FormTestCase(TestCase):
                             area=self.arica)
         self.assertTrue(form.is_valid())
         cleaned_data = form.cleaned_data
+        self.assertEquals(cleaned_data['title'], self.data['title'])
         self.assertEquals(cleaned_data['problem'], self.data['problem'])
         self.assertEquals(cleaned_data['solution'], self.data['solution'])
         self.assertEquals(cleaned_data['when'], self.data['when'])
@@ -119,7 +121,6 @@ class FormTestCase(TestCase):
         self.assertIn(comments['when'], form.fields['when'].help_text)
 
 
-
     def test_rejection_form(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
@@ -136,6 +137,7 @@ class FormTestCase(TestCase):
 
     def test_update_temporary_popular_proposal(self):
         comments = {
+            'title': '',
             'problem': '',
             'solution': '',
             'when': u'El plazo no está tan bueno',
@@ -148,6 +150,7 @@ class FormTestCase(TestCase):
                                                               status=ProposalTemporaryData.Statuses.InTheirSide)
 
         data = {
+            'title': u'Fiera de vuelta con sus amigos!',
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
             'solution': u'Viajar a ver al equipo una vez al mes',
             'when': u'1_year',

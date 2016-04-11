@@ -16,11 +16,17 @@ WHEN_CHOICES = [
 
 
 class ProposalFormBase(forms.Form):
-    problem = forms.CharField(label=_(u'Según la óptica de tu organización, describe un problema de tu comuna que quieras solucionar. líneas)'),
-        help_text=_(u'Ej: Poca participación en el Plan Regulador, falta de transparencia en el trabajo de la municipalidad, pocos puntos de reciclaje, etc.'))
+    problem = forms.CharField(label=_(u'Según la óptica de tu organización, describe un problema de tu comuna que \
+                                      quieras solucionar. líneas)'),
+        help_text=_(u'Ej: Poca participación en el Plan Regulador, falta de transparencia en el trabajo de la \
+                    municipalidad, pocos puntos de reciclaje, etc.'))
     solution = forms.CharField(label=_(u'Qué quieres que haga tu autoridad para solucionar el problema? (3 líneas)'),
-        help_text=_(u'Ejemplo: "Que se aumenten en 30% las horas de atención de la especialidad Cardiología en los Cesfam y consultorios de la comuna", "Que se publiquen todos los concejos municipales en el sitio web del municipio".'))
+        help_text=_(u'Ejemplo: "Que se aumenten en 30% las horas de atención de la especialidad Cardiología en \
+                    los Cesfam y consultorios de la comuna", "Que se publiquen todos los concejos municipales en \
+                    el sitio web del municipio".'))
     when = forms.ChoiceField(choices=WHEN_CHOICES, label=_(u'¿En qué plazo te gustaría que esté solucionado?'))
+    title = forms.CharField(label=_(u'Título corto'), help_text=_(u"Un título que nos permita describir tu propuesta\
+                                                                   ciudadana. Ej: 50% más de ciclovías para la comuna"))
     allies = forms.CharField(label=_(u'¿Quiénes son tus posibles aliados?'))
 
 

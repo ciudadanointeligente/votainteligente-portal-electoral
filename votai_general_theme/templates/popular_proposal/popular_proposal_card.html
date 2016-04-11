@@ -1,0 +1,24 @@
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+<div class="col-md-4 item">
+    <div class="panel panel-default">
+        <div class='panel-body'>
+            {% if proposal.title %}
+                {{proposal.title}}
+            {% else %}
+                {{proposal.data.solution}}
+            {% endif %}
+            <div class="row">
+                <div class="col-md-12">
+
+                <a class="btn btn-md btn-success full-width" data-toggle="modal" data-target="#supportProposal" 
+                    data-url="{% url 'popular_proposals:like_a_proposal' pk=proposal.id %}">
+                    {% blocktrans %}Apoyar{% endblocktrans %}
+                    </span> 
+                </a>
+                </div>
+            </div>
+        </div>
+  </div>
+</div>

@@ -55,6 +55,7 @@ class SubscribingToPopularProposal(TestCase):
         response = self.client.post(url, follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'elections/area.html')
+        self.assertEquals(response.context['proposal'], self.proposal)
         p = ProposalLike.objects.get(user=self.feli, proposal=self.proposal)
         self.assertTrue(p)
 

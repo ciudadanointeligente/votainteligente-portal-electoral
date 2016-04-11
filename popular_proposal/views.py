@@ -56,6 +56,11 @@ class SubscriptionView(FormView):
         kwargs['proposal'] = self.proposal
         return kwargs
 
+    def get_context_data(self, **kwargs):
+        kwargs = super(SubscriptionView, self).get_context_data(**kwargs)
+        kwargs['proposal'] = self.proposal
+        return kwargs
+
     def get_success_url(self):
         return reverse('area',kwargs={'slug':self.proposal.area.id})
 

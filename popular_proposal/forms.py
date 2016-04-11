@@ -48,7 +48,7 @@ class CommentsForm(forms.Form):
         self.moderator = kwargs.pop('moderator')
         super(CommentsForm, self).__init__(*args, **kwargs)
         for field in self.temporary_data.comments.keys():
-            help_text = _(u'La ciudadana dijo: %s') % self.temporary_data.data[field]
+            help_text = _(u'La ciudadana dijo: %s') % self.temporary_data.data.get(field, u'')
             comments = self.temporary_data.comments[field]
             if comments:
                 help_text += _(u' <b>Y tus comentarios fueron: %s </b>') % comments

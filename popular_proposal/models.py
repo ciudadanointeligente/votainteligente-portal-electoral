@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from popolo.models import Area, Organization
 from djchoices import DjangoChoices, ChoiceItem
 from votainteligente.send_mails import send_mail
+from django.utils.encoding import python_2_unicode_compatible
 
 
 class NeedingModerationManager(models.Manager):
@@ -15,6 +16,7 @@ class NeedingModerationManager(models.Manager):
         return qs
 
 
+@python_2_unicode_compatible
 class ProposalTemporaryData(models.Model):
     class Statuses(DjangoChoices):
         InOurSide = ChoiceItem('in_our_side')
@@ -52,7 +54,9 @@ class ProposalTemporaryData(models.Model):
     def create_proposal(self, moderator=None):
         self.status = ProposalTemporaryData.Statuses.Accepted
         self.save()
+        title = self.get_title()
         popular_proposal = PopularProposal(proposer=self.proposer,
+                                           title=title,
                                            area=self.area,
                                            temporary=self,
                                            data=self.data)
@@ -77,8 +81,16 @@ class ProposalTemporaryData(models.Model):
         }
         send_mail(mail_context, 'popular_proposal_accepted', to=[self.proposer.email])
 
+    def get_title(self):
+        return self.data.get('title', u'')
 
+    def __str__(self):
+        return self.get_title()
+
+
+@python_2_unicode_compatible
 class PopularProposal(models.Model):
+    title = models.CharField(max_length=255, default='')
     proposer = models.ForeignKey(User, related_name='proposals')
     area = models.ForeignKey(Area, related_name='proposals')
     data = PickledObjectField()
@@ -89,3 +101,5 @@ class PopularProposal(models.Model):
                                      blank=True,
                                      null=True,
                                      default=None)
+    def __str__(self):
+        return self.title

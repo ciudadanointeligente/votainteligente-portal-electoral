@@ -17,6 +17,7 @@ class ProposingCycleTestCaseBase(TestCase):
         self.feli = User.objects.get(username='feli')
         self.arica = Area.objects.get(id='arica-15101')
         self.data = {
+            'title': u'Fiera a Santiago',
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
             'solution': u'Viajar a ver al Feli una vez al mes',
             'when': u'1_year',
@@ -35,12 +36,16 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         self.assertTrue(temporary_area)
         self.assertFalse(temporary_area.rejected)
         self.assertFalse(temporary_area.rejected_reason)
+
+        self.assertIsNotNone(temporary_area.comments['title'])
         self.assertIsNotNone(temporary_area.comments['problem'])
         self.assertIsNotNone(temporary_area.comments['solution'])
         self.assertIsNotNone(temporary_area.comments['when'])
         self.assertIsNotNone(temporary_area.comments['allies'])
         self.assertEquals(temporary_area.status, ProposalTemporaryData.Statuses.InOurSide)
         self.assertIn(temporary_area, self.fiera.temporary_proposals.all())
+        self.assertEquals(temporary_area.get_title(), self.data['title'])
+        self.assertEquals(str(temporary_area.get_title()), self.data['title'])
 
     def test_proposing_with_an_organization(self):
         local_org = Organization.objects.create(name="Local Organization")
@@ -133,9 +138,11 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
                                                           area=self.arica,
                                                           data=self.data,
+                                                          title=u'This is a title'
                                                           )
         self.assertTrue(popular_proposal.created)
         self.assertTrue(popular_proposal.updated)
+        self.assertEquals(popular_proposal.title, u'This is a title')
         self.assertIn(popular_proposal, self.fiera.proposals.all())
         self.assertIn(popular_proposal, self.arica.proposals.all())
         self.assertIsNone(popular_proposal.temporary)
@@ -148,6 +155,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(popular_proposal.proposer, self.fiera)
         self.assertEquals(popular_proposal.area, self.arica)
         self.assertEquals(popular_proposal.data, self.data)
+        self.assertEquals(popular_proposal.title, self.data['title'])
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
         self.assertEquals(temporary_data.created_proposal, popular_proposal)
         self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.Accepted)
@@ -168,3 +176,4 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         expected_subject = template_subject.render(context)
         self.assertTrue(the_mail.body)
         self.assertTrue(the_mail.subject)
+        self.assertIn(self.data['title'], str(popular_proposal))

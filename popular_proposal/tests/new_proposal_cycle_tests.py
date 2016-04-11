@@ -1,5 +1,5 @@
 # coding=utf-8
-from elections.tests import VotaInteligenteTestCase as TestCase
+from popular_proposal.tests import ProposingCycleTestCaseBase
 from popolo.models import Area, Organization
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData, PopularProposal
@@ -8,21 +8,6 @@ from django.core.urlresolvers import reverse
 from django.core import mail
 from django.template.loader import get_template
 from django.template import Context
-
-
-class ProposingCycleTestCaseBase(TestCase):
-    def setUp(self):
-        super(ProposingCycleTestCaseBase, self).setUp()
-        self.fiera = User.objects.get(username='fiera')
-        self.feli = User.objects.get(username='feli')
-        self.arica = Area.objects.get(id='arica-15101')
-        self.data = {
-            'title': u'Fiera a Santiago',
-            'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
-            'solution': u'Viajar a ver al Feli una vez al mes',
-            'when': u'1_year',
-            'allies': u'El Feli y el resto de los cabros de la FCI'
-        }
 
 
 class TemporaryDataForPromise(ProposingCycleTestCaseBase):

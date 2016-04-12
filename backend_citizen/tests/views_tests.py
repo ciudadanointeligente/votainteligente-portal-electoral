@@ -48,6 +48,7 @@ class BackendCitizenViewsTests(TestCase):
         self.assertEquals(form.temporary_data, temporary_data)
 
         data = {
+            'title': u'Que vuelva Fiera',
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
             'solution': u'Viajar a ver al equipo una vez al mes',
             'when': u'1_year',

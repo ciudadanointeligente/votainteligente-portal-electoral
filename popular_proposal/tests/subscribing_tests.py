@@ -6,6 +6,7 @@ from popular_proposal.models import PopularProposal, ProposalLike
 from popular_proposal.forms import SubscriptionForm
 from unittest import skip
 from django.core.urlresolvers import reverse
+from django.template import Template, Context
 
 
 class SubscribingToPopularProposal(TestCase):
@@ -20,11 +21,12 @@ class SubscribingToPopularProposal(TestCase):
         self.feli.save()
 
     def test_instanciate_liking_a_proposal(self):
-        like = ProposalLike.objects.create(user=self.fiera,
+        like = ProposalLike.objects.create(user=self.feli,
                                            proposal=self.proposal)
         self.assertTrue(like)
         self.assertTrue(like.created)
         self.assertTrue(like.updated)
+        self.assertIn(self.feli, self.proposal.likers.all())
 
     def test_liking_also_has_a_subscription(self):
         like = ProposalLike.objects.create(user=self.fiera,
@@ -59,6 +61,18 @@ class SubscribingToPopularProposal(TestCase):
         p = ProposalLike.objects.get(user=self.feli, proposal=self.proposal)
         self.assertTrue(p)
 
+    def test_popular_proposal_likers(self):
+        like = ProposalLike.objects.create(user=self.feli,
+                                           proposal=self.proposal)
+        template = Template(u"{% load votainteligente_extras %}{% if user|likes:proposal %}Sí{% else %}No{% endif %}")
+        context = Context({
+            'user': self.feli,
+            'proposal': self.proposal
+        })
+        self.assertEquals(template.render(context), u"Sí")
+        non_liker = User.objects.create_user(username='non_liker', password='s3cr3t')
+        self.assertEquals(template.render(Context({'user':non_liker,
+                                           'proposal':self.proposal})), u'No')
 
 #class TheEventClass(SubscriptionEventBase):
 #    class Meta:

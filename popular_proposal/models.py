@@ -101,6 +101,8 @@ class PopularProposal(models.Model):
                                      blank=True,
                                      null=True,
                                      default=None)
+    likers = models.ManyToManyField(User, through='ProposalLike')
+
     def __str__(self):
         return self.title
 

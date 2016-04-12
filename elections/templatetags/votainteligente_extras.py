@@ -172,3 +172,9 @@ def display_explanation(explanation, election):
     return {
         'explanation_container': explanation
     }
+
+@register.filter(name='likes')
+def likes(user, proposal):
+    if user in proposal.likers.all():
+        return True
+    return False

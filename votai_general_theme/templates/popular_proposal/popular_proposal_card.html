@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load votainteligente_extras %}
 {% load i18n %}
 {% load thumbnail %}
 <div class="col-md-4 item">
@@ -11,14 +12,26 @@
             {% endif %}
             <div class="row">
                 <div class="col-md-12">
+                    {% if user.is_authenticated %}
 
-                <a class="btn btn-md btn-success full-width" data-toggle="modal" data-target="#supportProposal" 
-                    data-url="{% url 'popular_proposals:like_a_proposal' pk=proposal.id %}">
-                    {% blocktrans %}Apoyar{% endblocktrans %}
-                    </span> 
-                </a>
+                        {% if user|likes:proposal %}
+                        {% blocktrans %}Te gusta esta promesa{% endblocktrans %}
+                        {% else %}
+                        <a class="btn btn-md btn-success full-width" data-toggle="modal" data-target="#supportProposal" 
+                            data-url="{% url 'popular_proposals:like_a_proposal' pk=proposal.id %}">
+                            {% blocktrans %}Apoyar{% endblocktrans %}
+                            </span> 
+                        </a>
+                        {% endif %}
+                    {% else %}
+                        <a class="btn btn-md btn-success full-width"  href="{% url 'auth_login' %}">
+                            {% blocktrans %}Apoyar{% endblocktrans %}
+                            </span> 
+                        </a>
+
+                    {% endif%}
+                    </div>
                 </div>
             </div>
-        </div>
-  </div>
-</div>
+    </div>
+    </div>

@@ -1,6 +1,6 @@
 # coding=utf-8
 from django import forms
-from popular_proposal.models import ProposalTemporaryData
+from popular_proposal.models import ProposalTemporaryData, ProposalLike
 from votainteligente.send_mails import send_mail
 from django.utils.translation import ugettext as _
 
@@ -104,3 +104,16 @@ class ProposalTemporaryDataUpdateForm(ProposalFormBase):
         self.temporary_data.status = ProposalTemporaryData.Statuses.InOurSide
         self.temporary_data.save()
         return self.temporary_data
+
+
+class SubscriptionForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        self.proposal = kwargs.pop('proposal')
+        super(SubscriptionForm, self).__init__(*args, **kwargs)
+
+    def subscribe(self):
+        like = ProposalLike.objects.create(user=self.user,
+                                           proposal=self.proposal)
+        return like
+

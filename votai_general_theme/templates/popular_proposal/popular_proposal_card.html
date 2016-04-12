@@ -1,0 +1,46 @@
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load thumbnail %}
+<div class="col-md-4 item">
+    <div class="panel panel-default">
+        <div class='panel-body'>
+            {% if proposal.title %}
+                {{proposal.title}}
+            {% else %}
+                {{proposal.data.solution}}
+            {% endif %}
+            {% if proposal.likers.all %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-success" role="alert">
+                        <span class="badge">{{proposal.likers.count}}</span>
+                        {% blocktrans %}Ciudadanos apoyan{% endblocktrans %}
+                    </div>
+                    
+                </div>
+            </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-md-12">
+                    {% if user.is_authenticated %}
+
+                        {% if not user|likes:proposal %}
+                        <a class="btn btn-md btn-success full-width" data-toggle="modal" data-target="#supportProposal" 
+                            data-url="{% url 'popular_proposals:like_a_proposal' pk=proposal.id %}">
+                            {% blocktrans %}Apoyar{% endblocktrans %}
+                            </span> 
+                        </a>
+                        {% endif %}
+                    {% else %}
+                        <a class="btn btn-md btn-success full-width"  href="{% url 'auth_login' %}">
+                            {% blocktrans %}Apoyar{% endblocktrans %}
+                            </span> 
+                        </a>
+
+                    {% endif%}
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>

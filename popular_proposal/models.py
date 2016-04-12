@@ -101,5 +101,48 @@ class PopularProposal(models.Model):
                                      blank=True,
                                      null=True,
                                      default=None)
+    likers = models.ManyToManyField(User, through='ProposalLike')
+
     def __str__(self):
         return self.title
+
+
+class Subscription(models.Model):
+    proposal_like = models.OneToOneField('ProposalLike')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=True)
+
+
+class ProposalLike(models.Model):
+    user = models.ForeignKey(User)
+    proposal = models.ForeignKey(PopularProposal)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        creating = self.id is None
+        instance = super(ProposalLike, self).save(*args, **kwargs)
+        if creating:
+            Subscription.objects.create(proposal_like=self)
+        return instance
+
+
+#class SubscriptionEventBase(models.Model):
+#    subscription = models.ManyToManyField(Subscription, related_name='events')
+#    notified = models.BooleanField(default=False)
+#
+#    @classmethod
+#    def get_ocurred_ones(cls):
+#        result = []
+#        for event in cls.objects.all():
+#            if event.condition():
+#                result.append(event)
+#        return result
+#
+#    def send_notifications(self):
+#        pass
+#
+#    def process(self):
+#        self.send_notifications()
+#        self.notified = True
+#        self.delete()

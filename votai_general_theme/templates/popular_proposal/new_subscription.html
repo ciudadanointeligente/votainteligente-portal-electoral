@@ -1,0 +1,6 @@
+{% load i18n %}
+Deseas apoyar la propuesta {{proposal}}?
+<form method="POST" action="{% url 'popular_proposals:like_a_proposal' pk=proposal.id %}" role="form">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-default">{% trans 'Sí, quiero apoyar' %}</button>
+</form>

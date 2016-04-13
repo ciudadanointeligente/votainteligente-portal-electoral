@@ -1,11 +1,23 @@
+{% load votainteligente_extras %}
 ¡Felicitaciones {{temporary_data.proposer}}!:
 Tu propuesta para {{area}} fue aceptada por {{moderator}}.
 
 Te queremos recordar que tu propuesta tiene la siguiente información.
+
 {{temporary_data.created_proposal.data.problem}}
-{{temporary_data.created_proposal.data.when}}
+{{temporary_data.created_proposal.data.when|popular_proposal_when}}
 {{temporary_data.created_proposal.data.solution}}
 
 
+Puedes ver tu propuesta en el siguiente link:
+http://2016.votainteligente.cl/{% url 'area' slug=area.id %}
+
+
+Para hacer que tu propuesta llegue a ser parte de los programas
+de los candidatos, te recomendamos que te organices con tus
+vecinos y te hagas notar.
+
+
+Muchas gracias.
 --
 Atentamente el equipo de VotaInteligente.cl

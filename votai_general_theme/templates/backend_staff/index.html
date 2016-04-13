@@ -1,5 +1,6 @@
 {% extends "backend_base.html" %}
 {% load staticfiles %}
+{% load votainteligente_extras %}
 {% load i18n %}
 {% load thumbnail %}
 {% load bootstrap_tags %}
@@ -34,7 +35,7 @@
             </td>
             <td>{{proposal.data.solution}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.solution %}
             </td>
-            <td>{{proposal.data.when}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.when %}
+            <td>{{proposal.data.when|popular_proposal_when}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.when %}
             </td>
             <td>{{proposal.data.allies}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.allies %}
             </td>

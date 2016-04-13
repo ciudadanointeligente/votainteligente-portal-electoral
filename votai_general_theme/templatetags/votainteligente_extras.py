@@ -9,6 +9,7 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from popolo.models import Area
 from django.core.urlresolvers import reverse
+from popular_proposal.forms import WHEN_CHOICES
 
 
 @register.simple_tag
@@ -173,8 +174,17 @@ def display_explanation(explanation, election):
         'explanation_container': explanation
     }
 
+
 @register.filter(name='likes')
 def likes(user, proposal):
     if user in proposal.likers.all():
         return True
     return False
+
+
+@register.filter(name='popular_proposal_when')
+def popular_proposal_when(when):
+    for item in WHEN_CHOICES:
+        if item[0] == when:
+            return item[1]
+    return when

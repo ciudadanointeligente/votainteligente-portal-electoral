@@ -1,8 +1,9 @@
+{% load votainteligente_extras %}
 Hola {{temporary_data.proposer}}!
 Hemos leido y moderado tu propuesta ciudadana y tenemos los siguientes comentarios:
 
 {% for key, item in comments.items %}{% if item.comments %}
-* Para tu respuesta: {{item.original}}, nuestros comentarios son:
+* Para tu respuesta: {{item.original|popular_proposal_when}}, nuestros comentarios son:
 
 {{ item.comments }}
 

@@ -10,7 +10,8 @@ from django.forms import CharField
 from popular_proposal.models import ProposalTemporaryData
 from django.core import mail
 from django.template.loader import get_template
-from django.template import Context
+from django.template import Context, Template
+from popular_proposal.forms import WHEN_CHOICES
 
 
 class FormTestCase(TestCase):
@@ -166,4 +167,11 @@ class FormTestCase(TestCase):
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
         self.assertEquals(temporary_data.data, data)
         self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.InOurSide)
+
+    def test_when_template_tag(self):
+        choice = WHEN_CHOICES[0]
+        template = Template("{% load votainteligente_extras %}{{ '1_month'|popular_proposal_when }}")
+        self.assertEquals(template.render(Context({})), choice[1])
+        template = Template("{% load votainteligente_extras %}{{ 'perrito'|popular_proposal_when }}")
+        self.assertEquals(template.render(Context({})), 'perrito')
 

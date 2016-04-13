@@ -82,6 +82,8 @@
                                 <li><a href="{% url 'auth_logout' %}">{% blocktrans %}Salir{% endblocktrans %}</a></li>
                               </ul>
                             </li>
+                            {% else %}
+                            <li><a href="{% url 'auth_login' %}">{% blocktrans %}Ingresar{% endblocktrans %}</a></li>
                             {% endif %}
                           </ul>
                     </div><!--/.nav-collapse -->

@@ -4,26 +4,20 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData, PopularProposal
 from popular_proposal.forms import ProposalTemporaryDataUpdateForm
+from popular_proposal.tests import ProposingCycleTestCaseBase
 from popolo.models import Area
 
 
 PASSWORD = 'perrito'
 
 
-class BackendCitizenViewsTests(TestCase):
+class BackendCitizenViewsTests(ProposingCycleTestCaseBase):
     def setUp(self):
         super(BackendCitizenViewsTests, self).setUp()
         self.fiera = User.objects.get(username='fiera')
         self.fiera.set_password(PASSWORD)
         self.fiera.save()
         self.arica = Area.objects.get(id='arica-15101')
-        self.data = {
-            'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
-            'solution': u'Viajar a ver al Feli una vez al mes',
-            'when': u'1_year',
-            'allies': u'El Feli y el resto de los cabros de la FCI'
-
-        }
 
     def test_my_profile_view(self):
         url = reverse('backend_citizen:index')
@@ -48,6 +42,7 @@ class BackendCitizenViewsTests(TestCase):
         self.assertEquals(form.temporary_data, temporary_data)
 
         data = {
+            'clasification': 'genero',
             'title': u'Que vuelva Fiera',
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
             'solution': u'Viajar a ver al equipo una vez al mes',

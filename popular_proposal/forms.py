@@ -14,6 +14,41 @@ WHEN_CHOICES = [
     ('4_year', u'4 años'),
 ]
 
+TOPIC_CHOICES =(
+  (u'Básicos',(
+      (u'salud', u'Salud'),
+      (u'transporte', u'Transporte'),
+      (u'educacion', u'Educación'),
+      (u'seguridad', u'Seguridad'),
+      (u'proteccionsocial', u'Protección Social'),
+      (u'vivienda', u'Vivienda'),
+      )),
+  (u'Oportunidades',(
+      (u'trabajo', u'Trabajo'),
+      (u'emprendimiento', u'Emprendimiento'),
+      (u'capacitacion', u'Capacitación'),
+      (u'beneficiosbienestar', u'Beneficios/bienestar'),
+      )),
+  (u'Espacios comunales',(
+      (u'areasverdes', u'Áreas verdes'),
+      (u'territoriobarrio', u'Territorio/barrio'),
+      (u'obras', u'Obras'),
+      (u'turismoycomercio', u'Turismo y comercio'),
+      )),
+  (u'Mejor comuna',(
+      (u'medioambiente', u'Medio Ambiente'),
+      (u'culturayrecreacion', u'Cultura y recreación'),
+      (u'deporte', u'Deporte'),
+      (u'servicios', u'Servicios'),
+      )),
+  (u'Mejor representatividad',(
+      (u'transparencia', u'Transparencia'),
+      (u'participacionciudadana', u'Participación ciudadana'),
+      (u'genero', u'Género'),
+      (u'pueblosindigenas', u'Pueblos indígenas'),
+      (u'diversidadsexual', u'Diversidad sexual'),
+      ))
+)
 
 class ProposalFormBase(forms.Form):
     problem = forms.CharField(label=_(u'Según la óptica de tu organización, describe un problema de tu comuna que \
@@ -27,6 +62,7 @@ class ProposalFormBase(forms.Form):
     when = forms.ChoiceField(choices=WHEN_CHOICES, label=_(u'¿En qué plazo te gustaría que esté solucionado?'))
     title = forms.CharField(label=_(u'Título corto'), help_text=_(u"Un título que nos permita describir tu propuesta\
                                                                    ciudadana. Ej: 50% más de ciclovías para la comuna"))
+    clasification = forms.ChoiceField(choices=TOPIC_CHOICES, label=_(u'¿Cómo clasificarías tu propuesta?'))
     allies = forms.CharField(label=_(u'¿Quiénes son tus posibles aliados?'))
 
 

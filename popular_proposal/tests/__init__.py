@@ -11,11 +11,19 @@ class ProposingCycleTestCaseBase(TestCase):
         self.feli = User.objects.get(username='feli')
         self.arica = Area.objects.get(id='arica-15101')
         self.data = {
+            'clasification': 'genero',
             'title': u'Fiera a Santiago',
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
             'solution': u'Viajar a ver al Feli una vez al mes',
             'when': u'1_year',
             'allies': u'El Feli y el resto de los cabros de la FCI'
+        }
+        self.comments = {
+            'title': '',
+            'problem': '',
+            'solution': '',
+            'when': u'El plazo no está tan bueno',
+            'allies': ''
         }
 
 

@@ -65,7 +65,8 @@ class ProposalFormBase(forms.Form):
                                                                    ciudadana. Ej: 50% más de ciclovías para la comuna"))
     clasification = forms.ChoiceField(choices=TOPIC_CHOICES, label=_(u'¿Cómo clasificarías tu propuesta?'))
     allies = forms.CharField(label=_(u'¿Quiénes son tus posibles aliados?'))
-    organization = forms.CharField(label=_(u'¿Estás haciendo esta propuesta a nombre de una organización? Escribe su nombre acá:'))
+    organization = forms.CharField(label=_(u'¿Estás haciendo esta propuesta a nombre de una organización? Escribe su nombre acá:'),
+                                   required=False)
 
 
 class ProposalForm(ProposalFormBase):

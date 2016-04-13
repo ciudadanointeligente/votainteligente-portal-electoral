@@ -16,7 +16,8 @@ class ProposingCycleTestCaseBase(TestCase):
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
             'solution': u'Viajar a ver al Feli una vez al mes',
             'when': u'1_year',
-            'allies': u'El Feli y el resto de los cabros de la FCI'
+            'allies': u'El Feli y el resto de los cabros de la FCI',
+            'organization': u'Todos Por Fierita!',
         }
         self.comments = {
             'title': '',

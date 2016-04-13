@@ -20,15 +20,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
         super(FormTestCase, self).setUp()
         self.fiera = User.objects.get(username='fiera')
         self.arica = Area.objects.get(id='arica-15101')
-        self.data = {
-            'clasification': 'genero',
-            'title': u'Fiera a Santiago',
-            'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
-            'solution': u'Viajar a ver al Feli una vez al mes',
-            'when': u'1_year',
-            'allies': u'El Feli y el resto de los cabros de la FCI'
-
-        }
         self.feli = User.objects.get(username='feli')
 
     def test_instanciate_form(self):
@@ -146,14 +137,16 @@ class FormTestCase(ProposingCycleTestCaseBase):
                                                               comments=self.comments,
                                                               status=ProposalTemporaryData.Statuses.InTheirSide)
 
-        data = {
-            'clasification': 'genero',
-            'title': u'Fiera de vuelta con sus amigos!',
-            'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
-            'solution': u'Viajar a ver al equipo una vez al mes',
-            'when': u'1_year',
-            'allies': u'El Feli y el resto de los cabros de la FCI'
-        }
+        #data = {
+        #    'clasification': u'genero',
+        #    'title': u'Fiera de vuelta con sus amigos!',
+        #    'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
+        #    'solution': u'Viajar a ver al equipo una vez al mes',
+        #    'when': u'1_year',
+        #    'allies': u'El Feli y el resto de los cabros de la FCI'
+        #}
+        data = self.data
+        data['solution'] = u'Viajar a ver al equipo una vez al mes'
         form = ProposalTemporaryDataUpdateForm(data=data,
                                                temporary_data=temporary_data,
                                                proposer=self.fiera)

@@ -15,6 +15,7 @@ WHEN_CHOICES = [
 ]
 
 TOPIC_CHOICES =(
+  ('otros', 'Otros'),
   (u'Básicos',(
       (u'salud', u'Salud'),
       (u'transporte', u'Transporte'),

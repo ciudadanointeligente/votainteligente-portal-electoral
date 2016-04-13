@@ -7,6 +7,7 @@ from popolo.models import Area, Organization
 from djchoices import DjangoChoices, ChoiceItem
 from votainteligente.send_mails import send_mail
 from django.utils.encoding import python_2_unicode_compatible
+from popolo.models import Organization
 
 
 class NeedingModerationManager(models.Manager):
@@ -60,7 +61,9 @@ class ProposalTemporaryData(models.Model):
                                            area=self.area,
                                            temporary=self,
                                            data=self.data)
-
+        if 'organization' in self.data.keys() and self.data['organization']:
+            organization, created = Organization.objects.get_or_create(name=self.data['organization'])
+            popular_proposal.organization = organization
         popular_proposal.save()
         mail_context = {
             'area': self.area,

@@ -138,6 +138,8 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
                                                               data=self.data)
         popular_proposal = temporary_data.create_proposal(moderator=self.feli)
         self.assertEquals(popular_proposal.proposer, self.fiera)
+        self.assertTrue(popular_proposal.organization)
+        self.assertEquals(popular_proposal.organization.name, self.data['organization'])
         self.assertEquals(popular_proposal.area, self.arica)
         self.assertEquals(popular_proposal.data, self.data)
         self.assertEquals(popular_proposal.title, self.data['title'])

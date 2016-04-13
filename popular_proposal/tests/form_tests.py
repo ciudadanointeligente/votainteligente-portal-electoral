@@ -1,5 +1,6 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
+from popular_proposal.tests import ProposingCycleTestCaseBase
 from popular_proposal.forms import (ProposalForm,
                                     CommentsForm,
                                     RejectionForm,
@@ -14,19 +15,11 @@ from django.template import Context, Template
 from popular_proposal.forms import WHEN_CHOICES
 
 
-class FormTestCase(TestCase):
+class FormTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(FormTestCase, self).setUp()
         self.fiera = User.objects.get(username='fiera')
         self.arica = Area.objects.get(id='arica-15101')
-        self.data = {
-            'title': u'Fiera a Santiago',
-            'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
-            'solution': u'Viajar a ver al Feli una vez al mes',
-            'when': u'1_year',
-            'allies': u'El Feli y el resto de los cabros de la FCI'
-
-        }
         self.feli = User.objects.get(username='feli')
 
     def test_instanciate_form(self):
@@ -65,6 +58,7 @@ class FormTestCase(TestCase):
                                                               area=self.arica,
                                                               data=self.data)
         data = {'problem': u'',
+                'clasification': '',
                 'when': u'el plazo no está tan weno',
                 'solution': u'',
                 'allies': u'Los aliados podrían ser mejores'}
@@ -137,31 +131,27 @@ class FormTestCase(TestCase):
         self.assertEquals(temporary_data.rejected_reason, data['reason'])
 
     def test_update_temporary_popular_proposal(self):
-        comments = {
-            'title': '',
-            'problem': '',
-            'solution': '',
-            'when': u'El plazo no está tan bueno',
-            'allies': ''
-        }
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
                                                               data=self.data,
-                                                              comments=comments,
+                                                              comments=self.comments,
                                                               status=ProposalTemporaryData.Statuses.InTheirSide)
 
-        data = {
-            'title': u'Fiera de vuelta con sus amigos!',
-            'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
-            'solution': u'Viajar a ver al equipo una vez al mes',
-            'when': u'1_year',
-            'allies': u'El Feli y el resto de los cabros de la FCI'
-        }
+        #data = {
+        #    'clasification': u'genero',
+        #    'title': u'Fiera de vuelta con sus amigos!',
+        #    'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
+        #    'solution': u'Viajar a ver al equipo una vez al mes',
+        #    'when': u'1_year',
+        #    'allies': u'El Feli y el resto de los cabros de la FCI'
+        #}
+        data = self.data
+        data['solution'] = u'Viajar a ver al equipo una vez al mes'
         form = ProposalTemporaryDataUpdateForm(data=data,
                                                temporary_data=temporary_data,
                                                proposer=self.fiera)
         self.assertTrue(form.initial)
-        self.assertIn(comments['when'], form.fields['when'].help_text)
+        self.assertIn(self.comments['when'], form.fields['when'].help_text)
         self.assertTrue(form.is_valid())
         temporary_data = form.save()
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)

@@ -79,7 +79,7 @@ class ProposalTemporaryData(models.Model):
             'temporary_data': self,
             'moderator': moderator,
         }
-        send_mail(mail_context, 'popular_proposal_accepted', to=[self.proposer.email])
+        send_mail(mail_context, 'popular_proposal_rejected', to=[self.proposer.email])
 
     def get_title(self):
         return self.data.get('title', u'')

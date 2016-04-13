@@ -24,6 +24,7 @@
             <td>Solución</td>
             <td>Cuándo?</td>
             <td>Aliados</td>
+            <td>Organización</td>
             <td>Estado</td>
         </tr>
     {% for proposal in temporary_proposals %}
@@ -40,6 +41,9 @@
             </td>
             <td>{{proposal.data.allies}}
                 {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.allies %}
+            </td>
+            <td>{{proposal.data.organization}}
+                {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.organization %}
             </td>
             <td>
                 {% if proposal.status == 'in_our_side' %}

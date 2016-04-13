@@ -26,6 +26,7 @@
             <td>Solución</td>
             <td>Cuándo?</td>
             <td>Aliados</td>
+            <td>Organización</td>
             <td>Acciones</td>
         </tr>
     {% for proposal in proposals.all %}
@@ -36,6 +37,9 @@
             <td>{{proposal.data.solution}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.solution %}
             </td>
             <td>{{proposal.data.when|popular_proposal_when}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.when %}
+            </td>
+            <td>
+                {{proposal.data.organization}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.organization %}
             </td>
             <td>{{proposal.data.allies}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.allies %}
             </td>

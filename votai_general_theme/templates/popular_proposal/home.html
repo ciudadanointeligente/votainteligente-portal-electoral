@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block extrajs %}
+{% include 'elections/home.js' with detail_url="popular_proposals:propose" %}
+{% endblock extrajs %}
+
+{% block content %}
+<div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h2 class="text-center intro-home">
+        {% trans "Crea tus propuestas ciudadanas" %}
+      </h2>
+
+      <h3>Qué estamos haciendo?</h3>
+      <span>
+        Un lugar donde la ciudadanía podrá presentar a los candidatos de las Elecciones Municipales 2016 soluciones a problemas de su comuna. 
+      </span>
+      <h4>Por qué queremos esto?</h4>
+      <span>Porque históricamente ha habido una relación vertical entre autoridades y ciudadanos, donde son los candidatos y los alcaldes los que toman las decisiones. También porque en el Chile de hoy existe una apatía generalizada hacia lo político.</span>
+      <h4>Nota: Para hacer tu propuesta ciudadana, deberás registrarte en el sitio.</h4>
+    </div>
+  </div>
+    {% include '_election_search_form.html' %}
+</div>
+
+{% endblock content %}

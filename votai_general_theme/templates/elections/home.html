@@ -4,7 +4,7 @@
 {% load thumbnail %}
 
 {% block extrajs %}
-{% include 'elections/home.js' %}
+{% include 'elections/home.js'  with detail_url="popular_proposals:propose"  %}
 {% endblock extrajs %}
 
 {% block content %}
@@ -12,8 +12,17 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <h2 class="text-center intro-home">
-        {% trans "En las próximas elecciones elegiremos <strong>nuestros representantes.</strong> Aquí encontrarás info para votar informado:" %}
+        {% trans "Ayudanos a recolectar propuestas ciudadanas!" %}
       </h2>
+
+      <h3>Qué estamos haciendo?</h3>
+      <span>
+        Un lugar donde la ciudadanía podrá presentar a los candidatos de las Elecciones Municipales 2016 soluciones a problemas de su comuna. 
+      </span>
+      <h4>Por qué queremos esto?</h4>
+      <span>Porque históricamente ha habido una relación vertical entre autoridades y ciudadanos, donde son los candidatos y los alcaldes los que toman las decisiones. También porque en el Chile de hoy existe una apatía generalizada hacia lo político.</span>
+      <h4>Nota: Para hacer tu propuesta ciudadana, deberás registrarte en el sitio.</h4>
+    </div>
     </div>
   </div>
 
@@ -161,35 +170,7 @@
   {% if searchable_elections_enabled %}
 
   <h2>{% trans "Encuentra tus candidatos" %}</h2>
-    <div data-ng-app="votainteligente">
-      <div id="home-search" class="row" data-ng-controller="searchFormController">      
-
-            <div class="row form-group">
-              <div class="col-md-8 col-md-offset-2">
-                <div class="input-group">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default"><i class="icon-search"></i></button>
-                  </span>
-                  <input type="text" class="form-control" ng-enter="console.log('something')" id="id_q" name="q" placeholder="{% trans "Ingresa el nombre de tu comuna" %}" autocomplete="off" data-ng-model="searchElection">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">{% trans "Buscar" %}</button>
-                  </span>
-                </div>
-              </div>
-            </div>
-      
-          <div class="elections-results">
-              <ul class="list-inline" data-ng-show="searchElection">
-                  <li data-ng-repeat="election in (filteredItems = (elections | filter:searchElection:comperator))">
-                    <a href="[[election.detaillink]]">[[election.name]]</a>
-                      <ul>
-                        <li data-ng-repeat="tag in election.tags | filter:searchElection:comperator">[[tag]]</li>
-                      </ul>
-                  </li>
-              </ul>
-          </div>
-        </div>
-    </div>
+    {% include '_election_search_form.html' %}
   {% endif %}
 </div>
 
@@ -199,14 +180,8 @@
   <div class="extra-footer">
         <div class="container">
           <div class="row">
-              <div class="col-md-4">
-                <img src="{% static 'img/dummy-img.jpg' %}">
-              </div>
-              <div class="col-md-4">
-                <img src="{% static 'img/dummy-img.jpg' %}">
-              </div>
-              <div class="col-md-4">
-                 <img src="{% static 'img/dummy-img.jpg' %}">
+              <div class="col-md-12">
+
               </div>
           </div>
       </div>

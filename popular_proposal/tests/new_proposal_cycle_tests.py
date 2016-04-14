@@ -89,7 +89,7 @@ class ProposingViewTestCase(ProposingCycleTestCaseBase):
         self.feli.save()
 
     def test_get_proposing_view(self):
-        url = reverse('popular_proposals:propose', kwargs={'pk': self.arica.id})
+        url = reverse('popular_proposals:propose', kwargs={'slug': self.arica.id})
         #need to be loggedin
         response = self.client.get(url)
         self.assertEquals(response.status_code, 302)
@@ -103,7 +103,7 @@ class ProposingViewTestCase(ProposingCycleTestCaseBase):
         self.assertIsInstance(form, ProposalForm)
 
     def test_post_proposing_view(self):
-        url = reverse('popular_proposals:propose', kwargs={'pk': self.arica.id})
+        url = reverse('popular_proposals:propose', kwargs={'slug': self.arica.id})
 
         self.client.login(username=self.feli,
                           password='alvarez')

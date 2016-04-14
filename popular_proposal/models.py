@@ -7,7 +7,7 @@ from popolo.models import Area, Organization
 from djchoices import DjangoChoices, ChoiceItem
 from votainteligente.send_mails import send_mail
 from django.utils.encoding import python_2_unicode_compatible
-from popolo.models import Organization
+from backend_citizen.models import Enrollment
 
 
 class NeedingModerationManager(models.Manager):
@@ -64,6 +64,8 @@ class ProposalTemporaryData(models.Model):
         if 'organization' in self.data.keys() and self.data['organization']:
             organization, created = Organization.objects.get_or_create(name=self.data['organization'])
             popular_proposal.organization = organization
+            Enrollment.objects.create(organization=organization,
+                                      user=self.proposer)
         popular_proposal.save()
         mail_context = {
             'area': self.area,
@@ -130,22 +132,22 @@ class ProposalLike(models.Model):
         return instance
 
 
-#class SubscriptionEventBase(models.Model):
-#    subscription = models.ManyToManyField(Subscription, related_name='events')
-#    notified = models.BooleanField(default=False)
+# class SubscriptionEventBase(models.Model):
+#     subscription = models.ManyToManyField(Subscription, related_name='events')
+#     notified = models.BooleanField(default=False)
 #
-#    @classmethod
-#    def get_ocurred_ones(cls):
-#        result = []
-#        for event in cls.objects.all():
-#            if event.condition():
-#                result.append(event)
-#        return result
+#     @classmethod
+#     def get_ocurred_ones(cls):
+#         result = []
+#         for event in cls.objects.all():
+#             if event.condition():
+#                 result.append(event)
+#         return result
 #
-#    def send_notifications(self):
-#        pass
+#     def send_notifications(self):
+#         pass
 #
-#    def process(self):
-#        self.send_notifications()
-#        self.notified = True
-#        self.delete()
+#     def process(self):
+#         self.send_notifications()
+#         self.notified = True
+#         self.delete()

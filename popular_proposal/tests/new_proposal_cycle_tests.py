@@ -6,8 +6,6 @@ from popular_proposal.models import ProposalTemporaryData, PopularProposal
 from popular_proposal.forms import ProposalForm
 from django.core.urlresolvers import reverse
 from django.core import mail
-from django.template.loader import get_template
-from django.template import Context
 
 
 class TemporaryDataForPromise(ProposingCycleTestCaseBase):
@@ -69,14 +67,14 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         the_mail = mail.outbox[0]
         self.assertIn(self.fiera.email, the_mail.to)
         self.assertEquals(len(the_mail.to), 1)
-        context = Context({'area': self.arica,
-                           'temporary_data': temporary_data,
-                           'moderator': self.feli
-                           })
-        template_body = get_template('mails/popular_proposal_rejected_body.html')
-        template_subject = get_template('mails/popular_proposal_rejected_subject.html')
-        expected_content= template_body.render(context)
-        expected_subject = template_subject.render(context)
+        # context = Context({'area': self.arica,
+        #                    'temporary_data': temporary_data,
+        #                    'moderator': self.feli
+        #                    })
+        # template_body = get_template('mails/popular_proposal_rejected_body.html')
+        # template_subject = get_template('mails/popular_proposal_rejected_subject.html')
+        # template_body.render(context)
+        # template_subject.render(context)
         self.assertTrue(the_mail.body)
         self.assertTrue(the_mail.subject)
 
@@ -90,7 +88,7 @@ class ProposingViewTestCase(ProposingCycleTestCaseBase):
 
     def test_get_proposing_view(self):
         url = reverse('popular_proposals:propose', kwargs={'pk': self.arica.id})
-        #need to be loggedin
+        # need to be loggedin
         response = self.client.get(url)
         self.assertEquals(response.status_code, 302)
 
@@ -139,6 +137,9 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         popular_proposal = temporary_data.create_proposal(moderator=self.feli)
         self.assertEquals(popular_proposal.proposer, self.fiera)
         self.assertTrue(popular_proposal.organization)
+        self.assertTrue(popular_proposal.organization.enrollments.all())
+        enrollment = popular_proposal.organization.enrollments.first()
+        self.assertEqual(enrollment.user, self.fiera)
         self.assertEquals(popular_proposal.organization.name, self.data['organization'])
         self.assertEquals(popular_proposal.area, self.arica)
         self.assertEquals(popular_proposal.data, self.data)
@@ -153,15 +154,14 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertIn(self.fiera.email, the_mail.to)
         self.assertEquals(len(the_mail.to), 1)
 
-        context = Context({'area': self.arica,
-                           'temporary_data': temporary_data,
-                           'moderator': self.feli
-                          })
-        template_body = get_template('mails/popular_proposal_accepted_body.html')
-        template_subject = get_template('mails/popular_proposal_accepted_subject.html')
-        expected_content= template_body.render(context)
-        expected_subject = template_subject.render(context)
-        self.assertTrue(the_mail.body)
-        self.assertTrue(the_mail.subject)
-        self.assertIn(self.data['title'], str(popular_proposal))
-
+        # context = Context({'area': self.arica,
+        #                    'temporary_data': temporary_data,
+        #                    'moderator': self.feli
+        #                    })
+        # template_body = get_template('mails/popular_proposal_accepted_body.html')
+        # template_subject = get_template('mails/popular_proposal_accepted_subject.html')
+        # expected_content= template_body.render(context)
+        # expected_subject = template_subject.render(context)
+        # self.assertTrue(the_mail.body)
+        # self.assertTrue(the_mail.subject)
+        # self.assertIn(self.data['title'], str(popular_proposal))

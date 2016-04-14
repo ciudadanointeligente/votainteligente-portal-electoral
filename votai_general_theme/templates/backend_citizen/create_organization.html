@@ -1,0 +1,16 @@
+{% extends "backend_base.html" %}
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap_tags %}
+
+{% block content %}
+<form action="{% url 'backend_citizen:create_organization' %}" method="POST" role="form">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">{% trans 'Crea la organización'%}</button>
+    </div>
+</form>
+{% endblock content %}

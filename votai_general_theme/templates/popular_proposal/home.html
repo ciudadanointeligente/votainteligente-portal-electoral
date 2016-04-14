@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block extrajs %}
+{% include 'elections/home.js' with detail_url="popular_proposals:propose" %}
+{% endblock extrajs %}
+
+{% block content %}
+{% include 'popular_proposal/_popular_proposal_explanation.html' %}
+<div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+    </div>
+  </div>
+  <h2>{% trans "Encuentra tu comuna" %}</h2>
+    {% include '_election_search_form.html' %}
+</div>
+
+{% endblock content %}

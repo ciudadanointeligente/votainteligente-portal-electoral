@@ -71,7 +71,7 @@ $(function(){
       </ul>
 
       {% if user.is_authenticated %}
-        <a href="{% url 'popular_proposals:propose' pk=area.id %}" class="btn btn-primary btn-lg active">{% blocktrans with area=area.name %}Crear una propuesta ciudadana{% endblocktrans %}</a>
+        <a href="{% url 'popular_proposals:propose' slug=area.id %}" class="btn btn-primary btn-lg active">{% blocktrans with area=area.name %}Crear una propuesta ciudadana{% endblocktrans %}</a>
       {% endif %}
     </div>
 

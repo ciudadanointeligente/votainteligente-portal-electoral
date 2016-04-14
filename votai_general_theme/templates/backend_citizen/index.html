@@ -29,7 +29,7 @@
         </tr>
     {% for proposal in temporary_proposals %}
         <tr>
-            <td>{{proposal.area}}</td>
+            <td><a href="{% url 'area' slug=proposal.area.id %}">{{proposal.area}}</a></td>
             <td>{{proposal.data.problem}}
                 {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.problem %}
             </td>

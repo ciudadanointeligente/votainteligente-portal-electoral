@@ -4,18 +4,11 @@
 {% load thumbnail %}
 
 {% block extrajs %}
-{% include 'elections/home.js' %}
+{% include 'elections/home.js'  with detail_url="popular_proposals:propose"  %}
 {% endblock extrajs %}
 
 {% block content %}
-<div>
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <h2 class="text-center intro-home">
-        {% trans "En las próximas elecciones elegiremos <strong>nuestros representantes.</strong> Aquí encontrarás info para votar informado:" %}
-      </h2>
-    </div>
-  </div>
+  {% include 'popular_proposal/_popular_proposal_explanation.html' %}
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
@@ -160,36 +153,8 @@
   <!-- Searchable Elections  -->
   {% if searchable_elections_enabled %}
 
-  <h2>{% trans "Encuentra tus candidatos" %}</h2>
-    <div data-ng-app="votainteligente">
-      <div id="home-search" class="row" data-ng-controller="searchFormController">      
-
-            <div class="row form-group">
-              <div class="col-md-8 col-md-offset-2">
-                <div class="input-group">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default"><i class="icon-search"></i></button>
-                  </span>
-                  <input type="text" class="form-control" ng-enter="console.log('something')" id="id_q" name="q" placeholder="{% trans "Ingresa el nombre de tu comuna" %}" autocomplete="off" data-ng-model="searchElection">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">{% trans "Buscar" %}</button>
-                  </span>
-                </div>
-              </div>
-            </div>
-      
-          <div class="elections-results">
-              <ul class="list-inline" data-ng-show="searchElection">
-                  <li data-ng-repeat="election in (filteredItems = (elections | filter:searchElection:comperator))">
-                    <a href="[[election.detaillink]]">[[election.name]]</a>
-                      <ul>
-                        <li data-ng-repeat="tag in election.tags | filter:searchElection:comperator">[[tag]]</li>
-                      </ul>
-                  </li>
-              </ul>
-          </div>
-        </div>
-    </div>
+  <h2>{% trans "Encuentra tu comuna" %}</h2>
+    {% include '_election_search_form.html' %}
   {% endif %}
 </div>
 
@@ -199,14 +164,8 @@
   <div class="extra-footer">
         <div class="container">
           <div class="row">
-              <div class="col-md-4">
-                <img src="{% static 'img/dummy-img.jpg' %}">
-              </div>
-              <div class="col-md-4">
-                <img src="{% static 'img/dummy-img.jpg' %}">
-              </div>
-              <div class="col-md-4">
-                 <img src="{% static 'img/dummy-img.jpg' %}">
+              <div class="col-md-12">
+
               </div>
           </div>
       </div>

@@ -31,12 +31,12 @@ def elections_json():
 
 
 @register.simple_tag
-def areas_json():
+def areas_json(url='area'):
     areas = []
     for area in Area.objects.all():
         area_dict = {'slug': area.id,
                      'name': area.name,
-                     'detaillink': reverse('area', kwargs={'slug': area.id}),
+                     'detaillink': reverse(url, kwargs={'slug': area.id}),
                      }
         areas.append(area_dict)
     return mark_safe(json.dumps(areas))

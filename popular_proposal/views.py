@@ -15,7 +15,7 @@ class ProposalCreationView(FormView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        self.area = get_object_or_404(Area, id=self.kwargs['pk'])
+        self.area = get_object_or_404(Area, id=self.kwargs['slug'])
         return super(ProposalCreationView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -62,9 +62,12 @@ class SubscriptionView(FormView):
         return kwargs
 
     def get_success_url(self):
-        return reverse('area',kwargs={'slug':self.proposal.area.id})
+        return reverse('area', kwargs={'slug': self.proposal.area.id})
 
     def form_valid(self, form):
         form.subscribe()
         return super(SubscriptionView, self).form_valid(form)
 
+
+class HomeView(TemplateView):
+    template_name = 'popular_proposal/home.html'

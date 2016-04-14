@@ -1,6 +1,6 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
-from popolo.models import Area, Organization
+from popolo.models import Organization
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData, PopularProposal
 from popular_proposal.forms import ProposalForm
@@ -72,7 +72,7 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         context = Context({'area': self.arica,
                            'temporary_data': temporary_data,
                            'moderator': self.feli
-                          })
+                           })
         template_body = get_template('mails/popular_proposal_rejected_body.html')
         template_subject = get_template('mails/popular_proposal_rejected_subject.html')
         expected_content= template_body.render(context)
@@ -164,3 +164,4 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(the_mail.body)
         self.assertTrue(the_mail.subject)
         self.assertIn(self.data['title'], str(popular_proposal))
+

@@ -16,7 +16,7 @@
   <div class="contenedorDestacado fondo-blanco">
       <h1>{% blocktrans %}¡Bienvenid@ {{user}}!{% endblocktrans %}</h1>
     
-      
+      {% if temporary_proposals %}
       <table class="table">
         <tr>
             <td>Area</td>
@@ -65,7 +65,12 @@
                 {% endif %}
             </td>
         </tr>
+    {% empty %}
     {% endfor %}
+    {% else %}
+        {% trans 'Aún no tienes propuestas, pero puedes:' %}
+        <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary btn-lg active btn-block" role="button">{% trans 'Crear una propuesta Ciudadana' %}</a>
+    {% endif %}
     </table>
 
 </div>

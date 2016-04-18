@@ -54,7 +54,7 @@ TOPIC_CHOICES =(
 
 class ProposalFormBase(forms.Form):
     problem = forms.CharField(label=_(u'Según la óptica de tu organización, describe un problema de tu comuna que \
-                                      quieras solucionar. líneas)'),
+                                      quieras solucionar. 2 líneas)'),
         help_text=_(u'Ej: Poca participación en el Plan Regulador, falta de transparencia en el trabajo de la \
                     municipalidad, pocos puntos de reciclaje, etc.'))
     solution = forms.CharField(label=_(u'¿Qué debería hacer la municipalidad para solucionar el problema? (3 líneas)'),

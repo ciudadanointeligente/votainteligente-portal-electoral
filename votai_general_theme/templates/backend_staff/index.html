@@ -24,6 +24,7 @@
             <td>Area</td>
             <td>Problema</td>
             <td>Solución</td>
+            <td>Y a los 4 años?</td>
             <td>Cuándo?</td>
             <td>Aliados</td>
             <td>Organización</td>
@@ -36,6 +37,8 @@
             <td>{{proposal.data.problem}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.problem %}
             </td>
             <td>{{proposal.data.solution}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.solution %}
+            </td>
+            <td>{{proposal.data.solution_at_the_end}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.solution_at_the_end %}
             </td>
             <td>{{proposal.data.when|popular_proposal_when}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.when %}
             </td>

@@ -9,7 +9,7 @@ from backend_staff.views import (
 )
 
 urlpatterns = patterns('',
-    url(r'^index/?$',
+    url(r'^$',
         IndexView.as_view(),
         name='index'),
     url(r'^popular_proposal_comments/(?P<pk>[-\w]+)/?$',

@@ -5,7 +5,7 @@ from backend_citizen.views import (IndexView,
                                    )
 
 urlpatterns = patterns('',
-    url(r'^index/?$',
+    url(r'^$',
         IndexView.as_view(),
         name='index'),
     url(r'^update_temporary_data/(?P<pk>[\d]+)/?$',

@@ -136,15 +136,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
                                                               data=self.data,
                                                               comments=self.comments,
                                                               status=ProposalTemporaryData.Statuses.InTheirSide)
-
-        #data = {
-        #    'clasification': u'genero',
-        #    'title': u'Fiera de vuelta con sus amigos!',
-        #    'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
-        #    'solution': u'Viajar a ver al equipo una vez al mes',
-        #    'when': u'1_year',
-        #    'allies': u'El Feli y el resto de los cabros de la FCI'
-        #}
         data = self.data
         data['solution'] = u'Viajar a ver al equipo una vez al mes'
         form = ProposalTemporaryDataUpdateForm(data=data,
@@ -155,7 +146,8 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(form.is_valid())
         temporary_data = form.save()
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
-        self.assertEquals(temporary_data.data, data)
+        for key in data.keys():
+            self.assertEquals(temporary_data.data[key], data[key])
         self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.InOurSide)
 
     def test_when_template_tag(self):

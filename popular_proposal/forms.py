@@ -128,7 +128,7 @@ class RejectionForm(forms.Form):
 
 
 class ProposalTemporaryDataUpdateForm(ProposalFormBase):
-    overall_comments = forms.CharField(required=False, label=_('Comentarios sobre tu revisón'))
+    overall_comments = forms.CharField(required=False, label=_(u'Comentarios sobre tu revisón'))
     
     
     def __init__(self, *args, **kwargs):

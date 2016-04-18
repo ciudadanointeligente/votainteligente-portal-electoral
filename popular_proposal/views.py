@@ -6,6 +6,7 @@ from popolo.models import Area
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
 from popular_proposal.models import PopularProposal
 
 
@@ -71,3 +72,9 @@ class SubscriptionView(FormView):
 
 class HomeView(TemplateView):
     template_name = 'popular_proposal/home.html'
+
+
+class PopularProposalDetailView(DetailView):
+    model = PopularProposal
+    template_name = 'popular_proposal/detail.html'
+    context_object_name = 'popular_proposal'

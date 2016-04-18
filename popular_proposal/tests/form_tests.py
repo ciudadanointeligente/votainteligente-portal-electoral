@@ -12,7 +12,7 @@ from popular_proposal.models import ProposalTemporaryData
 from django.core import mail
 from django.template.loader import get_template
 from django.template import Context, Template
-from popular_proposal.forms import WHEN_CHOICES
+from popular_proposal.forms import WHEN_CHOICES, ProposalFormBase
 
 
 class FormTestCase(ProposingCycleTestCaseBase):
@@ -161,3 +161,11 @@ class FormTestCase(ProposingCycleTestCaseBase):
         template = Template("{% load votainteligente_extras %}{{ 'perrito'|popular_proposal_when }}")
         self.assertEquals(template.render(Context({})), 'perrito')
 
+    def test_form_questions_template_tag(self):
+        fields = ProposalFormBase.base_fields
+        key = fields.keys()[0]
+        question = fields[key].label
+        template = Template("{% load votainteligente_extras %}{{ 'problem'|popular_proposal_question }}")
+        self.assertEquals(template.render(Context({})), question)
+        template = Template("{% load votainteligente_extras %}{{ 'perrito'|popular_proposal_question }}")
+        self.assertEquals(template.render(Context({})), 'perrito')

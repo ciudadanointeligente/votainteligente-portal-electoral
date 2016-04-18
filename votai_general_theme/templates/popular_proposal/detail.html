@@ -30,7 +30,7 @@ $(function(){
           
       
       {% for key, value in popular_proposal.data.items %}
-          <dt>{{key}}</dt>
+          <dt>{{key|popular_proposal_question}}</dt>
           <dd>{{value|popular_proposal_when}}</dd>
       {% endfor %}
       </dl>

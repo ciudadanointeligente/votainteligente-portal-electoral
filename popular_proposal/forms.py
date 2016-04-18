@@ -54,13 +54,13 @@ TOPIC_CHOICES =(
 
 class ProposalFormBase(forms.Form):
     problem = forms.CharField(label=_(u'Según la óptica de tu organización, describe un problema de tu comuna que \
-                                      quieras solucionar. 2 líneas)'),
+quieras solucionar. (2 líneas)'),
                               help_text=_(u'Ej: Poca participación en el Plan Regulador, falta de transparencia en \
-                                      el trabajo de la municipalidad, pocos puntos de reciclaje, etc.'),
+el trabajo de la municipalidad, pocos puntos de reciclaje, etc.'),
                               max_length=512)
     solution = forms.CharField(label=_(u'¿Qué debería hacer la municipalidad para solucionar el problema? (3 líneas)'),
                                help_text=_(u'Ejemplo: "Crear una ciclovia que circunvale Valdivia", \
-                                            "Que se publiquen todos los concejos municipales en el sitio web del municipio".'),
+"Que se publiquen todos los concejos municipales en el sitio web del municipio".'),
                                max_length=256,
                               )
     solution_at_the_end = forms.CharField(label=u"¿Qué avances concretos esperas que se logren durante el periodo del alcalde (4 años)?",
@@ -69,7 +69,7 @@ class ProposalFormBase(forms.Form):
     when = forms.ChoiceField(choices=WHEN_CHOICES, label=_(u'¿En qué plazo te gustaría que esté solucionado?'))
     title = forms.CharField(label=_(u'Título corto'),
                             help_text=_(u"Un título que nos permita describir tu propuesta\
-                                          ciudadana. Ej: 50% más de ciclovías para la comuna"),
+ciudadana. Ej: 50% más de ciclovías para la comuna"),
                               max_length=256,)
     clasification = forms.ChoiceField(choices=TOPIC_CHOICES, label=_(u'¿Cómo clasificarías tu propuesta?'))
     allies = forms.CharField(label=_(u'¿Quiénes son tus posibles aliados?'),

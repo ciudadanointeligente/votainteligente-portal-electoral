@@ -57,11 +57,10 @@ class ProposalFormBase(forms.Form):
         help_text=_(u'Ej: Poca participación en el Plan Regulador, falta de transparencia en el trabajo de la \
                     municipalidad, pocos puntos de reciclaje, etc.'))
     solution = forms.CharField(label=_(u'¿Qué debería hacer la municipalidad para solucionar el problema? (3 líneas)'),
-        help_text=_(u'Ejemplo: "Que se aumenten en 30% las horas de atención de la especialidad Cardiología en \
-                    los Cesfam y consultorios de la comuna", "Que se publiquen todos los concejos municipales en \
+        help_text=_(u'Ejemplo: "Crear una ciclovia que circunvale Valdivia", "Que se publiquen todos los concejos municipales en \
                     el sitio web del municipio".'))
     solution_at_the_end = forms.CharField(label=u"¿Qué avances concretos esperas que se logren durante el periodo del alcalde (4 años)?",
-        help_text=_(u"Ejemplo: "), required=False)
+        help_text=_(u'Ejemplo: "Aumentar en un 20% la cantidad de ciclovías en la ciudad"'), required=False)
     when = forms.ChoiceField(choices=WHEN_CHOICES, label=_(u'¿En qué plazo te gustaría que esté solucionado?'))
     title = forms.CharField(label=_(u'Título corto'), help_text=_(u"Un título que nos permita describir tu propuesta\
                                                                    ciudadana. Ej: 50% más de ciclovías para la comuna"))

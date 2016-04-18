@@ -25,6 +25,7 @@ class ProposingCycleTestCaseBase(TestCase):
             'solution': '',
             'when': u'El plazo no está tan bueno',
             'allies': ''
+            
         }
 
 

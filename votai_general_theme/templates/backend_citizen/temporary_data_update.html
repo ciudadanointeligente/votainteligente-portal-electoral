@@ -1,12 +1,30 @@
+{% extends "backend_base.html" %}
 {% load bootstrap_tags %}
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
 
-<form action="{% url 'backend_citizen:temporary_data_update' pk=temporary_data.id %}" method="POST" role="form">
-    {% csrf_token %}
-    {{ form|as_bootstrap }}
-    <div class="form-actions">
-        <button type="submit" class="btn btn-primary">{% trans 'Actualiza tu propuesta'%}</button>
+{% block content %}
+
+
+
+<div class="contenedorDestacado fondo-blanco">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h2 class="text-center intro-home">
+        {% trans "Actualiza tu propuesta" %}
+      </h2>
+        <form action="{% url 'backend_citizen:temporary_data_update' pk=temporary_data.id %}" method="POST" role="form">
+            {% csrf_token %}
+            {{ form|as_bootstrap }}
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">{% trans 'Actualiza tu propuesta'%}</button>
+            </div>
+        </form>
+        
+        
     </div>
-</form>
+    </div>
+  </div>
+
+{% endblock content %}

@@ -8,6 +8,7 @@ from djchoices import DjangoChoices, ChoiceItem
 from votainteligente.send_mails import send_mail
 from django.utils.encoding import python_2_unicode_compatible
 from backend_citizen.models import Enrollment
+from django.contrib.sites.models import Site
 
 
 class NeedingModerationManager(models.Manager):
@@ -39,6 +40,10 @@ class ProposalTemporaryData(models.Model):
                               choices=Statuses.choices,
                               validators=[Statuses.validator],
                               default=Statuses.InOurSide)
+    overall_comments = models.CharField(max_length=512,
+                                        blank=True,
+                                        null=True,
+                                        default="")
 
     needing_moderation = NeedingModerationManager()
     objects = models.Manager()
@@ -67,10 +72,12 @@ class ProposalTemporaryData(models.Model):
             Enrollment.objects.create(organization=organization,
                                       user=self.proposer)
         popular_proposal.save()
+        site = Site.objects.get_current()
         mail_context = {
             'area': self.area,
             'temporary_data': self,
             'moderator': moderator,
+            'site': site,
         }
         send_mail(mail_context, 'popular_proposal_accepted', to=[self.proposer.email])
         return popular_proposal
@@ -79,10 +86,12 @@ class ProposalTemporaryData(models.Model):
         self.rejected_reason = reason
         self.status = ProposalTemporaryData.Statuses.Rejected
         self.save()
+        site = Site.objects.get_current()
         mail_context = {
             'area': self.area,
             'temporary_data': self,
             'moderator': moderator,
+            'site': site,
         }
         send_mail(mail_context, 'popular_proposal_rejected', to=[self.proposer.email])
 

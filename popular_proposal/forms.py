@@ -3,6 +3,7 @@ from django import forms
 from popular_proposal.models import ProposalTemporaryData, ProposalLike
 from votainteligente.send_mails import send_mail
 from django.utils.translation import ugettext as _
+from django.contrib.sites.models import Site
 
 
 WHEN_CHOICES = [
@@ -106,11 +107,15 @@ class CommentsForm(forms.Form):
                     'original': self.temporary_data.data[key],
                     'comments': self.temporary_data.comments[key]
                 }
+        
+        site = Site.objects.get_current()
         mail_context = {
             'area': self.temporary_data.area,
             'temporary_data': self.temporary_data,
             'moderator': self.moderator,
-            'comments': comments
+            'comments': comments,
+            'site': site,
+            
         }
         send_mail(mail_context, 'popular_proposal_moderation', to=[self.temporary_data.proposer.email])
         return self.temporary_data
@@ -129,6 +134,9 @@ class RejectionForm(forms.Form):
 
 
 class ProposalTemporaryDataUpdateForm(ProposalFormBase):
+    overall_comments = forms.CharField(required=False, label=_(u'Comentarios sobre tu revisón'))
+    
+    
     def __init__(self, *args, **kwargs):
         self.proposer = kwargs.pop('proposer')
         self.temporary_data = kwargs.pop('temporary_data')
@@ -140,11 +148,15 @@ class ProposalTemporaryDataUpdateForm(ProposalFormBase):
                 self.fields[comment_key].help_text += _(' <b>Commentarios: %s </b>') % (comment)
 
     def save(self):
+        self.overall_comments = self.cleaned_data.pop('overall_comments')
         self.temporary_data.data = self.cleaned_data
+        self.temporary_data.overall_comments = self.overall_comments
         self.temporary_data.status = ProposalTemporaryData.Statuses.InOurSide
         self.temporary_data.save()
         return self.temporary_data
-
+    
+    def get_overall_comments(self):
+        return self.cleaned_data.get('overall_comments', '')
 
 class SubscriptionForm(forms.Form):
     def __init__(self, *args, **kwargs):

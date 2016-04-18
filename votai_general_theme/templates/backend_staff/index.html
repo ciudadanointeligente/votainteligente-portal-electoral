@@ -27,6 +27,7 @@
             <td>Cuándo?</td>
             <td>Aliados</td>
             <td>Organización</td>
+            <td>Comentarios del usuario</td>
             <td>Acciones</td>
         </tr>
     {% for proposal in proposals.all %}
@@ -38,11 +39,14 @@
             </td>
             <td>{{proposal.data.when|popular_proposal_when}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.when %}
             </td>
+            <td>{{proposal.data.allies}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.allies %}
+            </td>
             <td>
                 {{proposal.data.organization}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.organization %}
             </td>
-            <td>{{proposal.data.allies}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.allies %}
-            </td>
+            <td>{% if proposal.overall_comments %}<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{% endif %}
+                {{proposal.overall_comments}}
+                </td>
             <td>
                 <a data-toggle="modal" data-target="#proposalComments" 
                     data-url="{% url 'backend_staff:popular_proposal_comments' pk=proposal.id %}">

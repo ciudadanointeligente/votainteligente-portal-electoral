@@ -147,16 +147,20 @@ class FormTestCase(ProposingCycleTestCaseBase):
         #}
         data = self.data
         data['solution'] = u'Viajar a ver al equipo una vez al mes'
+        data['overall_comments'] = u"Quizás sea una buena idea que revises si conviene el plazo de un año"
         form = ProposalTemporaryDataUpdateForm(data=data,
                                                temporary_data=temporary_data,
                                                proposer=self.fiera)
         self.assertTrue(form.initial)
         self.assertIn(self.comments['when'], form.fields['when'].help_text)
         self.assertTrue(form.is_valid())
+        self.assertEquals(form.get_overall_comments(), data['overall_comments'])
         temporary_data = form.save()
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
+        overall_comments = data.pop('overall_comments')
         self.assertEquals(temporary_data.data, data)
         self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.InOurSide)
+        self.assertEquals(temporary_data.overall_comments, overall_comments)
 
     def test_when_template_tag(self):
         choice = WHEN_CHOICES[0]

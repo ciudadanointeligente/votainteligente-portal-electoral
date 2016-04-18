@@ -39,6 +39,10 @@ class ProposalTemporaryData(models.Model):
                               choices=Statuses.choices,
                               validators=[Statuses.validator],
                               default=Statuses.InOurSide)
+    overall_comments = models.CharField(max_length=512,
+                                        blank=True,
+                                        null=True,
+                                        default="")
 
     needing_moderation = NeedingModerationManager()
     objects = models.Manager()

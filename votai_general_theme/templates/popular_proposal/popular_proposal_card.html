@@ -10,37 +10,8 @@
             {% else %}
                 {{proposal.data.solution}}
             {% endif %}
-            {% if proposal.likers.all %}
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-success" role="alert">
-                        <span class="badge">{{proposal.likers.count}}</span>
-                        {% blocktrans %}Ciudadanos apoyan{% endblocktrans %}
-                    </div>
-                    
-                </div>
-            </div>
-            {% endif %}
-            <div class="row">
-                <div class="col-md-12">
-                    {% if user.is_authenticated %}
-
-                        {% if not user|likes:proposal %}
-                        <a class="btn btn-md btn-success full-width" data-toggle="modal" data-target="#supportProposal" 
-                            data-url="{% url 'popular_proposals:like_a_proposal' pk=proposal.id %}">
-                            {% blocktrans %}Apoyar{% endblocktrans %}
-                            </span> 
-                        </a>
-                        {% endif %}
-                    {% else %}
-                        <a class="btn btn-md btn-success full-width"  href="{% url 'auth_login' %}">
-                            {% blocktrans %}Apoyar{% endblocktrans %}
-                            </span> 
-                        </a>
-
-                    {% endif%}
-                    </div>
-                </div>
-            </div>
+            <a href="{% url 'popular_proposals:detail' slug=proposal.slug %}"><i class="fa fa-link" aria-hidden="true"></i></a>
+            {% include 'popular_proposal/_likers.html' with proposal=proposal %}
+        </div>
     </div>
     </div>

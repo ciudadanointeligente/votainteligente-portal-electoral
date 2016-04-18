@@ -126,6 +126,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
                                                           )
         self.assertTrue(popular_proposal.created)
         self.assertTrue(popular_proposal.updated)
+        self.assertTrue(popular_proposal.slug)
         self.assertEquals(popular_proposal.title, u'This is a title')
         self.assertIn(popular_proposal, self.fiera.proposals.all())
         self.assertIn(popular_proposal, self.arica.proposals.all())

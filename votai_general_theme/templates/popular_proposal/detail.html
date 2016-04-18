@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load votainteligente_extras %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap_tags %}
+{% block extrajs %}
+$(function(){
+    $('.loadFromUrl').on('show.bs.modal', function (event) {
+      var anchor = $(event.relatedTarget) // Button that triggered the modal
+      var modal = $(this)
+      var body = modal.find('.modal-body');
+      body.load(anchor.data('url'));
+    })
+    $('[data-toggle="tooltip"]').tooltip();
+});
+{% endblock extrajs %}
+
+{% block title %}{{popular_proposal.title}}{% endblock title%}
+
+{% block content %}
+{% include 'modal.html' with modalId='supportProposal' title='Apoya una propuesta' %}
+<div>
+
+  
+  <!-- Featured Elections  -->
+  <div class="contenedorDestacado fondo-blanco">
+  <h1>{{popular_proposal.title}}</h1>
+  <div class="text-right"><a href="{% url 'area' slug=popular_proposal.area.id %}" class="btn btn-primary btn-lg">{{popular_proposal.area}}</a></div>
+  
+      <dl>
+          
+      
+      {% for key, value in popular_proposal.data.items %}
+          <dt>{{key|popular_proposal_question}}</dt>
+          <dd>{{value|popular_proposal_when}}</dd>
+      {% endfor %}
+      </dl>
+  </div>
+    {% include 'popular_proposal/_likers.html' with proposal=popular_proposal %}
+</div>
+{% endblock content %}
+
+{% block extrafooter %}
+{% endblock extrafooter %}

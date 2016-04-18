@@ -10,7 +10,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from backend_citizen.models import Enrollment
 from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
-import uuid
+from django.core.urlresolvers import reverse
 
 
 class NeedingModerationManager(models.Manager):
@@ -107,7 +107,7 @@ class ProposalTemporaryData(models.Model):
 @python_2_unicode_compatible
 class PopularProposal(models.Model):
     title = models.CharField(max_length=255, default='')
-    slug = AutoSlugField(populate_from='title', unique=True, default=uuid.uuid4)
+    slug = AutoSlugField(populate_from='title', unique=True)
     proposer = models.ForeignKey(User, related_name='proposals')
     area = models.ForeignKey(Area, related_name='proposals')
     data = PickledObjectField()
@@ -122,6 +122,9 @@ class PopularProposal(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('popular_proposals:detail', kwargs={'slug': self.slug})
 
 
 class Subscription(models.Model):

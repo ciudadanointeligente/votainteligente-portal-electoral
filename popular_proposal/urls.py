@@ -6,7 +6,7 @@ from popular_proposal.views import (ProposalCreationView,
                                     )
 
 urlpatterns = patterns('',
-    url(r'^/?$',
+    url(r'^$',
         HomeView.as_view(),
         name='home'),
     url(r'^(?P<slug>[-\w]+)/?$',

@@ -22,6 +22,7 @@ class ProposalViewTestCase(TestCase):
                                                           )
         # no need to be logged in
         url = reverse('popular_proposals:detail', kwargs={'slug': popular_proposal.slug})
+        self.assertEquals(popular_proposal.get_absolute_url(), url)
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertEqual(response.context['popular_proposal'], popular_proposal)

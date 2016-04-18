@@ -142,13 +142,14 @@ class MessageTestCase(TestCase):
         self.assertTrue(message.outbound_identifiers.all())
         self.assertTrue(message.outbound_identifiers.filter(person=self.candidate1))
         self.assertTrue(message.outbound_identifiers.filter(person=self.candidate2))
-        #reply-to
-        reply_to_arrays = [ '%(localpart)s+%(key)s@%(domain)s' % {'localpart': EMAIL_LOCALPART,
+        identifiers = message.outbound_identifiers.all()
+        # reply-to part
+        reply_to_arrays = []
+        for identifier in identifiers:
+            print identifier.key
+            reply_to_arrays.append('%(localpart)s+%(key)s@%(domain)s' % {'localpart': EMAIL_LOCALPART,
                                                                   'domain': EMAIL_DOMAIN,
-                                                                  'key':message.outbound_identifiers.all()[0].key},
-                           '%(localpart)s+%(key)s@%(domain)s' % {'localpart': EMAIL_LOCALPART,
-                                                                 'domain': EMAIL_DOMAIN,
-                                                                 'key':message.outbound_identifiers.all()[1].key}]
+                                                                  'key':identifier.key})
         for the_mail in mail.outbox:
             self.assertEquals(len(the_mail.reply_to), 1)
             self.assertIn(the_mail.reply_to[0], reply_to_arrays)
@@ -509,6 +510,7 @@ class MessagesOrderedList(TestCase):
 
     def test_message_class_has_a_manager(self):
         messages = Message.ordered.all()
+        print messages
 
         self.assertEquals(messages.count(), 5)
         self.assertEquals(messages[0], self.message4)#because it has answers

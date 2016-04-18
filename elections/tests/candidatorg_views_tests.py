@@ -23,13 +23,13 @@ class CandidateInElectionsViewsTestCase(TestCase):
         self.assertTrue(url)
 
     def test_url_duplicated(self):
-        candidate = self.coquimbo.candidates.all()[0]
+        candidate = self.coquimbo.candidates.get(id=1)
         candidate.slug = self.tarapaca.candidates.all()[0].id
         candidate.save()
 
         url_2 = reverse('candidate_detail_view', kwargs={
             'election_slug': self.coquimbo.slug,
-            'slug': self.coquimbo.candidates.all()[0].id
+            'slug': candidate.id
             })
 
         response = self.client.get(url_2)

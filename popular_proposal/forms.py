@@ -83,7 +83,7 @@ class ProposalForm(ProposalFormBase):
 
 class CommentsForm(forms.Form):
     def __init__(self, *args, **kwargs):
-        self.temporary_data = kwargs.pop('temporary_area')
+        self.temporary_data = kwargs.pop('temporary_data')
         self.moderator = kwargs.pop('moderator')
         super(CommentsForm, self).__init__(*args, **kwargs)
         for field in self.temporary_data.comments.keys():
@@ -119,7 +119,7 @@ class RejectionForm(forms.Form):
     reason = forms.CharField()
 
     def __init__(self, *args, **kwargs):
-        self.temporary_data = kwargs.pop('temporary_area')
+        self.temporary_data = kwargs.pop('temporary_data')
         self.moderator = kwargs.pop('moderator')
         super(RejectionForm, self).__init__(*args, **kwargs)
 

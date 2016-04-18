@@ -43,10 +43,10 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(t_data['allies'], self.data['allies'])
 
     def test_comments_form(self):
-        temporary_area = ProposalTemporaryData.objects.create(proposer=self.fiera,
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
                                                               data=self.data)
-        form = CommentsForm(temporary_area=temporary_area,
+        form = CommentsForm(temporary_data=temporary_data,
                             moderator=self.feli)
         self.assertIsInstance(form.fields['problem'], CharField)
         self.assertIsInstance(form.fields['when'], CharField)
@@ -66,7 +66,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
 
         form = CommentsForm(data=data,
                             moderator=self.feli,
-                            temporary_area=temporary_data)
+                            temporary_data=temporary_data)
         self.assertTrue(form.is_valid())
         t_data = form.save()
         self.assertEquals(t_data.comments['when'], data['when'])
@@ -111,7 +111,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
                                                               comments=comments,
                                                               status=ProposalTemporaryData.Statuses.InTheirSide)
         form = CommentsForm(moderator=self.feli,
-                            temporary_area=temporary_data)
+                            temporary_data=temporary_data)
 
         self.assertIn(comments['when'], form.fields['when'].help_text)
 
@@ -123,7 +123,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         data = {'reason': u'No es un buen ejemplo'}
         form = RejectionForm(data=data,
                              moderator=self.feli,
-                             temporary_area=temporary_data)
+                             temporary_data=temporary_data)
         self.assertTrue(form.is_valid())
         form.reject()
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)

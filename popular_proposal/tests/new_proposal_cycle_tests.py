@@ -13,31 +13,31 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         super(TemporaryDataForPromise, self).setUp()
 
     def test_instanciate_one(self):
-        temporary_area = ProposalTemporaryData.objects.create(proposer=self.fiera,
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
                                                               data=self.data)
-        self.assertTrue(temporary_area)
-        self.assertFalse(temporary_area.rejected)
-        self.assertFalse(temporary_area.rejected_reason)
+        self.assertTrue(temporary_data)
+        self.assertFalse(temporary_data.rejected)
+        self.assertFalse(temporary_data.rejected_reason)
 
-        self.assertIsNotNone(temporary_area.comments['title'])
-        self.assertIsNotNone(temporary_area.comments['problem'])
-        self.assertIsNotNone(temporary_area.comments['solution'])
-        self.assertIsNotNone(temporary_area.comments['when'])
-        self.assertIsNotNone(temporary_area.comments['allies'])
-        self.assertEquals(temporary_area.status, ProposalTemporaryData.Statuses.InOurSide)
-        self.assertIn(temporary_area, self.fiera.temporary_proposals.all())
-        self.assertEquals(temporary_area.get_title(), self.data['title'])
-        self.assertEquals(str(temporary_area.get_title()), self.data['title'])
+        self.assertIsNotNone(temporary_data.comments['title'])
+        self.assertIsNotNone(temporary_data.comments['problem'])
+        self.assertIsNotNone(temporary_data.comments['solution'])
+        self.assertIsNotNone(temporary_data.comments['when'])
+        self.assertIsNotNone(temporary_data.comments['allies'])
+        self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.InOurSide)
+        self.assertIn(temporary_data, self.fiera.temporary_proposals.all())
+        self.assertEquals(temporary_data.get_title(), self.data['title'])
+        self.assertEquals(str(temporary_data.get_title()), self.data['title'])
 
     def test_proposing_with_an_organization(self):
         local_org = Organization.objects.create(name="Local Organization")
-        temporary_area = ProposalTemporaryData.objects.create(proposer=self.fiera,
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               organization=local_org,
                                                               area=self.arica,
                                                               data=self.data)
-        self.assertTrue(temporary_area)
-        self.assertEquals(temporary_area.organization, local_org)
+        self.assertTrue(temporary_data)
+        self.assertEquals(temporary_data.organization, local_org)
 
     def test_needing_moderation_proposals(self):
         td_waiting_for_moderation = ProposalTemporaryData.objects.create(proposer=self.fiera,

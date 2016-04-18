@@ -40,7 +40,7 @@ class PopularProposalCommentsView(FormView):
 
     def get_form_kwargs(self):
         kwargs = super(PopularProposalCommentsView, self).get_form_kwargs()
-        kwargs['temporary_area'] = self.temporary_data
+        kwargs['temporary_data'] = self.temporary_data
         kwargs['moderator'] = self.request.user
         return kwargs
 
@@ -69,7 +69,7 @@ class ModeratePopularProposalView(DetailView):
         pk = self.kwargs.pop('pk')
         temporary_data = get_object_or_404(ProposalTemporaryData, pk=pk)
 
-        context['form'] = RejectionForm(temporary_area=temporary_data,
+        context['form'] = RejectionForm(temporary_data=temporary_data,
                                         moderator=self.request.user)
         return context
 
@@ -99,7 +99,7 @@ class RejectPopularProposalView(FormView):
         kwargs = super(RejectPopularProposalView, self).get_form_kwargs()
         pk = self.kwargs.pop('pk')
         temporary_data = get_object_or_404(ProposalTemporaryData, pk=pk)
-        kwargs['temporary_area'] = temporary_data
+        kwargs['temporary_data'] = temporary_data
         kwargs['moderator'] = self.request.user
         return kwargs
 

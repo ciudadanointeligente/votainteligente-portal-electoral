@@ -3,10 +3,12 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+   
+@import 'colors';
 
 html, body {
-	background-color: #eaedf2;
-	color: #323a45;
+	background-color: $background-color;
+	color: $letters-color;
 	height: 100%;
 	-webkit-font-smoothing: antialiased;
 	font-family: 'Lato', sans-serif;
@@ -46,11 +48,11 @@ h5 {
 
 
 a {
-	color: #14b9d5;
+	color: $anchor-color;
 }
 
 a:hover {
-	color: #0e778a;
+	color: $hover-letters;
 	text-decoration: none;
 }
 
@@ -59,17 +61,17 @@ strong {
 }
 
 .txt-gris {
-	color: #9fa7b4;
+	color: $txt-gris;
 }
 
 .fondo-blanco {
-	background: #fff;
+	background: $main-background-color;
 	border-radius: 6px;
 	padding: 10px;
 }
 
 .contenedor {
-	background-color: #eaedf2;
+	background-color: $background-color;
 }
 
 .container {
@@ -77,19 +79,19 @@ strong {
 }
 
 .text-warning {
-	color: #b79800;
+	color: $warning-text;
 }
 
 .alert-info {
-	color: #14b9d5;
-	background-color: #DDF6FA;
-	border-color: #AFE9F3;
+	color: $anchor-color;
+	background-color: $alert-info-background;
+	border-color: $alert-info-border-color;
 }
 
 .alert-warning {
-	color: #b79800;
-	background-color: #FFED93;
-	border-color: #ffd200;
+	color: $warning-text;
+	background-color: $alert-warning-background;
+	border-color: $alert-warning-border;
 }
 
 .form-control::-webkit-input-placeholder {
@@ -119,7 +121,7 @@ strong {
 }
 
 .breadcrumb>.active {
-	color: #9fa7b4;
+	color: $txt-gris;
 }
 
 /*Elecciones destacadas*/
@@ -154,7 +156,7 @@ strong {
 
 .accordion .panel
 {
-	background-color:#000;
+	background-color:$progress-bar-background;
 	background-image:url(../img/preloader.gif);
 	background-repeat:no-repeat;
 	background-position:center center;
@@ -203,7 +205,7 @@ strong {
 
 .accordion .caption p
 {
-	color:#FFF;
+	color:$main-background-color;
 	margin:0px;
 	padding:10px;
 }
@@ -211,7 +213,7 @@ strong {
 
 .accordion .caption p a
 {
-	color:#FFF;
+	color:$main-background-color;
 }
 
 #home-search {
@@ -232,33 +234,33 @@ strong {
 }
 
 .btn-success {
-	background-color: #3ee0cb;
+	background-color: $btn-success-background-color;
 	border-color: transparent;
 	float: right;
 }
 
 .btn-success:hover {
-	background-color: #44938e;
+	background-color: $btn-success-hover-background-color;
 	border-color: transparent;
 }
 
 .btn-primary {
-	background-color: #14b9d5;
+	background-color: $anchor-color;
 	border-color: transparent;
 }
 
 .btn-primary:hover {
-	background-color: #0e778a;
+	background-color: $hover-letters;
 	border-color: transparent;
 }
 
 .btn-danger {
-	background-color: #fe635f;
+	background-color: $btn-danger;
 	border-color: transparent;
 }
 
 .btn-danger:hover {
-	background-color: #af373c;
+	background-color: $btn-danger-hover-background-color;
 	border-color: transparent;
 }
 
@@ -269,11 +271,11 @@ input, button, select, textarea {
 /*Menu*/
 
 .navbar-inverse .navbar-nav>li>a {
-	color: #FFF;
+	color: $main-background-color;
 }
 
 .navbar-inverse .navbar-nav>li>a:hover {
-	color: #14b9d5;
+	color: $anchor-color;
 }
 
 .navbar-nav {
@@ -293,25 +295,25 @@ input, button, select, textarea {
 }
 
 .nav-candidator .list-inline>li a {
-	background: #FFF;
-	border-right: 3px solid #eaedf2;
-	/*border-top: 2px solid #eaedf2;*/
+	background: $main-background-color;
+	border-right: 3px solid $background-color;
+	/*border-top: 2px solid $background-color;*/
 	padding: 10px;
-	color: #9fa7b4;
+	color: $txt-gris;
 	text-decoration: none;
 }
 
 .nav-candidator .list-inline>li:first-child a {
-	border-left: 2px solid #eaedf2;
+	border-left: 2px solid $background-color;
 }
 
 .nav-candidator .list-inline>li:last-child a {
-	border-right: 2px solid #eaedf2;
+	border-right: 2px solid $background-color;
 }
 
 .nav-candidator .list-inline>li.active a, .nav-candidator .list-inline>li:hover a {
-	background: #5e6d82;
-	color: #FFF;
+	background: $nav-anchor-background-color;
+	color: $main-background-color;
 	position: relative;
 }
 
@@ -327,7 +329,7 @@ input, button, select, textarea {
 
 .nav-candidator .list-inline>li.active a:after {
 	border-color: rgba(94, 109, 130, 0);
-	border-top-color: #5e6d82;
+	border-top-color: $nav-anchor-background-color;
 	border-width: 8px;
 	left: 50%;
 	margin-left: -8px;
@@ -335,7 +337,7 @@ input, button, select, textarea {
 
 .nav-candidator ul.list-inline {
 	margin-bottom: 0px;
-	background: #fff;
+	background: $main-background-color;
 	height: auto;
 }
 
@@ -345,8 +347,8 @@ input, button, select, textarea {
 }
 
 .navbar-inverse {
-	color: #FFF;
-	background-color: #323a45;
+	color: $main-background-color;
+	background-color: $letters-color;
 }
 
 .navbar .container {
@@ -354,27 +356,27 @@ input, button, select, textarea {
 }
 
 .nav-candidator .list-inline i.icon-group, .nav-candidator .list-inline i.icon-edit {
-	color: #14b9d5;
+	color: $anchor-color;
 }
 
 .nav-candidator .list-inline i.icon-heart {
-	color: #fe635f;
+	color: $btn-danger;
 }
 
 .nav-candidator .list-inline i.icon-list, .nav-candidator .list-inline i.icon-info {
-	color: #3ee0cb;
+	color: $btn-success-background-color;
 }
 
 .nav-candidator .list-inline i.icon-bolt, .nav-candidator .list-inline i.icon-trophy {
-	color: #ffd200;
+	color: $alert-warning-border;
 }
 
 /*Home*/
 
 #home-search .form-control {
-	color: #fff;
-	background-color: #5e6d82;
-	border-left: 1px solid #9fa7b4;
+	color: $main-background-color;
+	background-color: $nav-anchor-background-color;
+	border-left: 1px solid $txt-gris;
 	border-radius: 0px;
 	border-top: none;
 	border-bottom: none;
@@ -384,29 +386,29 @@ input, button, select, textarea {
 }
 
 #home-search .form-control::-webkit-input-placeholder {
-   color: #9fa7b4;
+   color: $txt-gris;
    font-weight: 300;
 }
 
 #home-search .form-control:-moz-placeholder { /* Firefox 18- */
-   color: #9fa7b4;
+   color: $txt-gris;
    font-weight: 300;  
 }
 
 #home-search .form-control::-moz-placeholder {  /* Firefox 19+ */
-   color: #9fa7b4;
+   color: $txt-gris;
    font-weight: 300;  
 }
 
 #home-search .form-control:-ms-input-placeholder {  
-   color: #9fa7b4;
+   color: $txt-gris;
    font-weight: 300;  
 }
 
 #home-search .btn-default {
-	color: #fff;
-	background-color: #5e6d82;
-	border-color: #5e6d82;
+	color: $main-background-color;
+	background-color: $nav-anchor-background-color;
+	border-color: $nav-anchor-background-color;
 }
 
 #home-search .btn {
@@ -417,12 +419,12 @@ input, button, select, textarea {
 }
 
 #home-search button.btn[type="button"] {
-	background-color: #9fa7b4;
-	border-color: #9fa7b4;
+	background-color: $txt-gris;
+	border-color: $txt-gris;
 }
 
 #home-search .input-group {
-	background: #5e6d82;
+	background: $nav-anchor-background-color;
 }
 
 .imgs-mosaico .col-md-2 {
@@ -437,7 +439,7 @@ input, button, select, textarea {
 }
 
 .containerAccordion .accordion .caption p {
-	color: #FFF;
+	color: $main-background-color;
 }
 
 .containerAccordion .accordion .caption .caption-background {
@@ -445,7 +447,7 @@ input, button, select, textarea {
 }
 
 .elections-results li {
-	background: #FFF;
+	background: $main-background-color;
 	border-radius: 6px;
 	padding: 5px 10px;
 	margin: 5px; 
@@ -457,16 +459,16 @@ input, button, select, textarea {
 
 .elections-results li ul li {
 	display: inline-block;
-	background: #ffd200;
-	color: #a38400;
+	background: $alert-warning-border;
+	color: $elections-result-list;
 	padding: 2px 6px;
 }
 
 /*Perfil candidato*/
 
 .profile-candidate {
-	background-color: #5e6d82;
-	color: #FFF;
+	background-color: $nav-anchor-background-color;
+	color: $main-background-color;
 	overflow: hidden;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -484,17 +486,17 @@ input, button, select, textarea {
 }
 
 .social-link-candidate {
-	color: #FFF;
+	color: $main-background-color;
 }
 
 .container-candidates p {
-	background: #fff;
+	background: $main-background-color;
 	padding: 5px;
 }
 
 .questionary .panel-heading {
-	background-color: #323a45;
-	color: #FFF;
+	background-color: $letters-color;
+	color: $main-background-color;
 	font-weight: 900;
 }
 
@@ -503,7 +505,7 @@ input, button, select, textarea {
 }
 
 .question-answer {
-	background-color: #ebedf2;
+	background-color: $question-answer-background;
 	padding: 10px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -516,14 +518,14 @@ input, button, select, textarea {
 
 
 .icon-quote-left, .icon-quote-right {
-	color: #9fa7b4;
+	color: $txt-gris;
 }
 
 
 
 /* Frente a frente*/
 .progress-bar .fondo {
-	background-color: #000
+	background-color: $progress-bar-background
 }
 /*EOF frente a frente*/
 
@@ -532,8 +534,8 @@ input, button, select, textarea {
 /*Media naranja*/
 
 .panel-default>.panel-heading {
-	color: #fff;
-	background-color: #323a45;
+	color: $main-background-color;
+	background-color: $letters-color;
 	border-color: transparent;
 }
 
@@ -546,7 +548,7 @@ input, button, select, textarea {
 }
 
 .other-soulmate-box {
-	background-color: #FFF;
+	background-color: $main-background-color;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -554,7 +556,7 @@ input, button, select, textarea {
 }
 
 .fondo-gris {
-	background: #eaedf2;
+	background: $background-color;
 	border-radius: 6px;
 	margin-bottom: 15px;
 }
@@ -571,22 +573,22 @@ input, button, select, textarea {
 /*Media naranja - Resultado */
 
 #soulmate-result {
-	background: #5e6d82;
+	background: $nav-anchor-background-color;
 	padding: 15px;
 	border-radius: 6px;
-	color: #fff;
+	color: $main-background-color;
 }
 
 #soulmate-result .icon-heart {
-	color: #fe635f;
+	color: $btn-danger;
 }
 
 #soulmate-result a {
-	color: #3ee0cb;
+	color: $btn-success-background-color;
 }
 
 #soulmate-result a:hover {
-	color: #fff;
+	color: $main-background-color;
 }
 
 #soulmate-result h3 {
@@ -605,36 +607,36 @@ input, button, select, textarea {
 }
 
 #soulmate-result .fondo-azuloscuro {
-	background: #323a45;
+	background: $letters-color;
 	padding: 9px 0px 0px;
 	border-radius: 6px;
 	margin-top: 20px;
 }
 
 #soulmate-result .fondo-azuloscuro i {
-	color: #fff;
+	color: $main-background-color;
 }
 
 #soulmate-result .fondo-azuloscuro i:hover {
-	color: #3ee0cb;
+	color: $btn-success-background-color;
 }
 
 .progress {
 	height: 26px;
 	margin-bottom: 5px;
-	background-color: #9fa7b4;
+	background-color: $txt-gris;
 }
 
 .progress-bar-success {
-	background-color: #3ee0cb;
+	background-color: $btn-success-background-color;
 }
 
 .progress-bar-warning {
-	background-color: #ffd200;
+	background-color: $alert-warning-border;
 }
 
 .progress-bar-danger {
-	background-color: #fe635f;
+	background-color: $btn-danger;
 }
 
 #soulmate-result .container-progress p span {
@@ -652,8 +654,8 @@ input, button, select, textarea {
 /*Frente a frente*/
 
 .porcentaje-similitud {
-	background: #14b9d5;
-	color: #fff;
+	background: $anchor-color;
+	color: $main-background-color;
 	border-radius: 6px;
 }
 
@@ -666,9 +668,9 @@ input, button, select, textarea {
 	height: 47px;
 	border: transparent;
 	border-radius: 0px;
-	background: #323a45;
+	background: $letters-color;
 	box-shadow: none;
-	color: #fff;
+	color: $main-background-color;
 	font-weight: 900;
 	position:relative;
 	font-size: 14px;
@@ -689,31 +691,31 @@ input, button, select, textarea {
 	border-bottom-right-radius: 0;
 	-moz-border-radius-bottomleft: 0;
 	border-bottom-left-radius: 0;
-	background: #323a45;
+	background: $letters-color;
 	box-shadow: none;
 }
 
 .chosen-container .chosen-results li.highlighted{
-	background: #ffd200;
+	background: $alert-warning-border;
 	color: inherit;
 }
 
 .panel-default>.panel-heading {
-	color: #fff;
-	background-color: #323a45;
+	color: $main-background-color;
+	background-color: $letters-color;
 	border-color: transparent;
 }
 
 #compare-candidates .text-right, #compare-candidates .text-center {
-	color: #9fa7b4;
+	color: $txt-gris;
 }
 
 #compare-candidates i {
-	color: #9fa7b4;
+	color: $txt-gris;
 }
 
 #compare-candidates .text-center i {
-	color: #14b9d5;
+	color: $anchor-color;
 }
 
 #compare-candidates div.col-md-12:first-child {
@@ -732,7 +734,7 @@ margin-bottom: 20px;
 }
 
 div.question-answer div.row.hidden-xs {
-	border-top: 1px solid #FFF;
+	border-top: 1px solid $main-background-color;
 	padding: 10px 0px;
 }
 
@@ -744,16 +746,16 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 
 #footer {
 	padding: 40px 0 10px;
-	color: #B4BAC5;
-	background-color: #323a45;
+	color: $footer-color;
+	background-color: $letters-color;
 }
 
 #footer a {
-	color: #B4BAC5;
+	color: $footer-color;
 }
 
 #footer a:hover {
-	color: #FFF;
+	color: $main-background-color;
 }
 
 #footer ul {
@@ -787,9 +789,9 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 }
 
 .container-profile {
-	background: #5e6d82;
+	background: $nav-anchor-background-color;
 	border-radius: 6px;
-	color: #fff;
+	color: $main-background-color;
 	margin: auto;
 }
 
@@ -800,7 +802,7 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 
 .read-more a, .read-less a {
 	display: block;
-	background: #323a45;
+	background: $letters-color;
 	text-align: center;
 	font-size: 14px;
 	border-radius: 0px 0px 6px 6px;
@@ -838,11 +840,11 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 }
 
 .social-link-candidate {
-	color: #FFF;
+	color: $main-background-color;
 }
 
 .social-link-candidate:hover {
-	color: #3ee0cb;
+	color: $btn-success-background-color;
 }
 
 .panel-heading {
@@ -857,7 +859,7 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 /*Ranking*/
 
 .panel-primary>.panel-heading {
-	background-color: #0e778a;
+	background-color: $hover-letters;
 	border-color: transparent;
 }
 
@@ -867,26 +869,26 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 }
 
 .responden .panel-body {
-	background: #14b9d5;
-	color: #fff;
+	background: $anchor-color;
+	color: $main-background-color;
 	border-radius: 0px 0px 6px 6px;
 }
 
 .responden .panel-body p span {
-	color: #006577;
+	color: $responden-span;
 }
 
 .responden .panel-body p a {
-	color: #FFF;
+	color: $main-background-color;
 	font-size: 12px;
 }
 
 .no-responden .panel-body p span {
-	color: #920006;
+	color: $no-responden-span;
 }
 
 .no-responden .panel-body p a {
-	color: #FFF;
+	color: $main-background-color;
 	font-size: 12px;
 }
 
@@ -898,7 +900,7 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 }
 
 .responden .table tbody>tr>td.second {
-	border-bottom: 1px solid #0e778a;
+	border-bottom: 1px solid $hover-letters;
 }
 
 .no-responden .table tbody>tr>td {
@@ -909,21 +911,21 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 }
 
 .no-responden .table tbody>tr>td.second {
-	border-bottom: 1px solid #af373c;
+	border-bottom: 1px solid $btn-danger-hover-background-color;
 	border-top: none;
 	border-left: none;
 	border-right: none;
 }
 
 .no-responden .panel-body {
-	background: #fe635f;
-	color: #fff;
+	background: $btn-danger;
+	color: $main-background-color;
 	border-radius: 0px 0px 6px 6px;
 }
 
 .panel-danger>.panel-heading {
-	color: #fff;
-	background-color: #af373c;
+	color: $main-background-color;
+	background-color: $btn-danger-hover-background-color;
 	border-color: transparent;
 }
 
@@ -961,9 +963,9 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 .bt-twitter {
-	background: #eaedf2;
+	background: $background-color;
 	border-radius: 6px;
-	color: #323a45;
+	color: $letters-color;
 	text-align: center;
 	font-size: 12px;
 	padding: 3px 6px;
@@ -972,8 +974,8 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 .bt-twitter:hover {
-	background: #323a45;
-	color: #eaedf2;
+	background: $letters-color;
+	color: $background-color;
 }
 
 .bt-twitter i {
@@ -987,7 +989,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 /*Preguntales*/
 
 .ask-form {
-	background: #FFF;
+	background: $main-background-color;
 	border-radius: 6px;
 	padding: 20px;
 	*zoom: 1;
@@ -1001,7 +1003,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 .ask-form .form-control {
-	background-color: #eaedf2;
+	background-color: $background-color;
 	border: none;
 	border-radius: 0px;
 	-webkit-box-shadow: none;
@@ -1014,8 +1016,8 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 .search-questions .form-control {
-	color: #fff;
-	background-color: #9fa7b4;
+	color: $main-background-color;
+	background-color: $txt-gris;
 	border: none;
 	border-radius: 0px;
 	-webkit-box-shadow: none;
@@ -1023,18 +1025,18 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 .search-questions .input-group-addon {
-	background-color: #5e6d82;
+	background-color: $nav-anchor-background-color;
 	border: none;
 	border-radius: 0px;
-	color: #fff;
+	color: $main-background-color;
 }
 
 .panel-heading .text-right {
-	color: #9fa7b4;
+	color: $txt-gris;
 }
 
 .candidate-answer {
-	background-color: #ebedf2;
+	background-color: $question-answer-background;
 	padding: 10px;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
@@ -1049,19 +1051,19 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 .search-questions .form-control::-webkit-input-placeholder {
-   color: #eaedf2;
+   color: $background-color;
 }
 
 .search-questions .form-control:-moz-placeholder { /* Firefox 18- */
-   color: #eaedf2;
+   color: $background-color;
 }
 
 .search-questions .form-control::-moz-placeholder {  /* Firefox 19+ */
-   color: #eaedf2;
+   color: $background-color;
 }
 
 .search-questions .form-control:-ms-input-placeholder {  
-   color: #eaedf2;
+   color: $background-color;
 }
 
 /*No responde*/
@@ -1097,7 +1099,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 	font-weight: 200;
 }
 .ups i {
-	color: #fe635f;
+	color: $btn-danger;
 }
 
 #apoya {
@@ -1117,13 +1119,13 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 #myCandidate .modal-header {
-	background-color: #323a45;
+	background-color: $letters-color;
 	border-radius: 3px 3px 0px 0px;
 	border-bottom: 0px;
 }
 
 #myCandidate .modal-footer {
-	background-color: #4b4b4b;
+	background-color: $myCandidate-modal-footer;
 	margin-top: -4px;
 }
 
@@ -1141,18 +1143,18 @@ animation: doscaras 4s infinite;
 
 @keyframes doscaras
 {
-0%   {background-color: #fff;}
-50%  {background-color: #fff;}
-75%  {background-color: #ffd200;}
-100% {background-color: #fff;}
+0%   {background-color: $main-background-color;}
+50%  {background-color: $main-background-color;}
+75%  {background-color: $alert-warning-border;}
+100% {background-color: $main-background-color;}
 }
 
 @-webkit-keyframes doscaras /* Safari and Chrome */
 {
-0%   {background-color: #fff;}
-50%  {background-color: #fff;}
-75%  {background-color: #ffd200;}
-100% {background-color: #fff;}
+0%   {background-color: $main-background-color;}
+50%  {background-color: $main-background-color;}
+75%  {background-color: $alert-warning-border;}
+100% {background-color: $main-background-color;}
 }
 
 /*video*/
@@ -1188,7 +1190,7 @@ animation: doscaras 4s infinite;
 	left: 0%;
 	width: 100%;
 	height: 40px;
-	background: #ffd200;
+	background: $alert-warning-border;
 	align-content: center;
 	text-align: center;
 	transform: rotate(-45deg);
@@ -1197,7 +1199,7 @@ animation: doscaras 4s infinite;
 	max-width: 300px;
 	padding: 10px;
 	font-size: 24px;
-	color: #9e8000;
+	color: $ribbon-color;
 }
 
 .container-candidates .ribbon {
@@ -1210,12 +1212,12 @@ animation: doscaras 4s infinite;
 
 /*percentage facetoface*/
 #compare-candidates .candidate-percentage-txt {
-	background: #14b9d5;
+	background: $anchor-color;
 	border-radius: 3px;
 }
 
 #compare-candidates .candidate-percentage-txt p.text-center {
-	color: #FFF;
+	color: $main-background-color;
 	font-size: 14px;
 	font-weight: bolder;
 	padding: 5px 0px;
@@ -1283,11 +1285,11 @@ animation: doscaras 4s infinite;
 
 
 .explanation-container {
-	color: #323a45;
+	color: $letters-color;
 }
 .category_name .red {
-	background-color: #FE635F;
+	background-color: $btn-danger;
 }
 .category_name .green {
-	background-color: #41FF35;
+	background-color: $category_name_background_color;
 }

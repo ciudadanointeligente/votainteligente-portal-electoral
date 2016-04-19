@@ -13,3 +13,4 @@ candidator
 src/
 *.sqlite3
 *.swp
+votai_general_theme/static/sass/*.css

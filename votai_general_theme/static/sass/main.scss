@@ -1222,6 +1222,24 @@ animation: doscaras 4s infinite;
 	font-weight: bolder;
 	padding: 5px 0px;
 }
+/*login form*/
+.base-login {
+  margin-top: 45px;
+}
+
+.base-login form {
+  margin-bottom: 15px;
+}
+.base-login form .btn-default {
+  float: initial;
+  color: $blanco;
+  background-color: $verde_manzana;
+  border-color: $verde_dos;
+}
+
+.base-login form .btn-default.btn-lg {
+  padding: 5px 16px;
+}
 
 @media (max-width: 480px) {
 	.navbar-brand img {

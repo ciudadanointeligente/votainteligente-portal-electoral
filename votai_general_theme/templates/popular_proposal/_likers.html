@@ -7,8 +7,10 @@
 <div class="row">
     <div class="col-md-12">
         <div class="alert alert-success" role="alert">
-            <span class="badge">{{proposal.likers.count}}</span>
-            {% blocktrans %}Ciudadanos apoyan{% endblocktrans %}
+            {% blocktrans with count=proposal.likers.count %}
+            <span class="badge">{{count}} Ciudadanos apoyan</span>
+            
+            {% endblocktrans %}
         </div>
         
     </div>

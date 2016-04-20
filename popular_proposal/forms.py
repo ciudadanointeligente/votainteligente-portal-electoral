@@ -53,25 +53,25 @@ TOPIC_CHOICES =(
 )
 
 class ProposalFormBase(forms.Form):
-    problem = forms.CharField(label=_(u'Según la óptica de tu organización, describe un problema de tu comuna que \
-quieras solucionar. (2 líneas)'),
-                              help_text=_(u'Ej: Poca participación en el Plan Regulador, falta de transparencia en \
-el trabajo de la municipalidad, pocos puntos de reciclaje, etc.'),
+    problem = forms.CharField(label=_(u'Según la óptica de tu organización, describe un problema de la comuna que \
+quieran solucionar. (2 líneas)'),
+                              help_text=_(u'Ej: Poca participación en el Plan Regulador, Falta de transparencia en \
+el trabajo de la municipalidad, Pocos puntos de reciclaje, etc.'),
                               max_length=512)
     solution = forms.CharField(label=_(u'¿Qué debería hacer la municipalidad para solucionar el problema? (3 líneas)'),
                                help_text=_(u'Ejemplo: "Crear una ciclovia que circunvale Valdivia", \
 "Que se publiquen todos los concejos municipales en el sitio web del municipio".'),
                                max_length=256,
                               )
-    solution_at_the_end = forms.CharField(label=u"¿Qué avances concretos esperas que se logren durante el periodo del alcalde (4 años)?",
+    solution_at_the_end = forms.CharField(label=u"Describe la medida específica que quieren solicitar a los candidatos. ¿Qué avance concreto esperan que se logre durante el periodo del alcalde (4 años)?",
                                           help_text=_(u'Ejemplo: "Aumentar en un 20% la cantidad de ciclovías en la ciudad"'),
                                           required=False)
-    when = forms.ChoiceField(choices=WHEN_CHOICES, label=_(u'¿En qué plazo te gustaría que esté solucionado?'))
-    title = forms.CharField(label=_(u'Título corto'),
-                            help_text=_(u"Un título que nos permita describir tu propuesta\
+    when = forms.ChoiceField(choices=WHEN_CHOICES, label=_(u'¿En qué plazo debería estar implementada esta solución?'))
+    title = forms.CharField(label=_(u'Resumen'),
+                            help_text=_(u"Escribe un título que nos permita describir tu propuesta\
 ciudadana. Ej: 50% más de ciclovías para la comuna"),
                               max_length=256,)
-    clasification = forms.ChoiceField(choices=TOPIC_CHOICES, label=_(u'¿Cómo clasificarías tu propuesta?'))
+    clasification = forms.ChoiceField(choices=TOPIC_CHOICES, label=_(u'¿En qué área clasificarías tu propuesta?'))
     allies = forms.CharField(label=_(u'¿Quiénes son tus posibles aliados?'),
                              max_length=256)
     organization = forms.CharField(label=_(u'¿Estás haciendo esta propuesta a nombre de una organización? Escribe su nombre acá:'),

@@ -28,6 +28,7 @@ INSTALLED_APPS = (
     'linaro_django_pagination',
     'django_forms_bootstrap',
     ##"registration_defaults",
+    "sass_processor",
     'candidator',
     'taggit',
     'haystack',
@@ -51,6 +52,7 @@ INSTALLED_APPS = (
     'backend_staff',
     'backend_citizen',
 )
+
 
 # REGISTRATION
 ACCOUNT_ACTIVATION_DAYS = 7
@@ -298,3 +300,7 @@ try:
     from local_settings import *
 except ImportError, e:
     pass
+
+if DEBUG:
+    # SASS
+    SASS_PROCESSOR_ENABLED = True

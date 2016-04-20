@@ -10,7 +10,7 @@ de nuestros registros.
 
 Para activar esta cuenta, por favor haz click en el siguiente link antes de
 {{ expiration_days }} días:
-http://{{ sitedname }}{{  activation_key_url }}
+http://{{ sitename }}{{  activation_key_url }}
 
 --
 Muchas gracias el equipo de VotaInteligente.cl

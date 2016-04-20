@@ -36,7 +36,8 @@ class ProposalTemporaryData(models.Model):
     area = models.ForeignKey(Area, related_name='temporary_proposals')
     data = PickledObjectField()
     rejected = models.BooleanField(default=False)
-    rejected_reason = models.TextField()
+    rejected_reason = models.TextField(null=True,
+                                       blank=True)
     comments = PickledObjectField()
     status = models.CharField(max_length=16,
                               choices=Statuses.choices,
@@ -122,7 +123,7 @@ class PopularProposal(models.Model):
 
     def __str__(self):
         return self.title
-    
+
     def get_absolute_url(self):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})
 

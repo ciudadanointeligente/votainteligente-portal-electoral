@@ -11,14 +11,20 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
-  <h1>{% blocktrans with area=area.name %}Creando una propuesta para {{area}}{% endblocktrans %}</h1>
+  <h1>{% blocktrans with area=area %}Creando una propuesta para {{area}}{% endblocktrans %}</h1>
   <!-- Featured Elections  -->
   <div class="contenedorDestacado fondo-blanco">
-    <h2>¡Gracias por tu propuesta!</h2>
+      <h2>¡Gracias por tu propuesta!</h2>{{area}}
 
-    <p>Por favor, espera a nuestros Ciudadanos Inteligentes para que la evalúen.</p>
+      <p>{% blocktrans %}Por favor, espera a nuestros Ciudadanos Inteligentes para que la evalúen.{% endblocktrans %}</p>
 
     <p>Muchas gracias</p>
+    <a href="{% url 'popular_proposals:propose' slug=area.id %}" class="btn btn-primary btn-lg active" role="button">
+        {% blocktrans with area=area %}Crea otra propuesta para {{area}}{% endblocktrans %}
+    </a>
+    <a href="{% url 'area' slug=area.id %}" class="btn btn-success btn-lg active" role="button">
+        {% blocktrans with area=area %}Revisa otras propuestas en {{area}}{% endblocktrans %}
+    </a>
 
   </div>
 

@@ -41,6 +41,14 @@ class ProposalCreationView(FormView):
 class ThanksForProposingView(TemplateView):
     template_name = 'popular_proposal/thanks.html'
 
+    def dispatch(self, *args, **kwargs):
+        self.area = get_object_or_404(Area, id=self.kwargs['pk'])
+        return super(ThanksForProposingView, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        kwargs = super(ThanksForProposingView, self).get_context_data(**kwargs)
+        kwargs['area'] = self.area
+        return kwargs
 
 class SubscriptionView(FormView):
     template_name = 'popular_proposal/new_subscription.html'

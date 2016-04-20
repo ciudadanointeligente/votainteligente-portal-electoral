@@ -4,12 +4,17 @@
 {% load thumbnail %}
 <div class="col-md-4 item">
     <div class="panel panel-default">
+        <div class="panel-heading">
+        {% if proposal.title %}
+            {{proposal.title}}
+        {% else %}
+            {{proposal.data.solution}}
+        {% endif %}
+        </div>
         <div class='panel-body'>
-            {% if proposal.title %}
-                {{proposal.title}}
-            {% else %}
-                {{proposal.data.solution}}
-            {% endif %}
+
+
+
             <a href="{% url 'popular_proposals:detail' slug=proposal.slug %}"><i class="fa fa-link" aria-hidden="true"></i></a>
             {% include 'popular_proposal/_likers.html' with proposal=proposal %}
         </div>

@@ -97,15 +97,15 @@ strong {
 }
 
 .form-control:-moz-placeholder { /* Firefox 18- */
-   font-weight: 300;  
+   font-weight: 300;
 }
 
 .form-control::-moz-placeholder {  /* Firefox 19+ */
-   font-weight: 300;  
+   font-weight: 300;
 }
 
-.form-control:-ms-input-placeholder {  
-   font-weight: 300;  
+.form-control:-ms-input-placeholder {
+   font-weight: 300;
 }
 
 .right {
@@ -390,17 +390,17 @@ input, button, select, textarea {
 
 #home-search .form-control:-moz-placeholder { /* Firefox 18- */
    color: #9fa7b4;
-   font-weight: 300;  
+   font-weight: 300;
 }
 
 #home-search .form-control::-moz-placeholder {  /* Firefox 19+ */
    color: #9fa7b4;
-   font-weight: 300;  
+   font-weight: 300;
 }
 
-#home-search .form-control:-ms-input-placeholder {  
+#home-search .form-control:-ms-input-placeholder {
    color: #9fa7b4;
-   font-weight: 300;  
+   font-weight: 300;
 }
 
 #home-search .btn-default {
@@ -448,7 +448,7 @@ input, button, select, textarea {
 	background: #FFF;
 	border-radius: 6px;
 	padding: 5px 10px;
-	margin: 5px; 
+	margin: 5px;
 }
 
 .elections-results li ul {
@@ -642,7 +642,7 @@ input, button, select, textarea {
 }
 
 .other-soulmate-box h4 {
-	font-weight: 900;	
+	font-weight: 900;
 }
 
 #form-soulmate label {
@@ -1060,7 +1060,7 @@ tr.primary p:first-child, tr.danger p:first-child {
    color: #eaedf2;
 }
 
-.search-questions .form-control:-ms-input-placeholder {  
+.search-questions .form-control:-ms-input-placeholder {
    color: #eaedf2;
 }
 
@@ -1104,7 +1104,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 	position: absolute;
 	top: 0px;
 	left: 15px;
-	width: 253px;	
+	width: 253px;
 	height: 253px;
 	display: none;
 }
@@ -1221,6 +1221,25 @@ animation: doscaras 4s infinite;
 	padding: 5px 0px;
 }
 
+/*login form*/
+.base-login {
+  margin-top: 45px;
+}
+
+.base-login form {
+  margin-bottom: 15px;
+}
+.base-login form .btn-default {
+  float: initial;
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+.base-login form .btn-default.btn-lg {
+  padding: 5px 16px;
+}
+
 @media (max-width: 480px) {
 	.navbar-brand img {
 		width: 198px;
@@ -1238,7 +1257,7 @@ animation: doscaras 4s infinite;
 		top: 65px;
 		left: 75px;
 	}
-	
+
 	.not_answered_small a:after {
 		content: url(../img/no-responde.png);
 		position: absolute;

@@ -13,7 +13,7 @@ class ProposalViewTestCase(TestCase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed('popular_proposals/home.html')
-    
+
     def test_there_is_a_page_for_popular_proposal(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
                                                           area=self.arica,
@@ -27,3 +27,10 @@ class ProposalViewTestCase(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertEqual(response.context['popular_proposal'], popular_proposal)
         self.assertTemplateUsed(response, 'popular_proposal/detail.html')
+
+    def test_thanks_page(self):
+        url = reverse('popular_proposals:thanks', kwargs={'pk': self.arica.id})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['area'], self.arica)
+

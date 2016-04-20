@@ -43,12 +43,13 @@ TOPIC_CHOICES =(
       (u'deporte', u'Deporte'),
       (u'servicios', u'Servicios'),
       )),
-  (u'Mejor representatividad',(
+  (u'Democracia',(
       (u'transparencia', u'Transparencia'),
       (u'participacionciudadana', u'Participación ciudadana'),
       (u'genero', u'Género'),
       (u'pueblosindigenas', u'Pueblos indígenas'),
       (u'diversidadsexual', u'Diversidad sexual'),
+      (u'terceraedad', u'Tercera edad'),
       ))
 )
 

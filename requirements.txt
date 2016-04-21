@@ -9,7 +9,7 @@ django-haystack==2.4.0
 PyYAML
 django-markdown-deux==1.0.4
 django-extensions
-sorl-thumbnail
+sorl-thumbnail==12.4a1
 pillow
 pgmagick
 django-tinymce

@@ -301,6 +301,3 @@ try:
 except ImportError, e:
     pass
 
-if DEBUG:
-    # SASS
-    SASS_PROCESSOR_ENABLED = True

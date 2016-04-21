@@ -9,7 +9,7 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from popolo.models import Area
 from django.core.urlresolvers import reverse
-from popular_proposal.forms import WHEN_CHOICES, ProposalFormBase
+from popular_proposal.forms.form_texts import WHEN_CHOICES, TEXTS
 
 
 @register.simple_tag
@@ -191,7 +191,7 @@ def popular_proposal_when(when):
 
 @register.filter(name='popular_proposal_question')
 def popular_proposal_question(question):
-    fields = ProposalFormBase.base_fields
+    fields = TEXTS
     if question not in fields.keys():
         return question
-    return getattr(fields[question], 'label', question)
+    return fields[question].get('label', question)

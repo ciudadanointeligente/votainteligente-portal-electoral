@@ -16,7 +16,7 @@
             {% endfor %}
             </div>
             <div class="col-md-4 text-right">
-                {% if not message.moderated %}
+                {% if not message.status.accepted %}
                     <span class="label label-warning">{% trans "Esperando moderación" %}</span>
                 {% endif %}
             </div>

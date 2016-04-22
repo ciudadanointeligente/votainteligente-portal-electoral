@@ -24,12 +24,12 @@ class ProposalFormBase(forms.Form, TextsFormMixin):
     problem = forms.CharField(max_length=512,
                               widget=forms.Textarea(),
                               )
-    solution = forms.CharField(max_length=256,
+    solution = forms.CharField(max_length=512,
                                widget=forms.Textarea(),
                               )
     solution_at_the_end = forms.CharField(widget=forms.Textarea(),
                                           required=False)
-    when = forms.ChoiceField(choices=WHEN_CHOICES)
+    when = forms.CharField(max_length=512)
     title = forms.CharField(max_length=256,)
     clasification = forms.ChoiceField(choices=TOPIC_CHOICES)
     allies = forms.CharField(max_length=256)

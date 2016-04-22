@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load markdown_deux_tags %}
+
+
+{% block title %} - {{message.election}} - {% trans "Mensaje" %} {{message.subject}}{% endblock title%}
+
+
+{% block content %}
+    <div class="contenedorDestacado fondo-blanco">
+    {% blocktrans %}
+    <h1>¡Confirmamos tu mensaje!</h1>
+    <h2>¡Pronto moderaremos tu pregunta ciudadana!</h2>
+
+    {% endblocktrans %}
+    </div>
+{% endblock content %}

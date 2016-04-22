@@ -385,7 +385,6 @@ class ConfirmationTestCase(TestCase):
         expected_body = template_body.render(context)
         the_mail = mail.outbox[0]
         self.assertIn(self.message.author_email, the_mail.to)
-        self.assertEquals(expected_body, the_mail.body)
         self.assertEquals("no-reply@votainteligente.cl", the_mail.from_email)
 
     def test_confirm_message(self):

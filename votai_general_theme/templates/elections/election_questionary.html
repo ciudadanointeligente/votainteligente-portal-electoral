@@ -12,7 +12,7 @@
 
 {% block mainelection %}
 <div id="questionary">
-	<div class="questionary">		
+	<div class="questionary">
 
 		{% for category in election.categories.all %}
 		<div class="panel panel-default">
@@ -33,15 +33,15 @@
 								{% for taken_position in position.taken_positions.all %}
 									<li>
 									{% with candidate=taken_position.person %}
-    {% if candidate.image %}
-        {% thumbnail candidate.image "100x100" crop="center" as im %}
-        <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{im.url}}" height="100" width="100" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
-        {% endthumbnail %}
-    {% else %}
-        {% thumbnail "img/candidate-default.jpg" "100x100" crop="center" as im %}
-        <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{im.url}}"  height="100" width="100" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
-        {% endthumbnail %}
-    {% endif %}
+                    {% if candidate.image %}
+                        {% thumbnail candidate.image "100x100" crop="center" as im %}
+                        <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{im.url}}" height="100" width="100" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
+                        {% endthumbnail %}
+                    {% else %}
+                        {% thumbnail "img/candidate-default.jpg" "100x100" crop="center" as im %}
+                        <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{im.url}}"  height="100" width="100" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
+                        {% endthumbnail %}
+                    {% endif %}
 										<span>{{candidate.name}}</span>
 									{% endwith %}
 									</li>
@@ -49,6 +49,8 @@
 								</ul>
 							</div>
 							<div class="col-md-7">
+                <i class="icon-quote-left"></i> {{position.label}} <i class="icon-quote-right"></i>
+              </div>
 						</div>
 						{% endif %}
 					<!-- end desktop version-->
@@ -74,10 +76,10 @@
 							</div>
 						</div>
 					</div>
-					
+
 						<!-- end mobile version -->
 					{% endfor %}
-					
+
 				</div>
 				{% endfor %}
 			</div>

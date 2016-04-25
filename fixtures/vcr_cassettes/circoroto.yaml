@@ -1,0 +1,69 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.9.1]
+    method: GET
+    uri: https://graph.facebook.com/v2.5/https://www.facebook.com/circoroto/?fields=about%2Cpicture%2Cevents&access_token=FieraEsLaMejorAmigaDeTodos
+  response:
+    body:
+      string: !!binary |
+        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
+        tnTX00AXPK/1/T+lDkA19w8AAA==
+    headers:
+      access-control-allow-origin: ['*']
+      cache-control: ['private, no-cache, no-store, must-revalidate']
+      connection: [keep-alive]
+      content-encoding: [gzip]
+      content-length: ['2128']
+      content-type: [application/json; charset=UTF-8]
+      date: ['Mon, 25 Apr 2016 21:00:56 GMT']
+      etag: ['"812cc77b6eaf0763368c99b1e3aababff7442d40"']
+      expires: ['Sat, 01 Jan 2000 00:00:00 GMT']
+      facebook-api-version: [v2.5]
+      pragma: [no-cache]
+      vary: [Accept-Encoding]
+      x-fb-debug: [s2FKJmIIkAGpI+vTa1glTfcB1AdaRhsVRBtlysHcMtkY5xx4iewl5AZULnfAeCQdsYO0QB+R8ZJFFdc9jOy6Uw==]
+      x-fb-rev: ['2302681']
+      x-fb-trace-id: [FAvIM18hQ1H]
+    status: {code: 200, message: OK}
+version: 1

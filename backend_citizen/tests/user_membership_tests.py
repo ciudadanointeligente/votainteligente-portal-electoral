@@ -5,6 +5,7 @@ from backend_citizen.models import Enrollment
 from backend_citizen.forms import OrganizationForm
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+import vcr
 
 
 PASSWORD = 'perrito'
@@ -26,6 +27,7 @@ class CitizenMembershipTestCase(ProposingCycleTestCaseBase):
         self.assertIn(membership, self.feli.enrollments.all())
         self.assertIn(membership, self.org.enrollments.all())
 
+    @vcr.use_cassette('fixtures/vcr_cassettes/circoroto.yaml')
     def test_creating_an_organization_form(self):
         data = {'name': 'Circo Roto',
                 'facebook_page': 'https://www.facebook.com/circoroto/?fref=ts'
@@ -39,7 +41,10 @@ class CitizenMembershipTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(organization.enrollments.all())
         enrollment = organization.enrollments.first()
         self.assertEquals(enrollment.user, self.feli)
+        self.assertEquals(organization.description, u'Agrupación de circo del barrio Yungay')
+        # self.assertTrue(organization.image)
 
+    @vcr.use_cassette('fixtures/vcr_cassettes/circoroto.yaml')
     def test_creating_an_organization_view(self):
         url = reverse('backend_citizen:create_organization')
         response = self.client.get(url)

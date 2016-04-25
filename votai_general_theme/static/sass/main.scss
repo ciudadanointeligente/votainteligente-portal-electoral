@@ -3,7 +3,7 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-   
+
 @import 'colors';
 
 html, body {
@@ -99,15 +99,15 @@ strong {
 }
 
 .form-control:-moz-placeholder { /* Firefox 18- */
-   font-weight: 300;  
+   font-weight: 300;
 }
 
 .form-control::-moz-placeholder {  /* Firefox 19+ */
-   font-weight: 300;  
+   font-weight: 300;
 }
 
-.form-control:-ms-input-placeholder {  
-   font-weight: 300;  
+.form-control:-ms-input-placeholder {
+   font-weight: 300;
 }
 
 .right {
@@ -392,17 +392,17 @@ input, button, select, textarea {
 
 #home-search .form-control:-moz-placeholder { /* Firefox 18- */
    color: $txt-gris;
-   font-weight: 300;  
+   font-weight: 300;
 }
 
 #home-search .form-control::-moz-placeholder {  /* Firefox 19+ */
    color: $txt-gris;
-   font-weight: 300;  
+   font-weight: 300;
 }
 
-#home-search .form-control:-ms-input-placeholder {  
+#home-search .form-control:-ms-input-placeholder {
    color: $txt-gris;
-   font-weight: 300;  
+   font-weight: 300;
 }
 
 #home-search .btn-default {
@@ -450,7 +450,7 @@ input, button, select, textarea {
 	background: $main-background-color;
 	border-radius: 6px;
 	padding: 5px 10px;
-	margin: 5px; 
+	margin: 5px;
 }
 
 .elections-results li ul {
@@ -644,7 +644,7 @@ input, button, select, textarea {
 }
 
 .other-soulmate-box h4 {
-	font-weight: 900;	
+	font-weight: 900;
 }
 
 #form-soulmate label {
@@ -1062,7 +1062,7 @@ tr.primary p:first-child, tr.danger p:first-child {
    color: $background-color;
 }
 
-.search-questions .form-control:-ms-input-placeholder {  
+.search-questions .form-control:-ms-input-placeholder {
    color: $background-color;
 }
 
@@ -1106,7 +1106,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 	position: absolute;
 	top: 0px;
 	left: 15px;
-	width: 253px;	
+	width: 253px;
 	height: 253px;
 	display: none;
 }
@@ -1184,30 +1184,39 @@ animation: doscaras 4s infinite;
 
 /*Custom ribbon */
 
-.ribbon {
+@mixin ribbon-base {
 	position: absolute;
-	top: 32%;
-	left: 0%;
-	width: 100%;
-	height: 40px;
-	background: $alert-warning-border;
-	align-content: center;
-	text-align: center;
-	transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	-webkit-transform: rotate(-45deg);
-	max-width: 300px;
-	padding: 10px;
-	font-size: 24px;
-	color: $ribbon-color;
+  left: -5%;
+  width: 110%;
+  height: 40px;
+  background: $alert-warning-border;
+  align-content: center;
+  text-align: center;
+  transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  max-width: 360px;
+  padding: 4px;
+  font-size: 24px;
+  color: $ribbon-color;
 }
 
-.container-candidates .ribbon {
+#main-election > div > a > .ribbon {
+	top: 38%;
+	@include ribbon-base;
+}
+
+/*.container-candidates .ribbon {
 	font-size: 16px;
 	top: 62px;
 	left: 10px;
 	width: 90%;
 	padding: 8px;
+}*/
+
+#candidate-img-profile > .ribbon {
+  top: 42%;
+  @include ribbon-base;
 }
 
 /*percentage facetoface*/
@@ -1258,7 +1267,7 @@ animation: doscaras 4s infinite;
 		top: 65px;
 		left: 75px;
 	}
-	
+
 	.not_answered_small a:after {
 		content: url(../img/no-responde.png);
 		position: absolute;
@@ -1280,6 +1289,21 @@ animation: doscaras 4s infinite;
 
 }
 
+@media (min-width: 768px) {
+  #main-election > div > a > .ribbon {
+    top: 34%;
+    left: -4%;
+    width: 107%;
+    height: 44px;
+  }
+
+  #candidate-img-profile > .ribbon {
+    top: 38%;
+    left: -3%;
+    max-width: 375px;
+  }
+}
+
 @media (max-width: 800px) {
 	.not_answered:after {
 		/*top: 75px;
@@ -1292,6 +1316,37 @@ animation: doscaras 4s infinite;
 		top: 80px;
 		left: 30px;
 	}
+}
+
+@media (min-width: 1024px) {
+  #main-election > div > a > .ribbon {
+    top: 31%;
+    left: 0%;
+    width: 100%;
+    height: 25px;
+    max-width: 160px;
+    font-size: 18px;
+    padding: 0px;
+  }
+
+  #candidate-img-profile > .ribbon {
+    top: 34%;
+    left: -5%;
+    padding: 0px;
+    font-size: 22px;
+    height: 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  #main-election > div > a > .ribbon {
+    top: 34%;
+    max-width: 200px;
+  }
+
+  #candidate-img-profile > .ribbon {
+    top: 36%;
+  }
 }
 
 @media (max-height: 600px) {

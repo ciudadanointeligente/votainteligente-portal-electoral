@@ -11,10 +11,10 @@
 
 {% block mainelection %}
 <div class="row">
-	<div class="container-candidates">
+	<div id="main-election" class="container-candidates">
 		{% for candidate in election.candidates.all %}
-		<div class="col-md-2">
-			
+		<div class="col-sm-4 col-md-2">
+
 			{% if candidate.image %}
 				{% thumbnail candidate.image "300x300" crop="center" as im %}
 				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive">{% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %}</a>
@@ -22,7 +22,7 @@
 			{% else %}
 				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">{% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %}</a>
 			{% endif %}
-			
+
 			<p class="text-center">
 				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}">{{candidate.name}}</a>
 				{% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}

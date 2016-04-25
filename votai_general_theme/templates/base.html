@@ -62,12 +62,6 @@
                         <a class="navbar-brand" href="/"><img src="{% static 'img/logo-votainteligente.png' %}" class="img-responsive" title="Vota Inteligente" alt="Vota Inteligente"></a>
                     </div>
                     <div class="collapse navbar-collapse">
-                        {% get_flatpages as flatpages %}
-                        <ul class="nav navbar-nav">
-                            {% for page in flatpages %}
-                                    <li><a href="/pages/{{ page.url }}">{{ page.title }}</a></li>
-                            {% endfor %}
-                        </ul>
                         <ul class="nav navbar-nav navbar-right">
                             {% if user.is_authenticated %}
                             <li class="dropdown">
@@ -87,6 +81,12 @@
                             <li><a href="{% url 'auth_login' %}">{% blocktrans %}Ingresar{% endblocktrans %}</a></li>
                             {% endif %}
                           </ul>
+                        {% get_flatpages as flatpages %}
+                        <ul class="nav navbar-nav">
+                            {% for page in flatpages %}
+                                    <li><a href="/pages/{{ page.url }}">{{ page.title }}</a></li>
+                            {% endfor %}
+                        </ul>
                     </div><!--/.nav-collapse -->
 
                 </div>

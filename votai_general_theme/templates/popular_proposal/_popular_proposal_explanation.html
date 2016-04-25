@@ -1,6 +1,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
+{% load markdown_deux_tags %}
 <div class="contenedorDestacado fondo-blanco">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
@@ -8,22 +9,24 @@
         {% trans "¡Tú puedes ser parte del cambio y mejorar la calidad de vida en tu comuna!" %}
       </h2>
 
-      {% blocktrans %}
       <h3>Propuestas Ciudadanas</h3>
       <span>
-        Queremos que las personas y organizaciones sociales sean escuchadas. 
-        Envíanos tu propuesta para solucionar un problema en tu comuna y nosotros te ayudaremos a que esta sea escuchada por los candidatos a alcaldes y concejales de las Elecciones Municipales 2016.
+{% markdown %}
+Queremos que las personas y organizaciones sociales sean escuchadas. 
+Envíanos tu propuesta para solucionar un problema en tu comuna y nosotros te ayudaremos a que esta sea escuchada por los candidatos a alcaldes y concejales de las Elecciones Municipales 2016.
+{% endmarkdown %}
       </span>
       <h4>¿Por qué queremos esto?</h4>
       <span>
-        Muchas veces las autoridades no responden a los problemas reales de la gente. Nosotros queremos que la voz de los ciudadanos sea escuchada, y que sean ustedes los que propongan los temas.
+{% markdown %}
+Muchas veces las autoridades no responden a los problemas reales de la gente. Nosotros queremos que la voz de los ciudadanos sea escuchada, y que sean ustedes los que propongan los temas.
         
-        ¿Hacen falta áreas verdes? ¿Quieren más espacios comunitarios? ¿Faltan lugares para reciclar? ¿Hay espacios que no se están aprovechando? ¿Necesitan más centros de atención?
+¿Hacen falta áreas verdes? ¿Quieren más espacios comunitarios? ¿Faltan lugares para reciclar? ¿Hay espacios que no se están aprovechando? ¿Necesitan más centros de atención?
         
-        Los vecinos y vecinas son quienes conocen mejor sus necesidades. Es por eso que estamos abiertos a todas sus propuestas. Solo ingresa tu comuna, rellena el formulario, y nosotros te acompañaremos en la elaboración de tu propuesta.
+Los vecinos y vecinas son quienes conocen mejor sus necesidades. Es por eso que estamos abiertos a todas sus propuestas. Solo ingresa tu comuna, rellena el formulario, y nosotros te acompañaremos en la elaboración de tu propuesta.
+{% endmarkdown %}
       </span>
       <h4>Nota: Para hacer tu propuesta ciudadana, deberás registrarte en el sitio.</h4>
-      {% endblocktrans %}
     </div>
     </div>
   </div>

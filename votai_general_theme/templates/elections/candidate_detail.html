@@ -27,18 +27,18 @@
 						{% thumbnail candidate.image "300x300" crop="center" as im %}
 						    <img src="{{ im.url }}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive">
 						{% endthumbnail %}
-						
+
 						{% else %}
 						<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">
 						{% endif %}
-						
+
 						<img id="apoya" src="{% static 'img/hover-caraacara.png' %}" alt="{% trans "Apoya a tu candidato" %}" title="{% trans "Apoya a tu candidato" %}">
 						{% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %}
 					</div>
-					
+
 					{% if candidate.image %}
 					<a class="btn btn-default button_pic hidden-xs" data-toggle="modal" href="#myCandidate" style="margin-bottom:5px" onClick="ga('send', 'event', 'support-candidate', 'click');"><i class="icon-camera"></i> {% trans "Da la cara por tu candidato" %}</a>
-					
+
 					<div class="modal fade" id="myCandidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -80,22 +80,22 @@
 				<div class="col-md-5">
 					<table class="table">
 						{% include 'elections/candidates/personal_data_candidate.html' with candidate=candidate %}
-					</table>			
+					</table>
 				</div>
-				
+
 				<div class="col-md-4 social-side">
 					{% include 'elections/candidates/links_extra_pages.html' with candidate=candidate %}
 
 					{% include 'elections/candidates/contacts.html' with candidate=candidate %}
-					
-					
+
+
 					{% if 'facetoface'|val_navbars and election.uses_face_to_face  %}
 					<button type="button" class="btn btn-danger btn-lg btn-block" onClick="location.href='{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}'"><i class="icon-bolt"></i> {% trans "Compáralo con otro candidato" %}</button>
 					{% endif %}
-					
+
 				</div>
 			</div>
-			
+
 			<div class="row">
 
 				<div class="antecedentes col-md-12">
@@ -108,7 +108,7 @@
 			 			{% endfor %}
 			 		{% endfor %}
 
-			 		
+
 					{{ candidate.biography|markdown }}
 			 		</div>
 			 	</div>

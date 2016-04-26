@@ -41,7 +41,7 @@ class CitizenMembershipTestCase(ProposingCycleTestCaseBase):
         enrollment = organization.enrollments.first()
         self.assertEquals(enrollment.user, self.feli)
         self.assertEquals(organization.description, u'Agrupación de circo del barrio Yungay')
-        # self.assertTrue(organization.image)
+        self.assertTrue(organization.images.all())
 
     @vcr.use_cassette('fixtures/vcr_cassettes/circoroto.yaml')
     def test_creating_an_organization_view(self):

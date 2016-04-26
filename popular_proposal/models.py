@@ -11,10 +11,15 @@ from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
 from popolo.models import Organization as PopoloOrganization
+from images.models import Image, HasImageMixin
 
 
-class Organization(PopoloOrganization):
+class Organization(PopoloOrganization, HasImageMixin):
     _id = models.AutoField(primary_key=True)
+
+    @property
+    def images(self):
+        return Image.objects.filter(object_id=self._id)
 
 
 class Enrollment(models.Model):

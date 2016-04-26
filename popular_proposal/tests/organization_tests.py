@@ -11,3 +11,5 @@ class OrganizationTestCase(TestCase):
     def test_organization_has_images(self):
         organization = Organization.objects.create(name='La Cosa Nostra')
         image = Image.objects.create(content_object=organization)
+        self.assertIn(image, organization.images.all())
+        self.assertEqual(organization.primary_image(), image.image)

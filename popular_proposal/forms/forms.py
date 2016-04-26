@@ -33,11 +33,10 @@ class ProposalFormBase(forms.Form, TextsFormMixin):
     title = forms.CharField(max_length=256,)
     clasification = forms.ChoiceField(choices=TOPIC_CHOICES)
     allies = forms.CharField(max_length=256)
-    organization = forms.CharField(required=False)
 
     def __init__(self, *args, **kwargs):
         super(ProposalFormBase, self).__init__(*args, **kwargs)
-        self.add_texts_to_fields()
+
 
 
 class ProposalForm(ProposalFormBase):
@@ -45,6 +44,17 @@ class ProposalForm(ProposalFormBase):
         self.proposer = kwargs.pop('proposer')
         self.area = kwargs.pop('area')
         super(ProposalForm, self).__init__(*args, **kwargs)
+        if self.proposer.enrollments.all():
+            possible_organizations = [(0, _(u'Lo haré como persona'))]
+            for enrollment in self.proposer.enrollments.all():
+                possible_organizations.append((enrollment.organization.id, enrollment.organization))
+
+            self.fields['organization'] = forms.ChoiceField(
+                choices=possible_organizations,
+                required=False,
+
+            )
+        self.add_texts_to_fields()
 
     def save(self):
         return ProposalTemporaryData.objects.create(proposer=self.proposer,

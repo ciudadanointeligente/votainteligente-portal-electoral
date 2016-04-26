@@ -3,6 +3,7 @@
 {% load flatpages %}
 {% load sass_tags %}
 {% load i18n %}
+{% load thumbnail %}
 {% load votainteligente_extras %}
 <html prefix="og: //ogp.me/ns/{{ 'type'|ogpdata }}#">
     <head>
@@ -37,7 +38,7 @@
         </script>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/chosen.min.css' %}" rel="stylesheet">
         <link href="{% sass_src 'sass/main.scss' %}" rel="stylesheet" type="text/css" />
         <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
@@ -61,20 +62,68 @@
                         </button>
                         <a class="navbar-brand" href="/"><img src="{% static 'img/logo-votainteligente.png' %}" class="img-responsive" title="Vota Inteligente" alt="Vota Inteligente"></a>
                     </div>
+                    {% block extra_nav %}
+                    {% endblock extra_nav %}
+
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             {% if user.is_authenticated %}
                             <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}}<span class="caret"></span></a>
+                              
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                  <i class="fa fa-user" aria-hidden="true"></i>
+                                  {{user.username}}<span class="caret"></span></a>
                               <ul class="dropdown-menu">
                                 {% if user.is_superuser %}
-                                <li><a href="/admin">{% blocktrans %}Sección de administración{% endblocktrans %}</a></li>
+                                <li><a href="/admin">
+                                        <i class="fa fa-beer" aria-hidden="true"></i>
+                                        {% blocktrans %}Sección de administración{% endblocktrans %}</a></li>
                                 {% endif %}
                                 {% if user.is_staff %}
-                                <li><a href="{% url 'backend_staff:index' %}">{% blocktrans %}Sección del Staff{% endblocktrans %}</a></li>
+                                <li><a href="{% url 'backend_staff:index' %}">
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                        {% blocktrans %}Sección del Staff{% endblocktrans %}</a></li>
                                 {% endif %}
-                                <li><a href="{% url 'backend_citizen:index' %}">{% blocktrans %}Tu perfil ciudadano{% endblocktrans %}</a></li>
-                                <li><a href="{% url 'auth_logout' %}">{% blocktrans %}Salir{% endblocktrans %}</a></li>
+                                <li><a href="{% url 'backend_citizen:index' %}">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        {% blocktrans %}Tu perfil ciudadano{% endblocktrans %}
+                                    </a>
+                                </li>
+                                {% if user.enrollments.all %}
+                                <li role="separator" class="divider"></li>
+                                {% endif %}
+                                {% for enrollment in user.enrollments.all %}
+
+                                <li>
+                                    <a target="_blank" href="{{enrollment.organization.get_absolute_url}}">
+                                        {% if enrollment.organization.primary_image %}
+
+                                        {% thumbnail enrollment.organization.primary_image "x16" as im %}
+                                        <img src={% static im.url %}>
+                                        {% endthumbnail %}
+                                        {% else %}
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        {% endif %}
+
+                                        {{enrollment.organization}}
+                                        <i class="fa fa-external-link" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                <a href="{% url 'backend_citizen:create_organization' %}">
+                                    <i class="fa fa-hand-rock-o" aria-hidden="true"></i>
+                                    {% trans 'Registra una organización' %}
+                                </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="{% url 'auth_logout' %}">
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                        {% blocktrans %}Salir{% endblocktrans %}
+                                    </a>
+                                </li>
                               </ul>
                             </li>
                             {% else %}

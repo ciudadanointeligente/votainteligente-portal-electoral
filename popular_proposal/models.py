@@ -3,14 +3,32 @@ from __future__ import unicode_literals
 from django.db import models
 from picklefield.fields import PickledObjectField
 from django.contrib.auth.models import User
-from popolo.models import Area, Organization
+from popolo.models import Area
 from djchoices import DjangoChoices, ChoiceItem
 from votainteligente.send_mails import send_mail
 from django.utils.encoding import python_2_unicode_compatible
-from backend_citizen.models import Enrollment
 from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
+from popolo.models import Organization as PopoloOrganization
+from images.models import Image, HasImageMixin
+
+
+class Organization(PopoloOrganization, HasImageMixin):
+    _id = models.AutoField(primary_key=True)
+
+    @property
+    def images(self):
+        return Image.objects.filter(object_id=self._id)
+
+    def get_absolute_url(self):
+        return reverse('popular_proposals:organization', kwargs={'slug':self.id})
+
+class Enrollment(models.Model):
+    user = models.ForeignKey(User, related_name="enrollments")
+    organization = models.ForeignKey(Organization, related_name="enrollments")
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=True)
 
 
 class NeedingModerationManager(models.Manager):
@@ -70,10 +88,8 @@ class ProposalTemporaryData(models.Model):
                                            temporary=self,
                                            data=self.data)
         if 'organization' in self.data.keys() and self.data['organization']:
-            organization, created = Organization.objects.get_or_create(name=self.data['organization'])
-            popular_proposal.organization = organization
-            Enrollment.objects.create(organization=organization,
-                                      user=self.proposer)
+            enrollment = self.proposer.enrollments.get(organization__id=self.data['organization'])
+            popular_proposal.organization = enrollment.organization
         popular_proposal.save()
         site = Site.objects.get_current()
         mail_context = {
@@ -120,6 +136,9 @@ class PopularProposal(models.Model):
                                      null=True,
                                      default=None)
     likers = models.ManyToManyField(User, through='ProposalLike')
+    organization = models.ForeignKey(Organization,
+                                     related_name='popular_proposals',
+                                     null=True)
 
     def __str__(self):
         return self.title

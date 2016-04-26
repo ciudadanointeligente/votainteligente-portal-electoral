@@ -29,6 +29,7 @@ INSTALLED_APPS = (
     'django_forms_bootstrap',
     ##"registration_defaults",
     "sass_processor",
+    "images",
     'candidator',
     'taggit',
     'haystack',
@@ -296,6 +297,7 @@ if DONT_USE_MIGRATIONS:
     TEST_RUNNER = 'votainteligente.votainteligente_settings.Runner'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+FACEBOOK_ACCESS_TOKEN = 'FieraEsLaMejorAmigaDeTodos'
 
 try:
     from local_settings import *

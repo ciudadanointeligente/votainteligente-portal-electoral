@@ -4,7 +4,7 @@ from django.views.generic.edit import FormView, CreateView
 from popular_proposal.forms import ProposalTemporaryDataUpdateForm
 from popular_proposal.models import ProposalTemporaryData
 from django.core.urlresolvers import reverse
-from popolo.models import Organization
+from popular_proposal.models import Organization
 from backend_citizen.forms import OrganizationForm
 
 

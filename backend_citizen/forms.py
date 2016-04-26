@@ -1,6 +1,5 @@
 from django import forms
-from popolo.models import Organization
-from backend_citizen.models import Enrollment
+from popular_proposal.models import Organization, Enrollment
 from votainteligente.facebook_page_getter import facebook_getter
 
 

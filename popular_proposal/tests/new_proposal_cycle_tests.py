@@ -1,6 +1,6 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
-from popolo.models import Organization
+from popular_proposal.models import Organization
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData, PopularProposal
 from popular_proposal.forms import ProposalForm

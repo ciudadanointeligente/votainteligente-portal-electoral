@@ -1,7 +1,6 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
-from popolo.models import Organization
-from backend_citizen.models import Enrollment
+from popular_proposal.models import Organization, Enrollment
 from backend_citizen.forms import OrganizationForm
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User

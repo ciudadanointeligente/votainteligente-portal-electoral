@@ -3,14 +3,25 @@ from __future__ import unicode_literals
 from django.db import models
 from picklefield.fields import PickledObjectField
 from django.contrib.auth.models import User
-from popolo.models import Area, Organization
+from popolo.models import Area
 from djchoices import DjangoChoices, ChoiceItem
 from votainteligente.send_mails import send_mail
 from django.utils.encoding import python_2_unicode_compatible
-from backend_citizen.models import Enrollment
 from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
+from popolo.models import Organization as PopoloOrganization
+
+
+class Organization(PopoloOrganization):
+    _id = models.AutoField(primary_key=True)
+
+
+class Enrollment(models.Model):
+    user = models.ForeignKey(User, related_name="enrollments")
+    organization = models.ForeignKey(Organization, related_name="enrollments")
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=True)
 
 
 class NeedingModerationManager(models.Manager):

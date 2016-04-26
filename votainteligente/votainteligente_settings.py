@@ -29,6 +29,7 @@ INSTALLED_APPS = (
     'django_forms_bootstrap',
     ##"registration_defaults",
     "sass_processor",
+    "images",
     'candidator',
     'taggit',
     'haystack',

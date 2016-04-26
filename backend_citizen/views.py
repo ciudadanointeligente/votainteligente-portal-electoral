@@ -53,4 +53,4 @@ class OrganizationCreateView(LoginRequiredMixin, CreateView):
         return kwargs
 
     def get_success_url(self):
-        return reverse('backend_citizen:index')
+        return reverse('popular_proposals:organization', kwargs={'slug': self.object.id})

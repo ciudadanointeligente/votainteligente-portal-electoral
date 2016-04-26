@@ -38,7 +38,7 @@
         </script>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/chosen.min.css' %}" rel="stylesheet">
         <link href="{% sass_src 'sass/main.scss' %}" rel="stylesheet" type="text/css" />
         <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
@@ -75,7 +75,9 @@
                                   {{user.username}}<span class="caret"></span></a>
                               <ul class="dropdown-menu">
                                 {% if user.is_superuser %}
-                                <li><a href="/admin">{% blocktrans %}Sección de administración{% endblocktrans %}</a></li>
+                                <li><a href="/admin">
+                                        <i class="fa fa-beer" aria-hidden="true"></i>
+                                        {% blocktrans %}Sección de administración{% endblocktrans %}</a></li>
                                 {% endif %}
                                 {% if user.is_staff %}
                                 <li><a href="{% url 'backend_staff:index' %}">

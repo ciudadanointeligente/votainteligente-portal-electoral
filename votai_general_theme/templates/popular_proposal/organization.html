@@ -22,9 +22,20 @@ $(function(){
   <div class="contenedorDestacado fondo-blanco">
       <img src="{% static organization.primary_image.url %}">
     <h1>{{organization.name}}</h1>
+    <h3>{{organization.description}}</h3>
+    {% for contact_detail in organization.contact_details.all %}
+        <a href="{{contact_detail.url}}">
+            {% if contact_detail.contact_type = 'FACEBOOK' %}
+            <i class="fa fa-facebook-official" aria-hidden="true"></i>
+            {% endif %}
+            {{contact_detail.label}}
+        </a>
+    {% endfor %}
        <div class="row masonry-container">
         {% for proposal in organization.popular_proposals.all %}
           {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
+          {% empty %}
+          {% trans 'Aún no hay propuestas de esta organización' %}
         {% endfor %}
        </div>
 

@@ -12,7 +12,9 @@
   <div class="contenedorDestacado fondo-blanco">
       <img src="{% static organization.primary_image.url %}">
     <h1>{{organization.name}}</h1>
-
+    {% for proposal in organization.proposals.all %}
+    {{proposal}}
+    {% endfor %}
 
   </div>
 

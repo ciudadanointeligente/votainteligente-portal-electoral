@@ -88,10 +88,8 @@ class ProposalTemporaryData(models.Model):
                                            temporary=self,
                                            data=self.data)
         if 'organization' in self.data.keys() and self.data['organization']:
-            organization, created = Organization.objects.get_or_create(name=self.data['organization'])
-            popular_proposal.organization = organization
-            Enrollment.objects.create(organization=organization,
-                                      user=self.proposer)
+            enrollment = self.proposer.enrollments.get(organization__id=self.data['organization'])
+            popular_proposal.organization = enrollment.organization
         popular_proposal.save()
         site = Site.objects.get_current()
         mail_context = {
@@ -138,6 +136,9 @@ class PopularProposal(models.Model):
                                      null=True,
                                      default=None)
     likers = models.ManyToManyField(User, through='ProposalLike')
+    organization = models.ForeignKey(Organization,
+                                     related_name='popular_proposals',
+                                     null=True)
 
     def __str__(self):
         return self.title

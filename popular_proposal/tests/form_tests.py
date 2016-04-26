@@ -8,7 +8,7 @@ from popular_proposal.forms import (ProposalForm,
 from django.contrib.auth.models import User
 from popolo.models import Area
 from django.forms import CharField
-from popular_proposal.models import ProposalTemporaryData
+from popular_proposal.models import ProposalTemporaryData, Organization, Enrollment
 from django.core import mail
 from django.template.loader import get_template
 from django.template import Context, Template
@@ -42,6 +42,16 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(t_data['solution'], self.data['solution'])
         self.assertEquals(t_data['when'], self.data['when'])
         self.assertEquals(t_data['allies'], self.data['allies'])
+
+    def test_form_with_organizations(self):
+        org = Organization.objects.create(name=u'cosa nostra')
+        membership = Enrollment.objects.create(user=self.feli,
+                                               organization=org)
+        form = ProposalForm(data=self.data,
+                            proposer=self.feli,
+                            area=self.arica)
+        self.assertIn('organization', form.fields)
+
 
     def test_comments_form(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,

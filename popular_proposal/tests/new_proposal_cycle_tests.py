@@ -1,6 +1,6 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
-from popular_proposal.models import Organization
+from popular_proposal.models import Organization, Enrollment
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData, PopularProposal
 from popular_proposal.forms import ProposalForm
@@ -117,6 +117,10 @@ class ProposingViewTestCase(ProposingCycleTestCaseBase):
 class PopularProposalTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(PopularProposalTestCase, self).setUp()
+        # Enrolling Fiera with the organization
+        self.org = Organization.objects.create(name=u'La Cosa Nostra')
+        self.enrollment = Enrollment.objects.create(organization=self.org,
+                                                    user=self.fiera)
 
     def test_instantiate_one(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
@@ -132,17 +136,27 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertIn(popular_proposal, self.arica.proposals.all())
         self.assertIsNone(popular_proposal.temporary)
 
+    def test_can_have_an_organization(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          organization=self.org,
+                                                          title=u'This is a title'
+                                                          )
+
     def test_create_popular_proposal_from_temporary_data(self):
+        data = self.data
+        data['organization'] = self.org.id
+        # Testing
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
                                                               data=self.data)
         popular_proposal = temporary_data.create_proposal(moderator=self.feli)
         self.assertEquals(popular_proposal.proposer, self.fiera)
         self.assertTrue(popular_proposal.organization)
-        self.assertTrue(popular_proposal.organization.enrollments.all())
-        enrollment = popular_proposal.organization.enrollments.first()
-        self.assertEqual(enrollment.user, self.fiera)
-        self.assertEquals(popular_proposal.organization.name, self.data['organization'])
+        self.assertEqual(self.enrollment.user, self.fiera)
+        popular_proposal = PopularProposal.objects.get(id=popular_proposal.id)
+        self.assertEquals(popular_proposal.organization.name, self.org.name)
         self.assertEquals(popular_proposal.area, self.arica)
         self.assertEquals(popular_proposal.data, self.data)
         self.assertEquals(popular_proposal.title, self.data['title'])

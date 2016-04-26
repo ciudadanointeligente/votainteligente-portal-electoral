@@ -36,14 +36,6 @@ class ProposalFormBase(forms.Form, TextsFormMixin):
 
     def __init__(self, *args, **kwargs):
         super(ProposalFormBase, self).__init__(*args, **kwargs)
-
-
-
-class ProposalForm(ProposalFormBase):
-    def __init__(self, *args, **kwargs):
-        self.proposer = kwargs.pop('proposer')
-        self.area = kwargs.pop('area')
-        super(ProposalForm, self).__init__(*args, **kwargs)
         if self.proposer.enrollments.all():
             possible_organizations = [(0, _(u'Lo haré como persona'))]
             for enrollment in self.proposer.enrollments.all():
@@ -55,6 +47,14 @@ class ProposalForm(ProposalFormBase):
 
             )
         self.add_texts_to_fields()
+
+
+
+class ProposalForm(ProposalFormBase):
+    def __init__(self, *args, **kwargs):
+        self.proposer = kwargs.pop('proposer')
+        self.area = kwargs.pop('area')
+        super(ProposalForm, self).__init__(*args, **kwargs)
 
     def save(self):
         return ProposalTemporaryData.objects.create(proposer=self.proposer,

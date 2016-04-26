@@ -14,6 +14,12 @@
   <!-- Featured Elections  -->
   <div class="contenedorDestacado fondo-blanco">
       <h1>{% blocktrans %}¡Bienvenid@ {{user}}!{% endblocktrans %}</h1>
+      {% if not user.enrollments.all %}
+            {% trans 'Aún no perteneces a ninguna organización, pero puedes ...' %}
+            <a href="{% url 'backend_citizen:create_organization' %}" class="btn btn-success active btn-block" role="button">
+                {% trans 'Registra tu organización' %}
+            </a>
+      {% endif %}
     
       {% if temporary_proposals %}
       <table class="table">
@@ -69,10 +75,28 @@
         {% trans 'Aún no tienes propuestas, pero puedes:' %}
         <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary btn-lg active btn-block" role="button">{% trans 'Crear una propuesta Ciudadana' %}</a>
     {% endif %}
-    <a href="{% url 'backend_citizen:create_organization' %}" class="btn btn-primary btn-lg active btn-block" role="button">
-        {% trans 'Registra tu organización' %}
-    </a>
     </table>
+
+    {% if user.enrollments.all %}
+        <table>
+        <tr>
+            <td>Organization</td>
+            <td>Link</td>
+        </tr>
+        {% for enrollment in user.enrollments.all %}
+        <tr>
+            <td>{{enrollment.organization}}</td>
+            <td><a target="_blank" href="{{enrollment.organization.get_absolute_url}}">
+                    <i class="fa fa-external-link" aria-hidden="true"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        
+        </table>
+    {% else %}
+        {% trans 'Aún no perteneces a ninguna organización.' %}
+    {% endif %}
 
 </div>
 {% endblock content %}

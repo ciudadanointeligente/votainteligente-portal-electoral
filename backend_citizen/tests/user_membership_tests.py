@@ -1,6 +1,6 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
-from popular_proposal.models import Organization, Enrollment
+from popular_proposal.models import Organization
 from backend_citizen.forms import OrganizationForm
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
@@ -17,14 +17,6 @@ class CitizenMembershipTestCase(ProposingCycleTestCaseBase):
         self.fiera = User.objects.get(username='fiera')
         self.fiera.set_password(PASSWORD)
         self.fiera.save()
-
-    def test_relating_a_user_and_an_organization(self):
-        membership = Enrollment.objects.create(user=self.feli,
-                                               organization=self.org)
-        self.assertTrue(membership.created)
-        self.assertTrue(membership.updated)
-        self.assertIn(membership, self.feli.enrollments.all())
-        self.assertIn(membership, self.org.enrollments.all())
 
     @vcr.use_cassette('fixtures/vcr_cassettes/circoroto.yaml')
     def test_creating_an_organization_form(self):

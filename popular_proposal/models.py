@@ -21,6 +21,8 @@ class Organization(PopoloOrganization, HasImageMixin):
     def images(self):
         return Image.objects.filter(object_id=self._id)
 
+    def get_absolute_url(self):
+        return reverse('popular_proposals:organization', kwargs={'slug':self.id})
 
 class Enrollment(models.Model):
     user = models.ForeignKey(User, related_name="enrollments")

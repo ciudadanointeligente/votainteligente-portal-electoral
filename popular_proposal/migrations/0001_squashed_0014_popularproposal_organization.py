@@ -13,8 +13,6 @@ import picklefield.fields
 
 class Migration(migrations.Migration):
 
-    replaces = [(b'popular_proposal', '0001_initial'), (b'popular_proposal', '0002_proposaltemporarydata_status'), (b'popular_proposal', '0003_auto_20160329_1622'), (b'popular_proposal', '0004_auto_20160406_2108'), (b'popular_proposal', '0005_popularproposal_title'), (b'popular_proposal', '0006_proposallike_subscription'), (b'popular_proposal', '0007_popularproposal_likers'), (b'popular_proposal', '0008_proposaltemporarydata_overall_comments'), (b'popular_proposal', '0009_popularproposal_slug'), (b'popular_proposal', '0010_auto_20160418_2117'), (b'popular_proposal', '0011_auto_20160418_2332'), (b'popular_proposal', '0012_auto_20160419_2151'), (b'popular_proposal', '0013_auto_20160426_1428'), (b'popular_proposal', '0014_popularproposal_organization')]
-
     initial = True
 
     dependencies = [

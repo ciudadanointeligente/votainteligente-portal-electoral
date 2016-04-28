@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
             },
             bases=('popolo.organization',),
         ),
-        migrations.AlterField(
+        migrations.AddField(
             model_name='proposaltemporarydata',
             name='organization',
             field=models.ForeignKey(blank=True, default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='temporary_proposals', to='popular_proposal.Organization'),

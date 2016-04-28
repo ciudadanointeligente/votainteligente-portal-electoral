@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('rejected_reason', models.TextField()),
                 ('comments', picklefield.fields.PickledObjectField(editable=False)),
                 ('area', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='temporary_proposals', to='popolo.Area')),
-                ('organization', models.ForeignKey(blank=True, default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='temporary_proposals', to='popolo.Organization')),
+                #('organization', models.ForeignKey(blank=True, default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='temporary_proposals', to='popolo.Organization')),
                 ('proposer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='temporary_proposals', to=settings.AUTH_USER_MODEL)),
             ],
         ),

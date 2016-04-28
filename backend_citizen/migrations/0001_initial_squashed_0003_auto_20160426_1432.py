@@ -8,8 +8,6 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    replaces = [(b'backend_citizen', '0001_initial'), (b'backend_citizen', '0002_auto_20160426_1405'), (b'backend_citizen', '0003_auto_20160426_1432')]
-
     dependencies = [
         ('popolo', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),

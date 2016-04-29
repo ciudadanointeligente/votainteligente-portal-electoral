@@ -8,5 +8,6 @@
 	<h2>{{ flatpage.title }}</h2>
 	{{ flatpage.content|markdown }}
   </div>
+    {% include 'disqus.html' %}
 </div>
 {% endblock content %}

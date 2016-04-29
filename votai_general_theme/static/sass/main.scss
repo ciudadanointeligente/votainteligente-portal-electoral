@@ -130,6 +130,20 @@ strong {
 	margin: 65px 0px 45px;
 }
 
+.paginasPlanasDestacadas {
+  *zoom: 1;
+  margin: 20px 0 60px;
+  padding: 30px;
+  &:after {
+    content: "";
+      display: table;
+      clear: both;
+  }
+  ul {
+      -webkit-padding-start: 0px;
+  }
+}
+
 .contenedorDestacado {
 	*zoom: 1;
 	margin: 20px 0 60px;

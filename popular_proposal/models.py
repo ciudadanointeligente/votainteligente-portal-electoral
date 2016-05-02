@@ -12,15 +12,13 @@ from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
 from popolo.models import Organization as PopoloOrganization
 from images.models import Image, HasImageMixin
+from django.contrib.contenttypes.fields import GenericRelation
 
 
 class Organization(PopoloOrganization, HasImageMixin):
     _id = models.AutoField(primary_key=True)
-
-    @property
-    def images(self):
-        return Image.objects.filter(object_id=self._id)
-
+    images = GenericRelation(Image)
+    
     def get_absolute_url(self):
         return reverse('popular_proposals:organization', kwargs={'slug':self.id})
 

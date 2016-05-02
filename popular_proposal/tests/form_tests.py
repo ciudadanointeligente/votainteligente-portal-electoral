@@ -24,6 +24,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.feli = User.objects.get(username='feli')
 
     def test_instanciate_form(self):
+        original_amount = len(mail.outbox)
         form = ProposalForm(data=self.data,
                             proposer=self.fiera,
                             area=self.arica)
@@ -35,6 +36,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(cleaned_data['when'], self.data['when'])
         self.assertEquals(cleaned_data['allies'], self.data['allies'])
         temporary_data = form.save()
+        self.assertEquals(len(mail.outbox), original_amount + 1)
         self.assertEquals(temporary_data.proposer, self.fiera)
         self.assertEquals(temporary_data.area, self.arica)
         t_data = temporary_data.data

@@ -32,7 +32,7 @@
     {% for proposal in proposals.all %}
         <tr>
             <td>{{proposal.area}}</td>
-            <td>{{proposal.data.problem}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.problem %}
+            <td>{{proposal.data.problem|truncatechars:100}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.problem %}
             </td>
             <td>
                 <button type="button" class="btn btn-lg btn-danger masInfo" data-toggle="popover" title="+ Info" data-content="{% get_questions_and_descriptions proposal %}">?</button>

@@ -2,6 +2,6 @@
 <ul>
 {% for key, value in texts.items %}
 
-<li><b>{{key|popular_proposal_question}}</b>: {{data|get_item:key|popular_proposal_when|linebreaksbr|truncatechars:100 }}</ br></li>
+<li><b>{{key|popular_proposal_question}}</b>: {{data|get_item:key|popular_proposal_when|linebreaksbr }}</ br></li>
 {% endfor %}
 </ul>

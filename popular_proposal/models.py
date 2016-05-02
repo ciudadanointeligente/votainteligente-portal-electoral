@@ -68,13 +68,22 @@ class ProposalTemporaryData(models.Model):
     objects = models.Manager()
 
     def save(self, *args, **kwargs):
+        creating = self.id is None
         if not self.comments:
             self.comments = {}
         for key in self.data.keys():
             if key not in self.comments.keys():
                 self.comments[key] = ''
-
         return super(ProposalTemporaryData, self).save(*args, **kwargs)
+        
+    def notify_new(self):
+        site = Site.objects.get_current()
+        mail_context = {
+            'area': self.area,
+            'temporary_data': self,
+            'site': site,
+        }
+        send_mail(mail_context, 'new_temporary_proposal', to=[self.proposer.email])
 
     def create_proposal(self, moderator=None):
         self.status = ProposalTemporaryData.Statuses.Accepted

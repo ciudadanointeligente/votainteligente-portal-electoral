@@ -30,6 +30,16 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         self.assertIn(temporary_data, self.fiera.temporary_proposals.all())
         self.assertEquals(temporary_data.get_title(), self.data['title'])
         self.assertEquals(str(temporary_data.get_title()), self.data['title'])
+    
+    def test_send_temporary_data_new_mail(self):
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              area=self.arica,
+                                                              data=self.data)
+        temporary_data.notify_new()
+        self.assertEquals(len(mail.outbox), 1)
+        the_mail = mail.outbox[0]
+        self.assertTrue(the_mail)
+        self.assertIn(self.fiera.email, the_mail.to)
 
     def test_proposing_with_an_organization(self):
         local_org = Organization.objects.create(name="Local Organization")
@@ -59,11 +69,12 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
                                                               data=self.data)
+        original_amount_of_mails = len(mail.outbox)
         temporary_data.reject('es muy mala la cosa')
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
         self.assertEquals(temporary_data.rejected_reason, 'es muy mala la cosa')
         self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.Rejected)
-        self.assertEquals(len(mail.outbox), 1)
+        self.assertEquals(len(mail.outbox), original_amount_of_mails + 1)
 
         the_mail = mail.outbox[0]
         self.assertIn(self.fiera.email, the_mail.to)
@@ -145,12 +156,14 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
                                                           )
 
     def test_create_popular_proposal_from_temporary_data(self):
+        
         data = self.data
         data['organization'] = self.org.id
         # Testing
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
                                                               data=self.data)
+        original_amount_of_mails = len(mail.outbox)
         popular_proposal = temporary_data.create_proposal(moderator=self.feli)
         self.assertEquals(popular_proposal.proposer, self.fiera)
         self.assertTrue(popular_proposal.organization)
@@ -168,7 +181,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(len(mail.outbox), 1)
         the_mail = mail.outbox[0]
         self.assertIn(self.fiera.email, the_mail.to)
-        self.assertEquals(len(the_mail.to), 1)
+        self.assertEquals(len(the_mail.to), original_amount_of_mails + 1)
 
         # context = Context({'area': self.arica,
         #                    'temporary_data': temporary_data,

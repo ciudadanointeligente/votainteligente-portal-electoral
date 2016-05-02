@@ -57,9 +57,11 @@ class ProposalForm(ProposalFormBase):
         super(ProposalForm, self).__init__(*args, **kwargs)
 
     def save(self):
-        return ProposalTemporaryData.objects.create(proposer=self.proposer,
-                                                    area=self.area,
-                                                    data=self.cleaned_data)
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.proposer,
+                                                              area=self.area,
+                                                              data=self.cleaned_data)
+        temporary_data.notify_new()
+        return temporary_data
 
 
 class CommentsForm(forms.Form):

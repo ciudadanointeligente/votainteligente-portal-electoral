@@ -28,6 +28,7 @@
             <td>Cuándo?</td>
             <td>Aliados</td>
             <td>Organización</td>
+            <td>Usuario</td>
             <td>Comentarios del usuario</td>
             <td>Acciones</td>
         </tr>
@@ -46,6 +47,9 @@
             </td>
             <td>
                 {{proposal.data.organization}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.organization %}
+            </td>
+            <td>
+                {{proposal.proposer}}
             </td>
             <td>{% if proposal.overall_comments %}<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{% endif %}
                 {{proposal.overall_comments}}

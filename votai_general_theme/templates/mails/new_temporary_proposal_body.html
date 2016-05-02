@@ -1,0 +1,15 @@
+{% load votainteligente_extras %}Hola {{temporary_data.proposer}}!
+Recibimos tu propuesta ciudadana y pronto tendremos noticias.
+
+Tu propuesta tiene el siguiente detalle:
+{% for key, item in temporary_data.data.items %}
+{{key|popular_proposal_question}}: {{item|popular_proposal_when}}{% if not forloop.last %}
+------------------------
+{% endif %}{% endfor %}
+
+Puedes ver otras propuestas acá:<a href="http://{{site.domain}}{% url 'area' slug=area.id %}">{{area}}</a>
+
+Gracias por querer hacer de {{area}} un lugar mejor.
+
+--
+El equipo de VotaInteligente.

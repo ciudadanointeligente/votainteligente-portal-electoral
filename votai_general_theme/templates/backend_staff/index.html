@@ -23,10 +23,7 @@
         <tr>
             <td>Area</td>
             <td>Problema</td>
-            <td>Solución</td>
-            <td>Y a los 4 años?</td>
-            <td>Cuándo?</td>
-            <td>Aliados</td>
+            <td>+Info</td>
             <td>Organización</td>
             <td>Usuario</td>
             <td>Comentarios del usuario</td>
@@ -37,16 +34,13 @@
             <td>{{proposal.area}}</td>
             <td>{{proposal.data.problem}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.problem %}
             </td>
-            <td>{{proposal.data.solution}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.solution %}
-            </td>
-            <td>{{proposal.data.solution_at_the_end}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.solution_at_the_end %}
-            </td>
-            <td>{{proposal.data.when|popular_proposal_when}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.when %}
-            </td>
-            <td>{{proposal.data.allies}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.allies %}
+            <td>
+                <button type="button" class="btn btn-lg btn-danger masInfo" data-toggle="popover" title="+ Info" data-content="{% get_questions_and_descriptions proposal %}">?</button>
+                
             </td>
             <td>
-                {{proposal.data.organization}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.organization %}
+                {{proposal.data.organization}}
+                {% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.organization %}
             </td>
             <td>
                 {{proposal.proposer}}
@@ -78,6 +72,14 @@
   </div>
 
 </div>
+<script>
+$(function(){
+    $('.masInfo').popover({
+        'html': true,
+        'delay': { "show": 500, "hide": 100 }
+    });
+})
+</script>
 {% endblock content %}
 
 {% block extrafooter %}

@@ -180,3 +180,13 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(template.render(Context({})), question)
         template = Template("{% load votainteligente_extras %}{{ 'perrito'|popular_proposal_question }}")
         self.assertEquals(template.render(Context({})), 'perrito')
+
+    def test_get_all_types_of_questions(self):
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              area=self.arica,
+                                                              data=self.data)
+        template_str = get_template('popular_proposal/_extra_info.html')
+        rendered_template = template_str.render(Context({'texts': TEXTS, 'data': self.data}))
+        template = Template("{% load votainteligente_extras %}{% get_questions_and_descriptions popular_proposal %}")
+        actual_rendered_template = template.render(Context({'popular_proposal': temporary_data}))
+        self.assertEquals(rendered_template, actual_rendered_template)

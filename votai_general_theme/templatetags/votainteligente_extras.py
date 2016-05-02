@@ -195,3 +195,14 @@ def popular_proposal_question(question):
     if question not in fields.keys():
         return question
     return fields[question].get('label', question)
+
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
+
+@register.inclusion_tag('popular_proposal/_extra_info.html')
+def get_questions_and_descriptions(temporary_proposal):
+    return {
+        'texts': TEXTS,
+        'data': temporary_proposal.data
+    }

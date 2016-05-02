@@ -55,6 +55,7 @@
                 {{proposal.overall_comments}}
                 </td>
             <td>
+                {% if proposal.status == 'in_our_side' %}
                 <a data-toggle="modal" data-target="#proposalComments" 
                     data-url="{% url 'backend_staff:popular_proposal_comments' pk=proposal.id %}">
                     <i class="fa fa-pencil-square-o"></i> Editame!
@@ -63,6 +64,13 @@
                     data-url="{% url 'backend_staff:moderate_proposal' pk=proposal.id %}">
                     <i class="fa fa-gavel"></i> Moderame!
                 </a>
+                {% elif proposal.status == 'in_their_side' %}
+                <span class="label label-default">{% trans 'Esperando al usuario' %}</span>
+                {% elif proposal.status == 'accepted' %}
+                <span class="label label-success">{% trans '¡Aceptada!' %}</span>
+                {% elif proposal.status == 'in_their_side' %}
+                <span class="label label-danger">{% trans '¡Rechazada!' %}</span>
+                {% endif %}
             </td>
         </tr>
     {% endfor %}

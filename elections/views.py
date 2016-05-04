@@ -13,6 +13,8 @@ from candidator.comparer import Comparer, InformationHolder
 from candidator.adapters import CandidatorCalculator, CandidatorAdapter
 from django.shortcuts import get_object_or_404
 from popolo.models import Area
+from django.contrib.auth.forms import AuthenticationForm
+from registration.forms import RegistrationForm
 
 
 class ElectionsSearchByTagView(FormView):
@@ -56,6 +58,8 @@ class HomeView(TemplateView):
         context['featured_elections'] = Election.objects\
             .filter(highlighted=True)
         context['searchable_elections_enabled'] = True
+        context['register_new_form'] = RegistrationForm()
+        context['login_form'] = AuthenticationForm()
         if Election.objects.filter(searchable=True).count() < 1:
             context['searchable_elections_enabled'] = False
 

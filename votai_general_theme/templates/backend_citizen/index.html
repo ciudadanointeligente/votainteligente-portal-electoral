@@ -14,91 +14,18 @@
   <!-- Featured Elections  -->
   <div class="contenedorDestacado fondo-blanco">
       <h1>{% blocktrans %}¡Bienvenid@ {{user}}!{% endblocktrans %}</h1>
-      {% if not user.enrollments.all %}
+      {% if user.enrollments.all %}<!--Si tengo alguna org-->
+            {% trans 'Puedes agregar otra org o crear nueva propuesta ...' %}
+      {% else %}<!--Si no tengo alguna org-->
             {% trans 'Aún no perteneces a ninguna organización, pero puedes ...' %}
-            <a href="{% url 'backend_citizen:create_organization' %}" class="btn btn-success active btn-block" role="button">
-                {% trans 'Registra tu organización' %}
-            </a>
       {% endif %}
-    
-      {% if temporary_proposals %}
-      <table class="table">
-        <tr>
-            <td>Area</td>
-            <td>Problema</td>
-            <td>Solución</td>
-            <td>Cuándo?</td>
-            <td>Aliados</td>
-            <td>Organización</td>
-            <td>Estado</td>
-        </tr>
-    {% for proposal in temporary_proposals %}
-        <tr>
-            <td><a href="{% url 'area' slug=proposal.area.id %}">{{proposal.area}}</a></td>
-            <td>{{proposal.data.problem}}
-                {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.problem %}
-            </td>
-            <td>{{proposal.data.solution}}
-                {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.solution %}
-            </td>
-            <td>{{proposal.data.when|popular_proposal_when}}
-                {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.when %}
-            </td>
-            <td>{{proposal.data.allies}}
-                {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.allies %}
-            </td>
-            <td>{{proposal.data.organization}}
-                {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.organization %}
-            </td>
-            <td>
-                {% if proposal.status == 'in_our_side' %}
-                {% blocktrans %}<span class="label label-default"><i class="fa fa-clock-o"></i> Esperando moderación</span>{% endblocktrans %}     
-                {% endif %}
-                {% if proposal.status == 'in_their_side' %}
-                <a href="{% url 'backend_citizen:temporary_data_update' pk=proposal.id %}">
-                    <span class="label label-primary"><i class="fa fa-pencil"></i>
-                    {% blocktrans %}Modifíca tu propuesta{% endblocktrans %}
-                    </span> 
-                </a>
-                {% endif %}
-                {% if proposal.status == 'accepted' %}
-                <span class="label label-success">{% trans '¡Aceptada!' %}</span>
-                {% endif %}
-                {% if proposal.status == 'rejected' %}
-                <span class="label label-danger">{% trans '¡Rechazada!' %}</span>
-                {% endif %}
-            </td>
-        </tr>
-    {% empty %}
-    {% endfor %}
-    {% else %}
-        {% trans 'Aún no tienes propuestas, pero puedes:' %}
+        <a href="{% url 'backend_citizen:create_organization' %}" class="btn btn-success active btn-block" role="button">{% trans 'Registra tu organización' %}</a>
         <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary btn-lg active btn-block" role="button">{% trans 'Crear una propuesta Ciudadana' %}</a>
-    {% endif %}
-    </table>
+  </div> 
+  
+      {% include 'backend_citizen/_proposals-table.html' %}
+      {% include 'backend_citizen/_orgs-table.html' %}
 
-    {% if user.enrollments.all %}
-        <table>
-        <tr>
-            <td>Organization</td>
-            <td>Link</td>
-        </tr>
-        {% for enrollment in user.enrollments.all %}
-        <tr>
-            <td>{{enrollment.organization}}</td>
-            <td><a target="_blank" href="{{enrollment.organization.get_absolute_url}}">
-                    <i class="fa fa-external-link" aria-hidden="true"></i>
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-        
-        </table>
-    {% else %}
-        {% trans 'Aún no perteneces a ninguna organización.' %}
-    {% endif %}
-
-</div>
 {% endblock content %}
 
 

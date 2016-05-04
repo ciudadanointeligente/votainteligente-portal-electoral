@@ -2,18 +2,59 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
-
+{% load bootstrap_tags %}
 {% block extrajs %}
 {% include 'elections/home.js'  %}
 {% endblock extrajs %}
 
-{% block content %}
-  {% include 'popular_proposal/_popular_proposal_explanation.html' %}
+{% block everything %}
+<section>
+  <div class="container">
+    {% include 'popular_proposal/_popular_proposal_explanation.html' %}
+  </div>
+</section>  
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
- 
-{% endblock content %}
+  <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
+
+{% if not user.is_authenticated %}
+  <!-- formulario de registro -->
+<section id="login-form">
+  <div class="container">  
+    <div class="row">
+      <div class="col-md-4">
+        <form  role="form" action="{% url 'registration_register' %}" method="post" class="landing-form">
+            {% csrf_token %}
+            {{ register_new_form|as_bootstrap }}
+            <div class="form-actions">
+              <input type="submit" class="btn btn-primary" id="" value="{% trans 'Regístrame' %}"/>
+            </div>
+        </form>
+        <!-- fin del formulario de registro -->
+        <!-- formulario de loggeo -->
+        <form role="form" action="{% url 'auth_login' %}" method="post" class="landing-form">
+          {% csrf_token %}
+          {{ login_form|as_bootstrap }}
+          <div class="form-actions">
+            <p><a href="{% url 'auth_password_reset' %}">{% trans '¿Olvidaste tu password?' %}</a></p>
+            <input type="submit" class="btn btn-primary" id="" value="{% trans 'Entrar' %}"/>
+          </div>
+        </form>
+    <!-- fin del formulario de loggeo -->
+      </div>
+      <div class="col-md-4">
+        <a class="btn btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}?next={% url 'backend_citizen:index' %}">
+        <span class="fa fa-facebook"></span>{% trans 'Entra con Facebook' %}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endif %}
+{% endblock everything %}
+
 
 {% block extrafooter %}
   <div class="extra-footer">

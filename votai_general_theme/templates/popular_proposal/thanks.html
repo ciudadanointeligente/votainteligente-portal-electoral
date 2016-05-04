@@ -22,8 +22,11 @@
     <a href="{% url 'popular_proposals:propose' slug=area.id %}" class="btn btn-primary btn-lg active" role="button">
         {% blocktrans with area=area %}Crea otra propuesta para {{area}}{% endblocktrans %}
     </a>
-    <a href="{% url 'area' slug=area.id %}" class="btn btn-success btn-lg active" role="button">
+    <!--<a href="{% url 'area' slug=area.id %}" class="btn btn-success btn-lg active" role="button">
         {% blocktrans with area=area %}Revisa otras propuestas en {{area}}{% endblocktrans %}
+    </a>-->
+    <a href="{% url 'backend_citizen:index' %}" class="btn btn-primary btn-lg active" role="button">
+        {% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}
     </a>
 
   </div>

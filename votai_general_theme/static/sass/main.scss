@@ -475,6 +475,17 @@ input, button, select, textarea {
 	padding: 2px 6px;
 }
 
+.landing-form{
+	input {
+		border: none;
+	}
+}
+
+#login-form{
+	background-color: $nav-anchor-background-color;
+	padding: 80px 0 20px 0;
+}
+
 /*Perfil candidato*/
 
 .profile-candidate {

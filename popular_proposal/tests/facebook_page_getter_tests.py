@@ -15,7 +15,7 @@ class FacebookPageGetterTestCase(TestCase):
 
     @vcr.use_cassette('fixtures/vcr_cassettes/circoroto.yaml')
     def test_get_things_from_facebook(self):
-        result = facebook_getter('https://www.facebook.com/circoroto/?fref=ts')
+        result = facebook_getter('https://www.facebook.com/circoroto?fref=ts')
         self.assertEquals(result['about'], u'Agrupación de circo del barrio Yungay')
         self.assertTrue(result['picture_url'])
         self.assertTrue(result['events'])

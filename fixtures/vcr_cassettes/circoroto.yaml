@@ -7,7 +7,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.9.1]
     method: GET
-    uri: https://graph.facebook.com/v2.5/https://www.facebook.com/circoroto/?fields=about%2Cpicture%2Cevents%2Cname&access_token=FieraEsLaMejorAmigaDeTodos
+    uri: https://graph.facebook.com/v2.5/https://www.facebook.com/circoroto?fields=about%2Cpicture%2Cevents%2Cname&access_token=FieraEsLaMejorAmigaDeTodos
   response:
     body:
       string: !!binary |

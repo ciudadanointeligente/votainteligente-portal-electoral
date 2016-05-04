@@ -21,7 +21,7 @@ class CitizenMembershipTestCase(ProposingCycleTestCaseBase):
     @vcr.use_cassette('fixtures/vcr_cassettes/circoroto.yaml')
     def test_creating_an_organization_form(self):
         data = {'name': 'Circo Roto',
-                'facebook_page': 'https://www.facebook.com/circoroto/?fref=ts'
+                'facebook_page': 'https://www.facebook.com/circoroto?fref=ts'
                 }
         form = OrganizationForm(data=data,
                                 user=self.feli)
@@ -36,6 +36,30 @@ class CitizenMembershipTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(organization.images.all())
 
     @vcr.use_cassette('fixtures/vcr_cassettes/circoroto.yaml')
+    def test_creating_an_organization_form_invalid(self):
+        data = {'name': 'Circo Roto',
+                'facebook_page': 'https://www.facebook.com/circoroto?fref=ts'
+                }
+        form = OrganizationForm(data=data,
+                                user=self.feli)
+        self.assertTrue(form.is_valid())
+        form.save()
+        # doing it again causes the form not to be valid
+        data = {'name': 'Circo Roto',
+                'facebook_page': ''
+                }
+        form = OrganizationForm(data=data,
+                                user=self.feli)
+        self.assertFalse(form.is_valid())
+        #Facebook page validation things
+        data = {'name': 'Circo Roto y Unido',
+                'facebook_page': 'https://www.facebook.com/circoroto'
+                }
+        form = OrganizationForm(data=data,
+                                user=self.feli)
+        self.assertFalse(form.is_valid())
+
+    @vcr.use_cassette('fixtures/vcr_cassettes/circoroto.yaml')
     def test_creating_an_organization_view(self):
         url = reverse('backend_citizen:create_organization')
         response = self.client.get(url)
@@ -46,12 +70,9 @@ class CitizenMembershipTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(response.context['form'].user, self.fiera)
         self.assertTemplateUsed(response, 'backend_citizen/create_organization.html')
         data = {'name': 'Circo Roto',
-                'facebook_page': 'https://www.facebook.com/circoroto/?fref=ts'
+                'facebook_page': 'https://www.facebook.com/circoroto?fref=ts'
                 }
         response = self.client.post(url,
                                     data=data,
                                     follow=True)
-        self.assertTemplateUsed(response, 'popular_proposal/organization.html')
-        self.assertTrue(response.context['organization'])
-        organization = response.context['organization']
-        self.assertEquals(organization.name, u'Circo Roto')
+        self.assertTemplateUsed(response, 'backend_citizen/index.html')

@@ -7,6 +7,12 @@ from django.core.files.base import ContentFile
 import requests
 from django.utils.translation import ugettext as _
 from popolo.models import ContactDetail
+try:
+    import urlparse
+    from urllib import urlencode
+except: # For Python 3
+    import urllib.parse as urlparse
+    from urllib.parse import urlencode
 
 
 class OrganizationForm(forms.ModelForm):
@@ -16,6 +22,26 @@ class OrganizationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
         super(OrganizationForm, self).__init__(*args, **kwargs)
+
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        if Organization.objects.filter(name=name).exists():
+            raise forms.ValidationError(_(u"Una organización con este nombre ya existe"), 'organization-exists')
+        return name
+
+    def clean_facebook_page(self):
+        url = self.cleaned_data['facebook_page']
+        url_parts = list(urlparse.urlparse(url))
+        query = dict()
+        url_parts[4] = urlencode(query)
+        url = urlparse.urlunparse(url_parts)
+        if url.endswith('/'):
+            url = url[:-1]
+        if Organization.objects.filter(contact_details__contact_type=ContactDetail.CONTACT_TYPES.facebook,
+                                       contact_details__value=url):
+            raise forms.ValidationError(_(u"Una organización con esta página de Facebook ya existe"),
+                                        'organization-facebook-exists')
+        return url
 
     def save(self, force_insert=False, force_update=False, commit=True):
         organization = super(OrganizationForm, self).save()

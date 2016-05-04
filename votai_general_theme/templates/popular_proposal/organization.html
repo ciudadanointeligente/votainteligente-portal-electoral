@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap_tags %}
+{% block extrajs %}
+$(function(){
+    $('.loadFromUrl').on('show.bs.modal', function (event) {
+      var anchor = $(event.relatedTarget) // Button that triggered the modal
+      var modal = $(this)
+      var body = modal.find('.modal-body');
+      body.load(anchor.data('url'));
+    })
+    $('[data-toggle="tooltip"]').tooltip();
+});
+{% endblock extrajs %}
+
+{% block content %}
+{% include 'modal.html' with modalId='supportProposal' title='Apoya una propuesta' %}
+<div>
+
+  <div class="contenedorDestacado fondo-blanco">
+      <img src="{% static organization.primary_image.url %}">
+    <h1>{{organization.name}}</h1>
+    <h3>{{organization.description}}</h3>
+    {% for contact_detail in organization.contact_details.all %}
+        <a href="{{contact_detail.url}}">
+            {% if contact_detail.contact_type = 'FACEBOOK' %}
+            <i class="fa fa-facebook-official" aria-hidden="true"></i>
+            {% endif %}
+            {{contact_detail.label}}
+        </a>
+    {% endfor %}
+       <div class="row masonry-container">
+        {% for proposal in organization.popular_proposals.all %}
+          {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
+          {% empty %}
+          {% trans 'Aún no hay propuestas de esta organización' %}
+        {% endfor %}
+       </div>
+
+  </div>
+
+</div>
+{% endblock content %}
+
+{% block extrafooter %}
+{% endblock extrafooter %}

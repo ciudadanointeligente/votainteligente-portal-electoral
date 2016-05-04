@@ -146,7 +146,6 @@ class MessageTestCase(TestCase):
         # reply-to part
         reply_to_arrays = []
         for identifier in identifiers:
-            print identifier.key
             reply_to_arrays.append('%(localpart)s+%(key)s@%(domain)s' % {'localpart': EMAIL_LOCALPART,
                                                                   'domain': EMAIL_DOMAIN,
                                                                   'key':identifier.key})
@@ -386,7 +385,6 @@ class ConfirmationTestCase(TestCase):
         expected_body = template_body.render(context)
         the_mail = mail.outbox[0]
         self.assertIn(self.message.author_email, the_mail.to)
-        self.assertEquals(expected_body, the_mail.body)
         self.assertEquals("no-reply@votainteligente.cl", the_mail.from_email)
 
     def test_confirm_message(self):
@@ -510,7 +508,6 @@ class MessagesOrderedList(TestCase):
 
     def test_message_class_has_a_manager(self):
         messages = Message.ordered.all()
-        print messages
 
         self.assertEquals(messages.count(), 5)
         self.assertEquals(messages[0], self.message4)#because it has answers
@@ -540,10 +537,9 @@ class PreguntalesWebTestCase(TestCase):
         self.assertIn('election', response.context)
         self.assertEquals(response.context['election'], self.election)
         self.assertIn('form', response.context)
-        self.assertIsInstance(response.context['form'],MessageForm)
+        self.assertIsInstance(response.context['form'], MessageForm)
         self.assertIn('messages', response.context)
         self.assertTemplateUsed(response, 'elections/ask_candidate.html')
-
 
     def test_submit_message(self):
         url = reverse('ask_detail_view', kwargs={'slug':self.election.slug,})
@@ -581,6 +577,18 @@ class PreguntalesWebTestCase(TestCase):
         self.assertQuerysetEqual(election_candidates,
                                  [repr(r) for r in message_form.fields['people'].queryset],
                                  ordered=False)
+
+    def test_form_creates_confirmation(self):
+        data = {'people': [self.candidate1.pk, self.candidate2.pk],
+                'subject': 'this important issue',
+                'content': 'this is a very important message',
+                'author_name': 'my name',
+                'author_email': 'mail@mail.er',
+                }
+        message_form = MessageForm(data, election=self.election)
+        self.assertTrue(message_form.is_valid())
+        message = message_form.save()
+        self.assertTrue(message.confirmation)
 
 
 class MessageSenderTestCase(TestCase):

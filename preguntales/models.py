@@ -82,7 +82,10 @@ class Message(models.Model):
 
     def create_confirmation(self):
         confirmation = MessageConfirmation.objects.create(message=self)
-        context = {'election':self.election, 'message': self}
+        site = Site.objects.get_current()
+        context = {'election':self.election,
+                   'message': self,
+                   'site': site}
         send_mail(context, 'confirmation', to=[self.author_email], from_email=settings.NO_REPLY_MAIL)
 
     def confirm(self):
@@ -129,7 +132,11 @@ class Message(models.Model):
             reply_to = '%(localpart)s+%(key)s@%(domain)s' % {'localpart': settings.EMAIL_LOCALPART,
                                                              'key': outbound_message.key,
                                                              'domain': settings.EMAIL_DOMAIN}
-            context = {'election':self.election, 'candidate': person, 'message': self}
+            site = Site.objects.get_current()
+            context = {'election':self.election,
+                       'candidate': person,
+                       'message': self,
+                       'site': site}
             send_mail(context, 'nueva_pregunta_candidato', to=[person.email], \
                       reply_to=reply_to)
         self.status.sent = True

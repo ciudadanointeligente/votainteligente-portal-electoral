@@ -4,78 +4,50 @@ from popular_proposal.models import ProposalTemporaryData, ProposalLike
 from votainteligente.send_mails import send_mail
 from django.utils.translation import ugettext as _
 from django.contrib.sites.models import Site
+from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
 
 
-WHEN_CHOICES = [
-    ('1_month', u'1 mes después de ingresado'),
-    ('6_months', u'6 Meses'),
-    ('1_year', u'1 año'),
-    ('2_year', u'2 años'),
-    ('3_year', u'3 años'),
-    ('4_year', u'4 años'),
-]
+class TextsFormMixin():
+    def add_texts_to_fields(self):
+        for field in self.fields:
+            if field in TEXTS.keys():
+                texts = TEXTS[field]
+                if 'label' in texts.keys() and texts['label']:
+                    self.fields[field].label = texts['label']
+                if 'help_text' in texts.keys() and texts['help_text']:
+                    self.fields[field].help_text = texts['help_text']
+                if 'placeholder' in texts.keys() and texts['placeholder']:
+                    self.fields[field].widget.attrs['placeholder'] = texts['placeholder']
 
-TOPIC_CHOICES =(
-  ('otros', 'Otros'),
-  (u'Básicos',(
-      (u'salud', u'Salud'),
-      (u'transporte', u'Transporte'),
-      (u'educacion', u'Educación'),
-      (u'seguridad', u'Seguridad'),
-      (u'proteccionsocial', u'Protección Social'),
-      (u'vivienda', u'Vivienda'),
-      )),
-  (u'Oportunidades',(
-      (u'trabajo', u'Trabajo'),
-      (u'emprendimiento', u'Emprendimiento'),
-      (u'capacitacion', u'Capacitación'),
-      (u'beneficiosbienestar', u'Beneficios/bienestar'),
-      )),
-  (u'Espacios comunales',(
-      (u'areasverdes', u'Áreas verdes'),
-      (u'territoriobarrio', u'Territorio/barrio'),
-      (u'obras', u'Obras'),
-      (u'turismoycomercio', u'Turismo y comercio'),
-      )),
-  (u'Mejor comuna',(
-      (u'medioambiente', u'Medio Ambiente'),
-      (u'culturayrecreacion', u'Cultura y recreación'),
-      (u'deporte', u'Deporte'),
-      (u'servicios', u'Servicios'),
-      )),
-  (u'Mejor representatividad',(
-      (u'transparencia', u'Transparencia'),
-      (u'participacionciudadana', u'Participación ciudadana'),
-      (u'genero', u'Género'),
-      (u'pueblosindigenas', u'Pueblos indígenas'),
-      (u'diversidadsexual', u'Diversidad sexual'),
-      ))
-)
 
-class ProposalFormBase(forms.Form):
-    problem = forms.CharField(label=_(u'Según la óptica de tu organización, describe un problema de la comuna que \
-quieran solucionar. (2 líneas)'),
-                              help_text=_(u'Ej: Poca participación en el Plan Regulador, Falta de transparencia en \
-el trabajo de la municipalidad, Pocos puntos de reciclaje, etc.'),
-                              max_length=512)
-    solution = forms.CharField(label=_(u'¿Qué debería hacer la municipalidad para solucionar el problema? (3 líneas)'),
-                               help_text=_(u'Ejemplo: "Crear una ciclovia que circunvale Valdivia", \
-"Que se publiquen todos los concejos municipales en el sitio web del municipio".'),
-                               max_length=256,
+class ProposalFormBase(forms.Form, TextsFormMixin):
+    problem = forms.CharField(max_length=512,
+                              widget=forms.Textarea(),
                               )
-    solution_at_the_end = forms.CharField(label=u"Describe la medida específica que quieren solicitar a los candidatos. ¿Qué avance concreto esperan que se logre durante el periodo del alcalde (4 años)?",
-                                          help_text=_(u'Ejemplo: "Aumentar en un 20% la cantidad de ciclovías en la ciudad"'),
+    solution = forms.CharField(max_length=512,
+                               widget=forms.Textarea(),
+                              )
+    solution_at_the_end = forms.CharField(widget=forms.Textarea(),
                                           required=False)
-    when = forms.ChoiceField(choices=WHEN_CHOICES, label=_(u'¿En qué plazo debería estar implementada esta solución?'))
-    title = forms.CharField(label=_(u'Resumen'),
-                            help_text=_(u"Escribe un título que nos permita describir tu propuesta\
-ciudadana. Ej: 50% más de ciclovías para la comuna"),
-                              max_length=256,)
-    clasification = forms.ChoiceField(choices=TOPIC_CHOICES, label=_(u'¿En qué área clasificarías tu propuesta?'))
-    allies = forms.CharField(label=_(u'¿Quiénes son tus posibles aliados?'),
-                             max_length=256)
-    organization = forms.CharField(label=_(u'¿Estás haciendo esta propuesta a nombre de una organización? Escribe su nombre acá:'),
-                                   required=False)
+    when = forms.CharField(max_length=512)
+    title = forms.CharField(max_length=256,)
+    clasification = forms.ChoiceField(choices=TOPIC_CHOICES)
+    allies = forms.CharField(max_length=256)
+
+    def __init__(self, *args, **kwargs):
+        super(ProposalFormBase, self).__init__(*args, **kwargs)
+        if self.proposer.enrollments.all():
+            possible_organizations = [(0, _(u'Lo haré como persona'))]
+            for enrollment in self.proposer.enrollments.all():
+                possible_organizations.append((enrollment.organization.id, enrollment.organization))
+
+            self.fields['organization'] = forms.ChoiceField(
+                choices=possible_organizations,
+                required=False,
+
+            )
+        self.add_texts_to_fields()
+
 
 
 class ProposalForm(ProposalFormBase):
@@ -85,9 +57,11 @@ class ProposalForm(ProposalFormBase):
         super(ProposalForm, self).__init__(*args, **kwargs)
 
     def save(self):
-        return ProposalTemporaryData.objects.create(proposer=self.proposer,
-                                                    area=self.area,
-                                                    data=self.cleaned_data)
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.proposer,
+                                                              area=self.area,
+                                                              data=self.cleaned_data)
+        temporary_data.notify_new()
+        return temporary_data
 
 
 class CommentsForm(forms.Form):
@@ -114,7 +88,7 @@ class CommentsForm(forms.Form):
                     'original': self.temporary_data.data[key],
                     'comments': self.temporary_data.comments[key]
                 }
-        
+
         site = Site.objects.get_current()
         mail_context = {
             'area': self.temporary_data.area,
@@ -122,7 +96,7 @@ class CommentsForm(forms.Form):
             'moderator': self.moderator,
             'comments': comments,
             'site': site,
-            
+
         }
         send_mail(mail_context, 'popular_proposal_moderation', to=[self.temporary_data.proposer.email])
         return self.temporary_data
@@ -142,8 +116,8 @@ class RejectionForm(forms.Form):
 
 class ProposalTemporaryDataUpdateForm(ProposalFormBase):
     overall_comments = forms.CharField(required=False, label=_(u'Comentarios sobre tu revisón'))
-    
-    
+
+
     def __init__(self, *args, **kwargs):
         self.proposer = kwargs.pop('proposer')
         self.temporary_data = kwargs.pop('temporary_data')
@@ -161,7 +135,7 @@ class ProposalTemporaryDataUpdateForm(ProposalFormBase):
         self.temporary_data.status = ProposalTemporaryData.Statuses.InOurSide
         self.temporary_data.save()
         return self.temporary_data
-    
+
     def get_overall_comments(self):
         return self.cleaned_data.get('overall_comments', '')
 
@@ -175,4 +149,3 @@ class SubscriptionForm(forms.Form):
         like = ProposalLike.objects.create(user=self.user,
                                            proposal=self.proposal)
         return like
-

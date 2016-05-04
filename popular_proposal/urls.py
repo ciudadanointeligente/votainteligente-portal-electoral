@@ -4,6 +4,7 @@ from popular_proposal.views import (ProposalCreationView,
                                     SubscriptionView,
                                     HomeView,
                                     PopularProposalDetailView,
+                                    OrganizationDetailView,
                                     )
 
 urlpatterns = patterns('',
@@ -22,4 +23,7 @@ urlpatterns = patterns('',
     url(r'^(?P<pk>[-\w]+)/subscribe/?$',
         SubscriptionView.as_view(),
         name='like_a_proposal'),
+    url(r'^organization/(?P<slug>[-\w]+)/?$',
+        OrganizationDetailView.as_view(),
+        name='organization'),
 )

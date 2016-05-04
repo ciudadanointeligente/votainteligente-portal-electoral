@@ -8,11 +8,12 @@ from popular_proposal.forms import (ProposalForm,
 from django.contrib.auth.models import User
 from popolo.models import Area
 from django.forms import CharField
-from popular_proposal.models import ProposalTemporaryData
+from popular_proposal.models import ProposalTemporaryData, Organization, Enrollment
 from django.core import mail
 from django.template.loader import get_template
 from django.template import Context, Template
-from popular_proposal.forms import WHEN_CHOICES, ProposalFormBase
+from popular_proposal.forms import WHEN_CHOICES
+from popular_proposal.forms.form_texts import TEXTS
 
 
 class FormTestCase(ProposingCycleTestCaseBase):
@@ -23,6 +24,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.feli = User.objects.get(username='feli')
 
     def test_instanciate_form(self):
+        original_amount = len(mail.outbox)
         form = ProposalForm(data=self.data,
                             proposer=self.fiera,
                             area=self.arica)
@@ -34,6 +36,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(cleaned_data['when'], self.data['when'])
         self.assertEquals(cleaned_data['allies'], self.data['allies'])
         temporary_data = form.save()
+        self.assertEquals(len(mail.outbox), original_amount + 1)
         self.assertEquals(temporary_data.proposer, self.fiera)
         self.assertEquals(temporary_data.area, self.arica)
         t_data = temporary_data.data
@@ -41,6 +44,16 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(t_data['solution'], self.data['solution'])
         self.assertEquals(t_data['when'], self.data['when'])
         self.assertEquals(t_data['allies'], self.data['allies'])
+
+    def test_form_with_organizations(self):
+        org = Organization.objects.create(name=u'cosa nostra')
+        membership = Enrollment.objects.create(user=self.feli,
+                                               organization=org)
+        form = ProposalForm(data=self.data,
+                            proposer=self.feli,
+                            area=self.arica)
+        self.assertIn('organization', form.fields)
+
 
     def test_comments_form(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
@@ -162,10 +175,18 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(template.render(Context({})), 'perrito')
 
     def test_form_questions_template_tag(self):
-        fields = ProposalFormBase.base_fields
-        key = fields.keys()[0]
-        question = fields[key].label
+        question = TEXTS['problem']['label']
         template = Template("{% load votainteligente_extras %}{{ 'problem'|popular_proposal_question }}")
         self.assertEquals(template.render(Context({})), question)
         template = Template("{% load votainteligente_extras %}{{ 'perrito'|popular_proposal_question }}")
         self.assertEquals(template.render(Context({})), 'perrito')
+
+    def test_get_all_types_of_questions(self):
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              area=self.arica,
+                                                              data=self.data)
+        template_str = get_template('popular_proposal/_extra_info.html')
+        rendered_template = template_str.render(Context({'texts': TEXTS, 'data': self.data}))
+        template = Template("{% load votainteligente_extras %}{% get_questions_and_descriptions popular_proposal %}")
+        actual_rendered_template = template.render(Context({'popular_proposal': temporary_data}))
+        self.assertEquals(rendered_template, actual_rendered_template)

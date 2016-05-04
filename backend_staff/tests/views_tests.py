@@ -126,7 +126,7 @@ class StaffHomeViewTest(TestCase):
 
         self.assertIn(temporary_data, response.context['proposals'])
         self.assertIn(temporary_data2, response.context['proposals'])
-        self.assertNotIn(temporary_data3, response.context['proposals'])
+        self.assertIn(temporary_data3, response.context['proposals'])
         self.assertIn(message, response.context['needing_moderation_messages'].all())
 
     def test_get_proposal_moderation_view(self):

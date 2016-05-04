@@ -9,7 +9,7 @@ django-haystack==2.4.0
 PyYAML
 django-markdown-deux==1.0.4
 django-extensions
-sorl-thumbnail
+sorl-thumbnail==12.4a1
 pillow
 pgmagick
 django-tinymce
@@ -36,3 +36,6 @@ python-social-auth==0.2.14
 libsass==0.11.0
 django-compressor==2.0
 django-sass-processor==0.3.4
+facebook-sdk==1.0.0
+vcrpy==1.7.4
+-e git+https://github.com/mysociety/django-images#egg=django-images

@@ -10,5 +10,5 @@ logger = logging.getLogger(__name__)
 
 @app.task
 def send_mails():
-    logger.info('Sending mails to writeit')
+    logger.info('Sending mails to the candidates')
     Message.send_mails()

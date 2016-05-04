@@ -47,10 +47,6 @@ class ElectionAskCreateView(CreateView):
         kwargs['election'] = election
         return kwargs
 
-    def form_valid(self, form):
-        form.instance.election = self.election
-        return super(ElectionAskCreateView, self).form_valid(form)
-
     def get_success_url(self):
         election_slug = self.kwargs['slug']
         return reverse('ask_detail_view', kwargs={'slug':election_slug,})

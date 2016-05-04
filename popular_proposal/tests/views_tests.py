@@ -1,8 +1,20 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase as TestCase
 from django.core.urlresolvers import reverse
-from popular_proposal.models import PopularProposal
+from popular_proposal.models import PopularProposal, Organization
 
+
+class OrganizationDetailViewTests(TestCase):
+    def setUp(self):
+        super(OrganizationDetailViewTests, self).setUp()
+        self.organization = Organization.objects.create(name=u'La cossa nostra')
+
+    def test_there_is_a_url(self):
+        url = reverse('popular_proposals:organization', kwargs={'slug': self.organization.id})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'popular_proposal/organization.html')
+        self.assertEquals(response.context['organization'], self.organization)
 
 class ProposalViewTestCase(TestCase):
     def setUp(self):

@@ -4,7 +4,7 @@
 {% block extrajs %}
 $(document).ready(function(){
 	$('#btn-find-soulmate').on('click', function(){
-		var csrftoken = $.cookie('csrftoken');
+		var csrftoken = Cookies.get('csrftoken');
 		var questions = $('#form-soulmate :input[name^="question"]');
 		var importances = $('#form-soulmate :checked[name^="importance"]');
 		var answers = $('#form-soulmate :checked[name^="answer"]');
@@ -16,7 +16,7 @@ $(document).ready(function(){
 			var importance = $('#form-soulmate :checked[name="importance-'+question_id+'"]').val();
 			final_data["question-id-"+counter] = question_id
 			if(answer!=undefined){
-				final_data["question-"+counter] = answer	
+				final_data["question-"+counter] = answer
 			}
 			final_data["importance-"+counter] = importance
 
@@ -41,7 +41,7 @@ $(document).ready(function(){
 				scrollTop: $("#election").offset().top
 			})
 		}
-		
+
 		return false;
 	})
 })
@@ -87,7 +87,7 @@ $(document).ready(function(){
 		{% endfor %}
 
 		<div>
-			<button type="submit" id="btn-find-soulmate" class="btn btn-success" onClick="ga('send', 'event', 'find-soulmate', 'click');"><i class="icon-heart"></i> {% trans "Encontrar mi 1/2 naranja" %}</button>
+			<button type="button" id="btn-find-soulmate" class="btn btn-success" onClick="ga('send', 'event', 'find-soulmate', 'click');"><i class="icon-heart"></i> {% trans "Encontrar mi 1/2 naranja" %}</button>
 		</div>
 		{% csrf_token %}
 		</form>

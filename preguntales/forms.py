@@ -32,3 +32,12 @@ class MessageForm(ModelForm):
                 'required': _('Debes identificarte de alguna forma.'),
             },
         }
+
+    def save(self, commit=True, force_insert=False, force_update=False, *args, **kwargs):
+        message = super(MessageForm, self).save(commit=False, *args, **kwargs)
+        message.election = self.election
+        message.save()
+        for person in self.cleaned_data['people']:
+            message.people.add(person)
+        message.create_confirmation()
+        return message

@@ -23,34 +23,33 @@
         <tr>
             <td>Area</td>
             <td>Problema</td>
-            <td>Solución</td>
-            <td>Y a los 4 años?</td>
-            <td>Cuándo?</td>
-            <td>Aliados</td>
+            <td>+Info</td>
             <td>Organización</td>
+            <td>Usuario</td>
             <td>Comentarios del usuario</td>
             <td>Acciones</td>
         </tr>
     {% for proposal in proposals.all %}
         <tr>
             <td>{{proposal.area}}</td>
-            <td>{{proposal.data.problem}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.problem %}
-            </td>
-            <td>{{proposal.data.solution}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.solution %}
-            </td>
-            <td>{{proposal.data.solution_at_the_end}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.solution_at_the_end %}
-            </td>
-            <td>{{proposal.data.when|popular_proposal_when}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.when %}
-            </td>
-            <td>{{proposal.data.allies}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.allies %}
+            <td>{{proposal.data.problem|truncatechars:100}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.problem %}
             </td>
             <td>
-                {{proposal.data.organization}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.organization %}
+                <button type="button" class="btn btn-lg btn-danger masInfo" data-toggle="popover" title="+ Info" data-content="{% get_questions_and_descriptions proposal %}">?</button>
+                
+            </td>
+            <td>
+                {{proposal.data.organization}}
+                {% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.organization %}
+            </td>
+            <td>
+                {{proposal.proposer}}
             </td>
             <td>{% if proposal.overall_comments %}<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{% endif %}
                 {{proposal.overall_comments}}
                 </td>
             <td>
+                {% if proposal.status == 'in_our_side' %}
                 <a data-toggle="modal" data-target="#proposalComments" 
                     data-url="{% url 'backend_staff:popular_proposal_comments' pk=proposal.id %}">
                     <i class="fa fa-pencil-square-o"></i> Editame!
@@ -59,6 +58,13 @@
                     data-url="{% url 'backend_staff:moderate_proposal' pk=proposal.id %}">
                     <i class="fa fa-gavel"></i> Moderame!
                 </a>
+                {% elif proposal.status == 'in_their_side' %}
+                <span class="label label-default">{% trans 'Esperando al usuario' %}</span>
+                {% elif proposal.status == 'accepted' %}
+                <span class="label label-success">{% trans '¡Aceptada!' %}</span>
+                {% elif proposal.status == 'in_their_side' %}
+                <span class="label label-danger">{% trans '¡Rechazada!' %}</span>
+                {% endif %}
             </td>
         </tr>
     {% endfor %}
@@ -66,6 +72,14 @@
   </div>
 
 </div>
+<script>
+$(function(){
+    $('.masInfo').popover({
+        'html': true,
+        'delay': { "show": 500, "hide": 100 }
+    });
+})
+</script>
 {% endblock content %}
 
 {% block extrafooter %}

@@ -29,6 +29,7 @@ INSTALLED_APPS = (
     'django_forms_bootstrap',
     ##"registration_defaults",
     "sass_processor",
+    "images",
     'candidator',
     'taggit',
     'haystack',
@@ -162,7 +163,7 @@ CELERY_ALWAYS_EAGER = True
 
 CELERYBEAT_SCHEDULE = {
         'sending-mails-every-2-minutes': {
-            'task': 'elections.tasks.send_mails',
+            'task': 'preguntales.tasks.send_mails',
                     'schedule': timedelta(minutes=2),
                 },
 }
@@ -295,12 +296,11 @@ DONT_USE_MIGRATIONS = 'DONT_USE_MIGRATIONS' in os.environ.keys() and os.environ[
 if DONT_USE_MIGRATIONS:
     TEST_RUNNER = 'votainteligente.votainteligente_settings.Runner'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+FACEBOOK_ACCESS_TOKEN = 'FieraEsLaMejorAmigaDeTodos'
 
 try:
     from local_settings import *
 except ImportError, e:
     pass
 
-if DEBUG:
-    # SASS
-    SASS_PROCESSOR_ENABLED = True

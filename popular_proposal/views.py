@@ -7,7 +7,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
-from popular_proposal.models import PopularProposal
+from popular_proposal.models import PopularProposal, Organization
 
 
 class ProposalCreationView(FormView):
@@ -86,3 +86,10 @@ class PopularProposalDetailView(DetailView):
     model = PopularProposal
     template_name = 'popular_proposal/detail.html'
     context_object_name = 'popular_proposal'
+
+
+class OrganizationDetailView(DetailView):
+    model = Organization
+    template_name = 'popular_proposal/organization.html'
+    context_object_name = 'organization'
+    slug_field = 'id'

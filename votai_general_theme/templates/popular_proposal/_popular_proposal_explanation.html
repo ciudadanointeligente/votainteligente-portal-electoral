@@ -1,23 +1,31 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
+{% load markdown_deux_tags %}
 <div class="contenedorDestacado fondo-blanco">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <h2 class="text-center intro-home">
-        {% trans "¡Ayúdanos a cambiar como se hace política!" %}
+        {% trans "¡Tú puedes ser parte del cambio y mejorar la calidad de vida en tu comuna!" %}
       </h2>
 
-      {% blocktrans %}
-      <h3>Propuestas ciudadanas</h3>
+      <div class="panel panel-success">
+          <div class="panel-heading">
+      <h3>Propuestas Ciudadanas</h3>
+          </div>
+          <div class="panel-body">
       <span>
-        Estamos recolectando soluciones a los problemas de tu comuna vistos desde la perspectiva de los ciudadanos.
-        Estas propuestas serán presentadas a los candidatos a alcaldes y concejales en las próximas Elecciones Municipales 2016, para que ellos se pronuncien con respecto a estas.
+{% markdown %}
+Queremos que las personas y organizaciones sociales sean escuchadas. 
+Envíanos tu propuesta para solucionar un problema en tu comuna y nosotros te ayudaremos a que esta sea escuchada por los candidatos a alcaldes y concejales de las Elecciones Municipales 2016.
+
+Los vecinos y vecinas son quienes conocen mejor sus necesidades. Es por eso que estamos abiertos a todas sus propuestas. Solo ingresa tu comuna, rellena el formulario, y nosotros te acompañaremos en la elaboración de tu propuesta.
+
+#### Nota: Para hacer tu propuesta ciudadana, deberás registrarte en el sitio.
+{% endmarkdown %}
       </span>
-      <h4>¿Por qué queremos esto?</h4>
-      <span>Porque históricamente ha habido una relación vertical entre autoridades y ciudadanos, donde son los candidatos y los alcaldes los que toman las decisiones. También porque en el Chile de hoy existe una apatía generalizada hacia lo político.</span>
-      <h4>Nota: Para hacer tu propuesta ciudadana, deberás registrarte en el sitio.</h4>
-      {% endblocktrans %}
+      </div>
+      </div>
     </div>
     </div>
   </div>

@@ -37,8 +37,8 @@ class OrganizationForm(forms.ModelForm):
         url = urlparse.urlunparse(url_parts)
         if url.endswith('/'):
             url = url[:-1]
-        if Organization.objects.filter(contact_details__contact_type=ContactDetail.CONTACT_TYPES.facebook,
-                                       contact_details__value=url):
+        if ContactDetail.objects.filter(contact_type=ContactDetail.CONTACT_TYPES.facebook,
+                                         value=url):
             raise forms.ValidationError(_(u"Una organización con esta página de Facebook ya existe"),
                                         'organization-facebook-exists')
         return url

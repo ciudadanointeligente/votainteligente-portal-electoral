@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
-
+{% load bootstrap_tags %}
 {% block extrajs %}
 {% include 'elections/home.js'  %}
 {% endblock extrajs %}
@@ -12,7 +12,33 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
- 
+  <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
+
+
+{% if not user.is_authenticated %}
+  <!-- formulario de registro -->
+  <form  role="form" action="{% url 'registration_register' %}" method="post">
+      {% csrf_token %}
+      {{ register_new_form|as_bootstrap }}
+      <div class="form-actions">
+        <input type="submit" class="btn btn-primary" id="" value="{% trans 'Regístrame' %}"/>
+      </div>
+  </form>
+  <!-- fin del formulario de registro -->
+  <a class="btn btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}?next={% url 'backend_citizen:index' %}">
+      <span class="fa fa-facebook"></span>{% trans 'Entra con Facebook' %}
+  </a>
+  <!-- formulario de loggeo -->
+  <form role="form" action="{% url 'auth_login' %}" method="post">
+    {% csrf_token %}
+    {{ login_form|as_bootstrap }}
+    <div class="form-actions">
+      <p><a href="{% url 'auth_password_reset' %}">{% trans '¿Olvidaste tu password?' %}</a>
+      <input type="submit" class="btn btn-primary" id="" value="{% trans 'Entrar' %}"/>
+    </div>
+  </form>
+  <!-- fin del formulario de loggeo -->
+{% endif %}
 {% endblock content %}
 
 {% block extrafooter %}

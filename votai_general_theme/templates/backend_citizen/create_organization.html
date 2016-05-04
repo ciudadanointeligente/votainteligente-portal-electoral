@@ -12,5 +12,8 @@
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">{% trans 'Crea la organización'%}</button>
     </div>
+    <a href="{% url 'backend_citizen:index' %}" class="btn btn-primary active" role="button">
+        {% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}
+    </a>
 </form>
 {% endblock content %}

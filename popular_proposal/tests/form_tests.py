@@ -128,7 +128,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
 
         self.assertIn(comments['when'], form.fields['when'].help_text)
 
-
     def test_rejection_form(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,

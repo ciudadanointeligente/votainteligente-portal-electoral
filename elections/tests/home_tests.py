@@ -4,6 +4,9 @@ from elections.views import HomeView
 from elections.forms import ElectionSearchByTagsForm
 from unittest import skip
 from elections.models import Election
+from django.contrib.auth.forms import AuthenticationForm
+from registration.forms import RegistrationForm
+
 
 class HomeTestCase(TestCase):
 	def setUp(self):
@@ -27,6 +30,10 @@ class HomeTestCase(TestCase):
 		self.assertIn('searchable_elections_enabled', context)
 		self.assertTrue(context['searchable_elections_enabled'])
 		self.assertIsInstance(context['form'], ElectionSearchByTagsForm)
+		self.assertIn('register_new_form', context)
+		self.assertIn('login_form', context)
+		self.assertIsInstance(context['register_new_form'], RegistrationForm)
+		self.assertIsInstance(context['login_form'], AuthenticationForm)
 
 	def test_searchable_elections_disabled(self):
 		Election.objects.all().update(searchable=False)

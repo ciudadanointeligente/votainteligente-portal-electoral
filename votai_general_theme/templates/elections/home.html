@@ -18,6 +18,19 @@
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
   <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
 
+{% if user.is_authenticated %}
+<section id="login-form">
+  <div class="container">
+    <div class="col-md-12 text-center">
+      <a href="{% url 'backend_citizen:index' %}" class="btn btn-primary active" role="button">
+          {% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}
+      </a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+
 {% if not user.is_authenticated %}
   <!-- formulario de registro -->
 <section id="login-form">

@@ -6,14 +6,29 @@
 {% load bootstrap_tags %}
 
 {% block content %}
-<form action="{% url 'backend_citizen:create_organization' %}" method="POST" role="form">
-    {% csrf_token %}
-    {{ form|as_bootstrap }}
-    <div class="form-actions">
-        <button type="submit" class="btn btn-primary">{% trans 'Crea la organización'%}</button>
-    </div>
-    <a href="{% url 'backend_citizen:index' %}" class="btn btn-primary active" role="button">
-        {% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}
-    </a>
-</form>
+<h1>{% blocktrans %}¡Hola {{user}}!{% endblocktrans %}</h1>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="contenedorDestacado fondo-blanco">
+			<h2>Registra tu organización</h2>
+			<form action="{% url 'backend_citizen:create_organization' %}" method="POST" role="form">
+			    {% csrf_token %}
+			    {{ form|as_bootstrap }}
+			    <div class="form-actions">
+			        <button type="submit" class="btn btn-primary">{% trans 'Crea la organización'%}</button>
+			    </div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3 text-center">
+		<div class="contenedorDestacado fondo-blanco">
+	    	<a href="{% url 'backend_citizen:index' %}" class="btn btn-primary active" role="button">
+	        {% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}
+	    	</a>
+	    </div>
+	</div>
+</div>
 {% endblock content %}
+

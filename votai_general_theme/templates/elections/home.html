@@ -45,7 +45,8 @@
 <section id="login-form">
   <div class="container">  
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 col-md-offset-2">
+        <h4>Regístrate</h4>
         <div class="panel panel-default">
           <div class="panel-body">
             <form  role="form" action="{% url 'registration_register' %}" method="post" class="landing-form">
@@ -58,9 +59,13 @@
           </div>
         </div>
         <!-- fin del formulario de registro -->
-        <!-- formulario de loggeo -->
+      </div>
+
+      <div class="col-md-4">
+      <!-- formulario de loggeo -->
+        <h4>Ya tienes un usuario?</h4>
         <div class="panel panel-default">
-          <div class="panel-body">    
+          <div class="panel-body">  
             <form role="form" action="{% url 'auth_login' %}" method="post" class="landing-form">
               {% csrf_token %}
               {{ login_form|as_bootstrap }}
@@ -72,8 +77,8 @@
           </div>
         </div>
     <!-- fin del formulario de loggeo -->
-      </div>
-      <div class="col-md-4">
+        
+        <h4>O ingresa con Facebook</h4>
         <a class="btn btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}?next={% url 'backend_citizen:index' %}">
         <span class="fa fa-facebook"></span>{% trans 'Entra con Facebook' %}
         </a>

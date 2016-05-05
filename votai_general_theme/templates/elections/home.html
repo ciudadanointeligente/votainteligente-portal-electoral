@@ -10,7 +10,7 @@
 {% block everything %}
 <section>
   <div class="container">
-    {% include 'popular_proposal/_popular_proposal_explanation.html' %}
+    {% include 'popular_proposal/_popular_proposal_stages.html' %}
   </div>
 </section>  
 
@@ -28,11 +28,9 @@
     </div>
   </div>
 </section>
-{% endif %}
 
-
-{% if not user.is_authenticated %}
-  <!-- formulario de registro -->
+{% else %}
+<!-- formulario de registro -->
 <section id="login-form">
   <div class="container">  
     <div class="row">
@@ -72,7 +70,6 @@
     </div>
   </div>
 </section>
-
 {% endif %}
 {% endblock everything %}
 

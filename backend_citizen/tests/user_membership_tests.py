@@ -75,4 +75,4 @@ class CitizenMembershipTestCase(ProposingCycleTestCaseBase):
         response = self.client.post(url,
                                     data=data,
                                     follow=True)
-        self.assertTemplateUsed(response, 'backend_citizen/index.html')
+        self.assertTemplateUsed(response, 'popular_proposal/home.html')

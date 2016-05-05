@@ -384,6 +384,23 @@ input, button, select, textarea {
 
 /*Home*/
 
+.panel.panel-default.soon{
+	margin-top: 20px;
+	height: 80px;
+	background-color: #5E6D82;
+	border: none;
+	.panel-body{
+		padding: 0;
+	}
+	h1{
+		color: #FFF;
+		span{
+			color: #3EE0CB;
+			font-weight: 500;
+		}
+	}
+}
+
 #home-search .form-control {
 	color: $main-background-color;
 	background-color: $nav-anchor-background-color;

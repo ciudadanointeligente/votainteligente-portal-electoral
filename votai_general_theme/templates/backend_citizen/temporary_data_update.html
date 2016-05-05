@@ -1,5 +1,5 @@
 {% extends "backend_base.html" %}
-{% load bootstrap_tags %}
+{% load bootstrap3 %}
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
@@ -16,7 +16,7 @@
       </h2>
         <form action="{% url 'backend_citizen:temporary_data_update' pk=temporary_data.id %}" method="POST" role="form">
             {% csrf_token %}
-            {{ form|as_bootstrap }}
+            {% bootstrap_form form %}
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">{% trans 'Actualiza tu propuesta'%}</button>
             </div>

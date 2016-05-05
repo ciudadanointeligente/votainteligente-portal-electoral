@@ -30,7 +30,6 @@ slumber
 mock==1.3.0
 email_reply_parser==0.3.0
 flufl.bounce==2.3
-django-forms-bootstrap==3.0.1
 django-choices==1.4.2
 python-social-auth==0.2.14
 libsass==0.11.0
@@ -39,3 +38,4 @@ django-sass-processor==0.3.4
 facebook-sdk==1.0.0
 vcrpy==1.7.4
 -e git+https://github.com/mysociety/django-images#egg=django-images
+django-bootstrap3==7.0.1

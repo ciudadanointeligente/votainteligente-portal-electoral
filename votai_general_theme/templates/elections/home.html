@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
-{% load bootstrap_tags %}
+{% load bootstrap3 %}
 {% block extrajs %}
 {% include 'elections/home.js'  %}
 {% endblock extrajs %}
@@ -51,7 +51,7 @@
           <div class="panel-body">
             <form  role="form" action="{% url 'registration_register' %}" method="post" class="landing-form">
                 {% csrf_token %}
-                {{ register_new_form|as_bootstrap }}
+                {% bootstrap_form register_new_form show_label=false show_help=false %}
                 <div class="form-actions">
                   <input type="submit" class="btn btn-primary" id="" value="{% trans 'Regístrame' %}"/>
                 </div>
@@ -68,7 +68,7 @@
           <div class="panel-body">  
             <form role="form" action="{% url 'auth_login' %}" method="post" class="landing-form">
               {% csrf_token %}
-              {{ login_form|as_bootstrap }}
+              {% bootstrap_form login_form show_label=false show_help=false %}
               <div class="form-actions">
                 <p><a href="{% url 'auth_password_reset' %}">{% trans '¿Olvidaste tu password?' %}</a></p>
                 <input type="submit" class="btn btn-primary" id="" value="{% trans 'Entrar' %}"/>

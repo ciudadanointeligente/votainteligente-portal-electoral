@@ -3,9 +3,10 @@
 
 {% if user.enrollments.all %}
     <div class="contenedorDestacado fondo-blanco">
-        <table>
+        <h2>Organizaciones registradas</h2>
+        <table class="table">
         <tr>
-            <td>Organization</td>
+            <td>Organización</td>
             <td>Link</td>
         </tr>
         {% for enrollment in user.enrollments.all %}

@@ -37,23 +37,31 @@
   <div class="container">  
     <div class="row">
       <div class="col-md-4">
-        <form  role="form" action="{% url 'registration_register' %}" method="post" class="landing-form">
-            {% csrf_token %}
-            {{ register_new_form|as_bootstrap }}
-            <div class="form-actions">
-              <input type="submit" class="btn btn-primary" id="" value="{% trans 'Regístrame' %}"/>
-            </div>
-        </form>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <form  role="form" action="{% url 'registration_register' %}" method="post" class="landing-form">
+                {% csrf_token %}
+                {{ register_new_form|as_bootstrap }}
+                <div class="form-actions">
+                  <input type="submit" class="btn btn-primary" id="" value="{% trans 'Regístrame' %}"/>
+                </div>
+            </form>
+          </div>
+        </div>
         <!-- fin del formulario de registro -->
         <!-- formulario de loggeo -->
-        <form role="form" action="{% url 'auth_login' %}" method="post" class="landing-form">
-          {% csrf_token %}
-          {{ login_form|as_bootstrap }}
-          <div class="form-actions">
-            <p><a href="{% url 'auth_password_reset' %}">{% trans '¿Olvidaste tu password?' %}</a></p>
-            <input type="submit" class="btn btn-primary" id="" value="{% trans 'Entrar' %}"/>
+        <div class="panel panel-default">
+          <div class="panel-body">    
+            <form role="form" action="{% url 'auth_login' %}" method="post" class="landing-form">
+              {% csrf_token %}
+              {{ login_form|as_bootstrap }}
+              <div class="form-actions">
+                <p><a href="{% url 'auth_password_reset' %}">{% trans '¿Olvidaste tu password?' %}</a></p>
+                <input type="submit" class="btn btn-primary" id="" value="{% trans 'Entrar' %}"/>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
     <!-- fin del formulario de loggeo -->
       </div>
       <div class="col-md-4">

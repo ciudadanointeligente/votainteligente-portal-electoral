@@ -12,8 +12,9 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
   <!-- Featured Elections  -->
+  <h1>{% blocktrans %}¡Bienvenid@ {{user}}!{% endblocktrans %}</h1>
   <div class="contenedorDestacado fondo-blanco">
-      <h1>{% blocktrans %}¡Bienvenid@ {{user}}!{% endblocktrans %}</h1>
+    <h2>Crea una propuesta</h2>
       {% if user.enrollments.all %}<!--Si tengo alguna org-->
             {% trans 'Puedes agregar otra org o crear nueva propuesta ...' %}
       {% else %}<!--Si no tengo alguna org-->
@@ -21,9 +22,11 @@
       {% endif %}
     <div class="row">
       <div class="col-md-3 col-md-offset-3">
+        <div class="col-md-12 text-center">1</div>
         <a href="{% url 'backend_citizen:create_organization' %}" class="btn btn-success active btn-block" role="button">{% trans 'Registra tu organización' %}</a>
       </div>
       <div class="col-md-3">
+        <div class="col-md-12 text-center">2</div>
         <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary active btn-block" role="button">{% trans 'Crear una propuesta Ciudadana' %}</a>
       </div>
     </div>

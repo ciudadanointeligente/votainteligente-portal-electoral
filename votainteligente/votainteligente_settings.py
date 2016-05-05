@@ -26,7 +26,7 @@ INSTALLED_APPS = (
     'django_nose',
     'django.contrib.sitemaps',
     'linaro_django_pagination',
-    'django_forms_bootstrap',
+    'bootstrap3',
     ##"registration_defaults",
     "sass_processor",
     "images",

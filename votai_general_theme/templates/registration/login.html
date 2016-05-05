@@ -1,6 +1,6 @@
 {% extends "registration/registration_base.html" %}
 {% load i18n %}
-{% load bootstrap_tags %}
+{% load bootstrap3 %}
 {% load staticfiles %}
 {% block title %}{% trans "Login" %}{% endblock %}
 {% block extra_css %}
@@ -16,7 +16,7 @@
 {% endif %}
 
 <form method="post" action="{% url 'auth_login' %}">{% csrf_token %}
-{{ form|as_bootstrap }}
+{% bootstrap_form form %}
 <p>{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">¿Olvidaste tu password?</a> ó
     <a href="{{ register_url }}">¿Quieres una cuenta?</a>{% endblocktrans %}</p>
 

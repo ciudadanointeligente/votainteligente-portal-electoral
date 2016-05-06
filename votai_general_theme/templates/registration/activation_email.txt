@@ -1,5 +1,5 @@
 {% load i18n %}
-{% load bootstrap_tags %}
+{% load bootstrap3 %}
 {% url 'registration_activate' activation_key as activation_key_url%}
 {% blocktrans with sitename=site.name siteurl=site.domain %}
 Tu (o alguien que pretende ser tu) ha tratado de registrar una cuenta en

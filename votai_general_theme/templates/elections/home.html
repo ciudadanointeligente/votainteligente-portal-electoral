@@ -9,17 +9,13 @@
 
 {% block everything %}
 
-<section>
-  <div class="container">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        Vuelve pronto
-      </div>
-    </div>  
-</div>
+<section id="lanzamiento">
+  <div class="container text-center">
+    <h2>Lanzamiento oficial <span>agosto</span></h2>
+  </div>  
 </section> 
 
-<section>
+<section id="etapas-propuesta">
   <div class="container">
     {% include 'popular_proposal/_popular_proposal_stages.html' %}
   </div>
@@ -45,7 +41,23 @@
 <section id="login-form">
   <div class="container">  
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-12">
+        <h2 class="text-center">Registra tu usuario para crear una propuesta</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h4>Ingresa con Facebook o Gmail</h4>
+        <a class="btn btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}?next={% url 'backend_citizen:index' %}">
+        <span class="fa fa-facebook"></span>{% trans 'Entra con Facebook' %}
+        </a>      
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 col-md-offset-2">
+      <!-- formulario de loggeo -->
+        <h4>Regístrate</h4>
         <div class="panel panel-default">
           <div class="panel-body">
             <form  role="form" action="{% url 'registration_register' %}" method="post" class="landing-form">
@@ -58,9 +70,13 @@
           </div>
         </div>
         <!-- fin del formulario de registro -->
-        <!-- formulario de loggeo -->
+      </div>
+
+      <div class="col-md-4">
+      <!-- formulario de loggeo -->
+        <h4>Ya tienes un usuario?</h4>
         <div class="panel panel-default">
-          <div class="panel-body">    
+          <div class="panel-body">  
             <form role="form" action="{% url 'auth_login' %}" method="post" class="landing-form">
               {% csrf_token %}
               {% bootstrap_form login_form show_label=false show_help=false %}
@@ -73,12 +89,9 @@
         </div>
     <!-- fin del formulario de loggeo -->
       </div>
-      <div class="col-md-4">
-        <a class="btn btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}?next={% url 'backend_citizen:index' %}">
-        <span class="fa fa-facebook"></span>{% trans 'Entra con Facebook' %}
-        </a>
-      </div>
     </div>
+
+
   </div>
 </section>
 {% endif %}

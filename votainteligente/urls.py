@@ -25,7 +25,7 @@ urlpatterns = patterns('',
     (r'^newsletter/', include('newsletter.urls')),
     (r'^api/', include('popolorest.urls')),
     (r'^backend_staff/', include('backend_staff.urls', namespace='backend_staff')),
-    (r'^backend_citizen/', include('backend_citizen.urls', namespace='backend_citizen')),
+    (r'^perfil_ciudadano/', include('backend_citizen.urls', namespace='backend_citizen')),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
 )
 urlpatterns += patterns('',

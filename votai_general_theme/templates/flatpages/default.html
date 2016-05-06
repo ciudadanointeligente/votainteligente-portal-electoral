@@ -1,13 +1,23 @@
 {% extends "base.html" %}
 {% load markdown_deux_tags %}
+{% load flatpages %}
+
 
 {% block content %}
 
 <div>
-  <div class="paginasPlanasDestacadas fondo-blanco">
-	<h2>{{ flatpage.title }}</h2>
-	{{ flatpage.content|markdown }}
+  <div class="row">
+    <div class="col-md-2">
+      {% get_flatpages '/paso1/' as about_pages %}
+      {% for page in about_pages %}
+        <li><a href="/pages{{ page.url }}">{{ page.title }}</a></li>
+      {% endfor %}
+    </div>
+    <div class="paginasPlanasDestacadas fondo-blanco col-md-10">
+      <h2>{{ flatpage.title }}</h2>
+      {{ flatpage.content|markdown }}
+    </div>
   </div>
-    {% include 'disqus.html' %}
+  {% include 'disqus.html' %}
 </div>
 {% endblock content %}

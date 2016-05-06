@@ -24,12 +24,7 @@
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
 <div class="form-group">
+        {% include '_social_login_buttons.html' %}
 
-        <a class="btn btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}?next={% url 'backend_citizen:index' %}">
-            <span class="fa fa-facebook"></span>{% trans 'Entra con Facebook' %}
-        </a>
-        <a class="btn btn-block btn-social btn-google" href="{% url 'social:begin' 'google-oauth2' %}?next={% url 'backend_citizen:index' %}">
-            <span class="fa fa-google"></span>{% trans 'Entra con Google' %}
-        </a>
 </div>
 {% endblock %}

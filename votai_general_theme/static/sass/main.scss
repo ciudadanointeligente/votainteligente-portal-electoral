@@ -386,14 +386,15 @@ input, button, select, textarea {
 
 .panel.panel-default.soon{
 	margin-top: 20px;
-	height: 80px;
+	min-height: 70px;
 	background-color: #5E6D82;
 	border: none;
 	.panel-body{
 		padding: 0;
 	}
-	h1{
+	h2{
 		color: #FFF;
+		font-weight: 300;
 		span{
 			color: #3EE0CB;
 			font-weight: 500;

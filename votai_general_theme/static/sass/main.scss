@@ -283,6 +283,7 @@ input, button, select, textarea {
 
 .navbar-inverse .navbar-nav>li>a {
 	color: $main-background-color;
+	border: none;
 }
 
 .navbar-inverse .navbar-nav>li>a:hover {
@@ -295,6 +296,10 @@ input, button, select, textarea {
 
 .navbar-brand {
 	padding: 5px 13px;
+}
+
+.navbar-inverse{
+	border: none;
 }
 /*Menu Interno*/
 
@@ -383,18 +388,12 @@ input, button, select, textarea {
 }
 
 /*Home*/
-
-.panel.panel-default.soon{
-	margin-top: 20px;
+#lanzamiento{
+	background-color: #5e6d82;
 	min-height: 70px;
-	background-color: #5E6D82;
-	border: none;
-	.panel-body{
-		padding: 0;
-	}
 	h2{
-		color: #FFF;
-		font-weight: 300;
+	color: #FFF;
+	font-weight: 300;
 		span{
 			color: #3EE0CB;
 			font-weight: 500;
@@ -502,6 +501,20 @@ input, button, select, textarea {
 #login-form{
 	background-color: $nav-anchor-background-color;
 	padding: 80px 0 20px 0;
+	h2{
+		color: #FFF;
+		margin: 0px 0 30px 0;
+	}
+	h4{
+		margin-top: 40px;
+		color: #FFF;
+	}
+	.form-control{
+		background-color: #EAEDF2;
+		color: #5E6D82;
+		font-weight: 300;
+		border: none;
+	}
 }
 
 /*Perfil candidato*/

@@ -10,13 +10,13 @@
     <h1>Paso 1</h1>
   </div>
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-3">
       {% get_flatpages '/paso1/' as about_pages %}
       {% for page in about_pages %}
         <li class="list-unstyled"><a href="/pages{{ page.url }}" class="btn btn-primary btn-block">{{ page.title }}</a></li>
       {% endfor %}
     </div>
-    <div class="col-md-10">
+    <div class="col-md-9">
       <div class="panel panel-default pasos">
         <div class="panel-body">
           <h2>{{ flatpage.title }}</h2>

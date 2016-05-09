@@ -15,7 +15,7 @@
   <div class="contenedorDestacado fondo-blanco">
       <h1>{% blocktrans %}¡Bienvenid@ {{user}}!{% endblocktrans %}</h1>
       {% if not user.enrollments.all %}
-            {% trans 'Aún no perteneces a ninguna organización, pero puedes ...' %}
+            {% trans '¿Estás representando a una organización? Regístrala ANTES de enviar la propuesta. Solo si tienes una propuesta individual: salta directo al paso 2.' %}
             <a href="{% url 'backend_citizen:create_organization' %}" class="btn btn-success active btn-block" role="button">
                 {% trans 'Registra tu organización' %}
             </a>

@@ -389,25 +389,35 @@ input, button, select, textarea {
 
 /*Home*/
 #lanzamiento{
-	background-color: #5e6d82;
+	background-color: #FE635F;
 	min-height: 70px;
-	h2{
-	color: #FFF;
-	font-weight: 300;
+	h3{
+		font-weight: 400;
+		margin-top: 20px;
+		font-size: 22px;
+		color: #323A45;
 		span{
-			color: #3EE0CB;
+			color: #FFF ;
 			font-weight: 500;
 		}
 	}
 }
 
 #etapas-propuesta{
+	h2{
+		font-size: 18px;
+		line-height: 20px;
+	}
 	h3{
 		margin-top: 10px;
+		color: #14B9D5;
 	}
 	h4{
 		font-size: 14px;
 		line-height: 18px;
+	}
+	.btn-success{
+		font-weight: 400;
 	}
 }
 

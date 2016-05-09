@@ -69,7 +69,7 @@ TEXTS = {
     'allies': {'label': u'¿Quiénes pueden ayudar a difundir esta propuesta?',
                'help_text': u'',
                'placeholder': u''},
-    'organization': {'label': u'¿Estás haciendo esta propuesta a nombre de una organización? Escribe su nombre acá:',
+    'organization': {'label': u'¿Estás haciendo esta propuesta a nombre de una organización? Selecciona:',
                      'help_text': u'',
                      'placeholder': u''},
 }

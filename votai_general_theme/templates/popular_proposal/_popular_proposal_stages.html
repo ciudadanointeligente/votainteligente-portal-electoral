@@ -1,36 +1,43 @@
 {% load i18n %}
 <div class="row">
-	<h1 class="text-center">¡Bienvenido a Vota Inteligente! </h1>
-	<h4 class="text-center">Para las municipales de 2016 queremos que los ciudadanos puedan participar en la construcción del cambio en su comuna. Creemos que los vecinos tienen mucho que decir a los candidatos a alcalde. Ahora pueden hacerlo a través de este sitio.</h4>
+	<div class="col-md-8 col-md-offset-2">
+		<h1 class="text-center">¡Bienvenido a Vota Inteligente! </h1>
+		<h2 class="text-center">Para las municipales de 2016 queremos que los ciudadanos puedan participar en la construcción del cambio en su comuna. Creemos que los vecinos tienen mucho que decir a los candidatos a alcalde. Ahora pueden hacerlo a través de este sitio.</h2>
+	</div>
 </div>
 
 <div class="contenedorDestacado fondo-blanco">
 	<div class="row">
-		<h4 class="text-center">Para participar solo debes seguir estos pasos:</h4>
 		<div class="col-sm-6 col-md-3 text-center">
 			<img src="http://placehold.it/140x140" class="img-circle">
-			<h3>1</h3>	
+			<h3 class="text-center">1</h3>	
 			<h3>Crea tu propuesta</h3>
-			<h4>Júntate con tus vecinos para pensar una solución a un problema de tu comuna. </h4>
-			<h4>Importante: No olvides revisar nuestra Guía para elaborar una propuesta ciudadana.</h4>
+			<h4>Júntate con tus vecinos para pensar una solución a un problema de tu comuna. Importante: No olvides revisar nuestra Guía para elaborar una propuesta ciudadana.</h4>
+			<a href="/pages/paso1/como-elaborar-una-propuesta.html" class="btn btn-success center-block" role="button"> {% blocktrans %}Guía de elaboración{% endblocktrans %}</a>
 		</div>
 		<div class="col-sm-6 col-md-3 text-center">
 			<img src="http://placehold.it/140x140" class="img-circle">
-			<h3>2</h3>	
+			<h3 class="text-center">2</h3>	
 			<h3>Envíanos la propuesta</h3>
-			<h4>Cuéntanos sobre la solución que proponen.</h4><h4>Nosotros trabajaremos la propuesta contigo para asegurar que cumpla con todos los requisitos para publicarla.</h4>
+			<h4>Cuéntanos sobre la solución que proponen. Nosotros trabajaremos la propuesta contigo para asegurar que cumpla con todos los requisitos para publicarla.</h4>
+			{% if user.is_authenticated %}
+			<a href="{% url 'backend_citizen:index' %}" class="btn btn-success center-block" role="button"> {% blocktrans %}Formulario de propuestas{% endblocktrans %}</a>
+			{% else %}
+			<a href="/#login-form" class="btn btn-success center-block" role="button"> {% blocktrans %}Formulario de propuestas{% endblocktrans %}</a>
+			{% endif %}
 		</div>
 		<div class="col-sm-6 col-md-3 text-center">
 			<img src="http://placehold.it/140x140" class="img-circle">
-			<h3>3</h3>	
+			<h3 class="text-center">3</h3>	
 			<h3>Difunde tu propuesta</h3>
-			<h4>Busca apoyo ciudadano para tu propuesta. Nosotros se la enviaremos por mail a los candidatos de tu comuna.</h4> <h4>Nuestro Kit de activismo puede ser de ayuda.</h4>
+			<h4>Busca apoyo ciudadano para tu propuesta. Nosotros se la enviaremos por mail a los candidatos de tu comuna. Nuestro Kit de activismo puede ser de ayuda.</h4>
+			<a href="{% url 'backend_citizen:index' %}" class="btn btn-success center-block hidden" role="button"> {% blocktrans %}Kit de activismo{% endblocktrans %}</a>
 		</div>
 		<div class="col-sm-6 col-md-3 text-center">
 			<img src="http://placehold.it/140x140" class="img-circle">
-			<h3>4</h3>	
+			<h3 class="text-center">4</h3>	
 			<h3>Candidat@s pueden comprometerse</h3>
-			<h4>¡Tu propuesta podría captar la atención de los candidatos! </h4> <h4>Si alguno se compromete a implementar tu solución, nosotros los pondremos en contacto.</h4>
+			<h4>¡Tu propuesta podría captar la atención de los candidatos! Si alguno se compromete a implementar tu solución, nosotros los pondremos en contacto.</h4>
 		</div>
 	</div>
 </div>

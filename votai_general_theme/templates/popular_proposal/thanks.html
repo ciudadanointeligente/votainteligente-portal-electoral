@@ -22,7 +22,7 @@
 
         <p>Muchas gracias</p>
           <div class="col-md-12">  
-            <a href="{% url 'popular_proposals:propose' slug=area.id %}" class="btn btn-success active btn-block" role="button">
+            <a href="{% url 'popular_proposals:propose' slug=area.id %}" class="btn btn-success btn-block" role="button">
                 {% blocktrans with area=area %}Crea otra propuesta para {{area}}{% endblocktrans %}
             </a>
           </div>
@@ -30,7 +30,7 @@
             {% blocktrans with area=area %}Revisa otras propuestas en {{area}}{% endblocktrans %}
         </a>-->
           <div class="col-md-12">  
-            <a href="{% url 'backend_citizen:index' %}" class="btn btn-primary active btn-block" role="button">
+            <a href="{% url 'backend_citizen:index' %}" class="btn btn-primary btn-block" role="button">
                 {% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}
             </a>
           </div>

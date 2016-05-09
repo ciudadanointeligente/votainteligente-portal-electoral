@@ -247,7 +247,7 @@ strong {
 .btn-success {
 	background-color: $btn-success-background-color;
 	border-color: transparent;
-	float: right;
+	font-weight: 600;
 }
 
 .btn-success:hover {
@@ -258,6 +258,7 @@ strong {
 .btn-primary {
 	background-color: $anchor-color;
 	border-color: transparent;
+	font-weight: 600;
 }
 
 .btn-primary:hover {
@@ -389,25 +390,36 @@ input, button, select, textarea {
 
 /*Home*/
 #lanzamiento{
-	background-color: #5e6d82;
+	background-color: #FE635F;
 	min-height: 70px;
-	h2{
-	color: #FFF;
-	font-weight: 300;
+	h3{
+		font-weight: 400;
+		margin-top: 20px;
+		font-size: 22px;
+		color: #323A45;
 		span{
-			color: #3EE0CB;
+			color: #FFF ;
 			font-weight: 500;
 		}
 	}
 }
 
 #etapas-propuesta{
+	h2{
+		font-size: 18px;
+		line-height: 20px;
+	}
 	h3{
 		margin-top: 10px;
+		color: #14B9D5;
 	}
 	h4{
 		font-size: 14px;
 		line-height: 18px;
+	}
+	.btn-success{
+		font-weight: 600;
+		float: initial;
 	}
 }
 
@@ -512,7 +524,7 @@ input, button, select, textarea {
 	background-color: $nav-anchor-background-color;
 	padding: 80px 0 20px 0;
 	h2{
-		color: #FFF;
+		color: #3ee0cb;
 		margin: 0px 0 30px 0;
 	}
 	h4{
@@ -525,7 +537,16 @@ input, button, select, textarea {
 		font-weight: 300;
 		border: none;
 	}
+	.panel-default{
+		border: none;
+	}
 }
+
+/*Pasos*/
+.panel.panel-default.pasos{
+	border: none;
+}
+
 
 /*Perfil candidato*/
 

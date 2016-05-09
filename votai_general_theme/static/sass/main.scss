@@ -247,7 +247,7 @@ strong {
 .btn-success {
 	background-color: $btn-success-background-color;
 	border-color: transparent;
-	float: right;
+	font-weight: 600;
 }
 
 .btn-success:hover {
@@ -258,6 +258,7 @@ strong {
 .btn-primary {
 	background-color: $anchor-color;
 	border-color: transparent;
+	font-weight: 600;
 }
 
 .btn-primary:hover {
@@ -523,7 +524,7 @@ input, button, select, textarea {
 	background-color: $nav-anchor-background-color;
 	padding: 80px 0 20px 0;
 	h2{
-		color: #FFF;
+		color: #3ee0cb;
 		margin: 0px 0 30px 0;
 	}
 	h4{
@@ -534,6 +535,9 @@ input, button, select, textarea {
 		background-color: #EAEDF2;
 		color: #5E6D82;
 		font-weight: 300;
+		border: none;
+	}
+	.panel-default{
 		border: none;
 	}
 }

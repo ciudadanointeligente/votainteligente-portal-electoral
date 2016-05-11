@@ -1,4 +1,6 @@
+{% load staticfiles %}
 {% load i18n %}
+
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<h1 class="text-center">¡Bienvenido a Vota Inteligente! </h1>
@@ -9,14 +11,14 @@
 <div class="contenedorDestacado fondo-blanco">
 	<div class="row">
 		<div class="col-sm-6 col-md-3 text-center">
-			<img src="http://placehold.it/100x100" class="img-circle">
+			<img src="{% static 'img/paso1.png' %}">
 			<h3 class="text-center">1</h3>	
 			<h3>Crea tu propuesta</h3>
 			<h4>Júntate con tus vecinos para pensar una solución a un problema de tu comuna. Importante: No olvides revisar nuestra Guía para elaborar una propuesta ciudadana.</h4>
 			<a href="/pages/paso1/como-elaborar-una-propuesta/" class="btn btn-success center-block" role="button"> {% blocktrans %}Guía de elaboración{% endblocktrans %}</a>
 		</div>
 		<div class="col-sm-6 col-md-3 text-center">
-			<img src="http://placehold.it/100x100" class="img-circle">
+			<img src="{% static 'img/paso2.png' %}">
 			<h3 class="text-center">2</h3>	
 			<h3>Envíanos la propuesta</h3>
 			<h4>Cuéntanos sobre la solución que proponen. Nosotros trabajaremos la propuesta contigo para asegurar que cumpla con todos los requisitos para publicarla.</h4>
@@ -27,14 +29,14 @@
 			{% endif %}
 		</div>
 		<div class="col-sm-6 col-md-3 text-center">
-			<img src="http://placehold.it/100x100" class="img-circle">
+			<img src="{% static 'img/paso3.png' %}">
 			<h3 class="text-center">3</h3>	
 			<h3>Difunde tu propuesta</h3>
 			<h4>Busca apoyo ciudadano para tu propuesta. Nosotros se la enviaremos por mail a los candidatos de tu comuna. Nuestro Kit de activismo puede ser de ayuda.</h4>
 			<a href="{% url 'backend_citizen:index' %}" class="btn btn-success center-block hidden" role="button"> {% blocktrans %}Kit de activismo{% endblocktrans %}</a>
 		</div>
 		<div class="col-sm-6 col-md-3 text-center">
-			<img src="http://placehold.it/100x100" class="img-circle">
+			<img src="{% static 'img/paso4.png' %}">
 			<h3 class="text-center">4</h3>	
 			<h3>Candidat@s pueden comprometerse</h3>
 			<h4>¡Tu propuesta podría captar la atención de los candidatos! Si alguno se compromete a implementar tu solución, nosotros los pondremos en contacto.</h4>

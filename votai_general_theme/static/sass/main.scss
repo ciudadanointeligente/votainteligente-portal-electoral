@@ -542,6 +542,22 @@ input, button, select, textarea {
 	}
 }
 
+a .fa-chevron-down {
+    background-color:#14B9D5;
+    color: rgb(255, 255, 255);
+    padding: 15px;
+    border-radius: 30px;
+    transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    margin: -20px 0 -20px 0;
+}
+
+a .fa-chevron-down:hover {
+    background-color:#3ee0cb;
+}
+
 /*Pasos*/
 .panel.panel-default.pasos{
 	border: none;

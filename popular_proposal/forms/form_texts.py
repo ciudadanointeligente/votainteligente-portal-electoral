@@ -50,26 +50,74 @@ TOPIC_CHOICES =(
 TEXTS = {
     'problem': {'label': u'Describe el problema de la comuna que proponen solucionar. (Max. 2 líneas)',
                 'help_text': u'Ej: “Poca participación en el Plan Regulador”, “No se fomenta el uso de bicicletas”, “Falta de transparencia en el trabajo de la municipalidad”, “Pocos puntos de reciclaje”.',
-                'placeholder': u'Tu problema'},
+                'placeholder': u'Tu problema',
+                'long_text':u"""Paso 1: ¿Cuál es el problema que se busca solucionar?
+                El primer paso para crear una propuesta ciudadana consiste en A) identificar una problemática social que quieran que se solucione y B) reconocer si se puede resolver con el alcance que tiene el trabajo del alcalde o la municipalidad. Entendemos un problema social como una situación negativa o dañina que afecta a una gran cantidad de vecinos de una comuna.
+                Aquí podemos ver un ejemplo de un problema:
+                Problema: Los alumnos de los liceos municipales de la comuna de Pelarco obtuvieron en su mayoría bajo 500 puntos en la PSU del proceso de admisión 2016.
+                Siguiendo el modelo, escriban su problema contestando esta pregunta: ¿Cuál es la problemática que afecta a su comuna de la que el alcalde debería hacerse cargo?
+                """},
     'solution': {'label': u'¿Qué debería hacer el alcalde para solucionar el problema? Describe la solución. (Max. 3 líneas)',
                  'help_text': u'Ejemplo: "Consultar a los vecinos antes de cambiar el Plan Regulador”, “Habilitar ciclovías en las avenidas principales de la comuna", "Que se publiquen todos los concejos municipales en el sitio web del municipio", “Aumentar los puntos de reciclaje”',
-                 'placeholder': u'Tu solución'},
+                 'placeholder': u'Tu solución',
+                 'long_text':u"""Paso 1: ¿Cuál es el problema que se busca solucionar?
+                 El primer paso para crear una propuesta ciudadana consiste en A) identificar una problemática social que quieran que se solucione y B) reconocer si se puede resolver con el alcance que tiene el trabajo del alcalde o la municipalidad. Entendemos un problema social como una situación negativa o dañina que afecta a una gran cantidad de vecinos de una comuna.
+                 Aquí podemos ver un ejemplo de un problema:
+                 Problema: Los alumnos de los liceos municipales de la comuna de Pelarco obtuvieron en su mayoría bajo 500 puntos en la PSU del proceso de admisión 2016.
+                 Siguiendo el modelo, escriban su problema contestando esta pregunta: ¿Cuál es la problemática que afecta a su comuna de la que el alcalde debería hacerse cargo?
+                 """},
     'solution_at_the_end': {'label': u'Ponle una cifra a tu solución para medir al término del período si se hizo o no se hizo (cantidad de unidades, porcentajes, etc.).',
                             'help_text': u'Ejemplo: “Realizar una consulta ciudadana 6 meses antes de cambiar el Plan Regulador","Aumentar en un 20% la cantidad de ciclovías en la comuna", "Poner 5 puntos de reciclaje nuevos en la comuna”',
-                            'placeholder': u'1) Aumentar en un 20% la cantidad de ciclovías\n\r2) Tener un estacionamiento de bicicletas en la plaza Arturo Prat'},
+                            'placeholder': u'1) Aumentar en un 20% la cantidad de ciclovías\n\r2) Tener un estacionamiento de bicicletas en la plaza Arturo Prat',
+                            'long_text':u"""Paso 1: ¿Cuál es el problema que se busca solucionar?
+                            El primer paso para crear una propuesta ciudadana consiste en A) identificar una problemática social que quieran que se solucione y B) reconocer si se puede resolver con el alcance que tiene el trabajo del alcalde o la municipalidad. Entendemos un problema social como una situación negativa o dañina que afecta a una gran cantidad de vecinos de una comuna.
+                            Aquí podemos ver un ejemplo de un problema:
+                            Problema: Los alumnos de los liceos municipales de la comuna de Pelarco obtuvieron en su mayoría bajo 500 puntos en la PSU del proceso de admisión 2016.
+                            Siguiendo el modelo, escriban su problema contestando esta pregunta: ¿Cuál es la problemática que afecta a su comuna de la que el alcalde debería hacerse cargo?
+                            """},
     'when': {'label': u'¿En qué plazo debería estar implementada esta solución?',
                 'help_text': u'Ejemplo: “Durante los primeros 6 meses”, “Al cumplirse un año”',
-                'placeholder': u''},
+                'placeholder': u'',
+                'long_text':u"""Paso 1: ¿Cuál es el problema que se busca solucionar?
+                El primer paso para crear una propuesta ciudadana consiste en A) identificar una problemática social que quieran que se solucione y B) reconocer si se puede resolver con el alcance que tiene el trabajo del alcalde o la municipalidad. Entendemos un problema social como una situación negativa o dañina que afecta a una gran cantidad de vecinos de una comuna.
+                Aquí podemos ver un ejemplo de un problema:
+                Problema: Los alumnos de los liceos municipales de la comuna de Pelarco obtuvieron en su mayoría bajo 500 puntos en la PSU del proceso de admisión 2016.
+                Siguiendo el modelo, escriban su problema contestando esta pregunta: ¿Cuál es la problemática que afecta a su comuna de la que el alcalde debería hacerse cargo?
+                """},
     'title': {'label': u'Resumen',
               'help_text': u'Escribe un título que nos permita describir tu propuesta ciudadana. Ej: 50% más de ciclovías para la comuna',
-              'placeholder': u''},
+              'placeholder': u'',
+              'long_text':u"""Paso 1: ¿Cuál es el problema que se busca solucionar?
+              El primer paso para crear una propuesta ciudadana consiste en A) identificar una problemática social que quieran que se solucione y B) reconocer si se puede resolver con el alcance que tiene el trabajo del alcalde o la municipalidad. Entendemos un problema social como una situación negativa o dañina que afecta a una gran cantidad de vecinos de una comuna.
+              Aquí podemos ver un ejemplo de un problema:
+              Problema: Los alumnos de los liceos municipales de la comuna de Pelarco obtuvieron en su mayoría bajo 500 puntos en la PSU del proceso de admisión 2016.
+              Siguiendo el modelo, escriban su problema contestando esta pregunta: ¿Cuál es la problemática que afecta a su comuna de la que el alcalde debería hacerse cargo?
+              """},
     'classification': {'label': u'¿En qué área clasificarías tu propuesta?',
                        'help_text': u'',
-                       'placeholder': u''},
+                       'placeholder': u'',
+                       'long_text':u"""Paso 1: ¿Cuál es el problema que se busca solucionar?
+                       El primer paso para crear una propuesta ciudadana consiste en A) identificar una problemática social que quieran que se solucione y B) reconocer si se puede resolver con el alcance que tiene el trabajo del alcalde o la municipalidad. Entendemos un problema social como una situación negativa o dañina que afecta a una gran cantidad de vecinos de una comuna.
+                       Aquí podemos ver un ejemplo de un problema:
+                       Problema: Los alumnos de los liceos municipales de la comuna de Pelarco obtuvieron en su mayoría bajo 500 puntos en la PSU del proceso de admisión 2016.
+                       Siguiendo el modelo, escriban su problema contestando esta pregunta: ¿Cuál es la problemática que afecta a su comuna de la que el alcalde debería hacerse cargo?
+                       """},
     'allies': {'label': u'¿Quiénes pueden ayudar a difundir esta propuesta?',
                'help_text': u'',
-               'placeholder': u''},
+               'placeholder': u'',
+               'long_text':u"""Paso 1: ¿Cuál es el problema que se busca solucionar?
+               El primer paso para crear una propuesta ciudadana consiste en A) identificar una problemática social que quieran que se solucione y B) reconocer si se puede resolver con el alcance que tiene el trabajo del alcalde o la municipalidad. Entendemos un problema social como una situación negativa o dañina que afecta a una gran cantidad de vecinos de una comuna.
+               Aquí podemos ver un ejemplo de un problema:
+               Problema: Los alumnos de los liceos municipales de la comuna de Pelarco obtuvieron en su mayoría bajo 500 puntos en la PSU del proceso de admisión 2016.
+               Siguiendo el modelo, escriban su problema contestando esta pregunta: ¿Cuál es la problemática que afecta a su comuna de la que el alcalde debería hacerse cargo?
+               """},
     'organization': {'label': u'¿Estás haciendo esta propuesta a nombre de una organización? Selecciona:',
                      'help_text': u'',
-                     'placeholder': u''},
+                     'placeholder': u'',
+                     'long_text':u"""Paso 1: ¿Cuál es el problema que se busca solucionar?
+                     El primer paso para crear una propuesta ciudadana consiste en A) identificar una problemática social que quieran que se solucione y B) reconocer si se puede resolver con el alcance que tiene el trabajo del alcalde o la municipalidad. Entendemos un problema social como una situación negativa o dañina que afecta a una gran cantidad de vecinos de una comuna.
+                     Aquí podemos ver un ejemplo de un problema:
+                     Problema: Los alumnos de los liceos municipales de la comuna de Pelarco obtuvieron en su mayoría bajo 500 puntos en la PSU del proceso de admisión 2016.
+                     Siguiendo el modelo, escriban su problema contestando esta pregunta: ¿Cuál es la problemática que afecta a su comuna de la que el alcalde debería hacerse cargo?
+                     """},
 }

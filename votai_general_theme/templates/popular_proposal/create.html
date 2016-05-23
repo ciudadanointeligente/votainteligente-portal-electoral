@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load bootstrap3 %}
+{% load long_text_tags %}
 {% block extrajs %}
 {% endblock extrajs %}
 
@@ -14,11 +15,30 @@
   <div class="contenedorDestacado fondo-blanco">
         <form role="form" action="" method="post">
             {% csrf_token %}
-            {% bootstrap_form form %}
-            <div class="form-actions">
-            <input type="submit" class="btn btn-primary" id="Guardar" value="Guardar"/>
-          </div>
-          
+            {% bootstrap_button "Wizard Mode" button_type="button" button_class="btn-primary" name="wizard_view_button" %}<br>
+            <div id="wizard_form" class="wizard clearfix" role="application">
+                {% for field in form %}
+                  <h4> </h4>
+                    <section>
+                        <p class="long_text">{% test_tag field%}</p>
+                        {{ field.label_tag }} <br>
+                        {{ field }}
+                        {{ field.errors }}
+                        {% if field.help_text %}
+                          <p class="help-block">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </section>
+                {% endfor %}
+            </div>
+
+
+            <div id="classic_form">
+                {% bootstrap_form form %}
+            </div>
+            <div id="form_submit"class="form-actions ">
+              <input type="submit" class="btn btn-primary" id="Guardar" value="Guardar"/>
+            </div>
+
         </form>
 
     </div>

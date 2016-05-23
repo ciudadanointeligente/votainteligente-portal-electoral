@@ -11,5 +11,10 @@ def hide_tag(field):
     return aux
 
 @register.simple_tag
-def test_tag(field):
+def long_text_tag(field):
     return field.field.widget.attrs.get('long_text')
+
+
+@register.simple_tag
+def tab_text_tag(field):
+    return field.field.widget.attrs.get('tab_text')

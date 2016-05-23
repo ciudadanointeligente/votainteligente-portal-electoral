@@ -20,8 +20,8 @@ class TextsFormMixin():
                     self.fields[field].widget.attrs['placeholder'] = texts['placeholder']
                 if 'long_text' in texts.keys() and texts['long_text']:
                     self.fields[field].widget.attrs['long_text'] = texts['long_text']
-                if 'visible' in texts.keys() and texts['visible']:
-                    self.fields[field].widget.attrs['visible'] = texts['visible']
+                if 'step' in texts.keys() and texts['step']:
+                    self.fields[field].widget.attrs['tab_text'] = texts['step']
 
 
 

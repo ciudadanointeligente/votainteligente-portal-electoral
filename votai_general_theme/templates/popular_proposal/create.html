@@ -20,7 +20,7 @@
                 {% for field in form %}
                   <h4> </h4>
                     <section>
-                        <p class="long_text">{% test_tag field%}</p>
+                        <p class="long_text">{% long_text_tag field%}</p>
                         {{ field.label_tag }} <br>
                         {{ field }}
                         {{ field.errors }}

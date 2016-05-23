@@ -18,16 +18,21 @@ class TextsFormMixin():
                     self.fields[field].help_text = texts['help_text']
                 if 'placeholder' in texts.keys() and texts['placeholder']:
                     self.fields[field].widget.attrs['placeholder'] = texts['placeholder']
+                if 'long_text' in texts.keys() and texts['long_text']:
+                    self.fields[field].widget.attrs['long_text'] = texts['long_text']
+                if 'visible' in texts.keys() and texts['visible']:
+                    self.fields[field].widget.attrs['visible'] = texts['visible']
+
 
 
 class ProposalFormBase(forms.Form, TextsFormMixin):
     problem = forms.CharField(max_length=512,
-                              widget=forms.Textarea(),
+                              widget=forms.Textarea(attrs={'class':"form-control"}),
                               )
     solution = forms.CharField(max_length=512,
-                               widget=forms.Textarea(),
+                               widget=forms.Textarea(attrs={'class':"form-control"}),
                               )
-    solution_at_the_end = forms.CharField(widget=forms.Textarea(),
+    solution_at_the_end = forms.CharField(widget=forms.Textarea(attrs={'class':"form-control"}),
                                           required=False)
     when = forms.CharField(max_length=512)
     title = forms.CharField(max_length=256,)

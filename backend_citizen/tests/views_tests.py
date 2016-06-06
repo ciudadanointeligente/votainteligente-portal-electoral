@@ -47,7 +47,8 @@ class BackendCitizenViewsTests(ProposingCycleTestCaseBase):
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
             'solution': u'Viajar a ver al equipo una vez al mes',
             'when': u'1_year',
-            'allies': u'El Feli y el resto de los cabros de la FCI'
+            'causes': u'La terrible de distancia que nos separa',
+            'ideal_situation': u'El Feli y el resto de los cabros de la FCI'
         }
         response = self.client.post(url, data=data, follow=True)
         self.assertEquals(response.status_code, 200)

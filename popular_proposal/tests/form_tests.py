@@ -34,7 +34,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(cleaned_data['problem'], self.data['problem'])
         self.assertEquals(cleaned_data['solution'], self.data['solution'])
         self.assertEquals(cleaned_data['when'], self.data['when'])
-        self.assertEquals(cleaned_data['allies'], self.data['allies'])
+        self.assertEquals(cleaned_data['causes'], self.data['causes'])
         temporary_data = form.save()
         self.assertEquals(len(mail.outbox), original_amount + 1)
         self.assertEquals(temporary_data.proposer, self.fiera)
@@ -43,7 +43,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(t_data['problem'], self.data['problem'])
         self.assertEquals(t_data['solution'], self.data['solution'])
         self.assertEquals(t_data['when'], self.data['when'])
-        self.assertEquals(t_data['allies'], self.data['allies'])
+        self.assertEquals(t_data['causes'], self.data['causes'])
 
     def test_form_with_organizations(self):
         org = Organization.objects.create(name=u'cosa nostra')
@@ -64,7 +64,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertIsInstance(form.fields['problem'], CharField)
         self.assertIsInstance(form.fields['when'], CharField)
         self.assertIsInstance(form.fields['solution'], CharField)
-        self.assertIsInstance(form.fields['allies'], CharField)
+        self.assertIsInstance(form.fields['causes'], CharField)
 
     def test_comments_form_saving(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
@@ -74,7 +74,8 @@ class FormTestCase(ProposingCycleTestCaseBase):
                 'clasification': '',
                 'when': u'el plazo no está tan weno',
                 'solution': u'',
-                'allies': u'Los aliados podrían ser mejores'}
+                'causes': u'Los aliados podrían ser mejores',
+                'ideal_situation': u'El Feli y el resto de los cabros de la FCI'}
 
 
         form = CommentsForm(data=data,
@@ -83,7 +84,8 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(form.is_valid())
         t_data = form.save()
         self.assertEquals(t_data.comments['when'], data['when'])
-        self.assertEquals(t_data.comments['allies'], data['allies'])
+        self.assertEquals(t_data.comments['ideal_situation'], data['ideal_situation'])
+        self.assertEquals(t_data.comments['causes'], data['causes'])
         self.assertFalse(t_data.comments['problem'])
         self.assertFalse(t_data.comments['solution'])
         self.assertEquals(t_data.status, ProposalTemporaryData.Statuses.InTheirSide)
@@ -93,7 +95,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         the_mail = mail.outbox[0]
         expected_context_data = {'when': {'original': temporary_data.data['when'],
                                           'comments': u'el plazo no está tan weno'},
-                                 'allies': {'original': temporary_data.data['allies'],
+                                 'causes': {'original': temporary_data.data['causes'],
                                             'comments': u'Los aliados podrían ser mejores'}}
 
         context = Context({'area': self.arica,
@@ -116,7 +118,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
             'problem': '',
             'solution': '',
             'when': u'El plazo no está tan bueno',
-            'allies': ''
+            'causes': ''
         }
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,

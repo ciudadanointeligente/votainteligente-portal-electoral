@@ -24,13 +24,13 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         self.assertIsNotNone(temporary_data.comments['problem'])
         self.assertIsNotNone(temporary_data.comments['solution'])
         self.assertIsNotNone(temporary_data.comments['when'])
-        self.assertIsNotNone(temporary_data.comments['allies'])
+        self.assertIsNotNone(temporary_data.comments['causes'])
         self.assertIsNotNone(temporary_data.overall_comments)
         self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.InOurSide)
         self.assertIn(temporary_data, self.fiera.temporary_proposals.all())
         self.assertEquals(temporary_data.get_title(), self.data['title'])
         self.assertEquals(str(temporary_data.get_title()), self.data['title'])
-    
+
     def test_send_temporary_data_new_mail(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
@@ -156,7 +156,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
                                                           )
 
     def test_create_popular_proposal_from_temporary_data(self):
-        
+
         data = self.data
         data['organization'] = self.org.id
         # Testing

@@ -15,7 +15,6 @@
   <div class="contenedorDestacado fondo-blanco">
         <form role="form" action="" method="post">
             {% csrf_token %}
-            {% bootstrap_button "Wizard Mode" button_type="button" button_class="btn-primary" name="wizard_view_button" %}<br>
             <div id="wizard_form" class="wizard clearfix" role="application">
                 {% for field in form %}
                   <h4> </h4>

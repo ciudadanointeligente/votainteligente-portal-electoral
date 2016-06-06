@@ -224,6 +224,7 @@ def long_text_tag(field):
         try:
             step = render_to_string('popular_proposal/steps/' + long_text)
         except Exception, e:
+            print e
             step = ''
     return step
 

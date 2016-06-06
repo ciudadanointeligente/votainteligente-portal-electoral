@@ -10,6 +10,7 @@ from django.contrib.sites.models import Site
 from popolo.models import Area
 from django.core.urlresolvers import reverse
 from popular_proposal.forms.form_texts import WHEN_CHOICES, TEXTS
+from django.template.loader import render_to_string
 
 
 @register.simple_tag
@@ -206,3 +207,27 @@ def get_questions_and_descriptions(temporary_proposal):
         'texts': TEXTS,
         'data': temporary_proposal.data
     }
+
+
+@register.simple_tag
+def hide_tag(field):
+    aux="hide"
+    if field.field.widget.attrs.get('visible'):
+        aux=""
+    return aux
+
+@register.simple_tag
+def long_text_tag(field):
+    long_text = field.field.widget.attrs.get('long_text')
+    step = ''
+    if long_text:
+        try:
+            step = render_to_string('popular_proposal/steps/' + long_text)
+        except Exception, e:
+            step = ''
+    return step
+
+
+@register.simple_tag
+def tab_text_tag(field):
+    return field.field.widget.attrs.get('tab_text')

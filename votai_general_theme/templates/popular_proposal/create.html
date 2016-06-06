@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load bootstrap3 %}
-{% load long_text_tags %}
+{% load votainteligente_extras%}
 {% block extrajs %}
 {% endblock extrajs %}
 
@@ -20,18 +20,11 @@
                 {% for field in form %}
                   <h4> </h4>
                     <section>
-                        <p class="long_text">{% long_text_tag field%}</p>
-                        {{ field.label_tag }} <br>
-                        {{ field }}
-                        {{ field.errors }}
-                        {% if field.help_text %}
-                          <p class="help-block">{{ field.help_text|safe }}</p>
-                        {% endif %}
+                        <p class="long_text">{% long_text_tag field %}</p>
+                        {% bootstrap_field field %}
                     </section>
                 {% endfor %}
             </div>
-
-
             <div id="classic_form">
                 {% bootstrap_form form %}
             </div>

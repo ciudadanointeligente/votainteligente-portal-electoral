@@ -27,17 +27,23 @@ class TextsFormMixin():
 
 class ProposalFormBase(forms.Form, TextsFormMixin):
     problem = forms.CharField(max_length=512,
-                              widget=forms.Textarea(attrs={'class':"form-control"}),
+                              widget=forms.Textarea(),
                               )
+    ideal_situation = forms.CharField(max_length=256,
+                                      widget=forms.Textarea(),
+                                      )
+    causes = forms.CharField(max_length=256,
+                             widget=forms.Textarea(),
+                             )
     solution = forms.CharField(max_length=512,
-                               widget=forms.Textarea(attrs={'class':"form-control"}),
+                               widget=forms.Textarea(),
                               )
-    solution_at_the_end = forms.CharField(widget=forms.Textarea(attrs={'class':"form-control"}),
+    solution_at_the_end = forms.CharField(widget=forms.Textarea(),
                                           required=False)
-    when = forms.CharField(max_length=512)
-    title = forms.CharField(max_length=256,)
-    clasification = forms.ChoiceField(choices=TOPIC_CHOICES)
-    allies = forms.CharField(max_length=256)
+    when = forms.CharField(max_length=512, widget=forms.TextInput(),)
+    title = forms.CharField(max_length=256, widget=forms.TextInput())
+    clasification = forms.ChoiceField(choices=TOPIC_CHOICES, 
+                                      widget=forms.Select())
 
     def __init__(self, *args, **kwargs):
         super(ProposalFormBase, self).__init__(*args, **kwargs)

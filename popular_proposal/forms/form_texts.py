@@ -63,7 +63,7 @@ TEXTS = {
                             'placeholder': u'Que la Municipalidad de Pelarco destine un 20% más de recursos al año para colegios o liceos.\n\rQue la Municipalidad de Pelarco elabore e implemente un plan junto a los profesores de Educación Media para optimizar los recursos en educación.',
                             'long_text':"solution_at_the_end.html",
                             'step': u'Paso 1'},
-    'ideal_situation': {'label': u'¿Cuál sería la situación ideal (y realizable) a la que se busca llegar? Describe el objetivo que quieren alcanzar con la solución que van a proponer:',
+    'ideal_situation': {'label': u'describan el objetivo que quieren alcanzar con la solución que van a proponer:',
                'help_text': u'Ejemplo: El año 2020, el 50% de los alumnos de los liceos municipales de la comuna de Pelarco obtendrán más de 500 puntos en la PSU.',
                'placeholder': u'',
                'long_text':"ideal_situation.html",

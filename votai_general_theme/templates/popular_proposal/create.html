@@ -5,9 +5,42 @@
 {% load bootstrap3 %}
 {% load votainteligente_extras%}
 {% block extrajs %}
+var preview;
+$(function(){
+    preview = function(){
+		var data = $('form').serializeObject();
+        var output = Mustache.render(`{% include 'popular_proposal/plantillas/preview.html' %}`, data);
+		$('#previewModal .modal-body').html(output);
+		$('#previewModal').modal({})
+    }
+});
+$('#preview').click(function(){
+    preview();
+});
+$('#formSubmit').click(function(){
+   $('form').submit() 
+});
 {% endblock extrajs %}
-
 {% block content %}
+<div id="previewModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{% trans 'Así se verá tu propuesta:' %}</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Cancelar' %}</button>
+        <button type="button" id='formSubmit' class="btn btn-primary">{% trans 'Enviar' %}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <div>
 
   <h1>{% blocktrans with area=area.name %}Creando una propuesta para {{area}}{% endblocktrans %}</h1>
@@ -25,15 +58,14 @@
                 {% endfor %}
             </div>
             <div id="form_submit"class="form-actions ">
-              <input type="submit" class="btn btn-primary" id="Guardar" value="Guardar"/>
+                <input id="preview" class="btn btn-primary" value="{% trans '¡Listo!' %}"/>
             </div>
-
         </form>
-
     </div>
   <!-- end mobile version -->
 
 </div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.js"></script>
 {% endblock content %}
 
 {% block extrafooter %}

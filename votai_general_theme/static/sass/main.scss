@@ -281,7 +281,9 @@ input, button, select, textarea {
 }
 
 /*Menu*/
-
+.navbar {
+    min-height: 70px;
+}
 .navbar-inverse .navbar-nav>li>a {
 	color: $main-background-color;
 	border: none;

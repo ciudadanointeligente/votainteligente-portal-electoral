@@ -46,11 +46,5 @@ $(document).ready(function(){
 
 	});
 
-	$("#wizard_form").steps({
-    headerTag: "h4",
-    bodyTag: "section",
-    transitionEffect: "slideLeft",
-    autoFocus: true
-	});
 
 });

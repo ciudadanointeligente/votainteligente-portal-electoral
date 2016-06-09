@@ -90,6 +90,12 @@ SOCIAL_AUTH_PIPELINE = (
         'social.pipeline.user.user_details',
 )
 
+SASS_PROCESSOR_ENABLED = True
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+)
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

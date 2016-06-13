@@ -24,29 +24,90 @@ class TextsFormMixin():
                     self.fields[field].widget.attrs['tab_text'] = texts['step']
 
 
-
-class ProposalFormBase(forms.Form, TextsFormMixin):
-    problem = forms.CharField(max_length=512,
+from collections import OrderedDict
+wizard_forms_fields = [
+    {
+        'title': _(u'¿Qué Onda?'),
+        'fields': OrderedDict([
+                ('problem', forms.CharField(max_length=512,
                               widget=forms.Textarea(),
-                              )
-    ideal_situation = forms.CharField(max_length=256,
+                              ))
+        ])
+    },
+    {
+        'title': _(u'¿Qué onda?'),
+        'fields': OrderedDict([(
+    'ideal_situation', forms.CharField(max_length=256,
                                       widget=forms.Textarea(),
                                       )
-    causes = forms.CharField(max_length=256,
+        )])
+    },
+    {
+        'title': _(u'¿Qué onda?'),
+        'fields': OrderedDict([(
+                'causes', forms.CharField(max_length=256,
                              widget=forms.Textarea(),
                              )
-    solution = forms.CharField(max_length=512,
+
+        )])
+    },
+    {
+        'title': _(u'¿Qué onda?'),
+        'fields': OrderedDict([(
+
+    'solution', forms.CharField(max_length=512,
                                widget=forms.Textarea(),
                               )
-    solution_at_the_end = forms.CharField(widget=forms.Textarea(),
+        )])
+    },
+    {
+        'title': _(u'¿Qué onda?'),
+        'fields': OrderedDict([(
+                'solution_at_the_end', forms.CharField(widget=forms.Textarea(),
                                           required=False)
-    when = forms.CharField(max_length=512, widget=forms.TextInput(),)
-    title = forms.CharField(max_length=256, widget=forms.TextInput())
-    clasification = forms.ChoiceField(choices=TOPIC_CHOICES, 
+
+        )])
+    },
+    {
+        'title': _(u'¿Qué onda?'),
+        'fields': OrderedDict([(
+                'when', forms.CharField(max_length=512, widget=forms.TextInput(),)
+
+        )])
+    },
+    {
+        'title': _(u'¿Qué onda?'),
+        'fields': OrderedDict([(
+    'title', forms.CharField(max_length=256, widget=forms.TextInput())
+
+        ), (
+    'clasification', forms.ChoiceField(choices=TOPIC_CHOICES,
                                       widget=forms.Select())
+        )])
+    }
+]
+
+def get_form_list():
+    form_list = []
+    for step in wizard_forms_fields:
+        fields_dict = OrderedDict()
+        for field in step['fields']:
+            fields_dict[field] = step['fields'][field]
+        form_class = type('Step', (forms.Form, object ), {})
+        form_class.base_fields = fields_dict
+        form_list.append(form_class)
+    return form_list
+
+class ProposalFormBase(forms.Form, TextsFormMixin):
+    def set_fields(self):
+        for steps in wizard_forms_fields:
+            for field_name in steps['fields']:
+                field = steps['fields'][field_name]
+                self.fields[field_name] = field
 
     def __init__(self, *args, **kwargs):
         super(ProposalFormBase, self).__init__(*args, **kwargs)
+        self.set_fields()
         if self.proposer.enrollments.all():
             possible_organizations = [(0, _(u'Lo haré como persona'))]
             for enrollment in self.proposer.enrollments.all():

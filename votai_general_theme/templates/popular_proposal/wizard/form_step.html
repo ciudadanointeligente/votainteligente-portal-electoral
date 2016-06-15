@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+{% load votainteligente_extras%}
+
+{% block head %}
+{{ wizard.form.media }}
+{% endblock %}
+
+{% block content %}
+<div>
+  <div class="contenedorDestacado fondo-blanco">
+<p>Paso {{ wizard.steps.step1 }} de {{ wizard.steps.count }}</p>
+<form role="form" action="" method="post">
+            {% csrf_token %}
+        {{ wizard.management_form }}
+        {% if wizard.form.forms %}
+            {{ wizard.form.management_form }}
+            {% for form in wizard.form.forms %}
+                {% for field in form %}
+                    <section>
+                        <p class="long_text">{% long_text_tag field %}</p>
+                        {% bootstrap_field field %}
+                    </section>
+                {% endfor %}
+            {% endfor %}
+         {% else %}
+                {% for field in form %}
+                    <section>
+                        <p class="long_text">{% long_text_tag field %}</p>
+                        {% bootstrap_field field %}
+                    </section>
+                {% endfor %}
+         {% endif %}
+    {% if wizard.steps.prev %}
+    <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
+    <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
+    {% endif %}
+    <input type="submit" value="{% trans "submit" %}"/>
+</form>
+</div>
+</div>
+{% endblock %}

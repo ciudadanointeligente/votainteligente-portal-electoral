@@ -84,7 +84,7 @@ TEXTS = {
               'long_text':"title.html",
               'step': u'Paso 1'},
     'clasification': {'label': u'Clasificación',
-                       'help_text': u'Educación',
+                       'help_text': u'educacion',
                        'placeholder': u'',
                        'long_text':"clasification.html",
                        'step': u'Paso 1'},

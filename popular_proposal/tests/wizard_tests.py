@@ -13,8 +13,13 @@ from django.test import RequestFactory
 from django.contrib.auth.models import User
 from popolo.models import Area
 from django import forms
+from django.core.urlresolvers import reverse
+from popular_proposal.views import ProposalWizard
+from popular_proposal.forms.form_texts import TEXTS
+from popular_proposal.models import ProposalTemporaryData
 
 
+USER_PASSWORD = 'secr3t'
 class WizardTestCase(TestCase):
     def setUp(self):
         super(WizardTestCase, self).setUp()
@@ -22,6 +27,9 @@ class WizardTestCase(TestCase):
         self.fiera = User.objects.get(username='fiera')
         self.arica = Area.objects.get(id='arica-15101')
         self.feli = User.objects.get(username='feli')
+        self.feli.set_password(USER_PASSWORD)
+        self.feli.save()
+        ProposalTemporaryData.objects.all().delete()
 
     def test_get_form_list(self):
         list_ = get_form_list()
@@ -31,8 +39,66 @@ class WizardTestCase(TestCase):
             self.assertIsInstance(f, forms.Form)
             self.assertGreater(len(f.fields), 0)
 
+    def test_get_texts_for_forms(self):
+        list_ = get_form_list()
+        for step in list_:
+            f = step()
+            for field in f.fields:
+                self.assertTrue(f.fields[field].label)
+                self.assertTrue(f.fields[field].help_text)
+                self.assertTrue(f.fields[field].widget.attrs['long_text'])
+                self.assertTrue(f.fields[field].widget.attrs['tab_text'])
 
-#    def test_instanciating_view(self):
-#        request = self.factory.get('/')
-#        request.user = self.user
-#        self.fail()
+    def test_instanciating_view(self):
+        url = reverse('popular_proposals:propose_wizard', kwargs={'slug': self.arica.id})
+        self.client.login(username=self.feli,
+                          password=USER_PASSWORD)
+
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'popular_proposal/wizard/form_step.html')
+
+    def get_example_data_for_post(self):
+        test_response = {}
+        counter = 0
+        for step in wizard_forms_fields:
+            test_response[counter] = {}
+            for field in step['fields']:
+                test_response[counter][field] = ''
+                field_dict = TEXTS.get(field, None)
+                if field_dict:
+                    help_text = field_dict.get('help_text', None)
+                    if help_text:
+                        test_response[counter][str(counter) + '-' + field] = help_text
+                    else:
+                        test_response[counter][str(counter) + '-' + field] = field
+                else:
+                    test_response[counter]['fields'] = field
+
+            counter += 1
+        return test_response
+
+    def test_post_data_to_the_wizard(self):
+        url = reverse('popular_proposals:propose_wizard', kwargs={'slug': self.arica.id})
+        self.client.login(username=self.feli,
+                          password=USER_PASSWORD)
+        test_response = self.get_example_data_for_post()
+        response = self.client.get(url)
+        steps = response.context['wizard']['steps']
+        for i in range(steps.count):
+            self.assertEquals(steps.current, unicode(i))
+            data = test_response[i]
+            data.update({'proposal_wizard-current_step': unicode(i)})
+            response = self.client.post(url, data=data)
+            self.assertEquals(response.context['area'], self.arica)
+            if 'form' in response.context:
+                self.assertFalse(response.context['form'].errors)
+                steps = response.context['wizard']['steps']
+        self.assertTemplateUsed(response, 'popular_proposal/wizard/done.html')
+        ## Probar que se creó la promesa
+        self.assertEquals(ProposalTemporaryData.objects.count(), 1)
+        temporary_data = response.context['proposal']
+        self.assertEquals(response.context['area'], self.arica)
+        self.assertEquals(temporary_data.proposer, self.feli)
+        self.assertEquals(temporary_data.area, self.arica)
+

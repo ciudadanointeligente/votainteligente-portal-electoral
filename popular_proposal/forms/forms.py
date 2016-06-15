@@ -89,11 +89,17 @@ wizard_forms_fields = [
 
 def get_form_list():
     form_list = []
+    counter = 0
     for step in wizard_forms_fields:
+        counter += 1
         fields_dict = OrderedDict()
         for field in step['fields']:
             fields_dict[field] = step['fields'][field]
-        form_class = type('Step', (forms.Form, object ), {})
+        def __init__(self, *args, **kwargs):
+            super(forms.Form, self).__init__(*args, **kwargs)
+            self.add_texts_to_fields()
+
+        form_class = type('Step%d' % (counter), (forms.Form,TextsFormMixin, object ), {"__init__": __init__})
         form_class.base_fields = fields_dict
         form_list.append(form_class)
     return form_list

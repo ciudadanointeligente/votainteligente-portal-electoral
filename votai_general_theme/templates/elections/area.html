@@ -70,7 +70,7 @@ $(function(){
         {% endfor %}
       </ul>
 
-        <a href="{% url 'popular_proposals:propose' slug=area.id %}" class="btn btn-primary btn-lg active btn-block">{% blocktrans with area=area.name %}Crear una propuesta ciudadana{% endblocktrans %}</a>
+        <a href="{% url 'popular_proposals:propose_wizard' slug=area.id %}" class="btn btn-primary btn-lg active btn-block">{% blocktrans with area=area.name %}Crear una propuesta ciudadana{% endblocktrans %}</a>
     </div>
 
   </div>

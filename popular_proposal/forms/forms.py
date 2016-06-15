@@ -5,6 +5,7 @@ from votainteligente.send_mails import send_mail
 from django.utils.translation import ugettext as _
 from django.contrib.sites.models import Site
 from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
+from popolo.models import Area
 
 
 class TextsFormMixin():
@@ -227,3 +228,17 @@ class SubscriptionForm(forms.Form):
         like = ProposalLike.objects.create(user=self.user,
                                            proposal=self.proposal)
         return like
+
+
+class AreaForm(forms.Form):
+    area = forms.ChoiceField()
+
+    def __init__(self, *args, **kwargs):
+        super(AreaForm, self).__init__(*args, **kwargs)
+        self.fields['area'].choices = [(a.id, a.name) for a in Area.objects.all()]
+
+    def clean(self):
+        cleaned_data = super(AreaForm, self).clean()
+        area = Area.objects.get(id=cleaned_data['area'])
+        cleaned_data['area'] = area
+        return cleaned_data

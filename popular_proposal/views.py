@@ -1,5 +1,5 @@
 from django.views.generic.edit import FormView
-from popular_proposal.forms import ProposalForm, SubscriptionForm, get_form_list
+from popular_proposal.forms import ProposalForm, SubscriptionForm, get_form_list, AreaForm
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from popolo.models import Area
@@ -124,4 +124,28 @@ class ProposalWizard(SessionWizardView):
         context = super(ProposalWizard, self).get_context_data(form, **kwargs)
         context['area'] = self.area
         return context
+
+
+full_wizard_form_list = [AreaForm, ] + wizard_form_list
+
+
+class ProposalWizardFull(SessionWizardView):
+    form_list = full_wizard_form_list
+    template_name = 'popular_proposal/wizard/form_step.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ProposalWizardFull, self).dispatch(request, *args, **kwargs)
+
+    def done(self, form_list, **kwargs):
+        data = {}
+        [data.update(form.cleaned_data) for form in form_list]
+        area = data['area']
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.request.user,
+                                                              area=area,
+                                                              data=data)
+        return render_to_response('popular_proposal/wizard/done.html', {
+            'proposal': temporary_data,
+            'area': area
+        })
 

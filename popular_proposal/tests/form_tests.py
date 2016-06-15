@@ -4,7 +4,8 @@ from popular_proposal.tests import ProposingCycleTestCaseBase
 from popular_proposal.forms import (ProposalForm,
                                     CommentsForm,
                                     RejectionForm,
-                                    ProposalTemporaryDataUpdateForm)
+                                    ProposalTemporaryDataUpdateForm,
+                                    AreaForm)
 from django.contrib.auth.models import User
 from popolo.models import Area
 from django.forms import CharField
@@ -44,6 +45,13 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(t_data['solution'], self.data['solution'])
         self.assertEquals(t_data['when'], self.data['when'])
         self.assertEquals(t_data['causes'], self.data['causes'])
+
+    def test_area_form(self):
+        data = {'area': self.arica.id}
+        form = AreaForm(data)
+        self.assertTrue(form.is_valid())
+        cleaned_data = form.cleaned_data
+        self.assertEquals(cleaned_data['area'], self.arica)
 
     def test_form_with_organizations(self):
         org = Organization.objects.create(name=u'cosa nostra')

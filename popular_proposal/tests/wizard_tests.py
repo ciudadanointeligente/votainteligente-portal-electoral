@@ -58,9 +58,8 @@ class WizardTestCase(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'popular_proposal/wizard/form_step.html')
 
-    def get_example_data_for_post(self):
-        test_response = {}
-        counter = 0
+    def get_example_data_for_post(self, test_response={}):
+        counter = len(test_response)
         for step in wizard_forms_fields:
             test_response[counter] = {}
             for field in step['fields']:
@@ -91,6 +90,30 @@ class WizardTestCase(TestCase):
             data.update({'proposal_wizard-current_step': unicode(i)})
             response = self.client.post(url, data=data)
             self.assertEquals(response.context['area'], self.arica)
+            if 'form' in response.context:
+                self.assertFalse(response.context['form'].errors)
+                steps = response.context['wizard']['steps']
+        self.assertTemplateUsed(response, 'popular_proposal/wizard/done.html')
+        ## Probar que se creó la promesa
+        self.assertEquals(ProposalTemporaryData.objects.count(), 1)
+        temporary_data = response.context['proposal']
+        self.assertEquals(response.context['area'], self.arica)
+        self.assertEquals(temporary_data.proposer, self.feli)
+        self.assertEquals(temporary_data.area, self.arica)
+
+    def test_full_wizard(self):
+        url = reverse('popular_proposals:propose_wizard_full')
+        self.client.login(username=self.feli,
+                          password=USER_PASSWORD)
+        test_response = {0:{'0-area': self.arica.id}}
+        test_response = self.get_example_data_for_post(test_response)
+        response = self.client.get(url)
+        steps = response.context['wizard']['steps']
+        for i in range(steps.count):
+            self.assertEquals(steps.current, unicode(i))
+            data = test_response[i]
+            data.update({'proposal_wizard_full-current_step': unicode(i)})
+            response = self.client.post(url, data=data)
             if 'form' in response.context:
                 self.assertFalse(response.context['form'].errors)
                 steps = response.context['wizard']['steps']

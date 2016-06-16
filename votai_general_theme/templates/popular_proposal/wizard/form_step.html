@@ -28,7 +28,7 @@
                 {% for field in form %}
                     <section>
                         <p class="long_text">{% long_text_tag field %}</p>
-                        {% bootstrap_field field %}
+                        {% bootstrap_field field show_help=false show_label=false %}
                     </section>
                 {% endfor %}
          {% endif %}
@@ -36,7 +36,7 @@
     <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
     <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
     {% endif %}
-    <input type="submit" value="{% trans "submit" %}"/>
+    <input class="btn btn-primary" type="submit" value="{% trans "Submit" %}"/>
 </form>
 </div>
 </div>

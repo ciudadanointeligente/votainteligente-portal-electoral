@@ -50,7 +50,7 @@ TOPIC_CHOICES =(
 TEXTS = {
     'problem': {'label': u'¿Cuál es el problema que afecta a la comuna (o barrio) de la que el alcalde debe hacerse cargo?',
                 'help_text': u'Los alumnos de los liceos municipales de la comuna de Pelarco obtuvieron en su mayoría bajo 500 puntos en la PSU del proceso de admisión 2016.',
-                'placeholder': u'Tu problema',
+                'placeholder': u'¿Cuál es el problema que afecta a la comuna (o barrio) de la que el alcalde debe hacerse cargo?',
                 'long_text':"problem.html",
                 'step': u'Paso 1'},
     'ideal_situation': {'label': u'Describan el objetivo que quieren alcanzar con la solución que van a proponer:',

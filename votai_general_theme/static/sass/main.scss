@@ -27,6 +27,7 @@ html, body {
 
 h1 {
 	font-weight: 300;
+	font-family: 'Open Sans', sans-serif;
 }
 
 h3 {
@@ -58,6 +59,10 @@ strong {
 
 .text-light {
 	color: $grey-light;
+}
+
+.text-dark {
+	color: $grey-dark;
 }
 
 .fondo-blanco {
@@ -252,13 +257,13 @@ strong {
 }
 
 .btn-primary {
-	background-color: $anchor-color;
+	background-color: $green;
 	border-color: transparent;
 	font-weight: 600;
 }
 
 .btn-primary:hover {
-	background-color: $hover-letters;
+	background-color: darken($green,25%);
 	border-color: transparent;
 }
 
@@ -270,10 +275,6 @@ strong {
 .btn-danger:hover {
 	background-color: $btn-danger-hover-background-color;
 	border-color: transparent;
-}
-
-input, button, select, textarea {
-	font-family: 'Lato', sans-serif;
 }
 
 /*Menu*/
@@ -1471,9 +1472,26 @@ animation: doscaras 4s infinite;
 /*Wizard*/
 
 .tips {
-    background: $grey;
-    padding: 30px;
-    color: white;
+  background: $grey;
+  padding: 30px;
+  color: white;
+  margin: 30px 0;
+	position: relative;
+}
+
+.tips:after {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(120, 130, 145, 0);
+	border-top-color: $grey;
+	border-width: 20px;
+	margin-left: -20px;
 }
 
 .example {

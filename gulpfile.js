@@ -6,9 +6,9 @@ var gulp = require('gulp'),
 gulp.task('runserver', shell.task(['python manage.py runserver']));
 
 gulp.task('compile_scss', function () {
-    watch('votai_general_theme/static/sass/**/*.scss', function () {
-        shell.task(['python manage.py compilescss']);
-        gutil.log('Compilando Scss');
+    watch('votai_general_theme/static/sass/**/*.scss', function (vynil) {
+                                               gulp.src('votai_general_theme/static/sass/**/*.scss')
+                                                   .pipe(shell(['python manage.py compilescss',]));
     });
 });
 

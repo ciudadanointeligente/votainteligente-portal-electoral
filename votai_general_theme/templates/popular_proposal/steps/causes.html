@@ -1,7 +1,6 @@
-{% load markdown_deux_tags %}
-{% markdown %}
-**Paso 3: ¿Por qué existe el problema?**
-
+{% extends 'popular_proposal/steps/base_steps.html' %}
+{% block step_title %}Paso 3: ¿Por qué existe el problema?{% endblock step_title %}
+{% block tips %}
 Luego de reconocer el problema a grandes rasgos, como grupo deben reflexionar sobre dónde surge el problema. Para esto se puede utilizar el ejercicio de los ¿por qués? Este consiste en preguntarse el porqué de un problema repetidas veces para saber un poco más acerca de sus causas.
 Aquí se muestra un ejemplo del ejercicio de los ¿por qués?:
 
@@ -15,4 +14,4 @@ Problema: Los alumnos de los liceos municipales de la comuna de Pelarco obtuvier
 
 Al finalizar con el ejercicio, se puede tener una idea más clara de la causa del problema. Esto los ayudará a construir a una mejor propuesta, ya que la solución que ofrezcan podrá atacar el problema de raíz.
 
-{% endmarkdown %}
+{% endblock tips %}

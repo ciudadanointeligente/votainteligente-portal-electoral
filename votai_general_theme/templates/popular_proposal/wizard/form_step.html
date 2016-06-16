@@ -9,8 +9,8 @@
 
 {% block content %}
 <div>
-  <div class="contenedorDestacado fondo-blanco">
-<p>Paso {{ wizard.steps.step1 }} de {{ wizard.steps.count }}</p>
+  <div class="contenedorDestacado">
+<p class="text-light">Paso {{ wizard.steps.step1 }} de {{ wizard.steps.count }}</p>
 <form role="form" action="" method="post">
             {% csrf_token %}
         {{ wizard.management_form }}

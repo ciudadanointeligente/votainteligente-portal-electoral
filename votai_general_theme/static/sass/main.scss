@@ -11,7 +11,7 @@ html, body {
 	color: $letters-color;
 	height: 100%;
 	-webkit-font-smoothing: antialiased;
-	font-family: 'Lato', sans-serif;
+	font-family: 'Karla', sans-serif;
 	padding-top: 35px;
 }
 
@@ -23,10 +23,6 @@ html, body {
   margin: 0 auto -60px;
   /* Pad bottom by footer height */
   padding: 0 0 60px;
-}
-
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-	font-family:  'Lato', sans-serif;
 }
 
 h1 {
@@ -60,8 +56,8 @@ strong {
 	font-weight: 900;
 }
 
-.txt-gris {
-	color: $txt-gris;
+.text-light {
+	color: $grey-light;
 }
 
 .fondo-blanco {
@@ -121,7 +117,7 @@ strong {
 }
 
 .breadcrumb>.active {
-	color: $txt-gris;
+	color: $grey-light;
 }
 
 /*Elecciones destacadas*/
@@ -318,7 +314,7 @@ input, button, select, textarea {
 	border-right: 3px solid $background-color;
 	/*border-top: 2px solid $background-color;*/
 	padding: 10px;
-	color: $txt-gris;
+	color: $grey-light;
 	text-decoration: none;
 }
 
@@ -428,7 +424,7 @@ input, button, select, textarea {
 #home-search .form-control {
 	color: $main-background-color;
 	background-color: $nav-anchor-background-color;
-	border-left: 1px solid $txt-gris;
+	border-left: 1px solid $grey-light;
 	border-radius: 0px;
 	border-top: none;
 	border-bottom: none;
@@ -438,22 +434,22 @@ input, button, select, textarea {
 }
 
 #home-search .form-control::-webkit-input-placeholder {
-   color: $txt-gris;
+   color: $grey-light;
    font-weight: 300;
 }
 
 #home-search .form-control:-moz-placeholder { /* Firefox 18- */
-   color: $txt-gris;
+   color: $grey-light;
    font-weight: 300;
 }
 
 #home-search .form-control::-moz-placeholder {  /* Firefox 19+ */
-   color: $txt-gris;
+   color: $grey-light;
    font-weight: 300;
 }
 
 #home-search .form-control:-ms-input-placeholder {
-   color: $txt-gris;
+   color: $grey-light;
    font-weight: 300;
 }
 
@@ -471,8 +467,8 @@ input, button, select, textarea {
 }
 
 #home-search button.btn[type="button"] {
-	background-color: $txt-gris;
-	border-color: $txt-gris;
+	background-color: $grey-light;
+	border-color: $grey-light;
 }
 
 #home-search .input-group {
@@ -624,7 +620,7 @@ a .fa-chevron-down:hover {
 
 
 .icon-quote-left, .icon-quote-right {
-	color: $txt-gris;
+	color: $grey-light;
 }
 
 
@@ -730,7 +726,7 @@ a .fa-chevron-down:hover {
 .progress {
 	height: 26px;
 	margin-bottom: 5px;
-	background-color: $txt-gris;
+	background-color: $grey-light;
 }
 
 .progress-bar-success {
@@ -813,11 +809,11 @@ a .fa-chevron-down:hover {
 }
 
 #compare-candidates .text-right, #compare-candidates .text-center {
-	color: $txt-gris;
+	color: $grey-light;
 }
 
 #compare-candidates i {
-	color: $txt-gris;
+	color: $grey-light;
 }
 
 #compare-candidates .text-center i {
@@ -1123,7 +1119,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 .search-questions .form-control {
 	color: $main-background-color;
-	background-color: $txt-gris;
+	background-color: $grey-light;
 	border: none;
 	border-radius: 0px;
 	-webkit-box-shadow: none;
@@ -1138,7 +1134,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 .panel-heading .text-right {
-	color: $txt-gris;
+	color: $grey-light;
 }
 
 .candidate-answer {
@@ -1347,9 +1343,8 @@ animation: doscaras 4s infinite;
 }
 .base-login form .btn-default {
   float: initial;
-  color: $blanco;
-  background-color: $verde_manzana;
-  border-color: $verde_dos;
+  color: white;
+  background-color: $green;
 }
 
 .base-login form .btn-default.btn-lg {
@@ -1471,4 +1466,16 @@ animation: doscaras 4s infinite;
 }
 .category_name .green {
 	background-color: $category_name_background_color;
+}
+
+/*Wizard*/
+
+.tips {
+    background: $grey;
+    padding: 30px;
+    color: white;
+}
+
+.example {
+	color: $blue;
 }

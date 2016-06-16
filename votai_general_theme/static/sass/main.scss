@@ -13,6 +13,7 @@ html, body {
 	-webkit-font-smoothing: antialiased;
 	font-family: 'Karla', sans-serif;
 	padding-top: 35px;
+	font-size: 15px;
 }
 
 #wrapper {
@@ -23,6 +24,11 @@ html, body {
   margin: 0 auto -60px;
   /* Pad bottom by footer height */
   padding: 0 0 60px;
+}
+
+.text-width {
+	max-width: 800px;
+	margin: 0 auto;
 }
 
 h1 {
@@ -144,7 +150,6 @@ strong {
 
 .contenedorDestacado {
 	*zoom: 1;
-	margin: 20px 0 10px;
 	padding: 30px;
 }
 
@@ -263,7 +268,7 @@ strong {
 }
 
 .btn-primary:hover {
-	background-color: darken($green,25%);
+	background-color: darken($green,15%);
 	border-color: transparent;
 }
 
@@ -1496,4 +1501,41 @@ animation: doscaras 4s infinite;
 
 .example {
 	color: $blue;
+}
+
+span.number {
+  background: white;
+  color: $grey;
+  border-radius: 10px;
+  padding: 0px 5px;
+}
+
+/*Boton flecha*/
+
+svg {
+  padding: 5px;
+}
+
+.left:hover polyline,
+.left:focus polyline {
+  stroke-width: 3;
+}
+
+.left:active polyline {
+  stroke-width: 6;
+  transition: all 100ms ease-in-out;
+}
+
+.right:hover polyline,
+.right:focus polyline {
+  stroke-width: 3;
+}
+
+.right:active polyline {
+  stroke-width: 6;
+  transition: all 100ms ease-in-out;
+}
+
+polyline {
+  transition: all 250ms ease-in-out;
 }

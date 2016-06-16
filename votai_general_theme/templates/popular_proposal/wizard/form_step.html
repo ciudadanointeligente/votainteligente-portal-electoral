@@ -9,7 +9,7 @@
 
 {% block content %}
 <div>
-  <div class="contenedorDestacado">
+  <div class="contenedorDestacado text-width">
 <p class="text-light">Paso {{ wizard.steps.step1 }} de {{ wizard.steps.count }}</p>
 <form role="form" action="" method="post">
             {% csrf_token %}
@@ -36,7 +36,17 @@
     <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
     <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
     {% endif %}
-    <input class="btn btn-primary" type="submit" value="{% trans "Submit" %}"/>
+    <div class="text-right">
+        <input class="btn btn-primary" type="submit" value="{% trans "Submit" %}"/>
+        <a class="arrow right btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="80px" viewBox="0 0 50 80" xml:space="preserve">
+            <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="
+            0.375,0.375 45.63,38.087 0.375,75.8 "/>
+          </svg>
+        </a>
+    </div>
+
+
 </form>
 </div>
 </div>

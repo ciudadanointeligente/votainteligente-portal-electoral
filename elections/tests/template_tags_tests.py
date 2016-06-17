@@ -240,3 +240,10 @@ class TemplateTagsTestCase(TestCase):
         self.assertIn(freedom2_topic.label, rendered_template)
         self.assertIn(benito2_topic.label, rendered_template)
         self.assertIn(fiera2_topic.label, rendered_template)
+
+    def test_filter_times(self):
+        template = Template("{% load votainteligente_extras %}{% for i in 3|times %}hola{% endfor %}")
+        context = Context({})
+
+        self.assertEqual(template.render(context), u'holaholahola')
+

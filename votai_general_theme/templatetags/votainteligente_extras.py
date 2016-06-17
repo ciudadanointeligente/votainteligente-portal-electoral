@@ -232,3 +232,7 @@ def long_text_tag(field):
 @register.simple_tag
 def tab_text_tag(field):
     return field.field.widget.attrs.get('tab_text')
+
+@register.filter(name='times')
+def times(number):
+    return range(number)

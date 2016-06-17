@@ -10,7 +10,13 @@
 {% block content %}
 <div>
   <div class="contenedorDestacado text-width">
-<p class="text-light">Paso {{ wizard.steps.step1 }} de {{ wizard.steps.count }}</p>
+
+
+    {% for i in wizard.steps.count|times %}
+        <div class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}"> paso {{i|add:"1"}}</div>
+    {% endfor %}
+
+
 <form role="form" action="" method="post">
             {% csrf_token %}
         {{ wizard.management_form }}

@@ -38,14 +38,6 @@ wizard_forms_fields = [
     {
         'title': _(u'¿Qué onda?'),
         'fields': OrderedDict([(
-    'ideal_situation', forms.CharField(max_length=256,
-                                      widget=forms.Textarea(),
-                                      )
-        )])
-    },
-    {
-        'title': _(u'¿Qué onda?'),
-        'fields': OrderedDict([(
                 'causes', forms.CharField(max_length=256,
                              widget=forms.Textarea(),
                              )
@@ -67,14 +59,9 @@ wizard_forms_fields = [
                 'solution_at_the_end', forms.CharField(widget=forms.Textarea(),
                                           required=False)
 
-        )])
-    },
-    {
-        'title': _(u'¿Qué onda?'),
-        'fields': OrderedDict([(
-                'when', forms.CharField(max_length=512, widget=forms.TextInput(),)
-
-        )])
+        ),
+        ('when', forms.CharField(max_length=512, widget=forms.TextInput(),))
+        ])
     },
     {
         'title': _(u'¿Qué onda?'),

@@ -5,11 +5,12 @@ var gulp = require('gulp'),
 
 gulp.task('runserver', shell.task(['python manage.py runserver']));
 
-gulp.task('compile_scss', function () {
+gulp.task('watch_compilescss', function () {
+    shell.task(['python manage.py compilescss'])
     watch('votai_general_theme/static/sass/**/*.scss', function (vynil) {
                                                gulp.src('votai_general_theme/static/sass/**/*.scss')
                                                    .pipe(shell(['python manage.py compilescss',]));
     });
 });
 
-gulp.task('default', ['runserver', 'compile_scss']);
+gulp.task('default', ['runserver', 'watch_compilescss']);

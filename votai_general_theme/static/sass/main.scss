@@ -241,11 +241,11 @@ strong {
 /*Botones*/
 
 .btn {
-	font-weight: 300;
+	font-size: 14px;
+  padding: 12px 11px;
 }
 
 .btn-lg {
-	font-size: 14px;
 	font-family: 'Lato', sans-serif;
 	padding: 17px 16px;
 }
@@ -253,7 +253,6 @@ strong {
 .btn-success {
 	background-color: $btn-success-background-color;
 	border-color: transparent;
-	font-weight: 600;
 }
 
 .btn-success:hover {
@@ -264,7 +263,6 @@ strong {
 .btn-primary {
 	background-color: $green;
 	border-color: transparent;
-	font-weight: 600;
 }
 
 .btn-primary:hover {
@@ -280,6 +278,52 @@ strong {
 .btn-danger:hover {
 	background-color: $btn-danger-hover-background-color;
 	border-color: transparent;
+}
+
+.btn-default {
+    color: white;
+    background-color: $grey-light;
+    border: none;
+}
+
+.btn-default:hover {
+	background-color: darken($grey-light,15%);
+	color: white;
+}
+
+/*Boton flecha*/
+
+svg {
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.left:hover polyline,
+.left:focus polyline {
+  stroke-width: 3;
+}
+
+.left:active polyline {
+  stroke-width: 8;
+  transition: all 100ms ease-in-out;
+}
+
+.right:hover polyline,
+.right:focus polyline {
+  stroke-width: 6;
+}
+
+.right:active polyline {
+  stroke-width: 6;
+  transition: all 100ms ease-in-out;
+}
+
+polyline {
+  transition: all 250ms ease-in-out;
+}
+
+.btn.arrow {
+  padding: 1px 7px 1px 10px;
 }
 
 /*Menu*/
@@ -1508,34 +1552,4 @@ span.number {
   color: $grey;
   border-radius: 10px;
   padding: 0px 5px;
-}
-
-/*Boton flecha*/
-
-svg {
-  padding: 5px;
-}
-
-.left:hover polyline,
-.left:focus polyline {
-  stroke-width: 3;
-}
-
-.left:active polyline {
-  stroke-width: 6;
-  transition: all 100ms ease-in-out;
-}
-
-.right:hover polyline,
-.right:focus polyline {
-  stroke-width: 3;
-}
-
-.right:active polyline {
-  stroke-width: 6;
-  transition: all 100ms ease-in-out;
-}
-
-polyline {
-  transition: all 250ms ease-in-out;
 }

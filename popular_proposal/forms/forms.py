@@ -60,7 +60,8 @@ wizard_forms_fields = [
                                           required=False)
 
         ),
-        ('when', forms.CharField(max_length=512, widget=forms.TextInput(),))
+        ('when', forms.ChoiceField(widget=forms.Select(),
+                                   choices=WHEN_CHOICES))
         ])
     },
     {

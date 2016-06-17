@@ -1,14 +1,19 @@
-{% load markdown_deux_tags %}
-{% markdown %}
-**Paso 4: ¿Qué acción dará por cumplida la tarea del alcalde?**
+{% extends 'popular_proposal/steps/base_steps.html' %}
+{% block step_title %}Paso 4: ¿Qué acción dará por cumplida la tarea del alcalde?{% endblock step_title %}
 
-Si el futuro alcalde se compromete a  llevar a cabo la propuesta ciudadana es importante saber qué tareas deben quedar listas para poder decir que el trabajo está terminado.
+{% block tips %}
+<p>Si el futuro alcalde se compromete a  llevar a cabo la propuesta ciudadana es importante saber qué tareas deben quedar listas para poder decir que el trabajo está terminado.</p>
 
-Para poder medir ese avance, lo ideal es ser lo más específico posible al escribir la petición. Para esto es muy útil ponerle cifras a la propuesta como porcentajes o cantidad de unidades. Ejemplo:
+<p>Para poder medir ese avance, lo ideal es ser lo más específico posible al escribir la petición. Para esto es muy útil ponerle cifras a la propuesta como porcentajes o cantidad de unidades.</p>
 
-- Que la Municipalidad de Pelarco destine un 20% más de recursos al año para colegios o liceos.
 
-También se pueden poner otras referencias específicas sin cifras, en caso de que la solución que se propone no se pueda medir en números. Ejemplo:
 
-- Que la Municipalidad de Pelarco elabore e implemente un plan junto a los profesores de Educación Media para optimizar los recursos en educación.
-{% endmarkdown %}
+{% endblock tips %}
+
+{% block ejemplo %}
+<li>Que la Municipalidad de Pelarco destine un 20% más de recursos al año para colegios o liceos.</li>
+
+<p>También se pueden poner otras referencias específicas sin cifras, en caso de que la solución que se propone no se pueda medir en números. Ejemplo:</p>
+
+<li>Que la Municipalidad de Pelarco elabore e implemente un plan junto a los profesores de Educación Media para optimizar los recursos en educación.</li>
+{% endblock ejemplo %}

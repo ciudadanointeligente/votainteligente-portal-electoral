@@ -1,6 +1,7 @@
 # coding=utf-8
 
 WHEN_CHOICES = [
+    ('', '----'),
     ('1_month', u'1 mes después de ingresado'),
     ('6_months', u'6 Meses'),
     ('1_year', u'1 año'),
@@ -69,12 +70,12 @@ TEXTS = {
                             'placeholder': u'Que la Municipalidad de Pelarco destine un 20% más de recursos al año para colegios o liceos.\n\rQue la Municipalidad de Pelarco elabore e implemente un plan junto a los profesores de Educación Media para optimizar los recursos en educación.',
                             'long_text': "solution_at_the_end.html"},
     'when': {'label': u'',
-             'help_text': u'',
+             'help_text': u'6_months',
              'placeholder': u'',
              'long_text': "when.html"},
     'title': {'label': u'',
               'help_text': u'',
-              'placeholder': u'',
+              'placeholder': u'Mejoremos la educación en la comuna',
               'long_text': "title.html"},
     'clasification': {'label': u'',
                       'help_text': u'transparencia',

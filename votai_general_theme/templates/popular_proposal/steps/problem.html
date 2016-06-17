@@ -1,7 +1,8 @@
-<h1>Paso 1: ¿Cuál es el problema que se busca solucionar?</h1>
+{% extends 'popular_proposal/steps/base_steps.html' %}
+{% block step_title %}Paso 1: ¿Cuál es el problema que se busca solucionar?{% endblock step_title %}
 
-<div class="tips">
-  <b class="text-dark">TIPS</b>
+
+{% block tips %}
   <p>El primer paso para crear una propuesta ciudadana consiste en: </p>
   <ul>
     <li><span class="number">a</span> identificar una problemática social que quieran que se solucione.</li>
@@ -10,9 +11,8 @@
   <p>  
     El problema debe ser una situación negativa o dañina que afecta a una gran cantidad de vecinos de una comuna. Esto le dará prioridad a la petición a ojos del alcalde. Por esto es importante identificar si son muchos los vecinos que comparten el problema.
   </p>
-</div>
+{% endblock tips %}
 
-<span class="text-light">Ejemplo:</span>
-<div class="example">
+{% block ejemplo %}
   <b><i>Problema:</i></b> Los alumnos de los liceos municipales de la comuna de Pelarco obtuvieron en su mayoría bajo 500 puntos en la PSU del proceso de admisión 2016.
-</div>
+{% endblock ejemplo %}

@@ -38,6 +38,7 @@ class WizardTestCase(TestCase):
         for step in list_:
             f = step()
             for field in f.fields:
+                self.assertTrue(f.explanation_template)
                 self.assertTrue(f.fields[field].widget.attrs['long_text'])
 
     def test_instanciating_view(self):

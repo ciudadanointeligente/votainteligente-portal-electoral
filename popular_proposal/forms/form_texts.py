@@ -45,7 +45,7 @@ TOPIC_CHOICES =(
       (u'pueblosindigenas', u'Pueblos indígenas'),
       (u'diversidadsexual', u'Diversidad sexual'),
       (u'terceraedad', u'Tercera edad'),
-      ))
+  ))
 )
 
 TEXTS = {
@@ -57,7 +57,7 @@ TEXTS = {
                'help_text': u'',
                'placeholder': u'Utilizen el ejercicio de los "por qués"',
                'long_text': "paso2.html"},
-    'solution': {'label': u'',
+    'solution': {'label': u'Escribe tu propuesta',
                  'help_text': u'',
                  'placeholder': u'Siguiendo el ejemplo, propongan la(s) medida(s) que el alcalde debe tomar para solucionar la causa del problema y poder alcanzar la situación ideal.',
                  'long_text': "paso3.html"},
@@ -73,7 +73,7 @@ TEXTS = {
               'help_text': u'',
               'placeholder': u'Mejoremos la educación en la comuna',
               'long_text': "paso5a.html"},
-    'clasification': {'label': u'',
+    'clasification': {'label': u'Primero elige una categoría',
                       'help_text': u'transparencia',
                       'placeholder': u'',
                       'long_text': "paso5b.html"},

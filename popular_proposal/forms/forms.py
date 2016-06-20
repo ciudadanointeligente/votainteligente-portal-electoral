@@ -28,7 +28,7 @@ class TextsFormMixin():
 from collections import OrderedDict
 wizard_forms_fields = [
     {
-        'title': _(u'¿Qué Onda?'),
+        'explation_template': "popular_proposal/steps/paso1.html",
         'fields': OrderedDict([
                 ('problem', forms.CharField(max_length=512,
                               widget=forms.Textarea(),
@@ -36,7 +36,7 @@ wizard_forms_fields = [
         ])
     },
     {
-        'title': _(u'¿Qué onda?'),
+        'explation_template': "popular_proposal/steps/paso2.html",
         'fields': OrderedDict([(
                 'causes', forms.CharField(max_length=256,
                              widget=forms.Textarea(),
@@ -45,8 +45,11 @@ wizard_forms_fields = [
         )])
     },
     {
-        'title': _(u'¿Qué onda?'),
+        'explation_template': "popular_proposal/steps/paso3.html",
         'fields': OrderedDict([(
+    'clasification', forms.ChoiceField(choices=TOPIC_CHOICES,
+                                      widget=forms.Select())
+        ), (
 
     'solution', forms.CharField(max_length=512,
                                widget=forms.Textarea(),
@@ -54,7 +57,7 @@ wizard_forms_fields = [
         )])
     },
     {
-        'title': _(u'¿Qué onda?'),
+        'explation_template': "popular_proposal/steps/paso4.html",
         'fields': OrderedDict([(
                 'solution_at_the_end', forms.CharField(widget=forms.Textarea(),
                                           required=False)
@@ -65,16 +68,14 @@ wizard_forms_fields = [
         ])
     },
     {
-        'title': _(u'¿Qué onda?'),
+        'explation_template': "popular_proposal/steps/paso5.html",
         'fields': OrderedDict([(
     'title', forms.CharField(max_length=256, widget=forms.TextInput())
 
-        ), (
-    'clasification', forms.ChoiceField(choices=TOPIC_CHOICES,
-                                      widget=forms.Select())
         )])
     }
 ]
+
 
 def get_form_list():
     form_list = []
@@ -84,14 +85,18 @@ def get_form_list():
         fields_dict = OrderedDict()
         for field in step['fields']:
             fields_dict[field] = step['fields'][field]
+
         def __init__(self, *args, **kwargs):
             super(forms.Form, self).__init__(*args, **kwargs)
             self.add_texts_to_fields()
-
-        form_class = type('Step%d' % (counter), (forms.Form,TextsFormMixin, object ), {"__init__": __init__})
+        cls_attrs = {"__init__": __init__,
+                     "explanation_template": step['explation_template']}
+        form_class = type('Step%d' % (counter),
+                          (forms.Form, TextsFormMixin, object), cls_attrs)
         form_class.base_fields = fields_dict
         form_list.append(form_class)
     return form_list
+
 
 class ProposalFormBase(forms.Form, TextsFormMixin):
     def set_fields(self):

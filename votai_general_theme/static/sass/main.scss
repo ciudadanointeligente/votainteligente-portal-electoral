@@ -615,6 +615,24 @@ a .fa-chevron-down:hover {
 	margin-bottom: 5px;
 }
 
+.paso {
+    border-bottom: 6px solid white;
+}
+
+.paso.paso_completado {
+    border-bottom: 6px solid $blue;
+}
+
+.well {
+    margin: 20px 0;
+    background-color: darken($grey,5%);
+    border: none;
+    /*border-bottom: 2px solid $grey-dark;*/
+    /*border-top: 2px solid $grey-dark;*/
+    border-radius: 0px;
+    box-shadow: none;
+}
+
 
 /*Perfil candidato*/
 
@@ -1541,6 +1559,10 @@ animation: doscaras 4s infinite;
 	border-top-color: $grey;
 	border-width: 20px;
 	margin-left: -20px;
+}
+
+.tips a {
+	color: $green;
 }
 
 .example {

@@ -59,7 +59,7 @@ TEXTS = {
                'long_text': "paso2.html"},
     'solution': {'label': u'',
                  'help_text': u'',
-                 'placeholder': u'Tu solución',
+                 'placeholder': u'Siguiendo el ejemplo, propongan la(s) medida(s) que el alcalde debe tomar para solucionar la causa del problema y poder alcanzar la situación ideal.',
                  'long_text': "paso3.html"},
     'solution_at_the_end': {'label': u'',
                             'help_text': u'',

@@ -29,9 +29,13 @@
             {% for form in wizard.form.forms %}
                 {% for field in form %}
                     <section>
-                        <p class="long_text">{% long_text_tag field %}</p>
-                        {% bootstrap_field field %}
+                    <p class="long_text">{% include form.explanation_template %}</p>
                     </section>
+                    {% for field in form %}
+                        <section>
+                            {% bootstrap_field field show_help=false %}
+                        </section>
+                    {% endfor %}
                 {% endfor %}
             {% endfor %}
          {% else %}
@@ -61,4 +65,5 @@
 </form>
 </div>
 </div>
-{% endblock %}
+
+{% endblock content %}

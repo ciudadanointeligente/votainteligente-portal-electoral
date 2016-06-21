@@ -3,6 +3,7 @@
 
 
 {% block tips %}
+<div class="hidden ayuda_comuna">{% include 'ayuda_municipalidad_categoria.html' %}</div>
 <p>
 	Una vez que tenemos claro el objetivo que queremos para la comuna y las causas del problema, debemos pensar en las medidas que el alcalde puede tomar para obtenerlo. Esta es la acción concreta que se le solicitará a los candidatos.
 </p>
@@ -14,6 +15,20 @@
 
 Es importante que la solución esté dentro de lo que un alcalde puede hacer. Si es necesario, pueden recurrir nuevamente al <a href="http://2016.votainteligente.cl/pages/paso1/que-hace-una-muni/">anexo</a> para recordarles qué hacen las municipalidades y alcaldes.
 
+<script type="text/javascript">
+$(function(){
+    $("[name$='clasification']").change(function(event){
+    	$('#ayuda_desplegada').remove();
+    	var select = $(event.target);
+    	var value = select.val();
+    	var help = $('.ayuda_comuna .ayuda.' + value);
+    	if(help.length) {
+	    	var element_to_be_inserted = '<div id="ayuda_desplegada">' + help.html() + "</div>";
+	    	select.parent().before(element_to_be_inserted);
+    	}
+    })
+})
+</script>
 {% endblock tips %}
 
 {% block ejemplo_titulo %}Aquí se toma la última respuesta del ejercicio de los ¿por qués? y se utiliza para proponer una solución:{% endblock ejemplo_titulo %}

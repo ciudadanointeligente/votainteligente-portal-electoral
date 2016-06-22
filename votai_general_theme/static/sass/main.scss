@@ -241,7 +241,7 @@ strong {
 /*Botones*/
 
 .btn {
-	font-size: 14px;
+	font-size: 15px;
   padding: 12px 11px;
 }
 
@@ -265,7 +265,7 @@ strong {
 	border-color: transparent;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:focus, .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
 	background-color: darken($green,15%);
 	border-color: transparent;
 }
@@ -1565,6 +1565,10 @@ animation: doscaras 4s infinite;
 
 .tips a {
 	color: $green;
+}
+
+.tips a.btn {
+	color: white;
 }
 
 .example {

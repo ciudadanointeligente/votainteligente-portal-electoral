@@ -625,12 +625,14 @@ a .fa-chevron-down:hover {
 
 .well {
     margin: 20px 0;
-    background-color: darken($grey,5%);
+    background-color: darken($grey,10%);
     border: none;
-    /*border-bottom: 2px solid $grey-dark;*/
-    /*border-top: 2px solid $grey-dark;*/
     border-radius: 0px;
     box-shadow: none;
+}
+
+p.destacado-tips {
+    color: lighten($blue,25%);
 }
 
 

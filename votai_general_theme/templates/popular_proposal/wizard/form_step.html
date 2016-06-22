@@ -10,7 +10,7 @@
 {% block content %}
 <div>
   <div class="contenedorDestacado text-width">
-    <p class="text-light">Creando una propuesta para </p>
+    <p class="text-light">Creando una propuesta para {{ area }}</p>
 
     <div class="row">
     {% for i in wizard.steps.count|times %}

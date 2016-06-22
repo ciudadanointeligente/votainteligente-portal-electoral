@@ -1,4 +1,5 @@
 {% extends 'popular_proposal/steps/base_steps.html' %}
+{% load bootstrap3 %}
 {% block step_title %}Paso 3: ¿Cómo se puede lograr la situación ideal?{% endblock step_title %}
 
 
@@ -15,9 +16,10 @@
 
 <p class="destacado-tips">Es importante que la solución esté dentro de lo que un alcalde puede hacer. Selecciona la categoría de tu propuesta para revisar la labor de las municipalidades y alcaldes en ese ámbito.</p>
 
-<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseCategorias" aria-expanded="false" aria-controls="collapseCategorias">
-  Este es el selector de categoría
-</a>
+
+{% if field %}
+  {% bootstrap_field field show_help=false %}
+{% endif %}
 <div class="collapse" id="collapseCategorias">
   <div class="well">
     <div id="selector-categorias"></div>
@@ -34,6 +36,7 @@ $(function(){
     	if(help.length) {
 	    	var element_to_be_inserted = '<div id="ayuda_desplegada">' + help.html() + "</div>";
 	    	$('#selector-categorias').append(element_to_be_inserted);
+        $('#collapseCategorias').collapse()
     	}
     })
 })

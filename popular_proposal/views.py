@@ -52,6 +52,7 @@ class ThanksForProposingView(TemplateView):
         kwargs['area'] = self.area
         return kwargs
 
+
 class SubscriptionView(FormView):
     template_name = 'popular_proposal/new_subscription.html'
     form_class = SubscriptionForm
@@ -104,6 +105,11 @@ class ProposalWizard(SessionWizardView):
     form_list = wizard_form_list
     template_name = 'popular_proposal/wizard/form_step.html'
 
+    def get_template_names(self):
+        form = self.get_form(step=self.steps.current)
+        template_name = getattr(form, 'template', self.template_name)
+        return template_name
+
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.area = get_object_or_404(Area, id=self.kwargs['slug'])
@@ -148,4 +154,3 @@ class ProposalWizardFull(SessionWizardView):
             'proposal': temporary_data,
             'area': area
         })
-

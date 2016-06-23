@@ -1,21 +1,18 @@
 {% load markdown_deux_tags %}
 <br />
 {% markdown %}
-{% verbatim %}
-**El problema**: {{problem}}
+**El problema**: {{preview_data.problem}}
 
-**Situación ideal**: {{ideal_situation}}
+**Situación ideal**: {{preview_data.ideal_situation}}
 
-**Las causas**: {{causes}}
+**Las causas**: {{preview_data.causes}}
 
-**Tu solución**: {{solution}}
+**Tu solución**: {{preview_data.solution}}
 
-**Solución a largo plazo**: {{solution_at_the_end}}
+**Solución a largo plazo**: {{preview_data.solution_at_the_end}}
 
-**Para cuando lo quieres solucionado**: {{when}}
+**Para cuando lo quieres solucionado**: {{preview_data.when}}
 
-**Título**: {{title}}
 
-**Clasificación**: {{clasification}}
-{% endverbatim %}
+**Clasificación**: {{preview_data.clasification}}
 {% endmarkdown %}

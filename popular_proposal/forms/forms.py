@@ -75,7 +75,7 @@ wizard_forms_fields = [
         ])
     },
     {
-        'template': 'popular_proposal/wizard/form_step.html',
+        'template': 'popular_proposal/wizard/paso5.html',
         'explation_template': "popular_proposal/steps/paso5.html",
         'fields': OrderedDict([(
             'title', forms.CharField(max_length=256, widget=forms.TextInput())

@@ -5,9 +5,12 @@ from votainteligente.send_mails import send_mail
 from django.utils.translation import ugettext as _
 from django.contrib.sites.models import Site
 from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
+from popolo.models import Area
+from collections import OrderedDict
 
 
 class TextsFormMixin():
+
     def add_texts_to_fields(self):
         for field in self.fields:
             if field in TEXTS.keys():
@@ -17,40 +20,110 @@ class TextsFormMixin():
                 if 'help_text' in texts.keys() and texts['help_text']:
                     self.fields[field].help_text = texts['help_text']
                 if 'placeholder' in texts.keys() and texts['placeholder']:
-                    self.fields[field].widget.attrs['placeholder'] = texts['placeholder']
+                    self.fields[field].widget.attrs[
+                        'placeholder'] = texts['placeholder']
                 if 'long_text' in texts.keys() and texts['long_text']:
-                    self.fields[field].widget.attrs['long_text'] = texts['long_text']
+                    self.fields[field].widget.attrs[
+                        'long_text'] = texts['long_text']
                 if 'step' in texts.keys() and texts['step']:
                     self.fields[field].widget.attrs['tab_text'] = texts['step']
 
 
-
-class ProposalFormBase(forms.Form, TextsFormMixin):
-    problem = forms.CharField(max_length=512,
-                              widget=forms.Textarea(),
-                              )
-    ideal_situation = forms.CharField(max_length=256,
+wizard_forms_fields = [
+    {
+        'template': 'popular_proposal/wizard/form_step.html',
+        'explation_template': "popular_proposal/steps/paso1.html",
+        'fields': OrderedDict([
+            ('problem', forms.CharField(max_length=512,
+                                        widget=forms.Textarea(),
+                                        ))
+        ])
+    },
+    {
+        'template': 'popular_proposal/wizard/form_step.html',
+        'explation_template': "popular_proposal/steps/paso2.html",
+        'fields': OrderedDict([(
+            'causes', forms.CharField(max_length=256,
                                       widget=forms.Textarea(),
                                       )
-    causes = forms.CharField(max_length=256,
-                             widget=forms.Textarea(),
-                             )
-    solution = forms.CharField(max_length=512,
-                               widget=forms.Textarea(),
-                              )
-    solution_at_the_end = forms.CharField(widget=forms.Textarea(),
-                                          required=False)
-    when = forms.CharField(max_length=512, widget=forms.TextInput(),)
-    title = forms.CharField(max_length=256, widget=forms.TextInput())
-    clasification = forms.ChoiceField(choices=TOPIC_CHOICES, 
-                                      widget=forms.Select())
+
+        )])
+    },
+    {
+        'template': 'popular_proposal/wizard/paso3.html',
+        'explation_template': "popular_proposal/steps/paso3.html",
+        'fields': OrderedDict([(
+            'clasification', forms.ChoiceField(choices=TOPIC_CHOICES,
+                                               widget=forms.Select())
+        ), (
+
+            'solution', forms.CharField(max_length=512,
+                                        widget=forms.Textarea(),
+                                        )
+        )])
+    },
+    {
+        'template': 'popular_proposal/wizard/form_step.html',
+        'explation_template': "popular_proposal/steps/paso4.html",
+        'fields': OrderedDict([(
+            'solution_at_the_end', forms.CharField(widget=forms.Textarea(),
+                                                   required=False)
+
+        ),
+            ('when', forms.ChoiceField(widget=forms.Select(),
+                                       choices=WHEN_CHOICES))
+        ])
+    },
+    {
+        'template': 'popular_proposal/wizard/form_step.html',
+        'explation_template': "popular_proposal/steps/paso5.html",
+        'fields': OrderedDict([(
+            'title', forms.CharField(max_length=256, widget=forms.TextInput())
+
+        )])
+    }
+]
+
+
+
+def get_form_list():
+    form_list = []
+    counter = 0
+    for step in wizard_forms_fields:
+        counter += 1
+        fields_dict = OrderedDict()
+        for field in step['fields']:
+            fields_dict[field] = step['fields'][field]
+
+        def __init__(self, *args, **kwargs):
+            super(forms.Form, self).__init__(*args, **kwargs)
+            self.add_texts_to_fields()
+        cls_attrs = {"__init__": __init__,
+                     "explanation_template": step['explation_template'],
+                     "template": step['template']}
+        form_class = type('Step%d' % (counter),
+                          (forms.Form, TextsFormMixin, object), cls_attrs)
+        form_class.base_fields = fields_dict
+        form_list.append(form_class)
+    return form_list
+
+
+class ProposalFormBase(forms.Form, TextsFormMixin):
+
+    def set_fields(self):
+        for steps in wizard_forms_fields:
+            for field_name in steps['fields']:
+                field = steps['fields'][field_name]
+                self.fields[field_name] = field
 
     def __init__(self, *args, **kwargs):
         super(ProposalFormBase, self).__init__(*args, **kwargs)
+        self.set_fields()
         if self.proposer.enrollments.all():
             possible_organizations = [(0, _(u'Lo haré como persona'))]
             for enrollment in self.proposer.enrollments.all():
-                possible_organizations.append((enrollment.organization.id, enrollment.organization))
+                possible_organizations.append(
+                    (enrollment.organization.id, enrollment.organization))
 
             self.fields['organization'] = forms.ChoiceField(
                 choices=possible_organizations,
@@ -73,6 +146,7 @@ class ProposalForm(ProposalFormBase):
                                                               data=self.cleaned_data)
         temporary_data.notify_new()
         return temporary_data
+
 
 
 class CommentsForm(forms.Form):
@@ -160,3 +234,17 @@ class SubscriptionForm(forms.Form):
         like = ProposalLike.objects.create(user=self.user,
                                            proposal=self.proposal)
         return like
+
+
+class AreaForm(forms.Form):
+    area = forms.ChoiceField()
+
+    def __init__(self, *args, **kwargs):
+        super(AreaForm, self).__init__(*args, **kwargs)
+        self.fields['area'].choices = [(a.id, a.name) for a in Area.objects.all()]
+
+    def clean(self):
+        cleaned_data = super(AreaForm, self).clean()
+        area = Area.objects.get(id=cleaned_data['area'])
+        cleaned_data['area'] = area
+        return cleaned_data

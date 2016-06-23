@@ -11,8 +11,9 @@ html, body {
 	color: $letters-color;
 	height: 100%;
 	-webkit-font-smoothing: antialiased;
-	font-family: 'Lato', sans-serif;
+	font-family: 'Karla', sans-serif;
 	padding-top: 35px;
+	font-size: 15px;
 }
 
 #wrapper {
@@ -25,12 +26,14 @@ html, body {
   padding: 0 0 60px;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-	font-family:  'Lato', sans-serif;
+.text-width {
+	max-width: 800px;
+	margin: 0 auto;
 }
 
 h1 {
 	font-weight: 300;
+	font-family: 'Open Sans', sans-serif;
 }
 
 h3 {
@@ -60,8 +63,12 @@ strong {
 	font-weight: 900;
 }
 
-.txt-gris {
-	color: $txt-gris;
+.text-light {
+	color: $grey-light;
+}
+
+.text-dark {
+	color: $grey-dark;
 }
 
 .fondo-blanco {
@@ -121,7 +128,7 @@ strong {
 }
 
 .breadcrumb>.active {
-	color: $txt-gris;
+	color: $grey-light;
 }
 
 /*Elecciones destacadas*/
@@ -143,7 +150,6 @@ strong {
 
 .contenedorDestacado {
 	*zoom: 1;
-	margin: 20px 0 10px;
 	padding: 30px;
 }
 
@@ -235,11 +241,11 @@ strong {
 /*Botones*/
 
 .btn {
-	font-weight: 300;
+	font-size: 15px;
+  padding: 12px 11px;
 }
 
 .btn-lg {
-	font-size: 14px;
 	font-family: 'Lato', sans-serif;
 	padding: 17px 16px;
 }
@@ -247,7 +253,6 @@ strong {
 .btn-success {
 	background-color: $btn-success-background-color;
 	border-color: transparent;
-	font-weight: 600;
 }
 
 .btn-success:hover {
@@ -256,13 +261,12 @@ strong {
 }
 
 .btn-primary {
-	background-color: $anchor-color;
+	background-color: $green;
 	border-color: transparent;
-	font-weight: 600;
 }
 
-.btn-primary:hover {
-	background-color: $hover-letters;
+.btn-primary:hover, .btn-primary:focus, .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
+	background-color: darken($green,15%);
 	border-color: transparent;
 }
 
@@ -276,8 +280,50 @@ strong {
 	border-color: transparent;
 }
 
-input, button, select, textarea {
-	font-family: 'Lato', sans-serif;
+.btn-default {
+    color: white;
+    background-color: $grey-light;
+    border: none;
+}
+
+.btn-default:hover {
+	background-color: darken($grey-light,15%);
+	color: white;
+}
+
+/*Boton flecha*/
+
+svg {
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.left:hover polyline,
+.left:focus polyline {
+  stroke-width: 3;
+}
+
+.left:active polyline {
+  stroke-width: 8;
+  transition: all 100ms ease-in-out;
+}
+
+.right:hover polyline,
+.right:focus polyline {
+  stroke-width: 6;
+}
+
+.right:active polyline {
+  stroke-width: 6;
+  transition: all 100ms ease-in-out;
+}
+
+polyline {
+  transition: all 250ms ease-in-out;
+}
+
+.btn.arrow {
+  padding: 1px 7px 1px 10px;
 }
 
 /*Menu*/
@@ -318,7 +364,7 @@ input, button, select, textarea {
 	border-right: 3px solid $background-color;
 	/*border-top: 2px solid $background-color;*/
 	padding: 10px;
-	color: $txt-gris;
+	color: $grey-light;
 	text-decoration: none;
 }
 
@@ -428,7 +474,7 @@ input, button, select, textarea {
 #home-search .form-control {
 	color: $main-background-color;
 	background-color: $nav-anchor-background-color;
-	border-left: 1px solid $txt-gris;
+	border-left: 1px solid $grey-light;
 	border-radius: 0px;
 	border-top: none;
 	border-bottom: none;
@@ -438,22 +484,22 @@ input, button, select, textarea {
 }
 
 #home-search .form-control::-webkit-input-placeholder {
-   color: $txt-gris;
+   color: $grey-light;
    font-weight: 300;
 }
 
 #home-search .form-control:-moz-placeholder { /* Firefox 18- */
-   color: $txt-gris;
+   color: $grey-light;
    font-weight: 300;
 }
 
 #home-search .form-control::-moz-placeholder {  /* Firefox 19+ */
-   color: $txt-gris;
+   color: $grey-light;
    font-weight: 300;
 }
 
 #home-search .form-control:-ms-input-placeholder {
-   color: $txt-gris;
+   color: $grey-light;
    font-weight: 300;
 }
 
@@ -471,8 +517,8 @@ input, button, select, textarea {
 }
 
 #home-search button.btn[type="button"] {
-	background-color: $txt-gris;
-	border-color: $txt-gris;
+	background-color: $grey-light;
+	border-color: $grey-light;
 }
 
 #home-search .input-group {
@@ -569,6 +615,35 @@ a .fa-chevron-down:hover {
 	margin-bottom: 5px;
 }
 
+.paso {
+    border-bottom: 6px solid white;
+}
+
+.paso.paso_completado {
+    border-bottom: 6px solid $blue;
+}
+
+.well {
+    margin: 20px 0;
+    background-color: darken($grey,10%);
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+}
+
+.well ul {
+    list-style: inherit;
+    margin-left: 16px;
+}
+
+.well li {
+    margin-bottom: 10px;
+}
+
+p.destacado-tips {
+    color: lighten($blue,25%);
+}
+
 
 /*Perfil candidato*/
 
@@ -624,7 +699,7 @@ a .fa-chevron-down:hover {
 
 
 .icon-quote-left, .icon-quote-right {
-	color: $txt-gris;
+	color: $grey-light;
 }
 
 
@@ -730,7 +805,7 @@ a .fa-chevron-down:hover {
 .progress {
 	height: 26px;
 	margin-bottom: 5px;
-	background-color: $txt-gris;
+	background-color: $grey-light;
 }
 
 .progress-bar-success {
@@ -813,11 +888,11 @@ a .fa-chevron-down:hover {
 }
 
 #compare-candidates .text-right, #compare-candidates .text-center {
-	color: $txt-gris;
+	color: $grey-light;
 }
 
 #compare-candidates i {
-	color: $txt-gris;
+	color: $grey-light;
 }
 
 #compare-candidates .text-center i {
@@ -1123,7 +1198,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 .search-questions .form-control {
 	color: $main-background-color;
-	background-color: $txt-gris;
+	background-color: $grey-light;
 	border: none;
 	border-radius: 0px;
 	-webkit-box-shadow: none;
@@ -1138,7 +1213,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 .panel-heading .text-right {
-	color: $txt-gris;
+	color: $grey-light;
 }
 
 .candidate-answer {
@@ -1347,9 +1422,8 @@ animation: doscaras 4s infinite;
 }
 .base-login form .btn-default {
   float: initial;
-  color: $blanco;
-  background-color: $verde_manzana;
-  border-color: $verde_dos;
+  color: white;
+  background-color: $green;
 }
 
 .base-login form .btn-default.btn-lg {
@@ -1471,4 +1545,48 @@ animation: doscaras 4s infinite;
 }
 .category_name .green {
 	background-color: $category_name_background_color;
+}
+
+/*Wizard*/
+
+.tips {
+  background: $grey;
+  padding: 30px;
+  color: white;
+  margin: 30px 0;
+	position: relative;
+}
+
+.tips:after {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(120, 130, 145, 0);
+	border-top-color: $grey;
+	border-width: 20px;
+	margin-left: -20px;
+}
+
+.tips a {
+	color: $green;
+}
+
+.tips a.btn {
+	color: white;
+}
+
+.example {
+	color: $blue;
+}
+
+span.number {
+  background: white;
+  color: $grey;
+  border-radius: 10px;
+  padding: 0px 5px;
 }

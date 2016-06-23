@@ -631,6 +631,15 @@ a .fa-chevron-down:hover {
     box-shadow: none;
 }
 
+.well ul {
+    list-style: inherit;
+    margin-left: 16px;
+}
+
+.well li {
+    margin-bottom: 10px;
+}
+
 p.destacado-tips {
     color: lighten($blue,25%);
 }

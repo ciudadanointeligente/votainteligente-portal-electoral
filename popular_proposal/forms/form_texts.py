@@ -11,41 +11,18 @@ WHEN_CHOICES = [
 ]
 
 TOPIC_CHOICES =(
-  ('otros', 'Otros'),
-  (u'Básicos',(
-      (u'salud', u'Salud'),
-      (u'transporte', u'Transporte'),
-      (u'educacion', u'Educación'),
-      (u'seguridad', u'Seguridad'),
-      (u'proteccionsocial', u'Protección Social'),
-      (u'vivienda', u'Vivienda'),
-      )),
-  (u'Oportunidades',(
-      (u'trabajo', u'Trabajo'),
-      (u'emprendimiento', u'Emprendimiento'),
-      (u'capacitacion', u'Capacitación'),
-      (u'beneficiosbienestar', u'Beneficios/bienestar'),
-      )),
-  (u'Espacios comunales',(
-      (u'areasverdes', u'Áreas verdes'),
-      (u'territoriobarrio', u'Territorio/barrio'),
-      (u'obras', u'Obras'),
-      (u'turismoycomercio', u'Turismo y comercio'),
-      )),
-  (u'Mejor comuna',(
-      (u'medioambiente', u'Medio Ambiente'),
-      (u'culturayrecreacion', u'Cultura y recreación'),
-      (u'deporte', u'Deporte'),
-      (u'servicios', u'Servicios'),
-      )),
-  (u'Democracia',(
-      (u'transparencia', u'Transparencia'),
-      (u'participacionciudadana', u'Participación ciudadana'),
-      (u'genero', u'Género'),
-      (u'pueblosindigenas', u'Pueblos indígenas'),
-      (u'diversidadsexual', u'Diversidad sexual'),
-      (u'terceraedad', u'Tercera edad'),
-  ))
+  ('', u'Selecciona una categoría'),
+  ('salud', u'Salud'),
+  ('educacion', u'Educación'),
+  ('cultura', u'Cultura y patrimonio'),
+  ('asistencia', u'Asistencia y protección social'),
+  ('empleabilidad', u'Empleabilidad y emprendimiento'),
+  ('deporte', u'Deporte y recreación'),
+  ('conectividad', u'Conectividad y obras'),
+  ('areasverdes', u'Áreas verdes y espacios públicos'),
+  ('seguridad', u'Seguridad y prevención de catástrofes'),
+  ('medioambiente', u'Medio ambiente y recolección de basura'),
+  ('participacion', u'Participación y sociedad civil'),
 )
 
 TEXTS = {

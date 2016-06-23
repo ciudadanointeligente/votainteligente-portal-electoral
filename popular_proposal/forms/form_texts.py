@@ -51,7 +51,7 @@ TEXTS = {
               'placeholder': u'Mejoremos la educación en la comuna',
               'long_text': "paso5a.html"},
     'clasification': {'label': u'Primero elige una categoría',
-                      'help_text': u'transparencia',
+                      'help_text': u'educacion',
                       'placeholder': u'',
                       'long_text': "paso5b.html"},
     'organization': {'label': u'',

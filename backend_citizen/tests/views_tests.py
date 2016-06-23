@@ -42,7 +42,7 @@ class BackendCitizenViewsTests(ProposingCycleTestCaseBase):
         self.assertEquals(form.temporary_data, temporary_data)
 
         data = {
-            'clasification': 'genero',
+            'clasification': 'salud',
             'title': u'Que vuelva Fiera',
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
             'solution': u'Viajar a ver al equipo una vez al mes',

@@ -32,10 +32,11 @@
                 {% bootstrap_field field show_help=false %}
             </section>
         {% endfor %}
+        <span>{% trans 'Cuando tu propuesta sea aceptada se la haremos llegar a los candidatos y se verá así:' %}</span>
     <div class="preview">
-    {% include 'popular_proposal/plantillas/preview.html' %}
+    {% include 'popular_proposal/plantillas/carta_candidato.html' %}
     </div>
-    
+
     {% if wizard.steps.prev %}
     <div class="pull-left">
         <button class="btn btn-default" name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "Volver al inicio" %}</button>

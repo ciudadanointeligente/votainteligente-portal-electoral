@@ -1,18 +1,17 @@
 {% load markdown_deux_tags %}
+{% load votainteligente_extras %}
 <br />
 {% markdown %}
-**El problema**: {{preview_data.problem}}
+**El problema**: {{preview_data.problem|popular_proposal_when}}
 
-**Situación ideal**: {{preview_data.ideal_situation}}
+**Las causas**: {{preview_data.causes|popular_proposal_when}}
 
-**Las causas**: {{preview_data.causes}}
+**Tu solución**: {{preview_data.solution|popular_proposal_when}}
 
-**Tu solución**: {{preview_data.solution}}
+**Solución a largo plazo**: {{preview_data.solution_at_the_end|popular_proposal_when}}
 
-**Solución a largo plazo**: {{preview_data.solution_at_the_end}}
-
-**Para cuando lo quieres solucionado**: {{preview_data.when}}
+**Para cuando lo quieres solucionado**: {{preview_data.when|popular_proposal_when}}
 
 
-**Clasificación**: {{preview_data.clasification}}
+**Clasificación**: {{preview_data.clasification|popular_proposal_when}}
 {% endmarkdown %}

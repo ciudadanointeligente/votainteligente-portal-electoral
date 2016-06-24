@@ -195,7 +195,7 @@ def popular_proposal_question(question):
     fields = TEXTS
     if question not in fields.keys():
         return question
-    return fields[question].get('label', question)
+    return fields[question].get('preview_question', question)
 
 @register.filter
 def get_item(dictionary, key):

@@ -1,4 +1,5 @@
 # coding=utf-8
+from collections import OrderedDict
 
 WHEN_CHOICES = [
     ('', '----'),
@@ -23,7 +24,7 @@ TOPIC_CHOICES = (('', u'Selecciona una categoría'),
                  ('participacion', u'Participación y sociedad civil'),
                  )
 
-TEXTS = {
+TEXTS = OrderedDict({
     'problem': {'label': u' ',
                 'preview_question': u'¿Cuál es el problema?',
                 'help_text': u'',
@@ -64,4 +65,4 @@ TEXTS = {
                      'help_text': u'',
                      'placeholder': u'',
                      'long_text': "organization.html"},
-}
+})

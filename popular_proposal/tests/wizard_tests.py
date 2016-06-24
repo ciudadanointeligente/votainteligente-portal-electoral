@@ -100,9 +100,6 @@ class WizardTestCase(TestCase):
         self.assertEquals(temporary_data.proposer, self.feli)
         self.assertEquals(temporary_data.area, self.arica)
         self.assertEquals(len(mail.outbox), original_amount + 1)
-        print mail.outbox[0].body
-
-        self.fail()
 
     def test_full_wizard(self):
         url = reverse('popular_proposals:propose_wizard_full')

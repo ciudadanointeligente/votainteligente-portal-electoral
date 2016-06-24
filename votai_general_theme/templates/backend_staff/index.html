@@ -30,6 +30,7 @@
             <td>Acciones</td>
         </tr>
     {% for proposal in proposals.all %}
+        {% if proposal.status != 'accepted' %}
         <tr>
             <td>{{proposal.area}}</td>
             <td>{{proposal.data.problem|truncatechars:100}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.problem %}
@@ -67,6 +68,7 @@
                 {% endif %}
             </td>
         </tr>
+        {% endif %}
     {% endfor %}
     </table>
   </div>

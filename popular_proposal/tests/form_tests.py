@@ -184,7 +184,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
 
     def test_when_template_tag(self):
         choice = WHEN_CHOICES[1]
-        template = Template("{% load votainteligente_extras %}{{ '1_month'|popular_proposal_when }}")
+        template = Template("{% load votainteligente_extras %}{{ '6_months'|popular_proposal_when }}")
         self.assertEquals(template.render(Context({})), choice[1])
         template = Template("{% load votainteligente_extras %}{{ 'perrito'|popular_proposal_when }}")
         self.assertEquals(template.render(Context({})), 'perrito')

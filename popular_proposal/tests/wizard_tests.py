@@ -87,7 +87,11 @@ class WizardTestCase(TestCase):
             data.update({'proposal_wizard-current_step': unicode(i)})
             response = self.client.post(url, data=data)
             self.assertEquals(response.context['area'], self.arica)
-            if not response.templates[0].name.endswith('done.html'):
+            is_done = False
+            for template in response.templates:
+                if template.name.endswith('done.html'):
+                    is_done = True
+            if not is_done:
                 self.assertTrue(response.context['preview_data'])
             if 'form' in response.context:
                 self.assertFalse(response.context['form'].errors)

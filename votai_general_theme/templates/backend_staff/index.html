@@ -22,6 +22,7 @@
     <table class="table">
         <tr>
             <td>Area</td>
+            <td>Fecha</td>
             <td>Problema</td>
             <td>+Info</td>
             <td>Organización</td>
@@ -32,6 +33,7 @@
     {% for proposal in proposals.all %}
         <tr>
             <td>{{proposal.area}}</td>
+            <td>{{proposal.created}}</td>
             <td>{{proposal.data.problem|truncatechars:100}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.problem %}
             </td>
             <td>

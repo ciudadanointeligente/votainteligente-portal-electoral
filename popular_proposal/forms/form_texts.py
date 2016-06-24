@@ -64,4 +64,9 @@ TEXTS = {
                      'help_text': u'',
                      'placeholder': u'',
                      'long_text': "organization.html"},
+    'terms_and_conditions': {'label': u'Términos y condiciones',
+                             'preview_question': u'',
+                             'help_text': u'',
+                             'placeholder': u'',
+                             'long_text': "terms_and_conditions.html"},
 }

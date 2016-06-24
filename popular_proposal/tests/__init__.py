@@ -1,10 +1,11 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django.contrib.auth.models import User
-from popolo.models import Area, Organization
+from popolo.models import Area
 
 
 class ProposingCycleTestCaseBase(TestCase):
+
     def setUp(self):
         super(ProposingCycleTestCaseBase, self).setUp()
         self.fiera = User.objects.get(username='fiera')
@@ -13,10 +14,12 @@ class ProposingCycleTestCaseBase(TestCase):
         self.data = {
             'clasification': 'educacion',
             'title': u'Fiera a Santiago',
-            'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
+            'problem': u'A mi me gusta la contaminación de Santiago y los autos\
+ y sus estresantes ruedas',
             'solution': u'Viajar a ver al Feli una vez al mes',
             'when': u'1_year',
-            'causes': u'La super distancia'
+            'causes': u'La super distancia',
+            'terms_and_conditions': True
         }
         self.comments = {
             'title': '',

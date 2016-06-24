@@ -64,8 +64,10 @@ class WizardTestCase(TestCase):
                     help_text = field_dict.get('help_text', None)
                     if help_text:
                         t_response[cntr][str(cntr) + '-' + field] = help_text
+                        t_response[cntr][field] = help_text
                     else:
                         t_response[cntr][str(cntr) + '-' + field] = field
+                        t_response[cntr][field] = field
                 else:
                     t_response[cntr]['fields'] = field
 
@@ -104,6 +106,23 @@ class WizardTestCase(TestCase):
         self.assertEquals(temporary_data.proposer, self.feli)
         self.assertEquals(temporary_data.area, self.arica)
         self.assertEquals(len(mail.outbox), original_amount + 1)
+
+    def test_user_should_accept_terms_and_conditions(self):
+        list_ = get_form_list()
+        form_class = list_[-1]
+        test_response = self.get_example_data_for_post()
+        data = test_response[len(test_response) - 1]
+        for key in data.keys():
+            if 'terms_and_conditions' in key:
+                data[key] = False
+        form = form_class(data=data)
+
+        self.assertFalse(form.is_valid())
+        for key in data.keys():
+            if 'terms_and_conditions' in key:
+                data[key] = True
+        form = form_class(data=data)
+        self.assertTrue(form.is_valid())
 
     def test_full_wizard(self):
         url = reverse('popular_proposals:propose_wizard_full')

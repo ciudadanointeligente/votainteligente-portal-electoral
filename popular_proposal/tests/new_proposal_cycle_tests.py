@@ -25,6 +25,8 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         self.assertIsNotNone(temporary_data.comments['solution'])
         self.assertIsNotNone(temporary_data.comments['when'])
         self.assertIsNotNone(temporary_data.comments['causes'])
+        self.assertIsNotNone(temporary_data.created)
+        self.assertIsNotNone(temporary_data.updated)
         self.assertIsNotNone(temporary_data.overall_comments)
         self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.InOurSide)
         self.assertIn(temporary_data, self.fiera.temporary_proposals.all())

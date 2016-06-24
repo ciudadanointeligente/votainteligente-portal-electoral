@@ -32,7 +32,7 @@ TEXTS = {
     'causes': {'label': u' ',
                'preview_question': u'¿Cuáles son las causas?',
                'help_text': u'',
-               'placeholder': u'Utilizen el ejercicio de los "por qués"',
+               'placeholder': u'Utiliza el ejercicio que te mostramos arriba para encontrar las causas del problema',
                'long_text': "paso2.html"},
     'solution': {'label': u'Escribe tu propuesta',
                  'preview_question': u'¿Cual sería la solución?',

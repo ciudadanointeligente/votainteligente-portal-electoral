@@ -9,6 +9,7 @@ from django import forms
 from django.core.urlresolvers import reverse
 from popular_proposal.forms.form_texts import TEXTS
 from popular_proposal.models import ProposalTemporaryData
+from django.core import mail
 
 
 USER_PASSWORD = 'secr3t'
@@ -72,6 +73,7 @@ class WizardTestCase(TestCase):
         return t_response
 
     def test_post_data_to_the_wizard(self):
+        original_amount = len(mail.outbox)
         url = reverse('popular_proposals:propose_wizard',
                       kwargs={'slug': self.arica.id})
         self.client.login(username=self.feli,
@@ -95,6 +97,7 @@ class WizardTestCase(TestCase):
         self.assertEquals(response.context['area'], self.arica)
         self.assertEquals(temporary_data.proposer, self.feli)
         self.assertEquals(temporary_data.area, self.arica)
+        self.assertEquals(len(mail.outbox), original_amount + 1)
 
     def test_full_wizard(self):
         url = reverse('popular_proposals:propose_wizard_full')

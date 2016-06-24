@@ -121,6 +121,7 @@ class ProposalWizard(SessionWizardView):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.request.user,
                                                               area=self.area,
                                                               data=data)
+        temporary_data.notify_new()
         return render_to_response('popular_proposal/wizard/done.html', {
             'proposal': temporary_data,
             'area': self.area

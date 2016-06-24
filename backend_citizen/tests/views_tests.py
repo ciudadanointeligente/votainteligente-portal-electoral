@@ -48,7 +48,8 @@ class BackendCitizenViewsTests(ProposingCycleTestCaseBase):
             'solution': u'Viajar a ver al equipo una vez al mes',
             'when': u'1_year',
             'causes': u'La terrible de distancia que nos separa',
-            'ideal_situation': u'El Feli y el resto de los cabros de la FCI'
+            'ideal_situation': u'El Feli y el resto de los cabros de la FCI',
+            'terms_and_conditions': True
         }
         response = self.client.post(url, data=data, follow=True)
         self.assertEquals(response.status_code, 200)

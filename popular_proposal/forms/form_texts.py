@@ -2,7 +2,6 @@
 
 WHEN_CHOICES = [
     ('', '----'),
-    ('1_month', u'1 mes después de ingresado'),
     ('6_months', u'6 Meses'),
     ('1_year', u'1 año'),
     ('2_year', u'2 años'),
@@ -10,20 +9,19 @@ WHEN_CHOICES = [
     ('4_year', u'4 años'),
 ]
 
-TOPIC_CHOICES =(
-  ('', u'Selecciona una categoría'),
-  ('salud', u'Salud'),
-  ('educacion', u'Educación'),
-  ('cultura', u'Cultura y patrimonio'),
-  ('asistencia', u'Asistencia y protección social'),
-  ('empleabilidad', u'Empleabilidad y emprendimiento'),
-  ('deporte', u'Deporte y recreación'),
-  ('conectividad', u'Conectividad y obras'),
-  ('areasverdes', u'Áreas verdes y espacios públicos'),
-  ('seguridad', u'Seguridad y prevención de catástrofes'),
-  ('medioambiente', u'Medio ambiente y recolección de basura'),
-  ('participacion', u'Participación y sociedad civil'),
-)
+TOPIC_CHOICES = (('', u'Selecciona una categoría'),
+                 ('salud', u'Salud'),
+                 ('educacion', u'Educación'),
+                 ('cultura', u'Cultura y patrimonio'),
+                 ('asistencia', u'Asistencia y protección social'),
+                 ('empleabilidad', u'Empleabilidad y emprendimiento'),
+                 ('deporte', u'Deporte y recreación'),
+                 ('conectividad', u'Conectividad y obras'),
+                 ('areasverdes', u'Áreas verdes y espacios públicos'),
+                 ('seguridad', u'Seguridad y prevención de catástrofes'),
+                 ('medioambiente', u'Medio ambiente y recolección de basura'),
+                 ('participacion', u'Participación y sociedad civil'),
+                 )
 
 TEXTS = {
     'problem': {'label': u' ',

@@ -73,8 +73,8 @@ strong {
 
 .fondo-blanco {
 	background: $main-background-color;
-	border-radius: 6px;
-	padding: 10px;
+	padding: 60px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.17);
 }
 
 .contenedor {
@@ -1589,4 +1589,8 @@ span.number {
   color: $grey;
   border-radius: 10px;
   padding: 0px 5px;
+}
+
+input#id_4-title {
+    text-align: center;
 }

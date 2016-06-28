@@ -27,12 +27,12 @@
         <section>
             <p class="long_text">{% include form.explanation_template %}</p>
         </section>
-        <section>
-            {% bootstrap_field form.title show_help=false %}
-        </section>
         <span>{% trans 'Cuando tu propuesta sea aceptada se la haremos llegar a los candidatos y se verá así:' %}</span>
     <div class="preview fondo-blanco">
-    {% include 'popular_proposal/plantillas/carta_candidato.html' %}
+        <section>
+            {% bootstrap_field form.title show_help=false show_label=false %}
+        </section>
+        {% include 'popular_proposal/plantillas/carta_candidato.html' %}
     </div>
         <section>
             {% bootstrap_field form.terms_and_conditions show_help=false show_label=true %}

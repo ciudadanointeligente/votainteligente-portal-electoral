@@ -52,7 +52,7 @@ TEXTS = {
     'title': {'label': u'Colócale título',
               'preview_question': u'Título',
               'help_text': u'',
-              'placeholder': u'Mejoremos la educación en la comuna',
+              'placeholder': u'Título de la propuesta',
               'long_text': "paso5a.html"},
     'clasification': {'label': u'Primero elige una categoría',
                       'preview_question': u'Clasificación',

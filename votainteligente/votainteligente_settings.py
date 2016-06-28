@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     'popular_proposal',
     'backend_staff',
     'backend_citizen',
+    'backend_candidate',
 )
 
 

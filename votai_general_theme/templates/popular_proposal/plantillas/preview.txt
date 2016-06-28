@@ -1,0 +1,13 @@
+{% load votainteligente_extras %}
+
+El problema: {{preview_data.problem|popular_proposal_when}}
+
+Las causas: {{preview_data.causes|popular_proposal_when}}
+
+Tu solución: {{preview_data.solution|popular_proposal_when}}
+
+Solución a largo plazo: {{preview_data.solution_at_the_end|popular_proposal_when}}
+
+Para cuando lo quieres solucionado: {{preview_data.when|popular_proposal_when}}
+
+Clasificación: {{preview_data.clasification|popular_proposal_when}}

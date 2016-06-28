@@ -63,6 +63,12 @@ class ProposalTemporaryData(models.Model):
                                         blank=True,
                                         null=True,
                                         default="")
+    created = models.DateTimeField(auto_now_add=True,
+                                   blank=True,
+                                   null=True)
+    updated = models.DateTimeField(auto_now=True,
+                                   blank=True,
+                                   null=True)
 
     needing_moderation = NeedingModerationManager()
     objects = models.Manager()

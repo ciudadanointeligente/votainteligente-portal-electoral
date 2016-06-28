@@ -9,6 +9,7 @@ from django import forms
 from django.core.urlresolvers import reverse
 from popular_proposal.forms.form_texts import TEXTS
 from popular_proposal.models import ProposalTemporaryData
+from django.core import mail
 
 
 USER_PASSWORD = 'secr3t'
@@ -63,8 +64,10 @@ class WizardTestCase(TestCase):
                     help_text = field_dict.get('help_text', None)
                     if help_text:
                         t_response[cntr][str(cntr) + '-' + field] = help_text
+                        t_response[cntr][field] = help_text
                     else:
                         t_response[cntr][str(cntr) + '-' + field] = field
+                        t_response[cntr][field] = field
                 else:
                     t_response[cntr]['fields'] = field
 
@@ -72,6 +75,7 @@ class WizardTestCase(TestCase):
         return t_response
 
     def test_post_data_to_the_wizard(self):
+        original_amount = len(mail.outbox)
         url = reverse('popular_proposals:propose_wizard',
                       kwargs={'slug': self.arica.id})
         self.client.login(username=self.feli,
@@ -85,6 +89,12 @@ class WizardTestCase(TestCase):
             data.update({'proposal_wizard-current_step': unicode(i)})
             response = self.client.post(url, data=data)
             self.assertEquals(response.context['area'], self.arica)
+            is_done = False
+            for template in response.templates:
+                if template.name.endswith('done.html'):
+                    is_done = True
+            if not is_done:
+                self.assertTrue(response.context['preview_data'])
             if 'form' in response.context:
                 self.assertFalse(response.context['form'].errors)
                 steps = response.context['wizard']['steps']
@@ -95,6 +105,24 @@ class WizardTestCase(TestCase):
         self.assertEquals(response.context['area'], self.arica)
         self.assertEquals(temporary_data.proposer, self.feli)
         self.assertEquals(temporary_data.area, self.arica)
+        self.assertEquals(len(mail.outbox), original_amount + 1)
+
+    def test_user_should_accept_terms_and_conditions(self):
+        list_ = get_form_list()
+        form_class = list_[-1]
+        test_response = self.get_example_data_for_post()
+        data = test_response[len(test_response) - 1]
+        for key in data.keys():
+            if 'terms_and_conditions' in key:
+                data[key] = False
+        form = form_class(data=data)
+
+        self.assertFalse(form.is_valid())
+        for key in data.keys():
+            if 'terms_and_conditions' in key:
+                data[key] = True
+        form = form_class(data=data)
+        self.assertTrue(form.is_valid())
 
     def test_full_wizard(self):
         url = reverse('popular_proposals:propose_wizard_full')

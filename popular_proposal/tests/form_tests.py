@@ -24,6 +24,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.fiera = User.objects.get(username='fiera')
         self.arica = Area.objects.get(id='arica-15101')
         self.feli = User.objects.get(username='feli')
+        self.load = '{% load votainteligente_extras %}'
 
     def test_instanciate_form(self):
         original_amount = len(mail.outbox)
@@ -62,7 +63,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
                             proposer=self.feli,
                             area=self.arica)
         self.assertIn('organization', form.fields)
-
 
     def test_comments_form(self):
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
@@ -184,16 +184,20 @@ class FormTestCase(ProposingCycleTestCaseBase):
 
     def test_when_template_tag(self):
         choice = WHEN_CHOICES[1]
-        template = Template("{% load votainteligente_extras %}{{ '1_month'|popular_proposal_when }}")
+        template = Template(
+            self.load + "{{ '6_months'|popular_proposal_when }}")
         self.assertEquals(template.render(Context({})), choice[1])
-        template = Template("{% load votainteligente_extras %}{{ 'perrito'|popular_proposal_when }}")
+        template = Template(
+            self.load + "{{ 'perrito'|popular_proposal_when }}")
         self.assertEquals(template.render(Context({})), 'perrito')
 
     def test_form_questions_template_tag(self):
-        question = TEXTS['problem']['label']
-        template = Template("{% load votainteligente_extras %}{{ 'problem'|popular_proposal_question }}")
+        question = TEXTS['problem']['preview_question']
+        template = Template(
+            self.load + "{{ 'problem'|popular_proposal_question }}")
         self.assertEquals(template.render(Context({})), question)
-        template = Template("{% load votainteligente_extras %}{{ 'perrito'|popular_proposal_question }}")
+        template = Template(
+            self.load + "{{ 'perrito'|popular_proposal_question }}")
         self.assertEquals(template.render(Context({})), 'perrito')
 
     def test_get_all_types_of_questions(self):
@@ -203,6 +207,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         template_str = get_template('popular_proposal/_extra_info.html')
         rendered_template = template_str.render(Context({'texts': TEXTS,
                                                          'data': self.data}))
-        template = Template("{% load votainteligente_extras %}{% get_questions_and_descriptions popular_proposal %}")
+        template = Template(
+            self.load + "{% get_questions_and_descriptions popular_proposal %}")
         actual = template.render(Context({'popular_proposal': t_data}))
         self.assertEquals(rendered_template, actual)

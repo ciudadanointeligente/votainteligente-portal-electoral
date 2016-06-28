@@ -2,19 +2,16 @@
 {% load votainteligente_extras %}
 <br />
 {% markdown %}
-Estimade Candidate:
+Estimado candidato o candidata a la alcaldía de (NOMBRE DE COMUNA):
 
-Enmarcado en el proyecto VotaInteligente queremos que incorpore a su programa de gobierno municipal la siguiente propuesta ciudadana:
+Desde (NOMBRE DE LA ORGANIZACIÓN) le solicitamos que incorpore a su programa de gobierno municipal nuestra propuesta ciudadana:
 
 {{preview_data.solution_at_the_end|popular_proposal_when}}
 
-Para ser cumplida antes de {{preview_data.when|popular_proposal_when}}.
+para ser cumplida antes de {{preview_data.when|popular_proposal_when}}.
 
-Esto con motivo de solucionar el siguiente problema: {{preview_data.problem|popular_proposal_when}}.
+La propuesta surge como respuesta a la siguiente inquietud de la comunidad: {{preview_data.problem|popular_proposal_when}}.
 
-La causa/s de este problema es/son: {{preview_data.causes|popular_proposal_when}}
+Desde ya muchas gracias,
 
-Desde ya muchas gracias.
-
-El equipo de VotaInteligente.
 {% endmarkdown %}

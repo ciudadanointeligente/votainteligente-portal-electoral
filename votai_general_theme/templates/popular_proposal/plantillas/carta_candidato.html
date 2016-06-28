@@ -2,16 +2,16 @@
 {% load votainteligente_extras %}
 <br />
 {% markdown %}
-Estimado candidato o candidata a la alcaldía de (NOMBRE DE COMUNA):
+Estimado candidato o candidata a la alcaldía de {{ area }}:
 
-Desde (NOMBRE DE LA ORGANIZACIÓN) le solicitamos que incorpore a su programa de gobierno municipal nuestra propuesta ciudadana:
+Le solicitamos que incorpore a su programa de gobierno municipal nuestra propuesta ciudadana:
 
 {{preview_data.solution_at_the_end|popular_proposal_when}}
 
-para ser cumplida antes de {{preview_data.when|popular_proposal_when}}.
-
-La propuesta surge como respuesta a la siguiente inquietud de la comunidad: {{preview_data.problem|popular_proposal_when}}.
+Esta propuesta debe ser cumplida antes de {{preview_data.when|popular_proposal_when}}, y surge como respuesta a la siguiente inquietud de la comunidad: {{preview_data.problem|popular_proposal_when}}.
 
 Desde ya muchas gracias,
-
 {% endmarkdown %}
+<br />
+{{ organizationn }} {{ user }}
+

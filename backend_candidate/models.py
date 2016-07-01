@@ -6,7 +6,7 @@ from elections.models import Candidate
 
 
 class Candidacy(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, related_name='candidacies')
     candidate = models.ForeignKey(Candidate)
     created = models.DateTimeField(auto_now_add=True,
                                    blank=True,
@@ -15,3 +15,8 @@ class Candidacy(models.Model):
                                    blank=True,
                                    null=True)
 
+
+def is_candidate(user):
+    if user.candidacies.count():
+        return True
+    return False

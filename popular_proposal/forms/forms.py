@@ -77,13 +77,18 @@ wizard_forms_fields = [
     {
         'template': 'popular_proposal/wizard/paso5.html',
         'explation_template': "popular_proposal/steps/paso5.html",
-        'fields': OrderedDict([(
-            'title', forms.CharField(max_length=256, widget=forms.TextInput())
-
-        )])
+        'fields': OrderedDict([
+            ('title', forms.CharField(max_length=256,
+                                      widget=forms.TextInput())),
+            ('terms_and_conditions', forms.BooleanField(
+                error_messages={'required':
+                                _(u'Debes aceptar nuestros Términos y \
+Condiciones')}
+            )
+            )
+        ])
     }
 ]
-
 
 
 def get_form_list():

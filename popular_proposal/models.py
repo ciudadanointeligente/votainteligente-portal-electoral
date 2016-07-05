@@ -18,7 +18,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 class Organization(PopoloOrganization, HasImageMixin):
     _id = models.AutoField(primary_key=True)
     images = GenericRelation(Image)
-    
+
     def get_absolute_url(self):
         return reverse('popular_proposals:organization', kwargs={'slug':self.id})
 
@@ -81,7 +81,7 @@ class ProposalTemporaryData(models.Model):
             if key not in self.comments.keys():
                 self.comments[key] = ''
         return super(ProposalTemporaryData, self).save(*args, **kwargs)
-        
+
     def notify_new(self):
         site = Site.objects.get_current()
         mail_context = {
@@ -152,6 +152,11 @@ class PopularProposal(models.Model):
     organization = models.ForeignKey(Organization,
                                      related_name='popular_proposals',
                                      null=True)
+    background = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to='proposals/image/',
+                              max_length=512,
+                              null=True,
+                              blank=True)
 
     def __str__(self):
         return self.title

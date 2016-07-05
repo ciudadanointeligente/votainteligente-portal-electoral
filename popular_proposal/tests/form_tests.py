@@ -4,18 +4,23 @@ from popular_proposal.forms import (ProposalForm,
                                     CommentsForm,
                                     RejectionForm,
                                     ProposalTemporaryDataUpdateForm,
+                                    UpdateProposalForm,
                                     AreaForm)
 from django.contrib.auth.models import User
 from popolo.models import Area
 from django.forms import CharField
 from popular_proposal.models import (ProposalTemporaryData,
                                      Organization,
+                                     PopularProposal,
                                      Enrollment)
 from django.core import mail
 from django.template.loader import get_template
 from django.template import Context, Template
 from popular_proposal.forms import WHEN_CHOICES
 from popular_proposal.forms.form_texts import TEXTS
+from PIL import Image
+from StringIO import StringIO
+from django.core.files.base import ContentFile
 
 
 class FormTestCase(ProposingCycleTestCaseBase):
@@ -211,3 +216,29 @@ class FormTestCase(ProposingCycleTestCaseBase):
             self.load + "{% get_questions_and_descriptions popular_proposal %}")
         actual = template.render(Context({'popular_proposal': t_data}))
         self.assertEquals(rendered_template, actual)
+
+
+class UpdateFormTestCase(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(UpdateFormTestCase, self).setUp()
+        image_file = StringIO()
+        image = Image.new('RGBA', size=(50,50), color=(256,0,0))
+        image.save(image_file, 'png')
+        image_file.seek(0)
+        self.image = ContentFile(image_file.read(), 'test.png')
+
+    def test_instanciate_form(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title'
+                                                          )
+        update_data = {'background': u'Esto es un antecedente'}
+        file_data = {'image': self.image}
+        form = UpdateProposalForm(data=update_data,
+                                  files=file_data,
+                                  instance=popular_proposal)
+        self.assertTrue(form.is_valid())
+        proposal = form.save()
+        self.assertEquals(proposal.background, update_data['background'])
+        self.assertTrue(proposal.image)

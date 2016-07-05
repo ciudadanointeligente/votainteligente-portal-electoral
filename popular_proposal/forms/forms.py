@@ -1,12 +1,15 @@
 # coding=utf-8
 from django import forms
-from popular_proposal.models import ProposalTemporaryData, ProposalLike
+from popular_proposal.models import (ProposalTemporaryData,
+                                     ProposalLike,
+                                     PopularProposal)
 from votainteligente.send_mails import send_mail
 from django.utils.translation import ugettext as _
 from django.contrib.sites.models import Site
 from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
 from popolo.models import Area
 from collections import OrderedDict
+from django.forms import ModelForm
 
 
 class TextsFormMixin():
@@ -152,6 +155,15 @@ class ProposalForm(ProposalFormBase):
         temporary_data.notify_new()
         return temporary_data
 
+
+
+class UpdateProposalForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        return super(UpdateProposalForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = PopularProposal
+        fields = ['background', 'image']
 
 
 class CommentsForm(forms.Form):

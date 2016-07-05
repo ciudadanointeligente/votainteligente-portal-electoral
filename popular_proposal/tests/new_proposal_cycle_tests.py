@@ -148,6 +148,8 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertIn(popular_proposal, self.fiera.proposals.all())
         self.assertIn(popular_proposal, self.arica.proposals.all())
         self.assertIsNone(popular_proposal.temporary)
+        self.assertFalse(popular_proposal.background)
+        self.assertFalse(popular_proposal.image)
 
     def test_can_have_an_organization(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,

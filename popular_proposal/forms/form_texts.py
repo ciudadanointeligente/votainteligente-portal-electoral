@@ -70,4 +70,4 @@ TEXTS = OrderedDict({
                              'help_text': u'',
                              'placeholder': u'',
                              'long_text': "terms_and_conditions.html"},
-}
+})

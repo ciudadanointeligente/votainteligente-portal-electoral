@@ -9,11 +9,6 @@
 
 {% block everything %}
 
-<section id="lanzamiento">
-  <div class="container text-center">
-    <h3><span>¡Atención! Después del 16 de agosto este sitio tendrá más información relevante para las elecciones municipales 2016.</span></h3>
-  </div>  
-</section> 
 
 <section id="etapas-propuesta">
   <div class="container">
@@ -32,9 +27,9 @@
 <section id="login-form">
   <div class="container">
     <div class="col-md-12 text-center">
-      <a href="{% url 'backend_citizen:index' %}" class="btn btn-primary" role="button">
-          {% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}
-      </a>
+        <p>{% blocktrans %}Toma aproximadamente 9 minutos.{% endblocktrans%}</p>
+      <a href="{% url 'popular_proposals:home' %}" class="btn btn-success"
+          role="button"> {% blocktrans %}¡Sube tu propuesta!{% endblocktrans %}</a>
     </div>
   </div>
 </section>

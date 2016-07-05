@@ -31,6 +31,7 @@
             <td>Acciones</td>
         </tr>
     {% for proposal in proposals.all %}
+        {% if proposal.status != 'accepted' %}
         <tr>
             <td>{{proposal.area}}</td>
             <td>{{proposal.created}}</td>
@@ -69,6 +70,7 @@
                 {% endif %}
             </td>
         </tr>
+        {% endif %}
     {% endfor %}
     </table>
   </div>

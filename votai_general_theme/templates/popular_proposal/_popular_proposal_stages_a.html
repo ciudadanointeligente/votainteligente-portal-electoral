@@ -1,0 +1,33 @@
+{% load staticfiles %}
+{% load i18n %}
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h1 class="text-center">Bienvenido a Vota Inteligente </h1>
+		<h2 class="text-center">¿Tienes ideas para cambiar tu comuna? ¡Cuéntale a tus candidatos a alcalde!</h2>
+	</div>
+</div>
+
+<div class="contenedorDestacado fondo-blanco">
+	<div class="row">
+		<div class="col-sm-6 col-md-4 text-center">
+			<img src="{% static 'img/paso2.png' %}">
+			<h3 class="text-center">1a</h3>	
+			<h3>Envíanos la propuesta</h3>
+			<h4>Nosotros trabajaremos la propuesta contigo para asegurar que cumpla con todos los requisitos para publicarla.</h4>
+		</div>
+		<div class="col-sm-6 col-md-4 text-center">
+			<img src="{% static 'img/paso3.png' %}">
+			<h3 class="text-center">2a</h3>	
+			<h3>Difunde tu propuesta</h3>
+			<h4>Busca apoyo ciudadano para tu propuesta. Nosotros se la enviaremos por mail a los candidatos de tu comuna.</h4>
+			<a href="{% url 'backend_citizen:index' %}" class="btn btn-success center-block hidden" role="button"> {% blocktrans %}Kit de activismo{% endblocktrans %}</a>
+		</div>
+		<div class="col-sm-6 col-md-4 text-center">
+			<img src="{% static 'img/paso4.png' %}">
+			<h3 class="text-center">3a</h3>	
+			<h3>Candidat@s pueden comprometerse</h3>
+			<h4>¡Tu propuesta podría captar la atención de candidatos! Te avisaremos si alguno se compromete con tu solución.</h4>
+		</div>
+	</div>
+</div>

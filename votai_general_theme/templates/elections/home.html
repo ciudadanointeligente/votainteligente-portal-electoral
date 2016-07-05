@@ -9,13 +9,35 @@
 
 {% block everything %}
 
-
+{% with a_or_b="ab"|make_list|random %}
 <section id="etapas-propuesta">
   <div class="container">
-    {% include 'popular_proposal/_popular_proposal_stages.html' %}
+      {% with "popular_proposal/_popular_proposal_stages_"|add:a_or_b|add:".html" as template %}
+      {% include template %}
+      {% endwith %}
   </div>
-</section> 
+</section>
 
+<script>
+function ab_testing() {
+	ga('send', {
+	  hitType: 'event',
+	  eventCategory: 'Home',
+	  eventAction: 'login',
+      eventLabel: '{{a_or_b}}'
+	});
+    console.log('probando ab');
+}
+$(function(){
+    $('.login').click(function(event){
+        ab_testing();
+    });
+    $('.login_form').submit(function(event){
+        ab_testing();
+    })
+});
+</script>
+{% endwith %}
 <div class="text-center"><a href="#login-form"><i class="fa fa-chevron-down fa-2x"></i></a></div>
 
 
@@ -28,7 +50,7 @@
   <div class="container">
     <div class="col-md-12 text-center">
         <p>{% blocktrans %}Toma aproximadamente 9 minutos.{% endblocktrans%}</p>
-      <a href="{% url 'popular_proposals:home' %}" class="btn btn-success"
+      <a href="{% url 'popular_proposals:home' %}" class="btn btn-success login"
           role="button"> {% blocktrans %}¡Sube tu propuesta!{% endblocktrans %}</a>
     </div>
   </div>
@@ -73,7 +95,7 @@
         <h4 class="text-center">¿Ya tienes un usuario? Ingrésalo</h4>
         <div class="panel panel-default">
           <div class="panel-body">  
-            <form role="form" action="{% url 'auth_login' %}" method="post" class="landing-form">
+            <form role="form" action="{% url 'auth_login' %}" method="post" class="landing-form login_form">
               {% csrf_token %}
               {% bootstrap_form login_form show_label=false show_help=false %}
               <div class="form-actions">

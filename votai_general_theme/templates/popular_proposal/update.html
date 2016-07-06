@@ -1,0 +1,25 @@
+{% extends "backend_base.html" %}
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block content %}
+<h1>{% blocktrans %}¡Hola {{user}}!{% endblocktrans %}</h1>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="contenedorDestacado fondo-blanco">
+            <h2>{% blocktrans %}Agrega más información sobre tu propuesta popular{% endblocktrans %}</h2>
+			<form action="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}" method="POST" role="form">
+			    {% csrf_token %}
+                {% bootstrap_form form %}
+			    <div class="form-actions">
+			        <button type="submit" class="btn btn-success">{% trans 'Actualiza tu propuesta'%}</button>
+			    </div>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock content%}

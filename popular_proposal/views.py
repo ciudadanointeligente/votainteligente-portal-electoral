@@ -1,5 +1,9 @@
-from django.views.generic.edit import FormView
-from popular_proposal.forms import ProposalForm, SubscriptionForm, get_form_list, AreaForm
+from django.views.generic.edit import FormView, UpdateView
+from popular_proposal.forms import (ProposalForm,
+                                    SubscriptionForm,
+                                    get_form_list,
+                                    AreaForm,
+                                    UpdateProposalForm)
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from popolo.models import Area
@@ -156,3 +160,19 @@ class ProposalWizardFull(SessionWizardView):
             'proposal': temporary_data,
             'area': area
         })
+
+
+class PopularProposalUpdateView(UpdateView):
+    form_class = UpdateProposalForm
+    template_name = 'popular_proposal/update.html'
+    model = PopularProposal
+    context_object_name = 'popular_proposal'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(PopularProposalUpdateView, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        qs = super(PopularProposalUpdateView, self).get_queryset()
+        qs = qs.filter(proposer=self.request.user)
+        return qs

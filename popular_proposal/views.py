@@ -166,6 +166,7 @@ class PopularProposalUpdateView(UpdateView):
     form_class = UpdateProposalForm
     template_name = 'popular_proposal/update.html'
     model = PopularProposal
+    context_object_name = 'popular_proposal'
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):

@@ -25,8 +25,8 @@ $(function(){
   
   <!-- Featured Elections  -->
   <div class="contenedorDestacado fondo-blanco">
-  <h1>{{popular_proposal.title}}</h1>
-  <div class="text-right"><a href="{% url 'area' slug=popular_proposal.area.id %}" class="btn btn-primary btn-lg">{{popular_proposal.area}}</a></div>
+  <div class="text-left"><a href="{% url 'area' slug=popular_proposal.area.id %}" class="btn btn-primary btn-lg">{{popular_proposal.area}}</a></div>
+  <h1>{{popular_proposal.title}}</h1><a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}" class="btn btn-info">{% blocktrans %}Agrega más información{% endblocktrans %}</a>
   
       <dl>
           

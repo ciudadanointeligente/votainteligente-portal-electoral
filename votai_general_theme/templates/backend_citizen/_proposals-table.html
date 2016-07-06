@@ -45,6 +45,13 @@
                 {% endif %}
                 {% if proposal.status == 'accepted' %}
                 <span class="label label-success">{% trans '¡Aceptada!' %}</span>
+                <span class="label label-success">
+                    <a href="{{ proposal.created_proposal.get_absolute_url }}">
+                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                        {% trans 'Detalles' %}
+                    </a>
+                </span>
+
                 {% endif %}
                 {% if proposal.status == 'rejected' %}
                 <span class="label label-danger">{% trans '¡Rechazada!' %}</span>

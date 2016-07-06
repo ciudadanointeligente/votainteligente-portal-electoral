@@ -258,6 +258,7 @@ class UpdateFormTestCase(ProposingCycleTestCaseBase):
         self.client.login(username=self.fiera.username, password='feroz')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['popular_proposal'], self.popular_proposal)
         self.assertTemplateUsed(response, 'popular_proposal/update.html')
         self.assertIsInstance(response.context['form'], UpdateProposalForm)
 

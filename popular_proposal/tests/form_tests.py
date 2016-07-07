@@ -18,9 +18,6 @@ from django.template.loader import get_template
 from django.template import Context, Template
 from popular_proposal.forms import WHEN_CHOICES
 from popular_proposal.forms.form_texts import TEXTS
-from PIL import Image
-from StringIO import StringIO
-from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
 
 class FormTestCase(ProposingCycleTestCaseBase):
@@ -221,11 +218,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
 class UpdateFormTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(UpdateFormTestCase, self).setUp()
-        image_file = StringIO()
-        image = Image.new('RGBA', size=(50,50), color=(256,0,0))
-        image.save(image_file, 'png')
-        image_file.seek(0)
-        self.image = ContentFile(image_file.read(), 'test.png')
+        self.image = self.get_image()
         self.popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
                                                                area=self.arica,
                                                                data=self.data,

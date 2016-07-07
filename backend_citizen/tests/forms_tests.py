@@ -10,12 +10,21 @@ class UpdateMyProfileClass(BackendCitizenTestCaseBase):
         super(UpdateMyProfileClass, self).setUp()
 
     def test_instanciate_form(self):
-        data = {
-            'first_name': 'Fiera',
-            'last_name': 'Feroz'
-        }
-        form = UserChangeForm(data=data, instance=self.fiera)
+        data = {'first_name': u'Fiera',
+                'last_name': 'Feroz',
+                'description':u"La más feroz de todas"}
+        image = self.get_image()
+        files = {'image': image}
+        form = UserChangeForm(data=data, files=files, instance=self.fiera)
         self.assertTrue(form.is_valid())
         fiera = form.save()
         self.assertEquals(fiera.first_name, data['first_name'])
         self.assertEquals(fiera.last_name, data['last_name'])
+        self.assertEquals(fiera.profile.description, data['description'])
+        self.assertTrue(fiera.profile.image)
+
+        ## getting initial
+        form = UserChangeForm(instance=self.fiera)
+        self.assertEquals(form.initial['description'], data['description'])
+        self.assertTrue(form.initial['image'])
+

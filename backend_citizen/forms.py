@@ -7,6 +7,7 @@ from django.core.files.base import ContentFile
 import requests
 from django.utils.translation import ugettext as _
 from popolo.models import ContactDetail
+from backend_citizen.models import Profile
 from django.contrib.auth.models import User
 try:
     import urlparse
@@ -69,6 +70,30 @@ class OrganizationForm(forms.ModelForm):
         fields = ['name', 'facebook_page']
 
 class UserChangeForm(forms.ModelForm):
+    image = forms.ImageField(required=False,
+                             label="Imagen de perfil")
+    description = forms.CharField(widget=forms.Textarea,
+                                  required=False,
+                                  label=u"Descripción")
+
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', ]
+        fields = ['first_name', 'last_name', 'image', 'description']
+        labels = {'first_name': _('Tu nombre'),
+                  'last_name': _('Tu Apellido'),
+                  }
+    def __init__(self, *args, **kwargs):
+        super(UserChangeForm, self).__init__(*args, **kwargs)
+        for field in Profile._meta.fields:
+            if field.name in self.fields.keys():
+                self.initial[field.name] = getattr(self.instance.profile, field.name)
+
+    def save(self):
+        user = super(UserChangeForm, self).save()
+        print self.cleaned_data
+        for key in self.cleaned_data:
+            value = self.cleaned_data[key]
+            if hasattr(user.profile, key):
+                setattr(user.profile, key, value)
+        user.profile.save()
+        return user

@@ -14,7 +14,7 @@ from candidator.adapters import CandidatorCalculator, CandidatorAdapter
 from django.shortcuts import get_object_or_404
 from popolo.models import Area
 from django.contrib.auth.forms import AuthenticationForm
-from registration.forms import RegistrationForm
+from backend_citizen.forms import UserCreationForm as RegistrationForm
 
 
 class ElectionsSearchByTagView(FormView):

@@ -5,7 +5,7 @@ from elections.forms import ElectionSearchByTagsForm
 from unittest import skip
 from elections.models import Election
 from django.contrib.auth.forms import AuthenticationForm
-from registration.forms import RegistrationForm
+from backend_citizen.forms import UserCreationForm as RegistrationForm
 
 
 class HomeTestCase(TestCase):

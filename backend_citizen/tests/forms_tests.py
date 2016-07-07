@@ -2,7 +2,7 @@
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
-from backend_citizen.forms import UserChangeForm
+from backend_citizen.forms import UserChangeForm, UserCreationForm
 
 
 class UpdateMyProfileClass(BackendCitizenTestCaseBase):
@@ -28,3 +28,18 @@ class UpdateMyProfileClass(BackendCitizenTestCaseBase):
         self.assertEquals(form.initial['description'], data['description'])
         self.assertTrue(form.initial['image'])
 
+    def test_create_user_form(self):
+        data = {'first_name': 'Usuario',
+                'last_name': 'LastName',
+                'username': 'user',
+                'email': 'user@mail.com',
+                'password1': 'pass',
+                'password2': 'pass',
+                'is_organization': True
+                }
+        form = UserCreationForm(data=data)
+        self.assertTrue(form.is_valid())
+        user = form.save()
+        self.assertEquals(user.first_name, data['first_name'])
+        self.assertEquals(user.last_name, data['last_name'])
+        self.assertTrue(user.profile.is_organization)

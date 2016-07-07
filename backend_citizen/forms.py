@@ -9,6 +9,8 @@ from django.utils.translation import ugettext as _
 from popolo.models import ContactDetail
 from backend_citizen.models import Profile
 from django.contrib.auth.models import User
+from registration.forms import RegistrationForm as UserCreationForm
+
 try:
     import urlparse
     from urllib import urlencode
@@ -96,4 +98,19 @@ class UserChangeForm(forms.ModelForm):
             if hasattr(user.profile, key):
                 setattr(user.profile, key, value)
         user.profile.save()
+        return user
+
+
+class UserCreationForm(UserCreationForm):
+    is_organization = forms.BooleanField(label=_(u'¿Eres una organización?'))
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', )
+
+    def save(self, commit=True):
+        user = super(UserCreationForm, self).save(commit=commit)
+        user.profile.is_organization = self.cleaned_data['is_organization']
+        if commit:
+            user.profile.save()
         return user

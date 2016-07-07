@@ -7,6 +7,7 @@ from django.core.files.base import ContentFile
 import requests
 from django.utils.translation import ugettext as _
 from popolo.models import ContactDetail
+from django.contrib.auth.models import User
 try:
     import urlparse
     from urllib import urlencode
@@ -66,3 +67,8 @@ class OrganizationForm(forms.ModelForm):
     class Meta:
         model = Organization
         fields = ['name', 'facebook_page']
+
+class UserChangeForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', ]

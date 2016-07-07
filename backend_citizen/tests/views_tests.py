@@ -6,18 +6,13 @@ from popular_proposal.models import ProposalTemporaryData, PopularProposal
 from popular_proposal.forms import ProposalTemporaryDataUpdateForm
 from popular_proposal.tests import ProposingCycleTestCaseBase
 from popolo.models import Area
+from backend_citizen.forms import UserChangeForm
+from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
 
 
-PASSWORD = 'perrito'
-
-
-class BackendCitizenViewsTests(ProposingCycleTestCaseBase):
+class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
     def setUp(self):
         super(BackendCitizenViewsTests, self).setUp()
-        self.fiera = User.objects.get(username='fiera')
-        self.fiera.set_password(PASSWORD)
-        self.fiera.save()
-        self.arica = Area.objects.get(id='arica-15101')
 
     def test_my_profile_view(self):
         url = reverse('backend_citizen:index')
@@ -82,3 +77,19 @@ class BackendCitizenViewsTests(ProposingCycleTestCaseBase):
         self.assertIn(t_d2, temporary_proposals)
         self.assertIn(t_d3, temporary_proposals)
         self.assertIn(t_d4, temporary_proposals)
+
+    def test_get_update_my_profile(self):
+        url = reverse('backend_citizen:update_my_profile')
+        response = self.client.get(url)
+        self.assertRedirects(response, reverse('auth_login')+"?next="+url)
+        self.client.login(username=self.fiera.username, password=PASSWORD)
+        response = self.client.get(url)
+        self.assertTemplateUsed(response, 'backend_citizen/update_my_profile.html')
+        self.assertIsInstance(response.context['form'], UserChangeForm)
+
+    def test_post_update_my_profile(self):
+        url = reverse('backend_citizen:update_my_profile')
+        data = {'first_name': u'Fiera', 'last_name': 'Feroz'}
+        self.client.login(username=self.fiera.username, password=PASSWORD)
+        response = self.client.post(url, data=data, follow=True)
+        self.assertTemplateUsed(response, 'backend_citizen/update_my_profile.html')

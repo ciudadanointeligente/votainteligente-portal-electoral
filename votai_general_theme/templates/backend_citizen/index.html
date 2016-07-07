@@ -13,6 +13,7 @@
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
   <!-- Featured Elections  -->
   <h1>{% blocktrans %}¡Bienvenid@ {{user}}!{% endblocktrans %}</h1>
+  <h2><a href="{% url 'backend_citizen:update_my_profile' %}">{% blocktrans %}Actualiza tu perfil{% endblocktrans %}</a></h2>
   <div class="contenedorDestacado fondo-blanco">
     <h2>Crea una propuesta</h2>
       {% if user.enrollments.all %}<!--Si tengo alguna org-->

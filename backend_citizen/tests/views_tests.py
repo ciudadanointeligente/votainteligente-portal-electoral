@@ -92,4 +92,4 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
         data = {'first_name': u'Fiera', 'last_name': 'Feroz'}
         self.client.login(username=self.fiera.username, password=PASSWORD)
         response = self.client.post(url, data=data, follow=True)
-        self.assertTemplateUsed(response, 'backend_citizen/update_my_profile.html')
+        self.assertTemplateUsed(response, 'backend_citizen/index.html')

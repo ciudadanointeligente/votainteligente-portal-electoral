@@ -68,4 +68,4 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
         return self.request.user
 
     def get_success_url(self):
-        return reverse('backend_citizen:update_my_profile')
+        return reverse('backend_citizen:index')

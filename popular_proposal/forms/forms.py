@@ -127,17 +127,6 @@ class ProposalFormBase(forms.Form, TextsFormMixin):
     def __init__(self, *args, **kwargs):
         super(ProposalFormBase, self).__init__(*args, **kwargs)
         self.set_fields()
-        if self.proposer.enrollments.all():
-            possible_organizations = [(0, _(u'Lo haré como persona'))]
-            for enrollment in self.proposer.enrollments.all():
-                possible_organizations.append(
-                    (enrollment.organization.id, enrollment.organization))
-
-            self.fields['organization'] = forms.ChoiceField(
-                choices=possible_organizations,
-                required=False,
-
-            )
         self.add_texts_to_fields()
 
 

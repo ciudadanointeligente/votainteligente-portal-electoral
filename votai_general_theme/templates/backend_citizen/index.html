@@ -22,11 +22,7 @@
             {% trans '¿Estás representando a una organización? Regístrala ANTES de enviar la propuesta. Solo si tienes una propuesta individual: salta directo al paso 2.' %}
       {% endif %}
     <div class="row">
-      <div class="col-md-3 col-md-offset-3">
-        <div class="col-md-12 text-center">1</div>
-        <a href="{% url 'backend_citizen:create_organization' %}" class="btn btn-success" role="button">{% trans 'Registra tu organización' %}</a>
-      </div>
-      <div class="col-md-3">
+      <div class="col-md-12">
         <div class="col-md-12 text-center">2</div>
         <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary" role="button">{% trans 'Sube tu Propuesta Ciudadana' %}</a>
       </div>

@@ -6,6 +6,9 @@ from popular_proposal.models import ProposalTemporaryData
 from django.core.urlresolvers import reverse
 from popular_proposal.models import Organization
 from backend_citizen.forms import OrganizationForm
+from django.views.generic.edit import UpdateView
+from backend_citizen.forms import UserChangeForm
+from django.contrib.auth.models import User
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -54,3 +57,15 @@ class OrganizationCreateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('popular_proposals:home')
+
+
+class UpdateUserView(LoginRequiredMixin, UpdateView):
+    form_class = UserChangeForm
+    model = User
+    template_name = 'backend_citizen/update_my_profile.html'
+
+    def get_object(self):
+        return self.request.user
+
+    def get_success_url(self):
+        return reverse('backend_citizen:index')

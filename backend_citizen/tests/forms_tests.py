@@ -29,9 +29,7 @@ class UpdateMyProfileClass(BackendCitizenTestCaseBase):
         self.assertTrue(form.initial['image'])
 
     def test_create_user_form(self):
-        data = {'first_name': 'Usuario',
-                'last_name': 'LastName',
-                'username': 'user',
+        data = {'username': 'user',
                 'email': 'user@mail.com',
                 'password1': 'pass',
                 'password2': 'pass',
@@ -40,6 +38,6 @@ class UpdateMyProfileClass(BackendCitizenTestCaseBase):
         form = UserCreationForm(data=data)
         self.assertTrue(form.is_valid())
         user = form.save()
-        self.assertEquals(user.first_name, data['first_name'])
-        self.assertEquals(user.last_name, data['last_name'])
         self.assertTrue(user.profile.is_organization)
+        self.assertEquals(user.username, 'user')
+        self.assertEquals(user.email, 'user@mail.com')

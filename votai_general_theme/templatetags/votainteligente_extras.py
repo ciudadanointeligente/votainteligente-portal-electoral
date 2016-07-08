@@ -11,6 +11,7 @@ from popolo.models import Area
 from django.core.urlresolvers import reverse
 from popular_proposal.forms.form_texts import WHEN_CHOICES, TEXTS
 from django.template.loader import render_to_string
+from backend_candidate.models import is_candidate
 
 
 @register.simple_tag
@@ -236,3 +237,6 @@ def tab_text_tag(field):
 @register.filter(name='times')
 def times(number):
     return range(number)
+
+
+register.filter('is_candidate', is_candidate)

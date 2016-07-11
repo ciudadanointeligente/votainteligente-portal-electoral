@@ -19,12 +19,13 @@ except: # For Python 3
 
 
 class UserChangeForm(forms.ModelForm):
+    is_organization = forms.BooleanField(label=_(u"¿Eres una organización?"),
+                                         required=False)
     image = forms.ImageField(required=False,
                              label=_(u"Imagen de perfil"))
     description = forms.CharField(widget=forms.Textarea,
                                   required=False,
                                   label=_(u"Descripción"))
-    is_organization = forms.BooleanField(label=_(u"¿Eres una organización?"))
 
     class Meta:
         model = User

@@ -93,10 +93,12 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
         data = {'first_name': u'Fiera',
                 'last_name': 'Feroz',
                 'description':u"La más feroz de todas",
-                "image": image}
+                "image": image,
+                "is_organization": True}
         self.client.login(username=self.fiera.username, password=PASSWORD)
         response = self.client.post(url, data=data,follow=True)
         self.assertTemplateUsed(response, 'backend_citizen/index.html')
         fiera = User.objects.get(id=self.fiera.id)
         self.assertEquals(fiera.profile.description, data['description'])
         self.assertTrue(fiera.profile.image)
+        self.assertTrue(fiera.profile.is_organization)

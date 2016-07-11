@@ -20,10 +20,11 @@ except: # For Python 3
 
 class UserChangeForm(forms.ModelForm):
     image = forms.ImageField(required=False,
-                             label="Imagen de perfil")
+                             label=_(u"Imagen de perfil"))
     description = forms.CharField(widget=forms.Textarea,
                                   required=False,
-                                  label=u"Descripción")
+                                  label=_(u"Descripción"))
+    is_organization = forms.BooleanField(label=_(u"¿Eres una organización?"))
 
     class Meta:
         model = User
@@ -39,7 +40,6 @@ class UserChangeForm(forms.ModelForm):
 
     def save(self):
         user = super(UserChangeForm, self).save()
-        print self.cleaned_data
         for key in self.cleaned_data:
             value = self.cleaned_data[key]
             if hasattr(user.profile, key):

@@ -12,6 +12,7 @@ class UpdateMyProfileClass(BackendCitizenTestCaseBase):
     def test_instanciate_form(self):
         data = {'first_name': u'Fiera',
                 'last_name': 'Feroz',
+                'is_organization': True,
                 'description':u"La más feroz de todas"}
         image = self.get_image()
         files = {'image': image}

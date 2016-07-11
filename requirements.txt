@@ -11,7 +11,6 @@ django-markdown-deux==1.0.4
 django-extensions
 sorl-thumbnail==12.4a1
 pillow
-pgmagick
 django-tinymce
 django-registration==2.0.4
 django-registration-defaults

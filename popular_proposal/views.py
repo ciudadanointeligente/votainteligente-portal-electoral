@@ -11,7 +11,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
-from popular_proposal.models import PopularProposal, Organization, ProposalTemporaryData
+from popular_proposal.models import PopularProposal, ProposalTemporaryData
 from django.shortcuts import render_to_response
 from formtools.wizard.views import SessionWizardView
 
@@ -94,12 +94,6 @@ class PopularProposalDetailView(DetailView):
     template_name = 'popular_proposal/detail.html'
     context_object_name = 'popular_proposal'
 
-
-class OrganizationDetailView(DetailView):
-    model = Organization
-    template_name = 'popular_proposal/organization.html'
-    context_object_name = 'organization'
-    slug_field = 'id'
 
 
 wizard_form_list = get_form_list()

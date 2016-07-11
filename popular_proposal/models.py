@@ -15,20 +15,6 @@ from images.models import Image, HasImageMixin
 from django.contrib.contenttypes.fields import GenericRelation
 
 
-class Organization(PopoloOrganization, HasImageMixin):
-    _id = models.AutoField(primary_key=True)
-    images = GenericRelation(Image)
-
-    def get_absolute_url(self):
-        return reverse('popular_proposals:organization', kwargs={'slug':self.id})
-
-class Enrollment(models.Model):
-    user = models.ForeignKey(User, related_name="enrollments")
-    organization = models.ForeignKey(Organization, related_name="enrollments")
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now_add=True)
-
-
 class NeedingModerationManager(models.Manager):
     def get_queryset(self):
         qs = super(NeedingModerationManager, self).get_queryset()
@@ -44,11 +30,6 @@ class ProposalTemporaryData(models.Model):
         Rejected = ChoiceItem('rejected')
         Accepted = ChoiceItem('accepted')
     proposer = models.ForeignKey(User, related_name='temporary_proposals')
-    organization = models.ForeignKey(Organization,
-                                     related_name='temporary_proposals',
-                                     null=True,
-                                     blank=True,
-                                     default=None)
     area = models.ForeignKey(Area, related_name='temporary_proposals')
     data = PickledObjectField()
     rejected = models.BooleanField(default=False)
@@ -100,9 +81,6 @@ class ProposalTemporaryData(models.Model):
                                            area=self.area,
                                            temporary=self,
                                            data=self.data)
-        if 'organization' in self.data.keys() and self.data['organization']:
-            enrollment = self.proposer.enrollments.get(organization__id=self.data['organization'])
-            popular_proposal.organization = enrollment.organization
         popular_proposal.save()
         site = Site.objects.get_current()
         mail_context = {
@@ -149,9 +127,6 @@ class PopularProposal(models.Model):
                                      null=True,
                                      default=None)
     likers = models.ManyToManyField(User, through='ProposalLike')
-    organization = models.ForeignKey(Organization,
-                                     related_name='popular_proposals',
-                                     null=True)
     background = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='proposals/image/',
                               max_length=512,

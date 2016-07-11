@@ -1,12 +1,16 @@
 language: python
+sudo: false
 services:
   - elasticsearch
 sudo: required
 python:
   - "2.7"
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq python-pgmagick libgraphicsmagick++1-dev libboost-python-dev
+addons:
+    apt:
+        packages:
+            - python-pgmagick
+            - libgraphicsmagick++1-dev
+            - libboost-python-dev
 install:
   - pip install -r requirements.txt 
   - pip install coveralls

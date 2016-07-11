@@ -85,6 +85,18 @@ And in your project in your local_settings.py file you have to add the following
      '/full/path/to/your/theme/templates/',
  )
 ```
+## Testing
+
+You can run tests by doing:
+```
+$ ./test.sh
+```
+
+And there is a shortcut for testing without migrations:
+
+```
+$ ./t.sh
+```
 
 ## Localization
 

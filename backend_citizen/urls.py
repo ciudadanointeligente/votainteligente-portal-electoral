@@ -4,7 +4,11 @@ from backend_citizen.views import (IndexView,
                                    UpdateUserView,
                                    OrganizationDetailView,
                                    OrganizationCreateView,
+                                   DoYouBelongToAnOrgView,
                                    )
+from django.views.generic.base import TemplateView
+from django.contrib.auth.decorators import login_required
+
 
 urlpatterns = patterns('',
                        url(r'^$',
@@ -19,6 +23,9 @@ urlpatterns = patterns('',
                        url(r'^create_organization/?$',
                            OrganizationCreateView.as_view(),
                            name='create_org'),
+                       url(r'^do_you_belong_to_an_org/?$',
+                           DoYouBelongToAnOrgView.as_view(),
+                           name='do_you_belong_to_an_org'),
                        url(r'^update_temporary_data/(?P<pk>[\d]+)/?$',
                            PopularProposalTemporaryDataUpdateView.as_view(),
                            name='temporary_data_update'),

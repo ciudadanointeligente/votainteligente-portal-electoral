@@ -27,8 +27,7 @@ class OrganizationTestCase(TestCase):
         organization = Organization.objects.create(name='La Cosa Nostra')
         image = Image.objects.create(content_object=organization)
         self.assertIn(image, organization.images.all())
-        self.assertEqual(organization.primary_image
-            (), image.image)
+        self.assertEqual(organization.primary_image(), image.image)
 
     def test_relating_a_user_and_an_organization(self):
         membership = Enrollment.objects.create(user=self.feli,
@@ -80,4 +79,24 @@ class OrganizationCreationAndRelationTestCase(OrganizationTestCase):
         response = self.client.post(url, data=data, follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertTrue(self.fiera.enrollments.all())
+        self.assertTemplateUsed(response, 'backend_citizen/index.html')
+
+    def test_ask_if_user_belongs_to_an_org(self):
+        url = reverse('backend_citizen:do_you_belong_to_an_org')
+        response = self.client.get(url)
+        self.assertRedirects(response, reverse('auth_login') + "?next=" + url)
+        self.client.login(username=self.fiera.username, password=PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+    def test_get_backend_citizen_index_redirects_for_organization(self):
+        url = reverse('backend_citizen:index')
+        user = User.objects.create_user(username='new_user',
+                                        password='password',
+                                        email='new@user.com')
+        self.client.login(username=user.username, password='password')
+        response = self.client.get(url)
+        do_you_url = reverse('backend_citizen:do_you_belong_to_an_org')
+        self.assertRedirects(response, do_you_url)
+        response = self.client.get(url)
         self.assertTemplateUsed(response, 'backend_citizen/index.html')

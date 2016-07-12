@@ -65,6 +65,14 @@ class OrganizationCreationForm(forms.ModelForm):
     class Meta:
         model = Organization
         fields = ('name', 'description')
+        labels = {
+            'name': _(u'¿Cuál es el nombre de tu grupo?'),
+            'description': _(u'¿Podrías describirlo?'),
+        }
+        help_texts = {
+            'name': _(u'Grupo de artistas callejeros.'),
+            'description': _(u'Somos muy buena gente y nos gusta el arte.'),
+        }
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')

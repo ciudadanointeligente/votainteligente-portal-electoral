@@ -24,11 +24,9 @@ class UserProfileClass(BackendCitizenTestCaseBase):
         user.profile.delete()
         profile = Profile.objects.create(user=user,
                                          image=self.get_image(),
-                                         is_organization=True,
                                          description=u"Soy una buena usuaria"
                                          )
         self.assertEquals(profile.user, user)
         self.assertTrue(profile.image)
-        self.assertTrue(profile.is_organization)
         self.assertTrue(profile.description)
         self.assertFalse(profile.first_time_in_backend_citizen)

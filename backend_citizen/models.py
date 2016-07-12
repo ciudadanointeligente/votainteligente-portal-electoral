@@ -13,7 +13,6 @@ from django.contrib.contenttypes.fields import GenericRelation
 
 class Profile(models.Model):
     user = models.OneToOneField(User)
-    is_organization = models.BooleanField(default=False)
     image = models.ImageField(upload_to="users/profiles/",
                               null=True,
                               blank=True,

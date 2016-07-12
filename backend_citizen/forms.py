@@ -15,8 +15,6 @@ except:  # For Python 3
 
 
 class UserChangeForm(forms.ModelForm):
-    is_organization = forms.BooleanField(label=_(u"¿Eres una organización?"),
-                                         required=False)
     image = forms.ImageField(required=False,
                              label=_(u"Imagen de perfil"))
     description = forms.CharField(widget=forms.Textarea,
@@ -47,7 +45,6 @@ class UserChangeForm(forms.ModelForm):
 
 
 class UserCreationForm(UserCreationForm):
-    is_organization = forms.BooleanField(label=_(u'¿Eres una organización?'))
 
     class Meta:
         model = User
@@ -55,7 +52,6 @@ class UserCreationForm(UserCreationForm):
 
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=commit)
-        user.profile.is_organization = self.cleaned_data['is_organization']
         if commit:
             user.profile.save()
         return user

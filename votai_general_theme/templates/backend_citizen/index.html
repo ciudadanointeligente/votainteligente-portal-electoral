@@ -15,12 +15,6 @@
   <h1>{% blocktrans %}¡Bienvenid@ {{user}}!{% endblocktrans %}</h1>
   <h2><a href="{% url 'backend_citizen:update_my_profile' %}">{% blocktrans %}Actualiza tu perfil{% endblocktrans %}</a></h2>
   <div class="contenedorDestacado fondo-blanco">
-    <h2>Crea una propuesta</h2>
-      {% if user.enrollments.all %}<!--Si tengo alguna org-->
-            {% trans 'Puedes agregar otra org o crear nueva propuesta ...' %}
-      {% else %}<!--Si no tengo alguna org-->
-            {% trans '¿Estás representando a una organización? Regístrala ANTES de enviar la propuesta. Solo si tienes una propuesta individual: salta directo al paso 2.' %}
-      {% endif %}
     <div class="row">
       <div class="col-md-12">
         <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary" role="button">{% trans 'Sube tu Propuesta Ciudadana' %}</a>

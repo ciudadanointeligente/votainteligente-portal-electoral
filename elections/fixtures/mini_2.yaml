@@ -28,6 +28,12 @@
     date_joined: 2016-03-21 21:34:35.231273+00:00
     groups: []
     user_permissions: []
+- model: backend_citizen.profile
+  pk: 1
+  fields: {user: 1, image: '', description: '', first_time_in_backend_citizen: true}
+- model: backend_citizen.profile
+  pk: 2
+  fields: {user: 2, image: '', description: '', first_time_in_backend_citizen: true}
 - fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: true, name: "2a Circunscripcion Antofagasta",
     searchable: true, slug: 2a-circunscripcion-antofagasta}

@@ -2,12 +2,11 @@
 from django.core.urlresolvers import reverse
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django.contrib.auth.models import User
-from popular_proposal.models import ProposalTemporaryData, PopularProposal
+from popular_proposal.models import ProposalTemporaryData
 from popular_proposal.forms import ProposalTemporaryDataUpdateForm
-from popular_proposal.tests import ProposingCycleTestCaseBase
-from popolo.models import Area
 from backend_citizen.forms import UserChangeForm
 from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
+from backend_citizen.models import Organization
 
 
 class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
@@ -92,13 +91,26 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
         image = self.get_image()
         data = {'first_name': u'Fiera',
                 'last_name': 'Feroz',
-                'description':u"La más feroz de todas",
-                "image": image,
-                "is_organization": False}
+                'description': u"La más feroz de todas",
+                "image": image
+                }
         self.client.login(username=self.fiera.username, password=PASSWORD)
         response = self.client.post(url, data=data,follow=True)
         self.assertTemplateUsed(response, 'backend_citizen/index.html')
         fiera = User.objects.get(id=self.fiera.id)
         self.assertEquals(fiera.profile.description, data['description'])
         self.assertTrue(fiera.profile.image)
-        self.assertFalse(fiera.profile.is_organization)
+
+
+class OrganizationDetailViewTests(TestCase):
+    def setUp(self):
+        super(OrganizationDetailViewTests, self).setUp()
+        self.organization = Organization.objects.create(name=u'La cossa nostra')
+
+    def test_there_is_a_url(self):
+        url = reverse('backend_citizen:organization',
+                      kwargs={'slug': self.organization.id})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'backend_citizen/organization.html')
+        self.assertEquals(response.context['organization'], self.organization)

@@ -94,14 +94,20 @@ Condiciones')}
 ]
 
 
-def get_form_list():
+def get_form_list(wizard_forms_fields=wizard_forms_fields, **kwargs):
     form_list = []
     counter = 0
     for step in wizard_forms_fields:
         counter += 1
         fields_dict = OrderedDict()
         for field in step['fields']:
-            fields_dict[field] = step['fields'][field]
+            tha_field = step['fields'][field]
+            if hasattr(tha_field, '__call__'):
+                executed_field = tha_field.__call__(**kwargs)
+                if executed_field is not None:
+                    fields_dict[field] = executed_field
+            else:
+                fields_dict[field] = tha_field
 
         def __init__(self, *args, **kwargs):
             super(forms.Form, self).__init__(*args, **kwargs)

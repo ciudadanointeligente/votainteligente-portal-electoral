@@ -10,6 +10,8 @@ from django.core.urlresolvers import reverse
 from popular_proposal.forms.form_texts import TEXTS
 from popular_proposal.models import ProposalTemporaryData
 from django.core import mail
+from backend_citizen.models import Organization, Enrollment
+from collections import OrderedDict
 
 
 USER_PASSWORD = 'secr3t'
@@ -25,6 +27,7 @@ class WizardTestCase(TestCase):
         self.feli.set_password(USER_PASSWORD)
         self.feli.save()
         ProposalTemporaryData.objects.all().delete()
+        self.org = Organization.objects.create(name="Local Organization")
 
     def test_get_form_list(self):
         list_ = get_form_list()
@@ -41,6 +44,33 @@ class WizardTestCase(TestCase):
             for field in f.fields:
                 self.assertTrue(f.explanation_template)
                 self.assertTrue(f.fields[field].widget.attrs['long_text'])
+
+    def test_get_form_list_depending_on_user(self):
+        # membership = Enrollment.objects.create(user=self.feli,
+        #                                        organization=self.org)
+        def return_none(user=None):
+            return None
+
+        def return_boolean_field(user=None):
+
+            if user == self.feli:
+                return forms.BooleanField()
+            return None
+        form_fields = [{'template': 'popular_proposal/wizard/paso5.html',
+                        'explation_template': "popular_proposal/steps/p.html",
+                        'fields': OrderedDict([
+                            ('test', return_boolean_field),
+                            ('testb', return_none)
+                        ])
+                        }
+                       ]
+        list_ = get_form_list(form_fields, user=self.feli)
+        all_fields = list_[0].base_fields.items()
+        self.assertEquals(all_fields[0][0], 'test')
+        test_field = all_fields[0][1]
+        self.assertIsInstance(test_field,
+                              forms.BooleanField)
+        self.assertEquals(len(all_fields), 1)
 
     def test_instanciating_view(self):
         url = reverse('popular_proposals:propose_wizard',

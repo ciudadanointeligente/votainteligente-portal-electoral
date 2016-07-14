@@ -9,7 +9,6 @@ from django.contrib.sites.models import Site
 from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
 from popolo.models import Area
 from collections import OrderedDict
-from django.forms import ModelForm
 
 
 class TextsFormMixin():
@@ -31,6 +30,20 @@ class TextsFormMixin():
                 if 'step' in texts.keys() and texts['step']:
                     self.fields[field].widget.attrs['tab_text'] = texts['step']
 
+
+def get_user_organizations_choicefield(user=None):
+    if user is None:
+        return None
+
+    if user.enrollments.all():
+        choices = [('', 'Lo haré a nombre personal')]
+        for enrollment in user.enrollments.all():
+            choice = (enrollment.organization.id, enrollment.organization.name)
+            choices.append(choice)
+        label = _(u'¿Esta promesa es a nombre de un grupo ciudadano?')
+        return forms.ChoiceField(choices=choices,
+                                 label=label)
+    return None
 
 wizard_forms_fields = [
     {
@@ -83,6 +96,7 @@ wizard_forms_fields = [
         'fields': OrderedDict([
             ('title', forms.CharField(max_length=256,
                                       widget=forms.TextInput())),
+            ('organization', get_user_organizations_choicefield),
             ('terms_and_conditions', forms.BooleanField(
                 error_messages={'required':
                                 _(u'Debes aceptar nuestros Términos y \
@@ -123,33 +137,35 @@ def get_form_list(wizard_forms_fields=wizard_forms_fields, **kwargs):
 
 
 class ProposalFormBase(forms.Form, TextsFormMixin):
-
     def set_fields(self):
         for steps in wizard_forms_fields:
             for field_name in steps['fields']:
                 field = steps['fields'][field_name]
+                if hasattr(field, '__call__'):
+                    kwargs = {'user': self.proposer}
+                    field = field.__call__(**kwargs)
+                    if field is None:
+                        continue
                 self.fields[field_name] = field
 
     def __init__(self, *args, **kwargs):
+        self.proposer = kwargs.pop('proposer', None)
         super(ProposalFormBase, self).__init__(*args, **kwargs)
         self.set_fields()
         self.add_texts_to_fields()
 
 
-
 class ProposalForm(ProposalFormBase):
     def __init__(self, *args, **kwargs):
-        self.proposer = kwargs.pop('proposer')
         self.area = kwargs.pop('area')
         super(ProposalForm, self).__init__(*args, **kwargs)
 
     def save(self):
-        temporary_data = ProposalTemporaryData.objects.create(proposer=self.proposer,
-                                                              area=self.area,
-                                                              data=self.cleaned_data)
-        temporary_data.notify_new()
-        return temporary_data
-
+        t_data = ProposalTemporaryData.objects.create(proposer=self.proposer,
+                                                      area=self.area,
+                                                      data=self.cleaned_data)
+        t_data.notify_new()
+        return t_data
 
 
 class UpdateProposalForm(forms.ModelForm):
@@ -214,7 +230,6 @@ class RejectionForm(forms.Form):
 class ProposalTemporaryDataUpdateForm(ProposalFormBase):
     overall_comments = forms.CharField(required=False, label=_(u'Comentarios sobre tu revisón'))
 
-
     def __init__(self, *args, **kwargs):
         self.proposer = kwargs.pop('proposer')
         self.temporary_data = kwargs.pop('temporary_data')
@@ -235,6 +250,7 @@ class ProposalTemporaryDataUpdateForm(ProposalFormBase):
 
     def get_overall_comments(self):
         return self.cleaned_data.get('overall_comments', '')
+
 
 class SubscriptionForm(forms.Form):
     def __init__(self, *args, **kwargs):

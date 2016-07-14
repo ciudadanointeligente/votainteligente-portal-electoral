@@ -211,7 +211,8 @@ class CommentsForm(forms.Form):
             'site': site,
 
         }
-        send_mail(mail_context, 'popular_proposal_moderation', to=[self.temporary_data.proposer.email])
+        send_mail(mail_context, 'popular_proposal_moderation',
+                  to=[self.temporary_data.proposer.email])
         return self.temporary_data
 
 

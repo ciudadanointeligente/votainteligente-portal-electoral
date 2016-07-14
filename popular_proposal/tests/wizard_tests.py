@@ -1,7 +1,8 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from popular_proposal.forms import (get_form_list,
-                                    wizard_forms_fields)
+                                    wizard_forms_fields,
+                                    get_user_organizations_choicefield)
 from django.test import RequestFactory
 from django.contrib.auth.models import User
 from popolo.models import Area
@@ -46,13 +47,10 @@ class WizardTestCase(TestCase):
                 self.assertTrue(f.fields[field].widget.attrs['long_text'])
 
     def test_get_form_list_depending_on_user(self):
-        # membership = Enrollment.objects.create(user=self.feli,
-        #                                        organization=self.org)
         def return_none(user=None):
             return None
 
         def return_boolean_field(user=None):
-
             if user == self.feli:
                 return forms.BooleanField()
             return None
@@ -71,6 +69,21 @@ class WizardTestCase(TestCase):
         self.assertIsInstance(test_field,
                               forms.BooleanField)
         self.assertEquals(len(all_fields), 1)
+
+    def test_return_user_organizations_field(self):
+        field = get_user_organizations_choicefield(self.feli)
+        self.assertIsNone(field)
+
+        Enrollment.objects.create(user=self.feli,
+                                  organization=self.org)
+        field = get_user_organizations_choicefield(self.feli)
+        self.assertIsInstance(field, forms.ChoiceField)
+        self.assertEquals(len(field.choices), 2)
+        empty_choice = field.choices[0]
+        self.assertFalse(empty_choice[0])
+        org_choice = field.choices[1]
+        self.assertEquals(org_choice[0], self.org.id)
+        self.assertEquals(org_choice[1], self.org.name)
 
     def test_instanciating_view(self):
         url = reverse('popular_proposals:propose_wizard',

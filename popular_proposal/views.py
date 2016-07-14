@@ -14,6 +14,7 @@ from django.views.generic.detail import DetailView
 from popular_proposal.models import PopularProposal, ProposalTemporaryData
 from django.shortcuts import render_to_response
 from formtools.wizard.views import SessionWizardView
+from collections import OrderedDict
 
 
 class ProposalCreationView(FormView):
@@ -95,7 +96,6 @@ class PopularProposalDetailView(DetailView):
     context_object_name = 'popular_proposal'
 
 
-
 wizard_form_list = get_form_list()
 
 
@@ -108,20 +108,31 @@ class ProposalWizard(SessionWizardView):
         template_name = getattr(form, 'template', self.template_name)
         return template_name
 
+    def get_form_list(self):
+        form_list = OrderedDict()
+        my_list = get_form_list(user=self.request.user)
+        counter = 0
+        for form_class in my_list:
+            form_list[str(counter)] = form_class
+            counter += 1
+        self.form_list = form_list
+        return form_list
+
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.area = get_object_or_404(Area, id=self.kwargs['slug'])
+
         return super(ProposalWizard, self).dispatch(request, *args, **kwargs)
 
     def done(self, form_list, **kwargs):
         data = {}
         [data.update(form.cleaned_data) for form in form_list]
-        temporary_data = ProposalTemporaryData.objects.create(proposer=self.request.user,
-                                                              area=self.area,
-                                                              data=data)
-        temporary_data.notify_new()
+        t_data = ProposalTemporaryData.objects.create(proposer=self.request.user,
+                                                      area=self.area,
+                                                      data=data)
+        t_data.notify_new()
         return render_to_response('popular_proposal/wizard/done.html', {
-            'proposal': temporary_data,
+            'proposal': t_data,
             'area': self.area
         })
 

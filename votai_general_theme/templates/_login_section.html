@@ -1,0 +1,57 @@
+{% load staticfiles %}
+{% load i18n %}
+{% load bootstrap3 %}
+<section id="login-form">
+  <div class="container">  
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="text-center">Para enviar una propuesta debes crearte un usuario primero</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <h4 class="text-center">Ingresa con Facebook o Gmail</h4>
+        {% include '_social_login_buttons.html' %}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 col-md-offset-2">
+      <!-- formulario de loggeo -->
+        <h4 class="text-center">Regístrate</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <form  role="form" action="{% url 'registration_register' %}" method="post" class="landing-form">
+                {% csrf_token %}
+                {% bootstrap_form register_new_form show_label=false show_help=false %}
+                <div class="form-actions">
+                  <input type="submit" class="btn btn-primary" id="" value="{% trans 'Regístrame' %}"/>
+                </div>
+            </form>
+          </div>
+        </div>
+        <!-- fin del formulario de registro -->
+      </div>
+
+      <div class="col-md-4">
+      <!-- formulario de loggeo -->
+        <h4 class="text-center">¿Ya tienes un usuario? Ingrésalo</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">  
+            <form role="form" action="{% url 'auth_login' %}" method="post" class="landing-form login_form">
+              {% csrf_token %}
+              {% bootstrap_form login_form show_label=false show_help=false %}
+              <div class="form-actions">
+                <p><a href="{% url 'auth_password_reset' %}">{% trans '¿Olvidaste tu password?' %}</a></p>
+                <input type="submit" class="btn btn-primary" id="" value="{% trans 'Entrar' %}"/>
+              </div>
+            </form>
+          </div>
+        </div>
+    <!-- fin del formulario de loggeo -->
+      </div>
+    </div>
+
+
+  </div>
+</section>

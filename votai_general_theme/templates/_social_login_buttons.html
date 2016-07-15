@@ -1,7 +1,10 @@
 {% load i18n %}
-<a class="btn btn-block btn-social btn-facebook login" href="{% url 'social:begin' 'facebook' %}?next={% url 'backend_citizen:index' %}">
+{% if not url %}
+	{% url 'backend_citizen:index' as url %}
+{% endif %}
+<a class="btn btn-block btn-social btn-facebook login" href="{% url 'social:begin' 'facebook' %}?next={{url}}">
     <span class="fa fa-facebook"></span>{% trans 'Entra con Facebook' %}
 </a>
-<a class="btn btn-block btn-social btn-google login" href="{% url 'social:begin' 'google-oauth2' %}?next={% url 'backend_citizen:index' %}">
+<a class="btn btn-block btn-social btn-google login" href="{% url 'social:begin' 'google-oauth2' %}?next={{url}}">
     <span class="fa fa-google"></span>{% trans 'Entra con Google' %}
 </a>

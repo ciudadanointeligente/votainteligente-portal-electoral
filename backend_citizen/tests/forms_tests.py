@@ -1,6 +1,8 @@
 # coding=utf-8
-from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
-from backend_citizen.forms import UserChangeForm, UserCreationForm
+from backend_citizen.tests import BackendCitizenTestCaseBase
+from backend_citizen.forms import (UserChangeForm,
+                                   UserCreationForm,
+                                   GroupCreationForm)
 
 
 class UpdateMyProfileClass(BackendCitizenTestCaseBase):
@@ -20,7 +22,6 @@ class UpdateMyProfileClass(BackendCitizenTestCaseBase):
         self.assertEquals(fiera.last_name, data['last_name'])
         self.assertEquals(fiera.profile.description, data['description'])
         self.assertTrue(fiera.profile.image)
-        ## getting initial
         form = UserChangeForm(instance=self.fiera)
         self.assertEquals(form.initial['description'], data['description'])
         self.assertTrue(form.initial['image'])
@@ -36,3 +37,16 @@ class UpdateMyProfileClass(BackendCitizenTestCaseBase):
         user = form.save()
         self.assertEquals(user.username, 'user')
         self.assertEquals(user.email, 'user@mail.com')
+
+    def test_create_organization_form(self):
+        data = {'username': 'group',
+                'name': 'This Is a Great Group',
+                'email': 'group@mail.com',
+                'password1': 'pass',
+                'password2': 'pass',
+                }
+        form = GroupCreationForm(data=data)
+        self.assertTrue(form.is_valid())
+        group = form.save()
+        self.assertEquals(group.first_name, data['name'])
+        self.assertTrue(group.profile.is_organization)

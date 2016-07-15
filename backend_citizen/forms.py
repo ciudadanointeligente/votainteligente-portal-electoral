@@ -57,6 +57,23 @@ class UserCreationForm(UserCreationForm):
         return user
 
 
+class GroupCreationForm(UserCreationForm):
+    name = forms.CharField(label=_(u'El nombre de tu organización'))
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'username', 'email', )
+
+    def save(self, commit=True):
+        user = super(GroupCreationForm, self).save(commit)
+        user.first_name = self.cleaned_data['name']
+        if commit:
+            user.save()
+            user.profile.is_organization = True
+            user.profile.save()
+        return user
+
+
 class OrganizationCreationForm(forms.ModelForm):
     class Meta:
         model = Organization

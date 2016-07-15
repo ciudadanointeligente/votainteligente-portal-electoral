@@ -6,8 +6,7 @@ from django.views.generic import DetailView, TemplateView
 from elections.models import Election
 from elections.models import Candidate, QuestionCategory, CandidateFlatPage
 import logging
-from django.db.models import Q
-logger = logging.getLogger(__name__)
+from backend_citizen.forms import GroupCreationForm
 from candidator.models import Topic, Position, TakenPosition
 from candidator.comparer import Comparer, InformationHolder
 from candidator.adapters import CandidatorCalculator, CandidatorAdapter
@@ -15,6 +14,7 @@ from django.shortcuts import get_object_or_404
 from popolo.models import Area
 from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import UserCreationForm as RegistrationForm
+logger = logging.getLogger(__name__)
 
 
 class ElectionsSearchByTagView(FormView):
@@ -60,6 +60,7 @@ class HomeView(TemplateView):
         context['searchable_elections_enabled'] = True
         context['register_new_form'] = RegistrationForm()
         context['login_form'] = AuthenticationForm()
+        context['group_login_form'] = GroupCreationForm()
         if Election.objects.filter(searchable=True).count() < 1:
             context['searchable_elections_enabled'] = False
 

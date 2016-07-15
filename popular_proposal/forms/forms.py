@@ -32,7 +32,7 @@ class TextsFormMixin():
 
 
 def get_user_organizations_choicefield(user=None):
-    if user is None:
+    if user is None or not user.is_authenticated():
         return None
 
     if user.enrollments.all():

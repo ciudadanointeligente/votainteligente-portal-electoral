@@ -99,7 +99,7 @@ class PopularProposalDetailView(DetailView):
 wizard_form_list = get_form_list()
 
 
-class ProposalWizard(SessionWizardView):
+class ProposalWizardBase(SessionWizardView):
     form_list = wizard_form_list
     template_name = 'popular_proposal/wizard/form_step.html'
 
@@ -108,9 +108,13 @@ class ProposalWizard(SessionWizardView):
         template_name = getattr(form, 'template', self.template_name)
         return template_name
 
+    def get_previous_forms(self):
+        return []
+
     def get_form_list(self):
         form_list = OrderedDict()
-        my_list = get_form_list(user=self.request.user)
+        previous_forms = self.get_previous_forms()
+        my_list = previous_forms + get_form_list(user=self.request.user)
         counter = 0
         for form_class in my_list:
             form_list[str(counter)] = form_class
@@ -118,6 +122,8 @@ class ProposalWizard(SessionWizardView):
         self.form_list = form_list
         return form_list
 
+
+class ProposalWizard(ProposalWizardBase):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.area = get_object_or_404(Area, id=self.kwargs['slug'])
@@ -146,13 +152,18 @@ class ProposalWizard(SessionWizardView):
 full_wizard_form_list = [AreaForm, ] + wizard_form_list
 
 
-class ProposalWizardFull(SessionWizardView):
+class ProposalWizardFull(ProposalWizardBase):
     form_list = full_wizard_form_list
     template_name = 'popular_proposal/wizard/form_step.html'
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        return super(ProposalWizardFull, self).dispatch(request, *args, **kwargs)
+        return super(ProposalWizardFull, self).dispatch(request,
+                                                        *args,
+                                                        **kwargs)
+
+    def get_previous_forms(self):
+        return [AreaForm, ]
 
     def done(self, form_list, **kwargs):
         data = {}

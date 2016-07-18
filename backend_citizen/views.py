@@ -16,7 +16,8 @@ from django.views.generic.edit import CreateView
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from registration.views import RegistrationView
+from registration.backends.hmac.views import RegistrationView
+
 
 
 class IndexView(TemplateView):
@@ -105,8 +106,13 @@ class GroupRegistrationView(RegistrationView):
     form_class = GroupCreationForm
 
     def register(self, form):
-        new_user = form.save()
+        new_user = super(GroupRegistrationView, self).register(form)
         return new_user
 
     def get_success_url(self, user):
         return reverse('registration_activation_complete')
+
+    def create_inactive_user(self, form):
+        group = super(GroupRegistrationView, self).create_inactive_user(form)
+        form.set_group_profile(group)
+        return group

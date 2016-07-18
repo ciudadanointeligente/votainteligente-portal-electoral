@@ -18,7 +18,7 @@ class HomeTestCase(TestCase):
 		self.assertTrue(response.status_code, 200)
 		self.assertTemplateUsed(response, 'elections/home.html')
 		self.assertTemplateUsed(response, 'base.html')
-		self.assertIn('form',response.context)
+		self.assertIn('form', response.context)
 		self.assertIsInstance(response.context['form'], ElectionSearchByTagsForm)
 
 	def test_home_view(self):

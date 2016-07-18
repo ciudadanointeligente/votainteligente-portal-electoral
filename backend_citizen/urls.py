@@ -5,15 +5,17 @@ from backend_citizen.views import (IndexView,
                                    OrganizationDetailView,
                                    OrganizationCreateView,
                                    DoYouBelongToAnOrgView,
+                                   GroupRegistrationView,
                                    )
-from django.views.generic.base import TemplateView
-from django.contrib.auth.decorators import login_required
 
 
 urlpatterns = patterns('',
                        url(r'^$',
                            IndexView.as_view(),
                            name='index'),
+                       url(r'^create_group/?$',
+                           GroupRegistrationView.as_view(),
+                           name='create_group'),
                        url(r'^organization/(?P<slug>[-\w]+)/?$',
                            OrganizationDetailView.as_view(),
                            name='organization'),

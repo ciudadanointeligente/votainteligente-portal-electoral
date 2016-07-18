@@ -95,11 +95,34 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
                 "image": image
                 }
         self.client.login(username=self.fiera.username, password=PASSWORD)
-        response = self.client.post(url, data=data,follow=True)
+        response = self.client.post(url, data=data, follow=True)
         self.assertTemplateUsed(response, 'backend_citizen/index.html')
         fiera = User.objects.get(id=self.fiera.id)
         self.assertEquals(fiera.profile.description, data['description'])
         self.assertTrue(fiera.profile.image)
+
+
+class GroupUserCreateView(TestCase):
+    def setUp(self):
+        super(GroupUserCreateView, self).setUp()
+
+    def test_posting_to_url(self):
+        url = reverse('backend_citizen:create_group')
+        original_amount = User.objects.count()
+        data = {'username': 'group',
+                'name': 'This Is a Great Group',
+                'email': 'group@mail.com',
+                'password1': 'pass',
+                'password2': 'pass',
+                }
+        response = self.client.post(url, data=data)
+        registration_complete_url = reverse('registration_activation_complete')
+        self.assertRedirects(response, registration_complete_url)
+        new_amount = User.objects.count()
+        self.assertEquals(new_amount, original_amount + 1)
+        tha_group = User.objects.get(username="group")
+        self.assertEquals(tha_group.first_name, data['name'])
+        self.assertTrue(tha_group.profile.is_organization)
 
 
 class OrganizationDetailViewTests(TestCase):

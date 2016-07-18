@@ -150,10 +150,10 @@ class SoulMateDetailView(DetailView):
                 topic = Topic.objects.get(id=topic_id)
                 try:
                     position = Position.objects.get(id=position_id)
-                    positions.append(TakenPosition(
-                        topic=topic,
-                        position=position
-                        ))
+                    positions.append(TakenPosition(topic=topic,
+                                                   position=position
+                                                   )
+                                     )
                 except Position.DoesNotExist:
                     pass
         return positions

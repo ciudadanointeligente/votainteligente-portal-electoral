@@ -7,13 +7,16 @@ from popular_proposal.forms import ProposalTemporaryDataUpdateForm
 from popular_proposal.models import ProposalTemporaryData
 from django.core.urlresolvers import reverse
 from django.views.generic.edit import UpdateView
-from backend_citizen.forms import UserChangeForm, OrganizationCreationForm
+from backend_citizen.forms import (UserChangeForm,
+                                   OrganizationCreationForm,
+                                   GroupCreationForm)
 from django.contrib.auth.models import User
 from backend_citizen.models import Organization
 from django.views.generic.edit import CreateView
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from registration.views import RegistrationView
 
 
 class IndexView(TemplateView):
@@ -96,3 +99,14 @@ class DoYouBelongToAnOrgView(LoginRequiredMixin, TemplateView):
         self.request.user.profile.first_time_in_backend_citizen = True
         self.request.user.profile.save()
         return super(DoYouBelongToAnOrgView, self).get(*args, **kwargs)
+
+
+class GroupRegistrationView(RegistrationView):
+    form_class = GroupCreationForm
+
+    def register(self, form):
+        new_user = form.save()
+        return new_user
+
+    def get_success_url(self, user):
+        return reverse('registration_activation_complete')

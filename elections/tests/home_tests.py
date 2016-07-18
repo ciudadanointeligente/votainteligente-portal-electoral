@@ -2,10 +2,10 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from django.core.urlresolvers import reverse
 from elections.views import HomeView
 from elections.forms import ElectionSearchByTagsForm
-from unittest import skip
 from elections.models import Election
 from django.contrib.auth.forms import AuthenticationForm
-from backend_citizen.forms import UserCreationForm as RegistrationForm
+from backend_citizen.forms import (UserCreationForm as RegistrationForm,
+	GroupCreationForm)
 
 
 class HomeTestCase(TestCase):
@@ -18,7 +18,7 @@ class HomeTestCase(TestCase):
 		self.assertTrue(response.status_code, 200)
 		self.assertTemplateUsed(response, 'elections/home.html')
 		self.assertTemplateUsed(response, 'base.html')
-		self.assertIn('form',response.context)
+		self.assertIn('form', response.context)
 		self.assertIsInstance(response.context['form'], ElectionSearchByTagsForm)
 
 	def test_home_view(self):
@@ -32,8 +32,10 @@ class HomeTestCase(TestCase):
 		self.assertIsInstance(context['form'], ElectionSearchByTagsForm)
 		self.assertIn('register_new_form', context)
 		self.assertIn('login_form', context)
+		self.assertIn('group_login_form', context)
 		self.assertIsInstance(context['register_new_form'], RegistrationForm)
 		self.assertIsInstance(context['login_form'], AuthenticationForm)
+		self.assertIsInstance(context['group_login_form'], GroupCreationForm)
 
 	def test_searchable_elections_disabled(self):
 		Election.objects.all().update(searchable=False)

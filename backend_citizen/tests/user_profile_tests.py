@@ -1,8 +1,6 @@
 # coding=utf-8
-from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
-from backend_citizen.forms import UserChangeForm
 from backend_citizen.models import Profile
 
 
@@ -30,3 +28,4 @@ class UserProfileClass(BackendCitizenTestCaseBase):
         self.assertTrue(profile.image)
         self.assertTrue(profile.description)
         self.assertFalse(profile.first_time_in_backend_citizen)
+        self.assertFalse(profile.is_organization)

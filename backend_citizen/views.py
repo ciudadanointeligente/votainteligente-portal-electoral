@@ -7,13 +7,16 @@ from popular_proposal.forms import ProposalTemporaryDataUpdateForm
 from popular_proposal.models import ProposalTemporaryData
 from django.core.urlresolvers import reverse
 from django.views.generic.edit import UpdateView
-from backend_citizen.forms import UserChangeForm, OrganizationCreationForm
+from backend_citizen.forms import (UserChangeForm,
+                                   OrganizationCreationForm,
+                                   GroupCreationForm)
 from django.contrib.auth.models import User
 from backend_citizen.models import Organization
 from django.views.generic.edit import CreateView
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from registration.backends.hmac.views import RegistrationView
 
 
 class IndexView(TemplateView):
@@ -21,8 +24,6 @@ class IndexView(TemplateView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        if not self.request.user.profile.first_time_in_backend_citizen:
-            return redirect(reverse('backend_citizen:do_you_belong_to_an_org'))
         return super(IndexView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
@@ -96,3 +97,19 @@ class DoYouBelongToAnOrgView(LoginRequiredMixin, TemplateView):
         self.request.user.profile.first_time_in_backend_citizen = True
         self.request.user.profile.save()
         return super(DoYouBelongToAnOrgView, self).get(*args, **kwargs)
+
+
+class GroupRegistrationView(RegistrationView):
+    form_class = GroupCreationForm
+
+    def register(self, form):
+        new_user = super(GroupRegistrationView, self).register(form)
+        return new_user
+
+    def get_success_url(self, user):
+        return reverse('registration_activation_complete')
+
+    def create_inactive_user(self, form):
+        group = super(GroupRegistrationView, self).create_inactive_user(form)
+        form.set_group_profile(group)
+        return group

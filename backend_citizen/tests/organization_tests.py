@@ -88,15 +88,3 @@ class OrganizationCreationAndRelationTestCase(OrganizationTestCase):
         self.client.login(username=self.fiera.username, password=PASSWORD)
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
-
-    def test_get_backend_citizen_index_redirects_for_organization(self):
-        url = reverse('backend_citizen:index')
-        user = User.objects.create_user(username='new_user',
-                                        password='password',
-                                        email='new@user.com')
-        self.client.login(username=user.username, password='password')
-        response = self.client.get(url)
-        do_you_url = reverse('backend_citizen:do_you_belong_to_an_org')
-        self.assertRedirects(response, do_you_url)
-        response = self.client.get(url)
-        self.assertTemplateUsed(response, 'backend_citizen/index.html')

@@ -19,14 +19,11 @@ from django.utils.decorators import method_decorator
 from registration.backends.hmac.views import RegistrationView
 
 
-
 class IndexView(TemplateView):
     template_name = 'backend_citizen/index.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        if not self.request.user.profile.first_time_in_backend_citizen:
-            return redirect(reverse('backend_citizen:do_you_belong_to_an_org'))
         return super(IndexView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):

@@ -13,6 +13,7 @@ def get_field_from_topic(topic):
     field.choices = choices
     return field
 
+
 class CandidateTopicFormBase(forms.Form):
     topic_id = forms.IntegerField(widget=forms.HiddenInput)
     answer = forms.ChoiceField(widget=forms.RadioSelect)
@@ -36,6 +37,7 @@ class CandidateTopicFormBase(forms.Form):
         taken_position.save()
         return taken_position
 
+
 def get_form_class_from_topic(topic):
     class CandidateTopicForm(CandidateTopicFormBase):
         def __init__(self, *args, **kwargs):
@@ -46,21 +48,38 @@ def get_form_class_from_topic(topic):
 
     return CandidateTopicForm
 
+
 def get_fields_dict_from_topic(topic):
     dict_ = OrderedDict()
     topic_id = str(topic.id)
-    dict_['topic_' + topic_id] = forms.IntegerField(widget=forms.HiddenInput,
-                                                    initial=topic.id)
     dict_['answer_for_' + topic_id] = get_field_from_topic(topic)
-    dict_['description_for_' + topic_id] = forms.CharField(widget=forms.TextInput)
+    dict_['description_for_' + topic_id] = forms.CharField(widget=forms.TextInput,
+                                                           required=False)
     return dict_
+
 
 def get_form_for_area(area):
     class MediaNaranjaAreaForm(forms.Form):
         def __init__(self, *args, **kwargs):
+            self.candidate = kwargs.pop('candidate')
+            self.area = area
             super(MediaNaranjaAreaForm, self).__init__(*args, **kwargs)
             for category in area.categories.all():
                 for topic in category.topics.all():
                     self.fields.update(get_fields_dict_from_topic(topic))
+
+        def save(self):
+            for category in self.area.categories.all():
+                for topic in category.topics.all():
+                    topic_key = 'answer_for_' + str(topic.id)
+                    topic_id = int(self.cleaned_data[topic_key])
+                    position = Position.objects.get(id=topic_id)
+                    description_key = 'description_for_' + str(topic.id)
+                    description = self.cleaned_data[description_key]
+                    taken_position = TakenPosition(position=position,
+                                                   topic=topic,
+                                                   person=self.candidate,
+                                                   description=description)
+                    taken_position.save()
 
     return MediaNaranjaAreaForm

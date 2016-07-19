@@ -1,7 +1,7 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import Election, Candidate
-from candidator.models import Topic
+from candidator.models import Topic, TakenPosition
 from backend_candidate.forms import (get_field_from_topic,
                                      get_form_class_from_topic,
                                      get_fields_dict_from_topic,
@@ -70,10 +70,6 @@ class FullMediaNaranjaQuestionaryForCandidates(SoulMateCandidateAnswerTestsBase)
         super(FullMediaNaranjaQuestionaryForCandidates, self).setUp()
 
     def assertFieldsForTopic(self, dict_, topic):
-        hidden = dict_['topic_' + str(self.topic.id)]
-        self.assertIsInstance(hidden, forms.IntegerField)
-        self.assertIsInstance(hidden.widget, forms.HiddenInput)
-        self.assertEquals(hidden.initial, self.topic.id)
 
         topic = dict_['answer_for_' + str(self.topic.id)]
         self.assertIsInstance(topic, forms.ChoiceField)
@@ -83,6 +79,20 @@ class FullMediaNaranjaQuestionaryForCandidates(SoulMateCandidateAnswerTestsBase)
         self.assertIsInstance(comments, forms.CharField)
         self.assertIsInstance(comments.widget, forms.TextInput)
 
+    def get_data_for_topic(self, topic):
+        answer_key = 'answer_for_' + str(topic.id)
+        position = topic.positions.all().order_by('?')[0]
+        description_key = 'description_for_' + str(topic.id)
+        dict_ = {answer_key: position.id,
+                 description_key: ""}
+        return dict_
+
+    def get_form_data_for_area(self, area):
+        data = {}
+        for category in area.categories.all():
+            for topic in category.topics.all():
+                data.update(self.get_data_for_topic(topic))
+        return data
 
     def test_get_dict_with_questions_from_topic(self):
         dict_ = get_fields_dict_from_topic(self.topic)
@@ -91,7 +101,22 @@ class FullMediaNaranjaQuestionaryForCandidates(SoulMateCandidateAnswerTestsBase)
 
     def test_get_form_for_area(self):
         form_class = get_form_for_area(self.tarapaca)
-        form = form_class()
+        form = form_class(candidate=self.candidate)
         for category in self.tarapaca.categories.all():
             for topic in category.topics.all():
                 self.assertFieldsForTopic(form.fields, topic)
+
+    def test_form_saving(self):
+        form_class = get_form_for_area(self.tarapaca)
+        data = self.get_form_data_for_area(self.tarapaca)
+        form = form_class(candidate=self.candidate, data=data)
+        self.assertTrue(form.is_valid())
+        form.save()
+        counter = 0
+        for category in self.tarapaca.categories.all():
+            for topic in category.topics.all():
+                counter += 1
+                t_pos = TakenPosition.objects.filter(person=self.candidate,
+                                                     topic=topic)
+                self.assertTrue(t_pos)
+        self.assertTrue(counter)

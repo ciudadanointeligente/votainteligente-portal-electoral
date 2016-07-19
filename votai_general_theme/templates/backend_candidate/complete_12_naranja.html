@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
+{% load bootstrap3 %}
 
 {% block extrajs %}
 {% endblock extrajs %}
@@ -15,20 +16,16 @@
   <div class="container">
   	<div class="row">
   		<div class="col-md-2">
-  			{% for candidacy in candidacies %}
-  				<a href="{% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id %}">
-  					{% trans 'Responder media naranja' %}
-  					{{candidacy.candidate.election}} - 
-  					{{candidacy.candidate}}
-  				</a>
-  			{% endfor %}
-  		</div>
+  			</div>
   		<div class="col-md-10">
+  			<div class="contenedorDestacado fondo-blanco">
+				<form method="post" action="{% url 'backend_candidate:complete_12_naranja' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
+				{% bootstrap_form form %}
 
-	  		<div class="contenedorDestacado fondo-blanco">
-	  			¡Bienvenid@ a la sección de candidaturas!
-	  		</div>
-  		</div>
+				<input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
+				</form>
+			</div>
+		</div>
   	</div>
   </div>
   

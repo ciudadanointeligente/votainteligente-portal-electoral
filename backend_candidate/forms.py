@@ -2,10 +2,12 @@
 from django import forms
 from candidator.models import Topic, Position, TakenPosition
 from collections import OrderedDict
+from django.utils.translation import ugettext as _
 
 
 def get_field_from_topic(topic):
-    field = forms.ChoiceField(widget=forms.RadioSelect)
+    field = forms.ChoiceField(widget=forms.RadioSelect,
+                              required=False)
     field.label = topic.label
     choices = []
     for position in topic.positions.all():
@@ -49,37 +51,64 @@ def get_form_class_from_topic(topic):
     return CandidateTopicForm
 
 
-def get_fields_dict_from_topic(topic):
+def get_fields_dict_from_topic(topic, taken_position=None):
     dict_ = OrderedDict()
     topic_id = str(topic.id)
     dict_['answer_for_' + topic_id] = get_field_from_topic(topic)
+    description_label = _(u'Tus comentarios sobre esta pregunta')
     dict_['description_for_' + topic_id] = forms.CharField(widget=forms.TextInput,
-                                                           required=False)
+                                                           required=False,
+                                                           label=description_label)
+    if taken_position:
+        dict_['answer_for_' + topic_id].initial = taken_position.position.id
+        dict_['description_for_' + topic_id].initial = taken_position.description
     return dict_
 
 
-def get_form_for_area(area):
-    class MediaNaranjaAreaForm(forms.Form):
+def get_form_for_election(election):
+    class MediaNaranjaElectionForm(forms.Form):
         def __init__(self, *args, **kwargs):
             self.candidate = kwargs.pop('candidate')
-            self.area = area
-            super(MediaNaranjaAreaForm, self).__init__(*args, **kwargs)
-            for category in area.categories.all():
+            self.election = election
+            super(MediaNaranjaElectionForm, self).__init__(*args, **kwargs)
+            for category in election.categories.all():
                 for topic in category.topics.all():
-                    self.fields.update(get_fields_dict_from_topic(topic))
+                    taken_positions = (TakenPosition.
+                                       objects.filter(topic=topic,
+                                                      person=self.candidate)
+                                       ).exists()
+                    fields_kwargs = {}
+                    if taken_positions:
+                        taken_position = (TakenPosition.
+                                          objects.get(topic=topic,
+                                                      person=self.candidate)
+                                          )
+                        fields_kwargs.update({'taken_position':
+                                              taken_position})
+                    field_dict = get_fields_dict_from_topic(topic,
+                                                            **fields_kwargs)
+                    self.fields.update(field_dict)
 
         def save(self):
-            for category in self.area.categories.all():
+            for category in self.election.categories.all():
                 for topic in category.topics.all():
                     topic_key = 'answer_for_' + str(topic.id)
-                    topic_id = int(self.cleaned_data[topic_key])
-                    position = Position.objects.get(id=topic_id)
+                    try:
+                        topic_id = int(self.cleaned_data[topic_key])
+                        position = Position.objects.get(id=topic_id)
+                    except ValueError:
+                        topic_id = None
+                        position = None
                     description_key = 'description_for_' + str(topic.id)
                     description = self.cleaned_data[description_key]
-                    taken_position = TakenPosition(position=position,
-                                                   topic=topic,
-                                                   person=self.candidate,
-                                                   description=description)
+                    taken_position, created = (TakenPosition.
+                                               objects.
+                                               get_or_create(topic=topic,
+                                                             person=self.candidate))
+
+                    taken_position.position = position
+                    taken_position.description = description
+
                     taken_position.save()
 
-    return MediaNaranjaAreaForm
+    return MediaNaranjaElectionForm

@@ -45,22 +45,16 @@ $(function(){
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
   <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
 
-{% if user.is_authenticated %}
 <section id="login-form">
   <div class="container">
     <div class="col-md-12 text-center">
         <p>{% blocktrans %}Toma aproximadamente 9 minutos.{% endblocktrans%}</p>
-      <a href="{% url 'popular_proposals:home' %}" class="btn btn-success login"
+      <a href="{% url 'popular_proposals:propose_wizard_full' %}" class="btn btn-success login"
           role="button"> {% blocktrans %}¡Sube tu propuesta!{% endblocktrans %}</a>
     </div>
   </div>
 </section>
 
-{% else %}
-<!-- formulario de registro -->
-{% url 'popular_proposals:home' as home_url %}
-{% include '_login_section.html' with url=home_url %}
-{% endif %}
 {% endblock everything %}
 
 

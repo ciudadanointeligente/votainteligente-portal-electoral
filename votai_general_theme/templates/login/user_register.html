@@ -1,0 +1,10 @@
+{% load i18n %}
+{% load bootstrap3 %}
+
+<form  role="form" action="{% url 'registration_register' %}" method="post" class="landing-form">
+    {% csrf_token %}
+    {% bootstrap_form form show_label=false show_help=false %}
+    <div class="form-actions">
+      <input type="submit" class="btn btn-primary" id="" value="{% trans 'Regístrame' %}"/>
+    </div>
+</form>

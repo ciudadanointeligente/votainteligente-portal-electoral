@@ -1,30 +1,75 @@
 {% extends "registration/registration_base.html" %}
 {% load i18n %}
 {% load bootstrap3 %}
+{% load votainteligente_extras %}
 {% load staticfiles %}
 {% block title %}{% trans "Login" %}{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
 {% endblock extra_css %}
 {% block content %}
-{% url 'auth_password_reset' as auth_pwd_reset_url %}
-{% url 'registration_register' as register_url%}
 
 
-{% if form.errors %}
-<p>{% blocktrans %}Your username and password didn't match. Please try again.{% endblocktrans %}</p>
-{% endif %}
+<div class="col-md-6">
 
-<form method="post" action="{% url 'auth_login' %}">{% csrf_token %}
-{% bootstrap_form form %}
-<p>{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">¿Olvidaste tu password?</a> ó
-    <a href="{{ register_url }}">¿Quieres una cuenta?</a>{% endblocktrans %}</p>
+	<div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{% trans '¿Tienes usuario? ingresa' %}</h3>
+        </div>
+        <div class="panel-body">
+			{% basic_login url=next %}
 
-<input type="submit" value="{% trans "login" %}"  class="btn btn-default btn-lg btn-block" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
-<div class="form-group">
-        {% include '_social_login_buttons.html' %}
+			<div class="form-group">
+			        {% include '_social_login_buttons.html' %}
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="col-md-6">
+
+
+	<div class="panel panel-default">
+        <div class="panel-heading">
+        	<a role="button" data-toggle="collapse" data-parent="#accordion" href="#userRegister" aria-expanded="true" aria-controls="userRegister">{% trans '¿Eres un ciudadano?' %}</a>
+        </div>
+        <div id="userRegister" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+	        <div class="panel-body">
+				{% user_register %}
+				<div class="form-group">
+				        {% include '_social_login_buttons.html' %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="panel panel-default">
+        <div class="panel-heading">
+        	<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#groupRegister" aria-expanded="false" aria-controls="groupRegister">
+        		{% trans '¿Eres un grupo ciudadano?' %}
+        	</a>
+        </div>
+        <div id="groupRegister" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+	        <div class="panel-body">
+				{% group_register %}
+			</div>
+		</div>
+	</div>
+
 
 </div>
-{% endblock %}
+
+
+
+
+
+
+
+
+
+{% endblock content %}

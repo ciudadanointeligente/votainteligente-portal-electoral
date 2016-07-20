@@ -14,13 +14,7 @@
         <h4 class="text-center">{% trans '¿Representas a un grupo ciudadano? Regístrate acá:' %}</h4>
         <div class="panel panel-default">
           <div class="panel-body">
-            <form  role="form" action="{% url 'backend_citizen:create_group' %}" method="post" class="landing-form">
-                {% csrf_token %}
-                {% bootstrap_form group_login_form show_label=false show_help=false %}
-                <div class="form-actions">
-                  <input type="submit" class="btn btn-primary" id="" value="{% trans 'Regístrame' %}"/>
-                </div>
-            </form>
+            {% group_register %}
           </div>
         </div>
         <!-- fin del formulario de registro -->
@@ -39,13 +33,7 @@
         <h4 class="text-center">Regístrate</h4>
         <div class="panel panel-default">
           <div class="panel-body">
-            <form  role="form" action="{% url 'registration_register' %}" method="post" class="landing-form">
-                {% csrf_token %}
-                {% bootstrap_form register_new_form show_label=false show_help=false %}
-                <div class="form-actions">
-                  <input type="submit" class="btn btn-primary" id="" value="{% trans 'Regístrame' %}"/>
-                </div>
-            </form>
+            {% user_register %}
           </div>
         </div>
         <!-- fin del formulario de registro -->
@@ -56,13 +44,7 @@
         <h4 class="text-center">¿Ya tienes un usuario? Ingrésalo</h4>
         <div class="panel panel-default">
           <div class="panel-body">  
-            <form role="form" action="{% url 'auth_login' %}" method="post" class="landing-form login_form">
-              {% csrf_token %}
-              {% bootstrap_form login_form show_label=false show_help=false %}
-              <div class="form-actions">
-                <p><a href="{% url 'auth_password_reset' %}">{% trans '¿Olvidaste tu password?' %}</a></p>
-                <input type="submit" class="btn btn-primary" id="" value="{% trans 'Entrar' %}"/>
-              </div>
+            {% basic_login url=next %}
             </form>
           </div>
         </div>

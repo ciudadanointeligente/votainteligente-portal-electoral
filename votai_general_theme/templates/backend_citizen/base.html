@@ -10,10 +10,15 @@
 	{% url 'backend_citizen:index' as backend_index %}
    <li role="presentation" class="{% ifequal request.path backend_index%} active{% endifequal %}">
 	<a href="{{backend_index}}">{% trans 'Mis propuestas' %}</a></li>
+   	{% url 'backend_citizen:my_supports' as my_supports_url %}
+   <li role="presentation" class="{% ifequal request.path my_supports_url %} active{% endifequal %}">
+   	<a href="{{my_supports_url}}">
+   	{% blocktrans %}Mis apoyos{% endblocktrans %}</a></li>
 	{% url 'backend_citizen:update_my_profile' as my_profile_url %}
    <li role="presentation" class="{% ifequal request.path my_profile_url %} active{% endifequal %}">
    	<a href="{{my_profile_url}}">
    	{% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a></li>
+
 </ul>
 
 {% endblock sidebar %}

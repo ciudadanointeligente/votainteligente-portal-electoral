@@ -2,7 +2,9 @@
 from django.core.urlresolvers import reverse
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django.contrib.auth.models import User
-from popular_proposal.models import ProposalTemporaryData
+from popular_proposal.models import (ProposalTemporaryData,
+                                     ProposalLike,
+                                     PopularProposal)
 from popular_proposal.forms import ProposalTemporaryDataUpdateForm
 from backend_citizen.forms import UserChangeForm
 from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
@@ -12,6 +14,16 @@ from backend_citizen.models import Organization
 class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
     def setUp(self):
         super(BackendCitizenViewsTests, self).setUp()
+        self.proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                       area=self.arica,
+                                                       data=self.data,
+                                                       title=u'This is a title'
+                                                       )
+        self.proposal2 = PopularProposal.objects.create(proposer=self.feli,
+                                                        area=self.arica,
+                                                        data=self.data,
+                                                        title=u'Proposal2'
+                                                        )
 
     def test_my_profile_view(self):
         url = reverse('backend_citizen:index')
@@ -100,6 +112,25 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
         fiera = User.objects.get(id=self.fiera.id)
         self.assertEquals(fiera.profile.description, data['description'])
         self.assertTrue(fiera.profile.image)
+
+    def test_list_my_supports(self):
+        url = reverse('backend_citizen:my_supports')
+        login_url = reverse('auth_login') + '?next=' + url
+        self.assertRedirects(self.client.get(url), login_url)
+
+        like = ProposalLike.objects.create(user=self.fiera,
+                                           proposal=self.proposal)
+        like2 = ProposalLike.objects.create(user=self.fiera,
+                                            proposal=self.proposal2)
+        like_fiera = ProposalLike.objects.create(user=self.feli,
+                                                 proposal=self.proposal)
+        self.client.login(username=self.fiera.username, password=PASSWORD)
+        response = self.client.get(url)
+        self.assertTemplateUsed(response, 'backend_citizen/my_supports.html')
+        self.assertIn(like, response.context['supports'])
+        self.assertIn(like2, response.context['supports'])
+        self.assertNotIn(like_fiera, response.context['supports'])
+
 
 
 class GroupUserCreateView(TestCase):

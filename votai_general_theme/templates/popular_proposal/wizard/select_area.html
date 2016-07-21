@@ -41,9 +41,7 @@
             {% endfor %}
          {% else %}
                 <section>
-                    {% if form.explanation_template %}
-                    <p class="long_text">{% include form.explanation_template %}</p>
-                    {% endif %}
+                    <p class="long_text">{% trans 'Selecciona tu comuna:'%}</p>
                 </section>
                 {% for field in form %}
                     <section>

@@ -260,3 +260,12 @@ def user_register():
 def group_register():
     form = GroupCreationForm()
     return {'form': form}
+
+
+@register.inclusion_tag('_user_image.html')
+def user_image(user, height, width):
+    size = str(width) + 'x' + str(height)
+    return {'user': user,
+            'height': height,
+            'width': width,
+            'size': size}

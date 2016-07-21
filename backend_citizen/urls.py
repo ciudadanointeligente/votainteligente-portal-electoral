@@ -6,6 +6,7 @@ from backend_citizen.views import (IndexView,
                                    OrganizationCreateView,
                                    DoYouBelongToAnOrgView,
                                    GroupRegistrationView,
+                                   MySupportsView,
                                    )
 
 
@@ -22,6 +23,9 @@ urlpatterns = patterns('',
                        url(r'^update/?$',
                            UpdateUserView.as_view(),
                            name='update_my_profile'),
+                       url(r'^my_supports/?$',
+                           MySupportsView.as_view(),
+                           name='my_supports'),
                        url(r'^create_organization/?$',
                            OrganizationCreateView.as_view(),
                            name='create_org'),

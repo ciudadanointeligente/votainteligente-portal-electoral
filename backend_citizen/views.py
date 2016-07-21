@@ -4,7 +4,8 @@ from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView
 from popular_proposal.forms import ProposalTemporaryDataUpdateForm
-from popular_proposal.models import ProposalTemporaryData
+from popular_proposal.models import (ProposalTemporaryData,
+                                     ProposalLike)
 from django.core.urlresolvers import reverse
 from django.views.generic.edit import UpdateView
 from backend_citizen.forms import (UserChangeForm,
@@ -13,10 +14,10 @@ from backend_citizen.forms import (UserChangeForm,
 from django.contrib.auth.models import User
 from backend_citizen.models import Organization
 from django.views.generic.edit import CreateView
-from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from registration.backends.hmac.views import RegistrationView
+from django.views.generic.list import ListView
 
 
 class IndexView(TemplateView):
@@ -113,3 +114,14 @@ class GroupRegistrationView(RegistrationView):
         group = super(GroupRegistrationView, self).create_inactive_user(form)
         form.set_group_profile(group)
         return group
+
+
+class MySupportsView(LoginRequiredMixin, ListView):
+    template_name = 'backend_citizen/my_supports.html'
+    model = ProposalLike
+    context_object_name = 'supports'
+
+    def get_queryset(self):
+        qs = super(MySupportsView, self).get_queryset()
+        qs = qs.filter(user=self.request.user)
+        return qs

@@ -49,11 +49,6 @@
                             {% blocktrans %}Tu perfil ciudadano{% endblocktrans %}
                         </a>
                     </li>
-                    <li><a href="{% url 'backend_citizen:update_my_profile' %}">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                            {% blocktrans %}Actualiza tu perfil{% endblocktrans %}
-                        </a>
-                    </li>
                     {% if user.enrollments.all %}
                     <li role="separator" class="divider"></li>
                     {% endif %}

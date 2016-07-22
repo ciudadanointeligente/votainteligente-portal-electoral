@@ -25,19 +25,43 @@ $(function(){
   
   <!-- Featured Elections  -->
   <div class="contenedorDestacado fondo-blanco">
-  <div class="text-left"><a href="{% url 'area' slug=popular_proposal.area.id %}" class="btn btn-primary btn-lg">{{popular_proposal.area}}</a></div>
-  <h1>{{popular_proposal.title}}</h1><a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}" class="btn btn-info">{% blocktrans %}Agrega más información{% endblocktrans %}</a>
-  
-      <dl>
-          
+
+    <ol class="breadcrumb">
+      <li><a href="{% url 'home' %}">VotaInteligente</a></li>
+      <li><a href="{% url 'area' slug=popular_proposal.area.id%}">{{popular_proposal.area}}</a></li>
+      <li class="active">{{popular_proposal.title}}</li>
+      {% if popular_proposal.proposer = user %}
+      <li>
+        <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %}Agrega más información{% endblocktrans %}</a>
+      </li>
+      {% endif%}
+    </ol>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="md-col-1">
+      <span class="label label-default">{{popular_proposal.data.clasification}}</span>
       
-      {% for key, value in popular_proposal.data.items %}
-          <dt>{{key|popular_proposal_question}}</dt>
-          <dd>{{value|popular_proposal_when}}</dd>
-      {% endfor %}
-      </dl>
-  </div>
-    {% include 'popular_proposal/_likers.html' with proposal=popular_proposal %}
+    </div>
+    <div class="md-col-5">
+      <span class="text-right">Twitea!</span>
+    </div>
+    <div class="md-col-1 md-offset-11">
+     {% include 'popular_proposal/_likers.html' with proposal=popular_proposal %}
+   </div>
+    <div class="md-col-12">
+      <p class="text-center">Esta es una propuesta para {{popular_proposal.area}}, de {{popular_proposal.proposer}}</p>
+    </div>
+    <div class="md-col-12">
+      <h1 class="text-center">{{popular_proposal.title}}</h1>
+
+      {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
+    </div>
+    <div></div>
+</div>
+
+</div>
+
 </div>
 {% endblock content %}
 

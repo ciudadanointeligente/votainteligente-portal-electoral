@@ -2,7 +2,7 @@
 from popular_proposal.tests import ProposingCycleTestCaseBase as TestCase
 from django.contrib.auth.models import User
 from popular_proposal.models import PopularProposal, ProposalLike
-#, SubscriptionEventBase
+import json
 from popular_proposal.forms import SubscriptionForm
 from unittest import skip
 from django.core.urlresolvers import reverse
@@ -19,6 +19,8 @@ class SubscribingToPopularProposal(TestCase):
                                                        )
         self.feli.set_password('alvarez')
         self.feli.save()
+        self.fiera.set_password('feroz')
+        self.fiera.save()
 
     def test_instanciate_liking_a_proposal(self):
         like = ProposalLike.objects.create(user=self.feli,
@@ -71,8 +73,28 @@ class SubscribingToPopularProposal(TestCase):
         })
         self.assertEquals(template.render(context), u"Sí")
         non_liker = User.objects.create_user(username='non_liker', password='s3cr3t')
-        self.assertEquals(template.render(Context({'user':non_liker,
-                                           'proposal':self.proposal})), u'No')
+        self.assertEquals(template.render(Context({'user': non_liker,
+                                          'proposal': self.proposal})), u'No')
+
+    def test_unlike(self):
+        like = ProposalLike.objects.create(user=self.feli,
+                                           proposal=self.proposal)
+        url = reverse('popular_proposals:unlike_proposal', kwargs={'pk': like.id})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+        self.client.login(username=self.fiera,
+                          password='feroz')
+        response = self.client.post(url)
+        self.assertEquals(response.status_code, 404)
+        self.client.login(username=self.feli,
+                          password='alvarez')
+        response = self.client.post(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertFalse(ProposalLike.objects.filter(id=like.id))
+        content = json.loads(response.content)
+        self.assertEquals(int(content['deleted_item']), like.id)
+
+
 
 #class TheEventClass(SubscriptionEventBase):
 #    class Meta:

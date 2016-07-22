@@ -11,11 +11,14 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
-from popular_proposal.models import PopularProposal, ProposalTemporaryData
+from popular_proposal.models import (PopularProposal,
+                                     ProposalTemporaryData,
+                                     ProposalLike)
 from django.shortcuts import render_to_response
 from formtools.wizard.views import SessionWizardView
 from collections import OrderedDict
-
+from django.views.generic import View
+from django.http import JsonResponse, HttpResponseNotFound
 
 class ProposalCreationView(FormView):
     template_name = 'popular_proposal/create.html'
@@ -192,3 +195,20 @@ class PopularProposalUpdateView(UpdateView):
         qs = super(PopularProposalUpdateView, self).get_queryset()
         qs = qs.filter(proposer=self.request.user)
         return qs
+
+
+class UnlikeProposalView(View):
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated():
+            return HttpResponseNotFound()
+        self.pk = self.kwargs.pop('pk')
+        self.like = get_object_or_404(ProposalLike,
+                                      pk=self.pk,
+                                      user=self.request.user)
+        return super(UnlikeProposalView, self).dispatch(request,
+                                                        *args,
+                                                        **kwargs)
+
+    def post(self, request, **kwargs):
+        self.like.delete()
+        return JsonResponse({'deleted_item': self.pk})

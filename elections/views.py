@@ -137,6 +137,7 @@ class SoulMateDetailView(DetailView):
     model = Election
     adapter_class = VotaInteligenteAdapter
     calculator_class = CandidatorCalculator
+    layout = "elections/election_base.html"
 
     def determine_taken_positions(self, positions_dict):
         positions = []
@@ -158,6 +159,12 @@ class SoulMateDetailView(DetailView):
                     pass
         return positions
 
+    def get_context_data(self, **kwargs):
+        context = super(SoulMateDetailView, self).get_context_data(**kwargs)
+        context['layout'] = self.layout
+        context['result_url'] = self.request.build_absolute_uri()
+        return context
+
     def get_information_holder(self, data={}):
         holder = InformationHolder(adapter=self.adapter_class)
         for category in self.object.categories.all():
@@ -169,6 +176,7 @@ class SoulMateDetailView(DetailView):
             for taken_position in taken_positions:
                 holder.add_position(taken_position)
         return holder
+
 
     def post(self, request, *args, **kwargs):
         self.template_name = "elections/soulmate_response.html"

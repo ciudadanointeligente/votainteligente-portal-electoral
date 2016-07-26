@@ -6,21 +6,35 @@
 {% load bootstrap3 %}
 
 {% block main_content %}
-
+<script type="text/javascript">
+var unlike_proposal = function(url){
+    $.post(url, function(data){
+        $('.proposal_' + data.deleted_item).remove();
+    })
+};
+$(function(){
+    $('.unlike_proposal').click(function(event){
+        event.preventDefault();
+        var target = $(event.target);
+        var url = target.parent().attr('href');
+        unlike_proposal(url);
+    })
+});
+</script>
 	<h2>Tus apoyos</h2>
       <table class="table">
         <tr>
             <td>{% trans 'Comuna' %}</td>
             <td>{% trans 'Título' %}</td>
             <td>{% trans 'Proponente' %}</td>
-            <td></td>
+            <td>{% trans 'Acciones' %}</td>
         </tr>
     {% for support in supports %}
-        <tr>
+        <tr class="proposal_{{support.id}}">
             <td><a href="{% url 'area' slug=support.proposal.area.id %}">{{support.proposal.area}}</a></td>
             <td><a href="{{ support.proposal.get_absolute_url }}">{{support.proposal.title}}</a></td>
             <td>{{support.proposal.proposer}}</td>
-            <td></td>
+            <td><a title="{% trans 'Quitar apoyo' %}" class="unlike_proposal" href="{% url 'popular_proposals:unlike_proposal' pk=support.id %}"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a></td>
         </tr>
     {% empty %}
     {% endfor %}

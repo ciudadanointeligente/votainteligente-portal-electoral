@@ -1,6 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
 from elections.models import Election
+from popular_proposal.models import ProposalLike
 import json
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -185,6 +186,10 @@ def likes(user, proposal):
         return True
     return False
 
+
+@register.filter(name='support')
+def support(user, proposal):
+    return ProposalLike.objects.get(user=user, proposal=proposal)
 
 @register.filter(name='popular_proposal_when')
 def popular_proposal_when(when):

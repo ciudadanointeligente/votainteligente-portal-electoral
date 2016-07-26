@@ -161,7 +161,22 @@ class SoulMateTestCase(TestCase):
         self.assertTrue(url)
         response = self.client.get(url)
         self.assertIn("election", response.context)
+        self.assertEquals(response.context['layout'], "elections/election_base.html")
+        self.assertTrue(response.context['result_url'].endswith(url))
         self.assertEquals(response.context["election"], self.antofa)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'elections/soulmate_candidate.html')
+
+    def test_get_embeded_12_naranja(self):
+        url = reverse('embedded_soul_mate_detail_view',
+            kwargs={
+                'slug': self.antofa.slug
+            })
+        response = self.client.get(url)
+        self.assertIn("election", response.context)
+        self.assertEquals(response.context["election"], self.antofa)
+        self.assertEquals(response.context['layout'], "elections/embedded.html")
+        self.assertTrue(response.context['result_url'].endswith(url))
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'elections/soulmate_candidate.html')
 

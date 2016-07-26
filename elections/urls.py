@@ -13,7 +13,7 @@ from elections.views import (
     CandidateFlatPageDetailView,
     )
 from sitemaps import *
-
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.cache import cache_page
 
 media_root = getattr(settings, 'MEDIA_ROOT', '/')
@@ -51,6 +51,10 @@ urlpatterns = patterns('',
     url(r'^election/(?P<slug>[-\w]+)/soul-mate/?$',
         SoulMateDetailView.as_view(template_name='elections/soulmate_candidate.html'),
         name='soul_mate_detail_view'),
+    #soulmate
+    url(r'^election/(?P<slug>[-\w]+)/embedded-soul-mate/?$',
+        csrf_exempt(SoulMateDetailView.as_view(template_name='elections/soulmate_candidate.html', layout="elections/embedded.html")),
+        name='embedded_soul_mate_detail_view'),
 
     url(r'^election/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/?$',
         cache_page(60 * settings.CACHE_MINUTES)(CandidateDetailView.as_view(template_name='elections/candidate_detail.html')),

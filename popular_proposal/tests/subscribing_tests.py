@@ -75,6 +75,8 @@ class SubscribingToPopularProposal(TestCase):
         non_liker = User.objects.create_user(username='non_liker', password='s3cr3t')
         self.assertEquals(template.render(Context({'user': non_liker,
                                           'proposal': self.proposal})), u'No')
+        template = Template(u"{% load votainteligente_extras %}{% with  user|support:proposal as support %}{{support.id}} {{support.user}}{% endwith %}")
+        self.assertEquals(template.render(context), str(like.id) + " " + self.feli.username)
 
     def test_unlike(self):
         like = ProposalLike.objects.create(user=self.feli,

@@ -3,7 +3,23 @@
 {% load i18n %}
 {% load thumbnail %}
 {% if proposal.likers.all %}
-            
+<script type="text/javascript">
+var unlike_proposal = function(url){
+    $.post(url, function(data){
+        location.reload();
+    })
+};
+$(function(){
+    $('.unlike_proposal').click(function(event){
+        event.preventDefault();
+        var target = $(event.target);
+        var url = target.attr('href');
+        unlike_proposal(url);
+    })
+});
+</script>
+
+
 <div class="row">
     <div class="col-md-12">
         <div class="alert alert-success" role="alert">
@@ -29,6 +45,9 @@
             <a class="btn btn-md btn-success full-width" disabled="disabled">
                 {% blocktrans %}Gracias por tu apoyo{% endblocktrans %}
             </a>
+            {% with  user|support:proposal as support %}
+                <a class="unlike_proposal" href="{% url 'popular_proposals:unlike_proposal' pk=support.id %}"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>{% trans 'Quitar apoyo' %}</a>
+            {% endwith %}
             {% endif %}
         {% else %}
             <a class="btn btn-md btn-success full-width"  href="{% url 'auth_login' %}">

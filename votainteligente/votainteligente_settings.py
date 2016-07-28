@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'backend_staff',
     'backend_citizen',
     'backend_candidate',
+    'django_filters',
 )
 
 

@@ -3,7 +3,9 @@ from popular_proposal.forms import (ProposalForm,
                                     SubscriptionForm,
                                     get_form_list,
                                     AreaForm,
-                                    UpdateProposalForm)
+                                    UpdateProposalForm,
+                                    ProposalFilterForm,
+                                    )
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from popolo.models import Area
@@ -19,6 +21,7 @@ from formtools.wizard.views import SessionWizardView
 from collections import OrderedDict
 from django.views.generic import View
 from django.http import JsonResponse, HttpResponseNotFound
+from django_filters.views import FilterView
 
 class ProposalCreationView(FormView):
     template_name = 'popular_proposal/create.html'
@@ -89,8 +92,21 @@ class SubscriptionView(FormView):
         return super(SubscriptionView, self).form_valid(form)
 
 
-class HomeView(TemplateView):
+class HomeView(FilterView):
+    model = PopularProposal
     template_name = 'popular_proposal/home.html'
+
+    def get_queryset(self):
+        qs = super(HomeView, self).get_queryset()
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['form'] = ProposalFilterForm()
+        return context
+
+    def get_context_object_name(self, object_list):
+        return 'popular_proposals'
 
 
 class PopularProposalDetailView(DetailView):

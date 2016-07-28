@@ -81,10 +81,12 @@ class ProposalTemporaryData(models.Model):
         self.status = ProposalTemporaryData.Statuses.Accepted
         self.save()
         title = self.get_title()
+        clasification = self.data.get('clasification', '')
         popular_proposal = PopularProposal(proposer=self.proposer,
                                            title=title,
                                            area=self.area,
                                            temporary=self,
+                                           clasification=clasification,
                                            data=self.data)
         if 'organization' in self.data.keys() and self.data['organization']:
             org_id = self.data['organization']
@@ -145,6 +147,7 @@ class PopularProposal(models.Model):
                               max_length=512,
                               null=True,
                               blank=True)
+    clasification = models.CharField(blank=True, null=True, max_length=255)
 
     def __str__(self):
         return self.title

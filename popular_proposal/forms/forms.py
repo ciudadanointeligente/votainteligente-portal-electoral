@@ -278,3 +278,12 @@ class AreaForm(forms.Form):
         area = Area.objects.get(id=cleaned_data['area'])
         cleaned_data['area'] = area
         return cleaned_data
+
+
+class ProposalFilterForm(forms.Form):
+    area = forms.ChoiceField(required=False)
+    clasification = forms.ChoiceField(TOPIC_CHOICES, required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(ProposalFilterForm, self).__init__(*args, **kwargs)
+        self.fields['area'].choices = [(a.id, a.name) for a in Area.objects.all()]

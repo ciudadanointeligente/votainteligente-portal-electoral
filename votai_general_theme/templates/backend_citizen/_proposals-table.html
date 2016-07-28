@@ -42,6 +42,9 @@
                         {% trans 'Detalles' %}
                     </a>
                 </span>
+                <span class="label label-info">
+                    <a href="{% url 'popular_proposals:citizen_update' slug=proposal.created_proposal.slug %}"><i class="fa fa-pencil" aria-hidden="true"></i>{% blocktrans %}Agrega más información{% endblocktrans %}</a>
+                </span>
 
                 {% endif %}
                 {% if proposal.status == 'rejected' %}

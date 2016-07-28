@@ -46,6 +46,12 @@ class ProposalHomeTestCase(TestCase):
                                                                 clasification=u'dogs',
                                                                 title=u'This is a title'
                                                                 )
+        self.popular_proposal3 = PopularProposal.objects.create(proposer=self.fiera,
+                                                                area=self.alhue,
+                                                                data=data2,
+                                                                clasification=u'dogs',
+                                                                title=u'This is a title'
+                                                                )
 
     def test_there_is_a_page(self):
         
@@ -61,13 +67,19 @@ class ProposalHomeTestCase(TestCase):
 
         self.assertIn(self.popular_proposal2, response.context['popular_proposals'])
 
-        response = self.client.get(self.url, {'clasification': 'dogs'})
+        response = self.client.get(self.url, {'clasification': 'dogs', 'area': ''})
         self.assertNotIn(self.popular_proposal1, response.context['popular_proposals'])
 
         self.assertIn(self.popular_proposal2, response.context['popular_proposals'])
-        
+
+
+        response = self.client.get(self.url, {'clasification': 'dogs', 'area': self.alhue.id})
+        self.assertIn(self.popular_proposal3, response.context['popular_proposals'])
+        self.assertNotIn(self.popular_proposal2, response.context['popular_proposals'])
+        self.assertNotIn(self.popular_proposal1, response.context['popular_proposals'])
 
     def test_filtering_form(self):
         data = {'clasification': '', 'area': ''}
         form = ProposalFilterForm(data=data)
         self.assertTrue(form.is_valid())
+        self.assertFalse(form.cleaned_data)

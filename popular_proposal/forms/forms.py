@@ -287,3 +287,11 @@ class ProposalFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(ProposalFilterForm, self).__init__(*args, **kwargs)
         self.fields['area'].choices = [(a.id, a.name) for a in Area.objects.all()]
+
+    def full_clean(self):
+        super(ProposalFilterForm, self).full_clean()
+        new_cleaned_data = {}
+        for field, value in self.cleaned_data.items():
+            if value:
+                new_cleaned_data[field] = value
+        self.cleaned_data = new_cleaned_data

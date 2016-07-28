@@ -43,13 +43,13 @@ class ProposalHomeTestCase(TestCase):
         self.popular_proposal2 = PopularProposal.objects.create(proposer=self.fiera,
                                                                 area=self.arica,
                                                                 data=data2,
-                                                                clasification=u'dogs',
+                                                                clasification=u'deporte',
                                                                 title=u'This is a title'
                                                                 )
         self.popular_proposal3 = PopularProposal.objects.create(proposer=self.fiera,
                                                                 area=self.alhue,
                                                                 data=data2,
-                                                                clasification=u'dogs',
+                                                                clasification=u'deporte',
                                                                 title=u'This is a title'
                                                                 )
 
@@ -60,20 +60,25 @@ class ProposalHomeTestCase(TestCase):
         self.assertTemplateUsed('popular_proposals/home.html')
 
     def test_brings_a_list_of_proposals(self):
-        response = self.client.get(self.url)
+        response = self.client.get(self.url, {'clasification': '', 'area': ''})
         self.assertIsInstance(response.context['form'], ProposalFilterForm)
 
         self.assertIn(self.popular_proposal1, response.context['popular_proposals'])
 
         self.assertIn(self.popular_proposal2, response.context['popular_proposals'])
 
-        response = self.client.get(self.url, {'clasification': 'dogs', 'area': ''})
+        response = self.client.get(self.url, {'clasification': 'deporte', 'area': ''})
+        form = response.context['form']
+        self.assertEquals(form.fields['clasification'].initial, 'deporte')
         self.assertNotIn(self.popular_proposal1, response.context['popular_proposals'])
 
         self.assertIn(self.popular_proposal2, response.context['popular_proposals'])
 
 
-        response = self.client.get(self.url, {'clasification': 'dogs', 'area': self.alhue.id})
+        response = self.client.get(self.url, {'clasification': 'deporte', 'area': self.alhue.id})
+        form = response.context['form']
+        self.assertEquals(form.fields['clasification'].initial, 'deporte')
+        self.assertEquals(form.fields['area'].initial, self.alhue.id)
         self.assertIn(self.popular_proposal3, response.context['popular_proposals'])
         self.assertNotIn(self.popular_proposal2, response.context['popular_proposals'])
         self.assertNotIn(self.popular_proposal1, response.context['popular_proposals'])
@@ -82,4 +87,3 @@ class ProposalHomeTestCase(TestCase):
         data = {'clasification': '', 'area': ''}
         form = ProposalFilterForm(data=data)
         self.assertTrue(form.is_valid())
-        self.assertFalse(form.cleaned_data)

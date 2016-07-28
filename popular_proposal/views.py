@@ -102,7 +102,8 @@ class HomeView(FilterView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        context['form'] = ProposalFilterForm()
+        initial = self.request.GET
+        context['form'] = ProposalFilterForm(initial=initial)
         return context
 
     def get_context_object_name(self, object_list):

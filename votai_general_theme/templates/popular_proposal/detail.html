@@ -37,6 +37,18 @@ $(function(){
       {% endif%}
     </ol>
 
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-12">
+      <a href="#" class="thumbnail">
+        {% if popular_proposal.image %}
+          {% thumbnail popular_proposal.image "1200x600" crop="center" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+          {% endthumbnail %}
+        {% endif %}
+      </a>
+    </div>
+  </div>
+
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="md-col-1">
@@ -50,18 +62,26 @@ $(function(){
      {% include 'popular_proposal/_likers.html' with proposal=popular_proposal %}
    </div>
     <div class="md-col-12">
-      <p class="text-center">Esta es una propuesta para {{popular_proposal.area}}, de {{popular_proposal.proposer}}</p>
+      <p class="text-center">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>
     </div>
     <div class="md-col-12">
       <h1 class="text-center">{{popular_proposal.title}}</h1>
 
       {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
     </div>
-    <div></div>
-</div>
 
 </div>
 
+</div>
+    {% if popular_proposal.background %}
+
+    <div class="panel panel-default">
+      <div class="panel-heading">{% trans 'Antecedentes' %}</div>
+      <div class="panel-body">
+        {{popular_proposal.background|linebreaksbr}}
+      </div>
+    </div>
+    {% endif %}
 </div>
 {% endblock content %}
 

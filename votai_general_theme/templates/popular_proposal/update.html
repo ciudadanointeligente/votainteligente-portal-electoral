@@ -7,8 +7,8 @@
 
 {% block main_content %}
 
-<h2>{% blocktrans with popular_proposal=popular_proposal %}Agrega más información sobre <a href="{{popular_proposal.get_absolute_url }}">{{popular_proposal}}</a>{% endblocktrans %}</h2>
-<form action="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}" method="POST" role="form">
+<h2>{% blocktrans with popular_proposal=popular_proposal url=popular_proposal.get_absolute_url %}Agrega más información sobre <a href="{{url}}">{{popular_proposal}}</a>{% endblocktrans %}</h2>
+<form action="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}" enctype="multipart/form-data" method="POST" role="form">
     {% csrf_token %}
     {% bootstrap_form form %}
     <div class="form-actions">

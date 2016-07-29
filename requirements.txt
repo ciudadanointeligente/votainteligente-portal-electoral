@@ -39,3 +39,4 @@ vcrpy==1.7.4
 -e git+https://github.com/mysociety/django-images#egg=django-images
 django-bootstrap3==7.0.1
 django-formtools==1.0
+django-filter==0.13.0

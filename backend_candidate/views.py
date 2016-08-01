@@ -83,5 +83,6 @@ class CandidacyJoinView(RedirectView):
                                                              user=self.request.user
                                                              )
         self.contact.candidacy = candidacy
+        self.contact.used_by_candidate = True
         self.contact.save()
         return reverse('backend_candidate:home')

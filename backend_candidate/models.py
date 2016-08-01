@@ -26,6 +26,8 @@ def is_candidate(user):
     return False
 
 def send_candidate_a_candidacy_link(candidate):
+    if candidate.contacts.filter(used_by_candidate=True):
+        return
     for contact in candidate.contacts.all():
         contact.send_mail_with_link()
 

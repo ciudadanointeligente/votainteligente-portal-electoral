@@ -8,6 +8,7 @@ from backend_candidate.models import (Candidacy,
                                       CandidacyContact,
                                       send_candidate_a_candidacy_link)
 from backend_candidate.forms import get_form_for_election
+from backend_candidate.tasks import let_candidate_now_about_us
 from django.template import Template, Context
 from elections.models import Election
 from candidator.models import TakenPosition
@@ -139,7 +140,9 @@ class CandidacyContacts(CandidacyTestCaseBase):
         candidacy = Candidacy.objects.get(candidate=self.candidate,
                                           user=self.feli)
         contact = CandidacyContact.objects.get(id=contact.id)
+
         self.assertEquals(contact.candidacy, candidacy)
+        self.assertTrue(contact.used_by_candidate)
         self.assertTrue(contact.get_absolute_url().endswith(url))
 
     def test_contact_sending_email(self):
@@ -172,3 +175,19 @@ class CandidacyContacts(CandidacyTestCaseBase):
 
         contact.send_mail_with_link()
         self.assertEquals(len(mail.outbox), 0)
+
+    def test_do_not_send_email_to_candidate_who_is_with_us(self):
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail='mail@perrito.cl',
+                                        used_by_candidate=True)
+        send_candidate_a_candidacy_link(self.candidate)
+        self.assertEquals(len(mail.outbox), 0)
+
+    def test_send_mails_to_candidates_tasks(self):
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail='mail@perrito.cl')
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail='mail@gatito.cl')
+        let_candidate_now_about_us.delay()
+        self.assertEquals(len(mail.outbox), 2)
+

@@ -1,7 +1,6 @@
-from django.shortcuts import render
-from backend_candidate.models import is_candidate
+from backend_candidate.models import is_candidate, CandidacyContact, Candidacy
 from django.http import Http404
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, RedirectView
 from django.views.generic import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -18,7 +17,9 @@ class BackendCandidateBase(View):
         if not is_candidate(request.user):
             raise Http404
         self.user = request.user
-        return super(BackendCandidateBase, self).dispatch(request, *args, **kwargs)
+        return super(BackendCandidateBase, self).dispatch(request,
+                                                          *args,
+                                                          **kwargs)
 
 
 class HomeView(BackendCandidateBase, TemplateView):
@@ -64,4 +65,23 @@ class CompleteMediaNaranjaView(FormView):
         return super(CompleteMediaNaranjaView, self).form_valid(form)
 
     def get_success_url(self):
+        return reverse('backend_candidate:home')
+
+
+class CandidacyJoinView(RedirectView):
+    permanent = False
+    query_string = True
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        self.contact = get_object_or_404(CandidacyContact,
+                                         identifier=self.kwargs['identifier'])
+        return super(CandidacyJoinView, self).dispatch(*args, **kwargs)
+
+    def get_redirect_url(self, *args, **kwargs):
+        candidacy, created = Candidacy.objects.get_or_create(candidate=self.contact.candidate,
+                                                             user=self.request.user
+                                                             )
+        self.contact.candidacy = candidacy
+        self.contact.save()
         return reverse('backend_candidate:home')

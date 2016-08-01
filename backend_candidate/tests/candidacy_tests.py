@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from backend_candidate.models import (Candidacy,
                                       is_candidate,
-                                      CandidacyContact)
+                                      CandidacyContact,
+                                      send_candidate_a_candidacy_link)
 from backend_candidate.forms import get_form_for_election
 from django.template import Template, Context
 from elections.models import Election
@@ -115,3 +116,30 @@ class CandidacyContacts(CandidacyTestCaseBase):
                                                   mail='mail@perrito.cl')
         self.assertEquals(contact.times_email_has_been_sent, 0)
         self.assertFalse(contact.used_by_candidate)
+        self.assertTrue(contact.identifier)
+        self.assertEquals(len(contact.identifier.hex), 32)
+
+    def test_candidacy_redirect_view(self):
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl')
+        url_kwargs = {'identifier': contact.identifier.hex}
+        url = reverse('backend_candidate:candidacy_user_join', kwargs=url_kwargs)
+
+        response = self.client.get(url)
+        login_url = reverse('auth_login') + "?next=" + url
+        self.assertRedirects(response, login_url)
+        self.client.login(username=self.feli.username, password='alvarez')
+        response = self.client.get(url)
+        candidate_home = reverse('backend_candidate:home')
+        self.assertRedirects(response, candidate_home)
+        self.assertTrue(Candidacy.objects.filter(candidate=self.candidate,
+                                                 user=self.feli))
+        candidacy = Candidacy.objects.get(candidate=self.candidate,
+                                          user=self.feli)
+        contact = CandidacyContact.objects.get(id=contact.id)
+        self.assertEquals(contact.candidacy, candidacy)
+
+    # def test_contact_sending_email(self):
+    #     contact = CandidacyContact.objects.create(candidate=self.candidate,
+    #                                               mail='mail@perrito.cl')
+    #     send_candidate_a_candidacy_link(self.candidate)

@@ -4,14 +4,15 @@ from django.conf import settings
 try:
     import urlparse
     from urllib import urlencode
-except: # For Python 3
+except:  # For Python 3
     import urllib.parse as urlparse
     from urllib.parse import urlencode
 
 
 def facebook_getter(url):
 
-    graph = facebook.GraphAPI(access_token=settings.FACEBOOK_ACCESS_TOKEN, version='2.5')
+    graph = facebook.GraphAPI(access_token=settings.FACEBOOK_ACCESS_TOKEN,
+                              version='2.5')
     params = {
         'fields': 'about,picture,events,name'
     }
@@ -24,13 +25,12 @@ def facebook_getter(url):
     _id = _object.get('id')
     _about = unicode(_object.get('about', ''))
     _events = _object.get('events', [])
-    _picture_url = _object.get('picture', []).get('data', []).get('url','' )
+    _picture_url = 'https://graph.facebook.com/%(_id)s/picture?type=large' % {'_id': _id}
     _name = _object.get('name', 'Facebook Page')
     return {
         'about': _about,
         'id': _id,
-        'picture_url': _object['picture']['data']['url'],
+        'picture_url': _picture_url,
         'events': _events,
         'name': _name,
     }
-

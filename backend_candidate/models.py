@@ -20,3 +20,10 @@ def is_candidate(user):
     if user.candidacies.count():
         return True
     return False
+
+
+class CandidacyContact(models.Model):
+    candidate = models.ForeignKey(Candidate, related_name='contacts')
+    mail = models.EmailField()
+    times_email_has_been_sent = models.IntegerField(default=0)
+    used_by_candidate = models.BooleanField(default=False)

@@ -3,20 +3,27 @@ from backend_candidate.tests import SoulMateCandidateAnswerTestsBase
 from elections.models import Candidate
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from backend_candidate.models import Candidacy, is_candidate
+from backend_candidate.models import (Candidacy,
+                                      is_candidate,
+                                      CandidacyContact)
 from backend_candidate.forms import get_form_for_election
 from django.template import Template, Context
 from elections.models import Election
 from candidator.models import TakenPosition
 
 
-class CandidacyModelTestCase(SoulMateCandidateAnswerTestsBase):
+
+class CandidacyTestCaseBase(SoulMateCandidateAnswerTestsBase):
     def setUp(self):
-        super(CandidacyModelTestCase, self).setUp()
+        super(CandidacyTestCaseBase, self).setUp()
         self.feli = User.objects.get(username='feli')
         self.feli.set_password('alvarez')
         self.feli.save()
         self.candidate = Candidate.objects.get(pk=1)
+
+class CandidacyModelTestCase(CandidacyTestCaseBase):
+    def setUp(self):
+        super(CandidacyModelTestCase, self).setUp()
 
     def test_instanciate_candidacy(self):
         candidacy = Candidacy.objects.create(user=self.feli,
@@ -52,7 +59,6 @@ class CandidacyModelTestCase(SoulMateCandidateAnswerTestsBase):
         candidacy = Candidacy.objects.create(user=self.feli,
                                              candidate=self.candidate
                                              )
-        print candidacy.candidate.id
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertIn(candidacy, response.context['candidacies'])
@@ -95,3 +101,17 @@ class CandidacyModelTestCase(SoulMateCandidateAnswerTestsBase):
         response = self.client.post(url, data=data)
         self.assertTrue(TakenPosition.objects.filter(person=self.candidate))
         self.assertRedirects(response, reverse('backend_candidate:home'))
+
+
+class CandidacyContacts(CandidacyTestCaseBase):
+    def setUp(self):
+        super(CandidacyContacts, self).setUp()
+        self.candidacy = Candidacy.objects.create(user=self.feli,
+                                                  candidate=self.candidate
+                                                  )
+
+    def test_instanciate(self):
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl')
+        self.assertEquals(contact.times_email_has_been_sent, 0)
+        self.assertFalse(contact.used_by_candidate)

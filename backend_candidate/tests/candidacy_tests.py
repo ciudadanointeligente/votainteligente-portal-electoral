@@ -11,7 +11,7 @@ from backend_candidate.forms import get_form_for_election
 from django.template import Template, Context
 from elections.models import Election
 from candidator.models import TakenPosition
-
+from django.core import mail
 
 
 class CandidacyTestCaseBase(SoulMateCandidateAnswerTestsBase):
@@ -21,6 +21,7 @@ class CandidacyTestCaseBase(SoulMateCandidateAnswerTestsBase):
         self.feli.set_password('alvarez')
         self.feli.save()
         self.candidate = Candidate.objects.get(pk=1)
+
 
 class CandidacyModelTestCase(CandidacyTestCaseBase):
     def setUp(self):
@@ -138,8 +139,26 @@ class CandidacyContacts(CandidacyTestCaseBase):
                                           user=self.feli)
         contact = CandidacyContact.objects.get(id=contact.id)
         self.assertEquals(contact.candidacy, candidacy)
+        self.assertTrue(contact.get_absolute_url().endswith(url))
 
-    # def test_contact_sending_email(self):
-    #     contact = CandidacyContact.objects.create(candidate=self.candidate,
-    #                                               mail='mail@perrito.cl')
-    #     send_candidate_a_candidacy_link(self.candidate)
+    def test_contact_sending_email(self):
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl')
+        contact.send_mail_with_link()
+        self.assertEquals(len(mail.outbox), 1)
+        the_mail = mail.outbox[0]
+        self.assertEquals(the_mail.to, [contact.mail])
+        url_kwargs = {'identifier': contact.identifier.hex}
+        url = reverse('backend_candidate:candidacy_user_join',
+                      kwargs=url_kwargs)
+        self.assertIn(url, the_mail.body)
+        contact = CandidacyContact.objects.get(id=contact.id)
+        self.assertEquals(contact.times_email_has_been_sent, 1)
+
+    def test_candidate_sending_email(self):
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail='mail@perrito.cl')
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail='mail@perrito.cl')
+        send_candidate_a_candidacy_link(self.candidate)
+        self.assertEquals(len(mail.outbox), 2)

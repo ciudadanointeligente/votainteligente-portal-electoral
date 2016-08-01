@@ -4,6 +4,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from elections.models import Candidate
 import uuid
+from votainteligente.send_mails import send_mail
+from django.core.urlresolvers import reverse
+from django.contrib.sites.models import Site
 
 
 class Candidacy(models.Model):
@@ -23,7 +26,8 @@ def is_candidate(user):
     return False
 
 def send_candidate_a_candidacy_link(candidate):
-    pass
+    for contact in candidate.contacts.all():
+        contact.send_mail_with_link()
 
 
 class CandidacyContact(models.Model):
@@ -36,3 +40,14 @@ class CandidacyContact(models.Model):
                                   null=True,
                                   blank=True,
                                   default=None)
+
+    def send_mail_with_link(self):
+        send_mail({'contact': self}, 'candidates/join_us_pls', to=[self.mail],)
+        self.times_email_has_been_sent += 1
+        self.save()
+
+    def get_absolute_url(self):
+        site = Site.objects.get_current()
+        path = reverse('backend_candidate:candidacy_user_join',
+                       kwargs={'identifier': self.identifier.hex})
+        return "http://%s%s" % (site.domain, path)

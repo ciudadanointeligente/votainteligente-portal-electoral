@@ -12,6 +12,7 @@ from django.template import Template, Context
 from elections.models import Election
 from candidator.models import TakenPosition
 from django.core import mail
+from django.test import override_settings
 
 
 class CandidacyTestCaseBase(SoulMateCandidateAnswerTestsBase):
@@ -162,3 +163,12 @@ class CandidacyContacts(CandidacyTestCaseBase):
                                         mail='mail@perrito.cl')
         send_candidate_a_candidacy_link(self.candidate)
         self.assertEquals(len(mail.outbox), 2)
+
+    @override_settings(MAX_AMOUNT_OF_MAILS_TO_CANDIDATE=3)
+    def test_send_candidate_maximum_amount_of_times(self):
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl',
+                                                  times_email_has_been_sent=3)
+
+        contact.send_mail_with_link()
+        self.assertEquals(len(mail.outbox), 0)

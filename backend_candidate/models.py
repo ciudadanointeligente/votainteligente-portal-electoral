@@ -7,7 +7,7 @@ import uuid
 from votainteligente.send_mails import send_mail
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
-
+from django.conf import settings
 
 class Candidacy(models.Model):
     user = models.ForeignKey(User, related_name='candidacies')
@@ -42,6 +42,8 @@ class CandidacyContact(models.Model):
                                   default=None)
 
     def send_mail_with_link(self):
+        if self.times_email_has_been_sent >= settings.MAX_AMOUNT_OF_MAILS_TO_CANDIDATE:
+            return
         send_mail({'contact': self}, 'candidates/join_us_pls', to=[self.mail],)
         self.times_email_has_been_sent += 1
         self.save()

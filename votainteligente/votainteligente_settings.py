@@ -284,6 +284,7 @@ THEME = None
 NO_REPLY_MAIL="no-reply@localhost"
 EMAIL_LOCALPART='municipales2016'
 EMAIL_DOMAIN='votainteligente.cl'
+MAX_AMOUNT_OF_MAILS_TO_CANDIDATE = 3
 
 
 from django.conf import settings

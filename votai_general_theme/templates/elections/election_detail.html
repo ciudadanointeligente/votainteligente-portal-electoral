@@ -10,6 +10,9 @@
 {% block tab_profile %}class="active"{% endblock %}
 
 {% block mainelection %}
+{% if user.is_staff %}
+{% include 'elections/extra_info_per_election.html' %}
+{% endif %}
 <div class="row">
 	<div id="main-election" class="container-candidates">
 		{% for candidate in election.candidates.all %}

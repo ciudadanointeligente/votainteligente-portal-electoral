@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "backend_base.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
@@ -7,28 +7,12 @@
 {% block extrajs %}
 {% endblock extrajs %}
 
-{% block content %}
-<div>
+{% block main_content %}
+<div class="contenedorDestacado fondo-blanco">
+<form method="post" action="{% url 'backend_candidate:complete_12_naranja' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
+{% bootstrap_form form %}
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
-  <!-- Featured Elections  -->
-  <div class="container">
-  	<div class="row">
-  		<div class="col-md-2">
-  			</div>
-  		<div class="col-md-10">
-  			<div class="contenedorDestacado fondo-blanco">
-				<form method="post" action="{% url 'backend_candidate:complete_12_naranja' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
-				{% bootstrap_form form %}
-
-				<input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
-				</form>
-			</div>
-		</div>
-  	</div>
-  </div>
-  
-
+<input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
+</form>
 </div>
-{% endblock content %}
+{% endblock main_content %}

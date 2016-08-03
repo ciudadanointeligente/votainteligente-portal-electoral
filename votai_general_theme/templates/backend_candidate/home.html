@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "backend_base.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
@@ -6,32 +6,13 @@
 {% block extrajs %}
 {% endblock extrajs %}
 
-{% block content %}
-<div>
+{% block extra_sidebar_top %}
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
-  <!-- Featured Elections  -->
-  <div class="container">
-  	<div class="row">
-  		<div class="col-md-2">
-  			{% for candidacy in candidacies %}
-  				<a href="{% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id %}">
-  					{% trans 'Responder media naranja' %}
-  					{{candidacy.candidate.election}} - 
-  					{{candidacy.candidate}}
-  				</a>
-  			{% endfor %}
-  		</div>
-  		<div class="col-md-10">
+{% endblock extra_sidebar_top %}
 
-	  		<div class="contenedorDestacado fondo-blanco">
-	  			¡Bienvenid@ a la sección de candidaturas!
-	  		</div>
-  		</div>
-  	</div>
-  </div>
-  
 
-</div>
-{% endblock content %}
+{% block main_content %}
+¡Bienvenid@ a la sección de candidaturas!
+
+{% endblock main_content %}
+

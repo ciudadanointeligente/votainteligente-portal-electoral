@@ -13,8 +13,19 @@
 
   <div class="row">
     <div class="col-md-4">
-    	{% block sidebar %}
+      {% block sidebar %}
       <ul class="nav nav-pills nav-stacked">
+      {% block extra_sidebar_top %}
+      {% endblock extra_sidebar_top %}
+        {% for candidacy in user.candidacies.all %}
+          {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
+          <li role="presentation" class="{% ifequal request.path backend_candidate%} active{% endifequal %}">
+          <a href="{{backend_candidate}}">
+              {{candidacy.candidate}} por 
+              {{candidacy.candidate.election}}
+            </a></li>
+            
+        {% endfor %}
         {% url 'backend_citizen:index' as backend_index %}
          <li role="presentation" class="{% ifequal request.path backend_index%} active{% endifequal %}">
         <a href="{{backend_index}}">{% trans 'Mis propuestas' %}</a></li>
@@ -27,8 +38,9 @@
           <a href="{{my_profile_url}}">
           {% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a></li>
 
+      {% block extra_sidebar_bottom %}
+      {% endblock extra_sidebar_bottom %}
       </ul>
-
       {% endblock sidebar %}
     </div>
     <div class="col-md-8">

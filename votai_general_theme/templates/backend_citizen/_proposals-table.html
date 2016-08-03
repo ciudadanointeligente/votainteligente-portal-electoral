@@ -53,7 +53,11 @@
             </td>
         </tr>
     {% empty %}
+
     {% endfor %}
         </table>
     {% else %}
+    {% trans 'Aún no tienes propuestas haz la primera' %}
+    <a href="{% url 'popular_proposals:propose_wizard_full' %}" class="btn btn-success login"
+          role="button"> {% blocktrans %}¡Sube tu propuesta!{% endblocktrans %}</a>
     {% endif %}

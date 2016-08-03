@@ -29,7 +29,7 @@ class IndexView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(IndexView, self).get_context_data(*args, **kwargs)
-        context['temporary_proposals'] = ProposalTemporaryData.objects.filter(proposer=self.request.user)
+        context['temporary_proposals'] = ProposalTemporaryData.objects.filter(proposer=self.request.user).order_by('-updated')
         return context
 
 

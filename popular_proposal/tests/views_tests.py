@@ -6,6 +6,31 @@ from popular_proposal.forms import ProposalFilterForm, ProposalAreaFilterForm
 from popular_proposal.filters import ProposalAreaFilter
 
 
+class PopularProposalTestCaseBase(TestCase):
+    def setUp(self):
+        super(PopularProposalTestCaseBase, self).setUp()
+        self.popular_proposal1 = PopularProposal.objects.create(proposer=self.fiera,
+                                                                area=self.arica,
+                                                                data=self.data,
+                                                                clasification=u'education',
+                                                                title=u'This is a title'
+                                                                )
+        data2 = self.data
+        self.popular_proposal2 = PopularProposal.objects.create(proposer=self.fiera,
+                                                                area=self.arica,
+                                                                data=data2,
+                                                                clasification=u'deporte',
+                                                                title=u'This is a title'
+                                                                )
+        self.popular_proposal3 = PopularProposal.objects.create(proposer=self.fiera,
+                                                                area=self.alhue,
+                                        
+                                                                data=data2,
+                                                                clasification=u'deporte',
+                                                                title=u'This is a title'
+                                                                )
+
+
 class ProposalViewTestCase(TestCase):
     def setUp(self):
         super(ProposalViewTestCase, self).setUp()
@@ -30,33 +55,13 @@ class ProposalViewTestCase(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.context['area'], self.arica)
 
-class ProposalHomeTestCase(TestCase):
+
+class ProposalHomeTestCase(PopularProposalTestCaseBase):
     def setUp(self):
         super(ProposalHomeTestCase, self).setUp()
         self.url = reverse('popular_proposals:home')
-        self.popular_proposal1 = PopularProposal.objects.create(proposer=self.fiera,
-                                                                area=self.arica,
-                                                                data=self.data,
-                                                                clasification=u'education',
-                                                                title=u'This is a title'
-                                                                )
-        data2 = self.data
-        self.popular_proposal2 = PopularProposal.objects.create(proposer=self.fiera,
-                                                                area=self.arica,
-                                                                data=data2,
-                                                                clasification=u'deporte',
-                                                                title=u'This is a title'
-                                                                )
-        self.popular_proposal3 = PopularProposal.objects.create(proposer=self.fiera,
-                                                                area=self.alhue,
-                                        
-                                                                data=data2,
-                                                                clasification=u'deporte',
-                                                                title=u'This is a title'
-                                                                )
 
     def test_there_is_a_page(self):
-        
         response = self.client.get(self.url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed('popular_proposals/home.html')
@@ -100,7 +105,6 @@ class ProposalHomeTestCase(TestCase):
         self.assertIn(self.popular_proposal1, response.context['popular_proposals'])
         self.assertIn(self.popular_proposal2, response.context['popular_proposals'])
 
-
     def test_get_area_with_form(self):
         url = reverse('area', kwargs={'slug': self.arica.id})
         response = self.client.get(url, {'clasification': ''})
@@ -115,29 +119,10 @@ class ProposalHomeTestCase(TestCase):
 
         self.assertIn(self.popular_proposal2, response.context['popular_proposals'])
 
-class ProposalFilterTestsCase(TestCase):
+
+class ProposalFilterTestsCase(PopularProposalTestCaseBase):
     def setUp(self):
         super(ProposalFilterTestsCase, self).setUp()
-        self.popular_proposal1 = PopularProposal.objects.create(proposer=self.fiera,
-                                                                area=self.arica,
-                                                                data=self.data,
-                                                                clasification=u'education',
-                                                                title=u'This is a title'
-                                                                )
-        data2 = self.data
-        self.popular_proposal2 = PopularProposal.objects.create(proposer=self.fiera,
-                                                                area=self.arica,
-                                                                data=data2,
-                                                                clasification=u'deporte',
-                                                                title=u'This is a title'
-                                                                )
-        self.popular_proposal3 = PopularProposal.objects.create(proposer=self.fiera,
-                                                                area=self.alhue,
-                                        
-                                                                data=data2,
-                                                                clasification=u'deporte',
-                                                                title=u'This is a title'
-                                                                )
 
     def test_filter_by_area(self):
         proposal_filter = ProposalAreaFilter(area=self.arica)
@@ -145,3 +130,16 @@ class ProposalFilterTestsCase(TestCase):
         self.assertIn(self.popular_proposal1, proposal_filter.qs)
         self.assertIn(self.popular_proposal2, proposal_filter.qs)
         self.assertNotIn(self.popular_proposal3, proposal_filter.qs)
+
+
+class EmbeddedViewsTests(PopularProposalTestCaseBase):
+    def setUp(self):
+        super(EmbeddedViewsTests, self).setUp()
+
+    def test_get_home_view(self):
+        url = reverse('popular_proposals:embedded_home')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'popular_proposal/home.html')
+        self.assertTemplateUsed(response, 'embedded_base.html')
+        self.assertIsInstance(response.context['form'], ProposalFilterForm)

@@ -14,6 +14,7 @@ from elections.models import Election
 from candidator.models import TakenPosition
 from django.core import mail
 from django.test import override_settings
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class CandidacyTestCaseBase(SoulMateCandidateAnswerTestsBase):
@@ -191,3 +192,9 @@ class CandidacyContacts(CandidacyTestCaseBase):
         let_candidate_now_about_us.delay()
         self.assertEquals(len(mail.outbox), 2)
 
+    def test_get_url_candidate_login(self):
+        url = reverse('backend_candidate:candidate_auth_login')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIsInstance(response.context['form'], AuthenticationForm)
+        self.assertTemplateUsed(response, 'backend_candidate/auth_login.html')

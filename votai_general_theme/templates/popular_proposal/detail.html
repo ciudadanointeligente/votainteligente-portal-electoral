@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends layout %}
 {% load votainteligente_extras %}
 {% load staticfiles %}
 {% load i18n %}
@@ -18,7 +18,12 @@ $(function(){
 
 {% block title %}{{popular_proposal.title}}{% endblock title%}
 
-{% block content %}
+{% block everything %}
+
+{% url 'popular_proposals:embedded_detail' slug=popular_proposal.slug as embedded_url%}
+{% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
+
+<div class="container">
 {% include 'modal.html' with modalId='supportProposal' title='Apoya una propuesta' %}
 <div>
 
@@ -83,7 +88,8 @@ $(function(){
     </div>
     {% endif %}
 </div>
-{% endblock content %}
+{% endblock everything %}
+</div>
 
 {% block extrafooter %}
 {% endblock extrafooter %}

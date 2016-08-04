@@ -1,0 +1,10 @@
+{% extends layout %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block everything %}
+<div class="container">
+{% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=form %}
+</div>
+{% endblock everything %}

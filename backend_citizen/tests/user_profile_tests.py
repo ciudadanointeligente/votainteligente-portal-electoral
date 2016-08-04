@@ -29,3 +29,5 @@ class UserProfileClass(BackendCitizenTestCaseBase):
         self.assertTrue(profile.description)
         self.assertFalse(profile.first_time_in_backend_citizen)
         self.assertFalse(profile.is_organization)
+        self.assertFalse(profile.is_journalist)
+

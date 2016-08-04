@@ -18,7 +18,8 @@ $(function(){
 
 {% block title %}{{popular_proposal.title}}{% endblock title%}
 
-{% block content %}
+{% block everything %}
+<div class="container">
 {% include 'modal.html' with modalId='supportProposal' title='Apoya una propuesta' %}
 <div>
 
@@ -83,7 +84,8 @@ $(function(){
     </div>
     {% endif %}
 </div>
-{% endblock content %}
+{% endblock everything %}
+</div>
 
 {% block extrafooter %}
 {% endblock extrafooter %}

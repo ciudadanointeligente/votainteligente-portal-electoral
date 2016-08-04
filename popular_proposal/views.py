@@ -95,6 +95,7 @@ class SubscriptionView(FormView):
 class HomeView(FilterView):
     model = PopularProposal
     template_name = 'popular_proposal/home.html'
+    layout = 'base.html'
 
     def get_queryset(self):
         qs = super(HomeView, self).get_queryset()
@@ -104,6 +105,7 @@ class HomeView(FilterView):
         context = super(HomeView, self).get_context_data(**kwargs)
         initial = self.request.GET
         context['form'] = ProposalFilterForm(initial=initial)
+        context['layout'] = self.layout
         return context
 
     def get_context_object_name(self, object_list):

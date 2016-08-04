@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends layout %}
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
@@ -8,7 +8,7 @@
 {% include 'elections/home.js' with detail_url="popular_proposals:propose_wizard" %}
 {% endblock extrajs %}
 
-{% block content %}
+{% block everything %}
 <div>
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
@@ -45,4 +45,4 @@
     </div>
 </div>
 
-{% endblock content %}
+{% endblock everything %}

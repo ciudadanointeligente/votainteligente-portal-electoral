@@ -1,9 +1,7 @@
 from django import template
-
-register = template.Library()
-
 from django.utils.safestring import mark_safe
 from elections.models import Election
+from popular_proposal.models import ProposalLike
 import json
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -11,6 +9,12 @@ from popolo.models import Area
 from django.core.urlresolvers import reverse
 from popular_proposal.forms.form_texts import WHEN_CHOICES, TEXTS
 from django.template.loader import render_to_string
+from backend_candidate.models import is_candidate
+from django.contrib.auth.forms import AuthenticationForm
+from backend_citizen.forms import (UserCreationForm as RegistrationForm,
+                                   GroupCreationForm)
+
+register = template.Library()
 
 
 @register.simple_tag
@@ -183,6 +187,10 @@ def likes(user, proposal):
     return False
 
 
+@register.filter(name='support')
+def support(user, proposal):
+    return ProposalLike.objects.get(user=user, proposal=proposal)
+
 @register.filter(name='popular_proposal_when')
 def popular_proposal_when(when):
     for item in WHEN_CHOICES:
@@ -224,7 +232,6 @@ def long_text_tag(field):
         try:
             step = render_to_string('popular_proposal/steps/' + long_text)
         except Exception, e:
-            print e
             step = ''
     return step
 
@@ -233,6 +240,37 @@ def long_text_tag(field):
 def tab_text_tag(field):
     return field.field.widget.attrs.get('tab_text')
 
+
 @register.filter(name='times')
 def times(number):
     return range(number)
+
+
+register.filter('is_candidate', is_candidate)
+
+
+@register.inclusion_tag('login/basic.html')
+def basic_login(url=''):
+    form = AuthenticationForm()
+    return {'form': form, 'url': url}
+
+
+@register.inclusion_tag('login/user_register.html')
+def user_register():
+    form = RegistrationForm()
+    return {'form': form}
+
+
+@register.inclusion_tag('login/group_register.html')
+def group_register():
+    form = GroupCreationForm()
+    return {'form': form}
+
+
+@register.inclusion_tag('_user_image.html')
+def user_image(user, height, width):
+    size = str(width) + 'x' + str(height)
+    return {'user': user,
+            'height': height,
+            'width': width,
+            'size': size}

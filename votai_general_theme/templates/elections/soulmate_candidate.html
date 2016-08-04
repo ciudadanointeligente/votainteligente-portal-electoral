@@ -1,4 +1,4 @@
-{% extends "elections/election_base.html" %}
+{% extends layout %}
 {% load i18n %}
 
 {% block extrajs %}
@@ -28,7 +28,7 @@ $(document).ready(function(){
 			$('#btn-find-soulmate').prop('disabled',true);
 			$('#btn-find-soulmate').html('<i class="icon-cogs"></i> {% trans "calculando" %}');
 
-			$.post("{% url 'soul_mate_detail_view' slug=election.slug %}",final_data, function(final_data){
+			$.post("{{result_url}}",final_data, function(final_data){
 				$('#question-soulmate').remove();
 				$('#election').append(final_data);
 				$('html, body').animate({

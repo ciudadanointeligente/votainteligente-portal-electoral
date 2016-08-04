@@ -1,6 +1,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
+{% load votainteligente_extras %}
 
 
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,7 +25,7 @@
                 <li class="dropdown">
                   
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-user" aria-hidden="true"></i>
+                      {% user_image user=user height=16 width=12 %}
                       {{user.username}}<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     {% if user.is_superuser %}
@@ -36,6 +37,12 @@
                     <li><a href="{% url 'backend_staff:index' %}">
                             <i class="fa fa-heart" aria-hidden="true"></i>
                             {% blocktrans %}Sección del Staff{% endblocktrans %}</a></li>
+                    {% endif %}
+
+                    {% if user|is_candidate %}
+                    <li><a href="{% url 'backend_candidate:home' %}">
+                            <i class="fa fa-certificate" aria-hidden="true"></i>
+                            {% blocktrans %}Sección del candidato{% endblocktrans %}</a></li>
                     {% endif %}
                     <li><a href="{% url 'backend_citizen:index' %}">
                             <i class="fa fa-home" aria-hidden="true"></i>
@@ -63,13 +70,6 @@
                         </a>
                     </li>
                     {% endfor %}
-                    <li role="separator" class="divider"></li>
-                    <li>
-                    <a href="{% url 'backend_citizen:create_organization' %}">
-                        <i class="fa fa-hand-rock-o" aria-hidden="true"></i>
-                        {% trans 'Registra una organización' %}
-                    </a>
-                    </li>
                     <li role="separator" class="divider"></li>
                     <li>
                         <a href="{% url 'auth_logout' %}">

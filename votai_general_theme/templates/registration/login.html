@@ -1,30 +1,52 @@
 {% extends "registration/registration_base.html" %}
 {% load i18n %}
 {% load bootstrap3 %}
+{% load votainteligente_extras %}
 {% load staticfiles %}
 {% block title %}{% trans "Login" %}{% endblock %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
 {% endblock extra_css %}
 {% block content %}
-{% url 'auth_password_reset' as auth_pwd_reset_url %}
-{% url 'registration_register' as register_url%}
-
-
-{% if form.errors %}
-<p>{% blocktrans %}Your username and password didn't match. Please try again.{% endblocktrans %}</p>
-{% endif %}
-
-<form method="post" action="{% url 'auth_login' %}">{% csrf_token %}
-{% bootstrap_form form %}
-<p>{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">¿Olvidaste tu password?</a> ó
-    <a href="{{ register_url }}">¿Quieres una cuenta?</a>{% endblocktrans %}</p>
-
-<input type="submit" value="{% trans "login" %}"  class="btn btn-default btn-lg btn-block" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
-<div class="form-group">
-        {% include '_social_login_buttons.html' %}
-
-</div>
-{% endblock %}
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<h3>{% trans '¿Eres usuario? ingresa acá:' %}</h3>
+				{% basic_login url=next %}
+				<div class="form-group">
+					{% include '_social_login_buttons.html' with url=next %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<h3>{% trans 'Regístrate:' %}</h3>
+				<div>
+					<!-- Nav tabs -->
+					<ul class="nav nav-pills" role="tablist">
+						<li role="presentation" class="active"><a href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Soy un ciudadano.' %}</a></li>
+						<li role="presentation"><a href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Soy un grupo ciudadano.' %}</a></li>
+					</ul>
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="userRegister">
+							
+							<p>{% trans 'Regístrate con redes sociales.' %}</p>
+							<div class="form-group">
+								{% include '_social_login_buttons.html' with url=next %}
+							</div>
+							<p>{% trans 'O regístrate con un usuario y password.' %}</p>
+							{% user_register %}
+							
+						</div>
+						<div role="tabpanel" class="tab-pane" id="groupRegister">
+							{% group_register %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}

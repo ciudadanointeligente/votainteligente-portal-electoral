@@ -4,19 +4,19 @@ from popular_proposal.forms import (ProposalForm,
                                     CommentsForm,
                                     RejectionForm,
                                     ProposalTemporaryDataUpdateForm,
+                                    UpdateProposalForm,
                                     AreaForm)
 from django.contrib.auth.models import User
 from popolo.models import Area
 from django.forms import CharField
 from popular_proposal.models import (ProposalTemporaryData,
-                                     Organization,
-                                     Enrollment)
+                                     PopularProposal)
 from django.core import mail
 from django.template.loader import get_template
 from django.template import Context, Template
 from popular_proposal.forms import WHEN_CHOICES
 from popular_proposal.forms.form_texts import TEXTS
-
+from django.core.urlresolvers import reverse
 
 class FormTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
@@ -54,15 +54,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(form.is_valid())
         cleaned_data = form.cleaned_data
         self.assertEquals(cleaned_data['area'], self.arica)
-
-    def test_form_with_organizations(self):
-        org = Organization.objects.create(name=u'cosa nostra')
-        Enrollment.objects.create(user=self.feli,
-                                  organization=org)
-        form = ProposalForm(data=self.data,
-                            proposer=self.feli,
-                            area=self.arica)
-        self.assertIn('organization', form.fields)
 
     def test_comments_form(self):
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
@@ -211,3 +202,52 @@ class FormTestCase(ProposingCycleTestCaseBase):
             self.load + "{% get_questions_and_descriptions popular_proposal %}")
         actual = template.render(Context({'popular_proposal': t_data}))
         self.assertEquals(rendered_template, actual)
+
+
+class UpdateFormTestCase(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(UpdateFormTestCase, self).setUp()
+        self.image = self.get_image()
+        self.popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                               area=self.arica,
+                                                               data=self.data,
+                                                               title=u'This is a title'
+                                                               )
+        self.feli = User.objects.get(username='feli')
+        self.feli.set_password('secr3t')
+        self.feli.save()
+        self.fiera.set_password('feroz')
+        self.fiera.save()
+
+    def test_instanciate_form(self):
+        update_data = {'background': u'Esto es un antecedente'}
+        file_data = {'image': self.image}
+        form = UpdateProposalForm(data=update_data,
+                                  files=file_data,
+                                  instance=self.popular_proposal)
+        self.assertTrue(form.is_valid())
+        proposal = form.save()
+        self.assertEquals(proposal.background, update_data['background'])
+        self.assertTrue(proposal.image)
+
+    def test_get_update_view(self):
+        url = reverse('popular_proposals:citizen_update', kwargs={'slug': self.popular_proposal.slug})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 302)
+        self.client.login(username=self.feli.username, password='secr3t')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+        self.client.login(username=self.fiera.username, password='feroz')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['popular_proposal'], self.popular_proposal)
+        self.assertTemplateUsed(response, 'popular_proposal/update.html')
+        self.assertIsInstance(response.context['form'], UpdateProposalForm)
+
+    def test_post_update_view(self):
+        url = reverse('popular_proposals:citizen_update', kwargs={'slug': self.popular_proposal.slug})
+        kwargs = {'data': {'background': u'Esto es un antecedente'}, 'files': {'image': self.image}}
+        self.client.login(username=self.fiera.username, password='feroz')
+        response = self.client.post(url, **kwargs)
+        detail_url = reverse('popular_proposals:detail', kwargs={'slug': self.popular_proposal.slug})
+        self.assertRedirects(response, detail_url)

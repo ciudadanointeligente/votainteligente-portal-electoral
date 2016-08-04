@@ -1,0 +1,79 @@
+{% extends "embedded_base.html" %}
+{% load i18n %}
+{% load votainteligente_extras %}
+<section id="election">
+	<div class="row breadscrumb-social hidden-xs">
+		<div class="col-md-9">
+			<ul class="breadcrumb">
+				<li><a href="/">{% trans "Portada" %}</a></li>
+				{% if election.area %}
+					<li><a href="{% url 'area' slug=election.area.id %}">{{ election.area }}</a></li>
+				{% endif %}
+				<li><a href="{% url 'election_view' slug=election.slug %}">{{ election }}</a></li>
+				<li class="active">{% block last_breadcrumb %}{% trans "Perfiles"%}{% endblock last_breadcrumb %}</li>
+			</ul>
+		</div>
+		<div class="col-md-3 hidden-xs">
+			<div class="row social-button">
+				<div class="col-md-4">
+					<script src="//apis.google.com/js/plusone.js"></script>
+					<div class="g-plus" data-action="share" data-annotation="none" data-lang="es-419"></div>
+				</div>
+				<div class="col-md-4">
+					<a href="//twitter.com/share" class="twitter-share-button" data-lang="es" data-count="none" data-hashtags="{{ 'hashtags'|website_twitter }}">Tweet</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</div>
+				<div class="col-md-4">
+					<div id="fb-root"></div>
+					<script>(function(d, s, id) {
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id)) return;
+					js = d.createElement(s); js.id = id;
+					js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=354582054647712";
+					fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));</script>
+					<div class="fb-like" data-href="http://{% url_domain %}{% url 'election_view' slug=election.slug %}" data-colorscheme="light" data-layout="button_count" data-action="recommend" data-show-faces="false" data-send="false"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div>
+		<h2 class="text-center">{{ election }}</h2>
+	</div>
+
+	<div class="row">
+		<div class="nav-candidator">
+			<nav class="col-md-12">
+				<ul class="list-inline">
+					{% if 'profiles'|val_navbars  %}
+					<li {% block tab_profile %}{% endblock %}><a href="{% url 'election_view' slug=election.slug %}" accesskey="p" title="{% trans "Perfiles" %} (Alt+p)"><i class="icon-group"></i> {% trans "Perfiles" %}</a></li>
+					{% endif %}
+					{% if 'questionary'|val_navbars and election.uses_questionary  %}
+					<li {% block tab_questionary %}{% endblock %}><a href="{% url 'questionary_detail_view' slug=election.slug %}" accesskey="c" title="{% trans "Cuestionario" %} (Alt+c)"><i class="icon-list"></i> {% trans "Cuestionario" %}</a></li>
+					{% endif %}
+					{% if 'soulmate'|val_navbars and election.uses_soul_mate  %}
+					<li {% block tab_soulmate %}{% endblock %}><a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)"><i class="icon-heart"></i> {% trans "1/2 Naranja" %}</a></li>
+					{% endif %}
+					{% if 'facetoface'|val_navbars and election.uses_face_to_face  %}
+					<li {% block tab_facetoface %}{% endblock %}><a href="{% block url_face_to_face %}{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}{% endblock url_face_to_face %}" accesskey="f" title="{% trans "Frente a Frente" %} (Alt+f)"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a></li>
+					{% endif %}
+					{% if 'ask'|val_navbars and election.uses_preguntales  %}
+					<li {% block tab_ask %}{% endblock %}><a href="{% url 'ask_detail_view' slug=election.slug %}" accesskey="a" title="{% trans "Pregúntales" %} (Alt+a)"><i class="icon-edit"></i> {% trans "Pregúntales" %}</a></li>
+					{% endif %}
+					{% if 'ranking'|val_navbars and election.uses_ranking %}
+					<li {% block tab_ranking %}{% endblock %}><a href="{% url 'ranking_view' slug=election.slug %}" accesskey="r" title="{% trans "Ranking" %} (Alt+r)"><i class="icon-trophy"></i> {% trans "Ranking" %}</a></li>
+					{% endif %}
+					{% if election.extra_info_title %}
+					<li {% block tab_extrainfo %}{% endblock %}><a href="{% url 'election_extra_info' slug=election.slug %}"><i class="icon-info"></i> {{election.extra_info_title}} </a></li>
+					{% endif %}
+
+				</ul>
+			</nav>
+		</div>
+	</div>aaaa
+
+	{% block mainelection %}
+	{% endblock mainelection %}
+
+</section>

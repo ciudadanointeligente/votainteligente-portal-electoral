@@ -9,18 +9,35 @@
 
 {% block everything %}
 
-<section id="lanzamiento">
-  <div class="container text-center">
-    <h3><span>¡Atención! Después del 16 de agosto este sitio tendrá más información relevante para las elecciones municipales 2016.</span></h3>
-  </div>  
-</section> 
-
+{% with a_or_b="ab"|make_list|random %}
 <section id="etapas-propuesta">
   <div class="container">
-    {% include 'popular_proposal/_popular_proposal_stages.html' %}
+      {% with "popular_proposal/_popular_proposal_stages_"|add:a_or_b|add:".html" as template %}
+      {% include template %}
+      {% endwith %}
   </div>
-</section> 
+</section>
 
+<script>
+function ab_testing() {
+	ga('send', {
+	  hitType: 'event',
+	  eventCategory: 'Home',
+	  eventAction: 'login',
+      eventLabel: '{{a_or_b}}'
+	});
+    console.log('probando ab');
+}
+$(function(){
+    $('.login').click(function(event){
+        ab_testing();
+    });
+    $('.login_form').submit(function(event){
+        ab_testing();
+    })
+});
+</script>
+{% endwith %}
 <div class="text-center"><a href="#login-form"><i class="fa fa-chevron-down fa-2x"></i></a></div>
 
 
@@ -28,74 +45,16 @@
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
   <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
 
-{% if user.is_authenticated %}
 <section id="login-form">
   <div class="container">
     <div class="col-md-12 text-center">
-      <a href="{% url 'backend_citizen:index' %}" class="btn btn-primary" role="button">
-          {% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}
-      </a>
+        <p>{% blocktrans %}Toma aproximadamente 9 minutos.{% endblocktrans%}</p>
+      <a href="{% url 'popular_proposals:propose_wizard_full' %}" class="btn btn-success login"
+          role="button"> {% blocktrans %}¡Sube tu propuesta!{% endblocktrans %}</a>
     </div>
   </div>
 </section>
 
-{% else %}
-<!-- formulario de registro -->
-<section id="login-form">
-  <div class="container">  
-    <div class="row">
-      <div class="col-md-12">
-        <h2 class="text-center">Para enviar una propuesta debes crearte un usuario primero</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4">
-        <h4 class="text-center">Ingresa con Facebook o Gmail</h4>
-        {% include '_social_login_buttons.html' %}
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4 col-md-offset-2">
-      <!-- formulario de loggeo -->
-        <h4 class="text-center">Regístrate</h4>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <form  role="form" action="{% url 'registration_register' %}" method="post" class="landing-form">
-                {% csrf_token %}
-                {% bootstrap_form register_new_form show_label=false show_help=false %}
-                <div class="form-actions">
-                  <input type="submit" class="btn btn-primary" id="" value="{% trans 'Regístrame' %}"/>
-                </div>
-            </form>
-          </div>
-        </div>
-        <!-- fin del formulario de registro -->
-      </div>
-
-      <div class="col-md-4">
-      <!-- formulario de loggeo -->
-        <h4 class="text-center">¿Ya tienes un usuario? Ingrésalo</h4>
-        <div class="panel panel-default">
-          <div class="panel-body">  
-            <form role="form" action="{% url 'auth_login' %}" method="post" class="landing-form">
-              {% csrf_token %}
-              {% bootstrap_form login_form show_label=false show_help=false %}
-              <div class="form-actions">
-                <p><a href="{% url 'auth_password_reset' %}">{% trans '¿Olvidaste tu password?' %}</a></p>
-                <input type="submit" class="btn btn-primary" id="" value="{% trans 'Entrar' %}"/>
-              </div>
-            </form>
-          </div>
-        </div>
-    <!-- fin del formulario de loggeo -->
-      </div>
-    </div>
-
-
-  </div>
-</section>
-{% endif %}
 {% endblock everything %}
 
 

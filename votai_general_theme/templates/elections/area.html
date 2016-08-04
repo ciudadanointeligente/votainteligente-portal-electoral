@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
+{% load bootstrap3 %}
 
 {% block extrajs %}
 $(function(){
@@ -26,8 +27,15 @@ $(function(){
   <div class="hidden-xs">
 
     <div class="contenedorDestacado fondo-blanco">
+      <!-- <form role="form" action="{% url 'area' slug=area.id %}" method="get">
+          {% bootstrap_form proposal_filter_form %}
+          <div class="form-actions">
+              <button type="submit" class="btn btn-primary">{% trans 'Busca'%}</button>
+          </div>
+      </form> -->
+
        <div class="row masonry-container">
-          {% for proposal in area.proposals.all %}
+          {% for proposal in popular_proposals %}
           {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
           {% endfor %}
 

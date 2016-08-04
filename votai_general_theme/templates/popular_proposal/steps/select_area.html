@@ -1,0 +1,13 @@
+{% load i18n %}
+<h1>{% trans 'Selecciona tu comuna:' %}</h1>
+{% block extra_css %}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/chosen/1.6.1/chosen.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.6.1/chosen.jquery.min.js"></script>
+
+{% endblock extra_css %}
+
+<script type="text/javascript">
+$(function(){
+	$('select').chosen();
+});
+</script>

@@ -1,68 +1,106 @@
 # coding=utf-8
 from django import forms
-from popular_proposal.models import Organization, Enrollment
-from votainteligente.facebook_page_getter import facebook_getter
-from images.models import Image
-from django.core.files.base import ContentFile
-import requests
 from django.utils.translation import ugettext as _
-from popolo.models import ContactDetail
+from backend_citizen.models import (Profile,
+                                    Organization,
+                                    Enrollment)
+from django.contrib.auth.models import User
+from registration.forms import RegistrationForm as UserCreationForm
 try:
     import urlparse
     from urllib import urlencode
-except: # For Python 3
+except:  # For Python 3
     import urllib.parse as urlparse
     from urllib.parse import urlencode
 
 
-class OrganizationForm(forms.ModelForm):
-    facebook_page = forms.URLField(required=False,
-                                   label=_(u'¿Tienes una página en facebook?'))
+class UserChangeForm(forms.ModelForm):
+    image = forms.ImageField(required=False,
+                             label=_(u"Imagen de perfil"))
+    description = forms.CharField(widget=forms.Textarea,
+                                  required=False,
+                                  label=_(u"Descripción"))
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'image', 'description']
+        labels = {'first_name': _('Tu nombre'),
+                  'last_name': _('Tu Apellido'),
+                  }
+
+    def __init__(self, *args, **kwargs):
+        super(UserChangeForm, self).__init__(*args, **kwargs)
+        for field in Profile._meta.fields:
+            if field.name in self.fields.keys():
+                self.initial[field.name] = getattr(self.instance.profile, field.name)
+
+    def save(self):
+        user = super(UserChangeForm, self).save()
+        for key in self.cleaned_data:
+            value = self.cleaned_data[key]
+            if hasattr(user.profile, key):
+                setattr(user.profile, key, value)
+        user.profile.save()
+        return user
+
+
+class UserCreationForm(UserCreationForm):
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', )
+
+    def save(self, commit=True):
+        user = super(UserCreationForm, self).save(commit=commit)
+        if commit:
+            user.profile.save()
+        return user
+
+
+class GroupCreationForm(UserCreationForm):
+    name = forms.CharField(label=_(u'El nombre de tu organización'))
+
+    class Meta:
+        model = User
+        fields = ('name', 'username', 'email', )
+        labels = {'name': _(u'El nombre de tu organización'),
+                  'username': _(u'Nombre de usuario, ej: amigosdelparque'),
+                  'email': _(u'Email de la organización')
+                  }
+
+    def save(self, commit=True):
+        group = super(GroupCreationForm, self).save(commit)
+        group.first_name = self.cleaned_data['name']
+        if commit:
+            self.set_group_profile(group)
+        return group
+
+    def set_group_profile(self, group):
+        group.save()
+        group.profile.is_organization = True
+        group.profile.save()
+        return group
+
+
+class OrganizationCreationForm(forms.ModelForm):
+    class Meta:
+        model = Organization
+        fields = ('name', 'description')
+        labels = {
+            'name': _(u'¿Cuál es el nombre de tu grupo?'),
+            'description': _(u'¿Podrías describirlo?'),
+        }
+        help_texts = {
+            'name': _(u'Grupo de artistas callejeros.'),
+            'description': _(u'Somos muy buena gente y nos gusta el arte.'),
+        }
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
-        super(OrganizationForm, self).__init__(*args, **kwargs)
+        super(OrganizationCreationForm, self).__init__(*args, **kwargs)
 
-    def clean_name(self):
-        name = self.cleaned_data['name']
-        if Organization.objects.filter(name=name).exists():
-            raise forms.ValidationError(_(u"Una organización con este nombre ya existe"), 'organization-exists')
-        return name
-
-    def clean_facebook_page(self):
-        url = self.cleaned_data['facebook_page']
-        url_parts = list(urlparse.urlparse(url))
-        query = dict()
-        url_parts[4] = urlencode(query)
-        url = urlparse.urlunparse(url_parts)
-        if url.endswith('/'):
-            url = url[:-1]
-        if ContactDetail.objects.filter(contact_type=ContactDetail.CONTACT_TYPES.facebook,
-                                         value=url):
-            raise forms.ValidationError(_(u"Una organización con esta página de Facebook ya existe"),
-                                        'organization-facebook-exists')
-        return url
-
-    def save(self, force_insert=False, force_update=False, commit=True):
-        organization = super(OrganizationForm, self).save()
-        if 'facebook_page' in self.cleaned_data and self.cleaned_data['facebook_page']:
-            result = facebook_getter(self.cleaned_data['facebook_page'])
-            image_content = ContentFile(requests.get(result['picture_url']).content)
-
-            image = Image.objects.create(content_object=organization, source=result['picture_url'])
-            image.image.save(organization.id, image_content)
-            organization.description = result['about']
-            organization.save()
-            c = ContactDetail(content_object=organization,
-                              contact_type=ContactDetail.CONTACT_TYPES.facebook,
-                              value=self.cleaned_data['facebook_page'],
-                              label=result['name'])
-            c.save()
-
-        Enrollment.objects.create(organization=organization,
-                                  user=self.user)
+    def save(self, commit=True):
+        organization = super(OrganizationCreationForm, self).save(commit=commit)
+        Enrollment.objects.create(user=self.user,
+                                  organization=organization)
         return organization
-
-    class Meta:
-        model = Organization
-        fields = ['name', 'facebook_page']

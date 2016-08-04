@@ -1,0 +1,9 @@
+{% load thumbnail %}
+{% load static %}
+{% if user.profile.image %}
+	{% thumbnail user.profile.image size crop="center" as im %}
+		<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+	{% endthumbnail %}
+{% else %}
+	<img src="{% static '/static/img/logo-vi2.png' %}" width="{{width}}" heigth="{{height}}">
+{% endif %}

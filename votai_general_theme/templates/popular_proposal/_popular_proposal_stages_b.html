@@ -5,7 +5,6 @@
 	<div class="col-md-8 col-md-offset-2">
 		<h1 class="text-center">Bienvenido a Vota Inteligente </h1>
 		<h2 class="text-center">¿Tienes ideas para cambiar tu comuna? ¡Cuéntale a tus candidatos a alcalde!</h2>
-		<h2 class="text-center">Solo debes seguir estos pasos:</h2>
 	</div>
 </div>
 
@@ -16,11 +15,6 @@
 			<h3 class="text-center">1</h3>	
 			<h3>Envíanos la propuesta</h3>
 			<h4>Nosotros trabajaremos la propuesta contigo para asegurar que cumpla con todos los requisitos para publicarla.</h4>
-			{% if user.is_authenticated %}
-			<a href="{% url 'backend_citizen:index' %}" class="btn btn-success center-block" role="button"> {% blocktrans %}Formulario de propuesta{% endblocktrans %}</a>
-			{% else %}
-			<a href="/#login-form" class="btn btn-success center-block" role="button"> {% blocktrans %}Formulario de propuestas{% endblocktrans %}</a>
-			{% endif %}
 		</div>
 		<div class="col-sm-6 col-md-4 text-center">
 			<img src="{% static 'img/paso3.png' %}">

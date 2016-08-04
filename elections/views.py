@@ -6,15 +6,19 @@ from django.views.generic import DetailView, TemplateView
 from elections.models import Election
 from elections.models import Candidate, QuestionCategory, CandidateFlatPage
 import logging
-from django.db.models import Q
-logger = logging.getLogger(__name__)
+from backend_citizen.forms import GroupCreationForm
 from candidator.models import Topic, Position, TakenPosition
 from candidator.comparer import Comparer, InformationHolder
 from candidator.adapters import CandidatorCalculator, CandidatorAdapter
 from django.shortcuts import get_object_or_404
 from popolo.models import Area
 from django.contrib.auth.forms import AuthenticationForm
-from registration.forms import RegistrationForm
+from backend_citizen.forms import UserCreationForm as RegistrationForm
+from popular_proposal.models import PopularProposal
+from popular_proposal.forms import ProposalAreaFilterForm
+from popular_proposal.filters import ProposalAreaFilter
+from django_filters.views import FilterMixin
+logger = logging.getLogger(__name__)
 
 
 class ElectionsSearchByTagView(FormView):
@@ -60,6 +64,7 @@ class HomeView(TemplateView):
         context['searchable_elections_enabled'] = True
         context['register_new_form'] = RegistrationForm()
         context['login_form'] = AuthenticationForm()
+        context['group_login_form'] = GroupCreationForm()
         if Election.objects.filter(searchable=True).count() < 1:
             context['searchable_elections_enabled'] = False
 
@@ -136,6 +141,7 @@ class SoulMateDetailView(DetailView):
     model = Election
     adapter_class = VotaInteligenteAdapter
     calculator_class = CandidatorCalculator
+    layout = "elections/election_base.html"
 
     def determine_taken_positions(self, positions_dict):
         positions = []
@@ -149,13 +155,19 @@ class SoulMateDetailView(DetailView):
                 topic = Topic.objects.get(id=topic_id)
                 try:
                     position = Position.objects.get(id=position_id)
-                    positions.append(TakenPosition(
-                        topic=topic,
-                        position=position
-                        ))
+                    positions.append(TakenPosition(topic=topic,
+                                                   position=position
+                                                   )
+                                     )
                 except Position.DoesNotExist:
                     pass
         return positions
+
+    def get_context_data(self, **kwargs):
+        context = super(SoulMateDetailView, self).get_context_data(**kwargs)
+        context['layout'] = self.layout
+        context['result_url'] = self.request.build_absolute_uri()
+        return context
 
     def get_information_holder(self, data={}):
         holder = InformationHolder(adapter=self.adapter_class)
@@ -168,6 +180,7 @@ class SoulMateDetailView(DetailView):
             for taken_position in taken_positions:
                 holder.add_position(taken_position)
         return holder
+
 
     def post(self, request, *args, **kwargs):
         self.template_name = "elections/soulmate_response.html"
@@ -195,11 +208,24 @@ class SoulMateDetailView(DetailView):
         return self.render_to_response(context)
 
 
-class AreaDetailView(DetailView):
+class AreaDetailView(DetailView, FilterMixin):
     model = Area
     context_object_name = 'area'
     template_name = 'area.html'
     slug_field = 'id'
+
+    def get_context_data(self, **kwargs):
+        context = super(AreaDetailView, self).get_context_data(**kwargs)
+        initial = self.request.GET or None
+        context['proposal_filter_form'] = ProposalAreaFilterForm(area=self.object,
+                                                                 initial=initial)
+        kwargs = {'data': self.request.GET or None,
+                  'area': self.object
+                  }
+
+        filterset = ProposalAreaFilter(**kwargs)
+        context['popular_proposals'] = filterset.qs
+        return context
 
 
 class CandidateFlatPageDetailView(DetailView):

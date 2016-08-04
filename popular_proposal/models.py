@@ -10,23 +10,8 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
-from popolo.models import Organization as PopoloOrganization
-from images.models import Image, HasImageMixin
-from django.contrib.contenttypes.fields import GenericRelation
+from backend_citizen.models import Organization
 
-
-class Organization(PopoloOrganization, HasImageMixin):
-    _id = models.AutoField(primary_key=True)
-    images = GenericRelation(Image)
-    
-    def get_absolute_url(self):
-        return reverse('popular_proposals:organization', kwargs={'slug':self.id})
-
-class Enrollment(models.Model):
-    user = models.ForeignKey(User, related_name="enrollments")
-    organization = models.ForeignKey(Organization, related_name="enrollments")
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now_add=True)
 
 
 class NeedingModerationManager(models.Manager):
@@ -44,16 +29,16 @@ class ProposalTemporaryData(models.Model):
         Rejected = ChoiceItem('rejected')
         Accepted = ChoiceItem('accepted')
     proposer = models.ForeignKey(User, related_name='temporary_proposals')
-    organization = models.ForeignKey(Organization,
-                                     related_name='temporary_proposals',
-                                     null=True,
-                                     blank=True,
-                                     default=None)
     area = models.ForeignKey(Area, related_name='temporary_proposals')
     data = PickledObjectField()
     rejected = models.BooleanField(default=False)
     rejected_reason = models.TextField(null=True,
                                        blank=True)
+    organization = models.ForeignKey(Organization,
+                                     related_name='temporary_proposals',
+                                     null=True,
+                                     blank=True,
+                                     default=None)
     comments = PickledObjectField()
     status = models.CharField(max_length=16,
                               choices=Statuses.choices,
@@ -81,7 +66,7 @@ class ProposalTemporaryData(models.Model):
             if key not in self.comments.keys():
                 self.comments[key] = ''
         return super(ProposalTemporaryData, self).save(*args, **kwargs)
-        
+
     def notify_new(self):
         site = Site.objects.get_current()
         mail_context = {
@@ -89,19 +74,23 @@ class ProposalTemporaryData(models.Model):
             'temporary_data': self,
             'site': site,
         }
-        send_mail(mail_context, 'new_temporary_proposal', to=[self.proposer.email])
+        send_mail(mail_context, 'new_temporary_proposal',
+                  to=[self.proposer.email])
 
     def create_proposal(self, moderator=None):
         self.status = ProposalTemporaryData.Statuses.Accepted
         self.save()
         title = self.get_title()
+        clasification = self.data.get('clasification', '')
         popular_proposal = PopularProposal(proposer=self.proposer,
                                            title=title,
                                            area=self.area,
                                            temporary=self,
+                                           clasification=clasification,
                                            data=self.data)
         if 'organization' in self.data.keys() and self.data['organization']:
-            enrollment = self.proposer.enrollments.get(organization__id=self.data['organization'])
+            org_id = self.data['organization']
+            enrollment = self.proposer.enrollments.get(organization__id=org_id)
             popular_proposal.organization = enrollment.organization
         popular_proposal.save()
         site = Site.objects.get_current()
@@ -125,7 +114,8 @@ class ProposalTemporaryData(models.Model):
             'moderator': moderator,
             'site': site,
         }
-        send_mail(mail_context, 'popular_proposal_rejected', to=[self.proposer.email])
+        send_mail(mail_context, 'popular_proposal_rejected',
+                  to=[self.proposer.email])
 
     def get_title(self):
         return self.data.get('title', u'')
@@ -152,6 +142,12 @@ class PopularProposal(models.Model):
     organization = models.ForeignKey(Organization,
                                      related_name='popular_proposals',
                                      null=True)
+    background = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to='proposals/image/',
+                              max_length=512,
+                              null=True,
+                              blank=True)
+    clasification = models.CharField(blank=True, null=True, max_length=255)
 
     def __str__(self):
         return self.title

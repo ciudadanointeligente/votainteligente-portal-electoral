@@ -10,6 +10,10 @@ from candidator.models import Position, TakenPosition
 from django.core.urlresolvers import reverse
 from popolo.models import Area
 from elections.models import QuestionCategory, Topic
+from django.contrib.auth.forms import AuthenticationForm
+from backend_citizen.forms import (UserCreationForm as RegistrationForm,
+    GroupCreationForm)
+from django.contrib.auth.models import User
 
 
 class TemplateTagsTestCase(TestCase):
@@ -247,3 +251,44 @@ class TemplateTagsTestCase(TestCase):
 
         self.assertEqual(template.render(context), u'holaholahola')
 
+
+class LoginFormsTemplateTags(TestCase):
+    def setUp(self):
+        super(LoginFormsTemplateTags, self).setUp()
+
+    def test_get_login_basic_form(self):
+        template_str = get_template('login/basic.html')
+        url = reverse('backend_citizen:index')
+        form = AuthenticationForm()
+        rendered_template = template_str.render(Context({'url': url, 'form': form}))
+        template = Template("{% load votainteligente_extras %}{% basic_login url=url %}")
+        self.assertEqual(template.render(Context({'url': url})),
+                         rendered_template)
+
+    def test_get_register_form(self):
+        template_str = get_template('login/user_register.html')
+        form = RegistrationForm()
+        rendered_template = template_str.render(Context({'form': form}))
+        template = Template("{% load votainteligente_extras %}{% user_register %}")
+        self.assertEqual(template.render(Context({})),
+                         rendered_template)
+
+    def test_get_group_register_form(self):
+        template_str = get_template('login/group_register.html')
+        form = GroupCreationForm()
+        rendered_template = template_str.render(Context({'form': form}))
+        template = Template("{% load votainteligente_extras %}{% group_register %}")
+        self.assertEqual(template.render(Context({})),
+                         rendered_template)
+
+
+    def test_user_image(self):
+        u = User.objects.get(username='feli')
+        template_str = get_template('_user_image.html')
+        rendered_template = template_str.render(Context({'user': u,
+                                                         'size': '100x120',
+                                                         'height': 120,
+                                                         'width': 100}))
+        template = Template("{% load votainteligente_extras %}{% user_image user=user height=120 width=100 %}")
+        self.assertEqual(template.render(Context({'user': u, 'height': 120, 'width': 100})),
+                         rendered_template)

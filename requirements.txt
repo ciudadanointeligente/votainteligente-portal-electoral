@@ -11,9 +11,8 @@ django-markdown-deux==1.0.4
 django-extensions
 sorl-thumbnail==12.4a1
 pillow
-pgmagick
 django-tinymce
-django-registration
+django-registration==2.0.4
 django-registration-defaults
 mimeparse
 django-tastypie
@@ -40,3 +39,4 @@ vcrpy==1.7.4
 -e git+https://github.com/mysociety/django-images#egg=django-images
 django-bootstrap3==7.0.1
 django-formtools==1.0
+django-filter==0.13.0

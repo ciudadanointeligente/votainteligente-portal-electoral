@@ -54,6 +54,15 @@ class Candidate(Person, ExtraInfoMixin):
         are_there_answers = TakenPosition.objects.filter(person=self, position__isnull=False).exists()
         return are_there_answers
 
+    def get_absolute_url(self):
+        election_slug = ''
+        if self.election:
+            election_slug = self.election.slug
+        return reverse('candidate_detail_view', kwargs={
+            'election_slug': election_slug,
+            'slug': self.id
+        })
+
     class Meta:
         verbose_name = _("Candidato")
         verbose_name_plural = _("Candidatos")

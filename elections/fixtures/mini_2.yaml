@@ -28,6 +28,30 @@
     date_joined: 2016-03-21 21:34:35.231273+00:00
     groups: []
     user_permissions: []
+- model: popolo.area
+  pk: algarrobo-5602
+  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+    created_at: ! '2016-03-21 20:19:29.328226+00:00', updated_at: ! '2016-03-21 20:19:29.328991+00:00',
+    name: Algarrobo, identifier: '5602', classification: '', parent: null, geom: null,
+    inhabitants: null}
+- model: popolo.area
+  pk: alhue-13502
+  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+    created_at: ! '2016-03-21 20:19:30.718837+00:00', updated_at: ! '2016-03-21 20:19:30.719553+00:00',
+    name: "Alhu\xE9", identifier: '13502', classification: '', parent: null, geom: null,
+    inhabitants: null}
+- model: popolo.area
+  pk: arica-15101
+  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+    created_at: ! '2016-03-21 20:19:28.948101+00:00', updated_at: ! '2016-03-21 20:19:28.949161+00:00',
+    name: Arica, identifier: '15101', classification: '', parent: null, geom: null,
+    inhabitants: null}
+- model: backend_citizen.profile
+  pk: 1
+  fields: {user: 1, image: '', description: '', first_time_in_backend_citizen: true}
+- model: backend_citizen.profile
+  pk: 2
+  fields: {user: 2, image: '', description: '', first_time_in_backend_citizen: true}
 - fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: true, name: "2a Circunscripcion Antofagasta",
     searchable: true, slug: 2a-circunscripcion-antofagasta}
@@ -35,7 +59,7 @@
   pk: 1
 - fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: true, name: "4a Circunscripcion Coquimbo",
-    searchable: true, slug: 4a-circunscripcion-coquimbo}
+    searchable: true, slug: 4a-circunscripcion-coquimbo, area: algarrobo-5602}
   model: elections.election
   pk: 2
 - fields: { name: Manuel Rojas }
@@ -77,24 +101,6 @@
 - fields: {name: Perros y gatos, slug: perros-y-gatos}
   model: candidator.category
   pk: 1
-- model: popolo.area
-  pk: algarrobo-5602
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
-    created_at: ! '2016-03-21 20:19:29.328226+00:00', updated_at: ! '2016-03-21 20:19:29.328991+00:00',
-    name: Algarrobo, identifier: '5602', classification: '', parent: null, geom: null,
-    inhabitants: null}
-- model: popolo.area
-  pk: alhue-13502
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
-    created_at: ! '2016-03-21 20:19:30.718837+00:00', updated_at: ! '2016-03-21 20:19:30.719553+00:00',
-    name: "Alhu\xE9", identifier: '13502', classification: '', parent: null, geom: null,
-    inhabitants: null}
-- model: popolo.area
-  pk: arica-15101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
-    created_at: ! '2016-03-21 20:19:28.948101+00:00', updated_at: ! '2016-03-21 20:19:28.949161+00:00',
-    name: Arica, identifier: '15101', classification: '', parent: null, geom: null,
-    inhabitants: null}
 - fields: {election: 1, category_ptr: 1}
   model: elections.questioncategory
   pk: 1

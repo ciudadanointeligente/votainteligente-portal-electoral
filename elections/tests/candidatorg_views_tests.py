@@ -37,6 +37,16 @@ class CandidateInElectionsViewsTestCase(TestCase):
         self.assertEqual(response.context['election'], self.coquimbo)
         self.assertEqual(response.context['candidate'], candidate)
 
+    def test_candidate_get_absolute_url(self):
+        candidate = self.coquimbo.candidates.get(id=1)
+        candidate.slug = self.tarapaca.candidates.all()[0].id
+        candidate.save()
+
+        url_2 = reverse('candidate_detail_view', kwargs={
+            'election_slug': self.coquimbo.slug,
+            'slug': candidate.id
+        })
+        self.assertEquals(candidate.get_absolute_url(), url_2)
     def test_url_is_reachable(self):
         url = reverse('candidate_detail_view', kwargs={
             'election_slug': self.tarapaca.slug,
@@ -161,7 +171,22 @@ class SoulMateTestCase(TestCase):
         self.assertTrue(url)
         response = self.client.get(url)
         self.assertIn("election", response.context)
+        self.assertEquals(response.context['layout'], "elections/election_base.html")
+        self.assertTrue(response.context['result_url'].endswith(url))
         self.assertEquals(response.context["election"], self.antofa)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'elections/soulmate_candidate.html')
+
+    def test_get_embeded_12_naranja(self):
+        url = reverse('embedded_soul_mate_detail_view',
+            kwargs={
+                'slug': self.antofa.slug
+            })
+        response = self.client.get(url)
+        self.assertIn("election", response.context)
+        self.assertEquals(response.context["election"], self.antofa)
+        self.assertEquals(response.context['layout'], "elections/embedded.html")
+        self.assertTrue(response.context['result_url'].endswith(url))
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'elections/soulmate_candidate.html')
 

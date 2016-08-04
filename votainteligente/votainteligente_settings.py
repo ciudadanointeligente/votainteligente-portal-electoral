@@ -53,6 +53,8 @@ INSTALLED_APPS = (
     'popular_proposal',
     'backend_staff',
     'backend_citizen',
+    'backend_candidate',
+    'django_filters',
 )
 
 
@@ -172,12 +174,13 @@ LOGGING = {
 BROKER_URL = 'amqp://guest:guest@localhost:5672/'
 CELERY_ALWAYS_EAGER = True
 
-CELERYBEAT_SCHEDULE = {
-        'sending-mails-every-2-minutes': {
-            'task': 'preguntales.tasks.send_mails',
-                    'schedule': timedelta(minutes=2),
-                },
-}
+CELERYBEAT_SCHEDULE = {'sending-mails-every-2-minutes': {'task': 'preguntales.tasks.send_mails',
+                                                         'schedule': timedelta(minutes=2),
+                                                         },
+                       'letting-candidates-know-about-us-every-day': {'task': 'backend_candidate.tasks.let_candidate_now_about_us',
+                                                                      'schedule': timedelta(days=1),
+                                                                      },
+                       }
 
 CELERY_TIMEZONE = 'UTC'
 
@@ -282,6 +285,7 @@ THEME = None
 NO_REPLY_MAIL="no-reply@localhost"
 EMAIL_LOCALPART='municipales2016'
 EMAIL_DOMAIN='votainteligente.cl'
+MAX_AMOUNT_OF_MAILS_TO_CANDIDATE = 3
 
 
 from django.conf import settings

@@ -78,6 +78,7 @@
 
 				</div>
 				<div class="col-md-5">
+					{% include 'elections/candidates/extra_info_per_candidate.html' %}
 					<table class="table">
 						{% include 'elections/candidates/personal_data_candidate.html' with candidate=candidate %}
 					</table>

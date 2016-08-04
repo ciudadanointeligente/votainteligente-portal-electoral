@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+{% load votainteligente_extras%}
+
+{% block head %}
+{{ wizard.form.media }}
+{% endblock %}
+
+{% block content %}
+<div>
+  <div class="contenedorDestacado text-width">
+    {% if area %}
+    <p class="text-light">Creando una propuesta para {{ area }}</p>
+    {% endif %}
+    <div class="row">
+    {% for i in wizard.steps.count|times %}
+    <div class="col-md-2">
+        <div class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}"> </div>
+    </div>
+    {% endfor %}
+    </div>
+
+
+<form role="form" action="" method="post">
+            {% csrf_token %}
+        {{ wizard.management_form }}
+        {% if wizard.form.forms %}
+            {{ wizard.form.management_form }}
+            {% for form in wizard.form.forms %}
+                {% for field in form %}
+                    <section>
+                    <p class="long_text">{% include form.explanation_template %}</p>
+                    </section>
+                    {% for field in form %}
+                        <section>
+                            {% bootstrap_field field show_help=false %}
+                        </section>
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+         {% else %}
+                <section>
+                    <p class="long_text">{% trans 'Selecciona tu comuna:'%}</p>
+                </section>
+                {% for field in form %}
+                    <section>
+                        {% bootstrap_field field show_help=false %}
+                    </section>
+                {% endfor %}
+         {% endif %}
+    {% if wizard.steps.prev %}
+    <div class="pull-left">
+        <button class="btn btn-default" name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "Volver al inicio" %}</button>
+        <button class="btn btn-default" name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "Volver al paso previo" %}</button>
+    </div>
+    {% endif %}
+    <div class="pull-right">
+        <button class="btn btn-primary arrow right" type="submit" value="{% trans "Submit" %}">{% trans "Submit" %} <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="40px" viewBox="0 -3 15 80" xml:space="preserve">
+            <polyline fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="
+            0.375,0.375 45.63,38.087 0.375,75.8 "/>
+          </svg></button>
+    </div>
+
+
+</form>
+</div>
+</div>
+
+{% endblock content %}

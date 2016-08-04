@@ -1,0 +1,23 @@
+{% extends "backend_base.html" %}
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block content %}
+<h1>{% blocktrans %}¡Hola {{user}}! ¿Perteneces a algún grupo ciudadano?{% endblocktrans %}</h1>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="contenedorDestacado fondo-blanco">
+			<div class="col-md-6">
+				<a href="{% url 'backend_citizen:create_org' %}">{% trans 'Sí' %}</a>
+			</div>
+			<div class="col-md-6">
+				<a href="{% url 'backend_citizen:index' %}">{% trans 'No' %}</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+

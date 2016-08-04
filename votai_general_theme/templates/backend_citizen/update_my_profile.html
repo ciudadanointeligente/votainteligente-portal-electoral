@@ -1,0 +1,19 @@
+{% extends "backend_citizen/base.html" %}
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block main_content %}
+
+	<h2>Tu perfil</h2>
+    {% user_image user=user height=200 width=138 %}
+	<form enctype="multipart/form-data" action="{% url 'backend_citizen:update_my_profile' %}" method="POST" role="form">
+	    {% csrf_token %}
+        {% bootstrap_form form %}
+	    <div class="form-actions">
+	        <button type="submit" class="btn btn-success">{% trans 'Actualizar'%}</button>
+	    </div>
+	</form>
+{% endblock main_content %}
+

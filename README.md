@@ -23,6 +23,7 @@ Before the installation process is started a number of requirements is needed
 - [Git](http://git-scm.com/)
 - The requirements that [sorl-thumbnail has](http://sorl-thumbnail.readthedocs.org/en/latest/requirements.html)
 - The requirements that [Pillow](http://pillow.readthedocs.org/en/3.1.x/installation.html#linux-installation) has for your distribution.
+- PgMagick (You can install PgMagick in ubuntu by running `sudo apt-get install python-pgmagick`)
 
 ## Installation process
 
@@ -83,6 +84,18 @@ And in your project in your local_settings.py file you have to add the following
  TEMPLATE_DIRS = (
      '/full/path/to/your/theme/templates/',
  )
+```
+## Testing
+
+You can run tests by doing:
+```
+$ ./test.sh
+```
+
+And there is a shortcut for testing without migrations:
+
+```
+$ ./t.sh
 ```
 
 ## Localization

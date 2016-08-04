@@ -27,6 +27,12 @@
         <section>
             <p class="long_text">{% include form.explanation_template %}</p>
         </section>
+        <section>
+            {% bootstrap_field form.title show_help=false %}
+            {% if form.organization %}
+                {% bootstrap_field form.organization show_help=false %}
+            {% endif %}
+        </section>
         <span>{% trans 'Cuando tu propuesta sea aceptada se la haremos llegar a los candidatos y se verá así:' %}</span>
     <div class="preview fondo-blanco">
         <section>

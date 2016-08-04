@@ -1,5 +1,11 @@
-from django.views.generic.edit import FormView
-from popular_proposal.forms import ProposalForm, SubscriptionForm, get_form_list, AreaForm
+from django.views.generic.edit import FormView, UpdateView
+from popular_proposal.forms import (ProposalForm,
+                                    SubscriptionForm,
+                                    get_form_list,
+                                    AreaForm,
+                                    UpdateProposalForm,
+                                    ProposalFilterForm,
+                                    )
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from popolo.models import Area
@@ -7,10 +13,15 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
-from popular_proposal.models import PopularProposal, Organization, ProposalTemporaryData
+from popular_proposal.models import (PopularProposal,
+                                     ProposalTemporaryData,
+                                     ProposalLike)
 from django.shortcuts import render_to_response
 from formtools.wizard.views import SessionWizardView
-
+from collections import OrderedDict
+from django.views.generic import View
+from django.http import JsonResponse, HttpResponseNotFound
+from django_filters.views import FilterView
 
 class ProposalCreationView(FormView):
     template_name = 'popular_proposal/create.html'
@@ -81,8 +92,22 @@ class SubscriptionView(FormView):
         return super(SubscriptionView, self).form_valid(form)
 
 
-class HomeView(TemplateView):
+class HomeView(FilterView):
+    model = PopularProposal
     template_name = 'popular_proposal/home.html'
+
+    def get_queryset(self):
+        qs = super(HomeView, self).get_queryset()
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        initial = self.request.GET
+        context['form'] = ProposalFilterForm(initial=initial)
+        return context
+
+    def get_context_object_name(self, object_list):
+        return 'popular_proposals'
 
 
 class PopularProposalDetailView(DetailView):
@@ -91,17 +116,10 @@ class PopularProposalDetailView(DetailView):
     context_object_name = 'popular_proposal'
 
 
-class OrganizationDetailView(DetailView):
-    model = Organization
-    template_name = 'popular_proposal/organization.html'
-    context_object_name = 'organization'
-    slug_field = 'id'
-
-
 wizard_form_list = get_form_list()
 
 
-class ProposalWizard(SessionWizardView):
+class ProposalWizardBase(SessionWizardView):
     form_list = wizard_form_list
     template_name = 'popular_proposal/wizard/form_step.html'
 
@@ -110,20 +128,37 @@ class ProposalWizard(SessionWizardView):
         template_name = getattr(form, 'template', self.template_name)
         return template_name
 
+    def get_previous_forms(self):
+        return []
+
+    def get_form_list(self):
+        form_list = OrderedDict()
+        previous_forms = self.get_previous_forms()
+        my_list = previous_forms + get_form_list(user=self.request.user)
+        counter = 0
+        for form_class in my_list:
+            form_list[str(counter)] = form_class
+            counter += 1
+        self.form_list = form_list
+        return form_list
+
+
+class ProposalWizard(ProposalWizardBase):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.area = get_object_or_404(Area, id=self.kwargs['slug'])
+
         return super(ProposalWizard, self).dispatch(request, *args, **kwargs)
 
     def done(self, form_list, **kwargs):
         data = {}
         [data.update(form.cleaned_data) for form in form_list]
-        temporary_data = ProposalTemporaryData.objects.create(proposer=self.request.user,
-                                                              area=self.area,
-                                                              data=data)
-        temporary_data.notify_new()
+        t_data = ProposalTemporaryData.objects.create(proposer=self.request.user,
+                                                      area=self.area,
+                                                      data=data)
+        t_data.notify_new()
         return render_to_response('popular_proposal/wizard/done.html', {
-            'proposal': temporary_data,
+            'proposal': t_data,
             'area': self.area
         })
 
@@ -137,13 +172,18 @@ class ProposalWizard(SessionWizardView):
 full_wizard_form_list = [AreaForm, ] + wizard_form_list
 
 
-class ProposalWizardFull(SessionWizardView):
+class ProposalWizardFull(ProposalWizardBase):
     form_list = full_wizard_form_list
     template_name = 'popular_proposal/wizard/form_step.html'
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        return super(ProposalWizardFull, self).dispatch(request, *args, **kwargs)
+        return super(ProposalWizardFull, self).dispatch(request,
+                                                        *args,
+                                                        **kwargs)
+
+    def get_previous_forms(self):
+        return [AreaForm, ]
 
     def done(self, form_list, **kwargs):
         data = {}
@@ -156,3 +196,36 @@ class ProposalWizardFull(SessionWizardView):
             'proposal': temporary_data,
             'area': area
         })
+
+
+class PopularProposalUpdateView(UpdateView):
+    form_class = UpdateProposalForm
+    template_name = 'popular_proposal/update.html'
+    model = PopularProposal
+    context_object_name = 'popular_proposal'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(PopularProposalUpdateView, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        qs = super(PopularProposalUpdateView, self).get_queryset()
+        qs = qs.filter(proposer=self.request.user)
+        return qs
+
+
+class UnlikeProposalView(View):
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated():
+            return HttpResponseNotFound()
+        self.pk = self.kwargs.pop('pk')
+        self.like = get_object_or_404(ProposalLike,
+                                      pk=self.pk,
+                                      user=self.request.user)
+        return super(UnlikeProposalView, self).dispatch(request,
+                                                        *args,
+                                                        **kwargs)
+
+    def post(self, request, **kwargs):
+        self.like.delete()
+        return JsonResponse({'deleted_item': self.pk})

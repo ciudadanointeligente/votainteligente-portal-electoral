@@ -7,9 +7,22 @@
 {% include 'elections/home.js'  %}
 {% endblock extrajs %}
 
+{% block navbar_background %}yellow{% endblock navbar_background %}
+
 {% block everything %}
 
 {% with a_or_b="ab"|make_list|random %}
+
+<section id="hero">
+  <div class="container">
+    <h1><div class="small">CUANDO TODOS APORTAMOS, EL RESULTADO ES MEJOR</div>A PONERSE CON PROPUESTAS</h1>
+    <p class="text-white">Te invitamos a reunirte con tus vecinas y vecinos, reflexionar, conversar y proponer ideas para tu comuna que podrían ser integradas a los programas de candidatas a alcadesa y candidatos a alcalde de estas Elecciones Municipales.</p>  
+    <a class="btn btn-primary" href=""></a>
+    <a class="btn btn-secondary" href=""></a>
+    <a class="btn btn-off" href=""></a>
+  </div>
+</section>
+
 <section id="etapas-propuesta">
   <div class="container">
       {% with "popular_proposal/_popular_proposal_stages_"|add:a_or_b|add:".html" as template %}

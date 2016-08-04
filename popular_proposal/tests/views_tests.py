@@ -2,7 +2,8 @@
 from popular_proposal.tests import ProposingCycleTestCaseBase as TestCase
 from django.core.urlresolvers import reverse
 from popular_proposal.models import PopularProposal
-from popular_proposal.forms import ProposalFilterForm
+from popular_proposal.forms import ProposalFilterForm, ProposalAreaFilterForm
+from popular_proposal.filters import ProposalAreaFilter
 
 
 class ProposalViewTestCase(TestCase):
@@ -48,6 +49,7 @@ class ProposalHomeTestCase(TestCase):
                                                                 )
         self.popular_proposal3 = PopularProposal.objects.create(proposer=self.fiera,
                                                                 area=self.alhue,
+                                        
                                                                 data=data2,
                                                                 clasification=u'deporte',
                                                                 title=u'This is a title'
@@ -74,7 +76,6 @@ class ProposalHomeTestCase(TestCase):
 
         self.assertIn(self.popular_proposal2, response.context['popular_proposals'])
 
-
         response = self.client.get(self.url, {'clasification': 'deporte', 'area': self.alhue.id})
         form = response.context['form']
         self.assertEquals(form.fields['clasification'].initial, 'deporte')
@@ -87,3 +88,60 @@ class ProposalHomeTestCase(TestCase):
         data = {'clasification': '', 'area': ''}
         form = ProposalFilterForm(data=data)
         self.assertTrue(form.is_valid())
+
+    def test_filtering_form_by_area(self):
+        data = {'clasification': ''}
+        form = ProposalAreaFilterForm(data=data, area=self.alhue)
+        self.assertTrue(form.is_valid())
+
+    def test_area_detail_view_brings_proposals(self):
+        url = reverse('area', kwargs={'slug': self.arica.id})
+        response = self.client.get(url)
+        self.assertIn(self.popular_proposal1, response.context['popular_proposals'])
+        self.assertIn(self.popular_proposal2, response.context['popular_proposals'])
+
+
+    def test_get_area_with_form(self):
+        url = reverse('area', kwargs={'slug': self.arica.id})
+        response = self.client.get(url, {'clasification': ''})
+        self.assertIsInstance(response.context['proposal_filter_form'], ProposalAreaFilterForm)
+        self.assertIn(self.popular_proposal1, response.context['popular_proposals'])
+
+        self.assertIn(self.popular_proposal2, response.context['popular_proposals'])
+        response = self.client.get(url, {'clasification': 'deporte'})
+        form = response.context['proposal_filter_form']
+        self.assertEquals(form.fields['clasification'].initial, 'deporte')
+        self.assertNotIn(self.popular_proposal1, response.context['popular_proposals'])
+
+        self.assertIn(self.popular_proposal2, response.context['popular_proposals'])
+
+class ProposalFilterTestsCase(TestCase):
+    def setUp(self):
+        super(ProposalFilterTestsCase, self).setUp()
+        self.popular_proposal1 = PopularProposal.objects.create(proposer=self.fiera,
+                                                                area=self.arica,
+                                                                data=self.data,
+                                                                clasification=u'education',
+                                                                title=u'This is a title'
+                                                                )
+        data2 = self.data
+        self.popular_proposal2 = PopularProposal.objects.create(proposer=self.fiera,
+                                                                area=self.arica,
+                                                                data=data2,
+                                                                clasification=u'deporte',
+                                                                title=u'This is a title'
+                                                                )
+        self.popular_proposal3 = PopularProposal.objects.create(proposer=self.fiera,
+                                                                area=self.alhue,
+                                        
+                                                                data=data2,
+                                                                clasification=u'deporte',
+                                                                title=u'This is a title'
+                                                                )
+
+    def test_filter_by_area(self):
+        proposal_filter = ProposalAreaFilter(area=self.arica)
+
+        self.assertIn(self.popular_proposal1, proposal_filter.qs)
+        self.assertIn(self.popular_proposal2, proposal_filter.qs)
+        self.assertNotIn(self.popular_proposal3, proposal_filter.qs)

@@ -14,6 +14,10 @@ from django.shortcuts import get_object_or_404
 from popolo.models import Area
 from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import UserCreationForm as RegistrationForm
+from popular_proposal.models import PopularProposal
+from popular_proposal.forms import ProposalAreaFilterForm
+from popular_proposal.filters import ProposalAreaFilter
+from django_filters.views import FilterMixin
 logger = logging.getLogger(__name__)
 
 
@@ -204,11 +208,24 @@ class SoulMateDetailView(DetailView):
         return self.render_to_response(context)
 
 
-class AreaDetailView(DetailView):
+class AreaDetailView(DetailView, FilterMixin):
     model = Area
     context_object_name = 'area'
     template_name = 'area.html'
     slug_field = 'id'
+
+    def get_context_data(self, **kwargs):
+        context = super(AreaDetailView, self).get_context_data(**kwargs)
+        initial = self.request.GET or None
+        context['proposal_filter_form'] = ProposalAreaFilterForm(area=self.object,
+                                                                 initial=initial)
+        kwargs = {'data': self.request.GET or None,
+                  'area': self.object
+                  }
+
+        filterset = ProposalAreaFilter(**kwargs)
+        context['popular_proposals'] = filterset.qs
+        return context
 
 
 class CandidateFlatPageDetailView(DetailView):

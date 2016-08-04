@@ -284,14 +284,33 @@ class AreaForm(forms.Form):
         return cleaned_data
 
 
-class ProposalFilterForm(forms.Form):
-    area = forms.ChoiceField(required=False)
+class ProposalFilterFormBase(forms.Form):
     clasification = forms.ChoiceField(TOPIC_CHOICES, required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(ProposalFilterFormBase, self).__init__(*args, **kwargs)
+
+    def _set_initial(self):
+        for field_name, field in self.fields.items():
+            if field_name in self.initial.keys():
+                self.fields[field_name].initial = self.initial[field_name]
+
+
+class ProposalFilterForm(ProposalFilterFormBase):
+    area = forms.ChoiceField(required=False)
 
     def __init__(self, *args, **kwargs):
         super(ProposalFilterForm, self).__init__(*args, **kwargs)
         self.fields['area'].choices = [('', _(u'Selecciona una comuna'))]
         self.fields['area'].choices += [(a.id, a.name) for a in Area.objects.all()]
+        self._set_initial()
+
+
+class ProposalAreaFilterForm(ProposalFilterFormBase):
+
+    def __init__(self, area, *args, **kwargs):
+        self.area = area
+        super(ProposalAreaFilterForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             if field_name in self.initial.keys():
                 self.fields[field_name].initial = self.initial[field_name]

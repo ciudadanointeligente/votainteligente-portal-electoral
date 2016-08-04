@@ -55,19 +55,8 @@ $(document).ready(function(){
 
 {% block mainelection %}
 
-
-{% if user.profile.is_journalist %}
-<div class="row">
-	<div class="col-md-8">
-	<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#incrustaEnTuPagina" aria-expanded="false" aria-controls="incrustaEnTuPagina">
-	  ¡Incrusta esto en tu página!
-	</button>
-	<div class="collapse" id="incrustaEnTuPagina">
-		  	<textarea style="width:700px;" readonly><iframe src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{% url 'embedded_soul_mate_detail_view' slug=election.slug %}" width="600px" height="500px"></iframe></textarea>
-	</div>
-	</div>
-</div>
-{% endif %}
+{% url 'embedded_soul_mate_detail_view' slug=election.slug as embedded_url%}
+{% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
 <!-- soulmate -->
 <div id="question-soulmate">
 	<div id="msj-alerta" class="alert alert-warning" style="display:none">

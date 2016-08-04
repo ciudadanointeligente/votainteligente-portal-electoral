@@ -120,6 +120,12 @@ class PopularProposalDetailView(DetailView):
     model = PopularProposal
     template_name = 'popular_proposal/detail.html'
     context_object_name = 'popular_proposal'
+    layout = 'base.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(PopularProposalDetailView, self).get_context_data(*args, **kwargs)
+        context['layout'] = self.layout
+        return context
 
 
 wizard_form_list = get_form_list()

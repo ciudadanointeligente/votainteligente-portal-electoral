@@ -49,6 +49,25 @@ class ProposalViewTestCase(TestCase):
         self.assertEqual(response.context['popular_proposal'], popular_proposal)
         self.assertTemplateUsed(response, 'popular_proposal/detail.html')
 
+    def test_embedded_detail_popular_proposal(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title'
+                                                          )
+        # no need to be logged in
+        url = reverse('popular_proposals:embedded_detail',
+                      kwargs={'slug': popular_proposal.slug})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.context['layout'], 'embedded_base.html')
+        self.assertEqual(response.context['popular_proposal'],
+                         popular_proposal)
+        self.assertTemplateUsed(response,
+                                'popular_proposal/detail.html')
+        self.assertTemplateUsed(response,
+                                'embedded_base.html')
+
     def test_thanks_page(self):
         url = reverse('popular_proposals:thanks', kwargs={'pk': self.arica.id})
         response = self.client.get(url)

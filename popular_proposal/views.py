@@ -22,6 +22,10 @@ from collections import OrderedDict
 from django.views.generic import View
 from django.http import JsonResponse, HttpResponseNotFound
 from django_filters.views import FilterView
+from django.views.generic.list import ListView
+from popular_proposal.forms import ProposalAreaFilterForm
+from popular_proposal.filters import ProposalAreaFilter
+
 
 class ProposalCreationView(FormView):
     template_name = 'popular_proposal/create.html'
@@ -208,7 +212,9 @@ class PopularProposalUpdateView(UpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        return super(PopularProposalUpdateView, self).dispatch(request, *args, **kwargs)
+        return super(PopularProposalUpdateView, self).dispatch(request,
+                                                               *args,
+                                                               **kwargs)
 
     def get_queryset(self):
         qs = super(PopularProposalUpdateView, self).get_queryset()
@@ -231,3 +237,29 @@ class UnlikeProposalView(View):
     def post(self, request, **kwargs):
         self.like.delete()
         return JsonResponse({'deleted_item': self.pk})
+
+
+class ProposalsPerArea(ListView):
+    model = PopularProposal
+    layout = 'base.html'
+    template_name = 'popular_proposal/area.html'
+    context_object_name = 'popular_proposals'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.area = get_object_or_404(Area, id=self.kwargs['slug'])
+        return super(ProposalsPerArea, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self):
+        context = super(ProposalsPerArea, self).get_context_data()
+        context['layout'] = self.layout
+        initial = self.request.GET or None
+        context['form'] = ProposalAreaFilterForm(area=self.area,
+                                                 initial=initial)
+        return context
+
+    def get_queryset(self):
+        kwargs = {'data': self.request.GET or None,
+                  'area': self.area
+                  }
+        filterset = ProposalAreaFilter(**kwargs)
+        return filterset

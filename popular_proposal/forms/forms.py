@@ -283,6 +283,8 @@ class AreaForm(forms.Form):
         cleaned_data['area'] = area
         return cleaned_data
 
+print TOPIC_CHOICES
+
 
 class ProposalFilterFormBase(forms.Form):
     clasification = forms.ChoiceField(TOPIC_CHOICES, required=False)

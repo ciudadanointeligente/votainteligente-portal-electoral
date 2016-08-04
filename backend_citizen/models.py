@@ -17,9 +17,12 @@ class Profile(models.Model):
                               null=True,
                               blank=True,
                               verbose_name=_('Tu imagen de perfil'))
-    description = models.TextField(verbose_name=_('Tu descripción'))
+    description = models.TextField(verbose_name=_('Tu descripción'),
+                                   null=True,
+                                   blank=True)
     first_time_in_backend_citizen = models.BooleanField(default=False)
     is_organization = models.BooleanField(default=False)
+    is_journalist = models.BooleanField(default=False)
 
 
 @receiver(post_save, sender=User, dispatch_uid="create_user_profile")

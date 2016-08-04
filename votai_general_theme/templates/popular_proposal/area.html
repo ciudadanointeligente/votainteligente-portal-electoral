@@ -4,30 +4,7 @@
 {% load bootstrap3 %}
 
 {% block everything %}
-<div class="panel panel-default">
-	<div class="panel-heading" role="tab" id="headingOne">
-  <h4 class="panel-title">
-    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#filtro" aria-expanded="false" aria-controls="filtro">
-      {% trans 'Filtrar propuestas' %}
-    </a>
-  </h4>
-</div>
-<div id="filtro" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-  <div class="panel-body">
-	<form action="{{ request.path }}" method="GET" role="form">
-    {% bootstrap_form form %}
-    <div class="form-actions">
-        <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>
-    </div>
-	</form>
-  </div>
-</div>
-
-</div>
-<div class="row masonry-container">
-{% for proposal in popular_proposals %}
-{% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
-{% endfor %}
-
+<div class="container">
+{% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=form %}
 </div>
 {% endblock everything %}

@@ -7,13 +7,14 @@
 @import 'colors';
 
 html, body {
-	background-color: $background-color;
-	color: $letters-color;
+	color: $grey-three;
 	height: 100%;
-	-webkit-font-smoothing: antialiased;
-	font-family: 'Karla', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	font-family: 'OpenSans', sans-serif;
 	padding-top: 35px;
-	font-size: 15px;
+	font-size: 14px;
+  line-height: 24px;
 }
 
 #wrapper {
@@ -32,21 +33,35 @@ html, body {
 }
 
 h1 {
+	font-weight: 700;
+	font-family: 'Arvo', serif;
+  letter-spacing: 6px;
+  font-size: 36px;
+}
+
+h2 {
 	font-weight: 300;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Arvo', serif;
+	font-size: 36px;
+	color: $grey-one;
 }
 
 h3 {
 	font-weight: 900;
 }
 
-h3.portada {
-	font-size: 21px;
+h4 {
+	font-family: 'Arvo', serif;
+	font-size: 22px;
 }
 
 h5 {
-	font-weight: 900;
-	font-size: 14px;
+	font-family: 'Montserrat', sans-serif;
+	letter-spacing: 2px;
+	font-weight: 700;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: $grey-one;
 }
 
 
@@ -63,22 +78,36 @@ strong {
 	font-weight: 900;
 }
 
+.small {
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.line-space {
+    height: 60px;
+}
+
 .text-light {
-	color: $grey-light;
+	color: $grey-five;
+}
+
+.text-white {
+	color: white;
 }
 
 .text-dark {
-	color: $grey-dark;
+	color: $grey-one;
 }
 
 .fondo-blanco {
-	background: $main-background-color;
-	border-radius: 6px;
-	padding: 10px;
+	background: white;
+	padding: 60px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.17);
 }
 
 .contenedor {
-	background-color: $background-color;
+	background-color: white;
 }
 
 .container {
@@ -128,7 +157,54 @@ strong {
 }
 
 .breadcrumb>.active {
-	color: $grey-light;
+	color: $grey-five;
+}
+
+/*Section Hero*/
+
+section#hero {
+  background: #FFC80A;
+  color: white;
+  height: 500px;
+  padding: 90px 0;
+}
+
+h1 .small {
+	color: white;
+	font-size: 14px;
+	letter-spacing: 4px;
+  line-height: 40px;
+}
+
+#hero .btn {
+  margin-right: 6px;
+  margin-bottom: 11px;
+}
+
+/*Section banner*/
+
+section#banner {
+    background: $grey-one;
+    padding: 31px 0 1px;
+}
+
+.counter span {
+  background: white;
+  margin-right: 3px;
+  padding: 6px;
+  border-radius: 3px;
+}
+
+/*Section como funciona*/
+
+section#como-funciona {
+    padding: 80px 0;
+}
+
+/*Section que hago*/
+
+section#que-hago {
+    background: $blue;
 }
 
 /*Elecciones destacadas*/
@@ -241,54 +317,94 @@ strong {
 /*Botones*/
 
 .btn {
-	font-size: 15px;
-  padding: 12px 11px;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 20px;
+  font-size: 12px;
+  padding: 9px 14px;
+}
+
+.btn:hover {
+	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.4);
 }
 
 .btn-lg {
-	font-family: 'Lato', sans-serif;
-	padding: 17px 16px;
+}
+
+
+.btn-sm {
+}
+
+
+.btn-xs {
 }
 
 .btn-success {
-	background-color: $btn-success-background-color;
-	border-color: transparent;
+	background-color: $yellow;
+	border: 3px solid $yellow;
 }
 
 .btn-success:hover {
-	background-color: $btn-success-hover-background-color;
-	border-color: transparent;
+	background-color: lighten($yellow,10%);
+	border: 3px solid lighten($yellow,10%);
 }
 
 .btn-primary {
-	background-color: $green;
-	border-color: transparent;
+	background-color: $grey-five;
+	border: 3px solid $grey-five;
+	color: $grey-two;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
-	background-color: darken($green,15%);
-	border-color: transparent;
+	background-color: lighten($grey-five,5%);
+	border: 3px solid lighten($grey-five,5%);
+	color: $grey-two;
 }
 
 .btn-danger {
-	background-color: $btn-danger;
-	border-color: transparent;
+	background-color: $yellow;
+	color: $grey-two;
+	border: 3px solid white;
 }
 
 .btn-danger:hover {
-	background-color: $btn-danger-hover-background-color;
+	background-color: lighten($yellow,10%);
 	border-color: transparent;
 }
 
 .btn-default {
-    color: white;
-    background-color: $grey-light;
-    border: none;
+    color: $grey-two;
+    background-color: white;
+    border: 3px solid $grey-five;
 }
 
-.btn-default:hover {
-	background-color: darken($grey-light,15%);
-	color: white;
+.btn-default:hover, .btn-default:focus, .btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover {
+  color: $grey-three;
+  background-color: white;
+  border: 3px solid lighten($grey-five,5%);
+}
+
+.btn-info {
+	background: $grey-one;
+	border: 3px solid $grey-one;
+}
+
+.btn-info:hover, .btn-info:focus, .btn-info.active.focus, .btn-info.active:focus, .btn-info.active:hover, .btn-info:active.focus, .btn-info:active:focus, .btn-info:active:hover {
+	background: lighten($grey-one,10%);
+	border: 3px solid lighten($grey-one,10%);
+}
+
+.btn-warning {
+	background-color: white;
+	border: 3px solid white;
+	color: $grey-two;
+}
+
+.btn-warning:hover, .btn-warning:focus, .btn-warning.active.focus, .btn-warning.active:focus, .btn-warning.active:hover, .btn-warning:active.focus, .btn-warning:active:focus, .btn-warning:active:hover {
+	background-color: white;
+	border: 3px solid white;
+	color: $grey-three;
 }
 
 /*Boton flecha*/
@@ -361,19 +477,19 @@ polyline {
 
 .nav-candidator .list-inline>li a {
 	background: $main-background-color;
-	border-right: 3px solid $background-color;
-	/*border-top: 2px solid $background-color;*/
+	border-right: 3px solid white;
+	/*border-top: 2px solid white;*/
 	padding: 10px;
-	color: $grey-light;
+	color: $grey-five;
 	text-decoration: none;
 }
 
 .nav-candidator .list-inline>li:first-child a {
-	border-left: 2px solid $background-color;
+	border-left: 2px solid white;
 }
 
 .nav-candidator .list-inline>li:last-child a {
-	border-right: 2px solid $background-color;
+	border-right: 2px solid white;
 }
 
 .nav-candidator .list-inline>li.active a, .nav-candidator .list-inline>li:hover a {
@@ -411,9 +527,14 @@ polyline {
 	margin-bottom: 17px;
 }
 
-.navbar-inverse {
-	color: $main-background-color;
-	background-color: $letters-color;
+.navbar-inverse.white {
+	color: $grey-three;
+	background-color: white;
+}
+
+.navbar-inverse.yellow {
+	color: white;
+	background-color: $yellow;
 }
 
 .navbar .container {
@@ -425,7 +546,6 @@ polyline {
 }
 
 .nav-candidator .list-inline i.icon-heart {
-	color: $btn-danger;
 }
 
 .nav-candidator .list-inline i.icon-list, .nav-candidator .list-inline i.icon-info {
@@ -474,7 +594,7 @@ polyline {
 #home-search .form-control {
 	color: $main-background-color;
 	background-color: $nav-anchor-background-color;
-	border-left: 1px solid $grey-light;
+	border-left: 1px solid $grey-five;
 	border-radius: 0px;
 	border-top: none;
 	border-bottom: none;
@@ -484,22 +604,22 @@ polyline {
 }
 
 #home-search .form-control::-webkit-input-placeholder {
-   color: $grey-light;
+   color: $grey-five;
    font-weight: 300;
 }
 
 #home-search .form-control:-moz-placeholder { /* Firefox 18- */
-   color: $grey-light;
+   color: $grey-five;
    font-weight: 300;
 }
 
 #home-search .form-control::-moz-placeholder {  /* Firefox 19+ */
-   color: $grey-light;
+   color: $grey-five;
    font-weight: 300;
 }
 
 #home-search .form-control:-ms-input-placeholder {
-   color: $grey-light;
+   color: $grey-five;
    font-weight: 300;
 }
 
@@ -517,8 +637,8 @@ polyline {
 }
 
 #home-search button.btn[type="button"] {
-	background-color: $grey-light;
-	border-color: $grey-light;
+	background-color: $grey-five;
+	border-color: $grey-five;
 }
 
 #home-search .input-group {
@@ -625,7 +745,7 @@ a .fa-chevron-down:hover {
 
 .well {
     margin: 20px 0;
-    background-color: darken($grey,10%);
+    background-color: darken($grey-three,10%);
     border: none;
     border-radius: 0px;
     box-shadow: none;
@@ -699,7 +819,7 @@ p.destacado-tips {
 
 
 .icon-quote-left, .icon-quote-right {
-	color: $grey-light;
+	color: $grey-five;
 }
 
 
@@ -737,7 +857,7 @@ p.destacado-tips {
 }
 
 .fondo-gris {
-	background: $background-color;
+	background: white;
 	border-radius: 6px;
 	margin-bottom: 15px;
 }
@@ -761,7 +881,6 @@ p.destacado-tips {
 }
 
 #soulmate-result .icon-heart {
-	color: $btn-danger;
 }
 
 #soulmate-result a {
@@ -805,7 +924,7 @@ p.destacado-tips {
 .progress {
 	height: 26px;
 	margin-bottom: 5px;
-	background-color: $grey-light;
+	background-color: $grey-five;
 }
 
 .progress-bar-success {
@@ -817,7 +936,6 @@ p.destacado-tips {
 }
 
 .progress-bar-danger {
-	background-color: $btn-danger;
 }
 
 #soulmate-result .container-progress p span {
@@ -888,11 +1006,11 @@ p.destacado-tips {
 }
 
 #compare-candidates .text-right, #compare-candidates .text-center {
-	color: $grey-light;
+	color: $grey-five;
 }
 
 #compare-candidates i {
-	color: $grey-light;
+	color: $grey-five;
 }
 
 #compare-candidates .text-center i {
@@ -1092,21 +1210,18 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 }
 
 .no-responden .table tbody>tr>td.second {
-	border-bottom: 1px solid $btn-danger-hover-background-color;
 	border-top: none;
 	border-left: none;
 	border-right: none;
 }
 
 .no-responden .panel-body {
-	background: $btn-danger;
 	color: $main-background-color;
 	border-radius: 0px 0px 6px 6px;
 }
 
 .panel-danger>.panel-heading {
 	color: $main-background-color;
-	background-color: $btn-danger-hover-background-color;
 	border-color: transparent;
 }
 
@@ -1144,7 +1259,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 .bt-twitter {
-	background: $background-color;
+	background: white;
 	border-radius: 6px;
 	color: $letters-color;
 	text-align: center;
@@ -1156,7 +1271,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 .bt-twitter:hover {
 	background: $letters-color;
-	color: $background-color;
+	color: white;
 }
 
 .bt-twitter i {
@@ -1184,7 +1299,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 .ask-form .form-control {
-	background-color: $background-color;
+	background-color: white;
 	border: none;
 	border-radius: 0px;
 	-webkit-box-shadow: none;
@@ -1198,7 +1313,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 .search-questions .form-control {
 	color: $main-background-color;
-	background-color: $grey-light;
+	background-color: $grey-five;
 	border: none;
 	border-radius: 0px;
 	-webkit-box-shadow: none;
@@ -1213,7 +1328,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 .panel-heading .text-right {
-	color: $grey-light;
+	color: $grey-five;
 }
 
 .candidate-answer {
@@ -1232,19 +1347,19 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 .search-questions .form-control::-webkit-input-placeholder {
-   color: $background-color;
+   color: white;
 }
 
 .search-questions .form-control:-moz-placeholder { /* Firefox 18- */
-   color: $background-color;
+   color: white;
 }
 
 .search-questions .form-control::-moz-placeholder {  /* Firefox 19+ */
-   color: $background-color;
+   color: white;
 }
 
 .search-questions .form-control:-ms-input-placeholder {
-   color: $background-color;
+   color: white;
 }
 
 /*No responde*/
@@ -1280,7 +1395,6 @@ tr.primary p:first-child, tr.danger p:first-child {
 	font-weight: 200;
 }
 .ups i {
-	color: $btn-danger;
 }
 
 #apoya {
@@ -1423,7 +1537,7 @@ animation: doscaras 4s infinite;
 .base-login form .btn-default {
   float: initial;
   color: white;
-  background-color: $green;
+  background-color: $yellow;
 }
 
 .base-login form .btn-default.btn-lg {
@@ -1541,7 +1655,6 @@ animation: doscaras 4s infinite;
 	color: $letters-color;
 }
 .category_name .red {
-	background-color: $btn-danger;
 }
 .category_name .green {
 	background-color: $category_name_background_color;
@@ -1550,7 +1663,7 @@ animation: doscaras 4s infinite;
 /*Wizard*/
 
 .tips {
-  background: $grey;
+  background: $grey-three;
   padding: 30px;
   color: white;
   margin: 30px 0;
@@ -1567,13 +1680,13 @@ animation: doscaras 4s infinite;
 	position: absolute;
 	pointer-events: none;
 	border-color: rgba(120, 130, 145, 0);
-	border-top-color: $grey;
+	border-top-color: $grey-three;
 	border-width: 20px;
 	margin-left: -20px;
 }
 
 .tips a {
-	color: $green;
+	color: $yellow;
 }
 
 .tips a.btn {
@@ -1586,7 +1699,11 @@ animation: doscaras 4s infinite;
 
 span.number {
   background: white;
-  color: $grey;
+  color: $grey-three;
   border-radius: 10px;
   padding: 0px 5px;
+}
+
+input#id_4-title {
+    text-align: center;
 }

@@ -41,8 +41,9 @@
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/chosen.min.css' %}" rel="stylesheet">
         <link href="{% sass_src 'sass/main.scss' %}" rel="stylesheet" type="text/css" />
-        <link href='https://fonts.googleapis.com/css?family=Karla:400,700' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
         <link type="text/plain" rel="author" href="{% static 'humans.txt' %}" />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
@@ -57,7 +58,9 @@
     <body>
         
         <div id="wrapper">
-            {% include '_navbar.html' %}
+            <div class="navbar navbar-inverse navbar-fixed-top {% block navbar_background %} white {% endblock navbar_background %}">
+                {% include '_navbar.html' %}
+            </div>
             {% block everything %}
             <div class="container">
                 {% block content %}

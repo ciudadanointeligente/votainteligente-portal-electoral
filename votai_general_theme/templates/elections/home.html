@@ -7,14 +7,82 @@
 {% include 'elections/home.js'  %}
 {% endblock extrajs %}
 
+{% block navbar_background %}yellow{% endblock navbar_background %}
+
 {% block everything %}
 
 {% with a_or_b="ab"|make_list|random %}
-<section id="etapas-propuesta">
+
+<section id="hero">
   <div class="container">
-      {% with "popular_proposal/_popular_proposal_stages_"|add:a_or_b|add:".html" as template %}
-      {% include template %}
-      {% endwith %}
+    <div class="row">
+      <div class="col-md-9">
+        <h1><div class="small">CUANDO TODOS APORTAMOS, EL RESULTADO ES MEJOR</div>A PONERSE CON PROPUESTAS</h1>
+        <p class="text-white">Te invitamos a reunirte con tus vecinas y vecinos, reflexionar, conversar y proponer ideas para tu comuna que podrían ser integradas a los programas de candidatas a alcadesa y candidatos a alcalde de estas Elecciones Municipales.</p>  
+        <a class="btn btn-info" href="">¿Cómo funciona?</a>
+        <a class="btn btn-warning" href="">¿Qué han propuesto mis vecinos?</a>
+        <a class="btn btn-danger disabled" href="">Pronto: ¿Quiénes son mis candidatos?</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="banner">
+  <div class="container">
+    <ul class="list-inline text-center">
+      <li><h4 class="counter"><span>0</span><span>0</span><span>0</span><span>1</span></h4></li>
+      <li><h4 class="text-white">propuestas ciudadanas se han creado esta semana</h4></li>  
+      <li><a class="btn btn-success" href="">¿Cuándo creas la tuya?</a></li>  
+    </ul>
+  </div>
+</section>
+
+<section id="como-funciona">
+  <div class="container">
+    <h2 class="text-center">¿Cómo funciona?</h2>
+    <div class="text-center">
+      <a class="btn btn-primary" href="">Tengo una propuesta</a>
+      <a class="btn btn-default" href="">Quiero conocer y apoyar una idea</a>
+      <div class="line-space"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="text-center"><img src="{% static 'img/icon-grupo.svg' %}"></div>
+        <h5 class="text-center">1. EN UN GRUPO SE TRABAJA MEJOR UNA IDEA</h5>
+        <p class="text-center">But I must explain to you how all this mistaken idea of denouncing pleasure and praising </p>
+      </div>
+      <div class="col-md-3">
+        <div class="text-center"><img src="{% static 'img/icon-propuesta.svg' %}"></div>
+        <h5 class="text-center">2. PASAR IDEA A PROPUESTA Y REGISTRO DE USUARIO</h5>
+        <p class="text-center">But I must explain to you how all this mistaken idea of denouncing pleasure and praising </p>
+      </div>
+      <div class="col-md-3">
+        <div class="text-center"><img src="{% static 'img/icon-publicacion.svg' %}"></div>
+        <h5 class="text-center">3. REVISIÓN VOTA, CORRECCIONES Y PUBLICACIÓN</h5>
+        <p class="text-center">But I must explain to you how all this mistaken idea of denouncing pleasure and praising </p>
+      </div>
+      <div class="col-md-3">
+        <div class="text-center"><img src="{% static 'img/icon-difunde.svg' %}"></div>
+        <h5 class="text-center">4. DIFUNDE Y SUMA ADHERENTES</h5>
+        <p class="text-center">But I must explain to you how all this mistaken idea of denouncing pleasure and praising </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="que-hago">
+  <div class="container">
+    <h2 class="text-center text-white">Ahora que me informé ¿qué hago?</h2>
+    <div class="row">
+      <div class="col-md-1"><span class="number text-white small">1</span></div>
+      <div class="col-md-5">
+        <h4 class="text-white">Tengo una idea ¿cómo empiezo?</h4>
+        <p class="text-white">Regístrate, selecciona tu comuna y sigue los pasos para crear tu propuesta.</p>
+        <div><span class="small text-white">TIEMPO APROX: 20 MIN</span><a href=""><img src="{% static 'img/arrow-right.svg' %}"></a></div>
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-5"></div>
+    </div>
   </div>
 </section>
 

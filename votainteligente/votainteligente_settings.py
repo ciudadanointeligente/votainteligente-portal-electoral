@@ -170,22 +170,20 @@ LOGGING = {
         },
     }
 }
-#CELERY STUFF
+# CELERY STUFF
 BROKER_URL = 'amqp://guest:guest@localhost:5672/'
 CELERY_ALWAYS_EAGER = True
 
 CELERYBEAT_SCHEDULE = {'sending-mails-every-2-minutes': {'task': 'preguntales.tasks.send_mails',
                                                          'schedule': timedelta(minutes=2),
                                                          },
-                       # 'letting-candidates-know-about-us-every-day': {'task': 'backend_candidate.tasks.let_candidate_now_about_us',
-                       #                                                'schedule': timedelta(days=1),
-                       #                                                },
+                       'letting-candidates-know-about-us-every-two-days': {'task': 'backend_candidate.tasks.send_candidates_their_username_and_password',
+                                                                           'schedule': timedelta(days=2),
+                                                                           },
                        }
 
 CELERY_TIMEZONE = 'UTC'
-
-
-#django tinyMCE
+# django tinyMCE
 TINYMCE_JS_URL = os.path.join(settings.STATIC_URL, 'js/tiny_mce/tiny_mce.js')
 TINYMCE_JS_ROOT = os.path.join(settings.STATIC_URL, 'js/tiny_mce')
 TINYMCE_DEFAULT_CONFIG = {

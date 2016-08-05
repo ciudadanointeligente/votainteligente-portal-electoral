@@ -37,6 +37,10 @@
          <li role="presentation" class="{% ifequal request.path my_profile_url %} active{% endifequal %}">
           <a href="{{my_profile_url}}">
           {% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a></li>
+        {% url 'password_reset' as password_reset %}
+         <li role="presentation" class="{% ifequal request.path password_reset %} active{% endifequal %}">
+          <a href="{{password_reset}}">
+          {% blocktrans %}Cambia tu password{% endblocktrans %}</a></li>
 
       {% block extra_sidebar_bottom %}
       {% endblock extra_sidebar_bottom %}

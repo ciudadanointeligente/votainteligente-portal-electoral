@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends layout %}
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
@@ -8,41 +8,27 @@
 {% include 'elections/home.js' with detail_url="popular_proposals:propose_wizard" %}
 {% endblock extrajs %}
 
-{% block content %}
-<div>
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-    </div>
-  </div>
-  <h1>{% trans "Propuestas en VotaInteligente" %}</h1>
-  	<div class="contenedorDestacado fondo-blanco">
-  		<div class="panel panel-default">
-	  		<div class="panel-heading" role="tab" id="headingOne">
-		      <h4 class="panel-title">
-		        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#filtro" aria-expanded="false" aria-controls="filtro">
-		          {% trans 'Filtrar propuestas' %}
-		        </a>
-		      </h4>
-		    </div>
-		  <div id="filtro" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-			  <div class="panel-body">
-				<form action="{% url 'popular_proposals:home' %}" method="GET" role="form">
-			    {% bootstrap_form form %}
-			    <div class="form-actions">
-			        <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>
-			    </div>
-				</form>
-			  </div>
-		  </div>
-
-	   </div>
-       <div class="row masonry-container">
-          {% for proposal in popular_proposals %}
-          {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
-          {% endfor %}
-
-      </div>
-    </div>
+{% block everything %}
+<div class="container">
+	{% if user.profile.is_journalist %}
+	<div class="row">
+		<div class="col-md-8">
+		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#incrustaEnTuPagina" aria-expanded="false" aria-controls="incrustaEnTuPagina">
+		  ¡Incrusta esto en tu página!
+		</button>
+		<div class="collapse" id="incrustaEnTuPagina">
+			  	<textarea style="width:700px;" readonly><iframe src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{% url 'popular_proposals:embedded_home' %}" width="600px" height="500px"></iframe></textarea>
+		</div>
+		</div>
+	</div>
+	{% endif %}
+	<div>
+	  <h1>{% trans "Propuestas en VotaInteligente" %}</h1>
+	  	<div class="contenedorDestacado fondo-blanco">
+	  		{% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=form %}
+	  	</div>
+	</div>
 </div>
 
-{% endblock content %}
+
+{% endblock everything %}

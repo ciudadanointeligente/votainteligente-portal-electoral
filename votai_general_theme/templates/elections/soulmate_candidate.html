@@ -54,6 +54,9 @@ $(document).ready(function(){
 {% block tab_soulmate %}class="active"{% endblock %}
 
 {% block mainelection %}
+
+{% url 'embedded_soul_mate_detail_view' slug=election.slug as embedded_url%}
+{% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
 <!-- soulmate -->
 <div id="question-soulmate">
 	<div id="msj-alerta" class="alert alert-warning" style="display:none">

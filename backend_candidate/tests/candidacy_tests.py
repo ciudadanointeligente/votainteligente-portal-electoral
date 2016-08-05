@@ -271,6 +271,13 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
         the_mail = mail.outbox[0]
         self.assertIn(contact.initial_password, the_mail.body)
 
+    def test_dont_send_mails_to_candidates_if_they_have_been_contacted(self):
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        used_by_candidate=True,
+                                        mail='mail@perrito.cl')
+        send_candidate_username_and_password(self.candidate)
+        self.assertEquals(len(mail.outbox), 0)
+
     def test_send_mail_management_command(self):
         contact = CandidacyContact.objects.create(candidate=self.candidate,
                                                   mail='mail@perrito.cl')

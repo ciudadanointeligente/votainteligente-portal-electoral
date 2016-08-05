@@ -35,6 +35,8 @@ def send_candidate_a_candidacy_link(candidate):
 
 
 def send_candidate_username_and_password(candidate):
+    if candidate.contacts.filter(used_by_candidate=True):
+        return
     for contact in candidate.contacts.all():
         contact.send_mail_with_user_and_password()
 

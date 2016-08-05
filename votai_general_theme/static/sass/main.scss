@@ -9,7 +9,8 @@
 html, body {
 	color: $grey-three;
 	height: 100%;
-	-webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 	font-family: 'OpenSans', sans-serif;
 	padding-top: 35px;
 	font-size: 14px;
@@ -35,19 +36,32 @@ h1 {
 	font-weight: 700;
 	font-family: 'Arvo', serif;
   letter-spacing: 6px;
+  font-size: 36px;
+}
+
+h2 {
+	font-weight: 300;
+	font-family: 'Arvo', serif;
+	font-size: 36px;
+	color: $grey-one;
 }
 
 h3 {
 	font-weight: 900;
 }
 
-h3.portada {
-	font-size: 21px;
+h4 {
+	font-family: 'Arvo', serif;
+	font-size: 22px;
 }
 
 h5 {
-	font-weight: 900;
-	font-size: 14px;
+	font-family: 'Montserrat', sans-serif;
+	letter-spacing: 2px;
+	font-weight: 700;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: $grey-one;
 }
 
 
@@ -67,10 +81,19 @@ strong {
 .small {
 	font-family: 'Montserrat', sans-serif;
 	text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.line-space {
+    height: 60px;
 }
 
 .text-light {
 	color: $grey-five;
+}
+
+.text-white {
+	color: white;
 }
 
 .text-dark {
@@ -137,11 +160,13 @@ strong {
 	color: $grey-five;
 }
 
-/*Hero*/
+/*Section Hero*/
 
-#hero {
-	background: $yellow;
-	color: white;
+section#hero {
+  background: #FFC80A;
+  color: white;
+  height: 500px;
+  padding: 90px 0;
 }
 
 h1 .small {
@@ -149,6 +174,37 @@ h1 .small {
 	font-size: 14px;
 	letter-spacing: 4px;
   line-height: 40px;
+}
+
+#hero .btn {
+  margin-right: 6px;
+  margin-bottom: 11px;
+}
+
+/*Section banner*/
+
+section#banner {
+    background: $grey-one;
+    padding: 31px 0 1px;
+}
+
+.counter span {
+  background: white;
+  margin-right: 3px;
+  padding: 6px;
+  border-radius: 3px;
+}
+
+/*Section como funciona*/
+
+section#como-funciona {
+    padding: 80px 0;
+}
+
+/*Section que hago*/
+
+section#que-hago {
+    background: $blue;
 }
 
 /*Elecciones destacadas*/
@@ -261,9 +317,16 @@ h1 .small {
 /*Botones*/
 
 .btn {
-	font-family: 'Montserrat', sans-serif;
-	text-transform: uppercase;
-	letter-spacing: 2px;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 20px;
+  font-size: 12px;
+  padding: 9px 14px;
+}
+
+.btn:hover {
+	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.4);
 }
 
 .btn-lg {
@@ -279,42 +342,69 @@ h1 .small {
 
 .btn-success {
 	background-color: $yellow;
-	border-color: transparent;
+	border: 3px solid $yellow;
 }
 
 .btn-success:hover {
-	border-color: transparent;
+	background-color: lighten($yellow,10%);
+	border: 3px solid lighten($yellow,10%);
 }
 
 .btn-primary {
 	background-color: $grey-five;
-	border-color: transparent;
+	border: 3px solid $grey-five;
+	color: $grey-two;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
-	background-color: darken($yellow,15%);
-	border-color: transparent;
+	background-color: lighten($grey-five,5%);
+	border: 3px solid lighten($grey-five,5%);
+	color: $grey-two;
 }
 
 .btn-danger {
-	background-color: $btn-danger;
-	border-color: transparent;
+	background-color: $yellow;
+	color: $grey-two;
+	border: 3px solid white;
 }
 
 .btn-danger:hover {
-	background-color: $btn-danger-hover-background-color;
+	background-color: lighten($yellow,10%);
 	border-color: transparent;
 }
 
 .btn-default {
-    color: white;
-    background-color: $grey-five;
-    border: none;
+    color: $grey-two;
+    background-color: white;
+    border: 3px solid $grey-five;
 }
 
-.btn-default:hover {
-	background-color: darken($grey-five,15%);
-	color: white;
+.btn-default:hover, .btn-default:focus, .btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover {
+  color: $grey-three;
+  background-color: white;
+  border: 3px solid lighten($grey-five,5%);
+}
+
+.btn-info {
+	background: $grey-one;
+	border: 3px solid $grey-one;
+}
+
+.btn-info:hover, .btn-info:focus, .btn-info.active.focus, .btn-info.active:focus, .btn-info.active:hover, .btn-info:active.focus, .btn-info:active:focus, .btn-info:active:hover {
+	background: lighten($grey-one,10%);
+	border: 3px solid lighten($grey-one,10%);
+}
+
+.btn-warning {
+	background-color: white;
+	border: 3px solid white;
+	color: $grey-two;
+}
+
+.btn-warning:hover, .btn-warning:focus, .btn-warning.active.focus, .btn-warning.active:focus, .btn-warning.active:hover, .btn-warning:active.focus, .btn-warning:active:focus, .btn-warning:active:hover {
+	background-color: white;
+	border: 3px solid white;
+	color: $grey-three;
 }
 
 /*Boton flecha*/
@@ -456,7 +546,6 @@ polyline {
 }
 
 .nav-candidator .list-inline i.icon-heart {
-	color: $btn-danger;
 }
 
 .nav-candidator .list-inline i.icon-list, .nav-candidator .list-inline i.icon-info {
@@ -792,7 +881,6 @@ p.destacado-tips {
 }
 
 #soulmate-result .icon-heart {
-	color: $btn-danger;
 }
 
 #soulmate-result a {
@@ -848,7 +936,6 @@ p.destacado-tips {
 }
 
 .progress-bar-danger {
-	background-color: $btn-danger;
 }
 
 #soulmate-result .container-progress p span {
@@ -1123,21 +1210,18 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 }
 
 .no-responden .table tbody>tr>td.second {
-	border-bottom: 1px solid $btn-danger-hover-background-color;
 	border-top: none;
 	border-left: none;
 	border-right: none;
 }
 
 .no-responden .panel-body {
-	background: $btn-danger;
 	color: $main-background-color;
 	border-radius: 0px 0px 6px 6px;
 }
 
 .panel-danger>.panel-heading {
 	color: $main-background-color;
-	background-color: $btn-danger-hover-background-color;
 	border-color: transparent;
 }
 
@@ -1311,7 +1395,6 @@ tr.primary p:first-child, tr.danger p:first-child {
 	font-weight: 200;
 }
 .ups i {
-	color: $btn-danger;
 }
 
 #apoya {
@@ -1572,7 +1655,6 @@ animation: doscaras 4s infinite;
 	color: $letters-color;
 }
 .category_name .red {
-	background-color: $btn-danger;
 }
 .category_name .green {
 	background-color: $category_name_background_color;

@@ -9,6 +9,8 @@ from django.shortcuts import get_object_or_404
 from backend_candidate.forms import get_form_for_election
 from elections.models import Candidate, Election
 from django.core.urlresolvers import reverse
+from backend_candidate.models import CandidacyContact
+from django.http import HttpResponseRedirect
 
 
 class BackendCandidateBase(View):
@@ -17,6 +19,16 @@ class BackendCandidateBase(View):
         if not is_candidate(request.user):
             raise Http404
         self.user = request.user
+        candidacy_objects = CandidacyContact.objects.filter(candidacy__user=self.user)
+        used_by_candidate = True
+        for candidacy_object in candidacy_objects:
+
+            if not candidacy_object.used_by_candidate:
+                used_by_candidate = False
+                candidacy_object.used_by_candidate = True
+                candidacy_object.save()
+        if not used_by_candidate:
+            return HttpResponseRedirect(reverse('password_reset'))
         return super(BackendCandidateBase, self).dispatch(request,
                                                           *args,
                                                           **kwargs)
@@ -29,6 +41,7 @@ class HomeView(BackendCandidateBase, TemplateView):
         context = super(HomeView, self).get_context_data(*args, **kwargs)
         context['candidacies'] = self.user.candidacies.all()
         return context
+
 
 class CompleteMediaNaranjaView(FormView):
     template_name = 'backend_candidate/complete_12_naranja.html'

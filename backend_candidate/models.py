@@ -34,6 +34,11 @@ def send_candidate_a_candidacy_link(candidate):
         contact.send_mail_with_link()
 
 
+def send_candidate_username_and_password(candidate):
+    for contact in candidate.contacts.all():
+        contact.send_mail_with_user_and_password()
+
+
 class CandidacyContact(models.Model):
     candidate = models.ForeignKey(Candidate, related_name='contacts')
     mail = models.EmailField()
@@ -55,12 +60,17 @@ class CandidacyContact(models.Model):
         self.save()
 
     def send_mail_with_user_and_password(self):
+        if self.times_email_has_been_sent >= settings.MAX_AMOUNT_OF_MAILS_TO_CANDIDATE:
+            return
         self.times_email_has_been_sent += 1
         if self.candidacy is None:
             username = self.candidate.id + unicode(uuid.uuid4())[:4]
+
             password = uuid.uuid4().hex
             self.initial_password = password
-            user = User.objects.create(username=username, password=password)
+            user = User.objects.create(username=username)
+            user.set_password(self.initial_password)
+            user.save()
             self.candidacy = Candidacy.objects.create(user=user, candidate=self.candidate)
 
         site = Site.objects.get_current()

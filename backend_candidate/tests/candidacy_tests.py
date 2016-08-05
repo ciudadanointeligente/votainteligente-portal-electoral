@@ -6,9 +6,11 @@ from django.core.urlresolvers import reverse
 from backend_candidate.models import (Candidacy,
                                       is_candidate,
                                       CandidacyContact,
-                                      send_candidate_a_candidacy_link)
+                                      send_candidate_a_candidacy_link,
+                                      send_candidate_username_and_password)
 from backend_candidate.forms import get_form_for_election
-from backend_candidate.tasks import let_candidate_now_about_us
+from backend_candidate.tasks import (let_candidate_now_about_us,
+                                     send_candidates_their_username_and_password)
 from django.template import Template, Context
 from elections.models import Election
 from candidator.models import TakenPosition
@@ -16,6 +18,7 @@ from django.core import mail
 from django.test import override_settings
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.sites.models import Site
+from django.core.management import call_command
 
 
 class CandidacyTestCaseBase(SoulMateCandidateAnswerTestsBase):
@@ -231,4 +234,56 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
         # It doesn't create user again
         contact.send_mail_with_user_and_password()
         self.assertEquals(len(User.objects.filter(username__contains=self.candidate.id)), 1)
+        self.assertEquals(len(mail.outbox), 2)
+
+    def test_login_candidate_marks_her_him_as_contacted(self):
+        change_password_url = reverse('password_reset')
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl')
+        contact.send_mail_with_user_and_password()
+        user = User.objects.get(username__contains=self.candidate.id)
+        logged_in = self.client.login(username=user.username,
+                                      password=contact.initial_password)
+        self.assertTrue(logged_in)
+        home_url = reverse('backend_candidate:home')
+        response = self.client.get(home_url)
+        self.assertRedirects(response, change_password_url)
+
+        response = self.client.get(home_url)
+        self.assertEquals(response.status_code, 200)
+
+    @override_settings(MAX_AMOUNT_OF_MAILS_TO_CANDIDATE=3)
+    def test_send_candidate_maximum_amount_of_times(self):
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl',
+                                                  times_email_has_been_sent=3)
+
+        contact.send_mail_with_user_and_password()
+        self.assertEquals(len(mail.outbox), 0)
+
+    def test_send_candidate_their_username_and_password(self):
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl')
+        send_candidate_username_and_password(self.candidate)
+        contact = CandidacyContact.objects.get(id=contact.id)
+        self.assertEquals(contact.times_email_has_been_sent, 1)
+        self.assertEquals(len(mail.outbox), 1)
+        the_mail = mail.outbox[0]
+        self.assertIn(contact.initial_password, the_mail.body)
+
+    def test_send_mail_management_command(self):
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl')
+        call_command('send_user_and_password_to_candidates')
+        contact = CandidacyContact.objects.get(id=contact.id)
+        self.assertEquals(contact.times_email_has_been_sent, 1)
+        the_mail = mail.outbox[0]
+        self.assertIn(contact.initial_password, the_mail.body)
+
+    def test_send_mail_task(self):
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail='mail@perrito.cl')
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail='mail@gatito.cl')
+        send_candidates_their_username_and_password.delay()
         self.assertEquals(len(mail.outbox), 2)

@@ -28,7 +28,16 @@ urlpatterns = patterns('',
     (r'^perfil_ciudadano/', include('backend_citizen.urls', namespace='backend_citizen')),
     (r'^candidatos/', include('backend_candidate.urls', namespace='backend_candidate')),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
+    url(r'^accounts/passwordchange/?$',
+        'django.contrib.auth.views.password_change',
+        {'template_name': 'registration/password_change.html'},
+        name='password_reset'),
+    url(r'^accounts/passwordchange/done/?$',
+        'django.contrib.auth.views.password_change_done',
+        {'template_name': 'registration/password_change_done_.html'},
+        name='password_change_done'),
 )
+
 urlpatterns += patterns('',
                         url('', include('social.apps.django_app.urls', namespace='social'))
                         )

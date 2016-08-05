@@ -177,9 +177,9 @@ CELERY_ALWAYS_EAGER = True
 CELERYBEAT_SCHEDULE = {'sending-mails-every-2-minutes': {'task': 'preguntales.tasks.send_mails',
                                                          'schedule': timedelta(minutes=2),
                                                          },
-                       'letting-candidates-know-about-us-every-day': {'task': 'backend_candidate.tasks.let_candidate_now_about_us',
-                                                                      'schedule': timedelta(days=1),
-                                                                      },
+                       # 'letting-candidates-know-about-us-every-day': {'task': 'backend_candidate.tasks.let_candidate_now_about_us',
+                       #                                                'schedule': timedelta(days=1),
+                       #                                                },
                        }
 
 CELERY_TIMEZONE = 'UTC'

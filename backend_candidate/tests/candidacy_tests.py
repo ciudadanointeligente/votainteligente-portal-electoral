@@ -15,6 +15,7 @@ from candidator.models import TakenPosition
 from django.core import mail
 from django.test import override_settings
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.sites.models import Site
 
 
 class CandidacyTestCaseBase(SoulMateCandidateAnswerTestsBase):
@@ -122,6 +123,7 @@ class CandidacyContacts(CandidacyTestCaseBase):
         self.assertFalse(contact.used_by_candidate)
         self.assertTrue(contact.identifier)
         self.assertEquals(len(contact.identifier.hex), 32)
+        self.assertFalse(contact.initial_password)
 
     def test_candidacy_redirect_view(self):
         contact = CandidacyContact.objects.create(candidate=self.candidate,
@@ -198,3 +200,35 @@ class CandidacyContacts(CandidacyTestCaseBase):
         self.assertEquals(response.status_code, 200)
         self.assertIsInstance(response.context['form'], AuthenticationForm)
         self.assertTemplateUsed(response, 'backend_candidate/auth_login.html')
+
+
+class SendNewUserToCandidate(CandidacyTestCaseBase):
+    def setUp(self):
+        super(SendNewUserToCandidate, self).setUp()
+
+    def test_send_mail_with_user_and_password(self):
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl')
+        contact.send_mail_with_user_and_password()
+        self.assertEquals(contact.times_email_has_been_sent, 1)
+        initial_password = contact.initial_password
+        self.assertTrue(initial_password)
+        user = User.objects.get(username__contains=self.candidate.id)
+        contact = CandidacyContact.objects.get(id=contact.id)
+        candidacy = contact.candidacy
+        self.assertEquals(len(mail.outbox), 1)
+        self.assertEquals(candidacy.candidate, self.candidate)
+        self.assertEquals(candidacy.user, user)
+        the_mail = mail.outbox[0]
+        self.assertEquals(the_mail.to, [contact.mail])
+        self.assertIn(user.username, the_mail.body)
+        self.assertIn(initial_password, the_mail.body)
+        self.assertIn(user.username, the_mail.body)
+        site = Site.objects.get_current()
+        login_url = reverse('backend_candidate:candidate_auth_login')
+        full_login_url = "http://%s%s" % (site.domain, login_url)
+        self.assertIn(full_login_url, the_mail.body)
+        # It doesn't create user again
+        contact.send_mail_with_user_and_password()
+        self.assertEquals(len(User.objects.filter(username__contains=self.candidate.id)), 1)
+        self.assertEquals(len(mail.outbox), 2)

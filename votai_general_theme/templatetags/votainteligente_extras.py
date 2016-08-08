@@ -10,6 +10,7 @@ from django.core.urlresolvers import reverse
 from popular_proposal.forms.form_texts import WHEN_CHOICES, TEXTS
 from django.template.loader import render_to_string
 from backend_candidate.models import is_candidate
+from backend_candidate.forms import get_candidate_profile_form_class
 from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import (UserCreationForm as RegistrationForm,
                                    GroupCreationForm)
@@ -274,3 +275,12 @@ def user_image(user, height, width):
             'height': height,
             'width': width,
             'size': size}
+
+
+@register.simple_tag
+def personal_data_label(personal_data):
+    _class = get_candidate_profile_form_class()
+    field = _class.base_fields.get(personal_data.label, None)
+    if field is not None:
+        return getattr(field, 'label', '')
+    return personal_data.label

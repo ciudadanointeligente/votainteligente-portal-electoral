@@ -3,6 +3,8 @@ from django import forms
 from candidator.models import Topic, Position, TakenPosition
 from collections import OrderedDict
 from django.utils.translation import ugettext as _
+from django.conf import settings
+from elections.models import PersonalData
 
 
 def get_field_from_topic(topic):
@@ -112,3 +114,40 @@ def get_form_for_election(election):
                     taken_position.save()
 
     return MediaNaranjaElectionForm
+
+
+def _import(name):
+    components = name.split('.')
+    mod = __import__(components[0])
+    for comp in components[1:]:
+        mod = getattr(mod, comp)
+    return mod
+
+
+class CandidateProfileFormBase(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.candidate = kwargs.pop('candidate')
+        super(CandidateProfileFormBase, self).__init__(*args, **kwargs)
+
+    def save(self):
+        for field in self.fields:
+            PersonalData.objects.create(candidate=self.candidate,
+                                        label=field,
+                                        value=self.cleaned_data[field])
+
+
+def get_candidate_profile_form_class():
+
+    PARENT_FORM_CLASS = CandidateProfileFormBase
+    if settings.THEME:
+        try:
+            PARENT_FORM_CLASS = _import(settings.THEME + ".forms.PersonalDataForm")
+            cls_attrs = {}
+            PARENT_FORM_CLASS = type('CandidateProfileFormBase',
+                                     (CandidateProfileFormBase,
+                                      PARENT_FORM_CLASS,
+                                      object),
+                                     cls_attrs)
+        except ImportError:
+            pass
+    return PARENT_FORM_CLASS

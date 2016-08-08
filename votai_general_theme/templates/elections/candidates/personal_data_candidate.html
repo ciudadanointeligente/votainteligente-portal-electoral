@@ -10,7 +10,7 @@
 {% for personal_data in candidate.personal_datas.all %}
 <tr>
     <td>
-        <span>{{personal_data.label}}:</span> {{personal_data.value}}
+        <span>{% personal_data_label personal_data %}:</span> {{personal_data.value}}
     </td>
 </tr>
 {% endfor %}

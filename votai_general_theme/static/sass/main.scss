@@ -205,6 +205,11 @@ section#como-funciona {
 
 section#que-hago {
     background: $blue;
+    padding: 80px 0;
+}
+
+#que-hago .arrow {
+	margin-left: 10px;
 }
 
 /*Elecciones destacadas*/
@@ -1044,7 +1049,7 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 /* Footer */
 
 #footer {
-	padding: 40px 0 10px;
+	padding: 10px 0;
 	color: $footer-color;
 	background-color: $letters-color;
 }
@@ -1063,7 +1068,6 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 
 #footer i {
 	margin-right: 15px;
-	margin-left: -30px;
 }
 
 #footer img {
@@ -1085,6 +1089,10 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 #footer .extra-footer img {
 	opacity: 1;
 	width: 100%;
+}
+
+.redes {
+    margin-top: 17px;
 }
 
 .container-profile {
@@ -1698,10 +1706,10 @@ animation: doscaras 4s infinite;
 }
 
 span.number {
-  background: white;
-  color: $grey-three;
-  border-radius: 10px;
-  padding: 0px 5px;
+  background: $yellow;
+  border-radius: 30px;
+  padding: 7px 11px;
+  color: $blue;
 }
 
 input#id_4-title {

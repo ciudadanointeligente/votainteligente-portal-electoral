@@ -73,15 +73,20 @@
 <section id="que-hago">
   <div class="container">
     <h2 class="text-center text-white">Ahora que me informé ¿qué hago?</h2>
+    <div class="line-space"></div>
     <div class="row">
       <div class="col-md-1"><span class="number text-white small">1</span></div>
       <div class="col-md-5">
         <h4 class="text-white">Tengo una idea ¿cómo empiezo?</h4>
-        <p class="text-white">Regístrate, selecciona tu comuna y sigue los pasos para crear tu propuesta.</p>
-        <div><span class="small text-white">TIEMPO APROX: 20 MIN</span><a href=""><img src="{% static 'img/arrow-right.svg' %}"></a></div>
+        <p class="text-white">Regístrate, selecciona tu comuna y sigue los pasos para crear tu propuesta</p>
+        <div><span class="small text-white">TIEMPO APROX: 20 MIN</span><a class="arrow" href=""><img src="{% static 'img/arrow-right.svg' %}"></a></div>
       </div>
-      <div class="col-md-1"></div>
-      <div class="col-md-5"></div>
+      <div class="col-md-1"><span class="number text-white small">2</span></div>
+      <div class="col-md-5">
+        <h4 class="text-white">Quiero conocer las propuestas de mi comuna</h4>
+        <p class="text-white">Selecciona tu comuna y te mostraremos las propuestas publicadas por tus vecinos</p>
+        <div><input type="" name=""><a class="arrow" href=""><img src="{% static 'img/arrow-right.svg' %}"></a></div>
+      </div>
     </div>
   </div>
 </section>
@@ -106,22 +111,12 @@ $(function(){
 });
 </script>
 {% endwith %}
-<div class="text-center"><a href="#login-form"><i class="fa fa-chevron-down fa-2x"></i></a></div>
 
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
   <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
 
-<section id="login-form">
-  <div class="container">
-    <div class="col-md-12 text-center">
-        <p>{% blocktrans %}Toma aproximadamente 9 minutos.{% endblocktrans%}</p>
-      <a href="{% url 'popular_proposals:propose_wizard_full' %}" class="btn btn-success login"
-          role="button"> {% blocktrans %}¡Sube tu propuesta!{% endblocktrans %}</a>
-    </div>
-  </div>
-</section>
 
 {% endblock everything %}
 

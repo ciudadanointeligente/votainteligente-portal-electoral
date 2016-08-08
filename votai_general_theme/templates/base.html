@@ -16,6 +16,7 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="google-site-verification" content="{{ 'gsite-verification'|ga }}">
 
+
         <!--for facebook fans-->
         <meta property="og:title" content="{{ 'title'|ogpdata }}">
         <meta property="og:type" content="{{ 'type'|ogpdata }}">
@@ -47,6 +48,7 @@
         <link type="text/plain" rel="author" href="{% static 'humans.txt' %}" />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="https://use.fontawesome.com/9304d8597d.js"></script>
 
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular.min.js"></script>
         {% block extra_css %}
@@ -83,20 +85,15 @@
             {% endblock extrafooter %}
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <ul>
-                            <li><a href="//github.com/ciudadanointeligente/votainteligente-portal-electoral" target="_blank"><i class="icon-github-alt"></i>{% trans "Revisa nuestro código en Github" %}</a></li>
-                            <li><a href="//www.ciudadanointeligente.org/servicios/#votainteligente" target="_blank"><i class="icon-heart-empty"></i>{% trans "¿Quieres tener un sitio como éste para tus elecciones?" %}</a></li>
-                        </ul>
+                    <div class="col-md-6">
+                        Otro sitio de <a href="//www.ciudadanointeligente.org/" target="_blank"><img src="{% static 'img/logo-ciudadanoi.png' %}" alt="Fundación Ciudadano Inteligente" title="Fundación Ciudadano Inteligente"></a>
                     </div>
-                    <div class="col-md-4">
-                        Desarrollado por <a href="//www.ciudadanointeligente.org/" target="_blank"><img src="{% static 'img/logo-ciudadanoi.png' %}" alt="Fundación Ciudadano Inteligente" title="Fundación Ciudadano Inteligente"></a>
-                    </div>
-                    <div class="col-md-4">
-                        <ul>
-                            <li><a href="tel:+56224192770"><i class="icon-phone"></i>+562 2 419 2770</a></li>
-                            <li><a href="#" class="email-prensa" target="_top"><i class="icon-envelope-alt"></i>Contacto prensa</a></li>
-                            <li><a href="//bit.ly/17qiMkf" target="_blank"><i class="icon-map-marker"></i>Holanda 895, Providencia, Santiago, Chile</a></li>
+                    <div class="col-md-6 text-right redes">
+                        <ul class="list-inline">
+                            <li><a href="info@ciudadanointeligente.org" class="email-prensa" target="_top"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                            <li><a target="_blank" href="https://github.com/ciudadanointeligente"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+                            <li><a target="_blank" href="https://www.facebook.com/ciudadanointeligente/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a target="_blank" href="https://twitter.com/ciudadanoi"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
                 </div>

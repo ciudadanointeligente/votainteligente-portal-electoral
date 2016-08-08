@@ -32,18 +32,15 @@ class ElectionTestCase(TestCase):
         self.assertTrue(election.uses_face_to_face)
         self.assertTrue(election.uses_soul_mate)
         self.assertTrue(election.uses_questionary)
+        self.assertFalse(election.position)
 
     def test_there_are_no_two_elections_with_the_same_slug(self):
-        election1 = Election.objects.create(
-            slug='the-slug',
-            )
+        election1 = Election.objects.create(slug='the-slug')
         election2 = Election.objects.create(slug='the-slug')
         self.assertNotEquals(election1.slug, election2.slug)
 
     def test_slug_based_on_the_name(self):
-        election = Election.objects.create(
-            name='the name'
-            )
+        election = Election.objects.create(name='the name')
         self.assertEquals(election.slug, 'the-name')
 
     def test_description_is_very_long(self):

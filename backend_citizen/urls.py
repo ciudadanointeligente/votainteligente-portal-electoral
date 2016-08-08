@@ -8,6 +8,8 @@ from backend_citizen.views import (IndexView,
                                    GroupRegistrationView,
                                    MySupportsView,
                                    )
+from django.contrib.auth.views import password_reset
+
 
 
 urlpatterns = patterns('',

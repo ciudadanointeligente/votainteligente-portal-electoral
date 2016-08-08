@@ -1,0 +1,21 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+{% load votainteligente_extras %}
+{% load staticfiles %}
+{% block title %}{% trans "Login" %}{% endblock %}
+{% block content %}
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<h3>{% trans 'Bienvenid@ Candidat@:' %}</h3>
+				<form method="post" action="{% url 'auth_login' %}">{% csrf_token %}
+				{% bootstrap_form form %}
+
+				<input type="hidden" name="next" value="{{ url }}" />
+				<input type="submit" value="{% trans "login" %}"  class="btn btn-default btn-lg btn-block" />
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock content %}

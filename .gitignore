@@ -13,7 +13,7 @@ candidator
 src/
 *.sqlite3
 *.swp
-.static/
+/static
 votai_general_theme/static/sass/*.css
 celerybeat-schedule
 node_modules/

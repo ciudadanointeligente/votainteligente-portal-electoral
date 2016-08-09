@@ -1,0 +1,42 @@
+@media screen and (max-width: 320px) {
+
+  h1 {
+    letter-spacing: 4px;
+    font-size: 34px;
+  }
+
+  h2 {
+    font-size: 30px;
+}
+
+  .btn {
+    letter-spacing: 0px;
+    font-size: 11px;
+    padding: 7px 10px;
+  }
+
+  .small {
+    font-size: 11px;
+  }
+
+  section#hero {
+    padding: 50px 0;
+  }
+
+  section#como-funciona {
+    padding: 50px 0;
+  }
+
+  section#que-hago {
+      padding: 50px 0;
+  }
+
+}
+
+@media screen and (max-width: 1024px) {
+
+  section#hero {
+    background: #FFC80A;
+  }
+
+}

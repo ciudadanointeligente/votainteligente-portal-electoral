@@ -32,7 +32,7 @@
     <ul class="list-inline text-center">
       <li><h4 class="counter"><span>0</span><span>0</span><span>0</span><span>1</span></h4></li>
       <li><h4 class="text-white">propuestas ciudadanas se han creado esta semana</h4></li>  
-      <li><a class="btn btn-success" href="">¿Cuándo creas la tuya?</a></li>  
+      <li><a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">¿Cuándo creas la tuya?</a></li>  
     </ul>
   </div>
 </section>
@@ -46,22 +46,22 @@
       <div class="line-space"></div>
     </div>
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-3 col-sm-6">
         <div class="text-center"><img src="{% static 'img/icon-grupo.svg' %}"></div>
         <h5 class="text-center">1. EN UN GRUPO SE TRABAJA MEJOR UNA IDEA</h5>
         <p class="text-center">But I must explain to you how all this mistaken idea of denouncing pleasure and praising </p>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 col-sm-6">
         <div class="text-center"><img src="{% static 'img/icon-propuesta.svg' %}"></div>
         <h5 class="text-center">2. PASAR IDEA A PROPUESTA Y REGISTRO DE USUARIO</h5>
         <p class="text-center">But I must explain to you how all this mistaken idea of denouncing pleasure and praising </p>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 col-sm-6">
         <div class="text-center"><img src="{% static 'img/icon-publicacion.svg' %}"></div>
         <h5 class="text-center">3. REVISIÓN VOTA, CORRECCIONES Y PUBLICACIÓN</h5>
         <p class="text-center">But I must explain to you how all this mistaken idea of denouncing pleasure and praising </p>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 col-sm-6">
         <div class="text-center"><img src="{% static 'img/icon-difunde.svg' %}"></div>
         <h5 class="text-center">4. DIFUNDE Y SUMA ADHERENTES</h5>
         <p class="text-center">But I must explain to you how all this mistaken idea of denouncing pleasure and praising </p>
@@ -75,14 +75,14 @@
     <h2 class="text-center text-white">Ahora que me informé ¿qué hago?</h2>
     <div class="line-space"></div>
     <div class="row">
-      <div class="col-md-1"><span class="number text-white small">1</span></div>
-      <div class="col-md-5">
+      <div class="col-md-1 col-sm-1 col-xs-2"><span class="number text-white small">1</span></div>
+      <div class="col-md-5 col-sm-5 col-xs-10">
         <h4 class="text-white">Tengo una idea ¿cómo empiezo?</h4>
         <p class="text-white">Regístrate, selecciona tu comuna y sigue los pasos para crear tu propuesta</p>
         <div><span class="small text-white">TIEMPO APROX: 20 MIN</span><a class="arrow" href=""><img src="{% static 'img/arrow-right.svg' %}"></a></div>
       </div>
-      <div class="col-md-1"><span class="number text-white small">2</span></div>
-      <div class="col-md-5">
+      <div class="col-md-1 col-sm-1 col-xs-2"><span class="number text-white small">2</span></div>
+      <div class="col-md-5 col-sm-5 col-xs-10">
         <h4 class="text-white">Quiero conocer las propuestas de mi comuna</h4>
         <p class="text-white">Selecciona tu comuna y te mostraremos las propuestas publicadas por tus vecinos</p>
         <div><input type="" name=""><a class="arrow" href=""><img src="{% static 'img/arrow-right.svg' %}"></a></div>

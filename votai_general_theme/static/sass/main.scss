@@ -62,6 +62,7 @@ h5 {
 	font-size: 12px;
 	text-transform: uppercase;
 	color: $grey-one;
+  line-height: 24px;
 }
 
 
@@ -163,9 +164,8 @@ strong {
 /*Section Hero*/
 
 section#hero {
-  background: #FFC80A;
+  background: url(../img/mesa.png) bottom right no-repeat #FFC80A;
   color: white;
-  height: 500px;
   padding: 90px 0;
 }
 
@@ -173,7 +173,7 @@ h1 .small {
 	color: white;
 	font-size: 14px;
 	letter-spacing: 4px;
-  line-height: 40px;
+	line-height: 24px;
 }
 
 #hero .btn {
@@ -201,6 +201,11 @@ section#como-funciona {
     padding: 80px 0;
 }
 
+#como-funciona img {
+    width: 100%;
+    max-width: 63px;
+}
+
 /*Section que hago*/
 
 section#que-hago {
@@ -210,6 +215,10 @@ section#que-hago {
 
 #que-hago .arrow {
 	margin-left: 10px;
+}
+
+#que-hago .col-md-1.col-xs-2 {
+  margin-top: 13px;
 }
 
 /*Elecciones destacadas*/
@@ -328,6 +337,7 @@ section#que-hago {
   border-radius: 20px;
   font-size: 12px;
   padding: 9px 14px;
+  margin-bottom: 7px;
 }
 
 .btn:hover {
@@ -1706,12 +1716,17 @@ animation: doscaras 4s infinite;
 }
 
 span.number {
-  background: $yellow;
+  background: #FFC80A;
   border-radius: 30px;
-  padding: 7px 11px;
-  color: $blue;
+  padding: 3px 7px 5px;
+  color: #4A90E2;
+  font-family: monospace;
+  font-weight: 800;
+  font-size: 14px;
 }
 
 input#id_4-title {
     text-align: center;
 }
+
+@import 'mediaqueries';

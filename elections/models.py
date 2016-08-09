@@ -135,6 +135,7 @@ class Election(ExtraInfoMixin, models.Model):
     position = models.CharField(default='',
                                 null=True,
                                 blank=True,
+                                max_length=255,
                                 help_text=_(u'A qué cargo está postulando?'))
 
     default_extra_info = settings.DEFAULT_ELECTION_EXTRA_INFO

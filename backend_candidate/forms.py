@@ -66,7 +66,7 @@ def get_fields_dict_from_topic(topic, taken_position=None):
     dict_['description_for_' + topic_id] = forms.CharField(widget=forms.TextInput,
                                                            required=False,
                                                            label=description_label)
-    if taken_position:
+    if taken_position and taken_position.position:
         dict_['answer_for_' + topic_id].initial = taken_position.position.id
         dict_['description_for_' + topic_id].initial = taken_position.description
     return dict_

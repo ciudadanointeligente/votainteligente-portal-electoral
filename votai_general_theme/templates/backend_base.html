@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load bootstrap3 %}
+{% load votainteligente_extras %}
 
 {% block content %}
 
@@ -17,15 +18,25 @@
       <ul class="nav nav-pills nav-stacked">
       {% block extra_sidebar_top %}
       {% endblock extra_sidebar_top %}
+
+
+      {% if user|is_candidate %}
         {% for candidacy in user.candidacies.all %}
+          {% url 'backend_candidate:complete_profile' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as complete_profile %}
+          <li role="presentation" class="{% ifequal request.path complete_profile%} active{% endifequal %}">
+          <a href="{{complete_profile}}">
+              Completa tu perfil
+            </a></li>
+
           {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
           <li role="presentation" class="{% ifequal request.path backend_candidate%} active{% endifequal %}">
           <a href="{{backend_candidate}}">
-              {{candidacy.candidate}} por 
-              {{candidacy.candidate.election}}
+              Cuestionario
             </a></li>
             
         {% endfor %}
+      {% endif %}
+        
         {% url 'backend_citizen:index' as backend_index %}
          <li role="presentation" class="{% ifequal request.path backend_index%} active{% endifequal %}">
         <a href="{{backend_index}}">{% trans 'Mis propuestas' %}</a></li>

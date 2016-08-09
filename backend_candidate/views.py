@@ -67,26 +67,11 @@ class CompleteMediaNaranjaView(FormView):
         kwargs['candidate'] = self.candidate
         return kwargs
 
-    def get_personal_data_form(self):
-        form_class = get_candidate_profile_form_class()
-        labels = []
-        for field in form_class.base_fields:
-            labels.append(field)
-        personal_datas = PersonalData.objects.filter(candidate=self.candidate,
-                                                     label__in=labels)
-        initial = {}
-        for personal_data in personal_datas:
-            initial[str(personal_data.label)] = personal_data.value
-
-        form = form_class(candidate=self.candidate, initial=initial)
-        return form
-
     def get_context_data(self, **kwargs):
         context = (super(CompleteMediaNaranjaView, self)
                    .get_context_data(**kwargs))
         context['candidate'] = self.candidate
         context['election'] = self.election
-        context['personal_data_form'] = self.get_personal_data_form()
         return context
 
     def form_valid(self, form):
@@ -120,9 +105,9 @@ class CandidacyJoinView(RedirectView):
 form_class = get_candidate_profile_form_class()
 
 
-class CandidatePersonalDataUpdateView(FormView):
+class ProfileView(FormView):
     form_class = form_class
-    template_name = 'backend_candidate/complete_12_naranja.html'
+    template_name = 'backend_candidate/complete_profile.html'
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -132,30 +117,38 @@ class CandidatePersonalDataUpdateView(FormView):
         self.election = get_object_or_404(Election, slug=self.kwargs['slug'])
         self.candidate = get_object_or_404(Candidate,
                                            id=self.kwargs['candidate_id'])
-        return super(CandidatePersonalDataUpdateView, self).dispatch(request, *args, **kwargs)
-
-    def get(self, *args, **kwargs):
-        url = self.get_success_url()
-        return HttpResponseRedirect(url)
+        return super(ProfileView, self).dispatch(request, *args, **kwargs)
 
     def get_form_kwargs(self):
-        kwargs = super(CandidatePersonalDataUpdateView, self).get_form_kwargs()
+        kwargs = super(ProfileView, self).get_form_kwargs()
         kwargs['candidate'] = self.candidate
         return kwargs
 
     def form_valid(self, form):
         form.save()
-        return super(CandidatePersonalDataUpdateView, self).form_valid(form)
+        return super(ProfileView, self).form_valid(form)
 
     def get_success_url(self):
-        url = reverse('backend_candidate:complete_12_naranja',
+        url = reverse('backend_candidate:complete_profile',
                       kwargs={'slug': self.election.slug,
                               'candidate_id': self.candidate.id}
                       )
         return url
 
+    def get_initial(self):
+        initial = super(ProfileView, self).get_initial()
+        labels = []
+        for field in self.form_class.base_fields:
+            labels.append(field)
+        personal_datas = PersonalData.objects.filter(candidate=self.candidate,
+                                                     label__in=labels)
+        for personal_data in personal_datas:
+            initial[str(personal_data.label)] = personal_data.value
+
+        return initial
+
     def get_context_data(self, **kwargs):
-        context = (super(CandidatePersonalDataUpdateView, self)
+        context = (super(ProfileView, self)
                    .get_context_data(**kwargs))
         context['candidate'] = self.candidate
         context['election'] = self.election

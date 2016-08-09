@@ -53,42 +53,36 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
 
     def test_get_12_naranja_brings_the_form(self):
         election = Election.objects.get(id=2)
-        url = reverse('backend_candidate:complete_12_naranja',
+        url = reverse('backend_candidate:complete_profile',
                       kwargs={'slug': election.slug,
                               'candidate_id': self.candidate.id})
         self.client.login(username=self.feli,
                           password='alvarez')
         response = self.client.get(url)
-        self.assertIn('personal_data_form', response.context)
+        self.assertIn('form', response.context)
         form_class = get_candidate_profile_form_class()
         for field in form_class.base_fields:
-            self.assertIn(field, response.context['personal_data_form'].fields)
-
-        data = {'age': 4, 'party': 'partido chilote'}
+            self.assertIn(field, response.context['form'].fields)
         form = form_class(data=self.data,
                           candidate=self.candidate)
         self.assertTrue(form.is_valid())
         form.save()
         response = self.client.get(url)
-        form = response.context['personal_data_form']
+        form = response.context['form']
+        self.assertEquals(form.initial['age'], str(self.data['age']))
+        self.assertEquals(form.initial['party'], self.data['party'])
 
 
     def test_view_post_data(self):
         election = Election.objects.get(id=2)
-        url_12_naranja = reverse('backend_candidate:complete_12_naranja',
-                                 kwargs={'slug': election.slug,
-                                         'candidate_id': self.candidate.id})
         self.client.login(username=self.feli,
                           password='alvarez')
-        url = reverse('backend_candidate:complete_personal_data',
+        url = reverse('backend_candidate:complete_profile',
                       kwargs={'slug': election.slug,
                               'candidate_id': self.candidate.id})
 
-        response_redirect = self.client.get(url)
-        self.assertRedirects(response_redirect, url_12_naranja)
-
         response = self.client.post(url, data=self.data)
-        self.assertRedirects(response, url_12_naranja)
+        self.assertRedirects(response, url)
         personal_datas = PersonalData.objects.filter(candidate=self.candidate)
         self.assertTrue(len(personal_datas), 2)
         age = personal_datas.get(value=self.data['age'])

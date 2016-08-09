@@ -13,7 +13,7 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
-    <form method="post" action="{% url 'backend_candidate:complete_12_naranja' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
+    <form method="post" action="{% url 'backend_candidate:complete_profile' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
 	{% bootstrap_form form %}
 
 	<input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />

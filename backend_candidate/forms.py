@@ -5,6 +5,10 @@ from collections import OrderedDict
 from django.utils.translation import ugettext as _
 from django.conf import settings
 from elections.models import PersonalData
+import os
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.conf import settings
 
 
 def get_field_from_topic(topic):
@@ -128,15 +132,25 @@ def _import(name):
 
 
 class CandidateProfileFormBase(forms.Form):
+    image = forms.ImageField(required=False,
+                             label=_(u"Imagen de perfil"))
+
     def __init__(self, *args, **kwargs):
         self.candidate = kwargs.pop('candidate')
         super(CandidateProfileFormBase, self).__init__(*args, **kwargs)
 
     def save(self):
-        for field in self.fields:
-            PersonalData.objects.create(candidate=self.candidate,
-                                        label=field,
-                                        value=self.cleaned_data[field])
+        image = self.cleaned_data.pop('image', None)
+        if image:
+            path = default_storage.save('tmp/' + image.name, ContentFile(image.read()))
+            tmp_file = os.path.join(settings.MEDIA_ROOT, path)
+            self.candidate.image = tmp_file
+            self.candidate.save()
+        for field in self.cleaned_data.keys():
+            personal_data, created = PersonalData.objects.get_or_create(candidate=self.candidate,
+                                                                        label=field)
+            personal_data.value = self.cleaned_data[field]
+            personal_data.save()
 
 
 def get_candidate_profile_form_class():

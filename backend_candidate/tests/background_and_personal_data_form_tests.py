@@ -23,7 +23,8 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         self.candidacy = Candidacy.objects.create(user=self.feli,
                                                   candidate=self.candidate)
         self.data = {'age': 4,
-                     'party': 'Partido chilote'}
+                     'party': 'Partido chilote',
+                     'image': self.get_image()}
 
     def test_candidate_form(self):
         
@@ -37,11 +38,14 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
 
         form.save()
         personal_datas = PersonalData.objects.filter(candidate=self.candidate)
-        self.assertTrue(len(personal_datas), 2)
+        self.assertEquals(len(personal_datas), 2)
         age = personal_datas.get(value=self.data['age'])
         self.assertEquals(age.label, 'age')
         party = personal_datas.get(value=self.data['party'])
         self.assertEquals(party.label, 'party')
+        form.save()
+        personal_datas = PersonalData.objects.filter(candidate=self.candidate)
+        self.assertEquals(personal_datas.count(), 2)
 
     def test_template_filter(self):
         personal_data = PersonalData.objects.create(label='age',
@@ -80,8 +84,9 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         url = reverse('backend_candidate:complete_profile',
                       kwargs={'slug': election.slug,
                               'candidate_id': self.candidate.id})
-
-        response = self.client.post(url, data=self.data)
+        data = self.data
+        response = self.client.post(url,
+                                    data=data)
         self.assertRedirects(response, url)
         personal_datas = PersonalData.objects.filter(candidate=self.candidate)
         self.assertTrue(len(personal_datas), 2)
@@ -89,3 +94,12 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         self.assertEquals(age.label, 'age')
         party = personal_datas.get(value=self.data['party'])
         self.assertEquals(party.label, 'party')
+        candidate = Candidate.objects.get(id=self.candidate.id)
+        self.assertTrue(candidate.image)
+
+        # Doing it twice
+        response = self.client.post(url,
+                                    data=data)
+        party = PersonalData.objects.filter(candidate=self.candidate,
+                                            label='party')
+        self.assertEquals(len(party), 1)

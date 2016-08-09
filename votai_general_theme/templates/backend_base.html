@@ -22,6 +22,8 @@
 
       {% if user|is_candidate %}
         {% for candidacy in user.candidacies.all %}
+
+          <a href="{{candidacy.candidate.get_absolute_url}}">{{candidacy.candidate.name}}</a>
           {% url 'backend_candidate:complete_profile' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as complete_profile %}
           <li role="presentation" class="{% ifequal request.path complete_profile%} active{% endifequal %}">
           <a href="{{complete_profile}}">

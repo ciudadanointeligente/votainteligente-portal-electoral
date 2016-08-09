@@ -144,7 +144,6 @@ class ProfileView(FormView):
                                                      label__in=labels)
         for personal_data in personal_datas:
             initial[str(personal_data.label)] = personal_data.value
-
         return initial
 
     def get_context_data(self, **kwargs):

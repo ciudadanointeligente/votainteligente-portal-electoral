@@ -3,7 +3,7 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import Election, Candidate
 from candidator.models import Topic
 from django import forms
-
+import theme
 
 class SoulMateCandidateAnswerTestsBase(TestCase):
     def setUp(self):

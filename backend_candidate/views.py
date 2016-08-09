@@ -7,10 +7,11 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import FormView
 from django.shortcuts import get_object_or_404
 from backend_candidate.forms import get_form_for_election
-from elections.models import Candidate, Election
+from elections.models import Candidate, Election, PersonalData
 from django.core.urlresolvers import reverse
 from backend_candidate.models import CandidacyContact
 from django.http import HttpResponseRedirect
+from backend_candidate.forms import get_candidate_profile_form_class
 
 
 class BackendCandidateBase(View):
@@ -99,3 +100,55 @@ class CandidacyJoinView(RedirectView):
         self.contact.used_by_candidate = True
         self.contact.save()
         return reverse('backend_candidate:home')
+
+
+form_class = get_candidate_profile_form_class()
+
+
+class ProfileView(FormView):
+    form_class = form_class
+    template_name = 'backend_candidate/complete_profile.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        if not is_candidate(request.user):
+            raise Http404
+        self.user = request.user
+        self.election = get_object_or_404(Election, slug=self.kwargs['slug'])
+        self.candidate = get_object_or_404(Candidate,
+                                           id=self.kwargs['candidate_id'])
+        return super(ProfileView, self).dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super(ProfileView, self).get_form_kwargs()
+        kwargs['candidate'] = self.candidate
+        return kwargs
+
+    def form_valid(self, form):
+        form.save()
+        return super(ProfileView, self).form_valid(form)
+
+    def get_success_url(self):
+        url = reverse('backend_candidate:complete_profile',
+                      kwargs={'slug': self.election.slug,
+                              'candidate_id': self.candidate.id}
+                      )
+        return url
+
+    def get_initial(self):
+        initial = super(ProfileView, self).get_initial()
+        labels = []
+        for field in self.form_class.base_fields:
+            labels.append(field)
+        personal_datas = PersonalData.objects.filter(candidate=self.candidate,
+                                                     label__in=labels)
+        for personal_data in personal_datas:
+            initial[str(personal_data.label)] = personal_data.value
+        return initial
+
+    def get_context_data(self, **kwargs):
+        context = (super(ProfileView, self)
+                   .get_context_data(**kwargs))
+        context['candidate'] = self.candidate
+        context['election'] = self.election
+        return context

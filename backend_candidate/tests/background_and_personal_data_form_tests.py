@@ -68,7 +68,7 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         url_12_naranja = reverse('backend_candidate:complete_12_naranja',
                                  kwargs={'slug': election.slug,
                                          'candidate_id': self.candidate.id})
-        data = {'age': 4,
+        data = {'age': '4',
                 'party': 'Partido chilote'}
         self.client.login(username=self.feli,
                           password='alvarez')
@@ -80,7 +80,7 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         self.assertRedirects(response_redirect, url_12_naranja)
 
         response = self.client.post(url, data=data)
-        self.assertEquals(response.status_code, 200)
+        self.assertRedirects(response, url_12_naranja)
         personal_datas = PersonalData.objects.filter(candidate=self.candidate)
         self.assertTrue(len(personal_datas), 2)
         age = personal_datas.get(value=data['age'])

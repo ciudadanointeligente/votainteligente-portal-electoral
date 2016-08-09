@@ -106,8 +106,8 @@ class CandidacyJoinView(RedirectView):
         return reverse('backend_candidate:home')
 
 
-
 form_class = get_candidate_profile_form_class()
+
 
 class CandidatePersonalDataUpdateView(FormView):
     form_class = form_class
@@ -123,13 +123,14 @@ class CandidatePersonalDataUpdateView(FormView):
                                            id=self.kwargs['candidate_id'])
         return super(CandidatePersonalDataUpdateView, self).dispatch(request, *args, **kwargs)
 
-
     def get(self, *args, **kwargs):
         url = self.get_success_url()
         return HttpResponseRedirect(url)
 
     def get_form_kwargs(self):
-        return {'candidate': self.candidate}
+        kwargs = super(CandidatePersonalDataUpdateView, self).get_form_kwargs()
+        kwargs['candidate'] = self.candidate
+        return kwargs
 
     def form_valid(self, form):
         form.save()

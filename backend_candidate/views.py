@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import FormView
 from django.shortcuts import get_object_or_404
 from backend_candidate.forms import get_form_for_election
-from elections.models import Candidate, Election
+from elections.models import Candidate, Election, PersonalData
 from django.core.urlresolvers import reverse
 from backend_candidate.models import CandidacyContact
 from django.http import HttpResponseRedirect
@@ -62,20 +62,31 @@ class CompleteMediaNaranjaView(FormView):
     def get_form_class(self):
         return get_form_for_election(self.election)
 
-
-
     def get_form_kwargs(self):
         kwargs = super(CompleteMediaNaranjaView, self).get_form_kwargs()
         kwargs['candidate'] = self.candidate
         return kwargs
+
+    def get_personal_data_form(self):
+        form_class = get_candidate_profile_form_class()
+        labels = []
+        for field in form_class.base_fields:
+            labels.append(field)
+        personal_datas = PersonalData.objects.filter(candidate=self.candidate,
+                                                     label__in=labels)
+        initial = {}
+        for personal_data in personal_datas:
+            initial[str(personal_data.label)] = personal_data.value
+
+        form = form_class(candidate=self.candidate, initial=initial)
+        return form
 
     def get_context_data(self, **kwargs):
         context = (super(CompleteMediaNaranjaView, self)
                    .get_context_data(**kwargs))
         context['candidate'] = self.candidate
         context['election'] = self.election
-        form_class = get_candidate_profile_form_class()
-        context['personal_data_form'] = form_class(candidate=self.candidate)
+        context['personal_data_form'] = self.get_personal_data_form()
         return context
 
     def form_valid(self, form):

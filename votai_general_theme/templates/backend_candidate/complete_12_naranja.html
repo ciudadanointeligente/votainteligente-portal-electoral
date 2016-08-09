@@ -9,10 +9,29 @@
 
 {% block main_content %}
 <div class="contenedorDestacado fondo-blanco">
-<form method="post" action="{% url 'backend_candidate:complete_12_naranja' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
-{% bootstrap_form form %}
+<div class="panel panel-default">
+  <div class="panel-body">
 
-<input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
-</form>
+  	<form method="post" action="{% url 'backend_candidate:complete_personal_data' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
+	{% bootstrap_form personal_data_form %}
+
+	<input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
+	</form>
+  </div>
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form method="post" action="{% url 'backend_candidate:complete_12_naranja' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
+	{% bootstrap_form form %}
+
+	<input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
+	</form>
+  </div>
+</div>
+
 </div>
 {% endblock main_content %}

@@ -22,24 +22,25 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         self.candidate = Candidate.objects.get(pk=1)
         self.candidacy = Candidacy.objects.create(user=self.feli,
                                                   candidate=self.candidate)
+        self.data = {'age': 4,
+                     'party': 'Partido chilote'}
 
     def test_candidate_form(self):
-        data = {'age': 4,
-                'party': 'Partido chilote'}
+        
         form_class = get_candidate_profile_form_class()
         form = form_class(candidate=self.candidate,
-                          data=data)
+                          data=self.data)
         self.assertTrue(form.is_valid())
         self.assertIn('age', form.cleaned_data.keys())
-        self.assertEquals(form.cleaned_data['age'], data['age'])
-        self.assertEquals(form.cleaned_data['party'], data['party'])
+        self.assertEquals(form.cleaned_data['age'], self.data['age'])
+        self.assertEquals(form.cleaned_data['party'], self.data['party'])
 
         form.save()
         personal_datas = PersonalData.objects.filter(candidate=self.candidate)
         self.assertTrue(len(personal_datas), 2)
-        age = personal_datas.get(value=data['age'])
+        age = personal_datas.get(value=self.data['age'])
         self.assertEquals(age.label, 'age')
-        party = personal_datas.get(value=data['party'])
+        party = personal_datas.get(value=self.data['party'])
         self.assertEquals(party.label, 'party')
 
     def test_template_filter(self):
@@ -63,13 +64,20 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         for field in form_class.base_fields:
             self.assertIn(field, response.context['personal_data_form'].fields)
 
+        data = {'age': 4, 'party': 'partido chilote'}
+        form = form_class(data=self.data,
+                          candidate=self.candidate)
+        self.assertTrue(form.is_valid())
+        form.save()
+        response = self.client.get(url)
+        form = response.context['personal_data_form']
+
+
     def test_view_post_data(self):
         election = Election.objects.get(id=2)
         url_12_naranja = reverse('backend_candidate:complete_12_naranja',
                                  kwargs={'slug': election.slug,
                                          'candidate_id': self.candidate.id})
-        data = {'age': '4',
-                'party': 'Partido chilote'}
         self.client.login(username=self.feli,
                           password='alvarez')
         url = reverse('backend_candidate:complete_personal_data',
@@ -79,11 +87,11 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         response_redirect = self.client.get(url)
         self.assertRedirects(response_redirect, url_12_naranja)
 
-        response = self.client.post(url, data=data)
+        response = self.client.post(url, data=self.data)
         self.assertRedirects(response, url_12_naranja)
         personal_datas = PersonalData.objects.filter(candidate=self.candidate)
         self.assertTrue(len(personal_datas), 2)
-        age = personal_datas.get(value=data['age'])
+        age = personal_datas.get(value=self.data['age'])
         self.assertEquals(age.label, 'age')
-        party = personal_datas.get(value=data['party'])
+        party = personal_datas.get(value=self.data['party'])
         self.assertEquals(party.label, 'party')

@@ -120,7 +120,10 @@ def _import(name):
     components = name.split('.')
     mod = __import__(components[0])
     for comp in components[1:]:
-        mod = getattr(mod, comp)
+        try:
+            mod = getattr(mod, comp)
+        except AttributeError:
+            raise ImportError
     return mod
 
 
@@ -142,12 +145,14 @@ def get_candidate_profile_form_class():
     if settings.THEME:
         try:
             PARENT_FORM_CLASS = _import(settings.THEME + ".forms.PersonalDataForm")
-            cls_attrs = {}
-            PARENT_FORM_CLASS = type('CandidateProfileFormBase',
-                                     (CandidateProfileFormBase,
-                                      PARENT_FORM_CLASS,
-                                      object),
-                                     cls_attrs)
+            
         except ImportError:
-            pass
+            from votai_general_theme.forms import PersonalDataForm
+            PARENT_FORM_CLASS = PersonalDataForm
+        cls_attrs = {}
+        PARENT_FORM_CLASS = type('CandidateProfileFormBase',
+                                 (CandidateProfileFormBase,
+                                  PARENT_FORM_CLASS,
+                                  object),
+                                 cls_attrs)
     return PARENT_FORM_CLASS

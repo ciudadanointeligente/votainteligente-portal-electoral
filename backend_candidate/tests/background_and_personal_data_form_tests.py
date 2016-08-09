@@ -9,6 +9,7 @@ from elections.models import PersonalData, Election
 from django.template import Template, Context
 from django.core.urlresolvers import reverse
 from backend_candidate.forms import get_candidate_profile_form_class
+from popolo.models import ContactDetail
 
 
 @override_settings(THEME='backend_candidate.tests.theme')
@@ -24,7 +25,10 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
                                                   candidate=self.candidate)
         self.data = {'age': 4,
                      'party': 'Partido chilote',
-                     'image': self.get_image()}
+                     'image': self.get_image(),
+                     'facebook': 'https://www.facebook.com/PabloMoyaConcejal/',
+                     'twitter': 'https://www.twitter.com/Pablo_Moya',
+                     'url': 'https://google.cl'}
 
     def test_candidate_form(self):
         
@@ -43,9 +47,26 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         self.assertEquals(age.label, 'age')
         party = personal_datas.get(value=self.data['party'])
         self.assertEquals(party.label, 'party')
+
+        facebook = self.candidate.contact_details.get(contact_type='FACEBOOK')
+        self.assertEquals(facebook.value, self.data['facebook'])
+        facebook = self.candidate.contact_details.get(contact_type='TWITTER')
+        self.assertEquals(facebook.value, self.data['twitter'])
+        facebook = self.candidate.contact_details.get(contact_type='URL')
+        self.assertEquals(facebook.value, self.data['url'])
+
         form.save()
         personal_datas = PersonalData.objects.filter(candidate=self.candidate)
         self.assertEquals(personal_datas.count(), 2)
+
+        self.assertEquals(self.candidate.contact_details.count(), 3)
+        self.candidate.add_contact_detail(label='perrito',
+                                          contact_type="FACEBOOK",
+                                          value="http://facebook.com")
+        form = form_class(candidate=self.candidate,
+                          data=self.data)
+        self.assertEquals(form.initial['facebook'], self.data['facebook'])
+
 
     def test_template_filter(self):
         personal_data = PersonalData.objects.create(label='age',
@@ -75,6 +96,9 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         form = response.context['form']
         self.assertEquals(form.initial['age'], str(self.data['age']))
         self.assertEquals(form.initial['party'], self.data['party'])
+        self.assertEquals(form.initial['facebook'], self.data['facebook'])
+        self.assertEquals(form.initial['twitter'], self.data['twitter'])
+        self.assertEquals(form.initial['url'], self.data['url'])
 
 
     def test_view_post_data(self):

@@ -8,7 +8,8 @@ from elections.models import PersonalData
 import os
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
-from django.conf import settings
+from popolo.models import ContactDetail
+
 
 
 def get_field_from_topic(topic):
@@ -135,9 +136,41 @@ class CandidateProfileFormBase(forms.Form):
     image = forms.ImageField(required=False,
                              label=_(u"Imagen de perfil"))
 
+    social_networks = {
+        'facebook': {'field': forms.URLField(required=False),
+                     'contact_type': 'FACEBOOK',
+                     'label': 'Facebook'},
+        'twitter': {'field': forms.URLField(required=False),
+                    'contact_type': 'TWITTER',
+                    'label': 'Twitter'},
+        'url': {'field': forms.URLField(required=False),
+                'contact_type': 'URL',
+                'label': 'Sitio'},
+    }
+
     def __init__(self, *args, **kwargs):
         self.candidate = kwargs.pop('candidate')
+        initial = {}
+        for link in self.social_networks:
+            contact_type = self.social_networks[link]['contact_type']
+            initial[link] = ''
+            # Esta wea oficialmente es una chanchería!
+            # Si existen varios contact_details para un mismo candidato
+            # elige el primero
+            # esto está relacionado con #451
+            contact_detail = self.candidate.contact_details.filter(contact_type=contact_type).first()
+            if contact_detail is not None:
+                initial[link] = contact_detail.value
+        if 'initial' in kwargs:
+            kwargs['initial'].update(initial)
+        else:
+            kwargs['initial'] = initial
         super(CandidateProfileFormBase, self).__init__(*args, **kwargs)
+        for social_network in self.social_networks:
+            field_description = self.social_networks[social_network]
+            field = field_description['field']
+            field.label = field_description['label']
+            self.fields[social_network] = field
 
     def save(self):
         image = self.cleaned_data.pop('image', None)
@@ -146,15 +179,23 @@ class CandidateProfileFormBase(forms.Form):
             tmp_file = os.path.join(settings.MEDIA_ROOT, path)
             self.candidate.image = tmp_file
             self.candidate.save()
+
+        for link in self.social_networks:
+            value = self.cleaned_data.pop(link, None)
+            if value:
+                contact_type = self.social_networks[link]['contact_type']
+                label = self.social_networks[link]['label']
+                contact_detail, created = self.candidate.contact_details.get_or_create(contact_type=contact_type)
+                contact_detail.value = value
+                contact_detail.label = label
+                contact_detail.save()
         for field in self.cleaned_data.keys():
             personal_data, created = PersonalData.objects.get_or_create(candidate=self.candidate,
                                                                         label=field)
             personal_data.value = self.cleaned_data[field]
             personal_data.save()
 
-
 def get_candidate_profile_form_class():
-
     PARENT_FORM_CLASS = CandidateProfileFormBase
     if settings.THEME:
         try:

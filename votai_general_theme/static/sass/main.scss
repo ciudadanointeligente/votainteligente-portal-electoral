@@ -37,6 +37,8 @@ h1 {
 	font-family: 'Arvo', serif;
   letter-spacing: 6px;
   font-size: 36px;
+  text-transform: uppercase;
+  color: $grey-one;
 }
 
 h2 {
@@ -47,7 +49,10 @@ h2 {
 }
 
 h3 {
-	font-weight: 900;
+	font-family: 'Arvo', serif;
+	font-weight: 300;
+	font-size: 22px;
+	color: $grey-one;
 }
 
 h4 {
@@ -159,6 +164,36 @@ strong {
 
 .breadcrumb>.active {
 	color: $grey-five;
+}
+
+/*FORM*/
+
+.form-control {
+    height: 38px;
+    color: $grey-one;
+    border: 1px solid $grey-five;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+.form-control::-webkit-input-placeholder {
+   color: $grey-three;
+}
+
+.form-control:-moz-placeholder { /* Firefox 18- */
+   color: $grey-three;  
+}
+
+.form-control::-moz-placeholder {  /* Firefox 19+ */
+   color: $grey-three;  
+}
+
+.form-control:-ms-input-placeholder {  
+   color: $grey-three;  
 }
 
 /*Section Hero*/
@@ -360,7 +395,7 @@ section#que-hago {
 	border: 3px solid $yellow;
 }
 
-.btn-success:hover {
+.btn-success:hover, .btn-success.active.focus, .btn-success.active:focus, .btn-success.active:hover, .btn-success:active.focus, .btn-success:active:focus, .btn-success:active:hover, .open>.dropdown-toggle.btn-success.focus, .open>.dropdown-toggle.btn-success:focus, .open>.dropdown-toggle.btn-success:hover, .btn-success.active, .btn-success:active, .open>.dropdown-toggle.btn-success, .btn-success.focus, .btn-success:focus {
 	background-color: lighten($yellow,10%);
 	border: 3px solid lighten($yellow,10%);
 }
@@ -397,7 +432,7 @@ section#que-hago {
 .btn-default:hover, .btn-default:focus, .btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover {
   color: $grey-three;
   background-color: white;
-  border: 3px solid lighten($grey-five,5%);
+  border: 3px solid $grey-five;
 }
 
 .btn-info {
@@ -461,13 +496,17 @@ polyline {
 .navbar {
     min-height: 70px;
 }
-.navbar-inverse .navbar-nav>li>a {
-	color: $main-background-color;
-	border: none;
+.navbar-inverse .navbar-nav > li > a {
+  color: $grey-three;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .navbar-inverse .navbar-nav>li>a:hover {
-	color: $anchor-color;
+	color: $grey-two;
 }
 
 .navbar-nav {
@@ -475,12 +514,43 @@ polyline {
 }
 
 .navbar-brand {
-	padding: 5px 13px;
+  padding: 10px 15px;
 }
 
 .navbar-inverse{
 	border: none;
 }
+
+/*Nav-pills*/
+
+.nav-pills>li {
+	border-bottom: 3px solid $grey-five;
+}
+
+.nav-pills>li.active{
+    border-bottom: 3px solid $yellow;
+}
+
+.nav-pills>li>a {
+    border-radius: 0px;
+    color: $grey-two;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    background-color: transparent;
+    color: $grey-one;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: transparent;
+    color: $grey-one;
+}
+
+.nav-pills.list-inline {
+    margin-bottom: 70px;
+}
+
 /*Menu Interno*/
 
 .nav-candidator .list-inline>li {
@@ -638,12 +708,6 @@ polyline {
    font-weight: 300;
 }
 
-#home-search .btn-default {
-	color: $main-background-color;
-	background-color: $nav-anchor-background-color;
-	border-color: $nav-anchor-background-color;
-}
-
 #home-search .btn {
 	border-radius: 0px;
 	font-weight: 300;
@@ -695,12 +759,6 @@ polyline {
 	background: $alert-warning-border;
 	color: $elections-result-list;
 	padding: 2px 6px;
-}
-
-.landing-form{
-	input {
-		border: none;
-	}
 }
 
 #login-form{
@@ -1442,18 +1500,6 @@ tr.primary p:first-child, tr.danger p:first-child {
 	margin-top: -4px;
 }
 
-.btn.btn-default.button_pic {
-	width: 100%;
-	border: none;
-	font-weight: 500;
-}
-
-.btn.btn-default.button_pic
-{
-animation: doscaras 4s infinite;
--webkit-animation: doscaras 4s infinite; /* Safari and Chrome */
-}
-
 @keyframes doscaras
 {
 0%   {background-color: $main-background-color;}
@@ -1551,11 +1597,6 @@ animation: doscaras 4s infinite;
 
 .base-login form {
   margin-bottom: 15px;
-}
-.base-login form .btn-default {
-  float: initial;
-  color: white;
-  background-color: $yellow;
 }
 
 .base-login form .btn-default.btn-lg {

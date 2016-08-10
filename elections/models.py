@@ -132,6 +132,11 @@ class Election(ExtraInfoMixin, models.Model):
     uses_face_to_face = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar frente a frente"))
     uses_soul_mate = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar 1/2 naranja"))
     uses_questionary = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar cuestionario"))
+    position = models.CharField(default='',
+                                null=True,
+                                blank=True,
+                                max_length=255,
+                                help_text=_(u'A qué cargo está postulando?'))
 
     default_extra_info = settings.DEFAULT_ELECTION_EXTRA_INFO
     area = models.ForeignKey(Area, blank=True, null=True, related_name="elections")

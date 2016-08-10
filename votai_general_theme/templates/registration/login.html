@@ -8,45 +8,50 @@
 	<link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
 {% endblock extra_css %}
 {% block content %}
+<h1 class="text-center">Ingresa</h1>
+<div class="line-space"></div>
 	<div class="col-md-6">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<h3>{% trans '¿Eres usuario? ingresa acá:' %}</h3>
+				<h3>{% trans '¿Ya tienes cuenta?' %}</h3>
+				<div class="line-space"></div>
 				{% basic_login url=next %}
 				<div class="form-group">
 					{% include '_social_login_buttons.html' with url=next %}
 				</div>
-			</div>
-		</div>
 	</div>
 	<div class="col-md-6">
-		<div class="panel panel-default">
-			<div class="panel-body">
 				<h3>{% trans 'Regístrate:' %}</h3>
+				<div class="line-space"></div>
 				<div>
 					<!-- Nav tabs -->
-					<ul class="nav nav-pills" role="tablist">
-						<li role="presentation" class="active"><a href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Soy un ciudadano.' %}</a></li>
-						<li role="presentation"><a href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Soy un grupo ciudadano.' %}</a></li>
+					<ul class="nav nav-pills list-inline" role="tablist">
+						<li role="presentation" class="active hidden-xs"><a class="small" href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Soy una organización' %}</a></li>
+						<li role="presentation" class="hidden-xs"><a class="small" href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Soy un ciudadano' %}</a></li>
+						<!-- Dropdown moviles -->
+						<li class="dropdown hidden-sm hidden-md hidden-lg" role="presentation" >
+						  <a href="#" class="dropdown-toggle small" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Soy una organización' %} <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+						    <li><a href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Soy una organización' %}</a></li>
+						    <li><a href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Soy un ciudadano' %}</a></li>
+						  </ul>
+						</li>
+						<!-- Fin Dropdown moviles -->
 					</ul>
+
 					<!-- Tab panes -->
 					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane active" id="userRegister">
+						<div role="tabpanel" class="tab-pane" id="userRegister">
 							
-							<p>{% trans 'Regístrate con redes sociales.' %}</p>
 							<div class="form-group">
 								{% include '_social_login_buttons.html' with url=next %}
 							</div>
-							<p>{% trans 'O regístrate con un usuario y password.' %}</p>
+							<p>{% trans 'O regístrate con un usuario y contraseña:' %}</p>
 							{% user_register %}
 							
 						</div>
-						<div role="tabpanel" class="tab-pane" id="groupRegister">
+						<div role="tabpanel" class="tab-pane active" id="groupRegister">
 							{% group_register %}
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
 	</div>
 {% endblock content %}

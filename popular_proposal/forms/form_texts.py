@@ -2,7 +2,7 @@
 from collections import OrderedDict
 
 WHEN_CHOICES = [
-    ('', '----'),
+    ('', u'¿Cuándo?'),
     ('6_months', u'6 Meses'),
     ('1_year', u'1 año'),
     ('2_year', u'2 años'),
@@ -28,7 +28,7 @@ TEXTS = OrderedDict({
     'problem': {'label': u' ',
                 'preview_question': u'¿Cuál es el problema?',
                 'help_text': u'',
-                'placeholder': u'¿Cuál es el problema que afecta a la comuna (o barrio) de la que el alcalde debe hacerse cargo?',
+                'placeholder': u'Describe el problema que afecta a la comuna (o barrio) de la que el alcalde debe hacerse cargo',
                 'long_text': "paso1.html"},
     'causes': {'label': u' ',
                'preview_question': u'¿Cuáles son las causas?',
@@ -43,7 +43,7 @@ TEXTS = OrderedDict({
     'solution_at_the_end': {'label': u' ',
                             'preview_question': u'¿Cuál sería la solución?',
                             'help_text': u'',
-                            'placeholder': u'Que la Municipalidad de Pelarco destine un 20% más de recursos al año para colegios o liceos.\n\rQue la Municipalidad de Pelarco elabore e implemente un plan junto a los profesores de Educación Media para optimizar los recursos en educación.',
+                            'placeholder': u'Define la o las acciones que debe realizar el alcalde para que la propuesta se de por cumplida.',
                             'long_text': "paso4a.html"},
     'when': {'label': u'¿Cuándo?',
              'preview_question': u'¿Cuándo debería estar esto listo?',

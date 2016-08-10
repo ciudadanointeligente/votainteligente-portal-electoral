@@ -41,30 +41,30 @@
   <div class="container">
     <h2 class="text-center">¿Cómo funciona?</h2>
     <div class="text-center">
-      <a class="btn btn-primary" href="">Tengo una propuesta</a>
-      <a class="btn btn-default" href="">Quiero conocer y apoyar una idea</a>
+      <a class="btn btn-primary" href="{% url 'popular_proposals:propose_wizard_full' %}">Tengo una propuesta</a>
+      <a class="btn btn-default" href="{% url 'popular_proposals:home' %}">Quiero conocer y apoyar una idea</a>
       <div class="line-space"></div>
     </div>
     <div class="row">
       <div class="col-md-3 col-sm-6">
         <div class="text-center"><img src="{% static 'img/icon-grupo.svg' %}"></div>
-        <h5 class="text-center">1. EN UN GRUPO SE TRABAJA MEJOR UNA IDEA</h5>
-        <p class="text-center">But I must explain to you how all this mistaken idea of denouncing pleasure and praising </p>
+        <h5 class="text-center">1. Júntate con tu comunidad a pensar en tu comuna</h5>
+        <p class="text-center">Sigan estas instrucciones en grupo. Si quieres proponer individualmente anda al paso 2.</p>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="text-center"><img src="{% static 'img/icon-propuesta.svg' %}"></div>
-        <h5 class="text-center">2. PASAR IDEA A PROPUESTA Y REGISTRO DE USUARIO</h5>
-        <p class="text-center">But I must explain to you how all this mistaken idea of denouncing pleasure and praising </p>
+        <h5 class="text-center">2. Regístrate y sube la propuesta</h5>
+        <p class="text-center">Ingresa con tu usuario y sigue las instrucciones. Solo debes llenar el formulario hasta el final.</p>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="text-center"><img src="{% static 'img/icon-publicacion.svg' %}"></div>
-        <h5 class="text-center">3. REVISIÓN VOTA, CORRECCIONES Y PUBLICACIÓN</h5>
-        <p class="text-center">But I must explain to you how all this mistaken idea of denouncing pleasure and praising </p>
+        <h5 class="text-center">3. Trabajaremos la propuesta contigo</h5>
+        <p class="text-center">Nosotros te haremos comentarios antes de publicarla. Después todos podrán verla y votar por ella.</p>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="text-center"><img src="{% static 'img/icon-difunde.svg' %}"></div>
-        <h5 class="text-center">4. DIFUNDE Y SUMA ADHERENTES</h5>
-        <p class="text-center">But I must explain to you how all this mistaken idea of denouncing pleasure and praising </p>
+        <h5 class="text-center">4. A difundir la propuesta</h5>
+        <p class="text-center">¡Suma adherentes! Te enviaremos consejos prácticos para que muchos se enteren de tu propuesta.</p>
       </div>
     </div>
   </div>
@@ -75,13 +75,13 @@
     <h2 class="text-center text-white">Ahora que me informé ¿qué hago?</h2>
     <div class="line-space"></div>
     <div class="row">
-      <div class="col-md-1 col-sm-1 col-xs-2"><span class="number text-white small">1</span></div>
+      <div class="col-md-1 col-sm-1 col-xs-2"><span class="number text-white">1</span></div>
       <div class="col-md-5 col-sm-5 col-xs-10">
         <h4 class="text-white">Tengo una idea ¿cómo empiezo?</h4>
         <p class="text-white">Regístrate, selecciona tu comuna y sigue los pasos para crear tu propuesta</p>
         <div><span class="small text-white">TIEMPO APROX: 20 MIN</span><a class="arrow" href=""><img src="{% static 'img/arrow-right.svg' %}"></a></div>
       </div>
-      <div class="col-md-1 col-sm-1 col-xs-2"><span class="number text-white small">2</span></div>
+      <div class="col-md-1 col-sm-1 col-xs-2"><span class="number text-white">2</span></div>
       <div class="col-md-5 col-sm-5 col-xs-10">
         <h4 class="text-white">Quiero conocer las propuestas de mi comuna</h4>
         <p class="text-white">Selecciona tu comuna y te mostraremos las propuestas publicadas por tus vecinos</p>

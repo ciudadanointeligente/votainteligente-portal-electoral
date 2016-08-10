@@ -65,6 +65,8 @@ class Candidate(Person, ExtraInfoMixin):
 
     default_extra_info = settings.DEFAULT_CANDIDATE_EXTRA_INFO
 
+    ogp_enabled = True
+
     @property
     def election(self):
         if self.elections.count() == 1:
@@ -91,6 +93,24 @@ class Candidate(Person, ExtraInfoMixin):
             'election_slug': election_slug,
             'slug': self.id
         })
+
+    def ogp_title(self):
+        return u'{} en VotaInteligente'.format(self.name)
+
+    def ogp_type(self):
+        return 'website'
+
+    def ogp_url(self):
+        site = Site.objects.get_current()
+        url = "http://%s%s" % (site.domain,
+                               self.get_absolute_url())
+        return url
+
+    def ogp_image(self):
+        site = Site.objects.get_current()
+        url = "http://%s%s" % (site.domain,
+                               static('img/logo_vi_og.jpg'))
+        return url
 
     class Meta:
         verbose_name = _("Candidato")

@@ -11,7 +11,7 @@ from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
 from backend_citizen.models import Organization
-
+from django.contrib.staticfiles.templatetags.staticfiles import static
 
 
 class NeedingModerationManager(models.Manager):
@@ -149,11 +149,32 @@ class PopularProposal(models.Model):
                               blank=True)
     clasification = models.CharField(blank=True, null=True, max_length=255)
 
+    ogp_enabled = True
+
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})
+
+    def ogp_title(self):
+        return u'{} en VotaInteligente'.format(str(self))
+
+    def ogp_type(self):
+        return 'website'
+
+    def ogp_url(self):
+        site = Site.objects.get_current()
+        url = "http://%s%s" % (site.domain,
+                               self.get_absolute_url())
+        return url
+
+    def ogp_image(self):
+        site = Site.objects.get_current()
+        url = "http://%s%s" % (site.domain,
+                               static('img/logo_vi_og.jpg'))
+        return url
+
 
 
 class Subscription(models.Model):

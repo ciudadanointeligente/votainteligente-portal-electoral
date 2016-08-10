@@ -180,6 +180,7 @@ class WizardTestCase(TestCase):
             data = test_response[i]
             data.update({'proposal_wizard_full-current_step': unicode(i)})
             response = self.client.post(url, data=data)
+            self.assertEquals(response.context['area'], self.arica)
             if 'form' in response.context:
                 self.assertFalse(response.context['form'].errors)
                 steps = response.context['wizard']['steps']

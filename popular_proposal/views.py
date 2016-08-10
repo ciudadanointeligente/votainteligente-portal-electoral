@@ -209,6 +209,13 @@ class ProposalWizardFull(ProposalWizardBase):
             'area': area
         })
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProposalWizardFull, self).get_context_data(*args, **kwargs)
+        data = self.get_all_cleaned_data()
+        if 'area' in data:
+            context['area'] = data['area']
+        return context
+
 
 class PopularProposalUpdateView(UpdateView):
     form_class = UpdateProposalForm

@@ -11,8 +11,7 @@ from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
 from backend_citizen.models import Organization
-
-
+from votainteligente.open_graph import OGPMixin
 
 class NeedingModerationManager(models.Manager):
     def get_queryset(self):
@@ -125,7 +124,7 @@ class ProposalTemporaryData(models.Model):
 
 
 @python_2_unicode_compatible
-class PopularProposal(models.Model):
+class PopularProposal(models.Model, OGPMixin):
     title = models.CharField(max_length=255, default='')
     slug = AutoSlugField(populate_from='title', unique=True)
     proposer = models.ForeignKey(User, related_name='proposals')
@@ -148,6 +147,8 @@ class PopularProposal(models.Model):
                               null=True,
                               blank=True)
     clasification = models.CharField(blank=True, null=True, max_length=255)
+
+    ogp_enabled = True
 
     def __str__(self):
         return self.title

@@ -7,6 +7,8 @@ from candidator.models import TakenPosition, Position
 from elections.models import Topic
 from popolo.models import Person
 from candidator.comparer import InformationHolder
+from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.contrib.sites.models import Site
 
 
 class CandidateInElectionsViewsTestCase(TestCase):
@@ -47,6 +49,7 @@ class CandidateInElectionsViewsTestCase(TestCase):
             'slug': candidate.id
         })
         self.assertEquals(candidate.get_absolute_url(), url_2)
+
     def test_url_is_reachable(self):
         url = reverse('candidate_detail_view', kwargs={
             'election_slug': self.tarapaca.slug,
@@ -61,6 +64,18 @@ class CandidateInElectionsViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'elections/candidate_detail.html')
         self.assertTemplateUsed(response, 'base.html')
 
+    def test_candidates_ogp(self):
+        site = Site.objects.get_current()
+        candidate = self.coquimbo.candidates.get(id=1)
+        self.assertTrue(candidate.ogp_enabled)
+        self.assertIn(candidate.name, candidate.ogp_title())
+        self.assertEquals('website', candidate.ogp_type())
+        expected_url = "http://%s%s" % (site.domain,
+                                        candidate.get_absolute_url())
+        self.assertEquals(expected_url, candidate.ogp_url())
+        expected_url = "http://%s%s" % (site.domain,
+                                        static('img/logo_vi_og.jpg'))
+        self.assertEquals(expected_url, candidate.ogp_image())
 
 class QuestionaryInElectionsViewTestCase(TestCase):
     def setUp(self):

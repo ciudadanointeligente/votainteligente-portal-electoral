@@ -3,7 +3,7 @@ from django.views.generic.edit import FormView
 from elections.forms import ElectionSearchByTagsForm
 from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, TemplateView
-from elections.models import Election
+from elections.models import Election, Area
 from elections.models import Candidate, QuestionCategory, CandidateFlatPage
 import logging
 from backend_citizen.forms import GroupCreationForm
@@ -11,7 +11,6 @@ from candidator.models import Topic, Position, TakenPosition
 from candidator.comparer import Comparer, InformationHolder
 from candidator.adapters import CandidatorCalculator, CandidatorAdapter
 from django.shortcuts import get_object_or_404
-from popolo.models import Area
 from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import UserCreationForm as RegistrationForm
 from popular_proposal.models import PopularProposal

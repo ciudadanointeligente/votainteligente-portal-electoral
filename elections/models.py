@@ -3,7 +3,7 @@ from django.db import models
 from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
 from django.core.urlresolvers import reverse
-from popolo.models import Person, Area
+from popolo.models import Person, Area as PopoloArea
 from django.utils.translation import ugettext_lazy as _
 from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
 from candidator.models import Category, Topic as CanTopic, TakenPosition
@@ -12,8 +12,16 @@ from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.flatpages.models import FlatPage
 import copy
-from django.contrib.sites.models import Site
-from django.db.models import Q, Count
+from votainteligente.open_graph import OGPMixin
+
+
+class Area(PopoloArea, OGPMixin):
+
+    class Meta:
+        proxy = True
+
+    def get_absolute_url(self):
+        return reverse('area', kwargs={'slug': self.id})
 
 
 class ExtraInfoMixin(models.Model):
@@ -29,12 +37,14 @@ class ExtraInfoMixin(models.Model):
         self.extra_info = default_extra_info
 
 
-class Candidate(Person, ExtraInfoMixin):
+class Candidate(Person, ExtraInfoMixin, OGPMixin):
     elections = models.ManyToManyField('Election', related_name='candidates', default=None)
     force_has_answer = models.BooleanField(default=False,
                                            help_text=_('Marca esto si quieres que el candidato aparezca como que no ha respondido'))
 
     default_extra_info = settings.DEFAULT_CANDIDATE_EXTRA_INFO
+
+    ogp_enabled = True
 
     @property
     def election(self):
@@ -117,7 +127,7 @@ class QuestionCategory(Category):
         verbose_name_plural = _(u"Categorías de pregunta")
 
 
-class Election(ExtraInfoMixin, models.Model):
+class Election(ExtraInfoMixin, models.Model, OGPMixin):
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='name', unique=True)
     description = models.TextField(blank=True)
@@ -141,6 +151,8 @@ class Election(ExtraInfoMixin, models.Model):
     default_extra_info = settings.DEFAULT_ELECTION_EXTRA_INFO
     area = models.ForeignKey(Area, blank=True, null=True, related_name="elections")
 
+    ogp_enabled = True
+
     def __unicode__(self):
         return self.name
 
@@ -153,5 +165,3 @@ class Election(ExtraInfoMixin, models.Model):
     class Meta:
             verbose_name = _(u'Mi Elección')
             verbose_name_plural = _(u'Mis Elecciones')
-
-

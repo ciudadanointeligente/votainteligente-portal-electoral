@@ -18,10 +18,12 @@
 
 
         <!--for facebook fans-->
+        {% block ogp %}
         <meta property="og:title" content="{{ 'title'|ogpdata }}">
         <meta property="og:type" content="{{ 'type'|ogpdata }}">
-        <meta property="og:url" content="{{ 'url'|ogpdata }}">
-        <meta property="og:image" content="{% static 'image'|ogpdata %}">
+        <meta property="og:url" content="http://{% url_domain %}">
+        <meta property="og:image" content="http://{% url_domain %}{% static 'img/logo_vi_og.jpg' %}">
+        {% endblock ogp %}
         <!--eoff-->
 
         <link rel="shortcut icon" sizes="196x196" href="{% static 'img/votai-196.png' %}">

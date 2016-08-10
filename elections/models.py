@@ -3,7 +3,7 @@ from django.db import models
 from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
 from django.core.urlresolvers import reverse
-from popolo.models import Person, Area
+from popolo.models import Person, Area as PopoloArea
 from django.utils.translation import ugettext_lazy as _
 from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
 from candidator.models import Category, Topic as CanTopic, TakenPosition
@@ -14,6 +14,35 @@ from django.contrib.flatpages.models import FlatPage
 import copy
 from django.contrib.sites.models import Site
 from django.db.models import Q, Count
+from django.contrib.staticfiles.templatetags.staticfiles import static
+
+
+class Area(PopoloArea):
+    ogp_enabled = True
+
+    class Meta:
+        proxy = True
+
+    def get_absolute_url(self):
+        return reverse('area', kwargs={'slug': self.id})
+
+    def ogp_title(self):
+        return self.name
+
+    def ogp_type(self):
+        return 'website'
+
+    def ogp_url(self):
+        site = Site.objects.get_current()
+        url = "http://%s%s" % (site.domain,
+                               self.get_absolute_url())
+        return url
+
+    def ogp_image(self):
+        site = Site.objects.get_current()
+        url = "http://%s%s" % (site.domain,
+                               static('img/logo_vi_og.jpg'))
+        return url
 
 
 class ExtraInfoMixin(models.Model):

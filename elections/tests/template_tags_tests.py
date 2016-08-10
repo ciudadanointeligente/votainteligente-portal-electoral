@@ -8,11 +8,10 @@ from django.contrib.sites.models import Site
 from django.template.loader import get_template
 from candidator.models import Position, TakenPosition
 from django.core.urlresolvers import reverse
-from popolo.models import Area
-from elections.models import QuestionCategory, Topic
+from elections.models import QuestionCategory, Topic, Area
 from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import (UserCreationForm as RegistrationForm,
-    GroupCreationForm)
+                                   GroupCreationForm)
 from django.contrib.auth.models import User
 
 

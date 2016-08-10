@@ -226,7 +226,7 @@ WEBSITE_METADATA = {
 }
 #for Facebook OGP http://ogp.me/
 WEBSITE_OGP = {
-    'title': u'Title page for Facebook OGP',
+    'title': u'VotaInteligente',
     'type': 'website',
     'url': 'http://www.mi-domain.org/',
     'image': 'img/votai-196.png'

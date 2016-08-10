@@ -272,6 +272,7 @@ class SubscriptionForm(forms.Form):
 class AreaForm(forms.Form):
     area = forms.ChoiceField()
     explanation_template = "popular_proposal/steps/select_area.html"
+    template = 'popular_proposal/wizard/select_area.html'
 
     def __init__(self, *args, **kwargs):
         super(AreaForm, self).__init__(*args, **kwargs)

@@ -170,7 +170,7 @@ class ProposalWizard(ProposalWizardBase):
                                                       data=data)
         t_data.notify_new()
         return render_to_response('popular_proposal/wizard/done.html', {
-            'proposal': t_data,
+            'popular_proposal': t_data,
             'area': self.area
         })
 
@@ -205,7 +205,7 @@ class ProposalWizardFull(ProposalWizardBase):
                                                               area=area,
                                                               data=data)
         return render_to_response('popular_proposal/wizard/done.html', {
-            'proposal': temporary_data,
+            'popular_proposal': temporary_data,
             'area': area
         })
 
@@ -214,6 +214,8 @@ class ProposalWizardFull(ProposalWizardBase):
         data = self.get_all_cleaned_data()
         if 'area' in data:
             context['area'] = data['area']
+        context['preview_data'] = self.get_all_cleaned_data()
+        
         return context
 
 

@@ -27,7 +27,7 @@ class Area(PopoloArea):
         return reverse('area', kwargs={'slug': self.id})
 
     def ogp_title(self):
-        return self.name
+        return u'{} en VotaInteligente'.format(self.name)
 
     def ogp_type(self):
         return 'website'
@@ -170,6 +170,8 @@ class Election(ExtraInfoMixin, models.Model):
     default_extra_info = settings.DEFAULT_ELECTION_EXTRA_INFO
     area = models.ForeignKey(Area, blank=True, null=True, related_name="elections")
 
+    ogp_enabled = True
+
     def __unicode__(self):
         return self.name
 
@@ -179,8 +181,24 @@ class Election(ExtraInfoMixin, models.Model):
     def get_extra_info_url(self):
             return reverse('election_extra_info', kwargs={'slug': self.slug})
 
+    def ogp_title(self):
+        return u'{} en VotaInteligente'.format(self.name)
+
+    def ogp_type(self):
+        return 'website'
+
+    def ogp_url(self):
+        site = Site.objects.get_current()
+        url = "http://%s%s" % (site.domain,
+                               self.get_absolute_url())
+        return url
+
+    def ogp_image(self):
+        site = Site.objects.get_current()
+        url = "http://%s%s" % (site.domain,
+                               static('img/logo_vi_og.jpg'))
+        return url
+
     class Meta:
             verbose_name = _(u'Mi Elección')
             verbose_name_plural = _(u'Mis Elecciones')
-
-

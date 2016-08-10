@@ -6,6 +6,8 @@ from django.core.urlresolvers import reverse
 from elections.views import ElectionDetailView
 from django.views.generic import DetailView
 from django.conf import settings
+from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.contrib.sites.models import Site
 
 
 class ElectionTestCase(TestCase):
@@ -131,6 +133,7 @@ class ElectionViewTestCase(TestCase):
     def setUp(self):
         super(ElectionViewTestCase, self).setUp()
         self.election = Election.objects.filter(searchable=True)[0]
+        self.site = Site.objects.get_current()
 
     def test_view_has_model(self):
         view = ElectionDetailView()
@@ -145,3 +148,13 @@ class ElectionViewTestCase(TestCase):
         self.assertIn('election', response.context)
         self.assertTemplateUsed(response, 'elections/election_detail.html')
         self.assertTemplateUsed(response, 'base.html')
+
+    def test_election_ogp(self):
+        self.assertIn(self.election.name, self.election.ogp_title())
+        self.assertEquals('website', self.election.ogp_type())
+        expected_url = "http://%s%s" % (self.site.domain,
+                                        self.election.get_absolute_url())
+        self.assertEquals(expected_url, self.election.ogp_url())
+        expected_url = "http://%s%s" % (self.site.domain,
+                                        static('img/logo_vi_og.jpg'))
+        self.assertEquals(expected_url, self.election.ogp_image())

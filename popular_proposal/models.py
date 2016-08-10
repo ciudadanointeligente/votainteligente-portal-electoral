@@ -11,8 +11,7 @@ from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
 from backend_citizen.models import Organization
-from django.contrib.staticfiles.templatetags.staticfiles import static
-
+from votainteligente.open_graph import OGPMixin
 
 class NeedingModerationManager(models.Manager):
     def get_queryset(self):
@@ -125,7 +124,7 @@ class ProposalTemporaryData(models.Model):
 
 
 @python_2_unicode_compatible
-class PopularProposal(models.Model):
+class PopularProposal(models.Model, OGPMixin):
     title = models.CharField(max_length=255, default='')
     slug = AutoSlugField(populate_from='title', unique=True)
     proposer = models.ForeignKey(User, related_name='proposals')
@@ -156,25 +155,6 @@ class PopularProposal(models.Model):
 
     def get_absolute_url(self):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})
-
-    def ogp_title(self):
-        return u'{} en VotaInteligente'.format(str(self))
-
-    def ogp_type(self):
-        return 'website'
-
-    def ogp_url(self):
-        site = Site.objects.get_current()
-        url = "http://%s%s" % (site.domain,
-                               self.get_absolute_url())
-        return url
-
-    def ogp_image(self):
-        site = Site.objects.get_current()
-        url = "http://%s%s" % (site.domain,
-                               static('img/logo_vi_og.jpg'))
-        return url
-
 
 
 class Subscription(models.Model):

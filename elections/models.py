@@ -12,37 +12,16 @@ from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.flatpages.models import FlatPage
 import copy
-from django.contrib.sites.models import Site
-from django.db.models import Q, Count
-from django.contrib.staticfiles.templatetags.staticfiles import static
+from votainteligente.open_graph import OGPMixin
 
 
-class Area(PopoloArea):
-    ogp_enabled = True
+class Area(PopoloArea, OGPMixin):
 
     class Meta:
         proxy = True
 
     def get_absolute_url(self):
         return reverse('area', kwargs={'slug': self.id})
-
-    def ogp_title(self):
-        return u'{} en VotaInteligente'.format(self.name)
-
-    def ogp_type(self):
-        return 'website'
-
-    def ogp_url(self):
-        site = Site.objects.get_current()
-        url = "http://%s%s" % (site.domain,
-                               self.get_absolute_url())
-        return url
-
-    def ogp_image(self):
-        site = Site.objects.get_current()
-        url = "http://%s%s" % (site.domain,
-                               static('img/logo_vi_og.jpg'))
-        return url
 
 
 class ExtraInfoMixin(models.Model):
@@ -58,7 +37,7 @@ class ExtraInfoMixin(models.Model):
         self.extra_info = default_extra_info
 
 
-class Candidate(Person, ExtraInfoMixin):
+class Candidate(Person, ExtraInfoMixin, OGPMixin):
     elections = models.ManyToManyField('Election', related_name='candidates', default=None)
     force_has_answer = models.BooleanField(default=False,
                                            help_text=_('Marca esto si quieres que el candidato aparezca como que no ha respondido'))
@@ -93,24 +72,6 @@ class Candidate(Person, ExtraInfoMixin):
             'election_slug': election_slug,
             'slug': self.id
         })
-
-    def ogp_title(self):
-        return u'{} en VotaInteligente'.format(self.name)
-
-    def ogp_type(self):
-        return 'website'
-
-    def ogp_url(self):
-        site = Site.objects.get_current()
-        url = "http://%s%s" % (site.domain,
-                               self.get_absolute_url())
-        return url
-
-    def ogp_image(self):
-        site = Site.objects.get_current()
-        url = "http://%s%s" % (site.domain,
-                               static('img/logo_vi_og.jpg'))
-        return url
 
     class Meta:
         verbose_name = _("Candidato")
@@ -166,7 +127,7 @@ class QuestionCategory(Category):
         verbose_name_plural = _(u"Categorías de pregunta")
 
 
-class Election(ExtraInfoMixin, models.Model):
+class Election(ExtraInfoMixin, models.Model, OGPMixin):
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='name', unique=True)
     description = models.TextField(blank=True)
@@ -200,24 +161,6 @@ class Election(ExtraInfoMixin, models.Model):
 
     def get_extra_info_url(self):
             return reverse('election_extra_info', kwargs={'slug': self.slug})
-
-    def ogp_title(self):
-        return u'{} en VotaInteligente'.format(self.name)
-
-    def ogp_type(self):
-        return 'website'
-
-    def ogp_url(self):
-        site = Site.objects.get_current()
-        url = "http://%s%s" % (site.domain,
-                               self.get_absolute_url())
-        return url
-
-    def ogp_image(self):
-        site = Site.objects.get_current()
-        url = "http://%s%s" % (site.domain,
-                               static('img/logo_vi_og.jpg'))
-        return url
 
     class Meta:
             verbose_name = _(u'Mi Elección')

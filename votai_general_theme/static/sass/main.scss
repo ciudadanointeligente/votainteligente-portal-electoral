@@ -7,7 +7,7 @@
 @import 'colors';
 
 html, body {
-	color: $grey-three;
+	color: $grey-two;
 	height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -286,6 +286,14 @@ select.form-control {
 	display: none;
 }
 
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: $grey-three;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: transparent;
+}
+
 /*Section Hero*/
 
 section#hero {
@@ -331,6 +339,10 @@ section#como-funciona {
     max-width: 63px;
 }
 
+#como-funciona .item {
+    height: 220px;
+}
+
 /*Section que hago*/
 
 section#que-hago {
@@ -372,11 +384,6 @@ section#que-hago {
   content: "";
   display: table;
   clear: both;
-}
-
-.contenedorDestacado ul {
-	list-style: none;
-	-webkit-padding-start: 0px;
 }
 
 .accordion
@@ -459,7 +466,7 @@ section#que-hago {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
-  border-radius: 20px;
+  border-radius: 30px;
   font-size: 12px;
   padding: 9px 14px;
   margin-bottom: 7px;
@@ -471,6 +478,10 @@ section#que-hago {
 
 .btn img {
     margin-left: 15px;
+}
+
+.arrow.btn img {
+	margin-left: 0;
 }
 
 .btn-lg {
@@ -738,10 +749,6 @@ section#que-hago {
     box-shadow: none;
 }
 
-.well ul {
-    list-style: inherit;
-}
-
 .well li {
     margin-bottom: 10px;
 }
@@ -755,6 +762,13 @@ p.destacado-tips {
 	color: $grey-four;
 }
 
+.terms label {
+    font-weight: 300;
+}
+
+section.terms {
+    margin-bottom: 40px;
+}
 
 /*Perfil candidato*/
 
@@ -1485,9 +1499,6 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 @media (max-width: 480px) {
-	.navbar-brand img {
-		width: 198px;
-	}
 
 	.profile-candidate {
 		min-height: 425px;

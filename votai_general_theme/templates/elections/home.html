@@ -19,8 +19,8 @@
       <div class="col-md-9">
         <h1><div class="small">CUANDO TODOS APORTAMOS, EL RESULTADO ES MEJOR</div>A PONERSE CON PROPUESTAS</h1>
         <p class="text-white">Te invitamos a reunirte con tus vecinas y vecinos, reflexionar, conversar y proponer ideas para tu comuna, las que podrían ser integradas a los programas de candidatas a alcadesa y candidatos a alcalde de estas elecciones municipales.</p>  
-        <a class="btn btn-info" href="">¿Cómo funciona?</a>
-        <a class="btn btn-warning" href="">¿Qué han propuesto mis vecinos?</a>
+        <a class="btn btn-info" href="#como-funciona">¿Cómo funciona?</a>
+        <a class="btn btn-warning" href="{% url 'popular_proposals:home' %}">¿Qué han propuesto mis vecinos?</a>
         <a class="btn btn-danger disabled" href="">Pronto: ¿Quiénes son mis candidatos?</a>
       </div>
     </div>
@@ -46,25 +46,25 @@
       <div class="line-space"></div>
     </div>
     <div class="row">
-      <div class="col-md-3 col-sm-6">
+      <div class="col-md-3 col-sm-6 item">
         <div class="text-center"><img src="{% static 'img/icon-grupo.svg' %}"></div>
         <h5 class="text-center">1. Júntate con tu comunidad a pensar en tu comuna</h5>
-        <p class="text-center">Sigan estas instrucciones en grupo. Si quieres proponer individualmente anda al paso 2.</p>
+        <p class="text-center text-light">Sigan estas instrucciones en grupo. Si quieres proponer individualmente anda al paso 2.</p>
       </div>
-      <div class="col-md-3 col-sm-6">
+      <div class="col-md-3 col-sm-6 item">
         <div class="text-center"><img src="{% static 'img/icon-propuesta.svg' %}"></div>
         <h5 class="text-center">2. Regístrate y sube la propuesta</h5>
-        <p class="text-center">Ingresa con tu usuario y sigue las instrucciones. Solo debes llenar el formulario hasta el final.</p>
+        <p class="text-center text-light">Ingresa con tu usuario y sigue las instrucciones. Solo debes llenar el formulario hasta el final.</p>
       </div>
-      <div class="col-md-3 col-sm-6">
+      <div class="col-md-3 col-sm-6 item">
         <div class="text-center"><img src="{% static 'img/icon-publicacion.svg' %}"></div>
         <h5 class="text-center">3. Trabajaremos la propuesta contigo</h5>
-        <p class="text-center">Nosotros te haremos comentarios antes de publicarla. Después todos podrán verla y votar por ella.</p>
+        <p class="text-center text-light">Nosotros te haremos comentarios antes de publicarla. Después todos podrán verla y votar por ella.</p>
       </div>
-      <div class="col-md-3 col-sm-6">
+      <div class="col-md-3 col-sm-6 item">
         <div class="text-center"><img src="{% static 'img/icon-difunde.svg' %}"></div>
-        <h5 class="text-center">4. A difundir la propuesta</h5>
-        <p class="text-center">¡Suma adherentes! Te enviaremos consejos prácticos para que muchos se enteren de tu propuesta.</p>
+        <h5 class="text-center">4. A difundir la propuesta y sumar adherentes</h5>
+        <p class="text-center text-light">Los usuarios podrán votar por tu propuesta. Te enviaremos consejos prácticos para que logres que muchos la apoyen.</p>
       </div>
     </div>
   </div>
@@ -79,13 +79,13 @@
       <div class="col-md-5 col-sm-5 col-xs-10">
         <h4 class="text-white">Tengo una idea ¿cómo empiezo?</h4>
         <p class="text-white">Regístrate, selecciona tu comuna y sigue los pasos para crear tu propuesta</p>
-        <div><span class="small text-white">TIEMPO APROX: 20 MIN</span><a class="arrow" href=""><img src="{% static 'img/arrow-right.svg' %}"></a></div>
+        <div><span class="small text-white">TIEMPO APROX: 20 MIN</span><a class="btn btn-success arrow" href="{% url 'popular_proposals:propose_wizard_full' %}"><img src="{% static 'img/arrow.svg' %}"></a></div>
       </div>
       <div class="col-md-1 col-sm-1 col-xs-2"><span class="number text-white">2</span></div>
       <div class="col-md-5 col-sm-5 col-xs-10">
         <h4 class="text-white">Quiero conocer las propuestas de mi comuna</h4>
         <p class="text-white">Selecciona tu comuna y te mostraremos las propuestas publicadas por tus vecinos</p>
-        <div><input type="" name=""><a class="arrow" href=""><img src="{% static 'img/arrow-right.svg' %}"></a></div>
+        <div><input type="" name=""><a class="btn btn-success arrow" href=""><img src="{% static 'img/arrow.svg' %}"></a></div>
       </div>
     </div>
   </div>

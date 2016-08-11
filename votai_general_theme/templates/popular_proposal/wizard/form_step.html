@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% load i18n %}
 {% load bootstrap3 %}
 {% load votainteligente_extras%}
@@ -9,13 +10,13 @@
 
 {% block content %}
 <div>
-  <div class="contenedorDestacado text-width">
+  <div class="text-width">
     {% if area %}
     <p class="text-light">Creando una propuesta para {{ area }}</p>
     {% endif %}
     <div class="row">
     {% for i in wizard.steps.count|times %}
-    <div class="col-md-2">
+    <div class="col-md-2 col-sm-2 col-xs-2">
         <div class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}"> </div>
     </div>
     {% endfor %}
@@ -58,7 +59,7 @@
     </div>
     {% endif %}
     <div class="pull-right">
-        <button class="btn btn-success pull-right" type="submit" value="{% trans "Submit" %}">{% trans "Submit" %}<img src="../static/img/arrow.svg"></button>
+        <button class="btn btn-success pull-right" type="submit" value="{% trans "Submit" %}">{% trans "Siguiente" %}<img src="{% static 'img/arrow.svg' %}"></button>
     </div>
 
 

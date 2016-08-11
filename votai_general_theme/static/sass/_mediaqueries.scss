@@ -6,13 +6,18 @@
   }
 
   h2 {
-    font-size: 30px;
-}
+    font-size: 22px;
+  }
 
   .btn {
     letter-spacing: 0px;
     font-size: 11px;
     padding: 7px 10px;
+    width: 100%;
+  }
+
+  .btn.arrow {
+    width: initial;
   }
 
   .small {
@@ -29,6 +34,14 @@
 
   section#que-hago {
       padding: 50px 0;
+  }
+
+  .tips {
+    padding: 15px;
+  }
+
+  .fondo-blanco {
+    padding: 15px;
   }
 
 }

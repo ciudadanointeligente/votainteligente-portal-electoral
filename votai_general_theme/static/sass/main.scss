@@ -339,6 +339,10 @@ section#como-funciona {
     max-width: 63px;
 }
 
+#como-funciona .item {
+    height: 220px;
+}
+
 /*Section que hago*/
 
 section#que-hago {
@@ -462,7 +466,7 @@ section#que-hago {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
-  border-radius: 20px;
+  border-radius: 30px;
   font-size: 12px;
   padding: 9px 14px;
   margin-bottom: 7px;
@@ -474,6 +478,10 @@ section#que-hago {
 
 .btn img {
     margin-left: 15px;
+}
+
+.arrow.btn img {
+	margin-left: 0;
 }
 
 .btn-lg {

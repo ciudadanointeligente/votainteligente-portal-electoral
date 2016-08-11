@@ -7,13 +7,17 @@
 
   h2 {
     font-size: 22px;
-}
+  }
 
   .btn {
     letter-spacing: 0px;
     font-size: 11px;
     padding: 7px 10px;
     width: 100%;
+  }
+
+  .btn.arrow {
+    width: initial;
   }
 
   .small {

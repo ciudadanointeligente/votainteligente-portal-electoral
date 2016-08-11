@@ -5,12 +5,18 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
 {% load thumbnail %}
+{% load ogp_tags %}
 
 {% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}{% endblock url_face_to_face %}
 
 {% block title %} - {{election}} - {{candidate.name}}{% endblock title%}
 
 {% block tab_profile %}class="active"{% endblock %}
+
+{% block ogp %}
+  {% render_ogp candidate %}
+{% endblock ogp %}
+
 
 {% block mainelection %}
 	<div class="container-profile">

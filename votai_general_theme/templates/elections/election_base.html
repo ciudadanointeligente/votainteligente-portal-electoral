@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load votainteligente_extras %}
+{% load ogp_tags %}
 
 {% block extrajs %}
 {% endblock extrajs %}
@@ -10,6 +11,10 @@
 {% block keywords %}{% for tag in election.tags.all %}, {{tag}}{% endfor %}{% endblock keywords %}
 
 {% block description %}{{election.description|truncatewords:100}}{% endblock description %}
+
+{% block ogp %}
+  {% render_ogp election %}
+{% endblock ogp %}
 
 {% block content %}
 <section id="election">

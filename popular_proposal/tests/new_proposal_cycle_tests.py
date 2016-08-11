@@ -7,6 +7,8 @@ from popular_proposal.models import ProposalTemporaryData, PopularProposal
 from popular_proposal.forms import ProposalForm
 from django.core.urlresolvers import reverse
 from django.core import mail
+from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.contrib.sites.models import Site
 
 
 class TemporaryDataForPromise(ProposingCycleTestCaseBase):
@@ -153,6 +155,24 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertFalse(popular_proposal.background)
         self.assertFalse(popular_proposal.image)
         self.assertEquals(popular_proposal.clasification, u'education')
+
+    def test_proposal_ogp(self):
+        site = Site.objects.get_current()
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+        self.assertTrue(popular_proposal.ogp_enabled)
+        self.assertIn(popular_proposal.title, popular_proposal.ogp_title())
+        self.assertEquals('website', popular_proposal.ogp_type())
+        expected_url = "http://%s%s" % (site.domain,
+                                        popular_proposal.get_absolute_url())
+        self.assertEquals(expected_url, popular_proposal.ogp_url())
+        expected_url = "http://%s%s" % (site.domain,
+                                        static('img/logo_vi_og.jpg'))
+        self.assertEquals(expected_url, popular_proposal.ogp_image())
 
     def test_can_have_an_organization(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,

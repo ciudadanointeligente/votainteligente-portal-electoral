@@ -144,7 +144,7 @@ class WizardTestCase(TestCase):
         self.assertTemplateUsed(response, 'popular_proposal/wizard/done.html')
         # Probar que se creó la promesa
         self.assertEquals(ProposalTemporaryData.objects.count(), 1)
-        temporary_data = response.context['proposal']
+        temporary_data = response.context['popular_proposal']
         self.assertEquals(response.context['area'], self.arica)
         self.assertEquals(temporary_data.proposer, self.feli)
         self.assertEquals(temporary_data.area, self.arica)
@@ -180,13 +180,16 @@ class WizardTestCase(TestCase):
             data = test_response[i]
             data.update({'proposal_wizard_full-current_step': unicode(i)})
             response = self.client.post(url, data=data)
+            self.assertEquals(response.context['area'], self.arica)
+
             if 'form' in response.context:
+                self.assertTrue(response.context['preview_data'])
                 self.assertFalse(response.context['form'].errors)
                 steps = response.context['wizard']['steps']
         self.assertTemplateUsed(response, 'popular_proposal/wizard/done.html')
         # Probar que se creó la promesa
         self.assertEquals(ProposalTemporaryData.objects.count(), 1)
-        temporary_data = response.context['proposal']
+        temporary_data = response.context['popular_proposal']
         self.assertEquals(response.context['area'], self.arica)
         self.assertEquals(temporary_data.proposer, self.feli)
         self.assertEquals(temporary_data.area, self.arica)

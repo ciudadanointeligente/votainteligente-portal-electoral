@@ -2,16 +2,23 @@
 {% load votainteligente_extras %}
 <br />
 {% markdown %}
-Estimado candidato o candidata a la alcaldía de {{ area }}:
+Estimada candidata o candidato a la alcaldía de {{ area }}:
 
 Le solicitamos que incorpore a su programa de gobierno municipal nuestra propuesta ciudadana:
 
-{{preview_data.solution_at_the_end|popular_proposal_when}}
+{{preview_data.solution|popular_proposal_when}}
 
 Esta propuesta debe ser cumplida antes de {{preview_data.when|popular_proposal_when}}, y surge como respuesta a la siguiente inquietud de la comunidad: {{preview_data.problem|popular_proposal_when}}.
 
-Desde ya muchas gracias,
+
+Además entendemos que la solución final estará dada por:
+
+
+{{preview_data.solution_at_the_end|popular_proposal_when}}
+
+
+Desde ya muchas gracias.
 {% endmarkdown %}
 <br />
-{{ organizationn }} {{ user }}
+El equipo de VotaInteligente a nombre de {{ user }}
 

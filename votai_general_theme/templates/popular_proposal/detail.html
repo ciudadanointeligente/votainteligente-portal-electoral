@@ -5,6 +5,9 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% block extrajs %}
+{% load ogp_tags %}
+
+
 $(function(){
     $('.loadFromUrl').on('show.bs.modal', function (event) {
       var anchor = $(event.relatedTarget) // Button that triggered the modal
@@ -17,6 +20,10 @@ $(function(){
 {% endblock extrajs %}
 
 {% block title %}{{popular_proposal.title}}{% endblock title%}
+
+{% block ogp %}
+  {% render_ogp popular_proposal %}
+{% endblock ogp %}
 
 {% block everything %}
 

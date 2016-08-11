@@ -9,12 +9,12 @@
 
 {% block content %}
 <div>
-  <div class="contenedorDestacado text-width">
+  <div class="text-width">
     <p class="text-light">Creando una propuesta para {{ area }}</p>
 
     <div class="row">
     {% for i in wizard.steps.count|times %}
-        <div class="col-md-2">
+        <div class="col-md-2 col-sm-2 col-xs-2">
             <div class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}"> </div>
         </div>
     {% endfor %}
@@ -39,9 +39,9 @@
         </section>
         {% include 'popular_proposal/plantillas/carta_candidato.html' %}
     </div>
-        <section>
+        <section class="terms">
           {{ form.terms_and_conditions }}
-            <a class="" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">{% bootstrap_label "Términos y condiciones" labform.terms_and_conditions.name %}</a>
+            <a role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">{% bootstrap_label "Términos y condiciones" labform.terms_and_conditions.name %}</a>
         <div class="collapse" id="collapseExample">
           <div>
             {% include 'popular_proposal/terms_and_conditions.html' %}

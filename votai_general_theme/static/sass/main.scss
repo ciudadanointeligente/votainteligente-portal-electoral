@@ -286,6 +286,14 @@ select.form-control {
 	display: none;
 }
 
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: $grey-three;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: transparent;
+}
+
 /*Section Hero*/
 
 section#hero {
@@ -746,6 +754,13 @@ p.destacado-tips {
 	color: $grey-four;
 }
 
+.terms label {
+    font-weight: 300;
+}
+
+section.terms {
+    margin-bottom: 40px;
+}
 
 /*Perfil candidato*/
 
@@ -1476,9 +1491,6 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 @media (max-width: 480px) {
-	.navbar-brand img {
-		width: 198px;
-	}
 
 	.profile-candidate {
 		min-height: 425px;

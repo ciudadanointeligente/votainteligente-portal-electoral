@@ -28,7 +28,7 @@ TEXTS = OrderedDict({
     'problem': {'label': u' ',
                 'preview_question': u'¿Cuál es el problema?',
                 'help_text': u'',
-                'placeholder': u'Describe el problema que afecta a la comuna (o barrio) de la que el alcalde debe hacerse cargo',
+                'placeholder': u'Describe el problema que afecta a la comuna (o barrio) del que el alcalde debe hacerse cargo',
                 'long_text': "paso1.html"},
     'causes': {'label': u' ',
                'preview_question': u'¿Cuáles son las causas?',

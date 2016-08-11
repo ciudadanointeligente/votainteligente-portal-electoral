@@ -7,7 +7,7 @@
 @import 'colors';
 
 html, body {
-	color: $grey-three;
+	color: $grey-two;
 	height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -372,11 +372,6 @@ section#que-hago {
   content: "";
   display: table;
   clear: both;
-}
-
-.contenedorDestacado ul {
-	list-style: none;
-	-webkit-padding-start: 0px;
 }
 
 .accordion

@@ -32,7 +32,6 @@
                 {% bootstrap_field form.organization show_help=false %}
             {% endif %}
         </section>
-        <span>{% trans 'Cuando tu propuesta sea aceptada se la haremos llegar a los candidatos y se verá así:' %}</span>
     <div class="preview fondo-blanco">
         <p class="small text-center">Propuesta para {{ area }}</p>
         <section>
@@ -41,22 +40,22 @@
         {% include 'popular_proposal/plantillas/carta_candidato.html' %}
     </div>
         <section>
-            {% bootstrap_field form.terms_and_conditions show_help=false show_label=true %}
-            <div class="tips">
-                {% include 'popular_proposal/terms_and_conditions.html' %}
-            </div>
+          {% bootstrap_field form.terms_and_conditions show_help=false show_label=false %}
+            <a class="" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">{% bootstrap_label "términos y condiciones" %}</a>
+        <div class="collapse" id="collapseExample">
+          <div>
+            {% include 'popular_proposal/terms_and_conditions.html' %}
+          </div>
+        </div>
         </section>
     {% if wizard.steps.prev %}
     <div class="pull-left">
-        <button class="btn btn-default" name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "Volver al inicio" %}</button>
+        <button class="btn btn-primary" name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "Volver al inicio" %}</button>
         <button class="btn btn-default" name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "Volver al paso previo" %}</button>
     </div>
     {% endif %}
     <div class="pull-right">
-        <button class="btn btn-primary arrow right" type="submit" value="{% trans "Submit" %}">{% trans "Submit" %} <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="40px" viewBox="0 -3 15 80" xml:space="preserve">
-            <polyline fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="
-            0.375,0.375 45.63,38.087 0.375,75.8 "/>
-          </svg></button>
+        <button class="btn btn-success pull-right" type="submit" value="{% trans "Submit" %}">{% trans "Submit" %}<img src="../static/img/arrow.svg"></button>
     </div>
 
 

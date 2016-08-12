@@ -280,6 +280,8 @@ class AreaForm(forms.Form):
 
     def clean(self):
         cleaned_data = super(AreaForm, self).clean()
+        if 'area' not in cleaned_data:
+            return cleaned_data
         area = Area.objects.get(id=cleaned_data['area'])
         cleaned_data['area'] = area
         return cleaned_data

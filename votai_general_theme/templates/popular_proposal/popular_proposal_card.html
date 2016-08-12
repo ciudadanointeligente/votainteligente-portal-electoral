@@ -2,21 +2,31 @@
 {% load votainteligente_extras %}
 {% load i18n %}
 {% load thumbnail %}
-<div class="post">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-        {% if proposal.title %}
-            {{proposal.title}}
-        {% else %}
-            {{proposal.data.solution}}
-        {% endif %}
-        </div>
-        <div class='panel-body'>
+<div class="post propuesta">
+  {% if proposal.title %}
+      <h3><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title}}</a></h3>
+  {% endif %}
+  {% if proposal.data.solution %}
+      {{proposal.data.solution}}
+  {% endif %}
+      {% include 'popular_proposal/_likers.html' with proposal=proposal %}
+      <hr>
+  <p>3 candidatos han adherido:</p>
+  <ul class="list-inline">
+    <li><a href="">Bryan Thompson,</a></li>
+    <li><a href=""> Olivia Henry</a>,</li>
+    <li><a href=""> Kenneth Castro</a></li>
+  </ul>
+  <div class="share text-center">
+    <a class="fa-stack fa-lg" href="">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+    </a>
+    <a class="fa-stack fa-lg" href="">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+    </a>
+  </div>
 
 
-
-            <a href="{% url 'popular_proposals:detail' slug=proposal.slug %}"><i class="fa fa-link" aria-hidden="true"></i></a>
-            {% include 'popular_proposal/_likers.html' with proposal=proposal %}
-        </div>
-    </div>
-    </div>
+</div>

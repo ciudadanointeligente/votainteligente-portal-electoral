@@ -138,7 +138,7 @@ class WizardTestCase(TestCase):
                     is_done = True
             if not is_done:
                 self.assertTrue(response.context['preview_data'])
-            if 'form' in response.context:
+            if 'form' in response.context and response.context['form'] is not None:
                 self.assertFalse(response.context['form'].errors)
                 steps = response.context['wizard']['steps']
         self.assertTemplateUsed(response, 'popular_proposal/wizard/done.html')
@@ -182,7 +182,7 @@ class WizardTestCase(TestCase):
             response = self.client.post(url, data=data)
             self.assertEquals(response.context['area'], self.arica)
 
-            if 'form' in response.context:
+            if 'form' in response.context and response.context['form'] is not None:
                 self.assertTrue(response.context['preview_data'])
                 self.assertFalse(response.context['form'].errors)
                 steps = response.context['wizard']['steps']

@@ -13,10 +13,10 @@
   <h1 class="text-center">{% blocktrans %}¡Bienvenida/o {{user}}!{% endblocktrans %}</h1>
   <div class="line-space"></div>
 
-  <div class="row">
-    <div class="col-md-4">
+  <div class="">
+    <div class="">
       {% block sidebar %}
-      <ul class="nav nav-pills nav-stacked">
+      <ul class="nav nav-pills list-inline">
       {% block extra_sidebar_top %}
       {% endblock extra_sidebar_top %}
 
@@ -27,13 +27,13 @@
           <a href="{{candidacy.candidate.get_absolute_url}}">{{candidacy.candidate.name}}</a>
           {% url 'backend_candidate:complete_profile' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as complete_profile %}
           <li role="presentation" class="{% ifequal request.path complete_profile%} active{% endifequal %}">
-          <a href="{{complete_profile}}">
+          <a class="small" href="{{complete_profile}}">
               Completa tu perfil
             </a></li>
 
           {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
           <li role="presentation" class="{% ifequal request.path backend_candidate%} active{% endifequal %}">
-          <a href="{{backend_candidate}}">
+          <a class="small" href="{{backend_candidate}}">
               Cuestionario
             </a></li>
             
@@ -42,18 +42,18 @@
         
         {% url 'backend_citizen:index' as backend_index %}
          <li role="presentation" class="{% ifequal request.path backend_index%} active{% endifequal %}">
-        <a href="{{backend_index}}">{% trans 'Las propuestas que he hecho' %}</a></li>
+        <a class="small" href="{{backend_index}}">{% trans 'Las propuestas que he hecho' %}</a></li>
           {% url 'backend_citizen:my_supports' as my_supports_url %}
          <li role="presentation" class="{% ifequal request.path my_supports_url %} active{% endifequal %}">
-          <a href="{{my_supports_url}}">
+          <a class="small" href="{{my_supports_url}}">
           {% blocktrans %}Las propuestas que apoyo{% endblocktrans %}</a></li>
         {% url 'backend_citizen:update_my_profile' as my_profile_url %}
          <li role="presentation" class="{% ifequal request.path my_profile_url %} active{% endifequal %}">
-          <a href="{{my_profile_url}}">
+          <a class="small" href="{{my_profile_url}}">
           {% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a></li>
         {% url 'password_reset' as password_reset %}
          <li role="presentation" class="{% ifequal request.path password_reset %} active{% endifequal %}">
-          <a href="{{password_reset}}">
+          <a class="small" href="{{password_reset}}">
           {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>
 
       {% block extra_sidebar_bottom %}
@@ -61,7 +61,7 @@
       </ul>
       {% endblock sidebar %}
     </div>
-    <div class="col-md-8">
+    <div class="text-width">
 		    {% block main_content %}
 		    {% endblock main_content %}
 

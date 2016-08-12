@@ -7,7 +7,7 @@ class OGPMixin(object):
     ogp_enabled = True
 
     def ogp_title(self):
-        return u'{} en VotaInteligente'.format(str(self))
+        return u'{} en VotaInteligente'.format(unicode(self))
 
     def ogp_type(self):
         return 'website'

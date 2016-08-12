@@ -4,13 +4,11 @@
 {% load bootstrap3 %}
 
 <div class="panel panel-default">
-		<div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#filtro" aria-expanded="false" aria-controls="filtro">
           {% trans 'Filtrar propuestas' %}
         </a>
       </h4>
-    </div>
   <div id="filtro" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 	  <div class="panel-body">
 		<form action="{{ request.path }}" method="GET" role="form">

@@ -46,6 +46,7 @@ h2 {
 	font-family: 'Arvo', serif;
 	font-size: 36px;
 	color: $grey-one;
+  line-height: 33px;
 }
 
 h3 {
@@ -290,8 +291,16 @@ select.form-control {
     background-color: $grey-three;
 }
 
+.navbar-inverse.yellow .navbar-toggle .icon-bar {
+    background-color: white;
+}
+
 .navbar-inverse .navbar-toggle {
     border-color: transparent;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: $grey-five;
 }
 
 /*Section Hero*/
@@ -562,6 +571,28 @@ section#que-hago {
 	color: $grey-three;
 }
 
+/*Labels*/
+
+.label {
+    padding: 0.4em .6em .3em;
+    TEXT-TRANSFORM: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.label-success {
+    background-color: $yellow;
+}
+
+.label-default {
+    background-color: $grey-five;
+    color: $grey-two;
+}
+
+.label-danger {
+    background-color: $red;
+}
+
 /*Menu*/
 .navbar {
   min-height: 50px;
@@ -573,6 +604,7 @@ section#que-hago {
   font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  text-align: right;
 }
 
 .navbar-inverse .navbar-nav>li>a:hover {
@@ -768,6 +800,10 @@ p.destacado-tips {
 
 section.terms {
     margin-bottom: 40px;
+}
+
+.wizard {
+    margin-top: 20px;
 }
 
 /*Perfil candidato*/

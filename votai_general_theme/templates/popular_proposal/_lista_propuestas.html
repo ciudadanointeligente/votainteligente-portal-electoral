@@ -10,9 +10,10 @@
 	    </div>
 		</form>
 
-<div class="row masonry-container">
-  {% for proposal in popular_proposals %}
-  {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
-  {% endfor %}
-
+<div id="grid">
+  <div id="posts">
+    {% for proposal in popular_proposals %}
+    {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
+    {% endfor %}
+  </div>
 </div>

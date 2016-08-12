@@ -4,7 +4,7 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% block extrajs %}
-{% include 'elections/home.js'  %}
+{% include 'elections/home.js'  with detail_url="area"  %}
 {% endblock extrajs %}
 
 {% block navbar_background %}yellow{% endblock navbar_background %}
@@ -85,7 +85,11 @@
       <div class="col-md-5 col-sm-5 col-xs-10">
         <h4 class="text-white">Quiero conocer las propuestas de mi comuna</h4>
         <p class="text-white">Selecciona tu comuna y te mostraremos las propuestas publicadas por tus vecinos</p>
-        <div><input type="" name=""><a class="btn btn-success arrow" href=""><img src="{% static 'img/arrow.svg' %}"></a></div>
+        
+
+
+
+        {% include '_election_search_form.html' %}
       </div>
     </div>
   </div>
@@ -99,7 +103,6 @@ function ab_testing() {
 	  eventAction: 'login',
       eventLabel: '{{a_or_b}}'
 	});
-    console.log('probando ab');
 }
 $(function(){
     $('.login').click(function(event){

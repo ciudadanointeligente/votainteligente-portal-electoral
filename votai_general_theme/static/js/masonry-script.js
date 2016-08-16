@@ -29,10 +29,6 @@ jQuery(window).load(function () {
       
       
       
-      // Resets all widths to 'auto' to sterilize calculations
-      
-      post_width = jQuery('.post').width() + gutter;
-      jQuery('#posts, body > #grid').css('width', 'auto');
       
       
       

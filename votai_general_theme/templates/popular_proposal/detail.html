@@ -39,29 +39,22 @@ $(function(){
     <li><a href="{% url 'home' %}">VotaInteligente</a></li>
     <li><a href="{% url 'area' slug=popular_proposal.area.id%}">{{popular_proposal.area}}</a></li>
     <li class="active">{{popular_proposal.title}}</li>
-    {% if popular_proposal.proposer = user %}
-    <li>
-      <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %}Agrega más información{% endblocktrans %}</a>
-    </li>
-    {% endif%}
   </ol>
 
-<div class="fondo-blanco">
+  {% if popular_proposal.proposer = user %}
+    <div class="text-width text-right">
+        Esta es tu propuesta {{user}}, <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %} ¿quieres añadir antecedentes?{% endblocktrans %}</a>
+    </div>
+  {% endif%}
+
+
+<div class="fondo-blanco text-width">
   <div class="panel-body">
     <div class="pull-left">
       <span class="label label-default">{{popular_proposal.data.clasification}}</span>
     </div>
-    <div class="pull-right">
-        <div class="share text-center">
-          <a class="fa-stack fa-lg" href="">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-          </a>
-          <a class="fa-stack fa-lg" href="">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-          </a>
-        </div>
+    <div class="pull-right share">
+      {% include 'popular_proposal/_share.html' %}
     </div>
     <div class="line-space"></div>
     <p class="text-center text-light small">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>

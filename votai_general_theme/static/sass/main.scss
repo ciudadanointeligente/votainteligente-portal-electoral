@@ -167,14 +167,21 @@ select.form-control {
 	float: right;
 }
 
+/*Breadcrumb*/
+
 .breadcrumb {
 	padding: 8px 0px;
 	background-color: transparent;
 	border-radius: 0;
+	color: $grey-four;
+}
+
+.breadcrumb a {
+	color: $grey-four;
 }
 
 .breadcrumb>.active {
-	color: $grey-five;
+	color: $grey-four;
 }
 
 /*FORM*/
@@ -810,7 +817,7 @@ p.destacado-tips {
 
 .nota {
 	font-size: 12px;
-	color: $grey-four;
+	color: $grey-three;
   line-height: 18px;
 }
 
@@ -1726,9 +1733,16 @@ input#id_4-title {
   padding: 25px 20px 35px;
 }
 
-.propuesta a.fa-stack {
+.propuesta h3 a {
+    color: $grey-one;
+}
+
+.share a .fa-stack {
     color: $grey-four;
-    cursor: pointer;
+}
+
+.share a .fa-stack:hover {
+    color: $yellow;
 }
 
 .btn-apoyo .fa-heart {

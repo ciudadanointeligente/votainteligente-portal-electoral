@@ -11,22 +11,17 @@
       {{proposal.data.solution}}
   {% endif %}
       {% include 'popular_proposal/_likers.html' with proposal=proposal %}
-      <hr>
+  <hr>
+  <!-- Candidatos que han adherido
   <p>3 candidatos han adherido:</p>
   <ul class="list-inline">
     <li><a href="">Bryan Thompson,</a></li>
     <li><a href=""> Olivia Henry</a>,</li>
     <li><a href=""> Kenneth Castro</a></li>
-  </ul>
+  </ul> -->
+
   <div class="share text-center">
-    <a class="fa-stack fa-lg" href="">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-    </a>
-    <a class="fa-stack fa-lg" href="">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-    </a>
+    {% include 'popular_proposal/_share.html' %}
   </div>
 
 

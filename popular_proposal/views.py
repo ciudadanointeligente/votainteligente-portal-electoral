@@ -204,10 +204,12 @@ class ProposalWizardFull(ProposalWizardBase):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.request.user,
                                                               area=area,
                                                               data=data)
-        return render_to_response('popular_proposal/wizard/done.html', {
-            'popular_proposal': temporary_data,
-            'area': area
-        })
+        context = self.get_context_data(form=None)
+        context.update({'popular_proposal': temporary_data,
+                        'area': area
+                        })
+        return render_to_response('popular_proposal/wizard/done.html',
+                                  context)
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProposalWizardFull, self).get_context_data(*args, **kwargs)

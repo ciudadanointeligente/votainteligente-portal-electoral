@@ -10,7 +10,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
   <!-- Featured Elections  -->
-  <h1 class="text-center">{% blocktrans %}¡Bienvenida/o {{user}}!{% endblocktrans %}</h1>
+  <h1 class="text-center">¡Bienvenida/o {% include '_user_printable.html' %}!</h1>
   <div class="line-space"></div>
 
   <div class="">

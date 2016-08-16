@@ -83,7 +83,7 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
     def test_there_is_a_page(self):
         response = self.client.get(self.url)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'popular_proposals/home.html')
+        self.assertTemplateUsed(response, 'popular_proposal/home.html')
 
     def test_brings_a_list_of_proposals(self):
         response = self.client.get(self.url, {'clasification': '', 'area': ''})

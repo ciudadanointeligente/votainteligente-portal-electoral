@@ -75,6 +75,10 @@ class SubscriptionView(FormView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         self.proposal = get_object_or_404(PopularProposal, id=self.kwargs['pk'])
+        if self.request.method == 'GET':
+            self.next_url = self.request.GET.get('next', None)
+        elif self.request.method == 'POST':
+            self.next_url = self.request.POST.get('next', None)
         return super(SubscriptionView, self).dispatch(*args, **kwargs)
 
     def get_form_kwargs(self):
@@ -86,9 +90,13 @@ class SubscriptionView(FormView):
     def get_context_data(self, **kwargs):
         kwargs = super(SubscriptionView, self).get_context_data(**kwargs)
         kwargs['proposal'] = self.proposal
+        if self.next_url:
+            kwargs['next'] = self.next_url
         return kwargs
 
     def get_success_url(self):
+        if self.next_url:
+            return self.next_url
         return reverse('area', kwargs={'slug': self.proposal.area.id})
 
     def form_valid(self, form):

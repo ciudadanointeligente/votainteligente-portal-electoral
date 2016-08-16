@@ -46,43 +46,28 @@ $(function(){
     {% endif%}
   </ol>
 
-
-  <!-- Featured Elections  -->
-  <div class="fondo-blanco">
-
-
-  <div class="row">
-    <div class="col-sm-6 col-md-4 col-lg-12">
-      <a href="#" class="thumbnail">
-        {% if popular_proposal.image %}
-          {% thumbnail popular_proposal.image "1200x600" crop="center" as im %}
-            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-          {% endthumbnail %}
-        {% endif %}
-      </a>
-    </div>
-  </div>
-
-<div class="panel panel-default">
+<div class="fondo-blanco">
   <div class="panel-body">
-    <div class="md-col-1">
+    <div class="pull-left">
       <span class="label label-default">{{popular_proposal.data.clasification}}</span>
-      
     </div>
-    <div class="md-col-5">
-      <span class="text-right">Twitea!</span>
+    <div class="pull-right">
+        <div class="share text-center">
+          <a class="fa-stack fa-lg" href="">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+          </a>
+          <a class="fa-stack fa-lg" href="">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+          </a>
+        </div>
     </div>
-    <div class="md-col-1 md-offset-11">
-     {% include 'popular_proposal/_likers.html' with proposal=popular_proposal %}
-   </div>
-    <div class="md-col-12">
-      <p class="text-center">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>
-    </div>
-    <div class="md-col-12">
-      <h1 class="text-center">{{popular_proposal.title}}</h1>
-
-      {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
-    </div>
+    <div class="line-space"></div>
+    <p class="text-center text-light small">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>
+    <h1 class="text-center">{{popular_proposal.title}}</h1>
+    {% include 'popular_proposal/_likers.html' with proposal=popular_proposal %}
+    {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
 
 </div>
 
@@ -92,11 +77,26 @@ $(function(){
     <div class="panel panel-default">
       <div class="panel-heading">{% trans 'Antecedentes' %}</div>
       <div class="panel-body">
+        <!-- Featured Elections  -->
+        <div class="fondo-blanco">
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-lg-12">
+            <a href="#">
+              {% if popular_proposal.image %}
+                {% thumbnail popular_proposal.image "1200x600" crop="center" as im %}
+                  <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                {% endthumbnail %}
+              {% endif %}
+            </a>
+          </div>
+        </div>
         {{popular_proposal.background|linebreaksbr}}
       </div>
     </div>
     {% endif %}
 </div>
+
+
 {% endblock everything %}
 </div>
 

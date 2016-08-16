@@ -1745,8 +1745,15 @@ input#id_4-title {
 	color: $yellow-dark;
 }
 
-.propuesta .nota {
-	margin-top: 10px;
+.apoyo {
+    margin-top: 5px;
+    height: 60px;
+}
+
+.apoyo-contador {
+  padding-top: 12px;
+  padding-left: 60px;
+  max-width: 200px;
 }
 
 /*Masonry*/

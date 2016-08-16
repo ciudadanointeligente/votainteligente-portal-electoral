@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load thumbnail %}
 <div class="post propuesta">
+  <span class="label label-default">{{popular_proposal.data.clasification}}</span>
   {% if proposal.title %}
       <h3><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title}}</a></h3>
   {% endif %}

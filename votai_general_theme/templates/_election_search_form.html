@@ -8,17 +8,15 @@
 
         <div>
           <input type="" id="id_q" name="q" placeholder="{% trans "Ingresa el nombre de tu comuna" %}" autocomplete="off" ng-enter="console.log('something')"  data-ng-model="searchElection">
-          <a class="btn btn-success arrow" href="">
+          <!-- <a class="btn btn-success arrow" href="">
             <img src="{% static 'img/arrow.svg' %}">
-          </a>
+          </a> -->
         </div>
 
       
           <div class="elections-results">
               <ul class="list-inline" data-ng-show="searchElection">
-                  <li 
-                  style="background-color: #FFC80A;"
-                  data-ng-repeat="election in (filteredItems = (elections | filter:searchElection:comperator))">
+                  <li class="label label-default" data-ng-repeat="election in (filteredItems = (elections | filter:searchElection:comperator))">
                     <a href="[[election.detaillink]]">[[election.name]]</a>
                       <ul>
                         <li data-ng-repeat="tag in election.tags | filter:searchElection:comperator">[[tag]]</li>
@@ -28,6 +26,3 @@
           </div>
         </div>
     </div>
-
-
-

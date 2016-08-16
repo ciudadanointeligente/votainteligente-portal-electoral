@@ -464,8 +464,23 @@ section#que-hago {
 	color:$main-background-color;
 }
 
+/*Home search*/
+
 #home-search {
-	margin: 50px 0;
+  margin: 24px 0;
+}
+
+#home-search .list-inline {
+    margin-left: 0px;
+}
+
+#home-search .list-inline li {
+    margin-right: 5px;
+}
+
+#home-search input {
+    width: 100%;
+    padding: 5px 10px;
 }
 
 
@@ -635,6 +650,10 @@ section#que-hago {
 	border-bottom: 1px solid darken($yellow,10%);
 }
 
+.navbar .btn {
+  margin-bottom: 0px;
+}
+
 /*Nav-pills*/
 
 .nav-pills>li {
@@ -792,6 +811,7 @@ p.destacado-tips {
 .nota {
 	font-size: 12px;
 	color: $grey-four;
+  line-height: 18px;
 }
 
 .terms label {
@@ -1698,6 +1718,37 @@ input#id_4-title {
     text-align: center;
 }
 
+/*Propuesta*/
+
+.propuesta {
+	border: 1px solid $grey-five;
+	border-radius: 5px;
+  padding: 25px 20px 35px;
+}
+
+.propuesta a.fa-stack {
+    color: $grey-four;
+    cursor: pointer;
+}
+
+.btn-apoyo .fa-heart {
+  font-size: 14px;
+}
+
+.btn-apoyo {
+	color: $yellow;
+	cursor: pointer;
+}
+
+
+.btn-apoyo:hover {
+	color: $yellow-dark;
+}
+
+.propuesta .nota {
+	margin-top: 10px;
+}
+
 /*Masonry*/
 
 /* Grid */
@@ -1705,10 +1756,8 @@ input#id_4-title {
 #posts { margin: 30px auto 0; }
 .post {
 	margin: 0 0 50px;
-	text-align: center;
 	width: 100%;
 }
-.post img { padding: 0 15px; width: 100%; }
 
 #grid.container .post img { padding: 0; }
 

@@ -32,9 +32,9 @@ $(function(){
         {% if user.is_authenticated %}
 
             {% if not user|likes:proposal %}
-            {% url 'popular_proposals:home' as popular_proposals_home %}
+            
             <a class="btn-apoyo" data-toggle="modal" data-target="#supportProposal" 
-                data-url="{% url 'popular_proposals:like_a_proposal' pk=proposal.id %}?next={{popular_proposals_home}}">
+                data-url="{% url 'popular_proposals:like_a_proposal' pk=proposal.id %}{%if next_url%}?next={{next_url}}{% endif %}">
                 {% blocktrans %}
                   <span class="fa-stack fa-2x">
                     <i class="fa fa-circle fa-stack-2x"></i>

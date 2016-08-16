@@ -212,6 +212,7 @@ class ProposalWizardFull(ProposalWizardBase):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.request.user,
                                                               area=area,
                                                               data=data)
+        temporary_data.notify_new()
         context = self.get_context_data(form=None)
         context.update({'popular_proposal': temporary_data,
                         'area': area

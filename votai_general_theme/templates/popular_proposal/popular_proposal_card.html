@@ -3,6 +3,8 @@
 {% load i18n %}
 {% load thumbnail %}
 <div class="post propuesta">
+
+  <span class="label label-default">{{proposal.data.clasification}}</span>
   {% if proposal.title %}
       <h3><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title}}</a></h3>
   {% endif %}
@@ -10,7 +12,7 @@
       {{proposal.data.solution}}
   {% endif %}
       {% include 'popular_proposal/_likers.html' with proposal=proposal %}
-      <hr>
+<!--       <hr>
   <p>3 candidatos han adherido:</p>
   <ul class="list-inline">
     <li><a href="">Bryan Thompson,</a></li>
@@ -27,6 +29,6 @@
       <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
     </a>
   </div>
-
+ -->
 
 </div>

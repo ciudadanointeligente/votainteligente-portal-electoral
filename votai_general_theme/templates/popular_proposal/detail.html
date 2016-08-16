@@ -35,19 +35,21 @@ $(function(){
 <div>
 
   
-  <!-- Featured Elections  -->
-  <div class="contenedorDestacado fondo-blanco">
+  <ol class="breadcrumb">
+    <li><a href="{% url 'home' %}">VotaInteligente</a></li>
+    <li><a href="{% url 'area' slug=popular_proposal.area.id%}">{{popular_proposal.area}}</a></li>
+    <li class="active">{{popular_proposal.title}}</li>
+    {% if popular_proposal.proposer = user %}
+    <li>
+      <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %}Agrega más información{% endblocktrans %}</a>
+    </li>
+    {% endif%}
+  </ol>
 
-    <ol class="breadcrumb">
-      <li><a href="{% url 'home' %}">VotaInteligente</a></li>
-      <li><a href="{% url 'area' slug=popular_proposal.area.id%}">{{popular_proposal.area}}</a></li>
-      <li class="active">{{popular_proposal.title}}</li>
-      {% if popular_proposal.proposer = user %}
-      <li>
-        <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %}Agrega más información{% endblocktrans %}</a>
-      </li>
-      {% endif%}
-    </ol>
+
+  <!-- Featured Elections  -->
+  <div class="fondo-blanco">
+
 
   <div class="row">
     <div class="col-sm-6 col-md-4 col-lg-12">

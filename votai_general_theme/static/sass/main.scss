@@ -464,8 +464,23 @@ section#que-hago {
 	color:$main-background-color;
 }
 
+/*Home search*/
+
 #home-search {
-	margin: 50px 0;
+  margin: 24px 0;
+}
+
+#home-search .list-inline {
+    margin-left: 0px;
+}
+
+#home-search .list-inline li {
+    margin-right: 5px;
+}
+
+#home-search input {
+    width: 100%;
+    padding: 5px 10px;
 }
 
 
@@ -633,6 +648,10 @@ section#que-hago {
 
 .navbar-inverse.yellow {
 	border-bottom: 1px solid darken($yellow,10%);
+}
+
+.navbar .btn {
+  margin-bottom: 0px;
 }
 
 /*Nav-pills*/

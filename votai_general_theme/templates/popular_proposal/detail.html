@@ -31,7 +31,7 @@ $(function(){
 {% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
 
 <div class="container">
-{% include 'modal.html' with modalId='supportProposal' title='Apoya una propuesta' %}
+{% include 'modal.html' with modalId='supportProposal' title='Apoyar la propuesta' %}
 <div>
 
   
@@ -53,7 +53,20 @@ $(function(){
       <span class="label label-default">{{popular_proposal.data.clasification}}</span>
     </div>
     <div class="pull-right share">
-      {% include 'popular_proposal/_share.html' %}
+      {% include 'popular_proposal/_share.html' with proposal=popular_proposal next_url=request.path %}
+    <div class="md-col-5">
+      <span class="text-right">Twitea!</span>
+    </div>
+    <div class="md-col-1 md-offset-11">
+     {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}
+   </div>
+    <div class="md-col-12">
+      <p class="text-center">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>
+    </div>
+    <div class="md-col-12">
+      <h1 class="text-center">{{popular_proposal.title}}</h1>
+
+      {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
     </div>
     <div class="line-space"></div>
     <p class="text-center text-light small">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>

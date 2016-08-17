@@ -11,17 +11,17 @@ WHEN_CHOICES = [
 ]
 
 TOPIC_CHOICES = (('', u'Selecciona una categoría'),
-                 ('salud', u'Salud'),
-                 ('educacion', u'Educación'),
-                 ('cultura', u'Cultura y patrimonio'),
-                 ('asistencia', u'Asistencia y protección social'),
-                 ('empleabilidad', u'Empleabilidad y emprendimiento'),
-                 ('deporte', u'Deporte y recreación'),
-                 ('conectividad', u'Conectividad y obras'),
                  ('areasverdes', u'Áreas verdes y espacios públicos'),
-                 ('seguridad', u'Seguridad y prevención de catástrofes'),
+                 ('asistencia', u'Asistencia y protección social'),
+                 ('conectividad', u'Conectividad y obras'),
+                 ('cultura', u'Cultura y patrimonio'),
+                 ('deporte', u'Deporte y recreación'),
+                 ('educacion', u'Educación'),
+                 ('empleabilidad', u'Empleabilidad y emprendimiento'),
                  ('medioambiente', u'Medio ambiente y recolección de basura'),
                  ('participacion', u'Participación y sociedad civil'),
+                 ('salud', u'Salud'),
+                 ('seguridad', u'Seguridad y prevención de catástrofes'),
                  )
 
 TEXTS = OrderedDict({

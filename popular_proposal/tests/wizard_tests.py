@@ -168,6 +168,7 @@ class WizardTestCase(TestCase):
         self.assertTrue(form.is_valid())
 
     def test_full_wizard(self):
+        original_amount = len(mail.outbox)
         url = reverse('popular_proposals:propose_wizard_full')
         self.client.login(username=self.feli,
                           password=USER_PASSWORD)
@@ -193,3 +194,4 @@ class WizardTestCase(TestCase):
         self.assertEquals(response.context['area'], self.arica)
         self.assertEquals(temporary_data.proposer, self.feli)
         self.assertEquals(temporary_data.area, self.arica)
+        self.assertEquals(len(mail.outbox), original_amount + 1)

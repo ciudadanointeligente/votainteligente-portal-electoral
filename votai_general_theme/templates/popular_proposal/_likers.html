@@ -22,7 +22,7 @@ $(function(){
     $('.unlike_proposal').click(function(event){
         event.preventDefault();
         var target = $(event.target);
-        var url = target.attr('href');
+        var url = target.parent().attr('href');
         unlike_proposal(url);
     })
 });
@@ -32,8 +32,9 @@ $(function(){
         {% if user.is_authenticated %}
 
             {% if not user|likes:proposal %}
+            
             <a class="btn-apoyo" data-toggle="modal" data-target="#supportProposal" 
-                data-url="{% url 'popular_proposals:like_a_proposal' pk=proposal.id %}">
+                data-url="{% url 'popular_proposals:like_a_proposal' pk=proposal.id %}{%if next_url%}?next={{next_url}}{% endif %}">
                 {% blocktrans %}
                   <span class="fa-stack fa-2x">
                     <i class="fa fa-circle fa-stack-2x"></i>

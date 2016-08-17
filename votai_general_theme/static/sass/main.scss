@@ -24,7 +24,7 @@ html, body {
   /* Negative indent footer by its height */
   margin: 0 auto -60px;
   /* Pad bottom by footer height */
-  padding: 0 0 60px;
+  padding: 0px;
 }
 
 .text-width {
@@ -39,6 +39,7 @@ h1 {
   font-size: 36px;
   text-transform: uppercase;
   color: $grey-one;
+  margin: 40px 0;
 }
 
 h2 {
@@ -109,12 +110,8 @@ strong {
 
 .fondo-blanco {
 	background: white;
-	padding: 60px;
+  padding: 60px 60px 100px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.17);
-}
-
-.contenedor {
-	background-color: white;
 }
 
 .container {
@@ -153,6 +150,11 @@ strong {
    font-weight: 300;
 }
 
+.img-fluid {
+	max-width: 100%;
+	height: auto;
+} 
+
 select.form-control {
     background: #EAEDF2;
     border-radius: 30px;
@@ -167,14 +169,21 @@ select.form-control {
 	float: right;
 }
 
+/*Breadcrumb*/
+
 .breadcrumb {
 	padding: 8px 0px;
 	background-color: transparent;
 	border-radius: 0;
+	color: $grey-four;
+}
+
+.breadcrumb a {
+	color: $grey-four;
 }
 
 .breadcrumb>.active {
-	color: $grey-five;
+	color: $grey-four;
 }
 
 /*FORM*/
@@ -309,6 +318,10 @@ section#hero {
   background: url(../img/mesa.png) bottom right no-repeat #FFC80A;
   color: white;
   padding: 90px 0;
+}
+
+#hero h1 {
+	margin: 0;
 }
 
 h1 .small {
@@ -657,16 +670,19 @@ section#que-hago {
 /*Nav-pills*/
 
 .nav-pills>li {
-	border-bottom: 3px solid $grey-five;
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 .nav-pills>li.active{
-    border-bottom: 3px solid $yellow;
+  border-bottom: 3px solid $yellow;
+  margin-bottom: -3px;
 }
 
 .nav-pills>li>a {
     border-radius: 0px;
     color: $grey-two;
+    padding: 10px 12px;
 }
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
@@ -681,7 +697,9 @@ section#que-hago {
 }
 
 .nav-pills.list-inline {
-    margin-bottom: 70px;
+	border-bottom: 3px solid $grey-five;
+  margin-bottom: 70px;
+  margin-left: 0;
 }
 
 /*Menu Interno*/
@@ -810,7 +828,7 @@ p.destacado-tips {
 
 .nota {
 	font-size: 12px;
-	color: $grey-four;
+	color: $grey-three;
   line-height: 18px;
 }
 
@@ -1726,9 +1744,24 @@ input#id_4-title {
   padding: 25px 20px 35px;
 }
 
-.propuesta a.fa-stack {
+.propuesta h3 a {
+    color: $grey-one;
+}
+
+.propuesta h3 {
+    margin: 0px 0 20px;
+}
+
+.propuesta .small {
+    margin: 25px 0 0px;
+}
+
+.share a .fa-stack {
     color: $grey-four;
-    cursor: pointer;
+}
+
+.share a .fa-stack:hover {
+    color: $yellow;
 }
 
 .btn-apoyo .fa-heart {
@@ -1745,8 +1778,15 @@ input#id_4-title {
 	color: $yellow-dark;
 }
 
-.propuesta .nota {
-	margin-top: 10px;
+.apoyo {
+    margin-top: 5px;
+    height: 60px;
+}
+
+.apoyo-contador {
+  padding-top: 12px;
+  padding-left: 60px;
+  max-width: 200px;
 }
 
 /*Masonry*/

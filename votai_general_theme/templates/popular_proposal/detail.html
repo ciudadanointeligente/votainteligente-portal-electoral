@@ -32,71 +32,54 @@ $(function(){
 
 <div class="container">
 {% include 'modal.html' with modalId='supportProposal' title='Apoyar la propuesta' %}
-<div>
+</div>
 
   
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}">VotaInteligente</a></li>
     <li><a href="{% url 'area' slug=popular_proposal.area.id%}">{{popular_proposal.area}}</a></li>
     <li class="active">{{popular_proposal.title}}</li>
-    {% if popular_proposal.proposer = user %}
-    <li>
-      <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %}Agrega más información{% endblocktrans %}</a>
-    </li>
-    {% endif%}
   </ol>
 
-
-  <!-- Featured Elections  -->
-  <div class="fondo-blanco">
-
-
-  <div class="row">
-    <div class="col-sm-6 col-md-4 col-lg-12">
-      <a href="#" class="thumbnail">
-        {% if popular_proposal.image %}
-          {% thumbnail popular_proposal.image "1200x600" crop="center" as im %}
-            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-          {% endthumbnail %}
-        {% endif %}
-      </a>
+  {% if popular_proposal.proposer = user %}
+    <div class="text-width text-right">
+        Esta es tu propuesta {{user}}, <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %} ¿quieres añadir antecedentes?{% endblocktrans %}</a>
     </div>
-  </div>
+  {% endif%}
 
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="md-col-1">
+
+<div class="fondo-blanco text-width">
+    <div class="pull-left">
       <span class="label label-default">{{popular_proposal.data.clasification}}</span>
-      
     </div>
-    <div class="md-col-5">
-      <span class="text-right">Twitea!</span>
+    <div class="pull-right share">
+      {% include 'popular_proposal/_share.html' with proposal=popular_proposal next_url=request.path %}
     </div>
-    <div class="md-col-1 md-offset-11">
-     {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}
-   </div>
-    <div class="md-col-12">
-      <p class="text-center">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>
-    </div>
-    <div class="md-col-12">
-      <h1 class="text-center">{{popular_proposal.title}}</h1>
-
-      {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
-    </div>
-
+    <div class="line-space"></div>
+    <p class="text-center text-light small">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>
+    <h1 class="text-center">{{popular_proposal.title}}</h1>
+    {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}
+    <div class="line-space"></div>
+    {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
 </div>
 
-</div>
-    {% if popular_proposal.background %}
-
-    <div class="panel panel-default">
-      <div class="panel-heading">{% trans 'Antecedentes' %}</div>
-      <div class="panel-body">
-        {{popular_proposal.background|linebreaksbr}}
+{% if popular_proposal.background %}
+  <div class="antecedentes text-width">
+    <h3>{% trans 'Antecedentes' %}</h3>
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-12">
+          <a href="#">
+            {% if popular_proposal.image %}
+                <img src="{{ popular_proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+            {% endif %}
+          </a>
+        </div>
       </div>
-    </div>
-    {% endif %}
-</div>
+      {{popular_proposal.background|linebreaksbr}}
+  </div>
+{% endif %}
+
+
 {% endblock everything %}
 </div>
 

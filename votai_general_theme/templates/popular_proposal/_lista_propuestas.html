@@ -4,10 +4,21 @@
 {% load bootstrap3 %}
 
 		<form action="{{ request.path }}" method="GET" role="form">
-	    {% bootstrap_form form show_label=False %}
-	    <div class="form-actions">
-	        <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>
-	    </div>
+      <div class="row">
+        <div class="col-md-4">{% bootstrap_field form.clasification show_label=False %}</div>
+        <div class="col-md-4">
+          {% if form.area %}
+            {% bootstrap_field form.area show_label=False %}
+          {% endif %}
+        </div>
+        <div class="col-md-4">
+    	    <div class="form-actions">
+    	        <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>
+    	    </div>
+        </div>
+      </div>
+      
+
 		</form>
 
 <div id="grid">

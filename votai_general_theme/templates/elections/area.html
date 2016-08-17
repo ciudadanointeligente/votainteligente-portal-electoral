@@ -37,20 +37,10 @@ $(function(){
   <!-- Featured Elections  -->
   <div class="hidden-xs">
 
-    <div class="contenedorDestacado fondo-blanco">
-      <!-- <form role="form" action="{% url 'area' slug=area.id %}" method="get">
-          {% bootstrap_form proposal_filter_form %}
-          <div class="form-actions">
-              <button type="submit" class="btn btn-primary">{% trans 'Busca'%}</button>
-          </div>
-      </form> -->
-
-       <div class="row masonry-container">
           {% for proposal in popular_proposals %}
           {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
           {% endfor %}
 
-      </div>
       <ul>
         {% for election in area.elections.all %}
         <li class="col-md-4 containerAccordion">
@@ -90,7 +80,6 @@ $(function(){
       </ul>
 
         <a href="{% url 'popular_proposals:propose_wizard' slug=area.id %}" class="btn btn-primary btn-lg active btn-block">{% blocktrans with area=area.name %}Crear una propuesta ciudadana{% endblocktrans %}</a>
-    </div>
 
   </div>
   <!-- /contenedorDestacado -->

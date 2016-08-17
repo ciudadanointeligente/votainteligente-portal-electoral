@@ -25,12 +25,12 @@ TOPIC_CHOICES = (('', u'Selecciona una categoría'),
                  )
 
 TEXTS = OrderedDict({
-    'problem': {'label': u' ',
+    'problem': {'label': u'¿Cuál es el problema?',
                 'preview_question': u'¿Cuál es el problema?',
                 'help_text': u'',
                 'placeholder': u'Describe el problema que afecta a la comuna (o barrio) del que el alcalde debe hacerse cargo',
                 'long_text': "paso1.html"},
-    'causes': {'label': u' ',
+    'causes': {'label': u'¿Cuáles son las causas?',
                'preview_question': u'¿Cuáles son las causas?',
                'help_text': u'',
                'placeholder': u'Utiliza el ejercicio que te mostramos arriba para encontrar las causas del problema',
@@ -40,7 +40,7 @@ TEXTS = OrderedDict({
                  'help_text': u'',
                  'placeholder': u'Siguiendo el ejemplo, propongan la(s) medida(s) que el alcalde debe tomar para solucionar la causa del problema y poder alcanzar la situación ideal.',
                  'long_text': "paso3.html"},
-    'solution_at_the_end': {'label': u' ',
+    'solution_at_the_end': {'label': u'¿Cuál sería la solución?',
                             'preview_question': u'¿Cuál sería la solución?',
                             'help_text': u'',
                             'placeholder': u'Define la o las acciones que debe realizar el alcalde para que la propuesta se de por cumplida.',

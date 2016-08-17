@@ -32,7 +32,7 @@ $(function(){
 
 <div class="container">
 {% include 'modal.html' with modalId='supportProposal' title='Apoyar la propuesta' %}
-<div>
+</div>
 
   
   <ol class="breadcrumb">
@@ -59,24 +59,25 @@ $(function(){
     <p class="text-center text-light small">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>
     <h1 class="text-center">{{popular_proposal.title}}</h1>
     {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}
+    <div class="line-space"></div>
     {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
 </div>
 
-    {% if popular_proposal.background %}
-    <div class="antecedentes text-width">
-      <h3>{% trans 'Antecedentes' %}</h3>
-        <div class="row">
-          <div class="col-sm-6 col-md-4 col-lg-12">
-            <a href="#">
-              {% if popular_proposal.image %}
-                  <img src="{{ popular_proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
-              {% endif %}
-            </a>
-          </div>
+{% if popular_proposal.background %}
+  <div class="antecedentes text-width">
+    <h3>{% trans 'Antecedentes' %}</h3>
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-12">
+          <a href="#">
+            {% if popular_proposal.image %}
+                <img src="{{ popular_proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+            {% endif %}
+          </a>
         </div>
-        {{popular_proposal.background|linebreaksbr}}
-    {% endif %}
-</div>
+      </div>
+      {{popular_proposal.background|linebreaksbr}}
+  </div>
+{% endif %}
 
 
 {% endblock everything %}

@@ -4,6 +4,7 @@ from popular_proposal.forms import (ProposalForm,
                                     CommentsForm,
                                     RejectionForm,
                                     ProposalTemporaryDataUpdateForm,
+                                    FIELDS_TO_BE_AVOIDED,
                                     UpdateProposalForm,
                                     AreaForm)
 from django.contrib.auth.models import User
@@ -168,10 +169,33 @@ class FormTestCase(ProposingCycleTestCaseBase):
         t_data = ProposalTemporaryData.objects.get(id=t_data.id)
         overall_comments = data.pop('overall_comments')
         for key in data.keys():
+            if key in FIELDS_TO_BE_AVOIDED:
+                continue
             self.assertEquals(t_data.data[key], data[key])
         self.assertEquals(t_data.status,
                           ProposalTemporaryData.Statuses.InOurSide)
         self.assertEquals(t_data.overall_comments, overall_comments)
+
+    def test_form_fields(self):
+        theirside_status = ProposalTemporaryData.Statuses.InTheirSide
+        t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                      area=self.arica,
+                                                      data=self.data,
+                                                      comments=self.comments,
+                                                      status=theirside_status)
+        data = self.data
+        data['solution'] = u'Viajar a ver al equipo una vez al mes'
+        data['overall_comments'] = u"Quizás sea una buena idea que revises si \
+        conviene el plazo de un año"
+        form = ProposalTemporaryDataUpdateForm(data=data,
+                                               temporary_data=t_data,
+                                               proposer=self.fiera)
+        self.assertNotIn('terms_and_conditions', form.fields)
+        first_field = form.fields.popitem(last=False)
+        # Because the field when has comments this should be the firstone
+        self.assertEquals(first_field[0], 'when')
+        last_field = form.fields.popitem()
+        self.assertEquals(last_field[0], 'overall_comments')
 
     def test_when_template_tag(self):
         choice = WHEN_CHOICES[1]

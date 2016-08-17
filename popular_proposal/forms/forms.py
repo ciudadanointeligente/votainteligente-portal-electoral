@@ -52,6 +52,7 @@ wizard_forms_fields = [
         'fields': OrderedDict([
             ('problem', forms.CharField(max_length=512,
                                         widget=forms.Textarea(),
+                                        label=u'¿Cuál es el problema?'
                                         ))
         ])
     },
@@ -61,6 +62,7 @@ wizard_forms_fields = [
         'fields': OrderedDict([(
             'causes', forms.CharField(max_length=256,
                                       widget=forms.Textarea(),
+                                      label=u'¿Cuáles son las causas?'
                                       )
 
         )])
@@ -138,6 +140,7 @@ def get_form_list(wizard_forms_fields=wizard_forms_fields, **kwargs):
 
 class ProposalFormBase(forms.Form, TextsFormMixin):
     def set_fields(self):
+        fields = OrderedDict()
         for steps in wizard_forms_fields:
             for field_name in steps['fields']:
                 field = steps['fields'][field_name]
@@ -146,12 +149,13 @@ class ProposalFormBase(forms.Form, TextsFormMixin):
                     field = field.__call__(**kwargs)
                     if field is None:
                         continue
-                self.fields[field_name] = field
+                fields[field_name] = field
+        return fields
 
     def __init__(self, *args, **kwargs):
         self.proposer = kwargs.pop('proposer', None)
         super(ProposalFormBase, self).__init__(*args, **kwargs)
-        self.set_fields()
+        self.fields.update(self.set_fields())
         self.add_texts_to_fields()
 
 
@@ -232,18 +236,51 @@ class RejectionForm(forms.Form):
         self.temporary_data.reject(self.cleaned_data['reason'])
 
 
+FIELDS_TO_BE_AVOIDED = ['terms_and_conditions', ]
+
 class ProposalTemporaryDataUpdateForm(ProposalFormBase):
-    overall_comments = forms.CharField(required=False, label=_(u'Comentarios sobre tu revisón'))
+    overall_comments = forms.CharField(required=False,
+                                       label=_(u'Comentarios sobre tu revisón'),
+                                       widget=forms.Textarea())
+
 
     def __init__(self, *args, **kwargs):
         self.proposer = kwargs.pop('proposer')
         self.temporary_data = kwargs.pop('temporary_data')
+        field_order = self.get_fields_order(self.temporary_data)
         super(ProposalTemporaryDataUpdateForm, self).__init__(*args, **kwargs)
+        self.order_fields(field_order)
+        for field_to_be_avoided in FIELDS_TO_BE_AVOIDED:
+            self.fields.pop(field_to_be_avoided)
         self.initial = self.temporary_data.data
+        commented_fields = []
         for comment_key in self.temporary_data.comments.keys():
             comment = self.temporary_data.comments[comment_key]
             if comment:
+                commented_fields.append(comment_key)
                 self.fields[comment_key].help_text += _(' <b>Commentarios: %s </b>') % (comment)
+
+    def get_fields_order(self, temporary_data):
+        commented_fields = []
+        fields_at_the_end = ProposalTemporaryDataUpdateForm.base_fields
+        fields = self.set_fields()
+
+        for comment_key in temporary_data.comments.keys():
+            comment = temporary_data.comments[comment_key]
+            if comment:
+                commented_fields.append(comment_key)
+        keyOrder = commented_fields
+        for field in fields:
+            if field not in commented_fields and field not in fields_at_the_end:
+                keyOrder.append(field)
+        for field in fields_at_the_end:
+            keyOrder.append(field)
+        return keyOrder
+
+    def order_fields(self, field_order):
+        if hasattr(self, 'keyOrder'):
+            field_order = self.keyOrder
+        super(ProposalTemporaryDataUpdateForm, self).order_fields(field_order)
 
     def save(self):
         self.overall_comments = self.cleaned_data.pop('overall_comments')

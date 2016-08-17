@@ -24,7 +24,7 @@ html, body {
   /* Negative indent footer by its height */
   margin: 0 auto -60px;
   /* Pad bottom by footer height */
-  padding: 0 0 60px;
+  padding: 0px;
 }
 
 .text-width {
@@ -109,12 +109,8 @@ strong {
 
 .fondo-blanco {
 	background: white;
-	padding: 60px;
+  padding: 60px 60px 100px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.17);
-}
-
-.contenedor {
-	background-color: white;
 }
 
 .container {
@@ -152,6 +148,11 @@ strong {
 .form-control:-ms-input-placeholder {
    font-weight: 300;
 }
+
+.img-fluid {
+	max-width: 100%;
+	height: auto;
+} 
 
 select.form-control {
     background: #EAEDF2;

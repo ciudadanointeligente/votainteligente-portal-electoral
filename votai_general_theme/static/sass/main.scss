@@ -39,6 +39,7 @@ h1 {
   font-size: 36px;
   text-transform: uppercase;
   color: $grey-one;
+  margin: 40px 0;
 }
 
 h2 {
@@ -317,6 +318,10 @@ section#hero {
   background: url(../img/mesa.png) bottom right no-repeat #FFC80A;
   color: white;
   padding: 90px 0;
+}
+
+#hero h1 {
+	margin: 0;
 }
 
 h1 .small {
@@ -665,16 +670,19 @@ section#que-hago {
 /*Nav-pills*/
 
 .nav-pills>li {
-	border-bottom: 3px solid $grey-five;
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 .nav-pills>li.active{
-    border-bottom: 3px solid $yellow;
+  border-bottom: 3px solid $yellow;
+  margin-bottom: -3px;
 }
 
 .nav-pills>li>a {
     border-radius: 0px;
     color: $grey-two;
+    padding: 10px 12px;
 }
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
@@ -689,7 +697,9 @@ section#que-hago {
 }
 
 .nav-pills.list-inline {
-    margin-bottom: 70px;
+	border-bottom: 3px solid $grey-five;
+  margin-bottom: 70px;
+  margin-left: 0;
 }
 
 /*Menu Interno*/
@@ -1736,6 +1746,14 @@ input#id_4-title {
 
 .propuesta h3 a {
     color: $grey-one;
+}
+
+.propuesta h3 {
+    margin: 0px 0 20px;
+}
+
+.propuesta .small {
+    margin: 25px 0 0px;
 }
 
 .share a .fa-stack {

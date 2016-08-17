@@ -9,7 +9,6 @@
 {% endblock extra_css %}
 {% block content %}
 <h1 class="text-center">Ingresa</h1>
-<div class="line-space"></div>
 	<div class="col-md-6">
 				<h3>{% trans '¿Ya tienes cuenta?' %}</h3>
 				<div class="line-space"></div>
@@ -24,14 +23,14 @@
 				<div>
 					<!-- Nav tabs -->
 					<ul class="nav nav-pills list-inline" role="tablist">
-						<li role="presentation" class="active hidden-xs"><a class="small" href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Soy una organización' %}</a></li>
-						<li role="presentation" class="hidden-xs"><a class="small" href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Soy un ciudadano' %}</a></li>
+						<li role="presentation" class="active hidden-xs"><a class="small" href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Registro colectivo' %} <i class="fa fa-users" aria-hidden="true"></i></a></li>
+						<li role="presentation" class="hidden-xs"><a class="small" href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Registro individual' %} <i class="fa fa-user" aria-hidden="true"></i></a></li>
 						<!-- Dropdown moviles -->
 						<li class="dropdown hidden-sm hidden-md hidden-lg" role="presentation" >
-						  <a href="#" class="dropdown-toggle small" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Soy una organización' %} <span class="caret"></span></a>
+						  <a href="#" class="dropdown-toggle small" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Selecciona el tipo de registro' %}<span class="caret"></span></a>
 						  <ul class="dropdown-menu">
-						    <li><a href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Soy una organización' %}</a></li>
-						    <li><a href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Soy un ciudadano' %}</a></li>
+						    <li><a href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Registro colectivo' %} <i class="fa fa-users" aria-hidden="true"></i></a></li>
+						    <li><a href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Registro individual' %} <i class="fa fa-user"></i></a></li>
 						  </ul>
 						</li>
 						<!-- Fin Dropdown moviles -->
@@ -51,6 +50,8 @@
 						<div role="tabpanel" class="tab-pane active" id="groupRegister">
 							{% group_register %}
 						</div>
+						<div class="line-space"></div>
+						<div class="line-space"></div>
 					</div>
 				</div>
 	</div>

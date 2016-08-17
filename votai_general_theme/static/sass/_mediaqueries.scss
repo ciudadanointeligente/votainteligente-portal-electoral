@@ -1,8 +1,17 @@
 @media screen and (max-width: 320px) {
 
   h1 {
-    letter-spacing: 4px;
+    font-size: 28px;
+    text-transform: capitalize;
+    letter-spacing: 0px;
+    font-weight: 300;
+    line-height: 40px;
+  }
+
+  #hero h1 {
     font-size: 34px;
+    letter-spacing: 4px;
+    font-weight: 700;
   }
 
   h2 {
@@ -46,6 +55,10 @@
 
   .wizard .pull-right {
     width: 100%;
+  }
+
+  #footer .col-md-6.col-sm-6.col-xs-12 {
+    text-align: center;
   }
 
 }

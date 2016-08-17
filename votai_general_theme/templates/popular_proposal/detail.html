@@ -54,25 +54,11 @@ $(function(){
     </div>
     <div class="pull-right share">
       {% include 'popular_proposal/_share.html' with proposal=popular_proposal next_url=request.path %}
-    <div class="md-col-5">
-      <span class="text-right">Twitea!</span>
-    </div>
-    <div class="md-col-1 md-offset-11">
-     {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}
-   </div>
-    <div class="md-col-12">
-      <p class="text-center">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>
-    </div>
-    <div class="md-col-12">
-      <h1 class="text-center">{{popular_proposal.title}}</h1>
-
-      {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
     </div>
     <div class="line-space"></div>
     <p class="text-center text-light small">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>
     <h1 class="text-center">{{popular_proposal.title}}</h1>
-    {% include 'popular_proposal/_likers.html' with proposal=popular_proposal %}
-    <div class="line-space"></div>
+    {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}
     {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
 </div>
 

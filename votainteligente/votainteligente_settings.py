@@ -229,7 +229,8 @@ WEBSITE_OGP = {
     'title': u'VotaInteligente',
     'type': 'website',
     'url': 'http://www.mi-domain.org/',
-    'image': 'img/votai-196.png'
+    'image': 'img/votai-196.png',
+    'fb:app_id': 'APPID'
 }
 #disqus setting dev
 WEBSITE_DISQUS = {

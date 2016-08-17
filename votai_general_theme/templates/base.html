@@ -24,6 +24,7 @@
         <meta property="og:url" content="http://{% url_domain %}">
         <meta property="og:image" content="http://{% url_domain %}{% static 'img/logo_vi_og.jpg' %}">
         {% endblock ogp %}
+        <meta property="fb:app_id" content="{{ 'fb:app_id'|ogpdata }}">
         <!--eoff-->
 
         <link rel="shortcut icon" sizes="196x196" href="{% static 'img/votai-196.png' %}">

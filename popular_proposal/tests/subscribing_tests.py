@@ -7,6 +7,8 @@ from popular_proposal.forms import SubscriptionForm
 from unittest import skip
 from django.core.urlresolvers import reverse
 from django.template import Template, Context
+from django.test import RequestFactory
+from popular_proposal.views import SubscriptionView
 
 
 class SubscribingToPopularProposal(TestCase):
@@ -62,6 +64,21 @@ class SubscribingToPopularProposal(TestCase):
         self.assertEquals(response.context['proposal'], self.proposal)
         p = ProposalLike.objects.get(user=self.feli, proposal=self.proposal)
         self.assertTrue(p)
+
+
+    def test_liking_redirecting_view(self):
+        url_home = reverse('popular_proposals:home')
+        kwargs = {'pk': self.proposal.id}
+        url = reverse('popular_proposals:like_a_proposal',
+                      kwargs=kwargs)
+        self.client.login(username=self.feli,
+                          password='alvarez')
+        response_get = self.client.get(url, {'next': url_home})
+        self.assertEquals(response_get.context['next'], url_home)
+        response = self.client.post(url,
+                                    data={'next': url_home})
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, url_home)
 
     def test_popular_proposal_likers(self):
         like = ProposalLike.objects.create(user=self.feli,

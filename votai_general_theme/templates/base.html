@@ -5,7 +5,7 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load votainteligente_extras %}
-<html prefix="og: //ogp.me/ns/{{ 'type'|ogpdata }}#">
+<html>
     <head>
         <meta charset="utf-8">
         <title>{% trans "Vota Inteligente" %} {% block title %}- {{ 'home_title'|website_gs }}{% endblock title %}</title>
@@ -23,6 +23,7 @@
         <meta property="og:type" content="{{ 'type'|ogpdata }}">
         <meta property="og:url" content="http://{% url_domain %}">
         <meta property="og:image" content="http://{% url_domain %}{% static 'img/logo_vi_og.jpg' %}">
+        <meta property="og:description" content="{{ 'description'|metadata }}">
         {% endblock ogp %}
         <meta property="fb:app_id" content="{{ 'fb:app_id'|ogpdata }}">
         <!--eoff-->

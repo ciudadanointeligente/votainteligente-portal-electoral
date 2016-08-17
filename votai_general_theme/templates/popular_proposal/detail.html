@@ -23,6 +23,7 @@ $(function(){
 
 {% block ogp %}
   {% render_ogp popular_proposal %}
+  <meta property="og:description" content="{{ popular_proposal.data.solution }}">
 {% endblock ogp %}
 
 {% block everything %}

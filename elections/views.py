@@ -13,10 +13,12 @@ from candidator.adapters import CandidatorCalculator, CandidatorAdapter
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import UserCreationForm as RegistrationForm
-from popular_proposal.models import PopularProposal
+from popular_proposal.models import PopularProposal, ProposalTemporaryData
 from popular_proposal.forms import ProposalAreaFilterForm
 from popular_proposal.filters import ProposalAreaFilter
 from django_filters.views import FilterMixin
+import datetime
+from django.utils import timezone
 logger = logging.getLogger(__name__)
 
 
@@ -66,7 +68,9 @@ class HomeView(TemplateView):
         context['group_login_form'] = GroupCreationForm()
         if Election.objects.filter(searchable=True).count() < 1:
             context['searchable_elections_enabled'] = False
-
+        a_week_ago = timezone.now() - datetime.timedelta(days=7)
+        context['created_proposals'] = ProposalTemporaryData.objects.filter(created__gt=a_week_ago).count()
+        context['accepted_proposals'] = PopularProposal.objects.filter(created__gt=a_week_ago).count()
         return context
 
 

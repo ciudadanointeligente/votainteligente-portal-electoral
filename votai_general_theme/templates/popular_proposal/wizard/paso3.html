@@ -32,12 +32,7 @@
 
                 {% bootstrap_field form.solution show_help=false show_label=false %}
             </section>
-    {% if wizard.steps.prev %}
-    <div class="pull-left">
-        <button class="btn btn-primary" name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "Volver al inicio" %}</button>
-        <button class="btn btn-default" name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "Volver al paso previo" %}</button>
-    </div>
-    {% endif %}
+    {% include 'popular_proposal/wizard/_previous_buttons.html' with wizard=wizard %}
     <div class="pull-right">
         <button class="btn btn-success pull-right" type="submit" value="{% trans "Submit" %}">{% trans "Siguiente" %}<img src="{% static 'img/arrow.svg' %}"></button>
     </div>

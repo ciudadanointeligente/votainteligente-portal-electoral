@@ -284,9 +284,14 @@ class LoginFormsTemplateTags(TestCase):
     def test_variable_is_field(self):
         template = Template("{% load votainteligente_extras %}{% if field|is_field  %}si{% else %}no{% endif %}")
         field = forms.CharField(required=False, label='Busca tu comuna')
-        context = Context({'field': field})
-
-        self.assertEqual(template.render(context), 'si')
+        self.assertEqual(template.render(Context({'field': field})), 'si')
+        data = {'username': 'fierita',
+                'password1': 'feroz',
+                'password2': 'feroz',
+                'email': 'fiera@feroz.cl'}
+        form = RegistrationForm(data=data)
+        field = form.fields['username']
+        self.assertEqual(template.render(Context({'field': field})), 'si')
         self.assertEqual(template.render(Context({'field': 'esto es un string'})), 'no')
 
     def test_user_image(self):

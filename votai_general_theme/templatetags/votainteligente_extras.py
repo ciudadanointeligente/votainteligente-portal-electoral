@@ -14,7 +14,7 @@ from backend_candidate.forms import get_candidate_profile_form_class
 from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import (UserCreationForm as RegistrationForm,
                                    GroupCreationForm)
-from django.forms import Field
+from django.forms import Field, BoundField
 
 register = template.Library()
 
@@ -191,7 +191,7 @@ def likes(user, proposal):
 
 @register.filter(name='is_field')
 def is_field(field):
-    if isinstance(field, Field):
+    if isinstance(field, Field) or isinstance(field, BoundField):
         return True
     return False
 

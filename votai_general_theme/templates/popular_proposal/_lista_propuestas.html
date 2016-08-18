@@ -4,7 +4,6 @@
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
   
-    {% if popular_proposals.all %}
 
 		<form action="{{ request.path }}" method="GET" role="form">
       <div class="row">
@@ -24,12 +23,15 @@
       
 
 		</form>
-  {% endif %}
 
 <div id="grid">
   <div id="posts">
     {% for proposal in popular_proposals %}
     {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
+    {% empty %}
+    {% blocktrans %}
+    Aún no hay propuestas acá.
+    {% endblocktrans %}
     {% endfor %}
   </div>
 </div>

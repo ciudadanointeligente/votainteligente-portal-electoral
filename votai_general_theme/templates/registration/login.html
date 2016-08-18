@@ -9,6 +9,12 @@
 {% endblock extra_css %}
 {% block content %}
 <h1 class="text-center">Ingresa</h1>
+{% url 'popular_proposals:home' as proposals_home %}
+{% if proposals_home in request.META.HTTP_REFERER %}
+<div class="alert alert-warning" role="alert">
+  Para apoyar una propuesta debes estar registrado.
+</div>
+{% endif %}
 	<div class="col-md-6">
 				<h3>{% trans '¿Ya tienes cuenta?' %}</h3>
 				<div class="line-space"></div>

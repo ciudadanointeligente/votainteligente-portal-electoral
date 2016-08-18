@@ -36,11 +36,9 @@ $(function(){
   <h1>{{area.name}}</h1>
   <!-- Featured Elections  -->
   <div class="hidden-xs">
+    
 
-          {% for proposal in popular_proposals %}
-          {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
-          {% endfor %}
-
+          {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=proposal_filter_form %}
       <ul>
         {% for election in area.elections.all %}
         <li class="col-md-4 containerAccordion">

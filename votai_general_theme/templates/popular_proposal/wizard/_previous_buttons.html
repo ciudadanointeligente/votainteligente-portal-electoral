@@ -1,0 +1,10 @@
+{% load votainteligente_extras %}
+{% load i18n %}
+
+
+{% if wizard.steps.prev %}
+<div class="pull-left">
+    <button class="btn btn-default" name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}" formnovalidate>{% trans "Volver al inicio" %}</button>
+    <button class="btn btn-default" name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}" formnovalidate>{% trans "Volver al paso previo" %}</button>
+</div>
+{% endif %}

@@ -23,7 +23,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'image', 'description']
+        fields = ['first_name', 'last_name', 'description']
         labels = {'first_name': _('Tu nombre'),
                   'last_name': _('Tu Apellido'),
                   }

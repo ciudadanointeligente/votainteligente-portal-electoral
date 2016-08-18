@@ -8,6 +8,17 @@
 	<link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
 {% endblock extra_css %}
 {% block content %}
+
+<script type="text/javascript">
+	$( document ).ready(function() {
+	    $('.dropdown-menu li').on("click", function(){
+		  txt_selected = $(this).text();
+		  $('.nav li.dropdown a')[0].innerHTML = txt_selected
+		})
+	});
+</script>
+
+
 <h1 class="text-center">Ingresa</h1>
 {% url 'popular_proposals:home' as proposals_home %}
 {% if proposals_home in request.META.HTTP_REFERER %}

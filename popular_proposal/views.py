@@ -25,6 +25,7 @@ from django_filters.views import FilterView
 from django.views.generic.list import ListView
 from popular_proposal.forms import ProposalAreaFilterForm
 from popular_proposal.filters import ProposalAreaFilter
+from votainteligente.view_mixins import EmbeddedViewBase
 
 
 class ProposalCreationView(FormView):
@@ -104,10 +105,9 @@ class SubscriptionView(FormView):
         return super(SubscriptionView, self).form_valid(form)
 
 
-class HomeView(FilterView):
+class HomeView(EmbeddedViewBase, FilterView):
     model = PopularProposal
     template_name = 'popular_proposal/home.html'
-    layout = 'base.html'
 
     def get_queryset(self):
         qs = super(HomeView, self).get_queryset()
@@ -117,24 +117,16 @@ class HomeView(FilterView):
         context = super(HomeView, self).get_context_data(**kwargs)
         initial = self.request.GET
         context['form'] = ProposalFilterForm(initial=initial)
-        context['layout'] = self.layout
         return context
 
     def get_context_object_name(self, object_list):
         return 'popular_proposals'
 
 
-class PopularProposalDetailView(DetailView):
+class PopularProposalDetailView(EmbeddedViewBase, DetailView):
     model = PopularProposal
     template_name = 'popular_proposal/detail.html'
     context_object_name = 'popular_proposal'
-    layout = 'base.html'
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(PopularProposalDetailView, self).get_context_data(*args, **kwargs)
-        context['layout'] = self.layout
-        return context
-
 
 wizard_form_list = get_form_list()
 
@@ -265,9 +257,8 @@ class UnlikeProposalView(View):
         return JsonResponse({'deleted_item': self.pk})
 
 
-class ProposalsPerArea(ListView):
+class ProposalsPerArea(EmbeddedViewBase, ListView):
     model = PopularProposal
-    layout = 'base.html'
     template_name = 'popular_proposal/area.html'
     context_object_name = 'popular_proposals'
 
@@ -277,7 +268,6 @@ class ProposalsPerArea(ListView):
 
     def get_context_data(self):
         context = super(ProposalsPerArea, self).get_context_data()
-        context['layout'] = self.layout
         initial = self.request.GET or None
         context['form'] = ProposalAreaFilterForm(area=self.area,
                                                  initial=initial)

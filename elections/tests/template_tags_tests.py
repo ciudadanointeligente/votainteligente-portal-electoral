@@ -13,6 +13,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import (UserCreationForm as RegistrationForm,
                                    GroupCreationForm)
 from django.contrib.auth.models import User
+from django import forms
 
 
 class TemplateTagsTestCase(TestCase):
@@ -280,6 +281,13 @@ class LoginFormsTemplateTags(TestCase):
         self.assertEqual(template.render(Context({})),
                          rendered_template)
 
+    def test_variable_is_field(self):
+        template = Template("{% load votainteligente_extras %}{% if field|is_field  %}si{% else %}no{% endif %}")
+        field = forms.CharField(required=False, label='Busca tu comuna')
+        context = Context({'field': field})
+
+        self.assertEqual(template.render(context), 'si')
+        self.assertEqual(template.render(Context({'field': 'esto es un string'})), 'no')
 
     def test_user_image(self):
         u = User.objects.get(username='feli')

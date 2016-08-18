@@ -2,15 +2,17 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load bootstrap3 %}
+{% load votainteligente_extras %}
 
 		<form action="{{ request.path }}" method="GET" role="form">
       <div class="row">
         <div class="col-md-4">{% bootstrap_field form.clasification show_label=False %}</div>
-        <div class="col-md-4">
-          {% if form.area %}
-            {% bootstrap_field form.area show_label=False %}
+        
+          {% if form.area|is_field %}
+            <div class="col-md-4">
+              {% bootstrap_field form.area show_label=False %}
+            </div>
           {% endif %}
-        </div>
         <div class="col-md-4">
     	    <div class="form-actions">
     	        <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>

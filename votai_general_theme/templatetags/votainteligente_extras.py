@@ -14,6 +14,7 @@ from backend_candidate.forms import get_candidate_profile_form_class
 from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import (UserCreationForm as RegistrationForm,
                                    GroupCreationForm)
+from django.forms import Field
 
 register = template.Library()
 
@@ -188,9 +189,17 @@ def likes(user, proposal):
     return False
 
 
+@register.filter(name='is_field')
+def is_field(field):
+    if isinstance(field, Field):
+        return True
+    return False
+
+
 @register.filter(name='support')
 def support(user, proposal):
     return ProposalLike.objects.get(user=user, proposal=proposal)
+
 
 @register.filter(name='popular_proposal_when')
 def popular_proposal_when(when):
@@ -198,6 +207,7 @@ def popular_proposal_when(when):
         if item[0] == when:
             return item[1]
     return when
+
 
 @register.filter(name='popular_proposal_question')
 def popular_proposal_question(question):

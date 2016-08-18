@@ -4,7 +4,13 @@
 {% load thumbnail %}
 <div class="post propuesta">
   <span class="label label-default">{{proposal.data.clasification}}</span>
-  <div class="small text-light">Propuesta para <a href="{% url 'area' slug=proposal.area.id %}">{{proposal.area}}</a></div>
+  <div class="small text-light">Propuesta para 
+    {% if not is_embedded %}
+      <a href="{% url 'area' slug=proposal.area.id %}">
+    {% endif %}
+      {{proposal.area}}
+    {% if not is_embedded %}</a>{% endif %}
+  </div>
   {% if proposal.title %}
       <h3><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title}}</a></h3>
   {% endif %}

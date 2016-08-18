@@ -3,6 +3,8 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
+  
+    {% if popular_proposals.all %}
 
 		<form action="{{ request.path }}" method="GET" role="form">
       <div class="row">
@@ -22,6 +24,7 @@
       
 
 		</form>
+  {% endif %}
 
 <div id="grid">
   <div id="posts">

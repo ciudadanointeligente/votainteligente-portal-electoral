@@ -82,6 +82,22 @@
                     </li>
                   </ul>
                 </li>
+                <li>
+                    <a href="#" onclick="ga('send', 'event', 'twitter-share', 'click'); window.open(&quot;//twitter.com/share?via=Ciudadanoi&text=%23APonerseConPropuestas para los programas municipales de nuestras comunas en&quot;,&quot;twitter&quot;,&quot;width=450, height=250&quot;)">
+                      <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="share-btn share-btn-branded share-btn-facebook" onclick="ga('send', 'event', 'facebook-share', 'click');" href="//www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fvotainteligente.cl" title="{{ 'description'|metadata }}" target="_blank">
+                      <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </a>
+                </li>
                 {% else %}
                 <li><a href="{% url 'auth_login' %}">{% blocktrans %}Ingresar{% endblocktrans %}</a></li>
                 {% endif %}

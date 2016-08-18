@@ -17,7 +17,8 @@
 		  ¡Incrusta esto en tu página!
 		</button>
 		<div class="collapse" id="incrustaEnTuPagina">
-			  	<textarea style="width:700px;" readonly><iframe src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{% url 'popular_proposals:embedded_home' %}" width="600px" height="500px"></iframe></textarea>
+			  	<textarea style="width:700px;" readonly>
+			  		<iframe src="//{{ request.get_host }}{% url 'popular_proposals:embedded_home' %}" width="600px" height="500px"></iframe></textarea>
 		</div>
 		</div>
 	</div>
@@ -25,7 +26,7 @@
 	<div>
 	  <h1 class="text-center">{% trans "Propuestas en VotaInteligente" %}</h1>
 	  	<div>
-	  		{% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=form %}
+	  		{% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=form is_embedded=is_embedded %}
 	  	</div>
 	</div>
 </div>

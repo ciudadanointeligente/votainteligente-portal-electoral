@@ -3,7 +3,6 @@ from collections import OrderedDict
 
 WHEN_CHOICES = [
     ('', u'¿Cuándo?'),
-    ('6_months', u'6 Meses'),
     ('1_year', u'1 año'),
     ('2_year', u'2 años'),
     ('3_year', u'3 años'),

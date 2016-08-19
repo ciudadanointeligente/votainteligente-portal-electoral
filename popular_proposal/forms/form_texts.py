@@ -46,7 +46,7 @@ TEXTS = OrderedDict({
                             'long_text': "paso4a.html"},
     'when': {'label': u'¿Cuándo?',
              'preview_question': u'¿Cuándo debería estar esto listo?',
-             'help_text': u'6_months',
+             'help_text': u'1_year',
              'placeholder': u'',
              'long_text': "paso4b.html"},
     'title': {'label': u'Colócale título',

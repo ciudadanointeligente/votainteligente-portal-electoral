@@ -4,7 +4,13 @@ from popular_proposal.models import PopularProposal, ProposalTemporaryData
 
 @admin.register(PopularProposal)
 class PopularProposalAdmin(admin.ModelAdmin):
-    list_display = ('id','area', 'title', 'data', 'proposer')
+    list_display = ('id',
+    				'area',
+    				'title',
+    				'data',
+    				'proposer'
+    				)
+    exclude = ('organization',)
 
 
 @admin.register(ProposalTemporaryData)

@@ -33,7 +33,7 @@ TEXTS = OrderedDict({
     'causes': {'label': u'¿Cuáles son las causas?',
                'preview_question': u'¿Cuáles son las causas?',
                'help_text': u'',
-               'placeholder': u'Utiliza el ejercicio que te mostramos arriba para encontrar las causas del problema',
+               'placeholder': u'Escribe aquí el último <i>¿por qué?</i>, para conocer las causas del problema',
                'long_text': "paso2.html"},
     'solution': {'label': u'Escribe tu propuesta',
                  'preview_question': u'¿Cual sería la solución?',

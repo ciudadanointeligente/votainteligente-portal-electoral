@@ -27,6 +27,8 @@ class Profile(models.Model):
 
 @receiver(post_save, sender=User, dispatch_uid="create_user_profile")
 def create_user_profile(sender, instance, created, raw, **kwargs):
+    if raw:
+        return
     try:
         instance.profile
     except Profile.DoesNotExist:

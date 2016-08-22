@@ -8,8 +8,6 @@ from elections.models import PersonalData
 import os
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
-from popolo.models import ContactDetail
-
 
 
 def get_field_from_topic(topic):
@@ -135,6 +133,8 @@ def _import(name):
 class CandidateProfileFormBase(forms.Form):
     image = forms.ImageField(required=False,
                              label=_(u"Imagen de perfil"))
+    program_link = forms.URLField(required=False,
+                                  label=_(u"Link del programa"))
 
     social_networks = {
         'facebook': {'field': forms.URLField(required=False),
@@ -179,7 +179,6 @@ class CandidateProfileFormBase(forms.Form):
             tmp_file = os.path.join(settings.MEDIA_ROOT, path)
             self.candidate.image = tmp_file
             self.candidate.save()
-
         for link in self.social_networks:
             value = self.cleaned_data.pop(link, None)
             if value:
@@ -194,6 +193,7 @@ class CandidateProfileFormBase(forms.Form):
                                                                         label=field)
             personal_data.value = self.cleaned_data[field]
             personal_data.save()
+
 
 def get_candidate_profile_form_class():
     PARENT_FORM_CLASS = CandidateProfileFormBase

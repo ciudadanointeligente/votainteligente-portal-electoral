@@ -26,6 +26,7 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         self.data = {'age': 4,
                      'party': 'Partido chilote',
                      'image': self.get_image(),
+                     'program_link': 'www.pdf995.com/samples/pdf.pdf',
                      'facebook': 'https://www.facebook.com/PabloMoyaConcejal/',
                      'twitter': 'https://www.twitter.com/Pablo_Moya',
                      'url': 'https://google.cl'}
@@ -42,12 +43,13 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
 
         form.save()
         personal_datas = PersonalData.objects.filter(candidate=self.candidate)
-        self.assertEquals(len(personal_datas), 2)
+        self.assertEquals(len(personal_datas), 3)
         age = personal_datas.get(value=self.data['age'])
         self.assertEquals(age.label, 'age')
         party = personal_datas.get(value=self.data['party'])
         self.assertEquals(party.label, 'party')
-
+        program = personal_datas.get(label='program_link')
+        self.assertTrue(program.value)
         facebook = self.candidate.contact_details.get(contact_type='FACEBOOK')
         self.assertEquals(facebook.value, self.data['facebook'])
         facebook = self.candidate.contact_details.get(contact_type='TWITTER')
@@ -57,7 +59,7 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
 
         form.save()
         personal_datas = PersonalData.objects.filter(candidate=self.candidate)
-        self.assertEquals(personal_datas.count(), 2)
+        self.assertEquals(personal_datas.count(), 3)
 
         self.assertEquals(self.candidate.contact_details.count(), 3)
         self.candidate.add_contact_detail(label='perrito',

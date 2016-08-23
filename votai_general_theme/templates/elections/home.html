@@ -32,9 +32,6 @@
 <section id="banner">
   <div class="container">
     <ul class="list-inline text-center">
-      <div>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/P8mrInHzufE" frameborder="0" allowfullscreen></iframe>
-      </div>
        <li><h4 class="counter">
         <span>{{ n_created|slice:"0:1" }}</span>
         <span>{{ n_created|slice:"1:2" }}</span>
@@ -54,7 +51,7 @@
     <div class="text-center">
       <a class="btn btn-primary" href="{% url 'popular_proposals:propose_wizard_full' %}">Tengo una propuesta</a>
       <a class="btn btn-default" href="{% url 'popular_proposals:home' %}">Quiero conocer y apoyar una idea</a>
-      <div class="line-space"></div>
+      <iframe width="100%" max-width="560" height="315" src="https://www.youtube.com/embed/P8mrInHzufE" frameborder="0" allowfullscreen></iframe>
     </div>
     <div class="row">
       <div class="col-md-3 col-sm-6 item">

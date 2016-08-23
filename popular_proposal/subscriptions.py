@@ -1,5 +1,8 @@
 from collections import OrderedDict
 from votainteligente.send_mails import send_mail
+from elections.models import Candidate
+from backend_candidate.models import CandidacyContact
+from popular_proposal.models import Commitment
 
 
 class SubscriptionEventBase(object):
@@ -40,6 +43,34 @@ class NewCommitmentNotification(SubscriptionEventBase):
     def get_context(self, **kwargs):
         context = super(NewCommitmentNotification, self).get_context(**kwargs)
         context['commitment'] = self.commitment
+        return context
+
+
+class ManyCitizensSupportingNotification(SubscriptionEventBase):
+    mail_template = 'many_citizens_supporting'
+
+    def __init__(self, *args, **kwargs):
+        super(ManyCitizensSupportingNotification, self).__init__(*args, **kwargs)
+        self.number = kwargs.pop('number')
+
+    def get_who(self):
+        commitments = Commitment.objects.filter(proposal=self.proposal)
+        candidates_pks = []
+        for commitment in commitments:
+            candidates_pks.append(commitment.candidate.id)
+
+        candidates = Candidate.objects.filter(elections__area=self.proposal.area).exclude(id__in=candidates_pks)
+        contacts = CandidacyContact.objects.filter(candidate__in=candidates)
+        return contacts
+
+    def get_mail_from(self, contact):
+        return contact.mail
+
+    def get_context(self, **kwargs):
+        context = super(ManyCitizensSupportingNotification, self).get_context(**kwargs)
+        contact = kwargs.pop('person')
+        context['contact'] = contact
+        context['number'] = self.number
         return context
 
 

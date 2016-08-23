@@ -5,7 +5,7 @@
 	  ¡Incrusta esto en tu página!
 	</button>
 	<div class="collapse" id="incrustaEnTuPagina">
-		  	<textarea style="width:700px;" readonly><iframe src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{url}}" width="600px" height="500px"></iframe></textarea>
+		  	<textarea style="width:700px;" readonly><iframe src="//{{ request.get_host }}{{url}}" width="600px" height="500px"></iframe></textarea>
 	</div>
 	</div>
 </div>

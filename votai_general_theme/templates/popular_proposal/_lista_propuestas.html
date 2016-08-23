@@ -3,6 +3,7 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
+  
 
 		<form action="{{ request.path }}" method="GET" role="form">
       <div class="row">
@@ -26,7 +27,11 @@
 <div id="grid">
   <div id="posts">
     {% for proposal in popular_proposals %}
-    {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
+    {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal is_embedded=is_embedded %}
+    {% empty %}
+    {% blocktrans %}
+    Aún no hay propuestas acá.
+    {% endblocktrans %}
     {% endfor %}
   </div>
 </div>

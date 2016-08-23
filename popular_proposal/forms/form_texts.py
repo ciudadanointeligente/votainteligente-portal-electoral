@@ -3,7 +3,6 @@ from collections import OrderedDict
 
 WHEN_CHOICES = [
     ('', u'¿Cuándo?'),
-    ('6_months', u'6 Meses'),
     ('1_year', u'1 año'),
     ('2_year', u'2 años'),
     ('3_year', u'3 años'),
@@ -33,7 +32,7 @@ TEXTS = OrderedDict({
     'causes': {'label': u'¿Cuáles son las causas?',
                'preview_question': u'¿Cuáles son las causas?',
                'help_text': u'',
-               'placeholder': u'Utiliza el ejercicio que te mostramos arriba para encontrar las causas del problema',
+               'placeholder': u'Escribe aquí el último <i>¿por qué?</i>, para conocer las causas del problema',
                'long_text': "paso2.html"},
     'solution': {'label': u'Escribe tu propuesta',
                  'preview_question': u'¿Cual sería la solución?',
@@ -47,7 +46,7 @@ TEXTS = OrderedDict({
                             'long_text': "paso4a.html"},
     'when': {'label': u'¿Cuándo?',
              'preview_question': u'¿Cuándo debería estar esto listo?',
-             'help_text': u'6_months',
+             'help_text': u'1_year',
              'placeholder': u'',
              'long_text': "paso4b.html"},
     'title': {'label': u'Colócale título',

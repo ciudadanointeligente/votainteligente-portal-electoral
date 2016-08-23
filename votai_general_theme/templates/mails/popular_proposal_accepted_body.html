@@ -1,16 +1,13 @@
 {% load votainteligente_extras %}
 ¡Felicitaciones {% if user.get_short_name %}{{ temporary_data.proposer.get_short_name}}{% else %}{{ temporary_data.proposer.get_username}}{% endif %}!:
-Tu propuesta para {{area}} fue aceptada por {{moderator}}.
-Estamos haciendole llegar tu propuesta a los candidatos de {{area}},
-ahora es el momento para que tu propuesta tenga la mayor cantidad de adherentes para que
-los candidatos tengan más presión para comprometerse.
 
-Para esto tenemos nuestro Kit de Incidencia Ciudadana:
+Tu propuesta para {{area}} fue recibida satisfactoriamente por {{moderator}} y nosotros la haremos llegar a las y los candidatas/os de {{area}}.
 
-https://docs.google.com/document/d/19wPZ9U4A1cs3HJDcJl-Ffwwye0ebOC06Q7E7oTYgazY
+Ahora, te invitamos a trabajar para que tu propuesta tenga la mayor cantidad de adherentes posible y que candidatas y candidatos tengan más presión para comprometerse.
 
-Lo primero que te recomendamos hacer es agregarle más antecedentes a tu propuesta
-y lo puedes hacer acá:
+Consulta el material adjunto a este correo. Allí encontrarás herramientas para la incidencia ciudadana que podrás utilizar para posicionar tu propuesta y fortalecer el trabajo de tu organización. Éstas también estarán disponibles en tu perfil ciudadano.
+
+Además te recomendamos agregarle más antecedentes a tu propuesta acá:
 
 http://{{site.domain}}{% url 'popular_proposals:citizen_update' slug=temporary_data.created_proposal.slug %}
 

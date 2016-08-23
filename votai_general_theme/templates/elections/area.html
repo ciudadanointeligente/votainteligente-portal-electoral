@@ -76,8 +76,12 @@ $(function(){
         {% endif %}
         {% endfor %}
       </ul>
-
-        <a href="{% url 'popular_proposals:propose_wizard' slug=area.id %}" class="btn btn-primary btn-lg active btn-block">{% blocktrans with area=area.name %}Crear una propuesta ciudadana{% endblocktrans %}</a>
+      {% if not popular_proposals.all %}
+      {% blocktrans %}
+      <p>Acá aún no hay propuestas, pero puedes:</p>
+      {% endblocktrans %}
+      {% endif %}
+      <a class="btn btn-info" href="{% url 'popular_proposals:propose_wizard' slug=area.id %}">{% blocktrans with area=area.name %}Crear una propuesta ciudadana para {{ area }}{% endblocktrans %}</a>
 
   </div>
   <!-- /contenedorDestacado -->

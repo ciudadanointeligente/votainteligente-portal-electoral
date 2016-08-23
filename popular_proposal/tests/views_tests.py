@@ -67,6 +67,7 @@ class ProposalViewTestCase(TestCase):
                                 'popular_proposal/detail.html')
         self.assertTemplateUsed(response,
                                 'embedded_base.html')
+        self.assertTrue(response.context['is_embedded'])
 
     def test_thanks_page(self):
         url = reverse('popular_proposals:thanks', kwargs={'pk': self.arica.id})
@@ -169,6 +170,7 @@ class EmbeddedViewsTests(PopularProposalTestCaseBase):
         self.assertTemplateUsed(response, 'popular_proposal/home.html')
         self.assertTemplateUsed(response, 'embedded_base.html')
         self.assertIsInstance(response.context['form'], ProposalFilterForm)
+        self.assertTrue(response.context['is_embedded'])
 
     def test_get_popular_proposals_per_area_embedded(self):
         url = reverse('popular_proposals:area_embedded',
@@ -176,6 +178,7 @@ class EmbeddedViewsTests(PopularProposalTestCaseBase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.context['layout'], 'embedded_base.html')
+        self.assertTrue(response.context['is_embedded'])
         self.assertTemplateUsed('popular_proposal/area.html')
         self.assertTemplateUsed('embedded_base.html')
         self.assertIsInstance(response.context['form'], ProposalAreaFilterForm)

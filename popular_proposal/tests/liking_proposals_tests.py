@@ -1,14 +1,13 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase as TestCase
 from django.contrib.auth.models import User
-from popular_proposal.models import PopularProposal, ProposalLike
+from popular_proposal.models import (ProposalLike,
+                                     PopularProposal,
+                                     )
 import json
 from popular_proposal.forms import SubscriptionForm
-from unittest import skip
 from django.core.urlresolvers import reverse
 from django.template import Template, Context
-from django.test import RequestFactory
-from popular_proposal.views import SubscriptionView
 
 
 class SubscribingToPopularProposal(TestCase):
@@ -112,39 +111,3 @@ class SubscribingToPopularProposal(TestCase):
         self.assertFalse(ProposalLike.objects.filter(id=like.id))
         content = json.loads(response.content)
         self.assertEquals(int(content['deleted_item']), like.id)
-
-
-
-#class TheEventClass(SubscriptionEventBase):
-#    class Meta:
-#        proxy = True
-#
-#    def condition(subscription):
-#        return True
-
-@skip("Not yet")
-class SubscriptionEventsTestCase(SubscribingToPopularProposal):
-    def setUp(self):
-        super(SubscriptionEventsTestCase, self).setUp()
-        self.like = ProposalLike.objects.create(user=self.fiera,
-                                                proposal=self.proposal)
-
-    def test_instanciating_an_event(self):
-        event = TheEventClass(subscription=self.like.subscription)
-        event.save()
-        self.assertFalse(event.notified)
-        events = TheEventClass.get_ocurred_ones()
-        self.assertTrue(events)
-        self.assertIn(event, events)
-        event.process()
-        self.assertFalse(TheEventClass.objects.filter(id=event.id))
-        self.assertTrue(event.notified)
-
-    def test_subscription_can_have_events(self):
-        event = TheEventClass(subscription=self.like.subscription)
-        event.save()
-        like = ProposalLike.objects.create(user=self.fiera,
-                                           proposal=self.proposal)
-        subscription = like.subscription
-        subscription.events.add(event)
-

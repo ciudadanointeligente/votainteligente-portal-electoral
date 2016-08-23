@@ -1,7 +1,7 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django.contrib.auth.models import User
-from popolo.models import Area
+from elections.models import Area
 
 
 class ProposingCycleTestCaseBase(TestCase):

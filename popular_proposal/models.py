@@ -12,6 +12,8 @@ from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
 from backend_citizen.models import Organization
 from votainteligente.open_graph import OGPMixin
+from elections.models import Candidate
+
 
 class NeedingModerationManager(models.Manager):
     def get_queryset(self):
@@ -177,22 +179,16 @@ class ProposalLike(models.Model):
         return instance
 
 
-# class SubscriptionEventBase(models.Model):
-#     subscription = models.ManyToManyField(Subscription, related_name='events')
-#     notified = models.BooleanField(default=False)
-#
-#     @classmethod
-#     def get_ocurred_ones(cls):
-#         result = []
-#         for event in cls.objects.all():
-#             if event.condition():
-#                 result.append(event)
-#         return result
-#
-#     def send_notifications(self):
-#         pass
-#
-#     def process(self):
-#         self.send_notifications()
-#         self.notified = True
-#         self.delete()
+class Commitment(models.Model):
+    proposal = models.ForeignKey(PopularProposal)
+    candidate = models.ForeignKey(Candidate)
+    detail = models.CharField(max_length=1024,
+                              null=True,
+                              blank=True)
+
+    # def save(self, *args, **kwargs):
+    #     instance = super(Commitment, self).save(*args, **kwargs)
+    #     notification_trigger('new-commitment',
+    #                          proposal=self.proposal,
+    #                          commitment=self)
+    #     return instance

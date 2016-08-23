@@ -32,6 +32,12 @@ html, body {
 	margin: 0 auto;
 }
 
+.rotate {
+  -ms-transform: rotate(7deg); /* IE 9 */
+  -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
+  transform: rotate(7deg);
+}
+
 h1 {
 	font-weight: 700;
 	font-family: 'Arvo', serif;

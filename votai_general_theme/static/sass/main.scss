@@ -32,6 +32,13 @@ html, body {
 	margin: 0 auto;
 }
 
+.rotate {
+  -ms-transform: rotate(-180deg); /* IE 9 */
+  -webkit-transform: rotate(-180deg); /* Chrome, Safari, Opera */
+  transform: rotate(-180deg);
+  margin-right: 5px;
+}
+
 h1 {
 	font-weight: 700;
 	font-family: 'Arvo', serif;
@@ -1093,6 +1100,7 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 	padding: 10px 0;
 	color: $footer-color;
 	background-color: $letters-color;
+	margin: 60px 0px 0px
 }
 
 #footer a {

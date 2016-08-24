@@ -24,40 +24,92 @@
       {% if user|is_candidate %}
         {% for candidacy in user.candidacies.all %}
 
-          <a href="{{candidacy.candidate.get_absolute_url}}">{{candidacy.candidate.name}}</a>
           {% url 'backend_candidate:complete_profile' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as complete_profile %}
-          <li role="presentation" class="{% ifequal request.path complete_profile%} active{% endifequal %}">
-          <a class="small" href="{{complete_profile}}">
+          <li role="presentation" class="{% ifequal request.path complete_profile%} active{% endifequal %} hidden-xs">
+            <a class="small" href="{{complete_profile}}">
               Completa tu perfil
-            </a></li>
+            </a>
+          </li>
 
           {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
-          <li role="presentation" class="{% ifequal request.path backend_candidate%} active{% endifequal %}">
-          <a class="small" href="{{backend_candidate}}">
+          <li role="presentation" class="{% ifequal request.path backend_candidate%} active{% endifequal %} hidden-xs">
+            <a class="small" href="{{backend_candidate}}">
               Cuestionario
-            </a></li>
+            </a>
+          </li>
             
         {% endfor %}
       {% endif %}
         
         {% url 'backend_citizen:index' as backend_index %}
-         <li role="presentation" class="{% ifequal request.path backend_index%} active{% endifequal %}">
+         <li role="presentation" class="{% ifequal request.path backend_index%} active{% endifequal %} hidden-xs">
         <a class="small" href="{{backend_index}}">{% trans 'Las propuestas que he hecho' %}</a></li>
           {% url 'backend_citizen:my_supports' as my_supports_url %}
-         <li role="presentation" class="{% ifequal request.path my_supports_url %} active{% endifequal %}">
+         <li role="presentation" class="{% ifequal request.path my_supports_url %} active{% endifequal %} hidden-xs">
           <a class="small" href="{{my_supports_url}}">
           {% blocktrans %}Las propuestas que apoyo{% endblocktrans %}</a></li>
-        {% url 'backend_citizen:update_my_profile' as my_profile_url %}
-         <li role="presentation" class="{% ifequal request.path my_profile_url %} active{% endifequal %}">
-          <a class="small" href="{{my_profile_url}}">
-          {% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a></li>
+        {% if not user|is_candidate %}
+          {% url 'backend_citizen:update_my_profile' as my_profile_url %}
+           <li role="presentation" class="{% ifequal request.path my_profile_url %} active{% endifequal %} hidden-xs">
+            <a class="small" href="{{my_profile_url}}">
+            {% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a></li>
+        {% endif %}
         {% url 'password_reset' as password_reset %}
-         <li role="presentation" class="{% ifequal request.path password_reset %} active{% endifequal %}">
+         <li role="presentation" class="{% ifequal request.path password_reset %} active{% endifequal %} hidden-xs">
           <a class="small" href="{{password_reset}}">
           {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>
 
       {% block extra_sidebar_bottom %}
       {% endblock extra_sidebar_bottom %}
+
+      <!-- Versión moviles -->
+          <li class="dropdown hidden-sm hidden-md hidden-lg" role="presentation" >
+              <a href="#" class="dropdown-toggle small" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Menu' %}<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+
+
+                    {% if user|is_candidate %}
+                      {% for candidacy in user.candidacies.all %}
+
+                        {% url 'backend_candidate:complete_profile' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as complete_profile %}
+                        <li role="tab" data-toggle="tab" class="{% ifequal request.path complete_profile%} active{% endifequal %}">
+                          <a class="small" href="{{complete_profile}}">
+                            Completa tu perfil
+                          </a>
+                        </li>
+
+                        {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
+                        <li role="tab" data-toggle="tab" class="{% ifequal request.path backend_candidate%} active{% endifequal %}">
+                          <a class="small" href="{{backend_candidate}}">
+                            Cuestionario
+                          </a>
+                        </li>
+                          
+                      {% endfor %}
+                    {% endif %}
+                      
+                      {% url 'backend_citizen:index' as backend_index %}
+                      <li role="tab" data-toggle="tab" class="{% ifequal request.path backend_index%} active{% endifequal %}">
+                        <a class="small" href="{{backend_index}}">{% trans 'Las propuestas que he hecho' %}</a></li>
+                        {% url 'backend_citizen:my_supports' as my_supports_url %}
+                       <li role="tab" data-toggle="tab" class="{% ifequal request.path my_supports_url %} active{% endifequal %}">
+                        <a class="small" href="{{my_supports_url}}">
+                        {% blocktrans %}Las propuestas que apoyo{% endblocktrans %}</a></li>
+                      {% if not user|is_candidate %}
+                        {% url 'backend_citizen:update_my_profile' as my_profile_url %}
+                         <li role="tab" data-toggle="tab" class="{% ifequal request.path my_profile_url %} active{% endifequal %}">
+                          <a class="small" href="{{my_profile_url}}">
+                          {% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a></li>
+                      {% endif %}
+                      {% url 'password_reset' as password_reset %}
+                       <li role="tab" data-toggle="tab" class="{% ifequal request.path password_reset %} active{% endifequal %}">
+                        <a class="small" href="{{password_reset}}">
+                        {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>
+
+              </ul>
+          </li>
+      <!-- END Versión moviles -->
+      
       </ul>
       {% endblock sidebar %}
     </div>

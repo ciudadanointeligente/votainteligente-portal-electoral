@@ -15,6 +15,8 @@ from popular_proposal.subscriptions import (SubscriptionEventBase,
 from django.core import mail
 from elections.models import Candidate, Election
 from backend_candidate.models import CandidacyContact
+from django.test import override_settings
+
 
 class TestNewCandidateCommitment(SubscriptionEventBase):
     mail_template = 'new_commitment'
@@ -121,3 +123,33 @@ class SubscriptionEventsTestCase(TestCase):
         self.assertIn(self.proposal.title, the_mail.body)
         self.assertNotIn(self.candidate.name, the_mail.body)
         self.assertIn(str(notifier.number), the_mail.body)
+
+    @override_settings(WHEN_TO_NOTIFY=[2, 3])
+    def test_like_a_proposal_signal(self):
+        ProposalLike.objects.create(user=self.fiera,
+                                    proposal=self.proposal)
+        ProposalLike.objects.create(user=self.feli,
+                                    proposal=self.proposal)
+
+        self.assertEquals(len(mail.outbox), 3)
+        # this should be the email to the proposer
+        the_mail = mail.outbox[0]
+        self.assertIn(self.proposal.proposer.email, the_mail.to)
+        self.assertEquals(len(the_mail.to), 1)
+        self.assertIn(self.proposal.title, the_mail.body)
+        self.assertNotIn(self.candidate.name, the_mail.body)
+        self.assertIn(str(2), the_mail.body)
+        # this should be the email to the candidate
+        the_mail = mail.outbox[1]
+        self.assertIn(self.contact.mail, the_mail.to)
+        self.assertEquals(len(the_mail.to), 1)
+        self.assertIn(self.proposal.title, the_mail.body)
+        self.assertIn(self.candidate.name, the_mail.body)
+        self.assertIn(str(2), the_mail.body)
+        # this should be the email to the other candidate
+        the_mail = mail.outbox[2]
+        self.assertIn(self.contact2.mail, the_mail.to)
+        self.assertEquals(len(the_mail.to), 1)
+        self.assertIn(self.proposal.title, the_mail.body)
+        self.assertIn(self.candidate2.name, the_mail.body)
+        self.assertIn(str(2), the_mail.body)

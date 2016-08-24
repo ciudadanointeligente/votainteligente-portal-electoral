@@ -258,7 +258,7 @@ class ProposalTemporaryDataUpdateForm(ProposalFormBase):
             comment = self.temporary_data.comments[comment_key]
             if comment:
                 commented_fields.append(comment_key)
-                self.fields[comment_key].help_text += _(' <b>Commentarios: %s </b>') % (comment)
+                self.fields[comment_key].help_text += _(' <b>Creemos que: %s </b>') % (comment)
 
     def get_fields_order(self, temporary_data):
         commented_fields = []

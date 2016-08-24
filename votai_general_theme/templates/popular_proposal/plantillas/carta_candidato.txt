@@ -1,19 +1,25 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
 
-Estimada candidata o candidato a la alcaldía de {{ area }}:
+**El título de tu propuesta**: {{preview_data.title}}
+{% if comments.title %}
+Creemos que: {% autoescape off %}{{comments.title}}{% endautoescape %}{% endif %}
 
-Le solicitamos que incorpore a su programa de gobierno municipal nuestra propuesta ciudadana:
-{{preview_data.solution|popular_proposal_when}}
+Esta es una propuesta para: {{ area }} que esperamos que se cumpla en {{preview_data.when|popular_proposal_when}}.
 
-Esta propuesta debe ser cumplida antes de {{preview_data.when|popular_proposal_when}}, y surge como respuesta a la siguiente inquietud de la comunidad: {{preview_data.problem|popular_proposal_when}}
+**¿Cuál es el problema o necesidad que se busca solucionar?**: {{preview_data.problem}}
+{% if comments.problem %}
+Creemos que: {% autoescape off %}{{comments.problem}}{% endautoescape %}{% endif %}
 
-Además entendemos que la solución final estará dada por:
+**¿Por qué existe el problema?**: {{preview_data.causes}}
+{% if comments.causes %}
+Creemos que: {% autoescape off %}{{comments.causes}}{% endautoescape %}{% endif %}
 
-{{preview_data.solution_at_the_end|popular_proposal_when}}
+**¿Qué hay que hacer para lograr la situación ideal?**: {{preview_data.solution}}
+{% if comments.solution %}
+Creemos que: {% autoescape off %}{{comments.solution}}{% endautoescape %}{% endif %}
 
-
-Desde ya muchas gracias.
-
-El equipo de VotaInteligente a nombre de {% if user.get_full_name %}{{user.get_full_name}}{% else %}{{user}}{% endif %}.
+**¿Qué acción dará por cumplida la tarea del alcalde?**: {{preview_data.solution_at_the_end}}
+{% if comments.solution_at_the_end %}
+Creemos que: {% autoescape off %}{{comments.solution_at_the_end}}{% endautoescape %}{% endif %}
 

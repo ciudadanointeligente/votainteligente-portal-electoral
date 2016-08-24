@@ -3,23 +3,23 @@
 
 **El título de tu propuesta**: {{preview_data.title}}
 {% if comments.title %}
-Creemos que: {% autoescape off %}{{comments.title}}{% endautoescape %}{% endif %}
+Nuestros comentarios son: {% autoescape off %}{{comments.title}}{% endautoescape %}{% endif %}
 
 Esta es una propuesta para: {{ area }} que esperamos que se cumpla en {{preview_data.when|popular_proposal_when}}.
 
 **¿Cuál es el problema o necesidad que se busca solucionar?**: {{preview_data.problem}}
 {% if comments.problem %}
-Creemos que: {% autoescape off %}{{comments.problem}}{% endautoescape %}{% endif %}
+Nuestros comentarios son: {% autoescape off %}{{comments.problem}}{% endautoescape %}{% endif %}
 
 **¿Por qué existe el problema?**: {{preview_data.causes}}
 {% if comments.causes %}
-Creemos que: {% autoescape off %}{{comments.causes}}{% endautoescape %}{% endif %}
+Nuestros comentarios son: {% autoescape off %}{{comments.causes}}{% endautoescape %}{% endif %}
 
 **¿Qué hay que hacer para lograr la situación ideal?**: {{preview_data.solution}}
 {% if comments.solution %}
-Creemos que: {% autoescape off %}{{comments.solution}}{% endautoescape %}{% endif %}
+Nuestros comentarios son: {% autoescape off %}{{comments.solution}}{% endautoescape %}{% endif %}
 
 **¿Qué acción dará por cumplida la tarea del alcalde?**: {{preview_data.solution_at_the_end}}
 {% if comments.solution_at_the_end %}
-Creemos que: {% autoescape off %}{{comments.solution_at_the_end}}{% endautoescape %}{% endif %}
+Nuestros comentarios son: {% autoescape off %}{{comments.solution_at_the_end}}{% endautoescape %}{% endif %}
 

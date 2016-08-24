@@ -2,8 +2,10 @@ from collections import OrderedDict
 from votainteligente.send_mails import send_mail
 from elections.models import Candidate
 from backend_candidate.models import CandidacyContact
-from popular_proposal.models import Commitment
-
+from popular_proposal.models import Commitment, ProposalLike
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from django.conf import settings
 
 class SubscriptionEventBase(object):
     def get_who(self):
@@ -105,3 +107,16 @@ def notification_trigger(event, **kwargs):
     dispatcher = EventDispatcher()
     proposal = kwargs.pop('proposal')
     dispatcher.trigger(event, proposal, kwargs)
+
+
+@receiver(pre_save, sender=ProposalLike)
+def numerical_notification_handler(sender, instance, **kwargs):
+    proposal_like = instance
+    the_number = ProposalLike.objects.filter(proposal=proposal_like.proposal).count()
+    if the_number in settings.WHEN_TO_NOTIFY:
+        notifier = YouAreAHeroNotification(proposal=proposal_like.proposal,
+                                           number=the_number)
+        notifier.notify()
+        notifier = ManyCitizensSupportingNotification(proposal=proposal_like.proposal,
+                                                      number=the_number)
+        notifier.notify()

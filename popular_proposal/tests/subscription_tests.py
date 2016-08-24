@@ -9,6 +9,7 @@ from popular_proposal.subscriptions import (SubscriptionEventBase,
                                             notification_trigger,
                                             NewCommitmentNotification,
                                             ManyCitizensSupportingNotification,
+                                            YouAreAHeroNotification,
                                             )
 
 from django.core import mail
@@ -107,4 +108,16 @@ class SubscriptionEventsTestCase(TestCase):
         self.assertEquals(len(the_mail.to), 1)
         self.assertIn(self.proposal.title, the_mail.body)
         self.assertIn(self.candidate.name, the_mail.body)
-        self.assertIn('4', the_mail.body)
+        self.assertIn(str(notifier.number), the_mail.body)
+
+    def test_letting_the_proposer_know_that_there_are_many_proposers(self):
+        notifier = YouAreAHeroNotification(proposal=self.proposal,
+                                           number=4)
+        notifier.notify()
+        self.assertEquals(len(mail.outbox), 1)
+        the_mail = mail.outbox[0]
+        self.assertIn(self.proposal.proposer.email, the_mail.to)
+        self.assertEquals(len(the_mail.to), 1)
+        self.assertIn(self.proposal.title, the_mail.body)
+        self.assertNotIn(self.candidate.name, the_mail.body)
+        self.assertIn(str(notifier.number), the_mail.body)

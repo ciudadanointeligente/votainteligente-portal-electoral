@@ -46,12 +46,19 @@ class NewCommitmentNotification(SubscriptionEventBase):
         return context
 
 
-class ManyCitizensSupportingNotification(SubscriptionEventBase):
-    mail_template = 'many_citizens_supporting'
-
+class NumericNotificationBase(SubscriptionEventBase):
     def __init__(self, *args, **kwargs):
-        super(ManyCitizensSupportingNotification, self).__init__(*args, **kwargs)
+        super(NumericNotificationBase, self).__init__(*args, **kwargs)
         self.number = kwargs.pop('number')
+
+    def get_context(self, **kwargs):
+        context = super(NumericNotificationBase, self).get_context(**kwargs)
+        context['number'] = self.number
+        return context
+
+
+class ManyCitizensSupportingNotification(NumericNotificationBase):
+    mail_template = 'many_citizens_supporting'
 
     def get_who(self):
         commitments = Commitment.objects.filter(proposal=self.proposal)
@@ -70,8 +77,17 @@ class ManyCitizensSupportingNotification(SubscriptionEventBase):
         context = super(ManyCitizensSupportingNotification, self).get_context(**kwargs)
         contact = kwargs.pop('person')
         context['contact'] = contact
-        context['number'] = self.number
         return context
+
+
+class YouAreAHeroNotification(NumericNotificationBase):
+    mail_template = 'sos_una_grande'
+
+    def get_who(self):
+        return [self.proposal.proposer, ]
+
+    def get_mail_from(self, proposer):
+        return proposer.email
 
 
 class EventDispatcher(object):

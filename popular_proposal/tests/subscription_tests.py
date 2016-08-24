@@ -67,12 +67,12 @@ class SubscriptionEventsTestCase(TestCase):
         commitment = Commitment.objects.create(candidate=self.candidate,
                                                proposal=self.proposal,
                                                detail=u'Yo me comprometo')
-
+        previous_amount = len(mail.outbox)
         notifier = NewCommitmentNotification(proposal=self.proposal,
                                              commitment=commitment)
         notifier.notify()
-        self.assertEquals(len(mail.outbox), 1)
-        the_mail = mail.outbox[0]
+        self.assertEquals(len(mail.outbox), previous_amount + 1)
+        the_mail = mail.outbox[previous_amount]
         self.assertIn(self.fiera.email, the_mail.to)
         self.assertEquals(len(the_mail.to), 1)
         self.assertIn(self.proposal.title, the_mail.body)
@@ -83,7 +83,7 @@ class SubscriptionEventsTestCase(TestCase):
         commitment = Commitment.objects.create(candidate=self.candidate,
                                                proposal=self.proposal,
                                                detail=u'Yo me comprometo')
-        notification_trigger('new-commitment', proposal=self.proposal, commitment=commitment)
+
         self.assertEquals(len(mail.outbox), 1)
         the_mail = mail.outbox[0]
         self.assertIn(self.fiera.email, the_mail.to)
@@ -99,13 +99,13 @@ class SubscriptionEventsTestCase(TestCase):
         Commitment.objects.create(candidate=self.candidate2,
                                   proposal=self.proposal,
                                   detail=u'Yo me comprometo')
-
+        previous_amount = len(mail.outbox)
         # We should not notify candidates that have already been commited
         notifier = ManyCitizensSupportingNotification(proposal=self.proposal,
                                                       number=4)
         notifier.notify()
-        self.assertEquals(len(mail.outbox), 1)
-        the_mail = mail.outbox[0]
+        self.assertEquals(len(mail.outbox), previous_amount + 1)
+        the_mail = mail.outbox[previous_amount]
         self.assertIn(self.contact.mail, the_mail.to)
         self.assertEquals(len(the_mail.to), 1)
         self.assertIn(self.proposal.title, the_mail.body)

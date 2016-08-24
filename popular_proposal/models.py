@@ -186,9 +186,10 @@ class Commitment(models.Model):
                               null=True,
                               blank=True)
 
-    # def save(self, *args, **kwargs):
-    #     instance = super(Commitment, self).save(*args, **kwargs)
-    #     notification_trigger('new-commitment',
-    #                          proposal=self.proposal,
-    #                          commitment=self)
-    #     return instance
+    def save(self, *args, **kwargs):
+        instance = super(Commitment, self).save(*args, **kwargs)
+        from popular_proposal.subscriptions import notification_trigger
+        notification_trigger('new-commitment',
+                             proposal=self.proposal,
+                             commitment=self)
+        return instance

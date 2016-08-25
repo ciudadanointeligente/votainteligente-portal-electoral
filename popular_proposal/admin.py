@@ -16,3 +16,5 @@ class PopularProposalAdmin(admin.ModelAdmin):
 @admin.register(ProposalTemporaryData)
 class ProposalTemporaryDataAdmin(admin.ModelAdmin):
     list_display = ('id','area', 'data', 'proposer')
+    def get_queryset(self, request):
+    	return ProposalTemporaryData.objects.all()

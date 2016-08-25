@@ -356,3 +356,21 @@ class ProposalAreaFilterForm(ProposalFilterFormBase):
         for field_name, field in self.fields.items():
             if field_name in self.initial.keys():
                 self.fields[field_name].initial = self.initial[field_name]
+
+class ProposalTemporaryDataModelForm(forms.ModelForm, ProposalFormBase):
+    class Meta:
+        model = ProposalTemporaryData
+        exclude = ['organization', 'data']
+
+    def __init__(self, *args, **kwargs):
+        super(ProposalTemporaryDataModelForm, self).__init__(*args, **kwargs)
+        for key in self.fields.keys():
+            if key in self.instance.data.keys():
+                self.fields[key].initial = self.instance.data[key]
+
+    def save(self, *args, **kwargs):
+        instance = super(ProposalTemporaryDataModelForm, self).save(*args, **kwargs)
+        for key in instance.data.keys():
+            instance.data[key] = self.cleaned_data[key]
+        instance.save()
+        return instance

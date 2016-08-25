@@ -16,9 +16,12 @@ from popular_proposal.models import (ProposalTemporaryData,
 from django.core import mail
 from django.template.loader import get_template
 from django.template import Context, Template
-from popular_proposal.forms import WHEN_CHOICES
+from popular_proposal.forms import (WHEN_CHOICES,
+                                    CandidateCommitmentForm)
 from popular_proposal.forms.form_texts import TEXTS
 from django.core.urlresolvers import reverse
+from elections.models import Candidate
+
 
 
 class FormTestCase(ProposingCycleTestCaseBase):
@@ -306,3 +309,49 @@ class ModelFormTest(ProposingCycleTestCaseBase):
         form.save()
         temporary_data = ProposalTemporaryData.objects.get(id=t_data.id)
         self.assertEquals(temporary_data.data['title'], data['title'])
+
+
+class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(CandidateCommitmentTestCase, self).setUp()
+        self.candidate = Candidate.objects.get(id=1)
+        self.proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                       area=self.candidate.election.area,
+                                                       data=self.data,
+                                                       title=u'This is a title'
+                                                       )
+        self.feli.set_password('alvarez')
+        self.feli.save()
+        self.fiera.set_password('feroz')
+        self.fiera.save()
+
+    def test_instanciating_form(self):
+        data = {'detail': 'Yo me comprometo',
+                'terms_and_conditions': True}
+        form = CandidateCommitmentForm(candidate=self.candidate,
+                                       proposal=self.proposal,
+                                       data=data)
+        self.assertTrue(form.is_valid())
+        commitment = form.save()
+        self.assertEquals(commitment.proposal, self.proposal)
+        self.assertEquals(commitment.candidate, self.candidate)
+        self.assertEquals(commitment.detail, data['detail'])
+
+    def test_validating_form(self):
+        '''
+        Un candidato no se puede comprometer a una propuesta de una
+        comuna en la que no está compitiendo
+        '''
+        other_area = Area.objects.create(name='other area')
+        proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                  area=other_area,
+                                                  data=self.data,
+                                                  title=u'This is a title'
+                                                  )
+        data = {'detail': 'Yo me comprometo',
+                'terms_and_conditions': True}
+        form = CandidateCommitmentForm(candidate=self.candidate,
+                                       proposal=proposal,
+                                       data=data)
+
+        self.assertFalse(form.is_valid())

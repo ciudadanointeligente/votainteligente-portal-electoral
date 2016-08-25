@@ -2,7 +2,8 @@
 from django import forms
 from popular_proposal.models import (ProposalTemporaryData,
                                      ProposalLike,
-                                     PopularProposal)
+                                     PopularProposal,
+                                     Commitment)
 from votainteligente.send_mails import send_mail
 from django.utils.translation import ugettext as _
 from django.contrib.sites.models import Site
@@ -357,6 +358,7 @@ class ProposalAreaFilterForm(ProposalFilterFormBase):
             if field_name in self.initial.keys():
                 self.fields[field_name].initial = self.initial[field_name]
 
+
 class ProposalTemporaryDataModelForm(forms.ModelForm, ProposalFormBase):
     class Meta:
         model = ProposalTemporaryData
@@ -374,3 +376,31 @@ class ProposalTemporaryDataModelForm(forms.ModelForm, ProposalFormBase):
             instance.data[key] = self.cleaned_data[key]
         instance.save()
         return instance
+
+
+class CandidateCommitmentForm(forms.Form):
+    detail = forms.CharField(required=False,
+                             widget=forms.Textarea(),
+                             label=_(u'Detalles de tu compromiso con la propuesta'))
+    terms_and_conditions = forms.BooleanField(initial=False,
+                                              required=True,
+                                              label=_(u'Términos y Condiciones'))
+    def __init__(self, candidate, proposal, *args, **kwargs):
+        super(CandidateCommitmentForm, self).__init__(*args, **kwargs)
+        self.candidate = candidate
+        self.proposal = proposal
+
+    def save(self):
+        commitment = Commitment.objects.create(proposal=self.proposal,
+                                               candidate=self.candidate,
+                                               detail=self.cleaned_data['detail'])
+        return commitment
+
+    def clean(self):
+        cleaned_data = super(CandidateCommitmentForm, self).clean()
+        if self.candidate.election:
+            if self.candidate.election.area != self.proposal.area:
+                raise forms.ValidationError(_(u'El candidato no pertenece al area'))
+        else:
+            raise forms.ValidationError(_(u'El candidato no pertenece al area'))
+        return cleaned_data

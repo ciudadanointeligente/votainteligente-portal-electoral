@@ -159,24 +159,11 @@ class PopularProposal(models.Model, OGPMixin):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})
 
 
-class Subscription(models.Model):
-    proposal_like = models.OneToOneField('ProposalLike')
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now_add=True)
-
-
 class ProposalLike(models.Model):
     user = models.ForeignKey(User)
     proposal = models.ForeignKey(PopularProposal)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
-
-    def save(self, *args, **kwargs):
-        creating = self.id is None
-        instance = super(ProposalLike, self).save(*args, **kwargs)
-        if creating:
-            Subscription.objects.create(proposal_like=self)
-        return instance
 
 
 class Commitment(models.Model):

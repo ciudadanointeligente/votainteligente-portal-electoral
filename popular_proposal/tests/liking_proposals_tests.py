@@ -31,15 +31,6 @@ class SubscribingToPopularProposal(TestCase):
         self.assertTrue(like.updated)
         self.assertIn(self.feli, self.proposal.likers.all())
 
-    def test_liking_also_has_a_subscription(self):
-        like = ProposalLike.objects.create(user=self.fiera,
-                                           proposal=self.proposal)
-
-        self.assertTrue(like.subscription)
-        subscription = like.subscription
-        self.assertTrue(subscription.created)
-        self.assertTrue(subscription.updated)
-
     def test_subscription_form(self):
         data = {}
         form = SubscriptionForm(data=data,
@@ -63,7 +54,6 @@ class SubscribingToPopularProposal(TestCase):
         self.assertEquals(response.context['proposal'], self.proposal)
         p = ProposalLike.objects.get(user=self.feli, proposal=self.proposal)
         self.assertTrue(p)
-
 
     def test_liking_redirecting_view(self):
         url_home = reverse('popular_proposals:home')

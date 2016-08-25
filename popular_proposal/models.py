@@ -12,6 +12,8 @@ from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
 from backend_citizen.models import Organization
 from votainteligente.open_graph import OGPMixin
+from elections.models import Candidate
+
 
 class NeedingModerationManager(models.Manager):
     def get_queryset(self):
@@ -157,42 +159,24 @@ class PopularProposal(models.Model, OGPMixin):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})
 
 
-class Subscription(models.Model):
-    proposal_like = models.OneToOneField('ProposalLike')
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now_add=True)
-
-
 class ProposalLike(models.Model):
     user = models.ForeignKey(User)
     proposal = models.ForeignKey(PopularProposal)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
 
+
+class Commitment(models.Model):
+    proposal = models.ForeignKey(PopularProposal)
+    candidate = models.ForeignKey(Candidate)
+    detail = models.CharField(max_length=1024,
+                              null=True,
+                              blank=True)
+
     def save(self, *args, **kwargs):
-        creating = self.id is None
-        instance = super(ProposalLike, self).save(*args, **kwargs)
-        if creating:
-            Subscription.objects.create(proposal_like=self)
+        instance = super(Commitment, self).save(*args, **kwargs)
+        from popular_proposal.subscriptions import notification_trigger
+        notification_trigger('new-commitment',
+                             proposal=self.proposal,
+                             commitment=self)
         return instance
-
-
-# class SubscriptionEventBase(models.Model):
-#     subscription = models.ManyToManyField(Subscription, related_name='events')
-#     notified = models.BooleanField(default=False)
-#
-#     @classmethod
-#     def get_ocurred_ones(cls):
-#         result = []
-#         for event in cls.objects.all():
-#             if event.condition():
-#                 result.append(event)
-#         return result
-#
-#     def send_notifications(self):
-#         pass
-#
-#     def process(self):
-#         self.send_notifications()
-#         self.notified = True
-#         self.delete()

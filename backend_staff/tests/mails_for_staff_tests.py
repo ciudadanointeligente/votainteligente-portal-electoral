@@ -39,7 +39,7 @@ class MailsForStaffTestCase(TestCase):
 
     def test_send_mails_to_staff_when_new_proposal(self):
         context = {
-            'proposal': self.proposal,
+            'temporary_data': self.temporary_data,
         }
         send_mails_to_staff(context, 'notify_staff_new_proposal')
         self.assertEquals(len(mail.outbox), 1)
@@ -47,5 +47,5 @@ class MailsForStaffTestCase(TestCase):
         self.assertIn(self.staff1.email, the_mail.to)
         self.assertIn(self.staff2.email, the_mail.to)
         self.assertIn(str(self.proposal.id), the_mail.body)
-        self.assertIn(self.proposal.title, the_mail.body)
-        self.assertIn(self.proposal.area.name, the_mail.subject)
+        self.assertIn(self.temporary_data.get_title(), the_mail.body)
+        self.assertIn(self.temporary_data.area.name, the_mail.subject)

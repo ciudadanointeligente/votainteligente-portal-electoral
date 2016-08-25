@@ -9,6 +9,7 @@ from django.contrib.sites.models import Site
 from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
 from popolo.models import Area
 from collections import OrderedDict
+from votainteligente.send_mails import send_mails_to_staff
 
 
 class TextsFormMixin():
@@ -288,6 +289,7 @@ class ProposalTemporaryDataUpdateForm(ProposalFormBase):
         self.temporary_data.overall_comments = self.overall_comments
         self.temporary_data.status = ProposalTemporaryData.Statuses.InOurSide
         self.temporary_data.save()
+        send_mails_to_staff({'temporary_data': self.temporary_data}, 'notify_staff_new_proposal_update')
         return self.temporary_data
 
     def get_overall_comments(self):

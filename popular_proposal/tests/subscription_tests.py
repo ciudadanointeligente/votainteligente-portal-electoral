@@ -66,7 +66,25 @@ class SubscriptionEventsTestCase(TestCase):
     def test_letting_know_the_citizens_that_a_candidate_has_commited_to_a_proposal(self):
         commitment = Commitment.objects.create(candidate=self.candidate,
                                                proposal=self.proposal,
-                                               detail=u'Yo me comprometo')
+                                               detail=u'Yo me comprometo',
+                                               commited=True)
+        previous_amount = len(mail.outbox)
+        notifier = NewCommitmentNotification(proposal=self.proposal,
+                                             commitment=commitment)
+        notifier.notify()
+        self.assertEquals(len(mail.outbox), previous_amount + 1)
+        the_mail = mail.outbox[previous_amount]
+        self.assertIn(self.fiera.email, the_mail.to)
+        self.assertEquals(len(the_mail.to), 1)
+        self.assertIn(self.proposal.title, the_mail.body)
+        self.assertIn(self.candidate.name, the_mail.body)
+        self.assertIn(commitment.detail, the_mail.body)
+
+    def test_letting_the_citizens_know_that_a_candidate_has_said_no(self):
+        commitment = Commitment.objects.create(candidate=self.candidate,
+                                               proposal=self.proposal,
+                                               detail=u'Yo No me comprometo',
+                                               commited=False)
         previous_amount = len(mail.outbox)
         notifier = NewCommitmentNotification(proposal=self.proposal,
                                              commitment=commitment)
@@ -82,7 +100,8 @@ class SubscriptionEventsTestCase(TestCase):
     def test_notification_trigger_candidate_commit(self):
         commitment = Commitment.objects.create(candidate=self.candidate,
                                                proposal=self.proposal,
-                                               detail=u'Yo me comprometo')
+                                               detail=u'Yo me comprometo',
+                                               commited=True)
 
         self.assertEquals(len(mail.outbox), 1)
         the_mail = mail.outbox[0]
@@ -92,13 +111,35 @@ class SubscriptionEventsTestCase(TestCase):
         self.assertIn(self.candidate.name, the_mail.body)
         self.assertIn(commitment.detail, the_mail.body)
 
+    def test_there_are_two_different_emails_sent_if_a_candidate_has_not_commited(self):
+        commitment = Commitment.objects.create(candidate=self.candidate,
+                                               proposal=self.proposal,
+                                               detail=u'Yo me comprometo',
+                                               commited=True)
+
+        self.assertEquals(len(mail.outbox), 1)
+        the_mail = mail.outbox[0]
+        commitment.delete()
+
+        commitment = Commitment.objects.create(candidate=self.candidate,
+                                               proposal=self.proposal,
+                                               detail=u'Yo No me comprometo',
+                                               commited=False)
+        self.assertEquals(len(mail.outbox), 2)
+        the_mail2 = mail.outbox[1]
+        self.assertNotEqual(the_mail.subject, the_mail2.subject)
+        self.assertNotEqual(the_mail.body, the_mail2.body)
+        self.assertTrue(the_mail2.body)
+        self.assertTrue(the_mail2.subject)
+
     def test_letting_a_candidate_know_about_how_many_citizens_are_supporting_a_proposal(self):
         # According to setUp there should be at least one notification to
         # self.candidate
 
         Commitment.objects.create(candidate=self.candidate2,
                                   proposal=self.proposal,
-                                  detail=u'Yo me comprometo')
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
         previous_amount = len(mail.outbox)
         # We should not notify candidates that have already been commited
         notifier = ManyCitizensSupportingNotification(proposal=self.proposal,

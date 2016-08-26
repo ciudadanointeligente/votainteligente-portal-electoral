@@ -299,6 +299,7 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
                 'terms_and_conditions': True}
         form = CandidateCommitmentForm(candidate=self.candidate,
                                        proposal=self.proposal,
+                                       commited=True,
                                        data=data)
         self.assertTrue(form.is_valid())
         commitment = form.save()
@@ -321,6 +322,7 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
                 'terms_and_conditions': True}
         form = CandidateCommitmentForm(candidate=self.candidate,
                                        proposal=proposal,
+                                       commited=True,
                                        data=data)
 
         self.assertFalse(form.is_valid())

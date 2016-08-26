@@ -21,16 +21,19 @@ class SubscriptionEventBase(object):
         return {'proposal': self.proposal,
                 'person': person}
 
+    def get_template(self):
+        return  self.mail_template
+
     def notify(self):
         for person in self.get_who():
             email = self.get_mail_from(person)
             context = self.get_context(person=person)
-            send_mail(context, self.mail_template,
+            template = self.get_template()
+            send_mail(context, template,
                       to=[email])
 
 
 class NewCommitmentNotification(SubscriptionEventBase):
-    mail_template = 'new_commitment'
 
     def __init__(self, *args, **kwargs):
         super(NewCommitmentNotification, self).__init__(*args, **kwargs)
@@ -41,6 +44,12 @@ class NewCommitmentNotification(SubscriptionEventBase):
 
     def get_mail_from(self, person):
         return person.email
+
+    def get_template(self):
+        if self.commitment.commited:
+            return 'new_commitment'
+        else:
+            return 'not_new_commitment'
 
     def get_context(self, **kwargs):
         context = super(NewCommitmentNotification, self).get_context(**kwargs)

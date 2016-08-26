@@ -26,6 +26,10 @@ from django.views.generic.list import ListView
 from popular_proposal.forms import ProposalAreaFilterForm
 from popular_proposal.filters import ProposalAreaFilter
 from votainteligente.view_mixins import EmbeddedViewBase
+from popular_proposal.forms import (CandidateCommitmentForm,
+                                    CandidateNotCommitingForm,
+                                    )
+from elections.models import Candidate
 
 
 class ProposalCreationView(FormView):
@@ -279,3 +283,24 @@ class ProposalsPerArea(EmbeddedViewBase, ListView):
                   }
         filterset = ProposalAreaFilter(**kwargs)
         return filterset
+
+
+class CommitView(FormView):
+    template_name = 'popular_proposal/commitment/commit_yes.html'
+    form_class = CandidateCommitmentForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        self.proposal = get_object_or_404(PopularProposal, id=self.kwargs['proposal_pk'])
+        self.candidate = get_object_or_404(Candidate, id=self.kwargs['candidate_pk'])
+        return super(CommitView, self).dispatch(*args, **kwargs)
+
+    def form_valid(self, form):
+        form.save()
+        return super(CommitView, self).form_valid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super(CommitView, self).get_form_kwargs()
+        kwargs['proposal'] = self.proposal
+        kwargs['candidate'] = self.candidate
+        return kwargs

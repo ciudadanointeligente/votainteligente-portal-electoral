@@ -4,27 +4,32 @@ from django.core.urlresolvers import reverse
 from popular_proposal.models import PopularProposal
 from popular_proposal.forms import ProposalFilterForm, ProposalAreaFilterForm
 from popular_proposal.filters import ProposalAreaFilter
+from elections.models import Area, Candidate
+from backend_candidate.models import Candidacy
+from popular_proposal.forms import (CandidateCommitmentForm,
+                                    CandidateNotCommitingForm,
+                                    )
 
 
 class PopularProposalTestCaseBase(TestCase):
     def setUp(self):
         super(PopularProposalTestCaseBase, self).setUp()
+        self.algarrobo = Area.objects.get(id='algarrobo-5602')
         self.popular_proposal1 = PopularProposal.objects.create(proposer=self.fiera,
-                                                                area=self.arica,
+                                                                area=self.algarrobo,
                                                                 data=self.data,
                                                                 clasification=u'education',
                                                                 title=u'This is a title'
                                                                 )
         data2 = self.data
         self.popular_proposal2 = PopularProposal.objects.create(proposer=self.fiera,
-                                                                area=self.arica,
+                                                                area=self.algarrobo,
                                                                 data=data2,
                                                                 clasification=u'deporte',
                                                                 title=u'This is a title'
                                                                 )
         self.popular_proposal3 = PopularProposal.objects.create(proposer=self.fiera,
                                                                 area=self.alhue,
-                                        
                                                                 data=data2,
                                                                 clasification=u'deporte',
                                                                 title=u'This is a title'
@@ -34,10 +39,11 @@ class PopularProposalTestCaseBase(TestCase):
 class ProposalViewTestCase(TestCase):
     def setUp(self):
         super(ProposalViewTestCase, self).setUp()
+        self.algarrobo = Area.objects.get(id='algarrobo-5602')
 
     def test_there_is_a_page_for_popular_proposal(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                          area=self.arica,
+                                                          area=self.algarrobo,
                                                           data=self.data,
                                                           title=u'This is a title'
                                                           )
@@ -51,7 +57,7 @@ class ProposalViewTestCase(TestCase):
 
     def test_embedded_detail_popular_proposal(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                          area=self.arica,
+                                                          area=self.algarrobo,
                                                           data=self.data,
                                                           title=u'This is a title'
                                                           )
@@ -70,10 +76,10 @@ class ProposalViewTestCase(TestCase):
         self.assertTrue(response.context['is_embedded'])
 
     def test_thanks_page(self):
-        url = reverse('popular_proposals:thanks', kwargs={'pk': self.arica.id})
+        url = reverse('popular_proposals:thanks', kwargs={'pk': self.algarrobo.id})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.context['area'], self.arica)
+        self.assertEquals(response.context['area'], self.algarrobo)
 
 
 class ProposalHomeTestCase(PopularProposalTestCaseBase):
@@ -120,7 +126,7 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
         self.assertTrue(form.is_valid())
 
     def test_area_detail_view_brings_proposals(self):
-        url = reverse('area', kwargs={'slug': self.arica.id})
+        url = reverse('area', kwargs={'slug': self.algarrobo.id})
         response = self.client.get(url)
         self.assertIn(self.popular_proposal1,
                       response.context['popular_proposals'])
@@ -128,7 +134,7 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
                       response.context['popular_proposals'])
 
     def test_get_area_with_form(self):
-        url = reverse('area', kwargs={'slug': self.arica.id})
+        url = reverse('area', kwargs={'slug': self.algarrobo.id})
         response = self.client.get(url, {'clasification': ''})
         self.assertIsInstance(response.context['proposal_filter_form'],
                               ProposalAreaFilterForm)
@@ -152,7 +158,7 @@ class ProposalFilterTestsCase(PopularProposalTestCaseBase):
         super(ProposalFilterTestsCase, self).setUp()
 
     def test_filter_by_area(self):
-        proposal_filter = ProposalAreaFilter(area=self.arica)
+        proposal_filter = ProposalAreaFilter(area=self.algarrobo)
 
         self.assertIn(self.popular_proposal1, proposal_filter.qs)
         self.assertIn(self.popular_proposal2, proposal_filter.qs)
@@ -174,7 +180,7 @@ class EmbeddedViewsTests(PopularProposalTestCaseBase):
 
     def test_get_popular_proposals_per_area_embedded(self):
         url = reverse('popular_proposals:area_embedded',
-                      kwargs={'slug': self.arica.id})
+                      kwargs={'slug': self.algarrobo.id})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.context['layout'], 'embedded_base.html')
@@ -196,3 +202,22 @@ class EmbeddedViewsTests(PopularProposalTestCaseBase):
 
         self.assertIn(self.popular_proposal2,
                       response.context['popular_proposals'])
+
+class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
+    def setUp(self):
+        super(CandidateCommitmentViewTestCase, self).setUp()
+        self.candidate = Candidate.objects.get(id=1)
+        self.fiera.set_password('feroz')
+        self.fiera.save()
+        self.cadidacy = Candidacy.objects.create(candidate=self.candidate,
+                                                 user=self.fiera)
+
+    def test_candidate_commiting_to_a_proposal_view(self):
+        url = reverse('popular_proposals:commit', kwargs={'proposal_pk': self.popular_proposal1.id,
+                                                          'candidate_pk': self.candidate.id})
+        logged_in = self.client.login(username=self.fiera.username, password='feroz')
+        self.assertTrue(logged_in)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'popular_proposal/commitment/commit_yes.html')
+        self.assertIsInstance(response.context['form'], CandidateCommitmentForm)

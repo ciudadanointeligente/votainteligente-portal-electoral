@@ -357,7 +357,7 @@ class ProposalAreaFilterForm(ProposalFilterFormBase):
                 self.fields[field_name].initial = self.initial[field_name]
 
 
-class CandidateCommitmentForm(forms.Form):
+class CandidateCommitmentFormBase(forms.Form):
     detail = forms.CharField(required=False,
                              widget=forms.Textarea(),
                              label=_(u'Detalles de tu compromiso con la propuesta'))
@@ -365,10 +365,11 @@ class CandidateCommitmentForm(forms.Form):
                                               required=True,
                                               label=_(u'Términos y Condiciones'))
 
-    def __init__(self, candidate, proposal, commited, *args, **kwargs):
-        super(CandidateCommitmentForm, self).__init__(*args, **kwargs)
+    commited = True
+
+    def __init__(self, candidate, proposal, *args, **kwargs):
+        super(CandidateCommitmentFormBase, self).__init__(*args, **kwargs)
         self.candidate = candidate
-        self.commited = commited
         self.proposal = proposal
 
     def save(self):
@@ -379,10 +380,18 @@ class CandidateCommitmentForm(forms.Form):
         return commitment
 
     def clean(self):
-        cleaned_data = super(CandidateCommitmentForm, self).clean()
+        cleaned_data = super(CandidateCommitmentFormBase, self).clean()
         if self.candidate.election:
             if self.candidate.election.area != self.proposal.area:
                 raise forms.ValidationError(_(u'El candidato no pertenece al area'))
         else:
             raise forms.ValidationError(_(u'El candidato no pertenece al area'))
         return cleaned_data
+
+
+class CandidateCommitmentForm(CandidateCommitmentFormBase):
+    commited = True
+
+
+class CandidateNotCommitingForm(CandidateCommitmentFormBase):
+    commited = False

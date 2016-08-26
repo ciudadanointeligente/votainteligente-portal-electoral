@@ -6,6 +6,7 @@ from popular_proposal.forms import (ProposalForm,
                                     ProposalTemporaryDataUpdateForm,
                                     FIELDS_TO_BE_AVOIDED,
                                     UpdateProposalForm,
+                                    CandidateNotCommitingForm,
                                     AreaForm)
 from django.contrib.auth.models import User
 from popolo.models import Area
@@ -299,13 +300,26 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
                 'terms_and_conditions': True}
         form = CandidateCommitmentForm(candidate=self.candidate,
                                        proposal=self.proposal,
-                                       commited=True,
                                        data=data)
         self.assertTrue(form.is_valid())
         commitment = form.save()
         self.assertEquals(commitment.proposal, self.proposal)
         self.assertEquals(commitment.candidate, self.candidate)
         self.assertEquals(commitment.detail, data['detail'])
+        self.assertTrue(commitment.commited)
+
+    def test_instanciating_form_with_no_commiting(self):
+        data = {'detail': 'Yo me comprometo',
+                'terms_and_conditions': True}
+        form = CandidateNotCommitingForm(candidate=self.candidate,
+                                         proposal=self.proposal,
+                                         data=data)
+        self.assertTrue(form.is_valid())
+        commitment = form.save()
+        self.assertEquals(commitment.proposal, self.proposal)
+        self.assertEquals(commitment.candidate, self.candidate)
+        self.assertEquals(commitment.detail, data['detail'])
+        self.assertFalse(commitment.commited)
 
     def test_validating_form(self):
         '''
@@ -322,7 +336,6 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
                 'terms_and_conditions': True}
         form = CandidateCommitmentForm(candidate=self.candidate,
                                        proposal=proposal,
-                                       commited=True,
                                        data=data)
 
         self.assertFalse(form.is_valid())

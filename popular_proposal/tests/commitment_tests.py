@@ -32,7 +32,8 @@ class CommitmentTestCase(ProposingCycleTestCaseBase):
     def test_instanciate_one(self):
         commitment = Commitment.objects.create(candidate=self.candidate,
                                                proposal=self.popular_proposal,
-                                               detail=u'Yo me comprometo')
+                                               detail=u'Yo me comprometo',
+                                               commited=True)
 
         self.assertTrue(commitment)
         self.assertEquals(commitment.candidate, self.candidate)

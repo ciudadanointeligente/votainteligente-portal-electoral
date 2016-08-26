@@ -27,8 +27,8 @@
   </div>
 </section>
 
-{% if created_proposals %}
-{% with created_proposals|stringformat:"04d" as n_created %}
+{% if total_proposals %}
+{% with total_proposals|stringformat:"04d" as n_created %}
 <section id="banner">
   <div class="container">
     <ul class="list-inline text-center">
@@ -37,7 +37,7 @@
         <span>{{ n_created|slice:"1:2" }}</span>
         <span>{{ n_created|slice:"2:3" }}</span>
         <span>{{ n_created|slice:"3:4" }}</span></h4></li>
-      <li><h4 class="text-white">propuestas ciudadanas se han creado esta semana</h4></li>  
+      <li><h4 class="text-white">propuestas ciudadanas se han creado</h4></li>  
       <li><a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">Crea la tuya</a></li>
 
     </ul>

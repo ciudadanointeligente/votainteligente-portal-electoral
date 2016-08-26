@@ -71,6 +71,7 @@ class HomeView(TemplateView):
         a_week_ago = timezone.now() - datetime.timedelta(days=7)
         context['created_proposals'] = ProposalTemporaryData.objects.filter(created__gt=a_week_ago).count()
         context['accepted_proposals'] = PopularProposal.objects.filter(created__gt=a_week_ago).count()
+        context['total_proposals'] = PopularProposal.objects.count()
         return context
 
 

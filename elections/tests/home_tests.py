@@ -101,3 +101,4 @@ class HomeTestCase(TestCase):
         context = view.get_context_data()
         self.assertEquals(context['created_proposals'], 2)
         self.assertEquals(context['accepted_proposals'], 1)
+        self.assertEquals(context['total_proposals'], 2)

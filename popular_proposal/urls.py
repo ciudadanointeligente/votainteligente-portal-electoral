@@ -9,6 +9,7 @@ from popular_proposal.views import (ProposalCreationView,
                                     ProposalWizardFull,
                                     UnlikeProposalView,
                                     ProposalsPerArea,
+                                    CommitView,
                                     )
 from django.views.decorators.clickjacking import xframe_options_exempt
 
@@ -32,6 +33,9 @@ urlpatterns = patterns('',
     url(r'^detail/(?P<slug>[-\w]+)/?$',
         PopularProposalDetailView.as_view(),
         name='detail'),
+    url(r'^commit/(?P<candidate_pk>[-\w]+)/(?P<proposal_pk>\d+)/?$',
+        CommitView.as_view(),
+        name='commit'),
     url(r'^embedded_detail/(?P<slug>[-\w]+)/?$',
         xframe_options_exempt(PopularProposalDetailView.as_view(is_embedded=True)),
         name='embedded_detail'),

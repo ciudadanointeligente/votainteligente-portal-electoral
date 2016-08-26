@@ -385,14 +385,17 @@ class CandidateCommitmentForm(forms.Form):
     terms_and_conditions = forms.BooleanField(initial=False,
                                               required=True,
                                               label=_(u'Términos y Condiciones'))
-    def __init__(self, candidate, proposal, *args, **kwargs):
+
+    def __init__(self, candidate, proposal, commited, *args, **kwargs):
         super(CandidateCommitmentForm, self).__init__(*args, **kwargs)
         self.candidate = candidate
+        self.commited = commited
         self.proposal = proposal
 
     def save(self):
         commitment = Commitment.objects.create(proposal=self.proposal,
                                                candidate=self.candidate,
+                                               commited=self.commited,
                                                detail=self.cleaned_data['detail'])
         return commitment
 

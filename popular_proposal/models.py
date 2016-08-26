@@ -172,6 +172,7 @@ class Commitment(models.Model):
     detail = models.CharField(max_length=1024,
                               null=True,
                               blank=True)
+    commited = models.BooleanField()
 
     def save(self, *args, **kwargs):
         instance = super(Commitment, self).save(*args, **kwargs)

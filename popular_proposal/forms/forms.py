@@ -51,7 +51,7 @@ wizard_forms_fields = [
         'template': 'popular_proposal/wizard/form_step.html',
         'explation_template': "popular_proposal/steps/paso1.html",
         'fields': OrderedDict([
-            ('problem', forms.CharField(max_length=512,
+            ('problem', forms.CharField(max_length=1024,
                                         widget=forms.Textarea(),
                                         label=u'¿Cuál es el problema?'
                                         ))
@@ -76,7 +76,7 @@ wizard_forms_fields = [
                                                widget=forms.Select())
         ), (
 
-            'solution', forms.CharField(max_length=512,
+            'solution', forms.CharField(max_length=2048,
                                         widget=forms.Textarea(),
                                         )
         )])

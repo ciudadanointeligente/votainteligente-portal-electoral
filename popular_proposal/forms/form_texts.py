@@ -18,7 +18,7 @@ TOPIC_CHOICES = (('', u'Selecciona una categoría'),
                  ('educacion', u'Educación'),
                  ('empleabilidad', u'Empleabilidad y emprendimiento'),
                  ('medioambiente', u'Medio ambiente y recolección de basura'),
-                 ('participacion', u'Participación y sociedad civil'),
+                 ('participacion', u'Participación e inclusión'),
                  ('salud', u'Salud'),
                  ('seguridad', u'Seguridad y prevención de catástrofes'),
                  )

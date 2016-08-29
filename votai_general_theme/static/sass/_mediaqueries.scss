@@ -63,6 +63,12 @@
 
 }
 
+@media screen and (max-width: 767px) {
+  .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover {
+    color: #ffc80a;
+  }
+}
+
 @media screen and (max-width: 1024px) {
 
   section#hero {

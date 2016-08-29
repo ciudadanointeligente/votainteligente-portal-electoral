@@ -173,6 +173,15 @@ class CandidacyContacts(CandidacyTestCaseBase):
         send_candidate_a_candidacy_link(self.candidate)
         self.assertEquals(len(mail.outbox), 2)
 
+    @override_settings(NOTIFY_CANDIDATES=False)
+    def test_not_sending_any_email(self):
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail='mail@perrito.cl')
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail='mail@perrito.cl')
+        send_candidate_a_candidacy_link(self.candidate)
+        self.assertEquals(len(mail.outbox), 0)
+
     @override_settings(MAX_AMOUNT_OF_MAILS_TO_CANDIDATE=3)
     def test_send_candidate_maximum_amount_of_times(self):
         contact = CandidacyContact.objects.create(candidate=self.candidate,
@@ -270,6 +279,13 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
         self.assertEquals(len(mail.outbox), 1)
         the_mail = mail.outbox[0]
         self.assertIn(contact.initial_password, the_mail.body)
+
+    @override_settings(NOTIFY_CANDIDATES=False)
+    def test_not_send_candidate_their_username_and_password(self):
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl')
+        send_candidate_username_and_password(self.candidate)
+        self.assertEquals(len(mail.outbox), 0)
 
     def test_dont_send_mails_to_candidates_if_they_have_been_contacted(self):
         CandidacyContact.objects.create(candidate=self.candidate,

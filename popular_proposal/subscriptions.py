@@ -72,6 +72,8 @@ class ManyCitizensSupportingNotification(NumericNotificationBase):
     mail_template = 'many_citizens_supporting'
 
     def get_who(self):
+        if not settings.NOTIFY_CANDIDATES:
+            return []
         commitments = Commitment.objects.filter(proposal=self.proposal)
         candidates_pks = []
         for commitment in commitments:

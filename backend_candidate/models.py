@@ -28,6 +28,8 @@ def is_candidate(user):
     return False
 
 def send_candidate_a_candidacy_link(candidate):
+    if not settings.NOTIFY_CANDIDATES:
+        return
     if candidate.contacts.filter(used_by_candidate=True):
         return
     for contact in candidate.contacts.all():
@@ -35,6 +37,8 @@ def send_candidate_a_candidacy_link(candidate):
 
 
 def send_candidate_username_and_password(candidate):
+    if not settings.NOTIFY_CANDIDATES:
+        return
     if candidate.contacts.filter(used_by_candidate=True):
         return
     for contact in candidate.contacts.all():

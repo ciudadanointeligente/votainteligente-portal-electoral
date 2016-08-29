@@ -28,9 +28,9 @@ class TestNewCandidateCommitment(SubscriptionEventBase):
         return person.email
 
 
-class SubscriptionEventsTestCase(TestCase):
+class SubscriptionTestCaseBase(TestCase):
     def setUp(self):
-        super(SubscriptionEventsTestCase, self).setUp()
+        super(SubscriptionTestCaseBase, self).setUp()
         self.proposal = PopularProposal.objects.create(proposer=self.fiera,
                                                        area=self.arica,
                                                        data=self.data,
@@ -50,6 +50,11 @@ class SubscriptionEventsTestCase(TestCase):
         self.contact2 = CandidacyContact.objects.create(candidate=self.candidate2,
                                                         mail='mail@gatito.cl')
         self.election.candidates.add(self.candidate2)
+
+class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
+    def setUp(self):
+        super(SubscriptionEventsTestCase, self).setUp()
+        
 
     def test_triggering_an_event(self):
         dispatcher = EventDispatcher()
@@ -193,4 +198,26 @@ class SubscriptionEventsTestCase(TestCase):
         self.assertEquals(len(the_mail.to), 1)
         self.assertIn(self.proposal.title, the_mail.body)
         self.assertIn(self.candidate2.name, the_mail.body)
+        self.assertIn(str(2), the_mail.body)
+
+
+@override_settings(NOTIFY_CANDIDATES=False)
+class NotNotifyCandidatesUnlessToldSo(SubscriptionTestCaseBase):
+    def setUp(self):
+        super(NotNotifyCandidatesUnlessToldSo, self).setUp()
+
+    @override_settings(WHEN_TO_NOTIFY=[2, 3])
+    def test_not_notify_when_proposal_like(self):
+        ProposalLike.objects.create(user=self.fiera,
+                                    proposal=self.proposal)
+        ProposalLike.objects.create(user=self.feli,
+                                    proposal=self.proposal)
+
+        self.assertEquals(len(mail.outbox), 1)
+        # this should be the email to the proposer
+        the_mail = mail.outbox[0]
+        self.assertIn(self.proposal.proposer.email, the_mail.to)
+        self.assertEquals(len(the_mail.to), 1)
+        self.assertIn(self.proposal.title, the_mail.body)
+        self.assertNotIn(self.candidate.name, the_mail.body)
         self.assertIn(str(2), the_mail.body)

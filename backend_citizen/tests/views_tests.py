@@ -9,6 +9,7 @@ from popular_proposal.forms import ProposalTemporaryDataUpdateForm
 from backend_citizen.forms import UserChangeForm
 from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
 from backend_citizen.models import Organization
+from django.core import mail
 
 
 class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
@@ -62,6 +63,13 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
         self.assertTemplateUsed('backend_citizen/index.html')
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
         self.assertEquals(temporary_data.data['solution'], data['solution'])
+
+        self.assertEquals(len(mail.outbox), 1)
+        the_mail = mail.outbox[0]
+        self.assertIn(self.feli.email, the_mail.to)
+        self.assertIn(self.feli.email, the_mail.to)
+        self.assertIn(str(temporary_data.id), the_mail.body)
+        self.assertIn(temporary_data.get_title(), the_mail.body)
 
     def test_brings_all_the_proposals_that_are_in_my_side(self):
         t_d1 = ProposalTemporaryData.objects.create(proposer=self.fiera,

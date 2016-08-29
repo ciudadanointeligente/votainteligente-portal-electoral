@@ -148,7 +148,14 @@ class WizardTestCase(TestCase):
         self.assertEquals(response.context['area'], self.arica)
         self.assertEquals(temporary_data.proposer, self.feli)
         self.assertEquals(temporary_data.area, self.arica)
-        self.assertEquals(len(mail.outbox), original_amount + 1)
+        self.assertEquals(len(mail.outbox), original_amount + 2)
+
+        the_mail = mail.outbox[original_amount + 1]
+        self.assertIn(self.fiera.email, the_mail.to)
+        self.assertIn(self.feli.email, the_mail.to)
+        self.assertIn(str(temporary_data.id), the_mail.body)
+        self.assertIn(temporary_data.get_title(), the_mail.body)
+        self.assertIn(temporary_data.area.name, the_mail.subject)
 
     def test_user_should_accept_terms_and_conditions(self):
         list_ = get_form_list()
@@ -194,4 +201,11 @@ class WizardTestCase(TestCase):
         self.assertEquals(response.context['area'], self.arica)
         self.assertEquals(temporary_data.proposer, self.feli)
         self.assertEquals(temporary_data.area, self.arica)
-        self.assertEquals(len(mail.outbox), original_amount + 1)
+        self.assertEquals(len(mail.outbox), original_amount + 2)
+
+        the_mail = mail.outbox[original_amount + 1]
+        self.assertIn(self.fiera.email, the_mail.to)
+        self.assertIn(self.feli.email, the_mail.to)
+        self.assertIn(str(temporary_data.id), the_mail.body)
+        self.assertIn(temporary_data.get_title(), the_mail.body)
+        self.assertIn(temporary_data.area.name, the_mail.subject)

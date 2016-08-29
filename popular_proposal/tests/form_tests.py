@@ -4,6 +4,7 @@ from popular_proposal.forms import (ProposalForm,
                                     CommentsForm,
                                     RejectionForm,
                                     ProposalTemporaryDataUpdateForm,
+                                    ProposalTemporaryDataModelForm,
                                     FIELDS_TO_BE_AVOIDED,
                                     UpdateProposalForm,
                                     AreaForm)
@@ -18,6 +19,7 @@ from django.template import Context, Template
 from popular_proposal.forms import WHEN_CHOICES
 from popular_proposal.forms.form_texts import TEXTS
 from django.core.urlresolvers import reverse
+
 
 class FormTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
@@ -275,3 +277,32 @@ class UpdateFormTestCase(ProposingCycleTestCaseBase):
         response = self.client.post(url, **kwargs)
         detail_url = reverse('popular_proposals:detail', kwargs={'slug': self.popular_proposal.slug})
         self.assertRedirects(response, detail_url)
+
+
+class ModelFormTest(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(ModelFormTest, self).setUp()
+
+    def test_form_has_all_fields(self):
+        t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                      area=self.arica,
+                                                      data=self.data)
+        form = ProposalTemporaryDataModelForm(instance=t_data)
+        for key in self.data.keys():
+            self.assertIn(key, form.fields.keys())
+            self.assertEquals(self.data[key], form.fields[key].initial)
+
+    def test_form_saving_data(self):
+        t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                      area=self.arica,
+                                                      data=self.data)
+        data = self.data
+        data['title'] = u'Título título'
+        data['area'] = self.arica.id
+        data['proposer'] = self.fiera.id
+        data['status'] = t_data.status
+        form = ProposalTemporaryDataModelForm(instance=t_data, data=data)
+        self.assertTrue(form.is_valid())
+        form.save()
+        temporary_data = ProposalTemporaryData.objects.get(id=t_data.id)
+        self.assertEquals(temporary_data.data['title'], data['title'])

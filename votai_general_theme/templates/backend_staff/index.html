@@ -21,6 +21,7 @@
 
     <table class="table">
         <tr>
+            <td>ID</td>
             <td>Area</td>
             <td>Fecha</td>
             <td>Problema</td>
@@ -33,6 +34,7 @@
     {% for proposal in proposals.all %}
         {% if proposal.status != 'accepted' %}
         <tr>
+            <td>{{proposal.id}}</td>
             <td>{{proposal.area}}</td>
             <td>{{proposal.created}}</td>
             <td>{{proposal.data.problem|truncatechars:100}}{% include 'popular_proposal/_show_proposal_comments.html' with comments=proposal.comments.problem %}

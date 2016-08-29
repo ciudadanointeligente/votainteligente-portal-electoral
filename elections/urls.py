@@ -26,7 +26,7 @@ sitemaps = {
 }
 
 urlpatterns = patterns('',
-    url(r'^$', cache_page(60 * settings.CACHE_MINUTES)(HomeView.as_view(template_name='elections/home.html')), name='home'),
+    url(r'^$', cache_page(60 * settings.CACHE_MINUTES)(xframe_options_exempt(HomeView.as_view(template_name='elections/home.html'))), name='home'),
     url(r'^buscar/?$', SearchView(template='search.html',
             form_class=ElectionForm), name='search'),
     url(r'^busqueda_tags/?$', ElectionsSearchByTagView.as_view(), name='tags_search'),

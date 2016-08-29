@@ -9,6 +9,7 @@ from django.contrib.sites.models import Site
 from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
 from popolo.models import Area
 from collections import OrderedDict
+from votainteligente.send_mails import send_mails_to_staff
 
 
 class TextsFormMixin():
@@ -50,7 +51,7 @@ wizard_forms_fields = [
         'template': 'popular_proposal/wizard/form_step.html',
         'explation_template': "popular_proposal/steps/paso1.html",
         'fields': OrderedDict([
-            ('problem', forms.CharField(max_length=512,
+            ('problem', forms.CharField(max_length=1024,
                                         widget=forms.Textarea(),
                                         label=u'¿Cuál es el problema?'
                                         ))
@@ -75,7 +76,7 @@ wizard_forms_fields = [
                                                widget=forms.Select())
         ), (
 
-            'solution', forms.CharField(max_length=512,
+            'solution', forms.CharField(max_length=2048,
                                         widget=forms.Textarea(),
                                         )
         )])
@@ -288,6 +289,7 @@ class ProposalTemporaryDataUpdateForm(ProposalFormBase):
         self.temporary_data.overall_comments = self.overall_comments
         self.temporary_data.status = ProposalTemporaryData.Statuses.InOurSide
         self.temporary_data.save()
+        send_mails_to_staff({'temporary_data': self.temporary_data}, 'notify_staff_new_proposal_update')
         return self.temporary_data
 
     def get_overall_comments(self):
@@ -354,3 +356,21 @@ class ProposalAreaFilterForm(ProposalFilterFormBase):
         for field_name, field in self.fields.items():
             if field_name in self.initial.keys():
                 self.fields[field_name].initial = self.initial[field_name]
+
+class ProposalTemporaryDataModelForm(forms.ModelForm, ProposalFormBase):
+    class Meta:
+        model = ProposalTemporaryData
+        exclude = ['organization', 'data']
+
+    def __init__(self, *args, **kwargs):
+        super(ProposalTemporaryDataModelForm, self).__init__(*args, **kwargs)
+        for key in self.fields.keys():
+            if key in self.instance.data.keys():
+                self.fields[key].initial = self.instance.data[key]
+
+    def save(self, *args, **kwargs):
+        instance = super(ProposalTemporaryDataModelForm, self).save(*args, **kwargs)
+        for key in instance.data.keys():
+            instance.data[key] = self.cleaned_data[key]
+        instance.save()
+        return instance

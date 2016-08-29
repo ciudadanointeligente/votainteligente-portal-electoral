@@ -26,6 +26,7 @@ from django.views.generic.list import ListView
 from popular_proposal.forms import ProposalAreaFilterForm
 from popular_proposal.filters import ProposalAreaFilter
 from votainteligente.view_mixins import EmbeddedViewBase
+from votainteligente.send_mails import send_mails_to_staff
 
 
 class ProposalCreationView(FormView):
@@ -169,6 +170,7 @@ class ProposalWizard(ProposalWizardBase):
                                                       area=self.area,
                                                       data=data)
         t_data.notify_new()
+        send_mails_to_staff({'temporary_data': t_data}, 'notify_staff_new_proposal')
         return render_to_response('popular_proposal/wizard/done.html', {
             'popular_proposal': t_data,
             'area': self.area
@@ -209,6 +211,7 @@ class ProposalWizardFull(ProposalWizardBase):
         context.update({'popular_proposal': temporary_data,
                         'area': area
                         })
+        send_mails_to_staff({'temporary_data': temporary_data}, 'notify_staff_new_proposal')
         return render_to_response('popular_proposal/wizard/done.html',
                                   context)
 

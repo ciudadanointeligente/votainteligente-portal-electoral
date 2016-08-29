@@ -67,6 +67,7 @@ h3 {
 h4 {
 	font-family: 'Arvo', serif;
 	font-size: 18px;
+  line-height: 28px;
 }
 
 h5 {
@@ -1756,11 +1757,11 @@ input#id_4-title {
   padding: 25px 20px 35px;
 }
 
-.propuesta h3 a {
+.propuesta h4 a {
     color: $grey-one;
 }
 
-.propuesta h3 {
+.propuesta h4 {
     margin: 0px 0 20px;
 }
 

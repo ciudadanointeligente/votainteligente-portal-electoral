@@ -28,6 +28,9 @@
 
 			<p class="text-center">
 				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}">{{candidate.name}}</a>
+				{% if user.is_staff %}
+				{% include 'elections/candidates/extra_cards.html' with candidate=candidate %}
+				{% endif %}
 				{% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}
 			</p>
 

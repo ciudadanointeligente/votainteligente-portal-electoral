@@ -52,7 +52,7 @@ h1 {
 h2 {
 	font-weight: 300;
 	font-family: 'Arvo', serif;
-	font-size: 36px;
+	font-size: 32px;
 	color: $grey-one;
   line-height: 33px;
 }
@@ -66,7 +66,8 @@ h3 {
 
 h4 {
 	font-family: 'Arvo', serif;
-	font-size: 22px;
+	font-size: 18px;
+  line-height: 28px;
 }
 
 h5 {
@@ -1097,10 +1098,11 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 /* Footer */
 
 #footer {
-	padding: 10px 0;
-	color: $footer-color;
-	background-color: $letters-color;
-	margin: 60px 0px 0px
+  padding: 10px 0;
+  color: #B4BAC5;
+  background-color: white;
+  margin: 60px 0px 0px;
+  border-top: 1px solid $grey-five;
 }
 
 #footer a {
@@ -1108,7 +1110,7 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 }
 
 #footer a:hover {
-	color: $main-background-color;
+	color: $yellow;
 }
 
 #footer ul {
@@ -1121,6 +1123,11 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 
 #footer img {
 	opacity: 0.6;
+}
+
+#footer svg {
+  vertical-align: middle;
+  margin-left: 10px;
 }
 
 #footer img:hover {
@@ -1756,11 +1763,11 @@ input#id_4-title {
   padding: 25px 20px 35px;
 }
 
-.propuesta h3 a {
+.propuesta h4 a {
     color: $grey-one;
 }
 
-.propuesta h3 {
+.propuesta h4 {
     margin: 0px 0 20px;
 }
 

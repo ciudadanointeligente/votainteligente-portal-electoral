@@ -89,7 +89,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        Otro sitio de <a href="//www.ciudadanointeligente.org/" target="_blank"><img src="{% static 'img/logo-ciudadanoi.png' %}" alt="Fundación Ciudadano Inteligente" title="Fundación Ciudadano Inteligente"></a>
+                        <span class="small">Otro sitio de</span> <a href="//www.ciudadanointeligente.org/" target="_blank">{% include '_logo_fci.html' %}</a>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12 text-right redes">
                         <ul class="list-inline">
@@ -99,6 +99,14 @@
                             <li><a target="_blank" href="https://twitter.com/ciudadanoi"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
+                </div>
+                <div>
+                    <ul class="list-inline">
+                        <li><span class="small">Apoyan: </span>{% include '_logo_basepublica.html' %}</li>
+                        <li>{% include '_logo_techo.html' %}</li>
+                        <li>{% include '_logo_fusupo.html' %}</li>
+                        <li>{% include '_logo_jab.html' %}</li>
+                    </ul>
                 </div>
             </div>
         </div>

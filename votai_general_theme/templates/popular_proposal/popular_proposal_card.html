@@ -12,7 +12,7 @@
     {% if not is_embedded %}</a>{% endif %}
   </div>
   {% if proposal.title %}
-      <h3><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title}}</a></h3>
+      <h4><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title}}</a></h4>
   {% endif %}
   {% if proposal.data.solution %}
       {{proposal.data.solution}}

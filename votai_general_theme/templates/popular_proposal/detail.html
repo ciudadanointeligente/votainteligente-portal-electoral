@@ -29,18 +29,19 @@ $(function(){
 {% block everything %}
 
 {% url 'popular_proposals:embedded_detail' slug=popular_proposal.slug as embedded_url%}
-{% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
 
 <div class="container">
+{% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
 {% include 'modal.html' with modalId='supportProposal' title='Apoyar la propuesta' %}
 </div>
 
-  
+<div class="container">
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}">VotaInteligente</a></li>
     <li><a href="{% url 'area' slug=popular_proposal.area.id%}">{{popular_proposal.area}}</a></li>
     <li class="active">{{popular_proposal.title}}</li>
   </ol>
+</div> 
 
   {% if popular_proposal.proposer = user %}
     <div class="text-width text-right">

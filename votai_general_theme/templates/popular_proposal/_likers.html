@@ -34,8 +34,7 @@ $(function(){
 
                 {% if not user|likes:proposal %}
                 
-                <a class="btn-apoyo" data-toggle="modal" data-target="#supportProposal" 
-                    data-url="{% url 'popular_proposals:like_a_proposal' pk=proposal.id %}{%if next_url%}?next={{next_url}}{% endif %}">
+                <a class="btn-apoyo" data-toggle="modal" data-target="#supportProposal" data-url="{% url 'popular_proposals:like_a_proposal' pk=proposal.id %}{%if next_url%}?next={{next_url}}{% endif %}">
                     {% blocktrans %}
                       <span class="fa-stack fa-2x">
                         <i class="fa fa-circle fa-stack-2x"></i>
@@ -46,7 +45,7 @@ $(function(){
                 {% include 'modal.html' with modalId='supportProposal' title='Apoya una propuesta' %}
                 {% else %}
                 {% with  user|support:proposal as support %}
-                    <a class="unlike_proposal" href="{% url 'popular_proposals:unlike_proposal' pk=support.id %}"><img src="{% static 'img/adherido.svg' %}"></a>
+                    <a class="unlike_proposal" href="{% url 'popular_proposals:unlike_proposal' pk=support.id %}" data-toggle="tooltip" data-placement="top" title="Ya no quiero apoyar esta propuesta"><img src="{% static 'img/adherido.svg' %}"></a>
                 {% endwith %}
                 {% endif %}
             {% else %}

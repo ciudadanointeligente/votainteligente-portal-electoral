@@ -1,7 +1,7 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase as TestCase
 from django.core.urlresolvers import reverse
-from popular_proposal.models import PopularProposal
+from popular_proposal.models import PopularProposal, Commitment
 from popular_proposal.forms import ProposalFilterForm, ProposalAreaFilterForm
 from popular_proposal.filters import ProposalAreaFilter
 from elections.models import Area, Candidate
@@ -203,21 +203,55 @@ class EmbeddedViewsTests(PopularProposalTestCaseBase):
         self.assertIn(self.popular_proposal2,
                       response.context['popular_proposals'])
 
+
 class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
     def setUp(self):
         super(CandidateCommitmentViewTestCase, self).setUp()
         self.candidate = Candidate.objects.get(id=1)
+        self.candidate2 = Candidate.objects.get(id=2)
         self.fiera.set_password('feroz')
         self.fiera.save()
         self.cadidacy = Candidacy.objects.create(candidate=self.candidate,
                                                  user=self.fiera)
 
+    def test_there_is_a_commit_page(self):
+        commitment = Commitment.objects.create(candidate=self.candidate,
+                                               proposal=self.popular_proposal1,
+                                               commited=True)
+        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+                                                              'proposal_slug': self.popular_proposal1.slug})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'popular_proposal/commitment/detail.html')
+        self.assertEquals(response.context['commitment'], commitment)
+
     def test_candidate_commiting_to_a_proposal_view(self):
-        url = reverse('popular_proposals:commit', kwargs={'proposal_pk': self.popular_proposal1.id,
-                                                          'candidate_pk': self.candidate.id})
+        url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,
+                                                              'candidate_pk': self.candidate.id})
         logged_in = self.client.login(username=self.fiera.username, password='feroz')
         self.assertTrue(logged_in)
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'popular_proposal/commitment/commit_yes.html')
         self.assertIsInstance(response.context['form'], CandidateCommitmentForm)
+
+        response_post = self.client.post(url, {'terms_and_conditions': True})
+        detail_url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+                                                                     'proposal_slug': self.popular_proposal1.slug})
+        self.assertRedirects(response_post, detail_url)
+
+    def test_not_commiting_if_representing_someone_else(self):
+        url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,
+                                                              'candidate_pk': self.candidate2.id})
+        logged_in = self.client.login(username=self.fiera.username, password='feroz')
+        self.assertTrue(logged_in)
+        response = self.client.get(url)
+        # Fiera has nothing to do with candidate2
+        self.assertEquals(response.status_code, 404)
+
+        # Fiera cannot commit to a promise for another area
+        url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal3.id,
+                                                              'candidate_pk': self.candidate.id})
+        logged_in = self.client.login(username=self.fiera.username, password='feroz')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)

@@ -15,6 +15,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from popular_proposal.models import (PopularProposal,
                                      ProposalTemporaryData,
+                                     Commitment,
                                      ProposalLike)
 from django.shortcuts import render_to_response
 from formtools.wizard.views import SessionWizardView
@@ -30,6 +31,7 @@ from votainteligente.send_mails import send_mails_to_staff
 from popular_proposal.forms import (CandidateCommitmentForm,
                                     )
 from elections.models import Candidate
+from backend_candidate.models import Candidacy
 
 
 class ProposalCreationView(FormView):
@@ -295,10 +297,19 @@ class CommitView(FormView):
     def dispatch(self, *args, **kwargs):
         self.proposal = get_object_or_404(PopularProposal, id=self.kwargs['proposal_pk'])
         self.candidate = get_object_or_404(Candidate, id=self.kwargs['candidate_pk'])
+        get_object_or_404(Candidacy, candidate=self.candidate, user=self.request.user)
+        # The following can be refactored
+        areas = []
+        for election in self.candidate.elections.all():
+            if election.area:
+                areas.append(election.area)
+        if self.proposal.area not in areas:
+            return HttpResponseNotFound()
+        # The former can be refactored
         return super(CommitView, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
-        form.save()
+        self.commitment = form.save()
         return super(CommitView, self).form_valid(form)
 
     def get_form_kwargs(self):
@@ -306,3 +317,23 @@ class CommitView(FormView):
         kwargs['proposal'] = self.proposal
         kwargs['candidate'] = self.candidate
         return kwargs
+
+    def get_success_url(self):
+        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+                                                              'proposal_slug': self.proposal.slug})
+        return url
+
+
+class CommitmentDetailView(DetailView):
+    model = Commitment
+    template_name = 'popular_proposal/commitment/detail.html'
+
+    def dispatch(self, *args, **kwargs):
+        self.proposal = get_object_or_404(PopularProposal, slug=self.kwargs['proposal_slug'])
+        self.candidate = get_object_or_404(Candidate, id=self.kwargs['candidate_slug'])
+        return super(CommitmentDetailView, self).dispatch(*args, **kwargs)
+
+    def get_object(self, queryset=None):
+        return self.model.objects.get(candidate=self.candidate,
+                                      proposal=self.proposal)
+

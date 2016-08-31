@@ -71,7 +71,6 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
     def test_letting_know_the_citizens_that_a_candidate_has_commited_to_a_proposal(self):
         commitment = Commitment.objects.create(candidate=self.candidate,
                                                proposal=self.proposal,
-                                               detail=u'Yo me comprometo',
                                                commited=True)
         previous_amount = len(mail.outbox)
         notifier = NewCommitmentNotification(proposal=self.proposal,
@@ -83,7 +82,6 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertEquals(len(the_mail.to), 1)
         self.assertIn(self.proposal.title, the_mail.body)
         self.assertIn(self.candidate.name, the_mail.body)
-        self.assertIn(commitment.detail, the_mail.body)
 
     def test_letting_the_citizens_know_that_a_candidate_has_said_no(self):
         commitment = Commitment.objects.create(candidate=self.candidate,
@@ -103,23 +101,29 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertIn(commitment.detail, the_mail.body)
 
     def test_notification_trigger_candidate_commit(self):
+        ProposalLike.objects.create(user=self.feli,
+                                    proposal=self.proposal)
         commitment = Commitment.objects.create(candidate=self.candidate,
                                                proposal=self.proposal,
-                                               detail=u'Yo me comprometo',
                                                commited=True)
 
-        self.assertEquals(len(mail.outbox), 1)
+        self.assertEquals(len(mail.outbox), 2)
         the_mail = mail.outbox[0]
         self.assertIn(self.fiera.email, the_mail.to)
         self.assertEquals(len(the_mail.to), 1)
         self.assertIn(self.proposal.title, the_mail.body)
         self.assertIn(self.candidate.name, the_mail.body)
-        self.assertIn(commitment.detail, the_mail.body)
+
+        the_mail = mail.outbox[1]
+        self.assertIn(self.feli.email, the_mail.to)
+        self.assertEquals(len(the_mail.to), 1)
+        self.assertIn(self.proposal.title, the_mail.body)
+        self.assertIn(self.candidate.name, the_mail.body)
+
 
     def test_there_are_two_different_emails_sent_if_a_candidate_has_not_commited(self):
         commitment = Commitment.objects.create(candidate=self.candidate,
                                                proposal=self.proposal,
-                                               detail=u'Yo me comprometo',
                                                commited=True)
 
         self.assertEquals(len(mail.outbox), 1)
@@ -143,7 +147,6 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
 
         Commitment.objects.create(candidate=self.candidate2,
                                   proposal=self.proposal,
-                                  detail=u'Yo me comprometo',
                                   commited=True)
         previous_amount = len(mail.outbox)
         # We should not notify candidates that have already been commited

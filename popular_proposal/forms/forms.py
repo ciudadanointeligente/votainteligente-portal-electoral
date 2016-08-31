@@ -413,7 +413,7 @@ class CandidateCommitmentForm(CandidateCommitmentFormBase):
 class CandidateNotCommitingForm(CandidateCommitmentFormBase):
     detail = forms.CharField(required=False,
                              widget=forms.Textarea(),
-                             label=_(u'Detalles de tu compromiso con la propuesta'))
+                             label=_(u'Explica tus razones para NO comprometerte con esta propuesta ciudadana'))
     commited = False
 
     def save(self):

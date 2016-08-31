@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load votainteligente_extras %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block extrajs %}
+{% load ogp_tags %}
+{% endblock extrajs %}
+
+{% block content %}
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a href="{% url 'home' %}">VotaInteligente</a></li>
+    <li><a href="{% url 'area' slug=commitment.proposal.area.id%}">{{commitment.proposal.area}}</a></li>
+    <li><a href="{{commitment.proposal.get_absolute_url}}">{{commitment.proposal.title}}</a></li>
+    <li class="active">Resultado</li>
+  </ol>
+</div> 
+<div class="container">
+	<div class="fondo-blanco text-width">
+		<p>Lamentablemente <strong>{{commitment.candidate.name}}</strong> candidata/o por {{commitment.proposal.area}} <strong>NO</strong> incluirá <strong>{{commitment.proposal.title}}</strong> en su programa.</p>
+
+		<p>Sus razones fueron las siguientes:</p>
+		<p>{{commitment.detail|linebreaksbr}}</p>
+
+		<div class="pull-right">
+			<p><strong>{{commitment.candidate.name}}</strong></p>
+
+			<p>Candidata/o {% if commitment.candidate.election.position %}a {{commitment.candidate.election.position|title }}{% endif %} por {{commitment.proposal.area}}.</p>
+
+		</div>
+	</div>
+</div>
+{% endblock content %}

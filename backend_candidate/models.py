@@ -23,6 +23,8 @@ class Candidacy(models.Model):
 
 
 def is_candidate(user):
+    if not user.is_authenticated():
+        return False
     if user.candidacies.count():
         return True
     return False

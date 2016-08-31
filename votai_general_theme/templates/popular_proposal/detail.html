@@ -63,23 +63,41 @@ $(function(){
     {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}
     <div class="line-space"></div>
     {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
+
+
+    {% if popular_proposal.background %}
+      <div class="antecedentes text-width">
+        <h3>{% trans 'Antecedentes' %}</h3>
+          <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-12">
+              <a href="#">
+                {% if popular_proposal.image %}
+                    <img src="{{ popular_proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+                {% endif %}
+              </a>
+            </div>
+          </div>
+          {{popular_proposal.background|linebreaksbr}}
+      </div>
+    {% endif %}
+
+
+
+
+
+    {% if user|is_candidate %}
+      {% for candidacy in user.candidacies.all %}
+        <div>
+          <span>Yo {{candidacy.candidate.name}}</span>
+          <a class="btn btn-default" href="{% url 'popular_proposals:commit_no' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">{% trans 'No me quiero comprometer' %}</a>
+          <a class="btn btn-success" href="{% url 'popular_proposals:commit_yes' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">{% trans 'Me quiero comprometer' %}</a>
+        </div>
+      {% endfor %}
+    {% endif %}
 </div>
 
-{% if popular_proposal.background %}
-  <div class="antecedentes text-width">
-    <h3>{% trans 'Antecedentes' %}</h3>
-      <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-12">
-          <a href="#">
-            {% if popular_proposal.image %}
-                <img src="{{ popular_proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
-            {% endif %}
-          </a>
-        </div>
-      </div>
-      {{popular_proposal.background|linebreaksbr}}
-  </div>
-{% endif %}
+
+
 
 
 {% endblock everything %}

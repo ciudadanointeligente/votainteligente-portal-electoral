@@ -298,6 +298,10 @@ class CommitView(FormView):
     def dispatch(self, *args, **kwargs):
         self.proposal = get_object_or_404(PopularProposal, id=self.kwargs['proposal_pk'])
         self.candidate = get_object_or_404(Candidate, id=self.kwargs['candidate_pk'])
+        previous_commitment_exists = Commitment.objects.filter(proposal=self.proposal,
+                                                               candidate=self.candidate).exists()
+        if previous_commitment_exists:
+            return HttpResponseNotFound()
         get_object_or_404(Candidacy, candidate=self.candidate, user=self.request.user)
         # The following can be refactored
         areas = []
@@ -319,18 +323,32 @@ class CommitView(FormView):
         kwargs['candidate'] = self.candidate
         return kwargs
 
+    def get_context_data(self, **kwargs):
+        context = super(CommitView, self).get_context_data(**kwargs)
+        context['proposal'] = self.proposal
+        context['candidate'] = self.candidate
+        return context
+
     def get_success_url(self):
         url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
                                                               'proposal_slug': self.proposal.slug})
         return url
 
+
 class NotCommitView(CommitView):
     template_name = 'popular_proposal/commitment/commit_no.html'
     form_class = CandidateNotCommitingForm
 
+
 class CommitmentDetailView(DetailView):
     model = Commitment
-    template_name = 'popular_proposal/commitment/detail.html'
+    # template_name = 'popular_proposal/commitment/detail_yes.html'
+
+    def get_template_names(self):
+        if self.object.commited:
+            return 'popular_proposal/commitment/detail_yes.html'
+        else:
+            return 'popular_proposal/commitment/detail_no.html'
 
     def dispatch(self, *args, **kwargs):
         self.proposal = get_object_or_404(PopularProposal, slug=self.kwargs['proposal_slug'])

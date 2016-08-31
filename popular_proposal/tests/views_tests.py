@@ -222,8 +222,18 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
                                                               'proposal_slug': self.popular_proposal1.slug})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'popular_proposal/commitment/detail.html')
+        self.assertTemplateUsed(response, 'popular_proposal/commitment/detail_yes.html')
         self.assertEquals(response.context['commitment'], commitment)
+        commitment.delete()
+        commitment_no = Commitment.objects.create(candidate=self.candidate,
+                                                  proposal=self.popular_proposal1,
+                                                  commited=False)
+        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+                                                              'proposal_slug': self.popular_proposal1.slug})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'popular_proposal/commitment/detail_no.html')
+        self.assertEquals(response.context['commitment'], commitment_no)
 
     def test_candidate_commiting_to_a_proposal_view(self):
         url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,
@@ -234,11 +244,25 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'popular_proposal/commitment/commit_yes.html')
         self.assertIsInstance(response.context['form'], CandidateCommitmentForm)
+        self.assertEquals(response.context['proposal'], self.popular_proposal1)
+        self.assertEquals(response.context['candidate'], self.candidate)
 
         response_post = self.client.post(url, {'terms_and_conditions': True})
         detail_url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
                                                                      'proposal_slug': self.popular_proposal1.slug})
         self.assertRedirects(response_post, detail_url)
+
+    def test_not_commiting_twice(self):
+        Commitment.objects.create(candidate=self.candidate,
+                                  proposal=self.popular_proposal1,
+                                  commited=True)
+        url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,
+                                                              'candidate_pk': self.candidate.id})
+        logged_in = self.client.login(username=self.fiera.username, password='feroz')
+        self.assertTrue(logged_in)
+        response = self.client.get(url)
+        # Already commited
+        self.assertEquals(response.status_code, 404)
 
     def test_not_commiting_if_representing_someone_else(self):
         url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,

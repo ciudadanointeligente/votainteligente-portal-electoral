@@ -167,8 +167,10 @@ class ProposalLike(models.Model):
 
 
 class Commitment(models.Model):
-    proposal = models.ForeignKey(PopularProposal)
-    candidate = models.ForeignKey(Candidate)
+    proposal = models.ForeignKey(PopularProposal,
+                                 related_name='commitments')
+    candidate = models.ForeignKey(Candidate,
+                                  related_name='commitments')
     detail = models.CharField(max_length=1024,
                               null=True,
                               blank=True)

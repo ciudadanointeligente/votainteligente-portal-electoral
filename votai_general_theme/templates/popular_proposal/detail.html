@@ -88,15 +88,35 @@ $(function(){
     {% if user|is_candidate %}
       {% for candidacy in user.candidacies.all %}
         <div>
-          <span>Yo {{candidacy.candidate.name}}</span>
-          <a class="btn btn-default" href="{% url 'popular_proposals:commit_no' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">{% trans 'No me quiero comprometer' %}</a>
-          <a class="btn btn-success" href="{% url 'popular_proposals:commit_yes' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">{% trans 'Me quiero comprometer' %}</a>
+          {% if not candidacy|has_commited_with:popular_proposal %}
+            <span>Yo {{candidacy.candidate.name}}</span>
+            <a class="btn btn-default" href="{% url 'popular_proposals:commit_no' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">{% trans 'No me quiero comprometer' %}</a>
+            <a class="btn btn-success" href="{% url 'popular_proposals:commit_yes' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">{% trans 'Me quiero comprometer' %}</a>
+          {% else %}
+            {% get_commitment candidacy popular_proposal as candidate_commitment %}
+            <div class="panel panel-default">
+              <div class="panel-body">
+              {% if candidate_commitment.commited %}
+               <i class="fa fa-heart" aria-hidden="true"></i> {% trans 'Yo me comprometí!' %}
+              {% else %}
+                {% trans 'Dijiste que no incluirías esta propuesta en tu programa.' %}
+              {% endif %}
+              </div>
+            </div>
+          {% endif %}
         </div>
       {% endfor %}
     {% endif %}
 </div>
 
-
+<div class="fondo-blanco text-width">
+    {% if popular_proposal.commitments.all %}
+      <h3>Candidatos que ya han expresado su opinión:</h3>
+      {% for commitment in popular_proposal.commitments.all %}
+        {{commitment.candidate.name }} Puedes ver su compromiso <a href="{% url 'popular_proposals:commitment' candidate_slug=commitment.candidate.id proposal_slug=commitment.proposal.slug %}">Acá</a>
+      {% endfor %}
+    {% endif %}
+</div>
 
 
 

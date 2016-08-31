@@ -14,6 +14,8 @@ from backend_citizen.forms import (UserCreationForm as RegistrationForm,
                                    GroupCreationForm)
 from django.contrib.auth.models import User
 from django import forms
+from backend_candidate.models import Candidacy
+from popular_proposal.models import PopularProposal, Commitment
 
 
 class TemplateTagsTestCase(TestCase):
@@ -350,3 +352,38 @@ class LoginFormsTemplateTags(TestCase):
             position='alcalde',
             extra_info_content=u'Más Información')
         self.assertTrue(template.render(context))
+
+    def test_candidate_has_commited(self):
+        # Mar para Bolivia
+        chile = Area.objects.create(name="Chile")
+        u = User.objects.get(username='feli')
+        data = {'clasification': 'educacion',
+                'title': u'Mar para Bolivia',
+                'problem': u'Los bolivianos no tienen mar y son bacanes',
+                'solution': u'Que le den mar soberano a Bolivia',
+                'when': u'1_year',
+                'causes': u'El egoismo chileno.'
+                }
+        popular_proposal = PopularProposal.objects.create(proposer=u,
+                                                          area=chile,
+                                                          data=data,
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+        candidate = Candidate.objects.get(pk=1)
+        candidacy = Candidacy.objects.create(user=u,
+                                             candidate=candidate
+                                             )
+        commitment = Commitment.objects.create(candidate=candidate,
+                                               proposal=popular_proposal,
+                                               commited=True)
+        template = Template("{% load votainteligente_extras %}{% if candidacy|has_commited_with:proposal %}si{% else %}no{% endif %}")
+        
+        self.assertEqual(template.render(Context({'candidacy': candidacy,
+                                                  'proposal': popular_proposal})), 'si')
+        template2 = Template("{% load votainteligente_extras %}{% get_commitment candidacy proposal as commitment %}{{commitment.proposal.title}}")
+        self.assertEqual(template2.render(Context({'candidacy': candidacy,
+                                                  'proposal': popular_proposal})), popular_proposal.title)
+        commitment.delete()
+        self.assertEqual(template.render(Context({'candidacy': candidacy,
+                                                  'proposal': popular_proposal})), 'no')

@@ -122,10 +122,6 @@ strong {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.17);
 }
 
-.container {
-	margin-bottom: 20px;
-}
-
 .text-warning {
 	color: $warning-text;
 }
@@ -671,6 +667,16 @@ section#que-hago {
 	border-bottom: 1px solid $grey-five;
 }
 
+.navbar-inverse.white {
+  color: $grey-three;
+  background-color: white;
+}
+
+.navbar-inverse.yellow {
+  color: white;
+  background-color: $yellow;
+}
+
 .navbar-inverse.yellow {
 	border-bottom: 1px solid darken($yellow,10%);
 }
@@ -716,93 +722,6 @@ section#que-hago {
 
 /*Menu Interno*/
 
-.nav-candidator .list-inline>li {
-	padding: 0px;
-	margin-left: -4px;
-	height: auto;
-	display: inline-flex;
-}
-
-.nav-candidator .list-inline>li a {
-	background: $main-background-color;
-	border-right: 3px solid white;
-	/*border-top: 2px solid white;*/
-	padding: 10px;
-	color: $grey-five;
-	text-decoration: none;
-}
-
-.nav-candidator .list-inline>li:first-child a {
-	border-left: 2px solid white;
-}
-
-.nav-candidator .list-inline>li:last-child a {
-	border-right: 2px solid white;
-}
-
-.nav-candidator .list-inline>li.active a, .nav-candidator .list-inline>li:hover a {
-	background: $nav-anchor-background-color;
-	color: $main-background-color;
-	position: relative;
-}
-
-.nav-candidator .list-inline>li.active a:after {
-	top: 100%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-}
-
-.nav-candidator .list-inline>li.active a:after {
-	border-color: rgba(94, 109, 130, 0);
-	border-top-color: $nav-anchor-background-color;
-	border-width: 8px;
-	left: 50%;
-	margin-left: -8px;
-}
-
-.nav-candidator ul.list-inline {
-	margin-bottom: 0px;
-	background: $main-background-color;
-	height: auto;
-}
-
-.nav-candidator {
-	text-align: center;
-	margin-bottom: 17px;
-}
-
-.navbar-inverse.white {
-	color: $grey-three;
-	background-color: white;
-}
-
-.navbar-inverse.yellow {
-	color: white;
-	background-color: $yellow;
-}
-
-.navbar .container {
-	margin-bottom: 0px;
-}
-
-.nav-candidator .list-inline i.icon-group, .nav-candidator .list-inline i.icon-edit {
-	color: $anchor-color;
-}
-
-.nav-candidator .list-inline i.icon-heart {
-}
-
-.nav-candidator .list-inline i.icon-list, .nav-candidator .list-inline i.icon-info {
-	color: $btn-success-background-color;
-}
-
-.nav-candidator .list-inline i.icon-bolt, .nav-candidator .list-inline i.icon-trophy {
-	color: $alert-warning-border;
-}
 
 /* Wizard creacion propuesta */
 .panel.panel-default.pasos{

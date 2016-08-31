@@ -89,7 +89,7 @@ function accept_moderation(url){
       $.post(url, {
         'csrfmiddlewaretoken': "{{ csrf_token }}"
         }, function(){
-            window.location.replace("{% url 'backend_staff:index' %}");
+            location.reload();
         })
 }
 </script>

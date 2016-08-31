@@ -98,6 +98,12 @@ strong {
 	font-family: 'Montserrat', sans-serif;
 	text-transform: uppercase;
   letter-spacing: 2px;
+  font-size: 11px;
+}
+
+h1 .small {
+  font-size: 11px;
+  line-height: 31px;
 }
 
 .line-space {
@@ -332,11 +338,10 @@ section#hero {
 	margin: 0;
 }
 
-h1 .small {
+#hero h1 .small {
 	color: white;
 	font-size: 14px;
 	letter-spacing: 4px;
-	line-height: 24px;
 }
 
 #hero .btn {
@@ -775,6 +780,22 @@ section.terms {
     margin-top: 20px;
 }
 
+
+/*Perfiles*/
+
+.img-candidato {
+    max-width: 96px;
+    margin: 0 auto;
+}
+
+.btn-bajada {
+    margin-top: -20px;
+}
+
+.small-bajada {
+  margin-top: -10px;
+}
+
 /*Perfil candidato*/
 
 .profile-candidate {
@@ -790,10 +811,6 @@ section.terms {
 
 .profile-candidate img {
 	margin-bottom: 10px;
-}
-
-.img-profile {
-	padding-bottom: 5px;
 }
 
 .social-link-candidate {

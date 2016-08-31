@@ -16,6 +16,8 @@
   {% render_ogp election %}
 {% endblock ogp %}
 
+{% block navbar_background %}yellow{% endblock navbar_background %}
+
 {% block content %}
 <section id="election">
 	<div class="row breadscrumb-social hidden-xs">
@@ -29,44 +31,21 @@
 				<li class="active">{% block last_breadcrumb %}{% trans "Perfiles"%}{% endblock last_breadcrumb %}</li>
 			</ul>
 		</div>
-		<div class="col-md-3 hidden-xs">
-			<div class="row social-button">
-				<div class="col-md-4">
-					<script src="//apis.google.com/js/plusone.js"></script>
-					<div class="g-plus" data-action="share" data-annotation="none" data-lang="es-419"></div>
-				</div>
-				<div class="col-md-4">
-					<a href="//twitter.com/share" class="twitter-share-button" data-lang="es" data-count="none" data-hashtags="{{ 'hashtags'|website_twitter }}">Tweet</a>
-					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-				</div>
-				<div class="col-md-4">
-					<div id="fb-root"></div>
-					<script>(function(d, s, id) {
-					var js, fjs = d.getElementsByTagName(s)[0];
-					if (d.getElementById(id)) return;
-					js = d.createElement(s); js.id = id;
-					js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=354582054647712";
-					fjs.parentNode.insertBefore(js, fjs);
-					}(document, 'script', 'facebook-jssdk'));</script>
-					<div class="fb-like" data-href="http://{% url_domain %}{% url 'election_view' slug=election.slug %}" data-colorscheme="light" data-layout="button_count" data-action="recommend" data-show-faces="false" data-send="false"></div>
-				</div>
-			</div>
-		</div>
 	</div>
 
 	<div>
-		<h1 class="text-center"><a href="{% url 'election_view' slug=election.slug %}">{{ election }} por {{ election.area }}</a></h1>
+		<h1 class="text-center"><div class="small">Candidatos a</div><a href="{% url 'election_view' slug=election.slug %}">{{ election }} por {{ election.area }}</a></h1>
 	</div>
 
 	<div class="row">
-		<div class="nav-candidator">
+		<div class="nav-candidator btn-bajada">
 			<nav class="col-md-12">
 				<ul class="list-inline text-center">
 					{% if 'soulmate'|val_navbars and election.uses_soul_mate  %}
 					<li {% block tab_soulmate %}{% endblock %}><a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-success"><i class="icon-heart"></i> {% trans "1/2 Naranja" %}</a></li>
 					{% endif %}
 					{% if 'facetoface'|val_navbars and election.uses_face_to_face  %}
-					<li {% block tab_facetoface %}{% endblock %}><a href="{% block url_face_to_face %}{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}{% endblock url_face_to_face %}" accesskey="f" title="{% trans "Frente a Frente" %} (Alt+f)" class="btn btn-default"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a></li>
+					<li {% block tab_facetoface %}{% endblock %}><a href="{% block url_face_to_face %}{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}{% endblock url_face_to_face %}" accesskey="f" title="{% trans "Frente a Frente" %} (Alt+f)" class="btn btn-primary"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a></li>
 					{% endif %}
 					{% if 'ask'|val_navbars and election.uses_preguntales  %}
 					<li {% block tab_ask %}{% endblock %}><a href="{% url 'ask_detail_view' slug=election.slug %}" accesskey="a" title="{% trans "Pregúntales" %} (Alt+a)" class="btn btn-default"><i class="icon-edit"></i> {% trans "Pregúntales" %}</a></li>

@@ -21,6 +21,7 @@
 <script>
 $(function(){
     $('#acceptModeration_{{object.id}}').click(function(){
+      console.log('perrito chiquitito')
             $.post("{% url 'backend_staff:accept_proposal' pk=object.pk %}", {
                     'csrfmiddlewaretoken': "{{ csrf_token }}"
                     }, function(){

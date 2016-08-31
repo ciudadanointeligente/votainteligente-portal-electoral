@@ -317,9 +317,26 @@ class LoginFormsTemplateTags(TestCase):
             extra_info_content=u'Más Información')
 
         template = Template("{% load votainteligente_extras %}{% get_election_by_position 'alcalde' as election %}{{election.name}}")
-        context = Context({'area': argentina,
-                           })
+        context = Context({'area': argentina})
         rendered_template = template.render(context)
         self.assertEquals(election.name, rendered_template)
-        template2= Template("{% load votainteligente_extras %}{% get_election_by_position 'concejal' as election %}{{election.name}}")
+        template2 = Template("{% load votainteligente_extras %}{% get_election_by_position 'concejal' as election %}{{election.name}}")
         self.assertFalse(template2.render(context))
+        chile = Area.objects.create(name=u'Chile')
+        election.area = chile
+        election.save()
+        template3 = Template("{% load votainteligente_extras %}{% get_election_by_position 'alcalde' as election %}{{election.name}}")
+        self.assertFalse(template3.render(context))
+
+        # Two elections with the same position doesn't raise error
+        election.area = argentina
+        election.save()
+        election = Election.objects.create(
+            name='the name2',
+            slug='the-slug',
+            description='this is a description',
+            extra_info_title=u'ver más',
+            area=argentina,
+            position='alcalde',
+            extra_info_content=u'Más Información')
+        self.assertTrue(template.render(context))

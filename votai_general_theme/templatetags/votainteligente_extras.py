@@ -296,9 +296,9 @@ def personal_data_label(personal_data):
     return personal_data.label
 
 
-@register.simple_tag
-def get_election_by_position(position):
-    if Election.objects.filter(position=position).exists():
-        return Election.objects.get(position=position)
+@register.simple_tag(takes_context=True)
+def get_election_by_position(context, position):
+    if Election.objects.filter(position=position, area=context['area']).exists():
+        return Election.objects.filter(position=position, area=context['area']).first()
     else:
         return None

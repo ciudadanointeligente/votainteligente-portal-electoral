@@ -2,7 +2,7 @@
 {% load bootstrap3 %}
    {{object}}
 
-   <button id="acceptModeration_{{object.id}}" type="button" class="btn btn-primary">{% trans 'Sí, acepto' %} <i class="fa fa-thumbs-up"></i>
+   <button id="acceptModeration_{{object.id}}" onclick='accept_moderation("{% url 'backend_staff:accept_proposal' pk=object.pk %}")'type="button" class="btn btn-primary">{% trans 'Sí, acepto' %} <i class="fa fa-thumbs-up"></i>
 </button>
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
  {% trans 'No, la rechazaré!' %} <i class="fa fa-thumbs-down"></i>
@@ -18,14 +18,3 @@
 </form>
   </div>
 </div>
-<script>
-$(function(){
-    $('#acceptModeration_{{object.id}}').click(function(){
-            $.post("{% url 'backend_staff:accept_proposal' pk=object.pk %}", {
-                    'csrfmiddlewaretoken': "{{ csrf_token }}"
-                    }, function(){
-                        window.location.replace("{% url 'backend_staff:index' %}");
-                    })
-    })
-});
-</script>

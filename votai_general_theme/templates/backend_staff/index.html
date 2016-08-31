@@ -85,6 +85,13 @@ $(function(){
         'delay': { "show": 500, "hide": 100 }
     });
 })
+function accept_moderation(url){
+      $.post(url, {
+        'csrfmiddlewaretoken': "{{ csrf_token }}"
+        }, function(){
+            location.reload();
+        })
+}
 </script>
 {% endblock content %}
 

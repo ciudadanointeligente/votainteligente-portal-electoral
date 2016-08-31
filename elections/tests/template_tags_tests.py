@@ -304,3 +304,22 @@ class LoginFormsTemplateTags(TestCase):
         template = Template("{% load votainteligente_extras %}{% user_image user=user height=120 width=100 %}")
         self.assertEqual(template.render(Context({'user': u, 'height': 120, 'width': 100})),
                          rendered_template)
+
+    def test_get_election_by_position(self):
+        argentina = Area.objects.create(name=u'Argentina')
+        election = Election.objects.create(
+            name='the name',
+            slug='the-slug',
+            description='this is a description',
+            extra_info_title=u'ver más',
+            area=argentina,
+            position='alcalde',
+            extra_info_content=u'Más Información')
+
+        template = Template("{% load votainteligente_extras %}{% get_election_by_position 'alcalde' as election %}{{election.name}}")
+        context = Context({'area': argentina,
+                           })
+        rendered_template = template.render(context)
+        self.assertEquals(election.name, rendered_template)
+        template2= Template("{% load votainteligente_extras %}{% get_election_by_position 'concejal' as election %}{{election.name}}")
+        self.assertFalse(template2.render(context))

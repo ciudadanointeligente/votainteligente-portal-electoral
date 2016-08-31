@@ -294,3 +294,11 @@ def personal_data_label(personal_data):
     if field is not None:
         return getattr(field, 'label', '')
     return personal_data.label
+
+
+@register.simple_tag
+def get_election_by_position(position):
+    if Election.objects.filter(position=position).exists():
+        return Election.objects.get(position=position)
+    else:
+        return None

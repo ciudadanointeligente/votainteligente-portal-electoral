@@ -29,6 +29,7 @@ from popular_proposal.filters import ProposalAreaFilter
 from votainteligente.view_mixins import EmbeddedViewBase
 from votainteligente.send_mails import send_mails_to_staff
 from popular_proposal.forms import (CandidateCommitmentForm,
+                                    CandidateNotCommitingForm,
                                     )
 from elections.models import Candidate
 from backend_candidate.models import Candidacy
@@ -323,6 +324,9 @@ class CommitView(FormView):
                                                               'proposal_slug': self.proposal.slug})
         return url
 
+class NotCommitView(CommitView):
+    template_name = 'popular_proposal/commitment/commit_no.html'
+    form_class = CandidateNotCommitingForm
 
 class CommitmentDetailView(DetailView):
     model = Commitment
@@ -336,4 +340,3 @@ class CommitmentDetailView(DetailView):
     def get_object(self, queryset=None):
         return self.model.objects.get(candidate=self.candidate,
                                       proposal=self.proposal)
-

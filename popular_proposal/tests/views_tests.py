@@ -255,3 +255,19 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         logged_in = self.client.login(username=self.fiera.username, password='feroz')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 404)
+
+    def test_not_commiting_as_candidate(self):
+        url = reverse('popular_proposals:commit_no', kwargs={'proposal_pk': self.popular_proposal1.id,
+                                                             'candidate_pk': self.candidate.id})
+        logged_in = self.client.login(username=self.fiera.username, password='feroz')
+        self.assertTrue(logged_in)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'popular_proposal/commitment/commit_no.html')
+        self.assertIsInstance(response.context['form'], CandidateNotCommitingForm)
+
+        response_post = self.client.post(url, {'terms_and_conditions': True,
+                                               'details': u'no me gustó pa na la propuesta'})
+        detail_url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+                                                                     'proposal_slug': self.popular_proposal1.slug})
+        self.assertRedirects(response_post, detail_url)

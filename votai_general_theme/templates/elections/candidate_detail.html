@@ -13,6 +13,7 @@
 
 {% block tab_profile %}class="active"{% endblock %}
 {% block content_container %}{% endblock content_container %}
+{% block election_breadcrumbs %}{% endblock %}
 
 {% block ogp %}
   {% render_ogp candidate %}
@@ -22,8 +23,20 @@
 {% block mainelection %}
 <div class="profile">
 	<div class="container">
+		<div class="row breadscrumb-social hidden-xs yellow-breadcrumbs">
+			<div class="col-md-9">
+				<ul class="breadcrumb">
+					<li><a href="/">{% trans "Portada" %}</a></li>
+					{% if election.area %}
+						<li><a href="{% url 'area' slug=election.area.id %}">{{ election.area }}</a></li>
+					{% endif %}
+					<li><a href="{% url 'election_view' slug=election.slug %}">{{ election }}</a></li>
+					<li class="active">{% block last_breadcrumb %}{% trans "Perfiles"%}{% endblock last_breadcrumb %}</li>
+				</ul>
+			</div>
+		</div>
 		<div class="row">
-			<div class="col-md-4 col-sm-4 col-xs-12">
+			<div class="col-md-2 col-sm-2 col-xs-12">
 					<div id="candidate-img-profile">
 						{% if candidate.image %}
 
@@ -39,15 +52,20 @@
 					</div>
 			</div>
 			<div class="col-md-8 col-sm-8 col-xs-12">
-				<h1>{{ candidate.name }}</h1>
+				<h1 class="text-white">{{ candidate.name }}</h1>
+				<ul class="text-white">
+					<li>Pacto:</li>
+					<li>Edad:</li>
+					<li>Lema de campaña:</li>
+					<li>Ocupación:</li>
+					<li>Experiencia en cargos públicos:</li>
+				</ul>
 			</div>
 		</div>
 
-		<div class="profile-candidate">
+		<div>
 			<div class="row">
 				<div class="col-md-3">
-
-
 				</div>
 				<div class="col-md-5">
 					{% include 'elections/candidates/extra_info_per_candidate.html' %}
@@ -63,9 +81,7 @@
 				</div>
 			</div>
 
-			<div class="row">
-
-				<div class="antecedentes col-md-12">
+				<div class="antecedentes text-white">
 					<div class="info">
 					{% for background_category in election.can_election.backgroundcategory_set.all %}
 			 			{% for background in background_category.background_set.all %}
@@ -78,7 +94,6 @@
 					{{ candidate.biography|markdown }}
 			 		</div>
 			 	</div>
-			</div>
 		</div>
 
 	</div>
@@ -134,8 +149,8 @@
 {% block extrajs %}
 	$(document).ready(function() {
 		$('div.antecedentes div.info').expander({
-			expandText: '<i class="fa fa-chevron-down" aria-hidden="true"></i>',
-			userCollapseText: '<i class="fa fa-chevron-up" aria-hidden="true"></i>',
+			expandText: '<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i><i class="fa fa-chevron-down fa-stack-1x fa-inverse" aria-hidden="true"></i></span>',
+			userCollapseText: '<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i><i class="fa fa-chevron-up fa-stack-1x fa-inverse" aria-hidden="true"></i></span>',
 			slicePoint: 180,
 		});
 

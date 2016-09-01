@@ -196,6 +196,16 @@ select.form-control {
 	color: $grey-four;
 }
 
+.breadcrumb>li+li:before {
+    padding: 0 5px;
+    color: $grey-four;
+    content: "/\00a0";
+}
+
+.yellow-breadcrumbs .breadcrumb a, .yellow-breadcrumbs .breadcrumb>.active, .yellow-breadcrumbs .breadcrumb>li+li:before {
+  color: white;
+}
+
 /*FORM*/
 
 .form-control {
@@ -1057,35 +1067,11 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
     margin-top: 17px;
 }
 
-.read-more a, .read-less a {
-	display: block;
-	background: $letters-color;
-	text-align: center;
-	font-size: 14px;
-	border-radius: 0px 0px 6px 6px;
-	margin: 0px -20px;
-}
-
-.antecedentes p {
-	margin: 0;
-}
-
-.profile-candidate {
-	padding: 0px 20px;
-}
-
-.profile-candidate .table tbody>tr>td {
-	border-bottom: 1px solid rgba(142, 146, 167, 1);
-	border-top: none;
-	font-weight: 400;
-	padding: 4px;
-	border-left: none;
-	border-right: none;
-}
-
-.profile-candidate .table tbody>tr>td span {
-	opacity: 0.8;
-	font-weight: 300;
+.read-more a, .read-less a, .read-more a:hover, .read-less a:hover {
+  display: block;
+  text-align: center;
+  margin: -26px 0px;
+  color: $yellow-dark;
 }
 
 .social-side button.btn-success {

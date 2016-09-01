@@ -1034,11 +1034,11 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 /* Footer */
 
 #footer {
-  padding: 10px 0;
+  padding: 30px 0;
   color: #B4BAC5;
   background-color: white;
-  margin: 60px 0px 0px;
-  border-top: 1px solid $grey-five;
+  margin: 0px 0px 0px;
+  border-top: 1px solid #EAEDF2;
 }
 
 #footer a {
@@ -1085,18 +1085,6 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 
 .redes {
     margin-top: 17px;
-}
-
-.container-profile {
-	background: $nav-anchor-background-color;
-	border-radius: 6px;
-	color: $main-background-color;
-	margin: auto;
-}
-
-.container-profile h3 {
-	margin-top: 0;
-	padding: 20px 20px 0 20px;
 }
 
 .read-more a, .read-less a {

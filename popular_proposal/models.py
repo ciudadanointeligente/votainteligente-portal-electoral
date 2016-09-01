@@ -183,3 +183,8 @@ class Commitment(models.Model):
                              proposal=self.proposal,
                              commitment=self)
         return instance
+
+    def get_absolute_url(self):
+        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+                                                              'proposal_slug': self.proposal.slug})
+        return url

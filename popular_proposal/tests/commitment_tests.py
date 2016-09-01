@@ -12,6 +12,7 @@ from django.core import mail
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.contrib.sites.models import Site
 from elections.models import Candidate
+from django.core.urlresolvers import reverse
 
 
 class CommitmentTestCase(ProposingCycleTestCaseBase):
@@ -29,6 +30,7 @@ class CommitmentTestCase(ProposingCycleTestCaseBase):
         self.like2 = ProposalLike.objects.create(user=self.fiera,
                                                  proposal=self.popular_proposal)
 
+
     def test_instanciate_one(self):
         commitment = Commitment.objects.create(candidate=self.candidate,
                                                proposal=self.popular_proposal,
@@ -39,7 +41,8 @@ class CommitmentTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(commitment.candidate, self.candidate)
         self.assertEquals(commitment.proposal, self.popular_proposal)
         self.assertTrue(commitment.detail)
-        # self.assertEquals(len(mail.outbox), 2)
-        # the_mail = mail.outbox[0]
-        # self.assertIn(the_mail.to[0], [self.fiera.email, self.feli.email])
-        # self.assertIn(self.candidate.name, the_mail.body)
+        # testing get_absolute_url
+        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+                                                              'proposal_slug': self.popular_proposal.slug})
+        self.assertEquals(commitment.get_absolute_url(), url)
+

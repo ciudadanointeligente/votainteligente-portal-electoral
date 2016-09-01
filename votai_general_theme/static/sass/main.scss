@@ -796,6 +796,11 @@ section.terms {
   margin-top: -10px;
 }
 
+p.answer {
+    margin-bottom: 40px;
+}
+
+
 /*Perfil candidato*/
 
 .profile {
@@ -811,33 +816,9 @@ section.terms {
 	padding: 5px;
 }
 
-.questionary .panel-heading {
-	background-color: $letters-color;
-	color: $main-background-color;
-	font-weight: 900;
-}
-
-.questionary-text-right {
-	margin-top: 25px;
-}
-
-.question-answer {
-	background-color: $question-answer-background;
-	padding: 10px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-}
-
-.question {
-	font-weight: 900;
-}
-
-
 .icon-quote-left, .icon-quote-right {
 	color: $grey-five;
 }
-
 
 
 /* Frente a frente*/
@@ -1308,15 +1289,6 @@ tr.primary p:first-child, tr.danger p:first-child {
 	color: $grey-five;
 }
 
-.candidate-answer {
-	background-color: $question-answer-background;
-	padding: 10px;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	border-radius: 6px;
-	margin-bottom: 8px;
-}
-
 .candidate-answer .btn-primary {
 	padding: 3px 6px;
 	font-size: 12px;
@@ -1719,6 +1691,30 @@ input#id_4-title {
   padding-top: 12px;
   padding-left: 60px;
   max-width: 200px;
+}
+
+/*Tabs*/
+
+.nav-tabs.nav-justified li.active a{
+  border-bottom: 3px solid #FFC80A;
+  color: #233346;
+}
+
+.nav-tabs.nav-justified li a{
+  border-bottom: 3px solid #EAEDF2;
+  color: #5E6D82;
+}
+
+.nav-tabs>li>a:hover {
+    border-color: transparent transparent $grey-five;
+    color: $grey-one;
+}
+
+.nav-tabs.nav-justified>.active>a, .nav-tabs.nav-justified>.active>a:focus, .nav-tabs.nav-justified>.active>a:hover {
+    border-color: transparent transparent $yellow;
+    border-width: 3px;
+    border-right: none;
+    border-left: none;
 }
 
 /*Masonry*/

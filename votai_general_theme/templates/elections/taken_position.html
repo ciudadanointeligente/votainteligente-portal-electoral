@@ -4,10 +4,11 @@
 {% load votainteligente_extras %}
 
 {% if taken_position.position %}
-        {{taken_position.position.label}}
-    <p class="position_description">
-     {{taken_position.description}}
-    </p>
+    {{taken_position.position.label}}
+    {% if taken_position.description %}
+        <a href="" data-toggle="tooltip" data-placement="top" title="{{taken_position.description}}"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+    {% endif %}
+
     {% if taken_position.sources.all %}
         {% for source in taken_position.sources.all %}
             
@@ -21,3 +22,9 @@
     
     {% include 'elections/twitter/answer_this_question.html' with taken_position=taken_position candidate=candidate %}
 {% endif %}
+
+<script type="text/javascript">
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>

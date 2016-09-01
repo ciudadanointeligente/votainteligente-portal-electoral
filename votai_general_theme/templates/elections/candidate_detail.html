@@ -93,15 +93,21 @@
 				<h3>{% trans "Cuestionario" %} {% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
 			</div>
 		</div>
+		<ul class="nav nav-tabs nav-justified" role="tablist">
+			{% for category in election.categories.all %}
+				<li role="presentation" class="{% if forloop.first %}active{% endif %}">
+					<a href="#{{category.name|slugify}}" class="small" aria-controls="{{ category.name|slugify }}" role="tab" data-toggle="tab">{{category.name}}</a>
+				</li>
+			{% endfor %}
+		</ul>
+		<div class="tab-content">
 		{% for category in election.categories.all %}
-		<div class="panel panel-default">
-			<div class="panel-heading">{{category.name}}</div>
-			<div class="panel-body">
+			<div role="tabpanel" class="tab-pane {% if forloop.first %}active{% endif %}" id="{{category.name|slugify}}">
 				{% for topic in category.topics.all %}
-				<div class="question-answer" {% if forloop.counter >= 2 %}style="margin-top:5px;" {% endif %}>
-					<p class="question">
+				<div class="question-answer" {% if forloop.counter >= 2 %} {% endif %}>
+					<h4 class="question text-dark">
 						{{topic.label}}
-					</p>
+					</h4>
 					<p class="answer">
 						{% get_taken_position_for topic candidate %}
 						<!-- source -->
@@ -110,10 +116,11 @@
 				</div>
 				{% endfor %}
 			</div>
-		</div>
 		{% endfor %}
+		</div>
 	</div>
 	{% endif %}
+
 </div>
 
 	<script type="text/javascript">
@@ -127,8 +134,8 @@
 {% block extrajs %}
 	$(document).ready(function() {
 		$('div.antecedentes div.info').expander({
-			expandText: '<i class="icon-chevron-down"></i>',
-			userCollapseText: '<i class="icon-chevron-up"></i>',
+			expandText: '<i class="fa fa-chevron-down" aria-hidden="true"></i>',
+			userCollapseText: '<i class="fa fa-chevron-up" aria-hidden="true"></i>',
 			slicePoint: 180,
 		});
 

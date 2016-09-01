@@ -7,6 +7,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.conf import settings
 
+
 class SubscriptionEventBase(object):
     def get_who(self):
         raise NotImplementedError
@@ -22,7 +23,7 @@ class SubscriptionEventBase(object):
                 'person': person}
 
     def get_template(self):
-        return  self.mail_template
+        return self.mail_template
 
     def notify(self):
         for person in self.get_who():
@@ -40,7 +41,7 @@ class NewCommitmentNotification(SubscriptionEventBase):
         self.commitment = kwargs.pop('commitment')
 
     def get_who(self):
-        return self.proposal.likers.all()
+        return self.proposal.likers.exclude(id=self.proposal.proposer.id)
 
     def get_mail_from(self, person):
         return person.email
@@ -53,6 +54,31 @@ class NewCommitmentNotification(SubscriptionEventBase):
 
     def get_context(self, **kwargs):
         context = super(NewCommitmentNotification, self).get_context(**kwargs)
+        context['commitment'] = self.commitment
+        return context
+
+
+class NewCommitmentNotificationToProposer(SubscriptionEventBase):
+    mail_template = 'genia_lograste_compromiso'
+
+    def __init__(self, *args, **kwargs):
+        super(NewCommitmentNotificationToProposer, self).__init__(*args, **kwargs)
+        self.commitment = kwargs.pop('commitment')
+
+    def get_who(self):
+        return [self.proposal.proposer, ]
+
+    def get_mail_from(self, person):
+        return person.email
+
+    def get_template(self):
+        if self.commitment.commited:
+            return 'genia_lograste_compromiso'
+        else:
+            return 'genia_lo_sentimos'
+
+    def get_context(self, **kwargs):
+        context = super(NewCommitmentNotificationToProposer, self).get_context(**kwargs)
         context['commitment'] = self.commitment
         return context
 
@@ -104,14 +130,16 @@ class YouAreAHeroNotification(NumericNotificationBase):
 
 
 class EventDispatcher(object):
-    events = OrderedDict({'new-commitment': NewCommitmentNotification})
+    events = OrderedDict({'new-commitment': [NewCommitmentNotification,
+                                             NewCommitmentNotificationToProposer]})
 
     def register(self, event, event_class):
         self.events[event] = event_class
 
     def trigger(self, event, proposal, kwargs={}):
-        event_nofifier = self.events[event](proposal, **kwargs)
-        event_nofifier.notify()
+        for event_nofifier_class in self.events[event]:
+            event_nofifier = event_nofifier_class(proposal, **kwargs)
+            event_nofifier.notify()
 
 
 def notification_trigger(event, **kwargs):

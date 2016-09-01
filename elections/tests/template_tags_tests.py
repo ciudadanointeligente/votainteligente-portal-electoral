@@ -8,7 +8,7 @@ from django.contrib.sites.models import Site
 from django.template.loader import get_template
 from candidator.models import Position, TakenPosition
 from django.core.urlresolvers import reverse
-from elections.models import QuestionCategory, Topic, Area
+from elections.models import QuestionCategory, Topic, Area, PersonalData
 from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import (UserCreationForm as RegistrationForm,
                                    GroupCreationForm)
@@ -178,6 +178,16 @@ class TemplateTagsTestCase(TestCase):
         self.assertIn('Nacionalidad', actual_rendered_template)
         self.assertIn('Es un ciudadano del mundo', actual_rendered_template)
 
+    def test_get_personal_data_from_candidate(self):
+        candidate = Candidate.objects.get(id=1)
+        personal_data = PersonalData.objects.create(candidate=candidate, label='Edad', value=u'31 años')
+        template = Template("{% load votainteligente_extras %}{% get_personal_data candidate=candidate personal_data='Edad' as edad %}{{edad.value}}")
+        context = Context({'candidate': candidate})
+        rendered_template = template.render(context)
+        self.assertEquals(rendered_template, personal_data.value)
+        template = Template("{% load votainteligente_extras %}{% get_personal_data candidate=candidate personal_data='Non Existing' as non_existing %}{{non_existing.value}}")
+        self.assertFalse(template.render(context))
+
     def test_get_taken_position_by_candidate(self):
         topic = Topic.objects.create(
             label=u"Should marijuana be legalized?",
@@ -304,3 +314,39 @@ class LoginFormsTemplateTags(TestCase):
         template = Template("{% load votainteligente_extras %}{% user_image user=user height=120 width=100 %}")
         self.assertEqual(template.render(Context({'user': u, 'height': 120, 'width': 100})),
                          rendered_template)
+
+    def test_get_election_by_position(self):
+        argentina = Area.objects.create(name=u'Argentina')
+        election = Election.objects.create(
+            name='the name',
+            slug='the-slug',
+            description='this is a description',
+            extra_info_title=u'ver más',
+            area=argentina,
+            position='alcalde',
+            extra_info_content=u'Más Información')
+
+        template = Template("{% load votainteligente_extras %}{% get_election_by_position 'alcalde' as election %}{{election.name}}")
+        context = Context({'area': argentina})
+        rendered_template = template.render(context)
+        self.assertEquals(election.name, rendered_template)
+        template2 = Template("{% load votainteligente_extras %}{% get_election_by_position 'concejal' as election %}{{election.name}}")
+        self.assertFalse(template2.render(context))
+        chile = Area.objects.create(name=u'Chile')
+        election.area = chile
+        election.save()
+        template3 = Template("{% load votainteligente_extras %}{% get_election_by_position 'alcalde' as election %}{{election.name}}")
+        self.assertFalse(template3.render(context))
+
+        # Two elections with the same position doesn't raise error
+        election.area = argentina
+        election.save()
+        election = Election.objects.create(
+            name='the name2',
+            slug='the-slug',
+            description='this is a description',
+            extra_info_title=u'ver más',
+            area=argentina,
+            position='alcalde',
+            extra_info_content=u'Más Información')
+        self.assertTrue(template.render(context))

@@ -49,6 +49,15 @@ def areas_json(url='area'):
     return mark_safe(json.dumps(areas))
 
 
+@register.simple_tag
+def get_personal_data(**kwargs):
+    candidate = kwargs.pop('candidate')
+    label = kwargs.pop('personal_data')
+    if candidate.personal_datas.filter(label=label).exists():
+        return candidate.personal_datas.get(label=label)
+    return None
+
+
 @register.filter
 def val_navbars(section):
     if section in settings.NAV_BAR:

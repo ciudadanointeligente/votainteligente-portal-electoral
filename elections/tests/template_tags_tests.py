@@ -8,7 +8,7 @@ from django.contrib.sites.models import Site
 from django.template.loader import get_template
 from candidator.models import Position, TakenPosition
 from django.core.urlresolvers import reverse
-from elections.models import QuestionCategory, Topic, Area
+from elections.models import QuestionCategory, Topic, Area, PersonalData
 from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import (UserCreationForm as RegistrationForm,
                                    GroupCreationForm)
@@ -177,6 +177,16 @@ class TemplateTagsTestCase(TestCase):
         self.assertIn('nacionalidad', actual_rendered_template)
         self.assertIn('Nacionalidad', actual_rendered_template)
         self.assertIn('Es un ciudadano del mundo', actual_rendered_template)
+
+    def test_get_personal_data_from_candidate(self):
+        candidate = Candidate.objects.get(id=1)
+        personal_data = PersonalData.objects.create(candidate=candidate, label='Edad', value=u'31 años')
+        template = Template("{% load votainteligente_extras %}{% get_personal_data candidate=candidate personal_data='Edad' as edad %}{{edad.value}}")
+        context = Context({'candidate': candidate})
+        rendered_template = template.render(context)
+        self.assertEquals(rendered_template, personal_data.value)
+        template = Template("{% load votainteligente_extras %}{% get_personal_data candidate=candidate personal_data='Non Existing' as non_existing %}{{non_existing.value}}")
+        self.assertFalse(template.render(context))
 
     def test_get_taken_position_by_candidate(self):
         topic = Topic.objects.create(

@@ -798,19 +798,8 @@ section.terms {
 
 /*Perfil candidato*/
 
-.profile-candidate {
-	background-color: $nav-anchor-background-color;
-	color: $main-background-color;
-	overflow: hidden;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	min-height: 210px;
-	padding: 20px 20px 0 20px;
-}
-
-.profile-candidate img {
-	margin-bottom: 10px;
+.profile {
+    background: $yellow;
 }
 
 .social-link-candidate {

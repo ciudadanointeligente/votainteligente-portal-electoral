@@ -20,27 +20,33 @@
 
 
 {% block mainelection %}
-	<div class="container-profile">
-		<div>
-			<h1>{{ candidate.name }}</h1>
+<div class="profile">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-sm-4 col-xs-12">
+					<div id="candidate-img-profile">
+						{% if candidate.image %}
+
+						{% thumbnail candidate.image "300x300" crop="center" as im %}
+						    <img src="{{ im.url }}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive img-circle img-candidato">
+						{% endthumbnail %}
+
+						{% else %}
+						<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato img-candidato">
+						{% endif %}
+
+						{% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %}
+					</div>
+			</div>
+			<div class="col-md-8 col-sm-8 col-xs-12">
+				<h1>{{ candidate.name }}</h1>
+			</div>
 		</div>
 
 		<div class="profile-candidate">
 			<div class="row">
 				<div class="col-md-3">
-					<div id="candidate-img-profile">
-						{% if candidate.image %}
 
-						{% thumbnail candidate.image "300x300" crop="center" as im %}
-						    <img src="{{ im.url }}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive img-circle">
-						{% endthumbnail %}
-
-						{% else %}
-						<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato">
-						{% endif %}
-
-						{% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %}
-					</div>
 
 				</div>
 				<div class="col-md-5">
@@ -76,6 +82,9 @@
 		</div>
 
 	</div>
+</div>
+
+<div class="container">
 
 	{% if 'questionary'|val_navbars and election.uses_questionary  %}
 	<div class="questionary">
@@ -105,7 +114,8 @@
 		{% endfor %}
 	</div>
 	{% endif %}
-    {% include 'disqus.html' %}
+</div>
+
 	<script type="text/javascript">
 	var API_KEY = '{{ 'client_id'|website_imgur }}';
 	var candidate_name = '{{candidate.name}}';

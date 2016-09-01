@@ -45,3 +45,18 @@ class AreaOGPTestCase(TestCase):
         expected_url = "http://%s%s" % (self.site.domain,
                                         static('img/logo_vi_og.jpg'))
         self.assertEquals(expected_url, self.argentina.ogp_image())
+
+    def test_area_elections_without_position(self):
+        election = Election.objects.create(
+            name='the name',
+            slug='the-slug',
+            description='this is a description',
+            extra_info_title=u'ver más',
+            area=self.argentina,
+            position='alcalde',
+            extra_info_content=u'Más Información')
+
+        elections_without_position = self.argentina.elections_without_position.all()
+        self.assertNotIn(election, elections_without_position)
+        self.assertIn(election, self.argentina.elections.all())
+

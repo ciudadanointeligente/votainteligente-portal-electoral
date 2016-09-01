@@ -5,6 +5,7 @@
 {% load bootstrap3 %}
 {% load ogp_tags %}
 
+
 {% block extrajs %}
 $(function(){
     $('.loadFromUrl').on('show.bs.modal', function (event) {
@@ -46,11 +47,29 @@ $(function(){
 
   </div>
   <!-- /contenedorDestacado -->
-
   <!-- Candidatos -->
 
+
+
         <ul>
-        {% for election in area.elections.all %}
+
+         <!-- Alcaldes -->
+
+         {% include 'elections/_election_with_position.html' with position='alcalde' area=area %}
+         {% include 'elections/_election_with_position.html' with position='concejal' area=area %}
+            
+
+
+
+
+
+
+
+
+
+
+
+        {% for election in area.elections_without_position.all %}
         <li class="col-md-4 containerAccordion">
           <script type="text/javascript">
           jQuery(document).ready(function($){

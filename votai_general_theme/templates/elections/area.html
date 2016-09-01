@@ -54,12 +54,10 @@ $(function(){
         <ul>
 
          <!-- Alcaldes -->
-
-         {% include 'elections/_election_with_position.html' with position='alcalde' area=area %}
-         {% include 'elections/_election_with_position.html' with position='concejal' area=area %}
-            
-
-
+         {% if user.is_staff %} <!--user is staff-->
+           {% include 'elections/_election_with_position.html' with position='alcalde' area=area %}
+           {% include 'elections/_election_with_position.html' with position='concejal' area=area %}
+              
 
 
 
@@ -69,42 +67,45 @@ $(function(){
 
 
 
-        {% for election in area.elections_without_position.all %}
-        <li class="col-md-4 containerAccordion">
-          <script type="text/javascript">
-          jQuery(document).ready(function($){
-            screenwidth = $(".containerAccordion").width();
-            $('#gridaccordion-{{forloop.counter}}').gridAccordion({
-              width:screenwidth, height:250, columns:{{election.candidates.all|length}}, 
-              distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true
+
+
+          {% for election in area.elections_without_position.all %}
+          <li class="col-md-4 containerAccordion">
+            <script type="text/javascript">
+            jQuery(document).ready(function($){
+              screenwidth = $(".containerAccordion").width();
+              $('#gridaccordion-{{forloop.counter}}').gridAccordion({
+                width:screenwidth, height:250, columns:{{election.candidates.all|length}}, 
+                distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true
+              });
             });
-          });
-          </script>
-          <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
-            {% for candidate in election.candidates.all %}
-            <li>
-              {% if candidate.image %}
-                {% thumbnail candidate.image "x300" as im %}
-                  <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
-                {% endthumbnail %}
-              {% else %}
-                <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
-              {% endif %}
-              <div class="caption">{{ candidate.name }}</div>
-            </li>
-            {% endfor %}
-          </ul>
-          <a href="{{ election.get_absolute_url }}"><h3 class="portada">{{ election.name }}</h3></a>
-          <div class="election-description">
-            <p>{{ election.description|truncatewords:33 }}</p> 
-          </div>
-        </li>
-         {% if forloop.counter|divisibleby:3 %}
-      </ul>
-      <ul>
-        {% endif %}
-        {% endfor %}
-      </ul>
+            </script>
+            <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
+              {% for candidate in election.candidates.all %}
+              <li>
+                {% if candidate.image %}
+                  {% thumbnail candidate.image "x300" as im %}
+                    <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
+                  {% endthumbnail %}
+                {% else %}
+                  <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+                {% endif %}
+                <div class="caption">{{ candidate.name }}</div>
+              </li>
+              {% endfor %}
+            </ul>
+            <a href="{{ election.get_absolute_url }}"><h3 class="portada">{{ election.name }}</h3></a>
+            <div class="election-description">
+              <p>{{ election.description|truncatewords:33 }}</p> 
+            </div>
+          </li>
+           {% if forloop.counter|divisibleby:3 %}
+        </ul>
+        <ul>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %} <!--user is staff-->
       {% if not popular_proposals.all %}
       {% blocktrans %}
       <p>Acá aún no hay propuestas, pero puedes:</p>

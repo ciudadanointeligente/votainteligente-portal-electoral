@@ -12,7 +12,7 @@ from backend_candidate.forms import get_form_for_election
 from backend_candidate.tasks import (let_candidate_now_about_us,
                                      send_candidates_their_username_and_password)
 from django.template import Template, Context
-from elections.models import Election
+from elections.models import Election, Area
 from candidator.models import TakenPosition
 from django.core import mail
 from django.test import override_settings
@@ -133,6 +133,47 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         self.assertTemplateUsed(response, 'backend_candidate/i_have_commited.html')
         self.assertIn(commitment, response.context['commitments'])
         self.assertNotIn(commitment2, response.context['commitments'])
+        self.assertEquals(self.candidate, response.context['candidate'])
+        self.assertEquals(self.candidate.election, response.context['election'])
+
+    def test_proposals_for_me(self):
+        Candidacy.objects.create(user=self.feli,
+                                 candidate=self.candidate
+                                 )
+        # Proposal1 doesn't have a commitment so it should be in the lis
+        # Proposal for another area
+        another_area = Area.objects.create(name='another area')
+        proposal3 = PopularProposal.objects.create(proposer=self.fiera,
+                                                   area=another_area,
+                                                   data=self.data,
+                                                   title=u'This is a title2'
+                                                   )
+        Commitment.objects.create(candidate=self.candidate,
+                                  proposal=self.proposal2,
+                                  commited=True)
+
+        url = reverse('backend_candidate:proposals_for_me',
+                      kwargs={'slug': self.candidate.election.slug,
+                              'candidate_id': self.candidate.id})
+
+        login_url = reverse('auth_login') + "?next=" + url
+        response = self.client.get(url)
+        self.assertRedirects(response, login_url)
+        self.client.login(username=self.fiera,
+                          password='feroz')
+
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+        self.client.login(username=self.feli,
+                          password='alvarez')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'backend_candidate/proposals_for_me.html')
+        self.assertIn(self.proposal, response.context['proposals'])
+        # Should not be here since it has a commitment
+        self.assertNotIn(self.proposal2, response.context['proposals'])
+        # Should not be here since it was made for another area
+        self.assertNotIn(proposal3, response.context['proposals'])
         self.assertEquals(self.candidate, response.context['candidate'])
         self.assertEquals(self.candidate.election, response.context['election'])
 

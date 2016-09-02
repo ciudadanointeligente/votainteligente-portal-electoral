@@ -51,7 +51,12 @@
               Mis compromisos
             </a>
           </li>
-            
+          {% url 'backend_candidate:proposals_for_me' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as proposals_for_me %}
+          <li role="presentation" class="{% ifequal request.path proposals_for_me%} active{% endifequal %} hidden-xs">
+            <a class="small" href="{{proposals_for_me}}">
+              Propuestas para mi.
+            </a>
+          </li>
         {% endfor %}
       {% else %}
         {% url 'backend_citizen:index' as backend_index %}
@@ -101,6 +106,13 @@
                         {% url 'backend_candidate:my_proposals_with_a_resolution' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as my_proposals %}
                         <li class="{% ifequal request.path my_proposals%} active{% endifequal %}">
                           <a class="small" href="{{my_proposals}}">
+                            Mis compromisos
+                          </a>
+                        </li>
+                        
+                        {% url 'backend_candidate:proposals_for_me' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as proposals_for_me %}
+                        <li class="{% ifequal request.path proposals_for_me%} active{% endifequal %}">
+                          <a class="small" href="{{proposals_for_me}}">
                             Mis compromisos
                           </a>
                         </li>

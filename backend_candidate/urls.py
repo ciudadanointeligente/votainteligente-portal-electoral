@@ -5,6 +5,7 @@ from backend_candidate.views import (HomeView,
                                      CandidacyJoinView,
                                      ProfileView,
                                      MyCommitments,
+                                     ProposalsForMe,
                                      )
 from django.contrib.auth.views import login
 
@@ -26,6 +27,9 @@ urlpatterns = patterns('',
     url(r'^my_commitments/(?P<slug>[-\w]+)/(?P<candidate_id>[-\w]+)/?$',
         MyCommitments.as_view(),
         name='my_proposals_with_a_resolution'),
+    url(r'^proposals_for_me/(?P<slug>[-\w]+)/(?P<candidate_id>[-\w]+)/?$',
+        ProposalsForMe.as_view(),
+        name='proposals_for_me'),
     url(r'^candidacy_user_join/(?P<identifier>[-\w]+)/?$',
         CandidacyJoinView.as_view(),
         name='candidacy_user_join'),

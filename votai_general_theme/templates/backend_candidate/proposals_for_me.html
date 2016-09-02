@@ -1,0 +1,15 @@
+{% extends "backend_base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block extrajs %}
+{% endblock extrajs %}
+
+{% block main_content %}
+<div class="contenedorDestacado fondo-blanco">
+{% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=proposals %}
+
+</div>
+{% endblock main_content %}

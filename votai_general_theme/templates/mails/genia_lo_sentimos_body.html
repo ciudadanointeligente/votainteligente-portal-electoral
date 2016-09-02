@@ -1,0 +1,10 @@
+¡Hola {% include '_user_printable.html' with user=person %}!
+Escribimos para contarte que {{commitment.candidate.name}} {% if candidate.election.position == 'concejal' %}acaba de declarar que no apoyará{% elif candidate.election.position == 'alcalde' %}acaba de declarar que no se comprometerá con{% else %}acaba de declarar que no se comprometerá con{% endif %} la propuesta ciudadana {{proposal.title}}.
+
+
+Puedes revisar sus razones para rechazar tu propuesta ciudadana acá:
+http://votainteligente.cl{{commitment.get_absolute_url}}
+
+Te queremos mucho y por lo mismo te queremos pedir que no te desanimes y que nos ayudes a seguir cambiando Chile.
+--
+El equipo de VotaInteligente.cl

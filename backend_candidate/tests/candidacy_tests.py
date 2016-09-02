@@ -12,13 +12,16 @@ from backend_candidate.forms import get_form_for_election
 from backend_candidate.tasks import (let_candidate_now_about_us,
                                      send_candidates_their_username_and_password)
 from django.template import Template, Context
-from elections.models import Election
+from elections.models import Election, Area
 from candidator.models import TakenPosition
 from django.core import mail
 from django.test import override_settings
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.sites.models import Site
 from django.core.management import call_command
+from popular_proposal.models import (Commitment,
+                                     PopularProposal,
+                                     )
 
 
 class CandidacyTestCaseBase(SoulMateCandidateAnswerTestsBase):
@@ -27,7 +30,31 @@ class CandidacyTestCaseBase(SoulMateCandidateAnswerTestsBase):
         self.feli = User.objects.get(username='feli')
         self.feli.set_password('alvarez')
         self.feli.save()
+        self.fiera = User.objects.get(username='fiera')
+        self.fiera.set_password('feroz')
+        self.fiera.save()
+
         self.candidate = Candidate.objects.get(pk=1)
+        self.data = {
+            'clasification': 'educacion',
+            'title': u'Fiera a Santiago',
+            'problem': u'A mi me gusta la contaminación de Santiago y los autos\
+ y sus estresantes ruedas',
+            'solution': u'Viajar a ver al Feli una vez al mes',
+            'when': u'1_year',
+            'causes': u'La super distancia',
+            'terms_and_conditions': True
+        }
+        self.proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                       area=self.candidate.election.area,
+                                                       data=self.data,
+                                                       title=u'This is a title1'
+                                                       )
+        self.proposal2 = PopularProposal.objects.create(proposer=self.fiera,
+                                                        area=self.candidate.election.area,
+                                                        data=self.data,
+                                                        title=u'This is a title2'
+                                                        )
 
 
 class CandidacyModelTestCase(CandidacyTestCaseBase):
@@ -71,6 +98,84 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertIn(candidacy, response.context['candidacies'])
+
+    def test_proposals_with_a_resolution(self):
+
+        Candidacy.objects.create(user=self.feli,
+                                 candidate=self.candidate
+                                 )
+        commitment = Commitment.objects.create(candidate=self.candidate,
+                                               proposal=self.proposal,
+                                               commited=True)
+
+        candidate2 = Candidate.objects.get(id=2)
+        commitment2 = Commitment.objects.create(candidate=candidate2,
+                                                proposal=self.proposal,
+                                                commited=True)
+
+        election = self.candidate.election
+        url = reverse('backend_candidate:my_proposals_with_a_resolution',
+                      kwargs={'slug': election.slug,
+                              'candidate_id': self.candidate.id})
+        login_url = reverse('auth_login') + "?next=" + url
+        response = self.client.get(url)
+        self.assertRedirects(response, login_url)
+        self.client.login(username=self.fiera,
+                          password='feroz')
+
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+
+        self.client.login(username=self.feli,
+                          password='alvarez')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'backend_candidate/i_have_commited.html')
+        self.assertIn(commitment, response.context['commitments'])
+        self.assertNotIn(commitment2, response.context['commitments'])
+        self.assertEquals(self.candidate, response.context['candidate'])
+        self.assertEquals(self.candidate.election, response.context['election'])
+
+    def test_proposals_for_me(self):
+        Candidacy.objects.create(user=self.feli,
+                                 candidate=self.candidate
+                                 )
+        # Proposal1 doesn't have a commitment so it should be in the lis
+        # Proposal for another area
+        another_area = Area.objects.create(name='another area')
+        proposal3 = PopularProposal.objects.create(proposer=self.fiera,
+                                                   area=another_area,
+                                                   data=self.data,
+                                                   title=u'This is a title2'
+                                                   )
+        Commitment.objects.create(candidate=self.candidate,
+                                  proposal=self.proposal2,
+                                  commited=True)
+
+        url = reverse('backend_candidate:proposals_for_me',
+                      kwargs={'slug': self.candidate.election.slug,
+                              'candidate_id': self.candidate.id})
+
+        login_url = reverse('auth_login') + "?next=" + url
+        response = self.client.get(url)
+        self.assertRedirects(response, login_url)
+        self.client.login(username=self.fiera,
+                          password='feroz')
+
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+        self.client.login(username=self.feli,
+                          password='alvarez')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'backend_candidate/proposals_for_me.html')
+        self.assertIn(self.proposal, response.context['proposals'])
+        # Should not be here since it has a commitment
+        self.assertNotIn(self.proposal2, response.context['proposals'])
+        # Should not be here since it was made for another area
+        self.assertNotIn(proposal3, response.context['proposals'])
+        self.assertEquals(self.candidate, response.context['candidate'])
+        self.assertEquals(self.candidate.election, response.context['election'])
 
     def test_get_complete_12_naranja(self):
         election = Election.objects.get(id=2)
@@ -173,6 +278,15 @@ class CandidacyContacts(CandidacyTestCaseBase):
         send_candidate_a_candidacy_link(self.candidate)
         self.assertEquals(len(mail.outbox), 2)
 
+    @override_settings(NOTIFY_CANDIDATES=False)
+    def test_not_sending_any_email(self):
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail='mail@perrito.cl')
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail='mail@perrito.cl')
+        send_candidate_a_candidacy_link(self.candidate)
+        self.assertEquals(len(mail.outbox), 0)
+
     @override_settings(MAX_AMOUNT_OF_MAILS_TO_CANDIDATE=3)
     def test_send_candidate_maximum_amount_of_times(self):
         contact = CandidacyContact.objects.create(candidate=self.candidate,
@@ -271,6 +385,13 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
         the_mail = mail.outbox[0]
         self.assertIn(contact.initial_password, the_mail.body)
 
+    @override_settings(NOTIFY_CANDIDATES=False)
+    def test_not_send_candidate_their_username_and_password(self):
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl')
+        send_candidate_username_and_password(self.candidate)
+        self.assertEquals(len(mail.outbox), 0)
+
     def test_dont_send_mails_to_candidates_if_they_have_been_contacted(self):
         CandidacyContact.objects.create(candidate=self.candidate,
                                         used_by_candidate=True,
@@ -286,6 +407,26 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
         self.assertEquals(contact.times_email_has_been_sent, 1)
         the_mail = mail.outbox[0]
         self.assertIn(contact.initial_password, the_mail.body)
+
+    def test_send_mail_area_management_command(self):
+        a = Area.objects.create(name='Area')
+        e = Election.objects.create(name='Election', area=a)
+        other_candidate2 = Candidate.objects.create(name='Nombre')
+        e.candidates.add(other_candidate2)
+        self.assertNotEqual(other_candidate2.election.area,
+                            self.candidate.election.area)
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl')
+        contact2 = CandidacyContact.objects.create(candidate=other_candidate2,
+                                                   mail='mail@gatito.cl')
+        area_id = self.candidate.election.area.id
+        call_command('send_user_and_password_to_candidates_from', area_id)
+        contact = CandidacyContact.objects.get(id=contact.id)
+        self.assertEquals(len(mail.outbox), 1)
+        self.assertEquals(contact.times_email_has_been_sent, 1)
+        the_mail = mail.outbox[0]
+        self.assertIn(contact.initial_password, the_mail.body)
+        self.assertNotIn(contact2.mail, the_mail.to)
 
     def test_send_mail_task(self):
         CandidacyContact.objects.create(candidate=self.candidate,

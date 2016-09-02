@@ -5,13 +5,14 @@ from django.views.generic import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import FormView
+from django.views.generic.list import ListView
 from django.shortcuts import get_object_or_404
 from backend_candidate.forms import get_form_for_election
 from elections.models import Candidate, Election, PersonalData
 from django.core.urlresolvers import reverse
-from backend_candidate.models import CandidacyContact
 from django.http import HttpResponseRedirect
 from backend_candidate.forms import get_candidate_profile_form_class
+from popular_proposal.models import Commitment, PopularProposal
 
 
 class BackendCandidateBase(View):
@@ -148,6 +149,64 @@ class ProfileView(FormView):
 
     def get_context_data(self, **kwargs):
         context = (super(ProfileView, self)
+                   .get_context_data(**kwargs))
+        context['candidate'] = self.candidate
+        context['election'] = self.election
+        return context
+
+
+class MyCommitments(BackendCandidateBase, ListView):
+    model = Commitment
+    template_name = 'backend_candidate/i_have_commited.html'
+    context_object_name = 'commitments'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        if not is_candidate(request.user):
+            raise Http404
+        self.user = request.user
+        self.election = get_object_or_404(Election, slug=self.kwargs['slug'])
+        self.candidate = get_object_or_404(Candidate,
+                                           id=self.kwargs['candidate_id'])
+        return super(MyCommitments, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        qs = super(MyCommitments, self).get_queryset()
+        return qs.filter(candidate=self.candidate)
+
+    def get_context_data(self, **kwargs):
+        context = (super(MyCommitments, self)
+                   .get_context_data(**kwargs))
+        context['candidate'] = self.candidate
+        context['election'] = self.election
+        return context
+
+
+class ProposalsForMe(BackendCandidateBase, ListView):
+    model = PopularProposal
+    template_name = 'backend_candidate/proposals_for_me.html'
+    context_object_name = 'proposals'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        if not is_candidate(request.user):
+            raise Http404
+        self.user = request.user
+        self.election = get_object_or_404(Election, slug=self.kwargs['slug'])
+        self.candidate = get_object_or_404(Candidate,
+                                           id=self.kwargs['candidate_id'])
+        return super(ProposalsForMe, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        qs = super(ProposalsForMe, self).get_queryset()
+        proposals_ids = []
+        for commitment in self.candidate.commitments.all():
+            proposals_ids.append(commitment.proposal.id)
+        qs = qs.filter(area=self.election.area).exclude(id__in=proposals_ids)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = (super(ProposalsForMe, self)
                    .get_context_data(**kwargs))
         context['candidate'] = self.candidate
         context['election'] = self.election

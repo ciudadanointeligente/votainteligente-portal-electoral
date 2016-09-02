@@ -1,0 +1,65 @@
+{% extends "backend_base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block extrajs %}
+{% endblock extrajs %}
+
+{% block main_content %}
+<div class="contenedorDestacado fondo-blanco">
+
+  	{% if commitments %}
+  		<h2>Tus compromisos</h2>
+      	<table class="table">
+        <tr>
+            <td>{% trans 'Propuesta' %}</td>
+            <td>{% trans 'Tu compromiso' %}</td>
+        </tr>
+	    {% for commitment in commitments %}
+	    <tr>
+            <td>
+            	<a href="{{commitment.proposal.get_absolute_url}}">{{commitment.proposal.title}}</a>
+            	
+            </td>
+            <td>
+            	<a href="{{commitment.get_absolute_url}}">
+            		{% if commitment.commited %}
+            			<span class="label label-success">
+            				{% if commitment.candidate.election.position == 'concejal' %}
+            				Apoyas
+            				{% elif commitment.candidate.election.position == 'alcalde' %}
+            				Te comprometiste
+            				{% else %}
+            				Te comprometiste
+            				{% endif %}
+            			</span>
+            		{% else %}
+            			<span class="label label-danger">
+            				{% if commitment.candidate.election.position == 'concejal' %}
+            				No apoyas
+            				{% elif commitment.candidate.election.position == 'alcalde' %}
+            				No te comprometiste
+            				{% else %}
+            				No te comprometiste
+            				{% endif %}
+            			</span>
+            		{% endif %}
+            	</a>
+            </td>
+        </tr>
+        {% empty %}
+	    {% endfor %}
+	    </table>
+	{% else %}
+
+	{% blocktrans with url=election.area.get_absolute_url area_name=election.area.name %}
+	Aún no tienes compromisos, sin embargo puedes revisar <a href="{{url}}">{{area_name}}</a> para aceptar aquellas que quieres.
+	
+	{% endblocktrans %}
+	
+    {% endif %}
+
+</div>
+{% endblock main_content %}

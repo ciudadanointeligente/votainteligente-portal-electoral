@@ -296,6 +296,18 @@ def user_image(user, height, width):
             'size': size}
 
 
+@register.filter(name='has_commited_with', takes_context=True)
+def has_commited_with(candidacy, proposal):
+    if proposal.commitments.filter(candidate=candidacy.candidate).exists():
+        return True
+    return False
+
+
+@register.simple_tag
+def get_commitment(candidacy, proposal):
+    return proposal.commitments.filter(candidate=candidacy.candidate).first()
+
+
 @register.simple_tag
 def personal_data_label(personal_data):
     _class = get_candidate_profile_form_class()

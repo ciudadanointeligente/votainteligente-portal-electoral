@@ -9,13 +9,7 @@
 
 {% block main_content %}
 <div class="contenedorDestacado fondo-blanco">
-
-
-    <form method="post" action="{% url 'backend_candidate:complete_12_naranja' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
-	{% bootstrap_form form %}
-
-	<input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
-	</form>
+{% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=proposals %}
 
 </div>
 {% endblock main_content %}

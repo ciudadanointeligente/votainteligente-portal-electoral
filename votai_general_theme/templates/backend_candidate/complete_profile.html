@@ -10,9 +10,6 @@
 {% block main_content %}
 <div class="contenedorDestacado fondo-blanco">
 
-
-<div class="panel panel-default">
-  <div class="panel-body">
     <form method="post"  enctype="multipart/form-data" action="{% url 'backend_candidate:complete_profile' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
     {% if candidate.image %}
 
@@ -32,8 +29,6 @@
 
 	<input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
 	</form>
-  </div>
-</div>
 
 </div>
 {% endblock main_content %}

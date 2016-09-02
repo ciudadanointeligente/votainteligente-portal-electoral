@@ -4,6 +4,7 @@ from elections.models import Election, Area
 from django.core.urlresolvers import reverse
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.contrib.sites.models import Site
+from django.test import override_settings
 
 
 class ElectionsPerAreaTestCase(TestCase):
@@ -25,6 +26,11 @@ class ElectionsPerAreaTestCase(TestCase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'elections/area.html')
+
+    @override_settings(HIDDEN_AREAS=['argentina'])
+    def test_hidden_area(self):
+        argentina = Area.objects.create(name=u'Argentina')
+        self.assertNotIn(argentina, Area.public.all())
 
 
 class AreaOGPTestCase(TestCase):

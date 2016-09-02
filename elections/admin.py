@@ -214,7 +214,7 @@ class ElectionModelForm(forms.ModelForm):
 
 class ElectionAdmin(admin.ModelAdmin):
     form = ElectionModelForm
-    search_fields = ['name', 'tags']
+    search_fields = ['name']
     inlines = [QuestionCategoryInline, ]
 
     def get_fieldsets(self, request, obj=None):

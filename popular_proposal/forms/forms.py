@@ -8,7 +8,7 @@ from votainteligente.send_mails import send_mail
 from django.utils.translation import ugettext as _
 from django.contrib.sites.models import Site
 from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
-from popolo.models import Area
+from elections.models import Area
 from collections import OrderedDict
 from votainteligente.send_mails import send_mails_to_staff
 
@@ -304,8 +304,9 @@ class SubscriptionForm(forms.Form):
         super(SubscriptionForm, self).__init__(*args, **kwargs)
 
     def subscribe(self):
-        like = ProposalLike.objects.create(user=self.user,
-                                           proposal=self.proposal)
+
+        like, created = ProposalLike.objects.get_or_create(user=self.user,
+                                                           proposal=self.proposal)
         return like
 
 
@@ -316,7 +317,7 @@ class AreaForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(AreaForm, self).__init__(*args, **kwargs)
-        self.fields['area'].choices = [(a.id, a.name) for a in Area.objects.all()]
+        self.fields['area'].choices = [(a.id, a.name) for a in Area.public.all()]
 
     def clean(self):
         cleaned_data = super(AreaForm, self).clean()
@@ -345,7 +346,7 @@ class ProposalFilterForm(ProposalFilterFormBase):
     def __init__(self, *args, **kwargs):
         super(ProposalFilterForm, self).__init__(*args, **kwargs)
         self.fields['area'].choices = [('', _(u'Selecciona una comuna'))]
-        self.fields['area'].choices += [(a.id, a.name) for a in Area.objects.all()]
+        self.fields['area'].choices += [(a.id, a.name) for a in Area.public.all()]
         self._set_initial()
 
 

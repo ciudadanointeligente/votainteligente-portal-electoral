@@ -1,11 +1,10 @@
 from django import template
 from django.utils.safestring import mark_safe
-from elections.models import Election
+from elections.models import Election, Area
 from popular_proposal.models import ProposalLike
 import json
 from django.conf import settings
 from django.contrib.sites.models import Site
-from popolo.models import Area
 from django.core.urlresolvers import reverse
 from popular_proposal.forms.form_texts import WHEN_CHOICES, TEXTS
 from django.template.loader import render_to_string
@@ -40,7 +39,7 @@ def elections_json():
 @register.simple_tag
 def areas_json(url='area'):
     areas = []
-    for area in Area.objects.all():
+    for area in Area.public.all():
         area_dict = {'slug': area.id,
                      'name': area.name,
                      'detaillink': reverse(url, kwargs={'slug': area.id}),

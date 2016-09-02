@@ -231,6 +231,9 @@ class AreaDetailView(DetailView, FilterMixin):
         context['popular_proposals'] = filterset.qs
         return context
 
+    def get_queryset(self, *args, **kwargs):
+        return Area.objects.all()
+
 
 class CandidateFlatPageDetailView(DetailView):
     model = CandidateFlatPage

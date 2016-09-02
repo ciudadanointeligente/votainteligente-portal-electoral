@@ -283,7 +283,10 @@ admin.site.register(CandidateFlatPage, CandidateFlatPageAdmin)
 
 
 class AreaAdmin(admin.ModelAdmin):
-    pass
+    def get_queryset(self, request):
+        qs = Area.objects.all()
+        return qs
+
 admin.site.register(Area, AreaAdmin)
 
 

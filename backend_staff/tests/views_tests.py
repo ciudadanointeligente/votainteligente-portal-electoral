@@ -89,6 +89,9 @@ class StaffHomeViewTest(TestCase):
         the_mail = mail.outbox[0]
         self.assertIn(self.fiera.email, the_mail.to)
         self.assertEquals(len(the_mail.to), 1)
+        self.assertIn(self.fiera.first_name, the_mail.body)
+        print the_mail.body
+        self.fail()
 
     def test_context(self):
         data = {

@@ -32,6 +32,13 @@ class ElectionsPerAreaTestCase(TestCase):
         argentina = Area.objects.create(name=u'Argentina')
         self.assertNotIn(argentina, Area.public.all())
 
+    @override_settings(HIDDEN_AREAS=['argentina'])
+    def test_hidden_area_is_still_reachable(self):
+        argentina = Area.objects.create(name=u'Argentina')
+        url = reverse('area', kwargs={'slug': argentina.id})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
 
 class AreaOGPTestCase(TestCase):
     def setUp(self):

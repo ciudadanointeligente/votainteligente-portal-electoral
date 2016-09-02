@@ -69,6 +69,22 @@ class SubscribingToPopularProposal(TestCase):
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.url, url_home)
 
+    def test_not_liking_twice(self):
+        url_home = reverse('popular_proposals:home')
+        kwargs = {'pk': self.proposal.id}
+        url = reverse('popular_proposals:like_a_proposal',
+                      kwargs=kwargs)
+        self.client.login(username=self.feli,
+                          password='alvarez')
+        response_get = self.client.get(url, {'next': url_home})
+        self.assertEquals(response_get.context['next'], url_home)
+        response = self.client.post(url,
+                                    data={'next': url_home})
+        response = self.client.post(url,
+                                    data={'next': url_home})
+        proposals = ProposalLike.objects.filter(user=self.feli, proposal=self.proposal)
+        self.assertEquals(proposals.count(), 1)
+
     def test_popular_proposal_likers(self):
         like = ProposalLike.objects.create(user=self.feli,
                                            proposal=self.proposal)

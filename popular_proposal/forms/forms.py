@@ -304,8 +304,9 @@ class SubscriptionForm(forms.Form):
         super(SubscriptionForm, self).__init__(*args, **kwargs)
 
     def subscribe(self):
-        like = ProposalLike.objects.create(user=self.user,
-                                           proposal=self.proposal)
+
+        like, created = ProposalLike.objects.get_or_create(user=self.user,
+                                                           proposal=self.proposal)
         return like
 
 

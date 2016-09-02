@@ -9,6 +9,7 @@ from backend_candidate.models import Candidacy
 from popular_proposal.forms import (CandidateCommitmentForm,
                                     CandidateNotCommitingForm,
                                     )
+from django.test import override_settings
 
 
 class PopularProposalTestCaseBase(TestCase):
@@ -91,6 +92,17 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
         response = self.client.get(self.url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'popular_proposal/home.html')
+
+    @override_settings(HIDDEN_AREAS=['argentina'])
+    def test_not_showing_proposals_for_hidden_areas(self):
+        argentina = Area.objects.create(name=u'Argentina')
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=argentina,
+                                                          data=self.data,
+                                                          title=u'This is a title'
+                                                          )
+        response = self.client.get(self.url)
+        self.assertNotIn(popular_proposal, response.context['popular_proposals'])
 
     def test_brings_a_list_of_proposals(self):
         response = self.client.get(self.url, {'clasification': '', 'area': ''})

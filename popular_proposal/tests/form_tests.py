@@ -22,7 +22,7 @@ from popular_proposal.forms import (WHEN_CHOICES,
 from popular_proposal.forms.form_texts import TEXTS
 from django.core.urlresolvers import reverse
 from elections.models import Candidate
-
+from django.test import override_settings
 
 
 class FormTestCase(ProposingCycleTestCaseBase):
@@ -61,6 +61,15 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(form.is_valid())
         cleaned_data = form.cleaned_data
         self.assertEquals(cleaned_data['area'], self.arica)
+
+    @override_settings(HIDDEN_AREAS=['argentina'])
+    def test_area_form_is_staff_and_hidden_area(self):
+        argentina = Area.objects.create(name=u'Argentina')
+        data = {'area': argentina.id}
+        form = AreaForm(data, is_staff=True)
+        self.assertTrue(form.is_valid())
+        cleaned_data = form.cleaned_data
+        self.assertEquals(cleaned_data['area'], argentina)
 
     def test_comments_form(self):
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,

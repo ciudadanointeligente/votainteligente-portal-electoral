@@ -316,8 +316,12 @@ class AreaForm(forms.Form):
     template = 'popular_proposal/wizard/select_area.html'
 
     def __init__(self, *args, **kwargs):
+        is_staff = kwargs.pop('is_staff', False)
         super(AreaForm, self).__init__(*args, **kwargs)
-        self.fields['area'].choices = [(a.id, a.name) for a in Area.public.all()]
+        area_qs = Area.public.all()
+        if is_staff:
+            area_qs = Area.objects.all()
+        self.fields['area'].choices = [(a.id, a.name) for a in area_qs]
 
     def clean(self):
         cleaned_data = super(AreaForm, self).clean()

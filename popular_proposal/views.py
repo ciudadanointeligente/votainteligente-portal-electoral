@@ -33,6 +33,7 @@ from popular_proposal.forms import (CandidateCommitmentForm,
                                     )
 from elections.models import Candidate
 from backend_candidate.models import Candidacy
+from django.conf import settings
 
 
 class ProposalCreationView(FormView):
@@ -117,7 +118,7 @@ class HomeView(EmbeddedViewBase, FilterView):
     template_name = 'popular_proposal/home.html'
 
     def get_queryset(self):
-        qs = super(HomeView, self).get_queryset()
+        qs = super(HomeView, self).get_queryset().exclude(area__id__in=settings.HIDDEN_AREAS)
         return qs
 
     def get_context_data(self, **kwargs):
@@ -229,6 +230,13 @@ class ProposalWizardFull(ProposalWizardBase):
         context['preview_data'] = self.get_all_cleaned_data()
         
         return context
+
+    def get_form_kwargs(self, step=None):
+        kwargs = super(ProposalWizardFull, self).get_form_kwargs(step)
+        if step == '0':
+            if self.request.user.is_staff:
+                kwargs['is_staff'] = True
+        return kwargs
 
 
 class PopularProposalUpdateView(UpdateView):

@@ -15,7 +15,13 @@
     <li><a href="{% url 'home' %}">VotaInteligente</a></li>
     <li><a href="{% url 'area' slug=proposal.area.id%}">{{proposal.area}}</a></li>
     <li><a href="{{proposal.get_absolute_url}}">{{proposal.title}}</a></li>
-    <li class="active">Firmar compromiso.</li>
+    <li class="active">Firmar {% if candidate.election.position == 'concejal' %}
+				apoyo
+			{% elif candidate.election.position == 'alcalde' %}
+			 	compromiso
+			{% else %}
+				compromiso
+			{% endif %}</li>
   </ol>
 </div> 
 <div class="container">

@@ -33,24 +33,24 @@ jQuery(window).load(function () {
       
       
       // Calculates how many .post elements will actually fit per row. Could this code be cleaner?
-      
-      posts_per_row = jQuery('#posts').innerWidth() / post_width;
-      floor_posts_width = (Math.floor(posts_per_row) * post_width) - gutter;
-      ceil_posts_width = (Math.ceil(posts_per_row) * post_width) - gutter;
-      posts_width = (ceil_posts_width > jQuery('#posts').innerWidth()) ? floor_posts_width : ceil_posts_width;
-      if (posts_width == jQuery('.post').width()) {
-        posts_width = '100%';
-      }
-      
-      
-      
-      // Ensures that all top-level elements have equal width and stay centered
-      
-      jQuery('#posts, #grid').css('width', posts_width);
-      jQuery('#grid').css({'margin': '0 auto'});
+      if(typeof post_width !== 'undefined'){
+        posts_per_row = jQuery('#posts').innerWidth() / post_width;
+        floor_posts_width = (Math.floor(posts_per_row) * post_width) - gutter;
+        ceil_posts_width = (Math.ceil(posts_per_row) * post_width) - gutter;
+        posts_width = (ceil_posts_width > jQuery('#posts').innerWidth()) ? floor_posts_width : ceil_posts_width;
+        if (posts_width == jQuery('.post').width()) {
+          posts_width = '100%';
+        }
+        
+        
+        
+        // Ensures that all top-level elements have equal width and stay centered
+        
+        jQuery('#posts, #grid').css('width', posts_width);
+        jQuery('#grid').css({'margin': '0 auto'});
             
     
-    
+      }
     }
   }).trigger('resize');
   

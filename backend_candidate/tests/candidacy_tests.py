@@ -408,6 +408,26 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
         the_mail = mail.outbox[0]
         self.assertIn(contact.initial_password, the_mail.body)
 
+    def test_send_mail_area_management_command(self):
+        a = Area.objects.create(name='Area')
+        e = Election.objects.create(name='Election', area=a)
+        other_candidate2 = Candidate.objects.create(name='Nombre')
+        e.candidates.add(other_candidate2)
+        self.assertNotEqual(other_candidate2.election.area,
+                            self.candidate.election.area)
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl')
+        contact2 = CandidacyContact.objects.create(candidate=other_candidate2,
+                                                   mail='mail@gatito.cl')
+        area_id = self.candidate.election.area.id
+        call_command('send_user_and_password_to_candidates_from', area_id)
+        contact = CandidacyContact.objects.get(id=contact.id)
+        self.assertEquals(len(mail.outbox), 1)
+        self.assertEquals(contact.times_email_has_been_sent, 1)
+        the_mail = mail.outbox[0]
+        self.assertIn(contact.initial_password, the_mail.body)
+        self.assertNotIn(contact2.mail, the_mail.to)
+
     def test_send_mail_task(self):
         CandidacyContact.objects.create(candidate=self.candidate,
                                         mail='mail@perrito.cl')

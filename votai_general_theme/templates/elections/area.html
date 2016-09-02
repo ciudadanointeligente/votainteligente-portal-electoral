@@ -81,7 +81,7 @@ $(function(){
             });
             </script>
             <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
-              {% for candidate in election.candidates.all %}
+              {% for candidate in election.candidates.all|slice:":8" %}
               <li>
                 {% if candidate.image %}
                   {% thumbnail candidate.image "x300" as im %}
@@ -104,6 +104,9 @@ $(function(){
         <ul>
           {% endif %}
           {% endfor %}
+          {% if election.candidates > 7 %}
+          Puedes ver el resto en <a href="{{ election.get_absolute_url }}"><h3 class="portada">{{ election.name }}</h3></a>
+          {% endif %}
         </ul>
       {% endif %} <!--user is staff-->
       {% if not popular_proposals.all %}

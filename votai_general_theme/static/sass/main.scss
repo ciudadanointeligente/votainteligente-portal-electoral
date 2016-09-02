@@ -810,11 +810,19 @@ p.answer {
     margin-bottom: 40px;
 }
 
+.profile a {
+  color: white;
+}
+
 
 /*Perfil candidato*/
 
 .profile {
     background: $yellow;
+}
+
+.profile h1 {
+    margin: -10px 0 20px;
 }
 
 .social-link-candidate {
@@ -1070,7 +1078,7 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 .read-more a, .read-less a, .read-more a:hover, .read-less a:hover {
   display: block;
   text-align: center;
-  margin: -26px 0px;
+  margin: 0px 0px -28px;
   color: $yellow-dark;
 }
 
@@ -1701,6 +1709,10 @@ input#id_4-title {
     border-width: 3px;
     border-right: none;
     border-left: none;
+}
+
+.nav-tabs.nav-justified>li>a {
+    border-radius: 0px;
 }
 
 /*Masonry*/

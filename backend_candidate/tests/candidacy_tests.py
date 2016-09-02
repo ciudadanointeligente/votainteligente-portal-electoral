@@ -19,6 +19,9 @@ from django.test import override_settings
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.sites.models import Site
 from django.core.management import call_command
+from popular_proposal.models import (Commitment,
+                                     PopularProposal,
+                                     )
 
 
 class CandidacyTestCaseBase(SoulMateCandidateAnswerTestsBase):
@@ -27,7 +30,31 @@ class CandidacyTestCaseBase(SoulMateCandidateAnswerTestsBase):
         self.feli = User.objects.get(username='feli')
         self.feli.set_password('alvarez')
         self.feli.save()
+        self.fiera = User.objects.get(username='fiera')
+        self.fiera.set_password('feroz')
+        self.fiera.save()
+
         self.candidate = Candidate.objects.get(pk=1)
+        self.data = {
+            'clasification': 'educacion',
+            'title': u'Fiera a Santiago',
+            'problem': u'A mi me gusta la contaminación de Santiago y los autos\
+ y sus estresantes ruedas',
+            'solution': u'Viajar a ver al Feli una vez al mes',
+            'when': u'1_year',
+            'causes': u'La super distancia',
+            'terms_and_conditions': True
+        }
+        self.proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                       area=self.candidate.election.area,
+                                                       data=self.data,
+                                                       title=u'This is a title1'
+                                                       )
+        self.proposal2 = PopularProposal.objects.create(proposer=self.fiera,
+                                                        area=self.candidate.election.area,
+                                                        data=self.data,
+                                                        title=u'This is a title2'
+                                                        )
 
 
 class CandidacyModelTestCase(CandidacyTestCaseBase):
@@ -71,6 +98,43 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertIn(candidacy, response.context['candidacies'])
+
+    def test_proposals_with_a_resolution(self):
+
+        Candidacy.objects.create(user=self.feli,
+                                 candidate=self.candidate
+                                 )
+        commitment = Commitment.objects.create(candidate=self.candidate,
+                                               proposal=self.proposal,
+                                               commited=True)
+
+        candidate2 = Candidate.objects.get(id=2)
+        commitment2 = Commitment.objects.create(candidate=candidate2,
+                                                proposal=self.proposal,
+                                                commited=True)
+
+        election = self.candidate.election
+        url = reverse('backend_candidate:my_proposals_with_a_resolution',
+                      kwargs={'slug': election.slug,
+                              'candidate_id': self.candidate.id})
+        login_url = reverse('auth_login') + "?next=" + url
+        response = self.client.get(url)
+        self.assertRedirects(response, login_url)
+        self.client.login(username=self.fiera,
+                          password='feroz')
+
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+
+        self.client.login(username=self.feli,
+                          password='alvarez')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'backend_candidate/i_have_commited.html')
+        self.assertIn(commitment, response.context['commitments'])
+        self.assertNotIn(commitment2, response.context['commitments'])
+        self.assertEquals(self.candidate, response.context['candidate'])
+        self.assertEquals(self.candidate.election, response.context['election'])
 
     def test_get_complete_12_naranja(self):
         election = Election.objects.get(id=2)

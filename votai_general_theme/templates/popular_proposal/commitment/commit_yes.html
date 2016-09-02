@@ -20,6 +20,16 @@
 </div> 
 <div class="container">
 	<div class="fondo-blanco text-width">
+		<h1>
+			Firmar 
+			{% if candidate.election.position == 'concejal' %}
+				Apoyo
+			{% elif candidate.election.position == 'alcalde' %}
+			 	Compromiso
+			{% else %}
+				Compromiso
+			{% endif %}
+		</h1>
 	{% if candidate.election.position == 'concejal' %}
 		Yo <strong>{{candidate.name}}</strong> candidata/o al concejo municipal de <strong>{{proposal.area}}</strong> apoyo a la propuesta ciudadana:
 

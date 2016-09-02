@@ -290,7 +290,7 @@ EMAIL_LOCALPART='municipales2016'
 EMAIL_DOMAIN='votainteligente.cl'
 MAX_AMOUNT_OF_MAILS_TO_CANDIDATE = 3
 
-
+HIDDEN_AREAS = ['fundacion-ciudadano-inteligente', ]
 
 from django.conf import settings
 from django_nose import NoseTestSuiteRunner

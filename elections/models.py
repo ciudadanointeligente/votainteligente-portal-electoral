@@ -15,7 +15,13 @@ import copy
 from votainteligente.open_graph import OGPMixin
 
 
+class AreaManager(models.Manager):
+    def get_queryset(self):
+        return super(AreaManager, self).get_queryset().exclude(id__in=settings.HIDDEN_AREAS)
+
+
 class Area(PopoloArea, OGPMixin):
+    public = AreaManager()
 
     class Meta:
         proxy = True

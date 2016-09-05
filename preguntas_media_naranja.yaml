@@ -1,5 +1,5 @@
 - 
-  category_name: "Pregunta Ciudadano Inteligente"
+  category_name: "Posiciones políticas"
   questions: 
     - 
       answers: 
@@ -8,9 +8,6 @@
         - "En temáticas de especial interés ciudadano, implementar consultas ciudadanas abiertas con resultados vinculantes."
         - "Para ciertas temáticas abrir espacios de elaboración colaborativa de soluciones donde vecinos y representantes electos trabajen juntos. Y antes de implementar la solución hacer una consulta ciudadana para corroborar que el resto de la comuna está de acuerdo."
       question: "La participación ciudadana es fundamental en el ejercicio del poder municipal en cada comuna. Durante su gestión en el municipio, su política de participación ciudadana será:"
-- 
-  category_name: "Pregunta Educación 2020"
-  questions: 
     - 
       answers: 
         - "Diseñar estrategias para aumentar la matrícula de los colegios públicos de la comuna, potenciando para esto el desarrollo del nivel parvulario."
@@ -19,9 +16,6 @@
         - "Asegurar un traspaso expedito de los colegios municipales al Sistema de Educación Pública que actualmente se discute en el Congreso."
         - "Buscar la manera de evitar el traspaso de los colegios municipales al Sistema de Educación Pública. Usted se opone a la desmunicipalización."
       question: "Durante el próximo periodo, la principal preocupación de su gestión en lo referido a la educación será:"
-- 
-  category_name: "Pregunta Techo"
-  questions: 
     - 
       answers: 
         - "Generar oportunidades de trabajo para los vecinos desempleados de la comuna"
@@ -29,9 +23,6 @@
         - "Trabajar territorialmente con las organizaciones sociales de los sectores vulnerables de la comuna para que accedan a los beneficios del Estado."
         - "Asegurar el acceso a bienes básicos por un precio justo (farmacias populares, supermercados populares, etc.)"
       question: "¿Cuál cree usted que debería ser el rol de los Municipios en la superación de la pobreza en la comuna?"
-- 
-  category_name: "Pregunta Seguridad"
-  questions: 
     - 
       answers: 
         - "Promover acciones de prevención para evitar el ingreso de jóvenes a la actividad delictiva."
@@ -40,9 +31,6 @@
         - "Instalar cámaras de televigilancia en los principales puntos claves de la comuna."
         - "Promover actividades de reinserción social para ex infractores residentes en la comuna."
       question: "Durante el próximo periodo, la principal preocupación de su gestión en lo referido a la seguridad ciudadana será:"
-- 
-  category_name: "Pregunta Basura"
-  questions: 
     - 
       answers: 
         - "Diseñar estrategias para estimular el reciclaje de basuras y la separación de los residuos en los domicilios. "
@@ -51,9 +39,6 @@
         - "Crear o mejorar las condiciones en que se desempeñe una dirección al interior de la municipalidad dedicada a la gestión de los residuos y las basuras de tipo domiciliario."
         - ""
       question: "Durante el próximo periodo, la principal preocupación de su gestión en relación a la basura y residuos que se generen en su comuna, plantea:"
-- 
-  category_name: "Pregunta priorización de temas "
-  questions: 
     - 
       answers: 
         - "Educación. Aunque todos los servicios públicos son importantes, poner un foco especial sobre educación es fundamental para nivelar las desigualdades y abrir oportunidades para todos los jóvenes de nuestra comuna."
@@ -61,9 +46,6 @@
         - "Salud. Aunque todos los servicios públicos son importantes, vamos a hacer un esfuerzo especial en la gestión municipal de salud, comprometiendo los recursos necesarios para contar con la infraestructura y recursos humanos necesarios para una buena atención."
         - "Aseo y Ornato. Aunque todos los servicios públicos son importantes, uno de los desafíos más postergados en la comuna es contar con un espacio público limpio y ordenado, permitiendo su uso por parte de toda la comunidad."
       question: "En la provisión de servicios públicos todos estaremos de acuerdo en que es necesario entregar más y mejores servicios, por lo que las diferencias importantes se ven en la priorización de recursos humanos y económicos en cada uno. Su gestión municipal estará marcada por la siguiente priorización de servicios públicos:"
-- 
-  category_name: "Pregunta medio ambiente"
-  questions: 
     - 
       answers: 
         - "Priorizar la construcción de políticas comunitarias ambientales, mediante el fortalecimiento de los mecanismos de participación y decisión de los vecinos en las decisiones a implantar en el territorio comunal."
@@ -71,9 +53,6 @@
         - "Incentivar la inversión privada en la generación de más y mejores áreas verdes, como también en la implementación de proyectos e infraestructura ambientalmente sustentables dentro de la comuna."
         - "Procurar el cumplimiento de las políticas ambientales nacionales y apoyar a los organismos de la administración ambiental (SEA, SMA y MMA)."
       question: "Durante el próximo periodo, el foco de la política ambiental municipal será:"
-- 
-  category_name: "Pregunta urbanismo-uso de suelo"
-  questions: 
     - 
       answers: 
         - "Hace falta un mayor desarrollo inmobiliario que ofrezca más alternativas de vivienda, generando mejores espacios para que familias, actuales y nuevas, tengan la posibilidad de tener un hogar digno y vivir en la comuna."
@@ -81,9 +60,6 @@
         - "La mayor necesidad en materia de desarrollo urbano es la falta de espacios adecuados para la actividad comercial y de servicios en la comuna. Se requiere de más sectores dedicados a la prestación de servicios que satisfagan las necesidades de los vecinos para que no tengan que salir de la comuna en su búsqueda."
         - "El mayor problema que vivimos a nivel de desarrollo territorial son los altos niveles de segregación social que se observan en las ciudades. Para combatir esa situación creo necesario velar por la reserva de espacios dentro de la comuna que puedan ser destinados para el desarrollo de viviendas sociales que atraigan a segmentos sociales que hoy no tienen acceso a nuestros barrios."
       question: "Considerando que la misión del municipio se desarrolla respecto de un espacio territorial determinado, cuál cree usted que de los siguientes aspectos del desarrollo territorial es prioritario incentivar en su comuna:"
-- 
-  category_name: "Pregunta Immigrantes"
-  questions: 
     - 
       answers: 
         - "Pienso que la migración es una oportunidad porque los trabajadores migrantes están dispuestos a trabajar por una renta menor"

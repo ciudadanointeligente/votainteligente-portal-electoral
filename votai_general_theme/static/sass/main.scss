@@ -362,8 +362,8 @@ section#hero {
 /*Section banner*/
 
 section#banner {
-    background: $grey-one;
-    padding: 31px 0 1px;
+  background: $grey-one;
+  padding: 15px 0 0px;
 }
 
 .counter span {
@@ -391,8 +391,8 @@ section#como-funciona {
 /*Section que hago*/
 
 section#que-hago {
-    background: $blue;
-    padding: 80px 0;
+  background: $blue;
+  padding: 15px 0 21px;
 }
 
 #que-hago .arrow {
@@ -401,6 +401,12 @@ section#que-hago {
 
 #que-hago .col-md-1.col-xs-2 {
   margin-top: 13px;
+}
+
+/*Section propuestas en home*/
+
+section#propuestas-mas-apoyo {
+    padding: 60px 0;
 }
 
 /*Elecciones destacadas*/
@@ -503,20 +509,24 @@ section#que-hago {
 /*Home search*/
 
 #home-search {
-  margin: 24px 0;
-}
-
-#home-search .list-inline {
-    margin-left: 0px;
-}
-
-#home-search .list-inline li {
-    margin-right: 5px;
+  position: relative;
 }
 
 #home-search input {
     width: 100%;
-    padding: 5px 10px;
+    padding: 14px 10px;
+    margin-left: 10px;
+    color: $grey-two;
+}
+
+.elections-results {
+    position: absolute;
+    bottom: -40px;
+    left: 15px;
+}
+
+.elections-results .list-inline>li {
+    margin-right: 5px;
 }
 
 
@@ -545,6 +555,8 @@ section#que-hago {
 }
 
 .btn-lg {
+    height: 55px;
+    padding: 17px;
 }
 
 
@@ -573,19 +585,19 @@ section#que-hago {
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
 	background-color: lighten($grey-five,5%);
-	border: 3px solid lighten($grey-five,5%);
-	color: $grey-two;
+  border: 3px solid lighten($grey-five,5%);
+  color: $grey-two;
 }
 
 .btn-danger {
-	background-color: $yellow;
-	color: $grey-two;
-	border: 3px solid white;
+  background-color: $blue;
+  color: white;
+  border: 3px solid $blue;
 }
 
 .btn-danger:hover {
-	background-color: lighten($yellow,10%);
-	border-color: transparent;
+  background-color: lighten($blue,5%);
+	border: 3px solid lighten($blue,5%);
 }
 
 .btn-default {
@@ -603,6 +615,7 @@ section#que-hago {
 .btn-info {
 	background: $grey-one;
 	border: 3px solid $grey-one;
+  color: white;
 }
 
 .btn-info:hover, .btn-info:focus, .btn-info.active.focus, .btn-info.active:focus, .btn-info.active:hover, .btn-info:active.focus, .btn-info:active:focus, .btn-info:active:hover {
@@ -1713,6 +1726,72 @@ input#id_4-title {
 
 .nav-tabs.nav-justified>li>a {
     border-radius: 0px;
+}
+
+/*Input*/
+
+.input-group-lg>.form-control, .input-group-lg>.input-group-addon, .input-group-lg>.input-group-btn>.btn {
+    border-radius: 30px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    height: 55px;
+    padding: 15px 16px;
+    font-size: 12px;
+    line-height: initial;
+    background: $grey-one;
+    border: 3px solid $grey-one;
+    color: white;
+}
+
+/*Slides*/
+
+.carousel-control.left,.carousel-control.right  {background:none;width:25px;}
+.carousel-control.left {left:-25px;}
+.carousel-control.right {right:-25px;}
+.broun-block {
+    padding-bottom: 34px;
+}
+
+.mark {
+    padding: 12px 0;background:none;
+}
+
+.block-text ins {
+    bottom: -44px;
+    left: 50%;
+    margin-left: -60px;
+}
+
+
+.block {
+    display: block;
+}
+.zmin {
+    z-index: 1;
+}
+.ab {
+    position: absolute;
+}
+
+.person-text {
+    padding: 10px 0 0;
+    text-align: center;
+    z-index: 2;
+}
+.person-text a {
+    color: #ffcc00;
+    display: block;
+    font-size: 14px;
+    margin-top: 3px;
+    text-decoration: underline;
+}
+.person-text i {
+    color: #fff;
+    font-family: Georgia;
+    font-size: 13px;
+}
+.rel {
+    position: relative;
 }
 
 /*Masonry*/

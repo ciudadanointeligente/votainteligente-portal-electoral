@@ -18,10 +18,20 @@
     <div class="row">
       <div class="col-md-9">
         <h1 class="text-white"><div class="small">CUANDO TODOS APORTAMOS, EL RESULTADO ES MEJOR</div>A PONERSE CON PROPUESTAS</h1>
-        <p class="text-white">Te invitamos a reunirte con tus vecinas y vecinos, reflexionar, conversar y proponer ideas para tu comuna, las que podrían ser integradas a los programas de candidatas y candidatos a la alcaldía de estas elecciones municipales.</p>  
-        <a class="btn btn-info" href="#como-funciona" onclick="ga('send', 'event', 'ComoFunciona');">¿Cómo funciona?</a>
-        <a class="btn btn-warning" href="{% url 'popular_proposals:home' %}">¿Qué han propuesto mis vecinos?</a>
-        <a class="btn btn-danger disabled" href="">Pronto: ¿Quiénes son mis candidatos?</a>
+        <p class="text-white">Te invitamos a reunirte con tus vecinas y vecinos, reflexionar, conversar y proponer ideas para tu comuna, las que podrían ser integradas a los programas de candidatas y candidatos a la alcaldía de estas elecciones municipales.</p>
+        <div class="row">
+          
+          <div class="col-md-7">
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon small" id="sizing-addon1"><i class="fa fa-search" aria-hidden="true"></i> Candidatos</span>
+              {% include '_election_search_form.html' %}
+              <!-- <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1"> -->
+            </div>
+          </div>
+          <div class="col-md-5">
+            <a class="btn btn-danger btn-lg" href="{% url 'popular_proposals:propose_wizard_full' %}">Tengo una propuesta</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -45,7 +55,7 @@
 </section>
 {% endwith %}
 {% endif %}
-<section id="como-funciona">
+<!-- <section id="como-funciona">
   <div class="container">
     <h2 class="text-center">¿Cómo funciona?</h2>
     <div class="text-center">
@@ -76,32 +86,28 @@
       </div>
     </div>
   </div>
+</section> -->
+
+<!-- <section id="candidatos-mas-comprometidos">
+  {% include '_slide_candidatos.html' %}
+</section> -->
+
+<section id="propuestas-mas-apoyo">
+  {% include '_slide_propuestas.html' %}
 </section>
 
 <section id="que-hago">
   <div class="container">
-    <h2 class="text-center text-white">Ahora que me informé ¿qué hago?</h2>
-    <div class="line-space"></div>
     <div class="row">
-      <div class="col-md-1 col-sm-1 col-xs-2"><span class="number text-white">1</span></div>
-      <div class="col-md-5 col-sm-5 col-xs-10">
-        <h4 class="text-white">Tengo una idea ¿cómo empiezo?</h4>
-        <p class="text-white">Regístrate, selecciona tu comuna y sigue los pasos para crear tu propuesta</p>
-        <div><span class="small text-white">TIEMPO APROX: 20 MIN</span><a class="btn btn-success arrow" href="{% url 'popular_proposals:propose_wizard_full' %}"><img src="{% static 'img/arrow.svg' %}"></a></div>
+      <div class="col-md-8">
+        <h3 class="text-white">Tengo una idea para mejorar mi comuna ¿cómo empiezo?</h3>
+        <p class="text-white">Regístrate, selecciona tu comuna y sigue los pasos para crear tu propuesta. Tiempo aprox. 20 minutos.</p>
       </div>
-      <div class="col-md-1 col-sm-1 col-xs-2"><span class="number text-white">2</span></div>
-      <div class="col-md-5 col-sm-5 col-xs-10">
-        <h4 class="text-white">Quiero conocer las propuestas de mi comuna</h4>
-        <p class="text-white">Selecciona tu comuna y te mostraremos las propuestas publicadas por tus vecinos</p>
-        
-
-
-
-        {% include '_election_search_form.html' %}
-      </div>
+      <div class="col-md-4"><h3 class="pull-right"><a class="btn btn-success arrow btn-lg" href="{% url 'popular_proposals:propose_wizard_full' %}">Crea tu propuesta</a></h3></div>
     </div>
   </div>
 </section>
+
 
 <script>
 function ab_testing() {

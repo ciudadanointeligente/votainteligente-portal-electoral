@@ -15,7 +15,8 @@
       {% with user.candidacies.first as candidacy %}
       {{candidacy.candidate.name}}
       {% endwith %}
-      <small><a href="{{candidacy.candidate.get_absolute_url}}">{% trans 'Verme en la página web' %}</a></small>
+      <small><a href="{{candidacy.candidate.get_absolute_url}}"><i class="fa fa-eye" aria-hidden="true"></i>
+{% trans 'perfil' %}</a></small>
     {% else %}
     {% include '_user_printable.html' %}
     {% endif %}!</h1>

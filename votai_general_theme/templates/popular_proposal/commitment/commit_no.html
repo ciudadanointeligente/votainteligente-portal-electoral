@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load votainteligente_extras %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block extrajs %}
+{% load ogp_tags %}
+{% endblock extrajs %}
+
+{% block content %}
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a href="{% url 'home' %}">VotaInteligente</a></li>
+    <li><a href="{% url 'area' slug=proposal.area.id%}">{{proposal.area}}</a></li>
+    <li><a href="{{proposal.get_absolute_url}}">{{proposal.title}}</a></li>
+    <li class="active">No lo incluiré</li>
+  </ol>
+</div> 
+<div class="container">
+	<div class="fondo-blanco text-width">
+
+
+
+	{% if candidate.election.position == 'concejal' %}
+		Yo <strong>{{candidate.name}}</strong> candidata/o al Concejo Municipal de {{proposal.area}} <strong>NO</strong> apoyaré la propuesta ciudadana <strong>{{proposal.title}}</strong>.
+	{% elif candidate.election.position == 'alcalde' %}
+		Yo <strong>{{candidate.name}}</strong> candidata/o a la alcaldía de {{proposal.area}} <strong>NO</strong> me comprometo con la propuesta ciudadana <strong>{{proposal.title}}</strong>.
+
+	{% else %}
+
+		Yo <strong>{{candidate.name}}</strong> candidata/o por {{proposal.area}} <strong>NO</strong> me comprometo con la propuesta ciudadana <strong>{{proposal.title}}</strong>.
+	{% endif %}
+
+		<p>Por las razones que explicaré a continuación:</p>
+
+
+
+	
+
+
+	<form enctype="multipart/form-data" action="{% url 'popular_proposals:commit_no' proposal_pk=proposal.id candidate_pk=candidate.id %}" method="POST" role="form">{% csrf_token %}
+
+		{% bootstrap_field form.detail show_label=false %}	
+	    <div class="tips">
+		  <b class="text-dark">Terminos y Condiciones</b>
+		  {% include 'popular_proposal/commitment/terms_and_conditions.html' %}
+		</div>
+		{% bootstrap_field form.terms_and_conditions show_label=false %}
+		<button type="submit" class="btn btn-danger">
+
+			{% if candidate.election.position == 'concejal' %}
+				{% trans 'No apoyaré esta propuesta'%}
+			{% elif candidate.election.position == 'alcalde' %}
+				{% trans 'No incluiré esta propuesta en mi programa'%}
+			{% else %}
+			{% trans 'No incluiré esta propuesta en mi programa'%}
+			{% endif %}
+			</button>
+	</form>
+	</div>
+</div>
+{% endblock content %}

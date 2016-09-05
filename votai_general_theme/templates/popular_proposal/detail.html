@@ -62,24 +62,96 @@ $(function(){
     <h1 class="text-center">{{popular_proposal.title}}</h1>
     {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}
     <div class="line-space"></div>
+
+
+    {% if not user|is_candidate %}
     {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
+    {% else %}
+      {% with user.candidacies.first as candidacy %}
+        {% if candidacy.candidate.election.position == 'concejal' %}
+
+          {% include "popular_proposal/plantillas/detalle_propuesta_concejal.html" with popular_proposal=popular_proposal %}
+        {% elif candidacy.candidate.election.position == 'alcalde' %}
+          {% include "popular_proposal/plantillas/detalle_propuesta_alcalde.html" with popular_proposal=popular_proposal %}
+        {% else %}
+          {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
+        {% endif %}
+      {% endwith %}
+    {% endif %}
+
+
+    {% if popular_proposal.background %}
+      <div class="antecedentes text-width">
+        <h3>{% trans 'Antecedentes' %}</h3>
+          <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-12">
+              <a href="#">
+                {% if popular_proposal.image %}
+                    <img src="{{ popular_proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+                {% endif %}
+              </a>
+            </div>
+          </div>
+          {{popular_proposal.background|linebreaksbr}}
+      </div>
+    {% endif %}
+
+
+
+
+
+    {% if user|is_candidate %}
+      {% for candidacy in user.candidacies.all %}
+        <div>
+          {% if not candidacy|has_commited_with:popular_proposal %}
+            <span>Yo {{candidacy.candidate.name}}</span>
+            <a class="btn btn-default" href="{% url 'popular_proposals:commit_no' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">
+              {% if candidacy.candidate.election.position == 'concejal' %}
+
+                {% trans 'No quiero apoyar' %}
+              {% elif candidacy.candidate.election.position == 'alcalde' %}
+                {% trans 'No me quiero comprometer' %}
+              {% else %}
+                {% trans 'No me quiero comprometer' %}
+              {% endif %}
+            </a>
+            <a class="btn btn-success" href="{% url 'popular_proposals:commit_yes' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">
+
+              {% if candidacy.candidate.election.position == 'concejal' %}
+
+                {% trans 'Quiero apoyar' %}
+              {% elif candidacy.candidate.election.position == 'alcalde' %}
+                {% trans 'Me quiero comprometer' %}
+              {% else %}
+                {% trans 'Me quiero comprometer' %}
+              {% endif %}
+              </a>
+          {% else %}
+            {% get_commitment candidacy popular_proposal as candidate_commitment %}
+            <div class="panel panel-default">
+              <div class="panel-body">
+              {% if candidate_commitment.commited %}
+               <i class="fa fa-heart" aria-hidden="true"></i> {% trans 'Yo me comprometí!' %}
+              {% else %}
+                {% trans 'Dijiste que no incluirías esta propuesta en tu programa.' %}
+              {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endif %}
 </div>
 
-{% if popular_proposal.background %}
-  <div class="antecedentes text-width">
-    <h3>{% trans 'Antecedentes' %}</h3>
-      <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-12">
-          <a href="#">
-            {% if popular_proposal.image %}
-                <img src="{{ popular_proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
-            {% endif %}
-          </a>
-        </div>
-      </div>
-      {{popular_proposal.background|linebreaksbr}}
-  </div>
-{% endif %}
+<div class="fondo-blanco text-width">
+    {% if popular_proposal.commitments.all %}
+      <h3>Candidatos que ya han expresado su opinión:</h3>
+      {% for commitment in popular_proposal.commitments.all %}
+        {{commitment.candidate.name }} Puedes ver su compromiso <a href="{% url 'popular_proposals:commitment' candidate_slug=commitment.candidate.id proposal_slug=commitment.proposal.slug %}">Acá</a>
+      {% endfor %}
+    {% endif %}
+</div>
+
 
 
 {% endblock everything %}

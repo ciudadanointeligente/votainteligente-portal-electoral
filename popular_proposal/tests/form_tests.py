@@ -7,6 +7,7 @@ from popular_proposal.forms import (ProposalForm,
                                     ProposalTemporaryDataModelForm,
                                     FIELDS_TO_BE_AVOIDED,
                                     UpdateProposalForm,
+                                    CandidateNotCommitingForm,
                                     AreaForm)
 from django.contrib.auth.models import User
 from popolo.models import Area
@@ -16,9 +17,12 @@ from popular_proposal.models import (ProposalTemporaryData,
 from django.core import mail
 from django.template.loader import get_template
 from django.template import Context, Template
-from popular_proposal.forms import WHEN_CHOICES
+from popular_proposal.forms import (WHEN_CHOICES,
+                                    CandidateCommitmentForm)
 from popular_proposal.forms.form_texts import TEXTS
 from django.core.urlresolvers import reverse
+from elections.models import Candidate
+from django.test import override_settings
 
 
 class FormTestCase(ProposingCycleTestCaseBase):
@@ -57,6 +61,15 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(form.is_valid())
         cleaned_data = form.cleaned_data
         self.assertEquals(cleaned_data['area'], self.arica)
+
+    @override_settings(HIDDEN_AREAS=['argentina'])
+    def test_area_form_is_staff_and_hidden_area(self):
+        argentina = Area.objects.create(name=u'Argentina')
+        data = {'area': argentina.id}
+        form = AreaForm(data, is_staff=True)
+        self.assertTrue(form.is_valid())
+        cleaned_data = form.cleaned_data
+        self.assertEquals(cleaned_data['area'], argentina)
 
     def test_comments_form(self):
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
@@ -306,3 +319,61 @@ class ModelFormTest(ProposingCycleTestCaseBase):
         form.save()
         temporary_data = ProposalTemporaryData.objects.get(id=t_data.id)
         self.assertEquals(temporary_data.data['title'], data['title'])
+
+
+class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(CandidateCommitmentTestCase, self).setUp()
+        self.candidate = Candidate.objects.get(id=1)
+        self.proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                       area=self.candidate.election.area,
+                                                       data=self.data,
+                                                       title=u'This is a title'
+                                                       )
+        self.feli.set_password('alvarez')
+        self.feli.save()
+        self.fiera.set_password('feroz')
+        self.fiera.save()
+
+    def test_instanciating_form(self):
+        data = {'terms_and_conditions': True}
+        form = CandidateCommitmentForm(candidate=self.candidate,
+                                       proposal=self.proposal,
+                                       data=data)
+        self.assertTrue(form.is_valid())
+        commitment = form.save()
+        self.assertEquals(commitment.proposal, self.proposal)
+        self.assertEquals(commitment.candidate, self.candidate)
+        self.assertTrue(commitment.commited)
+
+    def test_instanciating_form_with_no_commiting(self):
+        data = {'detail': 'Yo me comprometo',
+                'terms_and_conditions': True}
+        form = CandidateNotCommitingForm(candidate=self.candidate,
+                                         proposal=self.proposal,
+                                         data=data)
+        self.assertTrue(form.is_valid())
+        commitment = form.save()
+        self.assertEquals(commitment.proposal, self.proposal)
+        self.assertEquals(commitment.candidate, self.candidate)
+        self.assertEquals(commitment.detail, data['detail'])
+        self.assertFalse(commitment.commited)
+
+    def test_validating_form(self):
+        '''
+        Un candidato no se puede comprometer a una propuesta de una
+        comuna en la que no está compitiendo
+        '''
+        other_area = Area.objects.create(name='other area')
+        proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                  area=other_area,
+                                                  data=self.data,
+                                                  title=u'This is a title'
+                                                  )
+        data = {'detail': 'Yo me comprometo',
+                'terms_and_conditions': True}
+        form = CandidateCommitmentForm(candidate=self.candidate,
+                                       proposal=proposal,
+                                       data=data)
+
+        self.assertFalse(form.is_valid())

@@ -2,12 +2,13 @@
 from django import forms
 from popular_proposal.models import (ProposalTemporaryData,
                                      ProposalLike,
-                                     PopularProposal)
+                                     PopularProposal,
+                                     Commitment)
 from votainteligente.send_mails import send_mail
 from django.utils.translation import ugettext as _
 from django.contrib.sites.models import Site
 from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
-from popolo.models import Area
+from elections.models import Area
 from collections import OrderedDict
 from votainteligente.send_mails import send_mails_to_staff
 
@@ -303,8 +304,9 @@ class SubscriptionForm(forms.Form):
         super(SubscriptionForm, self).__init__(*args, **kwargs)
 
     def subscribe(self):
-        like = ProposalLike.objects.create(user=self.user,
-                                           proposal=self.proposal)
+
+        like, created = ProposalLike.objects.get_or_create(user=self.user,
+                                                           proposal=self.proposal)
         return like
 
 
@@ -314,8 +316,12 @@ class AreaForm(forms.Form):
     template = 'popular_proposal/wizard/select_area.html'
 
     def __init__(self, *args, **kwargs):
+        is_staff = kwargs.pop('is_staff', False)
         super(AreaForm, self).__init__(*args, **kwargs)
-        self.fields['area'].choices = [(a.id, a.name) for a in Area.objects.all()]
+        area_qs = Area.public.all()
+        if is_staff:
+            area_qs = Area.objects.all()
+        self.fields['area'].choices = [(a.id, a.name) for a in area_qs]
 
     def clean(self):
         cleaned_data = super(AreaForm, self).clean()
@@ -344,7 +350,7 @@ class ProposalFilterForm(ProposalFilterFormBase):
     def __init__(self, *args, **kwargs):
         super(ProposalFilterForm, self).__init__(*args, **kwargs)
         self.fields['area'].choices = [('', _(u'Selecciona una comuna'))]
-        self.fields['area'].choices += [(a.id, a.name) for a in Area.objects.all()]
+        self.fields['area'].choices += [(a.id, a.name) for a in Area.public.all()]
         self._set_initial()
 
 
@@ -356,6 +362,7 @@ class ProposalAreaFilterForm(ProposalFilterFormBase):
         for field_name, field in self.fields.items():
             if field_name in self.initial.keys():
                 self.fields[field_name].initial = self.initial[field_name]
+
 
 class ProposalTemporaryDataModelForm(forms.ModelForm, ProposalFormBase):
     class Meta:
@@ -374,3 +381,48 @@ class ProposalTemporaryDataModelForm(forms.ModelForm, ProposalFormBase):
             instance.data[key] = self.cleaned_data[key]
         instance.save()
         return instance
+
+
+class CandidateCommitmentFormBase(forms.Form):
+    terms_and_conditions = forms.BooleanField(initial=False,
+                                              required=True,
+                                              label=_(u'Términos y Condiciones'))
+
+    commited = True
+
+    def __init__(self, candidate, proposal, *args, **kwargs):
+        super(CandidateCommitmentFormBase, self).__init__(*args, **kwargs)
+        self.candidate = candidate
+        self.proposal = proposal
+
+    def save(self):
+        commitment = Commitment.objects.create(proposal=self.proposal,
+                                               candidate=self.candidate,
+                                               commited=self.commited)
+        return commitment
+
+    def clean(self):
+        cleaned_data = super(CandidateCommitmentFormBase, self).clean()
+        if self.candidate.election:
+            if self.candidate.election.area != self.proposal.area:
+                raise forms.ValidationError(_(u'El candidato no pertenece al area'))
+        else:
+            raise forms.ValidationError(_(u'El candidato no pertenece al area'))
+        return cleaned_data
+
+
+class CandidateCommitmentForm(CandidateCommitmentFormBase):
+    commited = True
+
+
+class CandidateNotCommitingForm(CandidateCommitmentFormBase):
+    detail = forms.CharField(required=False,
+                             widget=forms.Textarea(),
+                             label=_(u'Explica tus razones para NO comprometerte con esta propuesta ciudadana'))
+    commited = False
+
+    def save(self):
+        commitment = super(CandidateNotCommitingForm, self).save()
+        commitment.detail = self.cleaned_data['detail']
+        commitment.save()
+        return commitment

@@ -282,11 +282,15 @@ NEW_ANSWER_ENDPOINT = 'NEW_ANSWER_ENDPOINT'
 
 THEME = None
 
+
+WHEN_TO_NOTIFY=[25, 50, 100, 150, 200]
+NOTIFY_CANDIDATES = True
 NO_REPLY_MAIL="no-reply@localhost"
 EMAIL_LOCALPART='municipales2016'
 EMAIL_DOMAIN='votainteligente.cl'
 MAX_AMOUNT_OF_MAILS_TO_CANDIDATE = 3
 
+HIDDEN_AREAS = ['fundacion-ciudadano-inteligente', ]
 
 from django.conf import settings
 from django_nose import NoseTestSuiteRunner

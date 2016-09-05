@@ -48,20 +48,20 @@
 						<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato img-candidato">
 						{% endif %}
 
-						{% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %}
+<!-- 						{% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %} -->
 					</div>
 			</div>
 			<div class="col-md-8 col-sm-8 col-xs-12">
-				<p class="small text-white">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}} | <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href=""><i class="fa fa-external-link-square" aria-hidden="true"></i></a>{% include 'elections/candidates/links_extra_pages.html' with candidate=candidate %}{% include 'elections/candidates/contacts.html' with candidate=candidate %}</p>
+				<p class="small text-white">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}} {% include 'elections/candidates/links_extra_pages.html' with candidate=candidate %}{% include 'elections/candidates/contacts.html' with candidate=candidate %}</p>
 				<h1 class="text-white">{{ candidate.name }}</h1>
 				<ul class="text-white">
 					<!-- {% include 'elections/candidates/extra_info_per_candidate.html' %} -->
 					<!-- {% include 'elections/candidates/personal_data_candidate.html' with candidate=candidate %} -->
 					<li>Pacto: {% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}{{pacto.value}}</li>
-					<li>Edad: {% get_personal_data candidate=candidate personal_data='Edad' as edad %}{{edad.value}}</li>
-					<li>Lema de campaña: {% get_personal_data candidate=candidate personal_data='Lema de campaña' as lema %}{{lema.value}}</li>
-					<li>Ocupación: {% get_personal_data candidate=candidate personal_data='Ocupación' as ocupacion %}{{ocupacion.value}}</li>
-					<li>Experiencia en cargos públicos: {% get_personal_data candidate=candidate personal_data='Experiencia en cargos públicos' as experiencia %}{{experiencia.value}}</li>
+					<li>Edad: {% get_personal_data candidate=candidate personal_data='age' as edad %}{{edad.value}}</li>
+					<li>Lema de campaña: {% get_personal_data candidate=candidate personal_data='lema' as lema %}{{lema.value}}</li>
+					<li>Ocupación: {% get_personal_data candidate=candidate personal_data='ocupacion' as ocupacion %}{{ocupacion.value}}</li>
+					<li>Experiencia en cargos públicos: {% get_personal_data candidate=candidate personal_data='experiencia' as experiencia %}{{experiencia.value}}</li>
 				</ul>
 				<h3 class="text-white">Propuestas ciudadanas a las que ha adherido:</h3>
 				<ul>

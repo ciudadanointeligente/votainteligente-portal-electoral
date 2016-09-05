@@ -13,6 +13,7 @@ from popular_proposal.models import ProposalTemporaryData
 from django.core import mail
 from backend_citizen.models import Organization, Enrollment
 from collections import OrderedDict
+from django.test import override_settings
 
 
 USER_PASSWORD = 'secr3t'
@@ -209,3 +210,19 @@ class WizardTestCase(TestCase):
         self.assertIn(str(temporary_data.id), the_mail.body)
         self.assertIn(temporary_data.get_title(), the_mail.body)
         self.assertIn(temporary_data.area.name, the_mail.subject)
+
+    @override_settings(HIDDEN_AREAS=['argentina'])
+    def test_full_wizard_get_area_form_kwargs(self):
+        argentina = Area.objects.create(name=u'Argentina')
+        url = reverse('popular_proposals:propose_wizard_full')
+        self.feli.is_staff = True
+        self.feli.save()
+        self.client.login(username=self.feli,
+                          password=USER_PASSWORD)
+        test_response = {0: {'0-area': argentina}}
+        test_response = self.get_example_data_for_post(test_response)
+        response = self.client.get(url)
+        area_form = response.context['form']
+        area_field = area_form.fields['area']
+        argentina_tuple = (argentina.id, argentina.name)
+        self.assertIn(argentina_tuple, area_field.choices)

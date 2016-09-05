@@ -15,6 +15,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from popular_proposal.models import (PopularProposal,
                                      ProposalTemporaryData,
+                                     Commitment,
                                      ProposalLike)
 from django.shortcuts import render_to_response
 from formtools.wizard.views import SessionWizardView
@@ -27,6 +28,12 @@ from popular_proposal.forms import ProposalAreaFilterForm
 from popular_proposal.filters import ProposalAreaFilter
 from votainteligente.view_mixins import EmbeddedViewBase
 from votainteligente.send_mails import send_mails_to_staff
+from popular_proposal.forms import (CandidateCommitmentForm,
+                                    CandidateNotCommitingForm,
+                                    )
+from elections.models import Candidate
+from backend_candidate.models import Candidacy
+from django.conf import settings
 
 
 class ProposalCreationView(FormView):
@@ -111,7 +118,7 @@ class HomeView(EmbeddedViewBase, FilterView):
     template_name = 'popular_proposal/home.html'
 
     def get_queryset(self):
-        qs = super(HomeView, self).get_queryset()
+        qs = super(HomeView, self).get_queryset().exclude(area__id__in=settings.HIDDEN_AREAS)
         return qs
 
     def get_context_data(self, **kwargs):
@@ -224,6 +231,13 @@ class ProposalWizardFull(ProposalWizardBase):
         
         return context
 
+    def get_form_kwargs(self, step=None):
+        kwargs = super(ProposalWizardFull, self).get_form_kwargs(step)
+        if step == '0':
+            if self.request.user.is_staff:
+                kwargs['is_staff'] = True
+        return kwargs
+
 
 class PopularProposalUpdateView(UpdateView):
     form_class = UpdateProposalForm
@@ -282,3 +296,73 @@ class ProposalsPerArea(EmbeddedViewBase, ListView):
                   }
         filterset = ProposalAreaFilter(**kwargs)
         return filterset
+
+
+class CommitView(FormView):
+    template_name = 'popular_proposal/commitment/commit_yes.html'
+    form_class = CandidateCommitmentForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        self.proposal = get_object_or_404(PopularProposal, id=self.kwargs['proposal_pk'])
+        self.candidate = get_object_or_404(Candidate, id=self.kwargs['candidate_pk'])
+        previous_commitment_exists = Commitment.objects.filter(proposal=self.proposal,
+                                                               candidate=self.candidate).exists()
+        if previous_commitment_exists:
+            return HttpResponseNotFound()
+        get_object_or_404(Candidacy, candidate=self.candidate, user=self.request.user)
+        # The following can be refactored
+        areas = []
+        for election in self.candidate.elections.all():
+            if election.area:
+                areas.append(election.area)
+        if self.proposal.area not in areas:
+            return HttpResponseNotFound()
+        # The former can be refactored
+        return super(CommitView, self).dispatch(*args, **kwargs)
+
+    def form_valid(self, form):
+        self.commitment = form.save()
+        return super(CommitView, self).form_valid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super(CommitView, self).get_form_kwargs()
+        kwargs['proposal'] = self.proposal
+        kwargs['candidate'] = self.candidate
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(CommitView, self).get_context_data(**kwargs)
+        context['proposal'] = self.proposal
+        context['candidate'] = self.candidate
+        return context
+
+    def get_success_url(self):
+        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+                                                              'proposal_slug': self.proposal.slug})
+        return url
+
+
+class NotCommitView(CommitView):
+    template_name = 'popular_proposal/commitment/commit_no.html'
+    form_class = CandidateNotCommitingForm
+
+
+class CommitmentDetailView(DetailView):
+    model = Commitment
+    # template_name = 'popular_proposal/commitment/detail_yes.html'
+
+    def get_template_names(self):
+        if self.object.commited:
+            return 'popular_proposal/commitment/detail_yes.html'
+        else:
+            return 'popular_proposal/commitment/detail_no.html'
+
+    def dispatch(self, *args, **kwargs):
+        self.proposal = get_object_or_404(PopularProposal, slug=self.kwargs['proposal_slug'])
+        self.candidate = get_object_or_404(Candidate, id=self.kwargs['candidate_slug'])
+        return super(CommitmentDetailView, self).dispatch(*args, **kwargs)
+
+    def get_object(self, queryset=None):
+        return self.model.objects.get(candidate=self.candidate,
+                                      proposal=self.proposal)

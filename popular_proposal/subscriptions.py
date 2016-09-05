@@ -1,6 +1,6 @@
 from collections import OrderedDict
 from votainteligente.send_mails import send_mail
-from elections.models import Candidate
+from elections.models import Candidate, Area
 from backend_candidate.models import CandidacyContact
 from popular_proposal.models import Commitment, ProposalLike, PopularProposal
 from django.db.models.signals import pre_save, post_save
@@ -169,7 +169,8 @@ def notify_candidate_of_new(sender, instance, created, **kwargs):
     template = 'notification_for_candidates_of_new_proposal'
     context = {'proposal': proposal}
     if created:
-        for election in proposal.area.elections.all():
+        area = Area.objects.get(id=proposal.area.id)
+        for election in area.elections.all():
             for candidate in election.candidates.all():
                 for contact in candidate.contacts.all():
                     context.update({'candidate': candidate})

@@ -15,11 +15,16 @@
       {% with user.candidacies.first as candidacy %}
       {{candidacy.candidate.name}}
       {% endwith %}
-      <small><a href="{{candidacy.candidate.get_absolute_url}}"><i class="fa fa-eye" aria-hidden="true"></i>
-{% trans 'perfil' %}</a></small>
     {% else %}
     {% include '_user_printable.html' %}
     {% endif %}!</h1>
+
+    {% if user|is_candidate %}
+      {% with user.candidacies.first as candidacy %}
+        <p class="text-center"><a href="{{candidacy.candidate.get_absolute_url}}"><i class="fa fa-eye" aria-hidden="true"></i>
+          {% trans 'Ver mi perfil' %}</a></p>
+      {% endwith %}
+    {% endif %}
   <div class="line-space"></div>
 
   <div class="">

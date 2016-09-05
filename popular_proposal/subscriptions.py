@@ -1,9 +1,9 @@
 from collections import OrderedDict
 from votainteligente.send_mails import send_mail
-from elections.models import Candidate
+from elections.models import Candidate, Area
 from backend_candidate.models import CandidacyContact
-from popular_proposal.models import Commitment, ProposalLike
-from django.db.models.signals import pre_save
+from popular_proposal.models import Commitment, ProposalLike, PopularProposal
+from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from django.conf import settings
 
@@ -159,3 +159,21 @@ def numerical_notification_handler(sender, instance, **kwargs):
         notifier = ManyCitizensSupportingNotification(proposal=proposal_like.proposal,
                                                       number=the_number)
         notifier.notify()
+
+
+@receiver(post_save, sender=PopularProposal)
+def notify_candidate_of_new(sender, instance, created, **kwargs):
+    if not (settings.NOTIFY_CANDIDATES and settings.NOTIFY_CANDIDATES_OF_NEW_PROPOSAL):
+        return
+    proposal = instance
+    template = 'notification_for_candidates_of_new_proposal'
+    context = {'proposal': proposal}
+    if created:
+        area = Area.objects.get(id=proposal.area.id)
+        for election in area.elections.all():
+            for candidate in election.candidates.all():
+                for contact in candidate.contacts.all():
+                    context.update({'candidate': candidate})
+                    send_mail(context,
+                              template,
+                              to=[contact.mail])

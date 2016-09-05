@@ -1,0 +1,15 @@
+- 
+  category_name: "preguntas Buenas"
+  questions: 
+    - 
+      answers: 
+        - "Respuesta 1"
+        - "Respuesta 2"
+        - "Respuesta 3"
+      question: "Esto es una pregunta y quiero una respuesta"
+    - 
+      answers: 
+        - "Respuesta 4"
+        - "Respuesta 5"
+        - "Respuesta 3"
+      question: "Pregunta 2"

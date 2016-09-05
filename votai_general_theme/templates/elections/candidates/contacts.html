@@ -1,4 +1,7 @@
 {% for contact_detail in candidate.contact_details.all %}
+    {% if forloop.first %}
+    | 
+    {% endif %}
     <a href="{{contact_detail.value}}" class="social-link-candidate" target="_blank">
         {% if contact_detail.contact_type == "TWITTER" %}
             <i class="fa fa-twitter" aria-hidden="true"></i>

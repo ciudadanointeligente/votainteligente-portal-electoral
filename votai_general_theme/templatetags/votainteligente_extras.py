@@ -322,3 +322,22 @@ def get_election_by_position(context, position):
         return Election.objects.filter(position=position, area=context['area']).first()
     else:
         return None
+
+
+@register.filter(name='is_candidate_for')
+def is_candidate_for(candidate, area):
+    areas = []
+    for election in candidate.elections.all():
+        if election.area:
+            areas.append(election.area.id)
+
+    if area in Area.objects.filter(id__in=areas):
+        return True
+    return False
+
+
+@register.filter(name='manages_this')
+def manages_this(user, candidate):
+    if user.is_authenticated() and user.candidacies.filter(candidate=candidate):
+        return True
+    return False

@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.views.generic.edit import FormView, UpdateView
 from popular_proposal.forms import (ProposalForm,
                                     SubscriptionForm,
@@ -34,6 +35,8 @@ from popular_proposal.forms import (CandidateCommitmentForm,
 from elections.models import Candidate
 from backend_candidate.models import Candidacy
 from django.conf import settings
+from django.contrib import messages
+from django.utils.translation import ugettext as _
 
 
 class ProposalCreationView(FormView):
@@ -323,6 +326,14 @@ class CommitView(FormView):
 
     def form_valid(self, form):
         self.commitment = form.save()
+        if self.commitment.commited:
+            messages.add_message(self.request,
+                                 messages.SUCCESS,
+                                 _(u'Muchas gracias por tu compromiso, le hemos enviado un mail a los ciudadanos que apoyan esta propuesta así como a aquel que la realizó.'))
+        else:
+            messages.add_message(self.request,
+                                 messages.WARNING,
+                                 _(u'Muchas gracias por tu sinceridad. Le hemos enviado un mail a los ciudadanos que apoyan y además a aquel que la realizó.'))
         return super(CommitView, self).form_valid(form)
 
     def get_form_kwargs(self):

@@ -214,7 +214,7 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         data = self.get_form_data_for_area(self.tarapaca)
         response = self.client.post(url, data=data)
         self.assertTrue(TakenPosition.objects.filter(person=self.candidate))
-        self.assertRedirects(response, reverse('backend_candidate:home'))
+        self.assertRedirects(response, url)
 
 
 class CandidacyContacts(CandidacyTestCaseBase):

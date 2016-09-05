@@ -387,3 +387,29 @@ class LoginFormsTemplateTags(TestCase):
         commitment.delete()
         self.assertEqual(template.render(Context({'candidacy': candidacy,
                                                   'proposal': popular_proposal})), 'no')
+
+    def test_is_candidate_for_this_area(self):
+        candidate = Candidate.objects.get(pk=1)
+        template = Template("{% load votainteligente_extras %}{% if candidate|is_candidate_for:area %}si{% else %}no{% endif %}")
+        context = Context({'candidate': candidate,
+                           'area': candidate.election.area})
+        self.assertEquals(template.render(context), 'si')
+        chile = Area.objects.create(name="Chile")
+        context = Context({'candidate': candidate,
+                           'area': chile})
+        self.assertEquals(template.render(context), 'no')
+
+    def test_is_user_manager_for_this_candidate(self):
+        u = User.objects.get(username='feli')
+        candidate = Candidate.objects.get(pk=1)
+        Candidacy.objects.create(user=u,
+                                 candidate=candidate
+                                 )
+        template = Template("{% load votainteligente_extras %}{% if user|manages_this:candidate %}si{% else %}no{% endif %}")
+        context = Context({'user': u,
+                           'candidate': candidate})
+        self.assertEquals(template.render(context), 'si')
+        u = User.objects.get(username='fiera')
+        context = Context({'user': u,
+                           'candidate': candidate})
+        self.assertEquals(template.render(context), 'no')

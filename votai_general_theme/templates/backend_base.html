@@ -159,6 +159,16 @@
       {% endblock sidebar %}
     </div>
     <div class="text-width">
+      {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}default{% endif %}">
+              {{ message }}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+            {% endfor %}
+        </ul>
+        {% endif %}
 		    {% block main_content %}
 		    {% endblock main_content %}
 

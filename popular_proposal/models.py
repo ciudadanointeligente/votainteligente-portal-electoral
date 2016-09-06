@@ -13,6 +13,7 @@ from django.core.urlresolvers import reverse
 from backend_citizen.models import Organization
 from votainteligente.open_graph import OGPMixin
 from elections.models import Candidate
+from django.db.models import Count
 
 
 class NeedingModerationManager(models.Manager):
@@ -124,6 +125,12 @@ class ProposalTemporaryData(models.Model):
     def __str__(self):
         return self.get_title()
 
+class ProposalsOrderedManager(models.Manager):
+    def by_likers(self, *args, **kwargs):
+        qs = self.get_queryset()
+        qs = qs.annotate(num_likers=Count('likers')).order_by('-num_likers')
+        return qs
+
 
 @python_2_unicode_compatible
 class PopularProposal(models.Model, OGPMixin):
@@ -152,6 +159,9 @@ class PopularProposal(models.Model, OGPMixin):
     for_all_areas = models.BooleanField(default=False)
 
     ogp_enabled = True
+
+    ordered = ProposalsOrderedManager()
+    objects = models.Manager()
 
     class Meta:
         ordering = ['for_all_areas', '-created']

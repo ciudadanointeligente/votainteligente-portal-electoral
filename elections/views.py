@@ -72,6 +72,7 @@ class HomeView(TemplateView):
         context['created_proposals'] = ProposalTemporaryData.objects.filter(created__gt=a_week_ago).count()
         context['accepted_proposals'] = PopularProposal.objects.filter(created__gt=a_week_ago).count()
         context['total_proposals'] = PopularProposal.objects.count()
+        context['proposals_with_likers'] = PopularProposal.ordered.by_likers()[:3]
         return context
 
 

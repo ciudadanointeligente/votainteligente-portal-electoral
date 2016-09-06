@@ -16,6 +16,8 @@ from django.core import mail
 from elections.models import Candidate, Election
 from backend_candidate.models import CandidacyContact
 from django.test import override_settings
+from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
 
 
 class TestNewCandidateCommitment(SubscriptionEventBase):
@@ -299,3 +301,46 @@ class NotNotifyCandidatesUnlessToldSo(SubscriptionTestCaseBase):
                                        )
 
         self.assertEquals(len(mail.outbox), 0)
+
+
+class HomeWithProposalsViewTestCase(TestCase):
+    def setUp(self):
+        super(HomeWithProposalsViewTestCase, self).setUp()
+        amount_of_likers = [2, 4, 1, 3]
+        for i in range(1, 5):
+            title = 'this is a title' + str(i)
+            proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                      area=self.arica,
+                                                      data=self.data,
+                                                      title=title
+                                                      )
+
+            for j in range(0, amount_of_likers[i - 1]):
+                password = User.objects.make_random_password()
+                username = 'user_' + str(j) + '_' + str(i)
+                user = User.objects.create_user(username=username, password=password)
+                like = ProposalLike.objects.create(user=user,
+                                                   proposal=proposal)
+            setattr(self, 'proposal' + str(i), proposal)
+
+    def test_manager_order_by_likes(self):
+        ps = PopularProposal.ordered.by_likers()
+        # this proposal has 4 likes
+        self.assertEquals(ps.all()[0], self.proposal2)
+        # this proposal has 4 likes
+        self.assertEquals(ps.all()[1], self.proposal4)
+        # this proposal has 4 likes
+        self.assertEquals(ps.all()[2], self.proposal1)
+        # this proposal has 4 likes
+        self.assertEquals(ps.all()[3], self.proposal3)
+
+    def test_get_home_with_the_proposals(self):
+        url = reverse('home')
+        response = self.client.get(url)
+        ps = response.context['proposals_with_likers']
+        # this proposal has 4 likes
+        self.assertEquals(ps.all()[0], self.proposal2)
+        # this proposal has 4 likes
+        self.assertEquals(ps.all()[1], self.proposal4)
+        # this proposal has 4 likes
+        self.assertEquals(ps.all()[2], self.proposal1)

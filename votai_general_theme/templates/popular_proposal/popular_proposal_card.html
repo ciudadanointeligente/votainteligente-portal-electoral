@@ -2,7 +2,8 @@
 {% load votainteligente_extras %}
 {% load i18n %}
 {% load thumbnail %}
-<div class="post propuesta">
+<div class="post propuesta{% if proposal.for_all_areas %} transversal{% endif %}">
+<!-- Cata compañera puedes saber si la propuesta es para todas las comunas mediante esto {% comment %}{% if proposal.for_all_areas %}{% else %}{% endif %}{% endcomment %}-->
   <span class="label label-default">{{proposal.data.clasification}}</span>
   <div class="small text-light">Propuesta para 
     {% if not is_embedded %}

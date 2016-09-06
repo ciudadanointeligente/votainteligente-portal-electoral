@@ -154,7 +154,7 @@ class PopularProposal(models.Model, OGPMixin):
     ogp_enabled = True
 
     class Meta:
-        ordering = ['-created']
+        ordering = ['for_all_areas', '-created']
 
     def __str__(self):
         return self.title

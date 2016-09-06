@@ -1,5 +1,6 @@
 from elections.models import Area
 from popular_proposal.models import PopularProposal
+from datetime import datetime
 
 
 class Replicator(object):
@@ -14,6 +15,7 @@ class Replicator(object):
                                            data=self.proposal.data,
                                            clasification=self.proposal.clasification,
                                            title=self.proposal.title,
+                                           created=datetime(day=19,month=8,year=2016),
                                            for_all_areas=True)
         self.proposal.for_all_areas = True
         self.proposal.save()

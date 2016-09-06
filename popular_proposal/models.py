@@ -149,6 +149,7 @@ class PopularProposal(models.Model, OGPMixin):
                               null=True,
                               blank=True)
     clasification = models.CharField(blank=True, null=True, max_length=255)
+    for_all_areas = models.BooleanField(default=False)
 
     ogp_enabled = True
 

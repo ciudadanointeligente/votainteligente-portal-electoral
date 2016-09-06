@@ -155,6 +155,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertFalse(popular_proposal.background)
         self.assertFalse(popular_proposal.image)
         self.assertEquals(popular_proposal.clasification, u'education')
+        self.assertFalse(popular_proposal.for_all_areas)
 
     def test_proposal_ogp(self):
         site = Site.objects.get_current()

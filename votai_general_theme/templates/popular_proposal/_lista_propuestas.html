@@ -3,6 +3,7 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
+{% load el_pagination_tags %}
   
     {% if form %}
 		<form action="{{ request.path }}" method="GET" role="form">
@@ -26,6 +27,8 @@
     {% endif %}
 
 <div id="grid">
+    {% paginate popular_proposals %}
+    {% show_pages %}
   <div id="posts">
     {% for proposal in popular_proposals %}
     {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal is_embedded=is_embedded %}
@@ -35,4 +38,5 @@
     {% endblocktrans %}
     {% endfor %}
   </div>
+    {% show_pages %}
 </div>

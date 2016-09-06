@@ -1,0 +1,7 @@
+<div class='text-center'>
+<ul class='pagination pagination-sm'>
+{% for page in pages %}
+    {{ page|default_if_none:'<li class="disabled"><span class="endless_separator">...</span></li>' }}
+{% endfor %}
+</ul>
+</div>

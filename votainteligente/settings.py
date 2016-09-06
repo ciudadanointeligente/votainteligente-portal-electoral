@@ -110,4 +110,4 @@ from votainteligente.votainteligente_settings import *
 if THEME:
     INSTALLED_APPS += (THEME, )
 INSTALLED_APPS += ('votai_general_theme', )
-
+INSTALLED_APPS += INSTALLED_APPS_AFTER_ALL

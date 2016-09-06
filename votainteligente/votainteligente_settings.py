@@ -40,7 +40,6 @@ INSTALLED_APPS = (
     'django_extensions',
     'social.apps.django_app.default',
     'sorl.thumbnail',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'tinymce',
     'mathfilters',
@@ -57,6 +56,7 @@ INSTALLED_APPS = (
     'django_filters',
     'django_ogp',
 )
+INSTALLED_APPS_AFTER_ALL = ('el_pagination',)
 
 
 # REGISTRATION

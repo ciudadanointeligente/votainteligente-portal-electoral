@@ -54,8 +54,14 @@
 			<div class="col-md-8 col-sm-8 col-xs-12">
 				<p class="small text-white">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}} {% include 'elections/candidates/links_extra_pages.html' with candidate=candidate %}{% include 'elections/candidates/contacts.html' with candidate=candidate %}</p>
 				<h1 class="text-white">{{ candidate.name }}</h1>
+				{% if user|manages_this:candidate %}
+					{% with user.candidacies.first as candidacy %}
+					{% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
+					<a class="btn btn-primary" href="{{backend_candidate}}" role="button">{% trans 'Actualiza tu perfil' %}</a>
+					{% endwith %}
+				{% endif %}
 				<ul class="text-white">
-					<!-- {% include 'elections/candidates/extra_info_per_candidate.html' %} -->
+					{% include 'elections/candidates/extra_info_per_candidate.html' %}
 					<!-- {% include 'elections/candidates/personal_data_candidate.html' with candidate=candidate %} -->
 					<li>Pacto: {% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}{{pacto.value}}</li>
 					<li>Edad: {% get_personal_data candidate=candidate personal_data='age' as edad %}{{edad.value}}</li>
@@ -63,6 +69,7 @@
 					<li>Ocupación: {% get_personal_data candidate=candidate personal_data='ocupacion' as ocupacion %}{{ocupacion.value}}</li>
 					<li>Experiencia en cargos públicos: {% get_personal_data candidate=candidate personal_data='experiencia' as experiencia %}{{experiencia.value}}</li>
 				</ul>
+
 				<h3 class="text-white">Propuestas ciudadanas a las que ha adherido:</h3>
 				<ul>
 					<li class="text-white">Propuesta</li>
@@ -96,7 +103,7 @@
 	<div class="questionary">
 		<div class="row">
 			<div class="col-md-6">
-				<h3>{% trans "Cuestionario" %} {% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
+				<h3>{% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
 			</div>
 		</div>
 		<ul class="nav nav-tabs nav-justified" role="tablist">

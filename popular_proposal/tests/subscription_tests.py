@@ -238,6 +238,37 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertIn(self.candidate2.name, the_mail.body)
         self.assertIn(str(2), the_mail.body)
 
+    def test_new_proposal_notification_for_candidates(self):
+        previous_amount = len(mail.outbox)
+        proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                  area=self.arica,
+                                                  data=self.data,
+                                                  title=u'This is a title'
+                                                  )
+
+        self.assertEquals(len(mail.outbox), previous_amount + 2)
+        first_mail = mail.outbox[previous_amount]
+        self.assertEquals(len(first_mail.to), 1)
+        self.assertIn(first_mail.to[0], [self.contact.mail, self.contact2.mail])
+        self.assertIn(proposal.title, first_mail.body)
+        self.assertIn(self.arica.name, first_mail.body)
+
+        second_mail = mail.outbox[previous_amount]
+        self.assertEquals(len(second_mail.to), 1)
+        self.assertIn(second_mail.to[0], [self.contact.mail, self.contact2.mail])
+        self.assertIn(proposal.title, second_mail.body)
+        self.assertIn(self.arica.name, second_mail.body)
+
+    @override_settings(NOTIFY_CANDIDATES_OF_NEW_PROPOSAL=False)    
+    def test_dont_notify_candidates_of_new_proposal(self):
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title'
+                                       )
+
+        self.assertEquals(len(mail.outbox), 0)
+
 
 @override_settings(NOTIFY_CANDIDATES=False)
 class NotNotifyCandidatesUnlessToldSo(SubscriptionTestCaseBase):
@@ -259,3 +290,12 @@ class NotNotifyCandidatesUnlessToldSo(SubscriptionTestCaseBase):
         self.assertIn(self.proposal.title, the_mail.body)
         self.assertNotIn(self.candidate.name, the_mail.body)
         self.assertIn(str(2), the_mail.body)
+
+    def test_dont_notify_candidates_of_new_proposal(self):
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title'
+                                       )
+
+        self.assertEquals(len(mail.outbox), 0)

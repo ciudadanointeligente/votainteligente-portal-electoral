@@ -20,6 +20,16 @@
 </div> 
 <div class="container">
 	<div class="fondo-blanco text-width">
+		{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}default{% endif %}">
+              {{ message }}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+            {% endfor %}
+        </ul>
+        {% endif %}
 		{% if commitment.candidate.election.position == 'concejal' %}
 		Yo <strong>{{commitment.candidate.name}}</strong> candidata/o al concejo municipal de <strong>{{commitment.proposal.area}}</strong> apoyo a la propuesta ciudadana:
 

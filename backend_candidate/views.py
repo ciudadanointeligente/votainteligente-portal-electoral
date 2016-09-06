@@ -13,6 +13,8 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from backend_candidate.forms import get_candidate_profile_form_class
 from popular_proposal.models import Commitment, PopularProposal
+from django.contrib import messages
+from django.utils.translation import ugettext as _
 
 
 class BackendCandidateBase(View):
@@ -77,10 +79,14 @@ class CompleteMediaNaranjaView(FormView):
 
     def form_valid(self, form):
         form.save()
+        messages.add_message(self.request, messages.INFO, _('Hemos guardado tus respuestas'))
         return super(CompleteMediaNaranjaView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('backend_candidate:home')
+        url = reverse('backend_candidate:complete_12_naranja',
+                      kwargs={'slug': self.election.slug,
+                              'candidate_id': self.candidate.id})
+        return url
 
 
 class CandidacyJoinView(RedirectView):
@@ -127,6 +133,7 @@ class ProfileView(FormView):
 
     def form_valid(self, form):
         form.save()
+        messages.add_message(self.request, messages.INFO, _('Hemos actualizado tu perfil'))
         return super(ProfileView, self).form_valid(form)
 
     def get_success_url(self):

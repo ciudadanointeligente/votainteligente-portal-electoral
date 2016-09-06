@@ -4,6 +4,12 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
+{% block extra_scripts %}
+<script src="{% static 'js/bootstrap-tour.js' %}"></script>
+<link href="{% static 'css/bootstrap-tour.min.css' %}" rel='stylesheet' type='text/css'>
+
+{% endblock extra_scripts %}
+
 
 {% block content %}
 
@@ -153,6 +159,16 @@
       {% endblock sidebar %}
     </div>
     <div class="text-width">
+      {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}default{% endif %}">
+              {{ message }}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+            {% endfor %}
+        </ul>
+        {% endif %}
 		    {% block main_content %}
 		    {% endblock main_content %}
 
@@ -160,7 +176,51 @@
 
     </div>
   </div>
+{% if user|is_candidate %}
+<script type="text/javascript">
+$(function(){
+  var tour = new Tour({
+            steps: [
+            {
+              element: ".mi-perfil",
+              title: "Mi perfil",
+              content: "Acá puedes modificar cosas como por ejemplo: tu foto y darnos algunos detalles de tu campaña como por ejemplo lema."
+            },
+            {
+              element: ".12naranja",
+              title: "Cuestionario",
+              content: "Hemos elaborado algunas preguntas para que nos ayudes a definir mejor tu campaña y acá las puedes responder."
+            },
+            {
+              element: ".my_proposals",
+              title: "Las propuestas con las que te has comprometido",
+              content: "Cuando te pronuncies sobre alguna propuesta ciudadana aparecerá en este lugar."
+            },
+            {
+              element: ".proposals_for_me",
+              title: "Propuestas para mi",
+              content: "Acá puedes encontrar las propuestas ciudadanas que te han hecho."
+            }
+          ],
+          template: `<div class='popover tour'>
+                <div class='arrow'></div>
+                <h3 class='popover-title'></h3>
+                <div class='popover-content'></div>
+                <div class='popover-navigation'>
+                  <button class='btn btn-default' data-role='prev'>«</button>
+                  <button class='btn btn-default' data-role='next'> »</button>
+                  <button class='btn btn-default' data-role='end'>Fin</button>
+                </div>
+              </div>`
+        });
 
+  // Initialize the tour
+  tour.init();
+
+  // Start the tour
+  tour.start();
+});
+{% endif %}
 {% endblock content %}
 
 {% block extrajs %}

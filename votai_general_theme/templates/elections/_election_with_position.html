@@ -7,39 +7,35 @@
 
 {% get_election_by_position position as election %}
 <!-- Cata compañera cacha que podis hacer lo siguiente {{position}} y te va a imprimir alcalde o concejal dependiendo de lo que tu digai -->
-<li class="col-md-4 containerAccordion">
-  <script type="text/javascript">
-  jQuery(document).ready(function($){
-    screenwidth = $(".containerAccordion").width();
-    $('#gridaccordion-{{position}}').gridAccordion({
-      width:screenwidth, height:250, columns:{{election.candidates.all|length}}, 
-      distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true
+<div class="row">
+  
+    <script type="text/javascript">
+    jQuery(document).ready(function($){
+      screenwidth = $(".containerAccordion").width();
+      $('#gridaccordion-{{position}}').gridAccordion({
+        width:screenwidth, height:250, columns:{{election.candidates.all|length}}, 
+        distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true
+      });
     });
-  });
-  </script>
-  <ul class="accordion" id="gridaccordion-{{position}}">
-    {% for candidate in election.candidates.all|slice:":8" %}
-    <li>
-      {% if candidate.image %}
-        {% thumbnail candidate.image "x300" as im %}
-          <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
-        {% endthumbnail %}
-      {% else %}
-        <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
-      {% endif %}
-      <div class="caption">{{ candidate.name }}</div>
-    </li>
-    {% endfor %}
-    {% if election.candidates > 8 %}
-    <li>
-      <a href="{{ election.get_absolute_url }}"><img src="{% static 'img/candidate-default.jpg' %}" alt="Ingresa acá para ver el resto " border="0" class="img-responsive"></a>
-      <div class="caption">Puedes ver el resto acá</div>
-    
-    </li>
-    {% endif %}
-  </ul>
-  <a href="{{ election.get_absolute_url }}"><h3 class="portada">{{ election.name }}</h3></a>
-  <div class="election-description">
-    <p>{{ election.description|truncatewords:33 }}</p> 
+    </script>
+      {% for candidate in election.candidates.all|slice:":8" %}
+  <div class="col-md-3">
+        {% if candidate.image %}
+          {% thumbnail candidate.image "x96" as im %}
+            <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive img-circle img-candidato"/></a>
+          {% endthumbnail %}
+        {% else %}
+          <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
+        {% endif %}
+        <div class="caption">{{ candidate.name }}</div>
   </div>
-</li>
+      {% endfor %}
+      {% if election.candidates > 8 %}
+        <a href="{{ election.get_absolute_url }}"><img src="{% static 'img/candidate-default.jpg' %}" alt="Ingresa acá para ver el resto " border="0" class="img-responsive img-circle img-candidato"></a>
+        <div class="caption">Puedes ver el resto acá</div>
+      {% endif %}
+    <!-- <a href="{{ election.get_absolute_url }}"><h3 class="portada">{{ election.name }}</h3></a> -->
+    <div class="election-description">
+      <p>{{ election.description|truncatewords:33 }}</p> 
+    </div>
+</div>

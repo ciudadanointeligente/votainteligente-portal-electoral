@@ -361,7 +361,7 @@ section#hero {
 
 /*Section banner*/
 
-section#banner {
+section.banner {
   background: $grey-one;
   padding: 15px 0 0px;
 }
@@ -1698,6 +1698,14 @@ input#id_4-title {
   padding-top: 12px;
   padding-left: 60px;
   max-width: 200px;
+}
+
+/*Comuna*/
+
+.comuna-concejales {
+    background: $grey-two;
+    padding: 40px 0 60px;
+    color: white;
 }
 
 /*Tabs*/

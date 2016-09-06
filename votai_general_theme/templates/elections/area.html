@@ -19,6 +19,7 @@ $(function(){
 {% endblock extrajs %}
 
 {% block navbar_background %}yellow{% endblock navbar_background %}
+{% block content_container %}{% endblock content_container %}
 
 {% block ogp %}
   {% render_ogp area %}
@@ -27,49 +28,63 @@ $(function(){
 {% block content %}
 
 {% url 'popular_proposals:area_embedded' slug=area.id as embedded_url%}
-{% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
 
 
-<div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
-  <h1>{{area.name}}</h1>
-  <!-- Featured Elections  -->
-  <div class="hidden-xs">
-    
+  <div class="profile">
+    <div class="container">
+      <div class="tips">
+        <p class="small text-dark">Para periodistas:</p>
+        {% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
+      </div>
+      <h1 class="text-center text-white">{{area.name}}</h1>
+        <!-- Candidatos -->
 
-          {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=proposal_filter_form %}
-        <div>
-          <a class="btn btn-info" href="{% url 'popular_proposals:propose_wizard' slug=area.id %}">{% blocktrans with area=area.name %}Crear una propuesta ciudadana para {{ area }}{% endblocktrans %}</a>
-        </div>
-      
 
+
+        <!-- Alcaldes -->
+        {% if user.is_staff %} <!--user is staff-->
+        <section class="comuna-alcaldes text-center">
+         <h2 class="text-white">Candidatos a alcalde</h2>
+         {% include 'elections/_election_with_position.html' with position='alcalde' area=area %}
+        </section>
+    </div>
   </div>
-  <!-- /contenedorDestacado -->
-  <!-- Candidatos -->
+      
+  <!-- Banner -->
+  {% if area.proposals.count %}
+  {% with area.proposals.count|stringformat:"04d" as n_created %}
+  <section class="banner">
+    <div class="container">
+      <ul class="list-inline text-center">
+         <li><h4 class="counter">
+          <span>{{ n_created|slice:"0:1" }}</span>
+          <span>{{ n_created|slice:"1:2" }}</span>
+          <span>{{ n_created|slice:"2:3" }}</span>
+          <span>{{ n_created|slice:"3:4" }}</span></h4></li>
+        <li><h4 class="text-white">propuestas ciudadanas se han creado para {{area}}</h4></li>  
+        <li><a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">Crea la tuya</a></li>
+
+      </ul>
+    </div>
+  </section>
+  {% endwith %}
+  {% endif %}
 
 
-
-        <ul>
-
-         <!-- Alcaldes -->
-         {% if user.is_staff %} <!--user is staff-->
-           {% include 'elections/_election_with_position.html' with position='alcalde' area=area %}
-           {% include 'elections/_election_with_position.html' with position='concejal' area=area %}
-              
-
-
-
-
-
-
-
-
-
-
-
+  <section class="comuna-concejales text-center">
+    <div class="container">
+      <h2 class="text-white">Candidatos a concejal</h2>
+      <div class="line-space"></div>
+      {% include 'elections/_election_with_position.html' with position='concejal' area=area %}
+    </div>
+  </section>
+           
+        <!-- Otras elecciones    -->
           {% for election in area.elections_without_position.all %}
+        <ul>
           <li class="col-md-4 containerAccordion">
             <script type="text/javascript">
             jQuery(document).ready(function($){
@@ -113,12 +128,22 @@ $(function(){
       {% blocktrans %}
       <p>Acá aún no hay propuestas, pero puedes:</p>
       {% endblocktrans %}
-      {% endif %}
       <a class="btn btn-info" href="{% url 'popular_proposals:propose_wizard' slug=area.id %}">{% blocktrans with area=area.name %}Crear una propuesta ciudadana para {{ area }}{% endblocktrans %}</a>
+      {% endif %}
+    </div>
+
+  <!-- Featured Elections  -->
+  <section class="comuna-propuestas">
+    <div class="container">
+      {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=proposal_filter_form %}
+    </div>
+  </section>
+      
+
+  <!-- /contenedorDestacado -->
 
       
 
-</div>
 {% endblock content %}
 
 

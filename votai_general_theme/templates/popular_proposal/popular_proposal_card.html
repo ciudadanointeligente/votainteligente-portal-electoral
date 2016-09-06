@@ -33,5 +33,9 @@
     {% include 'popular_proposal/_share.html' with popular_proposal=proposal %}
   </div>
 
+  {% if popular_proposal.image %}
+      <img src="{{ popular_proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+  {% endif %}
+
 
 </div>

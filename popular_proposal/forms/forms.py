@@ -180,11 +180,14 @@ class UpdateProposalForm(forms.ModelForm):
 
     class Meta:
         model = PopularProposal
-        fields = ['background', 'image']
+        fields = ['background', 'image', 'contact_details', 'document']
         labels = {'background': _(u'Más antecedentes sobre tu propuesta.'),
-                  'image': _(u'¿Tienes alguna imagen para compartir?')
+                  'image': _(u'¿Tienes alguna imagen para compartir?'),
+                  'document': _(u'¿Tienes algún documento para complementar tu propuesta?'),
+                  'contact_details': _(u'¿Cómo te puede contactar un candidato?')
                   }
-        help_texts = {'background': _(u'Ejemplo: Durante el año 2011, existió una iniciativa de otra comunidad que no llegó a buen puerto.')}
+        help_texts = {'background': _(u'Ejemplo: Durante el año 2011, existió una iniciativa de otra comunidad que no llegó a buen puerto.'),
+                      'contact_details': _(u'Ejemplo: Tu teléfono o el lugar donde eres ubicable y en qué horario.')}
 
 
 class CommentsForm(forms.Form):

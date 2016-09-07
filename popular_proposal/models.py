@@ -1,3 +1,4 @@
+# coding=utf-8
 from __future__ import unicode_literals
 
 from django.db import models
@@ -14,6 +15,7 @@ from backend_citizen.models import Organization
 from votainteligente.open_graph import OGPMixin
 from elections.models import Candidate
 from django.db.models import Count
+from django.utils.translation import ugettext_lazy as _
 
 
 class NeedingModerationManager(models.Manager):
@@ -150,7 +152,14 @@ class PopularProposal(models.Model, OGPMixin):
     organization = models.ForeignKey(Organization,
                                      related_name='popular_proposals',
                                      null=True)
-    background = models.TextField(null=True, blank=True)
+    background = models.TextField(null=True, blank=True, help_text=_(u"Antecedentes sobre tu propuesta"))
+    contact_details = models.TextField(null=True,
+                                       blank=True,
+                                       help_text=_(u'¿Cómo te puede contactar un candidato?'))
+    document = models.FileField(upload_to='uploads/proposal/backgrounds/%Y/%m/%d/',
+                                help_text=_(u'¿Tienes algún documento para complementar tu propuesta?'),
+                                null=True,
+                                blank=True)
     image = models.ImageField(upload_to='proposals/image/',
                               max_length=512,
                               null=True,

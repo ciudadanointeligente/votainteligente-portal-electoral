@@ -5,7 +5,7 @@ from popular_proposal.forms import (get_form_list,
                                     get_user_organizations_choicefield)
 from django.test import RequestFactory
 from django.contrib.auth.models import User
-from popolo.models import Area
+from elections.models import Area
 from django import forms
 from django.core.urlresolvers import reverse
 from popular_proposal.forms.form_texts import TEXTS

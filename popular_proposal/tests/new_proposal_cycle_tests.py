@@ -153,6 +153,8 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertIn(popular_proposal, self.arica.proposals.all())
         self.assertIsNone(popular_proposal.temporary)
         self.assertFalse(popular_proposal.background)
+        self.assertFalse(popular_proposal.contact_details)
+        self.assertFalse(popular_proposal.document)
         self.assertFalse(popular_proposal.image)
         self.assertEquals(popular_proposal.clasification, u'education')
         self.assertFalse(popular_proposal.for_all_areas)

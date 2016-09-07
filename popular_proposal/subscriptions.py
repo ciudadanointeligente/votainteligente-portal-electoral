@@ -148,32 +148,4 @@ def notification_trigger(event, **kwargs):
     dispatcher.trigger(event, proposal, kwargs)
 
 
-@receiver(pre_save, sender=ProposalLike)
-def numerical_notification_handler(sender, instance, **kwargs):
-    proposal_like = instance
-    the_number = ProposalLike.objects.filter(proposal=proposal_like.proposal).count()
-    if the_number in settings.WHEN_TO_NOTIFY:
-        notifier = YouAreAHeroNotification(proposal=proposal_like.proposal,
-                                           number=the_number)
-        notifier.notify()
-        notifier = ManyCitizensSupportingNotification(proposal=proposal_like.proposal,
-                                                      number=the_number)
-        notifier.notify()
 
-
-@receiver(post_save, sender=PopularProposal)
-def notify_candidate_of_new(sender, instance, created, **kwargs):
-    if not (settings.NOTIFY_CANDIDATES and settings.NOTIFY_CANDIDATES_OF_NEW_PROPOSAL):
-        return
-    proposal = instance
-    template = 'notification_for_candidates_of_new_proposal'
-    context = {'proposal': proposal}
-    if created:
-        area = Area.objects.get(id=proposal.area.id)
-        for election in area.elections.all():
-            for candidate in election.candidates.all():
-                for contact in candidate.contacts.all():
-                    context.update({'candidate': candidate})
-                    send_mail(context,
-                              template,
-                              to=[contact.mail])

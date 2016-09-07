@@ -4,7 +4,7 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData, PopularProposal
 from popular_proposal.forms import RejectionForm
-from popolo.models import Area
+from elections.models import Area
 from elections.models import Election, Candidate
 from preguntales.models import Message
 from django.core import mail

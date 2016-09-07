@@ -1,7 +1,7 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
 from django.contrib.auth.models import User
-from popolo.models import Area
+from elections.models import Area
 
 
 PASSWORD = 'perrito'

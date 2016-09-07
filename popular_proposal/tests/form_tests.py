@@ -259,8 +259,11 @@ class UpdateFormTestCase(ProposingCycleTestCaseBase):
         self.fiera.save()
 
     def test_instanciate_form(self):
-        update_data = {'background': u'Esto es un antecedente'}
-        file_data = {'image': self.image}
+        update_data = {'background': u'Esto es un antecedente',
+                       'contact_details': u'Me puedes contactar en el teléfono 123456',
+                       }
+        file_data = {'image': self.image,
+                     'document': self.get_document()}
         form = UpdateProposalForm(data=update_data,
                                   files=file_data,
                                   instance=self.popular_proposal)
@@ -268,6 +271,8 @@ class UpdateFormTestCase(ProposingCycleTestCaseBase):
         proposal = form.save()
         self.assertEquals(proposal.background, update_data['background'])
         self.assertTrue(proposal.image)
+        self.assertTrue(proposal.document)
+        self.assertEquals(proposal.contact_details, update_data['contact_details'])
 
     def test_get_update_view(self):
         url = reverse('popular_proposals:citizen_update', kwargs={'slug': self.popular_proposal.slug})
@@ -285,7 +290,10 @@ class UpdateFormTestCase(ProposingCycleTestCaseBase):
 
     def test_post_update_view(self):
         url = reverse('popular_proposals:citizen_update', kwargs={'slug': self.popular_proposal.slug})
-        kwargs = {'data': {'background': u'Esto es un antecedente'}, 'files': {'image': self.image}}
+        kwargs = {'data': {'background': u'Esto es un antecedente',
+                           'contact_details': u'Me puedes contactar en el teléfono 123456'},
+                  'files': {'image': self.image,
+                            'document': self.get_document()}}
         self.client.login(username=self.fiera.username, password='feroz')
         response = self.client.post(url, **kwargs)
         detail_url = reverse('popular_proposals:detail', kwargs={'slug': self.popular_proposal.slug})

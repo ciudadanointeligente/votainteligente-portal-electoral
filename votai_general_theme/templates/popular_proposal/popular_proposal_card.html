@@ -13,10 +13,7 @@
     {% if not is_embedded %}</a>{% endif %}
   </div>
   {% if proposal.title %}
-      <h4><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title}}</a></h4>
-  {% endif %}
-  {% if proposal.data.solution %}
-      {{proposal.data.solution}}
+      <h4><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title|truncatechars:60 }}</a></h4>
   {% endif %}
       {% url 'popular_proposals:home' as popular_proposals_home %}
       {% include 'popular_proposal/_likers.html' with proposal=proposal next_url=popular_proposals_home %}
@@ -33,5 +30,10 @@
     {% include 'popular_proposal/_share.html' with popular_proposal=proposal %}
   </div>
 
+{% if proposal.image and proposal.for_all_areas %}
+  <div class="logo-ong text-center text-light">
+      <span>Propuesta de </span><img src="{{ proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+  </div>
+{% endif %}
 
 </div>

@@ -9,7 +9,6 @@ from popular_proposal.forms import (ProposalForm,
                                     )
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
-from popolo.models import Area
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView
@@ -32,7 +31,7 @@ from votainteligente.send_mails import send_mails_to_staff
 from popular_proposal.forms import (CandidateCommitmentForm,
                                     CandidateNotCommitingForm,
                                     )
-from elections.models import Candidate
+from elections.models import Candidate, Area
 from backend_candidate.models import Candidacy
 from django.conf import settings
 from django.contrib import messages
@@ -231,7 +230,7 @@ class ProposalWizardFull(ProposalWizardBase):
         if 'area' in data:
             context['area'] = data['area']
         context['preview_data'] = self.get_all_cleaned_data()
-        
+
         return context
 
     def get_form_kwargs(self, step=None):

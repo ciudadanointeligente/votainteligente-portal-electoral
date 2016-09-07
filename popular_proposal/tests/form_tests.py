@@ -10,7 +10,6 @@ from popular_proposal.forms import (ProposalForm,
                                     CandidateNotCommitingForm,
                                     AreaForm)
 from django.contrib.auth.models import User
-from popolo.models import Area
 from django.forms import CharField
 from popular_proposal.models import (ProposalTemporaryData,
                                      PopularProposal)
@@ -21,7 +20,7 @@ from popular_proposal.forms import (WHEN_CHOICES,
                                     CandidateCommitmentForm)
 from popular_proposal.forms.form_texts import TEXTS
 from django.core.urlresolvers import reverse
-from elections.models import Candidate
+from elections.models import Candidate, Area
 from django.test import override_settings
 
 

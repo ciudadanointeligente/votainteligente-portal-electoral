@@ -1,9 +1,9 @@
+# coding=utf-8
 from __future__ import unicode_literals
 
 from django.db import models
 from picklefield.fields import PickledObjectField
 from django.contrib.auth.models import User
-from popolo.models import Area
 from djchoices import DjangoChoices, ChoiceItem
 from votainteligente.send_mails import send_mail
 from django.utils.encoding import python_2_unicode_compatible
@@ -12,8 +12,10 @@ from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
 from backend_citizen.models import Organization
 from votainteligente.open_graph import OGPMixin
-from elections.models import Candidate
+from elections.models import Candidate, Area
 from django.db.models import Count
+from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 
 
 class NeedingModerationManager(models.Manager):
@@ -150,7 +152,14 @@ class PopularProposal(models.Model, OGPMixin):
     organization = models.ForeignKey(Organization,
                                      related_name='popular_proposals',
                                      null=True)
-    background = models.TextField(null=True, blank=True)
+    background = models.TextField(null=True, blank=True, help_text=_(u"Antecedentes sobre tu propuesta"))
+    contact_details = models.TextField(null=True,
+                                       blank=True,
+                                       help_text=_(u'¿Cómo te puede contactar un candidato?'))
+    document = models.FileField(upload_to='uploads/proposal/backgrounds/%Y/%m/%d/',
+                                help_text=_(u'¿Tienes algún documento para complementar tu propuesta?'),
+                                null=True,
+                                blank=True)
     image = models.ImageField(upload_to='proposals/image/',
                               max_length=512,
                               null=True,
@@ -172,12 +181,48 @@ class PopularProposal(models.Model, OGPMixin):
     def get_absolute_url(self):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})
 
+    def save(self, *args, **kwargs):
+        creating = self.pk is None
+        super(PopularProposal, self).save(*args, **kwargs)
+        if self.pk is not None and creating:
+            self.notify_candidates_of_new()
+
+    def notify_candidates_of_new(self):
+        if not (settings.NOTIFY_CANDIDATES and settings.NOTIFY_CANDIDATES_OF_NEW_PROPOSAL):
+            return
+        template = 'notification_for_candidates_of_new_proposal'
+        context = {'proposal': self}
+        area = Area.objects.get(id=self.area.id)
+        for election in area.elections.all():
+            for candidate in election.candidates.all():
+                for contact in candidate.contacts.all():
+                    context.update({'candidate': candidate})
+                    send_mail(context,
+                              template,
+                              to=[contact.mail])
 
 class ProposalLike(models.Model):
     user = models.ForeignKey(User)
     proposal = models.ForeignKey(PopularProposal)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        super(ProposalLike, self).save(*args, **kwargs)
+        created = self.pk is not None
+        if created:
+            self.numerical_notification()
+
+    def numerical_notification(self):
+        the_number = ProposalLike.objects.filter(proposal=self.proposal).count()
+        if the_number in settings.WHEN_TO_NOTIFY:
+            from popular_proposal.subscriptions import YouAreAHeroNotification, ManyCitizensSupportingNotification
+            notifier = YouAreAHeroNotification(proposal=self.proposal,
+                                               number=the_number)
+            notifier.notify()
+            notifier = ManyCitizensSupportingNotification(proposal=self.proposal,
+                                                          number=the_number)
+            notifier.notify()
 
 
 class Commitment(models.Model):

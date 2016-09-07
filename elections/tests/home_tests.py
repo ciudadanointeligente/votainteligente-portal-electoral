@@ -9,7 +9,7 @@ from backend_citizen.forms import (UserCreationForm as RegistrationForm,
                                    GroupCreationForm)
 from popular_proposal.models import (ProposalTemporaryData,
                                      PopularProposal)
-from popolo.models import Area
+from elections.models import Area
 from django.contrib.auth.models import User
 import datetime
 from django.utils import timezone

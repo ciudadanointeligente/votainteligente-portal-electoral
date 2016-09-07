@@ -214,8 +214,8 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
     def test_like_a_proposal_signal(self):
         ProposalLike.objects.create(user=self.fiera,
                                     proposal=self.proposal)
-        ProposalLike.objects.create(user=self.feli,
-                                    proposal=self.proposal)
+        # There is already a proposallike in the setUp
+        # so with the previous one we make 2
 
         self.assertEquals(len(mail.outbox), 3)
         # this should be the email to the proposer
@@ -261,7 +261,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertIn(proposal.title, second_mail.body)
         self.assertIn(self.arica.name, second_mail.body)
 
-    @override_settings(NOTIFY_CANDIDATES_OF_NEW_PROPOSAL=False)    
+    @override_settings(NOTIFY_CANDIDATES_OF_NEW_PROPOSAL=False)
     def test_dont_notify_candidates_of_new_proposal(self):
         PopularProposal.objects.create(proposer=self.fiera,
                                        area=self.arica,
@@ -281,8 +281,8 @@ class NotNotifyCandidatesUnlessToldSo(SubscriptionTestCaseBase):
     def test_not_notify_when_proposal_like(self):
         ProposalLike.objects.create(user=self.fiera,
                                     proposal=self.proposal)
-        ProposalLike.objects.create(user=self.feli,
-                                    proposal=self.proposal)
+        # There is already a proposallike in the setUp
+        # so with the previous one we make 2
 
         self.assertEquals(len(mail.outbox), 1)
         # this should be the email to the proposer

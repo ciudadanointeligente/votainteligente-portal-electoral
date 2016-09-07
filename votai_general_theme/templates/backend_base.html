@@ -47,6 +47,7 @@
           {% url 'backend_candidate:complete_profile' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as complete_profile %}
           <li role="presentation" class="{% ifequal request.path complete_profile%} active{% endifequal %} hidden-xs mi-perfil">
             <a class="small" href="{{complete_profile}}">
+                <i class="fa fa-user" aria-hidden="true"></i>
               Completa tu perfil
             </a>
           </li>
@@ -54,6 +55,7 @@
           {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
           <li role="presentation" class="{% ifequal request.path backend_candidate%} active{% endifequal %} hidden-xs 12naranja">
             <a class="small" href="{{backend_candidate}}">
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
               Cuestionario
             </a>
           </li>
@@ -61,12 +63,14 @@
           {% url 'backend_candidate:my_proposals_with_a_resolution' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as my_proposals %}
           <li role="presentation" class="{% ifequal request.path my_proposals%} active{% endifequal %} hidden-xs my_proposals">
             <a class="small" href="{{my_proposals}}">
+                <i class="fa fa-certificate" aria-hidden="true"></i>
               Mis compromisos
             </a>
           </li>
           {% url 'backend_candidate:proposals_for_me' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as proposals_for_me %}
           <li role="presentation" class="{% ifequal request.path proposals_for_me%} active{% endifequal %} hidden-xs proposals_for_me">
             <a class="small" href="{{proposals_for_me}}">
+                <i class="fa fa-hand-spock-o" aria-hidden="true"></i>
               Propuestas para mi
             </a>
           </li>
@@ -89,6 +93,7 @@
         {% url 'password_reset' as password_reset %}
          <li role="presentation" class="{% ifequal request.path password_reset %} active{% endifequal %} hidden-xs">
           <a class="small" href="{{password_reset}}">
+              <i class="fa fa-key" aria-hidden="true"></i>
           {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>
 
       {% block extra_sidebar_bottom %}
@@ -148,7 +153,7 @@
                       
                       {% url 'password_reset' as password_reset %}
                        <li class="{% ifequal request.path password_reset %} active{% endifequal %}">
-                        <a class="small" href="{{password_reset}}">
+                           <a class="small" href="{{password_reset}}">
                         {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>
 
               </ul>

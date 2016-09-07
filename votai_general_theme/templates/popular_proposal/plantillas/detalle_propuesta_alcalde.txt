@@ -9,6 +9,11 @@ Esta propuesta debe ser cumplida antes de {{popular_proposal.data.when|popular_p
 
 Esta propuesta tiene por título: {{popular_proposal.title}}
 
+{% if url %}
+Puedes revisar más detalles y definir tu postura en el siguiente link:
+http://votainteligente.cl{{url}}
+{% endif %}
+
 Desde ya muchas gracias,
 El equipo de VotaInteligente a nombre de {{popular_proposal.proposer}}.
 

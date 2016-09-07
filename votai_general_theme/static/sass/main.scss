@@ -1642,6 +1642,7 @@ input#id_4-title {
     padding: 25px 20px 35px;
     border-bottom: 18px solid $blue;
     position: relative;
+    height: 430px;
 }
 
 .propuesta:after {
@@ -1675,6 +1676,15 @@ input#id_4-title {
   width: 100%;
   text-align: center;
   text-transform: uppercase;
+}
+
+.logo-ong {
+    margin: 20px 0px 0px;
+}
+
+.logo-ong img {
+    max-width: 100px;
+    margin-left: 5px;
 }
 
 .propuesta h4 a {

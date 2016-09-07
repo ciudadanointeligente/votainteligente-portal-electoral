@@ -10,7 +10,7 @@ import django.db.models.manager
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('popular_proposal', '0012_auto_20160906_1622'),
+        ('popular_proposal', '0013_auto_20160907_1410'),
     ]
 
     operations = [

@@ -12,27 +12,37 @@
     <div class="container">
         <div class="row">
             <div id="carousel-propuestas" class="carousel slide" data-ride="carousel">
-            
                 <div class="carousel-inner">
-                    <div class="item active">
+                  <div class="item active">
+                    {% for proposal in proposals %}
                       <!-- Te traje 3 no más si quieres más me avisai =) -->
-              {% for proposal in proposals %}
-                  <div class="col-md-4 col-sm-6 hidden-xs">
-                <div class="block-text rel zmin">
-                    <a title="" href="#">{{proposal.title}}</a>
-                  <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span>  </span></div>
-                    <p>The 2013 movie "The Purge" left a bad taste in all of our mouths as nothing more than a pseudo-slasher with a hamfisted plot, poor pacing, and a desperate attempt at "horror." Upon seeing the first trailer for "The Purge: Anarchy," my first and most immediate thought was "we really don't need another one of these."  </p>
-                      <ins class="ab zmin sprite sprite-i-triangle block"></ins>
-                    </div>
-              <div class="person-text rel">
-                        
-                    <a title="" href="#">Ella Mentree</a>
-                <i>United States</i>
-              </div>
-            </div>
-            {% endfor %}
-            
-
+                          <div class="col-md-4 col-sm-6">
+                            <div class="post propuesta{% if proposal.for_all_areas %} transversal{% endif %} block-text rel zmin">
+                              <span class="label label-default">{{proposal.data.clasification}}</span>
+                              <div class="small text-light">Propuesta para 
+                              {% if not is_embedded %}
+                                <a href="{% url 'area' slug=proposal.area.id %}">
+                              {% endif %}
+                                {{proposal.area}}
+                              {% if not is_embedded %}</a>{% endif %}
+                              </div>
+                              <h4><a title="" href="#">{{proposal.title}}</a></h4>
+                              {% include 'popular_proposal/_likers.html' with proposal=proposal next_url=popular_proposals_home %}
+                              <div class="share text-center">
+                                {% include 'popular_proposal/_share.html' with popular_proposal=proposal %}
+                              </div>
+                              {% if proposal.image and proposal.for_all_areas %}
+                                <div class="logo-ong text-center text-light">
+                                    <span>Propuesta de </span><img src="{{ proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+                                </div>
+                              {% endif %}
+                            </div>
+                          </div>
+                      {% if forloop.counter|divisibleby:3 and not forloop.last%}
+                      </div>
+                      <div class="item">
+                      {% endif %}
+                    {% endfor %}
                     </div>                    
                 </div>
                 <a class="left carousel-control" href="#carousel-propuestas" role="button" data-slide="prev">

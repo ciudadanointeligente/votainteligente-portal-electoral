@@ -39,10 +39,11 @@
             <td><a href="{% url 'area' slug=proposal.area.id %}">{{proposal.area}}</a></td>
             <td>
                 {% if proposal.status == 'accepted' %}
+                {% if proposal.created_proposal %}
                     <span>
                         <a href="{% url 'popular_proposals:citizen_update' slug=proposal.created_proposal.slug %}"><i class="fa fa-pencil" aria-hidden="true"></i> Agregar{% blocktrans %}{% endblocktrans %}</a>
                     </span>
-
+                {% endif %}
                 {% endif %}
             </td>
         </tr>

@@ -104,14 +104,44 @@ $(function(){
       </div>
     {% endif %}
 
+    <!-- El modal con lo de los contactos -->
+    {% if user|is_candidate %}
+      {% with user.candidacies.first as candidacy %}
+      {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#contactDetails">
+          Contacta a esta/e ciudadana/o para ponerte de acuerdo.
+        </button>
 
-
+        <!-- Modal -->
+          <div class="modal fade" id="contactDetails" tabindex="-1" role="dialog" aria-labelledby="contactDetails">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Detalles de contacto</h4>
+                </div>
+                <div class="modal-body">
+                  <p>El mail de la persona que hizo esta propuesta es <b>{{popular_proposal.proposer.email}}</b>.</p>
+                  {% if popular_proposal.contact_details %}
+                  <p>Además tenemos algunos datos extras:</p>
+                  {{popular_proposal.contact_details|linebreaks}}
+                  {% endif %}
+                  </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endwith %}
+    {% endif %}
+    <!-- Fin de el modal con lo de los contactos -->
 
 
     {% if user|is_candidate %}
       {% for candidacy in user.candidacies.all %}
         {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
-
           <div id="compromiso">
             {% if not candidacy|has_commited_with:popular_proposal %}
               <span>Yo {{candidacy.candidate.name}}</span>

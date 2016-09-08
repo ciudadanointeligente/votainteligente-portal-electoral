@@ -121,7 +121,7 @@ $(function(){
                   <h4 class="modal-title" id="myModalLabel">Detalles de contacto</h4>
                 </div>
                 <div class="modal-body">
-                  <p>El mail de la persona que hizo esta propuesta es <b>{{popular_proposal.proposer.email}}</b>.</p>
+                  <p>El mail de la persona que hizo esta propuesta es <a href="mailto:{{popular_proposal.proposer.email}}?Subject=Sobre%20tu%20propuesta%20ciudadana">{{popular_proposal.proposer.email}}</a>.</p>
                   {% if popular_proposal.contact_details %}
                   <p>Además tenemos algunos datos extras:</p>
                   {{popular_proposal.contact_details|linebreaks}}

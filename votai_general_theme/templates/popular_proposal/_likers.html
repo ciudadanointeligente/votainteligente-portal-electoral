@@ -57,9 +57,16 @@ $(function(){
                                 {% endwith %}
                             {% endif %}
                         {% else %}
-                            {% if candidacy.candidate|is_candidate_for:proposal.area %}
-                                {% else %}<!-- No eres candidato para {{proposal.area}}-->
-                            {% endif %}
+                                <!-- Aquí te voy a colocar los corazones deshabilitados -->
+                                <a class="btn-apoyo btn-disabled" data-toggle="tooltip" data-placement="top" title="Este tipo de apoyo esta reservado sólo para ciudadanos">
+                                    {% blocktrans %}
+                                      <span class="fa-stack fa-2x">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-heart fa-stack-1x fa-inverse"></i>
+                                      </span>
+                                    {% endblocktrans %}
+                                </a>
+                                <!-- fin de los deshabilitados -->
                         {% endif %}
                     {% endfor %}
                 {% else %}

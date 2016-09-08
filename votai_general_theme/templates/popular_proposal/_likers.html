@@ -32,14 +32,36 @@ $(function(){
         {% if not is_embedded %}
             {% if user.is_authenticated %}
                 {% if user|is_candidate %}
-                    <a class="btn-apoyo" href="{{proposal.get_absolute_url}}">
-                        {% blocktrans %}
-                          <span class="fa-stack fa-2x">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-heart fa-stack-1x fa-inverse"></i>
-                          </span>
-                        {% endblocktrans %}
-                    </a>
+                    {% for candidacy in user.candidacies.all %}
+                        {% if candidacy.candidate|is_candidate_for:proposal.area %}
+                            {% get_commitment candidacy proposal as commitment %}
+                            {% if commitment %}
+                                {% if commitment.commited %}<!-- El candidato es terrible de pulento y nos dijo que si-->
+                                    <a class="btn btn-success" href="{{commitment.get_absolute_url}}" role="button"  data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Te comprometiste =). Puedes revisar tu compromiso acá"><i class="fa fa-star" aria-hidden="true"></i>
+                                    </a>    
+                                {% else %}<!-- El candidato no está ni ahí con nosotros-->                            
+                                    <a class="btn btn-danger" href="{{commitment.get_absolute_url}}" role="button"  data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Dijiste que NO a esta propuesta y puedes revisar tu justificación acá"><i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                                    </a>
+                                {% endif %}
+                            {% else %}<!-- Si es que el candidato no se ha pronunciado -->
+                                {% with proposal.get_absolute_url as detail_url %}
+                                    {% if request.path == detail_url %}<!-- Estamos en el detalle -->
+                                        <a class="btn btn-default" href="#compromiso" role="button">Yo quiero pronunciarme</a>
+                                    {% else %}<!-- Estamos en cualquier parte pero no en el detalle -->
+                                    <a class="btn btn-default" href="{{detail_url}}" role="button">Yo quiero pronunciarme</a>
+                                    {% endif %}
+                                {% endwith %}
+                            {% endif %}
+                        {% else %}
+                            {% if candidacy.candidate|is_candidate_for:proposal.area %}
+                                {% else %}<!-- No eres candidato para {{proposal.area}}-->
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
                 {% else %}
                     {% if not user|likes:proposal %}
                         {% url 'popular_proposals:like_a_proposal' pk=proposal.id as like_this_proposal_url %}
@@ -79,8 +101,24 @@ $(function(){
         {% endif %}
     </div>
     <div class="apoyo-contador">
-        {% blocktrans with count=proposal.likers.count %}
-            <p class="nota">{{count}} ciudadanos apoyan esta propuesta</p>
-        {% endblocktrans %}
+    <!-- @camargozzini compañera acá le va el contador de quién se compromete
+    el tag commiters_by_election_position devuelve una lista de candidatos que se han comprometido con una propuesta
+    entonces como es una lista puedes hacer algo así
+    {% comment %}
+    {% commiters_by_election_position proposal 'alcalde' as alcaldes %}
+    {% for candidate in alcaldes %}
+    El candidato {{candidate}} es terrible de pulento y se comprometió con la propuesta. Acá sólo aparecen aquellos candidatos que dijeron que si, los otros no aparecen.
+    {% endfor %}
+    {% endcomment %}
+    -->
+            <p class="nota">{{proposal.likers.count}} ciudadanos apoyan esta propuesta</p>
+            {% commiters_by_election_position proposal 'alcalde' as alcaldes %}
+            {% if alcaldes.all %}
+            <p class="nota">{{alcaldes.count}} candidatos a la alcaldía se han comprometido con esta propuesta</p>
+            {% endif %}
+            {% commiters_by_election_position proposal 'concejal' as concejales %}
+            {% if concejales.all %}
+                <p class="nota">{{concejales.count}} candidatos a concejal apoyan esta propuesta</p>
+            {% endif %}
     </div>
 </div>

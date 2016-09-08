@@ -112,7 +112,7 @@ $(function(){
       {% for candidacy in user.candidacies.all %}
         {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
 
-          <div>
+          <div id="compromiso">
             {% if not candidacy|has_commited_with:popular_proposal %}
               <span>Yo {{candidacy.candidate.name}}</span>
               <a class="btn btn-default" href="{% url 'popular_proposals:commit_no' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">

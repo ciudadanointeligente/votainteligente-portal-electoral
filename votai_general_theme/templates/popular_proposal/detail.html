@@ -88,17 +88,19 @@ $(function(){
 
     {% if popular_proposal.background %}
       <div class="antecedentes text-width">
-        <h3>{% trans 'Antecedentes' %}</h3>
           <div class="row">
             <div class="col-sm-6 col-md-4 col-lg-12">
               <a href="#">
-                {% if popular_proposal.image %}
-                    <img src="{{ popular_proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+                {% if proposal.image and proposal.for_all_areas %}
+                  <div class="logo-ong text-center text-light">
+                      <span>Propuesta de </span><img src="{{ proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+                  </div>
                 {% endif %}
               </a>
             </div>
           </div>
-          {{popular_proposal.background|linebreaksbr}}
+        <h3>{% trans 'Antecedentes' %}</h3>
+        {{popular_proposal.background|linebreaksbr}}
       </div>
     {% endif %}
 
@@ -150,9 +152,9 @@ $(function(){
         {% endif %}
       {% endfor %}
     {% endif %}
-</div>
 
-<div class="fondo-blanco text-width">
+    <hr>
+
     {% if popular_proposal.commitments.all %}
       <h3>Candidatos que ya han expresado su opinión:</h3>
       {% for commitment in popular_proposal.commitments.all %}

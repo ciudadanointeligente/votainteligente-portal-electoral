@@ -47,7 +47,7 @@ $(function(){
                             </a>    
                             {% endif %}
                         {% else %}<!-- Si es que el candidato no se ha pronunciado -->
-                        <a class="btn btn-default" href="{{proposal.get_absolute_url}}" role="button">{% trans 'Revisa más detalles' %}</a>
+                        <a class="btn btn-default" href="{{proposal.get_absolute_url}}" role="button">Yo quiero {% if candidacy.candidate.election.position == 'concejal' %}apoyar{% elif candidacy.candidate.election.position == 'alcalde' %}comprometerme{% else %}comprometerme{% endif %}</a>
                         {% endif %}
                     {% endfor %}
                 {% else %}

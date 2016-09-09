@@ -8,27 +8,29 @@
 {% endblock extrajs %}
 
 {% block main_content %}
-<div class="contenedorDestacado fondo-blanco">
 
-    <form method="post"  enctype="multipart/form-data" action="{% url 'backend_candidate:complete_profile' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
-    {% if candidate.image %}
-
-	{% thumbnail candidate.image "300x300" crop="center" as im %}
-	    <img src="{{ im.url }}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive">
-	{% endthumbnail %}
-
-	{% else %}
-	<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">
-	{% endif %}
-    {% bootstrap_field form.image %}
-	{% for field in form %}
-		{% ifnotequal field.name 'image' %}
-        	{% bootstrap_field field %}
-        {% endifnotequal %}
-    {% endfor %}
+  <form method="post"  enctype="multipart/form-data" action="{% url 'backend_candidate:complete_profile' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
+  <h2>Información para tu perfil</h2>
+  {% with user.candidacies.first as candidacy %}
+    <p><a href="{{candidacy.candidate.get_absolute_url}}">
+      {% trans 'Ir a ver mi perfil' %}</a></p>
+  {% endwith %}
+  <!-- image -->
+  {% if candidate.image %}
+    {% thumbnail candidate.image "300x300" crop="center" as im %}
+    <img src="{{ im.url }}" alt="{{candidate.name}}" height="96" width="96" border="0" class="img-responsive img-circle">
+    {% endthumbnail %}
+  {% else %}
+    <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">
+  {% endif %}
+  {% bootstrap_field form.image %}
+  {% for field in form %}
+    {% ifnotequal field.name 'image' %}
+      {% bootstrap_field field %}
+    {% endifnotequal %}
+  {% endfor %}
 
 	<input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
 	</form>
 
-</div>
 {% endblock main_content %}

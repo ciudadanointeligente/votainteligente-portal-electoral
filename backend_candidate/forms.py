@@ -204,10 +204,16 @@ def get_candidate_profile_form_class():
         except ImportError:
             from votai_general_theme.forms import PersonalDataForm
             PARENT_FORM_CLASS = PersonalDataForm
-        cls_attrs = {}
-        PARENT_FORM_CLASS = type('CandidateProfileFormBase',
-                                 (CandidateProfileFormBase,
-                                  PARENT_FORM_CLASS,
-                                  object),
-                                 cls_attrs)
+    else:
+        try:
+            from votai_general_theme.forms import PersonalDataForm
+            PARENT_FORM_CLASS = PersonalDataForm
+        except ImportError:
+            pass
+    cls_attrs = {}
+    PARENT_FORM_CLASS = type('CandidateProfileFormBase',
+                             (CandidateProfileFormBase,
+                              PARENT_FORM_CLASS,
+                              object),
+                             cls_attrs)
     return PARENT_FORM_CLASS

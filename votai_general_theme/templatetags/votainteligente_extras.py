@@ -1,7 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
-from elections.models import Election, Area
-from popular_proposal.models import ProposalLike
+from elections.models import Election, Area, Candidate
+from popular_proposal.models import ProposalLike, Commitment
 import json
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -341,3 +341,11 @@ def manages_this(user, candidate):
     if user.is_authenticated() and user.candidacies.filter(candidate=candidate):
         return True
     return False
+
+
+@register.simple_tag(name='commiters_by_election_position')
+def commiters_by_election_position(proposal, position):
+    candidates = Candidate.objects.filter(elections__in=proposal.area.elections.filter(position=position))
+    return Commitment.objects.filter(candidate__in=candidates,
+                                     proposal=proposal,
+                                     commited=True)

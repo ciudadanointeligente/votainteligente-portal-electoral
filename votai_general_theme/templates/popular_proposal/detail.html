@@ -85,34 +85,60 @@ $(function(){
 
     {% endif %}
 
+    {% if proposal.image and proposal.for_all_areas %}
+      <div class="logo-ong text-center text-light">
+          <span>Propuesta de </span><img src="{{ proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+      </div>
+    {% endif %}
+
+</div>
 
     {% if popular_proposal.background %}
       <div class="antecedentes text-width">
-          <div class="row">
-            <div class="col-sm-6 col-md-4 col-lg-12">
-              <a href="#">
-                {% if proposal.image and proposal.for_all_areas %}
-                  <div class="logo-ong text-center text-light">
-                      <span>Propuesta de </span><img src="{{ proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
-                  </div>
-                {% endif %}
-              </a>
-            </div>
-          </div>
         <h3>{% trans 'Antecedentes' %}</h3>
         {{popular_proposal.background|linebreaksbr}}
       </div>
     {% endif %}
 
+    <!-- El modal con lo de los contactos -->
+    {% if user|is_candidate %}
+      {% with user.candidacies.first as candidacy %}
+      {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#contactDetails">
+          Contacta a esta/e ciudadana/o para ponerte de acuerdo.
+        </button>
 
-
+        <!-- Modal -->
+          <div class="modal fade" id="contactDetails" tabindex="-1" role="dialog" aria-labelledby="contactDetails">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Detalles de contacto</h4>
+                </div>
+                <div class="modal-body">
+                  <p>El mail de la persona que hizo esta propuesta es <a href="mailto:{{popular_proposal.proposer.email}}?Subject=Sobre%20tu%20propuesta%20ciudadana">{{popular_proposal.proposer.email}}</a>.</p>
+                  {% if popular_proposal.contact_details %}
+                  <p>Además tenemos algunos datos extras:</p>
+                  {{popular_proposal.contact_details|linebreaks}}
+                  {% endif %}
+                  </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endwith %}
+    {% endif %}
+    <!-- Fin de el modal con lo de los contactos -->
 
 
     {% if user|is_candidate %}
       {% for candidacy in user.candidacies.all %}
         {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
-
-          <div>
+          <div id="compromiso">
             {% if not candidacy|has_commited_with:popular_proposal %}
               <span>Yo {{candidacy.candidate.name}}</span>
               <a class="btn btn-default" href="{% url 'popular_proposals:commit_no' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">
@@ -153,15 +179,12 @@ $(function(){
       {% endfor %}
     {% endif %}
 
-    <hr>
-
     {% if popular_proposal.commitments.all %}
       <h3>Candidatos que ya han expresado su opinión:</h3>
       {% for commitment in popular_proposal.commitments.all %}
         {{commitment.candidate.name }} Puedes ver su compromiso <a href="{% url 'popular_proposals:commitment' candidate_slug=commitment.candidate.id proposal_slug=commitment.proposal.slug %}">Acá</a>
       {% endfor %}
     {% endif %}
-</div>
 
 
 

@@ -50,7 +50,7 @@ def process_photo_csv():
     for line in reader:
         row = line.split(u',')
         candidate_name = row[1].title().strip()
-        image_url = row[2].title().strip()
+        image_url = row[2].strip()
         if not candidate_name:
             continue
         if not image_url:

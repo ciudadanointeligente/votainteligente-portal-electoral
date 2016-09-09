@@ -16,21 +16,17 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
   <!-- Featured Elections  -->
-  <h1 class="text-center">¡Bienvenida/o 
-    {% if user|is_candidate %}
+  {% if user|is_candidate %}
+    <p class="small epigrafe text-center text-light">Bienvenida/o candidata/o</p>
+    <h1 class="text-center"> 
       {% with user.candidacies.first as candidacy %}
       {{candidacy.candidate.name}}
       {% endwith %}
+    </h1>
     {% else %}
     {% include '_user_printable.html' %}
-    {% endif %}!</h1>
+  {% endif %}
 
-    {% if user|is_candidate %}
-      {% with user.candidacies.first as candidacy %}
-        <p class="text-center"><a href="{{candidacy.candidate.get_absolute_url}}"><i class="fa fa-eye" aria-hidden="true"></i>
-          {% trans 'Ver mi perfil' %}</a></p>
-      {% endwith %}
-    {% endif %}
   <div class="line-space"></div>
 
   <div class="">

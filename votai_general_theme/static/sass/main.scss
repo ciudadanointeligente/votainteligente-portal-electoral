@@ -106,6 +106,10 @@ h1 .small {
   line-height: 31px;
 }
 
+.epigrafe {
+    margin-bottom: -35px;
+}
+
 .line-space {
     height: 60px;
 }
@@ -120,6 +124,10 @@ h1 .small {
 
 .text-dark {
 	color: $grey-one;
+}
+
+.content_padding {
+    padding: 90px 0;
 }
 
 .fondo-blanco {
@@ -239,6 +247,13 @@ select.form-control {
 
 .form-control:-ms-input-placeholder {  
    color: $grey-three;  
+}
+
+label.control-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 /*Selector*/
@@ -545,6 +560,10 @@ section#que-hago {
     margin-left: 15px;
 }
 
+.btn svg {
+    vertical-align: bottom;
+}
+
 .arrow.btn img {
 	margin-left: 0;
 }
@@ -573,7 +592,7 @@ section#que-hago {
 .btn-primary {
 	background-color: $grey-five;
 	border: 3px solid $grey-five;
-	color: $grey-two;
+  color: $grey-two;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
@@ -584,13 +603,14 @@ section#que-hago {
 
 .btn-danger {
 	background-color: $yellow;
-	color: $grey-two;
-	border: 3px solid white;
+  color: $grey-two;
+  border: 3px solid white;
 }
 
-.btn-danger:hover {
-	background-color: lighten($yellow,10%);
-	border-color: transparent;
+.btn-danger:hover, .btn-danger:focus, .btn-danger.active.focus, .btn-danger.active:focus, .btn-danger.active:hover, .btn-danger:active.focus, .btn-danger:active:focus, .btn-danger:active:hover, .open>.dropdown-toggle.btn-danger.focus, .open>.dropdown-toggle.btn-danger:focus, .open>.dropdown-toggle.btn-danger:hover {
+  background-color: lighten($yellow,5%);
+	color: lighten($grey-two,5%);
+	border: 3px solid white;
 }
 
 .btn-default {
@@ -815,11 +835,6 @@ p.answer {
     margin-bottom: 40px;
 }
 
-.profile a {
-  color: white;
-}
-
-
 /*Perfil candidato*/
 
 .profile {
@@ -841,6 +856,10 @@ p.answer {
 
 .icon-quote-left, .icon-quote-right {
 	color: $grey-five;
+}
+
+.question {
+    margin: 50px 0 0;
 }
 
 

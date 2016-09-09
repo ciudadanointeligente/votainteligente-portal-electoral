@@ -6,7 +6,7 @@
 {% if taken_position.position %}
     {{taken_position.position.label}}
     {% if taken_position.description %}
-        <a href="" data-toggle="tooltip" data-placement="top" title="{{taken_position.description}}"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+        <a href="" data-toggle="tooltip" data-placement="top" title="Comentario del candidato: {{taken_position.description}}"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
     {% endif %}
 
     {% if taken_position.sources.all %}

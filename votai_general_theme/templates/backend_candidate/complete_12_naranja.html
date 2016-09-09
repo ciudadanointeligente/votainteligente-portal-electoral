@@ -8,7 +8,6 @@
 {% endblock extrajs %}
 
 {% block main_content %}
-<div class="contenedorDestacado fondo-blanco">
 
 
     <form method="post" action="{% url 'backend_candidate:complete_12_naranja' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
@@ -17,5 +16,4 @@
 	<input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
 	</form>
 
-</div>
 {% endblock main_content %}

@@ -34,9 +34,8 @@ def process_candidates_with_names():
         except IndexError:
             mail = None
         if mail:
-            pass
-            # contact = CandidacyContact.objects.create(candidate=candidate,
-            #                                           mail=mail)
+            contact = CandidacyContact.objects.create(candidate=candidate,
+                                                      mail=mail)
 
 
 def process_candidates():

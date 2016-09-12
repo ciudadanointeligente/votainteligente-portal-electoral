@@ -1,7 +1,7 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
 
-<p>Estimada candidata o candidato a la alcaldía de {{popular_proposal.area}}, esta es la propuesta que hace {{popular_proposal.proposer}} a nombre de las vecinas y vecinos.
+<p>Esta es la propuesta de {{popular_proposal.proposer}} para las candidatas y candidatos a la alcaldía de {{popular_proposal.area}}.
 </p>
 
 <p><b>¿Cuál es el problema o necesidad que se busca solucionar?</b></br>
@@ -13,10 +13,10 @@
 </p>
 
 <p><b>¿Qué acción dará por cumplida la tarea del alcalde?</b></br>
-<b>{{popular_proposal.data.solution_at_the_end|popular_proposal_when|linebreaksbr}}</b> antes de {{popular_proposal.data.when|popular_proposal_when}}
+{{popular_proposal.data.solution_at_the_end|popular_proposal_when|linebreaksbr}} antes de {{popular_proposal.data.when|popular_proposal_when}}
 </p>
 
-<p><b>Esperamos que se pronuncie respecto a esta propuesta. Desde ya muchas gracias,</b></br>El equipo de VotaInteligente a nombre de {{popular_proposal.proposer}}.
+<p><b>Esperamos que las candidatas y candidatos se pronuncien respecto a esta propuesta. Desde ya muchas gracias,</b></br>El equipo de VotaInteligente a nombre de {{popular_proposal.proposer}}.
 </p>
 
 

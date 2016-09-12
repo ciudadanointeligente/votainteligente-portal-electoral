@@ -4,6 +4,40 @@ from elections.models import Candidate, Election, PersonalData, Area
 from django.core.urlresolvers import reverse
 from backend_candidate.models import CandidacyContact
 
+def process_candidates_with_names():
+    reader = codecs.open("candidatos_y_mails.csv", 'r', encoding='utf-8')
+    counter = 0
+    candidates_ids = []
+    for line in reader:
+        row = line.split(u',')
+        area_name = row[0].title().strip()
+        kind_of = row[1].title().strip()
+        election_name = kind_of + u' por ' + area_name
+        try:
+            e = Election.objects.get(name__iexact=election_name)
+        except:
+            print election_name + u' no encontrada'
+            continue
+
+        candidate_name = row[2].title().strip()
+
+        candidates = e.candidates.filter(name__icontains=candidate_name)
+        if candidates.count() > 1:
+            print candidate_name + u' está más de una vez'
+            continue
+        elif not candidates.count():
+            print candidate_name + u' no está'
+            continue
+        candidate = candidates.first()
+        try:
+            mail = row[3].strip().lower()
+        except IndexError:
+            mail = None
+        if mail:
+            pass
+            # contact = CandidacyContact.objects.create(candidate=candidate,
+            #                                           mail=mail)
+
 
 def process_candidates():
     reader = codecs.open("candidates.csv", 'r', encoding='utf-8')

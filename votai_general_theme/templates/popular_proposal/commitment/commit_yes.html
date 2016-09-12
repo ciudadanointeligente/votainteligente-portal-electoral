@@ -37,10 +37,10 @@
 			{% endif %}
 		</h1>
 	{% if candidate.election.position == 'concejal' %}
-		Yo <strong>{{candidate.name}}</strong> candidata/o al concejo municipal de <strong>{{proposal.area}}</strong> apoyo a la propuesta ciudadana:
+		Yo <strong>{{candidate.name}}</strong> candidata/o al concejo municipal de <strong>{{proposal.area}}</strong> apoyo a la propuesta ciudadana: {{proposal.title}}
 
 		<p>
-		<strong>{{proposal.data.solution|linebreaks }}</strong>
+		Que consiste en: <strong>{{proposal.data.solution|linebreaks }}</strong>
 		</p>
 		<p>
 		Y me comprometo a posicionarla desde el concejo municipal y hacer seguimiento de su implementación durante <strong>{{proposal.data.when|popular_proposal_when}}</strong>.</p>
@@ -48,25 +48,21 @@
 		Entiendo que esta propuesta ciudadana surge como respuesta a la siguiente problemática: {{proposal.data.problem|linebreaks}}.
 		</p>
 		<p>
-		Además, entiendo que el problema estará solucionado cuando:
-
-		{{proposal.data.solution_at_the_end|linebreaks}}
+		Además, entiendo que la propuesta estará cumplida con la siguiente tarea: {{proposal.data.solution_at_the_end|linebreaks}}
 		</p>
 	{% elif candidate.election.position == 'alcalde' %}
-		Yo <strong>{{candidate.name}}</strong> candidata/o la alcaldía de <strong>{{proposal.area}}</strong> me comprometo con la propuesta ciudadana:
-
+		Yo <strong>{{candidate.name}}</strong> candidata/o a la alcaldía de <strong>{{proposal.area}}</strong> me comprometo con la propuesta ciudadana: {{proposal.title}}
+		
 		<p>
-		<strong>{{proposal.data.solution|linebreaks }}</strong>
+		Que consiste en: <strong>{{proposal.data.solution|linebreaks }}</strong>
 		</p>
 		<p>
-		A incluirla en mi programa y cumplirla antes de <strong>{{proposal.data.when|popular_proposal_when}}</strong>.</p>
+		Estoy dispuesta/o a incluirla en mi programa y cumplirla a más tardar en <strong>{{proposal.data.when|popular_proposal_when}}</strong>.</p>
 		<p>
-		Entiendo que esta propuesta ciudadana surge como respuesta a la siguiente problemática: {{proposal.data.problem|linebreaks}}.
+		Para dar solución a: {{proposal.data.problem|linebreaks}}.
 		</p>
 		<p>
-		Además, entiendo que el problema estará solucionado cuando:
-
-		{{proposal.data.solution_at_the_end|linebreaks}}
+		Además, entiendo que la propuesta estará cumplida con la siguiente tarea: {{proposal.data.solution_at_the_end|linebreaks}}
 		</p>
 
 

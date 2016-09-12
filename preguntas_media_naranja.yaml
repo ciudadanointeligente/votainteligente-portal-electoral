@@ -1,6 +1,7 @@
+--- 
 - 
   category_name: "Posiciones políticas"
-  questions:
+  questions: 
     - 
       answers: 
         - "Cumplir con el programa municipal, dialogando y trabajando con los miembros del concejo municipal, ya que todos han sido electos democráticamente."
@@ -65,7 +66,7 @@
         - "Hacer públicos los criterios con que se deciden las licitaciones y obras en el municipio."
         - "Mejorar la transparencia en audiencias de lobby, haciendo públicas todas las reuniones."
       question: "¿Cuál de las siguientes medidas es más importante para mejorar la transparencia en la gestión municipal?"
-          - 
+    - 
       answers: 
         - "Educación. Nivelar las desigualdades y abrir oportunidades para todos los jóvenes de nuestra comuna."
         - "Seguridad. Poner énfasis en la seguridad comunal, priorizando esfuerzos en personal de seguridad y equipos que puedan ayudar a la prevención y a la persecución."

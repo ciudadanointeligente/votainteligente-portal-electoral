@@ -39,13 +39,6 @@
       question: "Durante el próximo periodo, la principal preocupación sobre la basura y residuos que se generen en su comuna debiera ser:"
     - 
       answers: 
-        - "Educación. Nivelar las desigualdades y abrir oportunidades para todos los jóvenes de nuestra comuna."
-        - "Seguridad. Poner énfasis en la seguridad comunal, priorizando esfuerzos en personal de seguridad y equipos que puedan ayudar a la prevención y a la persecución."
-        - "Salud. Mejorar la gestión municipal de salud para contar con la infraestructura y profesionales necesarios para una buena atención."
-        - "Aseo y ornato. Contar con espacios públicos limpios y ordenados, permitiendo su uso por parte de toda la comunidad."
-      question: "¿Cuál debiera ser la prioridad durante los próximos 4 años en su comuna?"
-    - 
-      answers: 
         - "Priorizar la construcción de políticas comunitarias ambientales, a través de mecanismos de participación y decisión de los vecinos."
         - "Mejorar las políticas ambientales municipales con especial atención en la protección de los espacios ambientalmente relevantes (parques, humedales, bosques, playas) y la revisión, mejora y actualización de los planes reguladores."
         - "Incentivar la inversión privada en la generación de más y mejores áreas verdes, como también en la implementación de proyectos e infraestructura ambientalmente sustentables dentro de la comuna."
@@ -72,4 +65,10 @@
         - "Hacer públicos los criterios con que se deciden las licitaciones y obras en el municipio."
         - "Mejorar la transparencia en audiencias de lobby, haciendo públicas todas las reuniones."
       question: "¿Cuál de las siguientes medidas es más importante para mejorar la transparencia en la gestión municipal?"
-      
+          - 
+      answers: 
+        - "Educación. Nivelar las desigualdades y abrir oportunidades para todos los jóvenes de nuestra comuna."
+        - "Seguridad. Poner énfasis en la seguridad comunal, priorizando esfuerzos en personal de seguridad y equipos que puedan ayudar a la prevención y a la persecución."
+        - "Salud. Mejorar la gestión municipal de salud para contar con la infraestructura y profesionales necesarios para una buena atención."
+        - "Aseo y ornato. Contar con espacios públicos limpios y ordenados, permitiendo su uso por parte de toda la comunidad."
+      question: "¿Cuál debiera ser la prioridad durante los próximos 4 años en su comuna?"

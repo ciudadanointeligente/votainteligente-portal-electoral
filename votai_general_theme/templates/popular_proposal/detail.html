@@ -71,11 +71,11 @@ $(function(){
         {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
           {% if candidacy.candidate.election.position == 'concejal' %}
 
-              {% include "popular_proposal/plantillas/detalle_propuesta_concejal.html" with popular_proposal=popular_proposal %}
+              {% include "popular_proposal/plantillas/detalle_propuesta_concejal.html" with popular_proposal=popular_proposal candidate=candidacy.candidate %}
             {% elif candidacy.candidate.election.position == 'alcalde' %}
-              {% include "popular_proposal/plantillas/detalle_propuesta_alcalde.html" with popular_proposal=popular_proposal %}
+              {% include "popular_proposal/plantillas/detalle_propuesta_alcalde.html" with popular_proposal=popular_proposal candidate=candidacy.candidate %}
             {% else %}
-              {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
+              {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal candidate=candidacy.candidate %}
             {% endif %}
           {% else %}
             {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}

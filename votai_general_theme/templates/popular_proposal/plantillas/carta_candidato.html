@@ -1,25 +1,22 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
 <p>
-Estimada candidata o candidato a la alcaldía de {{ area }}:
-</p>
-<p>
-Le solicitamos que incorpore a su programa de gobierno municipal nuestra propuesta ciudadana:
-{{preview_data.solution|popular_proposal_when}}
-</p>
-<p>
-Esta propuesta debe ser cumplida antes de {{preview_data.when|popular_proposal_when}}, y surge como respuesta a la siguiente inquietud de la comunidad: {{preview_data.problem|popular_proposal_when}}.
-</p>
-<p>
-Además entendemos que la solución final estará dada por:
-
-{{preview_data.solution_at_the_end|popular_proposal_when}}
+Estimada candidata o candidato a la alcaldía de {{ area }}, nos ha llegado esta propuesta para tu comuna:
 </p>
 
-<p>
-Desde ya muchas gracias.
+<p><b>¿Cuál es el problema o necesidad que se busca solucionar?</b></br>
+{{preview_data.problem|popular_proposal_when|linebreaksbr}}
 </p>
-<p>
-El equipo de VotaInteligente a nombre de {% if user.get_full_name %}{{user.get_full_name}}{% else %}{{user}}{% endif %}.
+
+<p><b>¿Qué hay que hacer para lograr la situación ideal?</b></br>
+{{preview_data.solution}}
+</p>
+
+<p><b>¿Qué acción dará por cumplida la tarea del alcalde?</b></br>
+{{preview_data.solution_at_the_end|popular_proposal_when|linebreaksbr}} antes de <b>{{preview_data.when|popular_proposal_when}}</b> desde el comienzo de su mandato.
+</p>
+
+<p>Esperamos que te pronuncies respecto a esta propuesta. Desde ya muchas gracias,</p>
+<p>El equipo de VotaInteligente a nombre de {% if user.get_full_name %}{{user.get_full_name}}{% else %}{{user}}{% endif %}.
 </p>
 

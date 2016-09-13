@@ -13,7 +13,7 @@
 {% if user.is_staff %}
 {% include 'elections/extra_info_per_election.html' %}
 {% endif %}
-<h1 class="text-center"><div class="small">Candidatos a</div><a href="{% url 'election_view' slug=election.slug %}">{{ election }}</a></h1>
+<h1 class="text-center"><div class="small">Candidatos a</div><a href="{% url 'election_view' slug=election.slug %}">{{ election }} por {{ election.area }}</a></h1>
 <div class="row">
 	<div class="nav-candidator btn-bajada">
 		<nav class="col-md-12">
@@ -44,14 +44,10 @@
 		<div class="col-sm-4 col-md-4">
 			{% if candidate.image %}
 				{% thumbnail candidate.image "300x300" crop="center" as im %}
-				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato">
-				<!-- {% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %} -->
-				</a>
+				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato">{% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %}</a>
 				{% endthumbnail %}
 			{% else %}
-				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato">
-					<!-- {% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %} -->
-				</a>
+				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato">{% if candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidate.extra_info.custom_ribbon }}</div>{% endif %}</a>
 			{% endif %}
 
 			<p class="text-center">

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="359px" height="70px" viewBox="0 0 359 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 18</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-2do-lanzamiento" transform="translate(-62.000000, -306.000000)">
+            <g id="Group-18" transform="translate(45.000000, 306.000000)">
+                <text id="CONOCE-TUS-CANDIDATO" font-family="Montserrat-Bold, Montserrat" font-size="10" font-weight="bold" letter-spacing="2" fill="#5F1A1C">
+                    <tspan x="17.335" y="55">CONOCE TUS </tspan>
+                    <tspan x="18.12" y="68">CANDIDATOS</tspan>
+                </text>
+                <text id="ENCUENTRA-TU-1/2-NAR" font-family="Montserrat-Bold, Montserrat" font-size="10" font-weight="bold" letter-spacing="2" fill="#5F1A1C">
+                    <tspan x="146.36" y="55">ENCUENTRA TU </tspan>
+                    <tspan x="153.86" y="68">1/2 NARANJA</tspan>
+                </text>
+                <polygon id="Page-1" fill="#8AC1F9" transform="translate(199.031969, 18.062175) rotate(90.000000) translate(-199.031969, -18.062175) " points="191.323514 9.03020633 180.969794 18.4622251 191.982627 27.0941437 191.982627 20.4853861 217.094144 22.6195742 216.877376 14.5375043 191.543806 15.6389639"></polygon>
+                <text id="HAZ-UNA-PROPUESTA" font-family="Montserrat-Bold, Montserrat" font-size="10" font-weight="bold" letter-spacing="2" fill="#5F1A1C">
+                    <tspan x="305.675" y="55">HAZ UNA </tspan>
+                    <tspan x="297.305" y="68">PROPUESTA</tspan>
+                </text>
+                <path d="M340.086271,11.0132287 C338.088754,19.8767341 326.394257,31.5497349 324.789669,32.1495175 C325.31461,33.5620392 325.839551,34.9759088 326.364493,36.3897783 C321.95661,36.2455609 317.548728,36.1013435 313.140846,35.958474 C313.140846,35.958474 316.577316,27.5628653 318.328022,24.0261696 L321.11914,27.3728218 C323.991434,26.5614305 328.449192,17.5985168 332.454081,5.86960442" id="Fill-1" fill="#8AC1F9" transform="translate(326.613558, 21.129691) rotate(130.000000) translate(-326.613558, -21.129691) "></path>
+                <path d="M67.9302405,6.99563409 C67.9302402,13.8884453 52.3727219,28.0795682 50.7681337,28.6793508 C51.2930748,30.0918725 53.040936,33.1559724 53.040936,33.1559724 C53.040936,33.1559724 45.1606285,32.0320315 40.7527461,31.889162 C40.7527461,31.889162 44.1892167,23.4935533 45.9399226,19.9568576 L48.377686,23.7232231 C54.6423564,20.7041782 57.423223,13.0612735 57.423223,5.4635452" id="Fill-1-Copy" fill="#8AC1F9" transform="translate(54.341493, 19.309759) scale(-1, 1) rotate(130.000000) translate(-54.341493, -19.309759) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

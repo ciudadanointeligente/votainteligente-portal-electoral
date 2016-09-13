@@ -32,7 +32,9 @@ from popular_proposal.forms import (CandidateCommitmentForm,
                                     CandidateNotCommitingForm,
                                     )
 from elections.models import Candidate, Area
-from backend_candidate.models import Candidacy
+from backend_candidate.models import (Candidacy,
+                                      is_candidate,
+                                      )
 from django.conf import settings
 from django.contrib import messages
 from django.utils.translation import ugettext as _
@@ -169,7 +171,8 @@ class ProposalWizard(ProposalWizardBase):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.area = get_object_or_404(Area, id=self.kwargs['slug'])
-
+        if is_candidate(request.user):
+            return HttpResponseNotFound()
         return super(ProposalWizard, self).dispatch(request, *args, **kwargs)
 
     def done(self, form_list, **kwargs):
@@ -201,6 +204,8 @@ class ProposalWizardFull(ProposalWizardBase):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if is_candidate(request.user):
+            return HttpResponseNotFound()
         return super(ProposalWizardFull, self).dispatch(request,
                                                         *args,
                                                         **kwargs)

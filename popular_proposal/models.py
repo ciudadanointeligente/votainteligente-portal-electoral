@@ -79,8 +79,9 @@ class ProposalTemporaryData(models.Model):
             'temporary_data': self,
             'site': site,
         }
-        send_mail(mail_context, 'new_temporary_proposal',
-                  to=[self.proposer.email])
+        if self.proposer.email:
+            send_mail(mail_context, 'new_temporary_proposal',
+                      to=[self.proposer.email])
 
     def create_proposal(self, moderator=None):
         self.status = ProposalTemporaryData.Statuses.Accepted

@@ -16,6 +16,7 @@ from elections.models import Candidate, Area
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
+from django.core.mail import mail_admins
 
 
 class NeedingModerationManager(models.Manager):
@@ -241,6 +242,12 @@ class Commitment(models.Model):
         notification_trigger('new-commitment',
                              proposal=self.proposal,
                              commitment=self)
+        
+        
+        txt = u'llegó nuevo commitment lo peudes ver en http://votainteligente.cl'+self.get_absolute_url() 
+        if self.candidate.election is not None and self.candidate.election.position:
+            txt += u' ' + self.candidate.election.position
+        mail_admins('new commitment', txt)
         return instance
 
     def get_absolute_url(self):

@@ -135,6 +135,8 @@ class ProfileView(FormView):
         self.election = get_object_or_404(Election, slug=self.kwargs['slug'])
         self.candidate = get_object_or_404(Candidate,
                                            id=self.kwargs['candidate_id'])
+        if not Candidacy.objects.filter(user=self.request.user, candidate=self.candidate).exists():
+            raise Http404
         return super(ProfileView, self).dispatch(request, *args, **kwargs)
 
     def get_form_kwargs(self):

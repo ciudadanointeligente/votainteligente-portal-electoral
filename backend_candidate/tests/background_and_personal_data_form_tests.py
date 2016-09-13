@@ -102,6 +102,23 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         self.assertEquals(form.initial['twitter'], self.data['twitter'])
         self.assertEquals(form.initial['url'], self.data['url'])
 
+    def test_get_complete_profile_with_crossed_candidates(self):
+        fiera_user = User.objects.get(username='fiera')
+        election = Election.objects.get(id=2)
+        fiera_candidata = Candidate.objects.create(name='Fiera Feroz la mejor candidata del mundo!')
+        election.candidates.add(fiera_candidata)
+        Candidacy.objects.create(candidate=fiera_candidata,
+                                 user=fiera_user)
+        url = reverse('backend_candidate:complete_profile',
+                      kwargs={'slug': election.slug,
+                              'candidate_id': fiera_candidata.id})
+        # Feli is not member of the candidacy of fiera
+        self.client.login(username=self.feli,
+                          password='alvarez')
+        response = self.client.get(url)
+
+        self.assertEquals(response.status_code, 404)
+
 
     def test_view_post_data(self):
         election = Election.objects.get(id=2)

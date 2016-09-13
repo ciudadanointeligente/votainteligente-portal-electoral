@@ -31,36 +31,37 @@
         </ul>
         {% endif %}
 		{% if commitment.candidate.election.position == 'concejal' %}
-		Yo <strong>{{commitment.candidate.name}}</strong> candidata/o al concejo municipal de <strong>{{commitment.proposal.area}}</strong> apoyo a la propuesta ciudadana:
+		Yo <b>{{commitment.candidate.name}}</b> candidata/o al concejo municipal de <b>{{commitment.proposal.area}}</b> me comprometo a apoyar desde el concejo municipal la propuesta ciudadana <b>{{commitment.proposal.title}}</b>.
 
-		<p>
-		<strong>{{commitment.proposal.data.solution|linebreaks }}</strong>
+		<p>Que consiste en:
+		<b>{{commitment.proposal.data.solution|linebreaksbr }}</b>
 		</p>
 		<p>
-		Y me comprometo a posicionarla desde el concejo municipal y hacer seguimiento de su implementación durante <strong>{{commitment.proposal.data.when|popular_proposal_when}}</strong>.</p>
+		Y me comprometo a posicionarla desde el concejo municipal y hacer seguimiento de su implementación durante <b>{{commitment.proposal.data.when|popular_proposal_when}}</b> a partir del inicio de mi mandato.</p>
 		<p>
-		Entiendo que esta propuesta ciudadana surge como respuesta a la siguiente problemática: {{commitment.proposal.data.problem|linebreaks}}.
+		Para dar solución a: <b>{{commitment.proposal.data.problem|linebreaksbr}}</b>.
 		</p>
 		<p>
-		Además, entiendo que el problema estará solucionado cuando:
+		Además, entiendo que la propuesta estará cumplida con la siguiente tarea:
 
-		{{commitment.proposal.data.solution_at_the_end|linebreaks}}
+		<b>{{commitment.proposal.data.solution_at_the_end|linebreaksbr}}</b>
 		</p>
+
 	{% elif commitment.candidate.election.position == 'alcalde' %}
-		Yo <strong>{{commitment.candidate.name}}</strong> candidata/o la alcaldía de <strong>{{commitment.proposal.area}}</strong> me comprometo con la propuesta ciudadana:
+		<p>Yo <strong>{{commitment.candidate.name}}</strong> candidata/o a la alcaldía de <strong>{{commitment.proposal.area}}</strong> me comprometo con la propuesta ciudadana <b>{{commitment.proposal.title}}</b>.</p>
 
-		<p>
-		<strong>{{commitment.proposal.data.solution|linebreaks }}</strong>
+		<p>Que consiste en:
+		<b>{{commitment.proposal.data.solution|linebreaksbr }}</b>
 		</p>
 		<p>
-		A incluirla en mi programa y cumplirla antes de <strong>{{commitment.proposal.data.when|popular_proposal_when}}</strong>.</p>
+		La incluiré en mi programa y la cumpliré dentro de un plazo de <b>{{commitment.proposal.data.when|popular_proposal_when}}</b> a partir del inicio de mi mandato.</p>
 		<p>
-		Entiendo que esta propuesta ciudadana surge como respuesta a la siguiente problemática: {{commitment.proposal.data.problem|linebreaks}}.
+		Para dar solución a: <b>{{commitment.proposal.data.problem|linebreaksbr}}</b>.
 		</p>
 		<p>
-		Además, entiendo que el problema estará solucionado cuando:
+		Además, entiendo que la propuesta estará cumplida con la siguiente tarea:
 
-		{{commitment.proposal.data.solution_at_the_end|linebreaks}}
+		<b>{{commitment.proposal.data.solution_at_the_end|linebreaksbr}}</b>
 		</p>
 
 

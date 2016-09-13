@@ -35,7 +35,18 @@
 				</ul>
 			</div>
 		</div>
-		<div class="row">
+		<div class="pull-left">
+			<a class="btn btn-danger" href="{% url 'election_view' slug=election.slug %}"><svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+    <title>Previous</title>
+    <g stroke="#5E6D82" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px">
+        <path d="M9 1L.4 9 9 17M1.5 9h16"/>
+    </g></svg> Volver a perfiles</a>
+		</div>
+		<div class="pull-right">
+			<a class="btn btn-info" href="">Encuentra tu 1/2 naranja</a>
+			<a class="btn btn-warning" href="">Enfréntalos</a>
+		</div>
+		<div class="row content_padding">
 			<div class="col-md-2 col-sm-2 col-xs-12">
 					<div id="candidate-img-profile">
 						{% if candidate.image %}
@@ -70,10 +81,23 @@
 					<li>Experiencia en cargos públicos: {% get_personal_data candidate=candidate personal_data='experiencia' as experiencia %}{{experiencia.value}}</li>
 				</ul>
 
-				<h3 class="text-white">Propuestas ciudadanas a las que ha adherido:</h3>
+				<!-- Promesas que se ha comprometido -->
+				{% if candidate.commitments.count %}
+				<h3 class="text-white">Propuestas ciudadanas en las que se ha pronunciado:</h3>
 				<ul>
-					<li class="text-white">Propuesta</li>
+					{% for commitment in candidate.commitments.all %}
+							<li class="text-white">
+							<a href="{{commitment.proposal.get_absolute_url}}">{{commitment.proposal.title}}</a>
+						{% if commitment.commited %}
+							<span class="label label-default">se comprometió</span>
+							{% else %}
+							<span class="label label-danger">la rechazó</span>
+						{% endif %}
+							</li>
+					{% endfor %}
 				</ul>
+				{% endif %}
+
 			</div>
 		</div>
 
@@ -97,7 +121,8 @@
 	</div>
 </div>
 
-<div class="container">
+<div class="container content_padding">
+<h2>Posiciones políticas</h2>
 
 	{% if 'questionary'|val_navbars and election.uses_questionary  %}
 	<div class="questionary">
@@ -106,6 +131,7 @@
 				<h3>{% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
 			</div>
 		</div>
+		{% if election.categories.count > 1 %}
 		<ul class="nav nav-tabs nav-justified" role="tablist">
 			{% for category in election.categories.all %}
 				<li role="presentation" class="{% if forloop.first %}active{% endif %}">
@@ -113,6 +139,7 @@
 				</li>
 			{% endfor %}
 		</ul>
+		{% endif %}
 		<div class="tab-content">
 		{% for category in election.categories.all %}
 			<div role="tabpanel" class="tab-pane {% if forloop.first %}active{% endif %}" id="{{category.name|slugify}}">

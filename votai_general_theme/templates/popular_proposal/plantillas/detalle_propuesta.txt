@@ -1,14 +1,22 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
-Estimada candidata o candidato a la alcaldía de {{popular_proposal.area}}:
+Estimada candidata o candidato a la comuna de {{popular_proposal.area}}, nos ha llegado esta propuesta ciudadana para tu comuna: {{popular_proposal.title}}
 
-Le solicitamos que incorpore a su programa de gobierno municipal nuestra propuesta ciudadana:
-<b>{{popular_proposal.data.solution_at_the_end|popular_proposal_when|linebreaksbr}}</b>
+¿Cuál es el problema o necesidad que se busca solucionar?
+{{popular_proposal.data.problem|popular_proposal_when}}
 
-Esta propuesta debe ser cumplida antes de {{popular_proposal.data.when|popular_proposal_when}}, y surge como respuesta a la siguiente inquietud de la comunidad: {{popular_proposal.data.problem|popular_proposal_when|linebreaksbr}}.
+¿Qué hay que hacer para lograr la situación ideal?
+{{popular_proposal.data.solution}}
 
-Esta propuesta tiene por título: {{popular_proposal.title}}
+¿Qué acción dará por cumplida la tarea del alcalde?
+{{popular_proposal.data.solution_at_the_end|popular_proposal_when}} antes de {{popular_proposal.data.when|popular_proposal_when}} desde el comienzo de su mandato.
+
+Las vecinas y vecinos de {{popular_proposal.area }} están esperando que se pronuncie sobre esta propuesta ciudadana.
+
+{% if url %}
+Puedes revisar más detalles y definir tu postura en el siguiente link:
+http://votainteligente.cl{{url}}
+{% endif %}
 
 Desde ya muchas gracias,
 El equipo de VotaInteligente a nombre de {{popular_proposal.proposer}}.
-

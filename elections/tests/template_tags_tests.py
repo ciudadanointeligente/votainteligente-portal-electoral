@@ -15,7 +15,7 @@ from backend_citizen.forms import (UserCreationForm as RegistrationForm,
 from django.contrib.auth.models import User
 from django import forms
 from backend_candidate.models import Candidacy
-from popular_proposal.models import PopularProposal, Commitment
+from popular_proposal.models import PopularProposal, Commitment, ProposalLike
 
 
 class TemplateTagsTestCase(TestCase):
@@ -378,7 +378,7 @@ class LoginFormsTemplateTags(TestCase):
                                                proposal=popular_proposal,
                                                commited=True)
         template = Template("{% load votainteligente_extras %}{% if candidacy|has_commited_with:proposal %}si{% else %}no{% endif %}")
-        
+
         self.assertEqual(template.render(Context({'candidacy': candidacy,
                                                   'proposal': popular_proposal})), 'si')
         template2 = Template("{% load votainteligente_extras %}{% get_commitment candidacy proposal as commitment %}{{commitment.proposal.title}}")
@@ -413,3 +413,60 @@ class LoginFormsTemplateTags(TestCase):
         context = Context({'user': u,
                            'candidate': candidate})
         self.assertEquals(template.render(context), 'no')
+
+    def test_get_amount_of_commiters_per_election_position(self):
+        u = User.objects.get(username='fiera')
+        feli = User.objects.get(username='feli')
+        chile = Area.objects.create(name='Chile')
+
+        candidate = Candidate.objects.get(pk=1)
+        election = Election.objects.get(id=1)
+        election.position = 'alcalde'
+        election.area = chile
+        election.save()
+        candidate2 = Candidate.objects.get(pk=2)
+        election.candidates.remove(candidate2)
+        election2 = Election.objects.get(id=2)
+        election2.position = 'concejal'
+        election2.area = chile
+        election2.save()
+        candidate3 = Candidate.objects.get(pk=3)
+        election2.candidates.remove(candidate)
+        election.candidates.add(candidate)
+        election2.candidates.remove(candidate2)
+        election2.candidates.remove(candidate3)
+        election2.candidates.add(candidate2)
+        election2.candidates.add(candidate3)
+
+        data = {'clasification': 'educacion',
+                'title': u'Mar para Bolivia',
+                'problem': u'Los bolivianos no tienen mar y son bacanes',
+                'solution': u'Que le den mar soberano a Bolivia',
+                'when': u'1_year',
+                'causes': u'El egoismo chileno.'
+                }
+        proposal = PopularProposal.objects.create(proposer=u,
+                                                  area=chile,
+                                                  data=data,
+                                                  title=u'This is a title',
+                                                  clasification=u'education'
+                                                  )
+        Commitment.objects.create(candidate=candidate,
+                                  proposal=proposal,
+                                  commited=True)
+
+        Commitment.objects.create(candidate=candidate2,
+                                  proposal=proposal,
+                                  commited=True)
+        Commitment.objects.create(candidate=candidate3,
+                                  proposal=proposal,
+                                  commited=True)
+        # Officially 1 alcaldes have said I commit and 2 concejales
+        template = Template("{% load votainteligente_extras %}{% commiters_by_election_position proposal 'alcalde' as commiters %}{{commiters.count}}")
+        context = Context({'proposal': proposal})
+        self.assertEquals(template.render(context), '1')
+
+        template = Template("{% load votainteligente_extras %}{% commiters_by_election_position proposal 'concejal' as commiters %}{{commiters.count}}")
+        context = Context({'proposal': proposal})
+        self.assertEquals(template.render(context), '2')
+

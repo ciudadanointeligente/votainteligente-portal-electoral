@@ -1,69 +1,74 @@
+--- 
 - 
   category_name: "Posiciones políticas"
   questions: 
     - 
       answers: 
-        - "Cumplir con el programa municipal presentado, dialogando y trabajando con los miembros electos del Concejo Municipal, ya que todos han sido validados en su representación a través de una elección democrática informada y participativa."
-        - "Levantamiento de problemáticas y propuestas de solución a través de encuestas y espacios de reunión con los vecinos organizados."
-        - "En temáticas de especial interés ciudadano, implementar consultas ciudadanas abiertas con resultados vinculantes."
-        - "Para ciertas temáticas abrir espacios de elaboración colaborativa de soluciones donde vecinos y representantes electos trabajen juntos. Y antes de implementar la solución hacer una consulta ciudadana para corroborar que el resto de la comuna está de acuerdo."
-      question: "La participación ciudadana es fundamental en el ejercicio del poder municipal en cada comuna. Durante su gestión en el municipio, su política de participación ciudadana será:"
+        - "Cumplir con el programa municipal, dialogando y trabajando con los miembros del concejo municipal, ya que todos han sido electos democráticamente."
+        - "Levantar problemáticas y propuestas de solución a través de encuestas y espacios de reunión con los vecinos organizados."
+        - "Realizar consultas ciudadanas abiertas y vinculantes en temáticas de especial interés ciudadano."
+        - "Abrir espacios colaborativos sobre ciertas temáticas en los que vecinos y representantes electos trabajen juntos para elaborar soluciones. Antes de implementar la solución se realizaría una consulta ciudadana para corroborar que el resto de la comuna está de acuerdo."
+      question: "Para fomentar la participación ciudadana, la municipalidad debería:"
     - 
       answers: 
         - "Diseñar estrategias para aumentar la matrícula de los colegios públicos de la comuna, potenciando para esto el desarrollo del nivel parvulario."
-        - "Elaborar planes de participación en conjunto con la comunidad educativa, promoviendo el uso de los recursos destinados al fortalecimiento de la Educación Pública."
-        - "Ocuparse de la convivencia escolar y el bullying al interior de los establecimientos."
+        - "Elaborar planes de participación en conjunto con la comunidad educativa, promoviendo el uso de los recursos destinados al fortalecimiento de la educación pública."
         - "Asegurar un traspaso expedito de los colegios municipales al Sistema de Educación Pública que actualmente se discute en el Congreso."
         - "Buscar la manera de evitar el traspaso de los colegios municipales al Sistema de Educación Pública. Usted se opone a la desmunicipalización."
-      question: "Durante el próximo periodo, la principal preocupación de su gestión en lo referido a la educación será:"
+      question: "Durante el próximo periodo, la principal preocupación referida a educación debería ser:"
     - 
       answers: 
-        - "Generar oportunidades de trabajo para los vecinos desempleados de la comuna"
-        - "Entregar bienes de consumo básico (canasta de alimentos, útiles escolares, de aseo, etc.)"
+        - "Generar oportunidades de trabajo para los vecinos desempleados de la comuna."
+        - "Entregar bienes de consumo básico (canasta de alimentos, útiles escolares, de aseo, etc)."
         - "Trabajar territorialmente con las organizaciones sociales de los sectores vulnerables de la comuna para que accedan a los beneficios del Estado."
-        - "Asegurar el acceso a bienes básicos por un precio justo (farmacias populares, supermercados populares, etc.)"
-      question: "¿Cuál cree usted que debería ser el rol de los Municipios en la superación de la pobreza en la comuna?"
+        - "Asegurar el acceso a bienes básicos por un precio justo (farmacias populares, supermercados populares, etc)."
+      question: "¿Cuál debería ser el rol de los municipios para la superación de la pobreza en la comuna?"
     - 
       answers: 
-        - "Promover acciones de prevención para evitar el ingreso de jóvenes a la actividad delictiva."
-        - "Re diseñar o recuperar espacios públicos para el uso de la comunidad."
+        - "Promover acciones de prevención y reinserción para evitar el ingreso o la reincidencia de jóvenes en la actividad delictiva."
+        - "Rediseñar o recuperar espacios públicos para el uso de la comunidad."
         - "Aumentar la presencia policial en las calles y en espacios públicos."
-        - "Instalar cámaras de televigilancia en los principales puntos claves de la comuna."
-        - "Promover actividades de reinserción social para ex infractores residentes en la comuna."
-      question: "Durante el próximo periodo, la principal preocupación de su gestión en lo referido a la seguridad ciudadana será:"
+        - "Instalar cámaras de televigilancia en los principales puntos clave de la comuna."
+      question: "Durante el próximo periodo, la principal preocupación en lo referido a la seguridad ciudadana debería ser:"
     - 
       answers: 
-        - "Diseñar estrategias para estimular el reciclaje de basuras y la separación de los residuos en los domicilios. "
-        - "Proponer sistemas públicos de dispositivos para separar los residuos de manera que sean recolectados centralizadamente por la comuna."
-        - "Externalizar el servicio de retiro de los residuos a nivel domiciliario."
-        - "Crear o mejorar las condiciones en que se desempeñe una dirección al interior de la municipalidad dedicada a la gestión de los residuos y las basuras de tipo domiciliario."
-        - ""
-      question: "Durante el próximo periodo, la principal preocupación de su gestión en relación a la basura y residuos que se generen en su comuna, plantea:"
+        - "Diseñar estrategias para estimular el reciclaje de basuras y la separación de los residuos en los domicilios."
+        - "Proponer sistemas públicos de contenedores para separar los residuos de manera que sean recolectados centralizadamente por la comuna."
+        - "Subcontratar a un privado el servicio de retiro de los residuos a nivel domiciliario."
+        - "Crear o mejorar las condiciones en que se desempeña la municipalidad dedicada a la gestión de los residuos y las basuras de tipo domiciliario."
+      question: "Durante el próximo periodo, la principal preocupación sobre la basura y residuos que se generen en su comuna debiera ser:"
     - 
       answers: 
-        - "Educación. Aunque todos los servicios públicos son importantes, poner un foco especial sobre educación es fundamental para nivelar las desigualdades y abrir oportunidades para todos los jóvenes de nuestra comuna."
-        - "Seguridad. Aunque todos los servicios públicos son importantes, vamos a poner énfasis en la seguridad comunal, priorizando esfuerzos en despliegue de personal de seguridad y equipos que puedan potenciar la prevención y la persecución."
-        - "Salud. Aunque todos los servicios públicos son importantes, vamos a hacer un esfuerzo especial en la gestión municipal de salud, comprometiendo los recursos necesarios para contar con la infraestructura y recursos humanos necesarios para una buena atención."
-        - "Aseo y Ornato. Aunque todos los servicios públicos son importantes, uno de los desafíos más postergados en la comuna es contar con un espacio público limpio y ordenado, permitiendo su uso por parte de toda la comunidad."
-      question: "En la provisión de servicios públicos todos estaremos de acuerdo en que es necesario entregar más y mejores servicios, por lo que las diferencias importantes se ven en la priorización de recursos humanos y económicos en cada uno. Su gestión municipal estará marcada por la siguiente priorización de servicios públicos:"
-    - 
-      answers: 
-        - "Priorizar la construcción de políticas comunitarias ambientales, mediante el fortalecimiento de los mecanismos de participación y decisión de los vecinos en las decisiones a implantar en el territorio comunal."
-        - "Mejorar las políticas ambientales municipales con énfasis en la protección de los espacios ambientalmente relevantes (parques, humedales, bosques, playas) y actualización de planes reguladores."
+        - "Priorizar la construcción de políticas comunitarias ambientales, a través de mecanismos de participación y decisión de los vecinos."
+        - "Mejorar las políticas ambientales municipales con especial atención en la protección de los espacios ambientalmente relevantes (parques, humedales, bosques, playas) y la revisión, mejora y actualización de los planes reguladores."
         - "Incentivar la inversión privada en la generación de más y mejores áreas verdes, como también en la implementación de proyectos e infraestructura ambientalmente sustentables dentro de la comuna."
-        - "Procurar el cumplimiento de las políticas ambientales nacionales y apoyar a los organismos de la administración ambiental (SEA, SMA y MMA)."
-      question: "Durante el próximo periodo, el foco de la política ambiental municipal será:"
+        - "Buscar el cumplimiento de las políticas ambientales nacionales y apoyar a los organismos de la administración ambiental (SEA, SMA y MMA)."
+      question: "La política ambiental del municipio debería apuntar a:"
     - 
       answers: 
-        - "Hace falta un mayor desarrollo inmobiliario que ofrezca más alternativas de vivienda, generando mejores espacios para que familias, actuales y nuevas, tengan la posibilidad de tener un hogar digno y vivir en la comuna."
-        - "El mayor patrimonio de la comuna está representado por sus barrios históricos.  Es necesario controlar o mantener a línea la escala y densidad del desarrollo inmobiliario para proteger y resguardar dicha riqueza."
-        - "La mayor necesidad en materia de desarrollo urbano es la falta de espacios adecuados para la actividad comercial y de servicios en la comuna. Se requiere de más sectores dedicados a la prestación de servicios que satisfagan las necesidades de los vecinos para que no tengan que salir de la comuna en su búsqueda."
-        - "El mayor problema que vivimos a nivel de desarrollo territorial son los altos niveles de segregación social que se observan en las ciudades. Para combatir esa situación creo necesario velar por la reserva de espacios dentro de la comuna que puedan ser destinados para el desarrollo de viviendas sociales que atraigan a segmentos sociales que hoy no tienen acceso a nuestros barrios."
-      question: "Considerando que la misión del municipio se desarrolla respecto de un espacio territorial determinado, cuál cree usted que de los siguientes aspectos del desarrollo territorial es prioritario incentivar en su comuna:"
+        - "Hace falta un mayor desarrollo inmobiliario que ofrezca más alternativas de vivienda para que familias, actuales y nuevas, tengan la posibilidad de tener un hogar digno y vivir en la comuna."
+        - "El mayor patrimonio de la comuna está representado por sus barrios históricos.  Es necesario controlar el desarrollo inmobiliario para proteger y resguardar dicha riqueza."
+        - "La mayor necesidad de desarrollo urbano es la falta de espacios para la actividad comercial y de servicios en la comuna para que los vecinos no tengan que salir de la comuna."
+        - "El mayor problema es el alto nivel de segregación social. Para combatirla, es necesario reservar espacios para el desarrollo de viviendas sociales. Así atraeremos a segmentos sociales que hoy no tienen acceso a nuestros barrios."
+      question: "¿Cuál de los siguientes aspectos del desarrollo territorial es prioritario incentivar en la comuna?"
     - 
       answers: 
-        - "Pienso que la migración es una oportunidad porque los trabajadores migrantes están dispuestos a trabajar por una renta menor"
-        - "Pienso que hay que establecer criterios de selectividad de modo de atraer personas calificadas."
-        - "Pienso que los migrantes son personas cuyo derechos el Estado debe proteger y promover"
-        - "Pienso que hay que endurecer las fronteras de manera de regular la migración."
-      question: "Frente al incremento de los flujos migratorios hacia Chile:"
+        - "La migración es una oportunidad porque los trabajadores migrantes están dispuestos a trabajar por una renta menor."
+        - "Hay que establecer criterios de selectividad de modo de atraer personas calificadas de otros países."
+        - "El Estado debe proteger y promover los derechos de los migrantes."
+        - "Hay que endurecer las fronteras de manera de regular la migración."
+      question: "Frente al incremento de los flujos migratorios hacia Chile la postura de la municipalidad debería ser:"
+    - 
+      answers: 
+        - "Hacer públicos los criterios y procedimientos para la contratación de personal en áreas clave del municipio como asesoría jurídica, secretaría comunal de planificación, unidad de desarrollo comunitario y otras."
+        - "Mejorar los canales y procesos de publicación y rendición de cuentas respecto de la administración del presupuesto municipal."
+        - "Hacer públicos los criterios con que se deciden las licitaciones y obras en el municipio."
+        - "Mejorar la transparencia en audiencias de lobby, haciendo públicas todas las reuniones."
+      question: "¿Cuál de las siguientes medidas es más importante para mejorar la transparencia en la gestión municipal?"
+    - 
+      answers: 
+        - "Educación. Nivelar las desigualdades y abrir oportunidades para todos los jóvenes de nuestra comuna."
+        - "Seguridad. Poner énfasis en la seguridad comunal, priorizando esfuerzos en personal de seguridad y equipos que puedan ayudar a la prevención y a la persecución."
+        - "Salud. Mejorar la gestión municipal de salud para contar con la infraestructura y profesionales necesarios para una buena atención."
+        - "Aseo y ornato. Contar con espacios públicos limpios y ordenados, permitiendo su uso por parte de toda la comunidad."
+      question: "¿Cuál debiera ser la prioridad durante los próximos 4 años en su comuna?"

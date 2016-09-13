@@ -1,7 +1,9 @@
+{% with proposal.get_absolute_url as url %}
 {% if candidacy.candidate.election.position == 'concejal' %}
-	{% include "popular_proposal/plantillas/detalle_propuesta_concejal.txt" with popular_proposal=proposal %}
+	{% include "popular_proposal/plantillas/detalle_propuesta_concejal.txt" with popular_proposal=proposal url=url %}
 {% elif candidacy.candidate.election.position == 'alcalde' %}
-	{% include "popular_proposal/plantillas/detalle_propuesta_alcalde.txt" with popular_proposal=proposal %}
+	{% include "popular_proposal/plantillas/detalle_propuesta_alcalde.txt" with popular_proposal=proposal url=url %}
 {% else %}
-	{% include "popular_proposal/plantillas/detalle_propuesta.txt" with popular_proposal=proposal %}
+	{% include "popular_proposal/plantillas/detalle_propuesta.txt" with popular_proposal=proposal url=url %}
 {% endif %}
+{% endwith %}

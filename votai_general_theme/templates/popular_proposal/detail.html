@@ -99,9 +99,10 @@ $(function(){
         {{popular_proposal.background|linebreaksbr}}
       </div>
     {% endif %}
-
+    
     <!-- El modal con lo de los contactos -->
     {% if user|is_candidate %}
+    <div class="fondo-blanco text-width{% if proposal.for_all_areas %} transversal{% endif %}">
       {% with user.candidacies.first as candidacy %}
       {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#contactDetails">
@@ -131,15 +132,23 @@ $(function(){
           </div>
         {% endif %}
       {% endwith %}
+      </div>
     {% endif %}
     <!-- Fin de el modal con lo de los contactos -->
 
-
     {% if user|is_candidate %}
+      <div class="fondo-blanco text-width{% if proposal.for_all_areas %} transversal{% endif %}">
       {% for candidacy in user.candidacies.all %}
         {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
           <div id="compromiso">
             {% if not candidacy|has_commited_with:popular_proposal %}
+              {% if candidacy.candidate.image %}
+                {% thumbnail candidacy.candidate.image "300x300" crop="center" as im %}
+                <a href=""><img src="{{im.url}}" alt="{{candidacy.candidate.name}}" border="0" class="img-responsive img-circle img-candidato">{% if candidacy.candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidacy.candidate.extra_info.custom_ribbon }}</div>{% endif %}</a>
+                {% endthumbnail %}
+              {% else %}
+                <a href=""><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidacy.candidate.name}}" border="0" class="img-responsive img-circle img-candidato">{% if candidacy.candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidacy.candidate.extra_info.custom_ribbon }}</div>{% endif %}</a>
+              {% endif %}
               <span>Yo {{candidacy.candidate.name}}</span>
               <a class="btn btn-default" href="{% url 'popular_proposals:commit_no' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">
                 {% if candidacy.candidate.election.position == 'concejal' %}
@@ -177,13 +186,32 @@ $(function(){
           </div>
         {% endif %}
       {% endfor %}
+      </div>
     {% endif %}
 
     {% if popular_proposal.commitments.all %}
+      <div class="fondo-blanco text-width{% if proposal.for_all_areas %} transversal{% endif %}">
       <h3>Candidatos que ya han expresado su opinión:</h3>
       {% for commitment in popular_proposal.commitments.all %}
-        {{commitment.candidate.name }} Puedes ver su compromiso <a href="{% url 'popular_proposals:commitment' candidate_slug=commitment.candidate.id proposal_slug=commitment.proposal.slug %}">Acá</a>
+      <div class="col-sm-4 col-md-4">
+
+        {% with candidate=commitment.candidate %}
+          {% if candidate.image %}
+            {% thumbnail candidate.image "300x300" crop="center" as im %}
+            <a href="{{commitment.get_absolute_url}}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
+            {% endthumbnail %}
+          {% else %}
+            <a href="{{commitment.get_absolute_url}}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
+          {% endif %}
+          <p class="text-center">
+            <a href="{{commitment.get_absolute_url}}"><h3 class="text-center">{{candidate.name}}</h3></a>
+            <p class="small text-light text-center small-bajada"><a href="{{ commitment.get_absolute_url }}">Compromiso</a></p>
+          </p>
+           
+        {% endwith %}
+        </div>
       {% endfor %}
+      </div>
     {% endif %}
 
 

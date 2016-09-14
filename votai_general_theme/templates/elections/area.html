@@ -4,6 +4,7 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load ogp_tags %}
+{% load votainteligente_extras %}
 
 
 {% block extrajs %}
@@ -63,8 +64,10 @@ $(function(){
           <span>{{ n_created|slice:"1:2" }}</span>
           <span>{{ n_created|slice:"2:3" }}</span>
           <span>{{ n_created|slice:"3:4" }}</span></h4></li>
-        <li><h4 class="text-white">propuestas ciudadanas se han creado para {{area}}</h4></li>  
+        <li><h4 class="text-white">propuestas ciudadanas se han creado para {{area}}</h4></li>
+        {% if not user|is_candidate %}
         <li><a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">Crea la tuya</a></li>
+        {% endif %}
 
       </ul>
     </div>

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load votainteligente_extras %}
 {% load i18n %}
 {% load thumbnail %}
 {% load bootstrap3 %}
@@ -38,8 +39,10 @@
         <span>{{ n_created|slice:"1:2" }}</span>
         <span>{{ n_created|slice:"2:3" }}</span>
         <span>{{ n_created|slice:"3:4" }}</span></h4></li>
-      <li><h4 class="text-white">propuestas ciudadanas se han creado</h4></li>  
+      <li><h4 class="text-white">propuestas ciudadanas se han creado</h4></li>
+      {% if not user|is_candidate %}
       <li><a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">Crea la tuya</a></li>
+      {% endif %}
 
     </ul>
   </div>
@@ -86,7 +89,7 @@
 <section id="propuestas-mas-apoyo">
   {% include '_slide_propuestas.html' with proposals=proposals_with_likers %}
 </section>
-
+{% if not user|is_candidate %}
 <section id="que-hago">
   <div class="container">
     <div class="row">
@@ -98,7 +101,7 @@
     </div>
   </div>
 </section>
-
+{% endif %}
 
 <script>
 function ab_testing() {

@@ -17,28 +17,11 @@
                     {% for proposal in proposals %}
                       <!-- Te traje 3 no más si quieres más me avisai =) -->
                           <div class="col-md-4 col-sm-6">
-                            <div class="post propuesta{% if proposal.for_all_areas %} transversal{% endif %} block-text rel zmin">
-                              <span class="label label-default">{{proposal.data.clasification}}</span>
-                              <div class="small text-light">Propuesta para 
-                              {% if not is_embedded %}
-                                <a href="{% url 'area' slug=proposal.area.id %}">
-                              {% endif %}
-                                {{proposal.area}}
-                              {% if not is_embedded %}</a>{% endif %}
-                              </div>
-                              <h4><a title="{{proposal.get_absolute_url}}" href="#">{{proposal.title}}</a></h4>
-                              {% include 'popular_proposal/_likers.html' with proposal=proposal next_url=popular_proposals_home %}
-                              <hr>
-                              <div class="share text-center">
-                                {% include 'popular_proposal/_share.html' with popular_proposal=proposal %}
-                              </div>
-                              {% if proposal.image and proposal.for_all_areas %}
-                                <div class="logo-ong text-center text-light">
-                                    <span>Propuesta de </span><img src="{{ proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
-                                </div>
-                              {% endif %}
+                            <div class="block-text rel zmin">
+                                {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
                             </div>
                           </div>
+
                       {% if forloop.counter|divisibleby:3 and not forloop.last%}
                       </div>
                       <div class="item">

@@ -1,0 +1,24 @@
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load thumbnail %}
+
+        {% if not is_embedded %}
+            {% if user.is_authenticated %}
+                {% if user|is_candidate %}
+                    {% for candidacy in user.candidacies.all %}
+                        {% if candidacy.candidate|is_candidate_for:proposal.area %}
+                            {% get_commitment candidacy proposal as commitment %}
+                            {% if commitment %}
+                                {% if commitment.commited %}<!-- El candidato es terrible de pulento y nos dijo que si-->
+                                    <a href="{{commitment.get_absolute_url}}" data-toggle="tooltip" data-placement="top" title="¡Ya te comprometiste con esta propuesta! Puedes revisar tu compromiso acá"><span class="label label-success">Te comprometiste</span></a>
+                                {% else %}<!-- El candidato no está ni ahí con nosotros-->                            
+                                    <a href="{{commitment.get_absolute_url}}" data-toggle="tooltip" data-placement="top" title="Dijiste que NO a esta propuesta y puedes revisar tu justificación acá"><span class="label label-danger">La rechazaste</span></a>
+                                {% endif %}
+                            {% else %}<!-- Si es que el candidato no se ha pronunciado -->
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+        {% endif %}

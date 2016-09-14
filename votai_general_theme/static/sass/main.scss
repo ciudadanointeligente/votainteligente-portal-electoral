@@ -587,6 +587,10 @@ section#propuestas-mas-apoyo {
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.4);
 }
 
+.disabled {
+    opacity: 0.4;
+}
+
 .btn img {
     margin-left: 15px;
 }
@@ -1718,6 +1722,10 @@ input#id_4-title {
   text-transform: uppercase;
 }
 
+.propuesta .btn-primary {
+    width: 100%;
+}
+
 .propuesta.transversal {
     border: 2px solid $grey-four;
     border-bottom: 18px solid $grey-four;
@@ -1792,7 +1800,7 @@ input#id_4-title {
 
 .apoyo {
     margin-top: 5px;
-    height: 60px;
+    min-height: 60px;
 }
 
 .apoyo-contador {

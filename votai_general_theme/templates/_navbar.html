@@ -54,6 +54,13 @@
                             {% blocktrans %}Tu perfil ciudadano{% endblocktrans %}
                         </a>
                     </li>
+                    {% if user.profile.is_journalist %}
+                        <li><a href="{% url 'backend_staff:all_commitments' %}">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            {% blocktrans %}Todos los compromisos{% endblocktrans %}
+                        </a>
+                    </li>
+                    {% endif %}
                     {% if user.enrollments.all %}
                     <li role="separator" class="divider"></li>
                     {% endif %}

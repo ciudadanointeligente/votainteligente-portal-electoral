@@ -7,6 +7,7 @@ from backend_staff.views import (
     AcceptPopularProposalView,
     RejectPopularProposalView,
     AddContactAndSendMailView,
+    AllCommitmentsView,
 )
 
 urlpatterns = patterns('',
@@ -27,5 +28,9 @@ urlpatterns = patterns('',
         name='reject_proposal'),
     url(r'^add_contact_and_sen_mail/(?P<pk>[-\w]+)/?$',
         AddContactAndSendMailView.as_view(),
-        name='add_contact_and_send_mail')
+        name='add_contact_and_send_mail'),
+    url(r'^all_commitments/?$',
+        AllCommitmentsView.as_view(),
+        name='all_commitments'),
+    
 )

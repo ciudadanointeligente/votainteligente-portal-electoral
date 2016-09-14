@@ -1,0 +1,10 @@
+{% extends 'backend_base.html' %}
+
+{% block content %}
+	<h2>Le tenimo {{commitments.count}} compromisos.</h2>
+	<ul>
+		{% for commitment in commitments %}
+		<li>{{commitment.candidate.election}} - {{commitment.candidate}} - <a href="{{commitment.get_absolute_url}}">{{commitment.proposal.title}}</a></li>
+		{% endfor %}
+	</ul>
+{% endblock content%}

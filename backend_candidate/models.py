@@ -46,6 +46,12 @@ def send_candidate_username_and_password(candidate):
     for contact in candidate.contacts.all():
         contact.send_mail_with_user_and_password()
 
+def add_contact_and_send_mail(mail, candidate):
+    contact = CandidacyContact.objects.create(mail=mail, candidate=candidate)
+    send_candidate_username_and_password(candidate)
+    for candidacy in candidate.candidacy_set.all():
+        candidacy.user.email = mail
+        candidacy.user.save()
 
 class CandidacyContact(models.Model):
     candidate = models.ForeignKey(Candidate, related_name='contacts')

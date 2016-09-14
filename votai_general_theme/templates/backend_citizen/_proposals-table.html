@@ -53,7 +53,18 @@
     {% endfor %}
         </table>
     {% else %}
-    {% trans 'Aún no tienes propuestas haz la primera' %}
-    <a href="{% url 'popular_proposals:propose_wizard_full' %}" class="btn btn-success login"
-          role="button"> {% blocktrans %}¡Sube tu propuesta!{% endblocktrans %}</a>
+        {% if user|is_candidate %}
+            {% with user.candidacies.first as candidacy %}
+              
+              {% trans 'Aún no has respondido la 1/2 naranja' %}
+              {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as complete_12_naranja %}
+              <a href="{{ complete_12_naranja }}" class="btn btn-success login"
+                                                  role="button"> {% blocktrans %}<i class="fa fa-heart"></i>¡Completa tu 1/2 Naranja!{% endblocktrans %}</a>
+          {% endwith %}
+        {% else %}
+            {% trans 'Aún no tienes propuestas haz la primera' %}
+            <a href="{% url 'popular_proposals:propose_wizard_full' %}" class="btn btn-success login"
+              role="button"> {% blocktrans %}¡Sube tu propuesta!{% endblocktrans %}</a>
+
+        {% endif %}
     {% endif %}

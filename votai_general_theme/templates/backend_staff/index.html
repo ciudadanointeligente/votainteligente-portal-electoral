@@ -49,6 +49,7 @@
             </td>
             <td>
                 {{proposal.proposer}}
+                {% if proposal.proposer|is_candidate %} (candidato){% endif %}
             </td>
             <td>{% if proposal.overall_comments %}<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{% endif %}
                 {{proposal.overall_comments}}

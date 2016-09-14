@@ -82,11 +82,11 @@ h5 {
 
 
 a {
-  color: $anchor-color;
+  color: $blue;
 }
 
 a:hover {
-  color: $hover-letters;
+  color: darken($blue,15%);
   text-decoration: none;
 }
 
@@ -104,6 +104,10 @@ strong {
 h1 .small {
   font-size: 11px;
   line-height: 31px;
+}
+
+hr {
+    border-top: 1px solid $grey-five;
 }
 
 .epigrafe {
@@ -1697,7 +1701,7 @@ input#id_4-title {
     padding: 25px 20px 35px;
     border-bottom: 18px solid $blue;
     position: relative;
-    height: 430px;
+    min-height: 430px;
 }
 
 .propuesta:after {
@@ -1733,6 +1737,10 @@ input#id_4-title {
   text-transform: uppercase;
 }
 
+.propuesta hr {
+    max-width: 20%;
+}
+
 .logo-ong {
     margin: 20px 0px 0px;
 }
@@ -1745,6 +1753,11 @@ input#id_4-title {
 
 .propuesta h4 a {
     color: $grey-one;
+}
+
+
+.propuesta h4 a:hover {
+    color: $blue;
 }
 
 .propuesta h4 {

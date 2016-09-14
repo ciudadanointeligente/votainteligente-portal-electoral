@@ -1,0 +1,20 @@
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% commiters_by_election_position proposal 'alcalde' as alcaldes %}
+  {% if alcaldes.all %} 
+    <ul class="list-inline">
+      <li>{{alcaldes.count}} candidatos a la alcaldía se han comprometido con esta propuesta:</li>
+      {% commiters_by_election_position proposal 'alcalde' as alcaldes %}
+      {% for commitment in alcaldes %}
+      <li><a href="{{commitment.candidate.get_absolute_url}}">{{commitment.candidate}},</a></li>
+      {% endfor %}
+    </ul>
+{% endif %}
+
+{% commiters_by_election_position proposal 'concejal' as concejales %}
+  {% if concejales.all %}
+    <p>{{concejales.count}} candidatos a concejal apoyan esta propuesta.</p>
+{% endif %}

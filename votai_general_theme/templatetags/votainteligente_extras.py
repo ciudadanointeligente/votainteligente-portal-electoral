@@ -14,6 +14,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import (UserCreationForm as RegistrationForm,
                                    GroupCreationForm)
 from django.forms import Field, BoundField
+import re
 
 register = template.Library()
 
@@ -349,3 +350,11 @@ def commiters_by_election_position(proposal, position):
     return Commitment.objects.filter(candidate__in=candidates,
                                      proposal=proposal,
                                      commited=True)
+
+
+@register.filter
+def extract_twitter_username(value):
+    pattern = re.compile(r'((https?://)?(www\.)?twitter\.com/)?(@|#!/)?([A-Za-z0-9_]{1,15})(/([-a-z]{1,20}))?')
+    result = pattern.search(value)
+    return u'@' + result.groups()[4]
+

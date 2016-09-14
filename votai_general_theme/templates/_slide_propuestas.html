@@ -26,7 +26,7 @@
                                 {{proposal.area}}
                               {% if not is_embedded %}</a>{% endif %}
                               </div>
-                              <h4><a title="" href="#">{{proposal.title}}</a></h4>
+                              <h4><a title="{{proposal.get_absolute_url}}" href="#">{{proposal.title}}</a></h4>
                               {% include 'popular_proposal/_likers.html' with proposal=proposal next_url=popular_proposals_home %}
                               <hr>
                               <div class="share text-center">

@@ -131,6 +131,7 @@
 				<h3>{% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
 			</div>
 		</div>
+		{% if election.categories.count > 1 %}
 		<ul class="nav nav-tabs nav-justified" role="tablist">
 			{% for category in election.categories.all %}
 				<li role="presentation" class="{% if forloop.first %}active{% endif %}">
@@ -138,6 +139,7 @@
 				</li>
 			{% endfor %}
 		</ul>
+		{% endif %}
 		<div class="tab-content">
 		{% for category in election.categories.all %}
 			<div role="tabpanel" class="tab-pane {% if forloop.first %}active{% endif %}" id="{{category.name|slugify}}">

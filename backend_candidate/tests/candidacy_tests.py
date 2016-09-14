@@ -70,6 +70,7 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         self.assertTrue(candidacy.created)
         self.assertTrue(candidacy.updated)
 
+
     def test_user_has_candidacy(self):
         self.assertFalse(is_candidate(self.feli))
         candidacy = Candidacy.objects.create(user=self.feli,
@@ -92,12 +93,15 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
                           password='alvarez')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 404)
-        candidacy = Candidacy.objects.create(user=self.feli,
-                                             candidate=self.candidate
-                                             )
+        Candidacy.objects.create(user=self.feli,
+                                 candidate=self.candidate
+                                 )
+
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-        self.assertIn(candidacy, response.context['candidacies'])
+        profile_url = reverse('backend_candidate:complete_profile',
+                              kwargs={'slug': self.candidate.election.slug,
+                                      'candidate_id': self.candidate.id})
+        self.assertRedirects(response, profile_url)
 
     def test_proposals_with_a_resolution(self):
 
@@ -244,12 +248,14 @@ class CandidacyContacts(CandidacyTestCaseBase):
         self.assertRedirects(response, login_url)
         self.client.login(username=self.feli.username, password='alvarez')
         response = self.client.get(url)
-        candidate_home = reverse('backend_candidate:home')
-        self.assertRedirects(response, candidate_home)
-        self.assertTrue(Candidacy.objects.filter(candidate=self.candidate,
-                                                 user=self.feli))
         candidacy = Candidacy.objects.get(candidate=self.candidate,
                                           user=self.feli)
+        profile_url = reverse('backend_candidate:complete_profile',
+                              kwargs={'slug': candidacy.candidate.election.slug,
+                                      'candidate_id': candidacy.candidate.id})
+        self.assertRedirects(response, profile_url)
+        self.assertTrue(Candidacy.objects.filter(candidate=self.candidate,
+                                                 user=self.feli))
         contact = CandidacyContact.objects.get(id=contact.id)
 
         self.assertEquals(contact.candidacy, candidacy)
@@ -364,7 +370,10 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
         self.assertRedirects(response, change_password_url)
 
         response = self.client.get(home_url)
-        self.assertEquals(response.status_code, 200)
+        profile_url = reverse('backend_candidate:complete_profile',
+                              kwargs={'slug': contact.candidacy.candidate.election.slug,
+                                      'candidate_id': contact.candidacy.candidate.id})
+        self.assertRedirects(response, profile_url)
 
     @override_settings(MAX_AMOUNT_OF_MAILS_TO_CANDIDATE=3)
     def test_send_candidate_maximum_amount_of_times(self):

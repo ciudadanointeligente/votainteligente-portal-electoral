@@ -5,7 +5,8 @@ from popular_proposal.forms import (get_form_list,
                                     get_user_organizations_choicefield)
 from django.test import RequestFactory
 from django.contrib.auth.models import User
-from elections.models import Area
+from elections.models import Area, Candidate
+from backend_candidate.models import Candidacy
 from django import forms
 from django.core.urlresolvers import reverse
 from popular_proposal.forms.form_texts import TEXTS
@@ -117,6 +118,20 @@ class WizardTestCase(TestCase):
 
             cntr += 1
         return t_response
+
+    def test_get_as_candidate_returns_404(self):
+        url = reverse('popular_proposals:propose_wizard',
+                      kwargs={'slug': self.arica.id})
+        candidate = Candidate.objects.create(name='name')
+        Candidacy.objects.create(candidate=candidate, user=self.feli)
+        self.client.login(username=self.feli,
+                          password=USER_PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+
+        url = reverse('popular_proposals:propose_wizard_full')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
 
     def test_post_data_to_the_wizard(self):
         original_amount = len(mail.outbox)

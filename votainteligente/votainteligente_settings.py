@@ -265,19 +265,6 @@ CACHES = {
     }
 }
 
-#LOGGING
-LOGGING = {'version': 1,
-           'disable_existing_loggers': True,
-           'formatters': {'simple': {'format': '%(asctime)s %(levelname)s %(message)s'}},
-           'handlers': {'console': {'level': 'DEBUG', 'class': 'logging.StreamHandler', 'formatter': 'simple'},
-                        'null': {'level': 'DEBUG',
-                                 'class': 'logging.NullHandler',
-                                 },
-                        },
-           'loggers': {'django.db.backends': {'level': 'DEBUG', 'handlers': ['null'], 'propagate': False}}
-           }
-#END LOGGING
-
 NEW_ANSWER_ENDPOINT = 'NEW_ANSWER_ENDPOINT'
 
 THEME = None

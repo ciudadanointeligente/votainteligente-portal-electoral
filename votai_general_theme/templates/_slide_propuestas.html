@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+    <h2 class="text-center">Propuestas con más apoyo de los ciudadanos</h2>
+    <p class="bajada text-center text-width">Mientras más apoyo tenga una propuesta, es más probable que los candidatos asuman un compromiso con ella.</p>
+    <div class="text-center">
+      <a class="btn btn-primary" href="{% url 'popular_proposals:propose_wizard_full' %}">Tengo una propuesta</a>
+      <div class="line-space"></div>
+    </div>
+  </div>
+</div>
+<div class="carousel-reviews broun-block">
+    <div class="container">
+        <div class="row">
+            <div id="carousel-propuestas" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="item active">
+                    {% for proposal in proposals %}
+                      <!-- Te traje 3 no más si quieres más me avisai =) -->
+                          <div class="col-md-4 col-sm-6">
+                            <div class="post propuesta{% if proposal.for_all_areas %} transversal{% endif %} block-text rel zmin">
+                              <span class="label label-default">{{proposal.data.clasification}}</span>
+                              <div class="small text-light">Propuesta para 
+                              {% if not is_embedded %}
+                                <a href="{% url 'area' slug=proposal.area.id %}">
+                              {% endif %}
+                                {{proposal.area}}
+                              {% if not is_embedded %}</a>{% endif %}
+                              </div>
+                              <h4><a title="" href="#">{{proposal.title}}</a></h4>
+                              {% include 'popular_proposal/_likers.html' with proposal=proposal next_url=popular_proposals_home %}
+                              <hr>
+                              <div class="share text-center">
+                                {% include 'popular_proposal/_share.html' with popular_proposal=proposal %}
+                              </div>
+                              {% if proposal.image and proposal.for_all_areas %}
+                                <div class="logo-ong text-center text-light">
+                                    <span>Propuesta de </span><img src="{{ proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+                                </div>
+                              {% endif %}
+                            </div>
+                          </div>
+                      {% if forloop.counter|divisibleby:3 and not forloop.last%}
+                      </div>
+                      <div class="item">
+                      {% endif %}
+                    {% endfor %}
+
+                    </div>                    
+                </div>
+                <a class="left carousel-control" href="#carousel-propuestas" role="button" data-slide="prev">
+                  <svg width="18" height="100%" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                      <title>Previous</title>
+                      <g stroke="#FFC80A" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px">
+                          <path d="M9 1L.4 9 9 17M1.5 9h16"/>
+                      </g>
+                  </svg>
+                </a>
+                <a class="right carousel-control" href="#carousel-propuestas" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -38,13 +38,20 @@ class BackendCandidateBase(View):
                                                           **kwargs)
 
 
-class HomeView(BackendCandidateBase, TemplateView):
+class HomeView(BackendCandidateBase, RedirectView):
     template_name = "backend_candidate/home.html"
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomeView, self).get_context_data(*args, **kwargs)
         context['candidacies'] = self.user.candidacies.all()
         return context
+
+    def get_redirect_url(self, *args, **kwargs):
+        candidacy = self.user.candidacies.first()
+        profile_url = reverse('backend_candidate:complete_profile',
+                              kwargs={'slug': candidacy.candidate.election.slug,
+                                      'candidate_id': candidacy.candidate.id})
+        return profile_url
 
 
 class CompleteMediaNaranjaView(FormView):
@@ -106,7 +113,11 @@ class CandidacyJoinView(RedirectView):
         self.contact.candidacy = candidacy
         self.contact.used_by_candidate = True
         self.contact.save()
-        return reverse('backend_candidate:home')
+        candidacy = self.request.user.candidacies.first()
+        profile_url = reverse('backend_candidate:complete_profile',
+                              kwargs={'slug': candidacy.candidate.election.slug,
+                                      'candidate_id': candidacy.candidate.id})
+        return profile_url
 
 
 form_class = get_candidate_profile_form_class()
@@ -124,6 +135,8 @@ class ProfileView(FormView):
         self.election = get_object_or_404(Election, slug=self.kwargs['slug'])
         self.candidate = get_object_or_404(Candidate,
                                            id=self.kwargs['candidate_id'])
+        if not Candidacy.objects.filter(user=self.request.user, candidate=self.candidate).exists():
+            raise Http404
         return super(ProfileView, self).dispatch(request, *args, **kwargs)
 
     def get_form_kwargs(self):

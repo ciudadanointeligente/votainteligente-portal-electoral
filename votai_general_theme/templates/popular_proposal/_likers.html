@@ -58,7 +58,7 @@ $(function(){
                             {% endif %}
                         {% else %}
                                 <!-- Aquí te voy a colocar los corazones deshabilitados -->
-                                <a class="btn-apoyo btn-disabled" data-toggle="tooltip" data-placement="top" title="Este tipo de apoyo esta reservado sólo para ciudadanos">
+                                <a class="btn-apoyo disabled" data-toggle="tooltip" data-placement="top" title="Este tipo de apoyo esta reservado sólo para ciudadanos">
                                     {% blocktrans %}
                                       <span class="fa-stack fa-2x">
                                         <i class="fa fa-circle fa-stack-2x"></i>
@@ -119,13 +119,5 @@ $(function(){
     {% endcomment %}
     -->
             <p class="nota">{{proposal.likers.count}} ciudadanos apoyan esta propuesta</p>
-            {% commiters_by_election_position proposal 'alcalde' as alcaldes %}
-            {% if alcaldes.all %}
-            <p class="nota">{{alcaldes.count}} candidatos a la alcaldía se han comprometido con esta propuesta</p>
-            {% endif %}
-            {% commiters_by_election_position proposal 'concejal' as concejales %}
-            {% if concejales.all %}
-                <p class="nota">{{concejales.count}} candidatos a concejal apoyan esta propuesta</p>
-            {% endif %}
     </div>
 </div>

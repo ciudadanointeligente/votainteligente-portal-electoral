@@ -5,7 +5,7 @@
 	    			{% if contact.used_by_candidate %}
 	    				<span class="label label-info">Este candidato se ha conectado.</span>
 	    			{% else %}
-	    				<span class="label label-warning">Este candidato no se ha conectado pero le enviamos el mail.</span>
+	    				<span class="label label-warning">Este candidato no se ha conectado pero le enviamos el mail a {{contact.mail}}</span>
 	    			{% endif %}
 	    		{% endfor %}
 			{% else %}
@@ -13,6 +13,7 @@
 				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#agregaMailCandidato" >Agrégale mail a esta/e hermana/o</button>
 			{% endif %}
 	    {% endfor %}
+	{% else %}
     <span class="label label-danger">No tenemos contacto de este candidato</span>
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#agregaMailCandidato" >Agrégale mail a esta/e hermana/o</button>
 	{% endif %}

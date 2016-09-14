@@ -1,4 +1,6 @@
 {% load i18n %}{% load votainteligente_extras %}{% if candidate.twitter %}
-<a href="#" onClick="window.open('https://twitter.com/share?text={% blocktrans with twitter=candidate.twitter.value topic=taken_position.topic.label|truncatechars:90 %}.{{ twitter|extract_twitter_username }} {{topic}}{% endblocktrans %}&hashtags=votainteligente','Necesitamos respuestas','width=500,height=280'); ga('send', 'event', 'continues-conversation', 'click');" class="btn btn-default btn-xs"><i class="icon-twitter"></i> {% trans "preguntale, ¿qué opinas?" %}</a>
+{% with twitter=candidate.twitter.value topic=taken_position.topic.label|truncatechars:90 %}
+<a href="#" onClick="window.open('https://twitter.com/share?text=.{{ twitter|extract_twitter_username }}%20{{topic}}&hashtags=votainteligente','Necesitamos respuestas','width=500,height=280'); ga('send', 'event', 'continues-conversation', 'click');" class="btn btn-default btn-xs"><i class="icon-twitter"></i> preguntale a {{ twitter|extract_twitter_username }}, ¿qué opinas?</a>
+{% endwith %}
 {% else %}
 {% endif %}

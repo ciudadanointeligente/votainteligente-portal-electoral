@@ -14,3 +14,4 @@ def send_user_to_candidate_from(area):
     for election in area.elections.all():
         for candidate in election.candidates.all().exclude(id__in=excluded):
             send_candidate_username_and_password(candidate)
+

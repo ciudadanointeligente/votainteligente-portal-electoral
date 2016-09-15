@@ -232,7 +232,7 @@ class Commitment(models.Model):
                                  related_name='commitments')
     candidate = models.ForeignKey(Candidate,
                                   related_name='commitments')
-    detail = models.CharField(max_length=1024,
+    detail = models.CharField(max_length=12288,
                               null=True,
                               blank=True)
     commited = models.NullBooleanField(default=None)
@@ -243,12 +243,6 @@ class Commitment(models.Model):
         notification_trigger('new-commitment',
                              proposal=self.proposal,
                              commitment=self)
-        
-        
-        txt = u'llegó nuevo commitment lo peudes ver en http://votainteligente.cl'+self.get_absolute_url() 
-        if self.candidate.election is not None and self.candidate.election.position:
-            txt += u' ' + self.candidate.election.position
-        mail_admins('new commitment', txt)
         return instance
 
     def get_absolute_url(self):

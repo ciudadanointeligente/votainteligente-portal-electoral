@@ -2,7 +2,7 @@
 from django.core.urlresolvers import reverse
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django.contrib.auth.models import User
-from popular_proposal.models import ProposalTemporaryData, PopularProposal
+from popular_proposal.models import ProposalTemporaryData, PopularProposal, Commitment
 from popular_proposal.forms import RejectionForm
 from elections.models import Area
 from elections.models import Election, Candidate
@@ -205,3 +205,44 @@ class StaffHomeViewTest(TestCase):
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
         self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.Rejected)
         self.assertEquals(temporary_data.rejected_reason, data['reason'])
+
+    def test_view_all_commitments(self):
+        data = {
+            'clasification': 'educacion',
+            'title': u'Fiera a Santiago',
+            'problem': u'A mi me gusta la contaminación de Santiago y los autos\
+ y sus estresantes ruedas',
+            'solution': u'Viajar a ver al Feli una vez al mes',
+            'when': u'1_year',
+            'causes': u'La super distancia',
+            'terms_and_conditions': True
+        }
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+        commitment = Commitment.objects.create(candidate=self.candidate1,
+                                               proposal=popular_proposal,
+                                               detail=u'Yo me comprometo',
+                                               commited=True)
+        url = reverse('backend_staff:all_commitments')
+
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 302)
+
+        # I'm logged in but I'm not journalist
+        self.client.login(username=self.non_staff.username,
+                          password=NON_STAFF_PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+
+        # I'm logged in and I'm staff
+        self.fiera.profile.is_journalist = True
+        self.fiera.profile.save()
+        self.client.login(username=self.fiera.username,
+                          password=STAFF_PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn(commitment, response.context['commitments'])

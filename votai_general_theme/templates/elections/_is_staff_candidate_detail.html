@@ -1,0 +1,41 @@
+	{% if candidate.candidacy_set.all %}
+		{% for candidacy in candidate.candidacy_set.all %}
+			{% if candidacy.candidacycontact_set.all %}
+	    		{% for contact in candidacy.candidacycontact_set.all %}
+	    			{% if contact.used_by_candidate %}
+	    				<span class="label label-info">Este candidato se ha conectado.</span>
+	    			{% else %}
+	    				<span class="label label-warning">Este candidato no se ha conectado pero le enviamos el mail a {{contact.mail}}</span>
+	    			{% endif %}
+	    		{% endfor %}
+			{% else %}
+				<span class="label label-danger">No tenemos contacto de este candidato</span>
+				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#agregaMailCandidato" >Agrégale mail a esta/e hermana/o</button>
+			{% endif %}
+	    {% endfor %}
+	{% else %}
+    <span class="label label-danger">No tenemos contacto de este candidato</span>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#agregaMailCandidato" >Agrégale mail a esta/e hermana/o</button>
+	{% endif %}
+
+	<script type="text/javascript">
+		$(function(){
+			$('#agregaMailCandidato').on('show.bs.modal', function (e) {
+			  $('#agregaMailCandidatoBody').load('{% url "backend_staff:add_contact_and_send_mail" pk=candidate.pk %}')
+			})
+		})
+	</script>
+		<!-- Modal -->
+	<div class="modal fade" id="agregaMailCandidato" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">wena jefa/e!</h4>
+	      </div>
+	      <div class="modal-body" id='agregaMailCandidatoBody'>
+	        ...
+	      </div>
+	    </div>
+	  </div>
+	</div> 

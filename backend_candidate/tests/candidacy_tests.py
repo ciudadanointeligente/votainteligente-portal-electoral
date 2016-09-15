@@ -7,9 +7,11 @@ from backend_candidate.models import (Candidacy,
                                       is_candidate,
                                       CandidacyContact,
                                       send_candidate_a_candidacy_link,
+                                      add_contact_and_send_mail,
                                       send_candidate_username_and_password)
 from backend_candidate.forms import get_form_for_election
 from backend_candidate.tasks import (let_candidate_now_about_us,
+                                     send_candidate_username_and_pasword_task,
                                      send_candidates_their_username_and_password)
 from django.template import Template, Context
 from elections.models import Election, Area
@@ -388,6 +390,36 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
         contact = CandidacyContact.objects.create(candidate=self.candidate,
                                                   mail='mail@perrito.cl')
         send_candidate_username_and_password(self.candidate)
+        contact = CandidacyContact.objects.get(id=contact.id)
+        self.assertEquals(contact.times_email_has_been_sent, 1)
+        self.assertEquals(len(mail.outbox), 1)
+        the_mail = mail.outbox[0]
+        self.assertIn(contact.initial_password, the_mail.body)
+
+    def test_send_candidate_username_and_password_task(self):
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl')
+        result = send_candidate_username_and_pasword_task.delay(self.candidate)
+        contact = CandidacyContact.objects.get(id=contact.id)
+        self.assertEquals(contact.times_email_has_been_sent, 1)
+        self.assertEquals(len(mail.outbox), 1)
+        the_mail = mail.outbox[0]
+        self.assertIn(contact.initial_password, the_mail.body)
+
+    def test_add_contact_and_send_mail(self):
+        add_contact_and_send_mail('mail.perrito@fiera.cl', self.candidate)
+        contact = CandidacyContact.objects.get(mail='mail.perrito@fiera.cl', candidate=self.candidate)
+        self.assertTrue(contact)
+        contact = CandidacyContact.objects.get(id=contact.id)
+        self.assertEquals(contact.times_email_has_been_sent, 1)
+        self.assertEquals(len(mail.outbox), 1)
+        the_mail = mail.outbox[0]
+        self.assertIn(contact.initial_password, the_mail.body)
+
+    def test_add_contact_and_send_mail_command(self):
+        call_command('add_contact_and_send_mail', 'mail.perrito@fiera.cl', self.candidate.id)
+        contact = CandidacyContact.objects.get(mail='mail.perrito@fiera.cl', candidate=self.candidate)
+        self.assertTrue(contact)
         contact = CandidacyContact.objects.get(id=contact.id)
         self.assertEquals(contact.times_email_has_been_sent, 1)
         self.assertEquals(len(mail.outbox), 1)

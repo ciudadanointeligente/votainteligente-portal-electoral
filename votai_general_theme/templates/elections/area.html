@@ -45,7 +45,6 @@ $(function(){
 
 
         <!-- Alcaldes -->
-        {% if user.is_staff %} <!--user is staff-->
         <section class="comuna-alcaldes text-center">
          <h2 class="text-white">Candidatos a alcalde</h2>
          {% include 'elections/_election_with_position.html' with position='alcalde' area=area %}
@@ -125,7 +124,6 @@ $(function(){
           Puedes ver el resto en <a href="{{ election.get_absolute_url }}"><h3 class="portada">{{ election.name }}</h3></a>
           {% endif %}
         </ul>
-      {% endif %} <!--user is staff-->
       {% if not popular_proposals.all %}
       {% blocktrans %}
       <p>Acá aún no hay propuestas, pero puedes:</p>

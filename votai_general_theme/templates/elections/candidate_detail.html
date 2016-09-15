@@ -72,6 +72,9 @@
 					{% endwith %}
 				{% endif %}
 				<ul class="text-white">
+                    {% if user.is_staff %}
+                    	{% include 'elections/_is_staff_candidate_detail.html' %}
+                    {% endif %}
 					{% include 'elections/candidates/extra_info_per_candidate.html' %}
 					<!-- {% include 'elections/candidates/personal_data_candidate.html' with candidate=candidate %} -->
 					<li>Pacto: {% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}{{pacto.value}}</li>

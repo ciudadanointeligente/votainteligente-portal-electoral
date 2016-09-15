@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.conf import settings
 
 def send_mail(context_dict, template_prefix, to=[], reply_to=None, from_email=settings.DEFAULT_FROM_EMAIL):
+    if not to:
+        return
     context = Context(context_dict)
     template_prefix_dict = {'template_prefix': template_prefix}
     template_body = get_template('mails/%(template_prefix)s_body.html' % template_prefix_dict)

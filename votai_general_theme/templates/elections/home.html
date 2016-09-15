@@ -41,6 +41,8 @@
       <li><h4 class="text-white">propuestas ciudadanas se han creado</h4></li>
       {% if not user|is_candidate %}
       <li><a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">Crea la tuya</a></li>
+      {% else %}
+      <li><a class="btn btn-success" href="{% url 'popular_proposals:home' %}">Revísalas</a></li>
       {% endif %}
 
     </ul>
@@ -56,19 +58,25 @@
 <section id="propuestas-mas-apoyo">
   {% include '_slide_propuestas.html' with proposals=proposals_with_likers %}
 </section>
-{% if not user|is_candidate %}
 <section id="que-hago">
   <div class="container">
     <div class="row">
+      {% if not user|is_candidate %}
       <div class="col-md-8">
         <h3 class="text-white">Tengo una idea para mejorar mi comuna ¿cómo empiezo?</h3>
         <p class="text-white">Regístrate, selecciona tu comuna y sigue los pasos para crear tu propuesta. Tiempo aprox. 20 minutos.</p>
       </div>
       <div class="col-md-4"><h3 class="pull-right"><a class="btn btn-success arrow btn-lg" href="{% url 'popular_proposals:propose_wizard_full' %}">Crea tu propuesta</a></h3></div>
+      {% else %}
+      <div class="col-md-8">
+        <h3 class="text-white">Quiero conocer y comprometerme con propuestas de mi comuna</h3>
+        <p class="text-white">Selecciona tu comuna, revisa las propuestas y comprométete con los ciudadanos.</p>
+      </div>
+      <div class="col-md-4"><h3 class=""><a class="width-cien btn btn-success arrow btn-lg" href="{% url 'popular_proposals:home' %}">Revisar propuestas</a></h3></div>
+      {% endif %}
     </div>
   </div>
 </section>
-{% endif %}
 
 <script>
 function ab_testing() {

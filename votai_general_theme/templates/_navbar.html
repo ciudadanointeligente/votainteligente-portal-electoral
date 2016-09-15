@@ -23,8 +23,8 @@
                 {% endif %}
                 <li><a href="{% url 'popular_proposals:home' %}">Conoce propuestas</a></li>
                 <li><a class="btn disabled" href="">Pronto: Tus candidatos</a></li>
-                {% include 'flat_pages_menu.html' with suffix='/visible/' title='Más información' %}
                 <li><a  href="/pages/otras-iniciativas/">Otras Iniciativas</a></li>
+                {% include 'flat_pages_menu.html' with suffix='/visible/' title='Más información' %}
                 {% if user.is_authenticated %}
                 <li class="dropdown">
                   

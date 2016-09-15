@@ -1,7 +1,7 @@
 from django.contrib import admin
 from backend_candidate.models import (Candidacy,
-									  CandidacyContact,
-									  )
+                                      CandidacyContact,
+                                      )
 from backend_citizen.models import (Profile,)
 
 
@@ -21,4 +21,4 @@ class CandidacyAdmin(admin.ModelAdmin):
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'is_journalist')
-    search_fields = ['user__username', 'user__email', 'user__name']
+    search_fields = ['user__username', 'user__email', 'user__first_name']

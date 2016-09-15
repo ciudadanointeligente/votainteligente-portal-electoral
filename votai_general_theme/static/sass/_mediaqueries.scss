@@ -8,18 +8,11 @@
     line-height: 40px;
   }
 
-  #hero h1 {
-    font-size: 34px;
-    letter-spacing: 4px;
-    font-weight: 700;
-  }
-
   h2 {
     font-size: 22px;
   }
 
   .btn {
-    letter-spacing: 0px;
     font-size: 11px;
     padding: 7px 10px;
     width: 100%;
@@ -35,6 +28,24 @@
 
   section#hero {
     padding: 50px 0;
+  }
+
+  #hero h1 .small {
+    font-size: 11px;
+    line-height: 21px;
+    letter-spacing: 2px;
+  }
+
+  #hero .input-group-lg > .input-group-addon {
+    width: 0;
+  }
+
+  #home-search:before {
+    display: none;
+  }
+
+  .elections-results {
+    bottom: -60px;
   }
 
   section#como-funciona {

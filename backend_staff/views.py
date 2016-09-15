@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from popular_proposal.models import ProposalTemporaryData, Commitment
+from popular_proposal.models import ProposalTemporaryData, Commitment, PopularProposal
 from preguntales.models import Message
 from django.views.generic.edit import FormView
 from popular_proposal.forms import CommentsForm, RejectionForm
@@ -174,8 +174,13 @@ class Stats(object):
 
     def participation(self):
         result = CandidateParticipation()
-        
         return result
+
+    def proposals(self):
+        return PopularProposal.objects.exclude(for_all_areas=True).count()
+
+    def commitments(self):
+        return Commitment.objects.count()
 
     def __getattribute__(self, name):
         if name.startswith('total_candidates_'):

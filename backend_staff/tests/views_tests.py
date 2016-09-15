@@ -338,3 +338,30 @@ class StaffHomeViewTest(TestCase):
         self.assertEquals(stats.participation_concejal().with_us, 1)
         self.assertEquals(stats.participation_concejal().got_email, 1)
         self.assertEquals(stats.participation_concejal().no_contact, 1)
+
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       clasification=u'education'
+                                       )
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       clasification=u'education',
+                                       for_all_areas=True
+                                       )
+        Commitment.objects.create(candidate=self.candidate1,
+                                  proposal=popular_proposal,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
+        self.assertEquals(stats.proposals(), 2)
+        self.assertEquals(stats.commitments(), 1)
+

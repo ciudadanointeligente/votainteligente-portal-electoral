@@ -58,7 +58,7 @@ class UserCreationForm(UserCreationForm):
 
 
 class GroupCreationForm(UserCreationForm):
-    name = forms.CharField(label=_(u'El nombre de tu organización'))
+    name = forms.CharField(label=_(u'El nombre de tu organización'), max_length=30)
 
     class Meta:
         model = User

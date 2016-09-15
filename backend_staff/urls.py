@@ -8,12 +8,16 @@ from backend_staff.views import (
     RejectPopularProposalView,
     AddContactAndSendMailView,
     AllCommitmentsView,
+    StatsView,
 )
 
 urlpatterns = patterns('',
     url(r'^$',
         IndexView.as_view(),
         name='index'),
+    url(r'^stats/?$',
+        StatsView.as_view(),
+        name='stats'),
     url(r'^popular_proposal_comments/(?P<pk>[-\w]+)/?$',
         PopularProposalCommentsView.as_view(),
         name='popular_proposal_comments'),
@@ -32,5 +36,4 @@ urlpatterns = patterns('',
     url(r'^all_commitments/?$',
         AllCommitmentsView.as_view(),
         name='all_commitments'),
-    
 )

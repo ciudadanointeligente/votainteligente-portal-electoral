@@ -58,43 +58,36 @@ $(document).ready(function(){
 {% url 'embedded_soul_mate_detail_view' slug=election.slug as embedded_url%}
 {% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
 <!-- soulmate -->
+<h1 class="text-center"><div class="small text-light">Candidatos a {{ election.position }} por {{ election.area }}</div>Encuentra tu 1/2 naranja</h1>
+<p class="bajada text-center text-width">Lee las preguntas y marca la posición política que te haga sentido, así podremos mostrarte al candidato que más se ajuste a tu forma de pensar</p>
 <div id="question-soulmate">
 	<div id="msj-alerta" class="alert alert-warning" style="display:none">
 		<strong>{% trans "Atención!" %}</strong> {% trans "Para brindar una mejor respuesta es necesario que respondas todas las preguntas."%}
 	</div>
-	<div class="row">
-		<form id="form-soulmate" role="form">
-		{% for category in election.categories.all %}
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">{{category.name}}</h3>
-			</div>
-			<div class="panel-body">
-				{% for topic in category.topics.all %}
-				<div class="row fondo-gris">
-					<div class="col-md-8">
-					<p class="question">{{topic.label}}</p>
-						<ul class="list-unstyled">
-							{% for position in topic.positions.all %}
-							<li>
-								<label for="answer-{{topic.id}}-{{position.id}}"><input name="answer-{{topic.id}}" value="{{position.id}}" id="answer-{{topic.id}}-{{position.id}}" type="radio"> {{position.label}}</label>
-							</li>
-							{% endfor %}
-						</ul>
-					</div>
-				</div>
-				<input type="hidden" name="question-{{topic.id}}" value="{{topic.id}}">
-				{% endfor %}
-			</div>
-		</div>
-		{% endfor %}
-
-		<div>
-			<button type="button" id="btn-find-soulmate" class="btn btn-success" onClick="ga('send', 'event', 'find-soulmate', 'click');"><i class="icon-heart"></i> {% trans "Encontrar mi 1/2 naranja" %}</button>
-		</div>
-		{% csrf_token %}
-		</form>
+	<form id="form-soulmate" role="form">
+	{% for category in election.categories.all %}
+	<div class="text-width">
+			<h2 class="">{{category.name}}</h2>
+			{% for topic in category.topics.all %}
+				<h4 class="question text-dark">{{topic.label}}</h4>
+					<ul class="list-unstyled">
+						{% for position in topic.positions.all %}
+						<li>
+							<label for="answer-{{topic.id}}-{{position.id}}"><input name="answer-{{topic.id}}" value="{{position.id}}" id="answer-{{topic.id}}-{{position.id}}" type="radio"> {{position.label}}</label>
+						</li>
+						{% endfor %}
+						<hr>
+					</ul>
+			<input type="hidden" name="question-{{topic.id}}" value="{{topic.id}}">
+			{% endfor %}
 	</div>
+	{% endfor %}
+
+	<div class="pull-right">
+		<button type="button" id="btn-find-soulmate" class="btn btn-success" onClick="ga('send', 'event', 'find-soulmate', 'click');"><i class="icon-heart"></i> {% trans "Encontrar mi 1/2 naranja" %}</button>
+	</div>
+	{% csrf_token %}
+		</form>
 </div>
 
 <!-- EOF soulmate -->

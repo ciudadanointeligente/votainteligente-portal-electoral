@@ -13,7 +13,7 @@
 {% if user.is_staff %}
 {% include 'elections/extra_info_per_election.html' %}
 {% endif %}
-<h1 class="text-center"><div class="small">Candidatos a</div><a href="{% url 'election_view' slug=election.slug %}">{{ election }} por {{ election.area }}</a></h1>
+<h1 class="text-center"><div class="small">Candidatos a</div><a href="{% url 'election_view' slug=election.slug %}">{{ election.position }} por {{ election.area }}</a></h1>
 <div class="row">
 	<div class="nav-candidator btn-bajada">
 		<nav class="col-md-12">

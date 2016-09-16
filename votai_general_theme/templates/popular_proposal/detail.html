@@ -49,7 +49,7 @@ $(function(){
   {% endif%}
 
 
-<div class="fondo-blanco text-width{% if proposal.for_all_areas %} transversal{% endif %}">
+<div class="fondo-blanco detail text-width{% if proposal.for_all_areas %} transversal{% endif %}">
 <!-- Cata compañera puedes saber si la propuesta es para todas las comunas mediante esto {% comment %}{% if proposal.for_all_areas %}{% else %}{% endif %}{% endcomment %}-->
     <div class="pull-left">
       <span class="label label-default">{{popular_proposal.data.clasification}}</span>
@@ -60,10 +60,24 @@ $(function(){
     <div class="line-space"></div>
     <p class="text-center text-light small">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>
     <h1 class="text-center">{{popular_proposal.title}}</h1>
-    {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}
+    <div class="row detail-numbers">
+      <div class="col-md-4">{% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}</div>
+      <div class="col-md-4">
+        <div class="row">
+              <div class="col-md-3 detail-number"><h3>{% commiters_by_election_position popular_proposal 'alcalde' as alcaldes %}{% if alcaldes.all %}{{alcaldes.count}}{% else %}0{% endif %}</h3></div>
+          <div class="col-md-9"><p class="nota">candidatos a alcalde apoyan esta propuesta</p></div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-3 detail-number">
+            <h3>{% commiters_by_election_position popular_proposal 'concejal' as concejales %}{% if concejales.all %}{{concejales.count}}{% else %}0{% endif %}</h3>
+          </div>
+          <div class="col-md-9"><p class="nota">candidatos a concejal apoyan esta propuesta</p></div>
+        </div>
+      </div>
+    </div>
     <div class="line-space"></div>
-
-
     {% if not user|is_candidate %}
     {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
     {% else %}
@@ -81,8 +95,6 @@ $(function(){
             {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
           {% endif %}
         {% endwith %}
-
-
     {% endif %}
 
     {% if proposal.image and proposal.for_all_areas %}
@@ -99,45 +111,10 @@ $(function(){
         {{popular_proposal.background|linebreaksbr}}
       </div>
     {% endif %}
-    
-    <!-- El modal con lo de los contactos -->
-    {% if user|is_candidate %}
-    <div class="fondo-blanco text-width{% if proposal.for_all_areas %} transversal{% endif %}">
-      {% with user.candidacies.first as candidacy %}
-      {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#contactDetails">
-          Contacta a esta/e ciudadana/o para ponerte de acuerdo.
-        </button>
 
-        <!-- Modal -->
-          <div class="modal fade" id="contactDetails" tabindex="-1" role="dialog" aria-labelledby="contactDetails">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Detalles de contacto</h4>
-                </div>
-                <div class="modal-body">
-                  <p>El mail de la persona que hizo esta propuesta es <a href="mailto:{{popular_proposal.proposer.email}}?Subject=Sobre%20tu%20propuesta%20ciudadana">{{popular_proposal.proposer.email}}</a>.</p>
-                  {% if popular_proposal.contact_details %}
-                  <p>Además tenemos algunos datos extras:</p>
-                  {{popular_proposal.contact_details|linebreaks}}
-                  {% endif %}
-                  </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        {% endif %}
-      {% endwith %}
-      </div>
-    {% endif %}
-    <!-- Fin de el modal con lo de los contactos -->
 
     {% if user|is_candidate %}
-      <div class="fondo-blanco text-width{% if proposal.for_all_areas %} transversal{% endif %}">
+      <div class="text-width{% if proposal.for_all_areas %} transversal{% endif %}">
       {% for candidacy in user.candidacies.all %}
         {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
           <div id="compromiso">
@@ -173,10 +150,10 @@ $(function(){
                 </a>
             {% else %}
               {% get_commitment candidacy popular_proposal as candidate_commitment %}
-              <div class="panel panel-default">
-                <div class="panel-body">
+              <div>
+                <div>
                 {% if candidate_commitment.commited %}
-                 <i class="fa fa-heart" aria-hidden="true"></i> {% trans 'Yo me comprometí!' %}
+                  {% trans 'Felicidades, ya te comprometiste con esta propuesta.' %}
                 {% else %}
                   {% trans 'Dijiste que no incluirías esta propuesta en tu programa.' %}
                 {% endif %}
@@ -187,31 +164,96 @@ $(function(){
         {% endif %}
       {% endfor %}
       </div>
-    {% endif %}
 
-    {% if popular_proposal.commitments.all %}
-      <div class="fondo-blanco text-width{% if proposal.for_all_areas %} transversal{% endif %}">
-      <h3>Candidatos que ya han expresado su opinión:</h3>
-      {% for commitment in popular_proposal.commitments.all %}
-      <div class="col-sm-4 col-md-4">
+      <!-- El modal con lo de los contactos -->
+      <div class="text-width{% if proposal.for_all_areas %} transversal{% endif %}">
+        {% with user.candidacies.first as candidacy %}
+        {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactDetails">
+            Contacta a esta/e ciudadana/o para ponerte de acuerdo.
+          </button>
 
-        {% with candidate=commitment.candidate %}
-          {% if candidate.image %}
-            {% thumbnail candidate.image "300x300" crop="center" as im %}
-            <a href="{{commitment.get_absolute_url}}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
-            {% endthumbnail %}
-          {% else %}
-            <a href="{{commitment.get_absolute_url}}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
+          <!-- Modal -->
+            <div class="modal fade" id="contactDetails" tabindex="-1" role="dialog" aria-labelledby="contactDetails">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Detalles de contacto</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>El mail de la persona que hizo esta propuesta es <a href="mailto:{{popular_proposal.proposer.email}}?Subject=Sobre%20tu%20propuesta%20ciudadana">{{popular_proposal.proposer.email}}</a>.</p>
+                    {% if popular_proposal.contact_details %}
+                    <p>Además tenemos algunos datos extras:</p>
+                    {{popular_proposal.contact_details|linebreaks}}
+                    {% endif %}
+                    </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           {% endif %}
-          <p class="text-center">
-            <a href="{{commitment.get_absolute_url}}"><h3 class="text-center">{{candidate.name}}</h3></a>
-            <p class="small text-light text-center small-bajada"><a href="{{ commitment.get_absolute_url }}">Compromiso</a></p>
-          </p>
-           
         {% endwith %}
         </div>
-      {% endfor %}
-      </div>
+      <!-- Fin de el modal con lo de los contactos -->
+
+    {% endif %}<!-- is_candidate -->
+
+    {% if popular_proposal.commitments.all %}
+      <div class="container{% if proposal.for_all_areas %} transversal{% endif %}">
+      <h2>¿Qué han dicho los candidatos?</h2>
+      <!-- Alcaldes comprometidos -->
+      
+        {% commiters_by_election_position popular_proposal 'alcalde' as alcaldes %}
+        {% if alcaldes.all %}
+          {% commiters_by_election_position popular_proposal 'alcalde' as alcaldes %}
+            <h3>Candidatos a alcalde que se han comprometido:</h3>
+            {% for commitment in alcaldes %}
+              {% if commitment.commited %} <!-- Alcaldes comprometidos -->
+                {% with candidate=commitment.candidate %}
+                  <div class="row">
+                    <div class="col-md-4">
+                      {% if candidate.image %}
+                          {% thumbnail candidate.image "300x300" crop="center" as im %}
+                          <a href="{{commitment.get_absolute_url}}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
+                          {% endthumbnail %}
+                        {% else %}
+                          <a href="{{commitment.get_absolute_url}}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
+                      {% endif %}
+                      <h3 class="text-center"><a href="{{commitment.candidate.get_absolute_url}}">{{candidate}}</a></h3>
+                      <p class="small text-light text-center small-bajada">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</p>
+                    </div>
+                  </div>
+                {% endwith %}
+              {% endif %}
+            {% endfor %}
+        {% endif %}
+        <div class="row">
+        {% commiters_by_election_position popular_proposal 'alcalde' as alcaldes %}
+        {% if alcaldes.all %}
+            <h3>Candidatos a alcalde que han rechazado la propuesta o no se han pronunciado:</h3>
+            {% for commitment in alcaldes %}
+              {% if not commitment.commited %}<!-- Alcaldes que rechazaron -->
+                {% with candidate=commitment.candidate %}
+                <div class="row">
+                  <div class="col-md-4">
+                    {% if candidate.image %}
+                        {% thumbnail candidate.image "300x300" crop="center" as im %}
+                        <a href="{{commitment.get_absolute_url}}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
+                        {% endthumbnail %}
+                      {% else %}
+                        <a href="{{commitment.get_absolute_url}}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
+                    {% endif %}
+                    <h3 class="text-center"><a href="{{commitment.candidate.get_absolute_url}}">{{candidate}}</a></h3>
+                    <p class="small text-light text-center small-bajada">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</p>
+                  </div>
+                </div>
+              {% endwith %}
+              {% endif %}
+            {% endfor %}
+        {% endif %}
     {% endif %}
 
 

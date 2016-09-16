@@ -4,10 +4,24 @@ from django.core.mail import EmailMessage
 from django.template import Context
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+
+
+def validateEmail(email):
+    try:
+        validate_email(email)
+        return True
+    except ValidationError:
+        return False
+
 
 def send_mail(context_dict, template_prefix, to=[], reply_to=None, from_email=settings.DEFAULT_FROM_EMAIL):
-    if not to:
-        return
+    validated_to = []
+    for m in to:
+        if validateEmail(m):
+            validated_to.append(m)
+    to = validated_to
     context = Context(context_dict)
     template_prefix_dict = {'template_prefix': template_prefix}
     template_body = get_template('mails/%(template_prefix)s_body.html' % template_prefix_dict)

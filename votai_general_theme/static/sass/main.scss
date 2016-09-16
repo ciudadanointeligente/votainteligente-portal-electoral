@@ -1787,6 +1787,19 @@ input#id_4-title {
   max-width: 200px;
 }
 
+.detail-number h3 {
+    margin: 6px 0;
+}
+
+.detail-numbers .col-md-4:nth-child(2) {
+    border-right: 1px solid $grey-five;
+    border-left: 1px solid $grey-five;
+}
+
+.detail-numbers .row {
+    margin-top: 17px;
+}
+
 /*Comuna*/
 
 .comuna-concejales {

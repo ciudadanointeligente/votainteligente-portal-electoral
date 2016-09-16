@@ -8,6 +8,8 @@ from elections.models import Area
 from elections.models import Election, Candidate
 from preguntales.models import Message
 from django.core import mail
+from backend_staff.views import Stats
+from backend_candidate.models import CandidacyContact, Candidacy
 
 
 NON_STAFF_PASSWORD = 'gatito'
@@ -32,9 +34,17 @@ class StaffHomeViewTest(TestCase):
             'allies': u'El Feli y el resto de los cabros de la FCI'
         }
         self.election = Election.objects.get(id=1)
-        self.candidate1 = Candidate.objects.get(id=4)
-        self.candidate2 = Candidate.objects.get(id=5)
-        self.candidate3 = Candidate.objects.get(id=6)
+        self.election.position = 'alcalde'
+        self.election.save()
+        self.candidate1 = Candidate.objects.get(id=1)
+        self.candidate2 = Candidate.objects.get(id=2)
+        self.candidate3 = Candidate.objects.get(id=3)
+        self.election2 = Election.objects.get(id=2)
+        self.election2.position = 'concejal'
+        self.election2.save()
+        self.candidate4 = Candidate.objects.get(id=4)
+        self.candidate5 = Candidate.objects.get(id=5)
+        self.candidate6 = Candidate.objects.get(id=6)
 
     def is_reachable_only_by_staff(self, url, url_kwargs=None):
         url = reverse(url, kwargs=url_kwargs)
@@ -246,3 +256,112 @@ class StaffHomeViewTest(TestCase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertIn(commitment, response.context['commitments'])
+
+    def test_stats_get(self):
+
+        self.is_reachable_only_by_staff('backend_staff:stats')
+        
+        url = reverse('backend_staff:stats')
+        self.client.login(username=self.fiera.username,
+                          password=STAFF_PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIsInstance(response.context['stats'], Stats)
+        self.assertTemplateUsed(response, 'backend_staff/stats.html')
+
+    def test_stats_mixin(self):
+        stats = Stats()
+        self.assertTrue(Candidate.objects.count())
+        self.assertEquals(stats.total_candidates(), Candidate.objects.count())
+        self.assertEquals(stats.total_candidates_alcalde(),
+                          Election.objects.get(position='alcalde').candidates.count())
+        self.assertEquals(stats.total_candidates_concejal(),
+                          Election.objects.get(position='concejal').candidates.count())
+
+        candidates_in_alcaldes_ids = []
+        for c in Election.objects.get(position='alcalde').candidates.all():
+            candidates_in_alcaldes_ids.append(c.id)
+
+        for c in Election.objects.get(position='concejal').candidates.all():
+            self.assertNotIn(c.id, candidates_in_alcaldes_ids)
+
+        # Candidate one has connected
+        user1 = User.objects.create_user(username='user1')
+
+        candidacy1 = Candidacy.objects.create(user=user1, candidate=self.candidate1)
+        CandidacyContact.objects.create(candidate=self.candidate1,
+                                        used_by_candidate=True,
+                                        candidacy=candidacy1)
+
+        # Candidate 2 got an email but hasn't read it
+        user2 = User.objects.create_user(username='user2')
+
+        candidacy2 = Candidacy.objects.create(user=user2, candidate=self.candidate2)
+        CandidacyContact.objects.create(candidate=self.candidate2,
+                                        used_by_candidate=False,
+                                        candidacy=candidacy2
+                                        )
+        # Candidate 3 we have no contact with her
+        user3 = User.objects.create_user(username='user3')
+
+        Candidacy.objects.create(user=user3, candidate=self.candidate3)
+
+        # Candidate four has connected
+        user4 = User.objects.create_user(username='user4')
+
+        candidacy4 = Candidacy.objects.create(user=user4, candidate=self.candidate4)
+        CandidacyContact.objects.create(candidate=self.candidate4,
+                                        used_by_candidate=True,
+                                        candidacy=candidacy4)
+
+        # Candidate 5 got an email but hasn't read it
+        user5 = User.objects.create_user(username='user5')
+
+        candidacy5 = Candidacy.objects.create(user=user5, candidate=self.candidate5)
+        CandidacyContact.objects.create(candidate=self.candidate5,
+                                        used_by_candidate=False,
+                                        candidacy=candidacy5
+                                        )
+        # Candidate 6 we have no contact with her
+        user6 = User.objects.create_user(username='user6')
+
+        Candidacy.objects.create(user=user6, candidate=self.candidate6)
+
+        self.assertEquals(stats.participation().with_us, 2)
+        self.assertEquals(stats.participation().got_email, 2)
+        self.assertGreater(stats.participation().no_contact, 2)
+
+        self.assertEquals(stats.participation_alcalde().with_us, 1)
+        self.assertEquals(stats.participation_alcalde().got_email, 1)
+        self.assertEquals(stats.participation_alcalde().no_contact, 1)
+
+        self.assertEquals(stats.participation_concejal().with_us, 1)
+        self.assertEquals(stats.participation_concejal().got_email, 1)
+        self.assertEquals(stats.participation_concejal().no_contact, 1)
+
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       clasification=u'education'
+                                       )
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       clasification=u'education',
+                                       for_all_areas=True
+                                       )
+        Commitment.objects.create(candidate=self.candidate1,
+                                  proposal=popular_proposal,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
+        self.assertEquals(stats.proposals(), 2)
+        self.assertEquals(stats.commitments(), 1)
+

@@ -1,0 +1,46 @@
+{% extends "backend_base.html" %}
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block content %}
+<h1>Se abrirán las grandes alamedas por donde caminen los grandes números libres.</h1>
+<h2>Mientras no se pueda están acá:</h2>
+
+<h3>Le cuento que le tenimoh:</h3>
+<p>Un total de {{stats.total_candidates}} candidatos.</p>
+
+
+
+<hr>
+<p>Un total de {{stats.participation.with_us}} candidatos se unieron al sitio y están con losotros.</p>
+<p>Un total de {{stats.participation.got_email}} candidatos recibieron el mail pero no han cachao na.</p>
+<p>Un total de {{stats.participation.no_contact}} candidatos no tienen mail.</p>
+<hr>
+<h4>Por Alcaldes:</h4>
+<p>Existe un total de {{stats.total_candidates_alcalde}} candidatos a alcalde en el portal.</p>
+<p>{{stats.participation_alcalde.with_us}} candidatos a alcalde de un total de {{stats.total_candidates_alcalde}} se unieron al sitio y están con losotros.</p>
+<p>Un total de {{stats.participation_alcalde.got_email}} candidatos a alcalde recibieron el mail pero no han cachao na.</p>
+<p>Un total de {{stats.participation_alcalde.no_contact}} candidatos a alcalde no tienen mail.</p>
+
+<hr>
+<h4>Por concejal:</h4>
+<p>Existe un total de {{stats.total_candidates_concejal}} candidatos a concejal en el portal.</p>
+<p>{{stats.participation_concejal.with_us}} candidatos a concejal de {{stats.total_candidates_concejal}} se unieron al sitio y están con losotros.</p>
+<p>Un total de {{stats.participation_concejal.got_email}} candidatos a concejal recibieron el mail pero no han cachao na.</p>
+<p>Un total de {{stats.participation_concejal.no_contact}} candidatos a concejal no tienen mail.</p>
+<hr>
+<h4>Propuestas Ciudadanas:</h4>
+<p>Hay un total de {{stats.proposals}} propuestas ciudadanas locales, el resto es transversal.</p>
+<hr>
+<h4>Compromisos:</h4>
+<p>Hay un total de {{stats.commitments}} compromisos de candidatos con propuestas ciudadanas.</p>
+
+
+{% endblock content %}
+
+{% block extrafooter %}
+{% endblock extrafooter %}
+

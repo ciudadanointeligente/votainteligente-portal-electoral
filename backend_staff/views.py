@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from popular_proposal.models import ProposalTemporaryData, Commitment
+from popular_proposal.models import ProposalTemporaryData, Commitment, PopularProposal
 from preguntales.models import Message
 from django.views.generic.edit import FormView
 from popular_proposal.forms import CommentsForm, RejectionForm
@@ -14,8 +14,9 @@ from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, View
 from django.views.generic.detail import SingleObjectMixin
 from django.http import HttpResponseRedirect, HttpResponseNotFound
-from elections.models import Candidate
+from elections.models import Candidate, Election
 from django.views.generic.list import ListView
+from backend_candidate.models import CandidacyContact
 
 
 class IndexView(TemplateView):
@@ -114,6 +115,7 @@ class RejectPopularProposalView(FormView):
     def get_success_url(self):
         return reverse('backend_staff:index')
 
+
 class AddContactAndSendMailView(FormView):
     form_class = AddContactAndSendMailForm
     template_name = 'backend_staff/add_contact_and_send_mail.html'
@@ -153,3 +155,58 @@ class AllCommitmentsView(ListView):
             return HttpResponseNotFound()
         return super(AllCommitmentsView, self).dispatch(*args, **kwargs)
 
+
+class CandidateParticipation(object):
+    no_contact = 0
+
+    def __init__(self, filter_kwargs={}):
+        qs = Candidate.objects.all()
+        if filter_kwargs:
+            qs = qs.filter(**filter_kwargs)
+        self.with_us = qs.filter(contacts__in=CandidacyContact.objects.filter(used_by_candidate=True)).count()
+        self.got_email = qs.filter(contacts__in=CandidacyContact.objects.filter(used_by_candidate=False)).count()
+        self.no_contact = qs.filter(contacts__isnull=True, **filter_kwargs).count()
+
+
+class Stats(object):
+    def total_candidates(self):
+        return Candidate.objects.count()
+
+    def participation(self):
+        result = CandidateParticipation()
+        return result
+
+    def proposals(self):
+        return PopularProposal.objects.exclude(for_all_areas=True).count()
+
+    def commitments(self):
+        return Commitment.objects.count()
+
+    def __getattribute__(self, name):
+        if name.startswith('total_candidates_'):
+            position = name.replace('total_candidates_', '')
+
+            def total_candidates_per_election_filter():
+                return Candidate.objects.filter(elections__position=position).count()
+            return total_candidates_per_election_filter
+        if name.startswith('participation_'):
+            position = name.replace('participation_', '')
+
+            def _participacion():
+                return CandidateParticipation(filter_kwargs={'elections__position': position})
+            return _participacion
+
+        return super(Stats, self).__getattribute__(name)
+
+
+class StatsView(TemplateView):
+    template_name = 'backend_staff/stats.html'
+
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(StatsView, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(StatsView, self).get_context_data(**kwargs)
+        context['stats'] = Stats()
+        return context

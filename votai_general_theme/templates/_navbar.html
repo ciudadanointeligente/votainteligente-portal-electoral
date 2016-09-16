@@ -18,13 +18,13 @@
 
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                {% include 'flat_pages_menu.html' with suffix='/paso1/' title='Paso 1' %}
                 {% if not user|is_candidate %}
                 <li><a href="{% url 'popular_proposals:propose_wizard_full' %}">Crea tu propuesta</a></li>
                 {% endif %}
                 <li><a href="{% url 'popular_proposals:home' %}">Conoce propuestas</a></li>
                 <li><a class="btn disabled" href="">Pronto: Tus candidatos</a></li>
                 <li><a  href="/pages/otras-iniciativas/">Otras Iniciativas</a></li>
+                {% include 'flat_pages_menu.html' with suffix='/visible/' title='Más información' %}
                 {% if user.is_authenticated %}
                 <li class="dropdown">
                   
@@ -42,6 +42,9 @@
                     <li><a href="{% url 'backend_staff:index' %}">
                             <i class="fa fa-heart" aria-hidden="true"></i>
                             {% blocktrans %}Sección del Staff{% endblocktrans %}</a></li>
+                    <li><a href="{% url 'backend_staff:stats' %}">
+                            <i class="fa fa-line-chart" aria-hidden="true"></i>
+                            {% blocktrans %}Estadísticas{% endblocktrans %}</a></li>
                     {% endif %}
 
                     {% if user|is_candidate %}

@@ -55,6 +55,7 @@ h2 {
   font-size: 32px;
   color: $grey-one;
   line-height: 33px;
+  margin: 40px 0;
 }
 
 h3 {
@@ -104,10 +105,15 @@ strong {
 h1 .small {
   font-size: 11px;
   line-height: 31px;
+  color: #9BA9C1;
 }
 
 hr {
     border-top: 1px solid $grey-five;
+}
+
+.width-cien {
+  width: 100%;
 }
 
 .epigrafe {
@@ -202,20 +208,20 @@ select.form-control {
   padding: 8px 0px;
   background-color: transparent;
   border-radius: 0;
-  color: $grey-four;
+  color: $grey-three;
 }
 
 .breadcrumb a {
-  color: $grey-four;
+  color: $grey-three;
 }
 
 .breadcrumb>.active {
-  color: $grey-four;
+  color: $grey-three;
 }
 
 .breadcrumb>li+li:before {
     padding: 0 5px;
-    color: $grey-four;
+    color: $grey-three;
     content: "/\00a0";
 }
 
@@ -870,6 +876,11 @@ section.terms {
   margin-top: -10px;
 }
 
+.bajada {
+    margin-top: -30px;
+    margin-bottom: 70px;
+}
+
 p.answer {
     margin-bottom: 40px;
 }
@@ -912,41 +923,8 @@ p.answer {
 
 /*Media naranja*/
 
-.panel-default>.panel-heading {
-  color: $main-background-color;
-  background-color: $letters-color;
-  border-color: transparent;
-}
-
-.panel-title {
-  font-size: 14px;
-}
-
-#other-soulmate .no-first-row {
-  margin-top: 10px;
-}
-
-.other-soulmate-box {
-  background-color: $main-background-color;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  padding: 1px 15px;
-}
-
-.fondo-gris {
-  background: white;
-  border-radius: 6px;
-  margin-bottom: 15px;
-}
-
-#question-soulmate .fondo-gris {
-  padding: 15px 0px;
-}
-
-#question-soulmate .row {
-  margin-right: 0px;
-  margin-left: 0px;
+input[type=checkbox], input[type=radio] {
+    margin: 15px 10px 0px -25px;
 }
 
 /*Media naranja - Resultado */

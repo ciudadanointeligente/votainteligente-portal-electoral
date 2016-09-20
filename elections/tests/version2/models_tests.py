@@ -7,6 +7,8 @@ from django.template.loader import get_template
 from django.template import Context, Template
 from django.test import override_settings
 from elections.models import Topic
+from django.contrib.auth.models import User
+from backend_candidate.models import Candidacy
 
 
 class Version2TestCase(TestCase):
@@ -149,6 +151,15 @@ class CandidaTeTestCase(Version2TestCase):
         self.election.candidates.add(candidate)
         self.assertFalse(candidate.force_has_answer)
 
+    def test_candidate_is_with_us(self):
+        candidate = Candidate.objects.get(id=1)
+        user = User.objects.create_user(username='user', password='password')
+        Candidacy.objects.create(user=user, candidate=candidate)
+        self.assertFalse(candidate.has_joined())
+        self.client.login(username=user.username, password='password')
+        user = User.objects.get(id=user.id)
+        self.assertTrue(user.last_login)
+        self.assertTrue(candidate.has_joined())
 
 class CandidateExtraInfoTestCase(Version2TestCase):
     def test_can_have_extra_info(self):

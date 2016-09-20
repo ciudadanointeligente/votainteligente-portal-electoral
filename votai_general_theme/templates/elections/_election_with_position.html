@@ -28,6 +28,13 @@
           <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
         {% endif %}
         <div class="caption">{{ candidate.name }}</div>
+        {% if user.is_staff %}
+          {% if candidate.has_joined %}
+            <span class="label label-success">Este candidato se ha conectado.</span>
+          {% else %}
+            <span class="label label-danger">Este candidato NO se ha conectado.</span>
+          {% endif %}
+        {% endif %}
   </div>
       {% endfor %}
       {% if election.candidates > 8 %}

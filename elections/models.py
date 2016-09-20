@@ -74,6 +74,11 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
         are_there_answers = TakenPosition.objects.filter(person=self, position__isnull=False).exists()
         return are_there_answers
 
+    def has_joined(self):
+        if self.candidacy_set.exclude(user__last_login__isnull=True):
+            return True
+        return False
+
     def get_absolute_url(self):
         election_slug = ''
         if self.election:

@@ -56,7 +56,7 @@ ROOT_URLCONF = 'votainteligente.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["votai_general_theme/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

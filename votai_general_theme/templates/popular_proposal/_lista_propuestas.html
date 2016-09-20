@@ -27,7 +27,7 @@
     {% endif %}
 
 <div id="grid">
-    {% paginate popular_proposals %}
+    {% paginate 12 popular_proposals %}
     {% show_pages %}
   <div id="posts">
     {% for proposal in popular_proposals %}

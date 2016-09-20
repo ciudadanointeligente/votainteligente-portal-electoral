@@ -379,5 +379,4 @@ class CommitmentDetailView(DetailView):
         return super(CommitmentDetailView, self).dispatch(*args, **kwargs)
 
     def get_object(self, queryset=None):
-        return self.model.objects.get(candidate=self.candidate,
-                                      proposal=self.proposal)
+        return get_object_or_404(self.model, candidate=self.candidate, proposal=self.proposal)

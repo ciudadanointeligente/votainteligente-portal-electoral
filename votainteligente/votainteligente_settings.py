@@ -306,6 +306,12 @@ if DONT_USE_MIGRATIONS:
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 FACEBOOK_ACCESS_TOKEN = 'FieraEsLaMejorAmigaDeTodos'
 
+TWITTER_TOKEN = 'TWITTER_TOKEN'
+TWITTER_TOKEN_KEY = 'TWITTER_TOKEN_KEY'
+TWITTER_CON_KEY = 'TWITTER_CON_KEY'
+TWITTER_CON_SECRET_KEY = 'TWITTER_CON_SECRET_KEY'
+
+
 try:
     from local_settings import *
 except ImportError, e:

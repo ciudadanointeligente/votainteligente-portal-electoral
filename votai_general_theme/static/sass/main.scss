@@ -868,6 +868,11 @@ section.terms {
     margin: 0 auto;
 }
 
+.img-candidato-small {
+    max-width: 60px;
+    margin: 0 auto;
+}
+
 .btn-bajada {
     margin-top: -20px;
 }
@@ -1626,7 +1631,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 /*Wizard*/
 
-.tips {
+.tips, .tips-invert {
   background: $grey-two;
   padding: 30px;
   color: white;
@@ -1649,7 +1654,22 @@ tr.primary p:first-child, tr.danger p:first-child {
   margin-left: -20px;
 }
 
-.tips a {
+.tips-invert:before {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(120, 130, 145, 0);
+  border-bottom-color: $grey-two;
+  border-width: 20px;
+  margin-left: -20px;
+}
+
+.tips a, .tips-invert a {
   color: $yellow;
 }
 
@@ -1798,6 +1818,14 @@ input#id_4-title {
 
 .detail-numbers .row {
     margin-top: 17px;
+}
+
+.compromiso {
+    margin-bottom: 40px;
+}
+
+.compromiso h5 {
+  margin: -3px 0;
 }
 
 /*Comuna*/

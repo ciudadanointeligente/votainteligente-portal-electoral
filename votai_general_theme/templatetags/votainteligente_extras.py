@@ -328,6 +328,8 @@ def get_election_by_position(context, position):
 @register.filter(name='is_candidate_for')
 def is_candidate_for(candidate, area):
     areas = []
+    if candidate.elections is None:
+        return False
     for election in candidate.elections.all():
         if election.area:
             areas.append(election.area.id)

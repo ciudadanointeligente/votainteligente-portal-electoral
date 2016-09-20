@@ -102,12 +102,13 @@ $(function(){
           <span>Propuesta de </span><img src="{{ proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
       </div>
     {% endif %}
-
-    {% with user.candidacies.first as candidacy %}
-      {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
-        <div class="text-right"><svg width="30" height="37" viewBox="0 0 20 37" xmlns="http://www.w3.org/2000/svg"><path d="M10.703 36.953c-5.506-7.227-6.93-23.69-6.359-25.304-1.42-.506-2.84-1.012-4.26-1.52C3.028 6.847 5.97 3.563 8.914.278c0 0 4.223 8.03 5.807 11.644l-4.358-.013c-1.225 2.722 2.776 11.898 9.186 22.505" fill="#8AC1F9" fill-rule="evenodd"/></svg><a data-toggle="modal" data-target="#contactDetails">Contacta a el/la ciudadana/o</a> que creó esta propuesta.</div>
-      {% endif %}
-    {% endwith %}
+    {% if user|is_candidate %}
+      {% with user.candidacies.first as candidacy %}
+        {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
+          <div class="text-right"><svg width="30" height="37" viewBox="0 0 20 37" xmlns="http://www.w3.org/2000/svg"><path d="M10.703 36.953c-5.506-7.227-6.93-23.69-6.359-25.304-1.42-.506-2.84-1.012-4.26-1.52C3.028 6.847 5.97 3.563 8.914.278c0 0 4.223 8.03 5.807 11.644l-4.358-.013c-1.225 2.722 2.776 11.898 9.186 22.505" fill="#8AC1F9" fill-rule="evenodd"/></svg><a data-toggle="modal" data-target="#contactDetails">Contacta a el/la ciudadana/o</a> que creó esta propuesta.</div>
+        {% endif %}
+      {% endwith %}
+    {% endif %}
 
 </div>
 

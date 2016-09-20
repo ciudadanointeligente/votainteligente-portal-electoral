@@ -11,12 +11,14 @@ Estimada candidata o candidato a la alcaldía de {{popular_proposal.area}}, nos 
 ¿Qué acción dará por cumplida la tarea del alcalde?
 {{popular_proposal.data.solution_at_the_end|popular_proposal_when|linebreaks}} antes de {{popular_proposal.data.when|popular_proposal_when}} desde el comienzo de su mandato.
 
-Las vecinas y vecinos de {{popular_proposal.area }} están esperando que se pronuncie sobre esta propuesta ciudadana.
+Las vecinas y vecinos de {{popular_proposal.area }} están esperando que se pronuncie sobre esta propuesta ciudadana. Para hacerlo puede seguir los siguientes link:
 
 {% if url %}
 Puedes revisar más detalles y definir tu postura en el siguiente link:
 http://votainteligente.cl{{url}}
 {% endif %}
+
+Recuerde que responder este correo NO lo podndrá en contacto con quienes hicieron la propuesta.
 
 Desde ya muchas gracias,
 El equipo de VotaInteligente a nombre de {{popular_proposal.proposer}}.

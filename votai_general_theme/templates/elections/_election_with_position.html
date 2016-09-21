@@ -7,7 +7,7 @@
 
 {% get_election_by_position position as election %}
 <!-- Cata compañera cacha que podis hacer lo siguiente {{position}} y te va a imprimir alcalde o concejal dependiendo de lo que tu digai -->
-<div class="row">
+<!-- <div class="row"> -->
   
     <script type="text/javascript">
     jQuery(document).ready(function($){
@@ -18,8 +18,9 @@
       });
     });
     </script>
-      {% for candidate in election.candidates.all|slice:":8" %}
+<!--       {% for candidate in election.candidates.all|slice:":8" %}
   <div class="col-md-3">
+      {% if position != 'concejal' %}
         {% if candidate.image %}
           {% thumbnail candidate.image "x96" as im %}
             <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive img-circle img-candidato"/></a>
@@ -27,15 +28,77 @@
         {% else %}
           <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
         {% endif %}
-        <div class="caption">{{ candidate.name }}</div>
+      {% endif %}
+      <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><h3 class="caption">{{ candidate.name }}</h3></a>
+      <p class="small">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</p>
   </div>
       {% endfor %}
-      {% if election.candidates > 8 %}
+      {% if election.candidates.count > 8 %}
         <a href="{{ election.get_absolute_url }}"><img src="{% static 'img/candidate-default.jpg' %}" alt="Ingresa acá para ver el resto " border="0" class="img-responsive img-circle img-candidato"></a>
         <div class="caption">Puedes ver el resto acá</div>
-      {% endif %}
+      {% endif %} -->
     <!-- <a href="{{ election.get_absolute_url }}"><h3 class="portada">{{ election.name }}</h3></a> -->
-    <div class="election-description">
+<!--     <div class="election-description">
       <p>{{ election.description|truncatewords:33 }}</p> 
     </div>
+</div> -->
+
+
+<!--         {% if election.candidates.count > 8 %}
+          <div class="posts">
+            <a href="{{ election.get_absolute_url }}"><img src="{% static 'img/candidate-default.jpg' %}" alt="Ingresa acá para ver el resto " border="0" class="img-responsive img-circle img-candidato"></a>
+            <div class="caption">Puedes ver el resto acá</div>
+          </div>
+        {% endif %} -->
+
+<div class="carousel-reviews broun-block">
+  <div class="container">
+        <div class="row">
+            <div id="carousel-{{area.id}}-{{position}}" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="item active">
+                    {% for candidate in election.candidates.all|slice:":8" %}
+                      <!-- Te traje 3 no más si quieres más me avisai =) -->
+                          <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="block-text rel zmin">
+                              {% if position != 'concejal' %}
+                                {% if candidate.image %}
+                                  {% thumbnail candidate.image "x96" as im %}
+                                    <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive img-circle img-candidato"/></a>
+                                  {% endthumbnail %}
+                                {% else %}
+                                  <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
+                                {% endif %}
+                              {% endif %}
+                              <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><h3 class="caption">{{ candidate.name }}</h3></a>
+                              <p class="small">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</p>
+                            </div>
+                          </div>
+                      {% if forloop.counter|divisibleby:3 and not forloop.last%}
+                  </div>
+                  <div class="item">
+                      {% endif %}
+                    {% endfor %}
+
+                  </div>                    
+              </div>
+                <a class="left carousel-control" href="#carousel-{{area.id}}-{{position}}" role="button" data-slide="prev">
+                  <svg width="18" height="100%" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                      <title>Anterior</title>
+                      <g stroke="#FFFFFF" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px">
+                          <path d="M9 1L.4 9 9 17M1.5 9h16"/>
+                      </g>
+                  </svg>
+                </a>
+                <a class="right carousel-control" href="#carousel-{{area.id}}-{{position}}" role="button" data-slide="next">
+                    <svg width="18" height="100%" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                        <title>Siguiente</title>
+                        <g stroke="#FFFFFF" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px">
+                            <path d="M9 1l8.6 8L9 17M16.5 9H.5"/>
+                        </g>
+                    </svg>
+                </a>
+            </div>
+        </div>
+  </div>
 </div>

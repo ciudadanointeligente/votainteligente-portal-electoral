@@ -348,12 +348,12 @@ class StaffHomeViewTest(TestCase):
                                                           title=u'This is a title',
                                                           clasification=u'education'
                                                           )
-        PopularProposal.objects.create(proposer=self.fiera,
-                                       area=self.arica,
-                                       data=self.data,
-                                       title=u'This is a title',
-                                       clasification=u'education'
-                                       )
+        popular_proposal2 = PopularProposal.objects.create(proposer=self.fiera,
+                                                           area=self.arica,
+                                                           data=self.data,
+                                                           title=u'This is a title',
+                                                           clasification=u'education'
+                                                           )
         PopularProposal.objects.create(proposer=self.fiera,
                                        area=self.arica,
                                        data=self.data,
@@ -365,6 +365,19 @@ class StaffHomeViewTest(TestCase):
                                   proposal=popular_proposal,
                                   detail=u'Yo me comprometo',
                                   commited=True)
+        Commitment.objects.create(candidate=self.candidate1,
+                                  proposal=popular_proposal2,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
         self.assertEquals(stats.proposals(), 2)
-        self.assertEquals(stats.commitments(), 1)
+        self.assertEquals(stats.commitments(), 2)
+        self.assertEquals(stats.candidates_that_have_commited(), 1)
+        Commitment.objects.create(candidate=self.candidate6,
+                                  proposal=popular_proposal2,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
+
+        self.assertEquals(stats.candidates_that_have_commited(), 2)
+        self.assertEquals(stats.candidates_that_have_commited_alcalde(), 1)
+        self.assertEquals(stats.candidates_that_have_commited_concejal(), 1)
 

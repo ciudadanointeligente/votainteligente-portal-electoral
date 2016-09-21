@@ -183,6 +183,12 @@ class Stats(object):
     def commitments(self):
         return Commitment.objects.count()
 
+    def candidates_that_have_commited(self, filter_kwargs={}):
+        qs = Candidate.objects.exclude(commitments__isnull=True)
+        if filter_kwargs:
+            qs = qs.filter(**filter_kwargs)
+        return qs.count()
+
     def __getattribute__(self, name):
         if name.startswith('total_candidates_'):
             position = name.replace('total_candidates_', '')
@@ -196,7 +202,12 @@ class Stats(object):
             def _participacion():
                 return CandidateParticipation(filter_kwargs={'elections__position': position})
             return _participacion
-
+        if name.startswith('candidates_that_have_commited_'):
+            position = name.replace('candidates_that_have_commited_', '')
+            
+            def _candidates_that_have_commited():
+                return self.candidates_that_have_commited(filter_kwargs={'elections__position': position})
+            return _candidates_that_have_commited
         return super(Stats, self).__getattribute__(name)
 
 

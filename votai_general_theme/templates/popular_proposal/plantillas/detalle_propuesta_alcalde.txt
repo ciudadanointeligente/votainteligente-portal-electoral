@@ -2,6 +2,11 @@
 {% load votainteligente_extras %}
 Estimada candidata o candidato a la alcaldía de {{popular_proposal.area}}, nos ha llegado esta propuesta ciudadana para tu comuna: {{popular_proposal.title}}
 
+{% if url %}
+Puedes revisar más detalles y definir tu postura en el siguiente link:
+http://votainteligente.cl{{url}}
+{% endif %}
+
 ¿Cuál es el problema o necesidad que se busca solucionar?
 {{popular_proposal.data.problem|popular_proposal_when|linebreaks}}
 
@@ -13,12 +18,8 @@ Estimada candidata o candidato a la alcaldía de {{popular_proposal.area}}, nos 
 
 Las vecinas y vecinos de {{popular_proposal.area }} están esperando que se pronuncie sobre esta propuesta ciudadana. Para hacerlo puede seguir los siguientes link:
 
-{% if url %}
-Puedes revisar más detalles y definir tu postura en el siguiente link:
-http://votainteligente.cl{{url}}
-{% endif %}
-
 Recuerde que responder este correo NO lo pondrá en contacto con quienes hicieron la propuesta.
 
 Desde ya muchas gracias,
+
 El equipo de VotaInteligente a nombre de {{popular_proposal.proposer}}.

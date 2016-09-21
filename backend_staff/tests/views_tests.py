@@ -270,6 +270,7 @@ class StaffHomeViewTest(TestCase):
         self.assertTemplateUsed(response, 'backend_staff/stats.html')
 
     def test_stats_mixin(self):
+        User.objects.all().delete()
         stats = Stats()
         self.assertTrue(Candidate.objects.count())
         self.assertEquals(stats.total_candidates(), Candidate.objects.count())
@@ -286,7 +287,8 @@ class StaffHomeViewTest(TestCase):
             self.assertNotIn(c.id, candidates_in_alcaldes_ids)
 
         # Candidate one has connected
-        user1 = User.objects.create_user(username='user1')
+        user1 = User.objects.create_user(username='user1', password='password')
+        self.client.login(username=user1.username, password='password')
 
         candidacy1 = Candidacy.objects.create(user=user1, candidate=self.candidate1)
         CandidacyContact.objects.create(candidate=self.candidate1,
@@ -294,7 +296,7 @@ class StaffHomeViewTest(TestCase):
                                         candidacy=candidacy1)
 
         # Candidate 2 got an email but hasn't read it
-        user2 = User.objects.create_user(username='user2')
+        user2 = User.objects.create_user(username='user2', password='password')
 
         candidacy2 = Candidacy.objects.create(user=user2, candidate=self.candidate2)
         CandidacyContact.objects.create(candidate=self.candidate2,
@@ -307,7 +309,8 @@ class StaffHomeViewTest(TestCase):
         Candidacy.objects.create(user=user3, candidate=self.candidate3)
 
         # Candidate four has connected
-        user4 = User.objects.create_user(username='user4')
+        user4 = User.objects.create_user(username='user4', password='password')
+        self.client.login(username=user4.username, password='password')
 
         candidacy4 = Candidacy.objects.create(user=user4, candidate=self.candidate4)
         CandidacyContact.objects.create(candidate=self.candidate4,

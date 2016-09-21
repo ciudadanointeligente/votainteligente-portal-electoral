@@ -163,7 +163,8 @@ class CandidateParticipation(object):
         qs = Candidate.objects.all()
         if filter_kwargs:
             qs = qs.filter(**filter_kwargs)
-        self.with_us = qs.filter(contacts__in=CandidacyContact.objects.filter(used_by_candidate=True)).count()
+
+        self.with_us = qs.exclude(candidacy__user__last_login__isnull=True).count()
         self.got_email = qs.filter(contacts__in=CandidacyContact.objects.filter(used_by_candidate=False)).count()
         self.no_contact = qs.filter(contacts__isnull=True, **filter_kwargs).count()
 

@@ -18,5 +18,7 @@ Puedes revisar más detalles y definir tu postura en el siguiente link:
 http://votainteligente.cl{{url}}
 {% endif %}
 
+Recuerde que responder este correo NO lo pondrá en contacto con quienes hicieron la propuesta.
+
 Desde ya muchas gracias,
 El equipo de VotaInteligente a nombre de {{popular_proposal.proposer}}.

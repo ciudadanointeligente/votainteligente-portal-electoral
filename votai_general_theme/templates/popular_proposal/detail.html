@@ -117,11 +117,12 @@ $(function(){
         {% endwith %}
     {% endif %}
 
-    {% if proposal.image and proposal.for_all_areas %}
+    {% if popular_proposal.for_all_areas %}
       <div class="logo-ong text-center text-light">
-          <span>Propuesta de </span><img src="{{ proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+          {% if popular_proposal.proposer.profile.image %}<span>Propuesta de </span><img src="{{ popular_proposal.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">{% endif %}
       </div>
     {% endif %}
+
     {% if user|is_candidate %}
       {% with user.candidacies.first as candidacy %}
         {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}

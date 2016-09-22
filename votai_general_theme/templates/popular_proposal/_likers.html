@@ -83,6 +83,9 @@ $(function(){
                 {% else %}
                     {% with  user|support:proposal as support %}
                         <a class="unlike_proposal" href="{% url 'popular_proposals:unlike_proposal' pk=support.id %}" data-toggle="tooltip" data-placement="top" title="Ya no quiero apoyar esta propuesta"><img src="{% static 'img/adherido.svg' %}"></a>
+                        <div class="apoyo-contador">
+                            <p class="nota">{{proposal.likers.count}} ciudadanos apoyan esta propuesta</p>
+                        </div>
                     {% endwith %}
                 {% endif %}
             {% endif %}

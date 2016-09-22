@@ -119,6 +119,7 @@ $(function(){
 
     {% if popular_proposal.for_all_areas %}
       <div class="logo-ong text-center text-light">
+        {% if popular_proposal.proposer.profile.image %}<span>Propuesta de </span><img src="{{ popular_proposal.proposer.profile.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">{% endif %}
       </div>
     {% endif %}
 

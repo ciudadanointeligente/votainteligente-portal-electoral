@@ -31,7 +31,7 @@
 
 {% if proposal.image and proposal.for_all_areas %}
   <div class="logo-ong text-center text-light">
-      <span>Propuesta de </span><img src="{{ proposal.proposer.profile.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+    <span>Propuesta de </span>{% if proposal.proposer.profile.image %}<img src="{{ proposal.proposer.profile.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">{% endif %}
   </div>
 {% endif %}
 

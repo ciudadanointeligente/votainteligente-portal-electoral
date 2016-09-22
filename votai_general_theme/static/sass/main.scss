@@ -864,8 +864,9 @@ section.terms {
 /*Perfiles*/
 
 .img-candidato {
-    max-width: 96px;
+    width: 96px;
     margin: 0 auto;
+    height: 96px;
 }
 
 .img-candidato-small {
@@ -1914,6 +1915,14 @@ input#id_4-title {
 }
 .rel {
     position: relative;
+}
+
+.carousel-control {
+  opacity: 1;
+}
+
+.block-text .btn {
+    margin-top: 50px;
 }
 
 /*Masonry*/

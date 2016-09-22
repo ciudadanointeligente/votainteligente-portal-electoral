@@ -35,7 +35,7 @@ $(function(){
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
   <div class="profile">
-    <div class="container">
+    <div class="container content_padding">
       
         
         {% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
@@ -48,7 +48,9 @@ $(function(){
         <section class="comuna-alcaldes text-center">
          <h2 class="text-white">Candidatos a alcalde</h2>
          {% include 'elections/_election_with_position.html' with position='alcalde' area=area %}
+
         </section>
+
     </div>
   </div>
       

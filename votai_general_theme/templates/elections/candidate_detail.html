@@ -51,14 +51,13 @@
 			<div class="col-md-2 col-sm-2 col-xs-12">
 					<div id="candidate-img-profile">
 						{% if candidate.image %}
-
-						{% thumbnail candidate.image "300x300" crop="center" as im %}
-						    <img src="{{ im.url }}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive img-circle img-candidato">
-						{% endthumbnail %}
-
-						{% else %}
-						<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato img-candidato">
+							{% thumbnail candidate.image "300x300" crop="center" as im %}
+							    <img src="{{ im.url }}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive img-circle img-candidato">
+							{% endthumbnail %}
+							{% else %}
+							<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato img-candidato">
 						{% endif %}
+						{% if not candidate.has_answered %}<div class="ribbon label label-danger">No ha respondido</div>{% endif %}
 					</div>
 			</div>
 			<div class="col-md-8 col-sm-8 col-xs-12">

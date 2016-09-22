@@ -16,11 +16,7 @@ class CandidatesSitemap(Sitemap):
     changefreq = 'never'
 
     def items(self):
-        return Candidate.objects.all()
+        return Candidate.objects.exclude(elections__isnull=True)
 
     def location(self, obj):
-        url = reverse('candidate_detail_view', kwargs={
-            'election_slug': obj.election.slug,
-            'slug': obj.slug
-            })
-        return url
+        return obj.get_absolute_url()

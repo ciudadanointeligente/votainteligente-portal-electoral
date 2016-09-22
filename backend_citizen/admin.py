@@ -11,6 +11,7 @@ class CandidacyContactAdmin(admin.ModelAdmin):
                     'mail',
                     'times_email_has_been_sent',
                     'used_by_candidate')
+    search_fields = ['candidate__name', "candidate__elections__name", 'mail']
 
 
 @admin.register(Candidacy)

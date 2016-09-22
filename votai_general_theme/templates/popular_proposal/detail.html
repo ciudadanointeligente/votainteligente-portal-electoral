@@ -77,6 +77,26 @@ $(function(){
         </div>
       </div>
     </div>
+    <div class="btn_pronunciarme text-center"></div>
+    <div class="text-center">
+      {% if user.is_authenticated %}
+        {% if user|is_candidate %}
+          {% if candidacy.candidate|is_candidate_for:proposal.area %}
+          {% get_commitment candidacy proposal as commitment %}
+            {% if commitment %}
+            {% else %}<!-- Si es que el candidato no se ha pronunciado -->
+              {% with proposal.get_absolute_url as detail_url %}
+                {% if request.path == detail_url %}<!-- Estamos en el detalle -->
+                    <a class="btn btn-primary" href="#compromiso" role="button">Yo quiero pronunciarme</a>
+                {% else %}<!-- Estamos en cualquier parte pero no en el detalle -->
+                    <a class="btn btn-primary" href="{{detail_url}}" role="button">Yo quiero pronunciarme</a>
+                {% endif %}
+              {% endwith %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    </div>
     <div class="line-space"></div>
     {% if not user|is_candidate %}
     {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
@@ -158,35 +178,29 @@ $(function(){
         {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
           <div id="compromiso" class="tips-invert">
             {% if not candidacy|has_commited_with:popular_proposal %}
-              {% if candidacy.candidate.image %}
-                {% thumbnail candidacy.candidate.image "300x300" crop="center" as im %}
-                <a href=""><img src="{{im.url}}" alt="{{candidacy.candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
-                {% endthumbnail %}
-              {% else %}
-                <a href=""><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidacy.candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
-              {% endif %}
-              <span>Yo {{candidacy.candidate.name}}</span>
-              <a class="btn btn-default" href="{% url 'popular_proposals:commit_no' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">
-                {% if candidacy.candidate.election.position == 'concejal' %}
+              <ul class="list-inline">
+                <li>Yo {{candidacy.candidate.name}}</li>
+                <li><a class="btn btn-primary" href="{% url 'popular_proposals:commit_no' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">
+                  {% if candidacy.candidate.election.position == 'concejal' %}
+                    {% trans 'No quiero apoyar' %}
+                  {% elif candidacy.candidate.election.position == 'alcalde' %}
+                    {% trans 'No la incluiré en mi programa' %}
+                  {% else %}
+                    {% trans 'Quiero comprometerme' %}
+                  {% endif %}
+                </a></li>
+                <li><a class="btn btn-success" href="{% url 'popular_proposals:commit_yes' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">
 
-                  {% trans 'No quiero apoyar' %}
-                {% elif candidacy.candidate.election.position == 'alcalde' %}
-                  {% trans 'No me quiero comprometer' %}
-                {% else %}
-                  {% trans 'No me quiero comprometer' %}
-                {% endif %}
-              </a>
-              <a class="btn btn-success" href="{% url 'popular_proposals:commit_yes' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">
+                  {% if candidacy.candidate.election.position == 'concejal' %}
 
-                {% if candidacy.candidate.election.position == 'concejal' %}
-
-                  {% trans 'Quiero apoyar' %}
-                {% elif candidacy.candidate.election.position == 'alcalde' %}
-                  {% trans 'Me quiero comprometer' %}
-                {% else %}
-                  {% trans 'Me quiero comprometer' %}
-                {% endif %}
-                </a>
+                    {% trans 'Quiero apoyar' %}
+                  {% elif candidacy.candidate.election.position == 'alcalde' %}
+                    {% trans 'Me quiero comprometer' %}
+                  {% else %}
+                    {% trans 'Me quiero comprometer' %}
+                  {% endif %}
+                </a></li>
+              </ul>
             {% else %}
               {% get_commitment candidacy popular_proposal as candidate_commitment %}
                 {% if candidate_commitment.commited %}

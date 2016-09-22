@@ -32,31 +32,36 @@ $(function(){
         {% if user.is_authenticated %}
             {% if user|is_candidate %}
                 {% for candidacy in user.candidacies.all %}
+                    <div class="apoyo-btn pull-left">
+                        <!-- Aquí te voy a colocar los corazones deshabilitados -->
+                        <a class="btn-apoyo disabled" data-toggle="tooltip" data-placement="top" title="Este tipo de apoyo esta reservado sólo para ciudadanos">
+                            {% blocktrans %}
+                              <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-heart fa-stack-1x fa-inverse"></i>
+                              </span>
+                            {% endblocktrans %}
+                        </a>
+                        <!-- fin de los deshabilitados -->
+                    </div>
+                    <div class="apoyo-contador">
+                        <p class="nota">{{proposal.likers.count}} ciudadanos apoyan esta propuesta</p>
+                    </div>
                     {% if candidacy.candidate|is_candidate_for:proposal.area %}
                         {% get_commitment candidacy proposal as commitment %}
                         {% if commitment %}
                         {% else %}<!-- Si es que el candidato no se ha pronunciado -->
                             {% with proposal.get_absolute_url as detail_url %}
-                                {% if request.path == detail_url %}<!-- Estamos en el detalle -->
-                                    <a class="btn btn-primary" href="#compromiso" role="button">Yo quiero pronunciarme</a>
-                                {% else %}<!-- Estamos en cualquier parte pero no en el detalle -->
-                                    <a class="btn btn-primary" href="{{detail_url}}" role="button">Yo quiero pronunciarme</a>
-                                {% endif %}
+                                <script type="text/javascript">
+                                        $(function(){
+                                            $('.btn_pronunciarme').append('<a class="btn btn-primary" href="{% if request.path == detail_url %}#compromiso{% else %}{{detail_url}}{% endif %}" role="button">Yo quiero pronunciarme</a>');
+                                            console.log($('.btn_pronunciarme'))
+                                        })
+                                        
+                                    </script>
                             {% endwith %}
                         {% endif %}
                     {% endif %}
-                <div class="apoyo-btn pull-left">
-                    <!-- Aquí te voy a colocar los corazones deshabilitados -->
-                    <a class="btn-apoyo disabled" data-toggle="tooltip" data-placement="top" title="Este tipo de apoyo esta reservado sólo para ciudadanos">
-                        {% blocktrans %}
-                          <span class="fa-stack fa-2x">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-heart fa-stack-1x fa-inverse"></i>
-                          </span>
-                        {% endblocktrans %}
-                    </a>
-                    <!-- fin de los deshabilitados -->
-                </div>
                 {% endfor %}
             {% else %}<!-- Si el usuario no es candidato -->
                 {% if not user|likes:proposal %}
@@ -70,6 +75,9 @@ $(function(){
                           </span>
                         {% endblocktrans %}
                     </a>
+                    <div class="apoyo-contador">
+                        <p class="nota">{{proposal.likers.count}} ciudadanos apoyan esta propuesta</p>
+                    </div>
                     {% include 'modal_like_proposal.html' with modalId=modalid title='Apoya una propuesta' url=like_this_proposal_url next_url=request.path %}
                     {% endwith %}
                 {% else %}
@@ -88,6 +96,9 @@ $(function(){
                   </span>
                 {% endblocktrans %}
             </a>
+            <div class="apoyo-contador">
+                <p class="nota">{{proposal.likers.count}} ciudadanos apoyan esta propuesta</p>
+            </div>
         {% endif %}
     {% else %}
     <a class="btn-apoyo" href="{{proposal.get_absolute_url}}">
@@ -98,19 +109,9 @@ $(function(){
           </span>
         {% endblocktrans %}
     </a>
+    <div class="apoyo-contador">
+        <p class="nota">{{proposal.likers.count}} ciudadanos apoyan esta propuesta</p>
+    </div>
     {% endif %}<!-- fin embbeded -->
     
-    <div class="apoyo-contador">
-    <!-- @camargozzini compañera acá le va el contador de quién se compromete
-    el tag commiters_by_election_position devuelve una lista de candidatos que se han comprometido con una propuesta
-    entonces como es una lista puedes hacer algo así
-    {% comment %}
-    {% commiters_by_election_position proposal 'alcalde' as alcaldes %}
-    {% for candidate in alcaldes %}
-    El candidato {{candidate}} es terrible de pulento y se comprometió con la propuesta. Acá sólo aparecen aquellos candidatos que dijeron que si, los otros no aparecen.
-    {% endfor %}
-    {% endcomment %}
-    -->
-            <p class="nota">{{proposal.likers.count}} ciudadanos apoyan esta propuesta</p>
-    </div>
 </div>

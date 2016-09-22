@@ -1678,6 +1678,14 @@ tr.primary p:first-child, tr.danger p:first-child {
   color: $yellow;
 }
 
+.tips-invert a.btn-primary {
+  color: $grey-two;
+}
+
+.tips-invert a.btn-success {
+  color: white;
+}
+
 .tips a.btn {
   color: white;
 }

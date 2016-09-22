@@ -39,7 +39,7 @@
 		<div class="pull-left">
 			<a class="btn btn-danger" href="{% url 'election_view' slug=election.slug %}"><svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
     <title>Previous</title>
-    <g stroke="#5E6D82" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px">
+    <g stroke="#233346" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px">
         <path d="M9 1L.4 9 9 17M1.5 9h16"/>
     </g></svg> Volver a perfiles</a>
 		</div>
@@ -67,16 +67,27 @@
 				{% if user|manages_this:candidate %}
 					{% with user.candidacies.first as candidacy %}
 					{% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
-					<a class="btn btn-primary" href="{{backend_candidate}}" role="button">{% trans 'Actualiza tu perfil' %}</a>
+					<div class="panel panel-default">
+					  <div class="panel-body">
+						  <span>Hola {{ candidate.name }}, </span>
+							<a class="btn btn-primary" href="{{backend_candidate}}" role="button">{% trans 'Actualiza tu perfil' %}</a>
+					  </div>
+					</div>
 					{% endwith %}
 				{% endif %}
+				<!-- para staff -->
+        {% if user.is_staff %}
+					<div class="panel panel-default">
+					  <div class="panel-body">
+						  <span>Hola staff, </span>
+              	{% include 'elections/_is_staff_candidate_detail.html' %}
+              	{% if "elections/candidates/extra_info_per_candidate.html"|template_exists %}
+									{% include 'elections/candidates/extra_info_per_candidate.html' %}
+								{% endif %}
+					  </div>
+					</div>
+        {% endif %}
 				<ul class="text-white">
-                    {% if user.is_staff %}
-                    	{% include 'elections/_is_staff_candidate_detail.html' %}
-                    	{% if "elections/candidates/extra_info_per_candidate.html"|template_exists %}
-							{% include 'elections/candidates/extra_info_per_candidate.html' %}
-						{% endif %}
-                    {% endif %}
 					<!-- {% include 'elections/candidates/personal_data_candidate.html' with candidate=candidate %} -->
 					<li>Pacto: {% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}{{pacto.value}}</li>
 					<li>Edad: {% get_personal_data candidate=candidate personal_data='age' as edad %}{{edad.value}}</li>

@@ -163,7 +163,8 @@ class CandidateParticipation(object):
         qs = Candidate.objects.all()
         if filter_kwargs:
             qs = qs.filter(**filter_kwargs)
-        self.with_us = qs.filter(contacts__in=CandidacyContact.objects.filter(used_by_candidate=True)).count()
+
+        self.with_us = qs.exclude(candidacy__user__last_login__isnull=True).count()
         self.got_email = qs.filter(contacts__in=CandidacyContact.objects.filter(used_by_candidate=False)).count()
         self.no_contact = qs.filter(contacts__isnull=True, **filter_kwargs).count()
 
@@ -182,6 +183,12 @@ class Stats(object):
     def commitments(self):
         return Commitment.objects.count()
 
+    def candidates_that_have_commited(self, filter_kwargs={}):
+        qs = Candidate.objects.exclude(commitments__isnull=True)
+        if filter_kwargs:
+            qs = qs.filter(**filter_kwargs)
+        return qs.count()
+
     def __getattribute__(self, name):
         if name.startswith('total_candidates_'):
             position = name.replace('total_candidates_', '')
@@ -195,7 +202,12 @@ class Stats(object):
             def _participacion():
                 return CandidateParticipation(filter_kwargs={'elections__position': position})
             return _participacion
-
+        if name.startswith('candidates_that_have_commited_'):
+            position = name.replace('candidates_that_have_commited_', '')
+            
+            def _candidates_that_have_commited():
+                return self.candidates_that_have_commited(filter_kwargs={'elections__position': position})
+            return _candidates_that_have_commited
         return super(Stats, self).__getattribute__(name)
 
 

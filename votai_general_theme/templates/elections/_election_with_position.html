@@ -19,7 +19,6 @@
     });
     </script>
 
-
 <div class="carousel-reviews broun-block">
   <div class="container">
         <div class="row">
@@ -41,6 +40,13 @@
                               {% endif %}
                               <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><h3 class="caption text-white">{{ candidate.name }}</h3></a>
                               <p class="small text-white">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</p>
+                              {% if user.is_staff %}
+                                {% if candidate.has_joined %}
+                                  <span class="label label-success">Staff: ya se conectó.</span>
+                                {% else %}
+                                  <span class="label label-danger">Staff: NO se ha conectado.</span>
+                                {% endif %}
+                              {% endif %}
                             </div>
                           </div>
                       {% if forloop.counter|divisibleby:3 and not forloop.last%}

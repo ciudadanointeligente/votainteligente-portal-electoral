@@ -270,6 +270,7 @@ class StaffHomeViewTest(TestCase):
         self.assertTemplateUsed(response, 'backend_staff/stats.html')
 
     def test_stats_mixin(self):
+        User.objects.all().delete()
         stats = Stats()
         self.assertTrue(Candidate.objects.count())
         self.assertEquals(stats.total_candidates(), Candidate.objects.count())
@@ -286,7 +287,8 @@ class StaffHomeViewTest(TestCase):
             self.assertNotIn(c.id, candidates_in_alcaldes_ids)
 
         # Candidate one has connected
-        user1 = User.objects.create_user(username='user1')
+        user1 = User.objects.create_user(username='user1', password='password')
+        self.client.login(username=user1.username, password='password')
 
         candidacy1 = Candidacy.objects.create(user=user1, candidate=self.candidate1)
         CandidacyContact.objects.create(candidate=self.candidate1,
@@ -294,7 +296,7 @@ class StaffHomeViewTest(TestCase):
                                         candidacy=candidacy1)
 
         # Candidate 2 got an email but hasn't read it
-        user2 = User.objects.create_user(username='user2')
+        user2 = User.objects.create_user(username='user2', password='password')
 
         candidacy2 = Candidacy.objects.create(user=user2, candidate=self.candidate2)
         CandidacyContact.objects.create(candidate=self.candidate2,
@@ -307,7 +309,8 @@ class StaffHomeViewTest(TestCase):
         Candidacy.objects.create(user=user3, candidate=self.candidate3)
 
         # Candidate four has connected
-        user4 = User.objects.create_user(username='user4')
+        user4 = User.objects.create_user(username='user4', password='password')
+        self.client.login(username=user4.username, password='password')
 
         candidacy4 = Candidacy.objects.create(user=user4, candidate=self.candidate4)
         CandidacyContact.objects.create(candidate=self.candidate4,
@@ -345,12 +348,12 @@ class StaffHomeViewTest(TestCase):
                                                           title=u'This is a title',
                                                           clasification=u'education'
                                                           )
-        PopularProposal.objects.create(proposer=self.fiera,
-                                       area=self.arica,
-                                       data=self.data,
-                                       title=u'This is a title',
-                                       clasification=u'education'
-                                       )
+        popular_proposal2 = PopularProposal.objects.create(proposer=self.fiera,
+                                                           area=self.arica,
+                                                           data=self.data,
+                                                           title=u'This is a title',
+                                                           clasification=u'education'
+                                                           )
         PopularProposal.objects.create(proposer=self.fiera,
                                        area=self.arica,
                                        data=self.data,
@@ -362,6 +365,19 @@ class StaffHomeViewTest(TestCase):
                                   proposal=popular_proposal,
                                   detail=u'Yo me comprometo',
                                   commited=True)
+        Commitment.objects.create(candidate=self.candidate1,
+                                  proposal=popular_proposal2,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
         self.assertEquals(stats.proposals(), 2)
-        self.assertEquals(stats.commitments(), 1)
+        self.assertEquals(stats.commitments(), 2)
+        self.assertEquals(stats.candidates_that_have_commited(), 1)
+        Commitment.objects.create(candidate=self.candidate6,
+                                  proposal=popular_proposal2,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
+
+        self.assertEquals(stats.candidates_that_have_commited(), 2)
+        self.assertEquals(stats.candidates_that_have_commited_alcalde(), 1)
+        self.assertEquals(stats.candidates_that_have_commited_concejal(), 1)
 

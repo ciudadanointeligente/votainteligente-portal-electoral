@@ -160,10 +160,10 @@ $(function(){
             {% if not candidacy|has_commited_with:popular_proposal %}
               {% if candidacy.candidate.image %}
                 {% thumbnail candidacy.candidate.image "300x300" crop="center" as im %}
-                <a href=""><img src="{{im.url}}" alt="{{candidacy.candidate.name}}" border="0" class="img-responsive img-circle img-candidato">{% if candidacy.candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidacy.candidate.extra_info.custom_ribbon }}</div>{% endif %}</a>
+                <a href=""><img src="{{im.url}}" alt="{{candidacy.candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
                 {% endthumbnail %}
               {% else %}
-                <a href=""><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidacy.candidate.name}}" border="0" class="img-responsive img-circle img-candidato">{% if candidacy.candidate.extra_info.custom_ribbon %}<div class="ribbon">{{ candidacy.candidate.extra_info.custom_ribbon }}</div>{% endif %}</a>
+                <a href=""><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidacy.candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
               {% endif %}
               <span>Yo {{candidacy.candidate.name}}</span>
               <a class="btn btn-default" href="{% url 'popular_proposals:commit_no' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">

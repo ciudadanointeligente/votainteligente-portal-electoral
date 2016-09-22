@@ -136,7 +136,14 @@ $(function(){
 
   <!-- Featured Elections  -->
   <section class="comuna-propuestas">
-    <div class="container">
+    <div class="container content_padding">
+      <h2 class="text-center">Propuestas ciudadanas para {{ area }}</h2>
+      <div class="text-center bajada">
+        <div>Mientras más apoyo tenga una propuesta, es más probable que los candidatos asuman un compromiso con ella</div>
+        {% if not user|is_candidate %}
+          <a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">Tengo una propuesta</a>
+        {% endif %}
+      </div>
       {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=proposal_filter_form %}
     </div>
   </section>

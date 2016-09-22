@@ -11,7 +11,9 @@
 
 {% block mainelection %}
 {% if user.is_staff %}
-{% include 'elections/extra_info_per_election.html' %}
+	{% if "elections/extra_info_per_election.html"|template_exists %}
+		{% include 'elections/extra_info_per_election.html' %}
+	{% endif %}
 {% endif %}
 <h1 class="text-center"><div class="small">Candidatos a</div><a href="{% url 'election_view' slug=election.slug %}">{{ election.position }} por {{ election.area }}</a></h1>
 <div class="row">

@@ -14,6 +14,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import (UserCreationForm as RegistrationForm,
                                    GroupCreationForm)
 from django.forms import Field, BoundField
+from django import template
+from django.template.defaultfilters import stringfilter
 import re
 
 register = template.Library()
@@ -361,4 +363,14 @@ def extract_twitter_username(value):
     if result is None:
         return ''
     return u'@' + result.groups()[4]
+
+
+@register.filter
+@stringfilter
+def template_exists(value):
+    try:
+        template.loader.get_template(value)
+        return True
+    except template.TemplateDoesNotExist:
+        return False
 

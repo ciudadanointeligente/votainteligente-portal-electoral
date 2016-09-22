@@ -22,6 +22,10 @@
           <p>{% blocktrans %}Por favor, espera que el equipo de Ciudadano Inteligente la evalúe para que sea enviada a los candidatos.{% endblocktrans %}</p>
 
           
+        <section>
+            Para ofrecerte un mejor servicio necesitamos saber un poco más de ti, ayudanos a completar esta pequeña encuesta:
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfjrFaYlKQubExWJjw73wFt_4-B5LGOyB9gzDAAPLhRA6X3Uw/viewform?embedded=true" width="760" height="1600" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+        </section>
           <div>  
               <a href="{% url 'popular_proposals:propose_wizard' slug=area.id %}" class="btn btn-success btn-block" role="button">{% blocktrans with area=area %}Crea otra propuesta para {{area}}{% endblocktrans %}</a>
               <a href="{% url 'backend_citizen:index' %}" class="btn btn-primary btn-block" role="button">{% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}</a>

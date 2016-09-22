@@ -645,9 +645,9 @@ section#propuestas-mas-apoyo {
 }
 
 .btn-danger {
-  background-color: $blue;
-  color: white;
-  border: 3px solid $blue;
+  background-color: transparent;
+  color: $grey-one;
+  border: 3px solid white;
 }
 
 
@@ -1147,15 +1147,6 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 
 .social-link-candidate:hover {
   color: $btn-success-background-color;
-}
-
-.panel-heading {
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
-}
-
-.panel {
-  border-radius: 6px;
 }
 
 /*Ranking*/
@@ -1716,7 +1707,7 @@ input#id_4-title {
     padding: 25px 20px 35px;
     border-bottom: 18px solid $blue;
     position: relative;
-    min-height: 430px;
+    min-height: 510px;
 }
 
 .propuesta:after {
@@ -1890,6 +1881,17 @@ input#id_4-title {
     background: $grey-one;
     border: 3px solid $grey-one;
     color: white;
+}
+
+/*Panel*/
+
+.panel {
+  background-color: transparent;
+  border: 3px dotted transparent;
+}
+
+.panel-default {
+  border-color: #fff;
 }
 
 /*Slides*/

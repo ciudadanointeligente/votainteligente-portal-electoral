@@ -130,7 +130,7 @@ class YouAreAHeroNotification(NumericNotificationBase):
 
 
 class EventDispatcher(object):
-    events = OrderedDict({'new-commitment': [NewCommitmentNotification,
+    events = OrderedDict({'new-commitment': [##  NewCommitmentNotification,
                                              NewCommitmentNotificationToProposer]})
 
     def register(self, event, event_class):

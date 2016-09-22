@@ -1,9 +1,20 @@
-{% with proposal.get_absolute_url as url %}
-{% if candidacy.candidate.election.position == 'concejal' %}
-	{% include "popular_proposal/plantillas/detalle_propuesta_concejal.txt" with popular_proposal=proposal url=url %}
-{% elif candidacy.candidate.election.position == 'alcalde' %}
-	{% include "popular_proposal/plantillas/detalle_propuesta_alcalde.txt" with popular_proposal=proposal url=url %}
-{% else %}
-	{% include "popular_proposal/plantillas/detalle_propuesta.txt" with popular_proposal=proposal url=url %}
+{% load markdown_deux_tags %}
+{% load votainteligente_extras %}
+Estimada/o candidata/o:
+
+Las/os ciudadanas y ciudadanos de {{proposal.area}} han hecho una nueva propuesta para su comuna titulada: {{proposal.title}}.
+
+{% if url %}
+Para conocer los detalles de la propuesta te invitamos a hacer click en el siguiente link:
+http://votainteligente.cl{{url}}
 {% endif %}
-{% endwith %}
+
+Si quieres contactarte con los autores de la propuesta para hacer algún comentario u obtener más información, escríbeles a {{proposal.proposer.email}}.
+
+
+Si tienes alguna duda o quieres saber más sobre VotaInteligente.cl puedes responder a este correo.
+
+Las vecinas y vecinos de {{proposal.area}} están esperando para que des tu opinión sobre esta propuesta.
+
+Desde ya muchas gracias,
+El equipo de VotaInteligente a nombre de {{proposal.proposer}}.

@@ -143,14 +143,16 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
                                                proposal=self.proposal,
                                                commited=True)
 
-        self.assertEquals(len(mail.outbox), 2)
+        self.assertEquals(len(mail.outbox), 1)
         the_mail = mail.outbox[0]
-        self.assertIn(self.feli.email, the_mail.to)
-        self.assertEquals(len(the_mail.to), 1)
-        self.assertIn(self.proposal.title, the_mail.body)
-        self.assertIn(self.candidate.name, the_mail.body)
+        # Citizens are not notified if a candidate commits to a proposal
+        # until further notice
+        # self.assertIn(self.feli.email, the_mail.to)
+        # self.assertEquals(len(the_mail.to), 1)
+        # self.assertIn(self.proposal.title, the_mail.body)
+        # self.assertIn(self.candidate.name, the_mail.body)
 
-        the_mail = mail.outbox[1]
+        # the_mail = mail.outbox[1]
         self.assertIn(self.fiera.email, the_mail.to)
         self.assertEquals(len(the_mail.to), 1)
         self.assertIn(self.proposal.title, the_mail.body)
@@ -163,7 +165,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
                                                proposal=self.proposal,
                                                commited=True)
 
-        self.assertEquals(len(mail.outbox), 2)
+        self.assertEquals(len(mail.outbox), 1)
         the_mail = mail.outbox[0]
         commitment.delete()
 
@@ -171,8 +173,8 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
                                                proposal=self.proposal,
                                                detail=u'Yo No me comprometo',
                                                commited=False)
-        self.assertEquals(len(mail.outbox), 4)
-        the_mail2 = mail.outbox[2]
+        self.assertEquals(len(mail.outbox), 2)
+        the_mail2 = mail.outbox[1]
         self.assertNotEqual(the_mail.subject, the_mail2.subject)
         self.assertNotEqual(the_mail.body, the_mail2.body)
         self.assertTrue(the_mail2.body)

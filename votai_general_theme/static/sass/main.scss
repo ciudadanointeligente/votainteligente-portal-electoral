@@ -878,6 +878,10 @@ section.terms {
     margin-top: -20px;
 }
 
+.bajada .btn {
+    margin: 16px 0;
+}
+
 .small-bajada {
   margin-top: -10px;
 }
@@ -1672,6 +1676,14 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 .tips a, .tips-invert a {
   color: $yellow;
+}
+
+.tips-invert a.btn-primary {
+  color: $grey-two;
+}
+
+.tips-invert a.btn-success {
+  color: white;
 }
 
 .tips a.btn {

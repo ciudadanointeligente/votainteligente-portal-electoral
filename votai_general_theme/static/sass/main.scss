@@ -1452,39 +1452,17 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 /*Custom ribbon */
 
-@mixin ribbon-base {
+.ribbon {
   position: absolute;
-  left: -5%;
-  width: 110%;
-  height: 40px;
-  background: $alert-warning-border;
-  align-content: center;
-  text-align: center;
-  transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-  max-width: 360px;
-  padding: 4px;
-  font-size: 24px;
-  color: $ribbon-color;
+  transform: rotate(-25deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-25deg);
+  top: 44px;
+  left: 110px;
 }
-
-#main-election > div > a > .ribbon {
-  top: 38%;
-  @include ribbon-base;
-}
-
-/*.container-candidates .ribbon {
-  font-size: 16px;
-  top: 62px;
-  left: 10px;
-  width: 90%;
-  padding: 8px;
-}*/
 
 #candidate-img-profile > .ribbon {
-  top: 42%;
-  @include ribbon-base;
+  left: 27px;
 }
 
 /*percentage facetoface*/
@@ -1548,21 +1526,6 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 }
 
-@media (min-width: 768px) {
-  #main-election > div > a > .ribbon {
-    top: 34%;
-    left: -4%;
-    width: 107%;
-    height: 44px;
-  }
-
-  #candidate-img-profile > .ribbon {
-    top: 38%;
-    left: -3%;
-    max-width: 375px;
-  }
-}
-
 @media (max-width: 800px) {
   .not_answered:after {
     /*top: 75px;
@@ -1574,44 +1537,6 @@ tr.primary p:first-child, tr.danger p:first-child {
     position: absolute;
     top: 80px;
     left: 30px;
-  }
-}
-
-@media (min-width: 1024px) {
-  #main-election > div > a > .ribbon {
-    top: 31%;
-    left: 0%;
-    width: 100%;
-    height: 25px;
-    max-width: 160px;
-    font-size: 18px;
-    padding: 0px;
-  }
-
-  #candidate-img-profile > .ribbon {
-    top: 34%;
-    left: -5%;
-    padding: 0px;
-    font-size: 22px;
-    height: 32px;
-  }
-}
-
-@media (min-width: 1440px) {
-  #main-election > div > a > .ribbon {
-    top: 34%;
-    max-width: 200px;
-  }
-
-  #candidate-img-profile > .ribbon {
-    top: 36%;
-  }
-}
-
-@media (max-height: 600px) {
-  #apoya {
-    width: 203px;
-    height: 203px;
   }
 }
 

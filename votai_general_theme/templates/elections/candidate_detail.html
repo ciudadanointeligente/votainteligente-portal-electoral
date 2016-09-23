@@ -103,8 +103,12 @@
 							<li class="text-white">
 							<a href="{{commitment.proposal.get_absolute_url}}">{{commitment.proposal.title}}</a>
 						{% if commitment.commited %}
-							<span class="label label-default">se comprometió</span>
+							{% if candidate.election.position == 'concejal' %}
+								<span class="label label-default">apoya</span>
 							{% else %}
+								<span class="label label-default">se comprometió</span>
+							{% endif %}
+						{% else %}
 							<span class="label label-danger">la rechazó</span>
 						{% endif %}
 							</li>

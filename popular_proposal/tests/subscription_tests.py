@@ -256,12 +256,14 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertIn(first_mail.to[0], [self.contact.mail, self.contact2.mail])
         self.assertIn(proposal.title, first_mail.body)
         self.assertIn(self.arica.name, first_mail.body)
+        self.assertIn(proposal.get_absolute_url(), first_mail.body)
 
         second_mail = mail.outbox[previous_amount]
         self.assertEquals(len(second_mail.to), 1)
         self.assertIn(second_mail.to[0], [self.contact.mail, self.contact2.mail])
         self.assertIn(proposal.title, second_mail.body)
         self.assertIn(self.arica.name, second_mail.body)
+        self.assertIn(proposal.get_absolute_url(), first_mail.body)
 
     @override_settings(NOTIFY_CANDIDATES_OF_NEW_PROPOSAL=False)
     def test_dont_notify_candidates_of_new_proposal(self):

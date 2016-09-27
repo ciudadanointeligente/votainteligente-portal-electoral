@@ -88,6 +88,7 @@ def process_candidates():
         candidate.save()
         candidates_ids.append(candidate.id)
         e.candidates.add(candidate)
+
         try:
             mail = row[6].strip().lower()
         except IndexError:
@@ -111,7 +112,7 @@ def process_candidates():
             PersonalData.objects.create(candidate=candidate,
                                         label=u'Partido',
                                         value=partido)
-
+        send_candidate_username_and_password(candidate)
         counter += 1
         if not counter % 1000:
             print u'van' + str(counter)

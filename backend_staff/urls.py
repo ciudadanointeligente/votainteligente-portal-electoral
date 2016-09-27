@@ -9,6 +9,7 @@ from backend_staff.views import (
     AddContactAndSendMailView,
     AllCommitmentsView,
     StatsView,
+    StatsPerAreaView,
 )
 
 urlpatterns = patterns('',
@@ -18,6 +19,9 @@ urlpatterns = patterns('',
     url(r'^stats/?$',
         StatsView.as_view(),
         name='stats'),
+    url(r'^per_area_stats/?$',
+        StatsPerAreaView.as_view(),
+        name='per_area_stats'),
     url(r'^popular_proposal_comments/(?P<pk>[-\w]+)/?$',
         PopularProposalCommentsView.as_view(),
         name='popular_proposal_comments'),

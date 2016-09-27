@@ -1,10 +1,9 @@
-from django.shortcuts import render
+# coding=utf-8
 from django.views.generic.base import TemplateView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from popular_proposal.models import ProposalTemporaryData, Commitment, PopularProposal
+from popular_proposal.models import ProposalTemporaryData, Commitment
 from preguntales.models import Message
 from django.views.generic.edit import FormView
 from popular_proposal.forms import CommentsForm, RejectionForm
@@ -14,13 +13,14 @@ from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, View
 from django.views.generic.detail import SingleObjectMixin
 from django.http import HttpResponseRedirect, HttpResponseNotFound
-from elections.models import Candidate, Election
+from elections.models import Candidate
 from django.views.generic.list import ListView
-from backend_candidate.models import CandidacyContact
+from backend_staff.stats import Stats, PerAreaStaffStats
+from elections.models import Area
 
 
 class IndexView(TemplateView):
-    template_name='backend_staff/index.html'
+    template_name = 'backend_staff/index.html'
 
     @method_decorator(staff_member_required)
     def dispatch(self, *args, **kwargs):
@@ -156,61 +156,6 @@ class AllCommitmentsView(ListView):
         return super(AllCommitmentsView, self).dispatch(*args, **kwargs)
 
 
-class CandidateParticipation(object):
-    no_contact = 0
-
-    def __init__(self, filter_kwargs={}):
-        qs = Candidate.objects.all()
-        if filter_kwargs:
-            qs = qs.filter(**filter_kwargs)
-
-        self.with_us = qs.exclude(candidacy__user__last_login__isnull=True).count()
-        self.got_email = qs.filter(contacts__in=CandidacyContact.objects.filter(used_by_candidate=False)).count()
-        self.no_contact = qs.filter(contacts__isnull=True, **filter_kwargs).count()
-
-
-class Stats(object):
-    def total_candidates(self):
-        return Candidate.objects.count()
-
-    def participation(self):
-        result = CandidateParticipation()
-        return result
-
-    def proposals(self):
-        return PopularProposal.objects.exclude(for_all_areas=True).count()
-
-    def commitments(self):
-        return Commitment.objects.count()
-
-    def candidates_that_have_commited(self, filter_kwargs={}):
-        qs = Candidate.objects.exclude(commitments__isnull=True)
-        if filter_kwargs:
-            qs = qs.filter(**filter_kwargs)
-        return qs.count()
-
-    def __getattribute__(self, name):
-        if name.startswith('total_candidates_'):
-            position = name.replace('total_candidates_', '')
-
-            def total_candidates_per_election_filter():
-                return Candidate.objects.filter(elections__position=position).count()
-            return total_candidates_per_election_filter
-        if name.startswith('participation_'):
-            position = name.replace('participation_', '')
-
-            def _participacion():
-                return CandidateParticipation(filter_kwargs={'elections__position': position})
-            return _participacion
-        if name.startswith('candidates_that_have_commited_'):
-            position = name.replace('candidates_that_have_commited_', '')
-            
-            def _candidates_that_have_commited():
-                return self.candidates_that_have_commited(filter_kwargs={'elections__position': position})
-            return _candidates_that_have_commited
-        return super(Stats, self).__getattribute__(name)
-
-
 class StatsView(TemplateView):
     template_name = 'backend_staff/stats.html'
 
@@ -221,4 +166,19 @@ class StatsView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(StatsView, self).get_context_data(**kwargs)
         context['stats'] = Stats()
+        return context
+
+class StatsPerAreaView(TemplateView):
+    template_name = 'backend_staff/per_area_stats.html'
+
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(StatsPerAreaView, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(StatsPerAreaView, self).get_context_data(**kwargs)
+        stats = {}
+        for area in Area.objects.all():
+            stats[area.id] = PerAreaStaffStats(area)
+        context['stats'] = stats
         return context

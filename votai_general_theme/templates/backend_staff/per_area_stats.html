@@ -1,0 +1,34 @@
+{% extends "backend_base.html" %}
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block content %}
+<h1>Las instituciones van a intentar preservar el problema para el cual ellas son la solución</h1>
+<h2>Los números por comuna:</h2>
+
+<h3>Le cuento que le tenimoh:</h3>
+<div class="table-responsive">
+  <table class="table">
+  	<thead>
+      <tr>
+        <th>Comuna</th>
+        <th>Promesas Ciudadanas locales</th>
+        <th>Promesas Ciudadanas totales</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% for id, stats_per_area in stats.items %}
+      <tr>
+        <td><a href="{{ stats_per_area.area.get_absolute_url }}">{{ stats_per_area.area }}</a></td>
+        <td>{{ stats_per_area.proposals__for_all_areas__.count }}</td>
+        <td>{{ stats_per_area.proposals__for_all_areas__True.count }}</td>
+      </tr>
+      	{% endfor %}
+    </tbody>
+
+  </table>
+ </div>
+{% endblock content %}

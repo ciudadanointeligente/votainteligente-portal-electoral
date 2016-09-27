@@ -174,3 +174,33 @@ def check_if_candidates_exists():
             existing_candidates.append(previous_candidates.first())
 
     print existing_candidates
+
+
+def process_twitters():
+    reader = codecs.open("candidate_twitters.csv", 'r', encoding='utf-8')
+    counter = 0
+    candidates_ids = []
+    for line in reader:
+        row = line.split(u',')
+        election_name = row[0].strip()
+        candidate_name = row[1].strip()
+        twitter = row[2].strip()
+        facebook = row[3].strip()
+        try:
+            e = Election.objects.get(name=election_name)
+        except:
+            try:
+                election_name = 'Alcaldes por ' + election_name
+                e = Election.objects.get(name=election_name)
+            except:
+                print u'No pillé la elección ' + election_name
+        try:
+            candidate = e.candidates.get(name=candidate_name)
+        except:
+            print u'No pillé a ' + candidate_name
+            continue
+        if twitter and not candidate.twitter:
+            candidate.add_contact_detail(contact_type='TWITTER', value=twitter, label=twitter)
+            
+        if facebook and not candidate.contact_details.filter(contact_type='FACEBOOK'):
+            candidate.add_contact_detail(contact_type='FACEBOOK', value=facebook, label=facebook)

@@ -101,7 +101,7 @@ def process_candidates():
         candidate.save()
         candidates_ids.append(candidate.id)
         e.candidates.add(candidate)
-
+        print e, candidate
         try:
             mail = row[6].strip().lower()
         except IndexError:

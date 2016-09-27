@@ -24,7 +24,7 @@
       <tr>
         <td><a href="{{ stats_per_area.area.get_absolute_url }}">{{ stats_per_area.area }}</a></td>
         <td>{{ stats_per_area.proposals__for_all_areas__.count }}</td>
-        <td>{{ stats_per_area.proposals__for_all_areas__True.count }}</td>
+        <td>{{ stats_per_area.proposals.count }}</td>
       </tr>
       	{% endfor %}
     </tbody>

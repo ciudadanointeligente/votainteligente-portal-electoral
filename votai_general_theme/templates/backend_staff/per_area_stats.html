@@ -21,10 +21,61 @@
     </thead>
     <tbody>
     	{% for id, stats_per_area in stats.items %}
-      <tr>
+      <tr class="{% if stats_per_area.area|is_marked_area %}success{% endif %}">
         <td><a href="{{ stats_per_area.area.get_absolute_url }}">{{ stats_per_area.area }}</a></td>
-        <td>{{ stats_per_area.proposals__for_all_areas__.count }}</td>
-        <td>{{ stats_per_area.proposals.count }}</td>
+        <td><a data-toggle="modal" data-target="#stats_per_area_local_{{id}}">{{ stats_per_area.proposals__for_all_areas__.count }}</a>
+        	<!-- Modal -->
+			<div id="stats_per_area_local_{{id}}" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Propuestas locales para {{stats_per_area.area}}</h4>
+			      </div>
+			      <div class="modal-body">
+			        <ul>
+			        	{% for proposal in stats_per_area.proposals__for_all_areas__.all %}
+			        		<li><a href="{{proposal.get_absolute_url}}">{{proposal}}</a></li>
+			        	{% endfor %}
+			        </ul>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+
+			  </div>
+			</div>
+        </td>
+        <td><a data-toggle="modal" data-target="#stats_per_area_all_{{id}}">{{ stats_per_area.proposals.count }}</a>
+        	<!-- Modal -->
+			<div id="stats_per_area_all_{{id}}" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">todas las propuestas para {{stats_per_area.area}}</h4>
+			      </div>
+			      <div class="modal-body">
+			        <ul>
+			        	{% for proposal in stats_per_area.proposals.all %}
+			        		<li><a href="{{proposal.get_absolute_url}}">{{proposal}}</a></li>
+			        	{% endfor %}
+			        </ul>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+
+			  </div>
+			</div>
+
+        </td>
       </tr>
       	{% endfor %}
     </tbody>

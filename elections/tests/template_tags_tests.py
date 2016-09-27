@@ -15,7 +15,8 @@ from backend_citizen.forms import (UserCreationForm as RegistrationForm,
 from django.contrib.auth.models import User
 from django import forms
 from backend_candidate.models import Candidacy
-from popular_proposal.models import PopularProposal, Commitment, ProposalLike
+from popular_proposal.models import PopularProposal, Commitment
+from django.test import override_settings
 
 
 class TemplateTagsTestCase(TestCase):
@@ -492,3 +493,14 @@ class LoginFormsTemplateTags(TestCase):
             self.assertEquals(rendered,
                               a['expected'],
                               u'Intentando con ' + a['entered'] + u' obtengo ' + rendered + u' en lugar de ' + a['expected'])
+
+    @override_settings(MARKED_AREAS=['argentina'])
+    def test_marked_areas(self):
+        argentina = Area.objects.create(name=u'Argentina')
+        chile = Area.objects.create(name=u'Chile')
+        template = Template("{% load votainteligente_extras %}{% if area|is_marked_area %}si{% else %}no{% endif %}")
+
+        context = Context({'area': argentina})
+        self.assertEquals(template.render(context), 'si')
+        context = Context({'area': chile})
+        self.assertEquals(template.render(context), 'no')

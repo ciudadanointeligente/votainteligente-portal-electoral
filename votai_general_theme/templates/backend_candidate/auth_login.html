@@ -10,6 +10,8 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<h3>{% trans 'Bienvenid@ Candidat@:' %}</h3>
+                Si no sabes como ingresar:
+                {% include 'backend_candidate/_info_for_candidates.html' %}
 				<form method="post" action="{% url 'auth_login' %}">{% csrf_token %}
 				{% bootstrap_form form %}
 

@@ -404,6 +404,11 @@ section.banner {
   border-radius: 3px;
 }
 
+.inner-banner {
+    background: $grey-four;
+    padding: 15px;
+}
+
 /*Section como funciona*/
 
 section#como-funciona {
@@ -692,6 +697,10 @@ section#propuestas-mas-apoyo {
   color: $grey-three;
 }
 
+.fa-stack {
+  color: $yellow;
+}
+
 /*Labels*/
 
 .label {
@@ -940,51 +949,19 @@ input[type=checkbox], input[type=radio] {
 /*Media naranja - Resultado */
 
 #soulmate-result {
-  background: $nav-anchor-background-color;
-  padding: 15px;
-  border-radius: 6px;
-  color: $main-background-color;
-}
-
-#soulmate-result .icon-heart {
-}
-
-#soulmate-result a {
-  color: $btn-success-background-color;
-}
-
-#soulmate-result a:hover {
-  color: $main-background-color;
-}
-
-#soulmate-result h3 {
-  margin-top: 0px;
+    padding: 55px 25px;
+    border: 1px solid $grey-five;
 }
 
 #soulmate-result h2 {
-  font-size: 98px;
-  font-weight: 900;
-  font-family: 'Lato', sans-serif;
-  margin: -10px 0px;
+    margin: 10px 0px 20px;
+    line-height: 44px;
 }
 
-#soulmate-result h2 span {
-  font-weight: 300;
-}
-
-#soulmate-result .fondo-azuloscuro {
-  background: $letters-color;
-  padding: 9px 0px 0px;
-  border-radius: 6px;
-  margin-top: 20px;
-}
-
-#soulmate-result .fondo-azuloscuro i {
-  color: $main-background-color;
-}
-
-#soulmate-result .fondo-azuloscuro i:hover {
-  color: $btn-success-background-color;
+#candidate-img-profile svg {
+  position: absolute;
+  top: 0px;
+  right: 50px;
 }
 
 .progress {
@@ -1008,12 +985,25 @@ input[type=checkbox], input[type=radio] {
   float: right;
 }
 
+#other-soulmate h3 {
+    margin: 70px 0;
+}
+
+.other-soulmate-box {
+    margin-bottom: 70px;
+}
+
 .other-soulmate-box h4 {
-  font-weight: 900;
+  color: $grey-one;
+  margin: 0px;
 }
 
 #form-soulmate label {
   font-weight: normal;
+}
+
+.other-soulmate-box h2 {
+    margin: 0;
 }
 
 /*Frente a frente*/

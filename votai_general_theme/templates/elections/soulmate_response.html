@@ -7,106 +7,74 @@
 
 <div id="soulmate-result">
 	<div class="row">
-		<div class="col-md-3">
-			<div id="candidate-img-profile">
+		<div class="col-md-3" id="candidate-img-profile">
 			{% if winner.candidate.image %}
 				{% thumbnail winner.candidate.image "x300" crop="center" as im %}
-				<img src="{{im.url}}" alt="{{winner.candidate.name}}" class="img-responsive">
+				<img src="{{im.url}}" alt="{{winner.candidate.name}}" class="img-responsive img-circle img-candidato">
 				{% endthumbnail %}
 			{% else %}
-				<img src="{% static 'img/candidate-default.jpg' %}" alt="{{winner.candidate.name}}" class="img-responsive">
+				<img src="{% static 'img/candidate-default.jpg' %}" alt="{{winner.candidate.name}}" class="img-responsive img-circle img-candidato">
 			{% endif %}
-			</div>
-			{% if winner.candidate.image %}
-			<a class="btn btn-default button_pic hidden-xs" data-toggle="modal" href="#myCandidate" style="margin-bottom:5px" onClick="ga('send', 'event', 'support-candidate-soulmate', 'click');"><i class="icon-camera"></i> {% trans "Da la cara por tu candidato" %}</a>
-			
-			<div class="modal fade" id="myCandidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4 class="modal-title"><i class="icon-camera"></i> {% trans "Da la cara por tu candidato" %}</h4>
-						</div>
-						<div class="modal-body container_pic">
-							<div id="text-support" class="alert alert-warning alert-dismissable">
-								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								{% trans "Recuerda activar tu cámara" %} <i class="icon-arrow-up"></i>
-							</div>
-							<div id="videocontainer">
-								<video id="video"></video>
-								{% comment "Hay que dividir esta wea por la mitad y agrandarlo" %}
-								{% endcomment %}
-								<img src="{{winner.candidate.image}}" id="soulmate-pic" alt="{{winner.candidate.name}}" title="{{winner.candidate.name}}">
-							</div>
-							<canvas id="canvas"></canvas>
-							<div id="cover"></div>
-						</div>
-						<div id="controls" class="modal-footer">
-							<span id="socialsharehalfface" class="text-left" style="display:none">
-								<input type="text" id="shareurl" value="" style="width:39%" onclick="this.select();">
-								 <a href="#" id="shareurltwitter" onClick="#"><i class="icon-twitter-sign"></i> {% trans "compartir" %}</a>
-								 <a href="#" id="shareurlfacebook" onClick="#"><i class="icon-facebook-sign"></i> {% trans "publicar" %}</a>
-							</span>
-							<button type="button" class="btn btn-default" id="resetbutton" style="display:none"><i id="icon-repeat" class="icon-repeat"></i> {% trans "Tomar otra foto" %}</button>
-							<button type="button" class="btn btn-primary" id="takepicbutton"><i class="icon-camera"></i> {% trans "Tomar foto" %}</button>
-							<button type="button" class="btn btn-success" id="uploadbutton" style="display:none">{% trans "Compartir" %}</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /.modal -->
-			{% endif %}
+				<svg width="75" height="78" viewBox="0 0 75 78" xmlns="http://www.w3.org/2000/svg">
+				    <path d="M35.795 27.241S32.968 2.515 18.957 2.515C8.277 2.515-.448 16.061.017 23.024 1.87 50.694 40.82 77.816 40.82 77.816S75 39.426 75 23.352C75 3.226 58.489-1.052 50.077.2 39.29 1.803 35.795 27.24 35.795 27.24" fill="#FFC80A" fill-rule="evenodd"/>
+				</svg>
 		</div>
-		<div class="col-md-5">
-			<h3><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}">{{winner.candidate.name}} </a><i class="icon-heart"></i></h3>
-			<h2>{{winner.percentage|mul:100|floatformat}}<span>% </span></h2>
-				<div>{% trans "de afinidad" %}</div>
-			<div class="row fondo-azuloscuro">
-				<div class="col-md-5">
+		<div class="col-md-9">
+			<p class="small">Tu 1/2 naranja política es</p>
+			<h2><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}">{{winner.candidate.name}} ({% get_personal_data candidate=winner.candidate personal_data='Partido' as partido %}{{partido.value}})<br> con un {{winner.percentage|mul:100|floatformat}}% {% trans "de afinidad" %}</a><i class="icon-heart"></i></h2>
+			<ul class="list-inline">
+				<li>
 					{% trans "Declara tu amor publicamente:" %}
+				</li>
+				<li><a href="#" onclick="window.open('https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}&text={{winner.candidate.name}}+<3&hashtags=medianaranja,votainteligente', 'twitter-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-twitter', 'click');">
+					<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+            <i class="fa fa-twitter fa-stack-1x fa-inverse" aria-hidden="true"></i>
+          </span></a>
+        </li>
+				<li><a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}', 'facebook-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-facebook', 'click');">
+						<span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+              <i class="fa fa-facebook fa-stack-1x fa-inverse" aria-hidden="true"></i>
+            </span></a>
+          </li>
+				</ul>
+				<div class="inner-banner row">
+					<div class="col-md-9"><h4>Estx candidatx se ha comprometido con {{winner.candidate.commitments.count}} propuestas de un total de {{winner.candidate.election.area.proposals.count}} en tu comuna</h4></div>
+					<div class="col-md-3"><h4><a href="{{winner.candidate.election.area.get_absolute_url}}" class="btn btn-primary">Revísalas</a></h4></div>
 				</div>
-				<div class="col-md-7">
-					<ul class="list-inline">
-						<li><a href="#" onclick="window.open('https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}&text={{winner.candidate.name}}+<3&hashtags=medianaranja,votainteligente', 'twitter-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-twitter', 'click');"><i class="icon-twitter-sign icon-4x"></i></a></li>
-						<li><a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}', 'facebook-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-facebook', 'click');"><i class="icon-facebook-sign icon-4x"></i></a></li>
-						<li><a href="#" onclick="window.open('https://plus.google.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}&hl=es-419', 'googleplus-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-gplus', 'click');"><i class="icon-google-plus-sign icon-4x"></i></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2">
-			{% for cat in winner.category_score %}
-			<div class="container-progress">
-				<div class="progress">
-					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{cat.score|floatformat}}" aria-valuemin="0" aria-valuemax="100" style="width: {{cat.score|floatformat}}%">
-					</div>
-				</div>
-				<p>{{cat.category}}<span>{{cat.score|floatformat}}%</span></p>
-			</div>
-			{% if forloop.counter|divisibleby:6 %}
-			</div>
-			<div class="col-md-2">
-			{% endif %}
-			{% endfor %}
 		</div>
 	</div>
 </div>
 
 <div id="other-soulmate">
-		<h3>Compatibilidad con otros candidatos</h3>
+		<h3 class="text-center">Compatibilidad con otros candidatos</h3>
 	<div class="row">
 		{% for other in others %}
-		<div class="col-md-4">
-			<div class="other-soulmate-box">
-				<h4>{{other.percentage|mul:100|floatformat}}% <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=other.candidate.id %}">{{other.candidate.name}}</a></h4>
-				<ul class="list-unstyled">
-					{% for other_cat in other.category_score %}
-					<li>{{other_cat.percentage|floatformat}}% {{other_cat.category}}</li>
-					{% endfor %}
-				</ul>
+		<div class="col-md-6">
+			<div class="other-soulmate-box row">
+				<div id="candidate-img-profile" class="col-md-3">
+				{% if other.candidate.image %}
+					{% thumbnail other.candidate.image "x300" crop="center" as im %}
+					<img src="{{im.url}}" alt="{{other.candidate.name}}" class="img-responsive img-circle img-candidato">
+					{% endthumbnail %}
+				{% else %}
+					<img src="{% static 'img/candidate-default.jpg' %}" alt="{{other.candidate.name}}" class="img-responsive img-circle img-candidato">
+				{% endif %}
+				</div>
+				<div class="col-md-9">
+					<h2>{{other.percentage|mul:100|floatformat}}%</h2>
+					<h4><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=other.candidate.id %}">{{other.candidate.name}}</a></h4>
+					<p class="small text-light">{% get_personal_data candidate=other.candidate personal_data='Partido' as partido %}{{partido.value}}</p>
+					<ul class="list-unstyled">
+						{% for other_cat in other.category_score %}
+						<li>{{other_cat.percentage|floatformat}}% {{other_cat.category}}</li>
+						{% endfor %}
+					</ul>
+				</div>
 			</div>
 		</div>
-		{% if forloop.counter|divisibleby:3 %}
+		{% if forloop.counter|divisibleby:2 %}
 	</div><div class="row no-first-row">
 		{% endif %}
 		{% endfor %}

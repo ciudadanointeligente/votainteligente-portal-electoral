@@ -7,6 +7,20 @@ import unicodecsv as csv
 from django.utils.text import slugify
 from backend_candidate.models import send_candidate_username_and_password
 
+
+def area_getter(area_name):
+    try:
+        area = Area.objects.get(name=area_name)
+        return area
+    except Exception as e:
+        posible_area_id = slugify(area_name)
+        try:
+            area = Area.objects.get(id__icontains=posible_area_id)
+            return area
+        except Exception as e:
+            return None
+
+
 def process_candidates_with_names():
     reader = codecs.open("candidatos_y_mails.csv", 'r', encoding='utf-8')
     counter = 0
@@ -69,11 +83,10 @@ def process_candidates():
     for line in reader:
         row = line.split(u',')
         area_name = row[0].title().strip()
-        try:
-            area = Area.objects.get(name__iexact=area_name)
-        except Exception as e:
-            print area_name
-            print e
+        area = area_getter(area_name)
+        if area is None:
+            print u'no encontré a '+ area_name
+            return
         kind_of = row[1].title().strip()
         election_name = kind_of + u' por ' + area.name
         if not Election.objects.filter(name__iexact=election_name):
@@ -116,18 +129,6 @@ def process_candidates():
         counter += 1
         if not counter % 1000:
             print u'van' + str(counter)
-
-def area_getter(area_name):
-    try:
-        area = Area.objects.get(name=area_name)
-        return area
-    except Exception as e:
-        posible_area_id = slugify(area_name)
-        try:
-            area = Area.objects.get(id__icontains=posible_area_id)
-            return area
-        except Exception as e:
-            return None
 
 def process_areas():
     reader = codecs.open("candidates.csv", 'r', encoding='utf-8')

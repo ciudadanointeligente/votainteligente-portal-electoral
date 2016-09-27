@@ -3,6 +3,9 @@ import csv, codecs
 from elections.models import Candidate, Election, PersonalData, Area
 from django.core.urlresolvers import reverse
 from backend_candidate.models import CandidacyContact
+import unicodecsv as csv
+from django.utils.text import slugify
+from backend_candidate.models import send_candidate_username_and_password
 
 def process_candidates_with_names():
     reader = codecs.open("candidatos_y_mails.csv", 'r', encoding='utf-8')
@@ -38,6 +41,27 @@ def process_candidates_with_names():
                                                       mail=mail)
 
 
+def compare_lists():
+    candidates_and_mails = {}
+    reader = codecs.open("todos1.csv", 'r', encoding='utf-8')
+    for line in reader:
+        row = line.split(u',')
+        area = row[2].strip()
+        name = row[4].strip()
+        mail = row[8].lower().strip()
+        key = slugify(area + u' ' + name)
+        candidates_and_mails[key] = mail
+    reader = codecs.open("todos2.csv", 'r', encoding='utf-8')
+    for line in reader:
+        row = line.split(u',')
+        area = row[0].strip()
+        name = row[3].strip()
+        mail = row[4].lower().strip()
+        key = slugify(area + u' ' + name)
+        if key in candidates_and_mails.keys():
+            if candidates_and_mails[key] != mail:
+                print u'el mail de ' + name + u' de ' + area + u' antes era' + candidates_and_mails[key] + u' ahora es ' + mail
+
 def process_candidates():
     reader = codecs.open("candidates.csv", 'r', encoding='utf-8')
     counter = 0
@@ -54,7 +78,7 @@ def process_candidates():
         election_name = kind_of + u' por ' + area.name
         if not Election.objects.filter(name__iexact=election_name):
             print u"no pillé a " + election_name
-            Candidate.objects.filter(id__in=candidates_ids).delete()
+            # Candidate.objects.filter(id__in=candidates_ids).delete()
             return
         else:
             e = Election.objects.get(name__iexact=election_name)
@@ -92,18 +116,49 @@ def process_candidates():
         if not counter % 1000:
             print u'van' + str(counter)
 
+def area_getter(area_name):
+    try:
+        area = Area.objects.get(name=area_name)
+        return area
+    except Exception as e:
+        posible_area_id = slugify(area_name)
+        try:
+            area = Area.objects.get(id__icontains=posible_area_id)
+            return area
+        except Exception as e:
+            return None
+
 def process_areas():
     reader = codecs.open("candidates.csv", 'r', encoding='utf-8')
     not_found_areas = []
     for line in reader:
         row = line.split(u',')
         area_name = row[0].title().strip()
-        try:
-            area = Area.objects.get(name__iexact=area_name)
-        except Exception as e:
-            if area_name not in not_found_areas:
-                not_found_areas.append(area_name)
+        area = area_getter(area_name)
+        if area is None and area_name not in not_found_areas:
+            not_found_areas.append(area_name)
     print not_found_areas
+
+def process_candidates_after():
+    reader = codecs.open("candidates.csv", 'r', encoding='utf-8')
+    counter = 0
+    candidates_ids = []
+    out_file = open("candidates2.csv", 'wb')
+    candidate_writer = csv.writer(out_file, encoding='utf-8')
+    for line in reader:
+        row = line.split(u',')
+        area_name = row[0].title().strip()
+        area = area_getter(area_name)
+        if area is None:
+            print area_name + u' No encontrada'
+            continue
+        kind_of = row[1].title().strip()
+        election_name = kind_of + u' por ' + area.name
+        e = Election.objects.get(name__iexact=election_name)
+        name = row[2].title().strip()
+        if not e.candidates.filter(name=name):
+            candidate_writer.writerow(row)
+
 
 def check_if_candidates_exists():
     reader = codecs.open("candidates.csv", 'r', encoding='utf-8')

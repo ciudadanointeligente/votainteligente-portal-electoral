@@ -1857,6 +1857,13 @@ input#id_4-title {
     border-radius: 0px;
 }
 
+li.destacado:before {
+  content: url(../img/destacado.svg);
+  position: absolute;
+  top: -10px;
+  left: 90px;
+}
+
 /*Input*/
 
 .input-group-lg>.form-control, .input-group-lg>.input-group-addon, .input-group-lg>.input-group-btn>.btn {

@@ -11,15 +11,14 @@
 {% block mainelection %}
 <!-- face-to-face -->
 <div id="compare-candidates">
-	
+	<h1 class="text-center"><div class="small">Candidatos a {{ election.position }} por {{ election.area }}</div>Frente a frente</h1>
+	<p class="bajada text-center text-width">Selecciona los dos candidatos que quieras enfrentar y compara sus posturas</p>
 	<div class="row">
 		{% if first_candidate.id and second_candidate.id %}
 		<div class="col-md-12">
-			<div class="candidate-percentage-txt">
-				<p class="text-center">
-					{% trans "El porcentaje de similitud es" %} {{similitude|floatformat}}%
-				</p>
-			</div>
+				<h2 class="text-center">
+					Las posturas de estos candidatos tienen un {{similitude|floatformat}}% de similitud
+				</h2>
 		</div>
 		{% endif %}
 		<div class="col-md-6">
@@ -48,41 +47,58 @@
 	<!-- hidden for small devices -->
 	<div class="hidden-xs">
 			{% if first_candidate.id and second_candidate.id %}
+				<ul class="nav nav-tabs nav-justified" role="tablist">
 				{% for category in election.categories.all %}
+					<li role="presentation" class="{% if forloop.first %}active{% endif %}">
+						<a href="#{{category.name|slugify}}" class="small" aria-controls="{{ category.name|slugify }}" role="tab" data-toggle="tab">{{category.name}}</a>
+					</li>
+				{% endfor %}
+				</ul>
 
-				<div class="panel panel-default">
-					<div class="panel-heading" id="{{category.slug}}">{{category.name}}</div>
-					<div class="panel-body">
+				<div class="tab-content">
+				{% for category in election.categories.all %}
+					<div role="tabpanel" class="tab-pane {% if forloop.first %}active{% endif %}" id="{{category.name|slugify}}">
 					{% for topic in category.topics.all %}
 						<div class="row">
 							<div class="col-md-12">
-								<h5>{{ topic.label }}</h5>
+								<h4>{{ topic.label }}</h4>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
-								<div class="fondo-blanco contenedor">
+								<div class="globo-texto">
 									<p>
 										{% get_taken_position_for topic first_candidate only_text=True %}
 									</p>
-									<p class="text-right">{{ first_candidate.name }}</p>
 								</div>
+								<p class="text-light">{{ first_candidate.name }}</p>
 							</div>
 							<div class="col-md-6">
-								<div class="fondo-blanco contenedor">
+								<div class="globo-texto-right">
 									<p>
 										{% get_taken_position_for topic second_candidate only_text=True %}
 									</p>
-									<p class="text-right">{{ second_candidate.name }}</p>
 								</div>
+								<p class="text-right text-light">{{ second_candidate.name }}</p>
 							</div>
 						</div>
 					{% endfor %}
 					</div>
-				</div>
 				{% endfor %}
+				</div>
+				
 			{% else %}
-			<div class="alert alert-info">{% trans "Aquí se mostraran las diferencias y similitudes entre los candidatos que selecciones." %}</div>
+			<div class="inner-banner text-center">
+				<h4>
+					<svg width="37" height="18" viewBox="0 0 37 18" xmlns="http://www.w3.org/2000/svg">
+				    <path d="M25.77 0l10.354 9.432-11.012 8.632v-6.609L0 13.59l.217-8.082L25.55 6.61z" fill="#8AC1F9" fill-rule="evenodd"/>
+					</svg>
+					{% trans "Aquí se mostraran las diferencias y similitudes entre los candidatos que selecciones." %}
+					<svg width="37" height="18" viewBox="0 0 37 18" xmlns="http://www.w3.org/2000/svg">
+					    <path d="M10.354 0L0 9.432l11.013 8.632v-6.609l25.111 2.134-.216-8.082L10.574 6.61z" fill="#8AC1F9" fill-rule="evenodd"/>
+					</svg>
+				</h4>
+			</div>
 			{% endif %}
 		
 	</div>

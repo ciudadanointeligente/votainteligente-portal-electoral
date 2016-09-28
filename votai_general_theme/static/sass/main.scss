@@ -1024,10 +1024,6 @@ input[type=checkbox], input[type=radio] {
   border-color: transparent;
 }
 
-#compare-candidates .text-right, #compare-candidates .text-center {
-  color: $grey-five;
-}
-
 #compare-candidates i {
   color: $grey-five;
 }
@@ -1042,6 +1038,48 @@ input[type=checkbox], input[type=radio] {
 
 #compare-candidates div.col-md-6:last-child {
 margin-bottom: 20px;
+}
+
+.globo-texto, .globo-texto-right {
+  border: 1px solid $grey-five;
+  padding: 20px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.globo-texto:after, .globo-texto:before {
+  top: 100%;
+  left: 10%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.globo-texto-right:after, .globo-texto-right:before {
+  top: 100%;
+  left: 90%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.globo-texto:after, .globo-texto-right:after  {
+  border-color: rgba(255, 255, 255, 0);
+  border-top-color: #ffffff;
+  border-width: 20px;
+  margin-left: -20px;
+}
+.globo-texto:before, .globo-texto-right:before  {
+  border-color: rgba(234, 237, 242, 0);
+  border-top-color: #EAEDF2;
+  border-width: 21px;
+  margin-left: -21px;
 }
 
 /*Cuestionario*/

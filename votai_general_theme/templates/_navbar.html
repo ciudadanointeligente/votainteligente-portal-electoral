@@ -44,6 +44,9 @@
                     <li><a href="{% url 'backend_staff:stats' %}">
                             <i class="fa fa-line-chart" aria-hidden="true"></i>
                             {% blocktrans %}Estadísticas{% endblocktrans %}</a></li>
+                    <li><a href="{% url 'backend_staff:per_area_stats' %}">
+                            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                            {% blocktrans %}Estadísticas por area{% endblocktrans %}</a></li>
                     {% endif %}
 
                     {% if user|is_candidate %}

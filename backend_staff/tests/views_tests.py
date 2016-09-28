@@ -9,6 +9,7 @@ from elections.models import Election, Candidate
 from preguntales.models import Message
 from django.core import mail
 from backend_staff.views import Stats
+from backend_staff.stats import PerAreaStaffStats
 from backend_candidate.models import CandidacyContact, Candidacy
 
 
@@ -381,3 +382,64 @@ class StaffHomeViewTest(TestCase):
         self.assertEquals(stats.candidates_that_have_commited_alcalde(), 1)
         self.assertEquals(stats.candidates_that_have_commited_concejal(), 1)
 
+    def test_get_per_area_stats(self):
+        self.is_reachable_only_by_staff('backend_staff:per_area_stats')
+
+        url = reverse('backend_staff:per_area_stats')
+        self.client.login(username=self.fiera.username,
+                          password=STAFF_PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        for area in Area.objects.all():
+            self.assertIn(area.id, response.context['stats'].keys())
+            stats_per_area = response.context['stats'][area.id]
+
+            self.assertIsInstance(stats_per_area, PerAreaStaffStats)
+            self.assertEquals(stats_per_area.area, area)
+        self.assertTemplateUsed(response, 'backend_staff/per_area_stats.html')
+
+    def test_stats_per_area(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title1',
+                                                          clasification=u'education'
+                                                          )
+        popular_proposal2 = PopularProposal.objects.create(proposer=self.fiera,
+                                                           area=self.arica,
+                                                           data=self.data,
+                                                           title=u'This is a title2',
+                                                           clasification=u'education'
+                                                           )
+        popular_proposal3 = PopularProposal.objects.create(proposer=self.fiera,
+                                                           area=self.arica,
+                                                           data=self.data,
+                                                           title=u'This is a title3',
+                                                           clasification=u'education',
+                                                           for_all_areas=True
+                                                           )
+        Commitment.objects.create(candidate=self.candidate1,
+                                  proposal=popular_proposal,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
+        Commitment.objects.create(candidate=self.candidate1,
+                                  proposal=popular_proposal2,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
+        Commitment.objects.create(candidate=self.candidate6,
+                                  proposal=popular_proposal2,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
+
+        stats = PerAreaStaffStats(self.arica)
+        self.assertIn(popular_proposal, stats.proposals().all())
+        self.assertIn(popular_proposal2, stats.proposals().all())
+        self.assertIn(popular_proposal3, stats.proposals().all())
+
+        self.assertIn(popular_proposal, stats.proposals__for_all_areas__().all())
+        self.assertIn(popular_proposal2, stats.proposals__for_all_areas__().all())
+        self.assertNotIn(popular_proposal3, stats.proposals__for_all_areas__().all())
+
+        self.assertNotIn(popular_proposal, stats.proposals__for_all_areas__True().all())
+        self.assertNotIn(popular_proposal2, stats.proposals__for_all_areas__True().all())
+        self.assertIn(popular_proposal3, stats.proposals__for_all_areas__True().all())

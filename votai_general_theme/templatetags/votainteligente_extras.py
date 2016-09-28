@@ -374,3 +374,9 @@ def template_exists(value):
     except template.TemplateDoesNotExist:
         return False
 
+
+@register.filter(name='is_marked_area')
+def is_marked_area(area):
+    if area.id in settings.MARKED_AREAS:
+        return True
+    return False

@@ -6,6 +6,41 @@
 {% load bootstrap3 %}
 
 {% block main_content %}
+
+
+
+
+    
+
+    <table style="display:none;" class="table">
+        <thead>
+          <tr>
+            <th>Comuna</th>
+            <th>Nombre</th>
+            <th>Posición</th>
+            <th>Mail de contacto</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for proposal in user.proposals.all %}
+            {% for commitment in proposal.commitments.all %}
+
+          <tr >
+            <td><a href="{{ proposal.area.get_absolute_url }}">{{ proposal.area }}</a></td>
+            <td><a href="{{ commitment.candidate.get_absolute_url }}">{{ commitment.candidate }}</a>
+            <td>{{ commitment.candidate.election.position }}</td>
+            <td>{% for contact in commitment.candidate.contacts.all %}{{contact.mail}}{% if not forloop.last %},{% endif %}{% endfor %}</td>
+          </tr>
+          {% endfor%}
+          {% endfor %}
+        </tbody>
+
+      </table>
+
+
+
+
+
 	<h2>Las estadísticas sobre tus propuestas</h2>
       <table class="table">
         <tr>

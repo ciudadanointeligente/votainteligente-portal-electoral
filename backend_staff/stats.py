@@ -17,6 +17,11 @@ class CandidateParticipation(object):
 
 
 class Stats(object):
+    def __init__(self):
+        self.all_candidates_qs = Candidate.objects.all()
+        self.candidates_qs = self.all_candidates_qs
+        super(Stats, self).__init__()
+
     def total_candidates(self):
         return Candidate.objects.count()
 
@@ -39,6 +44,9 @@ class Stats(object):
     def proposals_with_commitments(self):
         return PopularProposal.objects.exclude(commitments__isnull=True)
 
+    def candidates_that_have_12_naranja(self):
+        return self.candidates_qs.exclude(taken_positions__isnull=True)
+
     def __getattribute__(self, name):
         if name.startswith('total_candidates_'):
             position = name.replace('total_candidates_', '')
@@ -58,6 +66,11 @@ class Stats(object):
             def _candidates_that_have_commited():
                 return self.candidates_that_have_commited(filter_kwargs={'elections__position': position})
             return _candidates_that_have_commited
+        if name.startswith('candidates_that_have_12_naranja__'):
+            position = name.replace('candidates_that_have_12_naranja__', '')
+            
+            self.candidates_qs = self.candidates_qs.filter(elections__position=position)
+            return self.candidates_that_have_12_naranja
         return super(Stats, self).__getattribute__(name)
 
 

@@ -381,6 +381,8 @@ class StaffHomeViewTest(TestCase):
         self.assertEquals(stats.candidates_that_have_commited(), 2)
         self.assertEquals(stats.candidates_that_have_commited_alcalde(), 1)
         self.assertEquals(stats.candidates_that_have_commited_concejal(), 1)
+        self.assertIn(popular_proposal, stats.proposals_with_commitments().all())
+        self.assertIn(popular_proposal2, stats.proposals_with_commitments().all())
 
     def test_get_per_area_stats(self):
         self.is_reachable_only_by_staff('backend_staff:per_area_stats')

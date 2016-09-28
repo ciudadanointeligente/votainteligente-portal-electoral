@@ -37,6 +37,30 @@
 <hr>
 <h4>Compromisos:</h4>
 <p>Hay un total de {{stats.commitments}} compromisos de candidatos con propuestas ciudadanas.</p>
+<p>Estos compromisos corresponden a <a data-toggle="modal" data-target="#proposals_with_commitments">{{stats.proposals_with_commitments.count}}</a> propuestas.</p>
+<!-- Modal -->
+<div id="proposals_with_commitments" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Propuestas con compromisos</h4>
+      </div>
+      <div class="modal-body">
+        <ul>
+            {% for proposal in stats.proposals_with_commitments.all %}
+                <li><a href="{{proposal.area.get_absolute_url}}">{{proposal.area}}</a> - <a href="{{proposal.get_absolute_url}}">{{proposal.title}}</a></li>
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 <p>Estos compromisos han sido adquiridos por un total de {{stats.candidates_that_have_commited}} candidatos.</p>
 <p>De los cuales {{stats.candidates_that_have_commited_alcalde}} son candidatos a alcalde.</p>
 <p>Y {{stats.candidates_that_have_commited_concejal}} son candidatos al concejo.</p>

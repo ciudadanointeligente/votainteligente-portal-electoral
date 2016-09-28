@@ -36,6 +36,9 @@ class Stats(object):
             qs = qs.filter(**filter_kwargs)
         return qs.count()
 
+    def proposals_with_commitments(self):
+        return PopularProposal.objects.exclude(commitments__isnull=True)
+
     def __getattribute__(self, name):
         if name.startswith('total_candidates_'):
             position = name.replace('total_candidates_', '')

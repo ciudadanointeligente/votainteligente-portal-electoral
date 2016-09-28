@@ -7,6 +7,7 @@ from backend_citizen.views import (IndexView,
                                    DoYouBelongToAnOrgView,
                                    GroupRegistrationView,
                                    MySupportsView,
+                                   MyStats,
                                    )
 from django.contrib.auth.views import password_reset
 
@@ -28,6 +29,9 @@ urlpatterns = patterns('',
                        url(r'^my_supports/?$',
                            MySupportsView.as_view(),
                            name='my_supports'),
+                       url(r'^stats/?$',
+                           MyStats.as_view(),
+                           name='stats'),
                        url(r'^create_organization/?$',
                            OrganizationCreateView.as_view(),
                            name='create_org'),

@@ -49,10 +49,9 @@
           </li>
 
           {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
-          <li role="presentation" class="{% ifequal request.path backend_candidate%} active{% endifequal %} hidden-xs 12naranja">
+          <li role="presentation" class="{% ifequal request.path backend_candidate%} active{% endifequal %} hidden-xs 12naranja destacado">
             <a class="small" href="{{backend_candidate}}">
-                <i class="fa fa-heart-o" aria-hidden="true"></i>
-              Cuestionario
+              Completa la 1/2 naranja
             </a>
           </li>
 

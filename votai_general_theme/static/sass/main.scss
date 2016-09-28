@@ -390,6 +390,11 @@ label.control-label {
   margin-bottom: 11px;
 }
 
+.extra {
+  background: #4A90E2;
+  padding-top: 11px;
+}
+
 /*Section banner*/
 
 section.banner {
@@ -625,6 +630,9 @@ section#propuestas-mas-apoyo {
 
 
 .btn-xs {
+    padding: 2px 7px;
+    font-size: 11px;
+    letter-spacing: 1px;
 }
 
 .btn-success {

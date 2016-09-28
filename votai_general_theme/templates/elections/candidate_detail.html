@@ -162,7 +162,7 @@
 		{% for category in election.categories.all %}
 			<div role="tabpanel" class="tab-pane {% if forloop.first %}active{% endif %}" id="{{category.name|slugify}}">
 				{% for topic in category.topics.all %}
-				<div class="question-answer" {% if forloop.counter >= 2 %} {% endif %}>
+				<div class="question-answer">
 					<h4 class="question text-dark">
 						{{topic.label}}
 					</h4>

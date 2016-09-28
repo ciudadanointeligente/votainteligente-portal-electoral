@@ -83,6 +83,11 @@
          <li role="presentation" class="{% ifequal request.path my_profile_url %} active{% endifequal %} hidden-xs">
           <a class="small" href="{{my_profile_url}}">
           {% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a></li>
+        {% url 'backend_citizen:stats' as stats_url %}
+         <li role="presentation" class="{% ifequal request.path stats_url %} active{% endifequal %} hidden-xs">
+          <a class="small" href="{{stats_url}}">
+          <i class="fa fa-bar-chart" aria-hidden="true"></i>
+          {% blocktrans %}Estadísticas{% endblocktrans %}</a></li>
 
       {% endif %}
         
@@ -112,9 +117,9 @@
                         </li>
 
                         {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
-                        <li class="{% ifequal request.path backend_candidate%} active{% endifequal %}">
+                        <li class="{% ifequal request.path backend_candidate%} active{% endifequal %} destacado">
                           <a class="small" href="{{backend_candidate}}">
-                            Cuestionario
+                            Completa la 1/2 naranja
                           </a>
                         </li>
                         {% url 'backend_candidate:my_proposals_with_a_resolution' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as my_proposals %}

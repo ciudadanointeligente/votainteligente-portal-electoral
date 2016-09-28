@@ -5,6 +5,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView
 from popular_proposal.forms import ProposalTemporaryDataUpdateForm
 from popular_proposal.models import (ProposalTemporaryData,
+                                     PopularProposal,
                                      ProposalLike)
 from django.core.urlresolvers import reverse
 from django.views.generic.edit import UpdateView
@@ -18,6 +19,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from registration.backends.hmac.views import RegistrationView
 from django.views.generic.list import ListView
+from backend_citizen.stats import StatsPerProposal
 
 
 class IndexView(TemplateView):
@@ -125,3 +127,16 @@ class MySupportsView(LoginRequiredMixin, ListView):
         qs = super(MySupportsView, self).get_queryset()
         qs = qs.filter(user=self.request.user)
         return qs
+
+
+class MyStats(LoginRequiredMixin, TemplateView):
+    template_name = 'backend_citizen/stats.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(MyStats, self).get_context_data(*args, **kwargs)
+        stats = {}
+        proposals = PopularProposal.objects.filter(proposer=self.request.user)
+        for proposal in proposals:
+            stats[proposal.id] = StatsPerProposal(proposal)
+        context['stats'] = stats
+        return context

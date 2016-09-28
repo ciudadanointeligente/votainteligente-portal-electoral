@@ -3,9 +3,10 @@ from popular_proposal.models import (ProposalTemporaryData,
                                      ProposalLike,
                                      Commitment,
                                      PopularProposal)
-from backend_citizen.tests import BackendCitizenTestCaseBase
+from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
 from backend_citizen.stats import StatsPerAreaPerUser, StatsPerProposal
 from elections.models import Election, Candidate
+from django.core.urlresolvers import reverse
 
 
 class BackendCitizenStatsViewsTests(BackendCitizenTestCaseBase):
@@ -71,6 +72,27 @@ class BackendCitizenStatsViewsTests(BackendCitizenTestCaseBase):
         self.assertNotIn(c1, stats.pronouncing__concejal().all())
         self.assertNotIn(c2, stats.pronouncing__concejal().all())
         self.assertIn(c3, stats.pronouncing__concejal().all())
+
+    def test_per_proposal_stats_for_citizen(self):
+        url = reverse('backend_citizen:stats')
+        login_url = reverse('auth_login') + '?next=' + url
+        self.assertRedirects(self.client.get(url), login_url)
+        self.client.login(username=self.fiera.username, password=PASSWORD)
+        response = self.client.get(url)
+        self.assertTemplateUsed(response, 'backend_citizen/stats.html')
+        self.assertIn('stats', response.context)
+        expected_proposals = [self.proposal, self.proposal2]
+        self.assertEquals(len(response.context['stats']), len(expected_proposals))
+        PopularProposal.objects.create(proposer=self.feli,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'ProposalFeli',
+                                       for_all_areas=True
+                                       )
+        for proposal_id in response.context['stats']:
+            stats = response.context['stats'][proposal_id]
+            self.assertIsInstance(stats, StatsPerProposal)
+            self.assertIn(stats.proposal, expected_proposals)
 
     def test_stats_per_area_per_user_mixin(self):
         stats = StatsPerAreaPerUser(self.arica, self.fiera)

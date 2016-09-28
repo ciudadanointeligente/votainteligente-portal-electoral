@@ -100,7 +100,7 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
     def test_get_update_my_profile(self):
         url = reverse('backend_citizen:update_my_profile')
         response = self.client.get(url)
-        self.assertRedirects(response, reverse('auth_login')+"?next="+url)
+        self.assertRedirects(response, reverse('auth_login') + "?next=" + url)
         self.client.login(username=self.fiera.username, password=PASSWORD)
         response = self.client.get(url)
         self.assertTemplateUsed(response, 'backend_citizen/update_my_profile.html')
@@ -138,7 +138,6 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
         self.assertIn(like, response.context['supports'])
         self.assertIn(like2, response.context['supports'])
         self.assertNotIn(like_fiera, response.context['supports'])
-
 
 
 class GroupUserCreateView(TestCase):

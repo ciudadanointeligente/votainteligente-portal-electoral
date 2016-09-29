@@ -33,6 +33,9 @@ class Area(PopoloArea, OGPMixin):
     def elections_without_position(self):
         return self.elections.filter(position__isnull=True).filter(position__exact='')
 
+    def candidates(self):
+        return Candidate.objects.filter(elections__area=self)
+
 
 class ExtraInfoMixin(models.Model):
     extra_info = PickledObjectField(default={})

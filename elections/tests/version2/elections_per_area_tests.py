@@ -1,6 +1,6 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from elections.models import Election, Area
+from elections.models import Election, Area, Candidate
 from django.core.urlresolvers import reverse
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.contrib.sites.models import Site
@@ -39,6 +39,23 @@ class ElectionsPerAreaTestCase(TestCase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
+    def test_candidates_per_area(self):
+        argentina = Area.objects.create(name=u'Argentina')
+        election = Election.objects.create(
+            name='the name',
+            slug='the-slug',
+            description='this is a description',
+            extra_info_title=u'ver más',
+            area=argentina,
+            extra_info_content=u'Más Información')
+        c1 = Candidate.objects.create(name='Candidate1')
+        c2 = Candidate.objects.create(name='Candidate2')
+        c3 = Candidate.objects.create(name='Candidate3')
+        election.candidates.add(c1)
+        election.candidates.add(c2)
+        self.assertIn(c1, argentina.candidates().all())
+        self.assertIn(c2, argentina.candidates().all())
+        self.assertNotIn(c3, argentina.candidates().all())
 
 class AreaOGPTestCase(TestCase):
     def setUp(self):

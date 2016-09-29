@@ -26,7 +26,7 @@
 				<li>
 					{% trans "Declara tu amor publicamente:" %}
 				</li>
-				<li><a href="#" onclick="window.open('https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}&text={{winner.candidate.name}}+<3&hashtags=medianaranja,votainteligente', 'twitter-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-twitter', 'click');">
+				<li><a href="#" onclick="window.open('https://twitter.com/share?url=http://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}&text={% if winner.candidate.twitter %}{{winner.candidate.twitter.value|extract_twitter_username}}{% else %}{{winner.candidate.name}}{% endif %}+<3&hashtags=medianaranja,votainteligente', 'twitter-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-twitter', 'click');">
 					<span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
             <i class="fa fa-twitter fa-stack-1x fa-inverse" aria-hidden="true"></i>
@@ -40,7 +40,7 @@
           </li>
 				</ul>
 				<div class="inner-banner row">
-					<div class="col-md-9"><h4>Estx candidatx se ha comprometido con {{winner.candidate.commitments.count}} propuestas de un total de {{winner.candidate.election.area.proposals.count}} en tu comuna</h4></div>
+					<div class="col-md-9"><h4>Este candidato/a se ha comprometido con {{winner.candidate.commitments.count}} propuestas de un total de {{winner.candidate.election.area.proposals.count}} en tu comuna</h4></div>
 					<div class="col-md-3"><h4><a href="{{winner.candidate.election.area.get_absolute_url}}" class="btn btn-primary">Revísalas</a></h4></div>
 				</div>
 		</div>

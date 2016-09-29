@@ -4,7 +4,7 @@ from popular_proposal.models import (ProposalTemporaryData,
                                      Commitment,
                                      PopularProposal)
 from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
-from backend_citizen.stats import StatsPerAreaPerUser, StatsPerProposal
+from backend_citizen.stats import StatsPerAreaPerUser, StatsPerProposal, PerUserTotalStats
 from elections.models import Election, Candidate
 from django.core.urlresolvers import reverse
 
@@ -73,6 +73,30 @@ class BackendCitizenStatsViewsTests(BackendCitizenTestCaseBase):
         self.assertNotIn(c2, stats.pronouncing__concejal().all())
         self.assertIn(c3, stats.pronouncing__concejal().all())
 
+    def test_stats_in_total(self):
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.alhue,
+                                       data=self.data,
+                                       title=u'Proposal3'
+
+                                       )
+        stats = PerUserTotalStats(self.fiera)
+        self.assertEquals(stats.areas_present().count(), 2)
+        self.assertIn(self.arica, stats.areas_present().all())
+        self.assertIn(self.alhue, stats.areas_present().all())
+        c1 = Commitment.objects.create(candidate=self.candidate1,
+                                       proposal=self.proposal,
+                                       detail=u'Yo me comprometo',
+                                       commited=True)
+        c2 = Commitment.objects.create(candidate=self.candidate6,
+                                       proposal=self.proposal,
+                                       detail=u'Yo me comprometo',
+                                       commited=True)
+        self.assertEquals(stats.areas_with_commitments().count(), 1)
+        self.assertIn(self.proposal.area, stats.areas_with_commitments().all())
+        self.assertIn(c1, stats.pronouncing__alcalde().all())
+        self.assertIn(c2, stats.pronouncing__concejal().all())
+
     def test_per_proposal_stats_for_citizen(self):
         url = reverse('backend_citizen:stats')
         login_url = reverse('auth_login') + '?next=' + url
@@ -93,6 +117,9 @@ class BackendCitizenStatsViewsTests(BackendCitizenTestCaseBase):
             stats = response.context['stats'][proposal_id]
             self.assertIsInstance(stats, StatsPerProposal)
             self.assertIn(stats.proposal, expected_proposals)
+
+        self.assertIsInstance(response.context['total_stats'], PerUserTotalStats)
+        self.assertEquals(response.context['total_stats'].user, self.fiera)
 
     def test_stats_per_area_per_user_mixin(self):
         stats = StatsPerAreaPerUser(self.arica, self.fiera)

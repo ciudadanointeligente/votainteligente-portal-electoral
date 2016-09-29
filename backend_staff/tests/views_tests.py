@@ -384,6 +384,25 @@ class StaffHomeViewTest(TestCase):
         self.assertIn(popular_proposal, stats.proposals_with_commitments().all())
         self.assertIn(popular_proposal2, stats.proposals_with_commitments().all())
 
+        self.candidate6.taken_positions.all().delete()
+        self.assertIn(self.candidate1, stats.candidates_that_have_12_naranja().all())
+        self.assertIn(self.candidate2, stats.candidates_that_have_12_naranja().all())
+        self.assertIn(self.candidate3, stats.candidates_that_have_12_naranja().all())
+        self.assertIn(self.candidate4, stats.candidates_that_have_12_naranja().all())
+        self.assertIn(self.candidate5, stats.candidates_that_have_12_naranja().all())
+        self.assertNotIn(self.candidate6, stats.candidates_that_have_12_naranja().all())
+
+        self.assertEquals(stats.candidates_that_have_12_naranja().count(), 5)
+        election = self.candidate1.election
+        election.position = 'alcalde'
+        election.save()
+        self.assertIn(self.candidate1, stats.candidates_that_have_12_naranja__alcalde().all())
+        self.assertIn(self.candidate2, stats.candidates_that_have_12_naranja__alcalde().all())
+        self.assertIn(self.candidate3, stats.candidates_that_have_12_naranja__alcalde().all())
+
+        self.assertIn(self.candidate4, stats.candidates_that_have_12_naranja__alcalde().all())
+        self.assertIn(self.candidate5, stats.candidates_that_have_12_naranja__alcalde().all())
+
     def test_get_per_area_stats(self):
         self.is_reachable_only_by_staff('backend_staff:per_area_stats')
 

@@ -19,7 +19,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from registration.backends.hmac.views import RegistrationView
 from django.views.generic.list import ListView
-from backend_citizen.stats import StatsPerProposal
+from backend_citizen.stats import StatsPerProposal, PerUserTotalStats
 
 
 class IndexView(TemplateView):
@@ -139,4 +139,5 @@ class MyStats(LoginRequiredMixin, TemplateView):
         for proposal in proposals:
             stats[proposal.id] = StatsPerProposal(proposal)
         context['stats'] = stats
+        context['total_stats'] = PerUserTotalStats(self.request.user)
         return context

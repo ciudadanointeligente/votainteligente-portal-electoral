@@ -44,8 +44,8 @@
     </g></svg> Volver a perfiles</a>
 		</div>
 		<div class="pull-right">
-			<a class="btn btn-info disabled" href="">Pronto: Encuentra tu 1/2 naranja</a>
-			<a class="btn btn-warning disabled" href="">Pronto: Enfréntalos</a>
+			<a href="{% url 'soul_mate_detail_view' slug=candidate.election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info"><i class="icon-heart"></i> {% trans "Encuentra tu 1/2 Naranja" %}</a>
+			<a href="{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}" accesskey="f" title="{% trans "Frente a Frente" %} (Alt+f)" class="btn btn-warning"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a>
 		</div>
 		<div class="row content_padding">
 			<div class="col-md-2 col-sm-2 col-xs-12">

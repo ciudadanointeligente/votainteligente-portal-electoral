@@ -38,6 +38,12 @@ class BackendCandidateBase(View):
                                                           **kwargs)
 
 
+class HelpFindingCandidates(ListView):
+    template_name = "backend_candidate/help_finding_candidates.html"
+    model = Candidate
+    context_object_name = 'candidates'
+
+
 class HomeView(BackendCandidateBase, RedirectView):
     template_name = "backend_candidate/home.html"
 

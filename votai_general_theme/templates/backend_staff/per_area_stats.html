@@ -87,7 +87,7 @@
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">todas las propuestas para {{stats_per_area.area}}</h4>
+			        <h4 class="modal-title">todas los compromisos en {{stats_per_area.area}}</h4>
 			      </div>
 			      <div class="modal-body">
 			        <ul>
@@ -105,7 +105,34 @@
 			</div>
         
         </td>
-        <td>{{stats_per_area.commiters.count}}</td>
+        <td><a data-toggle="modal" data-target="#commiters_{{id}}">{{stats_per_area.commiters.count}}</a>/ todavía no lo tengo
+        
+        	<!-- Modal -->
+			<div id="commiters_{{id}}" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Los candidatos que se han comprometido en {{stats_per_area.area}}</h4>
+			      </div>
+			      <div class="modal-body">
+			        <ul>
+			        	{% for candidate in stats_per_area.commiters.all %}
+                        <li><a href="{{candidate.get_absolute_url}}">{{candidate}} ({% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}) - {{candidate.commitments.count}} compromisos</a></li>
+			        	{% endfor %}
+			        </ul>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+
+			  </div>
+			</div>
+        
+        </td>
       </tr>
       	{% endfor %}
     </tbody>

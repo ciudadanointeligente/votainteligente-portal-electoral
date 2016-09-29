@@ -17,6 +17,8 @@
         <th>Comuna</th>
         <th>Promesas Ciudadanas locales</th>
         <th>Promesas Ciudadanas totales</th>
+        <th>Compromisos</th>
+        <th>Candidatos</th>
       </tr>
     </thead>
     <tbody>
@@ -76,6 +78,8 @@
 			</div>
 
         </td>
+        <td>{{ stats_per_area.commitments.count }}</td>
+        <td>{{stats_per_area.commiters.count}}</td>
       </tr>
       	{% endfor %}
     </tbody>

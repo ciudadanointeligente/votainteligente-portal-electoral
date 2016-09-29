@@ -28,6 +28,7 @@ class StaffHomeViewTest(TestCase):
         self.fiera.save()
         self.feli = User.objects.get(username='feli')
         self.arica = Area.objects.get(id='arica-15101')
+        self.algarrobo = Area.objects.get(id='algarrobo-5602')
         self.data = {
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
             'solution': u'Viajar a ver al Feli una vez al mes',
@@ -42,6 +43,7 @@ class StaffHomeViewTest(TestCase):
         self.candidate3 = Candidate.objects.get(id=3)
         self.election2 = Election.objects.get(id=2)
         self.election2.position = 'concejal'
+        self.election2.area = self.algarrobo
         self.election2.save()
         self.candidate4 = Candidate.objects.get(id=4)
         self.candidate5 = Candidate.objects.get(id=5)
@@ -261,7 +263,7 @@ class StaffHomeViewTest(TestCase):
     def test_stats_get(self):
 
         self.is_reachable_only_by_staff('backend_staff:stats')
-        
+
         url = reverse('backend_staff:stats')
         self.client.login(username=self.fiera.username,
                           password=STAFF_PASSWORD)
@@ -421,38 +423,38 @@ class StaffHomeViewTest(TestCase):
 
     def test_stats_per_area(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                          area=self.arica,
+                                                          area=self.algarrobo,
                                                           data=self.data,
                                                           title=u'This is a title1',
                                                           clasification=u'education'
                                                           )
         popular_proposal2 = PopularProposal.objects.create(proposer=self.fiera,
-                                                           area=self.arica,
+                                                           area=self.algarrobo,
                                                            data=self.data,
                                                            title=u'This is a title2',
                                                            clasification=u'education'
                                                            )
         popular_proposal3 = PopularProposal.objects.create(proposer=self.fiera,
-                                                           area=self.arica,
+                                                           area=self.algarrobo,
                                                            data=self.data,
                                                            title=u'This is a title3',
                                                            clasification=u'education',
                                                            for_all_areas=True
                                                            )
-        Commitment.objects.create(candidate=self.candidate1,
-                                  proposal=popular_proposal,
-                                  detail=u'Yo me comprometo',
-                                  commited=True)
-        Commitment.objects.create(candidate=self.candidate1,
-                                  proposal=popular_proposal2,
-                                  detail=u'Yo me comprometo',
-                                  commited=True)
-        Commitment.objects.create(candidate=self.candidate6,
-                                  proposal=popular_proposal2,
-                                  detail=u'Yo me comprometo',
-                                  commited=True)
+        c1 = Commitment.objects.create(candidate=self.candidate1,
+                                       proposal=popular_proposal,
+                                       detail=u'Yo me comprometo',
+                                       commited=True)
+        c2 = Commitment.objects.create(candidate=self.candidate1,
+                                       proposal=popular_proposal2,
+                                       detail=u'Yo me comprometo',
+                                       commited=True)
+        c3 = Commitment.objects.create(candidate=self.candidate6,
+                                       proposal=popular_proposal2,
+                                       detail=u'Yo me comprometo',
+                                       commited=True)
 
-        stats = PerAreaStaffStats(self.arica)
+        stats = PerAreaStaffStats(self.algarrobo)
         self.assertIn(popular_proposal, stats.proposals().all())
         self.assertIn(popular_proposal2, stats.proposals().all())
         self.assertIn(popular_proposal3, stats.proposals().all())
@@ -464,3 +466,13 @@ class StaffHomeViewTest(TestCase):
         self.assertNotIn(popular_proposal, stats.proposals__for_all_areas__True().all())
         self.assertNotIn(popular_proposal2, stats.proposals__for_all_areas__True().all())
         self.assertIn(popular_proposal3, stats.proposals__for_all_areas__True().all())
+
+        self.assertIn(c1, stats.commitments().all())
+        self.assertIn(c2, stats.commitments().all())
+        self.assertIn(c3, stats.commitments().all())
+
+        self.assertIn(self.candidate1, stats.commiters().all())
+        self.assertNotIn(self.candidate2, stats.commiters().all())
+        self.assertNotIn(self.candidate3, stats.commiters().all())
+        self.assertNotIn(self.candidate4, stats.commiters().all())
+        self.assertNotIn(self.candidate5, stats.commiters().all())

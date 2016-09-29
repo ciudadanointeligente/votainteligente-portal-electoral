@@ -76,6 +76,7 @@ $(document).ready(function(){
 							<label for="answer-{{topic.id}}-{{position.id}}"><input name="answer-{{topic.id}}" value="{{position.id}}" id="answer-{{topic.id}}-{{position.id}}" type="radio"> {{position.label}}</label>
 						</li>
 						{% endfor %}
+						<li><label  for="answer-{{topic.id}}-0"><input name="answer-{{topic.id}}" value="0" id="answer-{{topic.id}}-0" type="radio"> Ninguna de las anteriores</label></li>
 						<hr>
 					</ul>
 			<input type="hidden" name="question-{{topic.id}}" value="{{topic.id}}">

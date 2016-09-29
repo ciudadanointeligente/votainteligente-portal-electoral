@@ -72,6 +72,17 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         self.assertTrue(candidacy.created)
         self.assertTrue(candidacy.updated)
 
+    def test_candidacy_has_logged_in(self):
+        user = User.objects.create_user(username='user', password='password')
+        candidacy = Candidacy.objects.create(user=user,
+                                             candidate=self.candidate
+                                             )
+        self.assertFalse(self.candidate.has_logged_in())
+        self.client.login(username='user', password='password')
+        url = reverse('backend_candidate:home')
+        self.client.get(url)
+
+        self.assertTrue(self.candidate.has_logged_in())
 
     def test_user_has_candidacy(self):
         self.assertFalse(is_candidate(self.feli))

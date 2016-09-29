@@ -64,9 +64,18 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
     @property
     def twitter(self):
         links = self.contact_details.filter(contact_type="TWITTER")
+        if links.exists():
+            return links.first()
+
+    def facebook(self):
+        links = self.contact_details.filter(contact_type="FACEBOOK")
         if links:
             return links.first()
 
+    def has_logged_in(self):
+        if self.candidacy_set.filter(user__last_login__isnull=True).exists():
+            return False
+        return True
     @property
     def has_answered(self):
         if self.force_has_answer:

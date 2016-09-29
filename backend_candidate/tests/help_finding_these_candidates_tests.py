@@ -48,7 +48,7 @@ class HelpFindingCandidatesTestCase(SoulMateCandidateAnswerTestsBase):
         self.client.login(username=self.feli,
                           password='alvarez')
 
-        # Should not be in because has user that has logged in and hascompleted 1/2 naranja
+        # Should not be in because has user that has logged in and has completed 1/2 naranja
         response = self.client.get(url)
         self.assertNotIn(self.candidate1, response.context['candidates'])
         # Should be here because we hace a contact detail and hasn't log in
@@ -56,6 +56,16 @@ class HelpFindingCandidatesTestCase(SoulMateCandidateAnswerTestsBase):
         self.feli.save()
         Candidacy.objects.create(user=self.feli,
                                  candidate=self.candidate2)
+        self.candidate2.taken_positions.all().delete()
         self.candidate2.add_contact_detail(contact_type='TWITTER', value='perrito', label='perrito')
         response = self.client.get(url)
         self.assertIn(self.candidate2, response.context['candidates'])
+        # candidate 3 is not here because even though hasn't log in and doesn't have answers,
+        # we dont have a way to contact her/him
+        self.feli.last_login = None
+        self.feli.save()
+        Candidacy.objects.create(user=self.feli,
+                                 candidate=self.candidate3)
+        self.candidate3.taken_positions.all().delete()
+        response = self.client.get(url)
+        self.assertNotIn(self.candidate3, response.context['candidates'])

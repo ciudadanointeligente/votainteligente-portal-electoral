@@ -6,6 +6,7 @@ from backend_candidate.views import (HomeView,
                                      ProfileView,
                                      MyCommitments,
                                      ProposalsForMe,
+                                     HelpFindingCandidates,
                                      )
 from django.contrib.auth.views import login
 
@@ -14,6 +15,9 @@ urlpatterns = patterns('',
     url(r'^$',
         HomeView.as_view(),
         name='home'),
+    url(r'^ayudanos/$',
+        HelpFindingCandidates.as_view(),
+        name='help'),
     url(r'^login/?$',
         login,
         {'template_name': 'backend_candidate/auth_login.html'},

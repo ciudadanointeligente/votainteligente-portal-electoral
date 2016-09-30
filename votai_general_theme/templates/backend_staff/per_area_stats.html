@@ -17,6 +17,8 @@
         <th>Comuna</th>
         <th>Promesas Ciudadanas locales</th>
         <th>Promesas Ciudadanas totales</th>
+        <th>Compromisos</th>
+        <th>Candidatos</th>
       </tr>
     </thead>
     <tbody>
@@ -75,6 +77,61 @@
 			  </div>
 			</div>
 
+        </td>
+        <td><a data-toggle="modal" data-target="#commitments_{{id}}">{{ stats_per_area.commitments.count }}</a>
+        	<!-- Modal -->
+			<div id="commitments_{{id}}" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">todas los compromisos en {{stats_per_area.area}}</h4>
+			      </div>
+			      <div class="modal-body">
+			        <ul>
+			        	{% for commitment in stats_per_area.commitments.all %}
+                        <li><a href="{{commitment.get_absolute_url}}">{{commitment.candidate}} ({% get_personal_data candidate=commitment.candidate personal_data='Partido' as partido %}{{partido.value}}) - {{commitment.proposal}}</a></li>
+			        	{% endfor %}
+			        </ul>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+
+			  </div>
+			</div>
+        
+        </td>
+        <td><a data-toggle="modal" data-target="#commiters_{{id}}">{{stats_per_area.commiters.count}}</a>/ {{stats_per_area.area.candidates.count}}
+        
+        	<!-- Modal -->
+			<div id="commiters_{{id}}" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Los candidatos que se han comprometido en {{stats_per_area.area}}</h4>
+			      </div>
+			      <div class="modal-body">
+			        <ul>
+			        	{% for candidate in stats_per_area.commiters.all %}
+                        <li><a href="{{candidate.get_absolute_url}}">{{candidate}} ({% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}) - {{candidate.commitments.count}} compromisos</a></li>
+			        	{% endfor %}
+			        </ul>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+
+			  </div>
+			</div>
+        
         </td>
       </tr>
       	{% endfor %}

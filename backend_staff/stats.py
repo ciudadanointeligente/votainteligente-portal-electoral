@@ -62,13 +62,13 @@ class Stats(object):
             return _participacion
         if name.startswith('candidates_that_have_commited_'):
             position = name.replace('candidates_that_have_commited_', '')
-            
+
             def _candidates_that_have_commited():
                 return self.candidates_that_have_commited(filter_kwargs={'elections__position': position})
             return _candidates_that_have_commited
         if name.startswith('candidates_that_have_12_naranja__'):
             position = name.replace('candidates_that_have_12_naranja__', '')
-            
+
             self.candidates_qs = self.candidates_qs.filter(elections__position=position)
             return self.candidates_that_have_12_naranja
         return super(Stats, self).__getattribute__(name)
@@ -79,10 +79,20 @@ class PerAreaStaffStats(object):
         self.area = area
         self.all_proposals_qs = PopularProposal.objects.filter(area=self.area)
         self.proposals_qs = self.all_proposals_qs
+        self.all_commitments_qs = Commitment.objects.filter(proposal__area=self.area)
+        self.commitments_qs = self.all_commitments_qs
+        self.all_commiters_qs = Candidate.objects.filter(elections__area=self.area).exclude(commitments__isnull=True)
+        self.commiters_qs = self.all_commiters_qs
         super(PerAreaStaffStats, self).__init__()
 
     def proposals(self):
         return self.proposals_qs
+
+    def commitments(self):
+        return self.commitments_qs
+
+    def commiters(self):
+        return self.commiters_qs
 
     def __getattribute__(self, name):
         if name.startswith('proposals__'):

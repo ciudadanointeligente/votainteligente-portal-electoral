@@ -49,6 +49,15 @@ class CandidaTeTestCase(Version2TestCase):
         self.assertEquals(twitter.label, "@candidato1")
         self.assertEquals(twitter.value, "http://twitter.com/candidato1")
 
+    def test_get_facebook(self):
+        candidate = Candidate.objects.get(id=1)
+        candidate.add_contact_detail(contact_type="FACEBOOK", label="Facebook", value="http://facebook.com")
+        facebook = candidate.facebook()
+        self.assertIsInstance(facebook, ContactDetail)
+        self.assertEquals(facebook.contact_type, "FACEBOOK")
+        self.assertEquals(facebook.label, "Facebook")
+        self.assertEquals(facebook.value, "http://facebook.com")
+
     def test_it_creates_a_link_to_the_candidate_twitter(self):
         candidate = Candidate.objects.get(id=1)
         candidate.add_contact_detail(contact_type="TWITTER", label="@candidato1", value="http://twitter.com/candidato1")

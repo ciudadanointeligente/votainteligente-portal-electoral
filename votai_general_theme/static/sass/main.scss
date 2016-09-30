@@ -1106,6 +1106,10 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
   border-top: none;
 }
 
+.tooltip-inner {
+  max-width: 500px;
+}
+
 /* Footer */
 
 #footer {

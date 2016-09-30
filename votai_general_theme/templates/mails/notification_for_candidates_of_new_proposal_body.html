@@ -1,6 +1,6 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
-Estimada/o candidata/o:
+Estimada/o {{candidate.name}}:
 
 Las/os ciudadanas y ciudadanos de {{proposal.area}} han hecho una nueva propuesta para su comuna titulada: {{proposal.title}}.
 
@@ -13,6 +13,18 @@ Si quieres contactarte con los autores de la propuesta para hacer algún comenta
 Si tienes alguna duda o quieres saber más sobre VotaInteligente.cl puedes responder a este correo.
 
 Las vecinas y vecinos de {{proposal.area}} están esperando para que des tu opinión sobre esta propuesta.
+{% if not candidate.has_joined %}{% with candidate.contacts.last as contact %}{% if contact %}
 
+Además, queríamos recordarte que para ingresar a VotaInteligente debes entrar en http://votainteligente.cl/candidatos/login tu usuario y password son:
+**Usuario: {{contact.candidacy.user.username}}
+**Password: {{contact.initial_password}}{% else %}
+Queríamos recordarte que para ingresar a VotaInteligente debes respondernos a este mail.{% endif %}{% endwith %}
+
+Una vez adentro podrás pronunciarte sobre esta y otras propuestas ciudadanas, también podrás responder a las preguntas que hemos confeccionado para ti y así podrás ser la 1/2 naranja política de tus ciudadanos.
+
+{% elif not candidate.has_answered %}{% if candidate.election %}{% url 'backend_candidate:complete_12_naranja' slug=candidate.election.slug candidate_id=candidate.id  as backend_candidate %}
+Además queríamos recordarte que aún no has contestado el cuestionario de la 1/2 naranja, para hacerlo puedes seguir el siguiente link: 
+http://votainteligente.cl{{backend_candidate}}
+{% endif %}{% endif %}
 Desde ya muchas gracias,
 El equipo de VotaInteligente a nombre de {{proposal.proposer}}.

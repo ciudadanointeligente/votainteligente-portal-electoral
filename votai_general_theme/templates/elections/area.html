@@ -40,21 +40,23 @@ $(function(){
         
         {% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
       <h1 class="text-center text-white">{{area.name}}</h1>
-      <div class="text-center">
-      {% for election in area.elections.all %}
-      <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info"><i class="icon-heart"></i> Encuentra tu 1/2 Naranja: {{election.position|title}}</a>
-      {% endfor %}
-      </div>
+
         <!-- Candidatos -->
 
 
 
-        <!-- Alcaldes -->
-        <section class="comuna-alcaldes text-center">
-         <h2 class="text-white">Candidatos a alcalde</h2>
+      <!-- Alcaldes -->
+      <section class="comuna-alcaldes text-center">
+        <h2 class="text-white">Candidatos a alcalde</h2>
+        <div class="bajada">
+           {% get_election_by_position 'alcalde' as election %}
+            {% if election %}
+              <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info"><i class="icon-heart"></i> Encuentra tu 1/2 Naranja</a>
+              <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning">Frente a frente</a>
+            {% endif %}
+        </div>
          {% include 'elections/_election_with_position.html' with position='alcalde' area=area %}
-
-        </section>
+      </section>
 
     </div>
   </div>
@@ -81,11 +83,17 @@ $(function(){
   {% endwith %}
   {% endif %}
 
-
+<!-- Concejales -->
   <section class="comuna-concejales text-center">
     <div class="container">
       <h2 class="text-white">Candidatos a concejal</h2>
-      <div class="line-space"></div>
+      <div class="bajada">
+        {% get_election_by_position 'concejal' as election %}
+          {% if election %}
+            <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info"><i class="icon-heart"></i> Encuentra tu 1/2 Naranja</a>
+            <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning">Frente a frente</a>
+          {% endif %}
+      </div>
       {% include 'elections/_election_with_position.html' with position='concejal' area=area %}
     </div>
   </section>
@@ -127,9 +135,7 @@ $(function(){
         <ul>
           {% endif %}
           {% endfor %}
-          {% if election.candidates > 7 %}
-          Puedes ver el resto en <a href="{{ election.get_absolute_url }}"><h3 class="portada">{{ election.name }}</h3></a>
-          {% endif %}
+
         </ul>
       {% if not popular_proposals.all %}
       {% blocktrans %}

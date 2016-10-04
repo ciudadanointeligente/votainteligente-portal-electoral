@@ -13,6 +13,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.flatpages.models import FlatPage
 import copy
 from votainteligente.open_graph import OGPMixin
+from django.db.models import Count
 
 
 class AreaManager(models.Manager):
@@ -50,12 +51,22 @@ class ExtraInfoMixin(models.Model):
         self.extra_info = default_extra_info
 
 
+class HaveAnsweredFirst(models.Manager):
+    def get_queryset(self):
+        qs = super(HaveAnsweredFirst, self).get_queryset().annotate(num_answers=Count('taken_positions'))
+        qs = qs.order_by('-num_answers', '-image')
+        return qs
+
+
 class Candidate(Person, ExtraInfoMixin, OGPMixin):
     elections = models.ManyToManyField('Election', related_name='candidates', default=None)
     force_has_answer = models.BooleanField(default=False,
                                            help_text=_('Marca esto si quieres que el candidato aparezca como que no ha respondido'))
 
     default_extra_info = settings.DEFAULT_CANDIDATE_EXTRA_INFO
+
+    objects = HaveAnsweredFirst()
+    answered_first = HaveAnsweredFirst()
 
     ogp_enabled = True
 

@@ -14,10 +14,11 @@ from popular_proposal.subscriptions import (SubscriptionEventBase,
 
 from django.core import mail
 from elections.models import Candidate, Election
-from backend_candidate.models import CandidacyContact
+from backend_candidate.models import CandidacyContact, Candidacy
 from django.test import override_settings
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class TestNewCandidateCommitment(SubscriptionEventBase):
@@ -264,6 +265,50 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertIn(proposal.title, second_mail.body)
         self.assertIn(self.arica.name, second_mail.body)
         self.assertIn(proposal.get_absolute_url(), first_mail.body)
+
+    def test_new_proposal_notification_with_login_info(self):
+        self.feli.last_login = None
+        self.feli.save()
+        candidacy = Candidacy.objects.create(user=self.feli,
+                                             candidate=self.candidate
+                                             )
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl',
+                                                  initial_password='perrito',
+                                                  candidacy=candidacy)
+        previous_amount = len(mail.outbox)
+        proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                  area=self.arica,
+                                                  data=self.data,
+                                                  title=u'This is a title'
+                                                  )
+        first_mail = mail.outbox[previous_amount]
+        contact = self.candidate.contacts.all().first()
+        self.assertIn(self.feli.username, first_mail.body)
+        self.assertIn(contact.initial_password, first_mail.body)
+
+    def test_new_proposal_notification_with_media_naranja(self):
+        self.feli.last_login = timezone.now()
+        self.feli.save()
+        self.candidate.taken_positions.all().delete()
+        for e in self.candidate.elections.all():
+            print e.id
+        candidacy = Candidacy.objects.create(user=self.feli,
+                                             candidate=self.candidate
+                                             )
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl',
+                                                  initial_password='perrito',
+                                                  candidacy=candidacy)
+        previous_amount = len(mail.outbox)
+        proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                  area=self.arica,
+                                                  data=self.data,
+                                                  title=u'This is a title'
+                                                  )
+        first_mail = mail.outbox[previous_amount]
+        contact = self.candidate.contacts.all().first()
+        self.assertNotIn(self.feli.username, first_mail.body)
 
     @override_settings(NOTIFY_CANDIDATES_OF_NEW_PROPOSAL=False)
     def test_dont_notify_candidates_of_new_proposal(self):

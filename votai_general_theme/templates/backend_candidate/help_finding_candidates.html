@@ -3,14 +3,20 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load votainteligente_extras %}
+{% load cache %}
+
+
+{% block navbar %}
+{% endblock navbar %}
 
 {% block content %}
+{% cache 500 twitters %}
 <div class="container">
 <h2>Elije uno de estos twits y ayúdanos!</h2>
 {% include 'twitter_poking_button.html' with texto='Quién es tu 1/2 naranja política?' %}
 {% include 'twitter_poking_button.html' with texto='Qué estás esperando?!' %}
 
-
+<h2>¡Aún nos faltan estos candidatos twitteale!</h2>
 <div class="table-responsive">
   <table class="table">
   	<thead>
@@ -44,5 +50,6 @@
   </table>
  </div>
 </div>
+{% endcache %}
 {% endblock content %}
 

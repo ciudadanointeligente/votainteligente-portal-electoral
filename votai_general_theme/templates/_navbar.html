@@ -13,6 +13,7 @@
             </button>
             <a class="navbar-brand" href="/"><img src="{% static 'img/logo.svg' %}{% block navbar_logo %}{% endblock navbar_logo %}" class="img-responsive" title="Vota Inteligente" alt="Vota Inteligente"></a>
         </div>
+        {% block navbar %}
         {% block extra_nav %}
         {% endblock extra_nav %}
 
@@ -121,5 +122,5 @@
                 </li>
               </ul>
         </div><!--/.nav-collapse -->
-
+        {% endblock navbar %}
     </div>

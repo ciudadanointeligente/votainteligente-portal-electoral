@@ -30,6 +30,9 @@ class Area(PopoloArea, OGPMixin):
     def get_absolute_url(self):
         return reverse('area', kwargs={'slug': self.id})
 
+    def ogp_description(self):
+        return self.name
+
     @property
     def elections_without_position(self):
         return self.elections.filter(position__isnull=True).filter(position__exact='')

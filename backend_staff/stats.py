@@ -1,6 +1,7 @@
 from elections.models import Candidate
 from backend_candidate.models import CandidacyContact
 from popular_proposal.models import PopularProposal, Commitment
+from django.conf import settings
 
 
 class CandidateParticipation(object):
@@ -18,7 +19,7 @@ class CandidateParticipation(object):
 
 class Stats(object):
     def __init__(self):
-        self.all_candidates_qs = Candidate.objects.all()
+        self.all_candidates_qs = Candidate.objects.exclude(elections__area__id__in=settings.HIDDEN_AREAS)
         self.candidates_qs = self.all_candidates_qs
         super(Stats, self).__init__()
 

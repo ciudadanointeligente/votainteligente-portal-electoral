@@ -9,6 +9,8 @@ from backend_candidate.views import (HomeView,
                                      HelpFindingCandidates,
                                      )
 from django.contrib.auth.views import login
+from django.views.decorators.cache import cache_page
+from django.conf import settings
 
 
 urlpatterns = patterns('',

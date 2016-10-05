@@ -65,9 +65,9 @@
         <td>{% if not candidate.has_logged_in %}No se ha conectado, ni nada{% else %}{% if not candidate.has_answered %}No ha contestado la 1/2 naranja{% endif %}{% endif %}</td>
         <td>
             {% if not candidate.has_logged_in %}
-              {% include 'twitter_poking_button.html' with texto='Qué esperas para ingresar?' twitter=candidate.twitter.value %}
+              {% include 'twitter_poking_button.html' with texto='Aún esperamos que te conectes con tus vecinos en' twitter=candidate.twitter.value %}
             {% elif not candidate.has_answered %}
-              {% include 'twitter_poking_button.html' with texto='Responde la 1/2 naranja!' twitter=candidate.twitter.value %}
+              {% include 'twitter_poking_button.html' with texto='Queremos conocer tus postura responde a ' twitter=candidate.twitter.value %}
             {% endif %}
           </td>
       </tr>

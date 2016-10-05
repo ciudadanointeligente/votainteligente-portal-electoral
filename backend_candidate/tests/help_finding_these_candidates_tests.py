@@ -39,7 +39,7 @@ class HelpFindingCandidatesTestCase(SoulMateCandidateAnswerTestsBase):
         self.candidate6 = Candidate.objects.get(pk=6)
 
     def test_page_listing_candidates(self):
-        url = reverse('backend_candidate:help')
+        url = reverse('help')
         self.assertEquals(self.client.get(url).status_code, 200)
 
         Candidacy.objects.create(user=self.feli,

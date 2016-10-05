@@ -6,6 +6,11 @@
 
 {% block content %}
 <div class="container">
+<h2>Elije uno de estos twits y ayúdanos!</h2>
+{% include 'twitter_poking_button.html' with texto='Quién es tu 1/2 naranja política?' %}
+{% include 'twitter_poking_button.html' with texto='Qué estás esperando?!' %}
+
+
 <div class="table-responsive">
   <table class="table">
   	<thead>
@@ -14,18 +19,25 @@
         <th>Candidato</th>
         <th>¿Qué le pasa?</th>
         <th>Twiteale!</th>
-        <th>Facebookealo!</th>
       </tr>
     </thead>
     <tbody>
     	{% for candidate in candidates %}
+      {% if candidate.twitter %}
       <tr class="{% if candidate.election.area|is_marked_area %}success{% endif %}">
         <td><a href="{{ candidate.area.get_absolute_url }}">{{ candidate.election.area }}</a></td>
         <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
         <td>{% if not candidate.has_logged_in %}No se ha conectado, ni nada{% else %}{% if not candidate.has_answered %}No ha contestado la 1/2 naranja{% endif %}{% endif %}</td>
-        <td>{% if candidate.twitter %}{{ candidate.twitter.value|extract_twitter_username }}{% endif %}</td>
-        <td>{% if candidate.facebook %}{{ candidate.facebook.value }}{% endif %}</td>
+        <td>{% with twitter as candidate.twitter %}
+              {% if not candidate.has_logged_in %}
+                {% include 'twitter_poking_button.html' with texto='Qué esperas para ingresar?' twitter=twitter %}
+              {% elif not candidate.has_answered %}
+                {% include 'twitter_poking_button.html' with texto='Responde la 1/2 naranja!' twitter=twitter %}
+              {% endif %}
+          {% endwith %}
+          </td>
       </tr>
+        {% endif %}
       	{% endfor %}
     </tbody>
 

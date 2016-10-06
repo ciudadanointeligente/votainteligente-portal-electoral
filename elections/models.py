@@ -62,7 +62,10 @@ class HaveAnsweredFirst(models.Manager):
 
 
 class RankingManager(models.Manager):
-    pass
+    def get_queryset(self):
+        qs = super(RankingManager, self).get_queryset().annotate(num_answers=Count('taken_positions'))
+        qs = qs.order_by('-num_answers')
+        return qs
 
 class Candidate(Person, ExtraInfoMixin, OGPMixin):
     elections = models.ManyToManyField('Election', related_name='candidates', default=None)
@@ -97,6 +100,10 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
         if self.candidacy_set.filter(user__last_login__isnull=True).exists():
             return False
         return True
+
+    def possible_answers(self):
+        return Topic.objects.filter(category__in=self.election.categories.all())
+
     @property
     def has_answered(self):
         if self.force_has_answer:
@@ -206,6 +213,9 @@ class Election(ExtraInfoMixin, models.Model, OGPMixin):
 
     def get_extra_info_url(self):
             return reverse('election_extra_info', kwargs={'slug': self.slug})
+
+    def has_anyone_answered(self):
+        return TakenPosition.objects.filter(person__in=self.candidates.all()).exists()
 
     class Meta:
             verbose_name = _(u'Mi Elección')

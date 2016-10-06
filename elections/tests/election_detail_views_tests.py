@@ -170,6 +170,15 @@ class FaceToFaceViewTestCase(TestCase):
 
         self.assertEquals(response.context['similitude'], 0)
 
+    def test_election_has_anyone_answered(self):
+        TakenPosition.objects.all().delete()
+        self.assertFalse(self.tarapaca.has_anyone_answered())
+        c = self.tarapaca.candidates.first()
+        topic = self.tarapaca.categories.first().topics.first()
+        position = topic.positions.first()
+        c.taken_positions.create(topic=topic, position=position)
+        self.assertTrue(self.tarapaca.has_anyone_answered())
+
 
 class SoulMateTestCase(TestCase):
     def setUp(self):

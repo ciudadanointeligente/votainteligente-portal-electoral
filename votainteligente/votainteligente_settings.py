@@ -260,6 +260,7 @@ WEBSITE_TWITTER = {
     'hashtags': 'votainteligente'
 }
 CACHE_MINUTES = 0
+HEAVY_PAGES_CACHE_MINUTES = 1
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',

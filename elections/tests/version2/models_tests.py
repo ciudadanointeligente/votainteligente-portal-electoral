@@ -170,6 +170,30 @@ class CandidaTeTestCase(Version2TestCase):
         self.assertTrue(user.last_login)
         self.assertTrue(candidate.has_joined())
 
+    def test_candidate_ordering(self):
+        TakenPosition.objects.all().delete()
+        c1 = Candidate.objects.get(id=1)
+        c2 = Candidate.objects.get(id=2)
+        c2.image = 'perrito.jpeg'
+        c2.save()
+        c3 = Candidate.objects.get(id=3)
+        category = QuestionCategory.objects.create(name="Perros", election=self.election)
+        topic = Topic.objects.create(
+            label=u"Should marijuana be legalized?",
+            category=category,
+            description=u"This is a description of the topic of marijuana")
+        position = Position.objects.create(
+            topic=topic,
+            label=u"Yes",
+            description=u"Yes, means that it is considered a good thing for marijuana to be legalized"
+        )
+        taken_position = TakenPosition.objects.create(topic=topic,
+                                                      position=position,
+                                                      person=c3)
+        self.assertEquals(Candidate.answered_first.first(), c3)
+        self.assertEquals(Candidate.answered_first.all()[1], c2)
+
+
 class CandidateExtraInfoTestCase(Version2TestCase):
     def test_can_have_extra_info(self):
         candidate = Candidate.objects.get(id=1)

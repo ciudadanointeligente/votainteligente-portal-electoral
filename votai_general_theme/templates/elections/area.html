@@ -26,6 +26,9 @@ $(function(){
   {% render_ogp area %}
 {% endblock ogp %}
 
+{% block description %}Todos los candidatos para elecciones municipales 2016 en {{area.name}}{% endblock description %}
+{% block keywords %},{{area.name}}{% endblock keywords %}
+
 {% block content %}
 
 {% url 'popular_proposals:area_embedded' slug=area.id as embedded_url%}

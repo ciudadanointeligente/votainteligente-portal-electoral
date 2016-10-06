@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.conf import settings
+from backend_candidate.views import HelpFindingCandidates
 
 
 admin.autodiscover()
@@ -27,6 +28,9 @@ urlpatterns = patterns('',
     (r'^backend_staff/', include('backend_staff.urls', namespace='backend_staff')),
     (r'^perfil_ciudadano/', include('backend_citizen.urls', namespace='backend_citizen')),
     (r'^candidatos/', include('backend_candidate.urls', namespace='backend_candidate')),
+    url(r'^ayudanos/$',
+        HelpFindingCandidates.as_view(),
+        name='help'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^accounts/passwordchange/?$',
         'django.contrib.auth.views.password_change',

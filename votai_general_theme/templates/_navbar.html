@@ -13,6 +13,7 @@
             </button>
             <a class="navbar-brand" href="/"><img src="{% static 'img/logo.svg' %}{% block navbar_logo %}{% endblock navbar_logo %}" class="img-responsive" title="Vota Inteligente" alt="Vota Inteligente"></a>
         </div>
+        {% block navbar %}
         {% block extra_nav %}
         {% endblock extra_nav %}
 
@@ -47,7 +48,7 @@
                     <li><a href="{% url 'backend_staff:per_area_stats' %}">
                             <i class="fa fa-bar-chart" aria-hidden="true"></i>
                             {% blocktrans %}Estadísticas por area{% endblocktrans %}</a></li>
-                    <li><a href="{% url 'backend_candidate:help'  %}">
+                    <li><a href="{% url 'help'  %}">
                             <i class="fa fa-bar-chart" aria-hidden="true"></i>
                             {% blocktrans %}Ayúdanos{% endblocktrans %}</a></li>
                     
@@ -121,5 +122,5 @@
                 </li>
               </ul>
         </div><!--/.nav-collapse -->
-
+        {% endblock navbar %}
     </div>

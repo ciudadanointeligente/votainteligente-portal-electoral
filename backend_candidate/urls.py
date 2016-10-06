@@ -9,15 +9,14 @@ from backend_candidate.views import (HomeView,
                                      HelpFindingCandidates,
                                      )
 from django.contrib.auth.views import login
+from django.views.decorators.cache import cache_page
+from django.conf import settings
 
 
 urlpatterns = patterns('',
     url(r'^$',
         HomeView.as_view(),
         name='home'),
-    url(r'^ayudanos/$',
-        HelpFindingCandidates.as_view(),
-        name='help'),
     url(r'^login/?$',
         login,
         {'template_name': 'backend_candidate/auth_login.html'},

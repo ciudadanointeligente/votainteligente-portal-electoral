@@ -61,6 +61,9 @@ class HaveAnsweredFirst(models.Manager):
         return qs
 
 
+class RankingManager(models.Manager):
+    pass
+
 class Candidate(Person, ExtraInfoMixin, OGPMixin):
     elections = models.ManyToManyField('Election', related_name='candidates', default=None)
     force_has_answer = models.BooleanField(default=False,
@@ -70,6 +73,7 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
 
     objects = HaveAnsweredFirst()
     answered_first = HaveAnsweredFirst()
+    ranking = RankingManager()
 
     ogp_enabled = True
 

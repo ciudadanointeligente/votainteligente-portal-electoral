@@ -10,11 +10,18 @@
     <div class="container">
         <div class="row">
             <div id="carousel-propuestas" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#carousel-propuestas" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-propuestas" data-slide-to="1"></li>
+                <li data-target="#carousel-propuestas" data-slide-to="2"></li>
+                <div class="small text-center"><a href="">Ver todas</a></div>
+              </ol>
                 <div class="carousel-inner">
                   <div class="item active">
                     {% for proposal in proposals %}
-                      <!-- Te traje 3 no más si quieres más me avisai =) -->
-                          <div class="col-md-4 col-sm-4 col-xs-12">
+                          <div class="col-md-4 col-sm-4 
+                          ">
                             <div class="block-text rel zmin">
                                 {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
                             </div>
@@ -25,6 +32,7 @@
                       <div class="item">
                       {% endif %}
                     {% endfor %}
+
 
                     </div>                    
                 </div>

@@ -61,6 +61,11 @@ $(document).ready(function(){
 <h1 class="text-center"><div class="small text-light">Candidatos a {{ election.position }} por {{ election.area }}</div>Encuentra tu 1/2 naranja</h1>
 <p class="bajada text-center text-width">Lee las preguntas y marca la posición política que te haga sentido, así podremos mostrarte al candidato que más se ajuste a tu forma de pensar</p>
 <div id="question-soulmate">
+{% if not election.has_anyone_answered %}
+<div class="alert alert-danger" role="alert">
+	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	Aún no tenemos candidatos que hayan respondido la 1/2 naranja por lo tanto el resultado de tu afinidad será de un 0% con todos, pero siempre puedes <a href="{% url 'help'  %}">Ayudarnos</a></div>
+{% endif %}
 	<div id="msj-alerta" class="alert alert-warning" style="display:none">
 		<strong>{% trans "Atención!" %}</strong> {% trans "Para brindar una mejor respuesta es necesario que respondas todas las preguntas."%}
 	</div>

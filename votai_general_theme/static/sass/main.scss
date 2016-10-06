@@ -1948,6 +1948,18 @@ li.destacado:before {
     margin-top: 50px;
 }
 
+.carousel-indicators li {
+  background: $grey-four;
+}
+
+.carousel-indicators .active {
+  background-color: $yellow;
+}
+
+.carousel-indicators {
+  top: -40px;
+}
+
 
 /*Masonry*/
 

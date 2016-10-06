@@ -59,7 +59,7 @@
     <tbody>
     	{% for candidate in candidates %}
       {% if candidate.twitter %}
-      <tr class="{% if candidate.election.area|is_marked_area %}success{% endif %}">
+      <tr class="">
         <td><a href="{{ candidate.area.get_absolute_url }}">{{ candidate.election.area }}</a></td>
         <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
         <td>{% if not candidate.has_logged_in %}No se ha conectado, ni nada{% else %}{% if not candidate.has_answered %}No ha contestado la 1/2 naranja{% endif %}{% endif %}</td>

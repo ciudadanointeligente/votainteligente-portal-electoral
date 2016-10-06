@@ -1,19 +1,37 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from popolo.models import Person, ContactDetail
-from elections.models import Candidate, Election, QuestionCategory, Topic
+from elections.models import Candidate, Election, QuestionCategory, Topic, Area
 from candidator.models import Category, Position, TakenPosition
 from django.template.loader import get_template
 from django.template import Context, Template
 from django.test import override_settings
 from django.contrib.auth.models import User
-from backend_candidate.models import Candidacy
+from popular_proposal.models import PopularProposal
 
 
 class RankingTests(TestCase):
     def setUp(self):
         super(RankingTests, self).setUp()
         TakenPosition.objects.all().delete()
+        self.fiera = User.objects.get(username='fiera')
+        self.algarrobo = Area.objects.get(id="algarrobo-5602")
+        self.data = {
+            'clasification': 'educacion',
+            'title': u'Fiera a Santiago',
+            'problem': u'A mi me gusta la contaminación de Santiago y los autos\
+ y sus estresantes ruedas',
+            'solution': u'Viajar a ver al Feli una vez al mes',
+            'when': u'1_year',
+            'causes': u'La super distancia',
+            'terms_and_conditions': True
+        }
+        self.p1 = PopularProposal.objects.create(proposer=self.fiera,
+                                                 area=self.algarrobo,
+                                                 data=self.data,
+                                                 title=u'This is a title',
+                                                 clasification=u'education'
+                                                 )
         self.elections = Election.objects.filter(candidates__id__in=[1, 2, 3, 4, 5, 6]).distinct()
         self.categories = QuestionCategory.objects.filter(election__in=self.elections)
         self.topics = Topic.objects.filter(category__in=self.categories)
@@ -32,7 +50,7 @@ class RankingTests(TestCase):
         self.topic5 = Topic.objects.get(id=5)
         self.topic6 = Topic.objects.get(id=6)
 
-    def test_ordering(self):
+    def test_ordering_by_completeness_of_12_naranja(self):
         # candidate 4
         self.assertEquals(self.candidate4.election, self.topic1.election)
         self.assertEquals(self.candidate4.election, self.topic2.election)

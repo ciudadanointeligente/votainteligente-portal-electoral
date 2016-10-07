@@ -13,7 +13,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.flatpages.models import FlatPage
 import copy
 from votainteligente.open_graph import OGPMixin
-from django.db.models import Count
+from django.db.models import Count, F, FloatField, ExpressionWrapper
 
 
 class AreaManager(models.Manager):
@@ -61,6 +61,28 @@ class HaveAnsweredFirst(models.Manager):
         return qs
 
 
+class RankingManager(models.Manager):
+    def get_queryset(self):
+        qs = super(RankingManager, self).get_queryset()
+        qs = qs.exclude(taken_positions__isnull=True, commitments__isnull=True)
+        qs = qs.annotate(possible_answers=Count(F('elections__categories__topics'), distinct=True))
+        qs = qs.annotate(num_answers=Count('taken_positions', distinct=True))
+        qs = qs.annotate(naranja_completeness=ExpressionWrapper((F('num_answers') * 1.0 / F('possible_answers') * 1.0) * 100,
+                                                                output_field=FloatField()))
+        
+
+        qs = qs.annotate(num_proposals=Count(F('elections__area__proposals'), distinct=True))
+        qs = qs.annotate(num_commitments=Count(F('commitments'), distinct=True))
+        qs = qs.annotate(commitmenness=ExpressionWrapper((F('num_commitments') * 1.0 / F('num_proposals') * 1.0) * 100,
+                                                                output_field=FloatField()))
+        
+        # This can be a bit tricky 
+        # and it is the sum of the percentage of completeness of 1/2 naranja and the commitmenness
+        qs = qs.annotate(participation_index=ExpressionWrapper(F('naranja_completeness') + F('commitmenness'),
+                                                                output_field=FloatField()))
+        qs = qs.order_by('-participation_index')
+        return qs
+
 class Candidate(Person, ExtraInfoMixin, OGPMixin):
     elections = models.ManyToManyField('Election', related_name='candidates', default=None)
     force_has_answer = models.BooleanField(default=False,
@@ -70,6 +92,7 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
 
     objects = HaveAnsweredFirst()
     answered_first = HaveAnsweredFirst()
+    ranking = RankingManager()
 
     ogp_enabled = True
 
@@ -93,6 +116,10 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
         if self.candidacy_set.filter(user__last_login__isnull=True).exists():
             return False
         return True
+
+    def possible_answers(self):
+        return Topic.objects.filter(category__in=self.election.categories.all())
+
     @property
     def has_answered(self):
         if self.force_has_answer:
@@ -202,6 +229,9 @@ class Election(ExtraInfoMixin, models.Model, OGPMixin):
 
     def get_extra_info_url(self):
             return reverse('election_extra_info', kwargs={'slug': self.slug})
+
+    def has_anyone_answered(self):
+        return TakenPosition.objects.filter(person__in=self.candidates.all()).exists()
 
     class Meta:
             verbose_name = _(u'Mi Elección')

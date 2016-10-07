@@ -193,6 +193,12 @@ class CandidaTeTestCase(Version2TestCase):
         self.assertEquals(Candidate.answered_first.first(), c3)
         self.assertEquals(Candidate.answered_first.all()[1], c2)
 
+    def test_possible_12_naranja_answers(self):
+
+        c = Candidate.objects.get(id=3)
+        possible_answers = Topic.objects.filter(category__in=c.election.categories.all())
+        self.assertEquals(possible_answers.count(), c.possible_answers().count())
+
 
 class CandidateExtraInfoTestCase(Version2TestCase):
     def test_can_have_extra_info(self):

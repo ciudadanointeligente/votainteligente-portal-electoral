@@ -192,6 +192,8 @@ class CandidateProfileFormBase(forms.Form):
             personal_data, created = PersonalData.objects.get_or_create(candidate=self.candidate,
                                                                         label=field)
             personal_data.value = self.cleaned_data[field]
+            if personal_data.value is None:
+                personal_data.value = ''
             personal_data.save()
 
 

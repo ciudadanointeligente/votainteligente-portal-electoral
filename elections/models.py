@@ -75,7 +75,12 @@ class RankingManager(models.Manager):
         qs = qs.annotate(num_commitments=Count(F('commitments'), distinct=True))
         qs = qs.annotate(commitmenness=ExpressionWrapper((F('num_commitments') * 1.0 / F('num_proposals') * 1.0) * 100,
                                                                 output_field=FloatField()))
-        qs = qs.order_by('-naranja_completeness', '-commitmenness')
+        
+        # This can be a bit tricky 
+        # and it is the sum of the percentage of completeness of 1/2 naranja and the commitmenness
+        qs = qs.annotate(participation_index=ExpressionWrapper(F('naranja_completeness') + F('commitmenness'),
+                                                                output_field=FloatField()))
+        qs = qs.order_by('-participation_index')
         return qs
 
 class Candidate(Person, ExtraInfoMixin, OGPMixin):

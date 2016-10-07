@@ -7,7 +7,7 @@ from django.template.loader import get_template
 from django.template import Context, Template
 from django.test import override_settings
 from django.contrib.auth.models import User
-from popular_proposal.models import PopularProposal
+from popular_proposal.models import PopularProposal, Commitment
 
 
 class RankingTests(TestCase):
@@ -29,7 +29,19 @@ class RankingTests(TestCase):
         self.p1 = PopularProposal.objects.create(proposer=self.fiera,
                                                  area=self.algarrobo,
                                                  data=self.data,
-                                                 title=u'This is a title',
+                                                 title=u'This is a title1',
+                                                 clasification=u'education'
+                                                 )
+        self.p2 = PopularProposal.objects.create(proposer=self.fiera,
+                                                 area=self.algarrobo,
+                                                 data=self.data,
+                                                 title=u'This is a title2',
+                                                 clasification=u'education'
+                                                 )
+        self.p3 = PopularProposal.objects.create(proposer=self.fiera,
+                                                 area=self.algarrobo,
+                                                 data=self.data,
+                                                 title=u'This is a title3',
                                                  clasification=u'education'
                                                  )
         self.elections = Election.objects.filter(candidates__id__in=[1, 2, 3, 4, 5, 6]).distinct()
@@ -86,3 +98,44 @@ class RankingTests(TestCase):
         self.assertEquals(ordered_candidates[0].naranja_completeness, float(100))
         self.assertEquals(ordered_candidates[1].naranja_completeness, (float(2) / float(3)) * 100)
         self.assertEquals(ordered_candidates[2].naranja_completeness, (float(1) / float(3)) * 100)
+
+    def test_ordering_according_to_commitment(self):
+        # Candidate 4 has commited with all proposals
+        Commitment.objects.create(candidate=self.candidate4,
+                                  proposal=self.p1,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
+        Commitment.objects.create(candidate=self.candidate4,
+                                  proposal=self.p2,
+                                  detail=u'Yo no me comprometo',
+                                  commited=False)
+        Commitment.objects.create(candidate=self.candidate4,
+                                  proposal=self.p3,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
+        # Candidate 3 has commited with 2/3 of the proposals
+        Commitment.objects.create(candidate=self.candidate3,
+                                  proposal=self.p2,
+                                  detail=u'Yo no me comprometo',
+                                  commited=False)
+        Commitment.objects.create(candidate=self.candidate3,
+                                  proposal=self.p3,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
+        # Candidate 1 has commited with 1/3 of the proposals
+        Commitment.objects.create(candidate=self.candidate1,
+                                  proposal=self.p2,
+                                  detail=u'Yo no me comprometo',
+                                  commited=False)
+        ordered_candidates = Candidate.ranking.all()
+
+        self.assertEquals(ordered_candidates[1].num_proposals, 3)
+        self.assertEquals(ordered_candidates[1].num_commitments, 2)
+
+        self.assertEquals(ordered_candidates[0].commitmenness, float(100))
+        self.assertEquals(ordered_candidates[1].commitmenness, (float(2) / float(3)) * 100)
+        self.assertEquals(ordered_candidates[2].commitmenness, (float(1) / float(3)) * 100)
+
+        self.assertEquals(self.candidate4, ordered_candidates[0])
+        self.assertEquals(self.candidate3, ordered_candidates[1])
+        self.assertEquals(self.candidate1, ordered_candidates[2])

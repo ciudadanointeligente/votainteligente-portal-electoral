@@ -68,7 +68,13 @@ class RankingManager(models.Manager):
         qs = qs.annotate(num_answers=Count('taken_positions', distinct=True))
         qs = qs.annotate(naranja_completeness=ExpressionWrapper((F('num_answers') * 1.0 / F('possible_answers') * 1.0) * 100,
                                                                 output_field=FloatField()))
-        qs = qs.order_by('-naranja_completeness')
+        
+
+        qs = qs.annotate(num_proposals=Count(F('elections__area__proposals'), distinct=True))
+        qs = qs.annotate(num_commitments=Count(F('commitments'), distinct=True))
+        qs = qs.annotate(commitmenness=ExpressionWrapper((F('num_commitments') * 1.0 / F('num_proposals') * 1.0) * 100,
+                                                                output_field=FloatField()))
+        qs = qs.order_by('-naranja_completeness', '-commitmenness')
         return qs
 
 class Candidate(Person, ExtraInfoMixin, OGPMixin):

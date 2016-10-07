@@ -87,7 +87,7 @@ class RankingTests(TestCase):
         self.candidate2.taken_positions.create(topic=self.topic4, position=self.topic4.positions.first())
 
         ordered_candidates = Candidate.ranking.all()
-        self.assertEquals(ordered_candidates.count(), 3)
+        self.assertEquals(ordered_candidates.count(), Candidate.objects.all().count())
         self.assertEquals(self.candidate4, ordered_candidates[0])
         self.assertEquals(self.candidate3, ordered_candidates[1])
         self.assertEquals(self.candidate2, ordered_candidates[2])
@@ -128,7 +128,8 @@ class RankingTests(TestCase):
                                   detail=u'Yo no me comprometo',
                                   commited=False)
         ordered_candidates = Candidate.ranking.all()
-        self.assertEquals(ordered_candidates.count(), 3)
+        self.assertEquals(ordered_candidates.count(), Candidate.objects.all().count())
+
 
         self.assertEquals(ordered_candidates[1].num_proposals, 3)
         self.assertEquals(ordered_candidates[1].num_commitments, 2)

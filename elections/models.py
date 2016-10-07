@@ -64,7 +64,6 @@ class HaveAnsweredFirst(models.Manager):
 class RankingManager(models.Manager):
     def get_queryset(self):
         qs = super(RankingManager, self).get_queryset()
-        qs = qs.exclude(taken_positions__isnull=True, commitments__isnull=True)
         qs = qs.annotate(possible_answers=Count(F('elections__categories__topics'), distinct=True))
         qs = qs.annotate(num_answers=Count('taken_positions', distinct=True))
         qs = qs.annotate(naranja_completeness=ExpressionWrapper((F('num_answers') * 1.0 / F('possible_answers') * 1.0) * 100,

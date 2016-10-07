@@ -8,6 +8,7 @@ from backend_candidate.models import (Candidacy,
                                       CandidacyContact,
                                       send_candidate_a_candidacy_link,
                                       add_contact_and_send_mail,
+                                      unite_with_candidate_if_corresponds,
                                       send_candidate_username_and_password)
 from backend_candidate.forms import get_form_for_election
 from backend_candidate.tasks import (let_candidate_now_about_us,
@@ -336,6 +337,74 @@ class CandidacyContacts(CandidacyTestCaseBase):
         self.assertEquals(response.status_code, 200)
         self.assertIsInstance(response.context['form'], AuthenticationForm)
         self.assertTemplateUsed(response, 'backend_candidate/auth_login.html')
+
+class UnifyCandidateAndUserWhenTheyHaveTheSamePassword(CandidacyTestCaseBase):
+    def setUp(self):
+        super(UnifyCandidateAndUserWhenTheyHaveTheSamePassword, self).setUp()
+
+    def test_users_with_mail_in_candidates_unify(self):
+        email = 'candidate@party.com'
+        user_that_is_also_candidate = User.objects.create_user(username='Name',
+                                                               password='password',
+                                                               email=email)
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail=email)
+        unite_with_candidate_if_corresponds(user_that_is_also_candidate)
+        self.assertTrue(Candidacy.objects.filter(user=user_that_is_also_candidate, candidate=self.candidate))
+
+    def test_does_not_create_two_candidacies(self):
+        email = 'candidate@party.com'
+        user_that_is_also_candidate = User.objects.create_user(username='Name',
+                                                               password='password',
+                                                               email=email)
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail=email)
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail=email)
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail=email)
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail=email)
+        unite_with_candidate_if_corresponds(user_that_is_also_candidate)
+        self.assertEquals(Candidacy.objects.filter(user=user_that_is_also_candidate, candidate=self.candidate).count(), 1)
+
+    def test_what_if_users_has_an_emtpy_email(self):
+        email = 'candidate@party.com'
+        user_that_is_also_candidate = User.objects.create_user(username='Name',
+                                                               password='password',
+                                                               email=None)
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail=email)
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail=email)
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail=email)
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail=email)
+        self.assertFalse(Candidacy.objects.filter(user=user_that_is_also_candidate, candidate=self.candidate).count())
+
+        user_that_is_also_candidate = User.objects.create_user(username='Name1',
+                                                               password='password',
+                                                               email='')
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail='')
+        self.assertFalse(Candidacy.objects.filter(user=user_that_is_also_candidate, candidate=self.candidate).count())
+        user_that_is_also_candidate = User.objects.create_user(username='Name2',
+                                                               password='password',
+                                                               email=None)
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail='')
+        self.assertFalse(Candidacy.objects.filter(user=user_that_is_also_candidate, candidate=self.candidate).count())
+
+    def test_unify_at_creation(self):
+        email = 'candidate@party.com'
+        
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail=email)
+        user_that_is_also_candidate = User.objects.create_user(username='Name',
+                                                               password='password',
+                                                               email=email)
+        self.assertEquals(Candidacy.objects.filter(user=user_that_is_also_candidate, candidate=self.candidate).count(), 1)
 
 
 class SendNewUserToCandidate(CandidacyTestCaseBase):

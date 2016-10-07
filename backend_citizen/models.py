@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from images.models import Image, HasImageMixin
 from popolo.models import Organization as PopoloOrganization
 from django.contrib.contenttypes.fields import GenericRelation
+from backend_candidate.models import unite_with_candidate_if_corresponds
 
 
 class Profile(models.Model):
@@ -33,6 +34,8 @@ def create_user_profile(sender, instance, created, raw, **kwargs):
         instance.profile
     except Profile.DoesNotExist:
         Profile.objects.create(user=instance)
+        unite_with_candidate_if_corresponds(instance)
+
 
 
 class Organization(PopoloOrganization, HasImageMixin):

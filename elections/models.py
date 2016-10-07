@@ -13,7 +13,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.flatpages.models import FlatPage
 import copy
 from votainteligente.open_graph import OGPMixin
-from django.db.models import Count
+from django.db.models import Count, F, FloatField, ExpressionWrapper
 
 
 class AreaManager(models.Manager):
@@ -63,8 +63,24 @@ class HaveAnsweredFirst(models.Manager):
 
 class RankingManager(models.Manager):
     def get_queryset(self):
-        qs = super(RankingManager, self).get_queryset().annotate(num_answers=Count('taken_positions'))
-        qs = qs.order_by('-num_answers')
+        qs = super(RankingManager, self).get_queryset()
+        qs = qs.exclude(taken_positions__isnull=True, commitments__isnull=True)
+        qs = qs.annotate(possible_answers=Count(F('elections__categories__topics'), distinct=True))
+        qs = qs.annotate(num_answers=Count('taken_positions', distinct=True))
+        qs = qs.annotate(naranja_completeness=ExpressionWrapper((F('num_answers') * 1.0 / F('possible_answers') * 1.0) * 100,
+                                                                output_field=FloatField()))
+        
+
+        qs = qs.annotate(num_proposals=Count(F('elections__area__proposals'), distinct=True))
+        qs = qs.annotate(num_commitments=Count(F('commitments'), distinct=True))
+        qs = qs.annotate(commitmenness=ExpressionWrapper((F('num_commitments') * 1.0 / F('num_proposals') * 1.0) * 100,
+                                                                output_field=FloatField()))
+        
+        # This can be a bit tricky 
+        # and it is the sum of the percentage of completeness of 1/2 naranja and the commitmenness
+        qs = qs.annotate(participation_index=ExpressionWrapper(F('naranja_completeness') + F('commitmenness'),
+                                                                output_field=FloatField()))
+        qs = qs.order_by('-participation_index')
         return qs
 
 class Candidate(Person, ExtraInfoMixin, OGPMixin):

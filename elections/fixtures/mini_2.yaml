@@ -54,7 +54,7 @@
   fields: {user: 2, image: '', description: '', first_time_in_backend_citizen: true}
 - fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: true, name: "2a Circunscripcion Antofagasta",
-    searchable: true, slug: 2a-circunscripcion-antofagasta}
+    searchable: true, slug: 2a-circunscripcion-antofagasta, area: algarrobo-5602}
   model: elections.election
   pk: 1
 - fields: {description: '', extra_info_content: null, extra_info_title: null,

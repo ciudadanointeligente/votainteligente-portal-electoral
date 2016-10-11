@@ -1,4 +1,5 @@
 {% load votainteligente_extras %}
+{% load cache %}
 
 angular.module('votainteligente').config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('[[');
@@ -23,11 +24,13 @@ app.directive('ngEnter', function () {
 });
 
 var searchFormController = function($scope, $http, $filter, $log){
+    {% cache 500 list %}
     {% if detail_url %}
         {% areas_json detail_url as the_json %}
     {% else %}
         {% areas_json as the_json %}
     {% endif %}
+    {% endcache %}
 	$scope.elections = {{ the_json }}
 	$scope.comperator = function(obj, text){
 		text = removeDiacritics((''+text).toLowerCase());

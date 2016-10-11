@@ -125,10 +125,15 @@ class CandidateDetailView(DetailView):
     slug_field = 'id'
 
     def get_queryset(self):
-        queryset = self.model.ranking
+        queryset = super(CandidateDetailView, self).get_queryset()
         queryset = queryset.filter(elections__slug=self.kwargs['election_slug'])
 
         return queryset
+
+    def get_object(self, queryset=None):
+        candidate = super(CandidateDetailView, self).get_object(queryset)
+        candidate = self.model.ranking.get(id=candidate.id)
+        return candidate
 
     def get_context_data(self, **kwargs):
         context = super(CandidateDetailView, self).get_context_data(**kwargs)

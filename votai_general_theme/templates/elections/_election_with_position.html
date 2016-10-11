@@ -42,8 +42,8 @@
                               {% if not candidate.has_answered %}<div class="ribbon label label-danger {% if position == 'concejal' %}ribbon-noimg{% endif %}">No ha respondido</div>{% endif %}
                               <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><h3 class="caption text-white">{{ candidate.name }}</h3></a>
                               <p class="small text-white">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</p>
-                              {% if candidate.ranking_in_election %}
-                              <p class="small label-info">Número {{candidate.ranking_in_election}} en el ranking de participación<!--{{candidate.naranja_completeness|floatformat}}% de la media naranja y se ha pronunciado sobre un {{candidate.commitmenness|floatformat}}% de las propuestas para {{area}}--></p>
+                              {% if candidate.ranking_in_election and user.is_staff %}
+                                <p class="small label-info" data-toggle="tooltip" data-placement="top" title="{{candidate.naranja_completeness|floatformat}}% de la media naranja y se ha pronunciado sobre un {{candidate.commitmenness|floatformat}}% de las propuestas para {{area}}">Número {{candidate.ranking_in_election}} en el ranking de VotaInteligente<!----></p>
                               {% endif %}
                               {% if user.is_staff %}
                                 {% if candidate.has_joined %}

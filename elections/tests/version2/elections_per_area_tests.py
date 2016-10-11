@@ -57,6 +57,24 @@ class ElectionsPerAreaTestCase(TestCase):
         self.assertIn(c2, argentina.candidates().all())
         self.assertNotIn(c3, argentina.candidates().all())
 
+    def test_area_ranking(self):
+        argentina = Area.objects.create(name=u'Argentina')
+        election = Election.objects.create(
+            name='the name',
+            slug='the-slug',
+            description='this is a description',
+            extra_info_title=u'ver más',
+            area=argentina,
+            extra_info_content=u'Más Información')
+        c1 = Candidate.objects.create(name='Candidate1')
+        c2 = Candidate.objects.create(name='Candidate2')
+        c3 = Candidate.objects.create(name='Candidate3')
+        election.candidates.add(c1)
+        election.candidates.add(c2)
+        self.assertIn(c1, election.ranking().all())
+        self.assertIn(c2, election.ranking().all())
+        self.assertNotIn(c3, election.ranking().all())
+
 class AreaOGPTestCase(TestCase):
     def setUp(self):
         self.argentina = Area.objects.create(name=u'Argentina')

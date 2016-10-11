@@ -226,6 +226,9 @@ class Election(ExtraInfoMixin, models.Model, OGPMixin):
     def get_absolute_url(self):
         return reverse('election_view', kwargs={'slug': self.slug})
 
+    def ranking(self):
+        return Candidate.ranking.filter(elections=self)
+
     def get_extra_info_url(self):
             return reverse('election_extra_info', kwargs={'slug': self.slug})
 

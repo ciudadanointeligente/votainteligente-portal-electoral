@@ -481,3 +481,9 @@ class StaffHomeViewTest(TestCase):
         self.candidate5.taken_positions.all().delete()
         self.assertIn(self.candidate1, stats.candidates_that_have_12_naranja__concejal().all())
         self.assertNotIn(self.candidate5, stats.candidates_that_have_12_naranja__concejal().all())
+
+        self.assertIn(self.candidate1, stats.total_candidates__concejal().all())
+        self.assertIn(self.candidate2, stats.total_candidates__concejal().all())
+        self.assertIn(self.candidate3, stats.total_candidates__concejal().all())
+        self.assertIn(self.candidate4, stats.total_candidates__alcalde().all())
+        self.assertIn(self.candidate5, stats.total_candidates().all())

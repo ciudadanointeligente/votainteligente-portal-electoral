@@ -1,6 +1,7 @@
 {% extends "elections/election_base.html" %}
 {% load staticfiles %}
 {% load i18n %}
+{% load thumbnail %}
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
 {% load ogp_tags %}
@@ -49,7 +50,9 @@
 			<div class="col-md-2 col-sm-2 col-xs-12">
 					<div id="candidate-img-profile">
 						{% if candidate.image %}
+							{% thumbnail candidate.image "300x300" crop="center" as im %}
 							    <img src="{% static candidate.image %}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive img-circle img-candidato">
+							{% endthumbnail %}
 							{% else %}
 							<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato img-candidato">
 						{% endif %}

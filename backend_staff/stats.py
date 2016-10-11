@@ -84,6 +84,9 @@ class PerAreaStaffStats(object):
         self.commitments_qs = self.all_commitments_qs
         self.all_commiters_qs = Candidate.objects.filter(elections__area=self.area).exclude(commitments__isnull=True)
         self.commiters_qs = self.all_commiters_qs
+        self.all_candidates_qs = Candidate.objects.exclude(elections__area__id__in=settings.HIDDEN_AREAS)
+        self.all_candidates_qs = self.all_candidates_qs.filter(elections__area=self.area)
+        self.candidates_qs = self.all_candidates_qs
         super(PerAreaStaffStats, self).__init__()
 
     def proposals(self):
@@ -95,10 +98,18 @@ class PerAreaStaffStats(object):
     def commiters(self):
         return self.commiters_qs
 
+    def candidates_that_have_12_naranja(self):
+        return self.candidates_qs.exclude(taken_positions__isnull=True)
+
     def __getattribute__(self, name):
         if name.startswith('proposals__'):
             field_and_value = name.split('__')
             filter_args = {field_and_value[1]: bool(field_and_value[2])}
             self.proposals_qs = self.all_proposals_qs.filter(**filter_args)
             return self.proposals
+        if name.startswith('candidates_that_have_12_naranja__'):
+            position = name.replace('candidates_that_have_12_naranja__', '')
+
+            self.candidates_qs = self.candidates_qs.filter(elections__position=position)
+            return self.candidates_that_have_12_naranja
         return super(PerAreaStaffStats, self).__getattribute__(name)

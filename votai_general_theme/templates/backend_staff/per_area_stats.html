@@ -3,6 +3,7 @@
 {% load votainteligente_extras %}
 {% load i18n %}
 {% load thumbnail %}
+{% load cache %}
 {% load bootstrap3 %}
 
 {% block content %}
@@ -24,6 +25,7 @@
       </tr>
     </thead>
     <tbody>
+    	{% cache 500 comunas %}
     	{% for id, stats_per_area in stats.items %}
       <tr class="{% if stats_per_area.area|is_marked_area %}success{% endif %}">
         <td><a href="{{ stats_per_area.area.get_absolute_url }}">{{ stats_per_area.area }}</a></td>
@@ -139,6 +141,7 @@
         <td>{{stats_per_area.candidates_that_have_12_naranja__concejal.count}}/{{stats_per_area.total_candidates__concejal.count}}</td>
       </tr>
       	{% endfor %}
+      	{% endcache %}
     </tbody>
 
   </table>

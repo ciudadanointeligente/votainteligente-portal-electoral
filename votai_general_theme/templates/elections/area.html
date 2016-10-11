@@ -58,7 +58,11 @@ $(function(){
               <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning">Frente a frente</a>
             {% endif %}
         </div>
+         {% with area=area %}
+         {% cache 60 alcaldes area.id %}
          {% include 'elections/_election_with_position.html' with position='alcalde' area=area %}
+         {% endcache %}
+         {% endwith %}
       </section>
 
     </div>
@@ -97,7 +101,11 @@ $(function(){
             <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning">Frente a frente</a>
           {% endif %}
       </div>
+      {% with area=area %}
+      {% cache 60 concejales area.id %}
       {% include 'elections/_election_with_position.html' with position='concejal' area=area %}
+      {% endcache %}
+      {% endwith %}
     </div>
   </section>
            

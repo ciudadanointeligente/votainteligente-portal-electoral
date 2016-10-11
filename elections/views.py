@@ -19,6 +19,7 @@ from popular_proposal.filters import ProposalAreaFilter
 from django_filters.views import FilterMixin
 import datetime
 from django.utils import timezone
+import re
 logger = logging.getLogger(__name__)
 
 
@@ -124,7 +125,7 @@ class CandidateDetailView(DetailView):
     slug_field = 'id'
 
     def get_queryset(self):
-        queryset = super(CandidateDetailView, self).get_queryset()
+        queryset = self.model.ranking
         queryset = queryset.filter(elections__slug=self.kwargs['election_slug'])
 
         return queryset
@@ -133,8 +134,6 @@ class CandidateDetailView(DetailView):
         context = super(CandidateDetailView, self).get_context_data(**kwargs)
         context['election'] = self.object.election
         return context
-
-import re
 
 
 class VotaInteligenteAdapter(CandidatorAdapter):

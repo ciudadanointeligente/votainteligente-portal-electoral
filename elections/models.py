@@ -21,6 +21,13 @@ class AreaManager(models.Manager):
         return super(AreaManager, self).get_queryset().exclude(id__in=settings.HIDDEN_AREAS)
 
 
+def get_position_in_(qs, el):
+    position = 0
+    for c in qs:
+        position += 1
+        if el == c:
+            return position
+
 class Area(PopoloArea, OGPMixin):
     public = AreaManager()
 
@@ -68,7 +75,6 @@ class RankingManager(models.Manager):
         qs = qs.annotate(num_answers=Count('taken_positions', distinct=True))
         qs = qs.annotate(naranja_completeness=ExpressionWrapper((F('num_answers') * 1.0 / F('possible_answers') * 1.0) * 100,
                                                                 output_field=FloatField()))
-        
 
         qs = qs.annotate(num_proposals=Count(F('elections__area__proposals'), distinct=True))
         qs = qs.annotate(num_commitments=Count(F('commitments'), distinct=True))
@@ -81,6 +87,10 @@ class RankingManager(models.Manager):
                                                                 output_field=FloatField()))
         qs = qs.order_by('-participation_index')
         return qs
+
+    def position(self, candidate):
+        qs = self.get_queryset()
+        return get_position_in_(qs, candidate)
 
 class Candidate(Person, ExtraInfoMixin, OGPMixin):
     elections = models.ManyToManyField('Election', related_name='candidates', default=None)
@@ -130,6 +140,10 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
         if self.candidacy_set.exclude(user__last_login__isnull=True):
             return True
         return False
+
+    def ranking_in_election(self):
+        if self.election:
+            return self.election.position_in_ranking(self)
 
     def get_absolute_url(self):
         election_slug = ''
@@ -225,6 +239,13 @@ class Election(ExtraInfoMixin, models.Model, OGPMixin):
 
     def get_absolute_url(self):
         return reverse('election_view', kwargs={'slug': self.slug})
+
+    def ranking(self):
+        return Candidate.ranking.filter(elections=self)
+
+    def position_in_ranking(self, candidate):
+        qs = self.ranking()
+        return get_position_in_(qs, candidate)
 
     def get_extra_info_url(self):
             return reverse('election_extra_info', kwargs={'slug': self.slug})

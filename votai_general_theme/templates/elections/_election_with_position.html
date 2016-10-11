@@ -25,7 +25,7 @@
             <div id="carousel-{{area.id}}-{{position}}" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <div class="item active">
-                    {% for candidate in election.ranking.all|slice:":8" %}
+                    {% for candidate in election.candidates.all|slice:":8" %}
                       <!-- Te traje 3 no más si quieres más me avisai =) -->
                           <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="block-text rel zmin">

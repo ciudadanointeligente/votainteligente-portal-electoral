@@ -68,7 +68,7 @@
             {% if not candidate.has_logged_in %}
               {% include 'twitter_poking_button.html' with texto='Queremos conocer tus posturas para saber' twitter=candidate.twitter.value %}
             {% elif not candidate.has_answered %}
-              {% include 'twitter_poking_button.html' with texto='Queremos conocer tus postura responde a la media naranja para saber twitter=candidate.twitter.value %}
+              {% include 'twitter_poking_button.html' with texto='Queremos conocer tus postura responde a la media naranja para saber' twitter=candidate.twitter.value %}
             {% endif %}
           </td>
       </tr>

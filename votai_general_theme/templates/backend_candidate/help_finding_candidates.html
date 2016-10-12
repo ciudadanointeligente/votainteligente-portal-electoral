@@ -68,7 +68,7 @@
             {% if not candidate.has_logged_in %}
               {% include 'twitter_poking_button.html' with texto='Aún esperamos que te conectes con tus vecinos en' twitter=candidate.twitter.value %}
             {% elif not candidate.has_answered %}
-              {% include 'twitter_poking_button.html' with texto='Queremos conocer tus postura responde a #PorQuiénVotar
+              {% include 'twitter_poking_button.html' with texto='Queremos conocer tus postura responde a twitter=candidate.twitter.value %}
             {% endif %}
           </td>
       </tr>

@@ -5,7 +5,7 @@
 {% load bootstrap3 %}
 {% load ogp_tags %}
 {% load votainteligente_extras %}
-
+{% load cache %}
 
 {% block extrajs %}
 $(function(){
@@ -58,7 +58,11 @@ $(function(){
               <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning">Frente a frente</a>
             {% endif %}
         </div>
+         {% with area=area %}
+         {% cache 500 alcaldes area.id %}
          {% include 'elections/_election_with_position.html' with position='alcalde' area=area %}
+         {% endcache %}
+         {% endwith %}
       </section>
 
     </div>
@@ -97,10 +101,14 @@ $(function(){
             <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning">Frente a frente</a>
           {% endif %}
       </div>
+      {% with area=area %}
+      {% cache 500 concejales area.id %}
       {% include 'elections/_election_with_position.html' with position='concejal' area=area %}
+      {% endcache %}
+      {% endwith %}
     </div>
   </section>
-           
+        {% cache 500 other_elections area.id %}
         <!-- Otras elecciones    -->
           {% for election in area.elections_without_position.all %}
         <ul>
@@ -138,6 +146,7 @@ $(function(){
         <ul>
           {% endif %}
           {% endfor %}
+        {% endcache %}
 
         </ul>
       {% if not popular_proposals.all %}
@@ -158,7 +167,9 @@ $(function(){
           <a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">Tengo una propuesta</a>
         {% endif %}
       </div>
+      {% cache 60 proposals area.id %}
       {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=proposal_filter_form %}
+      {% endcache %}
     </div>
   </section>
       

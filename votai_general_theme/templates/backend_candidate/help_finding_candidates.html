@@ -10,9 +10,9 @@
 {% endblock navbar %}
 
 {% block content %}
-{% cache 500 twitters %}
+{% cache 60 ayudanos %}
 <div class="container">
-<h2>Elije uno de estos twits y ayúdanos!</h2>
+<h2>Elije uno de estos tuits y ayúdanos!</h2>
 
 <div class="table-responsive">
   <table class="table">
@@ -24,27 +24,28 @@
     </thead>
     <tbody>
       <tr class="">
-        <td>Queremos conocer las opiniones de los candidatos. Invita a los tuyos a a dar sus opiniones en http://votainteligente.cl #MediaNaranjaPolítica</td>
-        <td>{% include 'twitter_poking_button.html' with texto='Queremos conocer las opiniones de los candidatos. Invita a los tuyos a a dar sus opiniones en' button_text='twittea' hashtag="MediaNaranjaPolítica" url='http://votainteligente.cl' %}</td>
+        <td>Tenemos poca info de candidatos. Ayuda a candidatos y electores haciendo que respondan la ½ naranja #PorQuiénVotar http://votainteligente.cl</td>
+        <td>{% include 'twitter_poking_button.html' with texto='Tenemos poca info de candidatos. Ayuda a candidatos y electores haciendo que respondan la ½ naranja' button_text='twittea' hashtag="PorQuiénVotar" %}</td>
       </tr>
       <tr class="">
-        <td>Es importante votar informados. Conoce las posturas de tus candidatos en http://votainteligente.cl #MediaNaranjaPolitica</td>
-        <td>{% include 'twitter_poking_button.html' with texto='Es importante votar informados. Conoce las posturas de tus candidatos en' button_text='twittea'  %}</td>
+        <td>Si no conoces a tus candidatos y no sabes #PorQuiénVotar, http://votainteligente.cl tiene toda la información relevante para estas municipales</td>
+        <td>{% include 'twitter_poking_button.html' with texto='Si no conoces a tus candidatos Vota Inteligente tiene toda la información relevante para las municipales' button_text='twittea'  %}</td>
       </tr>
        <tr class="">
-        <td>En estas elecciones descubre qué candidatos son más cercanos a ti. Encuentra tu 1/2 naranja en http://votainteligente.cl #MediaNaranjaPolítica</td>
-        <td>{% include 'twitter_poking_button.html' with texto='En estas elecciones descubre qué candidatos son más cercanos a ti. Encuentra tu 1/2 naranja en' button_text='twittea'  %}</td>
+        <td>Invita a tus candidatos a dejar su información en VotaInteligente.cl para saber qué piensan y #PorQuiénVotar http://votainteligente.cl</td>
+        <td>{% include 'twitter_poking_button.html' with texto='Invita a tus candidatos a dejar su información en VotaInteligente.cl para saber qué piensan y' button_text='twittea'  %}</td>
       </tr>
       <tr class="">
-        <td>Queremos votar informados! para eso los candidatos deben publicar sus posturas en la #MediaNaranjaPolítica de http://votainteligente.cl</td>
-        <td>{% include 'twitter_poking_button.html' with texto='Queremos votar informados! para eso los candidatos deben publicar sus posturas en' button_text='twittea'  %}</td>
+        <td>Necesitamos que los candidatos compartan su infromación con los vecinos, para conocerlos y saber #PorQuiénVotar http://votainteligente.cl</td>
+        <td>{% include 'twitter_poking_button.html' with texto='Necesitamos que los candidatos compartan su infromación con los vecinos, para conocerlos y saber #PorQuienVotar http://votainteligente.cl' button_text='twittea' %}</td>
       </tr>
     </tbody>
 
   </table>
  </div>
 </div>
-
+<h2>Si no encuentras a tu candidata/o acá quizás no tenemos su twitter</h2>
+<span>Pero puedes ayudarnos a <a href="https://docs.google.com/spreadsheets/d/1PX8H-vt_BKWDVCrro_LcBjG9wXlVejinisr9XRK3ByA/edit?usp=sharing">completar los que nos faltan</a></span>
 <h2>¡Aún nos faltan estos candidatos twitteale!</h2>
 <div class="table-responsive">
   <table class="table">
@@ -65,9 +66,9 @@
         <td>{% if not candidate.has_logged_in %}No se ha conectado, ni nada{% else %}{% if not candidate.has_answered %}No ha contestado la 1/2 naranja{% endif %}{% endif %}</td>
         <td>
             {% if not candidate.has_logged_in %}
-              {% include 'twitter_poking_button.html' with texto='Aún esperamos que te conectes con tus vecinos en' twitter=candidate.twitter.value %}
+              {% include 'twitter_poking_button.html' with texto='Queremos conocer tus posturas para saber #PorQuienVotar' twitter=candidate.twitter.value hashtag="" %}
             {% elif not candidate.has_answered %}
-              {% include 'twitter_poking_button.html' with texto='Queremos conocer tus postura responde a ' twitter=candidate.twitter.value %}
+              {% include 'twitter_poking_button.html' with texto='Queremos conocer tus postura responde a la media naranja para saber #PorQuienVotar' twitter=candidate.twitter.value hashtag="" %}
             {% endif %}
           </td>
       </tr>

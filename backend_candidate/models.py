@@ -53,6 +53,19 @@ def add_contact_and_send_mail(mail, candidate):
         candidacy.user.email = mail
         candidacy.user.save()
 
+
+def unite_with_candidate_if_corresponds(user):
+    if not user.email:
+        return
+    try:
+        contacts = CandidacyContact.objects.filter(mail=user.email)
+        for contact in contacts:
+            if not Candidacy.objects.filter(user=user, candidate=contact.candidate).exists():
+                Candidacy.objects.create(user=user, candidate=contact.candidate)
+    except CandidacyContact.DoesNotExist, e:
+        return
+
+
 class CandidacyContact(models.Model):
     candidate = models.ForeignKey(Candidate, related_name='contacts')
     mail = models.EmailField()

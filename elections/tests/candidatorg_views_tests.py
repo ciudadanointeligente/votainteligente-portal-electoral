@@ -310,6 +310,7 @@ class SoulMateTestCase(TestCase):
 
         candidatos_antofa = self.antofa.candidates.all()
         self.assertIn(response.context["winner"]["candidate"], candidatos_antofa)
+        self.assertGreater(response.context["winner"]['percentage'], 0.0)
 
     def test_if_no_taken_position_provided(self):
         '''If there is no taken prosition provided'''

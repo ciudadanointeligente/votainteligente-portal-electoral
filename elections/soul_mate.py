@@ -15,14 +15,14 @@ class VotaInteligenteAdapter(CandidatorAdapter):
         return topic.category == category.category_ptr
 
     def get_taken_position_by(self, person, topic):
-
-        topic = cache.get(str(person.id) + '_' + str(topic.id))
-        if topic:
-            return topic
+        cache_key = u"taken_position_" + str(person.id) + '_' + str(topic.id)
+        taken_position = cache.get(cache_key)
+        if taken_position:
+            return taken_position
         try:
             taken_position = TakenPosition.objects.get(person=person,
                                                        topic=topic)
-            cache.set(person.id + '_' + topic.id, taken_position)
+            cache.set(cache_key, taken_position)
             return taken_position
         except TakenPosition.DoesNotExist:
             return None
@@ -64,11 +64,17 @@ class SoulMateDetailView(DetailView):
         categories = cache.get(str(self.object.id) + '_categories')
         if categories is None:
             categories = self.object.categories.all()
+            cache.set(str(self.object.id) + '_categories',
+                      categories,
+                      settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
         for category in categories:
             holder.add_category(category)
         candidates = cache.get(str(self.object.id) + '_candidates')
         if candidates is None:
             candidates = self.object.candidates.all()
+            cache.set(str(self.object.id) + '_candidates',
+                      candidates,
+                      settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
         for candidate in candidates:
             holder.add_person(candidate)
         if data:

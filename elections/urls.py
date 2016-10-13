@@ -7,11 +7,12 @@ from elections.views import (
     HomeView,
     ElectionDetailView,
     CandidateDetailView,
-    SoulMateDetailView,
     FaceToFaceView,
     AreaDetailView,
     CandidateFlatPageDetailView,
     )
+
+from elections.soul_mate import SoulMateDetailView
 from sitemaps import *
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.clickjacking import xframe_options_exempt

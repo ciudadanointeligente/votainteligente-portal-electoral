@@ -2,7 +2,7 @@
 from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import Election, QuestionCategory, Candidate
 from django.core.urlresolvers import reverse
-from elections.views import SoulMateDetailView
+from elections.soul_mate import SoulMateDetailView
 from candidator.models import TakenPosition, Position
 from elections.models import Topic
 from popolo.models import Person

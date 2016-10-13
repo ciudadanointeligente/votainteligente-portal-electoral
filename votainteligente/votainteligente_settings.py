@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'backend_candidate',
     'django_filters',
     'django_ogp',
+    'debug_toolbar',
 )
 INSTALLED_APPS_AFTER_ALL = ('el_pagination',)
 
@@ -107,6 +108,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',

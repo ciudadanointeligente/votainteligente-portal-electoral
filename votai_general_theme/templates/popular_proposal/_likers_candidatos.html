@@ -2,7 +2,9 @@
 {% load votainteligente_extras %}
 {% load i18n %}
 {% load thumbnail %}
+{% load cache %}
 
+{% cache 300 alcaldes_comprometidos proposal.id %}
 {% commiters_by_election_position proposal 'alcalde' as alcaldes %}
   {% if alcaldes.all %} 
     <ul class="list-inline">
@@ -13,8 +15,11 @@
       {% endfor %}
     </ul>
 {% endif %}
+{% endcache %}
 
+{% cache 300 concejales_comprometidos proposal.id %}
 {% commiters_by_election_position proposal 'concejal' as concejales %}
   {% if concejales.all %}
     <p>{{concejales.count}} candidatos a concejal apoyan esta propuesta.</p>
 {% endif %}
+{% endcache %}

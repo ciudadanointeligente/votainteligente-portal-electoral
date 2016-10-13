@@ -52,3 +52,8 @@ if settings.THEME:
         ('^theme/', include('%s.urls' % (settings.THEME)))
         )
 
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]

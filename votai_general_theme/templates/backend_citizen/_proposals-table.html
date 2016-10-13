@@ -55,7 +55,7 @@
     {% else %}
         {% if user|is_candidate %}
             {% with user.candidacies.first as candidacy %}
-                {% if not candidate.has_answered %}
+                {% if not candidacy.candidate.has_answered %}
                     {% trans 'Aún no has respondido la 1/2 naranja' %}
                     {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as complete_12_naranja %}
                     <a href="{{ complete_12_naranja }}" class="btn btn-success login"

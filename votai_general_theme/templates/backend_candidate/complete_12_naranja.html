@@ -9,7 +9,11 @@
 
 {% block main_content %}
 
-
+	{% if  candidate.has_answered %}
+		<div class="alert alert-info">
+			Ya completaste la 1/2 naranja pero puedes modificar tus opiniones =)
+		</div>
+	{% endif %}
     <form method="post" action="{% url 'backend_candidate:complete_12_naranja' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
 	{% bootstrap_form form %}
 

@@ -96,6 +96,11 @@
 					<li>Lema de campaña: {% get_personal_data candidate=candidate personal_data='lema' as lema %}{{lema.value}}</li>
 					<li>Ocupación: {% get_personal_data candidate=candidate personal_data='ocupacion' as ocupacion %}{{ocupacion.value}}</li>
 					<li>Experiencia en cargos públicos: {% get_personal_data candidate=candidate personal_data='experiencia' as experiencia %}{{experiencia.value}}</li>
+					<li>Link a su programa: {% get_personal_data candidate=candidate personal_data='program_link' as program_link %}<a target="_blank" href="{{program_link.value}}">{{program_link.value}}</a></li>
+					{% get_contact_detail candidate type_='CPLT' as candidato_transparente %}
+					{% if candidato_transparente %}
+					<li><a target="_blank" href="{{candidato_transparente.value}}">{{candidate}} en CandidatoTransparente.cl</a></li>
+					{% endif %}
 				</ul>
 
 				<!-- Promesas que se ha comprometido -->

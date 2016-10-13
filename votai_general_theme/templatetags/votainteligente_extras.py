@@ -82,7 +82,6 @@ def metadata(meta):
         return settings.WEBSITE_METADATA[meta]
     return ''
 
-
 @register.filter
 def ogpdata(ogp):
     if ogp in settings.WEBSITE_OGP:
@@ -380,3 +379,9 @@ def is_marked_area(area):
     if area.id in settings.MARKED_AREAS:
         return True
     return False
+
+
+@register.simple_tag
+def get_contact_detail(candidate, type_=None):
+    if candidate.contact_details.filter(contact_type=type_).exists():
+        return candidate.contact_details.get(contact_type=type_)

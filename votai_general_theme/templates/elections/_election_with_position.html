@@ -42,8 +42,13 @@
                               {% if not candidate.has_answered %}<div class="ribbon label label-danger {% if position == 'concejal' %}ribbon-noimg{% endif %}">No ha respondido</div>{% endif %}
                               <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><h3 class="caption text-white">{{ candidate.name }}</h3></a>
                               <p class="small text-white">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</p>
-                              {% if candidate.ranking_in_election and user.is_staff %}<!-- @camargozzini compañera acá puedes jugar con el ranking, si le quitas el 'and user.is_staff' funciona para todo el mundo-->
-                                <p class="small label-info" data-toggle="tooltip" data-placement="top" title="{{candidate.naranja_completeness|floatformat}}% de la media naranja y se ha pronunciado sobre un {{candidate.commitmenness|floatformat}}% de las propuestas para {{area}}">Número {{candidate.ranking_in_election}} en el ranking de VotaInteligente<!----></p>
+                              {% if candidate.has_joined %}
+                                {% if candidate.ranking_in_election %}<!-- @camargozzini compañera acá puedes jugar con el ranking, si le quitas el 'and user.is_staff' funciona para todo el mundo-->
+                                  <div class="small label-info ranking text-white row" data-toggle="tooltip" data-placement="top" title="{{candidate.naranja_completeness|floatformat}}% de la media naranja y se ha pronunciado sobre un {{candidate.commitmenness|floatformat}}% de las propuestas para {{area}}">
+                                    <div class="col-md-2 num col-md-offset-1">{{candidate.ranking_in_election}}</div>
+                                    <div class="col-md-8 text-left">en ranking <br> VotaInteligente</div>
+                                  </div>
+                                {% endif %}
                               {% endif %}
                               {% if user.is_staff %}
                                 {% if candidate.has_joined %}

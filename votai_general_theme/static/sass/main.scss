@@ -1842,6 +1842,22 @@ input#id_4-title {
     color: white;
 }
 
+.ranking {
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.small.ranking {
+    font-size: 9px;
+    letter-spacing: 1px;
+    line-height: 14px;
+}
+
+.ranking.small .num {
+    font-size: 24px;
+    margin-top: 7px;
+}
+
 /*Tabs*/
 
 .nav-tabs.nav-justified li.active a{

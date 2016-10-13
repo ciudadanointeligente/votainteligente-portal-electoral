@@ -6,12 +6,26 @@ from candidator.models import Position
 from elections.models import Election
 from django.views.generic import DetailView
 from candidator.models import Topic, TakenPosition
+from django.core.cache import cache
+from django.conf import settings
 
 
 class VotaInteligenteAdapter(CandidatorAdapter):
     def is_topic_category_the_same_as(self, topic, category):
         return topic.category == category.category_ptr
 
+    def get_taken_position_by(self, person, topic):
+
+        topic = cache.get(str(person.id) + '_' + str(topic.id))
+        if topic:
+            return topic
+        try:
+            taken_position = TakenPosition.objects.get(person=person,
+                                                       topic=topic)
+            cache.set(person.id + '_' + topic.id, taken_position)
+            return taken_position
+        except TakenPosition.DoesNotExist:
+            return None
 
 class SoulMateDetailView(DetailView):
     model = Election
@@ -47,9 +61,15 @@ class SoulMateDetailView(DetailView):
 
     def get_information_holder(self, data={}):
         holder = InformationHolder(adapter=self.adapter_class)
-        for category in self.object.categories.all():
+        categories = cache.get(str(self.object.id) + '_categories')
+        if categories is None:
+            categories = self.object.categories.all()
+        for category in categories:
             holder.add_category(category)
-        for candidate in self.object.candidates.all():
+        candidates = cache.get(str(self.object.id) + '_candidates')
+        if candidates is None:
+            candidates = self.object.candidates.all()
+        for candidate in candidates:
             holder.add_person(candidate)
         if data:
             taken_positions = self.determine_taken_positions(data)

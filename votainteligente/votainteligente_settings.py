@@ -261,6 +261,8 @@ WEBSITE_TWITTER = {
 }
 CACHE_MINUTES = 0
 HEAVY_PAGES_CACHE_MINUTES = 1
+SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES = 2
+
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',

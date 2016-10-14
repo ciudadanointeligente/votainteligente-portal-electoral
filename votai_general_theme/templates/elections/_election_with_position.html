@@ -45,8 +45,10 @@
                               {% if candidate.has_joined %}
                                 {% if candidate.ranking_in_election %}<!-- @camargozzini compañera acá puedes jugar con el ranking, si le quitas el 'and user.is_staff' funciona para todo el mundo-->
                                   <div class="small label-info ranking text-white row" data-toggle="tooltip" data-placement="top" title="{{candidate.naranja_completeness|floatformat}}% de la media naranja y se ha pronunciado sobre un {{candidate.commitmenness|floatformat}}% de las propuestas para {{area}}">
-                                    <div class="col-md-2 num col-md-offset-1">{{candidate.ranking_in_election}}</div>
-                                    <div class="col-md-8 text-left">en ranking <br> VotaInteligente</div>
+                                    <div class="ranking-content">
+                                      <div class="col-md-2 num col-md-offset-1">{{candidate.ranking_in_election}}</div>
+                                      <div class="col-md-8 text-left">en ranking <br> VotaInteligente</div>
+                                    </div>
                                   </div>
                                 {% endif %}
                               {% endif %}

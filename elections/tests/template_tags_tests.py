@@ -504,3 +504,13 @@ class LoginFormsTemplateTags(TestCase):
         self.assertEquals(template.render(context), 'si')
         context = Context({'area': chile})
         self.assertEquals(template.render(context), 'no')
+
+    def test_get_contact_detail(self):
+        candidate = Candidate.objects.get(id=1)
+        candidate2 = Candidate.objects.get(id=2)
+        candidate.add_contact_detail(contact_type='CPLT', value='perrito', label='perrito')
+        template = Template("{% load votainteligente_extras %}{% get_contact_detail candidate type_='CPLT' as link%}{{link.value}}")
+        context = Context({'candidate': candidate})
+        self.assertEquals(template.render(context), 'perrito')
+        context = Context({'candidate': candidate2})
+        self.assertEquals(template.render(context), '')

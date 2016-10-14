@@ -69,7 +69,7 @@ $(function(){
   </div>
       
   <!-- Banner -->
-  {% if area.proposals.count %}
+  {% if area.proposals.exists %}
   {% with area.proposals.count|stringformat:"04d" as n_created %}
   <section class="banner">
     <div class="container">
@@ -108,48 +108,7 @@ $(function(){
       {% endwith %}
     </div>
   </section>
-        {% cache 500 other_elections area.id %}
-        <!-- Otras elecciones    -->
-          {% for election in area.elections_without_position.all %}
-        <ul>
-          <li class="col-md-4 containerAccordion">
-            <script type="text/javascript">
-            jQuery(document).ready(function($){
-              screenwidth = $(".containerAccordion").width();
-              $('#gridaccordion-{{forloop.counter}}').gridAccordion({
-                width:screenwidth, height:250, columns:{{election.candidates.all|length}}, 
-                distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true
-              });
-            });
-            </script>
-            <ul class="accordion" id="gridaccordion-{{forloop.counter}}">
-              {% for candidate in election.candidates.all|slice:":8" %}
-              <li>
-                {% if candidate.image %}
-                  {% thumbnail candidate.image "x300" as im %}
-                    <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
-                  {% endthumbnail %}
-                {% else %}
-                  <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
-                {% endif %}
-                <div class="caption">{{ candidate.name }}</div>
-              </li>
-              {% endfor %}
-            </ul>
-            <a href="{{ election.get_absolute_url }}"><h3 class="portada">{{ election.name }}</h3></a>
-            <div class="election-description">
-              <p>{{ election.description|truncatewords:33 }}</p> 
-            </div>
-          </li>
-           {% if forloop.counter|divisibleby:3 %}
-        </ul>
-        <ul>
-          {% endif %}
-          {% endfor %}
-        {% endcache %}
-
-        </ul>
-      {% if not popular_proposals.all %}
+      {% if not popular_proposals.exists %}
       {% blocktrans %}
       <p>Acá aún no hay propuestas, pero puedes:</p>
       {% endblocktrans %}
@@ -167,9 +126,7 @@ $(function(){
           <a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">Tengo una propuesta</a>
         {% endif %}
       </div>
-      {% cache 60 proposals area.id %}
       {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=proposal_filter_form %}
-      {% endcache %}
     </div>
   </section>
       

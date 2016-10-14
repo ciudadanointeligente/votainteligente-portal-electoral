@@ -1853,9 +1853,30 @@ input#id_4-title {
     line-height: 14px;
 }
 
+.ranking-content {
+  position: relative;
+  background: #8EC2FF;
+  height: 37px;
+  padding: 5px 0;
+}
+
 .ranking.small .num {
     font-size: 24px;
     margin-top: 7px;
+}
+
+.ranking-content:after {
+  content: url(../img/ribbon-deco-right.svg);
+  position: absolute;
+  bottom: -9px;
+  right: -15px;
+}
+
+.ranking-content:before {
+  content: url(../img/ribbon-deco.svg);
+  position: absolute;
+  bottom: -9px;
+  left: -15px;
 }
 
 /*Tabs*/

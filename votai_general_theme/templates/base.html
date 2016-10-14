@@ -89,6 +89,7 @@
         <div id="footer">
             {% block extrafooter %}
             {% endblock extrafooter %}
+            
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -112,6 +113,9 @@
                         <li>{% include '_logo_urbanismosocial.html' %}</li>
                         <li>{% include '_logo_uchile.html' %}</li>
                     </ul>
+                    {% if "extra_footer.html"|template_exists %}
+                        {% include 'extra_footer.html' %}
+                    {% endif %}
                 </div>
             </div>
         </div>

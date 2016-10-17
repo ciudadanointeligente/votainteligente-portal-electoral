@@ -38,6 +38,7 @@ from backend_candidate.models import (Candidacy,
 from django.conf import settings
 from django.contrib import messages
 from django.utils.translation import ugettext as _
+from django.template.response import TemplateResponse
 
 
 class ProposalCreationView(FormView):
@@ -107,14 +108,11 @@ class SubscriptionView(FormView):
             kwargs['next'] = self.next_url
         return kwargs
 
-    def get_success_url(self):
-        if self.next_url:
-            return self.next_url
-        return reverse('area', kwargs={'slug': self.proposal.area.id})
-
     def form_valid(self, form):
-        form.subscribe()
-        return super(SubscriptionView, self).form_valid(form)
+        like = form.subscribe()
+        context = self.get_context_data()
+        context['like'] = like
+        return TemplateResponse(self.request, 'popular_proposal/subscribing_result.html', context)
 
 
 class HomeView(EmbeddedViewBase, FilterView):

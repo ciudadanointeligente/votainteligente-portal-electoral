@@ -10,7 +10,7 @@
          
       ¿Deseas apoyar la propuesta <b>{{proposal}}</b>?
       <p>Al apoyar esta propuesta aceptas que VotaInteligente te notifique vía correo electrónico cuando un candidato decida apoyar esta propuesta.</p>
-      <form method="POST" action="{{url}}" role="form">
+      <form method="POST" id="form_{{modalId}}"action="{{url}}" role="form">
           {% csrf_token %}
           {% if next %}
           <input type="hidden" name="next" value="{{next_url}}" />
@@ -22,3 +22,8 @@
     </div>
   </div>
 </div>
+<script>
+$(function(){
+        $('#form_{{modalId}}').ajaxForm({'dataType': 'script'});
+})
+</script>

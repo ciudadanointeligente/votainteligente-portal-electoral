@@ -50,7 +50,6 @@ class SubscribingToPopularProposal(TestCase):
         self.assertTemplateUsed('popular_proposal/new_subscription.html')
         response = self.client.post(url, follow=True)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'elections/area.html')
         self.assertEquals(response.context['proposal'], self.proposal)
         p = ProposalLike.objects.get(user=self.feli, proposal=self.proposal)
         self.assertTrue(p)
@@ -66,8 +65,13 @@ class SubscribingToPopularProposal(TestCase):
         self.assertEquals(response_get.context['next'], url_home)
         response = self.client.post(url,
                                     data={'next': url_home})
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.url, url_home)
+        self.assertNotEquals(response.status_code, 302)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'popular_proposal/subscribing_result.html')
+        self.assertIn('proposal', response.context)
+        self.assertEquals(response.context['proposal'], self.proposal)
+        like = ProposalLike.objects.get(proposal=self.proposal)
+        self.assertEquals(response.context['like'], like)
 
     def test_not_liking_twice(self):
         url_home = reverse('popular_proposals:home')

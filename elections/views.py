@@ -69,8 +69,6 @@ class HomeView(TemplateView):
         context['register_new_form'] = RegistrationForm()
         context['login_form'] = AuthenticationForm()
         context['group_login_form'] = GroupCreationForm()
-        if not Election.objects.filter(searchable=True).exists():
-            context['searchable_elections_enabled'] = False
         total_proposals = cache.get('total_proposals')
         if total_proposals is None:
             total_proposals = PopularProposal.objects.count()

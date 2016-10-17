@@ -48,8 +48,6 @@ class HomeTestCase(TestCase):
 
         self.assertIn('form', context)
         self.assertIn('featured_elections', context)
-        self.assertIn('searchable_elections_enabled', context)
-        self.assertTrue(context['searchable_elections_enabled'])
         self.assertIsInstance(context['form'], ElectionSearchByTagsForm)
         self.assertIn('register_new_form', context)
         self.assertIn('login_form', context)
@@ -57,12 +55,6 @@ class HomeTestCase(TestCase):
         self.assertIsInstance(context['register_new_form'], RegistrationForm)
         self.assertIsInstance(context['login_form'], AuthenticationForm)
         self.assertIsInstance(context['group_login_form'], GroupCreationForm)
-
-    def test_searchable_elections_disabled(self):
-        Election.objects.all().update(searchable=False)
-        view = HomeView()
-        context = view.get_context_data()
-        self.assertFalse(context['searchable_elections_enabled'])
 
     def test_counter_of_proposals(self):
         a_day_ago = timezone.now() - datetime.timedelta(days=1)

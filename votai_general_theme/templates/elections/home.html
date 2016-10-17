@@ -4,6 +4,7 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load bootstrap3 %}
+{% load cache %}
 {% block extrajs %}
 {% include 'elections/home.js'  with detail_url="area"  %}
 {% endblock extrajs %}
@@ -12,10 +13,7 @@
 
 {% block everything %}
 
-{% with a_or_b="ab"|make_list|random %}
-{% if not user|is_candidate %}
     <div class="extra text-white"><div class="container text-center small">¿Eres candidata/o y no sabes como entrar? <a class="btn btn-primary btn-xs"  data-toggle="modal" data-target="#CandidateInfoModal">Pincha aquí</a></div></div>
-{% endif %}
 <section id="hero">
   <div class="container">
     <div class="row">
@@ -53,6 +51,7 @@
   })
 </script>
 
+{% cache 600 home_total_proposals %}
 {% if total_proposals %}
 {% with total_proposals|stringformat:"04d" as n_created %}
 <section class="banner">
@@ -75,13 +74,19 @@
 </section>
 {% endwith %}
 {% endif %}
+{% endcache %}
 
-<!-- <section id="candidatos-mas-comprometidos">
-  {% include '_slide_candidatos.html' %}
-</section>
- -->
+
+
 <section id="propuestas-mas-apoyo">
-  {% include '_slide_propuestas.html' with proposals=proposals_with_likers %}
+{% if user.is_authenticated %}
+    {% include '_slide_propuestas.html' with proposals=proposals_with_likers %}
+  {% else %}
+    {% cache 600 propuestas-mas-apoyo %}
+      {% include '_slide_propuestas.html' with proposals=proposals_with_likers %}
+    {% endcache %}
+
+{% endif %}
 </section>
 
 <section id="que-hago">
@@ -103,26 +108,6 @@
     </div>
   </div>
 </section>
-
-<script>
-function ab_testing() {
-	ga('send', {
-	  hitType: 'event',
-	  eventCategory: 'Home',
-	  eventAction: 'login',
-      eventLabel: '{{a_or_b}}'
-	});
-}
-$(function(){
-    $('.login').click(function(event){
-        ab_testing();
-    });
-    $('.login_form').submit(function(event){
-        ab_testing();
-    })
-});
-</script>
-{% endwith %}
 
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

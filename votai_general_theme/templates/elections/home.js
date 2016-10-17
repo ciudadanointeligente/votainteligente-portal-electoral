@@ -24,12 +24,14 @@ app.directive('ngEnter', function () {
 });
 
 var searchFormController = function($scope, $http, $filter, $log){
+    {% cache 600 areas_json__ %}
     {% if detail_url %}
         {% areas_json detail_url as the_json %}
     {% else %}
         {% areas_json as the_json %}
     {% endif %}
 	$scope.elections = {{ the_json }}
+    {% endcache %}
 	$scope.comperator = function(obj, text){
 		text = removeDiacritics((''+text).toLowerCase());
 		text_arr = text.split(/,| /).filter(String)

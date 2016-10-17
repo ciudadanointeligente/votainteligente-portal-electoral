@@ -15,8 +15,7 @@ from popular_proposal.models import PopularProposal, ProposalTemporaryData
 from popular_proposal.forms import ProposalAreaFilterForm
 from popular_proposal.filters import ProposalAreaFilter
 from django_filters.views import FilterMixin
-import datetime
-from django.utils import timezone
+from django.core.cache import cache
 
 logger = logging.getLogger(__name__)
 
@@ -59,19 +58,29 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['form'] = ElectionSearchByTagsForm()
-        context['featured_elections'] = Election.objects\
-            .filter(highlighted=True)
+
+        featured_elections = cache.get('featured_elections')
+        if featured_elections is None:
+            featured_elections = Election.objects.filter(highlighted=True)
+            cache.set('featured_elections', featured_elections, 600)
+        context['featured_elections'] = featured_elections
+
         context['searchable_elections_enabled'] = True
         context['register_new_form'] = RegistrationForm()
         context['login_form'] = AuthenticationForm()
         context['group_login_form'] = GroupCreationForm()
-        if Election.objects.filter(searchable=True).count() < 1:
+        if not Election.objects.filter(searchable=True).exists():
             context['searchable_elections_enabled'] = False
-        a_week_ago = timezone.now() - datetime.timedelta(days=7)
-        context['created_proposals'] = ProposalTemporaryData.objects.filter(created__gt=a_week_ago).count()
-        context['accepted_proposals'] = PopularProposal.objects.filter(created__gt=a_week_ago).count()
-        context['total_proposals'] = PopularProposal.objects.count()
-        context['proposals_with_likers'] = PopularProposal.ordered.by_likers()[:9]
+        total_proposals = cache.get('total_proposals')
+        if total_proposals is None:
+            total_proposals = PopularProposal.objects.count()
+            cache.set('total_proposals', total_proposals, 600)
+        context['total_proposals'] = total_proposals
+        proposals_with_likers = cache.get('proposals_with_likers')
+        if proposals_with_likers is None:
+            proposals_with_likers = PopularProposal.ordered.by_likers()[:9]
+            cache.set('proposals_with_likers', proposals_with_likers, 600)
+        context['proposals_with_likers'] = proposals_with_likers
         return context
 
 

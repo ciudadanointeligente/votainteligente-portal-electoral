@@ -1,5 +1,6 @@
 {% extends layout %}
 {% load i18n %}
+{% load cache %}
 
 {% block extrajs %}
 $(document).ready(function(){
@@ -55,6 +56,7 @@ $(document).ready(function(){
 
 {% block mainelection %}
 
+{% cache 500 soulmate_candidate election.id %}
 {% url 'embedded_soul_mate_detail_view' slug=election.slug as embedded_url%}
 {% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
 <!-- soulmate -->
@@ -95,6 +97,7 @@ $(document).ready(function(){
 	{% csrf_token %}
 		</form>
 </div>
+{% endcache %}
 
 <!-- EOF soulmate -->
 {% endblock mainelection %}

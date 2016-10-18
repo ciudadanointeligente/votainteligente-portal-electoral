@@ -1538,6 +1538,10 @@ tr.primary p:first-child, tr.danger p:first-child {
 
 @media (max-width: 480px) {
 
+  .carousel.candidato{
+    min-height: 712px;
+  }
+
   .profile-candidate {
     min-height: 425px;
   }
@@ -1556,6 +1560,13 @@ tr.primary p:first-child, tr.danger p:first-child {
     position: absolute;
     top: 55px;
     left: 30px;
+  }
+  #hero {
+    padding: 0 !important;
+    min-height: 258px;
+  }
+  #home-search::after {
+    content: none;
   }
 
 }

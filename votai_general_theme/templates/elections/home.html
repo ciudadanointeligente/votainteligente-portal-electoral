@@ -13,12 +13,16 @@
 
 {% block everything %}
 
-    <div class="extra text-white"><div class="container text-center small">¿Eres candidata/o y no sabes como entrar? <a class="btn btn-primary btn-xs"  data-toggle="modal" data-target="#CandidateInfoModal">Pincha aquí</a></div></div>
 <section id="hero">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        <h1 class="text-white"><div class="small">CUANDO nos encontramos, EL RESULTADO ES MEJOR</div>Acá se marca la diferencia en estas municipales</h1>
+        <h1 class="text-white">
+          <span class='hidden-xs'><div class="small">CUANDO nos encontramos, EL RESULTADO ES MEJOR</div>Acá se marca la diferencia en estas municipales</span>
+        </h1>
+        <h2 class='visible-xs-* text-white'>
+          Encuentra los candidatos y propuestas de tu comuna
+        </h2>
             <div class="input-group input-group-lg">
               <span class="input-group-addon small" id="sizing-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
               {% include '_election_search_form.html' %}
@@ -42,6 +46,7 @@
 </div>
   </div>
 </section>
+    <div class="extra text-white"><div class="container text-center small">¿Eres candidata/o y no sabes como entrar? <a class="btn btn-primary btn-xs"  data-toggle="modal" data-target="#CandidateInfoModal">Pincha aquí</a></div></div>
 
 <!-- Destino de modales -->
 <div id="modales"></div>

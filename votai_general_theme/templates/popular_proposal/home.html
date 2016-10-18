@@ -4,10 +4,6 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 
-{% block extrajs %}
-{% include 'elections/home.js' with detail_url="popular_proposals:propose_wizard" %}
-{% endblock extrajs %}
-
 {% block everything %}
 <div class="container">
 	{% if user.profile.is_journalist %}

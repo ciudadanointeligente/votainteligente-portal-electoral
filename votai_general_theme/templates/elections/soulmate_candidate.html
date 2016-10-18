@@ -31,6 +31,7 @@ $(document).ready(function(){
 
 			$.post("{{result_url}}",final_data, function(final_data){
 				$('#question-soulmate').remove();
+				$('.soulmate-header').remove();
 				$('#election').append(final_data);
 				$('html, body').animate({
 					scrollTop: $("#election").offset().top
@@ -57,14 +58,14 @@ $(document).ready(function(){
 {% block mainelection %}
 
 {% cache 500 soulmate_candidate election.id %}
-{% url 'embedded_soul_mate_detail_view' slug=election.slug as embedded_url%}
-{% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
 <!-- soulmate -->
-<h1 class="text-center"><div class="small text-light">Candidatos a {{ election.position }} por {{ election.area }}</div>Encuentra tu 1/2 naranja</h1>
-<p class="bajada text-center text-width">Lee las preguntas y marca la posición política que te haga sentido, así podremos mostrarte al candidato que más se ajuste a tu forma de pensar</p>
+<div class='soulmate-header'>
+	<h1 class="text-center"><div class="small text-light">Candidatos a {{ election.position }} por {{ election.area }}</div>Encuentra tu 1/2 naranja</h1>
+	<p class="bajada text-center text-width">Lee las preguntas y marca la posición política que te haga sentido, así podremos mostrarte al candidato que más se ajuste a tu forma de pensar</p>
+</div>
 <div id="question-soulmate">
 {% if not election.has_anyone_answered %}
-<div class="alert alert-danger" role="alert">
+<div class="alert alert-danger soulmate-header" role="alert">
 	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 	Aún no tenemos candidatos que hayan respondido la 1/2 naranja por lo tanto el resultado de tu afinidad será de un 0% con todos, pero siempre puedes <a href="{% url 'help'  %}">Ayudarnos</a></div>
 {% endif %}

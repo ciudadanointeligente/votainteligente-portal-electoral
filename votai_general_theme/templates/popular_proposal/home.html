@@ -6,19 +6,6 @@
 
 {% block everything %}
 <div class="container">
-	{% if user.profile.is_journalist %}
-	<div class="row">
-		<div class="col-md-8">
-		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#incrustaEnTuPagina" aria-expanded="false" aria-controls="incrustaEnTuPagina">
-		  ¡Incrusta esto en tu página!
-		</button>
-		<div class="collapse" id="incrustaEnTuPagina">
-			  	<textarea style="width:700px;" readonly>
-			  		<iframe src="//{{ request.get_host }}{% url 'popular_proposals:embedded_home' %}" width="600px" height="500px"></iframe></textarea>
-		</div>
-		</div>
-	</div>
-	{% endif %}
 	<div>
 	  <h1 class="text-center">{% trans "Propuestas Ciudadanas" %}</h1>
 	  	<div>

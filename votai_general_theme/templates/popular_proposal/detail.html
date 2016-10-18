@@ -30,9 +30,6 @@ $(function(){
 
 {% url 'popular_proposals:embedded_detail' slug=popular_proposal.slug as embedded_url%}
 
-<div class="container">
-{% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
-</div>
 
 <div class="container">
   <ol class="breadcrumb">

@@ -24,7 +24,7 @@ $(document).ready(function(){
 			window.location = new_url;
 		}
 	});
-	
+
 	$('#candidate_two').on('change', function(){
 		$('#candidate_one option').prop('disabled', false).trigger('chosen:updated');
 		$('#candidate_one option[value="'+$(this).val()+'"]').prop('disabled', true).trigger('chosen:updated');
@@ -45,6 +45,6 @@ $(document).ready(function(){
 		$('#classic_form').toggle();
 
 	});
-
+	$('.pasos p a:first').attr("onclick","ga('send','event','Descarga Guia Ciudadana','click')");
 
 });

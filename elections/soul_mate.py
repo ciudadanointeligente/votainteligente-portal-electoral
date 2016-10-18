@@ -35,8 +35,8 @@ class SoulMateDetailView(DetailView):
 
     def determine_taken_positions(self, positions_dict):
         positions = []
+        p = re.compile('^question-id-(?P<id>\d+)$')
         for key in positions_dict:
-            p = re.compile('^question-id-(?P<id>\d+)$')
             m = p.search(key)
             if m:
                 _id = int(m.group('id'))

@@ -6,6 +6,7 @@
 {% load votainteligente_extras %}
 {% load thumbnail %}
 {% load ogp_tags %}
+{% load cache %}
 
 {% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}{% endblock url_face_to_face %}
 
@@ -61,11 +62,13 @@
 					</div>
 			</div>
 			<div class="col-md-8 col-sm-8 col-xs-12">
+				{% cache 500 name_links_and_ranking candidate.id %}
 				<p class="small text-white">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}} {% include 'elections/candidates/links_extra_pages.html' with candidate=candidate %}{% include 'elections/candidates/contacts.html' with candidate=candidate %}</p>
 				<h1 class="text-white">{{ candidate.name }}</h1>
 				{% if candidate.ranking_in_election %}
                   <p class="small label-info" data-toggle="tooltip" data-placement="top" title="{{candidate.naranja_completeness|floatformat}}% de la media naranja y se ha pronunciado sobre un {{candidate.commitmenness|floatformat}}% de las propuestas para {{area}}">Número {{candidate.ranking_in_election}} en el ranking de VotaInteligente<!----></p>
                   {% endif %}
+                {% endcache %}
 				{% if user|manages_this:candidate %}
 					{% with user.candidacies.first as candidacy %}
 					{% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
@@ -89,6 +92,7 @@
 					  </div>
 					</div>
         {% endif %}
+				{% cache 500 personal_datas candidate.id %}
 				<ul class="text-white">
 					<!-- {% include 'elections/candidates/personal_data_candidate.html' with candidate=candidate %} -->
 					<li>Pacto: {% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}{{pacto.value}}</li>
@@ -102,7 +106,9 @@
 					<li><a target="_blank" href="{{candidato_transparente.value}}">{{candidate}} en CandidatoTransparente.cl</a></li>
 					{% endif %}
 				</ul>
+				{% endcache %}
 
+				{% cache 500 commitments candidate.id %}
 				<!-- Promesas que se ha comprometido -->
 				{% if candidate.commitments.count %}
 				<h3 class="text-white">Propuestas ciudadanas en las que se ha pronunciado:</h3>
@@ -123,6 +129,7 @@
 					{% endfor %}
 				</ul>
 				{% endif %}
+				{% endcache %}
 
 			</div>
 		</div>
@@ -146,7 +153,7 @@
 
 	</div>
 </div>
-
+{% cache 500 political_positions candidate.id %}
 <div class="container content_padding">
 <h2>Posiciones políticas</h2>
 
@@ -188,6 +195,7 @@
 	{% endif %}
 
 </div>
+{% endcache %}
 
 	<script type="text/javascript">
 	var API_KEY = '{{ 'client_id'|website_imgur }}';

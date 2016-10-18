@@ -40,35 +40,38 @@ $(function(){
   <div class="profile">
     <div class="container content_padding">
       
-        
-        {% include '_incrusta_esto_en_tu_pagina.html' with url=embedded_url %}
       <h1 class="text-center text-white">{{area.name}}</h1>
 
-        <!-- Candidatos -->
-
-
+      {% cache 500 medias_naranjas_xs area.id %}
+      <div class="visible-xs-block">  
+      {% for election in area.elections.all %}
+        
+          <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info">1/2 <i class="fa fa-heart" aria-hidden="true"> Naranja {{election.position|title}}</i></a>
+        
+      {% endfor %}
+      </div>
+      {% endcache %}
 
       <!-- Alcaldes -->
+      {% cache 500 alcaldes area.id %}
       <section class="comuna-alcaldes text-center">
         <h2 class="text-white">Candidatos a alcalde</h2>
         <div class="bajada">
            {% get_election_by_position 'alcalde' as election %}
             {% if election %}
-              <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info"><i class="icon-heart"></i> Encuentra tu 1/2 Naranja</a>
-              <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning">Frente a frente</a>
+              <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info hidden-xs">Encuentra tu 1/2 <i class="fa fa-heart" aria-hidden="true"></i> Naranja</a>
+              <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning hidden-xs">Frente a frente</a>
             {% endif %}
         </div>
-         {% with area=area %}
-         {% cache 500 alcaldes area.id %}
+         
          {% include 'elections/_election_with_position.html' with position='alcalde' area=area %}
-         {% endcache %}
-         {% endwith %}
+         
       </section>
-
+      {% endcache %}
     </div>
   </div>
       
-  <!-- Banner -->
+  {% cache 500 number_proposals_area area.id user|is_candidate %}
   {% if area.proposals.exists %}
   {% with area.proposals.count|stringformat:"04d" as n_created %}
   <section class="banner">
@@ -89,31 +92,36 @@ $(function(){
   </section>
   {% endwith %}
   {% endif %}
+  {% endcache %}
 
 <!-- Concejales -->
+  {% cache 500 concejales area.id %}
   <section class="comuna-concejales text-center">
     <div class="container">
       <h2 class="text-white">Candidatos a concejal</h2>
       <div class="bajada">
         {% get_election_by_position 'concejal' as election %}
           {% if election %}
-            <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info"><i class="icon-heart"></i> Encuentra tu 1/2 Naranja</a>
-            <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning">Frente a frente</a>
+            <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info hidden-xs">Encuentra tu 1/2 <i class="fa fa-heart" aria-hidden="true"></i> Naranja</a>
+            <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning hidden-xs">Frente a frente</a>
           {% endif %}
       </div>
       {% with area=area %}
-      {% cache 500 concejales area.id %}
+      
       {% include 'elections/_election_with_position.html' with position='concejal' area=area %}
-      {% endcache %}
+      
       {% endwith %}
     </div>
+    {% endcache %}
   </section>
+      {% cache 500 create_new_proposal_link area.id %}
       {% if not popular_proposals.exists %}
       {% blocktrans %}
       <p>Acá aún no hay propuestas, pero puedes:</p>
       {% endblocktrans %}
       <a class="btn btn-info" href="{% url 'popular_proposals:propose_wizard' slug=area.id %}">{% blocktrans with area=area.name %}Crear una propuesta ciudadana para {{ area }}{% endblocktrans %}</a>
       {% endif %}
+      {% endcache %}
     </div>
 
   <!-- Featured Elections  -->

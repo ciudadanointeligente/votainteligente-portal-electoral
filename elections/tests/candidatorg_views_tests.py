@@ -312,6 +312,63 @@ class SoulMateTestCase(TestCase):
         self.assertIn(response.context["winner"]["candidate"], candidatos_antofa)
         self.assertGreater(response.context["winner"]['percentage'], 0.0)
 
+    def test_post_with_data_tie(self):
+        data = {
+            "question-0": "0",
+            "question-1": "11",
+            "question-2": "13",
+            "question-id-0": "4",
+            "question-id-1": "5",
+            "question-id-2": "6"
+        }
+        url = reverse('soul_mate_detail_view',
+            kwargs={
+                'slug': self.antofa.slug,
+            })
+
+        response = self.client.post(url, data=data)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed("elections/soulmate_response.html")
+        self.assertIn("election", response.context)
+        self.assertEquals(response.context["election"], self.antofa)
+        self.assertNotIn("winner", response.context)
+        self.assertIn("others", response.context)
+        candidate1 = Candidate.objects.get(id=1)
+        candidate3 = Candidate.objects.get(id=3)
+        self.assertEquals(response.context['others'][0]['percentage'],
+                          response.context['others'][1]['percentage'])
+        self.assertIn(response.context['others'][0]['candidate'], [candidate1, candidate3])
+        self.assertIn(response.context['others'][1]['candidate'], [candidate1, candidate3])
+
+    def test_post_with_data_exclude_not_answering_candidates(self):
+        data = {
+            "question-0": "0",
+            "question-1": "11",
+            "question-2": "13",
+            "question-id-0": "4",
+            "question-id-1": "5",
+            "question-id-2": "6"
+        }
+        url = reverse('soul_mate_detail_view',
+            kwargs={
+                'slug': self.antofa.slug,
+            })
+        # candidate2 hasn't answered anything
+        candidate2 = Candidate.objects.get(id=2)
+        candidate2.taken_positions.all().delete()
+
+        response = self.client.post(url, data=data)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed("elections/soulmate_response.html")
+        self.assertIn("election", response.context)
+        self.assertEquals(response.context["election"], self.antofa)
+        self.assertNotIn("winner", response.context)
+        self.assertIn("others", response.context)
+        for c in response.context['others']:
+            if c['candidate'] == candidate2:
+                self.fail(u"A candidate without answers is in the response")
+        self.assertTrue(True)
+
     def test_if_no_taken_position_provided(self):
         '''If there is no taken prosition provided'''
         data = {

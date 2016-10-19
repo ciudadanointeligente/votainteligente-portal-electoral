@@ -71,7 +71,7 @@ class SoulMateDetailView(DetailView):
             holder.add_category(category)
         candidates = cache.get(str(self.object.id) + '_candidates')
         if candidates is None:
-            candidates = self.object.candidates.all()
+            candidates = self.object.candidates.exclude(taken_positions__isnull=True)
             cache.set(str(self.object.id) + '_candidates',
                       candidates,
                       settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
@@ -96,12 +96,15 @@ class SoulMateDetailView(DetailView):
                             calculator_class=self.calculator_class)
         result = comparer.compare(information_holder)
 
-        winner_candidate = result[0]['person']
-        context['winner'] = result[0]
-        context['winner']['candidate'] = winner_candidate
+        stating_index = 0
+        if result[0]['percentage'] > result[1]['percentage']:
+            stating_index = 1
+            winner_candidate = result[0]['person']
+            context['winner'] = result[0]
+            context['winner']['candidate'] = winner_candidate
 
         others_candidates = []
-        for other in result[1:]:
+        for other in result[stating_index:]:
             other_candidate = other['person']
             other["candidate"] = other_candidate
             others_candidates.append(other)

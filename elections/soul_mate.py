@@ -11,6 +11,17 @@ from django.conf import settings
 
 
 class VotaInteligenteAdapter(CandidatorAdapter):
+    def get_position_from(self, taken_position):
+        if taken_position:
+            cache_key = u"position_from_taken_position_" + str(taken_position.id)
+            position = cache.get(cache_key)
+            if position is None:
+                position = taken_position.position
+                cache.set(cache_key,
+                          position,
+                          60 * settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
+            return position
+
     def is_topic_category_the_same_as(self, topic, category):
         return topic.category == category.category_ptr
 
@@ -26,6 +37,7 @@ class VotaInteligenteAdapter(CandidatorAdapter):
             return taken_position
         except TakenPosition.DoesNotExist:
             return None
+
 
 class SoulMateDetailView(DetailView):
     model = Election
@@ -44,7 +56,13 @@ class SoulMateDetailView(DetailView):
                 topic_id = positions_dict[key]
                 topic = Topic.objects.get(id=topic_id)
                 try:
-                    position = Position.objects.get(id=position_id)
+                    position_cache_key = 'position_' + str(position_id)
+                    position = cache.get(position_cache_key)
+                    if position is None:
+                        position = Position.objects.get(id=position_id)
+                        cache.set(position_cache_key,
+                                  position,
+                                  60 * settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
                     positions.append(TakenPosition(topic=topic,
                                                    position=position
                                                    )
@@ -66,7 +84,7 @@ class SoulMateDetailView(DetailView):
             categories = self.object.categories.all()
             cache.set(str(self.object.id) + '_categories',
                       categories,
-                      settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
+                      60 * settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
         for category in categories:
             holder.add_category(category)
         candidates = cache.get(str(self.object.id) + '_candidates')
@@ -74,7 +92,7 @@ class SoulMateDetailView(DetailView):
             candidates = self.object.candidates.exclude(taken_positions__isnull=True)
             cache.set(str(self.object.id) + '_candidates',
                       candidates,
-                      settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
+                      60 * settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
         for candidate in candidates:
             holder.add_person(candidate)
         if data:
@@ -82,7 +100,6 @@ class SoulMateDetailView(DetailView):
             for taken_position in taken_positions:
                 holder.add_position(taken_position)
         return holder
-
 
     def post(self, request, *args, **kwargs):
         self.template_name = "elections/soulmate_response.html"

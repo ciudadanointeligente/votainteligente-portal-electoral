@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'django_filters',
     'django_ogp',
     'debug_toolbar',
+    'debug_panel',
 )
 INSTALLED_APPS_AFTER_ALL = ('el_pagination',)
 
@@ -108,7 +109,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_panel.middleware.DebugPanelMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -263,7 +264,7 @@ WEBSITE_TWITTER = {
 }
 CACHE_MINUTES = 0
 HEAVY_PAGES_CACHE_MINUTES = 1
-SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES = 2
+SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES = 10
 
 CACHES = {
     'default': {

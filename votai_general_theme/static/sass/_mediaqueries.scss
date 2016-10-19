@@ -88,14 +88,14 @@
 
 @media screen and (max-width: 767px) {
   .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover {
-    color: #ffc80a;
+    color: $yellow;
   }
 }
 
 @media screen and (max-width: 1024px) {
 
   section#hero {
-    background: #FFC80A;
+    background: $yellow;
   }
 
 }

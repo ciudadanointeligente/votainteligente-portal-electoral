@@ -260,7 +260,8 @@ WEBSITE_GENERAL_SETTINGS = {
 }
 #twitter sepparated by comma, eg: votainteligente,votainformado,othertag
 WEBSITE_TWITTER = {
-    'hashtags': 'votainteligente'
+    'hashtags': 'votainteligente',
+    'text': 'Conoce a tus candidat@s y encuentra a tu Media Naranja Política en '
 }
 CACHE_MINUTES = 0
 HEAVY_PAGES_CACHE_MINUTES = 1

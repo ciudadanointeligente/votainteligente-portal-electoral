@@ -4,8 +4,9 @@
 {% load staticfiles %}
 {% load mathfilters %}
 
-
+{% if winner %}
 <div id="soulmate-result">
+	
 	<div class="row">
 		<div class="col-md-3" id="candidate-img-profile">
 			{% if winner.candidate.image %}
@@ -45,11 +46,20 @@
 				</div>
 		</div>
 	</div>
+	
 </div>
+{% endif%}
+
 
 <div id="other-soulmate">
 		<h3 class="text-center">Compatibilidad con otros candidatos</h3>
+		
 	<div class="row">
+		{% if not winner %}
+		<div class="alert alert-info soulmate-header text-center" role="alert">
+		¡Tienes un empate!
+		</div>
+		{% endif %}
 		{% for other in others %}
 		<div class="col-md-6">
 			<div class="other-soulmate-box row">
@@ -83,6 +93,10 @@
 <script type="text/javascript">
 var API_KEY = '{{ 'client_id'|website_imgur }}';
 var candidate_name = '{{winner.candidate.name}}'
+{% if winner %}
 var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}';
+{% else %}
+var twitter_url = '{% url_domain %}{% url 'election_view' slug=election.slug %}';
+{% endif %}
 </script>
 

@@ -340,6 +340,31 @@ class SoulMateTestCase(TestCase):
         self.assertIn(response.context['others'][0]['candidate'], [candidate1, candidate3])
         self.assertIn(response.context['others'][1]['candidate'], [candidate1, candidate3])
 
+    def test_post_with_data_single_candidate(self):
+        data = {
+            "question-0": "0",
+            "question-1": "11",
+            "question-2": "13",
+            "question-id-0": "4",
+            "question-id-1": "5",
+            "question-id-2": "6"
+        }
+        url = reverse('soul_mate_detail_view',
+            kwargs={
+                'slug': self.antofa.slug,
+            })
+        candidate2 = Candidate.objects.get(id=2)
+        candidate3 = Candidate.objects.get(id=3)
+        candidate2.taken_positions.all().delete()
+        candidate3.taken_positions.all().delete()
+
+        response = self.client.post(url, data=data)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed("elections/soulmate_response.html")
+        self.assertIn("election", response.context)
+        self.assertEquals(response.context["election"], self.antofa)
+        self.assertIn("winner", response.context)
+
     def test_post_with_data_exclude_not_answering_candidates(self):
         data = {
             "question-0": "0",

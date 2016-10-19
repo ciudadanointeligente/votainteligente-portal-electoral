@@ -97,7 +97,8 @@ class SoulMateDetailView(DetailView):
         result = comparer.compare(information_holder)
 
         stating_index = 0
-        if result[0]['percentage'] > result[1]['percentage']:
+
+        if len(result) == 1 or result[0]['percentage'] > result[1]['percentage']:
             stating_index = 1
             winner_candidate = result[0]['person']
             context['winner'] = result[0]

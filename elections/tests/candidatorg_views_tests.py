@@ -365,6 +365,35 @@ class SoulMateTestCase(TestCase):
         self.assertEquals(response.context["election"], self.antofa)
         self.assertIn("winner", response.context)
 
+    def test_post_with_data_no_candidates(self):
+        data = {
+            "question-0": "0",
+            "question-1": "11",
+            "question-2": "13",
+            "question-id-0": "4",
+            "question-id-1": "5",
+            "question-id-2": "6"
+        }
+        url = reverse('soul_mate_detail_view',
+            kwargs={
+                'slug': self.antofa.slug,
+            })
+        candidate1 = Candidate.objects.get(id=1)
+        candidate2 = Candidate.objects.get(id=2)
+        candidate3 = Candidate.objects.get(id=3)
+        candidate1.taken_positions.all().delete()
+        candidate2.taken_positions.all().delete()
+        candidate3.taken_positions.all().delete()
+
+        response = self.client.post(url, data=data)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed("elections/soulmate_response.html")
+        self.assertIn("election", response.context)
+        self.assertEquals(response.context["election"], self.antofa)
+        self.assertNotIn("winner", response.context)
+        self.assertIn("others", response.context)
+        self.assertFalse(response.context['others'])
+
     def test_post_with_data_exclude_not_answering_candidates(self):
         data = {
             "question-0": "0",
@@ -393,6 +422,8 @@ class SoulMateTestCase(TestCase):
             if c['candidate'] == candidate2:
                 self.fail(u"A candidate without answers is in the response")
         self.assertTrue(True)
+
+
 
     def test_if_no_taken_position_provided(self):
         '''If there is no taken prosition provided'''

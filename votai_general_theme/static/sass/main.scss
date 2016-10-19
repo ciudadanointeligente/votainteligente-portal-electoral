@@ -370,7 +370,7 @@ label.control-label {
 /*Section Hero*/
 
 #hero {
-  background: url(../img/hero.svg) bottom right no-repeat #FFC80A;
+  background: url(../img/hero.svg) bottom right no-repeat $yellow;
   color: white;
   padding: 90px 0;
   min-height: 450px;
@@ -1668,7 +1668,7 @@ tr.primary p:first-child, tr.danger p:first-child {
 }
 
 span.number {
-  background: #FFC80A;
+  background: $yellow;
   border-radius: 30px;
   padding: 1px 6px 3px;
   color: white;
@@ -1893,7 +1893,7 @@ input#id_4-title {
 /*Tabs*/
 
 .nav-tabs.nav-justified li.active a{
-  border-bottom: 3px solid #FFC80A;
+  border-bottom: 3px solid $yellow;
   color: #233346;
 }
 

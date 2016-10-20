@@ -385,3 +385,8 @@ def is_marked_area(area):
 def get_contact_detail(candidate, type_=None):
     if candidate.contact_details.filter(contact_type=type_).exists():
         return candidate.contact_details.get(contact_type=type_)
+
+
+@register.simple_tag
+def get_proposals_enabled():
+    return settings.PROPOSALS_ENABLED

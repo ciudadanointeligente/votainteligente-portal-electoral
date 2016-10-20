@@ -69,7 +69,10 @@
         <span>{{ n_created|slice:"3:4" }}</span></h4></li>
       <li><h4 class="text-white">propuestas ciudadanas se han creado</h4></li>
       {% if not user|is_candidate %}
+      {% get_proposals_enabled as proposals_enabled %}
+      {% if proposals_enabled  %}
       <li><a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">Crea la tuya</a></li>
+      {% endif %}
       {% else %}
       <li><a class="btn btn-success" href="{% url 'popular_proposals:home' %}">Revísalas</a></li>
       {% endif %}
@@ -102,7 +105,10 @@
         <h3 class="text-white">Tengo una idea para mejorar mi comuna ¿cómo empiezo?</h3>
         <p class="text-white">Regístrate, selecciona tu comuna y sigue los pasos para crear tu propuesta. Tiempo aprox. 20 minutos.</p>
       </div>
+      {% get_proposals_enabled as proposals_enabled %}
+      {% if proposals_enabled  %}
       <div class="col-md-4"><h3 class="pull-right"><a class="btn btn-success arrow btn-lg" href="{% url 'popular_proposals:propose_wizard_full' %}">Crea tu propuesta</a></h3></div>
+      {% endif %}
       {% else %}
       <div class="col-md-8">
         <h3 class="text-white">Quiero conocer y comprometerme con propuestas de mi comuna</h3>

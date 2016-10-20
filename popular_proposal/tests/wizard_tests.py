@@ -98,6 +98,20 @@ class WizardTestCase(TestCase):
         self.assertTemplateUsed(response,
                                 'popular_proposal/wizard/form_step.html')
 
+    @override_settings(PROPOSALS_ENABLED=False)
+    def test_proposals_not_enabled(self):
+        url = reverse('popular_proposals:propose_wizard',
+                      kwargs={'slug': self.arica.id})
+        self.client.login(username=self.feli,
+                          password=USER_PASSWORD)
+
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+
+        url = reverse('popular_proposals:propose_wizard_full')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)        
+
     def get_example_data_for_post(self, t_response={}):
         cntr = len(t_response)
         for step in wizard_forms_fields:

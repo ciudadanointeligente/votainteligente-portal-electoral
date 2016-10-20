@@ -67,9 +67,11 @@
               
           {% endwith %}
         {% else %}
+            {% get_proposals_enabled as proposals_enabled %}
+            {% if proposals_enabled  %}
             {% trans 'Aún no tienes propuestas haz la primera' %}
             <a href="{% url 'popular_proposals:propose_wizard_full' %}" class="btn btn-success login"
               role="button"> {% blocktrans %}¡Sube tu propuesta!{% endblocktrans %}</a>
-
+            {% endif %}
         {% endif %}
     {% endif %}

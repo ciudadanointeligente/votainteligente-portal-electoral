@@ -20,7 +20,10 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 {% if not user|is_candidate %}
-                <li><a href="{% url 'popular_proposals:propose_wizard_full' %}">Crea tu propuesta</a></li>
+                {% get_proposals_enabled as proposals_enabled %}
+                    {% if proposals_enabled  %}
+                    <li><a href="{% url 'popular_proposals:propose_wizard_full' %}">Crea tu propuesta</a></li>
+                    {% endif %}
                 {% endif %}
                 <li><a href="{% url 'popular_proposals:home' %}">Conoce propuestas</a></li>
                 <li class='success'><a href="{% url 'help'  %}" class='label label-info'>

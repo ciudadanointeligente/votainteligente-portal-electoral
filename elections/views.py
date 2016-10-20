@@ -16,6 +16,7 @@ from popular_proposal.forms import ProposalAreaFilterForm
 from popular_proposal.filters import ProposalAreaFilter
 from django_filters.views import FilterMixin
 from django.core.cache import cache
+from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
@@ -131,14 +132,31 @@ class CandidateDetailView(DetailView):
 
     def get_queryset(self):
         queryset = super(CandidateDetailView, self).get_queryset()
-        queryset = queryset.filter(elections__slug=self.kwargs['election_slug'])
+        candidates_per_election_key = u'candidates_for_' + self.kwargs['election_slug']
+        queryset_ = cache.get(candidates_per_election_key)
+        if queryset_ is None:
+            queryset_ = queryset.filter(elections__slug=self.kwargs['election_slug'])
+            cache.set(candidates_per_election_key,
+                      queryset_,
+                      60 * settings.INFINITE_CACHE
+                      )
 
-        return queryset
+        return queryset_
 
     def get_object(self, queryset=None):
-        candidate = super(CandidateDetailView, self).get_object(queryset)
-        candidate = self.model.ranking.get(id=candidate.id)
-        return candidate
+        cache_key = 'candidate_' + self.kwargs['election_slug'] + self.kwargs['slug']
+        candidate = cache.get(cache_key)
+        if candidate is None:
+            candidate = super(CandidateDetailView, self).get_object(queryset)
+            cache.set(cache_key, candidate, 60 * settings.INFINITE_CACHE)
+        cache_key = u'ranking-for-' + candidate.id
+        _candidate = cache.get(cache_key)
+        if _candidate is None:
+            _candidate = self.model.ranking.get(id=candidate.id)
+            cache.set(cache_key,
+                      _candidate,
+                      60 * settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
+        return _candidate
 
     def get_context_data(self, **kwargs):
         context = super(CandidateDetailView, self).get_context_data(**kwargs)

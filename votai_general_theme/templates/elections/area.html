@@ -84,7 +84,10 @@ $(function(){
           <span>{{ n_created|slice:"3:4" }}</span></h4></li>
         <li><h4 class="text-white">propuestas ciudadanas se han creado para {{area}}</h4></li>
         {% if not user|is_candidate %}
+        {% get_proposals_enabled as proposals_enabled %}
+        {% if proposals_enabled  %}
         <li><a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">Crea la tuya</a></li>
+        {% endif %}
         {% endif %}
 
       </ul>
@@ -116,10 +119,13 @@ $(function(){
   </section>
       {% cache 500 create_new_proposal_link area.id %}
       {% if not popular_proposals.exists %}
+      {% get_proposals_enabled as proposals_enabled %}
+      {% if proposals_enabled  %}
       {% blocktrans %}
       <p>Acá aún no hay propuestas, pero puedes:</p>
       {% endblocktrans %}
       <a class="btn btn-info" href="{% url 'popular_proposals:propose_wizard' slug=area.id %}">{% blocktrans with area=area.name %}Crear una propuesta ciudadana para {{ area }}{% endblocktrans %}</a>
+      {% endif %}
       {% endif %}
       {% endcache %}
     </div>
@@ -128,12 +134,15 @@ $(function(){
   <section class="comuna-propuestas">
     <div class="container content_padding">
       <h2 class="text-center">Propuestas ciudadanas para {{ area }}</h2>
+      {% get_proposals_enabled as proposals_enabled %}
+      {% if proposals_enabled  %}
       <div class="text-center bajada">
         <div>Mientras más apoyo tenga una propuesta, es más probable que los candidatos asuman un compromiso con ella</div>
         {% if not user|is_candidate %}
           <a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">Tengo una propuesta</a>
         {% endif %}
       </div>
+      {% endif %}
       {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=proposal_filter_form %}
     </div>
   </section>

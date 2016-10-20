@@ -264,6 +264,19 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
                                                                      'proposal_slug': self.popular_proposal1.slug})
         self.assertRedirects(response_post, detail_url)
 
+    @override_settings(PROPOSALS_ENABLED=False)
+    def test_candidates_not_commiting(self):
+        url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,
+                                                              'candidate_pk': self.candidate.id})
+        logged_in = self.client.login(username=self.fiera.username, password='feroz')
+        self.assertTrue(logged_in)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+        url = reverse('popular_proposals:commit_no', kwargs={'proposal_pk': self.popular_proposal1.id,
+                                                             'candidate_pk': self.candidate.id})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+
     def test_not_commiting_twice(self):
         Commitment.objects.create(candidate=self.candidate,
                                   proposal=self.popular_proposal1,

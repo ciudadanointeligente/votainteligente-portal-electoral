@@ -164,6 +164,13 @@ class ProposalWizardBase(SessionWizardView):
         self.form_list = form_list
         return form_list
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        if settings.PROPOSALS_ENABLED:
+            return super(ProposalWizardBase, self).dispatch(request, *args, **kwargs)
+        else:
+            return HttpResponseNotFound()
+
 
 class ProposalWizard(ProposalWizardBase):
     @method_decorator(login_required)
@@ -309,6 +316,8 @@ class CommitView(FormView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
+        if not settings.PROPOSALS_ENABLED:
+            return HttpResponseNotFound()
         self.proposal = get_object_or_404(PopularProposal, id=self.kwargs['proposal_pk'])
         self.candidate = get_object_or_404(Candidate, id=self.kwargs['candidate_pk'])
         previous_commitment_exists = Commitment.objects.filter(proposal=self.proposal,

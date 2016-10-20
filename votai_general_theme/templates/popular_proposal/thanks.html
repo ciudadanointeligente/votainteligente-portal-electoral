@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load bootstrap3 %}
+{% load votainteligente_extras %}
 {% block extrajs %}
 {% endblock extrajs %}
 
@@ -23,8 +24,11 @@
           <p>Muchas gracias</p>
           
           <div class="col-md-12">  
-            <li class="list-unstyled">  
+            <li class="list-unstyled">
+              {% get_proposals_enabled as proposals_enabled %}
+              {% if proposals_enabled  %}
               <a href="{% url 'popular_proposals:propose_wizard' slug=area.id %}" class="btn btn-success btn-block" role="button">{% blocktrans with area=area %}Crea otra propuesta para {{area}}{% endblocktrans %}</a>
+              {% endif %}
               <a href="{% url 'backend_citizen:index' %}" class="btn btn-primary btn-block" role="button">{% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}</a>
             </li>
           </div>

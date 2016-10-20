@@ -514,3 +514,15 @@ class LoginFormsTemplateTags(TestCase):
         self.assertEquals(template.render(context), 'perrito')
         context = Context({'candidate': candidate2})
         self.assertEquals(template.render(context), '')
+
+    @override_settings(PROPOSALS_ENABLED=False)
+    def test_candidates_not_commiting(self):
+        template = Template("{% load votainteligente_extras %}{% get_proposals_enabled as proposals_enabled %}{% if proposals_enabled  %}si{% else %}no{% endif %}")
+        context = Context({})
+        self.assertEquals(template.render(context), 'no')
+
+    @override_settings(PROPOSALS_ENABLED=True)
+    def test_candidates_commiting_if_enabled(self):
+        template = Template("{% load votainteligente_extras %}{% get_proposals_enabled as proposals_enabled %}{% if proposals_enabled  %}si{% else %}no{% endif %}")
+        context = Context({})
+        self.assertEquals(template.render(context), 'si')

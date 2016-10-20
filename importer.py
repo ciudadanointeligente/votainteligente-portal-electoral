@@ -1,11 +1,12 @@
 # coding=utf-8
-import csv, codecs
+import codecs
 from elections.models import Candidate, Election, PersonalData, Area
 from django.core.urlresolvers import reverse
 from backend_candidate.models import CandidacyContact
 import unicodecsv as csv
 from django.utils.text import slugify
 from backend_candidate.models import send_candidate_username_and_password
+from popular_proposal.models import PopularProposal
 
 
 def area_getter(area_name):
@@ -204,3 +205,23 @@ def process_twitters():
             
         if facebook and not candidate.contact_details.filter(contact_type='FACEBOOK'):
             candidate.add_contact_detail(contact_type='FACEBOOK', value=facebook, label=facebook)
+
+def export_commitments():
+    total_data = []
+    counter = 0
+    total_data.append([u'Número', u'Comuna', u'Título', u'Url', u'Cantidad de compromisos'])
+    ps = PopularProposal.objects.exclude(commitments__isnull=True)
+    for p in ps:
+        counter += 1
+        data = [counter,
+                p.area.name,
+                p.title, u'http://votainteligente.cl' + p.get_absolute_url(),
+                p.commitments.count()]
+        for c in p.commitments.filter(candidate__elections__position='alcalde'):
+            data.append(c.candidate.name)
+        for c in p.commitments.filter(candidate__elections__position='concejal'):
+            data.append(c.candidate.name)
+        total_data.append(data)
+    f = open("compromisos.csv", 'wb')
+    writer = csv.writer(f, encoding='utf-8')
+    writer.writerows(total_data)

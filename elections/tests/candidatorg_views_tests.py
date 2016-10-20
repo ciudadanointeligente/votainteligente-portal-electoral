@@ -142,6 +142,18 @@ class FaceToFaceViewTestCase(TestCase):
         self.assertIn('second_candidate', response.context)
         self.assertEqual(response.context['second_candidate'], self.tarapaca.candidates.all()[1])
 
+    def test_url_does_not_throw_errors_if_any_candidate_does_not_exist(self):
+        url = reverse('face_to_face_two_candidates_detail_view',
+            kwargs={
+                'slug': self.tarapaca.slug,
+                'slug_candidate_one': self.tarapaca.candidates.all()[0].id,
+                'slug_candidate_two': 'i-do-not-exist',
+            })
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.context['first_candidate'], self.tarapaca.candidates.all()[0])
+        self.assertNotIn('second_candidate', response.context)
+
     def test_url_is_reachable_for_one_candidates(self):
         url = reverse('face_to_face_one_candidate_detail_view',
             kwargs={

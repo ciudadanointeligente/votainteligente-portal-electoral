@@ -89,11 +89,13 @@ class ElectionDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ElectionDetailView, self).get_context_data(**kwargs)
         if 'slug_candidate_one' in self.kwargs:
-            context['first_candidate'] = self.object.candidates\
-                .get(id=self.kwargs['slug_candidate_one'])
+            if self.object.candidates.filter(id=self.kwargs['slug_candidate_one']).exists():
+                context['first_candidate'] = self.object.candidates\
+                    .get(id=self.kwargs['slug_candidate_one'])
         if 'slug_candidate_two' in self.kwargs:
-            context['second_candidate'] = self.object.candidates\
-                .get(id=self.kwargs['slug_candidate_two'])
+            if self.object.candidates.filter(id=self.kwargs['slug_candidate_two']).exists():
+                context['second_candidate'] = self.object.candidates\
+                    .get(id=self.kwargs['slug_candidate_two'])
         return context
 
 

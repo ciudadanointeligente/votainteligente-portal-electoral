@@ -7,6 +7,7 @@ import unicodecsv as csv
 from django.utils.text import slugify
 from backend_candidate.models import send_candidate_username_and_password
 from popular_proposal.models import PopularProposal
+from popular_proposal.exporter import CommitmentsExporter
 
 
 def area_getter(area_name):
@@ -202,7 +203,7 @@ def process_twitters():
             continue
         if twitter and not candidate.twitter:
             candidate.add_contact_detail(contact_type='TWITTER', value=twitter, label=twitter)
-            
+
         if facebook and not candidate.contact_details.filter(contact_type='FACEBOOK'):
             candidate.add_contact_detail(contact_type='FACEBOOK', value=facebook, label=facebook)
 
@@ -225,3 +226,16 @@ def export_commitments():
     f = open("compromisos.csv", 'wb')
     writer = csv.writer(f, encoding='utf-8')
     writer.writerows(total_data)
+
+def export_commitments_per_area_csv(area):
+    exporter = CommitmentsExporter(area)
+    f = open(area.id + '.csv', 'wb')
+    w = csv.writer(f, encoding='utf-8')
+    w.writerows(exporter.get_lines())
+
+def export_commitments_for_all_areas():
+    areas = [u'Arica',u'Iquique',u'Alto Hospicio',u'Antofagasta',u'Calama',u'Copiapó',u'Vallenar',u'La Serena',u'Coquimbo',u'Valparaíso',u'Viña del Mar',u'Rancagua',u'Talca',u'Curicó',u'Concepción',u'Talcahuano',u'Chillán',u'Temuco',u'Valdivia',u'Osorno',u'Puerto Varas',u'Puerto Montt',u'Coyhaique',u'Punta Arenas',u'Santiago',u'La Florida',u'Providencia',u'Maipú',u'Puente Alto',u'Las Condes',u'Vitacura',u'Ñuñoa',u'La Reina',u'Recoleta']
+    as_ = Area.objects.filter(name__in=areas)
+    for a in as_:
+        export_commitments_per_area_csv(a)
+

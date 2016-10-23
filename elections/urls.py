@@ -51,7 +51,7 @@ urlpatterns = patterns('',
         name='face_to_face_no_candidate_detail_view'),
     #soulmate
     url(r'^eleccion/(?P<slug>[-\w]+)/soul-mate/?$',
-        SoulMateDetailView.as_view(template_name='elections/soulmate_candidate.html'),
+        csrf_exempt(SoulMateDetailView.as_view(template_name='elections/soulmate_candidate.html')),
         name='soul_mate_detail_view'),
     #soulmate
     url(r'^eleccion/(?P<slug>[-\w]+)/embedded-soul-mate/?$',

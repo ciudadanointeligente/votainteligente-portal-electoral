@@ -97,6 +97,8 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
     force_has_answer = models.BooleanField(default=False,
                                            help_text=_('Marca esto si quieres que el candidato aparezca como que no ha respondido'))
 
+    has_won = models.BooleanField(default=False)
+
     default_extra_info = settings.DEFAULT_CANDIDATE_EXTRA_INFO
 
     objects = HaveAnsweredFirst()

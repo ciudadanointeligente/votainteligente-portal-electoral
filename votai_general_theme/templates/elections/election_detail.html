@@ -55,6 +55,13 @@
 				{% if not candidate.has_answered %}<div class="ribbon label label-danger {% if position == 'concejal' %}ribbon-noimg{% endif %}">No ha respondido</div>{% endif %}
 				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><h3 class="text-center">{{candidate.name}}</h3></a>
 				<p class="small text-light text-center small-bajada">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</p>
+                {% if candidate.has_won %}
+                <div class="small label-info ranking text-white row text-center">
+                  <div class="ranking-content">
+                    <div class="col-md-2 num col-md-offset-2">Electo</div>
+                  </div>
+                </div>
+                {% endif %}
 				{% if user.is_staff %}
 				{% include 'elections/candidates/extra_cards.html' with candidate=candidate %}
 				{% endif %}

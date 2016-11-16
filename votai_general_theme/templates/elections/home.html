@@ -18,7 +18,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        <h1 class="">
+
+        {% if "compromisos_electos.html"|template_exists %}
+                        {% include 'compromisos_electos.html' %}
+        {% else %}
           <span class='hidden-xs'>Revisa los resultados de las Municipales 2016</span>
         </h1>
         <h2 class='visible-xs-*'>
@@ -28,6 +31,8 @@
               <span class="input-group-addon small" id="sizing-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
               {% include '_election_search_form.html' %}
             </div>
+        {% endif %}
+        <h1 class="">
       </div>
     </div>
       

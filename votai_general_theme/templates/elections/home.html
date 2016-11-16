@@ -13,15 +13,15 @@
 
 {% block everything %}
 
-<div class="extra text-white"><div class="container text-center small">Revisa quiénes son los candidatos electos, a qué se comprometieron y qué opinan.</div></div>
+<!-- <div class="extra text-white"><div class="container text-center small">Revisa quiénes son los candidatos electos, a qué se comprometieron y qué opinan.</div></div> -->
 <section id="hero">
   <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-
         {% if "compromisos_electos.html"|template_exists %}
                         {% include 'compromisos_electos.html' %}
         {% else %}
+    <div class="row">
+      <div class="col-md-8">
+
           <span class='hidden-xs'>Revisa los resultados de las Municipales 2016</span>
         </h1>
         <h2 class='visible-xs-*'>

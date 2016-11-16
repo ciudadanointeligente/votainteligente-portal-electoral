@@ -1729,7 +1729,7 @@ input#id_4-title {
   text-transform: uppercase;
 }
 
-.propuesta hr {
+.propuesta hr, .electo hr {
     max-width: 20%;
 }
 
@@ -2020,6 +2020,15 @@ li.destacado:before {
 }
 
 #grid.container .post img { padding: 0; }
+
+
+/*Post elecciones*/
+
+.post.electo {
+  border: 1px solid #e2af00;
+  border-radius: 6px;
+  padding: 40px 15px;
+}
 
 
 /* Medium devices */

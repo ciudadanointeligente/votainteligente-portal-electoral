@@ -370,8 +370,8 @@ label.control-label {
 /*Section Hero*/
 
 #hero {
-  background: url(../img/hero.svg) bottom right no-repeat $yellow;
-  color: white;
+  /*background: url(../img/hero.svg) bottom right no-repeat $yellow;*/
+  /*color: white;*/
   padding: 90px 0;
   min-height: 450px;
 }
@@ -2025,7 +2025,7 @@ li.destacado:before {
 /*Post elecciones*/
 
 .post.electo {
-  border: 1px solid #e2af00;
+  border: 1px solid $grey-five;
   border-radius: 6px;
   padding: 40px 15px;
 }

@@ -370,8 +370,8 @@ label.control-label {
 /*Section Hero*/
 
 #hero {
-  background: url(../img/hero.svg) bottom right no-repeat $yellow;
-  color: white;
+  /*background: url(../img/hero.svg) bottom right no-repeat $yellow;*/
+  /*color: white;*/
   padding: 90px 0;
   min-height: 450px;
 }
@@ -1729,7 +1729,7 @@ input#id_4-title {
   text-transform: uppercase;
 }
 
-.propuesta hr {
+.propuesta hr, .electo hr {
     max-width: 20%;
 }
 
@@ -2020,6 +2020,15 @@ li.destacado:before {
 }
 
 #grid.container .post img { padding: 0; }
+
+
+/*Post elecciones*/
+
+.post.electo {
+  border: 1px solid $grey-five;
+  border-radius: 6px;
+  padding: 40px 15px;
+}
 
 
 /* Medium devices */

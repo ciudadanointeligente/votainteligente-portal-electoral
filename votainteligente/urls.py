@@ -3,6 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
 from backend_candidate.views import HelpFindingCandidates
+from django.views.generic import TemplateView
 
 
 admin.autodiscover()
@@ -31,6 +32,9 @@ urlpatterns = patterns('',
     url(r'^ayudanos/$',
         HelpFindingCandidates.as_view(),
         name='help'),
+    url(r'^compromisos/$',
+        TemplateView.as_view(template_name='compromisos_electos.html'),
+        name='compromisos'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^accounts/passwordchange/?$',
         'django.contrib.auth.views.password_change',

@@ -16,23 +16,16 @@
 <!-- <div class="extra text-white"><div class="container text-center small">Revisa quiénes son los candidatos electos, a qué se comprometieron y qué opinan.</div></div> -->
 <section id="hero">
   <div class="container">
-        {% if "compromisos_electos.html"|template_exists %}
-                        {% include 'compromisos_electos.html' %}
-        {% else %}
     <div class="row">
       <div class="col-md-8">
-
-          <span class='hidden-xs'>Revisa los resultados de las Municipales 2016</span>
-        </h1>
+		<h1>Todo lo que necesitas saber sobre las Elecciones Municipales 2016</h1>
         <h2 class='visible-xs-*'>
-            ¿Quién ganó en tu comuna?
+            Revisa los candidatos en tu comuna
         </h2>
             <div class="input-group input-group-lg">
               <span class="input-group-addon small" id="sizing-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
               {% include '_election_search_form.html' %}
             </div>
-        {% endif %}
-        <h1 class="">
       </div>
     </div>
       

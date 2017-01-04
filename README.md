@@ -52,10 +52,6 @@ It might take some time to get all installed
 
 * Create the database and tables.
 
-`python manage.py syncdb`
-
-Update the tables with migrations
-
 `python manage.py migrate`
 
 

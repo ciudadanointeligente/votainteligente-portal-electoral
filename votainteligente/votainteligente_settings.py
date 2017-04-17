@@ -3,6 +3,8 @@ import sys
 import os
 from django.conf import settings
 from datetime import timedelta
+from django.conf import settings
+from django_nose import NoseTestSuiteRunner
 
 
 DEBUG = True
@@ -28,7 +30,7 @@ INSTALLED_APPS = (
     'linaro_django_pagination',
     'bootstrap3',
     'formtools',
-    ##"registration_defaults",
+    # "registration_defaults",
     "sass_processor",
     "images",
     'candidator',
@@ -45,10 +47,9 @@ INSTALLED_APPS = (
     'mathfilters',
     'newsletter',
     'rest_framework',
-    'popolorest',
     'preguntales',
     # Uncomment the next line to enable admin documentation:
-    #'django.contrib.admindocs',
+    # 'django.contrib.admindocs',
     'popular_proposal',
     'backend_staff',
     'backend_citizen',
@@ -63,9 +64,9 @@ INSTALLED_APPS_AFTER_ALL = ('el_pagination',)
 
 # REGISTRATION
 ACCOUNT_ACTIVATION_DAYS = 7
-LOGIN_REDIRECT_URL='backend_citizen:index'
+LOGIN_REDIRECT_URL = 'backend_citizen:index'
 
-#SOCIAL AUTH
+# SOCIAL AUTH
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = LOGIN_REDIRECT_URL
 
 AUTHENTICATION_BACKENDS = (
@@ -119,7 +120,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 
-#SITE_ID
+# SITE_ID
 SITE_ID = 1
 NEWSLETTER_CONFIRM_EMAIL = False
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
@@ -128,7 +129,7 @@ LANGUAGE_CODE = 'es-cl'
 
 TIME_ZONE = 'UTC'
 # Using django-tinymce
-#NEWSLETTER_RICHTEXT_WIDGET = "tinymce.widgets.TinyMCE"
+# NEWSLETTER_RICHTEXT_WIDGET = "tinymce.widgets.TinyMCE"
 
 # Send YoQuieroSaber_Juego mails to Cuttlefish (see http://cuttlefish.io)
 EMAIL_HOST = 'cuttlefish.oaf.org.au'
@@ -140,13 +141,7 @@ EMAIL_USE_TLS = True
 
 THUMBNAIL_DEBUG = False
 
-### CANDIDEITORG API THINGS
-
-CANDIDEITORG_URL = 'http://localhost:3002/api/v2/'
-CANDIDEITORG_USERNAME = 'admin'
-CANDIDEITORG_API_KEY = 'a'
-
-### CANDIDEITORG API THINGS
+# CANDIDEITORG API THINGS
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -183,7 +178,8 @@ CELERY_ALWAYS_EAGER = True
 CELERYBEAT_SCHEDULE = {'sending-mails-every-2-minutes': {'task': 'preguntales.tasks.send_mails',
                                                          'schedule': timedelta(minutes=2),
                                                          },
-                       # 'letting-candidates-know-about-us-every-two-days': {'task': 'backend_candidate.tasks.send_candidates_their_username_and_password',
+                       # 'letting-candidates-know-about-us-every-two-days':
+                       # {'task': 'backend_candidate.tasks.send_candidates_their_username_and_password',
                        #                                                     'schedule': timedelta(days=2),
                        #                                                     },
                        }
@@ -198,7 +194,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 10,
 }
-#Django nose
+# Django nose
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 if TESTING:
 
@@ -221,7 +217,7 @@ else:
 # SOUTH_TESTS_MIGRATE = False
 EXTRA_APPS = ()
 
-#navigation bar
+# navigation bar
 # NAV_BAR = ('profiles','questionary','soulmate','facetoface','ask','ranking')
 NAV_BAR = ('profiles', 'questionary', 'soulmate', 'facetoface', 'ask', 'ranking')
 WEBSITE_METADATA = {
@@ -229,7 +225,7 @@ WEBSITE_METADATA = {
     'description': u'A description for the site',
     'keywords': u'some,tags,separated,by,comma'
 }
-#for Facebook OGP http://ogp.me/
+# for Facebook OGP http://ogp.me/
 WEBSITE_OGP = {
     'title': u'VotaInteligente',
     'type': 'website',
@@ -237,28 +233,28 @@ WEBSITE_OGP = {
     'image': 'img/votai-196.png',
     'fb:app_id': 'APPID'
 }
-#disqus setting dev
+# disqus setting dev
 WEBSITE_DISQUS = {
     'enabled': True,
     'shortname': 'shortname_disqus',
     'dev_mode': 0
 }
-#google analytics
+# google analytics
 WEBSITE_GA = {
     'code': 'UA-XXXXX-X',
     'name': 'ga_name',
     'gsite-verification': 'BCyMskdezWX8ObDCMsm_1zIQAayxYzEGbLve8MJmxHk'
 }
-#imgur
+# imgur
 WEBSITE_IMGUR = {
     #  example client_id, only works with 50 pic a day
     'client_id': 'eb18642b5b220484864483b8e21386c3',
 }
-#settings for global site
+# settings for global site
 WEBSITE_GENERAL_SETTINGS = {
     'home_title': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
 }
-#twitter sepparated by comma, eg: votainteligente,votainformado,othertag
+# twitter sepparated by comma, eg: votainteligente,votainformado,othertag
 WEBSITE_TWITTER = {
     'hashtags': 'votainteligente',
     'text': 'Conoce a tus candidat@s y encuentra a tu Media Naranja Política en '
@@ -281,18 +277,16 @@ NEW_ANSWER_ENDPOINT = 'NEW_ANSWER_ENDPOINT'
 THEME = None
 
 
-WHEN_TO_NOTIFY=[25, 50, 100, 150, 200]
+WHEN_TO_NOTIFY = [25, 50, 100, 150, 200]
 NOTIFY_CANDIDATES = True
 NOTIFY_CANDIDATES_OF_NEW_PROPOSAL = True
-NO_REPLY_MAIL="no-reply@localhost"
-EMAIL_LOCALPART='municipales2016'
-EMAIL_DOMAIN='votainteligente.cl'
+NO_REPLY_MAIL = "no-reply@localhost"
+EMAIL_LOCALPART = 'municipales2016'
+EMAIL_DOMAIN = 'votainteligente.cl'
 MAX_AMOUNT_OF_MAILS_TO_CANDIDATE = 3
 
 HIDDEN_AREAS = ['fundacion-ciudadano-inteligente', ]
 
-from django.conf import settings
-from django_nose import NoseTestSuiteRunner
 
 
 class DisableMigrations(object):
@@ -300,7 +294,7 @@ class DisableMigrations(object):
         return True
 
     def __getitem__(self, item):
-        return "notmigrations"
+        return None
 
 
 class Runner(NoseTestSuiteRunner):

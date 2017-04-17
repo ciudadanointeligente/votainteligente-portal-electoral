@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from popular_proposal.views import (ProposalCreationView,
                                     ThanksForProposingView,
                                     SubscriptionView,
@@ -16,7 +16,7 @@ from popular_proposal.views import (ProposalCreationView,
 from django.views.decorators.clickjacking import xframe_options_exempt
 
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^$',
         HomeView.as_view(),
         name='home'),
@@ -62,4 +62,4 @@ urlpatterns = patterns('',
     url(r'^(?P<pk>[-\w]+)/subscribe/?$',
         SubscriptionView.as_view(),
         name='like_a_proposal'),
-)
+]

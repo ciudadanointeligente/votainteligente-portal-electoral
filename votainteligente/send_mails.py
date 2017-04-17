@@ -16,13 +16,12 @@ def validateEmail(email):
         return False
 
 
-def send_mail(context_dict, template_prefix, to=[], reply_to=None, from_email=settings.DEFAULT_FROM_EMAIL):
+def send_mail(context, template_prefix, to=[], reply_to=None, from_email=settings.DEFAULT_FROM_EMAIL):
     validated_to = []
     for m in to:
         if validateEmail(m):
             validated_to.append(m)
     to = validated_to
-    context = Context(context_dict)
     template_prefix_dict = {'template_prefix': template_prefix}
     template_body = get_template('mails/%(template_prefix)s_body.html' % template_prefix_dict)
     body = template_body.render(context)

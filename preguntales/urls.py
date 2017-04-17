@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from preguntales.views import (
     MessageDetailView,
     ElectionAskCreateView,
@@ -11,7 +11,7 @@ from django.views.decorators.cache import cache_page
 
 new_answer_endpoint = r"^new_answer/%s/?$" % (settings.NEW_ANSWER_ENDPOINT)
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^election/(?P<election_slug>[-\w]+)/messages/(?P<pk>\d+)/?$',
         MessageDetailView.as_view(template_name='elections/message_detail.html'),
         name='message_detail'),
@@ -31,4 +31,4 @@ urlpatterns = patterns('',
     url(r'^confirmation/(?P<key>[-\w]+)/?$',
         ConfirmationView.as_view(),
         name='confirmation'),
-)
+]

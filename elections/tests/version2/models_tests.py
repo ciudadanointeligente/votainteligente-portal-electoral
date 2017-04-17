@@ -83,10 +83,10 @@ class CandidaTeTestCase(Version2TestCase):
         candidate.add_contact_detail(contact_type="TWITTER", label="@candidato1", value="http://twitter.com/candidato1")
         twitter = candidate.contact_details.get(label="@candidato1")
         template_str = get_template('elections/twitter/no_candidator_answer.html')
-        context = Context({
+        context = {
             "candidate": candidate,
             "twitter": twitter
-            })
+            }
         expected_twitter_button = template_str.render(context)
         actual_twitter_button_template = Template("{% load votainteligente_extras %}{% no_ha_respondido_twitter_button %}")
         actual_twitter_button = actual_twitter_button_template.render(Context({"candidate": candidate}))
@@ -105,10 +105,10 @@ class CandidaTeTestCase(Version2TestCase):
         candidate.add_contact_detail(contact_type="TWITTER", label="@candidato1_twitter", value="http://twitter.com/candidato1_twitter")
         twitter = candidate.contact_details.get(label="@candidato1_twitter")
         template_str = get_template('elections/twitter/follow_the_conversation.html')
-        context = Context({
+        context = {
             "twitter": twitter,
             "candidate": candidate
-            })
+            }
         expected_twitter_button = template_str.render(context)
         actual_twitter_button_template = Template("{% load votainteligente_extras %}{% follow_on_twitter %}")
         actual_twitter_button = actual_twitter_button_template.render(Context({"candidate": candidate}))
@@ -119,12 +119,12 @@ class CandidaTeTestCase(Version2TestCase):
         candidate.add_contact_detail(contact_type="TWITTER", label="@candidato1_twitter", value="http://twitter.com/candidato1_twitter")
         template_str = get_template('elections/twitter/ranking_twitter.html')
         twitter = candidate.contact_details.get(label="@candidato1_twitter")
-        context = Context({
+        context = {
             "twitter": twitter,
             "candidate": candidate,
             'btn_text': 'message button',
             'popup_text': 'message twitter window'
-            })
+            }
         expected_twitter_button = template_str.render(context)
         actual_twitter_button_template = Template("{% load votainteligente_extras %}{% twitter_on_ranking 'message button' 'message twitter window' %}")
         actual_twitter_button = actual_twitter_button_template.render(Context({"candidate": candidate}))

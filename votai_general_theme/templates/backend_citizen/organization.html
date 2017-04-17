@@ -25,7 +25,7 @@ $(function(){
     <h3>{{organization.description}}</h3>
     {% for contact_detail in organization.contact_details.all %}
         <a href="{{contact_detail.url}}">
-            {% if contact_detail.contact_type = 'FACEBOOK' %}
+            {% if contact_detail.contact_type == 'FACEBOOK' %}
             <i class="fa fa-facebook-official" aria-hidden="true"></i>
             {% endif %}
             {{contact_detail.label}}

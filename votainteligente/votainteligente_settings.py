@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'popolo',
     'markdown_deux',
     'django_extensions',
-    'social.apps.django_app.default',
+    'social_django',
     'sorl.thumbnail',
     'django.contrib.admin',
     'tinymce',

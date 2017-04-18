@@ -162,7 +162,7 @@ class Answer(models.Model):
 
 class Attachment(models.Model):
     answer = models.ForeignKey(Answer, related_name='attachments')
-    content = models.FileField(upload_to="attachments/%Y/%m/%d")
+    content = models.FileField(upload_to="attachments/%Y/%m/%d", max_length=255)
     name = models.CharField(max_length=255)
 
 class OutboundMessage(models.Model):

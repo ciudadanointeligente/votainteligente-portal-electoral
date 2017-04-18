@@ -155,4 +155,3 @@ class EmailHandler(FroideEmailParser):
         email_answer = self.instanciate_answer(lines)
 
         return email_answer
-

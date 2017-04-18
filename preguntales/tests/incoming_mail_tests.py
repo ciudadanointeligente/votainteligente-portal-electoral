@@ -13,6 +13,9 @@ from unittest import skip
 from preguntales.tests import __testing_mails__, __attachrments_dir__, read_lines
 from django.core.files import File
 from django.core.management import call_command
+import os
+
+THE_CURRENT_MEDIA_ROOT = os.path.dirname(os.path.abspath(__file__)) + '/testing_mails/attachments'
 
 def read_mail(mail):
     return read_lines(__testing_mails__ + mail + '.txt')
@@ -137,6 +140,7 @@ class AnswerHandlerTestCase(IncomingEmailBase):
         self.assertEquals(answer.message, self.message)
         self.assertEquals(answer.content, email_answer.content_text)
 
+    @override_settings(MEDIA_ROOT=THE_CURRENT_MEDIA_ROOT)
     def test_save_attachments_on_save(self):
         '''When saving it also calls the save an attachment'''
         email_answer = EmailAnswer()
@@ -193,4 +197,3 @@ class IncomingTest(IncomingEmailBase):
             self.assertEquals(answer.message, self.message)
             self.assertEquals(answer.person.person_ptr, outbound_message.person )
             self.assertEquals(answer.content, 'prueba4lafieri')
-

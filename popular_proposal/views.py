@@ -118,6 +118,7 @@ class SubscriptionView(FormView):
 class HomeView(EmbeddedViewBase, FilterView):
     model = PopularProposal
     template_name = 'popular_proposal/home.html'
+    filter_fields = ['clasification', ]
 
     def get_queryset(self):
         qs = super(HomeView, self).get_queryset().exclude(area__id__in=settings.HIDDEN_AREAS)

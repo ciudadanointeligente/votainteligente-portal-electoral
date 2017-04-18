@@ -5,6 +5,7 @@ from django.conf import settings
 from backend_candidate.views import HelpFindingCandidates
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import password_change, password_change_done
 
 
 admin.autodiscover()
@@ -37,10 +38,12 @@ urlpatterns = [
         name='compromisos'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^accounts/passwordchange/?$',
-        auth_views.PasswordChangeView.as_view(template_name='registration/password_change.html'),
+        password_change,
+        {'template_name': 'registration/password_change.html'},
         name='password_reset'),
     url(r'^accounts/passwordchange/done/?$',
-        auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done_.html'),
+        password_change_done,
+        {'template_name': 'registration/password_change_done_.html'},
         name='password_change_done'),
 ]
 

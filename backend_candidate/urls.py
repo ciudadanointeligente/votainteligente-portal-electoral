@@ -8,7 +8,7 @@ from backend_candidate.views import (HomeView,
                                      ProposalsForMe,
                                      HelpFindingCandidates,
                                      )
-from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import login
 
 
 urlpatterns = [
@@ -16,7 +16,8 @@ urlpatterns = [
         HomeView.as_view(),
         name='home'),
     url(r'^login/?$',
-        auth_views.LoginView.as_view(template_name='backend_candidate/auth_login.html'),
+        login,
+        {'template_name': 'backend_candidate/auth_login.html'},
         name='candidate_auth_login'),
     url(r'^profile/(?P<slug>[-\w]+)/(?P<candidate_id>[-\w]+)/?$',
         ProfileView.as_view(),

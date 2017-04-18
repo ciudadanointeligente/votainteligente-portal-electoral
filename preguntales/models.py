@@ -60,11 +60,11 @@ class Message(models.Model):
         self.save()
 
     def __init__(self, *args, **kwargs):
-        super(Message, self).__init__(*args, **kwargs)
         self.possible_status = {}
-        self.possible_status['accepted'] = kwargs.get('accepted', None)
-        self.possible_status['sent'] = kwargs.get('sent', None)
-        self.possible_status['confirmed'] = kwargs.get('confirmed', None)
+        self.possible_status['accepted'] = kwargs.pop('accepted', None)
+        self.possible_status['sent'] = kwargs.pop('sent', None)
+        self.possible_status['confirmed'] = kwargs.pop('confirmed', None)
+        super(Message, self).__init__(*args, **kwargs)
 
     def save(self, *args, **kwargs):
         creating = False

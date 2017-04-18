@@ -5,9 +5,13 @@ from elections.models import Election
 import csv
 
 class Command(BaseCommand):
-  args = '<elections tags csv file>'
+  help = 'Carga informacion extra desde un CSV'
+
+  def add_arguments(self, parser):
+    parser.add_argument('csv_file', nargs='+', type=str)
+
   def handle(self, *args, **options):
-    file_path = args[0]
+    file_path = options['csv_file'][0]
     tags_lines = csv.reader(open(file_path, 'rb'), delimiter=',')
     # Remove header
     tags_lines.next()
@@ -20,5 +24,5 @@ class Command(BaseCommand):
             tag = tag.decode('utf8').strip().lower()
             election.tags.add(tag)
         except Exception:
-          print u'excepción con la elección ' + election_name 
+          print u'excepción con la elección ' + election_name
           pass

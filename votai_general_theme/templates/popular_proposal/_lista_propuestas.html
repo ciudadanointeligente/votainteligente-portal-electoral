@@ -3,7 +3,7 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
-{% load el_pagination_tags %}
+{% load pagination_tags %}
   
     {% if form %}
 		<form action="{{ request.path }}" method="GET" role="form">
@@ -27,8 +27,8 @@
     {% endif %}
 
 <div id="grid">
-    {% paginate 12 popular_proposals %}
-    {% show_pages %}
+    {% autopaginate popular_proposals 12 %}
+    {% paginate %}
   <div id="posts">
     {% for proposal in popular_proposals %}
     {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal is_embedded=is_embedded %}
@@ -37,6 +37,6 @@
     Aún no hay propuestas acá.
     {% endblocktrans %}
     {% endfor %}
+    {% paginate %}
   </div>
-    {% show_pages %}
 </div>

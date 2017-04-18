@@ -307,7 +307,7 @@ class ProposalsPerArea(EmbeddedViewBase, ListView):
         kwargs = {'data': self.request.GET or None,
                   'area': self.area
                   }
-        filterset = ProposalAreaFilter(**kwargs)
+        filterset = ProposalAreaFilter(**kwargs).qs
         return filterset
 
 

@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from haystack.views import SearchView
 from elections.forms import ElectionForm
 from elections.views import (
@@ -13,10 +13,11 @@ from elections.views import (
     )
 
 from elections.soul_mate import SoulMateDetailView
-from sitemaps import *
+from django.contrib.sitemaps.views import sitemap
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.views.decorators.cache import cache_page
+from elections.sitemaps  import ElectionsSitemap, CandidatesSitemap
 
 media_root = getattr(settings, 'MEDIA_ROOT', '/')
 
@@ -26,7 +27,7 @@ sitemaps = {
     'candidates': CandidatesSitemap,
 }
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^$', cache_page(60 * settings.CACHE_MINUTES)(xframe_options_exempt(HomeView.as_view(template_name='elections/home.html'))), name='home'),
     url(r'^buscar/?$', SearchView(template='search.html',
             form_class=ElectionForm), name='search'),
@@ -74,10 +75,10 @@ urlpatterns = patterns('',
         AreaDetailView.as_view(template_name='elections/area.html'),
         name='area'),
 
-    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
-)
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}),
+]
 
-urlpatterns += patterns('',
-    url(r'^cache/(?P<path>.*)$', 'django.views.static.serve',
+urlpatterns += [
+    url(r'^cache/(?P<path>.*)$', sitemap,
         {'document_root': media_root})
-)
+]

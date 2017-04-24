@@ -1,5 +1,5 @@
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from backend_staff.views import (
     IndexView,
     PopularProposalCommentsView,
@@ -12,7 +12,7 @@ from backend_staff.views import (
     StatsPerAreaView,
 )
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^$',
         IndexView.as_view(),
         name='index'),
@@ -40,4 +40,4 @@ urlpatterns = patterns('',
     url(r'^all_commitments/?$',
         AllCommitmentsView.as_view(),
         name='all_commitments'),
-)
+]

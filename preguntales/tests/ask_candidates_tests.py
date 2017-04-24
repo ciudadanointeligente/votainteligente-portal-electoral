@@ -21,7 +21,9 @@ from django.template.loader import get_template
 from unittest import skip
 from django.core.files import File
 from preguntales.tests import __testing_mails__, __attachrments_dir__
+import os
 
+THE_CURRENT_MEDIA_ROOT = os.path.dirname(os.path.abspath(__file__)) + '/testing_mails/attachments'
 
 EMAIL_LOCALPART='municipales2016'
 EMAIL_DOMAIN='votainteligente.cl'
@@ -300,7 +302,7 @@ class AnswerAttachmentTestCase(TestCase):
         self.pdf_file = File(open(__attachrments_dir__ + "hello.pd.pdf", 'rb'))
         self.photo_fiera = File(open(__attachrments_dir__ + "fiera_parque.jpg", 'rb'))
 
-
+    @override_settings(MEDIA_ROOT=THE_CURRENT_MEDIA_ROOT)
     def test_instantiate(self):
         attachment = Attachment.objects.create(answer=self.answer,
                                                content=self.photo_fiera,
@@ -642,4 +644,3 @@ class MessageSenderTestCase(TestCase):
         self.assertIn(message, Message.objects.filter(status__sent=True))
         self.assertIn(message2, Message.objects.filter(status__sent=True))
         self.assertEquals(len(mail.outbox), 4)
-

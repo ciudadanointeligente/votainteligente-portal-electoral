@@ -39,7 +39,7 @@ $(function(){
   </ol>
 </div> 
 
-  {% if popular_proposal.proposer = user %}
+  {% if popular_proposal.proposer == user %}
     <div class="text-width text-right">
         Esta es tu propuesta {{user}}, <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %} ¿quieres añadir antecedentes?{% endblocktrans %}</a>
     </div>

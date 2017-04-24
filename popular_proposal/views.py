@@ -118,6 +118,7 @@ class SubscriptionView(FormView):
 class HomeView(EmbeddedViewBase, FilterView):
     model = PopularProposal
     template_name = 'popular_proposal/home.html'
+    filter_fields = ['clasification', 'area', ]
 
     def get_queryset(self):
         qs = super(HomeView, self).get_queryset().exclude(area__id__in=settings.HIDDEN_AREAS)
@@ -306,7 +307,7 @@ class ProposalsPerArea(EmbeddedViewBase, ListView):
         kwargs = {'data': self.request.GET or None,
                   'area': self.area
                   }
-        filterset = ProposalAreaFilter(**kwargs)
+        filterset = ProposalAreaFilter(**kwargs).qs
         return filterset
 
 

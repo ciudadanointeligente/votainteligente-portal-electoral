@@ -1,5 +1,5 @@
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from backend_candidate.views import (HomeView,
                                      CompleteMediaNaranjaView,
                                      CandidacyJoinView,
@@ -9,11 +9,9 @@ from backend_candidate.views import (HomeView,
                                      HelpFindingCandidates,
                                      )
 from django.contrib.auth.views import login
-from django.views.decorators.cache import cache_page
-from django.conf import settings
 
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^$',
         HomeView.as_view(),
         name='home'),
@@ -36,5 +34,4 @@ urlpatterns = patterns('',
     url(r'^candidacy_user_join/(?P<identifier>[-\w]+)/?$',
         CandidacyJoinView.as_view(),
         name='candidacy_user_join'),
-
-)
+]

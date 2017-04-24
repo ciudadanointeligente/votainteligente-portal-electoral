@@ -17,18 +17,12 @@
 <section id="hero">
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
-		<h1>Todo lo que necesitas saber sobre las Elecciones Municipales 2016</h1>
-        <h2 class='visible-xs-*'>
-            Revisa los candidatos en tu comuna
-        </h2>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon small" id="sizing-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-              {% include '_election_search_form.html' %}
-            </div>
+      <div class="col-xs-12 col-md-8">
+        <h1>Todo lo que necesitas saber sobre las Elecciones Presidenciales 2017</h1>
+        <!-- <h2 class='visible-xs-*'>Revisa los candidatos en tu comuna</h2> -->
+        {% include '_election_search_form.html' %}
       </div>
     </div>
-      
 </section>
 
 <!-- Destino de modales -->
@@ -68,7 +62,7 @@
 {% endcache %}
 
 
-
+{% if proposals_with_likers %}
 <section id="propuestas-mas-apoyo">
 {% if user.is_authenticated %}
     {% include '_slide_propuestas.html' with proposals=proposals_with_likers %}
@@ -76,9 +70,9 @@
     {% cache 600 propuestas-mas-apoyo %}
       {% include '_slide_propuestas.html' with proposals=proposals_with_likers %}
     {% endcache %}
-
 {% endif %}
 </section>
+{% endif %}
 
 <section id="que-hago">
   <div class="container">

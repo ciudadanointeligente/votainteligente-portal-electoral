@@ -26,7 +26,7 @@
   Para apoyar una propuesta debes estar registrado.
 </div>
 {% endif %}
-	<div class="col-md-6">
+	<div class="col-xs-12 col-md-6">
 				<h3>{% trans '¿Ya tienes cuenta?' %}</h3>
 				<p>Si eres candidato debes ingresar con el usuario y contraseña que enviamos a tu correo con el asunto "¡Bienvenida/o a Vota Inteligente!"</p>
 				{% basic_login url=next %}
@@ -34,35 +34,26 @@
 					{% include '_social_login_buttons.html' with url=next %}
 				</div>
 	</div>
-	<div class="col-md-6">
-				<h3>{% trans 'Regístrate:' %}</h3>
-				<div class="line-space"></div>
+	<div class="col-xs-12 col-md-6">
+			<div class="line-space"></div>
+				<h3>{% trans 'Registro:' %}</h3>
 				<div>
 					<!-- Nav tabs -->
 					<ul class="nav nav-pills list-inline" role="tablist">
-						<li role="presentation" class="active hidden-xs"><a class="small" href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Registro colectivo' %} <i class="fa fa-users" aria-hidden="true"></i></a></li>
-						<li role="presentation" class="hidden-xs"><a class="small" href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Registro individual' %} <i class="fa fa-user" aria-hidden="true"></i></a></li>
-						<!-- Dropdown moviles -->
-						<li class="dropdown hidden-sm hidden-md hidden-lg" role="presentation" >
-						  <a href="#" class="dropdown-toggle small" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Selecciona el tipo de registro' %}<span class="caret"></span></a>
-						  <ul class="dropdown-menu">
-						    <li><a href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Registro colectivo' %} <i class="fa fa-users" aria-hidden="true"></i></a></li>
-						    <li><a href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Registro individual' %} <i class="fa fa-user"></i></a></li>
-						  </ul>
-						</li>
-						<!-- Fin Dropdown moviles -->
+						<li role="presentation" class="active"><a class="small" href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Agrupación' %} <i class="fa fa-users" aria-hidden="true"></i></a></li>
+						<li role="presentation" class=""><a class="small" href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Individual' %} <i class="fa fa-user" aria-hidden="true"></i></a></li>
 					</ul>
 
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane" id="userRegister">
-							
+
 							<div class="form-group">
 								{% include '_social_login_buttons.html' with url=next %}
 							</div>
 							<p>{% trans 'O regístrate con un usuario y contraseña:' %}</p>
 							{% user_register %}
-							
+
 						</div>
 						<div role="tabpanel" class="tab-pane active" id="groupRegister">
 							{% group_register %}

@@ -43,7 +43,7 @@ h1 {
   font-weight: 700;
   font-family: 'Arvo', serif;
   letter-spacing: 6px;
-  font-size: 36px;
+  font-size: 34px;
   text-transform: uppercase;
   color: $grey-one;
   margin: 40px 0;
@@ -187,7 +187,7 @@ hr {
 .img-fluid {
   max-width: 100%;
   height: auto;
-} 
+}
 
 select.form-control {
     background: #EAEDF2;
@@ -249,15 +249,15 @@ select.form-control {
 }
 
 .form-control:-moz-placeholder { /* Firefox 18- */
-   color: $grey-three;  
+   color: $grey-three;
 }
 
 .form-control::-moz-placeholder {  /* Firefox 19+ */
-   color: $grey-three;  
+   color: $grey-three;
 }
 
-.form-control:-ms-input-placeholder {  
-   color: $grey-three;  
+.form-control:-ms-input-placeholder {
+   color: $grey-three;
 }
 
 label.control-label {

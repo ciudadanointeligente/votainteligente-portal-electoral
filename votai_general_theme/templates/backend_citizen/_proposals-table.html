@@ -1,28 +1,32 @@
 {% load votainteligente_extras %}
 {% load i18n %}
-      
+
 {% if temporary_proposals %}
-      <h2>Tus propuestas</h2>
-      <span>Potencia tus propuestas utilizando nuestro <a href="http://votainteligente.cl/pages/herramientas_de_activismo">Kit de Activismo</a></span>
-      <table class="table">
-        <tr>
-            <td>{% trans 'Estado' %}</td>
-            <td>{% trans 'Título propuesta' %}</td>
-            <td>{% trans 'Comuna' %}</td>
-            <td>{% trans 'Antecedentes' %}</td>
-        </tr>
+      <h2 class="page-header">Tus propuestas</h2>
+      <p>Potencia tus propuestas utilizando nuestro <a href="/pages/herramientas_de_activismo">Kit de Activismo</a></p>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{% trans 'Estado' %}</th>
+            <th>{% trans 'Título propuesta' %}</th>
+            <th>{% trans 'Comuna' %}</th>
+            <th>{% trans 'Antecedentes' %}</th>
+          </tr>
+        </thead>
+        <tbody>
+
     {% for proposal in temporary_proposals %}
         <tr>
             <td>
                 {% if proposal.status == 'in_our_side' %}
-                    {% blocktrans %}<span class="label label-default"><i class="fa fa-clock-o"></i> En revisión</span>{% endblocktrans %}     
+                    {% blocktrans %}<span class="label label-default"><i class="fa fa-clock-o"></i> En revisión</span>{% endblocktrans %}
                 {% endif %}
                 {% if proposal.status == 'in_their_side' %}
                 <div>
                     <a href="{% url 'backend_citizen:temporary_data_update' pk=proposal.id %}">
                         <span class="label label-primary"><i class="fa fa-pencil"></i>
                         {% blocktrans %}Modifíca tu propuesta{% endblocktrans %}
-                        </span> 
+                        </span>
                     </a>
                 </div>
                 {% endif %}
@@ -34,8 +38,11 @@
                 <span class="label label-danger"><i class="fa fa-times"></i> {% trans 'Rechazada' %}</span>
                 {% endif %}
             </td>
-            <td><a href="{{ proposal.created_proposal.get_absolute_url }}">{{proposal.data.title}}
-                {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.title %}</a>
+            <td>
+              <!-- <a href="{{ proposal.created_proposal.get_absolute_url }}"> -->
+              {{proposal.data.title}}
+                {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.title %}
+              <!-- </a> -->
             </td>
             <td><a href="{% url 'area' slug=proposal.area.id %}">{{proposal.area}}</a></td>
             <td>
@@ -51,6 +58,7 @@
     {% empty %}
 
     {% endfor %}
+          </tbody>
         </table>
     {% else %}
         {% if user|is_candidate %}
@@ -64,12 +72,12 @@
                     {% trans 'Ya respondiste la 1/2 naranja. Muchas gracias' %}
                     <i class="fa fa-smile-o" aria-hidden="true"></i>
                 {% endif %}
-              
+
           {% endwith %}
         {% else %}
             {% get_proposals_enabled as proposals_enabled %}
             {% if proposals_enabled  %}
-            {% trans 'Aún no tienes propuestas haz la primera' %}
+            <p>{% trans 'Aún no tienes propuestas haz la primera' %}</p>
             <a href="{% url 'popular_proposals:propose_wizard_full' %}" class="btn btn-success login"
               role="button"> {% blocktrans %}¡Sube tu propuesta!{% endblocktrans %}</a>
             {% endif %}

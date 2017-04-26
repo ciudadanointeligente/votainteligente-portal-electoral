@@ -21,12 +21,7 @@
           <h2 class="text-center">Tu propuesta para {{area}} ha sido enviada ¡muchas gracias!</h2>
 
           <p>{% blocktrans %}Por favor, espera que el equipo de Ciudadano Inteligente la evalúe para que sea enviada a los candidatos.{% endblocktrans %}</p>
-
           
-        <section>
-            Para ofrecerte un mejor servicio necesitamos saber un poco más de ti, ayudanos a completar esta pequeña encuesta:
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfjrFaYlKQubExWJjw73wFt_4-B5LGOyB9gzDAAPLhRA6X3Uw/viewform?embedded=true" width="760" height="1600" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
-        </section>
           <div>
             {% get_proposals_enabled as proposals_enabled %}
             {% if proposals_enabled  %}
@@ -47,4 +42,3 @@
 
 {% block extrafooter %}
 {% endblock extrafooter %}
-

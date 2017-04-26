@@ -6,7 +6,7 @@
 
 {% block main_content %}
 
-	<h2>Tu perfil</h2>
+	<h2 class="page-header">Tu perfil</h2>
 	<form enctype="multipart/form-data" action="{% url 'backend_citizen:update_my_profile' %}" method="POST" role="form">
 	    {% csrf_token %}
         {% bootstrap_form form %}
@@ -15,4 +15,3 @@
 	    </div>
 	</form>
 {% endblock main_content %}
-

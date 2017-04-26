@@ -25,7 +25,7 @@
                     <li><a href="{% url 'popular_proposals:propose_wizard_full' %}">Crea tu propuesta</a></li>
                     {% endif %}
                 {% endif %}
-                <li><a class='' href="{% url 'compromisos' %}">Candidatos electos comprometidos</a></li>
+                <!-- <li><a class='' href="{% url 'compromisos' %}">Candidatos electos comprometidos</a></li> -->
                 <li><a href="{% url 'popular_proposals:home' %}">Conoce propuestas</a></li>
                 <li class='success'><a href="{% url 'help'  %}" class=''>
                 {% blocktrans %}Ayúdanos{% endblocktrans %}</a></li>
@@ -38,7 +38,8 @@
 
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       <!-- {% user_image user=user height=16 width=12 %} -->
-                      {% include '_user_printable.html' %}
+                      <!--{% include '_user_printable.html' %}-->
+                      Perfil
                       <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     {% if user.is_superuser %}

@@ -1,0 +1,18 @@
+{% for contact_detail in candidate.contact_details.all %}
+<li>
+  <a href="{{contact_detail.value}}" class="social-link-candidate" target="_blank">
+      {% if contact_detail.contact_type == "TWITTER" %}
+          <i class="fa fa-twitter fa-3x" aria-hidden="true"></i>
+      {% elif contact_detail.contact_type == "FACEBOOK" %}
+          <i class="fa fa-facebook fa-3x" aria-hidden="true"></i>
+      {% else %}
+          <i class="fa fa-external-link-square fa-3x" aria-hidden="true"></i>
+      {% endif %}
+  </a>
+</li>
+{% if candidate.flatpages.count %}
+    {% for flatpage in candidate.flatpages.all %}
+      <li><a class="social-link-candidate" href="{{ flatpage.get_absolute_url }}"><i class="fa fa-link fa-3x"></i> {{ flatpage.title }}</a></li>
+    {% endfor%}
+{% endif %}
+{% endfor %}

@@ -13,46 +13,24 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="carousel-reviews broun-block">
-      <div id="carousel-propuestas" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          {% for proposal in proposals %}
-            <div class="item col-md-4 col-sm-4">
-              <div class="block-text rel zmin">
-                {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
-              </div>
+    <!-- -->
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <div class="row">
+            {% for proposal in proposals %}
+            <div class="col-md-4">
+              {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
             </div>
             {% if forloop.counter|divisibleby:3 and not forloop.last%}
-            </div>
-            <div class="item">
+            </div></div><div class="item"><div class="row">
             {% endif %}
-          {% endfor %}
+            {% endfor %}
+          </div>
         </div>
-        <ol class="carousel-indicators">
-          <li data-target="#carousel-propuestas" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel-propuestas" data-slide-to="1"></li>
-          <li data-target="#carousel-propuestas" data-slide-to="2"></li>
-          <div class="small text-center"><a href="{% url 'popular_proposals:home' %}">Ver todas</a></div>
-        </ol>
-        <!--
-        <a class="left carousel-control" href="#carousel-propuestas" role="button" data-slide="prev">
-          <svg width="18" height="100%" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-            <title>Anterior</title>
-            <g stroke="#EEB902" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px">
-                <path d="M9 1L.4 9 9 17M1.5 9h16"/>
-            </g>
-          </svg>
-        </a>
-        <a class="right carousel-control" href="#carousel-propuestas" role="button" data-slide="next">
-          <svg width="18" height="100%" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-            <title>Siguiente</title>
-            <g stroke="#EEB902" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px">
-              <path d="M9 1l8.6 8L9 17M16.5 9H.5"/>
-            </g>
-          </svg>
-        </a>-->
       </div>
     </div>
+    <!-- -->
   </div>
 </div>
 {% endif %}

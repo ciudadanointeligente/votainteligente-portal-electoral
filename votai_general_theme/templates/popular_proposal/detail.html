@@ -37,17 +37,16 @@ $(function(){
     <li><a href="{% url 'area' slug=popular_proposal.area.id%}">{{popular_proposal.area}}</a></li>
     <li class="active">{{popular_proposal.title}}</li>
   </ol>
-</div> 
+</div>
 
   {% if popular_proposal.proposer == user %}
     <div class="text-width text-right">
-        Esta es tu propuesta {{user}}, <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %} ¿quieres añadir antecedentes?{% endblocktrans %}</a>
+        <p>Esta es tu propuesta {{user}}, <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %} ¿quieres añadir antecedentes?{% endblocktrans %}</a></p>
     </div>
   {% endif%}
 
 
 <div class="fondo-blanco detail text-width{% if proposal.for_all_areas %} transversal{% endif %}">
-<!-- Cata compañera puedes saber si la propuesta es para todas las comunas mediante esto {% comment %}{% if proposal.for_all_areas %}{% else %}{% endif %}{% endcomment %}-->
     <div class="pull-left">
       <span class="label label-default">{{popular_proposal.data.clasification}}</span>
     </div>
@@ -58,14 +57,20 @@ $(function(){
     <p class="text-center text-light small">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>
     <h1 class="text-center">{{popular_proposal.title}}</h1>
     <div class="row detail-numbers">
-      <div class="col-md-4">{% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}</div>
-      <div class="col-md-4">
+      <div class="col-md-3">{% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}</div>
+      <div class="col-md-3">
+        <div class="row">
+              <div class="col-md-3 detail-number"><h3>{% commiters_by_election_position popular_proposal 'presidenciales' as presidentes %}{% if presidentes.all %}{{presidentes.count}}{% else %}0{% endif %}</h3></div>
+          <div class="col-md-9"><p class="nota">candidatos presidenciales apoyan esta propuesta</p></div>
+        </div>
+      </div>
+      <div class="col-md-3">
         <div class="row">
               <div class="col-md-3 detail-number"><h3>{% commiters_by_election_position popular_proposal 'alcalde' as alcaldes %}{% if alcaldes.all %}{{alcaldes.count}}{% else %}0{% endif %}</h3></div>
           <div class="col-md-9"><p class="nota">candidatos a alcalde apoyan esta propuesta</p></div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="row">
           <div class="col-md-3 detail-number">
             <h3>{% commiters_by_election_position popular_proposal 'concejal' as concejales %}{% if concejales.all %}{{concejales.count}}{% else %}0{% endif %}</h3>
@@ -84,15 +89,15 @@ $(function(){
           {% get_commitment candidacy proposal as commitment %}
             {% if commitment %}
             {% else %}<!-- Si es que el candidato no se ha pronunciado -->
-            
+
               {% with proposal.get_absolute_url as detail_url %}
-              
+
                   {% if request.path == detail_url %}<!-- Estamos en el detalle -->
                       <a class="btn btn-primary" href="#compromiso" role="button">Yo quiero pronunciarme</a>
                   {% else %}<!-- Estamos en cualquier parte pero no en el detalle -->
                       <a class="btn btn-primary" href="{{detail_url}}" role="button">Yo quiero pronunciarme</a>
                   {% endif %}
-                
+
               {% endwith %}
 
             {% endif %}
@@ -138,9 +143,9 @@ $(function(){
 </div>
 
     {% if popular_proposal.background %}
-      <div class="antecedentes text-width">
+      <div class="container antecedentes text-width">
         <h3>{% trans 'Antecedentes' %}</h3>
-        {{popular_proposal.background|linebreaksbr}}
+        <p>{{popular_proposal.background|linebreaksbr}}</p>
       </div>
     {% endif %}
 
@@ -196,7 +201,7 @@ $(function(){
                       {% trans 'Quiero comprometerme' %}
                     {% endif %}
                   </a></li>
-                  
+
                   <li><a class="btn btn-success" href="{% url 'popular_proposals:commit_yes' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">
 
                     {% if candidacy.candidate.election.position == 'concejal' %}
@@ -236,9 +241,36 @@ $(function(){
 
     {% if popular_proposal.commitments.all %}
       <div class="container{% if proposal.for_all_areas %} transversal{% endif %} compromiso">
-        <h2 class="text-center">¿Qué han dicho los candidatos a alcalde?</h2>
-          {% commiters_by_election_position popular_proposal 'alcalde' as alcaldes %}
-          {% if alcaldes.all %}
+        {% commiters_by_election_position popular_proposal 'presidenciales' as presidenciales %}
+        {% if presidenciales.all %}
+          <h3 class="text-center">Que dicen los candidatos presidenciales?</h3>
+          {% for commitment in presidenciales %}
+            {% if commitment.commited %} <!-- presidentes comprometidos -->
+              {% with candidate=commitment.candidate %}
+                <div class="row">
+                  <div class="col-md-1 col-sm-2 col-xs-2">
+                    {% if candidate.image %}
+                        {% thumbnail candidate.image "300x300" crop="center" as im %}
+                        <img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato-small">
+                        {% endthumbnail %}
+                      {% else %}
+                        <a href="{{commitment.get_absolute_url}}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato-small"></a>
+                    {% endif %}
+                  </div>
+                  <div class="col-md-11 col-sm-10 col-xs-10">
+                    <h5><a href="{{commitment.candidate.get_absolute_url}}">{{candidate}}</a><span class="text-light"> | {% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</span></h5>
+                    <a href="{{commitment.get_absolute_url}}"><div class="label label-success">Se comprometió</div></a>
+                  </div>
+                </div>
+              {% endwith %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+
+        {% commiters_by_election_position popular_proposal 'alcalde' as alcaldes %}
+        {% if alcaldes.all %}
+          <h3 class="text-center">¿Qué han dicho los candidatos a alcalde?</h3>
             {% commiters_by_election_position popular_proposal 'alcalde' as alcaldes %}
               {% for commitment in alcaldes %}
                 {% if commitment.commited %} <!-- Alcaldes comprometidos -->
@@ -261,8 +293,7 @@ $(function(){
                   {% endwith %}
                 {% endif %}
               {% endfor %}
-          {% endif %}
-        <div class="row">
+              {% endif %}
         {% commiters_by_election_position popular_proposal 'alcalde' as alcaldes %}
         {% if alcaldes.all %}
             {% for commitment in alcaldes %}
@@ -288,9 +319,9 @@ $(function(){
             {% endfor %}
         {% endif %}
       <!-- Concejales comprometidos -->
-      <h2 class="text-center">Candidatos a concejal que apoyan esta propuesta:</h2>
       {% commiters_by_election_position popular_proposal 'concejal' as concejal %}
-        {% if concejales.all %}
+      {% if concejales.all %}
+      <h3 class="text-center">Candidatos a concejal que apoyan esta propuesta:</h3>
             {% for commitment in concejales %}
               {% if commitment.commited %}
                 {% with candidate=commitment.candidate %}

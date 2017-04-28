@@ -3,13 +3,13 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
-{% load pagination_tags %}
-  
+
+
     {% if form %}
 		<form action="{{ request.path }}" method="GET" role="form">
       <div class="row">
         <div class="col-md-4">{% bootstrap_field form.clasification show_label=False %}</div>
-        
+
           {% if form.area|is_field %}
             <div class="col-md-4">
               {% bootstrap_field form.area show_label=False %}
@@ -21,22 +21,21 @@
     	    </div>
         </div>
       </div>
-      
+
 
 		</form>
     {% endif %}
 
 <div id="grid">
-    {% autopaginate popular_proposals 12 %}
-    {% paginate %}
+
   <div id="posts">
     {% for proposal in popular_proposals %}
     {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal is_embedded=is_embedded %}
     {% empty %}
     {% blocktrans %}
-    Aún no hay propuestas acá.
+    <p>Aún no hay propuestas.</p>
     {% endblocktrans %}
     {% endfor %}
-    {% paginate %}
+
   </div>
 </div>

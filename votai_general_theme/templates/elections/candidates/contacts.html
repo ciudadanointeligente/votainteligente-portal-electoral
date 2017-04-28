@@ -1,14 +1,13 @@
 {% for contact_detail in candidate.contact_details.all %}
-    {% if forloop.first %}
-    | 
-    {% endif %}
-    <a href="{{contact_detail.value}}" class="social-link-candidate" target="_blank">
-        {% if contact_detail.contact_type == "TWITTER" %}
-            <i class="fa fa-twitter" aria-hidden="true"></i>
-        {% elif contact_detail.contact_type == "FACEBOOK" %}
-            <i class="fa fa-facebook" aria-hidden="true"></i>
-        {% else %}
-            <i class="fa fa-external-link-square" aria-hidden="true"></i>
-        {% endif %}
-    </a>
+    <li>
+      <a href="{{contact_detail.value}}" class="social-link-candidate" target="_blank">
+          {% if contact_detail.contact_type == "TWITTER" %}
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+          {% elif contact_detail.contact_type == "FACEBOOK" %}
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+          {% else %}
+              <i class="fa fa-external-link-square" aria-hidden="true"></i>
+          {% endif %}
+      </a>
+    </li>
 {% endfor %}

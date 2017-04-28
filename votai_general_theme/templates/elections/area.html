@@ -30,47 +30,28 @@ $(function(){
 {% block keywords %},{{area.name}}{% endblock keywords %}
 
 {% block content %}
-
-{% url 'popular_proposals:area_embedded' slug=area.id as embedded_url%}
-
-
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
+{% get_election_by_position 'alcalde' as election %}
+{% if election %}
+  {% url 'popular_proposals:area_embedded' slug=area.id as embedded_url%}
   <div class="profile">
     <div class="container content_padding">
-      
       <h1 class="text-center text-white">{{area.name}}</h1>
-
-      {% cache 500 medias_naranjas_xs area.id %}
-      <div class="visible-xs-block">  
-      {% for election in area.elections.all %}
-        
-          <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info">1/2 <i class="fa fa-heart" aria-hidden="true"> Naranja {{election.position|title}}</i></a>
-        
-      {% endfor %}
-      </div>
-      {% endcache %}
-
       <!-- Alcaldes -->
       {% cache 500 alcaldes area.id %}
       <section class="comuna-alcaldes text-center">
         <h2 class="text-white">Candidatos a alcalde</h2>
         <div class="bajada">
-           {% get_election_by_position 'alcalde' as election %}
-            {% if election %}
-              <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info hidden-xs">Encuentra tu 1/2 <i class="fa fa-heart" aria-hidden="true"></i> Naranja</a>
-              <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning hidden-xs">Frente a frente</a>
-            {% endif %}
+
+              <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info">Encuentra tu 1/2 <i class="fa fa-heart" aria-hidden="true"></i> Naranja</a>
+              <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning">Frente a frente</a>
         </div>
-         
          {% include 'elections/_election_with_position.html' with position='alcalde' area=area %}
-         
       </section>
       {% endcache %}
     </div>
   </div>
-      
+  {% endif %}
+
   {% cache 500 number_proposals_area area.id user|is_candidate %}
   {% if area.proposals.exists %}
   {% with area.proposals.count|stringformat:"04d" as n_created %}
@@ -98,25 +79,23 @@ $(function(){
   {% endcache %}
 
 <!-- Concejales -->
+{% get_election_by_position 'concejal' as election %}
+{% if election %}
   {% cache 500 concejales area.id %}
   <section class="comuna-concejales text-center">
     <div class="container">
       <h2 class="text-white">Candidatos a concejal</h2>
       <div class="bajada">
-        {% get_election_by_position 'concejal' as election %}
-          {% if election %}
             <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info hidden-xs">Encuentra tu 1/2 <i class="fa fa-heart" aria-hidden="true"></i> Naranja</a>
             <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning hidden-xs">Frente a frente</a>
-          {% endif %}
       </div>
       {% with area=area %}
-      
       {% include 'elections/_election_with_position.html' with position='concejal' area=area %}
-      
       {% endwith %}
     </div>
     {% endcache %}
   </section>
+  {% endif %}
       {% cache 500 create_new_proposal_link area.id %}
       {% if not popular_proposals.exists %}
       {% get_proposals_enabled as proposals_enabled %}
@@ -137,7 +116,9 @@ $(function(){
       {% get_proposals_enabled as proposals_enabled %}
       {% if proposals_enabled  %}
       <div class="text-center bajada">
-        <div>Mientras más apoyo tenga una propuesta, es más probable que los candidatos asuman un compromiso con ella</div>
+        <div>
+          <p>Mientras más apoyo tenga una propuesta, es más probable que los candidatos asuman un compromiso con ella</p>
+        </div>
         {% if not user|is_candidate %}
           <a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">Tengo una propuesta</a>
         {% endif %}
@@ -146,14 +127,8 @@ $(function(){
       {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=proposal_filter_form %}
     </div>
   </section>
-      
-
   <!-- /contenedorDestacado -->
-
-      
-
 {% endblock content %}
-
 
 {% block extrafooter %}
 {% endblock extrafooter %}

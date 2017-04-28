@@ -17,18 +17,16 @@
     <li><a href="{{commitment.proposal.get_absolute_url}}">{{commitment.proposal.title}}</a></li>
     <li class="active">Compromiso</li>
   </ol>
-</div> 
+</div>
 <div class="container">
-	<div class="fondo-blanco text-width">
+	<div class="text-width">
 		{% if messages %}
-        <ul class="messages">
             {% for message in messages %}
             <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}default{% endif %}">
-              {{ message }}
+              <p>{{ message }}</p>
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             </div>
             {% endfor %}
-        </ul>
         {% endif %}
 		{% if commitment.candidate.election.position == 'concejal' %}
 		Yo <b>{{commitment.candidate.name}}</b> candidata/o al concejo municipal de <b>{{commitment.proposal.area}}</b> me comprometo a apoyar desde el concejo municipal la propuesta ciudadana <b>{{commitment.proposal.title}}</b>.

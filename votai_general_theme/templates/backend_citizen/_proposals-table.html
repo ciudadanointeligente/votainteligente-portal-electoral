@@ -1,85 +1,93 @@
 {% load votainteligente_extras %}
 {% load i18n %}
 
-{% if temporary_proposals %}
-      <h2 class="page-header">Tus propuestas</h2>
-      <p>Potencia tus propuestas utilizando nuestro <a href="/pages/herramientas_de_activismo">Kit de Activismo</a></p>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>{% trans 'Estado' %}</th>
-            <th>{% trans 'Título propuesta' %}</th>
-            <th>{% trans 'Comuna' %}</th>
-            <th>{% trans 'Antecedentes' %}</th>
-          </tr>
-        </thead>
-        <tbody>
 
-    {% for proposal in temporary_proposals %}
-        <tr>
-            <td>
-                {% if proposal.status == 'in_our_side' %}
-                    {% blocktrans %}<span class="label label-default"><i class="fa fa-clock-o"></i> En revisión</span>{% endblocktrans %}
-                {% endif %}
-                {% if proposal.status == 'in_their_side' %}
-                <div>
-                    <a href="{% url 'backend_citizen:temporary_data_update' pk=proposal.id %}">
-                        <span class="label label-primary"><i class="fa fa-pencil"></i>
-                        {% blocktrans %}Modifíca tu propuesta{% endblocktrans %}
-                        </span>
-                    </a>
-                </div>
-                {% endif %}
-                {% if proposal.status == 'accepted' %}
-                <div class="label label-success"><i class="fa fa-check"></i> {% trans 'Aceptada' %}</div>
-
-                {% endif %}
-                {% if proposal.status == 'rejected' %}
-                <span class="label label-danger"><i class="fa fa-times"></i> {% trans 'Rechazada' %}</span>
-                {% endif %}
-            </td>
-            <td>
-              <!-- <a href="{{ proposal.created_proposal.get_absolute_url }}"> -->
-              {{proposal.data.title}}
-                {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.title %}
-              <!-- </a> -->
-            </td>
-            <td><a href="{% url 'area' slug=proposal.area.id %}">{{proposal.area}}</a></td>
-            <td>
-                {% if proposal.status == 'accepted' %}
-                {% if proposal.created_proposal %}
-                    <span>
-                        <a href="{% url 'popular_proposals:citizen_update' slug=proposal.created_proposal.slug %}"><i class="fa fa-pencil" aria-hidden="true"></i> Agregar{% blocktrans %}{% endblocktrans %}</a>
-                    </span>
-                {% endif %}
-                {% endif %}
-            </td>
-        </tr>
-    {% empty %}
-
-    {% endfor %}
-          </tbody>
-        </table>
+{% if user|is_candidate %}
+  {% with user.candidacies.first as candidacy %}
+    {% if not candidacy.candidate.has_answered %}
+      <p>{% trans 'Aún no has respondido la 1/2 naranja' %}</p>
+      {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id as complete_12_naranja %}
+      <a href="{{ complete_12_naranja }}" class="btn btn-success login" role="button"> {% blocktrans %}<i class="fa fa-heart"></i>¡Completa tu 1/2 Naranja!{% endblocktrans %}</a>
     {% else %}
-        {% if user|is_candidate %}
-            {% with user.candidacies.first as candidacy %}
-                {% if not candidacy.candidate.has_answered %}
-                    {% trans 'Aún no has respondido la 1/2 naranja' %}
-                    {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as complete_12_naranja %}
-                    <a href="{{ complete_12_naranja }}" class="btn btn-success login"
-                    role="button"> {% blocktrans %}<i class="fa fa-heart"></i>¡Completa tu 1/2 Naranja!{% endblocktrans %}</a>
-                {% else %}
-                    {% trans 'Ya respondiste la 1/2 naranja. Muchas gracias' %}
-                    <i class="fa fa-smile-o" aria-hidden="true"></i>
-                {% endif %}
-
-          {% endwith %}
-        {% else %}
-            {% get_proposals_enabled as proposals_enabled %}
-            {% if proposals_enabled  %}
-            <p>{% trans 'Aún no tienes propuestas haz la primera' %}</p>
-            <a href="{% url 'popular_proposals:propose_wizard_full' %}" class="btn btn-success login"
-              role="button"> {% blocktrans %}¡Sube tu propuesta!{% endblocktrans %}</a>
-            {% endif %}
-        {% endif %}
+      <p>{% trans 'Ya respondiste la 1/2 naranja. Muchas gracias' %} <i class="fa fa-smile-o" aria-hidden="true"></i></p>
     {% endif %}
+  {% endwith %}
+{% else %}
+<h2 class="page-header">Tus propuestas</h2>
+<div class="alert alert-info" role="alert">
+  <p>Potencia tus propuestas utilizando nuestro <a href="/pages/herramientas_de_activismo">Kit de Activismo</a></p>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>{% trans 'Estado' %}</th>
+      <th>{% trans 'Título propuesta' %}</th>
+      <th>{% trans 'Comuna' %}</th>
+      <th>{% trans 'Antecedentes' %}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if temporary_proposals %}
+      {% for proposal in temporary_proposals %}
+      <tr>
+        <td>
+          {% if proposal.status == 'in_our_side' %}
+          {% blocktrans %}<span class="label label-default"><i class="fa fa-clock-o"></i> En revisión</span>{% endblocktrans %} {% endif %} {% if proposal.status == 'in_their_side' %}
+            <a href="{% url 'backend_citizen:temporary_data_update' pk=proposal.id %}">
+              <span class="label label-primary"><i class="fa fa-pencil"></i>
+                {% blocktrans %}Modifíca tu propuesta{% endblocktrans %}
+              </span>
+            </a>
+          {% endif %}
+          {% if proposal.status == 'accepted' %}
+          <div class="label label-success"><i class="fa fa-check"></i> {% trans 'Aceptada' %}</div>
+          {% endif %}
+          {% if proposal.status == 'rejected' %}
+          <span class="label label-danger"><i class="fa fa-times"></i> {% trans 'Rechazada' %}</span>
+          {% endif %}
+        </td>
+        <td>
+          {{proposal.data.title}} {% include 'popular_proposal/_show_proposal_comments_to_user.html' with comments=proposal.comments.title %}
+        </td>
+        <td><a href="{% url 'area' slug=proposal.area.id %}">{{proposal.area}}</a></td>
+        <td>
+          {% if proposal.status == 'accepted' %}
+            {% if proposal.created_proposal %}
+            <span>
+              <a href="{% url 'popular_proposals:citizen_update' slug=proposal.created_proposal.slug %}"><i class="fa fa-pencil" aria-hidden="true"></i> Agregar{% blocktrans %}{% endblocktrans %}</a>
+            </span>
+            {% endif %}
+          {% endif %}
+        </td>
+      </tr>
+      {% empty %}
+      {% endfor %}
+    {% else %}
+      <tr>
+        <td colspan="4" class="text-center">
+          {% if user|is_candidate %}
+            {% with user.candidacies.first as candidacy %}
+              {% if not candidacy.candidate.has_answered %}
+                <p>{% trans 'Aún no has respondido la 1/2 naranja' %}</p>
+                {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id as complete_12_naranja %}
+                <a href="{{ complete_12_naranja }}" class="btn btn-success login" role="button"> {% blocktrans %}<i class="fa fa-heart"></i>¡Completa tu 1/2 Naranja!{% endblocktrans %}</a>
+              {% else %}
+                <p>{% trans 'Ya respondiste la 1/2 naranja. Muchas gracias' %}</p>
+                <i class="fa fa-smile-o" aria-hidden="true"></i>
+              {% endif %}
+            {% endwith %}
+          {% else %}
+            {% get_proposals_enabled as proposals_enabled %}
+            {% if proposals_enabled %}
+              <p>
+                {% trans 'Aún no tienes propuestas haz la primera' %}
+                <a href="{% url 'popular_proposals:propose_wizard_full' %}" role="button"> {% blocktrans %}¡Sube tu propuesta!{% endblocktrans %}</a>
+              </p>
+            {% endif %}
+          {% endif %}
+        </td>
+      </tr>
+    {% endif %}
+  </tbody>
+</table>
+{% endif %}

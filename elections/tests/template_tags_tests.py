@@ -496,7 +496,7 @@ class LoginFormsTemplateTags(TestCase):
                               a['expected'],
                               u'Intentando con ' + a['entered'] + u' obtengo ' + rendered + u' en lugar de ' + a['expected'])
 
-    @override_config(MARKED_AREAS='argentina')
+    @override_config(MARKED_AREAS=['argentina',])
     def test_marked_areas(self):
         argentina = Area.objects.create(name=u'Argentina')
         chile = Area.objects.create(name=u'Chile')

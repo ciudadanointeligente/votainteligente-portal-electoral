@@ -332,6 +332,7 @@ CONSTANCE_CONFIG = {
     'EMAIL_DOMAIN': ("votainteligente.cl", 'Nombre dominio'),
     'MAX_AMOUNT_OF_MAILS_TO_CANDIDATE': (3, 'Numero maximo de envios de emails a candidatos'),
     'TWITTER_TOKEN': ('', 'Twitter token'),
+    'MARKED_AREAS': (MARKED_AREAS, u'Areas que tienen alguna marca'),
     'TWITTER_TOKEN_KEY': ('', 'Twitter token key'),
     'TWITTER_CON_KEY': ('', 'Twitter connection key'),
     'TWITTER_CON_SECRET_KEY': ('', 'Twitter connection secret key'),

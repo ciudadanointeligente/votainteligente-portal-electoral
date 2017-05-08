@@ -138,8 +138,8 @@ def website_gs(value):
 @register.filter
 #website general settings
 def website_imgur(value):
-    if value in settings.WEBSITE_IMGUR:
-        return settings.WEBSITE_IMGUR[value]
+    if config.WEBSITE_IMGUR_CLIENT_ID:
+        return config.WEBSITE_IMGUR_CLIENT_ID
     return ''
 
 
@@ -165,8 +165,8 @@ register.inclusion_tag('elections/twitter/ranking_twitter.html', takes_context=T
 @register.filter
 #website general settings
 def website_twitter(value):
-    if value in config.WEBSITE_TWITTER_HASHTAG:
-        return config.WEBSITE_TWITTER_HASHTAG[value]
+    if config.WEBSITE_TWITTER_HASHTAG:
+        return config.WEBSITE_TWITTER_HASHTAG
     return ''
 
 

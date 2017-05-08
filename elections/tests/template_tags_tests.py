@@ -167,6 +167,7 @@ class TemplateTagsTestCase(TestCase):
 
         self.assertEqual(template.render(context), u'eb18642b5b220484864483b8e21386c3')
 
+    @override_config(WEBSITE_TWITTER_HASHTAG=u'votainformado,eslaloslas')
     def test_website_twitter(self):
         template = Template("{% load votainteligente_extras %}{{ 'hashtags'|website_twitter }}")
         context = Context({})

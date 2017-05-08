@@ -93,7 +93,7 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'popular_proposal/home.html')
 
-    @override_config(HIDDEN_AREAS="argentina")
+    @override_config(HIDDEN_AREAS=["argentina", ])
     def test_not_showing_proposals_for_hidden_areas(self):
         argentina = Area.objects.create(name=u'Argentina')
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
@@ -264,7 +264,7 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
                                                                      'proposal_slug': self.popular_proposal1.slug})
         self.assertRedirects(response_post, detail_url)
 
-    @override_config(PROPOSALS_ENABLED=True)
+    @override_config(PROPOSALS_ENABLED=False)
     def test_candidates_not_commiting(self):
         url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,
                                                               'candidate_pk': self.candidate.id})

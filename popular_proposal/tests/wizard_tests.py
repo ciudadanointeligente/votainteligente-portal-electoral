@@ -15,7 +15,9 @@ from django.core import mail
 from backend_citizen.models import Organization, Enrollment
 from collections import OrderedDict
 from django.test import override_settings
-
+from django.shortcuts import render
+from constance import config
+from constance.test import override_config
 
 USER_PASSWORD = 'secr3t'
 
@@ -98,7 +100,7 @@ class WizardTestCase(TestCase):
         self.assertTemplateUsed(response,
                                 'popular_proposal/wizard/form_step.html')
 
-    @override_settings(PROPOSALS_ENABLED=False)
+    @override_config(PROPOSALS_ENABLED=False)
     def test_proposals_not_enabled(self):
         url = reverse('popular_proposals:propose_wizard',
                       kwargs={'slug': self.arica.id})
@@ -110,7 +112,7 @@ class WizardTestCase(TestCase):
 
         url = reverse('popular_proposals:propose_wizard_full')
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)        
+        self.assertEquals(response.status_code, 404)
 
     def get_example_data_for_post(self, t_response={}):
         cntr = len(t_response)
@@ -207,6 +209,7 @@ class WizardTestCase(TestCase):
     def test_full_wizard(self):
         original_amount = len(mail.outbox)
         url = reverse('popular_proposals:propose_wizard_full')
+        print(url)
         self.client.login(username=self.feli,
                           password=USER_PASSWORD)
         test_response = {0: {'0-area': self.arica.id}}
@@ -240,7 +243,7 @@ class WizardTestCase(TestCase):
         self.assertIn(temporary_data.get_title(), the_mail.body)
         self.assertIn(temporary_data.area.name, the_mail.subject)
 
-    @override_settings(HIDDEN_AREAS=['argentina'])
+    @override_config(HIDDEN_AREAS='argentina')
     def test_full_wizard_get_area_form_kwargs(self):
         argentina = Area.objects.create(name=u'Argentina')
         url = reverse('popular_proposals:propose_wizard_full')
@@ -251,6 +254,7 @@ class WizardTestCase(TestCase):
         test_response = {0: {'0-area': argentina}}
         test_response = self.get_example_data_for_post(test_response)
         response = self.client.get(url)
+        print(test_response)
         area_form = response.context['form']
         area_field = area_form.fields['area']
         argentina_tuple = (argentina.id, argentina.name)

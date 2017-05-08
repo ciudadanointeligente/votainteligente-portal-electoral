@@ -5,7 +5,9 @@ from django.core.urlresolvers import reverse
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.contrib.sites.models import Site
 from django.test import override_settings
-
+from django.shortcuts import render
+from constance import config
+from constance.test import override_config
 
 class ElectionsPerAreaTestCase(TestCase):
     def test_an_election_can_have_an_area(self):
@@ -27,12 +29,12 @@ class ElectionsPerAreaTestCase(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'elections/area.html')
 
-    @override_settings(HIDDEN_AREAS=['argentina'])
+    @override_config(HIDDEN_AREAS='argentina')
     def test_hidden_area(self):
         argentina = Area.objects.create(name=u'Argentina')
         self.assertNotIn(argentina, Area.public.all())
 
-    @override_settings(HIDDEN_AREAS=['argentina'])
+    @override_config(HIDDEN_AREAS='argentina')
     def test_hidden_area_is_still_reachable(self):
         argentina = Area.objects.create(name=u'Argentina')
         url = reverse('area', kwargs={'slug': argentina.id})
@@ -133,4 +135,3 @@ class AreaOGPTestCase(TestCase):
         elections_without_position = self.argentina.elections_without_position.all()
         self.assertNotIn(election, elections_without_position)
         self.assertIn(election, self.argentina.elections.all())
-

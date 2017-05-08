@@ -2,7 +2,8 @@ from elections.models import Candidate
 from backend_candidate.models import CandidacyContact
 from popular_proposal.models import PopularProposal, Commitment
 from django.conf import settings
-
+from django.shortcuts import render
+from constance import config
 
 class CandidateParticipation(object):
     no_contact = 0
@@ -19,7 +20,7 @@ class CandidateParticipation(object):
 
 class Stats(object):
     def __init__(self):
-        self.all_candidates_qs = Candidate.objects.exclude(elections__area__id__in=settings.HIDDEN_AREAS)
+        self.all_candidates_qs = Candidate.objects.exclude(elections__area__id__in=config.HIDDEN_AREAS)
         self.candidates_qs = self.all_candidates_qs
         super(Stats, self).__init__()
 
@@ -84,7 +85,7 @@ class PerAreaStaffStats(object):
         self.commitments_qs = self.all_commitments_qs
         self.all_commiters_qs = Candidate.objects.filter(elections__area=self.area).exclude(commitments__isnull=True)
         self.commiters_qs = self.all_commiters_qs
-        self.all_candidates_qs = Candidate.objects.exclude(elections__area__id__in=settings.HIDDEN_AREAS)
+        self.all_candidates_qs = Candidate.objects.exclude(elections__area__id__in=config.HIDDEN_AREAS)
         self.all_candidates_qs = self.all_candidates_qs.filter(elections__area=self.area)
         self.candidates_qs = self.all_candidates_qs
         super(PerAreaStaffStats, self).__init__()

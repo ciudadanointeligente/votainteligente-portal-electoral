@@ -58,6 +58,7 @@ INSTALLED_APPS = (
     'django_ogp',
     'debug_toolbar',
     # 'debug_panel',
+    'constance',
 )
 INSTALLED_APPS_AFTER_ALL = ('el_pagination',)
 
@@ -255,15 +256,15 @@ WEBSITE_GENERAL_SETTINGS = {
     'home_title': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
 }
 # twitter sepparated by comma, eg: votainteligente,votainformado,othertag
-WEBSITE_TWITTER = {
-    'hashtags': 'votainteligente',
-    'text': 'Conoce a tus candidat@s y encuentra a tu Media Naranja Política en '
-}
+# WEBSITE_TWITTER = {
+#     'hashtags': 'votainteligente',
+#     'text': 'Conoce a tus candidat@s y encuentra a tu Media Naranja Política en '
+# }
 CACHE_MINUTES = 0
 HEAVY_PAGES_CACHE_MINUTES = 1
-SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES = 10
-INFINITE_CACHE = 60 * 24
-PROPOSALS_ENABLED = True
+
+
+# PROPOSALS_ENABLED = True
 
 CACHES = {
     'default': {
@@ -285,7 +286,7 @@ EMAIL_LOCALPART = 'municipales2016'
 EMAIL_DOMAIN = 'votainteligente.cl'
 MAX_AMOUNT_OF_MAILS_TO_CANDIDATE = 3
 
-HIDDEN_AREAS = ['fundacion-ciudadano-inteligente', ]
+# HIDDEN_AREAS = ['fundacion-ciudadano-inteligente', ]
 
 
 
@@ -311,17 +312,51 @@ if DONT_USE_MIGRATIONS:
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 FACEBOOK_ACCESS_TOKEN = 'FieraEsLaMejorAmigaDeTodos'
 
-TWITTER_TOKEN = 'TWITTER_TOKEN'
-TWITTER_TOKEN_KEY = 'TWITTER_TOKEN_KEY'
-TWITTER_CON_KEY = 'TWITTER_CON_KEY'
-TWITTER_CON_SECRET_KEY = 'TWITTER_CON_SECRET_KEY'
+# TWITTER_TOKEN = 'TWITTER_TOKEN'
+# TWITTER_TOKEN_KEY = 'TWITTER_TOKEN_KEY'
+# TWITTER_CON_KEY = 'TWITTER_CON_KEY'
+# TWITTER_CON_SECRET_KEY = 'TWITTER_CON_SECRET_KEY'
 
 
 MARKED_AREAS = ['teodoro-schmidt-9117','cunco-9103','lumaco-9207','melipeuco-9110','gorbea-9107','arica-15101','copiapo-3101','freirina-3303','caldera-3102','tortel-11303','guaitecas-11203','cisnes-11202','rio-ibanez-11402','santa-barbara-8311','contulmo-8204','alto-biobio-8314','treguaco-8420','los-alamos-8206','hualpen-8112','lota-8106','monte-patria-4303','los-vilos-4203','rio-hurtado-4305','la-higuera-4104','frutillar-10105','maullin-10108','castro-10201','puqueldon-10206','puyehue-10304','san-juan-de-la-costa-10306','puerto-montt-10101','corral-14102','futrono-14202','paillaco-14107','lago-ranco-14203','valdivia-14101','rauco-7305','rio-claro-7108','hualane-7302','san-clemente-7109','longavi-7403','talca-7101','constitucion-7102','coltauco-6104','machali-6108','paredones-6206','peralillo-6307','rengo-6115','quilicura-13125','curacavi-13503','independencia-13108','san-bernardo-13401','puente-alto-13201','penaflor-13605','pedro-aguirre-cerda-13121','huechuraba-13107','alto-hospicio-1107','san-antonio-5601','santa-maria-5706','llaillay-5703']
 
+CONSTANCE_CONFIG = {
+    'SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES':(10,'Duracion cache media naranja'),
+    'INFINITE_CACHE':(1440,'Tiempo Cache'),
+    'PROPOSALS_ENABLED' : (True, 'Habilitar propuestas'),
+    'WHEN_TO_NOTIFY': ('25, 50, 100, 150, 200', 'Cuando notificar'),
+    'NOTIFY_CANDIDATES': (True, 'Notificar a los candidatos'),
+    'NOTIFY_CANDIDATES_OF_NEW_PROPOSAL': (True, 'Notificar a los candidatos por una nueva propuesta'),
+    'NO_REPLY_MAIL': ("no-reply@localhost", 'Cuenta email de envio de correos'),
+    'EMAIL_LOCALPART': ("municipales2016", 'Cuenta email localhost'),
+    'EMAIL_DOMAIN': ("votainteligente.cl", 'Nombre dominio'),
+    'MAX_AMOUNT_OF_MAILS_TO_CANDIDATE': (3, 'Numero maximo de envios de emails a candidatos'),
+    'TWITTER_TOKEN': ('', 'Twitter token'),
+    'TWITTER_TOKEN_KEY': ('', 'Twitter token key'),
+    'TWITTER_CON_KEY': ('', 'Twitter connection key'),
+    'TWITTER_CON_SECRET_KEY': ('', 'Twitter connection secret key'),
+    'HIDDEN_AREAS': ('fundacion-ciudadano-inteligente', 'Seccion oculta'),
+    'NAV_BAR': ('profiles, questionary, soulmate, facetoface, ask, ranking', 'Menu de navegacion'),
+    'WEBSITE_METADATA_AUTHOR': ('', 'Nombre del autor'),
+    'WEBSITE_METADATA_DESCRIPTION': ('', 'Descripcion del sitio'),
+    'WEBSITE_METADATA_KEYWORD': ('', 'Palabras claves del sitio'),
+    'WEBSITE_OGP_TITLE': ('VotaInteligente', 'Titulo OGP'),
+    'WEBSITE_OGP_TYPE': ('website', 'Tipo OGP'),
+    'WEBSITE_OGP_URL': ('https://www.mi-domain.org/', 'URL base OGP'),
+    'WEBSITE_OGP_APP_ID': ('APPID', 'Facebokk App ID'),
+    'WEBSITE_DISQUS_ENABLED': (True, 'Activar Disqus'),
+    'WEBSITE_DISQUS_SHORTNAME': (True, 'Disqus shortname'),
+    'WEBSITE_DISQUS_DEV_MODE': (False, 'Modo desarrollo'),
+    'WEBSITE_GA_CODE': ('UA-XXXXX-X', 'Codigo Google Analytics'),
+    'WEBSITE_GA_NAME': ('votainteligente.cl', 'Nombre Google Analytics'),
+    'WEBSITE_GA_GSITE_VERIFICATION': ('BCyMskdezWX8ObDCMsm_1zIQAayxYzEGbLve8MJmxHk', 'Verificacion Google Site'),
+    'WEBSITE_IMGUR_CLIENT_ID': ('eb18642b5b220484864483b8e21386c3', 'Imgur'),
+    'WEBSITE_GENERAL_SETTINGS_HOME_TITLE': ('Lorem ipsum dolor sit amet, consectetur adipisicing elit.', 'Titulo Home'),
+    'WEBSITE_TWITTER_HASHTAG': ('votainteligente', 'Twitter Hashtags'),
+    'WEBSITE_TWITTER_TEXT': ('Conoce a tus candidat@s y encuentra a tu Media Naranja Política en', 'Texto twitts'),
+}
 
 try:
     from local_settings import *
 except ImportError, e:
     pass
-

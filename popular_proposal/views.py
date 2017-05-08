@@ -39,6 +39,8 @@ from django.conf import settings
 from django.contrib import messages
 from django.utils.translation import ugettext as _
 from django.template.response import TemplateResponse
+from django.shortcuts import render
+from constance import config
 
 
 class ProposalCreationView(FormView):
@@ -121,7 +123,7 @@ class HomeView(EmbeddedViewBase, FilterView):
     filter_fields = ['clasification', 'area', ]
 
     def get_queryset(self):
-        qs = super(HomeView, self).get_queryset().exclude(area__id__in=settings.HIDDEN_AREAS)
+        qs = super(HomeView, self).get_queryset().exclude(area__id__in=config.HIDDEN_AREAS)
         return qs
 
     def get_context_data(self, **kwargs):
@@ -167,7 +169,7 @@ class ProposalWizardBase(SessionWizardView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        if settings.PROPOSALS_ENABLED:
+        if config.PROPOSALS_ENABLED:
             return super(ProposalWizardBase, self).dispatch(request, *args, **kwargs)
         else:
             return HttpResponseNotFound()
@@ -317,7 +319,7 @@ class CommitView(FormView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        if not settings.PROPOSALS_ENABLED:
+        if not config.PROPOSALS_ENABLED:
             return HttpResponseNotFound()
         self.proposal = get_object_or_404(PopularProposal, id=self.kwargs['proposal_pk'])
         self.candidate = get_object_or_404(Candidate, id=self.kwargs['candidate_pk'])

@@ -17,6 +17,8 @@ from popular_proposal.filters import ProposalAreaFilter
 from django_filters.views import FilterMixin
 from django.core.cache import cache
 from django.conf import settings
+from django.shortcuts import render
+from constance import config
 
 logger = logging.getLogger(__name__)
 
@@ -140,7 +142,7 @@ class CandidateDetailView(DetailView):
             queryset_ = queryset.filter(elections__slug=self.kwargs['election_slug'])
             cache.set(candidates_per_election_key,
                       queryset_,
-                      60 * settings.INFINITE_CACHE
+                      60 * config.INFINITE_CACHE
                       )
 
         return queryset_
@@ -150,14 +152,14 @@ class CandidateDetailView(DetailView):
         candidate = cache.get(cache_key)
         if candidate is None:
             candidate = super(CandidateDetailView, self).get_object(queryset)
-            cache.set(cache_key, candidate, 60 * settings.INFINITE_CACHE)
+            cache.set(cache_key, candidate, 60 * config.INFINITE_CACHE)
         cache_key = u'ranking-for-' + candidate.id
         _candidate = cache.get(cache_key)
         if _candidate is None:
             _candidate = self.model.ranking.get(id=candidate.id)
             cache.set(cache_key,
                       _candidate,
-                      60 * settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
+                      60 * config.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
         return _candidate
 
     def get_context_data(self, **kwargs):

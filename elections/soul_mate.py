@@ -8,7 +8,8 @@ from django.views.generic import DetailView
 from candidator.models import Topic, TakenPosition
 from django.core.cache import cache
 from django.conf import settings
-
+from django.shortcuts import render
+from constance import config
 
 class VotaInteligenteAdapter(CandidatorAdapter):
     def get_position_from(self, taken_position):
@@ -19,7 +20,7 @@ class VotaInteligenteAdapter(CandidatorAdapter):
                 position = taken_position.position
                 cache.set(cache_key,
                           position,
-                          60 * settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
+                          60 * config.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
             return position
 
     def is_topic_category_the_same_as(self, topic, category):
@@ -62,7 +63,7 @@ class SoulMateDetailView(DetailView):
                         position = Position.objects.get(id=position_id)
                         cache.set(position_cache_key,
                                   position,
-                                  60 * settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
+                                  60 * config.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
                     positions.append(TakenPosition(topic=topic,
                                                    position=position
                                                    )
@@ -84,7 +85,7 @@ class SoulMateDetailView(DetailView):
             categories = self.object.categories.all()
             cache.set(str(self.object.id) + '_categories',
                       categories,
-                      60 * settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
+                      60 * config.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
         for category in categories:
             holder.add_category(category)
         candidates = cache.get(str(self.object.id) + '_candidates')
@@ -92,7 +93,7 @@ class SoulMateDetailView(DetailView):
             candidates = self.object.candidates.exclude(taken_positions__isnull=True)
             cache.set(str(self.object.id) + '_candidates',
                       candidates,
-                      60 * settings.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
+                      60 * config.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)
         for candidate in candidates:
             holder.add_person(candidate)
         if data:

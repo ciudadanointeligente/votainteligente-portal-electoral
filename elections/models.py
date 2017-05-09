@@ -14,11 +14,12 @@ from django.contrib.flatpages.models import FlatPage
 import copy
 from votainteligente.open_graph import OGPMixin
 from django.db.models import Count, F, FloatField, ExpressionWrapper
-
+from django.shortcuts import render
+from constance import config
 
 class AreaManager(models.Manager):
     def get_queryset(self):
-        return super(AreaManager, self).get_queryset().exclude(id__in=settings.HIDDEN_AREAS)
+        return super(AreaManager, self).get_queryset().exclude(id__in=config.HIDDEN_AREAS)
 
 
 def get_position_in_(qs, el):

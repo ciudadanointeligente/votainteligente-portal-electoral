@@ -17,6 +17,8 @@ from django.forms import Field, BoundField
 from django import template
 from django.template.defaultfilters import stringfilter
 import re
+from django.shortcuts import render
+from constance import config
 
 register = template.Library()
 
@@ -136,8 +138,8 @@ def website_gs(value):
 @register.filter
 #website general settings
 def website_imgur(value):
-    if value in settings.WEBSITE_IMGUR:
-        return settings.WEBSITE_IMGUR[value]
+    if config.WEBSITE_IMGUR_CLIENT_ID:
+        return config.WEBSITE_IMGUR_CLIENT_ID
     return ''
 
 
@@ -163,8 +165,8 @@ register.inclusion_tag('elections/twitter/ranking_twitter.html', takes_context=T
 @register.filter
 #website general settings
 def website_twitter(value):
-    if value in settings.WEBSITE_TWITTER:
-        return settings.WEBSITE_TWITTER[value]
+    if config.WEBSITE_TWITTER_HASHTAG:
+        return config.WEBSITE_TWITTER_HASHTAG
     return ''
 
 
@@ -376,7 +378,7 @@ def template_exists(value):
 
 @register.filter(name='is_marked_area')
 def is_marked_area(area):
-    if area.id in settings.MARKED_AREAS:
+    if area.id in config.MARKED_AREAS:
         return True
     return False
 
@@ -389,4 +391,4 @@ def get_contact_detail(candidate, type_=None):
 
 @register.simple_tag
 def get_proposals_enabled():
-    return settings.PROPOSALS_ENABLED
+    return config.PROPOSALS_ENABLED

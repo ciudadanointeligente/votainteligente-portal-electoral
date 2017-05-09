@@ -17,7 +17,9 @@ from django import forms
 from backend_candidate.models import Candidacy
 from popular_proposal.models import PopularProposal, Commitment
 from django.test import override_settings
-
+from django.shortcuts import render
+from constance import config
+from constance.test import override_config
 
 class TemplateTagsTestCase(TestCase):
     def setUp(self):
@@ -165,6 +167,7 @@ class TemplateTagsTestCase(TestCase):
 
         self.assertEqual(template.render(context), u'eb18642b5b220484864483b8e21386c3')
 
+    @override_config(WEBSITE_TWITTER_HASHTAG=u'votainformado,eslaloslas')
     def test_website_twitter(self):
         template = Template("{% load votainteligente_extras %}{{ 'hashtags'|website_twitter }}")
         context = Context({})
@@ -494,7 +497,7 @@ class LoginFormsTemplateTags(TestCase):
                               a['expected'],
                               u'Intentando con ' + a['entered'] + u' obtengo ' + rendered + u' en lugar de ' + a['expected'])
 
-    @override_settings(MARKED_AREAS=['argentina'])
+    @override_config(MARKED_AREAS=['argentina',])
     def test_marked_areas(self):
         argentina = Area.objects.create(name=u'Argentina')
         chile = Area.objects.create(name=u'Chile')
@@ -515,13 +518,13 @@ class LoginFormsTemplateTags(TestCase):
         context = Context({'candidate': candidate2})
         self.assertEquals(template.render(context), '')
 
-    @override_settings(PROPOSALS_ENABLED=False)
+    @override_config(PROPOSALS_ENABLED=False)
     def test_candidates_not_commiting(self):
         template = Template("{% load votainteligente_extras %}{% get_proposals_enabled as proposals_enabled %}{% if proposals_enabled  %}si{% else %}no{% endif %}")
         context = Context({})
         self.assertEquals(template.render(context), 'no')
 
-    @override_settings(PROPOSALS_ENABLED=True)
+    @override_config(PROPOSALS_ENABLED=True)
     def test_candidates_commiting_if_enabled(self):
         template = Template("{% load votainteligente_extras %}{% get_proposals_enabled as proposals_enabled %}{% if proposals_enabled  %}si{% else %}no{% endif %}")
         context = Context({})

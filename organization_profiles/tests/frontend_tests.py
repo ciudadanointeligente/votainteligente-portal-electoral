@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
 from backend_citizen.models import Profile
 from django.core.urlresolvers import reverse
+from organization_profiles.models import OrganizationTemplate
 
 
 class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
@@ -19,3 +20,17 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         ## /organization/ciudadanoi
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
+
+
+class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
+    def setUp(self):
+        super(OrganizationTemplateTestCase, self).setUp()
+        self.user = User.objects.create(username='ciudadanoi',
+                                        password=PASSWORD,
+                                        email='mail@mail.com')
+
+    def test_instanciate_model(self):
+        self.user.profile.is_organization = True
+        self.user.profile.save()
+        template = OrganizationTemplate.objects.get(organization=self.user)
+        self.assertTrue(template.content)

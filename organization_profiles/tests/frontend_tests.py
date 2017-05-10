@@ -1,0 +1,21 @@
+# coding=utf-8
+from django.contrib.auth.models import User
+from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
+from backend_citizen.models import Profile
+from django.core.urlresolvers import reverse
+
+
+class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
+    def setUp(self):
+        super(OrganizationFrontEndTestCase, self).setUp()
+        self.user = User.objects.create(username='ciudadanoi',
+                                   password=PASSWORD,
+                                   email='mail@mail.com')
+        self.user.profile.is_organization = True
+        self.user.profile.save()
+
+    def test_properties(self):
+        url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
+        ## /organization/ciudadanoi
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)

@@ -35,3 +35,9 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
         # y se crea porque en la linea anterior le dijimos que la wea era organización
         template = OrganizationTemplate.objects.get(organization=self.user)
         self.assertTrue(template.content)
+        fiera = User.objects.create(username='fiera_feroz',
+                                    password=PASSWORD,
+                                    email='fiera@mail.com')
+        fiera.profile.is_organization = False
+        fiera.profile.save()
+        self.assertFalse(OrganizationTemplate.objects.filter(organization=fiera))

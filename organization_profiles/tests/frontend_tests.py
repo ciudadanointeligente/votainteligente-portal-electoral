@@ -25,12 +25,17 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
     def test_return_basic_data(self):
         self.user.organization_template.content = u'<h1>{{org_name}}</h1>'
         self.user.organization_template.save()
-
         url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
-
         response = self.client.get(url)
-
-        self.assertEquals(response.content, u"<h1>" + str(self.user) + u"</h1>")
+        self.assertEquals(response.content, u"<h1>" + str(self.user) + u"</h1>\n")
+        ## Y si ahora le cambio el template debería ser distinto o no?????
+        self.user.organization_template.content = u'<h2>{{org_name}}</h2>'
+        self.user.organization_template.save()
+        response = self.client.get(url)
+        self.assertEquals(response.content,
+                          u"<h2>" + str(self.user) + u"</h2>\n",
+                          u"Cuando cambiamos el template con handlebars debe cambiar la respuesta dibujada")
+        ## rendereo NO está en función del template de la instancia
 
 
 class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):

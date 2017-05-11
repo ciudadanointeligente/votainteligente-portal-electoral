@@ -1,9 +1,10 @@
 from django.conf.urls import url
 from django.views.generic import TemplateView
+from organization_profiles.views import OrganizationDetailView
 
 
 urlpatterns = [
     url(r'^organization/(?P<slug>[-\w]+)/?$',
-        TemplateView.as_view(template_name='encuentroONGs.html'),
+        OrganizationDetailView.as_view(),
         name='home'),
 ]

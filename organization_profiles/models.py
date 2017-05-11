@@ -16,4 +16,5 @@ class OrganizationTemplate(models.Model):
 def create_organization_template(sender, instance, created, raw, **kwargs):
     if raw:
         return
-    template, created = OrganizationTemplate.objects.get_or_create(organization=instance.user)
+    if(instance.is_organization):
+        template, created = OrganizationTemplate.objects.get_or_create(organization=instance.user)

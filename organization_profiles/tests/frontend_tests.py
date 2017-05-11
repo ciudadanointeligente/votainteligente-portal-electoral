@@ -10,6 +10,7 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
     def setUp(self):
         super(OrganizationFrontEndTestCase, self).setUp()
         self.user = User.objects.create(username='ciudadanoi',
+                                    name='Ciudadano Inteligente',
                                    password=PASSWORD,
                                    email='mail@mail.com')
         self.user.profile.is_organization = True
@@ -20,6 +21,16 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         ## /organization/ciudadanoi
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
+
+    def test_return_basic_data(self):
+        self.user.organization_template.content = u'<h1>{{org_name}}</h1>'
+        self.user.organization_template.save()
+
+        url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
+
+        response = self.client.get(url)
+
+        self.assertEquals(response.content, u"<h1>"+ self.user.name +u"</h1>")
 
 
 class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):

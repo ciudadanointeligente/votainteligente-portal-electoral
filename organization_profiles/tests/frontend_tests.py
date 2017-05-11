@@ -34,7 +34,7 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         response = self.client.get(url)
         self.assertEquals(response.content,
                           u"<h2>" + str(self.user) + u"</h2>\n",
-                          u"Cuando cambiamos el template con handlebars debe cambiar la respuesta dibujada")
+                          u"Cambiando el template handlebars cambiar la respuesta")
         ## rendereo NO está en función del template de la instancia
 
 

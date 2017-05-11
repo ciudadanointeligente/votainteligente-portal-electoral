@@ -31,6 +31,7 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
 
     def test_instanciate_model(self):
         self.user.profile.is_organization = True
-        self.user.profile.save()
+        self.user.profile.save() #  Acá se crea un OrganizationTemplate
+        # y se crea porque en la linea anterior le dijimos que la wea era organización
         template = OrganizationTemplate.objects.get(organization=self.user)
         self.assertTrue(template.content)

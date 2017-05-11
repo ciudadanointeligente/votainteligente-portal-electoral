@@ -10,7 +10,7 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
     def setUp(self):
         super(OrganizationFrontEndTestCase, self).setUp()
         self.user = User.objects.create(username='ciudadanoi',
-                                    name='Ciudadano Inteligente',
+                                    first_name='Ciudadano Inteligente',
                                    password=PASSWORD,
                                    email='mail@mail.com')
         self.user.profile.is_organization = True

@@ -8,7 +8,7 @@ from django.db.models.signals import post_save
 
 
 class OrganizationTemplate(models.Model):
-    organization = models.ForeignKey(User)
+    organization = models.OneToOneField(User, related_name='organization_template')
     content = models.TextField(default="FieraFeroz")
 
 

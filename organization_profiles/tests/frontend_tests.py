@@ -30,7 +30,7 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
 
         response = self.client.get(url)
 
-        self.assertEquals(response.content, u"<h1>"+ self.user.name +u"</h1>")
+        self.assertEquals(response.content, u"<h1>"+ str(self.user) + u"</h1>")
 
 
 class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):

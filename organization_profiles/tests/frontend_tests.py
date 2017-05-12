@@ -77,6 +77,7 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
         template.primary_color = '#FF00FF'
         template.secondary_color = '#1100FF'
         template.rss_url = 'http://blog.ciudadanointeligente.org/feed.xml'
+        template.save()
         template = OrganizationTemplate.objects.get(id=self.user.organization_template.id)
         self.assertTrue(template.logo)
         self.assertTrue(template.background_image)

@@ -35,7 +35,11 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         self.assertEquals(response.content,
                           u"<h2>" + str(self.user) + u"</h2>",
                           u"Cambiando el template handlebars cambiar la respuesta")
-        ## rendereo NO está en función del template de la instancia
+        ## Y si ahora le cambio el template debería ser distinto o no?????
+        self.user.organization_template.content = ""
+        self.user.organization_template.save()
+        response = self.client.get(url)
+        self.assertTrue(response.content, "Si está vacio entonces dibuja el contenido de organization_detail_view.hbs")
 
 
 class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
@@ -50,7 +54,7 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
         self.user.profile.save() #  Acá se crea un OrganizationTemplate
         # y se crea porque en la linea anterior le dijimos que la wea era organización
         template = OrganizationTemplate.objects.get(organization=self.user)
-        self.assertTrue(template.content)
+        self.assertEquals(template.content, "")
         fiera = User.objects.create(username='fiera_feroz',
                                     password=PASSWORD,
                                     email='fiera@mail.com')

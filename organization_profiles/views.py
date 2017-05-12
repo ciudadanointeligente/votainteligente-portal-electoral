@@ -4,14 +4,16 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from pybars import Compiler
-# >>> from pybars import Compiler
-# >>> compiler = Compiler()
-# >>> source = u"<h1>{{name}}</h1>"
-# >>> template = compiler.compile(source)
-# >>> print(template({"name": "Fiera"}))
-# <h1>Fiera</h1>
-# se puede sacar información desde acá
-# https://github.com/ciudadanointeligente/deldichoalhecho/blob/master/ddah_web/views.py#L11-L59
+import os
+import codecs
+
+
+def read_template_as_string(path, file_source_path=__file__):
+    script_dir = os.path.dirname(file_source_path)
+    result = ''
+    with codecs.open(os.path.join(script_dir, 'templates', path), 'r', encoding='utf8') as f:
+        result = f.read()
+    return result
 
 
 class HandleBarsResponse(HttpResponse):
@@ -24,8 +26,13 @@ class HandleBarsResponse(HttpResponse):
 class OrganizationDetailView(DetailView):
     model = User
     slug_field = 'username'
+    template_name = 'organization_detail_view.hbs'
     response_class = HandleBarsResponse
 
     def render_to_response(self, context, **kwargs):
-        return self.response_class(self.object.organization_template.content,
+        if self.object.organization_template.content:
+            return self.response_class(self.object.organization_template.content,
+                                       context)
+        source = read_template_as_string(self.template_name)
+        return self.response_class(source,
                                    context)

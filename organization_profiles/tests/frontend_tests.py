@@ -61,3 +61,31 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
         fiera.profile.is_organization = False
         fiera.profile.save()
         self.assertFalse(OrganizationTemplate.objects.filter(organization=fiera))
+
+    def test_extra_fields(self):
+        self.user.profile.is_organization = True
+        self.user.profile.save()
+        template = self.user.organization_template
+        template.logo = self.get_image()
+        template.background_image = self.get_image()
+        template.title = u'Título'
+        template.sub_title = u'Bajada'
+        template.org_url = u'http://ciudadanointeligente.org'
+        template.facebook = u'https://www.facebook.com/ciudadanointeligente'
+        template.twitter = u'https://twitter.com/ciudadanoi'
+        template.instagram = u'https://www.instagram.com/fiera_feroz/'
+        template.primary_color = '#FF00FF'
+        template.secondary_color = '#1100FF'
+        template.rss_url = 'http://blog.ciudadanointeligente.org/feed.xml'
+        template = OrganizationTemplate.objects.get(id=self.user.organization_template.id)
+        self.assertTrue(template.logo)
+        self.assertTrue(template.background_image)
+        self.assertTrue(template.title)
+        self.assertTrue(template.sub_title)
+        self.assertTrue(template.org_url)
+        self.assertTrue(template.facebook)
+        self.assertTrue(template.twitter)
+        self.assertTrue(template.instagram)
+        self.assertTrue(template.primary_color)
+        self.assertTrue(template.secondary_color)
+        self.assertTrue(template.rss_url)

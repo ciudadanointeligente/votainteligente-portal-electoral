@@ -21,19 +21,28 @@ class OrganizationTemplate(models.Model):
                               blank=True,
                               verbose_name=_(u'Imagen de fondo'))
     title = models.CharField(max_length=512,
-                                verbose_name=_(u'Título de tu organización'))
+                                verbose_name=_(u'Título de tu organización'),
+                                blank=True,
+                                null=True)
     sub_title = models.TextField(verbose_name=_('Bajada'),
                                    null=True,
                                    blank=True)
-    org_url = models.URLField()
-    facebook = models.URLField()
-    twitter = models.URLField()
-    instagram = models.URLField()
+    org_url = models.URLField(blank=True,
+                                null=True)
+    facebook = models.URLField(blank=True,
+                                null=True)
+    twitter = models.URLField(blank=True,
+                                null=True)
+    instagram = models.URLField(blank=True,
+                                null=True)
     primary_color = models.CharField(max_length=8,
-                                verbose_name=_(u'Color primario'))
+                                verbose_name=_(u'Color primario'),
+                                default="#CCDDCC")
     secondary_color = models.CharField(max_length=8,
-                                verbose_name=_(u'Color secundario'))
-    rss_url = models.URLField()
+                                verbose_name=_(u'Color secundario'),
+                                default="#DDCCDD")
+    rss_url = models.URLField(blank=True,
+                                null=True)
 
 @receiver(post_save, sender=Profile, dispatch_uid="create_user_profile")
 def create_organization_template(sender, instance, created, raw, **kwargs):

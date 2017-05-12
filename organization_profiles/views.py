@@ -36,8 +36,9 @@ class OrganizationDetailView(DetailView):
 
         context['extra_pages'] = []
         for extra_page in self.object.organization_template.extra_pages.all():
-            print type(extra_page.title)
-            context['extra_pages'].append({"title": extra_page.title})
+            context['extra_pages'].append({"title": extra_page.title,
+                                           "slug": extra_page.slug,
+                                           "content": extra_page.content_markdown})
 
         for field in BASIC_FIELDS:
             value = getattr(self.object.organization_template, field)

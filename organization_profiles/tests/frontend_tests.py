@@ -134,10 +134,9 @@ class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
                                               content=u"## Contenido")
 
         url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
-        response = self.client.get(url)
+        response = self.client.get(url) ## Esto es lo que no es unicode
+        content = response.content.decode('utf-8')
 
-        print response.content
-
-        self.assertIn(extra_page.title, response.content)
-        self.assertIn(extra_page.slug, response.content)
-        self.assertIn(extra_page.content_markdown, response.content)
+        self.assertIn(extra_page.title, content)
+        self.assertIn(extra_page.slug, content)
+        self.assertIn(extra_page.content_markdown, content)

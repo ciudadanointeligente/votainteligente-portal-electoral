@@ -44,6 +44,11 @@ class OrganizationTemplate(models.Model):
     rss_url = models.URLField(blank=True,
                                 null=True)
 
+
+BASIC_FIELDS = ["logo", "background_image", "title", "sub_title",
+                "org_url", "facebook", "twitter", "instagram", "primary_color",
+                "secondary_color", "rss_url",]
+
 @receiver(post_save, sender=Profile, dispatch_uid="create_user_profile")
 def create_organization_template(sender, instance, created, raw, **kwargs):
     if raw:

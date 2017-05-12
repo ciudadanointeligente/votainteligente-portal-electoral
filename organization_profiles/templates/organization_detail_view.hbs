@@ -13,3 +13,7 @@
 
 <p>primary color: {{primary_color}}</p>
 <p>secondary color: {{secondary_color}}</p>
+
+{{#each user.organization_template.extra_pages.all}}
+  p{{title}}a
+{{/each}}

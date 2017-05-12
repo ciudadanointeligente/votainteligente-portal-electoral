@@ -41,6 +41,19 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         response = self.client.get(url)
         self.assertTrue(response.content, "Si está vacio entonces dibuja el contenido de organization_detail_view.hbs")
 
+    def test_display_basic_data(self):
+        self.user.organization_template.logo = self.get_image()
+        self.user.organization_template.facebook = u'https://www.facebook.com/ciudadanointeligente'
+        self.user.organization_template.secondary_color = '#EEEEDD'
+        self.user.organization_template.content = u'<ul><li>logo: {{logo}}</li><li>facebook: {{facebook}}</li><li>secondary_color: {{secondary_color}}</li></ul>'
+        self.user.organization_template.save()
+        url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
+        response = self.client.get(url)
+
+        self.assertIn(self.user.organization_template.logo.url, response.content)
+        self.assertIn(self.user.organization_template.facebook, response.content)
+        self.assertIn(self.user.organization_template.secondary_color, response.content)
+
 
 class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
     def setUp(self):

@@ -74,6 +74,7 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
         fiera.profile.is_organization = False
         fiera.profile.save()
         self.assertFalse(OrganizationTemplate.objects.filter(organization=fiera))
+        self.assertIn(str(self.user), str(template))
 
     def test_extra_fields(self):
         self.user.profile.is_organization = True

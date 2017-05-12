@@ -8,6 +8,8 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
+from autoslug import AutoSlugField
+import markdown2
 
 
 @python_2_unicode_compatible
@@ -53,6 +55,18 @@ class OrganizationTemplate(models.Model):
 BASIC_FIELDS = ["logo", "background_image", "title", "sub_title",
                 "org_url", "facebook", "twitter", "instagram", "primary_color",
                 "secondary_color", "rss_url",]
+
+class ExtraPage(models.Model):
+    template = models.ForeignKey(OrganizationTemplate, related_name='extra_pages')
+    content = models.TextField(default="")
+    title = models.CharField(max_length=512,
+                             verbose_name=_(u'Título'))
+    slug = AutoSlugField(populate_from='title', unique=True)
+
+    @property
+    def content_markdown(self):
+        return markdown2.markdown(self.content)
+
 
 @receiver(post_save, sender=Profile, dispatch_uid="create_user_profile")
 def create_organization_template(sender, instance, created, raw, **kwargs):

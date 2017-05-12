@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
 from backend_citizen.models import Profile
 from django.core.urlresolvers import reverse
-from organization_profiles.models import OrganizationTemplate
+from organization_profiles.models import OrganizationTemplate, ExtraPage
 
 
 class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
@@ -104,3 +104,24 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
         self.assertTrue(template.primary_color)
         self.assertTrue(template.secondary_color)
         self.assertTrue(template.rss_url)
+
+
+class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
+    def setUp(self):
+        super(ExtraPagesPerOrganization, self).setUp()
+        self.user = User.objects.create(username='ciudadanoi',
+                                        password=PASSWORD,
+                                        email='mail@mail.com')
+        self.user.profile.is_organization = True
+        self.user.profile.save()
+
+    def test_attributes(self):
+        extra_page = ExtraPage.objects.create(template=self.user.organization_template,
+                                              title=u"Título",
+                                              content=u"## Contenido")
+        self.assertEquals(extra_page.template, self.user.organization_template)
+        self.assertEquals(extra_page.title, u"Título")
+        self.assertEquals(extra_page.content, u"## Contenido")
+        self.assertTrue(extra_page.slug)
+        ## El regalito
+        self.assertIn(u"<h2>Contenido</h2>", extra_page.content_markdown)

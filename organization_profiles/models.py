@@ -7,8 +7,10 @@ from backend_citizen.models import Profile
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class OrganizationTemplate(models.Model):
     organization = models.OneToOneField(User, related_name='organization_template')
     content = models.TextField(default="")
@@ -43,6 +45,9 @@ class OrganizationTemplate(models.Model):
                                 default="#DDCCDD")
     rss_url = models.URLField(blank=True,
                                 null=True)
+
+    def __str__(self):
+        return "Template for %s" % (str(self.organization))
 
 
 BASIC_FIELDS = ["logo", "background_image", "title", "sub_title",

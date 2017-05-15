@@ -8,6 +8,7 @@ import os
 import codecs
 from django.core.files import File
 from organization_profiles.models import BASIC_FIELDS
+# from django.template.loader import get_template
 
 
 def read_template_as_string(path, file_source_path=__file__):
@@ -30,6 +31,7 @@ class OrganizationDetailView(DetailView):
     model = User
     slug_field = 'username'
     template_name = 'organization_detail_view.hbs'
+    context_object_name = 'organization'
     response_class = HandleBarsResponse
 
     def create_context_based_on_organization_template(self, context):

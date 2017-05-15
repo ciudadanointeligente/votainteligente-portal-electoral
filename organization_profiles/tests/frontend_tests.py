@@ -27,14 +27,14 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         self.user.organization_template.save()
         url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
         response = self.client.get(url)
-        self.assertEquals(response.content, u"<h1>" + str(self.user) + u"</h1>")
+        self.assertIn(u"<h1>" + str(self.user) + u"</h1>", response.content)
         ## Y si ahora le cambio el template debería ser distinto o no?????
         self.user.organization_template.content = u'<h2>{{object}}</h2>'
         self.user.organization_template.save()
         response = self.client.get(url)
-        self.assertEquals(response.content,
-                          u"<h2>" + str(self.user) + u"</h2>",
-                          u"Cambiando el template handlebars cambiar la respuesta")
+        self.assertIn(u"<h2>" + str(self.user) + u"</h2>",
+                      response.content,
+                      u"Cambiando el template handlebars cambiar la respuesta")
         ## Y si ahora le cambio el template debería ser distinto o no?????
         self.user.organization_template.content = ""
         self.user.organization_template.save()

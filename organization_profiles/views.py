@@ -8,7 +8,7 @@ import os
 import codecs
 from django.core.files import File
 from organization_profiles.models import BASIC_FIELDS
-# from django.template.loader import get_template
+from django.template.loader import get_template
 
 
 def read_template_as_string(path, file_source_path=__file__):
@@ -22,9 +22,15 @@ def read_template_as_string(path, file_source_path=__file__):
 class HandleBarsResponse(HttpResponse):
     def __init__(self, source, obj, **kwargs):
         compiler = Compiler()
-        template = compiler.compile(source)
-        content = template(obj)
-        super(HandleBarsResponse, self).__init__(content=content, **kwargs)
+        content_template = compiler.compile(source)
+        base_template =  compiler.compile(u'<!DOCTYPE html><html lang="es"><body><div><div class="container content_padding">{{> content}}</div></div></body></html>')
+        head = get_template("_head.html").render(obj)
+        print type(head)
+        footer = get_template("_footer.html").render(obj)
+        everything = base_template(obj, partials={"content": content_template})
+                                                #   "head": head,
+                                                #   "footer": footer
+        super(HandleBarsResponse, self).__init__(content=everything, **kwargs)
 
 
 class OrganizationDetailView(DetailView):

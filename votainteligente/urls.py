@@ -6,6 +6,7 @@ from backend_candidate.views import HelpFindingCandidates
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import password_change, password_change_done
+from django.conf.urls.static import static
 
 
 admin.autodiscover()
@@ -57,6 +58,9 @@ urlpatterns = [
 urlpatterns += [
                         url('', include('social.apps.django_app.urls', namespace='social'))
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 if settings.THEME:
     urlpatterns += [

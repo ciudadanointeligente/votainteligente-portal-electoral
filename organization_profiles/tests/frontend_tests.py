@@ -27,19 +27,22 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         self.user.organization_template.save()
         url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
         response = self.client.get(url)
-        self.assertIn(u"<h1>" + str(self.user) + u"</h1>", response.content)
+        content = response.content.decode('utf-8')
+        self.assertIn(u"<h1>" + str(self.user) + u"</h1>", content)
         ## Y si ahora le cambio el template debería ser distinto o no?????
         self.user.organization_template.content = u'<h2>{{object}}</h2>'
         self.user.organization_template.save()
         response = self.client.get(url)
+        content = response.content.decode('utf-8')
         self.assertIn(u"<h2>" + str(self.user) + u"</h2>",
-                      response.content,
+                      content,
                       u"Cambiando el template handlebars cambiar la respuesta")
         ## Y si ahora le cambio el template debería ser distinto o no?????
         self.user.organization_template.content = ""
         self.user.organization_template.save()
         response = self.client.get(url)
-        self.assertTrue(response.content, "Si está vacio entonces dibuja el contenido de organization_detail_view.hbs")
+        content = response.content.decode('utf-8')
+        self.assertTrue(content, "Si está vacio entonces dibuja el contenido de organization_detail_view.hbs")
 
     def test_display_basic_data(self):
         self.user.organization_template.logo = self.get_image()
@@ -49,10 +52,10 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         self.user.organization_template.save()
         url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
         response = self.client.get(url)
-
-        self.assertIn(self.user.organization_template.logo.url, response.content)
-        self.assertIn(self.user.organization_template.facebook, response.content)
-        self.assertIn(self.user.organization_template.secondary_color, response.content)
+        content = response.content.decode('utf-8')
+        self.assertIn(self.user.organization_template.logo.url, content)
+        self.assertIn(self.user.organization_template.facebook, content)
+        self.assertIn(self.user.organization_template.secondary_color, content)
 
 
 class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):

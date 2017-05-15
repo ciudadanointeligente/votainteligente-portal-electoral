@@ -58,6 +58,7 @@ class OrganizationDetailView(DetailView):
 
     def render_to_response(self, context, **kwargs):
         context = self.create_context_based_on_organization_template(context)
+        context['user'] = self.request.user
         if self.object.organization_template.content:
             return self.response_class(self.object.organization_template.content,
                                        context)

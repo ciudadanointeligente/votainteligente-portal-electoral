@@ -24,12 +24,11 @@ class HandleBarsResponse(HttpResponse):
         compiler = Compiler()
         content_template = compiler.compile(source)
         base_template =  compiler.compile(u'<!DOCTYPE html><html lang="es"><body><div><div class="container content_padding">{{> content}}</div></div></body></html>')
-        head = get_template("_head.html").render(obj)
-        print type(head)
-        footer = get_template("_footer.html").render(obj)
-        everything = base_template(obj, partials={"content": content_template})
-                                                #   "head": head,
-                                                #   "footer": footer
+        head = compiler.compile(get_template("_head.html").render(obj))
+        footer = compiler.compile(get_template("_footer.html").render(obj))
+        everything = base_template(obj, partials={"content": content_template,
+                                                  "head": head,
+                                                  "footer": footer})
         super(HandleBarsResponse, self).__init__(content=everything, **kwargs)
 
 

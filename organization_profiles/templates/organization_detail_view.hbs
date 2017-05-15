@@ -1,9 +1,9 @@
 <!--  primary data -->
 <div>
   <div class="container text-center">
-    <h2>{{user}}</h2>
+    <h2>{{organization}}</h2>
     <div class="logo-org">
-      <img src="{{logo}}" alt="{{user}}">
+      <img src="{{logo}}" alt="{{organization}}">
     </div>
   </div>
 </div>
@@ -30,12 +30,12 @@
 <div class="">
   <ul class="nav nav-tabs" role="tablist">
     {{#each extra_pages}}
-    <li role="presentation" class="active"><a href="#{{slug}}" aria-controls="{{slug}}" role="tab" data-toggle="tab">{{title}}</a></li>
+    <li role="presentation" class="{{#if @first }}active{{/if}}"><a href="#{{slug}}" aria-controls="{{slug}}" role="tab" data-toggle="tab">{{title}}</a></li>
     {{/each}}
   </ul>
   <div class="tab-content">
     {{#each extra_pages}}
-    <div role="tabpanel" class="tab-pane active" id="{{slug}}">{{{content}}}</div>
+    <div role="tabpanel" class="tab-pane {{#if @first }}active{{/if}}" id="{{slug}}">{{{content}}}</div>
     {{/each}}
   </div>
 </div>

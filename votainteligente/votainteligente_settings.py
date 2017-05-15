@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'backend_staff',
     'backend_citizen',
     'backend_candidate',
+    'organization_profiles',
     'django_filters',
     'django_ogp',
     'debug_toolbar',

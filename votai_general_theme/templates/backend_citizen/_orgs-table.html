@@ -1,25 +1,26 @@
 {% load votainteligente_extras %}
-{% load i18n %}    
+{% load i18n %}
 
 {% if user.enrollments.all %}
     <div class="contenedorDestacado fondo-blanco">
         <h2>Organizaciones registradas</h2>
-        <table class="table">
-        <tr>
-            <td>Organización</td>
-            <td>Link</td>
-        </tr>
-        {% for enrollment in user.enrollments.all %}
-        <tr>
-            <td>{{enrollment.organization}}</td>
-            <td><a target="_blank" href="{{enrollment.organization.get_absolute_url}}">
-                    <i class="fa fa-external-link" aria-hidden="true"></i>
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-        
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+          <tr>
+              <td>Organización</td>
+              <td>Link</td>
+          </tr>
+          {% for enrollment in user.enrollments.all %}
+          <tr>
+              <td>{{enrollment.organization}}</td>
+              <td><a target="_blank" href="{{enrollment.organization.get_absolute_url}}">
+                      <i class="fa fa-external-link" aria-hidden="true"></i>
+                  </a>
+              </td>
+          </tr>
+          {% endfor %}
+          </table>
+        </div>
     </div>
     {% else %}
     {% endif %}

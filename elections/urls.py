@@ -78,7 +78,7 @@ urlpatterns = [
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}),
 ]
 
-urlpatterns += [
-    url(r'^cache/(?P<path>.*)$', sitemap,
-        {'document_root': media_root})
-]
+# urlpatterns += [
+#     url(r'^cache/(?P<path>.*)$', sitemap,
+#         {'document_root': media_root})
+# ]

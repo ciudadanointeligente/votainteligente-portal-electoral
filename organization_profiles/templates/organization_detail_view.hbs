@@ -1,0 +1,44 @@
+<!--  primary data -->
+<div>
+  <div class="container text-center">
+    <h2>{{organization}}</h2>
+    <div class="logo-org">
+      <img src="{{logo}}" alt="{{organization}}">
+    </div>
+  </div>
+</div>
+<!-- about -->
+<div class="">
+  <div class="container text-center">
+    <h3>{{title}}</h3>
+    <h4>{{subtitle}}</h4>
+  </div>
+</div>
+<!--  social network -->
+<div class="">
+  <div class="container text-center">
+    <ul class="list-inline">
+      <li><a href="{{org_url}}">Website</a></li>
+      <li><a href="{{facebook}}">Facebook</a></li>
+      <li><a href="{{twitter}}">Twitter</a></li>
+      <li><a href="{{instagram}}">Instagram</a></li>
+      <li><a href="{{rss_url}}">RSS</a></li>
+    </ul>
+  </div>
+</div>
+<!--  extra pages -->
+<div class="">
+  <ul class="nav nav-tabs" role="tablist">
+    {{#each extra_pages}}
+    <li role="presentation" class="{{#if @first }}active{{/if}}"><a href="#{{slug}}" aria-controls="{{slug}}" role="tab" data-toggle="tab">{{title}}</a></li>
+    {{/each}}
+  </ul>
+  <div class="tab-content">
+    {{#each extra_pages}}
+    <div role="tabpanel" class="tab-pane {{#if @first }}active{{/if}}" id="{{slug}}">{{{content}}}</div>
+    {{/each}}
+  </div>
+</div>
+
+<p>primary color: {{primary_color}}</p>
+<p>secondary color: {{secondary_color}}</p>

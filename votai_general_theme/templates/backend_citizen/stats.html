@@ -5,6 +5,7 @@
 <p>Tus propuestas están presentes en un total de {{total_stats.areas_present.count}} comunas, de las cuales has logrado compromisos en {{total_stats.areas_with_commitments.count}}, de ellos {{total_stats.pronouncing__alcalde.count}} son de alcalde y {{total_stats.pronouncing__concejal.count}}
   son de concejal</p>
 
+<div class="table-responsive">
 <table class="table table-striped">
   <thead>
     <tr>
@@ -27,8 +28,10 @@
     {% endfor %}
   </tbody>
 </table>
+</div>
 
 <h3>Las estadísticas sobre tus propuestas</h3>
+<div class="table-responsive">
 <table class="table table-striped">
   <thead>
     <tr>
@@ -97,4 +100,5 @@
     {% empty %} {% endfor %}
   </tbody>
 </table>
+</div>
 {% endblock main_content %}

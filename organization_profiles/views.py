@@ -19,14 +19,16 @@ def read_template_as_string(path, file_source_path=__file__):
     return result
 
 
+compiler = Compiler()
+base_template =  compiler.compile(u'<!DOCTYPE html><html lang="es">{{> head}}<body><div>{{> nav}}<div class="container content_padding">{{> content}}</div></div>{{> footer}}</body></html>')
+head = compiler.compile(get_template("_head.html").render({}))
+footer = compiler.compile(get_template("_footer.html").render({}))
+
+
 class HandleBarsResponse(HttpResponse):
     def __init__(self, source, obj, **kwargs):
-        compiler = Compiler()
         content_template = compiler.compile(source)
-        base_template =  compiler.compile(u'<!DOCTYPE html><html lang="es">{{> head}}<body><div>{{> nav}}<div class="container content_padding">{{> content}}</div></div>{{> footer}}</body></html>')
-        head = compiler.compile(get_template("_head.html").render(obj))
         nav = compiler.compile(get_template("_navbar.html").render(obj))
-        footer = compiler.compile(get_template("_footer.html").render(obj))
         everything = base_template(obj, partials={"content": content_template,
                                                   "head": head,
                                                   "nav": nav,

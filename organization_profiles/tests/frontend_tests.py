@@ -127,7 +127,7 @@ class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
         self.assertIn(u"<h2>Contenido</h2>", extra_page.content_markdown)
 
     def test_extra_pages_in_content(self):
-        self.user.organization_template.content = u'{{#each extra_pages}} {{title}} - {{content}} - {{slug}} {{/each}}'
+        self.user.organization_template.content = u'{{#each extra_pages}} {{title}} - {{{content}}} - {{slug}} {{/each}}'
         self.user.organization_template.save()
         extra_page = ExtraPage.objects.create(template=self.user.organization_template,
                                               title=u"Título",

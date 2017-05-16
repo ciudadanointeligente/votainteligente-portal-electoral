@@ -1,5 +1,5 @@
 <!--  primary data -->
-<div style="background-color:{{primary_color}}; height:300px;">
+<div style="background-image:url({{background_image}}); padding-bottom:10px;">
   <div class="container text-center">
     <h2>{{organization}}</h2>
     <div class="logo-org">
@@ -8,16 +8,16 @@
   </div>
 </div>
 <!-- about -->
-<div class="" style="background-color:{{secondary_color}}; height:300px;">
+<div class="" style="background-color:{{primary_color}}; padding-bottom:10px;">
   <div class="container text-center">
     <h3>{{title}}</h3>
     <p>{{sub_title}}</p>
   </div>
 </div>
 <!--  social network -->
-<div class="" style="height:150px;">
+<div class="" style="padding-bottom:10px; background-color:{{secondary_color}};">
   <div class="container text-center">
-    <ul class="list-inline" style="padding-top:45px;">
+    <ul class="list-inline" style="padding-top:15px;">
       <li><a href="{{org_url}}"><i class="fa fa-globe"></i> Website</a></li>
       <li><a href="{{facebook}}"><i class="fa fa-facebook"></i> Facebook</a></li>
       <li><a href="{{twitter}}"><i class="fa fa-twitter"></i> Twitter</a></li>
@@ -27,7 +27,7 @@
   </div>
 </div>
 <!--  extra pages -->
-<div class="container">
+<div class="container" style="padding-top:10px; padding-bottom:10px;">
   <ul class="nav nav-tabs" role="tablist">
     {{#each extra_pages}}
     <li role="presentation" class="{{#if @first }}active{{/if}}"><a href="#{{slug}}" aria-controls="{{slug}}" role="tab" data-toggle="tab">{{title}}</a></li>

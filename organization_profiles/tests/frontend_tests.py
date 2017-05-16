@@ -11,8 +11,9 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         super(OrganizationFrontEndTestCase, self).setUp()
         self.user = User.objects.create(username='ciudadanoi',
                                     first_name='Ciudadano Inteligente',
-                                   password=PASSWORD,
                                    email='mail@mail.com')
+        self.user.set_password(PASSWORD)
+        self.user.save()
         self.user.profile.is_organization = True
         self.user.profile.save()
 
@@ -52,10 +53,26 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         self.user.organization_template.save()
         url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
         response = self.client.get(url)
-        content = response.content.decode('utf-8')
-        self.assertIn(self.user.organization_template.logo.url, content)
-        self.assertIn(self.user.organization_template.facebook, content)
-        self.assertIn(self.user.organization_template.secondary_color, content)
+        content = response.context
+        self.assertEquals(self.user.organization_template.logo.url, content['logo'])
+        self.assertEquals(self.user.organization_template.facebook, content['facebook'])
+        self.assertEquals(self.user.organization_template.secondary_color, content['secondary_color'])
+
+    def test_when_is_owner(self):
+        self.user.organization_template.logo = self.get_image()
+        self.user.organization_template.facebook = u'https://www.facebook.com/ciudadanointeligente'
+        self.user.organization_template.secondary_color = '#EEEEDD'
+        self.user.organization_template.content = u'<ul><li>logo: {{logo}}</li><li>facebook: {{facebook}}</li><li>secondary_color: {{secondary_color}}</li></ul>'
+        self.user.organization_template.save()
+        url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
+        response = self.client.get(url)
+        context = response.context
+        self.assertFalse(context['is_owner'])
+        logged_in = self.client.login(username=self.user.username, password=PASSWORD)
+        self.assertTrue(logged_in)
+        response = self.client.get(url)
+        context = response.context
+        self.assertTrue(context['is_owner'])
 
 
 class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):

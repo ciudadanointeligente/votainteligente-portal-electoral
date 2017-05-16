@@ -4,7 +4,7 @@ from organization_profiles.views import OrganizationDetailView
 
 
 urlpatterns = [
-    url(r'^/(?P<slug>[-\w]+)/?$',
+    url(r'^(?P<slug>[-\w]+)/?$',
         OrganizationDetailView.as_view(),
         name='home'),
 ]

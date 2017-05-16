@@ -24,7 +24,7 @@ class OrganizationTemplateUpdateForm(BackendCitizenTestCaseBase):
             data[field] = None
         data["primary_color"] = "#112233"
         data["secondary_color"] = "#332211"
-        form_ = OrganizationTemplateForm(data=data)
+        form_ = OrganizationTemplateForm(instance=self.template, data=data)
         self.assertTrue(form_.is_valid())
         form_.save()
 

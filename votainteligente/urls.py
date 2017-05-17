@@ -6,6 +6,7 @@ from backend_candidate.views import HelpFindingCandidates
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import password_change, password_change_done
+from django.conf.urls.static import static
 
 
 admin.autodiscover()
@@ -29,7 +30,7 @@ urlpatterns = [
     url(r'^newsletter/', include('newsletter.urls')),
     url(r'^backend_staff/', include('backend_staff.urls', namespace='backend_staff')),
     url(r'^perfil_ciudadano/', include('backend_citizen.urls', namespace='backend_citizen')),
-    url(r'^perfil_organizacion/', include('organization_profiles.urls', namespace='organization_profiles')),
+    url(r'^organizacion/', include('organization_profiles.urls', namespace='organization_profiles')),
     url(r'^candidatos/', include('backend_candidate.urls', namespace='backend_candidate')),
     url(r'^ayudanos/$',
         HelpFindingCandidates.as_view(),
@@ -57,6 +58,9 @@ urlpatterns = [
 urlpatterns += [
                         url('', include('social.apps.django_app.urls', namespace='social'))
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 if settings.THEME:
     urlpatterns += [

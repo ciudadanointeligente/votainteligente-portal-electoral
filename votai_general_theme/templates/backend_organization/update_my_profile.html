@@ -5,8 +5,10 @@
 {% load bootstrap3 %}
 
 {% block main_content %}
-	<h2 class="page-header">Tu perfil</h2>
-	<form enctype="multipart/form-data" action="{% url 'backend_citizen:update_my_profile' %}" method="POST" role="form">
+
+	<h2 class="page-header">Perfil Organización</h2>
+	<p class="alert alert-warning">Revisa tu página de perfil <a href="{% url 'organization_profiles:home' slug=user.username %}" target="_blank">acá</a></p>
+	<form enctype="multipart/form-data" action="{% url 'organization_profiles:update' %}" method="POST" role="form">
 	    {% csrf_token %}
         {% bootstrap_form form %}
 	    <div class="form-actions">

@@ -40,7 +40,7 @@ INSTALLED_APPS = (
     'popolo',
     'markdown_deux',
     'django_extensions',
-    #'social_django',
+    'social_django',
     'sorl.thumbnail',
     'django.contrib.admin',
     'tinymce',
@@ -72,8 +72,8 @@ LOGIN_REDIRECT_URL = 'backend_citizen:index'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = LOGIN_REDIRECT_URL
 
 AUTHENTICATION_BACKENDS = (
-    'social.backends.facebook.FacebookOAuth2',
-    'social.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -118,7 +118,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'linaro_django_pagination.middleware.PaginationMiddleware',
-    'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 )
 
 

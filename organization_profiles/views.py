@@ -10,7 +10,7 @@ from organization_profiles.models import BASIC_FIELDS
 from django.template.loader import get_template
 from django.views.generic.edit import UpdateView
 from organization_profiles.forms import OrganizationTemplateForm
-
+from django.core.urlresolvers import reverse
 
 def read_template_as_string(path, file_source_path=__file__):
     script_dir = os.path.dirname(file_source_path)
@@ -79,3 +79,6 @@ class OrganizationTemplateUpdateView(LoginRequiredMixin, UpdateView):
         if not self.request.user.profile.is_organization:
             raise Http404()
         return self.request.user.organization_template
+
+    def get_success_url(self):
+        return reverse('organization_profiles:update')

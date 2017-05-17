@@ -136,10 +136,19 @@
                        <li class="{% ifequal request.path my_supports_url %} active{% endifequal %}">
                         <a class="small" href="{{my_supports_url}}">
                         {% blocktrans %}Las propuestas que apoyo{% endblocktrans %}</a></li>
-                      {% url 'backend_citizen:update_my_profile' as my_profile_url %}
-                       <li class="{% ifequal request.path my_profile_url %} active{% endifequal %}">
-                        <a class="small" href="{{my_profile_url}}">
-                        {% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a></li>
+                      {% if user.profile.is_organization %}
+                        {% url 'organization_profiles:update' as org_profile %}
+                        <li class="{% ifequal request.path org_profile %} active{% endifequal %}">
+                          <a class="small" href="{{org_profile}}">
+                          {% blocktrans %}Actualizar mi organización{% endblocktrans %}</a>
+                        </li>
+                      {% else %}
+                        {% url 'backend_citizen:update_my_profile' as my_profile_url %}
+                        <li class="{% ifequal request.path my_profile_url %} active{% endifequal %}">
+                          <a class="small" href="{{my_profile_url}}">
+                          {% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a>
+                        </li>
+                      {% endif %}
                     {% endif %}
                       {% url 'password_reset' as password_reset %}
                        <li class="{% ifequal request.path password_reset %} active{% endifequal %}">

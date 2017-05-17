@@ -54,6 +54,22 @@ class OrganizationTemplateViewTest(BackendCitizenTestCaseBase):
         self.assertEquals(response.status_code, 200)
         self.assertIsInstance(response.context['form'], OrganizationTemplateForm)
 
+    def test_post_url_save_information(self):
+        data = {
+        }
+        url = reverse('organization_profiles:update')
+        self.client.login(username=self.user.username, password=PASSWORD)
+        for field in BASIC_FIELDS:
+            data[field] = ""
+        data["primary_color"] = "#CCC"
+        data["secondary_color"] = "#DDD"
+        response = self.client.post(url, data=data, follow=True)
+
+        template_again = OrganizationTemplate.objects.get(id=self.template.id)
+        self.assertEquals(template_again.primary_color, data["primary_color"])
+        self.assertEquals(template_again.secondary_color, data["secondary_color"])
+        self.assertEquals(response.status_code, 200)
+
     def test_non_organization_user_returns_404(self):
         url = reverse('organization_profiles:update')
         response = self.client.get(url)

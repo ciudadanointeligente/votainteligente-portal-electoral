@@ -75,10 +75,17 @@
          <li role="presentation" class="{% ifequal request.path my_supports_url %} active{% endifequal %} hidden-xs">
           <a class="small" href="{{my_supports_url}}">
           {% blocktrans %}Las propuestas que apoyo{% endblocktrans %}</a></li>
+        {% if user.profile.is_organization %}
+          {% url 'organization_profiles:update' as org_profile %}
+         <li role="presentation" class="{% ifequal request.path org_profile %} active{% endifequal %} hidden-xs">
+          <a class="small" href="{{org_profile}}">
+          {% blocktrans %}Actualizar mi organización{% endblocktrans %}</a>
+        {% else %}
         {% url 'backend_citizen:update_my_profile' as my_profile_url %}
          <li role="presentation" class="{% ifequal request.path my_profile_url %} active{% endifequal %} hidden-xs">
           <a class="small" href="{{my_profile_url}}">
           {% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a></li>
+        {% endif %}
         {% url 'backend_citizen:stats' as stats_url %}
          <li role="presentation" class="{% ifequal request.path stats_url %} active{% endifequal %} hidden-xs">
           <a class="small" href="{{stats_url}}">

@@ -209,11 +209,9 @@ class WizardTestCase(TestCase):
     def test_full_wizard(self):
         original_amount = len(mail.outbox)
         url = reverse('popular_proposals:propose_wizard_full')
-        print(url)
         self.client.login(username=self.feli,
                           password=USER_PASSWORD)
-        test_response = {0: {'0-area': self.arica.id}}
-        test_response = self.get_example_data_for_post(test_response)
+        test_response = self.get_example_data_for_post()
         response = self.client.get(url)
         steps = response.context['wizard']['steps']
         for i in range(steps.count):
@@ -221,7 +219,6 @@ class WizardTestCase(TestCase):
             data = test_response[i]
             data.update({'proposal_wizard_full-current_step': unicode(i)})
             response = self.client.post(url, data=data)
-            self.assertEquals(response.context['area'], self.arica)
 
             if 'form' in response.context and response.context['form'] is not None:
                 self.assertTrue(response.context['preview_data'])
@@ -231,9 +228,8 @@ class WizardTestCase(TestCase):
         # Probar que se creó la promesa
         self.assertEquals(ProposalTemporaryData.objects.count(), 1)
         temporary_data = response.context['popular_proposal']
-        self.assertEquals(response.context['area'], self.arica)
         self.assertEquals(temporary_data.proposer, self.feli)
-        self.assertEquals(temporary_data.area, self.arica)
+        self.assertFalse(temporary_data.area)
         self.assertEquals(len(mail.outbox), original_amount + 2)
 
         the_mail = mail.outbox[original_amount + 1]
@@ -241,21 +237,4 @@ class WizardTestCase(TestCase):
         self.assertIn(self.feli.email, the_mail.to)
         self.assertIn(str(temporary_data.id), the_mail.body)
         self.assertIn(temporary_data.get_title(), the_mail.body)
-        self.assertIn(temporary_data.area.name, the_mail.subject)
 
-    @override_config(HIDDEN_AREAS='argentina')
-    def test_full_wizard_get_area_form_kwargs(self):
-        argentina = Area.objects.create(name=u'Argentina')
-        url = reverse('popular_proposals:propose_wizard_full')
-        self.feli.is_staff = True
-        self.feli.save()
-        self.client.login(username=self.feli,
-                          password=USER_PASSWORD)
-        test_response = {0: {'0-area': argentina}}
-        test_response = self.get_example_data_for_post(test_response)
-        response = self.client.get(url)
-        print(test_response)
-        area_form = response.context['form']
-        area_field = area_form.fields['area']
-        argentina_tuple = (argentina.id, argentina.name)
-        self.assertIn(argentina_tuple, area_field.choices)

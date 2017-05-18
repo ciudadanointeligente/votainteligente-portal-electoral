@@ -16,7 +16,6 @@ from elections.models import Candidate, Area
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-from django.core.mail import mail_admins
 
 
 class NeedingModerationManager(models.Manager):
@@ -34,7 +33,10 @@ class ProposalTemporaryData(models.Model):
         Rejected = ChoiceItem('rejected')
         Accepted = ChoiceItem('accepted')
     proposer = models.ForeignKey(User, related_name='temporary_proposals')
-    area = models.ForeignKey(Area, related_name='temporary_proposals')
+    area = models.ForeignKey(Area,
+                             related_name='temporary_proposals',
+                             null=True,
+                             blank=True)
     data = PickledObjectField()
     rejected = models.BooleanField(default=False)
     rejected_reason = models.TextField(null=True,
@@ -141,7 +143,10 @@ class PopularProposal(models.Model, OGPMixin):
     title = models.CharField(max_length=255, default='')
     slug = AutoSlugField(populate_from='title', unique=True)
     proposer = models.ForeignKey(User, related_name='proposals')
-    area = models.ForeignKey(Area, related_name='proposals')
+    area = models.ForeignKey(Area,
+                             related_name='proposals',
+                             null=True,
+                             blank=True)
     data = PickledObjectField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)

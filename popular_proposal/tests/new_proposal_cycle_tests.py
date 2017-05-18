@@ -36,6 +36,12 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         self.assertEquals(temporary_data.get_title(), self.data['title'])
         self.assertEquals(str(temporary_data.get_title()), self.data['title'])
 
+    def test_create_without_area(self):
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              data=self.data)
+        self.assertTrue(temporary_data)
+
+
     def test_send_temporary_data_new_mail(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,

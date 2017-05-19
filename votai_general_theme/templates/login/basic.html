@@ -2,11 +2,10 @@
 {% load bootstrap3 %}
 {% url 'auth_password_reset' as auth_pwd_reset_url %}
 {% url 'registration_register' as register_url%}
-<form method="post" action="{% url 'auth_login' %}">{% csrf_token %}
-{% bootstrap_form form show_label=false %}
-
-<input type="hidden" name="next" value="{{ url }}" />
-<input type="submit" value="{% trans "Entrar" %}"  class="btn btn-success pull-right" />
+<form method="post" action="{% url 'auth_login' %}">
+  {% csrf_token %}
+  {% bootstrap_form form show_label=false %}
+  <input type="hidden" name="next" value="{{ url }}" />
+  <button type="submit" class="btn btn-success btn-block">{% trans "Entrar" %}</button>
 </form>
-
-<a href="{{auth_pwd_reset_url}}">¿Olvidaste tu contraseña?</a>
+<p><a href="{{auth_pwd_reset_url}}">¿Olvidaste tu contraseña?</a></p>

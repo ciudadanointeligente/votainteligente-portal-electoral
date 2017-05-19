@@ -1,6 +1,7 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from popular_proposal.forms import (get_form_list,
+                                    AreaForm,
                                     wizard_forms_fields,
                                     get_user_organizations_choicefield)
 from django.test import RequestFactory
@@ -206,10 +207,10 @@ class WizardTestCase(TestCase):
         form = form_class(data=data)
         self.assertTrue(form.is_valid())
 
+    @override_config(AREAS_ARE_FORCED_IN_PROPOSALS=True)
     def test_full_wizard(self):
         original_amount = len(mail.outbox)
         url = reverse('popular_proposals:propose_wizard_full')
-        print(url)
         self.client.login(username=self.feli,
                           password=USER_PASSWORD)
         test_response = {0: {'0-area': self.arica.id}}
@@ -243,7 +244,41 @@ class WizardTestCase(TestCase):
         self.assertIn(temporary_data.get_title(), the_mail.body)
         self.assertIn(temporary_data.area.name, the_mail.subject)
 
-    @override_config(HIDDEN_AREAS='argentina')
+    @override_config(AREAS_ARE_FORCED_IN_PROPOSALS=False)
+    def test_full_wizard_without_areas(self):
+        original_amount = len(mail.outbox)
+        url = reverse('popular_proposals:propose_wizard_full')
+        self.client.login(username=self.feli,
+                          password=USER_PASSWORD)
+        test_response = self.get_example_data_for_post()
+        response = self.client.get(url)
+        self.assertNotIsInstance(response.context['form'], AreaForm)
+        steps = response.context['wizard']['steps']
+        for i in range(steps.count):
+            self.assertEquals(steps.current, unicode(i))
+            data = test_response[i]
+            data.update({'proposal_wizard_full-current_step': unicode(i)})
+            response = self.client.post(url, data=data)
+            if 'form' in response.context:
+                if response.context['form'] is not None:
+                    self.assertFalse(response.context['form'].errors,
+                                     u"Error en el paso" + unicode(i) + unicode(response.context['form'].errors))
+                    self.assertTrue(response.context['preview_data'])
+                    steps = response.context['wizard']['steps']
+        self.assertTemplateUsed(response, 'popular_proposal/wizard/done.html')
+        # Probar que se creó la promesa
+        self.assertEquals(ProposalTemporaryData.objects.count(), 1)
+        temporary_data = response.context['popular_proposal']
+        self.assertEquals(temporary_data.proposer, self.feli)
+        self.assertEquals(len(mail.outbox), original_amount + 2)
+
+        the_mail = mail.outbox[original_amount + 1]
+        self.assertIn(self.fiera.email, the_mail.to)
+        self.assertIn(self.feli.email, the_mail.to)
+        self.assertIn(str(temporary_data.id), the_mail.body)
+        self.assertIn(temporary_data.get_title(), the_mail.body)
+
+    @override_config(AREAS_ARE_FORCED_IN_PROPOSALS=True, HIDDEN_AREAS='argentina')
     def test_full_wizard_get_area_form_kwargs(self):
         argentina = Area.objects.create(name=u'Argentina')
         url = reverse('popular_proposals:propose_wizard_full')
@@ -254,7 +289,6 @@ class WizardTestCase(TestCase):
         test_response = {0: {'0-area': argentina}}
         test_response = self.get_example_data_for_post(test_response)
         response = self.client.get(url)
-        print(test_response)
         area_form = response.context['form']
         area_field = area_form.fields['area']
         argentina_tuple = (argentina.id, argentina.name)

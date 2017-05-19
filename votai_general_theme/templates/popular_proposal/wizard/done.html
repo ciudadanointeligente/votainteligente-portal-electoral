@@ -13,25 +13,29 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
+  {% if config.AREAS_ARE_FORCED_IN_PROPOSALS %}
   <div class="nota">{% blocktrans with area=area %}Propuesta para {{area}}{% endblocktrans %}</div>
+  {% endif %}
   <!-- Featured Elections  -->
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div>
+          {% if config.AREAS_ARE_FORCED_IN_PROPOSALS %}
           <h2 class="text-center">Tu propuesta para {{area}} ha sido enviada ¡muchas gracias!</h2>
-
+          {% endif %}
           <p>{% blocktrans %}Por favor, espera que el equipo de Ciudadano Inteligente la evalúe para que sea enviada a los candidatos.{% endblocktrans %}</p>
           
           <div>
             {% get_proposals_enabled as proposals_enabled %}
             {% if proposals_enabled  %}
+
+              {% if config.AREAS_ARE_FORCED_IN_PROPOSALS %}
               <a href="{% url 'popular_proposals:propose_wizard' slug=area.id %}" class="btn btn-success btn-block" role="button">{% blocktrans with area=area %}Crea otra propuesta para {{area}}{% endblocktrans %}</a>
+              {% endif %}
             {% endif %}
               <a href="{% url 'backend_citizen:index' %}" class="btn btn-primary btn-block" role="button">{% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}</a>
           </div>
-        <!--<a href="{% url 'area' slug=area.id %}" class="btn btn-success btn-lg active" role="button">
-            {% blocktrans with area=area %}Revisa otras propuestas en {{area}}{% endblocktrans %}
-        </a>-->
+
 
       </div>
     </div>

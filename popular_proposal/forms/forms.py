@@ -128,6 +128,7 @@ def get_form_list(wizard_forms_fields=wizard_forms_fields, **kwargs):
                 fields_dict[field] = tha_field
 
         def __init__(self, *args, **kwargs):
+            self.is_staff = kwargs.pop('is_staff', False)
             super(forms.Form, self).__init__(*args, **kwargs)
             self.add_texts_to_fields()
         cls_attrs = {"__init__": __init__,

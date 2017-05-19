@@ -35,11 +35,9 @@ from elections.models import Candidate, Area
 from backend_candidate.models import (Candidacy,
                                       is_candidate,
                                       )
-from django.conf import settings
 from django.contrib import messages
 from django.utils.translation import ugettext as _
 from django.template.response import TemplateResponse
-from django.shortcuts import render
 from constance import config
 
 
@@ -203,12 +201,19 @@ class ProposalWizard(ProposalWizardBase):
         return context
 
 
-full_wizard_form_list = [AreaForm, ] + wizard_form_list
-
-
 class ProposalWizardFull(ProposalWizardBase):
-    form_list = full_wizard_form_list
     template_name = 'popular_proposal/wizard/form_step.html'
+
+    @classmethod
+    def get_initkwargs(cls, form_list=None, initial_dict=None, instance_dict=None,
+                       condition_dict=None, *args, **kwargs):
+        if config.AREAS_ARE_FORCED_IN_PROPOSALS:
+            full_wizard_form_list = [AreaForm, ] + wizard_form_list
+        else:
+            full_wizard_form_list = wizard_form_list
+        form_list = full_wizard_form_list
+        return super(ProposalWizardFull, cls).get_initkwargs(form_list, initial_dict, instance_dict,
+                                                             condition_dict, *args, **kwargs)
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -219,20 +224,25 @@ class ProposalWizardFull(ProposalWizardBase):
                                                         **kwargs)
 
     def get_previous_forms(self):
-        return [AreaForm, ]
+        if config.AREAS_ARE_FORCED_IN_PROPOSALS:
+            return [AreaForm, ]
+        return []
 
     def done(self, form_list, **kwargs):
         data = {}
         [data.update(form.cleaned_data) for form in form_list]
-        area = data['area']
-        temporary_data = ProposalTemporaryData.objects.create(proposer=self.request.user,
-                                                              area=area,
-                                                              data=data)
+        creation_kwargs = {'proposer': self.request.user, 'data': data}
+        if config.AREAS_ARE_FORCED_IN_PROPOSALS:
+            creation_kwargs['area'] = data['area']
+        temporary_data = ProposalTemporaryData.objects.create(**creation_kwargs)
+
         temporary_data.notify_new()
         context = self.get_context_data(form=None)
-        context.update({'popular_proposal': temporary_data,
-                        'area': area
-                        })
+        context_dict = {'popular_proposal': temporary_data}
+        if config.AREAS_ARE_FORCED_IN_PROPOSALS:
+            context_dict['area'] = data['area']
+
+        context.update(context_dict)
         send_mails_to_staff({'temporary_data': temporary_data}, 'notify_staff_new_proposal')
         return render_to_response('popular_proposal/wizard/done.html',
                                   context)
@@ -240,7 +250,7 @@ class ProposalWizardFull(ProposalWizardBase):
     def get_context_data(self, *args, **kwargs):
         context = super(ProposalWizardFull, self).get_context_data(*args, **kwargs)
         data = self.get_all_cleaned_data()
-        if 'area' in data:
+        if 'area' in data and config.AREAS_ARE_FORCED_IN_PROPOSALS:
             context['area'] = data['area']
         context['preview_data'] = self.get_all_cleaned_data()
 
@@ -248,7 +258,7 @@ class ProposalWizardFull(ProposalWizardBase):
 
     def get_form_kwargs(self, step=None):
         kwargs = super(ProposalWizardFull, self).get_form_kwargs(step)
-        if step == '0':
+        if step == '0' and config.AREAS_ARE_FORCED_IN_PROPOSALS:
             if self.request.user.is_staff:
                 kwargs['is_staff'] = True
         return kwargs

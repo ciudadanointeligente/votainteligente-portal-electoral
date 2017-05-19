@@ -120,6 +120,24 @@ MIDDLEWARE_CLASSES = (
     'social_django.middleware.SocialAuthExceptionMiddleware',
 )
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.request',
+                'django.template.context_processors.static',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'constance.context_processors.config',
+            ],
+        },
+    },
+]
 
 # SITE_ID
 SITE_ID = 1
@@ -333,6 +351,7 @@ CONSTANCE_CONFIG = {
     'MAX_AMOUNT_OF_MAILS_TO_CANDIDATE': (3, 'Numero maximo de envios de emails a candidatos'),
     'TWITTER_TOKEN': ('', 'Twitter token'),
     'MARKED_AREAS': (MARKED_AREAS, u'Areas que tienen alguna marca'),
+    'AREAS_ARE_FORCED_IN_PROPOSALS': (False, u'La creación de una propuesta debe tener asociada un area territorial'),
     'TWITTER_TOKEN_KEY': ('', 'Twitter token key'),
     'TWITTER_CON_KEY': ('', 'Twitter connection key'),
     'TWITTER_CON_SECRET_KEY': ('', 'Twitter connection secret key'),

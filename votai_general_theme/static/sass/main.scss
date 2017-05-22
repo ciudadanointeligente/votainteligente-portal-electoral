@@ -12,7 +12,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'OpenSans', sans-serif;
-  padding-top: 25px;
+  padding-top: 0;
   font-size: 14px;
   line-height: 24px;
 }
@@ -1478,20 +1478,27 @@ tr.primary p:first-child, tr.danger p:first-child {
 #text-home{
   background-color: #4A90E2;
   color: #233346;
-  padding: 50px 0 30px 0;
+  padding: 70px 0 50px 0;
 }
+
+.text-box{
+  background-image: url("../img/white.svg");
+  padding: 30px 30px 20px 30px;
+}
+
 #calendar-home{
   background-color: #233346;
   color: white;
   font-family: 'Arvo', serif;
-  padding: 40px 0 40px 0;
+  padding: 70px 0 50px 0;
 }
 #map-home{
   background-color: #F1ECE1;
-  padding: 30px 0 30px;
+  padding: 70px 0 70px;
 }
 #bye-home{
   background-color: #FEC70D;
+  padding: 40px 0 30px 0;
 }
 
 .videoWrapper {
@@ -1513,6 +1520,11 @@ td.cal-date{
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 1.4px;
+}
+
+.img-responsive{
+  padding: 20px 0 20px 0;
+  margin: 0 auto;
 }
 
 @keyframes doscaras

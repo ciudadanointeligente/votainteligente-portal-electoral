@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, TemplateView
 from elections.models import Election, Area
 from elections.models import Candidate, QuestionCategory, CandidateFlatPage
+from votainteligente.views import HomeViewBase
 import logging
 from backend_citizen.forms import GroupCreationForm
 from candidator.models import Topic, TakenPosition
@@ -57,7 +58,7 @@ class ElectionsSearchByTagView(FormView):
         return reverse('tags_search')
 
 
-class HomeView(TemplateView):
+class HomeView(HomeViewBase):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['form'] = ElectionSearchByTagsForm()

@@ -11,6 +11,7 @@ from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
 from elections.models import Area
 from collections import OrderedDict
 from votainteligente.send_mails import send_mails_to_staff
+from constance import config
 
 
 class TextsFormMixin():
@@ -328,6 +329,8 @@ class AreaForm(forms.Form):
         if is_staff:
             area_qs = Area.objects.all()
         self.fields['area'].choices = [(a.id, a.name) for a in area_qs]
+        if config.DEFAULT_AREA:
+            self.initial['area'] = config.DEFAULT_AREA
 
     def clean(self):
         cleaned_data = super(AreaForm, self).clean()

@@ -363,6 +363,7 @@ CONSTANCE_CONFIG = {
     'TWITTER_CON_SECRET_KEY': ('', 'Twitter connection secret key'),
     'HIDDEN_AREAS': ('fundacion-ciudadano-inteligente', 'Seccion oculta'),
     'NAV_BAR': ('profiles, questionary, soulmate, facetoface, ask, ranking', 'Menu de navegacion'),
+    'SHOW_NAVBAR': (False, u'Se debe mostrar el navbar a los visitantes??? (atento aquí por que a los usuarios loggeados se lo vamos a mostrar igual)'),
     'WEBSITE_METADATA_AUTHOR': ('', 'Nombre del autor'),
     'WEBSITE_METADATA_DESCRIPTION': ('', 'Descripcion del sitio'),
     'WEBSITE_METADATA_KEYWORD': ('', 'Palabras claves del sitio'),

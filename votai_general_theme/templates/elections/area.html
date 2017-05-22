@@ -67,7 +67,7 @@ $(function(){
         {% if not user|is_candidate %}
         {% get_proposals_enabled as proposals_enabled %}
         {% if proposals_enabled  %}
-        <li><a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">Crea la tuya</a></li>
+        <li><a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full_without_area' %}">Crea la tuya</a></li>
         {% endif %}
         {% endif %}
 
@@ -120,7 +120,7 @@ $(function(){
           <p>Mientras más apoyo tenga una propuesta, es más probable que los candidatos asuman un compromiso con ella</p>
         </div>
         {% if not user|is_candidate %}
-          <a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full' %}">Tengo una propuesta</a>
+          <a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full_without_area' %}">Tengo una propuesta</a>
         {% endif %}
       </div>
       {% endif %}

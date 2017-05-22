@@ -6,7 +6,7 @@
     {% if proposals_enabled  %}
     <p class="bajada text-center text-width">Mientras más apoyo tenga una propuesta, es más probable que los candidatos asuman un compromiso con ella.</p>
     <div class="text-center">
-      <a class="btn btn-primary" href="{% url 'popular_proposals:propose_wizard_full' %}">Tengo una propuesta</a>
+      <a class="btn btn-primary" href="{% url 'popular_proposals:propose_wizard_full_without_area' %}">Tengo una propuesta</a>
       <div class="line-space"></div>
     </div>
     {% endif %}

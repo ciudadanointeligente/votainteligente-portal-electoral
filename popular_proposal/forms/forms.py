@@ -11,6 +11,7 @@ from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
 from elections.models import Area
 from collections import OrderedDict
 from votainteligente.send_mails import send_mails_to_staff
+from constance import config
 
 
 class TextsFormMixin():
@@ -128,6 +129,7 @@ def get_form_list(wizard_forms_fields=wizard_forms_fields, **kwargs):
                 fields_dict[field] = tha_field
 
         def __init__(self, *args, **kwargs):
+            self.is_staff = kwargs.pop('is_staff', False)
             super(forms.Form, self).__init__(*args, **kwargs)
             self.add_texts_to_fields()
         cls_attrs = {"__init__": __init__,
@@ -328,6 +330,8 @@ class AreaForm(forms.Form):
         if is_staff:
             area_qs = Area.objects.all()
         self.fields['area'].choices = [(a.id, a.name) for a in area_qs]
+        if config.DEFAULT_AREA:
+            self.initial['area'] = config.DEFAULT_AREA
 
     def clean(self):
         cleaned_data = super(AreaForm, self).clean()

@@ -120,6 +120,29 @@ MIDDLEWARE_CLASSES = (
     'social_django.middleware.SocialAuthExceptionMiddleware',
 )
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            # insert your TEMPLATE_DIRS here
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+                'constance.context_processors.config',
+            ],
+        },
+    },
+]
 
 # SITE_ID
 SITE_ID = 1
@@ -323,6 +346,8 @@ MARKED_AREAS = ['teodoro-schmidt-9117','cunco-9103','lumaco-9207','melipeuco-911
 CONSTANCE_CONFIG = {
     'SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES':(10,'Duracion cache media naranja'),
     'INFINITE_CACHE':(1440,'Tiempo Cache'),
+    'DEFAULT_AREA': ('', u'El territorio que mostramos por defecto'),
+    'AREAS_ARE_FORCED_IN_PROPOSALS' : (False, u'No te preguntamos por el territorio de la propuesta y asumimos que es el que viene por defecto'),
     'PROPOSALS_ENABLED' : (True, 'Habilitar propuestas'),
     'WHEN_TO_NOTIFY': ('25, 50, 100, 150, 200', 'Cuando notificar'),
     'NOTIFY_CANDIDATES': (True, 'Notificar a los candidatos'),
@@ -332,7 +357,7 @@ CONSTANCE_CONFIG = {
     'EMAIL_DOMAIN': ("votainteligente.cl", 'Nombre dominio'),
     'MAX_AMOUNT_OF_MAILS_TO_CANDIDATE': (3, 'Numero maximo de envios de emails a candidatos'),
     'TWITTER_TOKEN': ('', 'Twitter token'),
-    'MARKED_AREAS': (MARKED_AREAS, u'Areas que tienen alguna marca'),
+    'MARKED_AREAS': (", ".join(MARKED_AREAS), u'Areas que tienen alguna marca'),
     'TWITTER_TOKEN_KEY': ('', 'Twitter token key'),
     'TWITTER_CON_KEY': ('', 'Twitter connection key'),
     'TWITTER_CON_SECRET_KEY': ('', 'Twitter connection secret key'),

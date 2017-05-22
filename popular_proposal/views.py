@@ -203,31 +203,44 @@ class ProposalWizard(ProposalWizardBase):
         return context
 
 
-full_wizard_form_list = [AreaForm, ] + wizard_form_list
 
 
-class ProposalWizardFull(ProposalWizardBase):
-    form_list = full_wizard_form_list
+class ProposalWizardFullBase(ProposalWizardBase):
     template_name = 'popular_proposal/wizard/form_step.html'
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         if is_candidate(request.user):
             return HttpResponseNotFound()
-        return super(ProposalWizardFull, self).dispatch(request,
+        return super(ProposalWizardFullBase, self).dispatch(request,
                                                         *args,
                                                         **kwargs)
 
-    def get_previous_forms(self):
-        return [AreaForm, ]
+
+    def get_form_list(self):
+        form_list = OrderedDict()
+        previous_forms = self.get_previous_forms()
+        my_list = previous_forms + get_form_list(user=self.request.user)
+        counter = 0
+        for form_class in my_list:
+            form_list[str(counter)] = form_class
+            counter += 1
+        self.form_list = form_list
+        return form_list
 
     def done(self, form_list, **kwargs):
         data = {}
         [data.update(form.cleaned_data) for form in form_list]
-        area = data['area']
-        temporary_data = ProposalTemporaryData.objects.create(proposer=self.request.user,
-                                                              area=area,
-                                                              data=data)
+        kwargs = {
+            'proposer': self.request.user,
+            'data': data
+        }
+        if 'area' in data.keys():
+            area = data['area']
+        else:
+            area = Area.objects.get(id=config.DEFAULT_AREA)
+        kwargs['area'] = area
+        temporary_data = ProposalTemporaryData.objects.create(**kwargs)
         temporary_data.notify_new()
         context = self.get_context_data(form=None)
         context.update({'popular_proposal': temporary_data,
@@ -238,7 +251,7 @@ class ProposalWizardFull(ProposalWizardBase):
                                   context)
 
     def get_context_data(self, *args, **kwargs):
-        context = super(ProposalWizardFull, self).get_context_data(*args, **kwargs)
+        context = super(ProposalWizardFullBase, self).get_context_data(*args, **kwargs)
         data = self.get_all_cleaned_data()
         if 'area' in data:
             context['area'] = data['area']
@@ -247,12 +260,23 @@ class ProposalWizardFull(ProposalWizardBase):
         return context
 
     def get_form_kwargs(self, step=None):
-        kwargs = super(ProposalWizardFull, self).get_form_kwargs(step)
-        if step == '0':
-            if self.request.user.is_staff:
-                kwargs['is_staff'] = True
+        kwargs = super(ProposalWizardFullBase, self).get_form_kwargs(step)
+        kwargs['is_staff'] = self.request.user.is_staff
         return kwargs
 
+
+class ProposalWizardFull(ProposalWizardFullBase):
+    form_list = [AreaForm, ] + wizard_form_list
+
+    def get_previous_forms(self):
+        return [AreaForm, ]
+
+
+class ProposalWizardFullWithoutArea(ProposalWizardFullBase):
+    form_list = wizard_form_list
+
+    def get_previous_forms(self):
+        return []
 
 class PopularProposalUpdateView(UpdateView):
     form_class = UpdateProposalForm

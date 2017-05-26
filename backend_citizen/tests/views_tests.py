@@ -6,6 +6,7 @@ from popular_proposal.models import (ProposalTemporaryData,
                                      ProposalLike,
                                      PopularProposal)
 from popular_proposal.forms import ProposalTemporaryDataUpdateForm
+from popular_proposal.tests import get_example_data_for_testing
 from backend_citizen.forms import UserChangeForm
 from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
 from backend_citizen.models import Organization
@@ -48,17 +49,7 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
         form = response.context['form']
         self.assertEquals(form.temporary_data, temporary_data)
 
-        data = {
-            'clasification': 'salud',
-            'title': u'Que vuelva Fiera',
-            'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
-            'solution': u'Viajar a ver al equipo una vez al mes',
-            'when': u'1_year',
-            'causes': u'La terrible de distancia que nos separa',
-            'join_advocacy_url': u'http://ciudadanoi.org',
-            'ideal_situation': u'El Feli y el resto de los cabros de la FCI',
-            'terms_and_conditions': True
-        }
+        data = get_example_data_for_testing()
         response = self.client.post(url, data=data, follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed('backend_citizen/index.html')

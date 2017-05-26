@@ -20,6 +20,7 @@ class ProposingCycleTestCaseBase(TestCase):
             'solution': u'Viajar a ver al Feli una vez al mes',
             'when': u'1_year',
             'causes': u'La super distancia',
+            'join_advocacy_url': u'http://ciudadanoi.org',
             'terms_and_conditions': True
         }
         self.comments = {

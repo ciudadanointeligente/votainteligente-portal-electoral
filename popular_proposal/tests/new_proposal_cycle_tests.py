@@ -17,9 +17,11 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
 
     def test_instanciate_one(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              join_advocacy_url=u"http://whatsapp.com/mygroup",
                                                               area=self.arica,
                                                               data=self.data)
         self.assertTrue(temporary_data)
+        self.assertTrue(temporary_data.join_advocacy_url)
         self.assertFalse(temporary_data.rejected)
         self.assertFalse(temporary_data.rejected_reason)
 

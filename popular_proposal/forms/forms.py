@@ -99,6 +99,7 @@ wizard_forms_fields = [
         'fields': OrderedDict([
             ('title', forms.CharField(max_length=256,
                                       widget=forms.TextInput())),
+            ('join_advocacy_url', forms.URLField(max_length=256, required=False)),
             ('organization', get_user_organizations_choicefield),
             ('terms_and_conditions', forms.BooleanField(
                 error_messages={'required':
@@ -160,17 +161,30 @@ class ProposalFormBase(forms.Form, TextsFormMixin):
         self.add_texts_to_fields()
 
 
-class ProposalForm(ProposalFormBase):
+class CreateProposalMixin(object):
+    def determine_kwargs(self):
+        kwargs = {
+            'proposer': self.proposer,
+            'area': self.area
+        }
+        for f in self.model_class._meta.fields:
+            if f.name in self.cleaned_data.keys():
+                kwargs[f.name] = self.cleaned_data.pop(f.name)
+        kwargs['data'] = self.cleaned_data
+        return kwargs
+
+    def save(self):
+        kwargs = self.determine_kwargs()
+        t_data = self.model_class.objects.create(**kwargs)
+        t_data.notify_new()
+        return t_data
+
+
+class ProposalForm(ProposalFormBase, CreateProposalMixin):
+    model_class = ProposalTemporaryData
     def __init__(self, *args, **kwargs):
         self.area = kwargs.pop('area')
         super(ProposalForm, self).__init__(*args, **kwargs)
-
-    def save(self):
-        t_data = ProposalTemporaryData.objects.create(proposer=self.proposer,
-                                                      area=self.area,
-                                                      data=self.cleaned_data)
-        t_data.notify_new()
-        return t_data
 
 
 class UpdateProposalForm(forms.ModelForm):

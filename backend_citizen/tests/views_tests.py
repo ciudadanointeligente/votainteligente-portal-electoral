@@ -55,6 +55,7 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
             'solution': u'Viajar a ver al equipo una vez al mes',
             'when': u'1_year',
             'causes': u'La terrible de distancia que nos separa',
+            'join_advocacy_url': u'http://ciudadanoi.org',
             'ideal_situation': u'El Feli y el resto de los cabros de la FCI',
             'terms_and_conditions': True
         }

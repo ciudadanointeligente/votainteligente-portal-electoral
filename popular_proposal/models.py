@@ -35,6 +35,7 @@ class ProposalTemporaryData(models.Model):
         Accepted = ChoiceItem('accepted')
     proposer = models.ForeignKey(User, related_name='temporary_proposals')
     area = models.ForeignKey(Area, related_name='temporary_proposals')
+    join_advocacy_url = models.URLField(null=True, blank=True)
     data = PickledObjectField()
     rejected = models.BooleanField(default=False)
     rejected_reason = models.TextField(null=True,

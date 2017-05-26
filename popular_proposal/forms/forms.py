@@ -50,12 +50,14 @@ def get_user_organizations_choicefield(user=None):
 
 wizard_forms_fields = [
     {
-        'template': 'popular_proposal/wizard/form_step.html',
+        'template': 'popular_proposal/wizard/paso1.html',
         'explation_template': "popular_proposal/steps/paso1.html",
-        'fields': OrderedDict([
+        'fields': OrderedDict([(
+            'clasification', forms.ChoiceField(choices=TOPIC_CHOICES,
+                                               widget=forms.Select())
+        ), 
             ('problem', forms.CharField(max_length=1024,
-                                        widget=forms.Textarea(),
-                                        label=u'¿Cuál es el problema?'
+                                        widget=forms.Textarea()
                                         ))
         ])
     },
@@ -64,8 +66,7 @@ wizard_forms_fields = [
         'explation_template': "popular_proposal/steps/paso2.html",
         'fields': OrderedDict([(
             'causes', forms.CharField(max_length=256,
-                                      widget=forms.Textarea(),
-                                      label=u'¿Cuáles son las causas?'
+                                      widget=forms.Textarea()
                                       )
 
         )])
@@ -74,9 +75,6 @@ wizard_forms_fields = [
         'template': 'popular_proposal/wizard/paso3.html',
         'explation_template': "popular_proposal/steps/paso3.html",
         'fields': OrderedDict([(
-            'clasification', forms.ChoiceField(choices=TOPIC_CHOICES,
-                                               widget=forms.Select())
-        ), (
 
             'solution', forms.CharField(max_length=2048,
                                         widget=forms.Textarea(),
@@ -104,8 +102,7 @@ wizard_forms_fields = [
             ('organization', get_user_organizations_choicefield),
             ('terms_and_conditions', forms.BooleanField(
                 error_messages={'required':
-                                _(u'Debes aceptar nuestros Términos y \
-Condiciones')}
+                                _(u'Debes aceptar nuestros Términos y Condiciones')}
             )
             )
         ])

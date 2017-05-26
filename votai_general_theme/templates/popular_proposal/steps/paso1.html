@@ -10,10 +10,25 @@
     <li><span class="number">c</span> Elige una categoria para tu propuesta. Así los/as ciudadanos/as y candidatos/as podrán encontrar más fácil tu propuesta.  </li>
 
   </p>
+ <script type="text/javascript">
+$(function(){
+    $("[name$='clasification']").change(function(event){
+    	$('#ayuda_desplegada').remove();
+    	var select = $(event.target);
+    	var value = select.val();
+    	var help = $('.ayuda_comuna .ayuda.' + value);
+    	if(help.length) {
+	    	var element_to_be_inserted = '<div id="ayuda_desplegada">' + help.html() + "</div>";
+	    	$('#selector-categorias').append(element_to_be_inserted);
+        $('#collapseCategorias').collapse()
+    	}
+    })
+})
+</script>
+
 {% endblock tips %}
 
 
 {% block ejemplo %}
-  <p><b>¡CATEGORIAS DE TEMAS AQUÍ!</b><p>
   <b><i>Problema:</i></b> Contaminación en la ciudad
 {% endblock ejemplo %}

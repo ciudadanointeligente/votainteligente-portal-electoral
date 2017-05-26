@@ -119,8 +119,6 @@ class WizardTestCase(TestCase, WizardDataMixin):
 
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response,
-                                'popular_proposal/wizard/form_step.html')
 
     @override_config(PROPOSALS_ENABLED=False)
     def test_proposals_not_enabled(self):

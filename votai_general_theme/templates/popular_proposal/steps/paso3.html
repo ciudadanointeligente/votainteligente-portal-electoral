@@ -19,23 +19,6 @@
     <div id="selector-categorias"></div>
   </div>
 </div>
-
-<script type="text/javascript">
-$(function(){
-    $("[name$='clasification']").change(function(event){
-    	$('#ayuda_desplegada').remove();
-    	var select = $(event.target);
-    	var value = select.val();
-    	var help = $('.ayuda_comuna .ayuda.' + value);
-    	if(help.length) {
-	    	var element_to_be_inserted = '<div id="ayuda_desplegada">' + help.html() + "</div>";
-	    	$('#selector-categorias').append(element_to_be_inserted);
-        $('#collapseCategorias').collapse()
-    	}
-    })
-})
-</script>
-
 {% endblock tips %}
 
 

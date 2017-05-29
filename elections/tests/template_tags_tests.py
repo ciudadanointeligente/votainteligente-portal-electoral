@@ -155,12 +155,6 @@ class TemplateTagsTestCase(TestCase):
 
         self.assertEqual(template.render(context), u'UA-XXXXX-X')
 
-    def test_website_general_settings(self):
-        template = Template("{% load votainteligente_extras %}{{ 'home_title'|website_gs }}")
-        context = Context({})
-
-        self.assertEqual(template.render(context), u'Lorem ipsum dolor sit amet, consectetur adipisicing elit.')
-
     def test_website_imgur(self):
         template = Template("{% load votainteligente_extras %}{{ 'client_id'|website_imgur }}")
         context = Context({})

@@ -11,6 +11,7 @@ from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
 from elections.models import Area
 from collections import OrderedDict
 from votainteligente.send_mails import send_mails_to_staff
+from constance import config
 
 
 class TextsFormMixin():
@@ -49,12 +50,14 @@ def get_user_organizations_choicefield(user=None):
 
 wizard_forms_fields = [
     {
-        'template': 'popular_proposal/wizard/form_step.html',
+        'template': 'popular_proposal/wizard/paso1.html',
         'explation_template': "popular_proposal/steps/paso1.html",
-        'fields': OrderedDict([
+        'fields': OrderedDict([(
+            'clasification', forms.ChoiceField(choices=TOPIC_CHOICES,
+                                               widget=forms.Select())
+        ), 
             ('problem', forms.CharField(max_length=1024,
-                                        widget=forms.Textarea(),
-                                        label=u'¿Cuál es el problema?'
+                                        widget=forms.Textarea()
                                         ))
         ])
     },
@@ -63,8 +66,7 @@ wizard_forms_fields = [
         'explation_template': "popular_proposal/steps/paso2.html",
         'fields': OrderedDict([(
             'causes', forms.CharField(max_length=256,
-                                      widget=forms.Textarea(),
-                                      label=u'¿Cuáles son las causas?'
+                                      widget=forms.Textarea()
                                       )
 
         )])
@@ -73,9 +75,6 @@ wizard_forms_fields = [
         'template': 'popular_proposal/wizard/paso3.html',
         'explation_template': "popular_proposal/steps/paso3.html",
         'fields': OrderedDict([(
-            'clasification', forms.ChoiceField(choices=TOPIC_CHOICES,
-                                               widget=forms.Select())
-        ), (
 
             'solution', forms.CharField(max_length=2048,
                                         widget=forms.Textarea(),
@@ -103,8 +102,7 @@ wizard_forms_fields = [
             ('organization', get_user_organizations_choicefield),
             ('terms_and_conditions', forms.BooleanField(
                 error_messages={'required':
-                                _(u'Debes aceptar nuestros Términos y \
-Condiciones')}
+                                _(u'Debes aceptar nuestros Términos y Condiciones')}
             )
             )
         ])
@@ -128,6 +126,7 @@ def get_form_list(wizard_forms_fields=wizard_forms_fields, **kwargs):
                 fields_dict[field] = tha_field
 
         def __init__(self, *args, **kwargs):
+            self.is_staff = kwargs.pop('is_staff', False)
             super(forms.Form, self).__init__(*args, **kwargs)
             self.add_texts_to_fields()
         cls_attrs = {"__init__": __init__,
@@ -328,6 +327,8 @@ class AreaForm(forms.Form):
         if is_staff:
             area_qs = Area.objects.all()
         self.fields['area'].choices = [(a.id, a.name) for a in area_qs]
+        if config.DEFAULT_AREA:
+            self.initial['area'] = config.DEFAULT_AREA
 
     def clean(self):
         cleaned_data = super(AreaForm, self).clean()

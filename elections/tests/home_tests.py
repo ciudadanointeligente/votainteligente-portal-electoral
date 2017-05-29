@@ -37,7 +37,7 @@ class HomeTestCase(TestCase):
         url = reverse('home')
         response = self.client.get(url)
         self.assertTrue(response.status_code, 200)
-        self.assertTemplateUsed(response, 'elections/home.html')
+        self.assertTemplateUsed(response, 'index.html')
         self.assertTemplateUsed(response, 'base.html')
         self.assertIn('form', response.context)
         self.assertIsInstance(response.context['form'], ElectionSearchByTagsForm)

@@ -8,7 +8,7 @@
 <html prefix="og: //ogp.me/ns/{{ 'type'|ogpdata }}#">
     <head>
         <meta charset="utf-8">
-        <title>{% trans "Vota Inteligente" %} {% block title %}- {{ 'home_title'|website_gs }}{% endblock title %}</title>
+        <title>{% trans "Vota Inteligente" %} {% block title %}- {{ config.WEBSITE_GENERAL_SETTINGS_HOME_TITLE }}{% endblock title %}</title>
         <meta name="author" content="{{ 'author'|metadata }}">
         <meta name="description" content="{% block description %}{{ 'description'|metadata }}{% endblock description %}">
         <meta name="keywords" content="{{ 'keywords'|metadata }}{% block keywords %}{% endblock keywords %}">

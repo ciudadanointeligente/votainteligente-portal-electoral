@@ -8,11 +8,11 @@ Ahora, te invitamos a trabajar para que tu propuesta tenga la mayor cantidad de 
 Para ello podrás consultar las herramientas de activismo que tenemos para ti. En ellas encontrarás una guía para posicionar tu propuesta, difundirla entre tus vecinos y consejos útiles para fortalecer el trabajo de tu organización. Éstas también estarán disponibles en tu perfil en el sitio.
 
 Este material lo puedes descargar desde el siguiente link:
-http://votainteligente.cl/static/herramientas/herramientas-de-activismo.zip
+https://votainteligente.cl/static/herramientas/herramientas-de-activismo.zip
 
 Por último, te recomendamos agregarle más antecedentes a tu propuesta acá:
 
-http://{{site.domain}}{% url 'popular_proposals:citizen_update' slug=temporary_data.created_proposal.slug %}
+https://{{site.domain}}{% url 'popular_proposals:citizen_update' slug=temporary_data.created_proposal.slug %}
 
 Te queremos recordar que tu propuesta tiene la siguiente información:
 
@@ -26,10 +26,10 @@ Además entendemos que la solución final estará dada por:
 {{temporary_data.created_proposal.data.solution_at_the_end|popular_proposal_when}}
 
 Puedes ver tu propuesta en el siguiente link:
-http://{{site.domain}}{{ temporary_data.created_proposal.get_absolute_url }}
+https://{{site.domain}}{{ temporary_data.created_proposal.get_absolute_url }}
 
 Y acá puedes ver la lista de todas las propuestas de {{area}}:
-http://{{site.domain}}{% url 'area' slug=area.id %}
+https://{{site.domain}}{% url 'area' slug=area.id %}
 
 
 Para hacer que tu propuesta llegue a ser parte de los programas

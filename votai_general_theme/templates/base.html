@@ -9,7 +9,9 @@
     {% include '_head.html' %}
     <body>
       <div>
+        {% if config.SHOW_NAVBAR or user.is_authenticated %}
           {% include '_navbar.html' %}
+        {% endif %}
         {% block everything %}
         <div class="{% block content_container %}container content_padding{% endblock content_container %}">
             {% block content %}

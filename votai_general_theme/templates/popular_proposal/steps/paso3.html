@@ -1,55 +1,30 @@
 {% extends 'popular_proposal/steps/base_steps.html' %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
-{% block step_title %}¿Qué hay que hacer para lograr la situación ideal?{% endblock step_title %}
+{% block step_title %}¿Cuál es el escenario ideal al que queremos llegar? {% endblock step_title %}
 
 
 {% block tips %}
-<div class="hidden ayuda_comuna">{% include 'ayuda_municipalidad_categoria.html' %}</div>
-<p> Habiendo identificado el problema que afecta a los habitantes de la comuna es momento de pensar en la meta a la que queremos llegar. Teniendo clara la meta, debemos pensar en las medidas que el alcalde puede tomar para llegar a ella. Estas son las acciones (o acción) concretas que se le solicitará a los candidatos. </p>
-
-<p> Para proponer esta solución, es muy importante tomar en consideración las causas que se identificaron en el paso anterior. Al atacar las causas, que son nudos que atan el problema, este se resolverá como consecuencia. Y para asegurar que esté dentro de lo que un alcalde puede hacer, seleccionaremos una de las siguientes categorías</p>
-
-
-
+<p>
+  <ul class="list-unstyled">
+    <li><span class="number">a</span> La situación ideal a la que queremos llegar es la contraposición al problema que tenemos. </li>
+    <li><span class="number">b</span> De esta forma tendremos claro cual es nuestro problema y el escenario ideal al que queremos llegar. </li>
+<p>
 {% if field %}
   {% bootstrap_field field show_help=false show_label=false %}
 {% endif %}
-<p class="nota"> *Nota: las categorías muestran algunos ejemplos, el trabajo de la municipalidad no se limita solamente a esto. </p>
+<p class="nota"> *Nota: las categorías muestran algunos ejemplos, el trabajo del Congreso, Gobierno o Consejo Regional puede ser más extenso. </p>
 <div class="collapse" id="collapseCategorias">
   <div class="well">
     <div id="selector-categorias"></div>
   </div>
 </div>
-
-<script type="text/javascript">
-$(function(){
-    $("[name$='clasification']").change(function(event){
-    	$('#ayuda_desplegada').remove();
-    	var select = $(event.target);
-    	var value = select.val();
-    	var help = $('.ayuda_comuna .ayuda.' + value);
-    	if(help.length) {
-	    	var element_to_be_inserted = '<div id="ayuda_desplegada">' + help.html() + "</div>";
-	    	$('#selector-categorias').append(element_to_be_inserted);
-        $('#collapseCategorias').collapse()
-    	}
-    })
-})
-</script>
 {% endblock tips %}
-
-{% block ejemplo_titulo %}A partir de la última respuesta del ejercicio de los ¿por qués?, desarrollaremos a modo de ejemplo, cómo podría plantearse una propuesta Siguiendo el ejemplo, propongan la(s) medida(s) que el alcalde debe tomar para solucionar la causa del problema y poder alcanzar la situación ideal.<br />
-{% endblock ejemplo_titulo %}
 
 
 {% block ejemplo %}
-
 <p>
-  <p><b><i>¿Por qué?</i></b> Porque faltan recursos para contratar más profesores y comprar materiales.</p>
-
-  <p><b><i>Propuesta</i></b> Que la Municipalidad de Pelarco otorgue más recursos para educación.</p>
-  <p><b><i>Tu respuesta anterior fue</i></b> {{preview_data.causes|popular_proposal_when}}.</p>
-</p>
+  <p><b><i> Situación ideal a la que queremos llegar:</i></b>
+<p> Que tengamos un ambiente limpio en la ciudad.<p>
 
 {% endblock ejemplo %}

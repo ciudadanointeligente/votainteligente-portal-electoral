@@ -3,6 +3,8 @@
 {% load thumbnail %}
 {% load votainteligente_extras %}
 {% load cache %}
+
+{% block entire_navbar %}
 <div class="navbar navbar-inverse navbar-fixed-top {% block navbar_background %} white {% endblock navbar_background %}">
     <div class="container">
         <div class="navbar-header">
@@ -22,17 +24,14 @@
                 {% if not user|is_candidate %}
                 {% get_proposals_enabled as proposals_enabled %}
                     {% if proposals_enabled  %}
-                    <li><a href="{% url 'popular_proposals:propose_wizard_full' %}">Crea tu propuesta</a></li>
+                    <li><a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}">Crea tu propuesta</a></li>
                     {% endif %}
                 {% endif %}
                 <!-- <li><a class='' href="{% url 'compromisos' %}">Candidatos electos comprometidos</a></li> -->
+                {% if proposals_enabled  %}
                 <li><a href="{% url 'popular_proposals:home' %}">Conoce propuestas</a></li>
-                <li class='success'><a href="{% url 'help'  %}" class=''>
-                {% blocktrans %}Ayúdanos{% endblocktrans %}</a></li>
-                <li><a  href="/pages/otras-iniciativas/">Otras Iniciativas</a></li>
-                {% cache 500 mas_info_menu %}
-                {% include 'flat_pages_menu.html' with suffix='/visible/' title='Más información' %}
-                {% endcache %}
+                {% endif %}
+
                 {% if user.is_authenticated %}
                 <li class="dropdown">
 
@@ -131,3 +130,4 @@
         {% endblock navbar %}
     </div>
 </div>
+{% endblock entire_navbar %}

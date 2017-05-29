@@ -22,6 +22,7 @@ from popular_proposal.forms.form_texts import TEXTS
 from django.core.urlresolvers import reverse
 from elections.models import Candidate, Area
 from django.test import override_settings
+from constance.test import override_config
 
 
 class FormTestCase(ProposingCycleTestCaseBase):
@@ -60,6 +61,12 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(form.is_valid())
         cleaned_data = form.cleaned_data
         self.assertEquals(cleaned_data['area'], self.arica)
+
+    @override_config(DEFAULT_AREA='whole_country')
+    def test_area_form_default_value(self):
+        whole_country = Area.objects.create(id='whole_country', name='A country')
+        form = AreaForm()
+        self.assertEquals(form.initial['area'], whole_country.id)
 
     @override_settings(HIDDEN_AREAS=['argentina'])
     def test_area_form_is_staff_and_hidden_area(self):

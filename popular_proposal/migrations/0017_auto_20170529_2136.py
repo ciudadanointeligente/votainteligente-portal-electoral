@@ -13,11 +13,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='proposaltemporarydata',
-            name='join_advocacy_url',
-            field=models.URLField(blank=True, null=True),
-        ),
         migrations.AlterField(
             model_name='popularproposal',
             name='area',
@@ -27,5 +22,10 @@ class Migration(migrations.Migration):
             model_name='proposaltemporarydata',
             name='area',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='temporary_proposals', to='elections.Area'),
+        ),
+        migrations.AddField(
+            model_name='proposaltemporarydata',
+            name='join_advocacy_url',
+            field=models.URLField(blank=True, null=True),
         ),
     ]

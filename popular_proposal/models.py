@@ -26,8 +26,17 @@ class NeedingModerationManager(models.Manager):
         return qs
 
 
+class ProposalCreationMixin(object):
+    def determine_kwargs(self, **kwargs):
+            model = kwargs.pop('model_class', self.__class__)
+            for f in model._meta.fields:
+                if f.name in kwargs['data'].keys():
+                    kwargs[f.name] = kwargs['data'].pop(f.name)
+            return kwargs
+
+
 @python_2_unicode_compatible
-class ProposalTemporaryData(models.Model):
+class ProposalTemporaryData(models.Model, ProposalCreationMixin):
     class Statuses(DjangoChoices):
         InOurSide = ChoiceItem('in_our_side')
         InTheirSide = ChoiceItem('in_their_side')
@@ -89,14 +98,16 @@ class ProposalTemporaryData(models.Model):
         self.save()
         title = self.get_title()
         clasification = self.data.get('clasification', '')
-        popular_proposal = PopularProposal(proposer=self.proposer,
-                                           title=title,
-                                           area=self.area,
-                                           temporary=self,
-                                           clasification=clasification,
-                                           data=self.data)
-        if 'organization' in self.data.keys() and self.data['organization']:
-            org_id = self.data['organization']
+        org_id = self.data.pop('organization', None)
+
+        creation_kwargs = self.determine_kwargs(title=title,
+                                                clasification=clasification,
+                                                area=self.area,
+                                                proposer=self.proposer,
+                                                data=self.data,
+                                                temporary=self)
+        popular_proposal = PopularProposal(**creation_kwargs)
+        if org_id:
             enrollment = self.proposer.enrollments.get(organization__id=org_id)
             popular_proposal.organization = enrollment.organization
         popular_proposal.save()
@@ -143,6 +154,7 @@ class PopularProposal(models.Model, OGPMixin):
     slug = AutoSlugField(populate_from='title', unique=True)
     proposer = models.ForeignKey(User, related_name='proposals')
     area = models.ForeignKey(Area, related_name='proposals', null=True, blank=True)
+    join_advocacy_url = models.URLField(null=True, blank=True)
     data = PickledObjectField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)

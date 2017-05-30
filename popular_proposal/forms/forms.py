@@ -3,6 +3,7 @@ from django import forms
 from popular_proposal.models import (ProposalTemporaryData,
                                      ProposalLike,
                                      PopularProposal,
+                                     ProposalCreationMixin,
                                      Commitment)
 from votainteligente.send_mails import send_mail
 from django.utils.translation import ugettext as _
@@ -161,20 +162,12 @@ class ProposalFormBase(forms.Form, TextsFormMixin):
         self.add_texts_to_fields()
 
 
-class CreateProposalMixin(object):
-    def determine_kwargs(self):
-        kwargs = {
-            'proposer': self.proposer,
-            'area': self.area
-        }
-        for f in self.model_class._meta.fields:
-            if f.name in self.cleaned_data.keys():
-                kwargs[f.name] = self.cleaned_data.pop(f.name)
-        kwargs['data'] = self.cleaned_data
-        return kwargs
-
+class CreateProposalMixin(ProposalCreationMixin):
     def save(self):
-        kwargs = self.determine_kwargs()
+        kwargs = self.determine_kwargs(proposer=self.proposer,
+                                       area=self.area,
+                                       data=self.cleaned_data,
+                                       model_class=self.model_class)
         t_data = self.model_class.objects.create(**kwargs)
         t_data.notify_new()
         return t_data

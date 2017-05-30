@@ -218,18 +218,6 @@ class ProposalWizardBase(SessionWizardView):
             return HttpResponseNotFound()
 
 
-class ProposalWizardFullBase(ProposalWizardBase):
-    template_name = 'popular_proposal/wizard/form_step.html'
-
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        if is_candidate(request.user):
-            return HttpResponseNotFound()
-        return super(ProposalWizardFullBase, self).dispatch(request,
-                                                        *args,
-                                                        **kwargs)
-
-
 class ProposalWizard(ProposalWizardBase):
     '''
     Esta es la clase del wizard a la que se llega por hacer
@@ -241,7 +229,7 @@ class ProposalWizard(ProposalWizardBase):
         return super(ProposalWizard, self).dispatch(request, *args, **kwargs)
 
 
-class ProposalWizardFull(ProposalWizardFullBase):
+class ProposalWizardFull(ProposalWizardBase):
     '''
     Esta es la clase del wizard a la que se llega por hacer
     /propuestas/create_full_wizard
@@ -253,7 +241,7 @@ class ProposalWizardFull(ProposalWizardFullBase):
         return [AreaForm, ]
 
 
-class ProposalWizardFullWithoutArea(ProposalWizardFullBase):
+class ProposalWizardFullWithoutArea(ProposalWizardBase):
     '''
     Esta es la clase del wizard a la que se llega por hacer
     /propuestas/crear

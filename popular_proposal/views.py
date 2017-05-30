@@ -216,7 +216,6 @@ class ProposalWizardFullBase(ProposalWizardBase):
                                                         *args,
                                                         **kwargs)
 
-
     def get_form_list(self):
         form_list = OrderedDict()
         previous_forms = self.get_previous_forms()
@@ -241,7 +240,10 @@ class ProposalWizardFullBase(ProposalWizardBase):
             area = Area.objects.get(id=config.DEFAULT_AREA)
         kwargs['area'] = area
         temporary_data = ProposalTemporaryData.objects.create(**kwargs)
-        temporary_data.notify_new()
+        if not settings.MODERATION_ENABLED:
+            temporary_data.create_proposal()
+        else:
+            temporary_data.notify_new()
         context = self.get_context_data(form=None)
         context.update({'popular_proposal': temporary_data,
                         'area': area

@@ -165,6 +165,36 @@ class ProposalWizardBase(SessionWizardView):
         self.form_list = form_list
         return form_list
 
+    def determine_area(self, data):
+        if 'area' in data.keys():
+            return data['area']
+        elif hasattr(self, 'area'):
+            return self.area
+        else:
+            return Area.objects.get(id=config.DEFAULT_AREA)
+
+    def done(self, form_list, **kwargs):
+        data = {}
+        [data.update(form.cleaned_data) for form in form_list]
+        kwargs = {
+            'proposer': self.request.user,
+            'data': data
+        }
+        
+        kwargs['area'] = self.determine_area(data)
+        temporary_data = ProposalTemporaryData.objects.create(**kwargs)
+        if not settings.MODERATION_ENABLED:
+            temporary_data.create_proposal()
+        else:
+            temporary_data.notify_new()
+        context = self.get_context_data(form=None)
+        context.update({'popular_proposal': temporary_data,
+                        'area': kwargs['area']
+                        })
+        send_mails_to_staff({'temporary_data': temporary_data}, 'notify_staff_new_proposal')
+        return render_to_response('popular_proposal/wizard/done.html',
+                                  context)
+
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         if config.PROPOSALS_ENABLED:
@@ -180,19 +210,6 @@ class ProposalWizard(ProposalWizardBase):
         if is_candidate(request.user):
             return HttpResponseNotFound()
         return super(ProposalWizard, self).dispatch(request, *args, **kwargs)
-
-    def done(self, form_list, **kwargs):
-        data = {}
-        [data.update(form.cleaned_data) for form in form_list]
-        t_data = ProposalTemporaryData.objects.create(proposer=self.request.user,
-                                                      area=self.area,
-                                                      data=data)
-        t_data.notify_new()
-        send_mails_to_staff({'temporary_data': t_data}, 'notify_staff_new_proposal')
-        return render_to_response('popular_proposal/wizard/done.html', {
-            'popular_proposal': t_data,
-            'area': self.area
-        })
 
     def get_context_data(self, form, **kwargs):
         context = super(ProposalWizard, self).get_context_data(form, **kwargs)
@@ -224,31 +241,6 @@ class ProposalWizardFullBase(ProposalWizardBase):
             counter += 1
         self.form_list = form_list
         return form_list
-
-    def done(self, form_list, **kwargs):
-        data = {}
-        [data.update(form.cleaned_data) for form in form_list]
-        kwargs = {
-            'proposer': self.request.user,
-            'data': data
-        }
-        if 'area' in data.keys():
-            area = data['area']
-        else:
-            area = Area.objects.get(id=config.DEFAULT_AREA)
-        kwargs['area'] = area
-        temporary_data = ProposalTemporaryData.objects.create(**kwargs)
-        if not settings.MODERATION_ENABLED:
-            temporary_data.create_proposal()
-        else:
-            temporary_data.notify_new()
-        context = self.get_context_data(form=None)
-        context.update({'popular_proposal': temporary_data,
-                        'area': area
-                        })
-        send_mails_to_staff({'temporary_data': temporary_data}, 'notify_staff_new_proposal')
-        return render_to_response('popular_proposal/wizard/done.html',
-                                  context)
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProposalWizardFullBase, self).get_context_data(*args, **kwargs)

@@ -203,21 +203,19 @@ class ProposalWizardBase(SessionWizardView):
         context['preview_data'] = data
         return context
 
+    def get_form_kwargs(self, step=None):
+        kwargs = super(ProposalWizardBase, self).get_form_kwargs(step)
+        kwargs['is_staff'] = self.request.user.is_staff
+        return kwargs
+
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if is_candidate(request.user):
+            return HttpResponseNotFound()
         if config.PROPOSALS_ENABLED:
             return super(ProposalWizardBase, self).dispatch(request, *args, **kwargs)
         else:
             return HttpResponseNotFound()
-
-
-class ProposalWizard(ProposalWizardBase):
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        self.area = get_object_or_404(Area, id=self.kwargs['slug'])
-        if is_candidate(request.user):
-            return HttpResponseNotFound()
-        return super(ProposalWizard, self).dispatch(request, *args, **kwargs)
 
 
 class ProposalWizardFullBase(ProposalWizardBase):
@@ -231,24 +229,24 @@ class ProposalWizardFullBase(ProposalWizardBase):
                                                         *args,
                                                         **kwargs)
 
-    def get_form_list(self):
-        form_list = OrderedDict()
-        previous_forms = self.get_previous_forms()
-        my_list = previous_forms + get_form_list(user=self.request.user)
-        counter = 0
-        for form_class in my_list:
-            form_list[str(counter)] = form_class
-            counter += 1
-        self.form_list = form_list
-        return form_list
 
-    def get_form_kwargs(self, step=None):
-        kwargs = super(ProposalWizardFullBase, self).get_form_kwargs(step)
-        kwargs['is_staff'] = self.request.user.is_staff
-        return kwargs
+class ProposalWizard(ProposalWizardBase):
+    '''
+    Esta es la clase del wizard a la que se llega por hacer
+    /propuestas/crear/villarrica
+    '''
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        self.area = get_object_or_404(Area, id=self.kwargs['slug'])
+        return super(ProposalWizard, self).dispatch(request, *args, **kwargs)
 
 
 class ProposalWizardFull(ProposalWizardFullBase):
+    '''
+    Esta es la clase del wizard a la que se llega por hacer
+    /propuestas/create_full_wizard
+    Acá lo primero que te preguntamos es para qué comuna quieres crear la propuesta
+    '''
     form_list = [AreaForm, ] + wizard_form_list
 
     def get_previous_forms(self):
@@ -256,6 +254,11 @@ class ProposalWizardFull(ProposalWizardFullBase):
 
 
 class ProposalWizardFullWithoutArea(ProposalWizardFullBase):
+    '''
+    Esta es la clase del wizard a la que se llega por hacer
+    /propuestas/crear
+    Acá no te preguntamos por el area por que sabemos que es la que viene por defecto.
+    '''
     form_list = wizard_form_list
 
     def get_previous_forms(self):

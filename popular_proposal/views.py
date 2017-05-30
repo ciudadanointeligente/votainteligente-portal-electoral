@@ -64,23 +64,21 @@ class ProposalCreationView(FormView):
         return kwargs
 
     def form_valid(self, form):
-        form.save()
+        self.proposal = form.save()
         return super(ProposalCreationView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('popular_proposals:thanks', kwargs={'pk': self.area.id})
+        return reverse('popular_proposals:thanks', kwargs={'pk': self.proposal.id})
 
 
-class ThanksForProposingView(TemplateView):
+class ThanksForProposingView(DetailView):
+    model = ProposalTemporaryData
     template_name = 'popular_proposal/thanks.html'
-
-    def dispatch(self, *args, **kwargs):
-        self.area = get_object_or_404(Area, id=self.kwargs['pk'])
-        return super(ThanksForProposingView, self).dispatch(*args, **kwargs)
+    context_object_name = 'proposal'
 
     def get_context_data(self, **kwargs):
         kwargs = super(ThanksForProposingView, self).get_context_data(**kwargs)
-        kwargs['area'] = self.area
+        kwargs['area'] = self.object.area
         return kwargs
 
 

@@ -195,6 +195,14 @@ class ProposalWizardBase(SessionWizardView):
         return render_to_response('popular_proposal/wizard/done.html',
                                   context)
 
+    def get_context_data(self, form, **kwargs):
+        context = super(ProposalWizardBase, self).get_context_data(form, **kwargs)
+        data = self.get_all_cleaned_data()
+        if data:
+            context['area'] = self.determine_area(data)
+        context['preview_data'] = data
+        return context
+
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         if config.PROPOSALS_ENABLED:
@@ -210,14 +218,6 @@ class ProposalWizard(ProposalWizardBase):
         if is_candidate(request.user):
             return HttpResponseNotFound()
         return super(ProposalWizard, self).dispatch(request, *args, **kwargs)
-
-    def get_context_data(self, form, **kwargs):
-        context = super(ProposalWizard, self).get_context_data(form, **kwargs)
-        context['area'] = self.area
-        context['preview_data'] = self.get_all_cleaned_data()
-        return context
-
-
 
 
 class ProposalWizardFullBase(ProposalWizardBase):
@@ -241,15 +241,6 @@ class ProposalWizardFullBase(ProposalWizardBase):
             counter += 1
         self.form_list = form_list
         return form_list
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(ProposalWizardFullBase, self).get_context_data(*args, **kwargs)
-        data = self.get_all_cleaned_data()
-        if 'area' in data:
-            context['area'] = data['area']
-        context['preview_data'] = self.get_all_cleaned_data()
-
-        return context
 
     def get_form_kwargs(self, step=None):
         kwargs = super(ProposalWizardFullBase, self).get_form_kwargs(step)

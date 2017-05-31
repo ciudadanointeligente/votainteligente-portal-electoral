@@ -77,34 +77,6 @@ def title(election, name):
 def url_domain():
     return Site.objects.get_current().domain
 
-
-@register.filter
-def metadata(meta):
-    if meta in settings.WEBSITE_METADATA:
-        return settings.WEBSITE_METADATA[meta]
-    return ''
-
-@register.filter
-def ogpdata(ogp):
-    if ogp in settings.WEBSITE_OGP:
-        return settings.WEBSITE_OGP[ogp]
-    return ''
-
-
-@register.filter
-def disqus(disqus):
-    if disqus in settings.WEBSITE_DISQUS:
-        return settings.WEBSITE_DISQUS[disqus]
-    return ''
-
-
-@register.filter
-def ga(value):
-    if value in settings.WEBSITE_GA:
-        return settings.WEBSITE_GA[value]
-    return ''
-
-
 def no_ha_respondido_twitter_button(context):
     twitter = context["candidate"].twitter
     if twitter:
@@ -130,8 +102,8 @@ register.inclusion_tag('elections/twitter/follow_the_conversation.html',
 @register.filter
 #website general settings
 def website_gs(value):
-    if value in settings.WEBSITE_GENERAL_SETTINGS:
-        return settings.WEBSITE_GENERAL_SETTINGS[value]
+    if value in config.WEBSITE_GENERAL_SETTINGS:
+        return config.WEBSITE_GENERAL_SETTINGS[value]
     return ''
 
 

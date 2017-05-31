@@ -5,22 +5,25 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load votainteligente_extras %}
-<html prefix="og: //ogp.me/ns/{{ 'type'|ogpdata }}#">
+<html prefix="og: //ogp.me/ns/{{ config.WEBSITE_OGP_TYPE }}#">
     <head>
         <meta charset="utf-8">
         <title>{% trans "Vota Inteligente" %} {% block title %}- {{ config.WEBSITE_GENERAL_SETTINGS_HOME_TITLE }}{% endblock title %}</title>
-        <meta name="author" content="{{ 'author'|metadata }}">
-        <meta name="description" content="{% block description %}{{ 'description'|metadata }}{% endblock description %}">
-        <meta name="keywords" content="{{ 'keywords'|metadata }}{% block keywords %}{% endblock keywords %}">
+        <meta name="author" content="{{ config.WEBSITE_METADATA_AUTHOR }}">
+        <meta name="description" content="{% block description %}{{ config.WEBSITE_METADATA_DESCRIPTION }}{% endblock description %}">
+        <meta name="keywords" content="{{ config.WEBSITE_METADATA_KEYWORD }}{% block keywords %}{% endblock keywords %}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="mobile-web-app-capable" content="yes">
-        <meta name="google-site-verification" content="{{ 'gsite-verification'|ga }}">
-
+        <meta name="google-site-verification" content="{{ config.WEBSITE_GA_GSITE_VERIFICATION }}">
         <!--for facebook fans-->
-        <meta property="og:title" content="{{ 'title'|ogpdata }}">
-        <meta property="og:type" content="{{ 'type'|ogpdata }}">
-        <meta property="og:url" content="{{ 'url'|ogpdata }}">
-        <meta property="og:image" content="{% static 'image'|ogpdata %}">
+        {% block ogp %}
+        <meta property="og:title" content="{{ config.WEBSITE_OGP_TITLE }}">
+        <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
+        <meta property="og:url" content="https://{% url_domain %}">
+        <meta property="og:image" content="https://{% url_domain %}{% static 'img/logo_vi_og.jpg' %}">
+        <meta property="og:description" content="{{ config.WEBSITE_OGP_DESCRIPTION }}">
+        {% endblock ogp %}
+        <meta property="fb:app_id" content="{{ config.WEBSITE_OGP_APP_ID }}">
         <!--eoff-->
 
         <link rel="shortcut icon" sizes="196x196" href="{% static 'img/votai-196.png' %}">
@@ -56,7 +59,7 @@
     </head>
 
     <body>
-        
+
         <div id="wrapper">
             {% block everything %}
             <div class="container">
@@ -78,7 +81,7 @@
 		'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 		})(window,document,'script','dataLayer','GTM-PD7DKP');</script>
 		<!-- End Google Tag Manager -->
-        
+
         <script src="{% static 'js/removeDiacritics.js' %}"></script>
         <script src="{% static 'js/jquery.expander.js' %}"></script>
 
@@ -132,7 +135,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-          ga('create', "{{ 'code'|ga }}", 'auto');
+          ga('create', "{{ config.WEBSITE_GA_CODE }}", 'auto');
           ga('send', 'pageview');
 
         </script>

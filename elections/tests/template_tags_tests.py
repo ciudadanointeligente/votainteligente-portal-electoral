@@ -113,61 +113,6 @@ class TemplateTagsTestCase(TestCase):
         context = Context({})
         self.assertEqual(template.render(context), 'votainteligente.cl')
 
-    def test_website_metadata(self):
-        template = Template("{% load votainteligente_extras %}{{ 'author'|metadata }}")
-        context = Context({})
-
-        self.assertEqual(template.render(context), u'Fundación Ciudadano Inteligente')
-
-    def test_website_notin_metadata(self):
-        template = Template("{% load votainteligente_extras %}{{ 'tags'|metadata }}")
-        context = Context({})
-
-        self.assertEqual(template.render(context), '')
-
-    def test_website_ogp(self):
-        template = Template("{% load votainteligente_extras %}{{ 'title'|ogpdata }}")
-        context = Context({})
-
-        self.assertEqual(template.render(context), u'Vota Inteligente')
-
-    def test_website_no_ogp(self):
-        template = Template("{% load votainteligente_extras %}{{ 'sound'|ogpdata }}")
-        context = Context({})
-
-        self.assertEqual(template.render(context), u'')
-
-    def test_website_disqus(self):
-        template = Template("{% load votainteligente_extras %}{{ 'shortname'|disqus }}")
-        context = Context({})
-
-        self.assertEqual(template.render(context), u'votainteligente')
-
-    def test_website_no_disqus_setting(self):
-        template = Template("{% load votainteligente_extras %}{{ 'sound'|disqus }}")
-        context = Context({})
-
-        self.assertEqual(template.render(context), u'')
-
-    def test_website_ga(self):
-        template = Template("{% load votainteligente_extras %}{{ 'code'|ga }}")
-        context = Context({})
-
-        self.assertEqual(template.render(context), u'UA-XXXXX-X')
-
-    def test_website_imgur(self):
-        template = Template("{% load votainteligente_extras %}{{ 'client_id'|website_imgur }}")
-        context = Context({})
-
-        self.assertEqual(template.render(context), u'eb18642b5b220484864483b8e21386c3')
-
-    @override_config(WEBSITE_TWITTER_HASHTAG=u'votainformado,eslaloslas')
-    def test_website_twitter(self):
-        template = Template("{% load votainteligente_extras %}{{ 'hashtags'|website_twitter }}")
-        context = Context({})
-
-        self.assertEqual(template.render(context), u'votainformado,eslaloslas')
-
     def test_display_personal_data(self):
         template = Template("{% load votainteligente_extras %}{% display_personal_data item %}")
         context = Context({'item': ('nacionalidad', {'display': 'Nacionalidad',

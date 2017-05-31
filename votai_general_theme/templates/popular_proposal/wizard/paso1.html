@@ -8,12 +8,18 @@
 {{ wizard.form.media }}
 {% endblock %}
 
+{% block extratitle %}
+- Paso {{wizard.steps.step1}}
+{% endblock extratitle %}
+
 {% block content %}
 <div>
   <div class="text-width wizard">
     {% if area %}
     <p class="text-light">Creando una propuesta para {{ area }}</p>
     {% endif %}
+
+
     <div class="row">
     {% for i in wizard.steps.count|times %}
     <div class="col-md-2 col-sm-2 col-xs-2">

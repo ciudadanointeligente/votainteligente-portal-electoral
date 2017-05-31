@@ -20,8 +20,14 @@
       <div>
           <h2 class="text-center">Tu propuesta para {{area}} con el título "<i>{{popular_proposal}}</i>" ha sido enviada ¡muchas gracias!</h2>
 
-          <p>{% blocktrans %}Por favor, espera que el equipo de Ciudadano Inteligente la evalúe para que sea enviada a los candidatos.{% endblocktrans %}</p>
 
+          {% if popular_proposal.created_proposal %}
+
+            Tu propuesta está lissteilor! (grande @lissteilor).
+            {{popular_proposal.created_proposal.get_absolute_url}}
+          {% else %}
+          <p>{% blocktrans %}Por favor, espera que el equipo de Ciudadano Inteligente la evalúe para que sea enviada a los candidatos.{% endblocktrans %}</p>
+          {% endif %}
           <div>
             {% get_proposals_enabled as proposals_enabled %}
             {% if proposals_enabled  %}

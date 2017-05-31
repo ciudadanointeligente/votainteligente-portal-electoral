@@ -38,7 +38,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         form = ProposalForm(data=self.data,
                             proposer=self.fiera,
                             area=self.arica)
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
         cleaned_data = form.cleaned_data
         self.assertEquals(cleaned_data['title'], self.data['title'])
         self.assertEquals(cleaned_data['problem'], self.data['problem'])
@@ -47,6 +47,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(cleaned_data['causes'], self.data['causes'])
         temporary_data = form.save()
         self.assertEquals(len(mail.outbox), original_amount + 1)
+        self.assertEquals(temporary_data.join_advocacy_url, self.data["join_advocacy_url"])
         self.assertEquals(temporary_data.proposer, self.fiera)
         self.assertEquals(temporary_data.area, self.arica)
         t_data = temporary_data.data
@@ -58,7 +59,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
     def test_area_form(self):
         data = {'area': self.arica.id}
         form = AreaForm(data)
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
         cleaned_data = form.cleaned_data
         self.assertEquals(cleaned_data['area'], self.arica)
 
@@ -73,7 +74,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         argentina = Area.objects.create(name=u'Argentina')
         data = {'area': argentina.id}
         form = AreaForm(data, is_staff=True)
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
         cleaned_data = form.cleaned_data
         self.assertEquals(cleaned_data['area'], argentina)
 
@@ -101,7 +102,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         form = CommentsForm(data=data,
                             moderator=self.feli,
                             temporary_data=t_data)
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
         t_data = form.save()
         self.assertEquals(t_data.comments['when'], data['when'])
         self.assertEquals(t_data.comments['causes'], data['causes'])
@@ -160,7 +161,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         form = RejectionForm(data=data,
                              moderator=self.feli,
                              temporary_data=t_data)
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
         form.reject()
         temporary_data = ProposalTemporaryData.objects.get(id=t_data.id)
         self.assertEquals(temporary_data.status,
@@ -183,7 +184,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
                                                proposer=self.fiera)
         self.assertTrue(form.initial)
         self.assertIn(self.comments['when'], form.fields['when'].help_text)
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
         self.assertEquals(form.get_overall_comments(),
                           data['overall_comments'])
         t_data = form.save()
@@ -273,7 +274,7 @@ class UpdateFormTestCase(ProposingCycleTestCaseBase):
         form = UpdateProposalForm(data=update_data,
                                   files=file_data,
                                   instance=self.popular_proposal)
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
         proposal = form.save()
         self.assertEquals(proposal.background, update_data['background'])
         self.assertTrue(proposal.image)
@@ -329,7 +330,7 @@ class ModelFormTest(ProposingCycleTestCaseBase):
         data['proposer'] = self.fiera.id
         data['status'] = t_data.status
         form = ProposalTemporaryDataModelForm(instance=t_data, data=data)
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
         form.save()
         temporary_data = ProposalTemporaryData.objects.get(id=t_data.id)
         self.assertEquals(temporary_data.data['title'], data['title'])
@@ -354,7 +355,7 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
         form = CandidateCommitmentForm(candidate=self.candidate,
                                        proposal=self.proposal,
                                        data=data)
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
         commitment = form.save()
         self.assertEquals(commitment.proposal, self.proposal)
         self.assertEquals(commitment.candidate, self.candidate)
@@ -366,7 +367,7 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
         form = CandidateNotCommitingForm(candidate=self.candidate,
                                          proposal=self.proposal,
                                          data=data)
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
         commitment = form.save()
         self.assertEquals(commitment.proposal, self.proposal)
         self.assertEquals(commitment.candidate, self.candidate)

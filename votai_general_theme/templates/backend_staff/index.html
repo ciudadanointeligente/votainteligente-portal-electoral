@@ -19,18 +19,20 @@
     <h2>{% blocktrans %}¡Eres parte de nuestro equipo!{% endblocktrans %}</h2>
     <p>Aquí podrás ver y moderar los elementos de VotaInteligente </p>
 
-    <table class="table">
+    <table class="table table-striped">
+      <thead>
         <tr>
-            <td>ID</td>
-            <td>Area</td>
-            <td>Fecha</td>
-            <td>Problema</td>
-            <td>+Info</td>
-            <td>Organización</td>
-            <td>Usuario</td>
-            <td>Comentarios del usuario</td>
-            <td>Acciones</td>
+            <th>ID</th>
+            <th>Area</th>
+            <th>Fecha</th>
+            <th>Problema</th>
+            <th>+Info</th>
+            <th>Organización</th>
+            <th>Usuario</th>
+            <th>Comentarios del usuario</th>
+            <th>Acciones</th>
         </tr>
+      </thead>
     {% for proposal in proposals.all %}
         {% if proposal.status != 'accepted' %}
         <tr>
@@ -41,7 +43,7 @@
             </td>
             <td>
                 <button type="button" class="btn btn-lg btn-danger masInfo" data-toggle="popover" title="+ Info" data-content="{% get_questions_and_descriptions proposal %}">?</button>
-                
+
             </td>
             <td>
                 {{proposal.data.organization}}
@@ -56,13 +58,13 @@
                 </td>
             <td>
                 {% if proposal.status == 'in_our_side' %}
-                <a data-toggle="modal" data-target="#proposalComments" 
+                <a data-toggle="modal" data-target="#proposalComments"
                     data-url="{% url 'backend_staff:popular_proposal_comments' pk=proposal.id %}">
-                    <i class="fa fa-pencil-square-o"></i> Editame!
+                    <i class="fa fa-pencil-square-o" title="Editame!"></i>
                 </a>
                 <a data-toggle="modal" data-target="#moderateProposal"
                     data-url="{% url 'backend_staff:moderate_proposal' pk=proposal.id %}">
-                    <i class="fa fa-gavel"></i> Moderame!
+                    <i class="fa fa-gavel" title="Moderame!"></i>
                 </a>
                 {% elif proposal.status == 'in_their_side' %}
                 <span class="label label-default">{% trans 'Esperando al usuario' %}</span>

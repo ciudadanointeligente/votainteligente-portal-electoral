@@ -1,19 +1,19 @@
 from django.conf.urls import url
-from popular_proposal.views import (ProposalCreationView,
-                                    ThanksForProposingView,
-                                    SubscriptionView,
-                                    HomeView,
-                                    PopularProposalDetailView,
-                                    PopularProposalUpdateView,
-                                    ProposalWizard,
-                                    ProposalWizardFull,
-                                    ProposalWizardFullWithoutArea,
-                                    UnlikeProposalView,
-                                    ProposalsPerArea,
-                                    CommitView,
-                                    NotCommitView,
-                                    CommitmentDetailView,
-                                    )
+from popular_proposal.views.proposal_views import (ProposalCreationView,
+                                                   ThanksForProposingView,
+                                                   SubscriptionView,
+                                                   HomeView,
+                                                   PopularProposalDetailView,
+                                                   PopularProposalUpdateView,
+                                                   UnlikeProposalView,
+                                                   ProposalsPerArea,
+                                                   CommitView,
+                                                   NotCommitView,
+                                                   CommitmentDetailView,
+                                                   )
+from popular_proposal.views.wizard import (ProposalWizard,
+                                           ProposalWizardFull,
+                                           ProposalWizardFullWithoutArea,)
 from django.views.decorators.clickjacking import xframe_options_exempt
 
 

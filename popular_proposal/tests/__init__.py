@@ -2,7 +2,28 @@
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django.contrib.auth.models import User
 from elections.models import Area
+from popular_proposal.forms.forms import wizard_forms_fields
+from django import forms
 
+
+def get_example_data_for_testing():
+    data = {}
+
+    example_fields = {
+        'CharField': 'fieraFeroz',
+        'URLField': 'http://fieraFeroz.com',
+        'BooleanField': True,
+    }
+
+    for step in wizard_forms_fields:
+        for f in step['fields']:
+            field = step['fields'][f]
+            field_type = field.__class__.__name__
+            if field_type in example_fields:
+                data[f] = example_fields[field_type]
+            elif field_type == 'ChoiceField':
+                data[f] = field.choices[-1][0]
+    return data
 
 class ProposingCycleTestCaseBase(TestCase):
 
@@ -12,16 +33,7 @@ class ProposingCycleTestCaseBase(TestCase):
         self.feli = User.objects.get(username='feli')
         self.arica = Area.objects.get(id='arica-15101')
         self.alhue = Area.objects.get(id='alhue-13502')
-        self.data = {
-            'clasification': 'educacion',
-            'title': u'Fiera a Santiago',
-            'problem': u'A mi me gusta la contaminación de Santiago y los autos\
- y sus estresantes ruedas',
-            'solution': u'Viajar a ver al Feli una vez al mes',
-            'when': u'1_year',
-            'causes': u'La super distancia',
-            'terms_and_conditions': True
-        }
+        self.data = get_example_data_for_testing()
         self.comments = {
             'title': '',
             'problem': '',

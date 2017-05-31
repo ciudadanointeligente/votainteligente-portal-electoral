@@ -17,9 +17,11 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
 
     def test_instanciate_one(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              join_advocacy_url=u"http://whatsapp.com/mygroup",
                                                               area=self.arica,
                                                               data=self.data)
         self.assertTrue(temporary_data)
+        self.assertTrue(temporary_data.join_advocacy_url)
         self.assertFalse(temporary_data.rejected)
         self.assertFalse(temporary_data.rejected_reason)
 
@@ -189,6 +191,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
 
         data = self.data
         data['organization'] = self.org.id
+        data["join_advocacy_url"] = "http://whatsapp.com/somegroup"
         # Testing
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
@@ -201,6 +204,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         popular_proposal = PopularProposal.objects.get(id=popular_proposal.id)
         self.assertEquals(popular_proposal.organization.name, self.org.name)
         self.assertEquals(popular_proposal.area, self.arica)
+        self.assertEquals(popular_proposal.join_advocacy_url, "http://whatsapp.com/somegroup")
         self.assertEquals(popular_proposal.clasification, data['clasification'])
         self.assertEquals(popular_proposal.data, self.data)
         self.assertEquals(popular_proposal.title, self.data['title'])

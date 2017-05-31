@@ -1,7 +1,7 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase as TestCase
 from django.core.urlresolvers import reverse
-from popular_proposal.models import PopularProposal, Commitment
+from popular_proposal.models import PopularProposal, Commitment, ProposalTemporaryData
 from popular_proposal.forms import ProposalFilterForm, ProposalAreaFilterForm
 from popular_proposal.filters import ProposalAreaFilter
 from elections.models import Area, Candidate
@@ -77,10 +77,14 @@ class ProposalViewTestCase(TestCase):
         self.assertTrue(response.context['is_embedded'])
 
     def test_thanks_page(self):
-        url = reverse('popular_proposals:thanks', kwargs={'pk': self.algarrobo.id})
+        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                              join_advocacy_url=u"http://whatsapp.com/mygroup",
+                                                              area=self.arica,
+                                                              data=self.data)
+        url = reverse('popular_proposals:thanks', kwargs={'pk': temporary_data.id})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.context['area'], self.algarrobo)
+        self.assertEquals(response.context['proposal'], temporary_data)
 
 
 class ProposalHomeTestCase(PopularProposalTestCaseBase):

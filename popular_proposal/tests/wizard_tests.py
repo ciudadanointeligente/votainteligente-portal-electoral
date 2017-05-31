@@ -43,7 +43,7 @@ class WizardDataMixin():
             cntr += 1
         return t_response
 
-
+@override_settings(MODERATION_ENABLED=True)
 class WizardTestCase(TestCase, WizardDataMixin):
     def setUp(self):
         super(WizardTestCase, self).setUp()
@@ -303,3 +303,72 @@ class WizardTestCase2(TestCase, WizardDataMixin):
         self.assertIn(self.feli.email, the_mail.to)
         self.assertIn(str(temporary_data.id), the_mail.body)
         self.assertIn(temporary_data.get_title(), the_mail.body)
+
+
+@override_config(DEFAULT_AREA='argentina')
+class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
+    def setUp(self):
+        super(AutomaticallyCreateProposalTestCase, self).setUp()
+        self.fiera = User.objects.get(username='fiera')
+        self.argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        self.feli = User.objects.get(username='feli')
+        self.feli.set_password(USER_PASSWORD)
+        self.feli.save()
+        ProposalTemporaryData.objects.all().delete()
+        self.url = reverse('popular_proposals:propose_wizard_full_without_area')
+        self.example_data = self.get_example_data_for_post()
+
+    def fill_the_whole_wizard(self, **kwargs):
+        '''
+        en:
+        This method fills the whole wizard and returns the last response, in other words the done step.
+        This method is designed to only work in testing environment.
+        es-cl:
+        Este método le completa todo el wizard y devuelve el response del final, es decir el done.
+        Sólo funca para escribir tests.
+        '''
+        example_data = kwargs.pop("data", self.example_data)
+        url = kwargs.pop("url", self.url)
+        user = kwargs.pop("user", self.feli)
+        password = kwargs.pop("password", USER_PASSWORD)
+        
+        self.client.login(username=user,
+                          password=password)
+        response = self.client.get(url)
+        steps = response.context['wizard']['steps']
+        for i in range(steps.count):
+            self.assertEquals(steps.current, unicode(i))
+            data = example_data[i]
+            data.update({'proposal_wizard_full_without_area-current_step': unicode(i)})
+            response = self.client.post(url, data=data)
+            if 'form' in response.context:
+                if response.context['form'] is not None:
+                    self.assertFalse(response.context['form'].errors,
+                                     u"Error en el paso" + unicode(i) + unicode(response.context['form'].errors))
+                    self.assertTrue(response.context['preview_data'])
+                    steps = response.context['wizard']['steps']
+        is_done = False
+        for template in response.templates:
+            if template.name.endswith('done.html'):
+                is_done = True
+        self.assertTrue(is_done)
+        return response
+
+    def test_create_a_proposal(self):
+        original_amount = len(mail.outbox)
+        response = self.fill_the_whole_wizard()
+        temporary_data = response.context['popular_proposal']
+        temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
+        self.assertTrue(temporary_data.created_proposal)
+        '''
+        Hay dos mails el primero es para la persona que propone y el segundo
+        es para el equipo donde les avisamos que hay una propuesta nueva
+        '''
+        expected_number_of_emails = 2
+        self.assertEquals(len(mail.outbox), original_amount + expected_number_of_emails)
+        url_in_mail = False
+        for i in range(expected_number_of_emails):
+            the_mail = mail.outbox[original_amount]
+            if temporary_data.created_proposal.get_absolute_url() in the_mail.body:
+                url_in_mail = True
+        self.assertTrue(url_in_mail)

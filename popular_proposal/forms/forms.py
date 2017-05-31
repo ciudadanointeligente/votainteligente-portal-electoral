@@ -3,6 +3,7 @@ from django import forms
 from popular_proposal.models import (ProposalTemporaryData,
                                      ProposalLike,
                                      PopularProposal,
+                                     ProposalCreationMixin,
                                      Commitment)
 from votainteligente.send_mails import send_mail
 from django.utils.translation import ugettext as _
@@ -99,6 +100,7 @@ wizard_forms_fields = [
         'fields': OrderedDict([
             ('title', forms.CharField(max_length=256,
                                       widget=forms.TextInput())),
+            ('join_advocacy_url', forms.URLField(max_length=256, required=False)),
             ('organization', get_user_organizations_choicefield),
             ('terms_and_conditions', forms.BooleanField(
                 error_messages={'required':
@@ -160,17 +162,22 @@ class ProposalFormBase(forms.Form, TextsFormMixin):
         self.add_texts_to_fields()
 
 
-class ProposalForm(ProposalFormBase):
+class CreateProposalMixin(ProposalCreationMixin):
+    def save(self):
+        kwargs = self.determine_kwargs(proposer=self.proposer,
+                                       area=self.area,
+                                       data=self.cleaned_data,
+                                       model_class=self.model_class)
+        t_data = self.model_class.objects.create(**kwargs)
+        t_data.notify_new()
+        return t_data
+
+
+class ProposalForm(ProposalFormBase, CreateProposalMixin):
+    model_class = ProposalTemporaryData
     def __init__(self, *args, **kwargs):
         self.area = kwargs.pop('area')
         super(ProposalForm, self).__init__(*args, **kwargs)
-
-    def save(self):
-        t_data = ProposalTemporaryData.objects.create(proposer=self.proposer,
-                                                      area=self.area,
-                                                      data=self.cleaned_data)
-        t_data.notify_new()
-        return t_data
 
 
 class UpdateProposalForm(forms.ModelForm):

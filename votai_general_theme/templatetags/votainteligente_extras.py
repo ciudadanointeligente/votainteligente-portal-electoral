@@ -80,28 +80,28 @@ def url_domain():
 
 @register.filter
 def metadata(meta):
-    if meta in settings.WEBSITE_METADATA:
-        return settings.WEBSITE_METADATA[meta]
+    if meta in config.WEBSITE_METADATA:
+        return config.WEBSITE_METADATA[meta]
     return ''
 
 @register.filter
 def ogpdata(ogp):
-    if ogp in settings.WEBSITE_OGP:
-        return settings.WEBSITE_OGP[ogp]
+    if ogp in config.WEBSITE_OGP:
+        return config.WEBSITE_OGP[ogp]
     return ''
 
 
 @register.filter
 def disqus(disqus):
-    if disqus in settings.WEBSITE_DISQUS:
-        return settings.WEBSITE_DISQUS[disqus]
+    if disqus in config.WEBSITE_DISQUS:
+        return config.WEBSITE_DISQUS[disqus]
     return ''
 
 
 @register.filter
 def ga(value):
-    if value in settings.WEBSITE_GA:
-        return settings.WEBSITE_GA[value]
+    if value in config.WEBSITE_GA:
+        return config.WEBSITE_GA[value]
     return ''
 
 
@@ -130,8 +130,8 @@ register.inclusion_tag('elections/twitter/follow_the_conversation.html',
 @register.filter
 #website general settings
 def website_gs(value):
-    if value in settings.WEBSITE_GENERAL_SETTINGS:
-        return settings.WEBSITE_GENERAL_SETTINGS[value]
+    if value in config.WEBSITE_GENERAL_SETTINGS:
+        return config.WEBSITE_GENERAL_SETTINGS[value]
     return ''
 
 

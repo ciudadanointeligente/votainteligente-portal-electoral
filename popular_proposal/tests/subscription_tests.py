@@ -282,6 +282,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
                                                   data=self.data,
                                                   title=u'This is a title'
                                                   )
+        proposal.notify_candidates_of_new()
         first_mail = mail.outbox[previous_amount]
         contact = self.candidate.contacts.all().first()
         self.assertIn(self.feli.username, first_mail.body)
@@ -291,8 +292,6 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.feli.last_login = timezone.now()
         self.feli.save()
         self.candidate.taken_positions.all().delete()
-        for e in self.candidate.elections.all():
-            print e.id
         candidacy = Candidacy.objects.create(user=self.feli,
                                              candidate=self.candidate
                                              )
@@ -306,6 +305,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
                                                   data=self.data,
                                                   title=u'This is a title'
                                                   )
+        proposal.notify_candidates_of_new()
         first_mail = mail.outbox[previous_amount]
         contact = self.candidate.contacts.all().first()
         self.assertNotIn(self.feli.username, first_mail.body)

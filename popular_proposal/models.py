@@ -196,12 +196,6 @@ class PopularProposal(models.Model, OGPMixin):
     def get_absolute_url(self):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})
 
-    def save(self, *args, **kwargs):
-        creating = self.pk is None
-        super(PopularProposal, self).save(*args, **kwargs)
-        if self.pk is not None and creating:
-            self.notify_candidates_of_new()
-
     def notify_candidates_of_new(self):
         if not (settings.NOTIFY_CANDIDATES and settings.NOTIFY_CANDIDATES_OF_NEW_PROPOSAL):
             return

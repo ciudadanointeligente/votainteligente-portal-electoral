@@ -4,6 +4,7 @@ from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
 from backend_citizen.models import Profile
 from django.core.urlresolvers import reverse
 from organization_profiles.models import OrganizationTemplate, ExtraPage
+from django.test import override_settings
 
 
 class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
@@ -95,6 +96,18 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
         fiera.profile.save()
         self.assertFalse(OrganizationTemplate.objects.filter(organization=fiera))
         self.assertIn(str(self.user), str(template))
+
+    @override_settings(DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS=[{'title':u'Agenda', 'content':'Esta es la agenda'},
+                                                           {'title':u'Documentos', 'content':'Documentos'}])
+    def test_automatically_create_extra_pages(self):
+        self.user.profile.is_organization = True
+        self.user.profile.save() #  Acá se crea un OrganizationTemplate
+        # y se crea porque en la linea anterior le dijimos que la wea era organización
+        template = OrganizationTemplate.objects.get(organization=self.user)
+        extra_pages = ExtraPage.objects.filter(template=self.user.organization_template)
+        self.assertEquals(len(extra_pages), 2)
+        self.assertTrue(extra_pages.filter(title=u'Agenda'))
+        self.assertTrue(extra_pages.filter(title=u'Documentos'))
 
     def test_extra_fields(self):
         self.user.profile.is_organization = True

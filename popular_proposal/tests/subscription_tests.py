@@ -243,14 +243,14 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertIn(self.candidate2.name, the_mail.body)
         self.assertIn(str(2), the_mail.body)
 
-    def test_new_proposal_notification_for_candidates(self):
+    def test_proposal_notification_for_candidates(self):
         previous_amount = len(mail.outbox)
         proposal = PopularProposal.objects.create(proposer=self.fiera,
                                                   area=self.arica,
                                                   data=self.data,
                                                   title=u'This is a title'
                                                   )
-
+        proposal.notify_candidates_of_new()
         self.assertEquals(len(mail.outbox), previous_amount + 2)
         first_mail = mail.outbox[previous_amount]
         self.assertEquals(len(first_mail.to), 1)
@@ -282,6 +282,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
                                                   data=self.data,
                                                   title=u'This is a title'
                                                   )
+        proposal.notify_candidates_of_new()
         first_mail = mail.outbox[previous_amount]
         contact = self.candidate.contacts.all().first()
         self.assertIn(self.feli.username, first_mail.body)
@@ -291,8 +292,6 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.feli.last_login = timezone.now()
         self.feli.save()
         self.candidate.taken_positions.all().delete()
-        for e in self.candidate.elections.all():
-            print e.id
         candidacy = Candidacy.objects.create(user=self.feli,
                                              candidate=self.candidate
                                              )
@@ -306,6 +305,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
                                                   data=self.data,
                                                   title=u'This is a title'
                                                   )
+        proposal.notify_candidates_of_new()
         first_mail = mail.outbox[previous_amount]
         contact = self.candidate.contacts.all().first()
         self.assertNotIn(self.feli.username, first_mail.body)

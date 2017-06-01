@@ -84,3 +84,13 @@ class OrganizationTemplateViewTest(BackendCitizenTestCaseBase):
         response = self.client.get(url)
         # Si estás loggeado pero no eres organización, retornas 404
         self.assertEquals(response.status_code, 404)
+
+    def test_get_url_and_displays_form_for_extrapages(self):
+        extra_page = self.template.extra_pages.all()[0]
+        url = reverse('organization_profiles:update_extrapages',kwargs={'pk':extra_page.id})
+        print url
+        self.client.login(username=self.user.username, password=PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        print response.context['form']
+        self.assertFalse(True)

@@ -108,6 +108,10 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
         self.assertEquals(len(extra_pages), 2)
         self.assertTrue(extra_pages.filter(title=u'Agenda'))
         self.assertTrue(extra_pages.filter(title=u'Documentos'))
+        #Probando que no se crean dos veces.
+        self.user.profile.save() #  Acá se crea un OrganizationTemplate
+        extra_pages = ExtraPage.objects.filter(template=self.user.organization_template)
+        self.assertEquals(len(extra_pages), 2)
 
     def test_extra_fields(self):
         self.user.profile.is_organization = True

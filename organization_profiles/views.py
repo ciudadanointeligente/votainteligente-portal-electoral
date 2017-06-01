@@ -11,6 +11,11 @@ from django.template.loader import get_template
 from django.views.generic.edit import UpdateView
 from organization_profiles.forms import OrganizationTemplateForm
 from django.core.urlresolvers import reverse
+from django.views.generic.edit import UpdateView
+from organization_profiles.models import ExtraPage
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 
 def read_template_as_string(path, file_source_path=__file__):
     script_dir = os.path.dirname(file_source_path)
@@ -82,3 +87,15 @@ class OrganizationTemplateUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('organization_profiles:update')
+
+
+class ExtraPageUpdateView(LoginRequiredMixin, UpdateView):
+    model = ExtraPage
+    fields = ['title', 'content']
+    template_name = "backend_organization/update_extrapage.html"
+
+    def get_object(self):
+        extra_page = super(ExtraPageUpdateView, self).get_object()
+        if extra_page.template.organization != self.request.user:
+            raise Http404()
+        return extra_page

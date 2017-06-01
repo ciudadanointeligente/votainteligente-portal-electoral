@@ -7,7 +7,9 @@
 {% block main_content %}
 
 	<h2 class="page-header">Perfil Organización</h2>
-	<p class="alert alert-warning">Revisa tu página de perfil <a href="{% url 'organization_profiles:home' slug=user.username %}" target="_blank">acá</a></p>
+
+	<p class="alert alert-warning button-org">Revisa tu página de perfil <a href="{% url 'organization_profiles:home' slug=user.username %}" target="_blank">acá</a></p>
+
 	<form enctype="multipart/form-data" action="{% url 'organization_profiles:update' %}" method="POST" role="form">
 	    {% csrf_token %}
         {% bootstrap_form form %}

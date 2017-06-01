@@ -9,6 +9,7 @@ from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from autoslug import AutoSlugField
+from django.conf import settings
 import markdown2
 
 
@@ -74,3 +75,8 @@ def create_organization_template(sender, instance, created, raw, **kwargs):
         return
     if(instance.is_organization):
         template, created = OrganizationTemplate.objects.get_or_create(organization=instance.user)
+        if created:
+            for data in settings.DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS:
+                ExtraPage.objects.create(template=template,
+                                                title=data["title"],
+                                                content=data["content"])

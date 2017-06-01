@@ -36,27 +36,16 @@
                 <li class="dropdown">
 
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                      <!-- {% user_image user=user height=16 width=12 %} -->
-                      <!--{% include '_user_printable.html' %}-->
-                      Perfil
+                      Mi Perfil
                       <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     {% if user.is_superuser %}
-                    <li><a href="/admin">
-                            <i class="fa fa-beer" aria-hidden="true"></i>
-                            {% blocktrans %}Sección de administración{% endblocktrans %}</a></li>
+                    <li><a href="/admin"><i class="fa fa-beer" aria-hidden="true"></i>{% blocktrans %}Sección de administración{% endblocktrans %}</a></li>
                     {% endif %}
                     {% if user.is_staff %}
-                    <li><a href="{% url 'backend_staff:index' %}">
-                            <i class="fa fa-heart" aria-hidden="true"></i>
-                            {% blocktrans %}Sección del Staff{% endblocktrans %}</a></li>
-                    <li><a href="{% url 'backend_staff:stats' %}">
-                            <i class="fa fa-line-chart" aria-hidden="true"></i>
-                            {% blocktrans %}Estadísticas{% endblocktrans %}</a></li>
-                    <li><a href="{% url 'backend_staff:per_area_stats' %}">
-                            <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                            {% blocktrans %}Estadísticas por area{% endblocktrans %}</a></li>
-
+                    <li><a href="{% url 'backend_staff:index' %}"><i class="fa fa-heart" aria-hidden="true"></i>{% blocktrans %}Sección del Staff{% endblocktrans %}</a></li>
+                    <li><a href="{% url 'backend_staff:stats' %}"><i class="fa fa-line-chart" aria-hidden="true"></i>{% blocktrans %}Estadísticas{% endblocktrans %}</a></li>
+                    <li><a href="{% url 'backend_staff:per_area_stats' %}"><i class="fa fa-bar-chart" aria-hidden="true"></i>{% blocktrans %}Estadísticas por area{% endblocktrans %}</a></li>
                     {% endif %}
 
                     {% if user|is_candidate %}
@@ -66,7 +55,7 @@
                     {% endif %}
                     <li><a href="{% url 'backend_citizen:index' %}">
                             <i class="fa fa-home" aria-hidden="true"></i>
-                            {% blocktrans %}Tu perfil ciudadano{% endblocktrans %}
+                            {% blocktrans %}Mis actividades{% endblocktrans %}
                         </a>
                     </li>
                     {% if user.profile.is_journalist %}

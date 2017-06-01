@@ -310,7 +310,8 @@ EMAIL_DOMAIN = 'votainteligente.cl'
 MAX_AMOUNT_OF_MAILS_TO_CANDIDATE = 3
 
 # HIDDEN_AREAS = ['fundacion-ciudadano-inteligente', ]
-
+DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS=[{'title':u'Agenda', 'content':'Esta es la agenda'},
+                                                           {'title':u'Documentos', 'content':'Documentos'}]
 
 
 class DisableMigrations(object):

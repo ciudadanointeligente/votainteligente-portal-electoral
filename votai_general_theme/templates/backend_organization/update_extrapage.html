@@ -6,7 +6,7 @@
 
 {% block main_content %}
 
-	<h2 class="page-header">Perfil Organización</h2>
+	<h2 class="page-header">{{object.title}}</h2>
 
 	<p class="alert alert-warning button-org">Revisa tu página de perfil <a href="{% url 'organization_profiles:home' slug=user.username %}" target="_blank">acá</a></p>
 

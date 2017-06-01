@@ -52,6 +52,12 @@ class OrganizationTemplate(models.Model):
     def __str__(self):
         return "Template for %s" % (str(self.organization))
 
+    def create_default_extra_pages(self):
+        for data in settings.DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS:
+            ExtraPage.objects.create(template=self,
+                                     title=data["title"],
+                                     content=data["content"])
+
 
 BASIC_FIELDS = ["logo", "background_image", "title", "sub_title",
                 "org_url", "facebook", "twitter", "instagram", "primary_color",
@@ -68,7 +74,6 @@ class ExtraPage(models.Model):
     def content_markdown(self):
         return markdown2.markdown(self.content)
 
-
 @receiver(post_save, sender=Profile, dispatch_uid="create_user_profile")
 def create_organization_template(sender, instance, created, raw, **kwargs):
     if raw:
@@ -76,7 +81,4 @@ def create_organization_template(sender, instance, created, raw, **kwargs):
     if(instance.is_organization):
         template, created = OrganizationTemplate.objects.get_or_create(organization=instance.user)
         if created:
-            for data in settings.DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS:
-                ExtraPage.objects.create(template=template,
-                                                title=data["title"],
-                                                content=data["content"])
+            template.create_default_extra_pages()

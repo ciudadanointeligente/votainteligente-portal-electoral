@@ -243,14 +243,14 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertIn(self.candidate2.name, the_mail.body)
         self.assertIn(str(2), the_mail.body)
 
-    def test_new_proposal_notification_for_candidates(self):
+    def test_proposal_notification_for_candidates(self):
         previous_amount = len(mail.outbox)
         proposal = PopularProposal.objects.create(proposer=self.fiera,
                                                   area=self.arica,
                                                   data=self.data,
                                                   title=u'This is a title'
                                                   )
-
+        proposal.notify_candidates_of_new()
         self.assertEquals(len(mail.outbox), previous_amount + 2)
         first_mail = mail.outbox[previous_amount]
         self.assertEquals(len(first_mail.to), 1)

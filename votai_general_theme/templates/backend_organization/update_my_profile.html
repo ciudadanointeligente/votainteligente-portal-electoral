@@ -17,9 +17,4 @@
 	        <button type="submit" class="btn btn-success">{% trans 'Actualizar'%}</button>
 	    </div>
 	</form>
-	<ul>
-		{% for extra_page in user.organization_template.extra_pages.all %}
-		<li><a href="{% url 'organization_profiles:update_extrapage' extra_page.id %}">Edita a Fiera Feroz {{extra_page.title}}</a></li>
-		{% endfor %}
-	</ul>
 {% endblock main_content %}

@@ -10,7 +10,7 @@
 
 	<p class="alert alert-warning button-org">Revisa tu página de perfil <a href="{% url 'organization_profiles:home' slug=user.username %}" target="_blank">acá</a></p>
 
-	<form enctype="multipart/form-data" action="{% url 'organization_profiles:update' %}" method="POST" role="form"><------------------ AQUÍ JEFE!!!!!!!!!!!!!
+	<form enctype="multipart/form-data" action="{% url 'organization_profiles:update_extrapage' pk=object.pk %}" method="POST" role="form">
 	    {% csrf_token %}
         {% bootstrap_form form %}
 	    <div class="form-actions">

@@ -99,3 +99,6 @@ class ExtraPageUpdateView(LoginRequiredMixin, UpdateView):
         if extra_page.template.organization != self.request.user:
             raise Http404()
         return extra_page
+
+    def get_success_url(self):
+        return reverse('organization_profiles:update_extrapage', kwargs={'pk':self.object.pk})

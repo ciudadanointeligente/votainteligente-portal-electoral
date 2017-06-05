@@ -55,10 +55,19 @@
   </div>
 </div>
 <!--  propuestas -->
-{{#if proposals }}
-<div class="">
-  <div class="container">
-
+<div class="container">
+{{#if proposals}}
+  <h3 class="page-header">Propuestas</h3>
+  <div class="row">
+    {{#each proposals }}
+      <div class="col-md-4">
+        {{{card}}}
+      </div>
+    {{/each}}
   </div>
-</div>
+{{else}}
+  {{#if is_owner}}
+  <p>Comienza a generar tus propuestas en el siguiente <a href="{{create_proposal_url}}">enlace</a></p>
+  {{/if}}
 {{/if}}
+</div>

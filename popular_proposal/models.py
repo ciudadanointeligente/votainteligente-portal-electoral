@@ -17,6 +17,7 @@ from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.core.mail import mail_admins
+from django.template.loader import get_template
 
 
 class NeedingModerationManager(models.Manager):
@@ -198,7 +199,9 @@ class PopularProposal(models.Model, OGPMixin):
 
     @property
     def card(self):
-        return "La Fiera es muy linda"
+        return get_template("popular_proposal/popular_proposal_card.html").render({
+            'proposal': self
+        })
 
     def notify_candidates_of_new(self):
         if not (settings.NOTIFY_CANDIDATES and settings.NOTIFY_CANDIDATES_OF_NEW_PROPOSAL):

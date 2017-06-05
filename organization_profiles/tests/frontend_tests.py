@@ -4,6 +4,7 @@ from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
 from backend_citizen.models import Profile
 from django.core.urlresolvers import reverse
 from organization_profiles.models import OrganizationTemplate, ExtraPage
+from popular_proposal.models import PopularProposal
 from django.test import override_settings
 
 
@@ -177,3 +178,20 @@ class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
         self.assertIn(extra_page.title, content)
         self.assertIn(extra_page.slug, content)
         self.assertIn(extra_page.content_markdown, content)
+
+    def test_proposal_in_content(self):
+        self.user.organization_template.content = u'{{#each proposals}} {{title}} {{/each}}'
+        self.user.organization_template.save()
+
+        popular_proposal = PopularProposal.objects.create(proposer=self.user,
+                                                          area=self.arica,
+                                                          data={"name": "FieraFeroz"},
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+
+        url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
+        response = self.client.get(url) ## Esto es lo que no es unicode
+        content = response.content.decode('utf-8')
+
+        self.assertIn(popular_proposal.title, content)

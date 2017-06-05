@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.http import HttpResponseNotFound
 
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 
 from django.shortcuts import render_to_response
 
@@ -32,6 +32,7 @@ from popular_proposal.models import (PopularProposal,
 
 from votainteligente.send_mails import send_mails_to_staff
 
+from django.template import RequestContext
 
 wizard_form_list = get_form_list()
 
@@ -88,8 +89,7 @@ class ProposalWizardBase(SessionWizardView):
             temporary_data.notify_new()
         send_mails_to_staff({'temporary_data': temporary_data},
                             'notify_staff_new_proposal')
-        return render_to_response('popular_proposal/wizard/done.html',
-                                  context)
+        return render(self.request, 'popular_proposal/wizard/done.html', context)
 
     def get_context_data(self, form, **kwargs):
         context = super(ProposalWizardBase, self).get_context_data(form,

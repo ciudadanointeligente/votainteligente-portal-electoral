@@ -31,6 +31,16 @@
             {% endif %}
               <a href="{% url 'backend_citizen:index' %}" class="btn btn-primary btn-block" role="button">{% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}</a>
           </div>
+          {% if form_update %}
+          <h2>{% blocktrans with popular_proposal=popular_proposal.created_proposal url=popular_proposal.created_proposal.get_absolute_url %}Agrega más información sobre <a href="{{url}}">{{popular_proposal}}</a>{% endblocktrans %}</h2>
+          <form action="{% url 'popular_proposals:citizen_update' slug=popular_proposal.created_proposal.slug %}" enctype="multipart/form-data" method="POST" role="form">
+              {% csrf_token %}
+              {% bootstrap_form form_update %}
+              <div class="form-actions">
+                  <button type="submit" class="btn btn-success">{% trans 'Actualiza tu propuesta'%}</button>
+              </div>
+          </form>
+          {% endif %}
         <!--<a href="{% url 'area' slug=area.id %}" class="btn btn-success btn-lg active" role="button">
             {% blocktrans with area=area %}Revisa otras propuestas en {{area}}{% endblocktrans %}
         </a>-->

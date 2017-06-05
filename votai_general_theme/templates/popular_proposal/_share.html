@@ -15,5 +15,13 @@
     <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
   </span>
 </a>
+{%if popular_proposal.join_advocacy_url%}
+<a class="share-btn share-btn-branded share-btn-facebook" onclick="ga('send', 'event', 'whatsapp-share', 'click');" href="{{popular_proposal.join_advocacy_url}}" title="Esta propuesta cuenta con un grupo en Whatsapp para seguir debatiendo." target="_blank">
+  <span class="fa-stack fa-lg">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
+  </span>
+</a>
+{%endif%}
 {% endwith %}
 {% endwith %}

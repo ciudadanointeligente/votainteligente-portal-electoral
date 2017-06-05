@@ -84,3 +84,36 @@ class OrganizationTemplateViewTest(BackendCitizenTestCaseBase):
         response = self.client.get(url)
         # Si estás loggeado pero no eres organización, retornas 404
         self.assertEquals(response.status_code, 404)
+
+    def test_get_url_and_displays_form_for_extrapages(self):
+        extra_page = self.template.extra_pages.all()[0]
+        url = reverse('organization_profiles:update_extrapage', kwargs={'pk':extra_page.id})
+        self.client.login(username=self.user.username, password=PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['form'].instance, extra_page)
+
+    def test_get_dont_get_url_if_not_owner(self):
+        extra_page = self.template.extra_pages.all()[0]
+        url = reverse('organization_profiles:update_extrapage', kwargs={'pk':extra_page.id})
+        response = self.client.get(url)
+        #  Si no estás loggeado te redirije
+        fiera = User.objects.create(username='FieraFerozInteligente',
+                                    first_name='Fiera',
+                                    email='f@mail.com')
+        fiera.set_password(PASSWORD)
+        fiera.save()
+        self.client.login(username=fiera.username, password=PASSWORD)
+        response = self.client.get(url)
+        # Si estás loggeado pero no eres la dueña te retorna 404
+        self.assertEquals(response.status_code, 404)
+
+    def test_post_to_change_extrapages(self):
+        extra_page = self.template.extra_pages.all()[0]
+        url = reverse('organization_profiles:update_extrapage', kwargs={'pk':extra_page.id})
+        self.client.login(username=self.user.username, password=PASSWORD)
+        response = self.client.post(url,
+                                    data={'title': 'titulo', 'content': 'contenido'},
+                                    follow=True)
+        self.assertEquals(response.status_code, 200)
+        

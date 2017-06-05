@@ -9,6 +9,7 @@ from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from autoslug import AutoSlugField
+from django.conf import settings
 import markdown2
 
 
@@ -51,6 +52,12 @@ class OrganizationTemplate(models.Model):
     def __str__(self):
         return "Template for %s" % (str(self.organization))
 
+    def create_default_extra_pages(self):
+        for data in settings.DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS:
+            ExtraPage.objects.create(template=self,
+                                     title=data["title"],
+                                     content=data["content"])
+
 
 BASIC_FIELDS = ["logo", "background_image", "title", "sub_title",
                 "org_url", "facebook", "twitter", "instagram", "primary_color",
@@ -67,10 +74,11 @@ class ExtraPage(models.Model):
     def content_markdown(self):
         return markdown2.markdown(self.content)
 
-
 @receiver(post_save, sender=Profile, dispatch_uid="create_user_profile")
 def create_organization_template(sender, instance, created, raw, **kwargs):
     if raw:
         return
     if(instance.is_organization):
         template, created = OrganizationTemplate.objects.get_or_create(organization=instance.user)
+        if created:
+            template.create_default_extra_pages()

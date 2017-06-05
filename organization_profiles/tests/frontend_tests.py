@@ -4,6 +4,8 @@ from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
 from backend_citizen.models import Profile
 from django.core.urlresolvers import reverse
 from organization_profiles.models import OrganizationTemplate, ExtraPage
+from popular_proposal.models import PopularProposal
+from django.test import override_settings
 
 
 class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
@@ -96,6 +98,22 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
         self.assertFalse(OrganizationTemplate.objects.filter(organization=fiera))
         self.assertIn(str(self.user), str(template))
 
+    @override_settings(DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS=[{'title':u'Agenda', 'content':'Esta es la agenda'},
+                                                           {'title':u'Documentos', 'content':'Documentos'}])
+    def test_automatically_create_extra_pages(self):
+        self.user.profile.is_organization = True
+        self.user.profile.save() #  Acá se crea un OrganizationTemplate
+        # y se crea porque en la linea anterior le dijimos que la wea era organización
+        template = OrganizationTemplate.objects.get(organization=self.user)
+        extra_pages = ExtraPage.objects.filter(template=self.user.organization_template)
+        self.assertEquals(len(extra_pages), 2)
+        self.assertTrue(extra_pages.filter(title=u'Agenda'))
+        self.assertTrue(extra_pages.filter(title=u'Documentos'))
+        #Probando que no se crean dos veces.
+        self.user.profile.save() #  Acá se crea un OrganizationTemplate
+        extra_pages = ExtraPage.objects.filter(template=self.user.organization_template)
+        self.assertEquals(len(extra_pages), 2)
+
     def test_extra_fields(self):
         self.user.profile.is_organization = True
         self.user.profile.save()
@@ -160,3 +178,20 @@ class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
         self.assertIn(extra_page.title, content)
         self.assertIn(extra_page.slug, content)
         self.assertIn(extra_page.content_markdown, content)
+
+    def test_proposal_in_content(self):
+        self.user.organization_template.content = u'{{#each proposals}} {{title}} {{/each}}'
+        self.user.organization_template.save()
+
+        popular_proposal = PopularProposal.objects.create(proposer=self.user,
+                                                          area=self.arica,
+                                                          data={"name": "FieraFeroz"},
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+
+        url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
+        response = self.client.get(url) ## Esto es lo que no es unicode
+        content = response.content.decode('utf-8')
+
+        self.assertIn(popular_proposal.title, content)

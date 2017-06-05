@@ -78,8 +78,15 @@
         {% if user.profile.is_organization %}
           {% url 'organization_profiles:update' as org_profile %}
          <li role="presentation" class="{% ifequal request.path org_profile %} active{% endifequal %} hidden-xs">
-          <a class="small" href="{{org_profile}}">
-          {% blocktrans %}Actualizar mi organización{% endblocktrans %}</a>
+          <a class="small" href="{{org_profile}}" data-toggle="dropdown" data-target="submenu">
+          {% blocktrans %}Actualizar mi organización{% endblocktrans %} <span class="caret"></span></a>
+          <ul class="dropdown-menu" id="submenu">
+            <li><a href="{% url 'organization_profiles:update' %}">Pagina Organizacion</a></li>
+            {% for extra_page in user.organization_template.extra_pages.all %}
+            <li><a href="{% url 'organization_profiles:update_extrapage' extra_page.id %}">{{extra_page.title}}</a></li>
+            {% endfor %}
+          </ul>
+         </li>
         {% else %}
         {% url 'backend_citizen:update_my_profile' as my_profile_url %}
          <li role="presentation" class="{% ifequal request.path my_profile_url %} active{% endifequal %} hidden-xs">

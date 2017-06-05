@@ -377,7 +377,7 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
     def test_done_brings_update_proposal_form(self):
         response = self.fill_the_whole_wizard()
         temporary_data = response.context['popular_proposal']
-        
-        form = response.context['form']
+
+        form = response.context['form_update']
         self.assertIsInstance(form, UpdateProposalForm)
         self.assertEquals(form.instance, temporary_data.created_proposal)

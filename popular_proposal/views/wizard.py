@@ -24,6 +24,7 @@ from elections.models import Area
 from formtools.wizard.views import SessionWizardView
 
 from popular_proposal.forms import (AreaForm,
+                                    UpdateProposalForm,
                                     get_form_list,)
 
 from popular_proposal.models import (PopularProposal,
@@ -76,14 +77,15 @@ class ProposalWizardBase(SessionWizardView):
 
         kwargs['area'] = self.determine_area(data)
         temporary_data = ProposalTemporaryData.objects.create(**kwargs)
-        if not settings.MODERATION_ENABLED:
-            temporary_data.create_proposal()
-        else:
-            temporary_data.notify_new()
         context = self.get_context_data(form=None)
         context.update({'popular_proposal': temporary_data,
-                        'area': kwargs['area']
-                        })
+        'area': kwargs['area']
+        })
+        if not settings.MODERATION_ENABLED:
+            temporary_data.create_proposal()
+            context['form_update'] = UpdateProposalForm(instance=temporary_data.created_proposal)
+        else:
+            temporary_data.notify_new()
         send_mails_to_staff({'temporary_data': temporary_data},
                             'notify_staff_new_proposal')
         return render_to_response('popular_proposal/wizard/done.html',

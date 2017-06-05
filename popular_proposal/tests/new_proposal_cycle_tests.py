@@ -8,6 +8,7 @@ from popular_proposal.forms import ProposalForm
 from django.core.urlresolvers import reverse
 from django.core import mail
 from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.template.loader import get_template
 from django.contrib.sites.models import Site
 
 
@@ -160,6 +161,19 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertFalse(popular_proposal.image)
         self.assertEquals(popular_proposal.clasification, u'education')
         self.assertFalse(popular_proposal.for_all_areas)
+
+    def test_popular_proposal_card_as_property(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+        expected_card_html =  get_template("popular_proposal/popular_proposal_card.html").render({
+            'proposal': popular_proposal
+        })
+        
+        self.assertEquals(popular_proposal.card, expected_card_html)
 
     def test_proposal_ogp(self):
         site = Site.objects.get_current()

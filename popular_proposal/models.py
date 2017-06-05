@@ -196,6 +196,10 @@ class PopularProposal(models.Model, OGPMixin):
     def get_absolute_url(self):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})
 
+    @property
+    def card(self):
+        return "La Fiera es muy linda"
+
     def notify_candidates_of_new(self):
         if not (settings.NOTIFY_CANDIDATES and settings.NOTIFY_CANDIDATES_OF_NEW_PROPOSAL):
             return

@@ -1,9 +1,9 @@
 
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
-from backend_citizen.models import Organization, Enrollment
+from backend_citizen.models import Organization
 from django.contrib.auth.models import User
-from popular_proposal.models import ProposalTemporaryData, PopularProposal
+from popular_proposal.models import ProposalTemporaryData
 from popular_proposal.forms import ProposalForm
 from django.core.urlresolvers import reverse
 from django.core import mail
@@ -131,115 +131,3 @@ class ProposingViewTestCase(ProposingCycleTestCaseBase):
         self.assertTemplateUsed('popular_proposal/thanks.html')
         temporary_data = ProposalTemporaryData.objects.get()
         self.assertTrue(temporary_data)
-
-
-class PopularProposalTestCase(ProposingCycleTestCaseBase):
-    def setUp(self):
-        super(PopularProposalTestCase, self).setUp()
-        # Enrolling Fiera with the organization
-        self.org = Organization.objects.create(name=u'La Cosa Nostra')
-        self.enrollment = Enrollment.objects.create(organization=self.org,
-                                                    user=self.fiera)
-
-    def test_instantiate_one(self):
-        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                          area=self.arica,
-                                                          data=self.data,
-                                                          title=u'This is a title',
-                                                          clasification=u'education'
-                                                          )
-        self.assertTrue(popular_proposal.created)
-        self.assertTrue(popular_proposal.updated)
-        self.assertTrue(popular_proposal.slug)
-        self.assertEquals(popular_proposal.title, u'This is a title')
-        self.assertIn(popular_proposal, self.fiera.proposals.all())
-        self.assertIn(popular_proposal, self.arica.proposals.all())
-        self.assertIsNone(popular_proposal.temporary)
-        self.assertFalse(popular_proposal.background)
-        self.assertFalse(popular_proposal.contact_details)
-        self.assertFalse(popular_proposal.document)
-        self.assertFalse(popular_proposal.image)
-        self.assertEquals(popular_proposal.clasification, u'education')
-        self.assertFalse(popular_proposal.for_all_areas)
-
-    def test_popular_proposal_card_as_property(self):
-        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                          area=self.arica,
-                                                          data=self.data,
-                                                          title=u'This is a title',
-                                                          clasification=u'education'
-                                                          )
-        expected_card_html =  get_template("popular_proposal/popular_proposal_card.html").render({
-            'proposal': popular_proposal
-        })
-        
-        self.assertEquals(popular_proposal.card, expected_card_html)
-
-    def test_proposal_ogp(self):
-        site = Site.objects.get_current()
-        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                          area=self.arica,
-                                                          data=self.data,
-                                                          title=u'This is a title',
-                                                          clasification=u'education'
-                                                          )
-        self.assertTrue(popular_proposal.ogp_enabled)
-        self.assertIn(popular_proposal.title, popular_proposal.ogp_title())
-        self.assertEquals('website', popular_proposal.ogp_type())
-        expected_url = "http://%s%s" % (site.domain,
-                                        popular_proposal.get_absolute_url())
-        self.assertEquals(expected_url, popular_proposal.ogp_url())
-        expected_url = "http://%s%s" % (site.domain,
-                                        static('img/logo_vi_og.jpg'))
-        self.assertEquals(expected_url, popular_proposal.ogp_image())
-
-    def test_can_have_an_organization(self):
-        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                          area=self.arica,
-                                                          data=self.data,
-                                                          organization=self.org,
-                                                          title=u'This is a title'
-                                                          )
-
-    def test_create_popular_proposal_from_temporary_data(self):
-
-        data = self.data
-        data['organization'] = self.org.id
-        data["join_advocacy_url"] = "http://whatsapp.com/somegroup"
-        # Testing
-        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                              area=self.arica,
-                                                              data=self.data)
-        original_amount_of_mails = len(mail.outbox)
-        popular_proposal = temporary_data.create_proposal(moderator=self.feli)
-        self.assertEquals(popular_proposal.proposer, self.fiera)
-        self.assertTrue(popular_proposal.organization)
-        self.assertEqual(self.enrollment.user, self.fiera)
-        popular_proposal = PopularProposal.objects.get(id=popular_proposal.id)
-        self.assertEquals(popular_proposal.organization.name, self.org.name)
-        self.assertEquals(popular_proposal.area, self.arica)
-        self.assertEquals(popular_proposal.join_advocacy_url, "http://whatsapp.com/somegroup")
-        self.assertEquals(popular_proposal.clasification, data['clasification'])
-        self.assertEquals(popular_proposal.data, self.data)
-        self.assertEquals(popular_proposal.title, self.data['title'])
-        temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
-        self.assertEquals(temporary_data.created_proposal, popular_proposal)
-        self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.Accepted)
-        # There was a mail sent to Fiera because
-        # her proposal was accepted
-        self.assertEquals(len(mail.outbox), 1)
-        the_mail = mail.outbox[0]
-        self.assertIn(self.fiera.email, the_mail.to)
-        self.assertEquals(len(the_mail.to), original_amount_of_mails + 1)
-
-        # context = Context({'area': self.arica,
-        #                    'temporary_data': temporary_data,
-        #                    'moderator': self.feli
-        #                    })
-        # template_body = get_template('mails/popular_proposal_accepted_body.html')
-        # template_subject = get_template('mails/popular_proposal_accepted_subject.html')
-        # expected_content= template_body.render(context)
-        # expected_subject = template_subject.render(context)
-        # self.assertTrue(the_mail.body)
-        # self.assertTrue(the_mail.subject)
-        # self.assertIn(self.data['title'], str(popular_proposal))

@@ -2,9 +2,14 @@
 <div style="background-image:url({{background_image}}); background-position:center; background-repeat: no-repeat; text-shadow: 1px 1px white; padding-bottom:10px;">
   <div class="container text-center">
     <h2 style="padding-top:40px;">{{organization}}</h2>
+    {{#if logo}}
     <div class="logo-org">
       <img src="{{logo}}" alt="{{organization}}" class="img-responsive" width="150px">
     </div>
+    {{/if}}
+    {{#if is_owner}}
+    <a href="{{update_url}}" class="btn btn-success">Edita esta pagina</a>
+    {{/if}}
   </div>
 </div>
 <!-- about -->
@@ -18,11 +23,21 @@
 <div class="" style="padding-bottom:10px; background-color:{{secondary_color}};">
   <div class="container text-center">
     <ul class="list-inline" style="padding-top:15px;">
+    {{#if org_url}}
       <li><a href="{{org_url}}"><i class="fa fa-globe"></i> Website</a></li>
+    {{/if}}
+    {{#if facebook}}
       <li><a href="{{facebook}}"><i class="fa fa-facebook"></i> Facebook</a></li>
+    {{/if}}
+    {{#if twitter}}
       <li><a href="{{twitter}}"><i class="fa fa-twitter"></i> Twitter</a></li>
+    {{/if}}
+    {{#if instagram}}
       <li><a href="{{instagram}}"><i class="fa fa-instagram"></i> Instagram</a></li>
+    {{/if}}
+    {{#if rss_url}}
       <li><a href="{{rss_url}}"><i class="fa fa-rss"></i> RSS</a></li>
+    {{/if}}
     </ul>
   </div>
 </div>
@@ -40,13 +55,10 @@
   </div>
 </div>
 <!--  propuestas -->
-{{#if is_owner }}
+{{#if proposals }}
 <div class="">
   <div class="container">
-    <h4>PRONTO PRONTO PRONTO:</h4>
-    <p>
-      Aquí van a ir tus Propuestas Ciudadanas.
-    </p>
+
   </div>
 </div>
 {{/if}}

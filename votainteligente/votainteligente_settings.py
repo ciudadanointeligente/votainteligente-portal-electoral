@@ -310,8 +310,8 @@ EMAIL_DOMAIN = 'votainteligente.cl'
 MAX_AMOUNT_OF_MAILS_TO_CANDIDATE = 3
 
 # HIDDEN_AREAS = ['fundacion-ciudadano-inteligente', ]
-DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS=[{'title':u'Agenda', 'content':'Esta es la agenda'},
-                                                           {'title':u'Documentos', 'content':'Documentos'}]
+DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS=[{'title':u'Agenda', 'content':'<table class="table table-striped"><thead><tr><th>Fecha</th><th>Descripcion</th></tr></thead><tbody><tr><td>2 DE JULIO</td><td>Elecciones Primarias</td></tr><tr><td>19 DE NOVIEMBRE</td><td>Primera vuelta de Elecciones Presidenciales y Parlamentarias</td></tr><tr><td>17 DE DICIEMBRE</td><td>*Segunda vuelta de Elecciones Presidenciales</td></tr></tbody></table>'},
+                                                           {'title':u'Documentos', 'content':'+ [Guia Ciudadana](/static/herramientas/GUIACIUDADANA.pdf)'}]
 
 
 class DisableMigrations(object):

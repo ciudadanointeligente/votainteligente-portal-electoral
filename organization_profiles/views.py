@@ -15,6 +15,7 @@ from django.views.generic.edit import UpdateView
 from organization_profiles.models import ExtraPage
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 
 
 def read_template_as_string(path, file_source_path=__file__):
@@ -54,6 +55,9 @@ class OrganizationDetailView(DetailView):
             context['extra_pages'].append({"title": extra_page.title,
                                            "slug": extra_page.slug,
                                            "content": extra_page.content_markdown})
+        context['proposals'] = []
+        for proposal in self.object.proposals.all():
+            context['proposals'].append(proposal)
 
         for field in BASIC_FIELDS:
             value = getattr(self.object.organization_template, field)
@@ -66,6 +70,8 @@ class OrganizationDetailView(DetailView):
         context = self.create_context_based_on_organization_template(context)
         context['user'] = self.request.user
         context['is_owner'] = self.request.user == self.object
+        if context['is_owner']:
+          context['update_url'] = reverse('organization_profiles:update')
         if self.object.organization_template.content:
             return self.response_class(self.object.organization_template.content,
                                        context)

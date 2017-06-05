@@ -1,12 +1,14 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
 from backend_citizen.models import Organization, Enrollment
+from elections.models import Area
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData, PopularProposal
 from django.core import mail
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.template.loader import get_template
 from django.contrib.sites.models import Site
+from django.test import override_settings
 
 
 class PopularProposalTestCase(ProposingCycleTestCaseBase):
@@ -119,3 +121,14 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         # self.assertTrue(the_mail.body)
         # self.assertTrue(the_mail.subject)
         # self.assertIn(self.data['title'], str(popular_proposal))
+
+    def test_proposal_has_where_was_generated(self):
+        a_comuna = Area.objects.filter(classification='Comuna').first()
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          generated_at=a_comuna,
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+        self.assertTrue(popular_proposal)

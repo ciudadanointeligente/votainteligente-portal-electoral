@@ -149,6 +149,7 @@ class ProposalsOrderedManager(models.Manager):
         return qs
 
 
+
 @python_2_unicode_compatible
 class PopularProposal(models.Model, OGPMixin):
     title = models.CharField(max_length=255, default='')
@@ -182,6 +183,10 @@ class PopularProposal(models.Model, OGPMixin):
                               blank=True)
     clasification = models.CharField(blank=True, null=True, max_length=255)
     for_all_areas = models.BooleanField(default=False)
+    generated_at = models.ForeignKey(Area,
+                                     related_name='proposals_generated_here',
+                                     null=True,
+                                     blank=True)
 
     ogp_enabled = True
 

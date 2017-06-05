@@ -56,7 +56,7 @@ wizard_forms_fields = [
         'fields': OrderedDict([(
             'clasification', forms.ChoiceField(choices=TOPIC_CHOICES,
                                                widget=forms.Select())
-        ), 
+        ),
             ('problem', forms.CharField(max_length=1024,
                                         widget=forms.Textarea()
                                         ))
@@ -186,7 +186,7 @@ class UpdateProposalForm(forms.ModelForm):
 
     class Meta:
         model = PopularProposal
-        fields = ['background', 'image', 'contact_details', 'document']
+        fields = ['background', 'contact_details', 'image', 'document']
         labels = {'background': _(u'Más antecedentes sobre tu propuesta.'),
                   'image': _(u'¿Tienes alguna imagen para compartir?'),
                   'document': _(u'¿Tienes algún documento para complementar tu propuesta?'),

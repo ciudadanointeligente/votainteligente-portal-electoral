@@ -5,7 +5,7 @@ Estimada/o {{candidate.name}}:
 Las/os ciudadanas y ciudadanos de {{proposal.area}} han hecho una nueva propuesta para su comuna titulada: {{proposal.title}}.
 
 Para conocer los detalles de la propuesta y pronunciarte sobre ella te invitamos a hacer click en el siguiente link:
-http://votainteligente.cl{{proposal.get_absolute_url}}
+https://votainteligente.cl{{proposal.get_absolute_url}}
 
 Si quieres contactarte con los autores de la propuesta para hacer algún comentario u obtener más información, escríbeles a {{proposal.proposer.email}}.
 
@@ -15,7 +15,7 @@ Si tienes alguna duda o quieres saber más sobre VotaInteligente.cl puedes respo
 Las vecinas y vecinos de {{proposal.area}} están esperando para que des tu opinión sobre esta propuesta.
 {% if not candidate.has_joined %}{% with candidate.contacts.last as contact %}{% if contact %}
 
-Además, queríamos recordarte que para ingresar a VotaInteligente debes entrar en http://votainteligente.cl/candidatos/login tu usuario y password son:
+Además, queríamos recordarte que para ingresar a VotaInteligente debes entrar en https://votainteligente.cl/candidatos/login tu usuario y password son:
 **Usuario: {{contact.candidacy.user.username}}
 **Password: {{contact.initial_password}}{% else %}
 Queríamos recordarte que para ingresar a VotaInteligente debes respondernos a este mail.{% endif %}{% endwith %}
@@ -23,8 +23,8 @@ Queríamos recordarte que para ingresar a VotaInteligente debes respondernos a e
 Una vez adentro podrás pronunciarte sobre esta y otras propuestas ciudadanas, también podrás responder a las preguntas que hemos confeccionado para ti y así podrás ser la 1/2 naranja política de tus ciudadanos.
 
 {% elif not candidate.has_answered %}{% if candidate.election %}{% url 'backend_candidate:complete_12_naranja' slug=candidate.election.slug candidate_id=candidate.id  as backend_candidate %}
-Además queríamos recordarte que aún no has contestado el cuestionario de la 1/2 naranja, para hacerlo puedes seguir el siguiente link: 
-http://votainteligente.cl{{backend_candidate}}
+Además queríamos recordarte que aún no has contestado el cuestionario de la 1/2 naranja, para hacerlo puedes seguir el siguiente link:
+https://votainteligente.cl{{backend_candidate}}
 {% endif %}{% endif %}
 Desde ya muchas gracias,
 El equipo de VotaInteligente a nombre de {{proposal.proposer}}.

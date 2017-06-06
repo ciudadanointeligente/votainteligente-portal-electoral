@@ -21,7 +21,7 @@
           <h2 class="text-center">Tu propuesta para {{area}} con el título "<i>{{popular_proposal}}</i>" ha sido enviada ¡muchas gracias!</h2>
           <div>
             {% if form_update %}
-              <p>Compartenos <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.created_proposal.slug %}">mas informacion</a> sobre esta propuesta.</p>
+              <p>Deseamos obtener un poco <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.created_proposal.slug %}">más de información</a> sobre esta propuesta. nos ayudas?</p>
             {% endif %}
             {% if popular_proposal.created_proposal %}
               <a href="{{popular_proposal.created_proposal.get_absolute_url}}" class="btn btn-success btn-block">Revisa tu propuesta</a>

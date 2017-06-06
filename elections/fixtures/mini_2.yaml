@@ -29,12 +29,12 @@
 - model: popolo.area
   pk: algarrobo-5602
   fields: {content_type: null, object_id: null, start_date: null, end_date: null,
-    name: Algarrobo, identifier: '5602', classification: '', parent: null, geom: null,
+    name: Algarrobo, identifier: '5602', classification: 'Comuna', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: alhue-13502
   fields: {content_type: null, object_id: null, start_date: null, end_date: null,
-    name: "Alhu\xE9", identifier: '13502', classification: '', parent: null, geom: null,
+    name: "Alhu\xE9", identifier: '13502', classification: 'Comuna', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: arica-15101

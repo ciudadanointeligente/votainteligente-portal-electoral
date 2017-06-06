@@ -10,6 +10,7 @@ from elections.models import Area, Candidate
 from backend_candidate.models import Candidacy
 from django import forms
 from django.core.urlresolvers import reverse
+from popular_proposal.forms import UpdateProposalForm
 from popular_proposal.forms.form_texts import TEXTS
 from popular_proposal.models import ProposalTemporaryData
 from django.core import mail
@@ -269,7 +270,7 @@ class WizardTestCase2(TestCase, WizardDataMixin):
         self.feli.save()
         ProposalTemporaryData.objects.all().delete()
         self.org = Organization.objects.create(name="Local Organization")
-    
+
     def test_full_wizard_without_areas(self):
         argentina = Area.objects.create(name=u'Argentina', id='argentina')
         original_amount = len(mail.outbox)
@@ -331,7 +332,7 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
         url = kwargs.pop("url", self.url)
         user = kwargs.pop("user", self.feli)
         password = kwargs.pop("password", USER_PASSWORD)
-        
+
         self.client.login(username=user,
                           password=password)
         response = self.client.get(url)
@@ -372,3 +373,11 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
             if temporary_data.created_proposal.get_absolute_url() in the_mail.body:
                 url_in_mail = True
         self.assertTrue(url_in_mail)
+
+    def test_done_brings_update_proposal_form(self):
+        response = self.fill_the_whole_wizard()
+        temporary_data = response.context['popular_proposal']
+
+        form = response.context['form_update']
+        self.assertIsInstance(form, UpdateProposalForm)
+        self.assertEquals(form.instance, temporary_data.created_proposal)

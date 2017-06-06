@@ -20,21 +20,20 @@
       <div>
           <h2 class="text-center">Tu propuesta para {{area}} con el título "<i>{{popular_proposal}}</i>" ha sido enviada ¡muchas gracias!</h2>
           <div>
+            {% if form_update %}
+              <p>Compartenos <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.created_proposal.slug %}">mas informacion</a> sobre esta propuesta.</p>
+            {% endif %}
             {% if popular_proposal.created_proposal %}
               <a href="{{popular_proposal.created_proposal.get_absolute_url}}" class="btn btn-success btn-block">Revisa tu propuesta</a>
             {% else %}
             <p>{% blocktrans %}Por favor, espera que el equipo de Ciudadano Inteligente la evalúe para que sea enviada a los candidatos.{% endblocktrans %}</p>
-            {% endif %}
+              {% endif %}
             {% get_proposals_enabled as proposals_enabled %}
             {% if proposals_enabled  %}
               <a href="{% url 'popular_proposals:propose_wizard' slug=area.id %}" class="btn btn-success btn-block" role="button">{% blocktrans with area=area %}Crea otra propuesta para {{area}}{% endblocktrans %}</a>
             {% endif %}
-              <a href="{% url 'backend_citizen:index' %}" class="btn btn-primary btn-block" role="button">{% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}</a>
+              <!-- <a href="{% url 'backend_citizen:index' %}" class="btn btn-primary btn-block" role="button">{% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}</a> -->
           </div>
-        <!--<a href="{% url 'area' slug=area.id %}" class="btn btn-success btn-lg active" role="button">
-            {% blocktrans with area=area %}Revisa otras propuestas en {{area}}{% endblocktrans %}
-        </a>-->
-
       </div>
     </div>
   </div>

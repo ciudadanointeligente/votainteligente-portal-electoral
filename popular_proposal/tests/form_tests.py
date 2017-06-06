@@ -281,6 +281,43 @@ class UpdateFormTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(proposal.document)
         self.assertEquals(proposal.contact_details, update_data['contact_details'])
 
+    @override_settings(POSSIBLE_GENERATING_AREAS_FILTER='Comuna')
+    def test_form_with_generated_at_form_valid(self):
+        comuna = Area.objects.filter(classification='Comuna').first()
+        update_data = {'background': u'Esto es un antecedente',
+                       'contact_details': u'Me puedes contactar en el teléfono 123456',
+                       'generated_at': comuna.id,
+                       }
+        file_data = {'image': self.image,
+                     'document': self.get_document()}
+        form = UpdateProposalForm(data=update_data,
+                                  files=file_data,
+                                  instance=self.popular_proposal)
+        self.assertTrue(form.is_valid())
+        proposal = form.save()
+        self.assertEquals(proposal.generated_at, comuna)
+        not_a_comuna = Area.objects.create(name='Not a Comuna')
+        update_data['generated_at'] = not_a_comuna.id
+        form = UpdateProposalForm(data=update_data,
+                                  files=file_data,
+                                  instance=self.popular_proposal)
+        self.assertFalse(form.is_valid())
+
+    @override_settings(POSSIBLE_GENERATING_AREAS_FILTER='Comuna')
+    def test_form_with_generated_at_form_invalid(self):
+        not_a_comuna = Area.objects.create(name='Not a Comuna')
+        update_data = {'background': u'Esto es un antecedente',
+                       'contact_details': u'Me puedes contactar en el teléfono 123456',
+                       'generated_at': not_a_comuna,
+                       }
+        file_data = {'image': self.image,
+                     'document': self.get_document()}
+        form = UpdateProposalForm(data=update_data,
+                                  files=file_data,
+                                  instance=self.popular_proposal)
+        self.assertFalse(form.is_valid())
+        self.assertTrue(form.errors['generated_at'])
+
     def test_get_update_view(self):
         url = reverse('popular_proposals:citizen_update', kwargs={'slug': self.popular_proposal.slug})
         response = self.client.get(url)

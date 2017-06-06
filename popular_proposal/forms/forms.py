@@ -13,6 +13,7 @@ from elections.models import Area
 from collections import OrderedDict
 from votainteligente.send_mails import send_mails_to_staff
 from constance import config
+from django.conf import settings
 
 
 class TextsFormMixin():
@@ -56,7 +57,7 @@ wizard_forms_fields = [
         'fields': OrderedDict([(
             'clasification', forms.ChoiceField(choices=TOPIC_CHOICES,
                                                widget=forms.Select())
-        ), 
+        ),
             ('problem', forms.CharField(max_length=1024,
                                         widget=forms.Textarea()
                                         ))
@@ -182,18 +183,26 @@ class ProposalForm(ProposalFormBase, CreateProposalMixin):
 
 class UpdateProposalForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        return super(UpdateProposalForm, self).__init__(*args, **kwargs)
+        super(UpdateProposalForm, self).__init__(*args, **kwargs)
+        area_qs = Area.public.all()
+        if settings.POSSIBLE_GENERATING_AREAS_FILTER:
+            area_qs = area_qs.filter(classification=settings.POSSIBLE_GENERATING_AREAS_FILTER)
+        self.fields['generated_at'].choices = [('', _(u'No aplica'))]
+        self.fields['generated_at'].choices += [(a.id, a.name) for a in area_qs]
 
     class Meta:
         model = PopularProposal
-        fields = ['background', 'image', 'contact_details', 'document']
+        fields = ['background', 'contact_details', 'image', 'document', 'generated_at','is_local_meeting']
         labels = {'background': _(u'Más antecedentes sobre tu propuesta.'),
                   'image': _(u'¿Tienes alguna imagen para compartir?'),
                   'document': _(u'¿Tienes algún documento para complementar tu propuesta?'),
-                  'contact_details': _(u'¿Cómo te puede contactar un candidato?')
+                  'generated_at': _(u'¿En qué comuna se generó esta propuesta?'),
+                  'contact_details': _(u'¿Cómo te puede contactar un candidato?'),
+                  'is_local_meeting': _(u'¿Esta propuesta se generó en un encuentro local?')
                   }
         help_texts = {'background': _(u'Ejemplo: Durante el año 2011, existió una iniciativa de otra comunidad que no llegó a buen puerto.'),
-                      'contact_details': _(u'Ejemplo: Tu teléfono o el lugar donde eres ubicable y en qué horario.')}
+                      'contact_details': _(u'Ejemplo: Tu teléfono o el lugar donde eres ubicable y en qué horario.'),
+                      'generated_at': _(u'Si eres una ONG de vocación nacional, esta opción no aplica')}
 
 
 class CommentsForm(forms.Form):

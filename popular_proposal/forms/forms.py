@@ -192,15 +192,17 @@ class UpdateProposalForm(forms.ModelForm):
 
     class Meta:
         model = PopularProposal
-        fields = ['background', 'contact_details', 'image', 'document', 'generated_at']
+        fields = ['background', 'contact_details', 'image', 'document', 'generated_at','is_local_meeting']
         labels = {'background': _(u'Más antecedentes sobre tu propuesta.'),
                   'image': _(u'¿Tienes alguna imagen para compartir?'),
                   'document': _(u'¿Tienes algún documento para complementar tu propuesta?'),
                   'generated_at': _(u'¿En qué comuna se generó esta propuesta?'),
-                  'contact_details': _(u'¿Cómo te puede contactar un candidato?')
+                  'contact_details': _(u'¿Cómo te puede contactar un candidato?'),
+                  'is_local_meeting': _(u'¿Esta propuesta se generó en un encuentro local?')
                   }
         help_texts = {'background': _(u'Ejemplo: Durante el año 2011, existió una iniciativa de otra comunidad que no llegó a buen puerto.'),
-                      'contact_details': _(u'Ejemplo: Tu teléfono o el lugar donde eres ubicable y en qué horario.')}
+                      'contact_details': _(u'Ejemplo: Tu teléfono o el lugar donde eres ubicable y en qué horario.'),
+                      'generated_at': _(u'Si eres una ONG de vocación nacional, esta opción no aplica')}
 
 
 class CommentsForm(forms.Form):

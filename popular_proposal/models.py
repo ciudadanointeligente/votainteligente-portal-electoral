@@ -187,6 +187,7 @@ class PopularProposal(models.Model, OGPMixin):
                                      related_name='proposals_generated_here',
                                      null=True,
                                      blank=True)
+    is_local_meeting = models.BooleanField(default=False)
 
     ogp_enabled = True
 

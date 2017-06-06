@@ -39,6 +39,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertFalse(popular_proposal.image)
         self.assertEquals(popular_proposal.clasification, u'education')
         self.assertFalse(popular_proposal.for_all_areas)
+        self.assertFalse(popular_proposal.is_local_meeting)
 
     def test_popular_proposal_card_as_property(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,

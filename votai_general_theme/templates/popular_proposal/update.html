@@ -6,7 +6,7 @@
 {% load bootstrap3 %}
 
 {% block main_content %}
-<h2>{% blocktrans with popular_proposal=popular_proposal url=popular_proposal.get_absolute_url %}Agrega más información sobre <a href="{{url}}">{{popular_proposal}}</a>{% endblocktrans %}</h2>
+<h2>{% blocktrans with popular_proposal=popular_proposal url=popular_proposal.get_absolute_url %}Agrega más información sobre tu propuesta titulada "<i><a href="{{url}}">{{popular_proposal}}</a></i>"{% endblocktrans %}</h2>
 <form action="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}" enctype="multipart/form-data" method="POST" role="form">
     {% csrf_token %}
 
@@ -16,7 +16,7 @@
     {% bootstrap_field form.document %}
 
     <h3 class="page-header">Información extra</h3>
-    <p>Esta información nos permitirá tener un mejor entendimiento de cómo cuándo y dónde se formulan las propuestas.</p>
+    <p><i>Esta información nos permitirá tener un mejor entendimiento de cómo y dónde se formulan las propuestas.</i></p>
 
     {% bootstrap_field form.is_local_meeting %}
     {% bootstrap_field form.generated_at %}

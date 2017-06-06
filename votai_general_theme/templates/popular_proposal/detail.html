@@ -153,8 +153,8 @@ $(function(){
             {% if popular_proposal.document|length and popular_proposal.image|length %}
             <h3 class="page-header">Documentos extras</h3>
             <ul>
-              <li><a href="{{popular_proposal.document}}"><i class="fa fa-file"></i> Documento</a></li>
-              <li><a href="{{popular_proposal.image}}"><i class="fa fa-picture-o"></i> Imagen</a></li>
+              <li><a href="{{popular_proposal.document.url}}"><i class="fa fa-file"></i> Documento</a></li>
+              <li><a href="{{popular_proposal.image.url}}"><i class="fa fa-picture-o"></i> Imagen</a></li>
             </ul>
             {% endif %}
           </div>

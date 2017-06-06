@@ -1,4 +1,10 @@
 {% extends 'popular_proposal/steps/base_steps.html' %}
+{% block messages %}
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  Sabemos que las propuestas que vienen de un Encuentro local son más exitosas ya que se formulan a partir de la colectividad y el malestar/bienestar de las perssonas que habitan un espacio fisico común. Te invitamos a conocer sobre como relizar encuentros locales en el <a href="//docs.google.com/document/d/1vpUEqJZdbKOKoKftQXGGDNywwvkNCGX9LTEefha8OxI/edit?usp=sharing">siguiente enlace</a>
+</div>
+{% endblock messages %}
 {% block step_title %}¿Cuál es el problema que quieres solucionar?{% endblock step_title %}
 
 

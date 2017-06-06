@@ -33,7 +33,7 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
         self.assertRedirects(response, reverse('auth_login')+"?next="+url)
         self.client.login(username=self.fiera.username, password=PASSWORD)
         response = self.client.get(url)
-        self.assertTemplateUsed(response, 'backend_citizen/index.html')
+        self.assertTemplateUsed(response, 'backend_citizen/my_proposals.html')
 
     def test_temporary_promise_detail_view(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
@@ -52,7 +52,7 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
         data = get_example_data_for_testing()
         response = self.client.post(url, data=data, follow=True)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed('backend_citizen/index.html')
+        self.assertTemplateUsed('backend_citizen/my_proposals.html')
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
         self.assertEquals(temporary_data.data['solution'], data['solution'])
 
@@ -108,7 +108,7 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
                 }
         self.client.login(username=self.fiera.username, password=PASSWORD)
         response = self.client.post(url, data=data, follow=True)
-        self.assertTemplateUsed(response, 'backend_citizen/index.html')
+        self.assertTemplateUsed(response, 'backend_citizen/my_proposals.html')
         fiera = User.objects.get(id=self.fiera.id)
         self.assertEquals(fiera.profile.description, data['description'])
         self.assertTrue(fiera.profile.image)

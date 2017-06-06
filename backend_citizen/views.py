@@ -23,7 +23,7 @@ from backend_citizen.stats import StatsPerProposal, PerUserTotalStats
 
 
 class IndexView(TemplateView):
-    template_name = 'backend_citizen/index.html'
+    template_name = 'backend_citizen/my_proposals.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):

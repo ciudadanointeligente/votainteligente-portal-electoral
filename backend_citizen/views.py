@@ -23,18 +23,15 @@ from backend_citizen.stats import StatsPerProposal, PerUserTotalStats
 from django.views.generic.base import RedirectView
 
 
-class IndexView(RedirectView):
+class IndexView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         if self.request.user.profile.is_organization:
             return reverse('organization_profiles:update')
+
         return reverse('backend_citizen:update_my_profile')
 
-class MyProposalsView(TemplateView):
+class MyProposalsView(LoginRequiredMixin, TemplateView):
     template_name = 'backend_citizen/my_proposals.html'
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(MyProposalsView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         context = super(MyProposalsView, self).get_context_data(*args, **kwargs)

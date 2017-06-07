@@ -1,6 +1,6 @@
 {% load i18n %}
 {% if not url %}
-	{% url 'backend_citizen:index' as url %}
+	{% url 'backend_citizen:my_proposals' as url %}
 {% endif %}
 <a class="btn btn-block" href="{% url 'social:begin' 'facebook' %}?next={{url}}">
     <i class="fa fa-facebook"></i> {% trans 'Entra con Facebook' %}

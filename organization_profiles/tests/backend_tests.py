@@ -26,6 +26,7 @@ class OrganizationTemplateUpdateForm(BackendCitizenTestCaseBase):
         data["primary_color"] = "#112233"
         data["secondary_color"] = "#332211"
         form_ = OrganizationTemplateForm(instance=self.template, data=data)
+        print form_.errors
         self.assertTrue(form_.is_valid())
         form_.save()
 
@@ -116,4 +117,3 @@ class OrganizationTemplateViewTest(BackendCitizenTestCaseBase):
                                     data={'title': 'titulo', 'content': 'contenido'},
                                     follow=True)
         self.assertEquals(response.status_code, 200)
-        

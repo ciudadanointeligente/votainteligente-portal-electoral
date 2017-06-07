@@ -20,7 +20,12 @@ from django.utils.decorators import method_decorator
 from registration.backends.hmac.views import RegistrationView
 from django.views.generic.list import ListView
 from backend_citizen.stats import StatsPerProposal, PerUserTotalStats
+from django.views.generic.base import RedirectView
 
+
+class IndexView(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        return reverse('backend_citizen:update_my_profile')
 
 class MyProposalsView(TemplateView):
     template_name = 'backend_citizen/my_proposals.html'

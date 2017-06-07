@@ -13,7 +13,7 @@ from django.contrib.auth.views import password_reset
 
 
 urlpatterns = [
-                       url(r'^$',
+                       url(r'^mis_propuestas/$',
                            MyProposalsView.as_view(),
                            name='my_proposals'),
                        url(r'^create_group/?$',

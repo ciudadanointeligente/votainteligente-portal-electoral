@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from backend_citizen.views import (IndexView,
+                                   MyProposalsView,
                                    PopularProposalTemporaryDataUpdateView,
                                    UpdateUserView,
                                    OrganizationDetailView,
@@ -13,9 +14,12 @@ from django.contrib.auth.views import password_reset
 
 
 urlpatterns = [
-                       url(r'^$',
+                        url(r'^$',
                            IndexView.as_view(),
                            name='index'),
+                       url(r'^mis_propuestas/$',
+                           MyProposalsView.as_view(),
+                           name='my_proposals'),
                        url(r'^create_group/?$',
                            GroupRegistrationView.as_view(),
                            name='create_group'),

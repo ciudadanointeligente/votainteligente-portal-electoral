@@ -15,4 +15,17 @@ class IndexViewsTests(BackendCitizenTestCaseBase):
         self.client.login(username=self.fiera.username, password=PASSWORD)
         response = self.client.get(index_url)
 
-        self.assertRedirects(response, update_my_profile)
+        self.assertRedirects(response, update_my_profile_url)
+
+    def test_index_redirect_if_org(self):
+        index_url = reverse('backend_citizen:index')
+        update_my_profile_url = reverse('organization_profiles:update')
+
+        self.fiera.profile.is_organization = True
+        self.fiera.profile.save()
+
+        self.client.login(username=self.fiera.username, password=PASSWORD)
+
+        response = self.client.get(index_url)
+
+        self.assertRedirects(response, update_my_profile_url)

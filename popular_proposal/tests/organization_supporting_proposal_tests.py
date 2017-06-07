@@ -39,8 +39,7 @@ class OrganizationSupportingSomeOneElsesProposalTestCase(TestCase):
         like = ProposalLike.objects.create(user=self.organization,
                                            proposal=self.proposal)
 
-        self.assertEquals(len(mail.outbox), 1)
-        the_mail = mail.outbox[0]
+        the_mail = mail.outbox[original_amount_of_mails]
         self.assertIn(self.organization.email, the_mail.to)
         self.assertIn(self.fiera.email, the_mail.to)
-        self.assertEquals(len(the_mail.to), original_amount_of_mails + 1)
+        self.assertEquals(len(the_mail.to), 2)

@@ -233,6 +233,13 @@ class ProposalLike(models.Model):
         super(ProposalLike, self).save(*args, **kwargs)
         created = self.pk is not None
         if created:
+            if self.user.profile.is_organization:
+                template = 'new_sponsorshipnotification'
+                context = {'like': self}
+                send_mail(context,
+                          template,
+                          to=[self.user.email,
+                              self.proposal.proposer.email])
             self.numerical_notification()
 
     def numerical_notification(self):

@@ -213,7 +213,7 @@ class LoginFormsTemplateTags(TestCase):
 
     def test_get_login_basic_form(self):
         template_str = get_template('login/basic.html')
-        url = reverse('backend_citizen:index')
+        url = reverse('backend_citizen:my_proposals')
         form = AuthenticationForm()
         rendered_template = template_str.render(Context({'url': url, 'form': form}))
         template = Template("{% load votainteligente_extras %}{% basic_login url=url %}")

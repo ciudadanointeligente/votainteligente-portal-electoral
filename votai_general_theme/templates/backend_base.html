@@ -68,7 +68,7 @@
           </li>
         {% endfor %}
       {% else %}
-        {% url 'backend_citizen:index' as backend_index %}
+        {% url 'backend_citizen:my_proposals' as backend_index %}
          <li role="presentation" class="{% ifequal request.path backend_index%} active{% endifequal %} hidden-xs">
         <a class="small" href="{{backend_index}}">{% trans 'Las propuestas que he hecho' %}</a></li>
           {% url 'backend_citizen:my_supports' as my_supports_url %}
@@ -143,7 +143,7 @@
                         </li>
                       {% endfor %}
                     {% else %}
-                      {% url 'backend_citizen:index' as backend_index %}
+                      {% url 'backend_citizen:my_proposals' as backend_index %}
                       <li class="{% ifequal request.path backend_index%} active{% endifequal %}">
                         <a class="small" href="{{backend_index}}">{% trans 'Las propuestas que he hecho' %}</a></li>
                       {% url 'backend_citizen:my_supports' as my_supports_url %}

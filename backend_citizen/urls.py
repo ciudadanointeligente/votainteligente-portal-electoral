@@ -15,7 +15,7 @@ from django.contrib.auth.views import password_reset
 urlpatterns = [
                        url(r'^$',
                            MyProposalsView.as_view(),
-                           name='index'),
+                           name='my_proposals'),
                        url(r'^create_group/?$',
                            GroupRegistrationView.as_view(),
                            name='create_group'),

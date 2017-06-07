@@ -53,7 +53,7 @@ class PopularProposalTemporaryDataUpdateView(LoginRequiredMixin, FormView):
         return context
 
     def get_success_url(self):
-        return reverse('backend_citizen:index')
+        return reverse('backend_citizen:my_proposals')
 
     def form_valid(self, form):
         form.save()
@@ -69,7 +69,7 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
         return self.request.user
 
     def get_success_url(self):
-        return reverse('backend_citizen:index')
+        return reverse('backend_citizen:my_proposals')
 
 
 class OrganizationDetailView(DetailView):
@@ -90,7 +90,7 @@ class OrganizationCreateView(LoginRequiredMixin, CreateView):
         return kwargs
 
     def get_success_url(self):
-        return reverse('backend_citizen:index')
+        return reverse('backend_citizen:my_proposals')
 
 
 class DoYouBelongToAnOrgView(LoginRequiredMixin, TemplateView):

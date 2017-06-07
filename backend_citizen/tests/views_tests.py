@@ -28,7 +28,7 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
                                                         )
 
     def test_my_profile_view(self):
-        url = reverse('backend_citizen:index')
+        url = reverse('backend_citizen:my_proposals')
         response = self.client.get(url)
         self.assertRedirects(response, reverse('auth_login')+"?next="+url)
         self.client.login(username=self.fiera.username, password=PASSWORD)
@@ -80,7 +80,7 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
                                                     area=self.arica,
                                                     status=ProposalTemporaryData.Statuses.Accepted,
                                                     data=self.data)
-        url = reverse('backend_citizen:index')
+        url = reverse('backend_citizen:my_proposals')
         self.client.login(username=self.fiera.username, password=PASSWORD)
         response = self.client.get(url)
         temporary_proposals = response.context['temporary_proposals']

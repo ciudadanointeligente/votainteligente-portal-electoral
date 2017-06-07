@@ -22,4 +22,3 @@ Nuestros comentarios son: {% autoescape off %}{{comments.solution}}{% endautoesc
 **¿Qué acción dará por cumplida la tarea del alcalde?**: {{preview_data.solution_at_the_end}}
 {% if comments.solution_at_the_end %}
 Nuestros comentarios son: {% autoescape off %}{{comments.solution_at_the_end}}{% endautoescape %}{% endif %}
-

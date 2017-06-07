@@ -22,15 +22,15 @@ from django.views.generic.list import ListView
 from backend_citizen.stats import StatsPerProposal, PerUserTotalStats
 
 
-class IndexView(TemplateView):
+class MyProposalsView(TemplateView):
     template_name = 'backend_citizen/my_proposals.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(IndexView, self).dispatch(*args, **kwargs)
+        return super(MyProposalsView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
-        context = super(IndexView, self).get_context_data(*args, **kwargs)
+        context = super(MyProposalsView, self).get_context_data(*args, **kwargs)
         context['temporary_proposals'] = ProposalTemporaryData.objects.filter(proposer=self.request.user).order_by('-updated')
         return context
 

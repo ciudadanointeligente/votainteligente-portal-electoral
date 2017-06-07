@@ -25,6 +25,8 @@ from django.views.generic.base import RedirectView
 
 class IndexView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
+        if self.request.user.profile.is_organization:
+            return reverse('organization_profiles:update')
         return reverse('backend_citizen:update_my_profile')
 
 class MyProposalsView(TemplateView):

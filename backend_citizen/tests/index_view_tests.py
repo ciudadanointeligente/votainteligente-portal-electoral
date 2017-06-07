@@ -29,3 +29,8 @@ class IndexViewsTests(BackendCitizenTestCaseBase):
         response = self.client.get(index_url)
 
         self.assertRedirects(response, update_my_profile_url)
+
+    def test_index_redirect_to_login_if_not_logged_in(self):
+        index_url = reverse('backend_citizen:index')
+        response = self.client.get(index_url)
+        self.assertRedirects(response, reverse('auth_login')+'?next=' + index_url)

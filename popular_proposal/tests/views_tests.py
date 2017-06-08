@@ -97,7 +97,7 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'popular_proposal/home.html')
 
-    @override_config(HIDDEN_AREAS=["argentina", ])
+    @override_config(HIDDEN_AREAS="argentina")
     def test_not_showing_proposals_for_hidden_areas(self):
         argentina = Area.objects.create(name=u'Argentina')
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,

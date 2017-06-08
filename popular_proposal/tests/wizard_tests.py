@@ -18,31 +18,35 @@ from backend_citizen.models import Organization, Enrollment
 from collections import OrderedDict
 from constance.test import override_config
 from django.test import override_settings
+from constance import config
 
 USER_PASSWORD = 'secr3t'
 
 
-class WizardDataMixin():
-    def get_example_data_for_post(self, t_response={}):
-        cntr = len(t_response)
+class WizardDataMixin(object):
+    def get_example_data_for_post(self, **kwargs):
+        test_response = kwargs.pop('test_response', {})
+        cntr = len(test_response)
         for step in wizard_forms_fields:
-            t_response[cntr] = {}
+            test_response[cntr] = {}
             for field in step['fields']:
-                t_response[cntr][field] = ''
+                test_response[cntr][field] = ''
                 field_dict = TEXTS.get(field, None)
+                if field == "is_testing":
+                    continue
                 if field_dict:
                     help_text = field_dict.get('help_text', None)
                     if help_text:
-                        t_response[cntr][str(cntr) + '-' + field] = help_text
-                        t_response[cntr][field] = help_text
+                        test_response[cntr][str(cntr) + '-' + field] = help_text
+                        test_response[cntr][field] = help_text
                     else:
-                        t_response[cntr][str(cntr) + '-' + field] = field
-                        t_response[cntr][field] = field
+                        test_response[cntr][str(cntr) + '-' + field] = field
+                        test_response[cntr][field] = field
                 else:
-                    t_response[cntr]['fields'] = field
+                    test_response[cntr]['fields'] = field
 
             cntr += 1
-        return t_response
+        return test_response
 
 @override_settings(MODERATION_ENABLED=True)
 class WizardTestCase(TestCase, WizardDataMixin):
@@ -212,7 +216,7 @@ class WizardTestCase(TestCase, WizardDataMixin):
         self.client.login(username=self.feli,
                           password=USER_PASSWORD)
         test_response = {0: {'0-area': self.arica.id}}
-        test_response = self.get_example_data_for_post(test_response)
+        test_response = self.get_example_data_for_post(test_response=test_response)
         response = self.client.get(url)
         steps = response.context['wizard']['steps']
         for i in range(steps.count):
@@ -251,7 +255,7 @@ class WizardTestCase(TestCase, WizardDataMixin):
         self.client.login(username=self.feli,
                           password=USER_PASSWORD)
         test_response = {0: {'0-area': argentina}}
-        test_response = self.get_example_data_for_post(test_response)
+        test_response = self.get_example_data_for_post(test_response=test_response)
         response = self.client.get(url)
         area_form = response.context['form']
         area_field = area_form.fields['area']
@@ -319,7 +323,7 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
         self.url = reverse('popular_proposals:propose_wizard_full_without_area')
         self.example_data = self.get_example_data_for_post()
 
-    def fill_the_whole_wizard(self, **kwargs):
+    def fill_the_whole_wizard(self, override_example_data={}, **kwargs):
         '''
         en:
         This method fills the whole wizard and returns the last response, in other words the done step.
@@ -329,6 +333,7 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
         Sólo funca para escribir tests.
         '''
         example_data = kwargs.pop("data", self.example_data)
+        example_data.update(override_example_data	)
         url = kwargs.pop("url", self.url)
         user = kwargs.pop("user", self.feli)
         password = kwargs.pop("password", USER_PASSWORD)
@@ -381,3 +386,15 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
         form = response.context['form_update']
         self.assertIsInstance(form, UpdateProposalForm)
         self.assertEquals(form.instance, temporary_data.created_proposal)
+
+    def test_if_we_say_is_testing_in_wizard_it_creates_a_proposal_in_testing_area(self):
+        try:
+            testing_area = Area.objects.get(id=config.HIDDEN_AREAS)
+        except Area.DoesNotExist:
+            testing_area = Area.objects.create(id=config.HIDDEN_AREAS, name=config.HIDDEN_AREAS)
+        response = self.fill_the_whole_wizard(override_example_data={4: {'4-title':'title',
+                                                                         '4-terms_and_conditions': True,
+                                                                         "4-is_testing":True}})
+        temporary_data = response.context['popular_proposal']
+
+        self.assertEquals(temporary_data.created_proposal.area, testing_area)

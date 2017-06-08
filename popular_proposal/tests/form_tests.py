@@ -69,7 +69,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
         form = AreaForm()
         self.assertEquals(form.initial['area'], whole_country.id)
 
-    @override_settings(HIDDEN_AREAS=['argentina'])
+    @override_config(HIDDEN_AREAS='argentina')
     def test_area_form_is_staff_and_hidden_area(self):
         argentina = Area.objects.create(name=u'Argentina')
         data = {'area': argentina.id}

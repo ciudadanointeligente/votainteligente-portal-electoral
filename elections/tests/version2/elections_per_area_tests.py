@@ -29,7 +29,7 @@ class ElectionsPerAreaTestCase(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'elections/area.html')
 
-    @override_config(HIDDEN_AREAS=['argentina', ])
+    @override_config(HIDDEN_AREAS='argentina')
     def test_hidden_area(self):
         argentina = Area.objects.create(name=u'Argentina')
         self.assertNotIn(argentina, Area.public.all())

@@ -1,22 +1,25 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
 <p>
-Estimada candidata o candidato a la alcaldía de {{ area }}, nos ha llegado esta propuesta para tu comuna:
+Estimado/a candidato/a, nos ha llegado esta propuesta para mejorar {{ area }}:
 </p>
 
-<p><b>¿Cuál es el problema o necesidad que se busca solucionar?</b></br>
+<p><b>¿Cuál es el problema que se busca solucionar?</b></br>
 {{preview_data.problem|popular_proposal_when|linebreaksbr}}
 </p>
 
-<p><b>¿Qué hay que hacer para lograr la situación ideal?</b></br>
+<p><b>¿Cuál es la causa de este problema?</b></br>
+{{preview_data.causes}}
+</p>
+
+<p><b>¿Cuál es el escenario ideal al que se quiere llegar?</b></br>
 {{preview_data.solution}}
 </p>
 
-<p><b>¿Qué acción dará por cumplida la tarea del alcalde?</b></br>
-{{preview_data.solution_at_the_end|popular_proposal_when|linebreaksbr}} antes de <b>{{preview_data.when|popular_proposal_when}}</b> desde el comienzo de su mandato.
+<p><b>¿Cuál es la propuesta para solucionar este problema?</b></br>
+{{preview_data.solution_at_the_end|popular_proposal_when|linebreaksbr}} El plazo de implementación de esta propuesta es de <b>{{preview_data.when|popular_proposal_when}}</b>.
 </p>
 
-<p>Esperamos que te pronuncies respecto a esta propuesta. Desde ya muchas gracias,</p>
+<p>Esperamos que se pronuncie respecto a esta propuesta. Desde ya muchas gracias,</p>
 <p>El equipo de VotaInteligente a nombre de {% if user.get_full_name %}{{user.get_full_name}}{% else %}{{user}}{% endif %}.
 </p>
-

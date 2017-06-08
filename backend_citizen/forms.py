@@ -62,7 +62,7 @@ class GroupCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('name', 'username', 'email', )
+        fields = ('username', 'email', 'name', )
         labels = {'name': _(u'El nombre de tu organización'),
                   'username': _(u'Nombre de usuario, ej: amigosdelparque'),
                   'email': _(u'Email de la organización')

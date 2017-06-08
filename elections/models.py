@@ -19,7 +19,7 @@ from constance import config
 
 class AreaManager(models.Manager):
     def get_queryset(self):
-        return super(AreaManager, self).get_queryset().exclude(id__in=config.HIDDEN_AREAS)
+        return super(AreaManager, self).get_queryset().exclude(id=config.HIDDEN_AREAS)
 
 
 def get_position_in_(qs, el):

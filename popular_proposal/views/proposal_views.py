@@ -133,7 +133,7 @@ class HomeView(EmbeddedViewBase, FilterView):
     filter_fields = ['clasification', 'area', ]
 
     def get_queryset(self):
-        qs = super(HomeView, self).get_queryset().exclude(area__id__in=config.HIDDEN_AREAS)
+        qs = super(HomeView, self).get_queryset().exclude(area__id=config.HIDDEN_AREAS)
         return qs
 
     def get_context_data(self, **kwargs):

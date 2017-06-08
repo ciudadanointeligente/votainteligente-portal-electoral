@@ -41,6 +41,11 @@
   fields: {content_type: null, object_id: null, start_date: null, end_date: null,
     name: Arica, identifier: '15101', classification: '', parent: null, geom: null,
     inhabitants: null}
+- model: popolo.area
+  pk: fundacion-ciudadano-inteligente
+  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+    name: CiudadanoI, identifier: '15101', classification: '', parent: null, geom: null,
+    inhabitants: null}
 - model: backend_citizen.profile
   pk: 1
   fields: {user: 1, image: '', description: '', first_time_in_backend_citizen: true}

@@ -16,7 +16,7 @@
     <div class="row">
     {% for i in wizard.steps.count|times %}
         <div class="col-md-2 col-sm-2 col-xs-2">
-            <div class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}">Paso {{i|add:1}}</div>
+            <div class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}">Paso {{i|add:1}} de {{wizard.steps.count}}</div>
         </div>
     {% endfor %}
     </div>
@@ -52,6 +52,11 @@
           </div>
         </div>
         </section>
+        {% if config.CAN_CREATE_TEST_PROPOSAL %}
+        <section class="is_testing">
+          {% bootstrap_field form.is_testing %}
+        </section>
+        {% endif %}
     {% include 'popular_proposal/wizard/_previous_buttons.html' with wizard=wizard %}
     <div class="pull-right">
         <button class="btn btn-success" type="submit" value="{% trans "Submit" %}">{% if wizard.steps.current == wizard.steps.last %}{% trans "Enviar propuesta" %}{% else %}{% trans "Ir al paso " %}{{wizard.steps.next|add:1}}{% endif %}<img src="{% static 'img/arrow.svg' %}"></button>

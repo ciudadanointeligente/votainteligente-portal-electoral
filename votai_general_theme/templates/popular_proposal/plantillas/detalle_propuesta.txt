@@ -1,17 +1,20 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
-Estimada candidata o candidato a la comuna de {{popular_proposal.area}}, nos ha llegado esta propuesta ciudadana para tu comuna: {{popular_proposal.title}}
+Estimado/a candidato/a, nos ha llegado esta propuesta ciudadana para que la puedas revisar: {{popular_proposal.title}}
 
-¿Cuál es el problema o necesidad que se busca solucionar?
+¿Cuál es el problema que se busca solucionar?
 {{popular_proposal.data.problem|popular_proposal_when}}
 
-¿Qué hay que hacer para lograr la situación ideal?
+¿Cuál es la causa de este problema?
+{{popular_proposal.data.causes}}
+
+¿Cuál es el escenario ideal al que se quiere llegar?
 {{popular_proposal.data.solution}}
 
-¿Qué acción dará por cumplida la tarea del alcalde?
+¿Cuál es la propuesta para solucionar este problema?
 {{popular_proposal.data.solution_at_the_end|popular_proposal_when}} antes de {{popular_proposal.data.when|popular_proposal_when}} desde el comienzo de su mandato.
 
-Las vecinas y vecinos de {{popular_proposal.area }} están esperando que se pronuncie sobre esta propuesta ciudadana.
+La ciudadanía está esperando que se pronuncie sobre esta propuesta ciudadana.
 
 {% if url %}
 Puedes revisar más detalles y definir tu postura en el siguiente link:

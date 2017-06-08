@@ -17,6 +17,9 @@ def get_example_data_for_testing():
 
     for step in wizard_forms_fields:
         for f in step['fields']:
+            if f == "is_testing":
+                data[f] = False
+                continue
             field = step['fields'][f]
             field_type = field.__class__.__name__
             if field_type in example_fields:

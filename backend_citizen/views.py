@@ -73,7 +73,7 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
         return self.request.user
 
     def get_success_url(self):
-        return reverse('backend_citizen:my_proposals')
+        return reverse('backend_citizen:index')
 
 
 class OrganizationDetailView(DetailView):

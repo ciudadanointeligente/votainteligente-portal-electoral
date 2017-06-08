@@ -28,12 +28,12 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
                                                         )
 
     def test_my_profile_view(self):
-        url = reverse('backend_citizen:my_proposals')
+        url = reverse('backend_citizen:index')
         response = self.client.get(url)
         self.assertRedirects(response, reverse('auth_login')+"?next="+url)
         self.client.login(username=self.fiera.username, password=PASSWORD)
-        response = self.client.get(url)
-        self.assertTemplateUsed(response, 'backend_citizen/my_proposals.html')
+        response = self.client.get(url, follow=True)
+        self.assertTemplateUsed(response, 'backend_citizen/update_my_profile.html')
 
     def test_temporary_promise_detail_view(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
@@ -108,7 +108,7 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
                 }
         self.client.login(username=self.fiera.username, password=PASSWORD)
         response = self.client.post(url, data=data, follow=True)
-        self.assertTemplateUsed(response, 'backend_citizen/my_proposals.html')
+        self.assertTemplateUsed(response, 'backend_citizen/update_my_profile.html')
         fiera = User.objects.get(id=self.fiera.id)
         self.assertEquals(fiera.profile.description, data['description'])
         self.assertTrue(fiera.profile.image)

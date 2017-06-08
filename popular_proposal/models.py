@@ -209,6 +209,10 @@ class PopularProposal(models.Model, OGPMixin):
             'proposal': self
         })
 
+    @property
+    def sponsoring_orgs(self):
+        return self.likers.filter(profile__is_organization=True)
+
     def notify_candidates_of_new(self):
         if not (settings.NOTIFY_CANDIDATES and settings.NOTIFY_CANDIDATES_OF_NEW_PROPOSAL):
             return

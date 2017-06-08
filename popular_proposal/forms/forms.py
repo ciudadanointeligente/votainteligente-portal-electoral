@@ -107,7 +107,8 @@ wizard_forms_fields = [
                 error_messages={'required':
                                 _(u'Debes aceptar nuestros Términos y Condiciones')}
             )
-            )
+            ),
+            ('is_testing', forms.BooleanField(required=False)),
         ])
     }
 ]

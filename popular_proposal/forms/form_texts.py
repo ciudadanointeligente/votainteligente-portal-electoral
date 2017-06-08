@@ -94,4 +94,9 @@ TEXTS = OrderedDict({
                              'help_text': u'',
                              'placeholder': u'',
                              'long_text': "terms_and_conditions.html"},
+    'is_testing': {'label': u'Esta propuesta es de prueba',
+                             'preview_question': u'',
+                             'help_text': u'Sólo la podrás ver tu y nosotros podremos borrarlas periodicamente.',
+                             'placeholder': u'',
+                             'long_text': "paso5b.html"},
 })

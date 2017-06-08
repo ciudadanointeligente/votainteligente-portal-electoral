@@ -350,7 +350,7 @@ POSSIBLE_GENERATING_AREAS_FILTER = 'Comuna'
 CONSTANCE_CONFIG = {
     'SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES':(10,'Duracion cache media naranja'),
     'INFINITE_CACHE':(1440,'Tiempo Cache'),
-    'DEFAULT_AREA': ('', u'El territorio que mostramos por defecto'),
+    'DEFAULT_AREA': ('chile-pais', u'El territorio que mostramos por defecto'),
     'AREAS_ARE_FORCED_IN_PROPOSALS' : (False, u'No te preguntamos por el territorio de la propuesta y asumimos que es el que viene por defecto'),
     'PROPOSALS_ENABLED' : (True, 'Habilitar propuestas'),
     'WHEN_TO_NOTIFY': ('25, 50, 100, 150, 200', 'Cuando notificar'),

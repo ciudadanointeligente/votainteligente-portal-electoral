@@ -9,13 +9,13 @@ from constance import config
 def create_areas(apps, schema_editor):
     Area = apps.get_model('elections', 'Area')
     try:
-        a = Area.objects.get(id=config.HIDDEN_AREAS)
+        Area.objects.get(id=config.HIDDEN_AREAS)
     except Area.DoesNotExist as e:
-        a = Area.objects.create(id=config.HIDDEN_AREAS, name=config.HIDDEN_AREAS)
+        Area.objects.create(id=config.HIDDEN_AREAS, name=config.HIDDEN_AREAS)
     try:
-        a = Area.objects.get(id=config.DEFAULT_AREA)
+        Area.objects.get(id=config.DEFAULT_AREA)
     except Area.DoesNotExist as e:
-        a = Area.objects.create(id=config.DEFAULT_AREA, name=config.DEFAULT_AREA)
+        Area.objects.create(id=config.DEFAULT_AREA, name=config.DEFAULT_AREA)
 
 
 class Migration(migrations.Migration):

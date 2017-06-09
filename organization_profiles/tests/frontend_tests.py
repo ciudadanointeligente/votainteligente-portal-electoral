@@ -4,7 +4,7 @@ from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
 from backend_citizen.models import Profile
 from django.core.urlresolvers import reverse
 from organization_profiles.models import OrganizationTemplate, ExtraPage
-from popular_proposal.models import PopularProposal
+from popular_proposal.models import PopularProposal, ProposalLike
 from django.test import override_settings
 
 
@@ -195,3 +195,42 @@ class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
         content = response.content.decode('utf-8')
 
         self.assertIn(popular_proposal.title, content)
+
+    def test_sponsorhips_in_content(self):
+        # Preparing sponsorships
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title'
+                                                          )
+        popular_proposal2 = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'Esto es un título'
+                                                          )
+
+        support = ProposalLike.objects.create(user=self.user,
+                                           proposal=popular_proposal)
+
+        support2 = ProposalLike.objects.create(user=self.user,
+                                           proposal=popular_proposal2)
+
+        ## Hay dos organizaciones que le ponen support a esta propuesta
+        ## y yo quiero poder hacer que esten en alguna parte listadas
+
+        # This is not a sponsorships
+        ProposalLike.objects.create(user=self.feli,
+                                    proposal=popular_proposal)
+
+        # This is not a sponsorships
+
+        self.user.organization_template.content = u'{{#each sponsorships }} {{proposal.title}} {{/each}}'
+        self.user.organization_template.save()
+
+
+        url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
+        response = self.client.get(url) ## Esto es lo que no es unicode
+        content = response.content.decode('utf-8')
+
+        self.assertIn(popular_proposal.title, content)
+        self.assertIn(popular_proposal2.title, content)

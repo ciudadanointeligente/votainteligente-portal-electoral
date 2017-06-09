@@ -59,6 +59,10 @@ class OrganizationDetailView(DetailView):
         for proposal in self.object.proposals.all():
             context['proposals'].append(proposal)
 
+        context['sponsorships'] = []
+        for sponsorship in self.object.proposallike_set.all():
+            context['sponsorships'].append(sponsorship)
+
         for field in BASIC_FIELDS:
             value = getattr(self.object.organization_template, field)
             if isinstance(value, File) and value:

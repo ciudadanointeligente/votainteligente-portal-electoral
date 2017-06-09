@@ -209,6 +209,10 @@ class PopularProposal(models.Model, OGPMixin):
             'proposal': self
         })
 
+    @property
+    def sponsoring_orgs(self):
+        return self.likers.filter(profile__is_organization=True)
+
     def notify_candidates_of_new(self):
         if not (settings.NOTIFY_CANDIDATES and settings.NOTIFY_CANDIDATES_OF_NEW_PROPOSAL):
             return
@@ -233,6 +237,13 @@ class ProposalLike(models.Model):
         super(ProposalLike, self).save(*args, **kwargs)
         created = self.pk is not None
         if created:
+            if self.user.profile.is_organization:
+                template = 'new_sponsorshipnotification'
+                context = {'like': self}
+                send_mail(context,
+                          template,
+                          to=[self.user.email,
+                              self.proposal.proposer.email])
             self.numerical_notification()
 
     def numerical_notification(self):

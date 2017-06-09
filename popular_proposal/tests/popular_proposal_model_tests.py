@@ -3,7 +3,7 @@ from popular_proposal.tests import ProposingCycleTestCaseBase
 from backend_citizen.models import Organization, Enrollment
 from elections.models import Area
 from django.contrib.auth.models import User
-from popular_proposal.models import ProposalTemporaryData, PopularProposal
+from popular_proposal.models import ProposalTemporaryData, PopularProposal, ProposalLike
 from django.core import mail
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.template.loader import get_template
@@ -133,3 +133,36 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
                                                           clasification=u'education'
                                                           )
         self.assertTrue(popular_proposal)
+
+    def test_proposal_has_supporting_organizations(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title'
+                                                          )
+        supporting_org = User.objects.create(username='organizacionorganizada',
+                                             email='oo@organizaciones.org',
+                                             password='PASSWORD')
+        supporting_org.profile.is_organization = True
+        supporting_org.profile.save()
+        support = ProposalLike.objects.create(user=supporting_org,
+                                           proposal=popular_proposal)
+
+        supporting_org2 = User.objects.create(username='organizacionorganizada2',
+                                             email='o1o2@organizaciones.org',
+                                             password='PASSWORD')
+        supporting_org2.profile.is_organization = True
+        supporting_org2.profile.save()
+
+        support2 = ProposalLike.objects.create(user=supporting_org2,
+                                           proposal=popular_proposal)
+
+        ## Hay dos organizaciones que le ponen support a esta propuesta
+        ## y yo quiero poder hacer que esten en alguna parte listadas
+
+        ProposalLike.objects.create(user=self.feli,
+                                    proposal=popular_proposal)
+
+        self.assertIn(supporting_org, popular_proposal.sponsoring_orgs.all())
+        self.assertIn(supporting_org2, popular_proposal.sponsoring_orgs.all())
+        self.assertEquals(popular_proposal.sponsoring_orgs.count(), 2)

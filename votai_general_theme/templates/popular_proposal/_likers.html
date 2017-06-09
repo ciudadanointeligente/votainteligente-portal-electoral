@@ -57,7 +57,7 @@ $(function(){
                                             $('.btn_pronunciarme').append('<a class="btn btn-primary" href="{% if request.path == detail_url %}#compromiso{% else %}{{detail_url}}{% endif %}" role="button">Yo quiero pronunciarme</a>');
                                             console.log($('.btn_pronunciarme'))
                                         })
-                                        
+
                                     </script>
                             {% endwith %}
                         {% endif %}
@@ -93,7 +93,7 @@ $(function(){
                     {% endwith %}
                 {% endif %}
             {% endif %}
-                
+
         {% else %}<!-- Cuando usuario no esta logueado -->
             <a class="btn-apoyo pull-left" href="{% url 'auth_login' %}">
                 {% blocktrans %}
@@ -120,5 +120,5 @@ $(function(){
         <p class="nota"><span id='likers_count_{{proposal.id}}'>{{proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
     </div>
     {% endif %}<!-- fin embbeded -->
-    
+
 </div>

@@ -7,16 +7,33 @@
         <h4 class="modal-title" id="myModalLabel">{{ title }}</h4>
       </div>
       <div class="modal-body">
-         
-      ¿Deseas apoyar la propuesta <b>{{proposal}}</b>?
-      <p>Al apoyar esta propuesta aceptas que VotaInteligente te notifique vía correo electrónico cuando un candidato decida apoyar esta propuesta.</p>
-      <form method="POST" id="form_{{modalId}}"action="{{url}}" role="form">
-          {% csrf_token %}
-          {% if next %}
-          <input type="hidden" name="next" value="{{next_url}}" />
-          {% endif %}
-          <button type="submit" class="btn btn-default">{% trans 'Sí, quiero apoyar' %}</button>
-      </form>
+        {% if user.profile.is_organization %}
+        <p>Graaaaandeee <b>{{user}}</b>:</p>
+        <p>Estás apadrinando a <b>{{proposal}}</b>, esto tiene algunas implicancias:</p>
+        <ul>
+          <li>Al momento de apretar el botón que está abajo se le enviará un mail a ti y a <b>{{proposal.proposer}}</b>, quién creó esta propuesta.En el se compartirán los datos de ustedes dos y les pediremos que sigan en contacto.</li>
+          <li>En tu perfil de organización aparecerá que estás apadrinando a esta propuesta.</li>
+          <li>Cuando cualquier ciudadano revise esta propuesta podrá ver que {{user}} la está apoyando.</li>
+          <li>Tu NO podrás quitarle el apoyo a esta propuesta a menos que hables con el equipo de VotaInteligente.</li>
+        </ul>
+        <form method="POST" id="form_{{modalId}}"action="{{url}}" role="form">
+            {% csrf_token %}
+            {% if next %}
+            <input type="hidden" name="next" value="{{next_url}}" />
+            {% endif %}
+            <button type="submit" class="btn btn-default">{% trans 'Apadrinar' %}</button>
+        </form>
+        {% else %}
+        ¿Deseas apoyar la propuesta <b>{{proposal}}</b>?
+        <p>Al apoyar esta propuesta aceptas que VotaInteligente te notifique vía correo electrónico cuando un candidato decida apoyar esta propuesta.</p>
+        <form method="POST" id="form_{{modalId}}"action="{{url}}" role="form">
+            {% csrf_token %}
+            {% if next %}
+            <input type="hidden" name="next" value="{{next_url}}" />
+            {% endif %}
+            <button type="submit" class="btn btn-default">{% trans 'Sí, quiero apoyar' %}</button>
+        </form>
+        {% endif %}
 
       </div>
     </div>

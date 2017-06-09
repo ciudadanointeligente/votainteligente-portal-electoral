@@ -1,7 +1,13 @@
 <!--  primary data -->
 <div style="background-image:url({{background_image}}); background-position:center; background-repeat: no-repeat; text-shadow: 1px 1px white; padding-bottom:10px;">
   <div class="container text-center">
-    <h2 style="padding-top:40px;">{{organization}}</h2>
+    <h2 style="padding-top:40px;">
+      {{# if title }}
+        {{title}}
+      {{else}}
+        {{organization}}
+      {{/if}}
+    </h2>
     {{#if logo}}
     <div class="logo-org">
       <img src="{{logo}}" alt="{{organization}}" class="img-responsive" width="150px">
@@ -15,7 +21,11 @@
 <!-- about -->
 <div class="" style="background-color:{{primary_color}}; padding-bottom:10px;">
   <div class="container text-center">
-    <h3>{{title}}</h3>
+    <h3>{{# if title}}
+      {{title}}
+    {{else}}
+      {{organization}}
+    {{/if}}</h3>
     <p>{{sub_title}}</p>
   </div>
 </div>
@@ -69,5 +79,19 @@
   {{#if is_owner}}
   <p>Comienza a generar tus propuestas en el siguiente <a href="{{create_proposal_url}}">enlace</a></p>
   {{/if}}
+{{/if}}
+</div>
+
+<!--  propuestas apadrinadas -->
+<div class="container">
+{{#if sponsorships}}
+  <h3 class="page-header">Propuestas Apadrinadas</h3>
+  <div class="row">
+    {{#each sponsorships }}
+      <div class="col-md-4">
+        {{{card}}}
+      </div>
+    {{/each}}
+  </div>
 {{/if}}
 </div>

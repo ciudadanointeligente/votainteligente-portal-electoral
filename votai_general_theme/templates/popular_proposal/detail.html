@@ -321,22 +321,25 @@ $(function(){
     {% endif %}
     <!-- Organizaciones patrocinantes -->
     {% if popular_proposal.sponsoring_orgs.all %}
+    <div class="container">
+
     <h3 class="text-center">Organizaciones patrocinantes de esta propuesta:</h3>
+      <ul class="list-inline">
         {% for org in popular_proposal.sponsoring_orgs %}
-            <div class="row">
-              <div class="col-md-1 col-sm-2 col-xs-2">
-                {% if org.organization_template.logo %}
-                  <a href="{% url 'organization_profiles:home' slug=org.username %}" target="_blank">
-                      {% thumbnail org.organization_template.logo "300x300" crop="center" as im %}
-                      <img src="{{im.url}}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small">
-                      {% endthumbnail %}
-                    {% else %}
-                      <img src="{% static 'img/candidate-default.jpg' %}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small"></a>
-                  {% endif %}
-                </a>
-              </div>
-            </div>
+        <li>
+          <a href="{% url 'organization_profiles:home' slug=org.username %}" target="_blank">
+            {% if org.organization_template.logo %}
+                {% thumbnail org.organization_template.logo "300x300" crop="center" as im %}
+                <img src="{{im.url}}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small">
+                {% endthumbnail %}
+              {% else %}
+                <img src="{% static 'img/candidate-default.jpg' %}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small"></a>
+            {% endif %}
+          </a>
+        </li>
         {% endfor %}
+      </ul>
+    </div>
     {% endif %}
 
 {% endblock everything %}

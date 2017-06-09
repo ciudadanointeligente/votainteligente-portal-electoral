@@ -61,7 +61,7 @@ class OrganizationDetailView(DetailView):
 
         context['sponsorships'] = []
         for sponsorship in self.object.proposallike_set.all():
-            context['sponsorships'].append(sponsorship)
+            context['sponsorships'].append(sponsorship.proposal)
 
         for field in BASIC_FIELDS:
             value = getattr(self.object.organization_template, field)

@@ -224,7 +224,7 @@ class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
 
         # This is not a sponsorships
 
-        self.user.organization_template.content = u'{{#each sponsorships }} {{proposal.title}} {{/each}}'
+        self.user.organization_template.content = u'{{#each sponsorships }} {{title}} {{/each}}'
         self.user.organization_template.save()
 
 

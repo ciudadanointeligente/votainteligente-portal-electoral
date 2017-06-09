@@ -20,17 +20,21 @@ from django.utils.decorators import method_decorator
 from registration.backends.hmac.views import RegistrationView
 from django.views.generic.list import ListView
 from backend_citizen.stats import StatsPerProposal, PerUserTotalStats
+from django.views.generic.base import RedirectView
 
 
-class IndexView(TemplateView):
-    template_name = 'backend_citizen/index.html'
+class IndexView(LoginRequiredMixin, RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        if self.request.user.profile.is_organization:
+            return reverse('organization_profiles:update')
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(IndexView, self).dispatch(*args, **kwargs)
+        return reverse('backend_citizen:update_my_profile')
+
+class MyProposalsView(LoginRequiredMixin, TemplateView):
+    template_name = 'backend_citizen/my_proposals.html'
 
     def get_context_data(self, *args, **kwargs):
-        context = super(IndexView, self).get_context_data(*args, **kwargs)
+        context = super(MyProposalsView, self).get_context_data(*args, **kwargs)
         context['temporary_proposals'] = ProposalTemporaryData.objects.filter(proposer=self.request.user).order_by('-updated')
         return context
 
@@ -53,7 +57,7 @@ class PopularProposalTemporaryDataUpdateView(LoginRequiredMixin, FormView):
         return context
 
     def get_success_url(self):
-        return reverse('backend_citizen:index')
+        return reverse('backend_citizen:my_proposals')
 
     def form_valid(self, form):
         form.save()
@@ -90,7 +94,7 @@ class OrganizationCreateView(LoginRequiredMixin, CreateView):
         return kwargs
 
     def get_success_url(self):
-        return reverse('backend_citizen:index')
+        return reverse('backend_citizen:my_proposals')
 
 
 class DoYouBelongToAnOrgView(LoginRequiredMixin, TemplateView):

@@ -67,15 +67,7 @@ $(function(){
       <div class="col-md-3">
         <div class="row">
               <div class="col-md-3 detail-number"><h3>{% commiters_by_election_position popular_proposal 'alcalde' as alcaldes %}{% if alcaldes.all %}{{alcaldes.count}}{% else %}0{% endif %}</h3></div>
-          <div class="col-md-9"><p class="nota">candidatos a alcalde apoyan esta propuesta</p></div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="row">
-          <div class="col-md-3 detail-number">
-            <h3>{% commiters_by_election_position popular_proposal 'concejal' as concejales %}{% if concejales.all %}{{concejales.count}}{% else %}0{% endif %}</h3>
-          </div>
-          <div class="col-md-9"><p class="nota">candidatos a concejal apoyan esta propuesta</p></div>
+          <div class="col-md-9"><p class="nota">candidatos a Diputados/as y Senadores/as apoyan esta propuesta</p></div>
         </div>
       </div>
     </div>
@@ -112,18 +104,11 @@ $(function(){
     {% else %}
       {% with user.candidacies.first as candidacy %}
         {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
-          {% if candidacy.candidate.election.position == 'concejal' %}
-
-              {% include "popular_proposal/plantillas/detalle_propuesta_concejal.html" with popular_proposal=popular_proposal candidate=candidacy.candidate %}
-            {% elif candidacy.candidate.election.position == 'alcalde' %}
-              {% include "popular_proposal/plantillas/detalle_propuesta_alcalde.html" with popular_proposal=popular_proposal candidate=candidacy.candidate %}
-            {% else %}
-              {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal candidate=candidacy.candidate %}
-            {% endif %}
-          {% else %}
+          {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal candidate=candidacy.candidate %}
+        {% else %}
             {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
-          {% endif %}
-        {% endwith %}
+        {% endif %}
+      {% endwith %}
     {% endif %}
 
     {% if popular_proposal.for_all_areas %}
@@ -332,34 +317,27 @@ $(function(){
               {% endif %}
             {% endfor %}
         {% endif %}
-      <!-- Concejales comprometidos -->
-      {% commiters_by_election_position popular_proposal 'concejal' as concejal %}
-      {% if concejales.all %}
-      <h3 class="text-center">Candidatos a concejal que apoyan esta propuesta:</h3>
-            {% for commitment in concejales %}
-              {% if commitment.commited %}
-                {% with candidate=commitment.candidate %}
-                  <div class="row">
-                    <div class="col-md-1 col-sm-2 col-xs-2">
-                      {% if candidate.image %}
-                          {% thumbnail candidate.image "300x300" crop="center" as im %}
-                          <img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato-small">
-                          {% endthumbnail %}
-                        {% else %}
-                          <a href="{{commitment.get_absolute_url}}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato-small"></a>
-                      {% endif %}
-                    </div>
-                    <div class="col-md-11 col-sm-10 col-xs-10">
-                      <h5><a href="{{commitment.candidate.get_absolute_url}}">{{candidate}}</a><span class="text-light"> | {% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</span></h5>
-                      <a href="{{commitment.get_absolute_url}}"><div class="label label-success">La aceptó</div></a>
-                    </div>
-                  </div>
-              {% endwith %}
-              {% endif %}
-            {% endfor %}
-        {% endif %}
-    {% endif %}
 
+    {% endif %}
+    <!-- Organizaciones patrocinantes -->
+    {% if popular_proposal.sponsoring_orgs.all %}
+    <h3 class="text-center">Organizaciones patrocinantes de esta propuesta:</h3>
+        {% for org in popular_proposal.sponsoring_orgs %}
+            <div class="row">
+              <div class="col-md-1 col-sm-2 col-xs-2">
+                {% if org.organization_template.logo %}
+                  <a href="{% url 'organization_profiles:home' slug=org.username %}" target="_blank">
+                      {% thumbnail org.organization_template.logo "300x300" crop="center" as im %}
+                      <img src="{{im.url}}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small">
+                      {% endthumbnail %}
+                    {% else %}
+                      <img src="{% static 'img/candidate-default.jpg' %}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small"></a>
+                  {% endif %}
+                </a>
+              </div>
+            </div>
+        {% endfor %}
+    {% endif %}
 
 {% endblock everything %}
   </div>

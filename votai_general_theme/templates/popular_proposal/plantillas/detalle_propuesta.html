@@ -1,19 +1,22 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
 
-<p>Esta es la propuesta de {{popular_proposal.proposer}} para las candidatas y candidatos a la alcaldía de {{popular_proposal.area}}.</p>
+<p>Esta es la propuesta de {{popular_proposal.proposer}} para los/as candidatos/as de {{popular_proposal.area}}.</p>
 
-<h3>¿Cuál es el problema o necesidad que se busca solucionar?</h3>
+<h3>¿Cuál es el problema que se busca solucionar?</h3>
 <p>{{popular_proposal.data.problem|popular_proposal_when|linebreaksbr}}</p>
 
-<h3>¿Qué hay que hacer para lograr la situación ideal?</h3>
+<h3>¿Cuál es la causa de este problema?</h3>
+<p>{{popular_proposal.data.causes}}</p>
+
+<h3>¿Cuál es el escenario ideal al que se quiere llegar?</h3>
 <p>{{popular_proposal.data.solution}}</p>
 
-<h3>¿Qué acción dará por cumplida la tarea del alcalde?</h3>
+<h3>¿Cuál es la propuesta para solucionar este problema?</h3>
 <p>
 {{popular_proposal.data.solution_at_the_end|popular_proposal_when|linebreaksbr}} antes de {{popular_proposal.data.when|popular_proposal_when}}
 </p>
 
 <p>
-  Esperamos que las candidatas y candidatos se pronuncien respecto a esta propuesta. Desde ya muchas gracias,</br>El equipo de VotaInteligente a nombre de {{popular_proposal.proposer}}.
+  Esperamos que los/as candidatos/as se pronuncien respecto a esta propuesta. Desde ya muchas gracias,</br>El equipo de VotaInteligente a nombre de {{popular_proposal.proposer}}.
 </p>

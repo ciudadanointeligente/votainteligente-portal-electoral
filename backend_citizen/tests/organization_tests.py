@@ -79,7 +79,7 @@ class OrganizationCreationAndRelationTestCase(OrganizationTestCase):
         response = self.client.post(url, data=data, follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertTrue(self.fiera.enrollments.all())
-        self.assertTemplateUsed(response, 'backend_citizen/index.html')
+        self.assertTemplateUsed(response, 'backend_citizen/my_proposals.html')
 
     def test_ask_if_user_belongs_to_an_org(self):
         url = reverse('backend_citizen:do_you_belong_to_an_org')

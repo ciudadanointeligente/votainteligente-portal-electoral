@@ -229,6 +229,7 @@ class PopularProposal(models.Model, OGPMixin):
 class ProposalLike(models.Model):
     user = models.ForeignKey(User)
     proposal = models.ForeignKey(PopularProposal)
+    message = models.TextField(null=True, blank=True, help_text=_(u"Quieres decirle algo?"))
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
 

@@ -4,10 +4,6 @@ from django.contrib.auth.models import User
 from popular_proposal.models import (ProposalLike,
                                      PopularProposal,
                                      )
-import json
-from popular_proposal.forms import SubscriptionForm
-from django.core.urlresolvers import reverse
-from django.template import Template, Context
 from django.core import mail
 
 
@@ -36,8 +32,9 @@ class OrganizationSupportingSomeOneElsesProposalTestCase(TestCase):
 
     def test_one_mail_is_sent_when_an_organization_likes_a_proposal(self):
         original_amount_of_mails = len(mail.outbox)
-        like = ProposalLike.objects.create(user=self.organization,
-                                           proposal=self.proposal)
+        ProposalLike.objects.create(user=self.organization,
+                                    message=u"Hello there we like you a lot",
+                                    proposal=self.proposal)
 
         # Hay dos nuevos mails
         self.assertEquals(len(mail.outbox), original_amount_of_mails + 2)

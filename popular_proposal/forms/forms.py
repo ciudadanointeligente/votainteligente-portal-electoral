@@ -177,6 +177,7 @@ class CreateProposalMixin(ProposalCreationMixin):
 
 class ProposalForm(ProposalFormBase, CreateProposalMixin):
     model_class = ProposalTemporaryData
+
     def __init__(self, *args, **kwargs):
         self.area = kwargs.pop('area')
         super(ProposalForm, self).__init__(*args, **kwargs)
@@ -193,7 +194,7 @@ class UpdateProposalForm(forms.ModelForm):
 
     class Meta:
         model = PopularProposal
-        fields = ['background', 'contact_details', 'image', 'document', 'generated_at','is_local_meeting']
+        fields = ['background', 'contact_details', 'image', 'document', 'generated_at', 'is_local_meeting']
         labels = {'background': _(u'Más antecedentes sobre tu propuesta.'),
                   'image': _(u'¿Tienes alguna imagen para compartir?'),
                   'document': _(u'¿Tienes algún documento para complementar tu propuesta?'),
@@ -262,11 +263,11 @@ class RejectionForm(forms.Form):
 
 FIELDS_TO_BE_AVOIDED = ['terms_and_conditions', ]
 
+
 class ProposalTemporaryDataUpdateForm(ProposalFormBase):
     overall_comments = forms.CharField(required=False,
                                        label=_(u'Comentarios sobre tu revisón'),
                                        widget=forms.Textarea())
-
 
     def __init__(self, *args, **kwargs):
         self.proposer = kwargs.pop('proposer')
@@ -320,15 +321,18 @@ class ProposalTemporaryDataUpdateForm(ProposalFormBase):
 
 
 class SubscriptionForm(forms.Form):
+    message = forms.CharField(required=False)
+
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
         self.proposal = kwargs.pop('proposal')
         super(SubscriptionForm, self).__init__(*args, **kwargs)
 
     def subscribe(self):
-
-        like, created = ProposalLike.objects.get_or_create(user=self.user,
-                                                           proposal=self.proposal)
+        kwargs = {'user': self.user, 'proposal': self.proposal}
+        if self.cleaned_data['message']:
+            kwargs['message'] = self.cleaned_data['message']
+        like, created = ProposalLike.objects.get_or_create(**kwargs)
         return like
 
 

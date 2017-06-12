@@ -1,7 +1,6 @@
 # coding=utf-8
 from django.contrib.auth.models import User
 from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
-from backend_citizen.models import Profile
 from django.core.urlresolvers import reverse
 from organization_profiles.models import OrganizationTemplate, ExtraPage
 from popular_proposal.models import PopularProposal, ProposalLike
@@ -12,8 +11,8 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
     def setUp(self):
         super(OrganizationFrontEndTestCase, self).setUp()
         self.user = User.objects.create(username='ciudadanoi',
-                                    first_name='Ciudadano Inteligente',
-                                   email='mail@mail.com')
+                                        first_name='Ciudadano Inteligente',
+                                        email='mail@mail.com')
         self.user.set_password(PASSWORD)
         self.user.save()
         self.user.profile.is_organization = True
@@ -21,7 +20,6 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
 
     def test_properties(self):
         url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
-        ## /organization/ciudadanoi
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
@@ -32,7 +30,7 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         response = self.client.get(url)
         content = response.content.decode('utf-8')
         self.assertIn(u"<h1>" + str(self.user) + u"</h1>", content)
-        ## Y si ahora le cambio el template debería ser distinto o no?????
+        '''Y si ahora le cambio el template debería ser distinto o no?????'''
         self.user.organization_template.content = u'<h2>{{object}}</h2>'
         self.user.organization_template.save()
         response = self.client.get(url)
@@ -40,7 +38,7 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         self.assertIn(u"<h2>" + str(self.user) + u"</h2>",
                       content,
                       u"Cambiando el template handlebars cambiar la respuesta")
-        ## Y si ahora le cambio el template debería ser distinto o no?????
+        '''Y si ahora le cambio el template debería ser distinto o no?????'''
         self.user.organization_template.content = ""
         self.user.organization_template.save()
         response = self.client.get(url)
@@ -51,7 +49,8 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         self.user.organization_template.logo = self.get_image()
         self.user.organization_template.facebook = u'https://www.facebook.com/ciudadanointeligente'
         self.user.organization_template.secondary_color = '#EEEEDD'
-        self.user.organization_template.content = u'<ul><li>logo: {{logo}}</li><li>facebook: {{facebook}}</li><li>secondary_color: {{secondary_color}}</li></ul>'
+        c = u'<ul><li>logo:{{logo}}</li><li>facebook:{{facebook}}</li><li>secondary:{{secondary_color}}</li></ul>'
+        self.user.organization_template.content = c
         self.user.organization_template.save()
         url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
         response = self.client.get(url)
@@ -64,7 +63,8 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         self.user.organization_template.logo = self.get_image()
         self.user.organization_template.facebook = u'https://www.facebook.com/ciudadanointeligente'
         self.user.organization_template.secondary_color = '#EEEEDD'
-        self.user.organization_template.content = u'<ul><li>logo: {{logo}}</li><li>facebook: {{facebook}}</li><li>secondary_color: {{secondary_color}}</li></ul>'
+        c = u'<ul><li>logo: {{logo}}</li><li>facebook: {{facebook}}</li><li>secondary c: {{secondary_color}}</li></ul>'
+        self.user.organization_template.content = c
         self.user.organization_template.save()
         url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
         response = self.client.get(url)
@@ -86,7 +86,8 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
 
     def test_instanciate_model(self):
         self.user.profile.is_organization = True
-        self.user.profile.save() #  Acá se crea un OrganizationTemplate
+        self.user.profile.save()
+        #  Acá se crea un OrganizationTemplate
         # y se crea porque en la linea anterior le dijimos que la wea era organización
         template = OrganizationTemplate.objects.get(organization=self.user)
         self.assertEquals(template.content, "")
@@ -98,19 +99,21 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
         self.assertFalse(OrganizationTemplate.objects.filter(organization=fiera))
         self.assertIn(str(self.user), str(template))
 
-    @override_settings(DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS=[{'title':u'Agenda', 'content':'Esta es la agenda'},
-                                                           {'title':u'Documentos', 'content':'Documentos'}])
+    @override_settings(DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS=[{'title': u'Agenda', 'content': 'Esta es la agenda'},
+                                                             {'title': u'Documentos', 'content': 'Documentos'}])
     def test_automatically_create_extra_pages(self):
         self.user.profile.is_organization = True
-        self.user.profile.save() #  Acá se crea un OrganizationTemplate
+        self.user.profile.save()
+        #  Acá se crea un OrganizationTemplate
         # y se crea porque en la linea anterior le dijimos que la wea era organización
-        template = OrganizationTemplate.objects.get(organization=self.user)
+        OrganizationTemplate.objects.get(organization=self.user)
         extra_pages = ExtraPage.objects.filter(template=self.user.organization_template)
         self.assertEquals(len(extra_pages), 2)
         self.assertTrue(extra_pages.filter(title=u'Agenda'))
         self.assertTrue(extra_pages.filter(title=u'Documentos'))
-        #Probando que no se crean dos veces.
-        self.user.profile.save() #  Acá se crea un OrganizationTemplate
+        # Probando que no se crean dos veces.
+        self.user.profile.save()
+        # Acá se crea un OrganizationTemplate
         extra_pages = ExtraPage.objects.filter(template=self.user.organization_template)
         self.assertEquals(len(extra_pages), 2)
 
@@ -143,6 +146,13 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
         self.assertTrue(template.secondary_color)
         self.assertTrue(template.rss_url)
 
+    def test_get_absolute_url(self):
+        expected_url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
+        self.user.profile.is_organization = True
+        self.user.profile.save()
+        template = self.user.organization_template
+        self.assertEquals(template.get_absolute_url(), expected_url)
+
 
 class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
     def setUp(self):
@@ -161,18 +171,19 @@ class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
         self.assertEquals(extra_page.title, u"Título")
         self.assertEquals(extra_page.content, u"## Contenido")
         self.assertTrue(extra_page.slug)
-        ## El regalito
+        # El regalito
         self.assertIn(u"<h2>Contenido</h2>", extra_page.content_markdown)
 
     def test_extra_pages_in_content(self):
-        self.user.organization_template.content = u'{{#each extra_pages}} {{title}} - {{{content}}} - {{slug}} {{/each}}'
+        self.user.organization_template.content = u'{{#each extra_pages}}{{title}} - {{{content}}} - {{slug}}{{/each}}'
         self.user.organization_template.save()
         extra_page = ExtraPage.objects.create(template=self.user.organization_template,
                                               title=u"Título",
                                               content=u"## Contenido")
 
         url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
-        response = self.client.get(url) ## Esto es lo que no es unicode
+        response = self.client.get(url)
+        # Esto es lo que no es unicode
         content = response.content.decode('utf-8')
 
         self.assertIn(extra_page.title, content)
@@ -191,7 +202,8 @@ class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
                                                           )
 
         url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
-        response = self.client.get(url) ## Esto es lo que no es unicode
+        response = self.client.get(url)
+        # Esto es lo que no es unicode
         content = response.content.decode('utf-8')
 
         self.assertIn(popular_proposal.title, content)
@@ -204,19 +216,19 @@ class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
                                                           title=u'This is a title'
                                                           )
         popular_proposal2 = PopularProposal.objects.create(proposer=self.fiera,
-                                                          area=self.arica,
-                                                          data=self.data,
-                                                          title=u'Esto es un título'
-                                                          )
+                                                           area=self.arica,
+                                                           data=self.data,
+                                                           title=u'Esto es un título'
+                                                           )
 
-        support = ProposalLike.objects.create(user=self.user,
-                                           proposal=popular_proposal)
+        ProposalLike.objects.create(user=self.user,
+                                    proposal=popular_proposal)
 
-        support2 = ProposalLike.objects.create(user=self.user,
-                                           proposal=popular_proposal2)
+        ProposalLike.objects.create(user=self.user,
+                                    proposal=popular_proposal2)
 
-        ## Hay dos organizaciones que le ponen support a esta propuesta
-        ## y yo quiero poder hacer que esten en alguna parte listadas
+        # Hay dos organizaciones que le ponen support a esta propuesta
+        # y yo quiero poder hacer que esten en alguna parte listadas
 
         # This is not a sponsorships
         ProposalLike.objects.create(user=self.feli,
@@ -227,9 +239,9 @@ class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
         self.user.organization_template.content = u'{{#each sponsorships }} {{title}} {{/each}}'
         self.user.organization_template.save()
 
-
         url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
-        response = self.client.get(url) ## Esto es lo que no es unicode
+        response = self.client.get(url)
+        # Esto es lo que no es unicode
         content = response.content.decode('utf-8')
 
         self.assertIn(popular_proposal.title, content)

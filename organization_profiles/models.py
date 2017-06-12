@@ -8,6 +8,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
+from django.core.urlresolvers import reverse
 from autoslug import AutoSlugField
 from django.conf import settings
 import markdown2
@@ -18,36 +19,36 @@ class OrganizationTemplate(models.Model):
     organization = models.OneToOneField(User, related_name='organization_template')
     content = models.TextField(default="")
     logo = models.ImageField(upload_to="organizations/profiles/",
-                              null=True,
-                              blank=True,
-                              verbose_name=_(u'El logo de tu organización'))
+                             null=True,
+                             blank=True,
+                             verbose_name=_(u'El logo de tu organización'))
     background_image = models.ImageField(upload_to="organizations/backgrounds/",
-                              null=True,
-                              blank=True,
-                              verbose_name=_(u'Imagen de fondo'))
+                                         null=True,
+                                         blank=True,
+                                         verbose_name=_(u'Imagen de fondo'))
     title = models.CharField(max_length=512,
-                                verbose_name=_(u'Título de tu organización'),
-                                blank=True,
-                                null=True)
+                             verbose_name=_(u'Título de tu organización'),
+                             blank=True,
+                             null=True)
     sub_title = models.TextField(verbose_name=_('Bajada'),
-                                   null=True,
-                                   blank=True)
+                                 null=True,
+                                 blank=True)
     org_url = models.URLField(blank=True,
-                                null=True)
+                              null=True)
     facebook = models.URLField(blank=True,
-                                null=True)
+                               null=True)
     twitter = models.URLField(blank=True,
-                                null=True)
+                              null=True)
     instagram = models.URLField(blank=True,
                                 null=True)
     primary_color = models.CharField(max_length=8,
-                                verbose_name=_(u'Color primario'),
-                                default="#CCDDCC")
+                                     verbose_name=_(u'Color primario'),
+                                     default="#CCDDCC")
     secondary_color = models.CharField(max_length=8,
-                                verbose_name=_(u'Color secundario'),
-                                default="#DDCCDD")
+                                       verbose_name=_(u'Color secundario'),
+                                       default="#DDCCDD")
     rss_url = models.URLField(blank=True,
-                                null=True)
+                              null=True)
 
     def __str__(self):
         return "Template for %s" % (str(self.organization))
@@ -58,10 +59,14 @@ class OrganizationTemplate(models.Model):
                                      title=data["title"],
                                      content=data["content"])
 
+    def get_absolute_url(self):
+        return reverse('organization_profiles:home', kwargs={'slug': self.organization.username})
+
 
 BASIC_FIELDS = ["logo", "background_image", "title", "sub_title",
                 "org_url", "facebook", "twitter", "instagram", "primary_color",
-                "secondary_color", "rss_url",]
+                "secondary_color", "rss_url"]
+
 
 class ExtraPage(models.Model):
     template = models.ForeignKey(OrganizationTemplate, related_name='extra_pages')
@@ -73,6 +78,7 @@ class ExtraPage(models.Model):
     @property
     def content_markdown(self):
         return markdown2.markdown(self.content)
+
 
 @receiver(post_save, sender=Profile, dispatch_uid="create_user_profile")
 def create_organization_template(sender, instance, created, raw, **kwargs):

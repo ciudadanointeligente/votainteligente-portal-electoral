@@ -16,7 +16,6 @@ from elections.models import Candidate, Area
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-from django.core.mail import mail_admins
 from django.template.loader import get_template
 
 
@@ -75,7 +74,6 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
     objects = models.Manager()
 
     def save(self, *args, **kwargs):
-        creating = self.id is None
         if not self.comments:
             self.comments = {}
         for key in self.data.keys():
@@ -142,12 +140,12 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
     def __str__(self):
         return self.get_title()
 
+
 class ProposalsOrderedManager(models.Manager):
     def by_likers(self, *args, **kwargs):
         qs = self.get_queryset()
         qs = qs.annotate(num_likers=Count('likers')).order_by('-num_likers')
         return qs
-
 
 
 @python_2_unicode_compatible
@@ -172,7 +170,7 @@ class PopularProposal(models.Model, OGPMixin):
     background = models.TextField(null=True, blank=True, help_text=_(u"Antecedentes sobre tu propuesta"))
     contact_details = models.TextField(null=True,
                                        blank=True,
-                                       help_text=_(u'¿Cómo te puede contactar un candidato?'))
+                                       help_text=_(u'¿Cómo te pueden contactar? Esta información es pública.'))
     document = models.FileField(upload_to='uploads/proposal/backgrounds/%Y/%m/%d/',
                                 help_text=_(u'¿Tienes algún documento para complementar tu propuesta?'),
                                 null=True,
@@ -227,9 +225,11 @@ class PopularProposal(models.Model, OGPMixin):
                               template,
                               to=[contact.mail])
 
+
 class ProposalLike(models.Model):
     user = models.ForeignKey(User)
     proposal = models.ForeignKey(PopularProposal)
+    message = models.TextField(null=True, blank=True, help_text=_(u"Quieres decirle algo?"))
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
 
@@ -238,12 +238,16 @@ class ProposalLike(models.Model):
         created = self.pk is not None
         if created:
             if self.user.profile.is_organization:
-                template = 'new_sponsorshipnotification'
+                template = 'new_sponsorshipnotification_to_proposer'
                 context = {'like': self}
                 send_mail(context,
                           template,
-                          to=[self.user.email,
-                              self.proposal.proposer.email])
+                          to=[self.proposal.proposer.email])
+                template = 'new_sponsorshipnotification_to_sponsorer'
+                context = {'like': self}
+                send_mail(context,
+                          template,
+                          to=[self.user.email])
             self.numerical_notification()
 
     def numerical_notification(self):

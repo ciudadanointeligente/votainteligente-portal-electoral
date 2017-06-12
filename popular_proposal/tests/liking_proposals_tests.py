@@ -25,6 +25,7 @@ class SubscribingToPopularProposal(TestCase):
 
     def test_instanciate_liking_a_proposal(self):
         like = ProposalLike.objects.create(user=self.feli,
+                                           message=u"Hello we like your proposal so please contact us",
                                            proposal=self.proposal)
         self.assertTrue(like)
         self.assertTrue(like.created)
@@ -41,8 +42,19 @@ class SubscribingToPopularProposal(TestCase):
         p = ProposalLike.objects.get(user=self.feli, proposal=self.proposal)
         self.assertTrue(p)
 
+    def test_subscription_form_with_message(self):
+        message = u'This is a message'
+        data = {'message': message}
+        form = SubscriptionForm(data=data,
+                                user=self.feli,
+                                proposal=self.proposal)
+        self.assertTrue(form.is_valid())
+        form.subscribe()
+        p = ProposalLike.objects.get(user=self.feli, proposal=self.proposal)
+        self.assertEquals(p.message, message)
+
     def test_liking_view(self):
-        url = reverse('popular_proposals:like_a_proposal', kwargs={'pk':self.proposal.id})
+        url = reverse('popular_proposals:like_a_proposal', kwargs={'pk': self.proposal.id})
         self.client.login(username=self.feli,
                           password='alvarez')
         response = self.client.get(url)
@@ -82,10 +94,8 @@ class SubscribingToPopularProposal(TestCase):
                           password='alvarez')
         response_get = self.client.get(url, {'next': url_home})
         self.assertEquals(response_get.context['next'], url_home)
-        response = self.client.post(url,
-                                    data={'next': url_home})
-        response = self.client.post(url,
-                                    data={'next': url_home})
+        self.client.post(url,
+                         data={'next': url_home})
         proposals = ProposalLike.objects.filter(user=self.feli, proposal=self.proposal)
         self.assertEquals(proposals.count(), 1)
 

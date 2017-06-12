@@ -4,10 +4,6 @@ from django.contrib.auth.models import User
 from popular_proposal.models import (ProposalLike,
                                      PopularProposal,
                                      )
-import json
-from popular_proposal.forms import SubscriptionForm
-from django.core.urlresolvers import reverse
-from django.template import Template, Context
 from django.core import mail
 
 
@@ -17,7 +13,7 @@ PASSWORD = "s3cr3t"
 class OrganizationSupportingSomeOneElsesProposalTestCase(TestCase):
     '''
     Cuando una propuesta tiene el corazón de una organización
-    se produce lo que llamamos un apadrinamiento.
+    se produce lo que llamamos un apoyo.
     En este momento se envían dos mails con los contactos de las dos organizaciones
     para que se pongan de acuerdo.
     '''
@@ -36,10 +32,18 @@ class OrganizationSupportingSomeOneElsesProposalTestCase(TestCase):
 
     def test_one_mail_is_sent_when_an_organization_likes_a_proposal(self):
         original_amount_of_mails = len(mail.outbox)
-        like = ProposalLike.objects.create(user=self.organization,
-                                           proposal=self.proposal)
+        ProposalLike.objects.create(user=self.organization,
+                                    message=u"Hello there we like you a lot",
+                                    proposal=self.proposal)
 
-        the_mail = mail.outbox[original_amount_of_mails]
-        self.assertIn(self.organization.email, the_mail.to)
-        self.assertIn(self.fiera.email, the_mail.to)
-        self.assertEquals(len(the_mail.to), 2)
+        # Hay dos nuevos mails
+        self.assertEquals(len(mail.outbox), original_amount_of_mails + 2)
+        to_the_proposer = mail.outbox[original_amount_of_mails]
+        # Este mail está dirigido a quien hizo la propuesta
+        self.assertIn(self.fiera.email, to_the_proposer.to)
+        self.assertEquals(len(to_the_proposer.to), 1)
+
+        # Este mail está dirigido a quien apoyó la propuesta
+        to_the_supporter = mail.outbox[original_amount_of_mails + 1]
+        self.assertIn(self.organization.email, to_the_supporter.to)
+        self.assertEquals(len(to_the_proposer.to), 1)

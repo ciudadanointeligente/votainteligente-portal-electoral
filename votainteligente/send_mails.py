@@ -1,11 +1,11 @@
 # coding=utf-8
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
-from django.template import Context
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.contrib.sites.models import Site
 
 
 def validateEmail(email):
@@ -22,6 +22,8 @@ def send_mail(context, template_prefix, to=[], reply_to=None, from_email=setting
         if validateEmail(m):
             validated_to.append(m)
     to = validated_to
+    if 'site' not in context.keys():
+        context['site'] = Site.objects.get_current()
     template_prefix_dict = {'template_prefix': template_prefix}
     template_body = get_template('mails/%(template_prefix)s_body.html' % template_prefix_dict)
     body = template_body.render(context)

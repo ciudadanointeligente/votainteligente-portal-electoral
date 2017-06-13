@@ -78,11 +78,10 @@ class ProposalWizardBase(SessionWizardView):
         context.update({'popular_proposal': temporary_data,
                         'area': kwargs['area']
                         })
-        if not settings.MODERATION_ENABLED:
-            temporary_data.create_proposal()
-            context['form_update'] = UpdateProposalForm(instance=temporary_data.created_proposal)
-        else:
+        if settings.MODERATION_ENABLED:
             temporary_data.notify_new()
+        else:
+            temporary_data.send_confirmation()
         send_mails_to_staff({'temporary_data': temporary_data},
                             'notify_staff_new_proposal')
         return render(self.request, 'popular_proposal/wizard/done.html', context)

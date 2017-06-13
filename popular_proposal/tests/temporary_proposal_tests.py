@@ -158,6 +158,7 @@ class TemporaryDataConfirmationIdentifier(ProposingCycleTestCaseBase):
         self.assertIn(self.fiera.email, the_mail.to)
         self.assertEquals(len(the_mail.to), 1)
         self.assertIn(self.temporary_data.confirmation.get_absolute_url(), the_mail.body)
+        self.assertIn(self.data['title'], the_mail.body)
 
     def test_confirm(self):
         self.temporary_data.send_confirmation()

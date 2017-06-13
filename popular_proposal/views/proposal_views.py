@@ -8,9 +8,11 @@ from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.core.urlresolvers import reverse
 
-from django.http import HttpResponseNotFound, JsonResponse
+from django.http import HttpResponseNotFound, JsonResponse, Http404
 
 from django.shortcuts import get_object_or_404
 
@@ -44,6 +46,7 @@ from popular_proposal.forms import (CandidateCommitmentForm,
                                     )
 
 from popular_proposal.models import (Commitment,
+                                     ConfirmationOfProposalTemporaryData,
                                      PopularProposal,
                                      ProposalLike,
                                      ProposalTemporaryData,)
@@ -292,3 +295,18 @@ class PopularProposalUpdateView(UpdateView):
         qs = super(PopularProposalUpdateView, self).get_queryset()
         qs = qs.filter(proposer=self.request.user)
         return qs
+
+
+class ConfirmPopularProposalView(LoginRequiredMixin, DetailView):
+    model = ConfirmationOfProposalTemporaryData
+    slug_field = 'identifier'
+    slug_url_kwarg = 'identifier'
+    template_name = 'popular_proposal/confirm.html'
+
+    def get_object(self, *args, **kwargs):
+        confirmation = super(ConfirmPopularProposalView, self).get_object(*args, **kwargs)
+        if confirmation.temporary_data.proposer != self.request.user:
+            raise Http404
+        confirmation.confirmed = True
+        confirmation.save()
+        return confirmation

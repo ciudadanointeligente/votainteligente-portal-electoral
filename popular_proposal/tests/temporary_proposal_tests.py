@@ -190,3 +190,6 @@ class TemporaryDataConfirmationIdentifier(ProposingCycleTestCaseBase):
         self.assertEquals(response.status_code, 200)
         confirmation = ConfirmationOfProposalTemporaryData.objects.get(id=confirmation.id)
         self.assertTrue(confirmation.confirmed)
+        self.assertTrue(confirmation.temporary_data.created_proposal)
+        # If I access this twice I get a 404 the second time
+        self.assertEquals(self.client.get(url).status_code, 404)

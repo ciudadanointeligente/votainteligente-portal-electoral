@@ -4,6 +4,8 @@ from backend_candidate.models import Candidacy
 
 from constance import config
 
+from django.conf import settings
+
 from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
@@ -307,6 +309,8 @@ class ConfirmPopularProposalView(LoginRequiredMixin, DetailView):
         confirmation = super(ConfirmPopularProposalView, self).get_object(*args, **kwargs)
         if confirmation.temporary_data.proposer != self.request.user:
             raise Http404
-        confirmation.confirmed = True
-        confirmation.save()
+        if not confirmation.confirmed:
+            confirmation.confirm()
+        elif settings.SHOULD_RETURN_404_THE_SECOND_TIME_SOMEONE_CONFIRMS_A_PROPOSAL:
+            raise Http404
         return confirmation

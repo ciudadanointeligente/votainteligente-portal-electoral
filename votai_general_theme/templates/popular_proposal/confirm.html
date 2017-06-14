@@ -18,6 +18,7 @@
               <p>{% blocktrans %}Te estamos redirigiendo hacia la propuesta, si por algún motivo, razón o circunstancia,
               no funciona puedes hacer click en el botón de abajo.{% endblocktrans %}</p>
               <a href="{{object.temporary_data.created_proposal.get_absolute_url}}" class="btn btn-success btn-block">Revisa tu propuesta</a>
+              <a href="{% url 'popular_proposals:citizen_update' slug=object.temporary_data.created_proposal.slug %}" class="btn btn-info btn-block">{% blocktrans %} Agrégale más antecedentes.{% endblocktrans %}</a>
           </div>
       </div>
     </div>
@@ -27,7 +28,7 @@
   <script>
 window.setTimeout(function() {
     window.location.href = "{{object.temporary_data.created_proposal.get_absolute_url}}";
-}, 5000);
+}, 15000);
   </script>
 {% endblock content %}
 

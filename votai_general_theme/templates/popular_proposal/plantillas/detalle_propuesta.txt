@@ -2,16 +2,16 @@
 {% load votainteligente_extras %}
 Estimado/a candidato/a, nos ha llegado esta propuesta ciudadana para que la puedas revisar: {{popular_proposal.title}}
 
-¿Cuál es el problema que se busca solucionar?
+El problema que se quiere solucionar es:
 {{popular_proposal.data.problem|popular_proposal_when}}
 
-¿Cuál es la causa de este problema?
+La causa de este problema es:
 {{popular_proposal.data.causes}}
 
-¿Cuál es el escenario ideal al que se quiere llegar?
+El escenario ideal al que se quiere llegar es:
 {{popular_proposal.data.solution}}
 
-¿Cuál es la propuesta para solucionar este problema?
+La propuesta para solucionar este problema es:
 {{popular_proposal.data.solution_at_the_end|popular_proposal_when}} antes de {{popular_proposal.data.when|popular_proposal_when}} desde el comienzo de su mandato.
 
 La ciudadanía está esperando que se pronuncie sobre esta propuesta ciudadana.

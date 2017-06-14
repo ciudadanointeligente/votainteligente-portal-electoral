@@ -1,25 +1,25 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
 <p>
-Estimado/a candidato/a, nos ha llegado esta propuesta para mejorar {{ area }}:
+{% if user.get_full_name %}{{user.get_full_name}}{% else %}{{user}}{% endif %} ha creado una propuesta para mejorar {{ area }} en Vota Inteligente 2017.
 </p>
 
-<p><b>¿Cuál es el problema que se busca solucionar?</b></br>
+<p><b>El problema que se quiere solucionar es:</b></br>
 {{preview_data.problem|popular_proposal_when|linebreaksbr}}
 </p>
 
-<p><b>¿Cuál es la causa de este problema?</b></br>
+<p><b>La causa de este problema es:</b></br>
 {{preview_data.causes}}
 </p>
 
-<p><b>¿Cuál es el escenario ideal al que se quiere llegar?</b></br>
+<p><b>El escenario ideal al que se quiere llegar es:</b></br>
 {{preview_data.solution}}
 </p>
 
-<p><b>¿Cuál es la propuesta para solucionar este problema?</b></br>
+<p><b>La propuesta para solucionar este problema es:</b></br>
 {{preview_data.solution_at_the_end|popular_proposal_when|linebreaksbr}} El plazo de implementación de esta propuesta es de <b>{{preview_data.when|popular_proposal_when}}</b>.
 </p>
 
-<p>Esperamos que se pronuncie respecto a esta propuesta. Desde ya muchas gracias,</p>
+<p>Revísala, si te gustó compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año!</p>
 <p>El equipo de VotaInteligente a nombre de {% if user.get_full_name %}{{user.get_full_name}}{% else %}{{user}}{% endif %}.
 </p>

@@ -1,22 +1,22 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
 
-<p>Esta es la propuesta de {{popular_proposal.proposer}} para los/as candidatos/as de {{popular_proposal.area}}.</p>
+<p>Esta es la propuesta de {{popular_proposal.proposer}} para mejorar {{popular_proposal.area}}.</p>
 
-<h3>¿Cuál es el problema que se busca solucionar?</h3>
+<h3>El problema que se quiere solucionar es:</h3>
 <p>{{popular_proposal.data.problem|popular_proposal_when|linebreaksbr}}</p>
 
-<h3>¿Cuál es la causa de este problema?</h3>
+<h3>La causa de este problema es:</h3>
 <p>{{popular_proposal.data.causes}}</p>
 
-<h3>¿Cuál es el escenario ideal al que se quiere llegar?</h3>
+<h3>El escenario ideal al que se quiere llegar es:</h3>
 <p>{{popular_proposal.data.solution}}</p>
 
-<h3>¿Cuál es la propuesta para solucionar este problema?</h3>
+<h3>La propuesta para solucionar este problema es:</h3>
 <p>
 {{popular_proposal.data.solution_at_the_end|popular_proposal_when|linebreaksbr}} antes de {{popular_proposal.data.when|popular_proposal_when}}
 </p>
 
 <p>
-  Esperamos que los/as candidatos/as se pronuncien respecto a esta propuesta. Desde ya muchas gracias,</br>El equipo de VotaInteligente a nombre de {{popular_proposal.proposer}}.
+  Revísala, si te gustó compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año!,</br>El equipo de VotaInteligente a nombre de {{popular_proposal.proposer}}.
 </p>

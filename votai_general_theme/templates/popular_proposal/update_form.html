@@ -1,0 +1,22 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+
+{% csrf_token %}
+
+{% bootstrap_field form.background %}
+{% bootstrap_field form.contact_details %}
+{% bootstrap_field form.image %}
+{% bootstrap_field form.document %}
+{% bootstrap_field form.join_advocacy_url %}
+
+<h3 class="page-header">Información extra</h3>
+<p><i>Esta información nos permitirá tener un mejor entendimiento de cómo y dónde se formulan las propuestas.</i></p>
+
+{% bootstrap_field form.is_local_meeting %}
+{% bootstrap_field form.generated_at %}
+
+<div class="form-actions">
+  <button type="submit" class="btn btn-success">{% trans 'Actualiza tu propuesta'%}</button>
+ </div>

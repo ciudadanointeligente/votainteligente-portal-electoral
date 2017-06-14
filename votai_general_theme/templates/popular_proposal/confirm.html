@@ -15,21 +15,22 @@
       <div>
         <h2 class="text-center">{% blocktrans %}Listo! Tu propuesta está publicada!.{% endblocktrans %}</h2>
           <div>
-              <p>{% blocktrans %}Te estamos redirigiendo hacia la propuesta, si por algún motivo, razón o circunstancia,
-              no funciona puedes hacer click en el botón de abajo.{% endblocktrans %}</p>
-              <a href="{{object.temporary_data.created_proposal.get_absolute_url}}" class="btn btn-success btn-block">Revisa tu propuesta</a>
-              <a href="{% url 'popular_proposals:citizen_update' slug=object.temporary_data.created_proposal.slug %}" class="btn btn-info btn-block">{% blocktrans %} Agrégale más antecedentes.{% endblocktrans %}</a>
+              <a href="{{object.temporary_data.created_proposal.get_absolute_url}}" class="btn btn-success btn-block">Revísala</a>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">{% blocktrans %}Agrega más información sobre tu propuesta{% endblocktrans %}</h3>
+            </div>
+              
+<form action="{% url 'popular_proposals:citizen_update' slug=object.temporary_data.created_proposal.slug %}" enctype="multipart/form-data" method="POST" role="form">
+  {% include 'popular_proposal/update_form.html' with form=form %}
+</form>
           </div>
       </div>
     </div>
   </div>
 
 </div>
-  <script>
-window.setTimeout(function() {
-    window.location.href = "{{object.temporary_data.created_proposal.get_absolute_url}}";
-}, 15000);
-  </script>
 {% endblock content %}
 
 {% block extrafooter %}

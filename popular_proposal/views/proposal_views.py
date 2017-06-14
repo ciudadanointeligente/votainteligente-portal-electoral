@@ -314,3 +314,8 @@ class ConfirmPopularProposalView(LoginRequiredMixin, DetailView):
         elif settings.SHOULD_RETURN_404_THE_SECOND_TIME_SOMEONE_CONFIRMS_A_PROPOSAL:
             raise Http404
         return confirmation
+
+    def get_context_data(self, **kwargs):
+        kwargs = super(ConfirmPopularProposalView, self).get_context_data(**kwargs)
+        kwargs['form'] = UpdateProposalForm(instance=self.object.temporary_data.created_proposal)
+        return kwargs

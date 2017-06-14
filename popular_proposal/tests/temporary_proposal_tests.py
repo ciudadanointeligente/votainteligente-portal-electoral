@@ -3,7 +3,7 @@ from popular_proposal.tests import ProposingCycleTestCaseBase
 from backend_citizen.models import Organization
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData, ConfirmationOfProposalTemporaryData
-from popular_proposal.forms import ProposalForm
+from popular_proposal.forms import ProposalForm, UpdateProposalForm
 from django.core.urlresolvers import reverse
 from django.core import mail
 
@@ -135,6 +135,8 @@ class TemporaryDataConfirmationIdentifier(ProposingCycleTestCaseBase):
         self.temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                                    area=self.arica,
                                                                    data=self.data)
+        self.fiera.set_password('feroz')
+        self.fiera.save()
 
     def test_instanciate(self):
         confirmation = ConfirmationOfProposalTemporaryData.objects.create(temporary_data=self.temporary_data)
@@ -182,8 +184,6 @@ class TemporaryDataConfirmationIdentifier(ProposingCycleTestCaseBase):
         self.assertEquals(response.status_code, 404)
         confirmation = ConfirmationOfProposalTemporaryData.objects.get(id=confirmation.id)
         self.assertFalse(confirmation.confirmed)
-        self.fiera.set_password('feroz')
-        self.fiera.save()
         logged_in = self.client.login(username=self.fiera.username, password='feroz')
         self.assertTrue(logged_in)
         response = self.client.get(url)
@@ -193,3 +193,15 @@ class TemporaryDataConfirmationIdentifier(ProposingCycleTestCaseBase):
         self.assertTrue(confirmation.temporary_data.created_proposal)
         # If I access this twice I get a 404 the second time
         self.assertEquals(self.client.get(url).status_code, 404)
+
+    def test_confirm_proposal_brings_form_for_updating_the_proposal(self):
+        self.temporary_data.send_confirmation()
+        confirmation = self.temporary_data.confirmation
+        logged_in = self.client.login(username=self.fiera.username, password='feroz')
+        logged_in = self.client.login(username=self.fiera.username, password='feroz')
+        self.assertTrue(logged_in)
+        response = self.client.get(confirmation.get_absolute_url())
+        self.assertEquals(response.status_code, 200)
+        form = response.context['form']
+        self.assertIsInstance(form, UpdateProposalForm)
+        self.assertEquals(form.instance, confirmation.temporary_data.created_proposal)

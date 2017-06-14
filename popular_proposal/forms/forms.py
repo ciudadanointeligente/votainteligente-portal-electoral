@@ -101,7 +101,6 @@ wizard_forms_fields = [
         'fields': OrderedDict([
             ('title', forms.CharField(max_length=256,
                                       widget=forms.TextInput())),
-            ('join_advocacy_url', forms.URLField(max_length=256, required=False)),
             ('organization', get_user_organizations_choicefield),
             ('terms_and_conditions', forms.BooleanField(
                 error_messages={'required':
@@ -186,6 +185,7 @@ class ProposalForm(ProposalFormBase, CreateProposalMixin):
 class UpdateProposalForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UpdateProposalForm, self).__init__(*args, **kwargs)
+        print self.fields
         area_qs = Area.public.all()
         if settings.POSSIBLE_GENERATING_AREAS_FILTER:
             area_qs = area_qs.filter(classification=settings.POSSIBLE_GENERATING_AREAS_FILTER)
@@ -194,11 +194,17 @@ class UpdateProposalForm(forms.ModelForm):
 
     class Meta:
         model = PopularProposal
-        fields = ['background', 'contact_details', 'image', 'document', 'generated_at', 'is_local_meeting']
+        fields = ['background',
+                  'contact_details',
+                  'image',
+                  'document',
+                  'join_advocacy_url',
+                  'generated_at','is_local_meeting']
         labels = {'background': _(u'Más antecedentes sobre tu propuesta.'),
                   'image': _(u'¿Tienes alguna imagen para compartir?'),
                   'document': _(u'¿Tienes algún documento para complementar tu propuesta?'),
                   'generated_at': _(u'¿En qué comuna se generó esta propuesta?'),
+                  'join_advocacy_url': _(u'Tienes un grupo de Whatsapp público donde otros se puedan unir?'),
                   'contact_details': _(u'¿Cómo te puede contactar un candidato?'),
                   'is_local_meeting': _(u'¿Esta propuesta se generó en un encuentro local?')
                   }

@@ -47,7 +47,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(cleaned_data['causes'], self.data['causes'])
         temporary_data = form.save()
         self.assertEquals(len(mail.outbox), original_amount + 1)
-        self.assertEquals(temporary_data.join_advocacy_url, self.data["join_advocacy_url"])
         self.assertEquals(temporary_data.proposer, self.fiera)
         self.assertEquals(temporary_data.area, self.arica)
         t_data = temporary_data.data

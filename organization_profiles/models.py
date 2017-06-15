@@ -46,7 +46,7 @@ class OrganizationTemplate(models.Model):
                                      default="#CCDDCC")
     secondary_color = models.CharField(max_length=8,
                                        verbose_name=_(u'Color secundario'),
-                                       default="#DDCCDD")
+                                       default="#2DDC22")
     rss_url = models.URLField(blank=True,
                               null=True)
 
@@ -65,7 +65,7 @@ class OrganizationTemplate(models.Model):
 
 BASIC_FIELDS = ["logo", "background_image", "title", "sub_title",
                 "org_url", "facebook", "twitter", "instagram", "primary_color",
-                "secondary_color", "rss_url"]
+                "secondary_color"]
 
 
 class ExtraPage(models.Model):

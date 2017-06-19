@@ -13,11 +13,7 @@ from django.http import HttpResponseNotFound
 
 from django.shortcuts import get_object_or_404, render
 
-from django.shortcuts import render_to_response
-
 from django.utils.decorators import method_decorator
-
-from django.views.generic.edit import UpdateView
 
 from elections.models import Area
 
@@ -27,12 +23,9 @@ from popular_proposal.forms import (AreaForm,
                                     UpdateProposalForm,
                                     get_form_list,)
 
-from popular_proposal.models import (PopularProposal,
-                                     ProposalTemporaryData)
+from popular_proposal.models import ProposalTemporaryData
 
 from votainteligente.send_mails import send_mails_to_staff
-
-from django.template import RequestContext
 
 wizard_form_list = get_form_list()
 
@@ -83,13 +76,12 @@ class ProposalWizardBase(SessionWizardView):
         temporary_data = ProposalTemporaryData.objects.create(**kwargs)
         context = self.get_context_data(form=None)
         context.update({'popular_proposal': temporary_data,
-        'area': kwargs['area']
-        })
-        if not settings.MODERATION_ENABLED:
-            temporary_data.create_proposal()
-            context['form_update'] = UpdateProposalForm(instance=temporary_data.created_proposal)
-        else:
+                        'area': kwargs['area']
+                        })
+        if settings.MODERATION_ENABLED:
             temporary_data.notify_new()
+        else:
+            temporary_data.send_confirmation()
         send_mails_to_staff({'temporary_data': temporary_data},
                             'notify_staff_new_proposal')
         return render(self.request, 'popular_proposal/wizard/done.html', context)

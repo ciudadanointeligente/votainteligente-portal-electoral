@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from popular_proposal.views.proposal_views import (ProposalCreationView,
                                                    ThanksForProposingView,
+                                                   ConfirmPopularProposalView,
                                                    SubscriptionView,
                                                    HomeView,
                                                    PopularProposalDetailView,
@@ -30,6 +31,9 @@ urlpatterns = [
     url(r'^create_wizard/(?P<slug>[-\w]+)/?$',
         ProposalWizard.as_view(),
         name='propose_wizard'),
+    url(r'^confirmar/(?P<identifier>[-\w]+)/?$',
+        ConfirmPopularProposalView.as_view(),
+        name='confirm'),
     url(r'^create_wizard_full/?$',
         ProposalWizardFull.as_view(),
         name='propose_wizard_full'),

@@ -1,15 +1,11 @@
-
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
 from backend_citizen.models import Organization
 from django.contrib.auth.models import User
-from popular_proposal.models import ProposalTemporaryData
+from popular_proposal.models import ProposalTemporaryData, ConfirmationOfProposalTemporaryData
 from popular_proposal.forms import ProposalForm
 from django.core.urlresolvers import reverse
 from django.core import mail
-from django.contrib.staticfiles.templatetags.staticfiles import static
-from django.template.loader import get_template
-from django.contrib.sites.models import Site
 
 
 class TemporaryDataForPromise(ProposingCycleTestCaseBase):
@@ -108,7 +104,7 @@ class ProposingViewTestCase(ProposingCycleTestCaseBase):
 
     def test_get_proposing_view(self):
         url = reverse('popular_proposals:propose', kwargs={'slug': self.arica.id})
-        #need to be loggedin
+        # need to be loggedin
         response = self.client.get(url)
         self.assertEquals(response.status_code, 302)
 
@@ -131,3 +127,69 @@ class ProposingViewTestCase(ProposingCycleTestCaseBase):
         self.assertTemplateUsed('popular_proposal/thanks.html')
         temporary_data = ProposalTemporaryData.objects.get()
         self.assertTrue(temporary_data)
+
+
+class TemporaryDataConfirmationIdentifier(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(TemporaryDataConfirmationIdentifier, self).setUp()
+        self.temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
+                                                                   area=self.arica,
+                                                                   data=self.data)
+
+    def test_instanciate(self):
+        confirmation = ConfirmationOfProposalTemporaryData.objects.create(temporary_data=self.temporary_data)
+        self.assertTrue(confirmation)
+        self.assertTrue(confirmation.identifier)
+        self.assertFalse(confirmation.confirmed)
+        self.assertTrue(confirmation.created)
+        self.assertTrue(confirmation.updated)
+        self.assertEquals(self.temporary_data.confirmation, confirmation)
+        self.assertEquals(len(confirmation.identifier.hex), 32)
+
+    def test_send_confirmation_email(self):
+        self.temporary_data.send_confirmation()
+        self.assertTrue(self.temporary_data.confirmation)
+        self.assertTrue(self.temporary_data.confirmation.identifier)
+        self.assertFalse(self.temporary_data.confirmation.confirmed)
+
+        self.assertEquals(len(mail.outbox), 1)
+        the_mail = mail.outbox[0]
+        self.assertTrue(the_mail)
+        self.assertIn(self.fiera.email, the_mail.to)
+        self.assertEquals(len(the_mail.to), 1)
+        self.assertIn(self.temporary_data.confirmation.get_absolute_url(), the_mail.body)
+        self.assertIn(self.data['title'], the_mail.body)
+
+    def test_confirm(self):
+        self.temporary_data.send_confirmation()
+        self.temporary_data.confirmation.confirm()
+        self.assertTrue(self.temporary_data.confirmation.confirmed)
+        self.assertTrue(self.temporary_data.created_proposal)
+
+    def test_url_get(self):
+        self.temporary_data.send_confirmation()
+        confirmation = self.temporary_data.confirmation
+        url = reverse('popular_proposals:confirm', kwargs={'identifier': confirmation.identifier.hex})
+        self.assertEquals(confirmation.get_absolute_url(), url)
+        # logging in and confirming
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 302)
+        confirmation = ConfirmationOfProposalTemporaryData.objects.get(id=confirmation.id)
+        self.assertFalse(confirmation.confirmed)
+        other_user = User.objects.create_user(username='other_user', password='PASSWORD')
+        self.client.login(username=other_user.username, password="PASSWORD")
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+        confirmation = ConfirmationOfProposalTemporaryData.objects.get(id=confirmation.id)
+        self.assertFalse(confirmation.confirmed)
+        self.fiera.set_password('feroz')
+        self.fiera.save()
+        logged_in = self.client.login(username=self.fiera.username, password='feroz')
+        self.assertTrue(logged_in)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        confirmation = ConfirmationOfProposalTemporaryData.objects.get(id=confirmation.id)
+        self.assertTrue(confirmation.confirmed)
+        self.assertTrue(confirmation.temporary_data.created_proposal)
+        # If I access this twice I get a 404 the second time
+        self.assertEquals(self.client.get(url).status_code, 404)

@@ -10,9 +10,8 @@ from elections.models import Area, Candidate
 from backend_candidate.models import Candidacy
 from django import forms
 from django.core.urlresolvers import reverse
-from popular_proposal.forms import UpdateProposalForm
 from popular_proposal.forms.form_texts import TEXTS
-from popular_proposal.models import ProposalTemporaryData
+from popular_proposal.models import ProposalTemporaryData, PopularProposal
 from django.core import mail
 from backend_citizen.models import Organization, Enrollment
 from collections import OrderedDict
@@ -47,6 +46,7 @@ class WizardDataMixin(object):
 
             cntr += 1
         return test_response
+
 
 @override_settings(MODERATION_ENABLED=True)
 class WizardTestCase(TestCase, WizardDataMixin):
@@ -276,7 +276,7 @@ class WizardTestCase2(TestCase, WizardDataMixin):
         self.org = Organization.objects.create(name="Local Organization")
 
     def test_full_wizard_without_areas(self):
-        argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        Area.objects.create(name=u'Argentina', id='argentina')
         original_amount = len(mail.outbox)
         url = reverse('popular_proposals:propose_wizard_full_without_area')
         self.client.login(username=self.feli,
@@ -361,40 +361,22 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
         return response
 
     def test_create_a_proposal(self):
-        original_amount = len(mail.outbox)
         response = self.fill_the_whole_wizard()
         temporary_data = response.context['popular_proposal']
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
-        self.assertTrue(temporary_data.created_proposal)
-        '''
-        Hay dos mails el primero es para la persona que propone y el segundo
-        es para el equipo donde les avisamos que hay una propuesta nueva
-        '''
-        expected_number_of_emails = 2
-        self.assertEquals(len(mail.outbox), original_amount + expected_number_of_emails)
-        url_in_mail = False
-        for i in range(expected_number_of_emails):
-            the_mail = mail.outbox[original_amount]
-            if temporary_data.created_proposal.get_absolute_url() in the_mail.body:
-                url_in_mail = True
-        self.assertTrue(url_in_mail)
-
-    def test_done_brings_update_proposal_form(self):
-        response = self.fill_the_whole_wizard()
-        temporary_data = response.context['popular_proposal']
-
-        form = response.context['form_update']
-        self.assertIsInstance(form, UpdateProposalForm)
-        self.assertEquals(form.instance, temporary_data.created_proposal)
+        with self.assertRaises(PopularProposal.DoesNotExist):
+            temporary_data.created_proposal
+        self.assertTrue(temporary_data.confirmation)
+        self.assertFalse(temporary_data.confirmation.confirmed)
 
     def test_if_we_say_is_testing_in_wizard_it_creates_a_proposal_in_testing_area(self):
         try:
             testing_area = Area.objects.get(id=config.HIDDEN_AREAS)
         except Area.DoesNotExist:
             testing_area = Area.objects.create(id=config.HIDDEN_AREAS, name=config.HIDDEN_AREAS)
-        response = self.fill_the_whole_wizard(override_example_data={4: {'4-title':'title',
+        response = self.fill_the_whole_wizard(override_example_data={4: {'4-title': 'title',
                                                                          '4-terms_and_conditions': True,
-                                                                         "4-is_testing":True}})
+                                                                         "4-is_testing": True}})
         temporary_data = response.context['popular_proposal']
 
-        self.assertEquals(temporary_data.created_proposal.area, testing_area)
+        self.assertEquals(temporary_data.area, testing_area)

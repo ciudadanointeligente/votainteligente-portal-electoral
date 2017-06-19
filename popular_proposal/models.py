@@ -17,6 +17,7 @@ from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.template.loader import get_template
+import uuid
 
 
 class NeedingModerationManager(models.Manager):
@@ -137,8 +138,35 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
     def get_title(self):
         return self.data.get('title', u'')
 
+    def send_confirmation(self):
+        ConfirmationOfProposalTemporaryData.objects.create(temporary_data=self)
+        context = {'proposal': self}
+        send_mail(context,
+                  'new_proposal_confirmation',
+                  to=[self.proposer.email])
+
     def __str__(self):
         return self.get_title()
+
+
+class ConfirmationOfProposalTemporaryData(models.Model):
+    temporary_data = models.OneToOneField(ProposalTemporaryData, related_name="confirmation")
+    identifier = models.UUIDField(default=uuid.uuid4)
+    confirmed = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True,
+                                   blank=True,
+                                   null=True)
+    updated = models.DateTimeField(auto_now=True,
+                                   blank=True,
+                                   null=True)
+
+    def get_absolute_url(self):
+        return reverse('popular_proposals:confirm', kwargs={'identifier': self.identifier.hex})
+
+    def confirm(self):
+        self.confirmed = True
+        self.temporary_data.create_proposal()
+        self.save()
 
 
 class ProposalsOrderedManager(models.Manager):

@@ -36,33 +36,8 @@
 					{% include '_social_login_buttons.html' with url=next %}
 				</div>
 	</div>
-	<div class="col-xs-12 col-md-6">
-			<div class="line-space"></div>
-				<h3>{% trans 'Registro:' %}</h3>
-				<div>
-					<!-- Nav tabs -->
-					<ul class="nav nav-pills list-inline" role="tablist">
-						<li role="presentation" class="active"><a class="small" href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Organización' %} <i class="fa fa-users" aria-hidden="true"></i></a></li>
-						<li role="presentation" class=""><a class="small" href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Individual' %} <i class="fa fa-user" aria-hidden="true"></i></a></li>
-					</ul>
-
-					<!-- Tab panes -->
-					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane" id="userRegister">
-
-							<div class="form-group">
-								{% include '_social_login_buttons.html' with url=next %}
-							</div>
-							<p>{% trans 'O regístrate con un usuario y contraseña:' %}</p>
-							{% user_register %}
-
-						</div>
-						<div role="tabpanel" class="tab-pane active" id="groupRegister">
-							{% group_register %}
-						</div>
-						<div class="line-space"></div>
-						<div class="line-space"></div>
-					</div>
-				</div>
-	</div>
+  
+{% block login_tabs %}
+  {% include '_login_tabs.html' with next=next %}
+{% endblock login_tabs %}
 {% endblock content %}

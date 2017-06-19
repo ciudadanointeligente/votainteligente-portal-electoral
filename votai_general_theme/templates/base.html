@@ -5,9 +5,9 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load votainteligente_extras %}
-<html lang="es">
+<html lang="es"{% if config.SHOW_NAVBAR or user.is_authenticated %} class="navbar_visible"{% endif %}>
     {% include '_head.html' %}
-    <body>
+    <body{% if config.SHOW_NAVBAR or user.is_authenticated %} class="navbar_visible"{% endif %}>
       <div>
         {% if config.SHOW_NAVBAR or user.is_authenticated %}
           {% include '_navbar.html' %}

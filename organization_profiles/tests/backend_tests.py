@@ -21,18 +21,20 @@ class OrganizationTemplateUpdateForm(BackendCitizenTestCaseBase):
     def test_instanciate_form(self):
         data = {
         }
+        files = {}
+        files['logo'] = self.get_image()
         for field in BASIC_FIELDS:
             data[field] = None
         data["primary_color"] = "#112233"
         data["secondary_color"] = "#332211"
-        form_ = OrganizationTemplateForm(instance=self.template, data=data)
-        print form_.errors
+        form_ = OrganizationTemplateForm(instance=self.template, data=data, files=files)
         self.assertTrue(form_.is_valid())
         form_.save()
 
         template_again = OrganizationTemplate.objects.get(id=self.template.id)
         self.assertEquals(template_again.primary_color, data["primary_color"])
         self.assertEquals(template_again.secondary_color, data["secondary_color"])
+        self.assertEquals(template_again.organization.profile.image, template_again.logo)
 
 
 class OrganizationTemplateViewTest(BackendCitizenTestCaseBase):
@@ -88,7 +90,7 @@ class OrganizationTemplateViewTest(BackendCitizenTestCaseBase):
 
     def test_get_url_and_displays_form_for_extrapages(self):
         extra_page = self.template.extra_pages.all()[0]
-        url = reverse('organization_profiles:update_extrapage', kwargs={'pk':extra_page.id})
+        url = reverse('organization_profiles:update_extrapage', kwargs={'pk': extra_page.id})
         self.client.login(username=self.user.username, password=PASSWORD)
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
@@ -96,7 +98,7 @@ class OrganizationTemplateViewTest(BackendCitizenTestCaseBase):
 
     def test_get_dont_get_url_if_not_owner(self):
         extra_page = self.template.extra_pages.all()[0]
-        url = reverse('organization_profiles:update_extrapage', kwargs={'pk':extra_page.id})
+        url = reverse('organization_profiles:update_extrapage', kwargs={'pk': extra_page.id})
         response = self.client.get(url)
         #  Si no estás loggeado te redirije
         fiera = User.objects.create(username='FieraFerozInteligente',
@@ -111,7 +113,7 @@ class OrganizationTemplateViewTest(BackendCitizenTestCaseBase):
 
     def test_post_to_change_extrapages(self):
         extra_page = self.template.extra_pages.all()[0]
-        url = reverse('organization_profiles:update_extrapage', kwargs={'pk':extra_page.id})
+        url = reverse('organization_profiles:update_extrapage', kwargs={'pk': extra_page.id})
         self.client.login(username=self.user.username, password=PASSWORD)
         response = self.client.post(url,
                                     data={'title': 'titulo', 'content': 'contenido'},

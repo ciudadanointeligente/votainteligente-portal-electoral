@@ -85,12 +85,15 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
                                         email='mail@mail.com')
 
     def test_instanciate_model(self):
+        self.user.first_name = 'Fundacion'
+        self.user.last_name = 'Ciudadano Inteligente'
         self.user.profile.is_organization = True
         self.user.profile.save()
         #  Acá se crea un OrganizationTemplate
         # y se crea porque en la linea anterior le dijimos que la wea era organización
         template = OrganizationTemplate.objects.get(organization=self.user)
         self.assertEquals(template.content, "")
+        self.assertEquals(template.title, "Fundacion Ciudadano Inteligente")
         fiera = User.objects.create(username='fiera_feroz',
                                     password=PASSWORD,
                                     email='fiera@mail.com')

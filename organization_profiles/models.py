@@ -50,6 +50,11 @@ class OrganizationTemplate(models.Model):
     rss_url = models.URLField(blank=True,
                               null=True)
 
+    def save(self, *args, **kwargs):
+        super(OrganizationTemplate, self).save(*args, **kwargs)
+        self.organization.profile.image = self.logo
+        self.organization.profile.save()
+
     def __str__(self):
         return "Template for %s" % (str(self.organization))
 
@@ -87,4 +92,6 @@ def create_organization_template(sender, instance, created, raw, **kwargs):
     if(instance.is_organization):
         template, created = OrganizationTemplate.objects.get_or_create(organization=instance.user)
         if created:
+            template.title = instance.user.get_full_name()
+            template.save()
             template.create_default_extra_pages()

@@ -5,7 +5,7 @@ from django.conf import settings
 from backend_candidate.views import HelpFindingCandidates
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
-from django.contrib.auth.views import password_change, password_change_done
+from django.contrib.auth.views import password_change, password_change_done, login
 from django.conf.urls.static import static
 
 
@@ -45,6 +45,10 @@ urlpatterns = [
         TemplateView.as_view(template_name='encuentroONGs.html'),
         name='encuentroONGs'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
+    url(r'^accounts/login/ciudadanos/?$',
+        login,
+        {'template_name': 'registration/login_citizens.html'},
+        name='login_users'),
     url(r'^accounts/passwordchange/?$',
         password_change,
         {'template_name': 'registration/password_change.html'},

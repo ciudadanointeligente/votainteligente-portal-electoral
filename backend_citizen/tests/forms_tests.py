@@ -48,5 +48,5 @@ class UpdateMyProfileClass(BackendCitizenTestCaseBase):
         form = GroupCreationForm(data=data)
         self.assertTrue(form.is_valid())
         group = form.save()
-        self.assertEquals(group.first_name, data['name'])
+        self.assertEquals(group.last_name, data['name'])
         self.assertTrue(group.profile.is_organization)

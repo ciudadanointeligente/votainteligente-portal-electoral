@@ -1,7 +1,7 @@
 {% load votainteligente_extras %}
 ¡Felicitaciones {% if user.get_short_name %}{{ temporary_data.proposer.get_short_name}}{% else %}{{ temporary_data.proposer.get_username}}{% endif %}!:
 
-Tu propuesta para {{area}} fue recibida satisfactoriamente por {{moderator}} y nosotros la haremos llegar a las y los candidatas/os de {{area}}.
+Tu propuesta para {{area}} fue recibida satisfactoriamente{% if moderator %} por {{moderator}}{% endif %} y nosotros la haremos llegar a las y los candidatas/os de {{area}}.
 
 Ahora, te invitamos a trabajar para que tu propuesta tenga la mayor cantidad de adherentes posible y que candidatas y candidatos tengan más presión para comprometerse.
 

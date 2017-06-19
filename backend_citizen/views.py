@@ -114,7 +114,7 @@ class GroupRegistrationView(RegistrationView):
         return new_user
 
     def get_success_url(self, user):
-        return reverse('registration_activation_complete')
+        return reverse('registration_complete')
 
     def create_inactive_user(self, form):
         group = super(GroupRegistrationView, self).create_inactive_user(form)

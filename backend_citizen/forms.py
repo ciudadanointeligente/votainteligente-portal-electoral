@@ -70,7 +70,8 @@ class GroupCreationForm(UserCreationForm):
 
     def save(self, commit=True):
         group = super(GroupCreationForm, self).save(commit)
-        group.first_name = self.cleaned_data['name']
+
+        group.last_name = self.cleaned_data['name']
         if commit:
             self.set_group_profile(group)
         return group

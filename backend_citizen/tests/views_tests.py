@@ -146,12 +146,12 @@ class GroupUserCreateView(TestCase):
                 'password2': 'pass',
                 }
         response = self.client.post(url, data=data)
-        registration_complete_url = reverse('registration_activation_complete')
+        registration_complete_url = reverse('registration_complete')
         self.assertRedirects(response, registration_complete_url)
         new_amount = User.objects.count()
         self.assertEquals(new_amount, original_amount + 1)
         tha_group = User.objects.get(username="group")
-        self.assertEquals(tha_group.first_name, data['name'])
+        self.assertEquals(tha_group.last_name, data['name'])
         self.assertTrue(tha_group.profile.is_organization)
 
 

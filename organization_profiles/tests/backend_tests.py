@@ -21,18 +21,20 @@ class OrganizationTemplateUpdateForm(BackendCitizenTestCaseBase):
     def test_instanciate_form(self):
         data = {
         }
+        files = {}
+        files['logo'] = self.get_image()
         for field in BASIC_FIELDS:
             data[field] = None
         data["primary_color"] = "#112233"
         data["secondary_color"] = "#332211"
-        form_ = OrganizationTemplateForm(instance=self.template, data=data)
-        print form_.errors
+        form_ = OrganizationTemplateForm(instance=self.template, data=data, files=files)
         self.assertTrue(form_.is_valid())
         form_.save()
 
         template_again = OrganizationTemplate.objects.get(id=self.template.id)
         self.assertEquals(template_again.primary_color, data["primary_color"])
         self.assertEquals(template_again.secondary_color, data["secondary_color"])
+        self.assertEquals(template_again.organization.profile.image, template_again.logo)
 
 
 class OrganizationTemplateViewTest(BackendCitizenTestCaseBase):

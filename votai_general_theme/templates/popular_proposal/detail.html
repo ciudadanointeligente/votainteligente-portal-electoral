@@ -40,7 +40,7 @@ $(function(){
 </div>
 
   {% if popular_proposal.proposer == user %}
-    <div class="text-width text-right">
+    <div class="alert alert-success">
         <p>Esta es tu propuesta {{user}}, <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %} ¿quieres añadir antecedentes?{% endblocktrans %}</a></p>
     </div>
   {% endif%}

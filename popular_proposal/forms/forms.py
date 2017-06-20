@@ -101,7 +101,6 @@ wizard_forms_fields = [
         'fields': OrderedDict([
             ('title', forms.CharField(max_length=256,
                                       widget=forms.TextInput())),
-            ('join_advocacy_url', forms.URLField(max_length=256, required=False)),
             ('organization', get_user_organizations_choicefield),
             ('terms_and_conditions', forms.BooleanField(
                 error_messages={'required':
@@ -194,15 +193,17 @@ class UpdateProposalForm(forms.ModelForm):
 
     class Meta:
         model = PopularProposal
-        fields = ['background', 'contact_details', 'image', 'document', 'generated_at', 'is_local_meeting']
-        labels = {'background': _(u'Más antecedentes sobre tu propuesta.'),
+        fields = ['join_advocacy_url', 'background', 'contact_details', 'image', 'document', 'generated_at', 'is_local_meeting']
+        labels = {'join_advocacy_url': _(u'Dónde se pueden reunir las personas que están interesadas en esta propuesta?'),
+                  'background': _(u'Más antecedentes sobre tu propuesta.'),
                   'image': _(u'¿Tienes alguna imagen para compartir?'),
                   'document': _(u'¿Tienes algún documento para complementar tu propuesta?'),
                   'generated_at': _(u'¿En qué comuna se generó esta propuesta?'),
                   'contact_details': _(u'¿Cómo te puede contactar un candidato?'),
                   'is_local_meeting': _(u'¿Esta propuesta se generó en un encuentro local?')
                   }
-        help_texts = {'background': _(u'Ejemplo: Durante el año 2011, existió una iniciativa de otra comunidad que no llegó a buen puerto.'),
+        help_texts = {'join_advocacy_url': _(u'URL de un grupo de facebook, o un grupo en whatsapp. Por ejemplo: https://facebook.com/migrupo'),
+                      'background': _(u'Ejemplo: Durante el año 2011, existió una iniciativa de otra comunidad que no llegó a buen puerto.'),
                       'contact_details': _(u'Ejemplo: Tu teléfono o el lugar donde eres ubicable y en qué horario.'),
                       'generated_at': _(u'Si eres una ONG de vocación nacional, esta opción no aplica')}
 

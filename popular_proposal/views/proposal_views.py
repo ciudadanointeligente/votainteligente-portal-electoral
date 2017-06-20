@@ -32,7 +32,7 @@ from django_filters.views import FilterView
 
 from elections.models import Area, Candidate
 
-from popular_proposal.filters import ProposalAreaFilter
+from popular_proposal.filters import ProposalWithoutAreaFilter
 
 from popular_proposal.forms import (CandidateCommitmentForm,
                                     CandidateNotCommitingForm,
@@ -189,7 +189,7 @@ class ProposalsPerArea(EmbeddedViewBase, ListView):
         kwargs = {'data': self.request.GET or None,
                   'area': self.area
                   }
-        filterset = ProposalAreaFilter(**kwargs).qs
+        filterset = ProposalWithoutAreaFilter(**kwargs).qs
         return filterset
 
 

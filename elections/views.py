@@ -14,7 +14,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import UserCreationForm as RegistrationForm
 from popular_proposal.models import PopularProposal, ProposalTemporaryData
 from popular_proposal.forms import ProposalAreaFilterForm
-from popular_proposal.filters import ProposalAreaFilter
+from popular_proposal.filters import ProposalWithoutAreaFilter
 from django_filters.views import FilterMixin
 from django.core.cache import cache
 from django.conf import settings
@@ -184,7 +184,7 @@ class AreaDetailView(DetailView, FilterMixin):
                   'area': self.object
                   }
 
-        filterset = ProposalAreaFilter(**kwargs)
+        filterset = ProposalWithoutAreaFilter(**kwargs)
         context['popular_proposals'] = filterset.qs
         return context
 

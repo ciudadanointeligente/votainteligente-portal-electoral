@@ -3,14 +3,14 @@ from popular_proposal.tests import ProposingCycleTestCaseBase as TestCase
 from django.core.urlresolvers import reverse
 from popular_proposal.models import PopularProposal, Commitment, ProposalTemporaryData
 from popular_proposal.forms import ProposalFilterForm, ProposalAreaFilterForm
-from popular_proposal.filters import ProposalAreaFilter
+from popular_proposal.filters import ProposalWithoutAreaFilter
 from elections.models import Area, Candidate
 from backend_candidate.models import Candidacy
 from popular_proposal.forms import (CandidateCommitmentForm,
                                     CandidateNotCommitingForm,
                                     )
-from django.test import override_settings
 from constance.test import override_config
+
 
 class PopularProposalTestCaseBase(TestCase):
     def setUp(self):
@@ -174,7 +174,7 @@ class ProposalFilterTestsCase(PopularProposalTestCaseBase):
         super(ProposalFilterTestsCase, self).setUp()
 
     def test_filter_by_area(self):
-        proposal_filter = ProposalAreaFilter(area=self.algarrobo)
+        proposal_filter = ProposalWithoutAreaFilter(area=self.algarrobo)
 
         self.assertIn(self.popular_proposal1, proposal_filter.qs)
         self.assertIn(self.popular_proposal2, proposal_filter.qs)

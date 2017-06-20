@@ -1523,9 +1523,11 @@ td.cal-date{
   letter-spacing: 1.4px;
 }
 
-.landing-phrase.img-responsive{
+.landing-phrase{
+  .img-responsive{
   padding: 20px 0 20px 0;
   margin: 0 auto;
+}
 }
 
 @keyframes doscaras

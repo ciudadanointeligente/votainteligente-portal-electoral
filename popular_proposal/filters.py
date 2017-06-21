@@ -1,9 +1,16 @@
 # coding=utf-8
-from django_filters import FilterSet, ChoiceFilter, ModelChoiceFilter
+from django_filters import (FilterSet,
+                            ChoiceFilter,
+                            ModelChoiceFilter,
+                            ModelChoiceFilter)
 from popular_proposal.models import PopularProposal
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from elections.models import Area
+from django.conf import settings
 
+
+def filterable_areas(request):
+    return Area.public.filter(classification__in=settings.FILTERABLE_AREAS_TYPE)
 
 class ProposalWithoutAreaFilter(FilterSet):
     clasification = ChoiceFilter(choices=TOPIC_CHOICES, label=u"Clasificación")
@@ -47,3 +54,7 @@ def possible_areas(request):
 
 class ProposalWithAreaFilter(ProposalWithoutAreaFilter):
     area = ModelChoiceFilter(queryset=possible_areas)
+
+
+class ProposalGeneratedAtFilter(ProposalWithoutAreaFilter):
+    generated_at = ModelChoiceFilter(queryset=filterable_areas)

@@ -1,5 +1,6 @@
 # coding=utf-8
-from popular_proposal.filters import ProposalWithoutAreaFilter
+from popular_proposal.filters import (ProposalWithoutAreaFilter,
+                                      ProposalWithAreaFilter)
 from popular_proposal.tests import ProposingCycleTestCaseBase
 from popular_proposal.models import PopularProposal
 from elections.models import Area
@@ -35,3 +36,17 @@ class PopularProposalFilterTestCase(ProposingCycleTestCaseBase):
         self.assertIn(self.p1, f.qs)
         self.assertNotIn(self.p2, f.qs)
         self.assertNotIn(self.p2, f.qs)
+
+    def test_filter_with_area(self):
+
+        data = {'clasification': TOPIC_CHOICES[1][0], 'area': self.algarrobo}
+        f = ProposalWithAreaFilter(data=data)
+        self.assertIn(self.p1, f.qs)
+        self.assertNotIn(self.p2, f.qs)
+        self.assertNotIn(self.p2, f.qs)
+
+        data = {'area': self.algarrobo}
+        f = ProposalWithAreaFilter(data=data)
+        self.assertIn(self.p1, f.qs)
+        self.assertIn(self.p2, f.qs)
+        self.assertIn(self.p2, f.qs)

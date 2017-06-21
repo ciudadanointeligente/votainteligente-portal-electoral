@@ -39,13 +39,13 @@ class PopularProposalFilterTestCase(ProposingCycleTestCaseBase):
 
     def test_filter_with_area(self):
 
-        data = {'clasification': TOPIC_CHOICES[1][0], 'area': self.algarrobo}
+        data = {'clasification': TOPIC_CHOICES[1][0], 'area': self.algarrobo.id}
         f = ProposalWithAreaFilter(data=data)
         self.assertIn(self.p1, f.qs)
         self.assertNotIn(self.p2, f.qs)
         self.assertNotIn(self.p2, f.qs)
 
-        data = {'area': self.algarrobo}
+        data = {'area': self.algarrobo.id}
         f = ProposalWithAreaFilter(data=data)
         self.assertIn(self.p1, f.qs)
         self.assertIn(self.p2, f.qs)

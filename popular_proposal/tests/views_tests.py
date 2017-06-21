@@ -5,8 +5,8 @@ from django.forms import Form
 from popular_proposal.models import (PopularProposal,
                                      Commitment,
                                      ProposalTemporaryData)
-from popular_proposal.forms import ProposalFilterForm
-from popular_proposal.filters import ProposalWithoutAreaFilter
+from popular_proposal.filters import (ProposalWithoutAreaFilter,
+                                      ProposalWithAreaFilter)
 from elections.models import Area, Candidate
 from backend_candidate.models import Candidacy
 from popular_proposal.forms import (CandidateCommitmentForm,
@@ -114,7 +114,7 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
 
     def test_brings_a_list_of_proposals(self):
         response = self.client.get(self.url, {'clasification': '', 'area': ''})
-        self.assertIsInstance(response.context['form'], ProposalFilterForm)
+        self.assertIsInstance(response.context['form'], Form)
 
         self.assertIn(self.popular_proposal1, response.context['popular_proposals'])
 
@@ -137,7 +137,8 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
 
     def test_filtering_form(self):
         data = {'clasification': '', 'area': ''}
-        form = ProposalFilterForm(data=data)
+        filterset = ProposalWithAreaFilter(data=data)
+        form = filterset.form
         self.assertTrue(form.is_valid())
 
     def test_filtering_form_by_area(self):
@@ -198,7 +199,7 @@ class EmbeddedViewsTests(PopularProposalTestCaseBase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'popular_proposal/home.html')
         self.assertTemplateUsed(response, 'embedded_base.html')
-        self.assertIsInstance(response.context['form'], ProposalFilterForm)
+        self.assertIsInstance(response.context['form'], Form)
         self.assertTrue(response.context['is_embedded'])
 
     def test_get_popular_proposals_per_area_embedded(self):

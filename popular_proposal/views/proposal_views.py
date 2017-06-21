@@ -32,11 +32,11 @@ from django_filters.views import FilterView
 
 from elections.models import Area, Candidate
 
-from popular_proposal.filters import ProposalWithoutAreaFilter
+from popular_proposal.filters import (ProposalWithoutAreaFilter,
+                                      ProposalWithAreaFilter)
 
 from popular_proposal.forms import (CandidateCommitmentForm,
                                     CandidateNotCommitingForm,
-                                    ProposalFilterForm,
                                     ProposalForm,
                                     UpdateProposalForm,
                                     SubscriptionForm,
@@ -137,8 +137,12 @@ class HomeView(EmbeddedViewBase, FilterView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        initial = self.request.GET
-        context['form'] = ProposalFilterForm(initial=initial)
+        initial = self.request.GET or {}
+        filterset = ProposalWithAreaFilter(data=initial)
+        if initial:
+            for k in initial:
+                filterset.form.fields[k].initial = initial[k]
+        context['form'] = filterset.form
         return context
 
     def get_context_object_name(self, object_list):

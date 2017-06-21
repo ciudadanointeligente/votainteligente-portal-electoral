@@ -15,7 +15,9 @@ class ProposalWithoutAreaFilter(FilterSet):
                  **kwargs):
         self.area = kwargs.pop('area', None)
         if self.area is None:
-            self.area = data.pop('area', None)
+            self.area = data.get('area', None)
+            if self.area:
+                self.area = Area.objects.get(id=self.area)
         if queryset is None:
             queryset = PopularProposal.objects.all()
         if self.area is not None:

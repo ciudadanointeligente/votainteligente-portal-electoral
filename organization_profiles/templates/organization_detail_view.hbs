@@ -1,19 +1,19 @@
 <!--  primary data -->
-<div style="background-image:url({{background_image}}); background-position:center; background-size:cover; background-repeat: no-repeat; text-shadow: 1px 1px white; padding-bottom:10px; margin-top:55px;">
-  <div class="container text-center">
+<div class="org-background" style="background-image:url({{background_image}});">
+  <div class="container">
     {{#if logo}}
     <div class="logo-org">
-      <img src="{{logo}}" alt="{{organization}}" class="landing-phrase img-responsive" width="150px">
+      <img src="{{logo}}" alt="{{organization}}" class="landing-phrase" width="150px">
+      {{/if}}
+      {{#if is_owner}}
+      <a href="{{update_url}}" class="btn btn-success">Edita esta pagina</a>
+      {{/if}}
     </div>
-    {{/if}}
-    {{#if is_owner}}
-    <a href="{{update_url}}" class="btn btn-success">Edita esta pagina</a>
-    {{/if}}
   </div>
 </div>
 <!-- about -->
 <div class="" style="background-color:{{primary_color}}; color:{{secondary_color}}; padding-bottom:10px;">
-  <div class="container text-center">
+  <div class="container org-info">
     <h2 style="color:{{secondary_color}};">{{# if title}}
       {{title}}
     {{else}}
@@ -21,22 +21,22 @@
     {{/if}}</h2>
     <p>{{sub_title}}</p>
   </div>
-  <div class="container text-center">
+  <div class="container org-rrss">
     <ul class="list-inline" style="padding-top:15px;">
     {{#if org_url}}
-      <li><a href="{{org_url}}"><i class="fa fa-globe"></i> Website</a></li>
+      <li><a href="{{org_url}}" target="_blank"><i class="fa fa-globe"></i> Website</a></li>
     {{/if}}
     {{#if facebook}}
-      <li><a href="{{facebook}}"><i class="fa fa-facebook"></i> Facebook</a></li>
+      <li><a href="{{facebook}}" target="_blank"><i class="fa fa-facebook"></i> Facebook</a></li>
     {{/if}}
     {{#if twitter}}
-      <li><a href="{{twitter}}"><i class="fa fa-twitter"></i> Twitter</a></li>
+      <li><a href="{{twitter}}" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li>
     {{/if}}
     {{#if instagram}}
-      <li><a href="{{instagram}}"><i class="fa fa-instagram"></i> Instagram</a></li>
+      <li><a href="{{instagram}}" target="_blank"><i class="fa fa-instagram"></i> Instagram</a></li>
     {{/if}}
     {{#if rss_url}}
-      <li><a href="{{rss_url}}"><i class="fa fa-rss"></i> RSS</a></li>
+      <li><a href="{{rss_url}}" target="_blank"><i class="fa fa-rss"></i> RSS</a></li>
     {{/if}}
     </ul>
   </div>

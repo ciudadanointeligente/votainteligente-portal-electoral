@@ -1528,6 +1528,44 @@ td.cal-date{
   margin: 0 auto;
 }
 
+/*Perfil organizaciones*/
+.org-background{
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 10px;
+  margin-top: 55px;
+  min-height: 400px;
+}
+
+.logo-org{
+  position: relative;
+  top: 270px;
+}
+
+.org-info{
+  h2{
+    font-weight: 700;
+    margin-top: 70px;
+  }
+  p{
+    font-size: 24px;
+    font-family: 'Arvo', serif;
+  }
+}
+
+.org-rrss{
+  font-family: 'Arvo', serif;
+  font-weight: 700;
+  a{
+    color: white;
+    &:hover{
+      color: $grey-one;
+    }
+  }
+}
+
+
 @keyframes doscaras
 {
 0%   {background-color: $main-background-color;}

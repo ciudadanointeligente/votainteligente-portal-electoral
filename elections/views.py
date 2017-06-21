@@ -2,7 +2,7 @@
 from django.views.generic.edit import FormView
 from elections.forms import ElectionSearchByTagsForm
 from django.core.urlresolvers import reverse
-from django.views.generic import DetailView, TemplateView
+from django.views.generic import DetailView
 from elections.models import Election, Area
 from elections.models import Candidate, QuestionCategory, CandidateFlatPage
 from votainteligente.views import HomeViewBase
@@ -12,13 +12,10 @@ from candidator.models import Topic, TakenPosition
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import UserCreationForm as RegistrationForm
-from popular_proposal.models import PopularProposal, ProposalTemporaryData
-from popular_proposal.forms import ProposalAreaFilterForm
+from popular_proposal.models import PopularProposal
 from popular_proposal.filters import ProposalWithoutAreaFilter
 from django_filters.views import FilterMixin
 from django.core.cache import cache
-from django.conf import settings
-from django.shortcuts import render
 from constance import config
 
 logger = logging.getLogger(__name__)
@@ -178,13 +175,16 @@ class AreaDetailView(DetailView, FilterMixin):
     def get_context_data(self, **kwargs):
         context = super(AreaDetailView, self).get_context_data(**kwargs)
         initial = self.request.GET or None
-        context['proposal_filter_form'] = ProposalAreaFilterForm(area=self.object,
-                                                                 initial=initial)
-        kwargs = {'data': self.request.GET or None,
+        
+        kwargs = {'data': initial or None,
                   'area': self.object
                   }
-
         filterset = ProposalWithoutAreaFilter(**kwargs)
+        context['proposal_filter_form'] = filterset.form
+        if initial:
+            for k in initial:
+                filterset.form.fields[k].initial = initial[k]
+        
         context['popular_proposals'] = filterset.qs
         return context
 

@@ -383,16 +383,6 @@ class ProposalFilterForm(ProposalFilterFormBase):
         self._set_initial()
 
 
-class ProposalAreaFilterForm(ProposalFilterFormBase):
-
-    def __init__(self, area, *args, **kwargs):
-        self.area = area
-        super(ProposalAreaFilterForm, self).__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            if field_name in self.initial.keys():
-                self.fields[field_name].initial = self.initial[field_name]
-
-
 class ProposalTemporaryDataModelForm(forms.ModelForm, ProposalFormBase):
     class Meta:
         model = ProposalTemporaryData

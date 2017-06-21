@@ -36,7 +36,6 @@ from popular_proposal.filters import ProposalWithoutAreaFilter
 
 from popular_proposal.forms import (CandidateCommitmentForm,
                                     CandidateNotCommitingForm,
-                                    ProposalAreaFilterForm,
                                     ProposalFilterForm,
                                     ProposalForm,
                                     UpdateProposalForm,
@@ -180,9 +179,12 @@ class ProposalsPerArea(EmbeddedViewBase, ListView):
 
     def get_context_data(self):
         context = super(ProposalsPerArea, self).get_context_data()
-        initial = self.request.GET or None
-        context['form'] = ProposalAreaFilterForm(area=self.area,
-                                                 initial=initial)
+        initial = self.request.GET or {}
+        filterset = ProposalWithoutAreaFilter(area=self.area, data=initial)
+        if initial:
+            for k in initial:
+                filterset.form.fields[k].initial = initial[k]
+        context['form'] = filterset.form
         return context
 
     def get_queryset(self):

@@ -1,14 +1,18 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase as TestCase
 from django.core.urlresolvers import reverse
-from popular_proposal.models import PopularProposal, Commitment, ProposalTemporaryData
-from popular_proposal.forms import ProposalFilterForm, ProposalAreaFilterForm
+from django.forms import Form
+from popular_proposal.models import (PopularProposal,
+                                     Commitment,
+                                     ProposalTemporaryData)
+from popular_proposal.forms import ProposalFilterForm
 from popular_proposal.filters import ProposalWithoutAreaFilter
 from elections.models import Area, Candidate
 from backend_candidate.models import Candidacy
 from popular_proposal.forms import (CandidateCommitmentForm,
                                     CandidateNotCommitingForm,
                                     )
+from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from constance.test import override_config
 
 
@@ -19,20 +23,20 @@ class PopularProposalTestCaseBase(TestCase):
         self.popular_proposal1 = PopularProposal.objects.create(proposer=self.fiera,
                                                                 area=self.algarrobo,
                                                                 data=self.data,
-                                                                clasification=u'education',
+                                                                clasification=TOPIC_CHOICES[1][0],
                                                                 title=u'This is a title'
                                                                 )
         data2 = self.data
         self.popular_proposal2 = PopularProposal.objects.create(proposer=self.fiera,
                                                                 area=self.algarrobo,
                                                                 data=data2,
-                                                                clasification=u'deporte',
+                                                                clasification=TOPIC_CHOICES[2][0],
                                                                 title=u'This is a title'
                                                                 )
         self.popular_proposal3 = PopularProposal.objects.create(proposer=self.fiera,
                                                                 area=self.alhue,
                                                                 data=data2,
-                                                                clasification=u'deporte',
+                                                                clasification=TOPIC_CHOICES[2][0],
                                                                 title=u'This is a title'
                                                                 )
 
@@ -116,16 +120,16 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
 
         self.assertIn(self.popular_proposal2, response.context['popular_proposals'])
 
-        response = self.client.get(self.url, {'clasification': 'deporte', 'area': ''})
+        response = self.client.get(self.url, {'clasification': TOPIC_CHOICES[2][0], 'area': ''})
         form = response.context['form']
-        self.assertEquals(form.fields['clasification'].initial, 'deporte')
+        self.assertEquals(form.fields['clasification'].initial, TOPIC_CHOICES[2][0])
         self.assertNotIn(self.popular_proposal1, response.context['popular_proposals'])
 
         self.assertIn(self.popular_proposal2, response.context['popular_proposals'])
 
-        response = self.client.get(self.url, {'clasification': 'deporte', 'area': self.alhue.id})
+        response = self.client.get(self.url, {'clasification': TOPIC_CHOICES[2][0], 'area': self.alhue.id})
         form = response.context['form']
-        self.assertEquals(form.fields['clasification'].initial, 'deporte')
+        self.assertEquals(form.fields['clasification'].initial, TOPIC_CHOICES[2][0])
         self.assertEquals(form.fields['area'].initial, self.alhue.id)
         self.assertIn(self.popular_proposal3, response.context['popular_proposals'])
         self.assertNotIn(self.popular_proposal2, response.context['popular_proposals'])
@@ -138,7 +142,8 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
 
     def test_filtering_form_by_area(self):
         data = {'clasification': ''}
-        form = ProposalAreaFilterForm(data=data, area=self.alhue)
+        filterset = ProposalWithoutAreaFilter(data=data, area=self.alhue)
+        form = filterset.form
         self.assertTrue(form.is_valid())
 
     def test_area_detail_view_brings_proposals(self):
@@ -151,17 +156,19 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
 
     def test_get_area_with_form(self):
         url = reverse('area', kwargs={'slug': self.algarrobo.id})
-        response = self.client.get(url, {'clasification': ''})
+        response = self.client.get(url)
         self.assertIsInstance(response.context['proposal_filter_form'],
-                              ProposalAreaFilterForm)
+                              Form)
         self.assertIn(self.popular_proposal1,
                       response.context['popular_proposals'])
 
         self.assertIn(self.popular_proposal2,
                       response.context['popular_proposals'])
-        response = self.client.get(url, {'clasification': 'deporte'})
+        clasification_id = TOPIC_CHOICES[2][0]
+        response = self.client.get(url, {'clasification': clasification_id})
         form = response.context['proposal_filter_form']
-        self.assertEquals(form.fields['clasification'].initial, 'deporte')
+        self.assertEquals(form.fields['clasification'].initial,
+                          clasification_id)
         self.assertNotIn(self.popular_proposal1,
                          response.context['popular_proposals'])
 
@@ -203,16 +210,16 @@ class EmbeddedViewsTests(PopularProposalTestCaseBase):
         self.assertTrue(response.context['is_embedded'])
         self.assertTemplateUsed('popular_proposal/area.html')
         self.assertTemplateUsed('embedded_base.html')
-        self.assertIsInstance(response.context['form'], ProposalAreaFilterForm)
+        self.assertIsInstance(response.context['form'], Form)
         self.assertIn(self.popular_proposal1,
                       response.context['popular_proposals'])
         self.assertIn(self.popular_proposal2,
                       response.context['popular_proposals'])
         self.assertNotIn(self.popular_proposal3,
                          response.context['popular_proposals'])
-        response = self.client.get(url, {'clasification': 'deporte'})
+        response = self.client.get(url, {'clasification': TOPIC_CHOICES[2][0]})
         form = response.context['form']
-        self.assertEquals(form.fields['clasification'].initial, 'deporte')
+        self.assertEquals(form.fields['clasification'].initial, TOPIC_CHOICES[2][0])
         self.assertNotIn(self.popular_proposal1,
                          response.context['popular_proposals'])
 

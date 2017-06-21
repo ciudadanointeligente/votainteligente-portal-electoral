@@ -1,3 +1,4 @@
+# coding=utf-8
 from django_filters import FilterSet, ChoiceFilter, ModelChoiceFilter
 from popular_proposal.models import PopularProposal
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
@@ -5,7 +6,7 @@ from elections.models import Area
 
 
 class ProposalWithoutAreaFilter(FilterSet):
-    clasification = ChoiceFilter(choices=TOPIC_CHOICES)
+    clasification = ChoiceFilter(choices=TOPIC_CHOICES, label=u"Clasificación")
 
     def __init__(self,
                  data=None,

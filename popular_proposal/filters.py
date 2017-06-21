@@ -13,9 +13,7 @@ class ProposalWithoutAreaFilter(FilterSet):
                  prefix=None,
                  strict=None,
                  **kwargs):
-        self.area = None
-        if kwargs:
-            self.area = kwargs.pop('area', None)
+        self.area = kwargs.pop('area', None)
         if self.area is None:
             self.area = data.pop('area', None)
         if queryset is None:

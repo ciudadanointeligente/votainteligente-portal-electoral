@@ -139,9 +139,6 @@ class HomeView(EmbeddedViewBase, FilterView):
         context = super(HomeView, self).get_context_data(**kwargs)
         initial = self.request.GET or {}
         filterset = ProposalWithAreaFilter(data=initial)
-        if initial:
-            for k in initial:
-                filterset.form.fields[k].initial = initial[k]
         context['form'] = filterset.form
         return context
 
@@ -185,9 +182,6 @@ class ProposalsPerArea(EmbeddedViewBase, ListView):
         context = super(ProposalsPerArea, self).get_context_data()
         initial = self.request.GET or {}
         filterset = ProposalWithoutAreaFilter(area=self.area, data=initial)
-        if initial:
-            for k in initial:
-                filterset.form.fields[k].initial = initial[k]
         context['form'] = filterset.form
         return context
 

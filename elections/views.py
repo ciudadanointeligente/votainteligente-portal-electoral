@@ -181,9 +181,6 @@ class AreaDetailView(DetailView, FilterMixin):
                   }
         filterset = ProposalWithoutAreaFilter(**kwargs)
         context['proposal_filter_form'] = filterset.form
-        if initial:
-            for k in initial:
-                filterset.form.fields[k].initial = initial[k]
         
         context['popular_proposals'] = filterset.qs
         return context

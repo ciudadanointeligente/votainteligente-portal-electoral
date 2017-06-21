@@ -27,6 +27,14 @@ class ProposalWithoutAreaFilter(FilterSet):
                                                         prefix=prefix,
                                                         strict=strict)
 
+    @property
+    def form(self):
+        super(ProposalWithoutAreaFilter, self).form
+        
+        for k in self.data:
+            self._form.fields[k].initial = self.data[k]
+        return self._form
+
     class Meta:
         model = PopularProposal
         fields = ['clasification', ]

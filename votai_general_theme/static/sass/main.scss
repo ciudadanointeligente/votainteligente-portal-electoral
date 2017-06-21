@@ -1466,106 +1466,6 @@ tr.primary p:first-child, tr.danger p:first-child {
   margin-top: -4px;
 }
 
-
-/*Home temporal*/
-.high-home{
-  font-family: 'Arvo', serif;
-  font-size: 18px;
-}
-
-#video-home{
-  background-color: #FEC70D;
-  padding: 40px 0 30px 0}
-#text-home{
-  background-color: #4A90E2;
-  color: #233346;
-  padding: 50px 0 30px 0;
-}
-
-.text-box{
-  background-image: url("../img/white.svg");
-  padding: 30px 30px 20px 30px;
-}
-
-#calendar-home{
-  background-color: #233346;
-  color: white;
-  font-family: 'Arvo', serif;
-  padding: 40px 0 40px 0;
-}
-#map-home{
-  background-color: #F1ECE1;
-  padding: 70px 0 70px;
-}
-#bye-home{
-  background-color: #FEC70D;
-  padding: 40px 0 30px 0;
-}
-
-.videoWrapper {
-	position: relative;
-	padding-bottom: 56.25%; /* 16:9 */
-	padding-top: 25px;
-	height: 0;
-}
-.videoWrapper iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
-
-td.cal-date{
-  color: #FEC70D;
-  text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: 1.4px;
-}
-
-.landing-phrase{
-  padding: 20px 0 20px 0;
-  margin: 0 auto;
-}
-
-/*Perfil organizaciones*/
-.org-background{
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding-bottom: 10px;
-  margin-top: 55px;
-  min-height: 400px;
-}
-
-.logo-org{
-  position: relative;
-  top: 270px;
-}
-
-.org-info{
-  h2{
-    font-weight: 700;
-    margin-top: 70px;
-  }
-  p{
-    font-size: 24px;
-    font-family: 'Arvo', serif;
-  }
-}
-
-.org-rrss{
-  font-family: 'Arvo', serif;
-  font-weight: 700;
-  a{
-    color: white;
-    &:hover{
-      color: $grey-one;
-    }
-  }
-}
-
-
 @keyframes doscaras
 {
 0%   {background-color: $main-background-color;}
@@ -2190,3 +2090,5 @@ Can this be done with Masonry options? */
 }
 
 @import 'mediaqueries';
+@import '2017sitio1';
+@import 'media-2017sitio1';

@@ -113,14 +113,14 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
         self.assertNotIn(popular_proposal, response.context['popular_proposals'])
 
     def test_brings_a_list_of_proposals(self):
-        response = self.client.get(self.url, {'clasification': '', 'area': ''})
+        response = self.client.get(self.url, {})
         self.assertIsInstance(response.context['form'], Form)
 
         self.assertIn(self.popular_proposal1, response.context['popular_proposals'])
 
         self.assertIn(self.popular_proposal2, response.context['popular_proposals'])
 
-        response = self.client.get(self.url, {'clasification': TOPIC_CHOICES[2][0], 'area': ''})
+        response = self.client.get(self.url, {'clasification': TOPIC_CHOICES[2][0]})
         form = response.context['form']
         self.assertEquals(form.fields['clasification'].initial, TOPIC_CHOICES[2][0])
         self.assertNotIn(self.popular_proposal1, response.context['popular_proposals'])

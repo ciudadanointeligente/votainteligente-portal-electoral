@@ -129,7 +129,7 @@ class SubscriptionView(FormView):
 class HomeView(EmbeddedViewBase, FilterView):
     model = PopularProposal
     template_name = 'popular_proposal/home.html'
-    filter_fields = ['clasification', 'area', ]
+    filterset_class = ProposalWithAreaFilter
 
     def get_queryset(self):
         qs = super(HomeView, self).get_queryset().exclude(area__id=config.HIDDEN_AREAS)
@@ -138,7 +138,7 @@ class HomeView(EmbeddedViewBase, FilterView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         initial = self.request.GET or {}
-        filterset = ProposalWithAreaFilter(data=initial)
+        filterset = self.filterset_class(data=initial)
         context['form'] = filterset.form
         return context
 

@@ -2,7 +2,7 @@
 from django_filters import (FilterSet,
                             ChoiceFilter,
                             ModelChoiceFilter,
-                            ModelChoiceFilter)
+                            )
 from popular_proposal.models import PopularProposal
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from elections.models import Area
@@ -10,7 +10,9 @@ from django.conf import settings
 
 
 def filterable_areas(request):
-    return Area.public.filter(classification__in=settings.FILTERABLE_AREAS_TYPE)
+    if settings.FILTERABLE_AREAS_TYPE:
+        return Area.public.filter(classification__in=settings.FILTERABLE_AREAS_TYPE)
+    return Area.public.all()
 
 class ProposalWithoutAreaFilter(FilterSet):
     clasification = ChoiceFilter(choices=TOPIC_CHOICES, label=u"Clasificación")
@@ -22,7 +24,7 @@ class ProposalWithoutAreaFilter(FilterSet):
                  strict=None,
                  **kwargs):
         self.area = kwargs.pop('area', None)
-        if self.area is None:
+        if self.area is None and data is not None:
             self.area = data.get('area', None)
             if self.area:
                 self.area = Area.objects.get(id=self.area)

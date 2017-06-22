@@ -8,8 +8,8 @@ from popular_proposal.tests import ProposingCycleTestCaseBase
 from popular_proposal.models import PopularProposal
 from elections.models import Area
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
-from unittest import skip
 from django.test import override_settings
+
 
 @override_settings(FILTERABLE_AREAS_TYPE=['Comuna'])
 class PopularProposalFilterTestCase(ProposingCycleTestCaseBase):

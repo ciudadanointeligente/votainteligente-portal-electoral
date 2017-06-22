@@ -15,7 +15,7 @@
 
 					<!-- Tab panes -->
 					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane" id="userRegister">
+						<div role="tabpanel" class="tab-pane{% if citizens %} active{% endif %}" id="userRegister">
 
 							<div class="form-group">
 								{% include '_social_login_buttons.html' with url=next %}
@@ -24,7 +24,7 @@
 							{% user_register %}
 
 						</div>
-						<div role="tabpanel" class="tab-pane active" id="groupRegister">
+						<div role="tabpanel" class="tab-pane{% if not citizens %} active{% endif %}" id="groupRegister">
 							{% group_register %}
 						</div>
 						<div class="line-space"></div>

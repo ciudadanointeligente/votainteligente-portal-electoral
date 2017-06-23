@@ -238,7 +238,7 @@ else:
             'INDEX_NAME': 'votainteligente',
         },
     }
-
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 # SOUTH_TESTS_MIGRATE = False
 EXTRA_APPS = ()
 

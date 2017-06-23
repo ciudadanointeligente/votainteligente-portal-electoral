@@ -32,12 +32,11 @@ from django_filters.views import FilterView
 
 from elections.models import Area, Candidate
 
-from popular_proposal.filters import ProposalAreaFilter
+from popular_proposal.filters import (ProposalWithoutAreaFilter,
+                                      ProposalWithAreaFilter)
 
 from popular_proposal.forms import (CandidateCommitmentForm,
                                     CandidateNotCommitingForm,
-                                    ProposalAreaFilterForm,
-                                    ProposalFilterForm,
                                     ProposalForm,
                                     UpdateProposalForm,
                                     SubscriptionForm,
@@ -130,7 +129,7 @@ class SubscriptionView(FormView):
 class HomeView(EmbeddedViewBase, FilterView):
     model = PopularProposal
     template_name = 'popular_proposal/home.html'
-    filter_fields = ['clasification', 'area', ]
+    filterset_class = ProposalWithAreaFilter
 
     def get_queryset(self):
         qs = super(HomeView, self).get_queryset().exclude(area__id=config.HIDDEN_AREAS)
@@ -138,8 +137,9 @@ class HomeView(EmbeddedViewBase, FilterView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        initial = self.request.GET
-        context['form'] = ProposalFilterForm(initial=initial)
+        initial = self.request.GET or {}
+        filterset = self.filterset_class(data=initial)
+        context['form'] = filterset.form
         return context
 
     def get_context_object_name(self, object_list):
@@ -180,16 +180,16 @@ class ProposalsPerArea(EmbeddedViewBase, ListView):
 
     def get_context_data(self):
         context = super(ProposalsPerArea, self).get_context_data()
-        initial = self.request.GET or None
-        context['form'] = ProposalAreaFilterForm(area=self.area,
-                                                 initial=initial)
+        initial = self.request.GET or {}
+        filterset = ProposalWithoutAreaFilter(area=self.area, data=initial)
+        context['form'] = filterset.form
         return context
 
     def get_queryset(self):
         kwargs = {'data': self.request.GET or None,
                   'area': self.area
                   }
-        filterset = ProposalAreaFilter(**kwargs).qs
+        filterset = ProposalWithoutAreaFilter(**kwargs).qs
         return filterset
 
 

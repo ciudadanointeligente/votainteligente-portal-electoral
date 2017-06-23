@@ -6,13 +6,14 @@
 
 
     {% if form %}
-		<form action="{{ request.path }}" method="GET" role="form">
+		<form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form">
       <div class="row">
-        <div class="col-md-4">{% bootstrap_field form.clasification show_label=False %}</div>
+        <div class="col-md-4">{% bootstrap_field form.text %}</div>
+        <div class="col-md-4">{% bootstrap_field form.clasification %}</div>
 
           {% if form.area|is_field %}
             <div class="col-md-4">
-              {% bootstrap_field form.area show_label=False %}
+              {% bootstrap_field form.area %}
             </div>
           {% endif %}
         <div class="col-md-4">
@@ -25,6 +26,16 @@
 
 		</form>
     {% endif %}
+    <script>
+    $(function(){
+      $('#proposalFilterForm').submit(function() {
+        $(':input', this).each(function() {
+          console.log('perrito');
+          this.disabled = !($(this).val());
+        });
+      });
+    });
+    </script>
 
 <div id="grid">
 

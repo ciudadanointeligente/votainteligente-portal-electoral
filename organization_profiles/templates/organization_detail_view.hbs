@@ -44,44 +44,45 @@
 <!--  extra pages -->
 <div class="container" style="padding-top:10px; padding-bottom:10px;">
   <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#propuestas" aria-controls="propuestas" role="tab" data-toggle="tab">Propuestas</a></li>
+    <li role="presentation"><a href="#propuestas-apoyadas" aria-controls="propuestas-apoyadas" role="tab" data-toggle="tab">Propuestas apoyadas</a></li>
     {{#each extra_pages}}
-    <li role="presentation" class="{{#if @first }}active{{/if}}"><a href="#{{slug}}" aria-controls="{{slug}}" role="tab" data-toggle="tab">{{title}}</a></li>
+    <li role="presentation"><a href="#{{slug}}" aria-controls="{{slug}}" role="tab" data-toggle="tab">{{title}}</a></li>
     {{/each}}
   </ul>
-  <div class="tab-content">
-    {{#each extra_pages}}
-    <div role="tabpanel" class="tab-pane {{#if @first }}active{{/if}}" id="{{slug}}">{{{content}}}</div>
-    {{/each}}
-  </div>
-</div>
-<!--  propuestas -->
-<div class="container">
-{{#if proposals}}
-  <h3 class="page-header">Propuestas</h3>
-  <div class="row">
-    {{#each proposals }}
-      <div class="col-md-4">
-        {{{card}}}
-      </div>
-    {{/each}}
-  </div>
-{{else}}
-  {{#if is_owner}}
-  <p>Comienza a generar tus propuestas en el siguiente <a href="{{create_proposal_url}}">enlace</a></p>
-  {{/if}}
-{{/if}}
-</div>
 
-<!--  propuestas apadrinadas -->
-<div class="container">
-{{#if sponsorships}}
-  <h3 class="page-header">Propuestas apoyadas</h3>
-  <div class="row">
-    {{#each sponsorships }}
-      <div class="col-md-4">
-        {{{card}}}
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="propuestas">
+        <h3 class="page-header">Propuestas</h3>
+        {{#if proposals}}
+        <div class="row">
+          {{#each proposals }}
+            <div class="col-md-4">
+              {{{card}}}
+            </div>
+          {{/each}}
+        </div>
+      {{else}}
+        {{#if is_owner}}
+        <p>Comienza a generar tus propuestas en el siguiente <a href="{{create_proposal_url}}">enlace</a></p>
+        {{/if}}
+      {{/if}}
+    </div>
+    <div role="tabpanel" class="tab-pane" id="propuestas-apoyadas">
+      <h3 class="page-header">Propuestas apoyadas</h3>
+      {{#if sponsorships}}
+      <div class="row">
+        {{#each sponsorships }}
+          <div class="col-md-4">
+            {{{card}}}
+          </div>
+        {{/each}}
       </div>
+    {{/if}}
+    </div>
+    {{#each extra_pages}}
+    <div role="tabpanel" class="tab-pane" id="{{slug}}">{{{content}}}
+    </div>
     {{/each}}
   </div>
-{{/if}}
 </div>

@@ -8,6 +8,8 @@ from popular_proposal.tests import ProposingCycleTestCaseBase
 from popular_proposal.models import PopularProposal
 from elections.models import Area
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
+from django.core.management import call_command
+import haystack
 from django.test import override_settings
 
 
@@ -80,3 +82,13 @@ class PopularProposalFilterTestCase(ProposingCycleTestCaseBase):
         areas = filterable_areas("This is a request")
         self.assertIn(laja, areas)
         self.assertNotIn(rm, areas)
+
+    def test_filters_by_text(self):
+        for key, opts in haystack.connections.connections_info.items():
+            haystack.connections.reload(key)
+        call_command('update_index', interactive=False, verbosity=0)
+        data = {'text': 'P2'
+                }
+        f = ProposalWithAreaFilter(data=data)
+        self.assertTrue(f.qs.count())
+        self.assertIn(self.p2, f.qs)

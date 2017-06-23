@@ -39,3 +39,7 @@ class PopularProposalSearchIndexTestCase(ProposingCycleTestCaseBase):
         r = SearchQuerySet().all()
         self.assertTrue(r.count())
         self.assertEquals(r.filter(text="bicicletas").count(), 1)
+
+    def test_index_getProposals(self):
+        r = SearchQuerySet().models(PopularProposal).auto_query("bicicletas")
+        self.assertEquals(r[0].object, self.p2)

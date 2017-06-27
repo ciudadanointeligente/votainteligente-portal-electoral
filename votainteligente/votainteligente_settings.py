@@ -60,7 +60,9 @@ INSTALLED_APPS = (
     'django_ogp',
     'debug_toolbar',
     # 'debug_panel',
-    'constance',
+#    'constance',
+    'constance.backends.database',
+
 )
 INSTALLED_APPS_AFTER_ALL = ('el_pagination',)
 
@@ -347,7 +349,7 @@ MODERATION_ENABLED = False
 MARKED_AREAS = ['teodoro-schmidt-9117','cunco-9103','lumaco-9207','melipeuco-9110','gorbea-9107','arica-15101','copiapo-3101','freirina-3303','caldera-3102','tortel-11303','guaitecas-11203','cisnes-11202','rio-ibanez-11402','santa-barbara-8311','contulmo-8204','alto-biobio-8314','treguaco-8420','los-alamos-8206','hualpen-8112','lota-8106','monte-patria-4303','los-vilos-4203','rio-hurtado-4305','la-higuera-4104','frutillar-10105','maullin-10108','castro-10201','puqueldon-10206','puyehue-10304','san-juan-de-la-costa-10306','puerto-montt-10101','corral-14102','futrono-14202','paillaco-14107','lago-ranco-14203','valdivia-14101','rauco-7305','rio-claro-7108','hualane-7302','san-clemente-7109','longavi-7403','talca-7101','constitucion-7102','coltauco-6104','machali-6108','paredones-6206','peralillo-6307','rengo-6115','quilicura-13125','curacavi-13503','independencia-13108','san-bernardo-13401','puente-alto-13201','penaflor-13605','pedro-aguirre-cerda-13121','huechuraba-13107','alto-hospicio-1107','san-antonio-5601','santa-maria-5706','llaillay-5703']
 
 POSSIBLE_GENERATING_AREAS_FILTER = 'Comuna'
-
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 CONSTANCE_CONFIG = {
     'SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES':(10,'Duracion cache media naranja'),
     'INFINITE_CACHE':(1440,'Tiempo Cache'),

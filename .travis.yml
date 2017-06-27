@@ -2,7 +2,6 @@ language: python
 sudo: false
 services:
   - elasticsearch
-  - redis-server
 python:
   - "2.7"
 addons:

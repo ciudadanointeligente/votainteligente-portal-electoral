@@ -2,7 +2,7 @@
 from django.core.urlresolvers import reverse
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django.contrib.auth.models import User
-from popular_proposal.models import ProposalTemporaryData, PopularProposal, Commitment
+from popular_proposal.models import ProposalTemporaryData, PopularProposal, Commitment, ProposalLike
 from popular_proposal.forms import RejectionForm
 from elections.models import Area
 from elections.models import Election, Candidate
@@ -271,6 +271,49 @@ class StaffHomeViewTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertIsInstance(response.context['stats'], Stats)
         self.assertTemplateUsed(response, 'backend_staff/stats.html')
+    
+    def test_stats_v2_organizations_supporting(self):
+        User.objects.all().delete()
+        stats = Stats()
+        org = User.objects.create_user(username='organizacion', password='password')
+        org.profile.is_organization = True
+        org.profile.save()
+        org2 = User.objects.create_user(username='organizacion2', password='password')
+        org2.profile.is_organization = True
+        org2.profile.save()
+        normal_user = User.objects.create_user(username='normal_user')
+        
+        popular_proposal = PopularProposal.objects.create(proposer=normal_user,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+        ProposalLike.objects.create(user=org, proposal=popular_proposal)
+        another_user = User.objects.create_user(username='another_user')
+        ProposalLike.objects.create(user=another_user, proposal=popular_proposal)
+        self.assertEquals(stats.likes_by_organizations, 1)
+        self.assertEquals(stats.organizations_online.count(), 2)
+        
+        PopularProposal.objects.create(proposer=org2,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       clasification=u'education'
+                                       )
+        PopularProposal.objects.create(proposer=org,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       clasification=u'education'
+                                       )
+        PopularProposal.objects.create(proposer=org,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       clasification=u'education'
+                                       )
+        self.assertEquals(stats.proposals_made_by_organizations.count(), 3)
 
     def test_stats_mixin(self):
         User.objects.all().delete()

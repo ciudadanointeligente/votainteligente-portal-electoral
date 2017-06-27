@@ -14,7 +14,7 @@
 
 
 
-<hr>
+<hr><!-- 
 <p>Un total de {{stats.participation.with_us}} candidatos se unieron al sitio y están con losotros.</p>
 <p>Un total de {{stats.participation.got_email}} candidatos recibieron el mail pero no han cachao na.</p>
 <p>Un total de {{stats.participation.no_contact}} candidatos no tienen mail.</p>
@@ -34,18 +34,23 @@
 <p>{{stats.participation_concejal.with_us}} candidatos a concejal de {{stats.total_candidates_concejal}} se unieron al sitio y están con losotros.</p>
 <p>Un total de {{stats.participation_concejal.got_email}} candidatos a concejal recibieron el mail pero no han cachao na.</p>
 <p>Un total de {{stats.participation_concejal.no_contact}} candidatos a concejal no tienen mail.</p>
-<hr>
+<hr> -->
 <h4>Propuestas Ciudadanas:</h4>
-<p>Hay un total de {{stats.proposals}} propuestas ciudadanas locales, el resto es transversal.</p>
+<p>Hay un total de {{stats.proposals}} propuestas ciudadanas.</p>
 <hr>
+<h4>Organizaciones pulentas:</h4>
+<p>Hay un total de {{stats.organizations_online.count}} organizaciones con perfil arriba con nosotros!.</p>
+<p>Estas organizaciones pulentas han hecho un total de {{stats.proposals_made_by_organizations.count}} propuestas.</p>
+<p>Y más maravilloso, aún han apoyado un total de {{stats.likes_by_organizations}} propuestas hechas por alguien más.</p>
+<!-- <hr>
 <h4>Compromisos:</h4>
 <p>Hay un total de {{stats.commitments}} compromisos de candidatos con propuestas ciudadanas.</p>
 <p>Estos compromisos corresponden a <a data-toggle="modal" data-target="#proposals_with_commitments">{{stats.proposals_with_commitments.count}}</a> propuestas.</p>
-<!-- Modal -->
+
 <div id="proposals_with_commitments" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
-    <!-- Modal content-->
+    
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -63,11 +68,11 @@
   </div>
 </div>
 
-
 <p>Estos compromisos han sido adquiridos por un total de {{stats.candidates_that_have_commited}} candidatos.</p>
 <p>De los cuales {{stats.candidates_that_have_commited_alcalde}} son candidatos a alcalde.</p>
 <p>Y {{stats.candidates_that_have_commited_concejal}} son candidatos al concejo.</p>
 
+-->
 
 {% endblock content %}
 

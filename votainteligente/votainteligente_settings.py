@@ -60,6 +60,7 @@ INSTALLED_APPS = (
     'django_ogp',
     'debug_toolbar',
     # 'debug_panel',
+    'proposal_subscriptions',
     'constance',
 )
 INSTALLED_APPS_AFTER_ALL = ('el_pagination',)

@@ -69,9 +69,17 @@ td.cal-date{
   min-height: 400px;
 }
 
-.logo-org{
+.landing-org{
   position: relative;
   top: 270px;
+}
+
+.logo-org{
+  height: 150px;
+  width: 150px;
+  background: white;
+  float: left;
+  margin-right: 10px
 }
 
 .org-info{
@@ -94,4 +102,36 @@ td.cal-date{
       color: $grey-one;
     }
   }
+}
+
+.edit-org{
+  height: 200px;
+}
+
+.button-org{
+  z-index: 1000;
+}
+
+/*Forms*/
+.form-control{
+  background-color: $grey-five;
+  border-radius: 8px;
+}
+
+.help-block{
+  margin: 0;
+}
+
+input[type=checkbox], input[type=radio]{
+  margin: 0;
+}
+
+input[type=file]{
+  display: initial;
+}
+
+/*General*/
+.bg-info{
+  padding: 5px;
+  border-radius: 8px;
 }

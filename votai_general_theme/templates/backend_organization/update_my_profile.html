@@ -12,7 +12,44 @@
 
 	<form enctype="multipart/form-data" action="{% url 'organization_profiles:update' %}" method="POST" role="form">
 	    {% csrf_token %}
-        {% bootstrap_form form %}
+        <div class="form-group">
+					<label class="control-label" for="id_logo">El logo de tu organización</label>
+					<p class="bg-info">Te recomendamos subir una imagen en formato jpg de 400x400px</p>
+					<div class="row bootstrap3-multi-input">
+						<div class="col-xs-12">Actualmente:
+							<div><img src="{{form.logo.value.url}}" class="edit-org"></div>
+							<input id="logo-clear_id" name="logo-clear" type="checkbox" />
+							<label for="logo-clear_id">Limpiar</label>
+							<br>Modificar: <input class="" id="id_logo" name="logo" title="perrito" type="file" />
+						</div>
+					</div>
+				</div>
+
+<div class="form-group">
+	<label class="control-label" for="id_background_image">Imagen de fondo en tu perfil</label>
+	<p class="bg-info">Te recomendamos subir una imagen en formato jpg de 400x400px</p>
+	<div class="row bootstrap3-multi-input">
+		<div class="col-xs-12">Actualmente:
+			<div><img src="{{form.background_image.value.url}}" class="edit-org"></div>
+
+			<input id="background_image-clear_id" name="background_image-clear" type="checkbox" />
+			<label for="background_image-clear_id">Limpiar</label>
+			<br>Modificar: <input class="" id="id_background_image" name="background_image" title="" type="file" />
+		</div>
+	</div>
+</div>
+
+
+				{% bootstrap_field form.title %}
+				{% bootstrap_field form.sub_title %}
+				{% bootstrap_field form.org_url %}
+				{% bootstrap_field form.facebook %}
+				{% bootstrap_field form.twitter %}
+				{% bootstrap_field form.instagram %}
+				{% bootstrap_field form.primary_color %}
+				{% bootstrap_field form.secondary_color %}
+
+
 	    <div class="form-actions">
 	        <button type="submit" class="btn btn-success">{% trans 'Actualizar'%}</button>
 	    </div>

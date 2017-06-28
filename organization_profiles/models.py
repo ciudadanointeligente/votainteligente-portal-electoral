@@ -21,7 +21,8 @@ class OrganizationTemplate(models.Model):
     logo = models.ImageField(upload_to="organizations/profiles/",
                              null=True,
                              blank=True,
-                             verbose_name=_(u'El logo de tu organización'))
+                             verbose_name=_(u'El logo de tu organización'),
+                             help_text=_(u'perrito'))
     background_image = models.ImageField(upload_to="organizations/backgrounds/",
                                          null=True,
                                          blank=True,

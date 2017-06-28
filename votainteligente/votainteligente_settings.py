@@ -188,14 +188,34 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'critical.log',
+        },
     },
     'loggers': {
+        '': {
+            'handlers': ['file'],
+            'level': 'CRITICAL'
+       },
+        
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
         },
+        'elasticsearch': {
+            'handlers': ['file'],
+            'level': 'CRITICAL',
+            'propagate': True,
+       },
+        'urllib3': {
+            'handlers': ['file'],
+            'level': 'CRITICAL',
+            'propagate': True,
+       },
     }
 }
 # CELERY STUFF

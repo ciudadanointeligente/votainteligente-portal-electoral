@@ -141,3 +141,80 @@ input[type=file]{
   padding: 5px;
   border-radius: 8px;
 }
+
+/*Propuestas*/
+.propuesta{
+  border: 2px solid $grey-one;
+  min-height: 360px;
+  padding: 0;
+  position: relative;
+}
+
+.propuesta-content{
+  padding: 25px 20px 35px;
+}
+
+.label-default{
+  background-color: $blue;
+  color: white;
+}
+
+.propuesta:after{
+  display: none;
+}
+
+.share-card{
+  background-color: $grey-one;
+  height: 115px;
+  padding: 5px 20px 5px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.share-card a .fa-stack {
+    color: $grey-four;
+}
+
+.share-card a .fa-stack:hover {
+    color: $yellow;
+}
+
+.apoyo{
+  min-height: 38px;
+}
+
+.apoyo-contador{
+  padding-left: initial;
+  max-width: initial;
+}
+
+.nota{
+  font-size: 14px;
+  color: white;
+  margin-top: -6px;
+}
+
+.conteo{
+  font-family: 'Arvo', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  position: relative;
+  top: 5px;
+}
+
+.btn-apoyo{
+  background-color: $yellow;
+  color: white;
+  position: relative;
+  top: 9px;
+  &:hover{
+    color: $grey-one;
+  }
+}
+
+.propuesta h4 a{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}

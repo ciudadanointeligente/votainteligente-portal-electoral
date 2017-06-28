@@ -4,34 +4,43 @@
 {% load thumbnail %}
 <div class="post propuesta{% if proposal.for_all_areas %} transversal{% endif %}">
 <!-- Cata compañera puedes saber si la propuesta es para todas las comunas mediante esto {% comment %}{% if proposal.for_all_areas %}{% else %}{% endif %}{% endcomment %}-->
-  <span class="label label-default">{{proposal.data.clasification}}</span>
-  <!-- Estado de una propuesta para el alcalde de esa comuna -->
-  <div class="pull-right">
-    {% include 'popular_proposal/_estado_para_candidato.html' with proposal=proposal next_url=popular_proposals_home %}
-  </div>
-  <div class="small text-light">Propuesta para 
-    {% if not is_embedded %}
-      <a href="{% url 'area' slug=proposal.area.id %}">
+  <div class="propuesta-content">
+    <span class="label label-default">{{proposal.data.clasification}}</span>
+    <!-- Estado de una propuesta para el alcalde de esa comuna -->
+    <div class="pull-right">
+      {% include 'popular_proposal/_estado_para_candidato.html' with proposal=proposal next_url=popular_proposals_home %}
+    </div>
+
+    {% comment %}
+    <div class="small text-light">Propuesta para
+      {% if not is_embedded %}
+        <a href="{% url 'area' slug=proposal.area.id %}">
+      {% endif %}
+        {{proposal.area}}
+      {% if not is_embedded %}</a>{% endif %}
+    </div>
+    {% endcomment %}
+
+    {% if proposal.title %}
+        <h4><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title|truncatechars:100 }}</a></h4>
     {% endif %}
-      {{proposal.area}}
-    {% if not is_embedded %}</a>{% endif %}
-  </div>
-  {% if proposal.title %}
-      <h4><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title|truncatechars:60 }}</a></h4>
-  {% endif %}
-      {% url 'popular_proposals:home' as popular_proposals_home %}
-      {% include 'popular_proposal/_likers.html' with proposal=proposal area=area next_url=popular_proposals_home %}
-  <hr>
 
-  {% include 'popular_proposal/_likers_candidatos.html' with proposal=proposal next_url=popular_proposals_home %}
+    {% include 'popular_proposal/_likers_candidatos.html' with proposal=proposal next_url=popular_proposals_home %}
 
-  <div class="share text-center">
-    {% include 'popular_proposal/_share.html' with popular_proposal=proposal %}
+    {% if proposal.proposer.profile.image and proposal.proposer.profile.is_organization %}
+      <div class="logo-ong text-center text-light">
+        <span>Propuesta de </span><img src="{{ proposal.proposer.profile.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+      </div>
+    {% endif %}
   </div>
-{% if proposal.proposer.profile.image and proposal.proposer.profile.is_organization %}
-  <div class="logo-ong text-center text-light">
-    <span>Propuesta de </span><img src="{{ proposal.proposer.profile.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
-  </div>
-{% endif %}
 
+
+
+  <div class="share-card">
+    <div class="text-center">{% url 'popular_proposals:home' as popular_proposals_home %}</div>
+    {% include 'popular_proposal/_likers.html' with proposal=proposal area=area next_url=popular_proposals_home %}
+    <div class="pull-right">
+      {% include 'popular_proposal/_share.html' with popular_proposal=proposal %}
+    </div>
+  </div>
 </div>

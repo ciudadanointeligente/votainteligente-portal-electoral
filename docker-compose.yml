@@ -27,7 +27,7 @@ services:
       - elasticsearch
       - rabbit
     ports:
-      - "8088:8000"
+      - "8000:8000"
     volumes:
       - ./volumes/pip:/root/.cache
     restart: always

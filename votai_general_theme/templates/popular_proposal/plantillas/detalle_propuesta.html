@@ -1,8 +1,8 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
 
-<p>Esta es la propuesta de {{popular_proposal.proposer}} para mejorar {{popular_proposal.area}}.</p>
-
+<div class="row">
+  <div class="col-md-12">
 <h3>El problema que se quiere solucionar es:</h3>
 <p>{{popular_proposal.data.problem|popular_proposal_when|linebreaksbr}}</p>
 
@@ -16,7 +16,5 @@
 <p>
 {{popular_proposal.data.solution_at_the_end|popular_proposal_when|linebreaksbr}} antes de {{popular_proposal.data.when|popular_proposal_when}}
 </p>
-
-<p>
-  Revísala, si te gustó compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año!,</br>El equipo de VotaInteligente a nombre de {{popular_proposal.proposer}}.
-</p>
+</div>
+</div>

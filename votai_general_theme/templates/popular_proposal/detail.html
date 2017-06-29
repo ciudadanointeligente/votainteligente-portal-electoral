@@ -131,21 +131,23 @@ $(function(){
       {% endwith %}
     {% endif %}
 
-</div>
-
     {% if popular_proposal.background %}
-      <div class="container antecedentes text-width">
+      <div class="antecedentes text-width">
         <div class="row">
+          <div class="col-xs-12 col-md-12">
+            {% if popular_proposal.image|length %}
+            <img src="{{popular_proposal.image.url}}" class="edit-bg-org">
+            {% endif %}
+          </div>
           <div class="col-xs-12 col-md-8">
             <h3 class="page-header">{% trans 'Antecedentes' %}</h3>
             <p>{{popular_proposal.background|linebreaksbr}}</p>
           </div>
           <div class="col-xs-12 col-md-4">
-            {% if popular_proposal.document|length and popular_proposal.image|length %}
-            <h3 class="page-header">Documentos extras</h3>
+            {% if popular_proposal.document|length %}
+            <h3 class="page-header">Documentos</h3>
             <ul>
               <li><a href="{{popular_proposal.document.url}}"><i class="fa fa-file"></i> Documento</a></li>
-              <li><a href="{{popular_proposal.image.url}}"><i class="fa fa-picture-o"></i> Imagen</a></li>
             </ul>
             {% endif %}
           </div>
@@ -154,6 +156,7 @@ $(function(){
       </div>
     {% endif %}
 
+  </div>
 
     {% if user|is_candidate %}
 
@@ -348,6 +351,13 @@ $(function(){
     </div>
     </div>
     {% endif %}
+
+    <div class="apoya-comparte">
+      <div class="container">
+        <p class="text-center">Si te gustó ¡compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año</p>
+      </div class="container">
+    </div>
+
 
 {% endblock everything %}
   </div>

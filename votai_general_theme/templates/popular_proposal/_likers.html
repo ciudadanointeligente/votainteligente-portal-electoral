@@ -14,9 +14,10 @@
     });
 
 var unlike_proposal = function(url){
-    $.post(url, function(data){
-        location.reload();
-    })
+  console.log(url)
+    // $.post(url, function(data){
+    //     location.reload();
+    // })
 };
 $(function(){
     $('.unlike_proposal').click(function(event){
@@ -83,7 +84,8 @@ $(function(){
                           <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
                       </div>
                         <span class="corazon-{{proposal.id}}">
-                            <a class="unlike_proposal pull-left" href="{% url 'popular_proposals:unlike_proposal' pk=support.id %}" data-toggle="tooltip" data-placement="top" title="Ya no quiero apoyar esta propuesta"><img src="{% static 'img/adherido.svg' %}"></a>
+                            <a class="unlike_proposal btn btn-no-apoyo text-center pull-left" href="{% url 'popular_proposals:unlike_proposal' pk=support.id %}" data-toggle="tooltip" data-placement="top" title="Ya no quiero apoyar esta propuesta">
+                            Apoyo <i class="fa fa-heart" aria-hidden="true"></i></a>
                         </span>
                     {% endwith %}
                 {% endif %}

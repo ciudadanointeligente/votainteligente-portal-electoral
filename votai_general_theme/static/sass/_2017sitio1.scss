@@ -213,6 +213,16 @@ input[type=file]{
   }
 }
 
+.btn-no-apoyo{
+  background-color: $blue;
+  color: white;
+  position: relative;
+  top: 9px;
+  &:hover{
+    color: $grey-one;
+  }
+}
+
 .propuesta h4 a{
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;

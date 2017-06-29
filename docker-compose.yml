@@ -1,0 +1,33 @@
+version: '3'
+services:
+  redis:
+    image: "redis:latest"
+    ports:
+      - '6379:6379'
+    volumes:
+      - './volumes/redisdata:/data'
+    restart: always
+
+  elasticsearch:
+    image: elasticsearch:2.4.5
+    environment: ['http.host=0.0.0.0', 'transport.host=127.0.0.1']
+    ports:
+      - "9200:9200"
+
+  rabbit:
+    image: "rabbitmq:3-management"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  vota:
+    build: .
+    depends_on:
+      - redis
+      - elasticsearch
+      - rabbit
+    ports:
+      - "8088:8000"
+    volumes:
+      - ./volumes/pip:/root/.cache
+    restart: always

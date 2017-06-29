@@ -200,7 +200,7 @@ LOGGING = {
             'handlers': ['file'],
             'level': 'CRITICAL'
        },
-        
+
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
@@ -222,8 +222,8 @@ LOGGING = {
 BROKER_URL = 'amqp://guest:guest@localhost:5672/'
 CELERY_ALWAYS_EAGER = True
 
-CELERYBEAT_SCHEDULE = {'sending-mails-every-2-minutes': {'task': 'preguntales.tasks.send_mails',
-                                                         'schedule': timedelta(minutes=2),
+CELERYBEAT_SCHEDULE = {'sending-new-proposals-once-a-day': {'task': 'proposal_subscriptions.tasks.send_new_proposals_to_subscribers',
+                                                         'schedule': timedelta(days=1),
                                                          },
                        # 'letting-candidates-know-about-us-every-two-days':
                        # {'task': 'backend_candidate.tasks.send_candidates_their_username_and_password',

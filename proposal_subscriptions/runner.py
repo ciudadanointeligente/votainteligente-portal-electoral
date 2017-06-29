@@ -2,7 +2,9 @@
 from .models import SearchSubscription
 from itertools import chain
 from django.utils import timezone
+from django.contrib.auth.models import User
 from django.db.models import DateTimeField, ExpressionWrapper, F
+from votainteligente.send_mails import send_mail
 
 
 class SubscriptionRunner(object):
@@ -24,3 +26,25 @@ class SubscriptionRunner(object):
         subscriptions = subscriptions.exclude(created__gt=F("should_run"))
         subscriptions = subscriptions.exclude(last_run__gt=F("should_run"))
         return subscriptions
+
+    def send(self):
+        proposals = self.get_proposals()
+        if not proposals:
+            return False
+        context = {'proposals': proposals,
+                   'user': self.user}
+        send_mail(context, 'search_proposals_subscription',
+                  to=[self.user.email])
+        return True
+
+
+
+class TaskRunner(object):
+    def users(self):
+        return User.objects.exclude(search_subscriptions__isnull=True)
+
+    def send(self):
+        users = self.users()
+        for user in users:
+            runner = SubscriptionRunner(user)
+            runner.send()

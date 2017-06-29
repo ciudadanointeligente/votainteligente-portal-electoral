@@ -3,9 +3,11 @@ from popular_proposal.tests import ProposingCycleTestCaseBase
 from proposal_subscriptions.models import SearchSubscription
 from datetime import timedelta
 from popular_proposal.models import PopularProposal
-from proposal_subscriptions.runner import SubscriptionRunner
+from django.contrib.auth.models import User
+from proposal_subscriptions.runner import SubscriptionRunner, TaskRunner
 from django.utils import timezone
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
+from django.core import mail
 
 
 class SearchSubscriptionModel(ProposingCycleTestCaseBase):
@@ -175,3 +177,82 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
         self.assertIn(s3, qs.all())
         self.assertIn(s1, qs.all())
         self.assertNotIn(s2, qs.all())
+
+    def test_send_mail_with_data(self):
+        original_amount_of_mails = len(mail.outbox)
+        a_week_ago = timezone.now() - timedelta(weeks=1)
+        a_day_ago = timezone.now() - timedelta(days=1)
+        two_days_ago = timezone.now() - timedelta(days=2)
+        hit_one = PopularProposal.objects.create(proposer=self.fiera,
+                                                 data=self.data,
+                                                 title=u'bicicletas',
+                                                 clasification=TOPIC_CHOICES[2][0],
+                                                 )
+        s = SearchSubscription.objects.create(user=self.feli,
+                                              keyword_args={},
+                                              search_params={'text': "bicicletas",
+                                                             'clasification': TOPIC_CHOICES[2][0]},
+                                              filter_class_module="popular_proposal.filters",
+                                              filter_class_name="ProposalWithoutAreaFilter",
+                                              oftenity=timedelta(days=1))
+        s.created = a_week_ago
+        s.save()
+        runner = SubscriptionRunner(self.feli)
+        result = runner.send()
+        self.assertTrue(result)
+        self.assertEquals(len(mail.outbox), original_amount_of_mails + 1)
+        the_mail = mail.outbox[original_amount_of_mails]
+        self.assertIn(self.feli.email, the_mail.to)
+        self.assertEquals(len(the_mail.to), 1)
+
+    def test_if_there_are_no_subscriptions_no_mails_are_sent(self):
+        original_amount_of_mails = len(mail.outbox)
+        runner = SubscriptionRunner(self.feli)
+        result = runner.send()
+        self.assertFalse(result)
+        self.assertEquals(len(mail.outbox), original_amount_of_mails)
+
+class SearchSubscriptionTaskRunner(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(SearchSubscriptionTaskRunner, self).setUp()
+
+
+    def test_get_the_right_users(self):
+        User.objects.create_user(username="1")
+        User.objects.create_user(username="2")
+        User.objects.create_user(username="3")
+        SearchSubscription.objects.create(user=self.feli,
+                                          keyword_args={},
+                                          search_params={'text': "bicicletas"},
+                                          filter_class_module="popular_proposal.filters",
+                                          filter_class_name="ProposalWithoutAreaFilter",
+                                          oftenity=timedelta(seconds=1))
+        tr = TaskRunner()
+        self.assertIn(self.feli, tr.users())
+        self.assertEquals(len(tr.users()), 1)
+
+    def test_send_subscription_notifications(self):
+        original_amount_of_mails = len(mail.outbox)
+        a_week_ago = timezone.now() - timedelta(weeks=1)
+        a_day_ago = timezone.now() - timedelta(days=1)
+        two_days_ago = timezone.now() - timedelta(days=2)
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       data=self.data,
+                                       title=u'bicicletas',
+                                       clasification=TOPIC_CHOICES[2][0],
+                                       )
+        s = SearchSubscription.objects.create(user=self.feli,
+                                              keyword_args={},
+                                              search_params={'text': "bicicletas",
+                                                             'clasification': TOPIC_CHOICES[2][0]},
+                                              filter_class_module="popular_proposal.filters",
+                                              filter_class_name="ProposalWithoutAreaFilter",
+                                              oftenity=timedelta(days=1))
+        s.created = a_week_ago
+        s.save()
+        tr = TaskRunner()
+        tr.send()
+        self.assertEquals(len(mail.outbox), original_amount_of_mails + 1)
+        the_mail = mail.outbox[original_amount_of_mails]
+        self.assertIn(self.feli.email, the_mail.to)
+        self.assertEquals(len(the_mail.to), 1)

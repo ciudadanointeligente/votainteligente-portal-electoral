@@ -1,0 +1,10 @@
+Hola {{user.get_full_name}}:
+
+Este mail es para contarte que hay nuevas propuestas en VotaInteligente:
+{% for proposal in proposals %}
+* {{proposal.title}} hecha por {{proposal.proposer.get_full_name}} (https://votainteligente.cl{{proposal.get_absolute_url}}){% endfor %}
+
+
+Saludos
+--
+El equipo de VotaInteligente

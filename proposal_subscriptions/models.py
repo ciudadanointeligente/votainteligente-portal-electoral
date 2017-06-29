@@ -8,7 +8,7 @@ from django.utils import timezone
 
 
 class SearchSubscription(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, related_name="search_subscriptions")
     keyword_args = PickledObjectField()
     search_params = PickledObjectField()
     filter_class_module = models.CharField(max_length=254)

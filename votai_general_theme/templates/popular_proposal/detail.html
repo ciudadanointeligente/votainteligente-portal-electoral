@@ -40,7 +40,7 @@ $(function(){
 </div>
 
   {% if popular_proposal.proposer == user %}
-    <div class="alert alert-success">
+    <div class="alert alert-success text-center">
         <p>Esta es tu propuesta {{user}}, <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %} ¿quieres añadir antecedentes?{% endblocktrans %}</a></p>
     </div>
   {% endif%}
@@ -50,12 +50,16 @@ $(function(){
     <div class="pull-left">
       <span class="label label-default">{{popular_proposal.data.clasification}}</span>
     </div>
+
     <div class="pull-right share">
       {% include 'popular_proposal/_share.html' with proposal=popular_proposal next_url=request.path %}
     </div>
+
     <div class="line-space"></div>
-    <p class="text-center text-light small">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>
+    <p class="text-center text-light small">Esta es una propuesta de {{popular_proposal.proposer}}</p>
     <h1 class="text-center">{{popular_proposal.title}}</h1>
+
+    {% comment %}<!-- Apoyos -->
     <div class="row detail-numbers">
       <div class="col-md-3">{% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}</div>
       <div class="col-md-3">
@@ -71,6 +75,8 @@ $(function(){
         </div>
       </div>
     </div>
+    {% endcomment %}
+
     {% get_proposals_enabled as proposals_enabled %}
     {% if proposals_enabled  %}
     <div class="btn_pronunciarme text-center"></div>
@@ -321,9 +327,9 @@ $(function(){
     {% endif %}
     <!-- Organizaciones patrocinantes -->
     {% if popular_proposal.sponsoring_orgs.all %}
-    <div class="container">
-
-    <h3 class="text-center">Organizaciones patrocinantes de esta propuesta:</h3>
+    <div class="apoyo-orgs">
+    <div class="container text-center">
+    <h4 class="text-center">Organizaciones que apoyan esta propuesta</h4>
       <ul class="list-inline">
         {% for org in popular_proposal.sponsoring_orgs %}
         <li>
@@ -339,6 +345,7 @@ $(function(){
         </li>
         {% endfor %}
       </ul>
+    </div>
     </div>
     {% endif %}
 

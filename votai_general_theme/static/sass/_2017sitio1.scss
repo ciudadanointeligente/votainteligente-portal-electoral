@@ -141,3 +141,21 @@ input[type=file]{
   padding: 5px;
   border-radius: 8px;
 }
+
+/*Detalle*/
+.fondo-blanco{
+  box-shadow: none;
+}
+
+.apoyo-orgs{
+  background-color: $blue;
+  padding: 20px;
+  h4{
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 1.2px;
+  }
+}

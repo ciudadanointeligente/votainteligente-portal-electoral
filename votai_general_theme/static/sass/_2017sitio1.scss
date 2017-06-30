@@ -149,7 +149,10 @@ input[type=file]{
 /*Detalle*/
 .fondo-blanco{
   box-shadow: none;
-  padding: 40px 40px 80px;
+  padding: 40px 40px 40px;
+  border: 3px solid $grey-one;
+  border-radius: 8px;
+  margin-bottom: 160px;
   h1{
     font-family: 'Montserrat', sans-serif;
     margin: 0;
@@ -159,6 +162,7 @@ input[type=file]{
 .apoyo-orgs{
   background-color: $blue;
   padding: 20px;
+  margin-top: -120px;
   h4{
   color: white;
   font-family: 'Montserrat', sans-serif;
@@ -171,6 +175,11 @@ input[type=file]{
 
 .apoya-comparte{
   background-color: $yellow;
+  color: $grey-one;
+  padding: 30px 0 20px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .light-text{
@@ -178,6 +187,15 @@ input[type=file]{
   h3{
     color: $grey-three;
   }
+}
+
+.detalle-propuesta-total{
+  margin-bottom: 130px;
+}
+
+.llamado{
+  font-family: 'Arvo', sans-serif;
+  font-weight: 700;
 }
 
 /*Propuestas*/

@@ -45,7 +45,7 @@ $(function(){
     </div>
   {% endif%}
 
-
+<div class="detalle-propuesta-total">
 <div class="fondo-blanco detail text-width{% if proposal.for_all_areas %} transversal{% endif %}">
     <div class="pull-left">
       <span class="label label-default">{{popular_proposal.data.clasification}}</span>
@@ -353,16 +353,28 @@ $(function(){
     </div>
     {% endif %}
 
+  </div>
+</div><!-- Todo antes de comparte -->
+
     <div class="apoya-comparte">
       <div class="container">
-        <p class="text-center">Si te gustó ¡compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año</p>
-      </div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <p class="text-center llamado">Si te gustó ¡compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-2">
+            <div class="apoyo-contador">
+              <p class="apoyo-ciudadano"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+          </div>
+        </div>
+      </div>
     </div>
 
-
 {% endblock everything %}
-  </div>
-</div><!-- End compromisos -->
-
 {% block extrafooter %}
 {% endblock extrafooter %}

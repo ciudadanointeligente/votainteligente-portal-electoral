@@ -4,6 +4,15 @@
   }
 }
 
+@media screen and (max-width: 522px) {
+  .apoya-comparte{
+    text-align: center;
+  }
+  .share-detail{
+    text-align: center;
+  }
+}
+
 @media screen and (max-width: 388px) {
   .org-info h2{
     margin-top: 120px;
@@ -19,5 +28,9 @@
 
   .propuesta-content{
     margin-bottom: 130px;
+  }
+
+  .share{
+    text-align: center;
   }
 }

@@ -206,6 +206,22 @@ input[type=file]{
   font-weight: 700;
 }
 
+.share-detail{
+  text-align: right;
+}
+
+.share-detail .fa-inverse {
+    color: $yellow;
+}
+
+.share-detail a .fa-stack {
+    color: white;
+}
+
+.share-detail a .fa-stack:hover {
+    color: $grey-one;
+}
+
 /*Propuestas*/
 .propuesta{
   border: 2px solid $grey-one;
@@ -227,6 +243,10 @@ input[type=file]{
   display: none;
 }
 
+.share{
+  text-align: right;
+}
+
 .share-card{
   background-color: $grey-one;
   height: 115px;
@@ -236,8 +256,12 @@ input[type=file]{
   width: 100%;
 }
 
+.share-card .fa-inverse {
+    color: $grey-one;
+}
+
 .share-card a .fa-stack {
-    color: $grey-four;
+    color: white;
 }
 
 .share-card a .fa-stack:hover {

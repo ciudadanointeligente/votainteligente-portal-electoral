@@ -39,7 +39,7 @@
   <div class="share-card">
     <div class="text-center">{% url 'popular_proposals:home' as popular_proposals_home %}</div>
     {% include 'popular_proposal/_likers.html' with proposal=proposal area=area next_url=popular_proposals_home %}
-    <div class="pull-right">
+    <div class="share">
       {% include 'popular_proposal/_share.html' with popular_proposal=proposal %}
     </div>
   </div>

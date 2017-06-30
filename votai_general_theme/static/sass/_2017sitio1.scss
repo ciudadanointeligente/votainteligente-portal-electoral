@@ -1,4 +1,8 @@
 /*Home temporal*/
+html .navbar_visible, body .navbar_visible{
+  padding-top: 55px;
+}
+
 .high-home{
   font-family: 'Arvo', serif;
   font-size: 18px;
@@ -145,6 +149,11 @@ input[type=file]{
 /*Detalle*/
 .fondo-blanco{
   box-shadow: none;
+  padding: 40px 40px 80px;
+  h1{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+  }
 }
 
 .apoyo-orgs{
@@ -162,4 +171,11 @@ input[type=file]{
 
 .apoya-comparte{
   background-color: $yellow;
+}
+
+.light-text{
+  color: $grey-three;
+  h3{
+    color: $grey-three;
+  }
 }

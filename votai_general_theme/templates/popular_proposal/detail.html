@@ -34,7 +34,7 @@ $(function(){
 <div class="container">
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}">VotaInteligente</a></li>
-    <li><a href="{% url 'area' slug=popular_proposal.area.id%}">{{popular_proposal.area}}</a></li>
+    {% comment %}<li><a href="{% url 'area' slug=popular_proposal.area.id%}">{{popular_proposal.area}}</a></li>{% endcomment %}
     <li class="active">{{popular_proposal.title}}</li>
   </ol>
 </div>
@@ -132,14 +132,9 @@ $(function(){
     {% endif %}
 
     {% if popular_proposal.background %}
-      <div class="antecedentes text-width">
+      <div class="antecedentes text-width light-text">
         <div class="row">
-          <div class="col-xs-12 col-md-12">
-            <h3>Imagen</h3>
-            {% if popular_proposal.image|length %}
-            <img src="{{popular_proposal.image.url}}" style="width:100%">
-            {% endif %}
-          </div>
+          <hr>
           <div class="col-xs-12 col-md-9">
             <h3>{% trans 'Antecedentes' %}</h3>
             <p>{{popular_proposal.background|linebreaksbr}}</p>
@@ -150,6 +145,11 @@ $(function(){
             <ul>
               <li><a href="{{popular_proposal.document.url}}" target="_blank"><i class="fa fa-file"></i> Documento</a></li>
             </ul>
+            {% endif %}
+          </div>
+          <div class="col-xs-12 col-md-12">
+            {% if popular_proposal.image|length %}
+            <img src="{{popular_proposal.image.url}}" style="width:100%">
             {% endif %}
           </div>
         </div>

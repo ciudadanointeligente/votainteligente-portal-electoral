@@ -1,15 +1,16 @@
-@media screen and (max-width: 900px) {
-  .fondo-blanco{
-    border: none;
-  }
-}
-
-@media screen and (max-width: 522px) {
+@media screen and (max-width: 991px) {
   .apoya-comparte{
     text-align: center;
   }
+
   .share-detail{
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .fondo-blanco{
+    border: none;
   }
 }
 

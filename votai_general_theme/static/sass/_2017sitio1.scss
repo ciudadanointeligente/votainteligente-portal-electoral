@@ -208,6 +208,14 @@ input[type=file]{
 
 .share-detail{
   text-align: right;
+  .btn-apoyo{
+    background-color: $grey-one;
+    top: 11px;
+    &:hover{
+      color: $grey-one;
+      background-color: white;
+    }
+  }
 }
 
 .share-detail .fa-inverse {
@@ -216,6 +224,7 @@ input[type=file]{
 
 .share-detail a .fa-stack {
     color: white;
+    top: 7px;
 }
 
 .share-detail a .fa-stack:hover {

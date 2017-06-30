@@ -30,14 +30,15 @@ $(function(){
 
 {% url 'popular_proposals:embedded_detail' slug=popular_proposal.slug as embedded_url%}
 
-
+{% comment %}
 <div class="container">
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}">VotaInteligente</a></li>
-    {% comment %}<li><a href="{% url 'area' slug=popular_proposal.area.id%}">{{popular_proposal.area}}</a></li>{% endcomment %}
+    <li><a href="{% url 'area' slug=popular_proposal.area.id%}">{{popular_proposal.area}}</a></li>
     <li class="active">{{popular_proposal.title}}</li>
   </ol>
 </div>
+{% endcomment %}
 
   {% if popular_proposal.proposer == user %}
     <div class="alert alert-success text-center">
@@ -151,6 +152,7 @@ $(function(){
 
       </div>
     {% endif %}
+    <p class="text-center llamado">Si te gustó ¡compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año</p>
 
   </div>
 
@@ -353,11 +355,13 @@ $(function(){
 
     <div class="apoya-comparte">
       <div class="container">
+        {% comment %}
         <div class="row">
-          <div class="col-md-8 col-md-offset-2">
+          <div class="col-md-8 col-md-offset-2 visible-md visible-lg">
             <p class="text-center llamado">Si te gustó ¡compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año</p>
           </div>
         </div>
+        {% endcomment %}
         <div class="row">
           <div class="col-md-4 col-md-offset-2">
             <div class="apoyo-contador">

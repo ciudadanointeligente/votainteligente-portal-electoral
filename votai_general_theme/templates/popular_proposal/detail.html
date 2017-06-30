@@ -1,4 +1,4 @@
-{% extends layout %}
+{% extends "basewithnofixed_navbar.html" %}
 {% load votainteligente_extras %}
 {% load staticfiles %}
 {% load i18n %}
@@ -366,7 +366,7 @@ $(function(){
         <div class="row">
           <div class="col-md-4 col-md-offset-2">
             <div class="apoyo-contador">
-              <p class="apoyo-ciudadano"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
+              <p class="apoyo-ciudadano"><span id='likers_count_{{proposal.id}}' class="conteo">{{popular_proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
             </div>
           </div>
           <div class="col-md-4">

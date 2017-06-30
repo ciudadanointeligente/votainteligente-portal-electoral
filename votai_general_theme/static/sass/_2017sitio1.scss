@@ -147,6 +147,14 @@ input[type=file]{
 }
 
 /*Detalle*/
+.nav-detalle-propuesta{
+  border: none;
+  margin-top: -55px;
+  border-bottom: 1px solid $grey-four;
+  border-radius: 0;
+}
+
+
 .fondo-blanco{
   box-shadow: none;
   padding: 40px 40px 40px;

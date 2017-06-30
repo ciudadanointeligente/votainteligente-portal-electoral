@@ -5,7 +5,7 @@
 {% load cache %}
 
 {% block entire_navbar %}
-<div class="navbar navbar-inverse navbar-fixed-top {% block navbar_background %} white {% endblock navbar_background %}">
+<div class="navbar navbar-inverse {% if fixed_nav_class %}{{fixed_nav_class}}{% else %}navbar-fixed-top{% endif %} {% block navbar_background %} white {% endblock navbar_background %}">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

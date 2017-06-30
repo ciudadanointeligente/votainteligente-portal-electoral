@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load flatpages %}
+{% load sass_tags %}
+{% load i18n %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+<html lang="es"{% if config.SHOW_NAVBAR or user.is_authenticated %} class="navbar_visible"{% endif %}>
+    {% include '_head.html' %}
+    <body{% if config.SHOW_NAVBAR or user.is_authenticated %} class="navbar_visible"{% endif %}>
+      <div>
+        {% if config.SHOW_NAVBAR or user.is_authenticated %}
+          {% include '_navbar.html' with fixed_nav_class="nav-detalle-propuesta" %}
+        {% endif %}
+        {% block everything %}
+        <div class="{% block content_container %}container content_padding{% endblock content_container %}">
+            {% block content %}
+            {% endblock content %}
+        </div>
+        {% endblock everything %}
+      </div>
+        <!--  -->
+        {% include '_footer.html' %}
+        <!--  -->
+    </body>
+</html>

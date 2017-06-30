@@ -258,7 +258,7 @@ input[type=file]{
 
 .share-card{
   background-color: $grey-one;
-  height: 115px;
+  min-height: 115px;
   padding: 5px 20px 5px;
   position: absolute;
   bottom: 0;

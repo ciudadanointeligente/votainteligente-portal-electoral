@@ -6,13 +6,15 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from pytimeparse.timeparse import timeparse
 from django.forms import ModelForm
 from django.http import JsonResponse
+from django import forms
 import json
 from popular_proposal.filters import ProposalGeneratedAtFilter
 
 
-OFTENITY_CHOICES = ((timeparse("1 day"), u"1 Día"),(timeparse("2 days"), u"1 Días"), (timeparse("1 weeks"), u"1 Semana"))
+OFTENITY_CHOICES = ((timeparse("1 day"), u"1 Día"),(timeparse("2 days"), u"2 Días"), (timeparse("1 weeks"), u"1 Semana"))
 
 class SubscriptionCreateForm(ModelForm):
+    oftenity = forms.ChoiceField(choices=OFTENITY_CHOICES)
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
         self.filter_class = kwargs.pop('filter_class')

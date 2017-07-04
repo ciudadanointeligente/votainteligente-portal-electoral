@@ -30,8 +30,12 @@
             'Gracias te hemos suscrito exitosamente.' +
             '</h3>'
           );
-          $('#subscribeToSearch').modal('hide');
-          $('#subscribeToSearchButton').prop("disabled",true);
+          setTimeout(function(){
+            $('#subscribeToSearch').modal('hide');
+            $('#subscribeToSearchButton').prop("disabled",true);
+
+          }, 3000);
+
         }
         });
     });

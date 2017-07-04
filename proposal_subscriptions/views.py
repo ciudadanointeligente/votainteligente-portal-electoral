@@ -1,6 +1,5 @@
 # coding=utf-8
-from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 from proposal_subscriptions.models import SearchSubscription
 from django.contrib.auth.mixins import LoginRequiredMixin
 from pytimeparse.timeparse import timeparse
@@ -8,13 +7,18 @@ from django.forms import ModelForm
 from django.http import JsonResponse
 from django import forms
 import json
+from django.urls import reverse_lazy
 from popular_proposal.filters import ProposalGeneratedAtFilter
 
 
-OFTENITY_CHOICES = ((timeparse("1 day"), u"1 Día"),(timeparse("2 days"), u"2 Días"), (timeparse("1 weeks"), u"1 Semana"))
+OFTENITY_CHOICES = ((timeparse("1 day"), u"1 Día"),
+                    (timeparse("2 days"), u"2 Días"),
+                    (timeparse("1 weeks"), u"1 Semana"))
+
 
 class SubscriptionCreateForm(ModelForm):
     oftenity = forms.ChoiceField(choices=OFTENITY_CHOICES)
+
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
         self.filter_class = kwargs.pop('filter_class')
@@ -50,7 +54,7 @@ class SearchSubscriptionCreateView(LoginRequiredMixin, CreateView):
         for field_key in fields:
             value = self.request.POST.get(field_key, None)
             if value:
-                search_params[field_key]  = value
+                search_params[field_key] = value
         kwargs['search_params'] = search_params
         return kwargs
 
@@ -62,3 +66,11 @@ class SearchSubscriptionCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         subscription = form.save()
         return JsonResponse({'subscription_id': subscription.id})
+
+
+class SearchSubscriptionDeleteView(DeleteView):
+    model = SearchSubscription
+    slug_field = 'token'
+    slug_url_kwarg = 'token'
+    template_name = 'proposal_subscriptions/confirm_unsubscribe.html'
+    success_url = reverse_lazy('popular_proposals:home')

@@ -2,12 +2,6 @@
 from popular_proposal.tests import ProposingCycleTestCaseBase
 from proposal_subscriptions.models import SearchSubscription
 from datetime import timedelta
-from popular_proposal.models import PopularProposal
-from django.contrib.auth.models import User
-from proposal_subscriptions.runner import SubscriptionRunner, TaskRunner
-from django.utils import timezone
-from popular_proposal.forms.form_texts import TOPIC_CHOICES
-from django.core import mail
 from django.core.urlresolvers import reverse
 import json
 from proposal_subscriptions.views import OFTENITY_CHOICES
@@ -47,3 +41,28 @@ class CreateSubscriptionViewsTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(subscription.filter_class_module)
         self.assertTrue(subscription.filter_class_name)
         self.assertEquals(subscription.search_params, {'text': "bicicletas"})
+
+
+class DeleteSubscriptionViewsTestCase(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(DeleteSubscriptionViewsTestCase, self).setUp()
+        self.feli.set_password('PASSWORD')
+        self.feli.save()
+        self.subscription = SearchSubscription.objects.create(user=self.feli,
+                                                              keyword_args={'perrito': "gatito"},
+                                                              search_params={'text': "bicicletas"},
+                                                              filter_class_module="popular_proposal.filters",
+                                                              filter_class_name="ProposalWithoutAreaFilter",
+                                                              oftenity=timedelta(weeks=1))
+
+    def test_get_view(self):
+        url = reverse('proposal_subscriptions:unsubscribe', kwargs={'token': self.subscription.token})
+        self.client.login(username=self.feli.username, password='PASSWORD')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_post_view(self):
+        url = reverse('proposal_subscriptions:unsubscribe', kwargs={'token': self.subscription.token})
+        self.client.login(username=self.feli.username, password='PASSWORD')
+        response = self.client.post(url)
+        self.assertRedirects(response, reverse('popular_proposals:home'))

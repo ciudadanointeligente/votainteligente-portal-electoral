@@ -1,0 +1,4 @@
+<form action="{% url 'proposal_subscriptions:unsubscribe' token=object.token %}" method="post">{% csrf_token %}
+  <p>Estas a punto de desuscribirte a la búsqueda de "{{ object }}"?</p>
+    <input type="submit" value="Confirmar" />
+</form>

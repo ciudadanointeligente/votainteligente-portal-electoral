@@ -25,6 +25,8 @@ class SearchSubscriptionModel(ProposingCycleTestCaseBase):
 
         self.assertTrue(subscription.created)
         self.assertIsNone(subscription.last_run)
+        self.assertTrue(subscription.token)
+        self.assertEquals(len(str(subscription.token)), 36)
 
 
     def test_run_sends_hits_to_user(self):

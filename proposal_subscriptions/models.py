@@ -3,9 +3,10 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from picklefield.fields import PickledObjectField
-from popular_proposal.models import PopularProposal
 from django.utils import timezone
+from django.core.urlresolvers import reverse
 import uuid
+from django.utils.translation import ugettext_lazy as _
 
 
 class SearchSubscription(models.Model):
@@ -14,7 +15,7 @@ class SearchSubscription(models.Model):
     search_params = PickledObjectField()
     filter_class_module = models.CharField(max_length=254)
     filter_class_name = models.CharField(max_length=254)
-    oftenity = models.DurationField()
+    oftenity = models.DurationField(help_text=_(u"Cada cuanto te notificamos?"))
     created = models.DateTimeField(auto_now_add=True,
                                    blank=True,
                                    null=True)
@@ -24,6 +25,9 @@ class SearchSubscription(models.Model):
     last_run = models.DateTimeField(blank=True,
                                     null=True)
     token = models.UUIDField(default=uuid.uuid4)
+
+    def unsubscribe_url(self):
+        return reverse('proposal_subscriptions:unsubscribe', kwargs={'token': self.token})
 
     def base_queryset(self):
         mod = __import__(self.filter_class_module, fromlist=[self.filter_class_name])

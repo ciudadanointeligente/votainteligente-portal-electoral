@@ -11,7 +11,7 @@
 </form>
 </div>
 <script>
-    $(document).ready(function() {
+   $(document).ready(function() {
         let dataGetter = function(  ) {
           let data = {};
           $('#proposalFilterForm :input').each(function(el, input) {
@@ -20,10 +20,10 @@
               data[$(input).attr('name')] = value;
             }
           });
-          return;
+          return data;
         }
         $( "#searchSubscriptionForm" ).ajaxForm({
-          beforeSubmit: dataGetter,
+          data: dataGetter(),
           success: function(response){
             $("#searchSubscriptionContainer").html(
             '<h3>' +

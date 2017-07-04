@@ -1,6 +1,5 @@
 # coding=utf-8
 from .models import SearchSubscription
-from itertools import chain
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models import DateTimeField, ExpressionWrapper, F
@@ -14,8 +13,8 @@ class SubscriptionRunner(object):
     def get_proposals(self):
         subscriptions = self.get_subscriptions()
         proposals_iter = []
-       	for subscription in subscriptions:
-               proposals_iter += list(subscription.queryset())
+        for subscription in subscriptions:
+            proposals_iter += list(subscription.queryset())
         return set(proposals_iter)
 
     def get_subscriptions(self):
@@ -29,14 +28,15 @@ class SubscriptionRunner(object):
 
     def send(self):
         proposals = self.get_proposals()
+        subscriptions = self.get_subscriptions()
         if not proposals:
             return False
         context = {'proposals': proposals,
+                   'subscriptions': subscriptions,
                    'user': self.user}
         send_mail(context, 'search_proposals_subscription',
                   to=[self.user.email])
         return True
-
 
 
 class TaskRunner(object):

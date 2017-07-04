@@ -66,3 +66,30 @@ class DeleteSubscriptionViewsTestCase(ProposingCycleTestCaseBase):
         self.client.login(username=self.feli.username, password='PASSWORD')
         response = self.client.post(url)
         self.assertRedirects(response, reverse('popular_proposals:home'))
+
+
+class SubscriptionListViewsTestCase(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(SubscriptionListViewsTestCase, self).setUp()
+        self.feli.set_password('PASSWORD')
+        self.feli.save()
+        self.subscription = SearchSubscription.objects.create(user=self.feli,
+                                                              keyword_args={'perrito': "gatito"},
+                                                              search_params={'text': "bicicletas"},
+                                                              filter_class_module="popular_proposal.filters",
+                                                              filter_class_name="ProposalWithoutAreaFilter",
+                                                              oftenity=timedelta(weeks=1))
+
+    def test_get_list_view(self):
+        subscription2 = SearchSubscription.objects.create(user=self.fiera,
+                                                          keyword_args={'perrito': "gatito"},
+                                                          search_params={'text': "bicicletas"},
+                                                          filter_class_module="popular_proposal.filters",
+                                                          filter_class_name="ProposalWithoutAreaFilter",
+                                                          oftenity=timedelta(weeks=1))
+        url = reverse('proposal_subscriptions:list')
+        self.client.login(username=self.feli.username, password='PASSWORD')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(self.subscription, response.context['subscriptions'])
+        self.assertNotIn(subscription2, response.context['subscriptions'])

@@ -93,10 +93,16 @@
           <a class="small" href="{{my_profile_url}}">
           {% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a></li>
         {% endif %}
+        {% comment %}
         {% url 'backend_citizen:stats' as stats_url %}
          <li role="presentation" class="{% ifequal request.path stats_url %} active{% endifequal %} hidden-xs">
           <a class="small" href="{{stats_url}}">
           {% blocktrans %}Estadísticas{% endblocktrans %}</a></li>
+        {% endcomment %}
+        {% url 'proposal_subscriptions:list' as search_proposal_subscriptions_url %}
+         <li role="presentation" class="{% ifequal request.path search_proposal_subscriptions_url%} active{% endifequal %} hidden-xs">
+          <a class="small" href="{{search_proposal_subscriptions_url}}">
+          {% blocktrans %}Búsquedas{% endblocktrans %}</a></li>
 
       {% endif %}
 

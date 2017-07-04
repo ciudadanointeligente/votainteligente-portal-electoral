@@ -9,6 +9,8 @@ from django import forms
 import json
 from django.urls import reverse_lazy
 from popular_proposal.filters import ProposalGeneratedAtFilter
+from django.views.generic.list import ListView
+from django.utils.translation import ugettext_lazy as _
 
 
 OFTENITY_CHOICES = ((timeparse("1 day"), u"1 Día"),
@@ -17,7 +19,7 @@ OFTENITY_CHOICES = ((timeparse("1 day"), u"1 Día"),
 
 
 class SubscriptionCreateForm(ModelForm):
-    oftenity = forms.ChoiceField(choices=OFTENITY_CHOICES)
+    oftenity = forms.ChoiceField(choices=OFTENITY_CHOICES, label=_(u"Cada cuanto quieres que te notifiquemos?"))
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
@@ -74,3 +76,14 @@ class SearchSubscriptionDeleteView(DeleteView):
     slug_url_kwarg = 'token'
     template_name = 'proposal_subscriptions/confirm_unsubscribe.html'
     success_url = reverse_lazy('popular_proposals:home')
+
+
+class SearchSubscriptionListView(ListView):
+    model = SearchSubscription
+    template_name = "proposal_subscriptions/list.html"
+    context_object_name = 'subscriptions'
+
+    def get_queryset(self):
+        qs = super(SearchSubscriptionListView, self).get_queryset()
+        qs = qs.filter(user=self.request.user)
+        return qs

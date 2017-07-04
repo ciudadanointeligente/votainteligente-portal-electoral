@@ -8,6 +8,7 @@ from proposal_subscriptions.runner import SubscriptionRunner, TaskRunner
 from django.utils import timezone
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from django.core import mail
+from django.core.urlresolvers import reverse
 
 
 class SearchSubscriptionModel(ProposingCycleTestCaseBase):
@@ -27,6 +28,16 @@ class SearchSubscriptionModel(ProposingCycleTestCaseBase):
         self.assertIsNone(subscription.last_run)
         self.assertTrue(subscription.token)
         self.assertEquals(len(str(subscription.token)), 36)
+
+    def test_unsubscribe_url(self):
+        subscription = SearchSubscription.objects.create(user=self.feli,
+                                                         keyword_args={'perrito': "gatito" },
+                                                         search_params={'text': "bicicletas"},
+                                                         filter_class_module="popular_proposal.filters",
+                                                         filter_class_name="ProposalWithoutAreaFilter",
+                                                         oftenity=timedelta(weeks=1))
+        expected_url = reverse('proposal_subscriptions:unsubscribe', kwargs={'token': subscription.token})
+        self.assertEquals(subscription.unsubscribe_url(), expected_url)
 
 
     def test_run_sends_hits_to_user(self):
@@ -206,6 +217,8 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
         the_mail = mail.outbox[original_amount_of_mails]
         self.assertIn(self.feli.email, the_mail.to)
         self.assertEquals(len(the_mail.to), 1)
+
+        self.assertIn(s.unsubscribe_url(), the_mail.body)
 
     def test_if_there_are_no_subscriptions_no_mails_are_sent(self):
         original_amount_of_mails = len(mail.outbox)

@@ -15,10 +15,9 @@ class SearchSubscriptionModel(ProposingCycleTestCaseBase):
     def setUp(self):
         super(SearchSubscriptionModel, self).setUp()
 
-
     def test_instanciate(self):
         subscription = SearchSubscription.objects.create(user=self.feli,
-                                                         keyword_args={'perrito': "gatito" },
+                                                         keyword_args={'perrito': "gatito"},
                                                          search_params={'text': "bicicletas"},
                                                          filter_class_module="popular_proposal.filters",
                                                          filter_class_name="ProposalWithoutAreaFilter",
@@ -31,14 +30,13 @@ class SearchSubscriptionModel(ProposingCycleTestCaseBase):
 
     def test_unsubscribe_url(self):
         subscription = SearchSubscription.objects.create(user=self.feli,
-                                                         keyword_args={'perrito': "gatito" },
+                                                         keyword_args={'perrito': "gatito"},
                                                          search_params={'text': "bicicletas"},
                                                          filter_class_module="popular_proposal.filters",
                                                          filter_class_name="ProposalWithoutAreaFilter",
                                                          oftenity=timedelta(weeks=1))
         expected_url = reverse('proposal_subscriptions:unsubscribe', kwargs={'token': subscription.token})
         self.assertEquals(subscription.unsubscribe_url(), expected_url)
-
 
     def test_run_sends_hits_to_user(self):
         a_week_ago = timezone.now() - timedelta(weeks=1)
@@ -108,7 +106,6 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
                                                           )
 
     def test_one_user_two_subscriptions(self):
-        a_day_ago = timezone.now() - timedelta(days=1)
         two_days_ago = timezone.now() - timedelta(days=2)
         hit_two = PopularProposal.objects.create(proposer=self.fiera,
                                                  area=self.arica,
@@ -194,8 +191,6 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
     def test_send_mail_with_data(self):
         original_amount_of_mails = len(mail.outbox)
         a_week_ago = timezone.now() - timedelta(weeks=1)
-        a_day_ago = timezone.now() - timedelta(days=1)
-        two_days_ago = timezone.now() - timedelta(days=2)
         hit_one = PopularProposal.objects.create(proposer=self.fiera,
                                                  data=self.data,
                                                  title=u'bicicletas',
@@ -218,7 +213,7 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
         self.assertIn(self.feli.email, the_mail.to)
         self.assertEquals(len(the_mail.to), 1)
 
-        self.assertIn(s.unsubscribe_url(), the_mail.body)
+        self.assertIn(reverse('proposal_subscriptions:list'), the_mail.body)
 
     def test_if_there_are_no_subscriptions_no_mails_are_sent(self):
         original_amount_of_mails = len(mail.outbox)

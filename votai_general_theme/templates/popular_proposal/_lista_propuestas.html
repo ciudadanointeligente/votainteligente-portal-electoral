@@ -3,9 +3,22 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js" />
+<script>
+$(function(){
+    $('.loadFromUrl').on('show.bs.modal', function (event) {
+      var anchor = $(event.relatedTarget) // Button that triggered the modal
+      var modal = $(this)
+      var body = modal.find('.modal-body');
+      body.load(anchor.data('url'));
+    })
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 
 
     {% if form %}
+    {% include 'modal.html' with modalId='subscribeToSearch' title='Subscribirse a esta búsqueda' %}
 		<form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form">
       <div class="row">
         <div class="col-md-4">{% bootstrap_field form.text %}</div>
@@ -19,9 +32,18 @@
           {% endif %}
           {% endcomment %}
 
-        <div class="col-md-4">
+        <div class="col-md-8">
     	    <div class="form-actions">
     	        <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>
+              {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
+              <a
+              type="button"
+              id="subscribeToSearchButton"
+              class="btn btn-info subscribe"
+               data-toggle="modal"
+               data-url="{% url 'proposal_subscriptions:subscribe' %}"
+               data-target="#subscribeToSearch">{% trans 'Subscribir a esta búsqueda' %}</a>
+               {% endif %}
     	    </div>
         </div>
       </div>
@@ -33,7 +55,6 @@
     $(function(){
       $('#proposalFilterForm').submit(function() {
         $(':input', this).each(function() {
-          console.log('perrito');
           this.disabled = !($(this).val());
         });
       });

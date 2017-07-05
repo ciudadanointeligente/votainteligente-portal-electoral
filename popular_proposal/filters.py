@@ -58,10 +58,12 @@ class ProposalWithoutAreaFilter(FilterSet):
     @property
     def form(self):
         super(ProposalWithoutAreaFilter, self).form
-
+        is_filled_search = False
         for k in self.data:
             i = self.data[k]
+            is_filled_search = True
             self._form.fields[k].initial = i
+        self._form.is_filled_search = is_filled_search
         return self._form
 
     @property

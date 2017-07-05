@@ -99,10 +99,12 @@
           <a class="small" href="{{stats_url}}">
           {% blocktrans %}Estadísticas{% endblocktrans %}</a></li>
         {% endcomment %}
-        {% url 'proposal_subscriptions:list' as search_proposal_subscriptions_url %}
-         <li role="presentation" class="{% ifequal request.path search_proposal_subscriptions_url%} active{% endifequal %} hidden-xs">
-          <a class="small" href="{{search_proposal_subscriptions_url}}">
-          {% blocktrans %}Búsquedas{% endblocktrans %}</a></li>
+        {% if config.SEARCH_SUBSCRIPTION_ENABLED %}
+          {% url 'proposal_subscriptions:list' as search_proposal_subscriptions_url %}
+           <li role="presentation" class="{% ifequal request.path search_proposal_subscriptions_url%} active{% endifequal %} hidden-xs">
+            <a class="small" href="{{search_proposal_subscriptions_url}}">
+            {% blocktrans %}Búsquedas{% endblocktrans %}</a></li>
+        {% endif %}
 
       {% endif %}
 

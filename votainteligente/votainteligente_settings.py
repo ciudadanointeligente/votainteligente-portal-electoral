@@ -393,6 +393,7 @@ CONSTANCE_CONFIG = {
     'NAV_BAR': ('profiles, questionary, soulmate, facetoface, ask, ranking', 'Menu de navegacion'),
     'CAN_CREATE_TEST_PROPOSAL': (False, u'Se pueden crear propuestas de prueba?'),
     'SHOW_NAVBAR': (False, u'Se debe mostrar el navbar a los visitantes??? (atento aquí por que a los usuarios loggeados se lo vamos a mostrar igual)'),
+    'SEARCH_SUBSCRIPTION_ENABLED': (True, u'Suscribirse a una búsqueda está habilitado? esto sólo esconde los links.'),
     'WEBSITE_METADATA_AUTHOR': ('', 'Nombre del autor'),
     'WEBSITE_METADATA_DESCRIPTION': ('', 'Descripcion del sitio'),
     'WEBSITE_METADATA_KEYWORD': ('', 'Palabras claves del sitio'),

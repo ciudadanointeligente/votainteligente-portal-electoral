@@ -1,0 +1,10 @@
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load bootstrap3 %}
+<div id="deleteSearchSubscriptionContainer">
+<form action="{% url 'proposal_subscriptions:unsubscribe' token=object.token %}" method="post">{% csrf_token %}
+  <p>Estas a punto de desuscribirte a la búsqueda de {% for key, value in object.search_params.items %}<p class="label label-info">{{value}}</p>{% endfor %}</p>
+  <p>cada {{object.oftenity}}?</p>
+  <button type="submit" class="btn btn-success">{% trans 'Desuscribir'%}</button>
+</form>
+</div>

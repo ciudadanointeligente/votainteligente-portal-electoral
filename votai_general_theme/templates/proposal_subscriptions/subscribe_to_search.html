@@ -1,0 +1,42 @@
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load bootstrap3 %}
+<div id="searchSubscriptionContainer">
+
+<form id="searchSubscriptionForm" action="{% url 'proposal_subscriptions:subscribe' %}" method="POST" role="form">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+
+  <button type="submit" class="btn btn-success">{% trans 'Subscribir'%}</button>
+</form>
+</div>
+<script>
+   $(document).ready(function() {
+        let dataGetter = function(  ) {
+          let data = {};
+          $('#proposalFilterForm :input').each(function(el, input) {
+            let value = $(input).val();
+            if(value.trim().length > 0){
+              data[$(input).attr('name')] = value;
+            }
+          });
+          return data;
+        }
+        $( "#searchSubscriptionForm" ).ajaxForm({
+          data: dataGetter(),
+          success: function(response){
+            $("#searchSubscriptionContainer").html(
+            '<h3>' +
+            'Gracias te hemos suscrito exitosamente.' +
+            '</h3>'
+          );
+          setTimeout(function(){
+            $('#subscribeToSearch').modal('hide');
+            $('#subscribeToSearchButton').prop("disabled",true);
+
+          }, 3000);
+
+        }
+        });
+    });
+</script>

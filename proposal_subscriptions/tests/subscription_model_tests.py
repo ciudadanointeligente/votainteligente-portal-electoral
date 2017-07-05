@@ -137,7 +137,6 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
         self.assertEquals(len(qs), 2)
 
     def test_get_subscriptions(self):
-        a_week_ago = timezone.now() - timedelta(weeks=1)
         a_day_ago = timezone.now() - timedelta(days=1)
         two_days_ago = timezone.now() - timedelta(days=2)
         # s1 should be in
@@ -191,11 +190,11 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
     def test_send_mail_with_data(self):
         original_amount_of_mails = len(mail.outbox)
         a_week_ago = timezone.now() - timedelta(weeks=1)
-        hit_one = PopularProposal.objects.create(proposer=self.fiera,
-                                                 data=self.data,
-                                                 title=u'bicicletas',
-                                                 clasification=TOPIC_CHOICES[2][0],
-                                                 )
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       data=self.data,
+                                       title=u'bicicletas',
+                                       clasification=TOPIC_CHOICES[2][0],
+                                       )
         s = SearchSubscription.objects.create(user=self.feli,
                                               keyword_args={},
                                               search_params={'text': "bicicletas",
@@ -222,10 +221,10 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
         self.assertFalse(result)
         self.assertEquals(len(mail.outbox), original_amount_of_mails)
 
+
 class SearchSubscriptionTaskRunner(ProposingCycleTestCaseBase):
     def setUp(self):
         super(SearchSubscriptionTaskRunner, self).setUp()
-
 
     def test_get_the_right_users(self):
         User.objects.create_user(username="1")
@@ -244,8 +243,6 @@ class SearchSubscriptionTaskRunner(ProposingCycleTestCaseBase):
     def test_send_subscription_notifications(self):
         original_amount_of_mails = len(mail.outbox)
         a_week_ago = timezone.now() - timedelta(weeks=1)
-        a_day_ago = timezone.now() - timedelta(days=1)
-        two_days_ago = timezone.now() - timedelta(days=2)
         PopularProposal.objects.create(proposer=self.fiera,
                                        data=self.data,
                                        title=u'bicicletas',

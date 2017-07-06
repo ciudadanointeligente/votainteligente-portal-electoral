@@ -21,7 +21,7 @@
         <p>Al apoyar esta propuesta aceptas que VotaInteligente te notifique vía correo electrónico cuando un candidato decida apoyar esta propuesta.</p>
         {% endif %}
         {% url 'popular_proposals:like_a_proposal' pk=proposal.id as like_this_proposal_url %}
-        <form method="POST" id="form_{{modalId}}"action="{{like_this_proposal_url}}" role="form">
+        <form method="POST" id="form_{{modalId}}" action="{{like_this_proposal_url}}" role="form">
             {% csrf_token %}
             {% if next %}
             <input type="hidden" name="next" value="{{next_url}}" />

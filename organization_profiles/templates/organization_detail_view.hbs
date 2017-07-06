@@ -2,12 +2,14 @@
 <div class="org-background" style="background-image:url({{background_image}});">
   <div class="container">
     {{#if logo}}
-    <div class="logo-org">
-      <img src="{{logo}}" alt="{{organization}}" class="landing-phrase" width="150px">
-      {{/if}}
-      {{#if is_owner}}
-      <a href="{{update_url}}" class="btn btn-success">Edita esta pagina</a>
-      {{/if}}
+    <div class="landing-org">
+      <div class="logo-org">
+        <img src="{{logo}}" alt="{{organization}}" width="150px">
+      </div>
+        {{/if}}
+        {{#if is_owner}}
+        <a href="{{update_url}}" class="btn btn-success">Edita esta pagina</a>
+        {{/if}}
     </div>
   </div>
 </div>

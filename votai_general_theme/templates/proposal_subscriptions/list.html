@@ -1,0 +1,47 @@
+{% extends "backend_citizen/base.html" %}
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block main_content %}
+<script>
+$(function(){
+    $('.loadFromUrl').on('show.bs.modal', function (event) {
+      var anchor = $(event.relatedTarget) // Button that triggered the modal
+      var modal = $(this)
+      var body = modal.find('.modal-body');
+      body.load(anchor.data('url'));
+    })
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+    {% include 'modal.html' with modalId='unsubscribeToSearch' title='Desuscribirse' %}
+	<h2 class="page-header">Tus suscripciones a búsquedas</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+              <th>{% trans 'Qué buscaste' %}</th>
+              <th>{% trans 'Frecuencia' %}</th>
+              <th>{% trans 'Acciones' %}</th>
+          </tr>
+        </thead>
+        <tbody>
+    {% for subscription in subscriptions.all %}
+        <tr class="proposal_{{subscription.id}}">
+          <td>{% for key, value in subscription.search_params.items %}<p class="label label-info">{{value}}</p>{% endfor %}</td>
+          <td>{{subscription.oftenity}}</td>
+            <td><a
+              data-target="#unsubscribeToSearch"
+               data-toggle="modal"
+               data-url="{{subscription.unsubscribe_url}}"
+                >Desuscribirse</a></td>
+        </tr>
+    {% empty %}
+    {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endblock main_content %}

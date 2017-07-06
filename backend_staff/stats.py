@@ -1,8 +1,9 @@
 from elections.models import Candidate
 from backend_candidate.models import CandidacyContact
-from popular_proposal.models import PopularProposal, Commitment
+from popular_proposal.models import PopularProposal, Commitment, ProposalLike
 from django.conf import settings
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from constance import config
 
 class CandidateParticipation(object):
@@ -48,6 +49,18 @@ class Stats(object):
 
     def candidates_that_have_12_naranja(self):
         return self.candidates_qs.exclude(taken_positions__isnull=True)
+    
+    @property
+    def likes_by_organizations(self):
+        return ProposalLike.objects.filter(user__profile__is_organization=True).count()
+    
+    @property
+    def organizations_online(self):
+        return User.objects.filter(profile__is_organization=True)
+    
+    @property
+    def proposals_made_by_organizations(self):
+        return PopularProposal.objects.filter(proposer__profile__is_organization=True)
 
     def __getattribute__(self, name):
         if name.startswith('total_candidates_'):

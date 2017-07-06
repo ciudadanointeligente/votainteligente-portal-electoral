@@ -60,6 +60,7 @@ INSTALLED_APPS = (
     'django_ogp',
     'debug_toolbar',
     # 'debug_panel',
+    'proposal_subscriptions',
     'constance',
 )
 INSTALLED_APPS_AFTER_ALL = ('el_pagination',)
@@ -165,6 +166,7 @@ EMAIL_USE_TLS = True
 
 
 THUMBNAIL_DEBUG = False
+TEMPLATE_DEBUG = False
 
 # CANDIDEITORG API THINGS
 
@@ -186,22 +188,42 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'critical.log',
+        },
     },
     'loggers': {
+        '': {
+            'handlers': ['file'],
+            'level': 'CRITICAL'
+       },
+
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
         },
+        'elasticsearch': {
+            'handlers': ['file'],
+            'level': 'CRITICAL',
+            'propagate': True,
+       },
+        'urllib3': {
+            'handlers': ['file'],
+            'level': 'CRITICAL',
+            'propagate': True,
+       },
     }
 }
 # CELERY STUFF
 BROKER_URL = 'amqp://guest:guest@localhost:5672/'
 CELERY_ALWAYS_EAGER = True
 
-CELERYBEAT_SCHEDULE = {'sending-mails-every-2-minutes': {'task': 'preguntales.tasks.send_mails',
-                                                         'schedule': timedelta(minutes=2),
+CELERYBEAT_SCHEDULE = {'sending-new-proposals-once-a-day': {'task': 'proposal_subscriptions.tasks.send_new_proposals_to_subscribers',
+                                                         'schedule': timedelta(days=1),
                                                          },
                        # 'letting-candidates-know-about-us-every-two-days':
                        # {'task': 'backend_candidate.tasks.send_candidates_their_username_and_password',
@@ -309,6 +331,7 @@ NO_REPLY_MAIL = "no-reply@localhost"
 EMAIL_LOCALPART = 'municipales2016'
 EMAIL_DOMAIN = 'votainteligente.cl'
 MAX_AMOUNT_OF_MAILS_TO_CANDIDATE = 3
+FILTERABLE_AREAS_TYPE = ['Comuna']
 
 # HIDDEN_AREAS = ['fundacion-ciudadano-inteligente', ]
 DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS=[{'title':u'Agenda', 'content':'''* **2 DE JULIO**	Elecciones Primarias\r\n* **19 DE NOVIEMBRE**\r\nPrimera vuelta de Elecciones Presidenciales y Parlamentarias
@@ -370,6 +393,7 @@ CONSTANCE_CONFIG = {
     'NAV_BAR': ('profiles, questionary, soulmate, facetoface, ask, ranking', 'Menu de navegacion'),
     'CAN_CREATE_TEST_PROPOSAL': (False, u'Se pueden crear propuestas de prueba?'),
     'SHOW_NAVBAR': (False, u'Se debe mostrar el navbar a los visitantes??? (atento aquí por que a los usuarios loggeados se lo vamos a mostrar igual)'),
+    'SEARCH_SUBSCRIPTION_ENABLED': (True, u'Suscribirse a una búsqueda está habilitado? esto sólo esconde los links.'),
     'WEBSITE_METADATA_AUTHOR': ('', 'Nombre del autor'),
     'WEBSITE_METADATA_DESCRIPTION': ('', 'Descripcion del sitio'),
     'WEBSITE_METADATA_KEYWORD': ('', 'Palabras claves del sitio'),

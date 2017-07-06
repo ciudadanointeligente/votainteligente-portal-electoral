@@ -10,7 +10,7 @@
     <body{% if config.SHOW_NAVBAR or user.is_authenticated %} class="navbar_visible"{% endif %}>
       <div>
         {% if config.SHOW_NAVBAR or user.is_authenticated %}
-          {% include '_navbar.html' %}
+          {% include '_navbar.html' with fixed_nav_class="nav-detalle-propuesta" %}
         {% endif %}
         {% block everything %}
         <div class="{% block content_container %}container content_padding{% endblock content_container %}">
@@ -19,6 +19,7 @@
         </div>
         {% endblock everything %}
       </div>
-        {% include '_footer.html' %}
+        <!--  -->
+        <!--  -->
     </body>
 </html>

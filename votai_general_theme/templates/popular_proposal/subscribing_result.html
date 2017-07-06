@@ -1,7 +1,14 @@
 {% load static %}
 $('#likers_count_{{proposal.id}}').text('{{proposal.likers.count}}')
 $('.modal').modal('hide');
-$('.corazon-{{proposal.id}}').replaceWith('<a id="unlike_proposal_{{proposal.id}}" class="unlike_proposal pull-left" href="{% url 'popular_proposals:unlike_proposal' pk=like.id %}" data-toggle="tooltip" data-placement="top" title="Ya no quiero apoyar esta propuesta"><img src="{% static 'img/adherido.svg' %}"></a>');
+$('.corazon-{{proposal.id}} a').attr('id', "unlike_proposal_{{proposal.id}}");
+$('.corazon-{{proposal.id}} a').attr('href', "{% url 'popular_proposals:unlike_proposal' pk=like.id %}");
+$('.corazon-{{proposal.id}} a').attr("title", "Ya no quiero apoyar esta propuesta");
+$('.corazon-{{proposal.id}} a').html('Apoyo <i class="fa fa-heart" aria-hidden="true"></i>');
+$('.corazon-{{proposal.id}} a').removeClass('btn-apoyo');
+$('.corazon-{{proposal.id}} a').addClass('unlike_proposal');
+$('.corazon-{{proposal.id}} a').addClass('btn-no-apoyo');
+
 $("#unlike_proposal_{{proposal.id}}").click(function(event){
         event.preventDefault();
         var target = $(event.target);

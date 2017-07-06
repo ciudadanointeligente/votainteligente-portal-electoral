@@ -352,7 +352,9 @@ $(function(){
 
   </div>
 </div><!-- Todo antes de comparte -->
-
+{% with "supportProposal"|add:popular_proposal.slug as modalid %}
+  {% include 'modal_like_proposal.html' with modalId=modalid title='Apoya una propuesta' url=like_this_proposal_url next_url=request.path proposal=popular_proposal %}
+{% endwith %}
     <div class="apoya-comparte">
       <div class="container">
         {% comment %}
@@ -371,11 +373,7 @@ $(function(){
           <div class="col-md-4">
             <div class="share-detail">
               {% include 'popular_proposal/_share.html' with proposal=popular_proposal next_url=request.path %}
-              <span class="corazon-{{proposal.id}}">
-                  <a class="btn btn-apoyo text-center" data-toggle="modal" data-target="#{{modalid}}">
-                  Apoyar <i class="fa fa-heart" aria-hidden="true"></i>
-                  </a>
-              </span>
+              {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path avoid_counter=True %}
             </div>
           </div>
         </div>

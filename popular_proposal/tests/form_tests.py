@@ -42,7 +42,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
         cleaned_data = form.cleaned_data
         self.assertEquals(cleaned_data['title'], self.data['title'])
         self.assertEquals(cleaned_data['problem'], self.data['problem'])
-        self.assertEquals(cleaned_data['solution'], self.data['solution'])
         self.assertEquals(cleaned_data['when'], self.data['when'])
         self.assertEquals(cleaned_data['causes'], self.data['causes'])
         temporary_data = form.save()
@@ -51,7 +50,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(temporary_data.area, self.arica)
         t_data = temporary_data.data
         self.assertEquals(t_data['problem'], self.data['problem'])
-        self.assertEquals(t_data['solution'], self.data['solution'])
         self.assertEquals(t_data['when'], self.data['when'])
         self.assertEquals(t_data['causes'], self.data['causes'])
 
@@ -85,7 +83,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
                             moderator=self.feli)
         self.assertIsInstance(form.fields['problem'], CharField)
         self.assertIsInstance(form.fields['when'], CharField)
-        self.assertIsInstance(form.fields['solution'], CharField)
         self.assertIsInstance(form.fields['causes'], CharField)
 
     def test_comments_form_saving(self):
@@ -95,7 +92,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
         data = {'problem': u'',
                 'clasification': '',
                 'when': u'el plazo no está tan weno',
-                'solution': u'',
                 'causes': u'mejora esto'}
 
         form = CommentsForm(data=data,
@@ -106,7 +102,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(t_data.comments['when'], data['when'])
         self.assertEquals(t_data.comments['causes'], data['causes'])
         self.assertFalse(t_data.comments['problem'])
-        self.assertFalse(t_data.comments['solution'])
         self.assertEquals(t_data.status,
                           ProposalTemporaryData.Statuses.InTheirSide)
 
@@ -137,7 +132,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
     def test_comments_form_with_previous_comments_in(self):
         comments = {
             'problem': '',
-            'solution': '',
             'when': u'El plazo no está tan bueno',
             'causes': ''
         }
@@ -175,7 +169,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
                                                       comments=self.comments,
                                                       status=theirside_status)
         data = self.data
-        data['solution'] = u'Viajar a ver al equipo una vez al mes'
         data['overall_comments'] = u"Quizás sea una buena idea que revises si \
         conviene el plazo de un año"
         form = ProposalTemporaryDataUpdateForm(data=data,
@@ -205,7 +198,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
                                                       comments=self.comments,
                                                       status=theirside_status)
         data = self.data
-        data['solution'] = u'Viajar a ver al equipo una vez al mes'
         data['overall_comments'] = u"Quizás sea una buena idea que revises si \
         conviene el plazo de un año"
         form = ProposalTemporaryDataUpdateForm(data=data,

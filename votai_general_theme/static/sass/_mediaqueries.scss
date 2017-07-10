@@ -1,3 +1,40 @@
+@media screen and (max-width: 1024px) {
+
+  section#hero {
+    background: $yellow;
+  }
+
+}
+
+@media screen and (min-width: 768px) {
+  li.destacado:before {
+    content: url(../img/destacado.svg);
+    position: absolute;
+    top: -10px;
+    left: 90px;
+  }
+  .img-candidato {
+      width: initial;
+      margin: 0 auto;
+      height: initial;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .fondo-blanco{
+      border: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+  h1 {
+      letter-spacing: 3px;
+    }
+  .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover {
+    color: $yellow;
+  }
+}
+
 @media screen and (max-width: 320px) {
 
   h1 {
@@ -82,37 +119,6 @@
 
   .ribbon {
     left: 70px;
-  }
-
-}
-
-@media screen and (min-width: 768px) {
-  li.destacado:before {
-    content: url(../img/destacado.svg);
-    position: absolute;
-    top: -10px;
-    left: 90px;
-  }
-  .img-candidato {
-      width: initial;
-      margin: 0 auto;
-      height: initial;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  h1 {
-      letter-spacing: 3px;
-    }
-  .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover {
-    color: $yellow;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-
-  section#hero {
-    background: $yellow;
   }
 
 }

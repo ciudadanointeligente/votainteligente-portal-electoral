@@ -30,7 +30,7 @@ $(function(){
 
 {% url 'popular_proposals:embedded_detail' slug=popular_proposal.slug as embedded_url%}
 
-
+{% comment %}
 <div class="container">
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}">VotaInteligente</a></li>
@@ -38,24 +38,24 @@ $(function(){
     <li class="active">{{popular_proposal.title}}</li>
   </ol>
 </div>
+{% endcomment %}
 
   {% if popular_proposal.proposer == user %}
-    <div class="alert alert-success">
+    <div class="alert alert-success text-center">
         <p>Esta es tu propuesta {{user}}, <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %} ¿quieres añadir antecedentes?{% endblocktrans %}</a></p>
     </div>
   {% endif%}
 
-
+<div class="detalle-propuesta-total">
 <div class="fondo-blanco detail text-width{% if proposal.for_all_areas %} transversal{% endif %}">
     <div class="pull-left">
       <span class="label label-default">{{popular_proposal.data.clasification}}</span>
     </div>
-    <div class="pull-right share">
-      {% include 'popular_proposal/_share.html' with proposal=popular_proposal next_url=request.path %}
-    </div>
     <div class="line-space"></div>
-    <p class="text-center text-light small">Esta es una propuesta para {{popular_proposal.area}} de {{popular_proposal.proposer}}</p>
+    <p class="text-center text-light small">Esta es una propuesta de {{popular_proposal.proposer}}</p>
     <h1 class="text-center">{{popular_proposal.title}}</h1>
+
+    {% comment %}<!-- Apoyos -->
     <div class="row detail-numbers">
       <div class="col-md-3">{% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}</div>
       <div class="col-md-3">
@@ -71,6 +71,8 @@ $(function(){
         </div>
       </div>
     </div>
+    {% endcomment %}
+
     {% get_proposals_enabled as proposals_enabled %}
     {% if proposals_enabled  %}
     <div class="btn_pronunciarme text-center"></div>
@@ -125,29 +127,34 @@ $(function(){
       {% endwith %}
     {% endif %}
 
-</div>
-
     {% if popular_proposal.background %}
-      <div class="container antecedentes text-width">
+      <div class="antecedentes text-width light-text">
         <div class="row">
-          <div class="col-xs-12 col-md-8">
-            <h3 class="page-header">{% trans 'Antecedentes' %}</h3>
+          <hr>
+          <div class="col-xs-12 col-md-9">
+            <h3>{% trans 'Antecedentes' %}</h3>
             <p>{{popular_proposal.background|linebreaksbr}}</p>
           </div>
-          <div class="col-xs-12 col-md-4">
-            {% if popular_proposal.document|length and popular_proposal.image|length %}
-            <h3 class="page-header">Documentos extras</h3>
+          <div class="col-xs-12 col-md-3">
+            {% if popular_proposal.document|length %}
+            <h3>Documentos</h3>
             <ul>
-              <li><a href="{{popular_proposal.document.url}}"><i class="fa fa-file"></i> Documento</a></li>
-              <li><a href="{{popular_proposal.image.url}}"><i class="fa fa-picture-o"></i> Imagen</a></li>
+              <li><a href="{{popular_proposal.document.url}}" target="_blank"><i class="fa fa-file"></i> Documento</a></li>
             </ul>
+            {% endif %}
+          </div>
+          <div class="col-xs-12 col-md-12">
+            {% if popular_proposal.image|length %}
+            <img src="{{popular_proposal.image.url}}" style="width:100%">
             {% endif %}
           </div>
         </div>
 
       </div>
     {% endif %}
+    <p class="text-center llamado">Si te gustó ¡compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año</p>
 
+  </div>
 
     {% if user|is_candidate %}
 
@@ -321,9 +328,9 @@ $(function(){
     {% endif %}
     <!-- Organizaciones patrocinantes -->
     {% if popular_proposal.sponsoring_orgs.all %}
-    <div class="container">
-
-    <h3 class="text-center">Organizaciones patrocinantes de esta propuesta:</h3>
+    <div class="apoyo-orgs">
+    <div class="container text-center">
+    <h4 class="text-center">Organizaciones que apoyan esta propuesta</h4>
       <ul class="list-inline">
         {% for org in popular_proposal.sponsoring_orgs %}
         <li>
@@ -340,11 +347,40 @@ $(function(){
         {% endfor %}
       </ul>
     </div>
+    </div>
     {% endif %}
 
-{% endblock everything %}
   </div>
-</div><!-- End compromisos -->
+</div><!-- Todo antes de comparte -->
 
+    <div class="apoya-comparte">
+      <div class="container">
+        {% comment %}
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 visible-md visible-lg">
+            <p class="text-center llamado">Si te gustó ¡compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año</p>
+          </div>
+        </div>
+        {% endcomment %}
+        <div class="row">
+          <div class="col-md-4 col-md-offset-2">
+            <div class="apoyo-contador">
+              <p class="apoyo-ciudadano"><span id='likers_count_{{popular_proposal.id}}' class="conteo">{{popular_proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="share-detail">
+
+              {% include 'popular_proposal/_share.html' with proposal=popular_proposal next_url=request.path %}
+              {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path avoid_counter=True %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% with "supportProposal"|add:popular_proposal.slug as modalid %}
+      {% include 'modal_like_proposal.html' with modalId=modalid title='Apoya una propuesta' url=like_this_proposal_url next_url=request.path proposal=popular_proposal %}
+    {% endwith %}
+{% endblock everything %}
 {% block extrafooter %}
 {% endblock extrafooter %}

@@ -1,4 +1,8 @@
 /*Home temporal*/
+html .navbar_visible, body .navbar_visible{
+  padding-top: 55px;
+}
+
 .high-home{
   font-family: 'Arvo', serif;
   font-size: 18px;
@@ -140,4 +144,185 @@ input[type=file]{
 .bg-info{
   padding: 5px;
   border-radius: 8px;
+}
+
+/*Detalle*/
+.nav-detalle-propuesta{
+  border: none;
+  margin-top: -55px;
+  border-bottom: 1px solid $grey-four;
+  border-radius: 0;
+}
+
+
+.fondo-blanco{
+  box-shadow: none;
+  padding: 40px 40px 40px;
+  border: 3px solid $grey-one;
+  border-radius: 8px;
+  margin-bottom: 130px;
+  h1{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+  }
+}
+
+.apoyo-orgs{
+  background-color: $blue;
+  padding: 20px;
+  margin-top: -120px;
+  h4{
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 1.2px;
+  }
+}
+
+.apoya-comparte{
+  background-color: $yellow;
+  color: $grey-one;
+  padding: 0px 0 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.light-text{
+  color: $grey-three;
+  h3{
+    color: $grey-three;
+  }
+}
+
+.detalle-propuesta-total{
+  margin-bottom: 130px;
+}
+
+.llamado{
+  font-family: 'Arvo', sans-serif;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.share-detail{
+  text-align: right;
+  .btn-apoyo{
+    background-color: $grey-one;
+    top: 11px;
+    &:hover{
+      color: $grey-one;
+      background-color: white;
+    }
+  }
+}
+
+.share-detail .fa-inverse {
+    color: $yellow;
+}
+
+.share-detail a .fa-stack {
+    color: white;
+    top: 7px;
+}
+
+.share-detail a .fa-stack:hover {
+    color: $grey-one;
+}
+
+/*Propuestas*/
+.propuesta{
+  border: 2px solid $grey-one;
+  min-height: 360px;
+  padding: 0;
+  position: relative;
+}
+
+.propuesta-content{
+  padding: 25px 20px 35px;
+}
+
+.label-default{
+  background-color: $blue;
+  color: white;
+}
+
+.propuesta:after{
+  display: none;
+}
+
+.share{
+  text-align: right;
+}
+
+.share-card{
+  background-color: $grey-one;
+  min-height: 115px;
+  padding: 5px 20px 5px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.share-card .fa-inverse {
+    color: $grey-one;
+}
+
+.share-card a .fa-stack {
+    color: white;
+}
+
+.share-card a .fa-stack:hover {
+    color: $yellow;
+}
+
+.apoyo{
+  min-height: 38px;
+}
+
+.apoyo-contador{
+  padding-left: initial;
+  max-width: initial;
+}
+
+.nota{
+  font-size: 14px;
+  color: white;
+  margin-top: -6px;
+}
+
+.conteo{
+  font-family: 'Arvo', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  position: relative;
+  top: 5px;
+}
+
+.btn-apoyo{
+  background-color: $yellow;
+  color: white;
+  position: relative;
+  top: 9px;
+  &:hover{
+    color: $grey-one;
+  }
+}
+
+.btn-no-apoyo{
+  background-color: $blue;
+  color: white;
+  position: relative;
+  top: 9px;
+  &:hover{
+    color: $grey-one;
+  }
+}
+
+.propuesta h4 a{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
 }

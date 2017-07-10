@@ -150,6 +150,7 @@ class PopularProposalDetailView(EmbeddedViewBase, DetailView):
     model = PopularProposal
     template_name = 'popular_proposal/detail.html'
     context_object_name = 'popular_proposal'
+    layout = "basewithnofixed_navbar.html"
 
 
 class UnlikeProposalView(View):

@@ -24,11 +24,14 @@ $(function(){
         <div class="col-md-4">{% bootstrap_field form.text %}</div>
         <div class="col-md-4">{% bootstrap_field form.clasification %}</div>
 
+          {% comment %}
           {% if form.area|is_field %}
             <div class="col-md-4">
               {% bootstrap_field form.area %}
             </div>
           {% endif %}
+          {% endcomment %}
+
         <div class="col-md-8">
     	    <div class="form-actions">
     	        <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>

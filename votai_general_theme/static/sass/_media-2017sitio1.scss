@@ -1,5 +1,41 @@
+@media screen and (max-width: 991px) {
+  .apoya-comparte{
+    text-align: center;
+  }
+
+  .share-detail{
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .fondo-blanco{
+    border: none;
+  }
+}
+
 @media screen and (max-width: 388px) {
   .org-info h2{
     margin-top: 120px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .fondo-blanco{
+    h1{
+      text-transform: uppercase;
+    }
+  }
+
+  .propuesta-content{
+    margin-bottom: 130px;
+  }
+
+  .share{
+    text-align: center;
+  }
+
+  .share-card a .fa-stack{
+    margin: 10px 0 10px;
   }
 }

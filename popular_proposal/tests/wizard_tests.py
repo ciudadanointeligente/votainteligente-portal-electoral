@@ -392,9 +392,9 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
             testing_area = Area.objects.get(id=config.HIDDEN_AREAS)
         except Area.DoesNotExist:
             testing_area = Area.objects.create(id=config.HIDDEN_AREAS, name=config.HIDDEN_AREAS)
-        response = self.fill_the_whole_wizard(override_example_data={4: {'4-title':'title',
-                                                                         '4-terms_and_conditions': True,
-                                                                         "4-is_testing":True}})
+        response = self.fill_the_whole_wizard(override_example_data={3: {'3-title':'title',
+                                                                         '3-terms_and_conditions': True,
+                                                                         "3-is_testing":True}})
         temporary_data = response.context['popular_proposal']
 
         self.assertEquals(temporary_data.created_proposal.area, testing_area)

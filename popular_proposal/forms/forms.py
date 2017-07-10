@@ -74,16 +74,6 @@ wizard_forms_fields = [
         )])
     },
     {
-        'template': 'popular_proposal/wizard/paso3.html',
-        'explation_template': "popular_proposal/steps/paso3.html",
-        'fields': OrderedDict([(
-
-            'solution', forms.CharField(max_length=2048,
-                                        widget=forms.Textarea(),
-                                        )
-        )])
-    },
-    {
         'template': 'popular_proposal/wizard/form_step.html',
         'explation_template': "popular_proposal/steps/paso4.html",
         'fields': OrderedDict([(

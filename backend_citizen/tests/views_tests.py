@@ -54,7 +54,6 @@ class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed('backend_citizen/my_proposals.html')
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
-        self.assertEquals(temporary_data.data['solution'], data['solution'])
 
         self.assertEquals(len(mail.outbox), 1)
         the_mail = mail.outbox[0]

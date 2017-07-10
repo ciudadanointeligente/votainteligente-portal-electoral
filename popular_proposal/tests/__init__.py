@@ -40,7 +40,6 @@ class ProposingCycleTestCaseBase(TestCase):
         self.comments = {
             'title': '',
             'problem': '',
-            'solution': '',
             'when': u'El plazo no está tan bueno',
             'causes': ''
         }

@@ -40,6 +40,15 @@
         </section>
         {% include 'popular_proposal/plantillas/carta_candidato.html' %}
     </div>
+    <div class="panel panel-primary well">
+      <div class="panel-heading">
+        <h3 class="panel-title">Información adicional sobre tu propuesta</h3>
+      </div>
+      <div class="panel-body">
+       {% bootstrap_field form.is_local_meeting  %}
+       {% bootstrap_field form.generated_at  %}
+      </div>
+    </div>
         <section class="terms">
           {{ form.terms_and_conditions }}
             <a role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">{% bootstrap_label "Términos y condiciones" labform.terms_and_conditions.name %}</a>

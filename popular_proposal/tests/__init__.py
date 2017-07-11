@@ -25,6 +25,7 @@ def get_example_data_for_testing():
             if field_type in example_fields:
                 data[f] = example_fields[field_type]
             elif field_type == 'ChoiceField':
+                
                 data[f] = field.choices[-1][0]
     return data
 

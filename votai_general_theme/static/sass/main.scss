@@ -1206,14 +1206,26 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
   color: $btn-success-background-color;
 }
 
+
 /*Ranking*/
 
 .panel-primary>.panel-heading {
   background-color: $hover-letters;
+  border-color: transparent;
+  &:panel-punteado {
+    border-color: inherit;
+    border: 3px dotted ;
+  }
 }
 
 .panel-primary {
+  border-color: transparent;
   background-color: transparent;
+  &:panel-punteado {
+    border-color: inherit;
+    border: 3px dotted ;
+  }
+
 }
 
 .responden .panel-body {
@@ -1951,8 +1963,12 @@ input#id_4-title {
 
 .panel {
   background-color: transparent;
+  border: 3px dotted transparent;
+  
 }
-
+.panel-punteado {
+    border-color: inherit;
+  }
 .panel-default {
   border-color: #fff;
 }

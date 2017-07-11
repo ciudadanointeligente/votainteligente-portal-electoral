@@ -56,7 +56,7 @@ def get_possible_generating_areas():
     if settings.POSSIBLE_GENERATING_AREAS_FILTER:
         area_qs = area_qs.filter(classification=settings.POSSIBLE_GENERATING_AREAS_FILTER)
     return area_qs
-    
+
 
 def get_possible_generating_areas_choices():
     area_qs = get_possible_generating_areas()

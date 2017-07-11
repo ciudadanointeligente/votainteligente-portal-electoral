@@ -8,9 +8,6 @@ El problema que se quiere solucionar es:
 La causa de este problema es:
 {{popular_proposal.data.causes}}
 
-El escenario ideal al que se quiere llegar es:
-{{popular_proposal.data.solution}}
-
 La propuesta para solucionar este problema es:
 {{popular_proposal.data.solution_at_the_end|popular_proposal_when}} antes de {{popular_proposal.data.when|popular_proposal_when}} desde el comienzo de su mandato.
 

@@ -63,6 +63,10 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
                                         blank=True,
                                         null=True,
                                         default="")
+    is_local_meeting = models.BooleanField(default=False)
+    generated_at = models.ForeignKey(Area,
+                                     null=True,
+                                     blank=True)
     created = models.DateTimeField(auto_now_add=True,
                                    blank=True,
                                    null=True)

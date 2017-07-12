@@ -1047,8 +1047,14 @@ input[type=checkbox], input[type=radio] {
   color: $main-background-color;
   background-color: $letters-color;
   border-color: transparent;
+  
 }
+.panel-heading.extra-info {
+    background-color: $blue;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 
+  }
 #compare-candidates i {
   color: $grey-five;
 }
@@ -1206,6 +1212,7 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
   color: $btn-success-background-color;
 }
 
+
 /*Ranking*/
 
 .panel-primary>.panel-heading {
@@ -1216,6 +1223,8 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 .panel-primary {
   border-color: transparent;
   background-color: transparent;
+  
+
 }
 
 .responden .panel-body {
@@ -1954,12 +1963,16 @@ input#id_4-title {
 .panel {
   background-color: transparent;
   border: 3px dotted transparent;
+  
 }
 
+  
 .panel-default {
   border-color: #fff;
 }
-
+.extra-info {
+    border: 3px solid $blue;
+  }
 /*Slides*/
 
 .carousel-control.left,.carousel-control.right  {background:none;width:25px;}

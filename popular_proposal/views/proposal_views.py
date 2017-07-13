@@ -33,6 +33,7 @@ from django_filters.views import FilterView
 from elections.models import Area, Candidate
 
 from popular_proposal.filters import (ProposalWithoutAreaFilter,
+                                      ProposalGeneratedAtFilter,
                                       ProposalWithAreaFilter)
 
 from popular_proposal.forms import (CandidateCommitmentForm,
@@ -129,7 +130,7 @@ class SubscriptionView(FormView):
 class HomeView(EmbeddedViewBase, FilterView):
     model = PopularProposal
     template_name = 'popular_proposal/home.html'
-    filterset_class = ProposalWithAreaFilter
+    filterset_class = ProposalGeneratedAtFilter
 
     def get_queryset(self):
         qs = self.model.ordered.by_likers().exclude(area__id=config.HIDDEN_AREAS)

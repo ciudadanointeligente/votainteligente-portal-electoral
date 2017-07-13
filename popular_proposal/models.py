@@ -216,8 +216,8 @@ class PopularProposal(models.Model, OGPMixin):
         from popular_proposal.forms.form_texts import SEARCH_ELEMENTS_FROM_DATA
         text = u""
         for key in SEARCH_ELEMENTS_FROM_DATA:
-            text += self.data.get(key, "")
-        return text
+            text += u"\n" + self.data.get(key, "")
+        return text.strip()
                 
         
     @property

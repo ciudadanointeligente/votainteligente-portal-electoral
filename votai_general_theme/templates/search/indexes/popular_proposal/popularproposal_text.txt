@@ -1,1 +1,6 @@
-{{object.title}}
+{% load votainteligente_extras %}{{object.title}}
+{{object.data_as_text}}
+{{object.clasification}}
+{{object.proposer.get_full_name}}
+{{object.proposer.username}}
+{{object.proposer.email}}

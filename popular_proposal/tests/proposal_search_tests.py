@@ -67,9 +67,7 @@ class PopularProposalSearchIndexTestCase(ProposingCycleTestCaseBase):
         self.assertIn(data_with_texts['solution'], p1.data_as_text)
         self.assertIn(data_with_texts['problem'],  p1.data_as_text)
         self.assertIn(data_with_texts['causes'],  p1.data_as_text)
-        self.assertIn(TOPIC_CHOICES[1][1],  p1.data_as_text)
         
         self.assertIn(data_with_texts['solution'], indexed_proposal)
         self.assertIn(data_with_texts['problem'], indexed_proposal)
         self.assertIn(data_with_texts['causes'], indexed_proposal)
-        self.assertIn(TOPIC_CHOICES[1][1], indexed_proposal)

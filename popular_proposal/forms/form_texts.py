@@ -104,5 +104,5 @@ TEXTS = OrderedDict({
 })
 
 SEARCH_ELEMENTS_FROM_DATA = [
-  'problem','causes', 'solution_at_the_end', 'when'
+  'problem','solution','causes', 'solution_at_the_end', 'when'
 ]

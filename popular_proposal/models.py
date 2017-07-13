@@ -198,6 +198,9 @@ class PopularProposal(models.Model, OGPMixin):
 
     class Meta:
         ordering = ['for_all_areas', '-created']
+        verbose_name = _(u'Propuesta Ciudadana')
+        verbose_name_plural = _(u'Propuestas Ciudadanas')
+
 
     def __str__(self):
         return self.title

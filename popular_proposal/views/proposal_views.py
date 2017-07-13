@@ -132,7 +132,7 @@ class HomeView(EmbeddedViewBase, FilterView):
     filterset_class = ProposalWithAreaFilter
 
     def get_queryset(self):
-        qs = super(HomeView, self).get_queryset().exclude(area__id=config.HIDDEN_AREAS)
+        qs = self.model.ordered.by_likers().exclude(area__id=config.HIDDEN_AREAS)
         return qs
 
     def get_context_data(self, **kwargs):

@@ -3,20 +3,38 @@
 {% url_domain as url_d %}
 {% with 'http://'|add:url_d|add:detail_url as full_detail_url %}
 {% with full_detail_url|iriencode as encoded_full_detail_url %}
-<a href="#" onclick="ga('send', 'event', 'twitter-share', 'click'); window.open(&quot;//twitter.com/share?via=Ciudadanoi&hashtags={{ 'hashtags'|website_twitter }}&text=Mira esta propuesta ciudadana para los candidatos de {{popular_proposal.area}}&url={{encoded_full_detail_url}}&quot;,&quot;twitter&quot;,&quot;width=450, height=250&quot;)">
-  <span class="fa-stack fa-lg">
-    <i class="fa fa-circle fa-stack-2x"></i>
-    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-  </span>
+<a class="{{btn_extra_class}}" href="#" onclick="ga('send', 'event', 'twitter-share', 'click'); window.open(&quot;//twitter.com/share?via=Ciudadanoi&hashtags={{ 'hashtags'|website_twitter }}&text=Mira esta propuesta ciudadana para los candidatos de {{popular_proposal.area}}&url={{encoded_full_detail_url}}&quot;,&quot;twitter&quot;,&quot;width=450, height=250&quot;)">
+    {% if show_texts %}
+      <i class="fa fa-twitter"></i>
+      Compartir en Twitter
+      {% else %}
+      <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    {% endif %}
+  
+  
 </a>
-<a class="share-btn share-btn-branded share-btn-facebook" onclick="ga('send', 'event', 'facebook-share', 'click');" href="//www.facebook.com/sharer/sharer.php?u={{encoded_full_detail_url}}" title="{{popular_proposal.title}}" target="_blank">
-  <span class="fa-stack fa-lg">
-    <i class="fa fa-circle fa-stack-2x"></i>
-    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-  </span>
+<a class="share-btn share-btn-branded share-btn-facebook {{btn_extra_class}}" onclick="ga('send', 'event', 'facebook-share', 'click');" href="//www.facebook.com/sharer/sharer.php?u={{encoded_full_detail_url}}" title="{{popular_proposal.title}}" target="_blank">
+  
+    
+    {% if show_texts %}
+      
+      <i class="fa fa-facebook"></i>
+      Compartir en Facebook
+      
+      {% else %}
+      <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>  
+      </span>
+    {% endif %}
+  
+  
 </a>
 {%if popular_proposal.join_advocacy_url%}
-<a class="share-btn share-btn-branded share-btn-facebook" onclick="ga('send', 'event', 'whatsapp-share', 'click');" href="{{popular_proposal.join_advocacy_url}}" title="Esta propuesta cuenta con un grupo en Whatsapp para seguir debatiendo." target="_blank">
+<a class="share-btn share-btn-branded share-btn-facebook {{btn_extra_class}}" onclick="ga('send', 'event', 'whatsapp-share', 'click');" href="{{popular_proposal.join_advocacy_url}}" title="Esta propuesta cuenta con un grupo en Whatsapp para seguir debatiendo." target="_blank">
   <span class="fa-stack fa-lg">
     <i class="fa fa-circle fa-stack-2x"></i>
     <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>

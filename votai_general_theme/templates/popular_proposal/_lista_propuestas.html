@@ -21,34 +21,20 @@ $(function(){
     {% include 'modal.html' with modalId='subscribeToSearch' title='Subscribirse a esta búsqueda' %}
 		<form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form">
       <div class="row">
-        <div class="col-md-4">{% bootstrap_field form.text %}</div>
-        <div class="col-md-4">{% bootstrap_field form.clasification %}</div>
-
-          {% comment %}
-          {% if form.area|is_field %}
-            <div class="col-md-4">
-              {% bootstrap_field form.area %}
-            </div>
+        <div class="col-md-3">{% bootstrap_field form.text %}</div>
+        <div class="col-md-3">{% bootstrap_field form.clasification %}</div>
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>
+          {% if form.is_filled_search %}
+            <a href="{% url 'popular_proposals:home' %}" class="btn btn-success">{% trans 'Limpiar Filtro'%}</a>
           {% endif %}
-          {% endcomment %}
-
-        <div class="col-md-8">
-    	    <div class="form-actions">
-    	        <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>
-              {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
-              <a
-              type="button"
-              id="subscribeToSearchButton"
-              class="btn btn-info subscribe"
-               data-toggle="modal"
-               data-url="{% url 'proposal_subscriptions:subscribe' %}"
-               data-target="#subscribeToSearch">{% trans 'Subscribir a esta búsqueda' %}</a>
-               {% endif %}
-    	    </div>
+        </div>
+        <div class="col-md-3">
+          {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
+            <a id="subscribeToSearchButton" data-toggle="modal" data-url="{% url 'proposal_subscriptions:subscribe' %}" data-target="#subscribeToSearch">{% trans 'Subscribir a esta búsqueda' %}</a>
+          {% endif %}
         </div>
       </div>
-
-
 		</form>
     {% endif %}
     <script>

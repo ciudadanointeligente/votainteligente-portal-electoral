@@ -102,3 +102,7 @@ TEXTS = OrderedDict({
                              'placeholder': u'',
                              'long_text': "paso5b.html"},
 })
+
+SEARCH_ELEMENTS_FROM_DATA = [
+  'problem','solution','causes', 'solution_at_the_end', 'when'
+]

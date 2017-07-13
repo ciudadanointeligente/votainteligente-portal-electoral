@@ -32,7 +32,9 @@ class TextSearchForm(Form):
 
 
 class ProposalWithoutAreaFilter(FilterSet):
-    clasification = ChoiceFilter(choices=TOPIC_CHOICES, label=u"Clasificación")
+    clasification = ChoiceFilter(choices=TOPIC_CHOICES,
+                                 empty_label=u"Selecciona",
+                                 label=u"Clasificación")
 
     def __init__(self,
                  data=None,
@@ -98,4 +100,6 @@ class ProposalWithAreaFilter(ProposalWithoutAreaFilter):
 
 
 class ProposalGeneratedAtFilter(ProposalWithoutAreaFilter):
-    generated_at = ModelChoiceFilter(queryset=filterable_areas)
+    generated_at = ModelChoiceFilter(queryset=filterable_areas,
+                                     empty_label=u"Selecciona",
+                                     label="Comuna donde fue generada")

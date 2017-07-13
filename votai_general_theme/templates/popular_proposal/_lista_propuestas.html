@@ -23,6 +23,7 @@ $(function(){
       <div class="row">
         <div class="col-md-3">{% bootstrap_field form.text %}</div>
         <div class="col-md-3">{% bootstrap_field form.clasification %}</div>
+        <div class="col-md-3">{% bootstrap_field form.generated_at %}</div>
         <div class="col-md-3">
           <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>
           {% if form.is_filled_search %}

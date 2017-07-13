@@ -52,7 +52,24 @@ $(function(){
       <span class="label label-default">{{popular_proposal.data.clasification}}</span>
     </div>
     <div class="line-space"></div>
-    <p class="text-center text-light small">Esta es una propuesta de {{popular_proposal.proposer}}</p>
+    <p class="text-center text-light small">Esta es una propuesta de 
+
+      {% if popular_proposal.proposer.profile.is_organization %}
+        <a href="{{popular_proposal.proposer.organization_template.get_absolute_url}}">
+          {% if popular_proposal.proposer.get_full_name %}
+            {{popular_proposal.proposer.get_full_name}}
+          {% else %}
+            {{popular_proposal.proposer}}
+          {% endif %}
+        </a>
+        {% else %}
+          {% if popular_proposal.proposer.get_full_name %}
+            {{popular_proposal.proposer.get_full_name}}
+          {% else %}
+            {{popular_proposal.proposer}}
+          {% endif %}
+      {% endif %}
+    </p>
     <h1 class="text-center">{{popular_proposal.title}}</h1>
 
     {% comment %}<!-- Apoyos -->
@@ -337,7 +354,9 @@ $(function(){
           <a href="{% url 'organization_profiles:home' slug=org.username %}" target="_blank">
             {% if org.organization_template.logo %}
                 {% thumbnail org.organization_template.logo "300x300" crop="center" as im %}
-                <img src="{{im.url}}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small">
+                <a href="{{org.organization_template.get_absolute_url}}">
+                  <img src="{{im.url}}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small">
+                </a>
                 {% endthumbnail %}
               {% else %}
                 <img src="{% static 'img/candidate-default.jpg' %}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small"></a>

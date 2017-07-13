@@ -148,7 +148,7 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
 class ProposalsOrderedManager(models.Manager):
     def by_likers(self, *args, **kwargs):
         qs = self.get_queryset()
-        qs = qs.annotate(num_likers=Count('likers')).order_by('-num_likers')
+        qs = qs.annotate(num_likers=Count('likers')).order_by('-num_likers', 'proposer__profile__is_organization')
         return qs
 
 

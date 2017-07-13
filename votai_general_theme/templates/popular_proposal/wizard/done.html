@@ -25,6 +25,10 @@
             {% endif %}
             {% if popular_proposal.created_proposal %}
               <a href="{{popular_proposal.created_proposal.get_absolute_url}}" class="btn btn-success btn-block">Revisa tu propuesta</a>
+
+              <p>Comparte tu propuesta</p>
+              {% include 'popular_proposal/share.html' with popular_proposal=popular_proposal.created_proposal %}
+
             {% else %}
             <p>{% blocktrans %}Por favor, espera que el equipo de Ciudadano Inteligente la evalúe para que sea enviada a los candidatos.{% endblocktrans %}</p>
               {% endif %}

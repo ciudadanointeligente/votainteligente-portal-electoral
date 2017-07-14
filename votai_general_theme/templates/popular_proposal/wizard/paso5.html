@@ -15,7 +15,7 @@
 
     <div class="row">
     {% for i in wizard.steps.count|times %}
-        <div class="col-md-2 col-sm-2 col-xs-2">
+        <div class="col-md-3 col-sm-3 col-xs-3">
             <div class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}">Paso {{i|add:1}} de {{wizard.steps.count}}</div>
         </div>
     {% endfor %}

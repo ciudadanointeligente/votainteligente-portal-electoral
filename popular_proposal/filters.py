@@ -7,7 +7,7 @@ from popular_proposal.models import PopularProposal
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from elections.models import Area
 from django.conf import settings
-from django.forms import CharField, Form
+from django.forms import CharField, Form, ChoiceField
 from haystack.query import SearchQuerySet
 
 
@@ -17,8 +17,12 @@ def filterable_areas(request):
     return Area.public.all()
 
 
+ORDER_CHOICES = [('', 'No ordenar'),
+                 ('created', u'Últimas creadas'),]
+
 class TextSearchForm(Form):
     text = CharField(label=u'Qué buscas?', required=False)
+    order_by = ChoiceField(choices=ORDER_CHOICES, required=False)
 
     def full_clean(self):
         super(TextSearchForm, self).full_clean()
@@ -75,7 +79,7 @@ class ProposalWithoutAreaFilter(FilterSet):
         if not self.form.is_valid():
             return self._qs
         text = self.form.cleaned_data.get('text', '')
-
+        
         if text:
             pks = []
             text_search = SearchQuerySet().models(self._meta.model).auto_query(text)

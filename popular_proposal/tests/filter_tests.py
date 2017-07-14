@@ -10,7 +10,15 @@ from elections.models import Area
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from django.core.management import call_command
 import haystack
+from datetime import timedelta
+from django.utils import timezone
 from django.test import override_settings
+
+
+one_day_ago = timezone.now() - timedelta(days=1)
+two_days_ago = timezone.now() - timedelta(days=2)
+three_days_ago = timezone.now() - timedelta(days=3)
+
 
 
 @override_settings(FILTERABLE_AREAS_TYPE=['Comuna'])
@@ -92,3 +100,44 @@ class PopularProposalFilterTestCase(ProposingCycleTestCaseBase):
         f = ProposalWithAreaFilter(data=data)
         self.assertTrue(f.qs.count())
         self.assertIn(self.p2, f.qs)
+
+
+@override_settings(FILTERABLE_AREAS_TYPE=['Comuna'])
+class OrderingFormTestCase(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(OrderingFormTestCase, self).setUp()
+        self.algarrobo = Area.objects.get(id='algarrobo-5602')
+    
+    def test_ordered_by_time_descending(self):
+        p1 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.algarrobo,
+                                            data=self.data,
+                                            title=u'P1',
+                                            clasification=TOPIC_CHOICES[1][0]
+                                            )
+        p1.created = two_days_ago
+        p1.save()
+        p2 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.algarrobo,
+                                            data=self.data,
+                                            title=u'P2',
+                                            clasification=TOPIC_CHOICES[2][0]
+                                            )
+        p2.created = three_days_ago
+        p2.save()
+        p3 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.algarrobo,
+                                            data=self.data,
+                                            title=u'P3',
+                                            clasification=TOPIC_CHOICES[3][0]
+                                            )
+        p3.created = one_day_ago
+        p3.save()
+        
+        data = {'order_by': 'created'}
+        
+        f = ProposalWithAreaFilter(data=data)
+        qs = f.qs
+        self.assertEquals(qs[0], p3)
+        self.assertEquals(qs[1], p1)
+        self.assertEquals(qs[2], p2)

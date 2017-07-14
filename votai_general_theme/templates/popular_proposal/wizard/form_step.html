@@ -52,9 +52,11 @@
                     </section>
                 {% endfor %}
          {% endif %}
-    {% include 'popular_proposal/wizard/_previous_buttons.html' with wizard=wizard %}
-    <div class="pull-right">
-        <button class="btn btn-success pull-right" type="submit" value="{% trans "Submit" %}">{% trans "Ir al paso " %}{{wizard.steps.next|add:1}}<img src="{% static 'img/arrow.svg' %}"></button>
+    <div class="row">
+      {% include 'popular_proposal/wizard/_previous_buttons.html' with wizard=wizard %}
+      <div class="col-xs-12 col-sm-4 col-md-4">
+        <button class="btn btn-success btn-block" type="submit" value="{% trans "Submit" %}">{% trans "Ir al paso " %}{{wizard.steps.next|add:1}}<img src="{% static 'img/arrow.svg' %}"></button>
+      </div>
     </div>
     <div class="line-space"></div>
     <div class="line-space"></div>

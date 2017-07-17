@@ -57,6 +57,7 @@ $(function(){
     </script>
 
 <div id="grid">
+    {% for proposal in popular_proposals %}
       {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
       <div class="row hidden-xs">
         <div class="col-md-6 col-md-offset-3">
@@ -69,7 +70,6 @@ $(function(){
         </div>
       </div>
       {% endif %}
-    {% for proposal in popular_proposals %}
       <div id="posts">
         {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal is_embedded=is_embedded %}
       </div>

@@ -57,7 +57,6 @@ $(function(){
     </script>
 
 <div id="grid">
-    {% for proposal in popular_proposals %}
       {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
       <div class="row hidden-xs">
         <div class="col-md-6 col-md-offset-3">
@@ -65,20 +64,21 @@ $(function(){
             <button type="button" class="close" data-dismiss='alert' aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <a id="subscribeToSearchButton" data-toggle="modal" data-url="{% url 'proposal_subscriptions:subscribe' %}" data-target="#subscribeToSearch"><i class="fa fa-bell-o"></i> {% trans 'Recibe notificaciones en tu correo con el resultado de esta busqueda' %}</a>
+            <a id="subscribeToSearchButton" data-toggle="modal" data-url="{% url 'proposal_subscriptions:subscribe' %}" data-target="#subscribeToSearch"><i class="fa fa-bell-o"></i> {% trans 'Recibe notificaciones en tu correo con el resultado de esta búsqueda' %}</a>
           </div>
         </div>
       </div>
       {% endif %}
+    {% for proposal in popular_proposals %}
       <div id="posts">
         {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal is_embedded=is_embedded %}
       </div>
     {% empty %}
     {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
     {% blocktrans %}
-    <p>
-      Aún no se han generado propuestas para esta busqueda.
-      Se tu el primero en generar una en el siguiente <a href="{{create_proposal_url}}">enlace</a>.
+    <p class="bg-info">
+      Aún no se han generado propuestas para esta búsqueda.
+      Se tu la/el primera/o en generar la primera propuesta en el siguiente <a href="{{create_proposal_url}}">enlace</a>.
     </p>
     {% endblocktrans %}
     {% endfor %}

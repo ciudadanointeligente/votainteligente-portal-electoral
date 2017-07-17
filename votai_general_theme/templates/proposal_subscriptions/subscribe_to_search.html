@@ -5,6 +5,7 @@
 
 <form id="searchSubscriptionForm" action="{% url 'proposal_subscriptions:subscribe' %}" method="POST" role="form">
   {% csrf_token %}
+  <p>Al subscribirte al resultado de una b'usqueda se te enviar'a un email cuando se cree una propuesta que tenga relaci'on a la busqueda de tu inter'es.</p>
   {% bootstrap_form form %}
 
   <button type="submit" class="btn btn-success">{% trans 'Subscribir'%}</button>

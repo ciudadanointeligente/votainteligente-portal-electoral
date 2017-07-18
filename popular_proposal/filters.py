@@ -7,6 +7,7 @@ from popular_proposal.models import PopularProposal
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from elections.models import Area
 from django.conf import settings
+from constance import config
 from django.forms import CharField, Form
 from haystack.query import SearchQuerySet
 
@@ -56,7 +57,6 @@ class ProposalWithoutAreaFilter(FilterSet):
                                                         prefix=prefix,
                                                         strict=strict)
 
-
     @property
     def form(self):
         super(ProposalWithoutAreaFilter, self).form
@@ -72,6 +72,7 @@ class ProposalWithoutAreaFilter(FilterSet):
     def qs(self):
 
         super(ProposalWithoutAreaFilter, self).qs
+        self._qs = self._qs.exclude(area__id=config.HIDDEN_AREAS)
         if not self.form.is_valid():
             return self._qs
         text = self.form.cleaned_data.get('text', '')

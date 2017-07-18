@@ -146,9 +146,14 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
 
 
 class ProposalsOrderedManager(models.Manager):
+    def get_queryset(self, *args, **kwargs):
+        qs = super(ProposalsOrderedManager, self).get_queryset(*args, **kwargs)
+        qs = qs.annotate(num_likers=Count('likers'))
+        return qs
+
     def by_likers(self, *args, **kwargs):
         qs = self.get_queryset()
-        qs = qs.annotate(num_likers=Count('likers')).order_by('-num_likers', 'proposer__profile__is_organization')
+        qs = qs.order_by('-num_likers', 'proposer__profile__is_organization')
         return qs
 
 
@@ -201,7 +206,6 @@ class PopularProposal(models.Model, OGPMixin):
         verbose_name = _(u'Propuesta Ciudadana')
         verbose_name_plural = _(u'Propuestas Ciudadanas')
 
-
     def __str__(self):
         return self.title
 
@@ -221,8 +225,7 @@ class PopularProposal(models.Model, OGPMixin):
         for key in SEARCH_ELEMENTS_FROM_DATA:
             text += u"\n" + self.data.get(key, "")
         return text.strip()
-                
-        
+
     @property
     def sponsoring_orgs(self):
         return self.likers.filter(profile__is_organization=True)

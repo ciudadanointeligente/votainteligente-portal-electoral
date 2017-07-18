@@ -8,7 +8,7 @@ from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from elections.models import Area
 from django.conf import settings
 from constance import config
-from django.forms import CharField, Form
+from django.forms import CharField, Form, ChoiceField
 from haystack.query import SearchQuerySet
 
 
@@ -20,6 +20,11 @@ def filterable_areas(request):
 
 class TextSearchForm(Form):
     text = CharField(label=u'Qué buscas?', required=False)
+    order_by = ChoiceField(required=False,
+                           label=u"Ordenar por",
+                           choices=[('', u'Por apoyos'),
+                                    ('-created', u'Últimas primero'),
+                                    ])
 
     def full_clean(self):
         super(TextSearchForm, self).full_clean()
@@ -49,7 +54,7 @@ class ProposalWithoutAreaFilter(FilterSet):
             if self.area:
                 self.area = Area.objects.get(id=self.area)
         if queryset is None:
-            queryset = PopularProposal.objects.all()
+            queryset = PopularProposal.ordered.all()
         if self.area is not None:
             queryset = queryset.filter(area=self.area)
         super(ProposalWithoutAreaFilter, self).__init__(data=data,
@@ -75,6 +80,11 @@ class ProposalWithoutAreaFilter(FilterSet):
         self._qs = self._qs.exclude(area__id=config.HIDDEN_AREAS)
         if not self.form.is_valid():
             return self._qs
+        order_by = self.form.cleaned_data.get('order_by', None)
+        if order_by:
+            self._qs = self._qs.order_by(order_by)
+        else:
+            self._qs = self._qs.by_likers()
         text = self.form.cleaned_data.get('text', '')
 
         if text:

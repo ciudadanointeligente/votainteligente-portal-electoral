@@ -21,9 +21,10 @@ $(function(){
     {% include 'modal.html' with modalId='subscribeToSearch' title='Mantente al dia con tus tematicas de interes' %}
 		<form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form">
       <div class="row">
-        <div class="col-md-4">{% bootstrap_field form.text %}</div>
-        <div class="col-md-4">{% bootstrap_field form.clasification %}</div>
-        <div class="col-md-4">{% bootstrap_field form.generated_at %}</div>
+        <div class="col-md-3">{% bootstrap_field form.text %}</div>
+        <div class="col-md-3">{% bootstrap_field form.clasification %}</div>
+        <div class="col-md-3">{% bootstrap_field form.generated_at %}</div>
+        <div class="col-md-3">{% bootstrap_field form.order_by %}</div>
       </div>
       <div class="row">
         <!-- mobile version -->

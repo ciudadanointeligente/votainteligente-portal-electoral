@@ -4,6 +4,8 @@ from backend_candidate.models import Candidacy
 
 from constance import config
 
+import copy
+
 from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
@@ -31,6 +33,8 @@ from django.views.generic.list import ListView
 from django_filters.views import FilterView
 
 from elections.models import Area, Candidate
+
+from django import forms
 
 from popular_proposal.filters import (ProposalWithoutAreaFilter,
                                       ProposalGeneratedAtFilter)
@@ -153,9 +157,10 @@ class UnlikeProposalView(View):
 class ProposalFilterMixin(object):
     model = PopularProposal
     filterset_class = ProposalGeneratedAtFilter
+    order_by = None
 
     def _get_filterset(self):
-        initial = self.request.GET or {}
+        initial = copy.copy(self.request.GET) or {}
         filterset_kwargs = self._get_filterset_kwargs()
         filterset_kwargs.update({'data': initial})
         filterset = self.filterset_class(**filterset_kwargs)
@@ -165,7 +170,8 @@ class ProposalFilterMixin(object):
         return {}
 
     def get_form(self):
-        return self._get_filterset().form
+        f = self._get_filterset().form
+        return f
 
     def get_queryset(self):
         return self._get_filterset().qs

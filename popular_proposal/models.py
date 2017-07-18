@@ -145,16 +145,17 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
         return self.get_title()
 
 
+class ProposalQuerySet(models.QuerySet):
+    def by_likers(self, *args, **kwargs):
+        return self.order_by('-num_likers', 'proposer__profile__is_organization')
+
+
 class ProposalsOrderedManager(models.Manager):
-    def get_queryset(self, *args, **kwargs):
-        qs = super(ProposalsOrderedManager, self).get_queryset(*args, **kwargs)
+    def get_queryset(self):
+        qs = ProposalQuerySet(self.model, using=self._db)
         qs = qs.annotate(num_likers=Count('likers'))
         return qs
 
-    def by_likers(self, *args, **kwargs):
-        qs = self.get_queryset()
-        qs = qs.order_by('-num_likers', 'proposer__profile__is_organization')
-        return qs
 
 
 @python_2_unicode_compatible
@@ -198,7 +199,7 @@ class PopularProposal(models.Model, OGPMixin):
 
     ogp_enabled = True
 
-    ordered = ProposalsOrderedManager()
+    ordered = ProposalsOrderedManager.from_queryset(ProposalQuerySet)()
     objects = models.Manager()
 
     class Meta:

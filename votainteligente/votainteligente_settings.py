@@ -354,7 +354,7 @@ MARKED_AREAS = ['teodoro-schmidt-9117','cunco-9103','lumaco-9207','melipeuco-911
 POSSIBLE_GENERATING_AREAS_FILTER = []
 
 CONSTANCE_CONFIG = {
-    'SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES':(10,'Duracion cache media naranja'),
+    'SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES':(0,'Duracion cache media naranja'),
     'INFINITE_CACHE':(1440,'Tiempo Cache'),
     'DEFAULT_AREA': ('chile-pais', u'El territorio que mostramos por defecto'),
     'AREAS_ARE_FORCED_IN_PROPOSALS' : (False, u'No te preguntamos por el territorio de la propuesta y asumimos que es el que viene por defecto'),

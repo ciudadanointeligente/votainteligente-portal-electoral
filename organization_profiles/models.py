@@ -86,9 +86,17 @@ class OrganizationTemplate(models.Model):
             im = Image.open(self.logo)
             output = BytesIO()
             im = im.resize( (LOGO_SIZE,LOGO_SIZE) )
+            if im.mode in ('RGBA', 'LA'):
+                fill_color = '#FFFFFF'
+                background = Image.new(im.mode[:-1], im.size, fill_color)
+                background.paste(im, im.split()[-1])
+                im = background
             im.save(output, format='JPEG', quality=100)
             output.seek(0)
-            self.logo_small = InMemoryUploadedFile(output,'ImageField', "%s.jpg" %self.logo.name.split('.')[0], 'image/jpeg', sys.getsizeof(output), None)
+            self.logo_small = InMemoryUploadedFile(output,
+                                                   'ImageField',
+                                                   "%s.jpg" %self.logo.name.split('.')[0],
+                                                   'image/jpeg', sys.getsizeof(output), None)
 
     def create_default_extra_pages(self):
         for data in settings.DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS:

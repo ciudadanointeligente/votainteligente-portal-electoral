@@ -13,6 +13,12 @@ from django.db.models import Count
 from autoslug import AutoSlugField
 from django.conf import settings
 import markdown2
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+import sys
+
+LOGO_SIZE = 154
 
 class OrganizationTemplateManager(models.Manager):
     def get_queryset(self):
@@ -34,6 +40,9 @@ class OrganizationTemplate(models.Model):
                              blank=True,
                              verbose_name=_(u'El logo de tu organización'),
                              help_text=_(u'perrito'))
+    logo_small = models.ImageField(upload_to="organizations/profiles_small/",
+                                   null=True,
+                                   blank=True)
     background_image = models.ImageField(upload_to="organizations/backgrounds/",
                                          null=True,
                                          blank=True,
@@ -72,6 +81,23 @@ class OrganizationTemplate(models.Model):
     def __str__(self):
         return "Template for %s" % (str(self.organization))
 
+    def generate_logo_small(self):
+        if self.logo:
+            im = Image.open(self.logo)
+            output = BytesIO()
+            im = im.resize( (LOGO_SIZE,LOGO_SIZE) )
+            if im.mode in ('RGBA', 'LA'):
+                fill_color = '#FFFFFF'
+                background = Image.new(im.mode[:-1], im.size, fill_color)
+                background.paste(im, im.split()[-1])
+                im = background
+            im.save(output, format='JPEG', quality=100)
+            output.seek(0)
+            self.logo_small = InMemoryUploadedFile(output,
+                                                   'ImageField',
+                                                   "%s.jpg" %self.logo.name.split('.')[0],
+                                                   'image/jpeg', sys.getsizeof(output), None)
+
     def create_default_extra_pages(self):
         for data in settings.DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS:
             ExtraPage.objects.create(template=self,
@@ -84,7 +110,7 @@ class OrganizationTemplate(models.Model):
 
 BASIC_FIELDS = ["logo", "background_image", "title", "sub_title",
                 "org_url", "facebook", "twitter", "instagram", "primary_color",
-                "secondary_color"]
+                "secondary_color", "logo_small"]
 
 
 class ExtraPage(models.Model):

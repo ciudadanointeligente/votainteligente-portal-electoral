@@ -24,6 +24,8 @@ class TextSearchForm(Form):
                            label=u"Ordenar por",
                            choices=[('', u'Por apoyos'),
                                     ('-created', u'Últimas primero'),
+                                    ('-proposer__profile__is_organization', u'De organizaciones primero'),
+                                    ('-is_local_meeting', u'Encuentros locales primero'),
                                     ])
 
     def full_clean(self):

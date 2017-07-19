@@ -20,11 +20,6 @@
   }
 }
 
-@media screen and (max-width: 425px) {
-  .content_padding {
-    padding-top: 20px;
-  }
-}
 @media screen and (max-width: 320px) {
   .fondo-blanco{
     h1{
@@ -45,4 +40,18 @@
   }
 
 
+}
+
+@media screen and (max-width: 425px) {
+  .content_padding {
+    padding-top: 20px;
+  }
+  .org-background{
+    min-height: 200px;
+  }
+  .landing-org{
+    position: relative;
+    top: 90px;
+  }
+  .logo-org {}
 }

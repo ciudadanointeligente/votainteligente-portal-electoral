@@ -1,0 +1,14 @@
+{% load thumbnail %}
+<div>
+{% for template in templates %}
+  <a href="{{template.get_absolute_url}}">
+  {% thumbnail template.logo "100x100" as im %}
+    <img src="{{ im.url }}"
+    width="{{ im.width }}"
+    height="{{ im.height }}
+    alt={{template.organization.get_full_name}}">
+
+    {% endthumbnail %}
+  </a>
+{% endfor %}
+</div>

@@ -72,6 +72,10 @@
     </div>
   </div>
 </section>
-
+{% if user.is_staff %}
+<section>
+  {% organization_logos %}
+</section>
+{% endif %}
 
 {% endblock everything %}

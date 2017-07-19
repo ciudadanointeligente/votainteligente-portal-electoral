@@ -60,7 +60,7 @@ class OrganizationDetailView(DetailView):
             context['proposals'].append(proposal)
 
         context['sponsorships'] = []
-        for sponsorship in self.object.proposallike_set.all():
+        for sponsorship in self.object.likes.all():
             context['sponsorships'].append(sponsorship.proposal)
 
         for field in BASIC_FIELDS:

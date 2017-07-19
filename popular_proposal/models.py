@@ -20,8 +20,8 @@ from django.template.loader import get_template
 
 
 class NeedingModerationManager(models.Manager):
-    def get_queryset(self):
-        qs = super(NeedingModerationManager, self).get_queryset()
+    def get_queryset(self, *args, **kwargs):
+        qs = super(NeedingModerationManager, self).get_queryset(*args, **kwargs)
         qs = qs.filter(status=ProposalTemporaryData.Statuses.InOurSide)
         return qs
 
@@ -247,7 +247,7 @@ class PopularProposal(models.Model, OGPMixin):
 
 
 class ProposalLike(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, related_name="likes")
     proposal = models.ForeignKey(PopularProposal)
     message = models.TextField(null=True, blank=True, help_text=_(u"Quieres decirle algo?"))
     created = models.DateTimeField(auto_now_add=True)

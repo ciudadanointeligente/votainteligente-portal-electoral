@@ -19,6 +19,7 @@ from django.template.defaultfilters import stringfilter
 import re
 from django.shortcuts import render
 from constance import config
+from organization_profiles.models import OrganizationTemplate
 
 register = template.Library()
 
@@ -364,3 +365,8 @@ def get_contact_detail(candidate, type_=None):
 @register.simple_tag
 def get_proposals_enabled():
     return config.PROPOSALS_ENABLED
+
+
+@register.inclusion_tag('organizations_logos.html')
+def organization_logos():
+    return {'templates' : OrganizationTemplate.objects.only_with_logos()}

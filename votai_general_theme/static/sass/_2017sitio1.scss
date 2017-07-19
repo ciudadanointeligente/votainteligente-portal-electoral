@@ -194,7 +194,7 @@ input[type=file]{
 }
 
 .detalle-propuesta-total{
-
+  margin: 0;
 }
 
 .llamado{
@@ -231,13 +231,17 @@ input[type=file]{
 /*Propuestas*/
 .propuesta{
   border: 3px solid $grey-one;
-  min-height: 390px;
+  min-height: 440px;
   padding: 0;
   position: relative;
 }
 
 .propuesta-content{
   padding: 25px 20px 35px;
+  .logo-ong{
+    position: absolute;
+    left: 190px;
+  }
 }
 
 .label-default{
@@ -318,8 +322,10 @@ input[type=file]{
   }
 }
 
-.propuesta h4 a{
+.propuesta h4{
+  margin: 0 0 20px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
+  line-height: 1.3;
 }

@@ -224,14 +224,18 @@ input[type=file]{
 
 /*Propuestas*/
 .propuesta{
-  border: 2px solid $grey-one;
-  min-height: 360px;
+  border: 3px solid $grey-one;
+  min-height: 440px;
   padding: 0;
   position: relative;
 }
 
 .propuesta-content{
   padding: 25px 20px 35px;
+  .logo-ong{
+    position: absolute;
+    left: 190px;
+  }
 }
 
 .label-default{
@@ -250,7 +254,7 @@ input[type=file]{
 .share-card{
   background-color: $grey-one;
   min-height: 115px;
-  padding: 5px 20px 5px;
+  padding: 5px 17px 5px;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -262,6 +266,7 @@ input[type=file]{
 
 .share-card a .fa-stack {
     color: white;
+    margin-left: -5px;
 }
 
 .share-card a .fa-stack:hover {
@@ -311,8 +316,45 @@ input[type=file]{
   }
 }
 
-.propuesta h4 a{
+.propuesta h4{
+  margin: 0 0 20px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
+  line-height: 1.3;
+}
+
+/*RIBBONS*/
+.product {
+  margin: 50px auto;
+  width: 280px;
+  height: 370px;
+  background: white;
+  border: 1px solid #333;
+  position: relative;
+  z-index: 90;
+}
+.ribbon-wrapper {
+  width: 303px;
+  height: 198px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  .ribbon {
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    -webkit-transform: rotate(45deg);
+    -moz-transform:    rotate(45deg);
+    -ms-transform:     rotate(45deg);
+    -o-transform:      rotate(45deg);
+    position: relative;
+    padding: 6px 40px 4px 40px;
+    top: 41px;
+    right: 122px;
+    width: 270px;
+    background-color: #FF645B;
+    color: white;
+  }
 }

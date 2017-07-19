@@ -45,10 +45,12 @@
         {% endblock extrajs %}
         </script>
 
-        
+
         <script>
          $(document).ready(function(){
-            $(".chosen-select").chosen();
+            if( $(".chosen-select").length ) {
+              $(".chosen-select").chosen();
+            }
             $('.email-prensa').attr('href','mailto:'+'vota-2017'+'@'+'ciudadanointeligente.org?'+'Subject=Votainteligente');
          })
         </script>

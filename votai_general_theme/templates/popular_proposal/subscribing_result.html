@@ -4,7 +4,7 @@ $('.modal').modal('hide');
 $('.corazon-{{proposal.id}} a').attr('id', "unlike_proposal_{{proposal.id}}");
 $('.corazon-{{proposal.id}} a').attr('href', "{% url 'popular_proposals:unlike_proposal' pk=like.id %}");
 $('.corazon-{{proposal.id}} a').attr("title", "Ya no quiero apoyar esta propuesta");
-$('.corazon-{{proposal.id}} a').html('Apoyo <i class="fa fa-heart" aria-hidden="true"></i>');
+$('.corazon-{{proposal.id}} a').html('Estoy apoyando <i class="fa fa-heart" aria-hidden="true"></i>');
 $('.corazon-{{proposal.id}} a').removeClass('btn-apoyo');
 $('.corazon-{{proposal.id}} a').addClass('unlike_proposal');
 $('.corazon-{{proposal.id}} a').addClass('btn-no-apoyo');

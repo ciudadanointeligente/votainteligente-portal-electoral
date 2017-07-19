@@ -721,10 +721,6 @@ section#propuestas-mas-apoyo {
     font-family: 'Montserrat', sans-serif;
 }
 
-.label-success {
-    background-color: $yellow;
-}
-
 .label-default {
     background-color: $grey-five;
     color: $grey-two;
@@ -1047,7 +1043,7 @@ input[type=checkbox], input[type=radio] {
   color: $main-background-color;
   background-color: $letters-color;
   border-color: transparent;
-  
+
 }
 .panel-heading.extra-info {
     background-color: $blue;
@@ -1223,7 +1219,7 @@ div.question-answer div.row.hidden-xs:nth-of-type(2), div.question-answer div.ro
 .panel-primary {
   border-color: transparent;
   background-color: transparent;
-  
+
 
 }
 
@@ -1963,10 +1959,10 @@ input#id_4-title {
 .panel {
   background-color: transparent;
   border: 3px dotted transparent;
-  
+
 }
 
-  
+
 .panel-default {
   border-color: #fff;
 }
@@ -2053,8 +2049,17 @@ input#id_4-title {
 
 /*Profile Organization*/
 .button-org {
-  position:fixed;
-  right:0;
+  position: sticky;
+  bottom: 10px;
+  background-color: $yellow;
+  width: 50px;
+  padding: 8px 8px 8px 11px;
+  border-radius: 40px;
+  color: white;
+  left: 90%;
+  a {
+    color: $grey-two;
+  }
 }
 
 /* Medium devices */

@@ -83,14 +83,9 @@ class OrganizationTemplate(models.Model):
 
     def generate_logo_small(self):
         if self.logo:
-            im = Image.open(self.logo)
+            im = Image.open(self.logo).convert('RGB')
             output = BytesIO()
             im = im.resize( (LOGO_SIZE,LOGO_SIZE) )
-            if im.mode in ('RGBA', 'LA'):
-                fill_color = '#FFFFFF'
-                background = Image.new(im.mode[:-1], im.size, fill_color)
-                background.paste(im, im.split()[-1])
-                im = background
             im.save(output, format='JPEG', quality=100)
             output.seek(0)
             self.logo_small = InMemoryUploadedFile(output,

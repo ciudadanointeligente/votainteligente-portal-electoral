@@ -22,7 +22,7 @@ class OrganizationTemplateManager(models.Manager):
 
     def only_with_logos(self, *args, **kwargs):
         qs = self.get_queryset(*args, **kwargs)
-        return qs.filter(logo__isnull=True)
+        return qs.exclude(logo__isnull=True).exclude(logo__iexact='')
 
 
 @python_2_unicode_compatible

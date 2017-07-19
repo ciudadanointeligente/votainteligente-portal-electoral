@@ -5,7 +5,8 @@ from organization_profiles.models import OrganizationTemplate, BASIC_FIELDS
 from organization_profiles.forms import OrganizationTemplateForm
 from popular_proposal.models import PopularProposal, ProposalLike
 from django.core.urlresolvers import reverse
-
+from django.template import Template, Context
+from django.template.loader import get_template
 
 class OrganizationTemplateUpdateForm(BackendCitizenTestCaseBase):
     def setUp(self):
@@ -183,3 +184,14 @@ class OrganizationsTemplateTagsTests(BackendCitizenTestCaseBase):
     def test_exclude_without_logo(self):
         qs = OrganizationTemplate.objects.only_with_logos()
         self.assertNotIn(self.org2.organization_template, qs)
+        self.assertIn(self.t1, qs)
+        self.assertIn(self.t3, qs)
+
+    def test_template_tag_of_organization_templates_with_logos(self):
+        template = Template("{% load votainteligente_extras %}{% organization_logos %}")
+        context = Context({"templates": OrganizationTemplate.objects.only_with_logos()})
+        actual_rendered_template = template.render(context)
+        template_str = get_template('organizations_logos.html')
+        expected_template = template_str.render(context)
+
+        self.assertEqual(actual_rendered_template, expected_template)

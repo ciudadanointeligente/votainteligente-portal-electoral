@@ -5,6 +5,10 @@
 <div class="post propuesta{% if proposal.for_all_areas %} transversal{% endif %}">
 <!-- Cata compañera puedes saber si la propuesta es para todas las comunas mediante esto {% comment %}{% if proposal.for_all_areas %}{% else %}{% endif %}{% endcomment %}-->
   <div class="propuesta-content">
+    {% if proposal.is_local_meeting %}
+    <div class="ribbon-wrapper">
+      <div class="ribbon">Generada desde un encuentro local</div>
+    </div>    {% endif %}
     <span class="label label-default">{{proposal.data.clasification}}</span>
     <!-- Estado de una propuesta para el alcalde de esa comuna -->
     <div class="pull-right">
@@ -12,8 +16,6 @@
     </div>
     <div class="small text-light">Propuesta nº{{proposal.id}}
     </div>
-
-
     {% comment %}
     <div class="small text-light">Propuesta para
       {% if not is_embedded %}

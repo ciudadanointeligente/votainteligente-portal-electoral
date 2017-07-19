@@ -140,9 +140,9 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
     def test_notification_trigger_candidate_commit(self):
         ProposalLike.objects.create(user=self.feli,
                                     proposal=self.proposal)
-        commitment = Commitment.objects.create(candidate=self.candidate,
-                                               proposal=self.proposal,
-                                               commited=True)
+        Commitment.objects.create(candidate=self.candidate,
+                                  proposal=self.proposal,
+                                  commited=True)
 
         self.assertEquals(len(mail.outbox), 1)
         the_mail = mail.outbox[0]
@@ -295,10 +295,10 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         candidacy = Candidacy.objects.create(user=self.feli,
                                              candidate=self.candidate
                                              )
-        contact = CandidacyContact.objects.create(candidate=self.candidate,
-                                                  mail='mail@perrito.cl',
-                                                  initial_password='perrito',
-                                                  candidacy=candidacy)
+        CandidacyContact.objects.create(candidate=self.candidate,
+                                        mail='mail@perrito.cl',
+                                        initial_password='perrito',
+                                        candidacy=candidacy)
         previous_amount = len(mail.outbox)
         proposal = PopularProposal.objects.create(proposer=self.fiera,
                                                   area=self.arica,
@@ -307,7 +307,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
                                                   )
         proposal.notify_candidates_of_new()
         first_mail = mail.outbox[previous_amount]
-        contact = self.candidate.contacts.all().first()
+        self.candidate.contacts.all().first()
         self.assertNotIn(self.feli.username, first_mail.body)
 
     @override_settings(NOTIFY_CANDIDATES_OF_NEW_PROPOSAL=False)
@@ -368,9 +368,15 @@ class HomeWithProposalsViewTestCase(TestCase):
                 password = User.objects.make_random_password()
                 username = 'user_' + str(j) + '_' + str(i)
                 user = User.objects.create_user(username=username, password=password)
-                like = ProposalLike.objects.create(user=user,
-                                                   proposal=proposal)
+                ProposalLike.objects.create(user=user,
+                                            proposal=proposal)
             setattr(self, 'proposal' + str(i), proposal)
+
+    def test_manager_adds_extra_attr(self):
+        ps = PopularProposal.ordered.all()
+        p = ps.get(id=self.proposal2.id)
+        self.assertTrue(hasattr(p, 'num_likers'))
+        self.assertEquals(p.num_likers, 4)
 
     def test_manager_order_by_likes(self):
         ps = PopularProposal.ordered.by_likers()

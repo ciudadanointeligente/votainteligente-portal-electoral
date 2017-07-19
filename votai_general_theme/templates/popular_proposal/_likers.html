@@ -95,8 +95,13 @@ $(function(){
                       {% endif %}
                         <span class="corazon-{{proposal.id}}">
                             <a class="unlike_proposal btn btn-no-apoyo text-center
-                            {% if not avoid_counter %} pull-left{% endif %}" href="{% url 'popular_proposals:unlike_proposal' pk=support.id %}" data-toggle="tooltip" data-placement="top" title="Ya no quiero apoyar esta propuesta">
-                            Apoyo <i class="fa fa-heart" aria-hidden="true"></i></a>
+                            {% if not avoid_counter %} pull-left{% endif %}"
+                            href="{% url 'popular_proposals:unlike_proposal' pk=support.id %}"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Ya no quiero apoyar esta propuesta">
+                            Apoyo <i class="fa fa-heart" aria-hidden="true"></i>
+                            </a>
                         </span>
                     {% endwith %}
                 {% endif %}

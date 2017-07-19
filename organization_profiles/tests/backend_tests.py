@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
 from organization_profiles.models import OrganizationTemplate, BASIC_FIELDS
 from organization_profiles.forms import OrganizationTemplateForm
+from popular_proposal.models import PopularProposal, ProposalLike
 from django.core.urlresolvers import reverse
 
 
@@ -119,3 +120,66 @@ class OrganizationTemplateViewTest(BackendCitizenTestCaseBase):
                                     data={'title': 'titulo', 'content': 'contenido'},
                                     follow=True)
         self.assertEquals(response.status_code, 200)
+
+
+class OrganizationsTemplateTagsTests(BackendCitizenTestCaseBase):
+    def setUp(self):
+        super(OrganizationsTemplateTagsTests, self).setUp()
+
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'Esto es un título'
+                                                          )
+
+
+
+
+        self.org1 = User.objects.create(username='ciudadanoi',
+                                        first_name='Ciudadano Inteligente',
+                                        email='mail@mail.com')
+        self.org1.profile.is_organization = True
+        self.org1.profile.save()
+        self.t1 = self.org1.organization_template
+        self.t1.logo = self.get_image()
+        self.t1.save()
+
+        self.org2 = User.objects.create(username='org2',
+                                        first_name='org2',
+                                        email='mail2@mail.com')
+        self.org2.profile.is_organization = True
+        self.org2.profile.save()
+
+        ProposalLike.objects.create(user=self.org2,
+                                    proposal=popular_proposal)
+
+        self.org3 = User.objects.create(username='org3',
+                                        first_name='org3',
+                                        email='mail2@mail.com')
+        self.org3.profile.is_organization = True
+        self.org3.profile.save()
+        self.t3 = self.org3.organization_template
+        self.t3.logo = self.get_image()
+        self.t3.save()
+        PopularProposal.objects.create(proposer=self.org3,
+                                       area=self.arica,
+                                       data={"name": "FieraFeroz"},
+                                       title=u'This is a title',
+                                       clasification=u'education'
+                                       )
+        PopularProposal.objects.create(proposer=self.org3,
+                                       area=self.arica,
+                                       data={"name": "FieraFeroz"},
+                                       title=u'This is a title',
+                                       clasification=u'education'
+                                       )
+
+    def test_lists_organizations(self):
+        qs = OrganizationTemplate.objects.all()
+        #Ordenadas por propuestas y <3s
+        self.assertEquals(qs.first(), self.t3)
+        self.assertEquals(qs[1], self.org2.organization_template)
+
+    def test_exclude_without_logo(self):
+        qs = OrganizationTemplate.objects.only_with_logos()
+        self.assertNotIn(self.org2.organization_template, qs)

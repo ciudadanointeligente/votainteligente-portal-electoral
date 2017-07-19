@@ -9,9 +9,20 @@ from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.core.urlresolvers import reverse
+from django.db.models import Count
 from autoslug import AutoSlugField
 from django.conf import settings
 import markdown2
+
+class OrganizationTemplateManager(models.Manager):
+    def get_queryset(self):
+        qs = super(OrganizationTemplateManager, self).get_queryset()
+        qs = qs.annotate(num_proposals=Count('organization__proposals')).annotate(num_likes=Count('organization__likes')).order_by("-num_proposals", "-num_likes")
+        return qs
+
+    def only_with_logos(self, *args, **kwargs):
+        qs = self.get_queryset(*args, **kwargs)
+        return qs.filter(logo__isnull=True)
 
 
 @python_2_unicode_compatible
@@ -50,6 +61,8 @@ class OrganizationTemplate(models.Model):
                                        default="#2DDC22")
     rss_url = models.URLField(blank=True,
                               null=True)
+
+    objects = OrganizationTemplateManager()
 
     def save(self, *args, **kwargs):
         super(OrganizationTemplate, self).save(*args, **kwargs)

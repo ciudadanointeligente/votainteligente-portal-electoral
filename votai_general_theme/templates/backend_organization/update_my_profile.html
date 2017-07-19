@@ -8,7 +8,7 @@
 
 	<h2 class="page-header">Perfil Organización</h2>
 
-	<p class="alert alert-warning button-org">Revisa tu página de perfil <a href="{% url 'organization_profiles:home' slug=user.username %}" target="_blank">acá</a></p>
+
 
 	<form enctype="multipart/form-data" action="{% url 'organization_profiles:update' %}" method="POST" role="form">
 	    {% csrf_token %}
@@ -59,4 +59,5 @@
 	        <button type="submit" class="btn btn-success">{% trans 'Actualizar'%}</button>
 	    </div>
 	</form>
+  <div class="button-org"><a href="{% url 'organization_profiles:home' slug=user.username %}" target="_blank"><i class="fa fa-eye fa-2x"></i></a></div>
 {% endblock main_content %}

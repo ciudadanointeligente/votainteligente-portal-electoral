@@ -7,7 +7,8 @@ from popular_proposal.models import PopularProposal
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from elections.models import Area
 from django.conf import settings
-from django.forms import CharField, Form
+from constance import config
+from django.forms import CharField, Form, ChoiceField
 from haystack.query import SearchQuerySet
 
 
@@ -19,6 +20,13 @@ def filterable_areas(request):
 
 class TextSearchForm(Form):
     text = CharField(label=u'Qué buscas?', required=False)
+    order_by = ChoiceField(required=False,
+                           label=u"Ordenar por",
+                           choices=[('', u'Por apoyos'),
+                                    ('-created', u'Últimas primero'),
+                                    ('-proposer__profile__is_organization', u'De organizaciones primero'),
+                                    ('-is_local_meeting', u'Encuentros locales primero'),
+                                    ])
 
     def full_clean(self):
         super(TextSearchForm, self).full_clean()
@@ -32,7 +40,9 @@ class TextSearchForm(Form):
 
 
 class ProposalWithoutAreaFilter(FilterSet):
-    clasification = ChoiceFilter(choices=TOPIC_CHOICES, label=u"Clasificación")
+    clasification = ChoiceFilter(choices=TOPIC_CHOICES,
+                                 empty_label=u"Selecciona",
+                                 label=u"Clasificación")
 
     def __init__(self,
                  data=None,
@@ -46,14 +56,13 @@ class ProposalWithoutAreaFilter(FilterSet):
             if self.area:
                 self.area = Area.objects.get(id=self.area)
         if queryset is None:
-            queryset = PopularProposal.objects.all()
+            queryset = PopularProposal.ordered.all()
         if self.area is not None:
             queryset = queryset.filter(area=self.area)
         super(ProposalWithoutAreaFilter, self).__init__(data=data,
                                                         queryset=queryset,
                                                         prefix=prefix,
                                                         strict=strict)
-
 
     @property
     def form(self):
@@ -70,8 +79,14 @@ class ProposalWithoutAreaFilter(FilterSet):
     def qs(self):
 
         super(ProposalWithoutAreaFilter, self).qs
+        self._qs = self._qs.exclude(area__id=config.HIDDEN_AREAS)
         if not self.form.is_valid():
             return self._qs
+        order_by = self.form.cleaned_data.get('order_by', None)
+        if order_by:
+            self._qs = self._qs.order_by(order_by)
+        else:
+            self._qs = self._qs.by_likers()
         text = self.form.cleaned_data.get('text', '')
 
         if text:
@@ -98,4 +113,6 @@ class ProposalWithAreaFilter(ProposalWithoutAreaFilter):
 
 
 class ProposalGeneratedAtFilter(ProposalWithoutAreaFilter):
-    generated_at = ModelChoiceFilter(queryset=filterable_areas)
+    generated_at = ModelChoiceFilter(queryset=filterable_areas,
+                                     empty_label=u"Selecciona",
+                                     label="Comuna donde fue generada")

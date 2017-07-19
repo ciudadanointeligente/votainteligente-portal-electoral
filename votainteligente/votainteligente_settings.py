@@ -4,7 +4,6 @@ import os
 from django.conf import settings
 from datetime import timedelta
 from django.conf import settings
-from django_nose import NoseTestSuiteRunner
 
 
 DEBUG = True
@@ -25,6 +24,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
+    'test_without_migrations',
     'django_nose',
     'django.contrib.sitemaps',
     'linaro_django_pagination',
@@ -243,6 +243,7 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 # Django nose
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+TEST_WITHOUT_MIGRATIONS_COMMAND = 'django_nose.management.commands.test.Command'
 if TESTING:
 
     HAYSTACK_CONNECTIONS = {
@@ -338,25 +339,6 @@ DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS=[{'title':u'Agenda', 'content':'''* **2 DE 
 * **17 DE DICIEMBRE**	*Segunda vuelta de Elecciones Presidenciales'''},
                                                            {'title':u'Documentos', 'content':'+ [Guia Ciudadana](/static/herramientas/GUIACIUDADANA.pdf)'}]
 
-
-class DisableMigrations(object):
-    def __contains__(self, item):
-        return True
-
-    def __getitem__(self, item):
-        return None
-
-
-class Runner(NoseTestSuiteRunner):
-    def run_tests(self, test_labels, extra_tests=None):
-        settings.MIGRATION_MODULES = DisableMigrations()
-        super(Runner, self).run_tests(test_labels, extra_tests=extra_tests)
-
-
-DONT_USE_MIGRATIONS = 'DONT_USE_MIGRATIONS' in os.environ.keys() and os.environ['DONT_USE_MIGRATIONS'] == '1'
-
-if DONT_USE_MIGRATIONS:
-    TEST_RUNNER = 'votainteligente.votainteligente_settings.Runner'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 FACEBOOK_ACCESS_TOKEN = 'FieraEsLaMejorAmigaDeTodos'

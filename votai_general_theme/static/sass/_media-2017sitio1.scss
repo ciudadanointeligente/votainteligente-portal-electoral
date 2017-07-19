@@ -20,6 +20,11 @@
   }
 }
 
+@media screen and (max-width: 425px) {
+  .content_padding {
+    padding-top: 20px;
+  }
+}
 @media screen and (max-width: 320px) {
   .fondo-blanco{
     h1{
@@ -38,4 +43,6 @@
   .share-card a .fa-stack{
     margin: 10px 0 10px;
   }
+
+
 }

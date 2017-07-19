@@ -50,6 +50,20 @@ def get_user_organizations_choicefield(user=None):
                                  label=label)
     return None
 
+
+def get_possible_generating_areas():
+    area_qs = Area.public.all()
+    if settings.POSSIBLE_GENERATING_AREAS_FILTER:
+        area_qs = area_qs.filter(classification=settings.POSSIBLE_GENERATING_AREAS_FILTER)
+    return area_qs
+
+
+def get_possible_generating_areas_choices():
+    area_qs = get_possible_generating_areas()
+    choices = [('', _(u'No aplica'))]
+    choices += [(a.id, a.name) for a in area_qs]
+    return choices
+
 wizard_forms_fields = [
     {
         'template': 'popular_proposal/wizard/paso1.html',
@@ -74,16 +88,6 @@ wizard_forms_fields = [
         )])
     },
     {
-        'template': 'popular_proposal/wizard/paso3.html',
-        'explation_template': "popular_proposal/steps/paso3.html",
-        'fields': OrderedDict([(
-
-            'solution', forms.CharField(max_length=2048,
-                                        widget=forms.Textarea(),
-                                        )
-        )])
-    },
-    {
         'template': 'popular_proposal/wizard/form_step.html',
         'explation_template': "popular_proposal/steps/paso4.html",
         'fields': OrderedDict([(
@@ -102,6 +106,11 @@ wizard_forms_fields = [
             ('title', forms.CharField(max_length=256,
                                       widget=forms.TextInput())),
             ('organization', get_user_organizations_choicefield),
+            ('is_local_meeting', forms.BooleanField(required=False)),
+            ('generated_at', forms.ModelChoiceField(required=False,
+                                                    queryset=get_possible_generating_areas(),
+                                                    empty_label="No aplica")
+                                                    ),
             ('terms_and_conditions', forms.BooleanField(
                 error_messages={'required':
                                 _(u'Debes aceptar nuestros Términos y Condiciones')}
@@ -185,11 +194,7 @@ class ProposalForm(ProposalFormBase, CreateProposalMixin):
 class UpdateProposalForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UpdateProposalForm, self).__init__(*args, **kwargs)
-        area_qs = Area.public.all()
-        if settings.POSSIBLE_GENERATING_AREAS_FILTER:
-            area_qs = area_qs.filter(classification=settings.POSSIBLE_GENERATING_AREAS_FILTER)
-        self.fields['generated_at'].choices = [('', _(u'No aplica'))]
-        self.fields['generated_at'].choices += [(a.id, a.name) for a in area_qs]
+        self.fields['generated_at'].choices = get_possible_generating_areas_choices()
 
     class Meta:
         model = PopularProposal

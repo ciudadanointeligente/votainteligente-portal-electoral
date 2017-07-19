@@ -26,7 +26,7 @@ $(function(){
       <table class="table table-striped">
         <thead>
           <tr>
-              <th>{% trans 'Comuna' %}</th>
+              <!--<th>{% trans 'Comuna' %}</th>-->
               <th>{% trans 'Título propuesta' %}</th>
               <th>{% trans 'Autor' %}</th>
               <th>{% trans 'Acciones' %}</th>
@@ -35,10 +35,17 @@ $(function(){
         <tbody>
     {% for support in supports %}
         <tr class="proposal_{{support.id}}">
-            <td><a href="{% url 'area' slug=support.proposal.area.id %}">{{support.proposal.area}}</a></td>
-            <td><a href="{{ support.proposal.get_absolute_url }}">{{support.proposal.title}}</a></td>
+            <!--<td><a href="{% url 'area' slug=support.proposal.area.id %}">{{support.proposal.area}}</a></td>-->
+            <td><a href="{{ support.proposal.get_absolute_url }}" target="blank">{{support.proposal.title|truncatechars:50}}</a></td>
             <td>{{support.proposal.proposer}}</td>
-            <td><a title="{% trans 'Quitar apoyo' %}" class="unlike_proposal" href="{% url 'popular_proposals:unlike_proposal' pk=support.id %}"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a></td>
+            <td>
+              <a title="{% trans 'Quitar apoyo' %}" href="{% url 'popular_proposals:unlike_proposal' pk=support.id %}">
+                <span class="fa-stack">
+                  <i class="fa fa-heart text-danger fa-stack-1x"></i>
+                  <i class="fa fa-ban fa-stack-2x"></i>
+                </span>
+              </a>
+            </td>
         </tr>
     {% empty %}
     {% endfor %}

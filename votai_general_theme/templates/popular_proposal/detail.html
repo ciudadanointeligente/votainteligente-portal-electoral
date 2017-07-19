@@ -52,7 +52,24 @@ $(function(){
       <span class="label label-default">{{popular_proposal.data.clasification}}</span>
     </div>
     <div class="line-space"></div>
-    <p class="text-center text-light small">Esta es una propuesta de {{popular_proposal.proposer}}</p>
+    <p class="text-center text-light small">Esta es una propuesta de 
+
+      {% if popular_proposal.proposer.profile.is_organization %}
+        <a href="{{popular_proposal.proposer.organization_template.get_absolute_url}}">
+          {% if popular_proposal.proposer.get_full_name %}
+            {{popular_proposal.proposer.get_full_name}}
+          {% else %}
+            {{popular_proposal.proposer}}
+          {% endif %}
+        </a>
+        {% else %}
+          {% if popular_proposal.proposer.get_full_name %}
+            {{popular_proposal.proposer.get_full_name}}
+          {% else %}
+            {{popular_proposal.proposer}}
+          {% endif %}
+      {% endif %}
+    </p>
     <h1 class="text-center">{{popular_proposal.title}}</h1>
 
     {% comment %}<!-- Apoyos -->
@@ -337,7 +354,9 @@ $(function(){
           <a href="{% url 'organization_profiles:home' slug=org.username %}" target="_blank">
             {% if org.organization_template.logo %}
                 {% thumbnail org.organization_template.logo "300x300" crop="center" as im %}
-                <img src="{{im.url}}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small">
+                <a href="{{org.organization_template.get_absolute_url}}">
+                  <img src="{{im.url}}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small">
+                </a>
                 {% endthumbnail %}
               {% else %}
                 <img src="{% static 'img/candidate-default.jpg' %}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small"></a>
@@ -352,9 +371,7 @@ $(function(){
 
   </div>
 </div><!-- Todo antes de comparte -->
-{% with "supportProposal"|add:popular_proposal.slug as modalid %}
-  {% include 'modal_like_proposal.html' with modalId=modalid title='Apoya una propuesta' url=like_this_proposal_url next_url=request.path proposal=popular_proposal %}
-{% endwith %}
+
     <div class="apoya-comparte">
       <div class="container">
         {% comment %}
@@ -367,11 +384,12 @@ $(function(){
         <div class="row">
           <div class="col-md-4 col-md-offset-2">
             <div class="apoyo-contador">
-              <p class="apoyo-ciudadano"><span id='likers_count_{{proposal.id}}' class="conteo">{{popular_proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
+              <p class="apoyo-ciudadano"><span id='likers_count_{{popular_proposal.id}}' class="conteo">{{popular_proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
             </div>
           </div>
           <div class="col-md-4">
             <div class="share-detail">
+
               {% include 'popular_proposal/_share.html' with proposal=popular_proposal next_url=request.path %}
               {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path avoid_counter=True %}
             </div>
@@ -379,7 +397,9 @@ $(function(){
         </div>
       </div>
     </div>
-
+    {% with "supportProposal"|add:popular_proposal.slug as modalid %}
+      {% include 'modal_like_proposal.html' with modalId=modalid title='Apoya una propuesta' url=like_this_proposal_url next_url=request.path proposal=popular_proposal %}
+    {% endwith %}
 {% endblock everything %}
 {% block extrafooter %}
 {% endblock extrafooter %}

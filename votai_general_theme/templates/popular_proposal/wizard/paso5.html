@@ -15,7 +15,7 @@
 
     <div class="row">
     {% for i in wizard.steps.count|times %}
-        <div class="col-md-2 col-sm-2 col-xs-2">
+        <div class="col-md-3 col-sm-3 col-xs-3">
             <div class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}">Paso {{i|add:1}} de {{wizard.steps.count}}</div>
         </div>
     {% endfor %}
@@ -39,6 +39,15 @@
             {% bootstrap_field form.title show_help=false show_label=false %}
         </section>
         {% include 'popular_proposal/plantillas/carta_candidato.html' %}
+    </div>
+    <div class="panel panel-default extra-info">
+      <div class="panel-heading extra-info">
+        <h3 class="panel-title">Información adicional sobre tu propuesta</h3>
+      </div>
+      <div class="panel-body">
+       {% bootstrap_field form.is_local_meeting  %}
+       {% bootstrap_field form.generated_at  %}
+      </div>
     </div>
         <section class="terms">
           {{ form.terms_and_conditions }}

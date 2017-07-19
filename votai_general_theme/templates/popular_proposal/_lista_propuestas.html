@@ -3,7 +3,7 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js" />
 <script>
 $(function(){
     $('.loadFromUrl').on('show.bs.modal', function (event) {
@@ -18,37 +18,33 @@ $(function(){
 
 
     {% if form %}
-    {% include 'modal.html' with modalId='subscribeToSearch' title='Subscribirse a esta búsqueda' %}
+    {% include 'modal.html' with modalId='subscribeToSearch' title='Mantente al dia con tus tematicas de interes' %}
 		<form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form">
       <div class="row">
-        <div class="col-md-4">{% bootstrap_field form.text %}</div>
-        <div class="col-md-4">{% bootstrap_field form.clasification %}</div>
-
-          {% comment %}
-          {% if form.area|is_field %}
-            <div class="col-md-4">
-              {% bootstrap_field form.area %}
-            </div>
+        <div class="col-md-3">{% bootstrap_field form.text %}</div>
+        <div class="col-md-3">{% bootstrap_field form.clasification %}</div>
+        <div class="col-md-3">{% bootstrap_field form.generated_at %}</div>
+        <div class="col-md-3">{% bootstrap_field form.order_by %}</div>
+      </div>
+      <div class="row">
+        <!-- mobile version -->
+        <div class="col-md-12 text-right visible-xs">
+          <button type="submit" class="btn btn-success btn-block">{% trans 'Filtrar'%}</button>
+          {% if form.is_filled_search %}
+            <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary btn-block">{% trans 'Limpiar Filtro'%}</a>
           {% endif %}
-          {% endcomment %}
-
-        <div class="col-md-8">
-    	    <div class="form-actions">
-    	        <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>
-              {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
-              <a
-              type="button"
-              id="subscribeToSearchButton"
-              class="btn btn-info subscribe"
-               data-toggle="modal"
-               data-url="{% url 'proposal_subscriptions:subscribe' %}"
-               data-target="#subscribeToSearch">{% trans 'Subscribir a esta búsqueda' %}</a>
-               {% endif %}
-    	    </div>
+          {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
+            <a id="subscribeToSearchButton" class="btn btn-info btn-block" data-toggle="modal" data-url="{% url 'proposal_subscriptions:subscribe' %}" data-target="#subscribeToSearch"><i class="fa fa-bell-o"></i> {% trans 'Subscribete a este resultado' %}</a>
+          {% endif %}
+        </div>
+        <!-- end mobile version -->
+        <div class="col-md-12 text-right hidden-xs">
+          <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>
+          {% if form.is_filled_search %}
+            <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary">{% trans 'Limpiar Filtro'%}</a>
+          {% endif %}
         </div>
       </div>
-
-
 		</form>
     {% endif %}
     <script>
@@ -62,15 +58,30 @@ $(function(){
     </script>
 
 <div id="grid">
-
-  <div id="posts">
-    {% for proposal in popular_proposals %}
-    {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal is_embedded=is_embedded %}
-    {% empty %}
+      {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
+      <div class="row hidden-xs">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="alert alert-info text-center" role='alert'>
+            <button type="button" class="close" data-dismiss='alert' aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <a id="subscribeToSearchButton" data-toggle="modal" data-url="{% url 'proposal_subscriptions:subscribe' %}" data-target="#subscribeToSearch"><i class="fa fa-bell-o"></i> {% trans 'Recibe notificaciones en tu correo con el resultado de esta búsqueda' %}</a>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    <div id="posts">
+      {% for proposal in popular_proposals %}
+          {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal is_embedded=is_embedded %}
+      {% empty %}
+      {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
+    </div>
     {% blocktrans %}
-    <p>Aún no hay propuestas.</p>
+    <p class="bg-info">
+      Aún no se han generado propuestas para esta búsqueda.
+      Se tu la/el primera/o en generar la primera propuesta en el siguiente <a href="{{create_proposal_url}}">enlace</a>.
+    </p>
     {% endblocktrans %}
     {% endfor %}
 
-  </div>
 </div>

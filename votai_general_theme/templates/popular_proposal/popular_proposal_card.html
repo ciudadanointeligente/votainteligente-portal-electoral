@@ -24,12 +24,9 @@
     {% if proposal.title %}
         <h4><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title|truncatechars:100 }}</a></h4>
     {% endif %}
-
-    {% include 'popular_proposal/_likers_candidatos.html' with proposal=proposal next_url=popular_proposals_home %}
-
     {% if proposal.proposer.profile.image and proposal.proposer.profile.is_organization %}
       <div class="logo-ong text-center text-light">
-        <span>Propuesta de </span><img src="{{ proposal.proposer.profile.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid">
+        <span>Propuesta de </span><a href="{{proposal.proposer.organization_template.get_absolute_url}}"><img src="{{ proposal.proposer.profile.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid"></a>
       </div>
     {% endif %}
   </div>

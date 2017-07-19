@@ -81,11 +81,16 @@ TEXTS = OrderedDict({
                       'help_text': u'educacion',
                       'placeholder': u'',
                       'long_text': "paso5b.html"},
-    'is_local_gathering': {'label': u'¿Esta propuesta es producto de un encuentro local?',
+    'is_local_meeting': {'label': u'¿Esta propuesta es producto de un encuentro local?',
                       'preview_question': u'¿Es un encuentro local?',
                       'help_text': u'',
                       'placeholder': u'',
-                      'long_text': ""},
+                      'long_text': "is_local_meeting.html"},
+    'generated_at': {'label': u'¿En qué comuna se generó esta propuesta?',
+                      'preview_question': u'¿Es un encuentro local?',
+                      'help_text': u'Si eres una ONG de vocación nacional, esta opción no aplica',
+                      'placeholder': u'',
+                      'long_text': "generated_at.html"},
     'terms_and_conditions': {'label': u'Términos y condiciones',
                              'preview_question': u'',
                              'help_text': u'',
@@ -97,3 +102,7 @@ TEXTS = OrderedDict({
                              'placeholder': u'',
                              'long_text': "paso5b.html"},
 })
+
+SEARCH_ELEMENTS_FROM_DATA = [
+  'problem','solution','causes', 'solution_at_the_end', 'when'
+]

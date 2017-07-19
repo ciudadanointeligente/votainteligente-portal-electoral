@@ -4,18 +4,13 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
-{% block extra_scripts %}
-<script src="{% static 'js/bootstrap-tour.js' %}"></script>
-<link href="{% static 'css/bootstrap-tour.min.css' %}" rel='stylesheet' type='text/css'>
-
-{% endblock extra_scripts %}
-
 
 {% block content %}
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
   <!-- Featured Elections  -->
+  <!--
   {% if user|is_candidate %}
     <p class="small epigrafe text-center text-light">Bienvenida/o candidata/o</p>
     <h1 class="text-center">
@@ -28,7 +23,7 @@
   {% endif %}
 
   <div class="line-space"></div>
-
+  -->
   <div class="">
     <div class="">
       {% block sidebar %}
@@ -246,6 +241,13 @@ $(function(){
   tour.start();
 });
 {% endif %}
+
+{% block extra_scripts %}
+{% endblock extra_scripts %}
+<script src="{% static 'js/bootstrap-tour.js' %}"></script>
+<link href="{% static 'css/bootstrap-tour.min.css' %}" rel='stylesheet' type='text/css'>
+
+
 {% endblock content %}
 
 {% block extrajs %}
@@ -256,6 +258,8 @@ $(function(){
       var body = modal.find('.modal-body');
       body.load(anchor.data('url'));
     })
-    $('[data-toggle="tooltip"]').tooltip();
+    if($('[data-toggle="tooltip"]').length) {
+      $('[data-toggle="tooltip"]').tooltip();
+    }
 });
 {% endblock extrajs %}

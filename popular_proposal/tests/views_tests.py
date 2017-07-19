@@ -22,6 +22,7 @@ class PopularProposalTestCaseBase(TestCase):
         self.algarrobo = Area.objects.get(id='algarrobo-5602')
         self.popular_proposal1 = PopularProposal.objects.create(proposer=self.fiera,
                                                                 area=self.algarrobo,
+                                                                generated_at=self.algarrobo,
                                                                 data=self.data,
                                                                 clasification=TOPIC_CHOICES[1][0],
                                                                 title=u'This is a title'
@@ -29,12 +30,14 @@ class PopularProposalTestCaseBase(TestCase):
         data2 = self.data
         self.popular_proposal2 = PopularProposal.objects.create(proposer=self.fiera,
                                                                 area=self.algarrobo,
+                                                                generated_at=self.algarrobo,
                                                                 data=data2,
                                                                 clasification=TOPIC_CHOICES[2][0],
                                                                 title=u'This is a title'
                                                                 )
         self.popular_proposal3 = PopularProposal.objects.create(proposer=self.fiera,
                                                                 area=self.alhue,
+                                                                generated_at=self.alhue,
                                                                 data=data2,
                                                                 clasification=TOPIC_CHOICES[2][0],
                                                                 title=u'This is a title'
@@ -127,10 +130,10 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
 
         self.assertIn(self.popular_proposal2, response.context['popular_proposals'])
 
-        response = self.client.get(self.url, {'clasification': TOPIC_CHOICES[2][0], 'area': self.alhue.id})
+        response = self.client.get(self.url, {'clasification': TOPIC_CHOICES[2][0], 'generated_at': self.alhue.id})
         form = response.context['form']
         self.assertEquals(form.fields['clasification'].initial, TOPIC_CHOICES[2][0])
-        self.assertEquals(form.fields['area'].initial, self.alhue.id)
+        self.assertEquals(form.fields['generated_at'].initial, self.alhue.id)
         self.assertIn(self.popular_proposal3, response.context['popular_proposals'])
         self.assertNotIn(self.popular_proposal2, response.context['popular_proposals'])
         self.assertNotIn(self.popular_proposal1, response.context['popular_proposals'])

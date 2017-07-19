@@ -34,12 +34,17 @@ class WizardDataMixin(object):
                 field_dict = TEXTS.get(field, None)
                 if field == "is_testing":
                     continue
-                if field_dict:
+                field_type = step['fields'][field].__class__.__name__
+                if field_type in ['ChoiceField']:
+                    test_response[cntr][str(cntr) + '-' + field] = step['fields'][field].choices[-1][0]
+                    test_response[cntr][field] = step['fields'][field].choices[-1][0]
+                elif field_type in ['ModelChoiceField']:
+                    choice = step['fields'][field].queryset.last().id
+                    test_response[cntr][str(cntr) + '-' + field] = choice
+                    test_response[cntr][field] = choice
+                elif field_dict:
                     help_text = field_dict.get('help_text', None)
-                    if help_text:
-                        test_response[cntr][str(cntr) + '-' + field] = help_text
-                        test_response[cntr][field] = help_text
-                    else:
+                    if not help_text:
                         test_response[cntr][str(cntr) + '-' + field] = field
                         test_response[cntr][field] = field
                 else:
@@ -333,7 +338,7 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
         Sólo funca para escribir tests.
         '''
         example_data = kwargs.pop("data", self.example_data)
-        example_data.update(override_example_data	)
+        example_data.update(override_example_data)
         url = kwargs.pop("url", self.url)
         user = kwargs.pop("user", self.feli)
         password = kwargs.pop("password", USER_PASSWORD)
@@ -379,6 +384,14 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
                 url_in_mail = True
         self.assertTrue(url_in_mail)
 
+    def test_create_a_proposal_attributes(self):
+        response = self.fill_the_whole_wizard()
+        temporary_data = response.context['popular_proposal']
+        proposal = temporary_data.created_proposal
+        # Attributes of the proposal
+        self.assertTrue(proposal.is_local_meeting)
+        self.assertTrue(proposal.generated_at)
+
     def test_done_brings_update_proposal_form(self):
         response = self.fill_the_whole_wizard()
         temporary_data = response.context['popular_proposal']
@@ -392,9 +405,9 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
             testing_area = Area.objects.get(id=config.HIDDEN_AREAS)
         except Area.DoesNotExist:
             testing_area = Area.objects.create(id=config.HIDDEN_AREAS, name=config.HIDDEN_AREAS)
-        response = self.fill_the_whole_wizard(override_example_data={4: {'4-title':'title',
-                                                                         '4-terms_and_conditions': True,
-                                                                         "4-is_testing":True}})
+        response = self.fill_the_whole_wizard(override_example_data={3: {'3-title':'title',
+                                                                         '3-terms_and_conditions': True,
+                                                                         "3-is_testing":True}})
         temporary_data = response.context['popular_proposal']
 
         self.assertEquals(temporary_data.created_proposal.area, testing_area)

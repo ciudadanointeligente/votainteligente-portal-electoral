@@ -4,6 +4,8 @@ from backend_candidate.models import Candidacy
 
 from constance import config
 
+import copy
+
 from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
@@ -32,8 +34,10 @@ from django_filters.views import FilterView
 
 from elections.models import Area, Candidate
 
+from django import forms
+
 from popular_proposal.filters import (ProposalWithoutAreaFilter,
-                                      ProposalWithAreaFilter)
+                                      ProposalGeneratedAtFilter)
 
 from popular_proposal.forms import (CandidateCommitmentForm,
                                     CandidateNotCommitingForm,
@@ -126,26 +130,6 @@ class SubscriptionView(FormView):
                                 context)
 
 
-class HomeView(EmbeddedViewBase, FilterView):
-    model = PopularProposal
-    template_name = 'popular_proposal/home.html'
-    filterset_class = ProposalWithAreaFilter
-
-    def get_queryset(self):
-        qs = super(HomeView, self).get_queryset().exclude(area__id=config.HIDDEN_AREAS)
-        return qs
-
-    def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
-        initial = self.request.GET or {}
-        filterset = self.filterset_class(data=initial)
-        context['form'] = filterset.form
-        return context
-
-    def get_context_object_name(self, object_list):
-        return 'popular_proposals'
-
-
 class PopularProposalDetailView(EmbeddedViewBase, DetailView):
     model = PopularProposal
     template_name = 'popular_proposal/detail.html'
@@ -170,28 +154,54 @@ class UnlikeProposalView(View):
         return JsonResponse({'deleted_item': self.pk})
 
 
-class ProposalsPerArea(EmbeddedViewBase, ListView):
+class ProposalFilterMixin(object):
     model = PopularProposal
+    filterset_class = ProposalGeneratedAtFilter
+    order_by = None
+
+    def _get_filterset(self):
+        initial = copy.copy(self.request.GET) or {}
+        filterset_kwargs = self._get_filterset_kwargs()
+        filterset_kwargs.update({'data': initial})
+        filterset = self.filterset_class(**filterset_kwargs)
+        return filterset
+
+    def _get_filterset_kwargs(self):
+        return {}
+
+    def get_form(self):
+        f = self._get_filterset().form
+        return f
+
+    def get_queryset(self):
+        return self._get_filterset().qs
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProposalFilterMixin, self).get_context_data(*args, **kwargs)
+        context['form'] = self.get_form()
+        return context
+#    def get_queryset(self):
+#        qs = self.model.ordered.by_likers().exclude(area__id=config.HIDDEN_AREAS)
+#        return qs
+
+
+class HomeView(EmbeddedViewBase, ProposalFilterMixin, FilterView):
+    template_name = 'popular_proposal/home.html'
+    filterset_class = ProposalGeneratedAtFilter
+    context_object_name = 'popular_proposals'
+
+
+class ProposalsPerArea(EmbeddedViewBase, ProposalFilterMixin, ListView):
     template_name = 'popular_proposal/area.html'
     context_object_name = 'popular_proposals'
+    filterset_class = ProposalWithoutAreaFilter
+
+    def _get_filterset_kwargs(self):
+        return {'area': self.area}
 
     def dispatch(self, request, *args, **kwargs):
         self.area = get_object_or_404(Area, id=self.kwargs['slug'])
         return super(ProposalsPerArea, self).dispatch(request, *args, **kwargs)
-
-    def get_context_data(self):
-        context = super(ProposalsPerArea, self).get_context_data()
-        initial = self.request.GET or {}
-        filterset = ProposalWithoutAreaFilter(area=self.area, data=initial)
-        context['form'] = filterset.form
-        return context
-
-    def get_queryset(self):
-        kwargs = {'data': self.request.GET or None,
-                  'area': self.area
-                  }
-        filterset = ProposalWithoutAreaFilter(**kwargs).qs
-        return filterset
 
 
 class CommitView(FormView):

@@ -1,48 +1,47 @@
- {% load i18n %}
+{% load i18n %}
 <div class="modal fade modal-proposal" id="{{modalId}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">{{ title }}</h4>
-      </div>
-      <div class="modal-body">
-        {% if user.profile.is_organization %}
-        <p>Graaaaandeee <b>{{user}}</b>:</p>
-        <p>Estás apoyando a <b>{{proposal.proposer}}</b> en su propuesta {{proposal}}<b></b>, esto tiene algunas implicancias:</p>
-        <ul>
-          <li>Al momento de apretar el botón que está abajo se le enviará un mail a <b>{{proposal.proposer}}</b>, quién creó esta propuesta. En el se compartirán sus datos para que se sigan coordinando.</li>
-          <li>En tu perfil de organización aparecerá que estás apoyando a esta propuesta.</li>
-          <li>Cuando cualquier ciudadano revise esta propuesta podrá ver que {{user}} la está apoyando.</li>
-          <li>Tu NO podrás quitarle el apoyo a esta propuesta a menos que hables con el equipo de VotaInteligente.</li>
-        </ul>
-        {% else %}
-        ¿Deseas apoyar la propuesta <b>{{proposal}}</b>?
-        <p>Al apoyar esta propuesta aceptas que VotaInteligente te notifique vía correo electrónico cuando un candidato decida apoyar esta propuesta.</p>
-        {% endif %}
-        {% url 'popular_proposals:like_a_proposal' pk=proposal.id as like_this_proposal_url %}
-        <form method="POST" id="form_{{modalId}}"action="{{like_this_proposal_url}}" role="form">
-            {% csrf_token %}
-            {% if next %}
+    <form method="POST" id="form_{{modalId}}" action="{{like_this_proposal_url}}" role="form">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">{{ title }}</h4>
+        </div>
+        <div class="modal-body">
+          {% if user.profile.is_organization %}
+            <p>Graaaaandeee <b>{{user}}</b>:</p>
+            <p>Estás apoyando a <b>{{proposal.proposer}}</b> en su propuesta {{proposal}}<b></b>, esto tiene algunas implicancias:</p>
+            <ul>
+              <li>Al momento de apretar el botón que está abajo se le enviará un mail a <b>{{proposal.proposer}}</b>, quién creó esta propuesta. En el se compartirán sus datos para que se sigan coordinando.</li>
+              <li>En tu perfil de organización aparecerá que estás apoyando a esta propuesta.</li>
+              <li>Cuando cualquier ciudadano revise esta propuesta podrá ver que {{user}} la está apoyando.</li>
+              <li>Tu NO podrás quitarle el apoyo a esta propuesta a menos que hables con el equipo de VotaInteligente.</li>
+            </ul>
+          {% else %}
+            <p>¿Deseas apoyar la propuesta <b>{{proposal}}</b>?</p>
+            <p>Al apoyar esta propuesta aceptas que VotaInteligente te notifique vía correo electrónico cuando un candidato decida apoyar esta propuesta.</p>
+          {% endif %}
+          {% url 'popular_proposals:like_a_proposal' pk=proposal.id as like_this_proposal_url %}
+          {% csrf_token %}
+          {% if next %}
             <input type="hidden" name="next" value="{{next_url}}" />
-            {% endif %}
-            {% if user.profile.is_organization %}
-            <div class="form-group row">
-            <label for="message_input_{{modalId}}" class="col-2 col-form-label">¿Quieres enviarle algún mensaje a {{proposal.proposer}}?</label>
-              <div class="col-10">
-                <textarea class="form-control" name="message" type="text" id="message_input_{{modalId}}" placeholder="Nos encanta lo que hacen ..."> </textarea>
-              </div>
+          {% endif %}
+          {% if user.profile.is_organization %}
+            <div class="form-group">
+              <label for="message_input_{{modalId}}" class="col-2 col-form-label">¿Quieres enviarle algún mensaje a {{proposal.proposer}}?</label>
+              <textarea class="form-control" name="message" type="text" id="message_input_{{modalId}}" placeholder="Nos encanta lo que hacen ..."> </textarea>
             </div>
-            {% endif %}
-            <button type="submit" class="btn btn-default">{% trans 'Apoyar' %}</button>
-        </form>
-
+          {% endif %}
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-info"><i class="fa fa-thumbs-o-up"></i> {% trans 'Apoyar' %}</button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 <script>
-$(function(){
-        $('#form_{{modalId}}').ajaxForm({'dataType': 'script'});
-})
+  $(function(){
+    $('#form_{{modalId}}').ajaxForm({'dataType': 'script'});
+  });
 </script>

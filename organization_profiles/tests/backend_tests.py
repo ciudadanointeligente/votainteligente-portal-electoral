@@ -1,7 +1,7 @@
 # coding=utf-8
 from django.contrib.auth.models import User
 from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
-from organization_profiles.models import OrganizationTemplate, BASIC_FIELDS
+from organization_profiles.models import OrganizationTemplate, BASIC_FIELDS, LOGO_SIZE
 from organization_profiles.forms import OrganizationTemplateForm
 from popular_proposal.models import PopularProposal, ProposalLike
 from django.core.urlresolvers import reverse
@@ -37,6 +37,9 @@ class OrganizationTemplateUpdateForm(BackendCitizenTestCaseBase):
         self.assertEquals(template_again.primary_color, data["primary_color"])
         self.assertEquals(template_again.secondary_color, data["secondary_color"])
         self.assertEquals(template_again.organization.profile.image, template_again.logo)
+        self.assertEquals(template_again.logo_small.height, LOGO_SIZE)
+
+        self.assertEquals(template_again.logo_small.width, LOGO_SIZE)
 
 
 class OrganizationTemplateViewTest(BackendCitizenTestCaseBase):

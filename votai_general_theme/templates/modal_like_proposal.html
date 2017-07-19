@@ -1,4 +1,5 @@
 {% load i18n %}
+{% url 'popular_proposals:like_a_proposal' pk=proposal.id as like_this_proposal_url %}
 <div class="modal fade modal-proposal" id="{{modalId}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <form method="POST" id="form_{{modalId}}" action="{{like_this_proposal_url}}" role="form">
@@ -21,7 +22,7 @@
             <p>¿Deseas apoyar la propuesta <b>{{proposal}}</b>?</p>
             <p>Al apoyar esta propuesta aceptas que VotaInteligente te notifique vía correo electrónico cuando un candidato decida apoyar esta propuesta.</p>
           {% endif %}
-          {% url 'popular_proposals:like_a_proposal' pk=proposal.id as like_this_proposal_url %}
+
           {% csrf_token %}
           {% if next %}
             <input type="hidden" name="next" value="{{next_url}}" />

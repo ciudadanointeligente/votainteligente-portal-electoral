@@ -2,13 +2,15 @@
 <div class="org-background" style="background-image:url({{background_image}});">
   <div class="container">
     {{#if logo_small}}
-    <div class="landing-org">
-      <div class="logo-org">
+    <div class="row landing-org">
+      <div class="col-sm-6 col-md-6 logo-org">
         <img src="{{logo_small}}" alt="{{organization}}" width="150px">
       </div>
         {{/if}}
         {{#if is_owner}}
-        <a href="{{update_url}}" class="btn btn-success">Edita esta pagina</a>
+        <div class="col-sm-6 col-md-6 hidden-xs">
+          <a href="{{update_url}}" class="btn btn-success pull-right">Edita esta pagina</a>
+        </div>
         {{/if}}
     </div>
   </div>
@@ -46,8 +48,8 @@
 <!--  extra pages -->
 <div class="container" style="padding-top:10px; padding-bottom:10px;">
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#propuestas" aria-controls="propuestas" role="tab" data-toggle="tab">Propuestas</a></li>
-    <li role="presentation"><a href="#propuestas-apoyadas" aria-controls="propuestas-apoyadas" role="tab" data-toggle="tab">Propuestas apoyadas</a></li>
+    <li role="presentation" class="active"><a href="#propuestas" aria-controls="propuestas" role="tab" data-toggle="tab">Proponemos</a></li>
+    <li role="presentation"><a href="#propuestas-apoyadas" aria-controls="propuestas-apoyadas" role="tab" data-toggle="tab">Apoyamos</a></li>
     {{#each extra_pages}}
     <li role="presentation"><a href="#{{slug}}" aria-controls="{{slug}}" role="tab" data-toggle="tab">{{title}}</a></li>
     {{/each}}
@@ -55,7 +57,7 @@
 
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="propuestas">
-        <h3 class="page-header">Propuestas</h3>
+        <h3 class="page-header">Proponemos</h3>
         {{#if proposals}}
         <div class="row">
           {{#each proposals }}
@@ -71,7 +73,7 @@
       {{/if}}
     </div>
     <div role="tabpanel" class="tab-pane" id="propuestas-apoyadas">
-      <h3 class="page-header">Propuestas apoyadas</h3>
+      <h3 class="page-header">Apoyamos</h3>
       {{#if sponsorships}}
       <div class="row">
         {{#each sponsorships }}

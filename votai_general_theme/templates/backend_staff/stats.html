@@ -55,7 +55,8 @@
       </tr>
     </thead>
     <tbody
-    	{% for org in stats.organizations.all %}
+    {{stats.organizations}}
+    	{% for org in stats.organizations %}
       <tr>
         <td>{% if org.organization_template.logo %}
           {% thumbnail org.organization_template.logo "25x25" as im %}

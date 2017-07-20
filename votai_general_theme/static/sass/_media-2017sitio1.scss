@@ -43,6 +43,20 @@
 }
 
 @media screen and (max-width: 425px) {
+  /* proposals */
+  .fondo-blanco {
+    padding: 0px 15px;
+    h1 {
+      font-weight: 500;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      letter-spacing: initial;
+    }
+    h2 {
+      font-size: 30px;
+      margin: 20px 0px 10px;
+    }
+  }
   .content_padding {
     padding-top: 20px;
   }

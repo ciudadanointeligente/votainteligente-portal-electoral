@@ -40,19 +40,19 @@ $(function(){
 </div>
 {% endcomment %}
 
-  {% if popular_proposal.proposer == user %}
-    <div class="alert alert-success text-center">
-        <p>Esta es tu propuesta {{user}}, <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %} ¿quieres añadir antecedentes?{% endblocktrans %}</a></p>
-    </div>
-  {% endif%}
+{% if popular_proposal.proposer == user %}
+  <div class="alert alert-success text-center">
+      <p>Esta es tu propuesta {{user}}, <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %} ¿quieres añadir antecedentes?{% endblocktrans %}</a></p>
+  </div>
+{% endif%}
 
 <div class="detalle-propuesta-total">
-<div class="fondo-blanco detail text-width{% if proposal.for_all_areas %} transversal{% endif %}">
+  <div class="container fondo-blanco detail text-width{% if proposal.for_all_areas %} transversal{% endif %}">
     <div class="pull-left">
       <span class="label label-default">{{popular_proposal.data.clasification}}</span>
     </div>
     <div class="line-space"></div>
-    <p class="text-center text-light small">Esta es una propuesta de 
+    <p class="text-center text-light small">Esta es una propuesta de
 
       {% if popular_proposal.proposer.profile.is_organization %}
         <a href="{{popular_proposal.proposer.organization_template.get_absolute_url}}">
@@ -117,7 +117,7 @@ $(function(){
       {% endif %}
     </div>
     {% endif %}
-    <div class="line-space"></div>
+    <!--<div class="line-space"></div>-->
     {% if not user|is_candidate %}
     {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
     {% else %}

@@ -1,17 +1,34 @@
 <!--  primary data -->
 <div class="org-background" style="background-image:url({{background_image}});">
   <div class="container">
-    {{#if logo_small}}
     <div class="row landing-org">
-      <div class="col-sm-6 col-md-6 logo-org">
+      {{#if logo_small}}
+      <div class="col-xs-6 col-sm-6 col-md-6 logo-org">
         <img src="{{logo_small}}" alt="{{organization}}" width="150px">
       </div>
+      {{/if}}
+      <div class="col-xs-6 col-sm-6 col-md-6 social-networks">
+        <ul class="list-inline pull-right" style="position:relative; top:125px;">
+        {{#if org_url}}
+          <li><a href="{{org_url}}" target="_blank"><i class="fa fa-globe fa-2x visible-xs" aria-label="Website"></i></a></li>
+        {{/if}}
+        {{#if facebook}}
+          <li><a href="{{facebook}}" target="_blank"><i class="fa fa-facebook fa-2x visible-xs" aria-label="Facebook"></i></a></li>
+        {{/if}}
+        {{#if twitter}}
+          <li><a href="{{twitter}}" target="_blank"><i class="fa fa-twitter fa-2x visible-xs" aria-label="Twitter"></i></a></li>
+        {{/if}}
+        {{#if instagram}}
+          <li><a href="{{instagram}}" target="_blank"><i class="fa fa-instagram fa-2x visible-xs" aria-label="Instagram"></i></a></li>
+        {{/if}}
+        {{#if rss_url}}
+          <li><a href="{{rss_url}}" target="_blank"><i class="fa fa-rss fa-2x visible-xs" aria-label="RSS"></i></a></li>
         {{/if}}
         {{#if is_owner}}
-        <div class="col-sm-6 col-md-6 hidden-xs">
-          <a href="{{update_url}}" class="btn btn-success pull-right">Edita esta pagina</a>
-        </div>
+          <li><a href="{{update_url}}" class="hidden-xs btn btn-success btn-xs">Edita esta página</a></li>
         {{/if}}
+        </ul>
+      </div>
     </div>
   </div>
 </div>
@@ -26,7 +43,7 @@
     <p>{{sub_title}}</p>
   </div>
   <div class="container org-rrss">
-    <ul class="list-inline" style="padding-top:15px;">
+    <ul class="list-inline hidden-xs" style="padding-top:15px;">
     {{#if org_url}}
       <li><a href="{{org_url}}" target="_blank"><i class="fa fa-globe"></i> Website</a></li>
     {{/if}}

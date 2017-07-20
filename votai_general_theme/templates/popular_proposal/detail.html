@@ -52,7 +52,7 @@ $(function(){
       <span class="label label-default">{{popular_proposal.data.clasification}}</span>
     </div>
     <div class="line-space"></div>
-    <p class="text-center text-light small">Esta es una propuesta de 
+    <p class="text-center text-light small">Esta es una propuesta de
 
       {% if popular_proposal.proposer.profile.is_organization %}
         <a href="{{popular_proposal.proposer.organization_template.get_absolute_url}}">
@@ -371,7 +371,11 @@ $(function(){
 
   </div>
 </div><!-- Todo antes de comparte -->
-
+{% if user.is_staff %}
+<div class="apoya-comparte">
+  <a href="{% url 'popular_proposals:og_image' slug=popular_proposal.slug %}">Mira la imagen que se compartirá en redes shoshialesh</a>
+</div>
+{% endif %}
     <div class="apoya-comparte">
       <div class="container">
         {% comment %}

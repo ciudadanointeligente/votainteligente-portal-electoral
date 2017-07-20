@@ -40,7 +40,7 @@ urlpatterns = [
     url(r'^detail/(?P<slug>[-\w]+)/?$',
         PopularProposalDetailView.as_view(),
         name='detail'),
-    url(r'^og_image/(?P<slug>[-\w]+)/?$',
+    url(r'^og_image/(?P<slug>[-\w]+).jpg$',
         PopularProposalOGImageView.as_view(),
         name='og_image'),
     url(r'^commitment/(?P<candidate_slug>[-\w]+)/(?P<proposal_slug>[-\w]+)/?$',

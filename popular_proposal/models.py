@@ -224,6 +224,14 @@ class PopularProposal(models.Model, OGPMixin):
 
         return out
 
+    def _ogp_image(self):
+        site = Site.objects.get_current()
+        image_url = reverse('popular_proposals:og_image',
+                            kwargs={'slug': self.slug})
+        url = "http://%s%s" % (site.domain,
+                               image_url)
+        return url
+
     @property
     def card(self):
         return get_template("popular_proposal/popular_proposal_card.html").render({

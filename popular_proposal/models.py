@@ -17,6 +17,7 @@ from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.template.loader import get_template
+from PIL import Image, ImageDraw, ImageFont
 
 
 class NeedingModerationManager(models.Manager):
@@ -212,6 +213,24 @@ class PopularProposal(models.Model, OGPMixin):
 
     def get_absolute_url(self):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})
+
+    def generate_og_image(self):
+        base = Image.open('votai_general_theme/static/img/logo_vi_og.jpg').convert('RGBA')
+        txt = Image.new('RGBA', base.size, (255,255,255,0))
+        fnt = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Light.ttf", 80)
+        d = ImageDraw.Draw(txt)
+        d.multiline_text((10,60), self.title, font=fnt, fill=(255,255,255,255))
+        out = Image.alpha_composite(base, txt)
+
+        return out
+
+    def _ogp_image(self):
+        site = Site.objects.get_current()
+        image_url = reverse('popular_proposals:og_image',
+                            kwargs={'slug': self.slug})
+        url = "http://%s%s" % (site.domain,
+                               image_url)
+        return url
 
     @property
     def card(self):

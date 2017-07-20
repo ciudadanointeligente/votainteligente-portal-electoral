@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.core.urlresolvers import reverse
 
-from django.http import HttpResponseNotFound, JsonResponse
+from django.http import HttpResponseNotFound, JsonResponse, HttpResponse
 
 from django.shortcuts import get_object_or_404
 
@@ -135,6 +135,16 @@ class PopularProposalDetailView(EmbeddedViewBase, DetailView):
     template_name = 'popular_proposal/detail.html'
     context_object_name = 'popular_proposal'
     layout = "basewithnofixed_navbar.html"
+
+
+class PopularProposalOGImageView(DetailView):
+    model = PopularProposal
+
+    def render_to_response(self, context, **response_kwargs):
+        im = self.object.generate_og_image()
+        response = HttpResponse( content_type="image/jpeg")
+        im.save(response, "JPEG")
+        return response
 
 
 class UnlikeProposalView(View):

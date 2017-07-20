@@ -374,7 +374,11 @@ $(function(){
 
   </div>
 </div><!-- Todo antes de comparte -->
-
+{% if user.is_staff %}
+<div class="apoya-comparte">
+  <a href="{% url 'popular_proposals:og_image' slug=popular_proposal.slug %}">Mira la imagen que se compartirá en redes shoshialesh</a>
+</div>
+{% endif %}
     <div class="apoya-comparte">
       <div class="container">
         {% comment %}

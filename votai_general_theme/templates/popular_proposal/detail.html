@@ -41,9 +41,11 @@ $(function(){
 {% endcomment %}
 
 {% if popular_proposal.proposer == user %}
+<div class="container">
   <div class="alert alert-success text-center">
-      <p>Esta es tu propuesta {{user}}, <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %} ¿quieres añadir antecedentes?{% endblocktrans %}</a></p>
+      <p>Esta es tu propuesta {{user}}, ¿quieres <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %}añadir antecedentes{% endblocktrans %}</a> a esta propuesta?</p>
   </div>
+</div>
 {% endif%}
 
 <div class="detalle-propuesta-total">

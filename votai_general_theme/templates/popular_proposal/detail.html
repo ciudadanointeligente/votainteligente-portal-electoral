@@ -176,7 +176,7 @@ $(function(){
     <p><a class="reportar_propuesta">Reporta esta propuesta</a></p>
     <script>
      $(document).ready(function(){
-        $('.reportar_propuesta').attr('href','mailto:'+'vota-2017'+'@'+'ciudadanointeligente.org?'+'Subject=Propuesta {{popular_proposal.id}} no debe estar en Votainteligente'+ '&body=La propuesta con título ``{{popular_proposal.title}}`` e id {{popular_proposal.id}} no debe estar en la plataforma VotaInteligente.cl por ...');
+        $('.reportar_propuesta').attr('href','mailto:'+'vota-2017'+'@'+'ciudadanointeligente.org?'+'Subject=Propuesta {{popular_proposal.id}} no debe estar en Votainteligente'+ '&body=La propuesta con título ``{{popular_proposal.title}}`` e id {{popular_proposal.id}} NO debe estar en la plataforma VotaInteligente.cl por ...\n La propuesta la pueden visitar en https://votainteligente.cl{{popular_proposal.get_absolute_url}}');
      })
     </script>
   </div>

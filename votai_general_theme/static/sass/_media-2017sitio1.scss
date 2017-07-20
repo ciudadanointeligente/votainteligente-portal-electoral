@@ -25,13 +25,6 @@
     text-transform: uppercase;
     line-height: 1.2;
   }
-  .presidents{
-    position: fixed;
-    width: 80%;
-    bottom: 339px;
-    left: 34px;
-    margin: 0 auto;
-  }
 }
 
 @media screen and (max-width: 520px) {
@@ -41,8 +34,30 @@
   }
 }
 
-@media screen and (max-width: 490px) {
+@media screen and (max-width: 499px) {
+  #welcome{
+    background: none $yellow;
+    min-height: inherit;
+    height: 240px;
+  }
+  .presidents{
+    display: none;
+  }
 
+}
+
+@media screen and (max-width: 425px) {
+  .content_padding {
+    padding-top: 20px;
+  }
+  .org-background{
+    min-height: 200px;
+  }
+  .landing-org{
+    position: relative;
+    top: 90px;
+  }
+  .logo-org {}
 }
 
 @media screen and (max-width: 388px) {
@@ -54,11 +69,14 @@
 @media screen and (max-width: 350px) {
   #welcome h1{
     font-size: 18px;
-    margin: 100px 0;
   }
 }
 
 @media screen and (max-width: 320px) {
+  #you-org{
+    font-size: 10px;
+  }
+
   .fondo-blanco{
     h1{
       text-transform: uppercase;
@@ -76,18 +94,4 @@
   .share-card a .fa-stack{
     margin: 10px 0 10px;
   }
-}
-
-@media screen and (max-width: 425px) {
-  .content_padding {
-    padding-top: 20px;
-  }
-  .org-background{
-    min-height: 200px;
-  }
-  .landing-org{
-    position: relative;
-    top: 90px;
-  }
-  .logo-org {}
 }

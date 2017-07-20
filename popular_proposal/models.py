@@ -79,6 +79,7 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
     needing_moderation = NeedingModerationManager()
     objects = models.Manager()
 
+
     def save(self, *args, **kwargs):
         if not self.comments:
             self.comments = {}
@@ -146,18 +147,22 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
     def __str__(self):
         return self.get_title()
 
+class ProposalsManager(models.Manager):
+    def get_queryset(self):
+        qs = super(ProposalsManager, self).get_queryset()
+        qs = qs.exclude(is_reported=True)
+        return qs
 
 class ProposalQuerySet(models.QuerySet):
     def by_likers(self, *args, **kwargs):
         return self.order_by('-num_likers', 'proposer__profile__is_organization')
 
 
-class ProposalsOrderedManager(models.Manager):
+class ProposalsOrderedManager(ProposalsManager):
     def get_queryset(self):
-        qs = ProposalQuerySet(self.model, using=self._db)
+        qs = ProposalQuerySet(self.model, using=self._db).exclude(is_reported=True)
         qs = qs.annotate(num_likers=Count('likers'))
         return qs
-
 
 
 @python_2_unicode_compatible
@@ -198,11 +203,13 @@ class PopularProposal(models.Model, OGPMixin):
                                      null=True,
                                      blank=True)
     is_local_meeting = models.BooleanField(default=False)
+    is_reported = models.BooleanField(default=False)
 
     ogp_enabled = True
 
     ordered = ProposalsOrderedManager.from_queryset(ProposalQuerySet)()
-    objects = models.Manager()
+    objects = ProposalsManager()
+    all_objects = models.Manager()
 
     class Meta:
         ordering = ['for_all_areas', '-created']

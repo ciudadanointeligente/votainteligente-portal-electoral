@@ -19,7 +19,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center">
-        <p>¿Eres una organización? <a href="" class="btn btn-blue">Ingresa aquí</a></p>
+        <p>¿Eres una organización? <a href="{% url 'auth_login' %}" class="btn btn-blue">Ingresa aquí</a></p>
       </div>
     </div>
   </div>
@@ -35,12 +35,12 @@
         </a>
       </div>
       <div class="col-md-4 text-center">
-        <a href="">
+        <a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}">
         <div class="action-crea"><p class="action">Crea una propuesta</p></div>
         </a>
       </div>
       <div class="col-md-4 text-center">
-        <a href="">
+        <a href="{% url 'popular_proposals:home' %}">
         <div class="action-apoya"><p class="action">Conoce y apoya propuestas</p></div>
         </a>
       </div>

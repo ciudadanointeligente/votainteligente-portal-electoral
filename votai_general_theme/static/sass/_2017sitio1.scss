@@ -162,6 +162,24 @@ td.cal-date{
   }
 }
 
+#education{
+  margin-bottom: 60px;
+}
+
+.edu-1{
+  height: 250px;
+  padding-top: 40px;
+  background: url("../img/e-1.svg") no-repeat $blue;
+  background-position: center 120px;
+}
+
+.edu-2{
+  height: 250px;
+  padding-top: 40px;
+  background: url("../img/e-2.svg") no-repeat $blue-light;
+  background-position: center 110px;
+}
+
 /*Perfil organizaciones*/
 .org-background{
   background-position: center;
@@ -433,6 +451,16 @@ input[type=file]{
   }
 }
 
+.btn-white{
+  background-color: white;
+  color: $grey-one;
+  word-wrap:break-word;
+  white-space: normal;
+  &:hover{
+    background-color: $grey-one;
+    color: white;
+  }
+}
 
 /*RIBBONS*/
 .product {

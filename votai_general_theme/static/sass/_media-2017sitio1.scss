@@ -6,6 +6,10 @@
   .share-detail{
     text-align: center;
   }
+
+  #welcome{
+    padding-top: 50px;
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -14,9 +18,43 @@
   }
 }
 
+@media screen and (max-width: 560px) {
+  #welcome h1{
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .presidents{
+    position: fixed;
+    width: 80%;
+    bottom: 339px;
+    left: 34px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  #welcome h1{
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 490px) {
+
+}
+
 @media screen and (max-width: 388px) {
   .org-info h2{
     margin-top: 120px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  #welcome h1{
+    font-size: 18px;
+    margin: 100px 0;
   }
 }
 
@@ -38,8 +76,6 @@
   .share-card a .fa-stack{
     margin: 10px 0 10px;
   }
-
-
 }
 
 @media screen and (max-width: 425px) {

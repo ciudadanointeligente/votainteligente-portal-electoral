@@ -64,9 +64,6 @@ td.cal-date{
 }
 
 /*Home sitio1*/
-.yellow{
-  background-color: $yellow;
-}
 .grey-one{
   background-color: $grey-one;
 }
@@ -75,6 +72,25 @@ td.cal-date{
 }
 .blue-light{
   background-color: $blue-light;
+}
+
+#welcome{
+  background: url("../img/welcome.svg") no-repeat $yellow 0 11px;
+  min-height: 470px;
+  background-size: cover;
+  padding-top: 180px;
+  h1{
+    margin: 60px 0;
+  }
+}
+
+#you-org{
+  z-index: 10px;
+}
+
+.presidents{
+  position: relative;
+  margin: 0 auto;
 }
 
 /*Perfil organizaciones*/

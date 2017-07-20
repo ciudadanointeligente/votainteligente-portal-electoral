@@ -84,17 +84,6 @@ td.cal-date{
   }
 }
 
-#you-org{
-  min-height: 60px;
-  color: white;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 12px;
-  padding-top: 12px;
-}
-
 .presidents{
   position: relative;
   margin: 0 auto;
@@ -106,6 +95,71 @@ td.cal-date{
   font-weight: 700;
   text-transform: none;
   letter-spacing: 0;
+}
+
+#you-org{
+  min-height: 60px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  padding-top: 12px;
+}
+
+#actions{
+  margin: 40px 0 60px;
+}
+.action{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.action-encuentro{
+  color: $grey-one;
+  background: url("../img/a-encuentro.svg") no-repeat;
+  height: 170px;
+  background-position: center;
+  padding-top: 180px;
+  margin-bottom: 70px;
+  &:hover{
+    color: $blue;
+    background: url("../img/a-encuentro-h.svg") no-repeat;
+    background-position: center;
+  }
+}
+
+.action-crea{
+  color: $grey-one;
+  background: url("../img/a-crea.svg") no-repeat;
+  height: 170px;
+  background-position: center;
+  padding-top: 180px;
+  margin-bottom: 70px;
+  &:hover{
+    color: $blue;
+    background: url("../img/a-crea-h.svg") no-repeat;
+    background-position: center;
+  }
+}
+
+.action-apoya{
+  color: $grey-one;
+  background: url("../img/a-apoya.svg") no-repeat;
+  height: 170px;
+  background-position: center;
+  padding-top: 180px;
+  margin-bottom: 70px;
+  &:hover{
+    color: $blue;
+    background: url("../img/a-apoya-h.svg") no-repeat;
+    background-position: center;
+  }
 }
 
 /*Perfil organizaciones*/

@@ -56,8 +56,15 @@
     </thead>
     <tbody
     	{% for org in stats.organizations.all %}
-      <tr >
-        <td><img src="{{org.logo.url}}" alt="{{org}}"></td>
+      <tr>
+        <td>{% if org.organization_template.logo %}
+          {% thumbnail org.organization_template.logo "25x25" as im %}
+            <img src="{{ im.url }}"
+            width="{{ im.width }}"
+            height="{{ im.height }}">
+
+            {% endthumbnail %}
+          {% else %}SL{% endif %}</td>
         <td><a href="{{ org.get_absolute_url }}">{{ org.get_full_name }}</a>
         </td>
         <td>{{ org.proposals.count }}

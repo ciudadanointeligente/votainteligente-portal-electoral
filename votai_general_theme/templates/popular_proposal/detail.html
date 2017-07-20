@@ -33,8 +33,9 @@ $(function(){
 {% comment %}
 <div class="container">
   <ol class="breadcrumb">
-    <li><a href="{% url 'home' %}">VotaInteligente</a></li>
-    <li><a href="{% url 'area' slug=popular_proposal.area.id%}">{{popular_proposal.area}}</a></li>
+    <li><a href="{% url 'home' %}"><i class="fa fa-home" aria-label="Inicio"></i></a></li>
+    <li><a href="{% url 'popular_proposals:home' %}">Propuestas</a></li>
+    <!--<li><a href="{% url 'area' slug=popular_proposal.area.id%}">{{popular_proposal.area}}</a></li>-->
     <li class="active">{{popular_proposal.title}}</li>
   </ol>
 </div>

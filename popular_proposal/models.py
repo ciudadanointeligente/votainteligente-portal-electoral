@@ -217,7 +217,7 @@ class PopularProposal(models.Model, OGPMixin):
     def generate_og_image(self):
         base = Image.open('votai_general_theme/static/img/logo_vi_og.jpg').convert('RGBA')
         txt = Image.new('RGBA', base.size, (255,255,255,0))
-        fnt = ImageFont.truetype("../votai_general_theme/static/fonts/Montserrat-Light.ttf", 80)
+        fnt = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Light.ttf", 80)
         d = ImageDraw.Draw(txt)
         d.multiline_text((10,60), self.title, font=fnt, fill=(255,255,255,255))
         out = Image.alpha_composite(base, txt)

@@ -62,10 +62,20 @@
   }
   .org-background{
     min-height: 200px;
-  }
-  .landing-org{
-    position: relative;
-    top: 90px;
+    .landing-org{
+      position: relative;
+      top: 90px;
+    }
+    .social-networks {
+      a {
+        color: #fff;
+      }
+    }
   }
   .logo-org {}
+  .org-info{
+    p{
+      font-size: 14px;
+    }
+  }
 }

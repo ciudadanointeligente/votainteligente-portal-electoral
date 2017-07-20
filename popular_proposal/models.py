@@ -18,6 +18,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.template.loader import get_template
 from PIL import Image, ImageDraw, ImageFont
+import textwrap
 
 
 class NeedingModerationManager(models.Manager):
@@ -219,7 +220,9 @@ class PopularProposal(models.Model, OGPMixin):
         txt = Image.new('RGBA', base.size, (255,255,255,0))
         fnt = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Light.ttf", 80)
         d = ImageDraw.Draw(txt)
-        d.multiline_text((10,60), self.title, font=fnt, fill=(255,255,255,255))
+        lines = textwrap.wrap(self.title, width=27)
+        title = '\n'.join(lines)
+        d.multiline_text((10,60), title, font=fnt, fill=(255,255,255,255))
         out = Image.alpha_composite(base, txt)
 
         return out

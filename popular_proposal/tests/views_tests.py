@@ -63,6 +63,17 @@ class ProposalViewTestCase(TestCase):
         self.assertEqual(response.context['popular_proposal'], popular_proposal)
         self.assertTemplateUsed(response, 'popular_proposal/detail.html')
 
+    def test_proposal_og_image(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.algarrobo,
+                                                          data=self.data,
+                                                          title=u'This is a title'
+                                                          )
+        url = reverse('popular_proposals:og_image',
+                      kwargs={'slug': popular_proposal.slug})
+        response = self.client.get(url)
+        self.assertIn("image/", response['Content-Type'])
+
     def test_embedded_detail_popular_proposal(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
                                                           area=self.algarrobo,

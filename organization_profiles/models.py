@@ -9,9 +9,26 @@ from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.core.urlresolvers import reverse
+from django.db.models import Count
 from autoslug import AutoSlugField
 from django.conf import settings
 import markdown2
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+import sys
+
+LOGO_SIZE = 154
+
+class OrganizationTemplateManager(models.Manager):
+    def get_queryset(self):
+        qs = super(OrganizationTemplateManager, self).get_queryset()
+        qs = qs.annotate(num_proposals=Count('organization__proposals')).annotate(num_likes=Count('organization__likes')).order_by("-num_proposals", "-num_likes")
+        return qs
+
+    def only_with_logos(self, *args, **kwargs):
+        qs = self.get_queryset(*args, **kwargs)
+        return qs.exclude(logo__isnull=True).exclude(logo__iexact='')
 
 
 @python_2_unicode_compatible
@@ -23,6 +40,9 @@ class OrganizationTemplate(models.Model):
                              blank=True,
                              verbose_name=_(u'El logo de tu organización'),
                              help_text=_(u'perrito'))
+    logo_small = models.ImageField(upload_to="organizations/profiles_small/",
+                                   null=True,
+                                   blank=True)
     background_image = models.ImageField(upload_to="organizations/backgrounds/",
                                          null=True,
                                          blank=True,
@@ -51,6 +71,8 @@ class OrganizationTemplate(models.Model):
     rss_url = models.URLField(blank=True,
                               null=True)
 
+    objects = OrganizationTemplateManager()
+
     def save(self, *args, **kwargs):
         super(OrganizationTemplate, self).save(*args, **kwargs)
         self.organization.profile.image = self.logo
@@ -58,6 +80,18 @@ class OrganizationTemplate(models.Model):
 
     def __str__(self):
         return "Template for %s" % (str(self.organization))
+
+    def generate_logo_small(self):
+        if self.logo:
+            im = Image.open(self.logo).convert('RGB')
+            output = BytesIO()
+            im = im.resize( (LOGO_SIZE,LOGO_SIZE) )
+            im.save(output, format='JPEG', quality=100)
+            output.seek(0)
+            self.logo_small = InMemoryUploadedFile(output,
+                                                   'ImageField',
+                                                   "%s.jpg" %self.logo.name.split('.')[0],
+                                                   'image/jpeg', sys.getsizeof(output), None)
 
     def create_default_extra_pages(self):
         for data in settings.DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS:
@@ -71,7 +105,7 @@ class OrganizationTemplate(models.Model):
 
 BASIC_FIELDS = ["logo", "background_image", "title", "sub_title",
                 "org_url", "facebook", "twitter", "instagram", "primary_color",
-                "secondary_color"]
+                "secondary_color", "logo_small"]
 
 
 class ExtraPage(models.Model):

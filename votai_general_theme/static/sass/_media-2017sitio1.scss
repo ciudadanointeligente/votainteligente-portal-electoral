@@ -20,11 +20,6 @@
   }
 }
 
-@media screen and (max-width: 425px) {
-  .content_padding {
-    padding-top: 20px;
-  }
-}
 @media screen and (max-width: 320px) {
   .fondo-blanco{
     h1{
@@ -45,4 +40,32 @@
   }
 
 
+}
+
+@media screen and (max-width: 425px) {
+  /* proposals */
+  .fondo-blanco {
+    padding: 0px 15px;
+    h1 {
+      font-weight: 500;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      letter-spacing: initial;
+    }
+    h2 {
+      font-size: 30px;
+      margin: 20px 0px 10px;
+    }
+  }
+  .content_padding {
+    padding-top: 20px;
+  }
+  .org-background{
+    min-height: 200px;
+  }
+  .landing-org{
+    position: relative;
+    top: 90px;
+  }
+  .logo-org {}
 }

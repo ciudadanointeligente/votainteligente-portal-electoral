@@ -33,3 +33,8 @@ class OrganizationTemplateForm(forms.ModelForm):
     class Meta:
         model = OrganizationTemplate
         fields = BASIC_FIELDS
+
+    def save(self, *args, **kwargs):
+        template = super(OrganizationTemplateForm, self).save(*args, **kwargs)
+        template.generate_logo_small()
+        template.save()

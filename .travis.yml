@@ -1,7 +1,8 @@
 language: python
 sudo: false
+env:
+  -ES_VERSION=2.4.1 ES_DOWNLOAD_URL=https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/${ES_VERSION}/elasticsearch-${ES_VERSION}.tar.gz
 services:
-  - elasticsearch
   - redis-server
 python:
   - "2.7"
@@ -13,10 +14,14 @@ addons:
             - libboost-python-dev
             - python-pgmagick
 install:
+  - wget ${ES_DOWNLOAD_URL}
+  - tar -xzf elasticsearch-${ES_VERSION}.tar.gz
+  - ./elasticsearch-${ES_VERSION}/bin/elasticsearch &
   - pip install -r requirements.txt 
   - pip install coveralls
 # command to run tests
 script:
+  - wget -q --waitretry=1 --retry-connrefused -T 10 -O - http://127.0.0.1:9200
   - coverage run manage.py test
   - coverage report -m
 after_script:

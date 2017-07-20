@@ -173,7 +173,12 @@ $(function(){
       </div>
     {% endif %}
     <p class="text-center llamado">Si te gustó ¡compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año</p>
-
+    <p><a class="reportar_propuesta">Reporta esta propuesta</a></p>
+    <script>
+     $(document).ready(function(){
+        $('.reportar_propuesta').attr('href','mailto:'+'vota-2017'+'@'+'ciudadanointeligente.org?'+'Subject=Propuesta {{popular_proposal.id}} no debe estar en Votainteligente'+ '&body=La propuesta con título ``{{popular_proposal.title}}`` e id {{popular_proposal.id}} no debe estar en la plataforma VotaInteligente.cl por ...');
+     })
+    </script>
   </div>
 
     {% if user|is_candidate %}

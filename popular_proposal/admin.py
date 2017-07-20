@@ -10,9 +10,12 @@ class PopularProposalAdmin(admin.ModelAdmin):
                     'area',
                     'title',
                     'data',
-                    'proposer'
+                    'proposer',
                     )
     exclude = ('organization',)
+
+    def get_queryset(self, *args, **kwargs):
+        return PopularProposal.all_objects.all()
 
 
 fieldset = []

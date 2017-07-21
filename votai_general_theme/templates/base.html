@@ -7,7 +7,7 @@
 {% load votainteligente_extras %}
 <html lang="es"{% if config.SHOW_NAVBAR or user.is_authenticated %} class="navbar_visible"{% endif %}>
     {% include '_head.html' %}
-    <body{% if config.SHOW_NAVBAR or user.is_authenticated %} class="navbar_visible"{% endif %}>
+    <body{% if config.LAUNCHED or config.SHOW_NAVBAR or user.is_authenticated %} class="navbar_visible"{% endif %}>
       <div>
         {% if config.SHOW_NAVBAR or user.is_authenticated %}
           {% include '_navbar.html' %}

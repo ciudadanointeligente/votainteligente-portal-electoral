@@ -58,6 +58,11 @@ $(function(){
     </script>
 
 <div id="grid">
+      {% if form.is_filled_search %}
+      <p>Hay {{popular_proposals|length}} propuestas ciudadanas con tus criterios de búsqueda seleccionados</p>
+      {% else %}
+      <p>Hay {{popular_proposals|length}} propuestas ciudadanas</p>
+      {% endif %}
       {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
       <div class="row hidden-xs">
         <div class="col-md-6 col-md-offset-3">

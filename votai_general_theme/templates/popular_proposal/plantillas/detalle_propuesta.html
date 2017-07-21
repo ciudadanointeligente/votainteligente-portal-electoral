@@ -3,15 +3,16 @@
 
 <div class="row">
   <div class="col-md-12">
-<h3>El problema que se quiere solucionar es:</h3>
-<p>{{popular_proposal.data.problem|popular_proposal_when|linebreaksbr}}</p>
+    <h2>El problema que se quiere solucionar es:</h2>
+    <p>{{popular_proposal.data.problem|popular_proposal_when|linebreaksbr}}</p>
 
-<h3>La causa de este problema es:</h3>
-<p>{{popular_proposal.data.causes}}</p>
+    <h2>La causa de este problema es:</h2>
+    <p>{{popular_proposal.data.causes}}</p>
 
-<h3>La propuesta para solucionar este problema es:</h3>
-<p>
-{{popular_proposal.data.solution_at_the_end|popular_proposal_when|linebreaksbr}} antes de {{popular_proposal.data.when|popular_proposal_when}}
-</p>
-</div>
+    <h2>La propuesta para solucionar este problema es:</h2>
+    <p>{{popular_proposal.data.solution_at_the_end|popular_proposal_when|linebreaksbr}}</p>
+
+    <h2>En un plazo de</h2>
+    <p>{{popular_proposal.data.when|popular_proposal_when}}</p>
+  </div>
 </div>

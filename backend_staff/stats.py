@@ -38,6 +38,10 @@ class Stats(object):
     def commitments(self):
         return Commitment.objects.count()
 
+    @property
+    def organizations(self):
+        return User.objects.filter(profile__is_organization=True)
+
     def candidates_that_have_commited(self, filter_kwargs={}):
         qs = Candidate.objects.exclude(commitments__isnull=True)
         if filter_kwargs:
@@ -49,15 +53,15 @@ class Stats(object):
 
     def candidates_that_have_12_naranja(self):
         return self.candidates_qs.exclude(taken_positions__isnull=True)
-    
+
     @property
     def likes_by_organizations(self):
         return ProposalLike.objects.filter(user__profile__is_organization=True).count()
-    
+
     @property
     def organizations_online(self):
         return User.objects.filter(profile__is_organization=True)
-    
+
     @property
     def proposals_made_by_organizations(self):
         return PopularProposal.objects.filter(proposer__profile__is_organization=True)

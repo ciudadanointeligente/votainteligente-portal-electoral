@@ -17,6 +17,8 @@ from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.template.loader import get_template
+from PIL import Image, ImageDraw, ImageFont
+import textwrap
 
 
 class NeedingModerationManager(models.Manager):
@@ -76,6 +78,7 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
 
     needing_moderation = NeedingModerationManager()
     objects = models.Manager()
+
 
     def save(self, *args, **kwargs):
         if not self.comments:
@@ -144,18 +147,22 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
     def __str__(self):
         return self.get_title()
 
+class ProposalsManager(models.Manager):
+    def get_queryset(self):
+        qs = super(ProposalsManager, self).get_queryset()
+        qs = qs.exclude(is_reported=True)
+        return qs
 
 class ProposalQuerySet(models.QuerySet):
     def by_likers(self, *args, **kwargs):
         return self.order_by('-num_likers', 'proposer__profile__is_organization')
 
 
-class ProposalsOrderedManager(models.Manager):
+class ProposalsOrderedManager(ProposalsManager):
     def get_queryset(self):
-        qs = ProposalQuerySet(self.model, using=self._db)
+        qs = ProposalQuerySet(self.model, using=self._db).exclude(is_reported=True)
         qs = qs.annotate(num_likers=Count('likers'))
         return qs
-
 
 
 @python_2_unicode_compatible
@@ -196,11 +203,13 @@ class PopularProposal(models.Model, OGPMixin):
                                      null=True,
                                      blank=True)
     is_local_meeting = models.BooleanField(default=False)
+    is_reported = models.BooleanField(default=False)
 
     ogp_enabled = True
 
     ordered = ProposalsOrderedManager.from_queryset(ProposalQuerySet)()
-    objects = models.Manager()
+    objects = ProposalsManager()
+    all_objects = models.Manager()
 
     class Meta:
         ordering = ['for_all_areas', '-created']
@@ -212,6 +221,47 @@ class PopularProposal(models.Model, OGPMixin):
 
     def get_absolute_url(self):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})
+
+    def generate_og_image(self):
+        base = Image.open('votai_general_theme/static/img/plantilla.png').convert('RGBA')
+
+        montserrat_n_propuesta = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 16)
+        arvo_titulo = ImageFont.truetype("votai_general_theme/static/fonts/Arvo-Bold.ttf", 60)
+        montserrat_autor = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 22)
+
+        txt = Image.new('RGBA', base.size, (122,183,255,0))
+
+        d = ImageDraw.Draw(txt)
+        n_propuesta = u"Propuesta N º"+ unicode(self.id)
+        n_propuesta = n_propuesta.upper()
+        d.multiline_text((81,95), n_propuesta, font=montserrat_n_propuesta, fill=(122,183,255,255))
+
+        lines = textwrap.wrap(self.title, width=30)
+        max_lines = 5
+        if len(lines) > max_lines:
+            last_line = lines[max_lines - 1] + u'...'
+            lines = lines[0:max_lines]
+            lines[max_lines - 1] = last_line
+
+        title = '\n'.join(lines)
+
+        d.multiline_text((81,133), title, font=arvo_titulo, fill=(255,255,255,255))
+
+        proposer_name = self.proposer.get_full_name() or self.proposer.username
+        propuesta_de = u"Una propuesta de " + proposer_name
+        propuesta_de = propuesta_de.upper()
+        d.multiline_text((81,471), propuesta_de, font=montserrat_autor, fill=(255,255,255,255))
+        out = Image.alpha_composite(base, txt)
+
+        return out
+
+    def _ogp_image(self):
+        site = Site.objects.get_current()
+        image_url = reverse('popular_proposals:og_image',
+                            kwargs={'slug': self.slug})
+        url = "http://%s%s" % (site.domain,
+                               image_url)
+        return url
 
     @property
     def card(self):

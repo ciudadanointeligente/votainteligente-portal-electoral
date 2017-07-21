@@ -85,7 +85,7 @@ class OrganizationTemplate(models.Model):
         if self.logo:
             im = Image.open(self.logo).convert('RGB')
             output = BytesIO()
-            im = im.resize( (LOGO_SIZE,LOGO_SIZE) )
+            im = im.resize( (LOGO_SIZE,LOGO_SIZE), Image.ANTIALIAS )
             im.save(output, format='JPEG', quality=100)
             output.seek(0)
             self.logo_small = InMemoryUploadedFile(output,

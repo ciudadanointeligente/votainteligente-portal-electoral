@@ -10,7 +10,7 @@ PyYAML==3.12
 django-markdown-deux==1.0.4
 django-extensions==1.7.5
 sorl-thumbnail==12.4a1
-pillow
+Pillow==4.1.1
 django-tinymce==2.4.0
 django-registration==2.0.4
 django-registration-defaults==0.4.4

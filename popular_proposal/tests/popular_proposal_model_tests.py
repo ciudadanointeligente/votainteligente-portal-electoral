@@ -40,6 +40,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(popular_proposal.clasification, u'education')
         self.assertFalse(popular_proposal.for_all_areas)
         self.assertFalse(popular_proposal.is_local_meeting)
+        self.assertFalse(popular_proposal.is_reported)
 
     def test_popular_proposal_card_as_property(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
@@ -53,6 +54,29 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         })
 
         self.assertEquals(popular_proposal.card, expected_card_html)
+
+    def test_reportedproposals_are_not_in_default_manager(self):
+        p1 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title',
+                                            clasification=u'education'
+                                            )
+        p2 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title',
+                                            clasification=u'education',
+                                            is_reported=True
+                                            )
+        self.assertIn(p1, PopularProposal.objects.all())
+        self.assertNotIn(p2, PopularProposal.objects.all())
+        # now ordered
+        self.assertIn(p1, PopularProposal.ordered.all())
+        self.assertNotIn(p2, PopularProposal.ordered.all())
+        #but they appear in the all Manager
+        self.assertIn(p1, PopularProposal.all_objects.all())
+        self.assertIn(p2, PopularProposal.all_objects.all())
 
     def test_proposal_ogp(self):
         site = Site.objects.get_current()
@@ -68,9 +92,16 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         expected_url = "http://%s%s" % (site.domain,
                                         popular_proposal.get_absolute_url())
         self.assertEquals(expected_url, popular_proposal.ogp_url())
-        expected_url = "http://%s%s" % (site.domain,
-                                        static('img/logo_vi_og.jpg'))
-        self.assertEquals(expected_url, popular_proposal.ogp_image())
+        self.assertTrue(popular_proposal.ogp_image())
+
+    def test_generate_og_image(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+        self.assertTrue(popular_proposal.generate_og_image())
 
     def test_can_have_an_organization(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,

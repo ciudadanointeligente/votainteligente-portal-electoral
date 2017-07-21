@@ -14,7 +14,7 @@
 
 
 
-<hr><!-- 
+<hr><!--
 <p>Un total de {{stats.participation.with_us}} candidatos se unieron al sitio y están con losotros.</p>
 <p>Un total de {{stats.participation.got_email}} candidatos recibieron el mail pero no han cachao na.</p>
 <p>Un total de {{stats.participation.no_contact}} candidatos no tienen mail.</p>
@@ -42,6 +42,46 @@
 <p>Hay un total de {{stats.organizations_online.count}} organizaciones con perfil arriba con nosotros!.</p>
 <p>Estas organizaciones pulentas han hecho un total de {{stats.proposals_made_by_organizations.count}} propuestas.</p>
 <p>Y más maravilloso, aún han apoyado un total de {{stats.likes_by_organizations}} propuestas hechas por alguien más.</p>
+<h5>Hermana: además te contamos que acá está todo el mote de las organizaciones</h5>
+<div class="table-responsive">
+  <table class="table">
+  	<thead>
+      <tr>
+        <th>Loguito</th>
+        <th>Nombre</th>
+        <th>N Propuestas</th>
+        <th>N <i class="fa fa-heart" aria-hidden="true"></i>s </th>
+        <th>email de contacto</th>
+      </tr>
+    </thead>
+    <tbody
+    {{stats.organizations}}
+    	{% for org in stats.organizations %}
+      <tr>
+        <td>{% if org.organization_template.logo %}
+          {% thumbnail org.organization_template.logo "25x25" as im %}
+            <img src="{{ im.url }}"
+            width="{{ im.width }}"
+            height="{{ im.height }}">
+
+            {% endthumbnail %}
+          {% else %}SL{% endif %}</td>
+        <td><a href="{{ org.get_absolute_url }}">{{ org.get_full_name }}</a>
+        </td>
+        <td>{{ org.proposals.count }}
+
+        </td>
+        <td>{{ org.likes.count }}
+
+        </td>
+        <td>{{org.email}}
+
+        </td>
+      </tr>
+      	{% endfor %}
+    </tbody>
+
+  </table>
 <!-- <hr>
 <h4>Compromisos:</h4>
 <p>Hay un total de {{stats.commitments}} compromisos de candidatos con propuestas ciudadanas.</p>
@@ -50,7 +90,7 @@
 <div id="proposals_with_commitments" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
-    
+
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -78,4 +118,3 @@
 
 {% block extrafooter %}
 {% endblock extrafooter %}
-

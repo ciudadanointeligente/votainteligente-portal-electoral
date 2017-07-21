@@ -271,7 +271,7 @@ class StaffHomeViewTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertIsInstance(response.context['stats'], Stats)
         self.assertTemplateUsed(response, 'backend_staff/stats.html')
-    
+
     def test_stats_v2_organizations_supporting(self):
         User.objects.all().delete()
         stats = Stats()
@@ -282,7 +282,7 @@ class StaffHomeViewTest(TestCase):
         org2.profile.is_organization = True
         org2.profile.save()
         normal_user = User.objects.create_user(username='normal_user')
-        
+
         popular_proposal = PopularProposal.objects.create(proposer=normal_user,
                                                           area=self.arica,
                                                           data=self.data,
@@ -294,7 +294,7 @@ class StaffHomeViewTest(TestCase):
         ProposalLike.objects.create(user=another_user, proposal=popular_proposal)
         self.assertEquals(stats.likes_by_organizations, 1)
         self.assertEquals(stats.organizations_online.count(), 2)
-        
+
         PopularProposal.objects.create(proposer=org2,
                                        area=self.arica,
                                        data=self.data,
@@ -314,6 +314,10 @@ class StaffHomeViewTest(TestCase):
                                        clasification=u'education'
                                        )
         self.assertEquals(stats.proposals_made_by_organizations.count(), 3)
+        self.assertIn(org, stats.organizations.all())
+        self.assertIn(org2, stats.organizations.all())
+        self.assertNotIn(normal_user, stats.organizations.all())
+        
 
     def test_stats_mixin(self):
         User.objects.all().delete()

@@ -223,13 +223,34 @@ class PopularProposal(models.Model, OGPMixin):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})
 
     def generate_og_image(self):
-        base = Image.open('votai_general_theme/static/img/logo_vi_og.jpg').convert('RGBA')
-        txt = Image.new('RGBA', base.size, (255,255,255,0))
-        fnt = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Light.ttf", 80)
+        base = Image.open('votai_general_theme/static/img/plantilla.png').convert('RGBA')
+
+        montserrat_n_propuesta = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 16)
+        arvo_titulo = ImageFont.truetype("votai_general_theme/static/fonts/Arvo-Bold.ttf", 60)
+        montserrat_autor = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 22)
+
+        txt = Image.new('RGBA', base.size, (122,183,255,0))
+
         d = ImageDraw.Draw(txt)
-        lines = textwrap.wrap(self.title, width=27)
+        n_propuesta = u"Propuesta N º"+ unicode(self.id)
+        n_propuesta = n_propuesta.upper()
+        d.multiline_text((81,95), n_propuesta, font=montserrat_n_propuesta, fill=(122,183,255,255))
+
+        lines = textwrap.wrap(self.title, width=30)
+        max_lines = 5
+        if len(lines) > max_lines:
+            last_line = lines[max_lines - 1] + u'...'
+            lines = lines[0:max_lines]
+            lines[max_lines - 1] = last_line
+
         title = '\n'.join(lines)
-        d.multiline_text((10,60), title, font=fnt, fill=(255,255,255,255))
+
+        d.multiline_text((81,133), title, font=arvo_titulo, fill=(255,255,255,255))
+
+        proposer_name = self.proposer.get_full_name() or self.proposer.username
+        propuesta_de = u"Una propuesta de " + proposer_name
+        propuesta_de = propuesta_de.upper()
+        d.multiline_text((81,471), propuesta_de, font=montserrat_autor, fill=(255,255,255,255))
         out = Image.alpha_composite(base, txt)
 
         return out

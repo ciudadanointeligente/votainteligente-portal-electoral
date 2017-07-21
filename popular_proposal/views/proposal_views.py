@@ -142,8 +142,8 @@ class PopularProposalOGImageView(DetailView):
 
     def render_to_response(self, context, **response_kwargs):
         im = self.object.generate_og_image()
-        response = HttpResponse( content_type="image/jpeg")
-        im.save(response, "JPEG")
+        response = HttpResponse( content_type="image/png")
+        im.save(response, "PNG")
         return response
 
 

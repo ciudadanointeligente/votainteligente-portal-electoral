@@ -29,17 +29,17 @@
     {% if proposal.title %}
         <h4><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title|truncatechars:100 }}</a></h4>
     {% endif %}
-    {% if proposal.proposer.profile.image and proposal.proposer.profile.is_organization %}
+    {% if proposal.proposer.profile.is_organization %}
       <div class="logo-ong text-center text-light">
         <span>Propuesta de </span>
-        <a href="{{proposal.proposer.organization_template.get_absolute_url}}">
           <div class="logo-color">
+            <a href="{{proposal.proposer.organization_template.get_absolute_url}}">
             {% thumbnail proposal.proposer.profile.image "70x70" as im %}
               <img src="{{ im.url }}"
               alt="{{template.title}}">
               {% endthumbnail %}
+            </a>
           </div>
-        </a>
       </div>
     {% endif %}
   </div>

@@ -58,7 +58,7 @@
          {% endif %}
     {% include 'popular_proposal/wizard/_previous_buttons.html' with wizard=wizard %}
     <div class="pull-right">
-        <button class="btn btn-success pull-right" type="submit" value="{% trans "Submit" %}">{% trans "Ir al paso " %}{{wizard.steps.next|add:1}}<img src="{% static 'img/arrow.svg' %}"></button>
+        <button class="btn btn-success pull-right" type="submit" value="{% trans "Submit" %}" onclick="ga('send', 'event', 'proposal-ir-paso-{{wizard.steps.next|add:1}}', 'click')">{% trans "Ir al paso " %}{{wizard.steps.next|add:1}}<img src="{% static 'img/arrow.svg' %}"></button>
     </div>
     <div class="line-space"></div>
     <div class="line-space"></div>

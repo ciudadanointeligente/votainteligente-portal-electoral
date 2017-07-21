@@ -29,9 +29,16 @@
     {% if proposal.title %}
         <h4><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title|truncatechars:100 }}</a></h4>
     {% endif %}
-    {% if proposal.proposer.profile.image and proposal.proposer.profile.is_organization %}
+    {% if proposal.proposer.profile.is_organization %}
       <div class="logo-ong text-center text-light">
-        <span>Propuesta de </span><a href="{{proposal.proposer.organization_template.get_absolute_url}}"><img src="{{ proposal.proposer.profile.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid"></a>
+        <span>Propuesta de </span>
+        <a href="{{proposal.proposer.organization_template.get_absolute_url}}">
+          {% if proposal.proposer.organization_template.logo %}
+          <img src="{{ proposal.proposer.profile.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid" alt="{{proposal.proposer.organization_template.title}}" title="{{proposal.proposer.organization_template.title}}">
+          {% else %}
+            <span>{{proposal.proposer.organization_template.title}}</span>
+          {% endif %}
+        </a>
       </div>
     {% endif %}
   </div>

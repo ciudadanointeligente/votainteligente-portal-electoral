@@ -1,16 +1,16 @@
 {% load thumbnail %}
+{% if templates|length %}
 <div class="container">
   <ul class="list-inline">
   {% for template in templates %}
-    <li><a href="{{template.get_absolute_url}}">
-    {% thumbnail template.logo "100x100" as im %}
-      <img src="{{ im.url }}"
-      width="{{ im.width }}"
-      height="{{ im.height }}
-      alt={{template.organization.get_full_name}}">
-
+    <li>
+      <a href="{{template.get_absolute_url}}">
+      {% thumbnail template.logo "100x100" as im %}
+      <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{template.title}}" title="{{template.title}}">
       {% endthumbnail %}
-    </a></li>
+      </a>
+    </li>
   {% endfor %}
   </ul>
 </div>
+{% endif %}

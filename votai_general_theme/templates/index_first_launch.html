@@ -1,0 +1,70 @@
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+
+<section id="welcome" class="yellow">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h1>La ciudadanía dice lo que Chile necesita en votainteligente.cl <p class="hashtag">#LaElecciónEsNuestra</p></h1>
+      </div>
+      <div class="col-md-4 text-center">
+        <img src="{% static 'img/presidencia.svg' %}" class="presidents">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="you-org" class="grey-one">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p>¿Eres una organización? <a href="{% url 'auth_login' %}" class="btn btn-blue">Ingresa aquí</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="actions">
+  <div class="container">
+    <div class="row">
+      <h2 class="text-center">Propuestas ciudadanas</h2>
+      <div class="col-md-4 text-center">
+        <a href="{% url 'encuentro_ciudadano' %}">
+        <div class="action-encuentro"><p class="action">Realiza un encuentro</p></div>
+        </a>
+      </div>
+      <div class="col-md-4 text-center">
+        <a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}">
+        <div class="action-crea"><p class="action">Crea una propuesta</p></div>
+        </a>
+      </div>
+      <div class="col-md-4 text-center">
+        <a href="{% url 'popular_proposals:home' %}">
+        <div class="action-apoya"><p class="action">Conoce y apoya propuestas</p></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <h2 class="text-center">Material ciudadano</h2>
+    <div class="row">
+      <div class="col-md-6 text-center blue edu-1">
+        <a href="{% static 'material-ciudadano/manual-formacion-ciudadana.pdf' %}" target="_blank" class="btn btn-white">Manual de formación ciudadana</a>
+      </div>
+      <div class="col-md-6 text-center blue-light edu-2">
+        <a href="{% static 'material-ciudadano/manual-herramientas-activismo.pdf' %}" target="_blank" class="btn btn-white">Manual de herramientas de activismo</a>
+      </div>
+    </div>
+</section>
+
+<section id="orgs-repo">
+  <div class="container">
+    <div class="row">
+      <h2 class="text-center">Organizaciones</h2>
+      {% organization_logos %}
+    </div>
+  </div>
+</section>

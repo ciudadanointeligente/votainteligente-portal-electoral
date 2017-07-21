@@ -6,6 +6,10 @@
   .share-detail{
     text-align: center;
   }
+
+  #welcome{
+    padding-top: 50px;
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -14,13 +18,64 @@
   }
 }
 
+@media screen and (max-width: 560px) {
+  #welcome h1{
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  #welcome h1{
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 499px) {
+  #welcome{
+    background: none $yellow;
+    min-height: inherit;
+    height: 240px;
+  }
+  .presidents{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .content_padding {
+    padding-top: 20px;
+  }
+  .org-background{
+    min-height: 200px;
+  }
+  .landing-org{
+    position: relative;
+    top: 90px;
+  }
+  .logo-org {}
+}
+
 @media screen and (max-width: 388px) {
   .org-info h2{
     margin-top: 120px;
   }
 }
 
+@media screen and (max-width: 350px) {
+  #welcome h1{
+    font-size: 18px;
+  }
+}
+
 @media screen and (max-width: 320px) {
+  #you-org{
+    font-size: 10px;
+  }
+
   .fondo-blanco{
     h1{
       text-transform: uppercase;
@@ -37,45 +92,5 @@
 
   .share-card a .fa-stack{
     margin: 10px 0 10px;
-  }
-
-
-}
-
-@media screen and (max-width: 425px) {
-  /* proposals */
-  .fondo-blanco {
-    padding: 0px 15px;
-    h1 {
-      font-weight: 500;
-      margin-top: 20px;
-      margin-bottom: 10px;
-      letter-spacing: initial;
-    }
-    h2 {
-      font-size: 30px;
-      margin: 20px 0px 10px;
-    }
-  }
-  .content_padding {
-    padding-top: 20px;
-  }
-  .org-background{
-    min-height: 200px;
-    .landing-org{
-      position: relative;
-      top: 90px;
-    }
-    .social-networks {
-      a {
-        color: #fff;
-      }
-    }
-  }
-  .logo-org {}
-  .org-info{
-    p{
-      font-size: 14px;
-    }
   }
 }

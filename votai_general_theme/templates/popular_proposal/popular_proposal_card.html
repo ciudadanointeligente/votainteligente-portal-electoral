@@ -32,13 +32,14 @@
     {% if proposal.proposer.profile.is_organization %}
       <div class="logo-ong text-center text-light">
         <span>Propuesta de </span>
-        <a href="{{proposal.proposer.organization_template.get_absolute_url}}">
-          {% if proposal.proposer.organization_template.logo %}
-          <img src="{{ proposal.proposer.profile.image.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid" alt="{{proposal.proposer.organization_template.title}}" title="{{proposal.proposer.organization_template.title}}">
-          {% else %}
-            <span>{{proposal.proposer.organization_template.title}}</span>
-          {% endif %}
-        </a>
+          <div class="logo-color">
+            <a href="{{proposal.proposer.organization_template.get_absolute_url}}">
+            {% thumbnail proposal.proposer.profile.image "70x70" as im %}
+              <img src="{{ im.url }}"
+              alt="{{template.title}}">
+              {% endthumbnail %}
+            </a>
+          </div>
       </div>
     {% endif %}
   </div>

@@ -1,17 +1,23 @@
 {% load thumbnail %}
-<div class="container">
-  <ul class="list-inline">
-  {% for template in templates %}
-    <li><a href="{{template.get_absolute_url}}">
-    <div class="logo-org-home">
-    {% thumbnail template.logo "100x100" as im %}
-      <img src="{{ im.url }}"
-      width="{{ im.width }}"
-      height="{{ im.height }}
-      alt={{template.organization.get_full_name}}">
-      {% endthumbnail %}
+{% if templates|length %}
+<section id="orgs-repo">
+  <div class="container">
+    <div class="row">
+      <h2 class="text-center">Organizaciones</h2>
+      <div class="container">
+        <ul class="list-inline">
+        {% for template in templates %}
+          <li><a href="{{template.get_absolute_url}}">
+          <div class="logo-org-home">
+          {% thumbnail template.logo "100x100" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{template.title}}" title="{{template.title}}">
+            {% endthumbnail %}
+          </div>
+          </a></li>
+        {% endfor %}
+        </ul>
+      </div>
     </div>
-    </a></li>
-  {% endfor %}
-  </ul>
-</div>
+  </div>
+</section>
+{% endif %}

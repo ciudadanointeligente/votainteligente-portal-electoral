@@ -472,6 +472,41 @@ input[type=file]{
   }
 }
 
+/*Material ciudadano*/
+#video-encuentro{
+  margin-bottom: 40px;
+}
+
+#manual-encuentro{
+  margin-bottom: 40px;
+}
+
+.set-guide{
+  background-color: $blue-light;
+  border-radius: 5px;
+  height: 230px;
+  padding: 30px 15px;
+  img{
+    margin: 0 auto;
+    height: 140px;
+    margin-bottom: 15px;
+  }
+}
+
+.set-guide{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 1.2;
+  color: $grey-one;
+  &:hover{
+    color: $blue;
+  }
+}
+
+
 /*Botones*/
 .btn-blue{
   background-color: $blue;

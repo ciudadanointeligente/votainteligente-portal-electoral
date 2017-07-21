@@ -1,4 +1,40 @@
 {% extends "base.html" %}
-{% block content %}
-perrito
-{% endblock content %}
+{% block everything %}
+{% load staticfiles %}
+
+<div class="container">
+	<div>
+	  <h1 class="text-center">Realiza un encuentro</h1>
+	  	<div>
+	  	</div>
+	</div>
+</div>
+<section id="video-encuentro">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center">
+          <div class="videoWrapper">
+          <iframe src="https://www.youtube.com/embed/UKcVJ-bfr44" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="manual-encuentro">
+  <div class="container">
+    <div class="col-md-4 col-md-offset-2">
+      <p>En un Encuentro Ciudadano podemos juntarnos con nuestra comunidad, amigos/as o familia y elaborar propuestas en conjunto para que los/as candidatos/as nos escuchen. En este manual encontrarás todo lo necesario para preparar tu Encuentro Ciudadano, el paso a paso para elaborar una propuesta y, por último, formas para que esta sea escuchada. Anímate, descarga la guía que hicimos para ti y ¡a crear propuestas!</p>
+    </div>
+    <div class="col-md-4">
+      <a href="{% static 'material-ciudadano/metodologia-propuestas.pdf' %}" target="_blank" class="">
+      <div class="set-guide text-center">
+        <img src="{% static 'img/1-metodologia.svg' %}" class="img-responsive">
+        <p>Descarga la guía</p>
+      </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+{% endblock everything %}

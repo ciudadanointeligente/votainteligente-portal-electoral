@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block everything %}
+{% load staticfiles %}
+
+<div class="container">
+	<div>
+	  <h1 class="text-center">Material Ciudadano</h1>
+		<p class="text-center">Descarga e imprime los materiales que necesites para generar propuestas, hacer incidencia y/o saber todo lo necesario de esta elección.</p>
+	  	<div>
+	  	</div>
+	</div>
+</div>
+<section id="manual-encuentro">
+  <div class="container">
+		<div class="col-md-10 col-md-offset-1">
+    <div class="col-md-4">
+      <a href="{% static 'material-ciudadano/guia-elaboracion-propuestas.pdf' %}" target="_blank">
+      <div class="set-guide text-center">
+        <img src="{% static 'img/1-metodologia.svg' %}" class="img-responsive">
+        <p>Guía para la creación de propuestas</p>
+      </div>
+      </a>
+    </div>
+		<div class="col-md-4">
+			<a href="{% static 'material-ciudadano/manual-formacion-ciudadana.pdf' %}" target="_blank">
+			<div class="set-guide text-center">
+				<img src="{% static 'img/2-formacion.svg' %}" class="img-responsive">
+				<p>Manual de formación ciudadana</p>
+			</div>
+			</a>
+		</div>
+		<div class="col-md-4">
+			<a href="{% static 'material-ciudadano/manual-herramientas-activismo.pdf' %}" target="_blank">
+			<div class="set-guide text-center">
+				<img src="{% static 'img/3-activismo.svg' %}" class="img-responsive">
+				<p>Manual de herramientas de activismo</p>
+			</div>
+			</a>
+		</div>
+	</div>
+  </div>
+</section>
+
+
+{% endblock everything %}

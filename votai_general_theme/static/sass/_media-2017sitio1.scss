@@ -1,4 +1,14 @@
+@media screen and (max-width: 1199px) {
+  .presidents{
+    bottom: -76px;
+  }
+}
+
 @media screen and (max-width: 991px) {
+  .presidents{
+    bottom: -2px;
+  }
+
   .apoya-comparte{
     text-align: center;
   }

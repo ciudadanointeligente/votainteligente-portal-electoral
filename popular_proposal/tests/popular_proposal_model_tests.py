@@ -93,6 +93,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
                                         popular_proposal.get_absolute_url())
         self.assertEquals(expected_url, popular_proposal.ogp_url())
         self.assertTrue(popular_proposal.ogp_image())
+        
 
     def test_generate_og_image(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,

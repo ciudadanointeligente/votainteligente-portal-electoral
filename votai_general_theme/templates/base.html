@@ -5,8 +5,61 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load votainteligente_extras %}
-<html lang="es"{% if config.SHOW_NAVBAR or user.is_authenticated %} class="navbar_visible"{% endif %}>
-    {% include '_head.html' %}
+<head>
+    <meta charset="utf-8">
+    <title>{% trans "Vota Inteligente" %} {% block title %}- {{ config.WEBSITE_GENERAL_SETTINGS_HOME_TITLE }}{% endblock title %}</title>
+    <meta name="author" content="{{ config.WEBSITE_METADATA_AUTHOR }}">
+    <meta name="description" content="{% block description %}{{ config.WEBSITE_METADATA_DESCRIPTION }}{% endblock description %}">
+    <meta name="keywords" content="{{ config.WEBSITE_METADATA_KEYWORD }}{% block keywords %}{% endblock keywords %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="google-site-verification" content="{{ config.WEBSITE_GA_GSITE_VERIFICATION }}">
+    <!--for facebook fans-->
+    {% block ogp %}
+    <meta property="og:title" content="{{ config.WEBSITE_OGP_TITLE }}">
+    <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
+    <meta property="og:url" content="https://{% url_domain %}">
+    <meta property="og:image" content="https://{% url_domain %}{% static 'img/logo_vi_og.jpg' %}">
+    <meta property="og:description" content="{{ config.WEBSITE_OGP_DESCRIPTION }}">
+    {% endblock ogp %}
+    <meta property="fb:app_id" content="{{ config.WEBSITE_OGP_APP_ID }}">
+    <!--eoff-->
+    <link rel="shortcut icon" sizes="196x196" href="{% static 'img/votai-196.png' %}">
+    <!-- Browser out of date -->
+    <script type="text/javascript">
+    var $buoop = {}
+    $buoop.ol = window.onload;
+    window.onload=function(){
+     try {if ($buoop.ol) $buoop.ol();}catch (e) {}
+     var e = document.createElement("script");
+     e.setAttribute("type", "text/javascript");
+     e.setAttribute("src", "//browser-update.org/update.js");
+     document.body.appendChild(e);
+    }
+    </script>
+    <!-- Latest compiled and minified CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.css" rel="stylesheet">
+    <link href="{% sass_src 'sass/main.scss' %}" rel="stylesheet" type="text/css" />
+
+    <link href='//fonts.googleapis.com/css?family=Nunito+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link type="text/plain" rel="author" href="{% static 'humans.txt' %}" />
+    <script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="//use.fontawesome.com/9304d8597d.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.5/masonry.pkgd.min.js"></script>
+    <script src="{% static 'js/masonry-script.js' %}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.0/chosen.jquery.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.js"></script>
+    {% block extra_css %}
+    {% endblock extra_css %}
+</head>
     <body{% if config.LAUNCHED or config.SHOW_NAVBAR or user.is_authenticated %} class="navbar_visible"{% endif %}>
       <div>
         {% if config.SHOW_NAVBAR or user.is_authenticated %}

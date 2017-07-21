@@ -255,7 +255,7 @@ class PopularProposal(models.Model, OGPMixin):
 
         return out
 
-    def _ogp_image(self):
+    def ogp_image(self):
         site = Site.objects.get_current()
         image_url = reverse('popular_proposals:og_image',
                             kwargs={'slug': self.slug})

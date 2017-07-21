@@ -19,7 +19,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center">
-        <p>¿Eres una organización? <a href="{% url 'auth_login' %}" class="btn btn-blue">Ingresa aquí</a></p>
+        <p>¿Eres una organización? <a href="{% url 'auth_login' %}" class="btn btn-blue" onclick="ga('send', 'event', 'home-invitacion-ong', 'click')">Ingresa aquí</a></p>
       </div>
     </div>
   </div>
@@ -30,17 +30,17 @@
     <div class="row">
       <h2 class="text-center">Propuestas ciudadanas</h2>
       <div class="col-md-4 text-center">
-        <a href="{% url 'encuentro_ciudadano' %}">
+        <a href="{% url 'encuentro_ciudadano' %}" onclick="ga('send', 'event', 'home-realiza-encuentro', 'click')">
         <div class="action-encuentro"><p class="action">Realiza un encuentro</p></div>
         </a>
       </div>
       <div class="col-md-4 text-center">
-        <a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}">
+        <a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" onclick="ga('send', 'event', 'home-crea-propuesta', 'click')">
         <div class="action-crea"><p class="action">Crea una propuesta</p></div>
         </a>
       </div>
       <div class="col-md-4 text-center">
-        <a href="{% url 'popular_proposals:home' %}">
+        <a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'home-conoce-apoya', 'click')">
         <div class="action-apoya"><p class="action">Conoce y apoya propuestas</p></div>
         </a>
       </div>
@@ -52,19 +52,12 @@
   <h2 class="text-center">Material ciudadano</h2>
     <div class="row">
       <div class="col-md-6 text-center blue edu-1">
-        <a href="{% static 'material-ciudadano/manual-formacion-ciudadana.pdf' %}" target="_blank" class="btn btn-white">Manual de formación ciudadana</a>
+        <a href="{% static 'material-ciudadano/manual-formacion-ciudadana.pdf' %}" target="_blank" class="btn btn-white" onclick="ga('send', 'event', 'home-manual-formacion-ciudadana', 'click')">Manual de formación ciudadana</a>
       </div>
       <div class="col-md-6 text-center blue-light edu-2">
-        <a href="{% static 'material-ciudadano/manual-herramientas-activismo.pdf' %}" target="_blank" class="btn btn-white">Manual de herramientas de activismo</a>
+        <a href="{% static 'material-ciudadano/manual-herramientas-activismo.pdf' %}" target="_blank" class="btn btn-white" onclick="ga('send', 'event', 'home-manual-herramienta-activismo', 'click')">Manual de herramientas de activismo</a>
       </div>
     </div>
 </section>
 
-<section id="orgs-repo">
-  <div class="container">
-    <div class="row">
-      <h2 class="text-center">Organizaciones</h2>
-      {% organization_logos %}
-    </div>
-  </div>
-</section>
+{% organization_logos %}

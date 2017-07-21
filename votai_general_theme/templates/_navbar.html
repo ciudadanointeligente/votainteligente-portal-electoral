@@ -13,7 +13,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><img src="{% static 'img/logo.svg' %}{% block navbar_logo %}{% endblock navbar_logo %}" class="img-responsive" title="Vota Inteligente" alt="Vota Inteligente"></a>
+            <a class="navbar-brand" href="/" onclick="ga('send', 'event', 'nav-logo-vota', 'click')"><img src="{% static 'img/logo.svg' %}{% block navbar_logo %}{% endblock navbar_logo %}" class="img-responsive" title="Vota Inteligente" alt="Vota Inteligente"></a>
         </div>
         {% block navbar %}
         {% block extra_nav %}
@@ -24,11 +24,11 @@
                 {% if not user|is_candidate %}
                 {% get_proposals_enabled as proposals_enabled %}
                     {% if proposals_enabled  %}
-                    <li><a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}">Crea tu propuesta</a></li>
+                    <li><a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" onclick="ga('send', 'event', 'nav-crea-propuestas', 'click')">Crea tu propuesta</a></li>
                     {% endif %}
                 {% endif %}
                 {% if proposals_enabled  %}
-                <li><a href="{% url 'popular_proposals:home' %}">Conoce propuestas</a></li>
+                <li><a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'nav-conoce-propuestas', 'click')">Conoce propuestas</a></li>
                 {% endif %}
 
                 {% if user.is_authenticated %}
@@ -48,11 +48,11 @@
                     {% endif %}
 
                     {% if user|is_candidate %}
-                    <li><a href="{% url 'backend_candidate:home' %}">
+                    <li><a href="{% url 'backend_candidate:home' %}" onclick="ga('send', 'event', 'nav-candidato', 'click')">
                             <i class="fa fa-certificate" aria-hidden="true"></i>
                             {% blocktrans %}Sección del candidato{% endblocktrans %}</a></li>
                     {% endif %}
-                    <li><a href="{% url 'backend_citizen:index' %}">
+                    <li><a href="{% url 'backend_citizen:index' %}" onclick="ga('send', 'event', 'nav-edita-perfil', 'click')">
                             <i class="fa fa-home" aria-hidden="true"></i>
                             {% blocktrans %}Editar mi perfil{% endblocktrans %}
                         </a>
@@ -95,10 +95,10 @@
                   </ul>
                 </li>
                 {% else %}
-                <li><a href="{% url 'auth_login' %}">{% blocktrans %}Ingresar{% endblocktrans %}</a></li>
+                <li><a href="{% url 'auth_login' %}" onclick="ga('send', 'event', 'nav-login', 'click')">{% blocktrans %}Ingresar{% endblocktrans %}</a></li>
                 {% endif %}
                 <li>
-                    <a href="#" onclick="ga('send', 'event', 'twitter-share', 'click'); window.open(&quot;//twitter.com/share?via=Ciudadanoi&hashtags={{ config.WEBSITE_TWITTER_HASHTAG }}&text={{ config.WEBSITE_TWITTER_TEXT }}&quot;,&quot;twitter&quot;,&quot;width=450, height=250&quot;)">
+                    <a href="#" onclick="ga('send', 'event', 'nav-twitter-share', 'click'); window.open(&quot;//twitter.com/share?via=Ciudadanoi&hashtags={{ config.WEBSITE_TWITTER_HASHTAG }}&text={{ config.WEBSITE_TWITTER_TEXT }}&quot;,&quot;twitter&quot;,&quot;width=450, height=250&quot;)">
                       <span class="fa-stack fa-lg">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -106,7 +106,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="share-btn share-btn-branded share-btn-facebook" onclick="ga('send', 'event', 'facebook-share', 'click');" href="//www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fvotainteligente.cl" title="{{ config.WEBSITE_METADATA_DESCRIPTION }}" target="_blank">
+                    <a class="share-btn share-btn-branded share-btn-facebook" onclick="ga('send', 'event', 'nav-facebook-share', 'click');" href="//www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fvotainteligente.cl" title="{{ config.WEBSITE_METADATA_DESCRIPTION }}" target="_blank">
                       <span class="fa-stack fa-lg">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>

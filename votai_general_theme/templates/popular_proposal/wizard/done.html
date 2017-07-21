@@ -18,10 +18,10 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div>
-          <h2 class="text-center">Recibimos tu propuesta con título"<i>{{popular_proposal}}</i>" ¡muchas gracias!</h2>
+          <h2 class="text-center">Recibimos tu propuesta con título "<i>{{popular_proposal}}</i>" ¡muchas gracias!</h2>
           <div>
             {% if form_update %}
-              <p>Nos serviría mucho tener más de información sobre tu propuesta. nos ayudas? <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.created_proposal.slug %}">Agregar más información a tu propuesta</a></p>
+              <p>Nos serviría mucho tener más información sobre tu propuesta, nos ayudas? <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.created_proposal.slug %}" onclick="ga('send', 'event', 'proposal-done-mas-info', 'click')">Agregar más información a tu propuesta</a></p>
             {% endif %}
             {% if popular_proposal.created_proposal %}
               <a href="{{popular_proposal.created_proposal.get_absolute_url}}" class="btn btn-success btn-block">Revisa tu propuesta</a>
@@ -33,7 +33,7 @@
             <p>{% blocktrans %}Por favor, espera que el equipo de Ciudadano Inteligente la evalúe para que sea enviada a los candidatos.{% endblocktrans %}</p>
               {% endif %}
             {% get_proposals_enabled as proposals_enabled %}
-            
+
               <!-- <a href="{% url 'backend_citizen:my_proposals' %}" class="btn btn-primary btn-block" role="button">{% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}</a> -->
           </div>
       </div>

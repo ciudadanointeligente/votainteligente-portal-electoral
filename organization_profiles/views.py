@@ -30,7 +30,7 @@ class HandleBarsResponse(HttpResponse):
     def __init__(self, source, obj, **kwargs):
         compiler = Compiler()
         base_template = compiler.compile(u'<!DOCTYPE html><html lang="es">{{> head}}<body><div>{{> nav}}<div>{{> content}}</div></div>{{> footer}}</body></html>')
-        head = compiler.compile(get_template("_head.html").render({}))
+        head = compiler.compile(get_template("_head_organizations.html").render(obj))
         footer = compiler.compile(get_template("_footer.html").render({}))
         content_template = compiler.compile(source)
         nav = compiler.compile(get_template("_navbar.html").render(obj))

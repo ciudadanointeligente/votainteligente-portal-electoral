@@ -93,15 +93,8 @@ $(function(){
                           <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
                       </div>
                       {% endif %}
-                        <span class="corazon-{{proposal.id}}">
-                            <a class="unlike_proposal btn btn-no-apoyo text-center
-                            {% if not avoid_counter %} pull-left{% endif %}"
-                            href="{% url 'popular_proposals:unlike_proposal' pk=support.id %}"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Ya no quiero apoyar esta propuesta">
+                        <span class="corazon-{{proposal.id}} btn btn-no-apoyo text-center {% if not avoid_counter %} pull-left{% endif %}" style="cursor:auto;">
                             Estoy apoyando <i class="fa fa-heart" aria-hidden="true"></i>
-                            </a>
                         </span>
                     {% endwith %}
                 {% endif %}

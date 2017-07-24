@@ -113,6 +113,7 @@
 
         ga('create', "{{ config.WEBSITE_GA_CODE }}", 'auto');
         ga('send', 'pageview');
+        {% block analytics %}{% endblock analytics %}
       </script>
 
     </body>

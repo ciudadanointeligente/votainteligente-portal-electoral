@@ -430,3 +430,7 @@ $(function(){
 {% endblock everything %}
 {% block extrafooter %}
 {% endblock extrafooter %}
+{% block analytics %}
+  var dimensionValue = '{{popular_proposal.id}}';
+  ga('set', 'dimension1', dimensionValue);
+{% endblock analytics %}

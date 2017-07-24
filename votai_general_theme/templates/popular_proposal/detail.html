@@ -432,7 +432,5 @@ $(function(){
 {% endblock extrafooter %}
 {% block analytics %}
   var proposal_title = '{{popular_proposal.title}}';
-  ga('send', 'pageview', {
-    'dimension1': proposal_title
-  });
+  ga('set', 'dimension1', proposal_title);
 {% endblock analytics %}

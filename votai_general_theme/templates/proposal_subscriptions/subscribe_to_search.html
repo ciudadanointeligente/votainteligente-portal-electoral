@@ -5,10 +5,10 @@
 
 <form id="searchSubscriptionForm" action="{% url 'proposal_subscriptions:subscribe' %}" method="POST" role="form">
   {% csrf_token %}
-  <p>Al subscribirte al resultado de una b'usqueda se te enviar'a un email cuando se cree una propuesta que tenga relaci'on a la busqueda de tu inter'es.</p>
+  <p>Al subscribirte al resultado de una búsqueda se te enviará un email cuando se cree una propuesta que tenga relación a la búsqueda de tu interés.</p>
   {% bootstrap_form form %}
 
-  <button type="submit" class="btn btn-success">{% trans 'Subscribir'%}</button>
+  <button type="submit" class="btn btn-success" onclick="ga('send', 'event', 'btn-subscribir-busqueda', 'click')">{% trans 'Subscribir'%}</button>
 </form>
 </div>
 <script>

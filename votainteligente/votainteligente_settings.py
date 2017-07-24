@@ -335,9 +335,9 @@ MAX_AMOUNT_OF_MAILS_TO_CANDIDATE = 3
 FILTERABLE_AREAS_TYPE = ['Comuna']
 
 # HIDDEN_AREAS = ['fundacion-ciudadano-inteligente', ]
-DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS=[{'title':u'Agenda', 'content':'''* **2 DE JULIO**	Elecciones Primarias\r\n* **19 DE NOVIEMBRE**\r\nPrimera vuelta de Elecciones Presidenciales y Parlamentarias
+DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS=[{'title':u'Agenda', 'content':'''* **19 DE NOVIEMBRE**\r\nPrimera vuelta de Elecciones Presidenciales y Parlamentarias
 * **17 DE DICIEMBRE**	*Segunda vuelta de Elecciones Presidenciales'''},
-                                                           {'title':u'Documentos', 'content':'+ [Guia Ciudadana](/static/herramientas/GUIACIUDADANA.pdf)'}]
+                                                           {'title':u'Documentos', 'content':''}]
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

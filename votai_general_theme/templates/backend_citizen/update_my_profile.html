@@ -4,6 +4,10 @@
 {% load i18n %}
 {% load bootstrap3 %}
 
+{% block title %}
+- Backend Ciudadano - Perfil
+{% endblock title %}
+
 {% block main_content %}
 	<h2 class="page-header">Tu perfil</h2>
 	<form enctype="multipart/form-data" action="{% url 'backend_citizen:update_my_profile' %}" method="POST" role="form">

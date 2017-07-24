@@ -3,7 +3,7 @@
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
 {% load staticfiles %}
-{% block title %}{% trans "Login" %}{% endblock %}
+{% block title %}- Ingreso/Registro{% endblock %}
 {% block extra_css %}
 	<link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
 {% endblock extra_css %}
@@ -36,7 +36,7 @@
 					{% include '_social_login_buttons.html' with url=next %}
 				</div>
 	</div>
-  
+
 {% block login_tabs %}
   {% include '_login_tabs.html' with next=next %}
 {% endblock login_tabs %}

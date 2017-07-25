@@ -1,0 +1,33 @@
+@media print {
+  html .navbar_visible {
+    padding-top: 5px;
+  }
+  .fondo-blanco {
+    padding: 0px 15px;
+    border: 0px;
+    margin-bottom: 0px;
+    &.text-width {
+      max-width: initial;
+    }
+    h1 {
+      font-weight: 500;
+      font-size: 36px;
+      letter-spacing: 3px;
+    }
+    #proposal-details {
+      h2 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .proposal-tools {
+    display: none;
+  }
+  .apoya-comparte {
+    display: none;
+  }
+  .llamado {
+    display: none;
+  }
+}

@@ -184,12 +184,19 @@ td.cal-date{
 
 .logo-org-home{
   background: #9BA9C1;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  &:hover{
+    background: transparent;
+  }
   img{
     mix-blend-mode: screen;
-    -webkit-filter: grayscale(100%) contrast(200%) opacity(1);
-    filter: grayscale(100%) contrast(200%) opacity(1);
+    -webkit-filter: grayscale(1) contrast(100%) opacity(1);
+    filter: grayscale(1) contrast(100%) opacity(1);
     &:hover{
-      filter: grayscale(100%) contrast(200%) opacity(1);
+      -webkit-filter: opacity(1);
+      filter: opacity(1);
     }
   }
 }

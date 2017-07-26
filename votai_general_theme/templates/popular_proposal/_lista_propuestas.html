@@ -22,7 +22,9 @@ $(function(){
 
     {% if form %}
     {% include 'modal.html' with modalId='subscribeToSearch' title='Mantente al dia con tus tematicas de interes' %}
+    {% if form.is_filled_search %}
     <button class="hidden-md hidden-lg btn btn-link btn-block" type="button" data-toggle="collapse" data-target=".filter-mobile" aria-expanded="false" aria-controls="filter-mobile"><i class="fa fa-filter"></i> Mostrar filtros</button>
+    {% endif %}
 		<form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form" class="hidden-md hidden-lg filter-mobile {% if form.is_filled_search %}collapse{% endif %}">
       <div class="row">
         <div class="col-md-3">{% bootstrap_field form.text %}</div>
@@ -32,7 +34,7 @@ $(function(){
       </div>
       <div class="row">
         <!-- mobile version -->
-        <div class="col-md-12 text-right visible-xs">
+        <div class="col-md-12 text-right visible-xs-*">
           <button type="submit" class="btn btn-success btn-block">{% trans 'Filtrar'%}</button>
           {% if form.is_filled_search %}
             <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary btn-block">{% trans 'Limpiar Filtro'%}</a>
@@ -42,14 +44,9 @@ $(function(){
           {% endif %}
         </div>
         <!-- end mobile version -->
-        <div class="col-md-12 text-right hidden-xs">
-          <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>
-          {% if form.is_filled_search %}
-            <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary">{% trans 'Limpiar Filtro'%}</a>
-          {% endif %}
-        </div>
       </div>
 		</form>
+
     <form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form" class="hidden-xs hidden-sm">
       <div class="row">
         <div class="col-md-3">{% bootstrap_field form.text %}</div>
@@ -58,18 +55,7 @@ $(function(){
         <div class="col-md-3">{% bootstrap_field form.order_by %}</div>
       </div>
       <div class="row">
-        <!-- mobile version -->
-        <div class="col-md-12 text-right visible-xs">
-          <button type="submit" class="btn btn-success btn-block">{% trans 'Filtrar'%}</button>
-          {% if form.is_filled_search %}
-            <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary btn-block">{% trans 'Limpiar Filtro'%}</a>
-          {% endif %}
-          {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
-            <a id="subscribeToSearchButton" class="btn btn-info btn-block" data-toggle="modal" data-url="{% url 'proposal_subscriptions:subscribe' %}" data-target="#subscribeToSearch"><i class="fa fa-bell-o"></i> {% trans 'Subscribete a este resultado' %}</a>
-          {% endif %}
-        </div>
-        <!-- end mobile version -->
-        <div class="col-md-12 text-right hidden-xs">
+        <div class="col-md-12 text-right visible-md-*">
           <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>
           {% if form.is_filled_search %}
             <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary">{% trans 'Limpiar Filtro'%}</a>

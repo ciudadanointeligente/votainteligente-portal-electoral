@@ -187,6 +187,8 @@ td.cal-date{
   width: 100px;
   height: 100px;
   margin: 10px;
+  margin: 0 auto;
+  margin-bottom: 10px;
   &:hover{
     background: transparent;
   }
@@ -370,7 +372,7 @@ input[type=file]{
 /*Propuestas*/
 .propuesta{
   border: 3px solid $grey-one;
-  min-height: 440px;
+  min-height: 500px;
   padding: 0;
   position: relative;
 }
@@ -481,8 +483,8 @@ input[type=file]{
     margin: 0 auto;
   img{
     mix-blend-mode: screen;
-    -webkit-filter: grayscale(100%) contrast(200%) opacity(1);
-    filter: grayscale(100%) contrast(200%) opacity(1);
+    -webkit-filter: grayscale(1) contrast(100%) opacity(1);
+    filter: grayscale(1) contrast(100%) opacity(1);
   }
 }
 

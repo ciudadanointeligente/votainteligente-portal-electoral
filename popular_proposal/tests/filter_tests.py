@@ -149,3 +149,48 @@ class OrderingFormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(qs[0], p3)
         self.assertEquals(qs[1], p1)
         self.assertEquals(qs[2], p2)
+
+    def test_filtered_by_area(self):
+        peru = Area.objects.create(name=u"Perú")
+        p1 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=peru,
+                                            data=self.data,
+                                            title=u'P1',
+                                            clasification=TOPIC_CHOICES[1][0]
+                                            )
+        p1.created = two_days_ago
+        p1.save()
+        p2 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.algarrobo,
+                                            data=self.data,
+                                            title=u'P2',
+                                            clasification=TOPIC_CHOICES[2][0]
+                                            )
+        p2.created = three_days_ago
+        p2.save()
+        p3 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.algarrobo,
+                                            data=self.data,
+                                            title=u'P3',
+                                            clasification=TOPIC_CHOICES[3][0]
+                                            )
+        p3.created = one_day_ago
+        p3.save()
+
+        data = {'area': self.algarrobo.id}
+
+        url = reverse('popular_proposals:home')
+        response = self.client.get(url, data)
+        qs = response.context['popular_proposals']
+        self.assertIn(p2, qs)
+        self.assertIn(p3, qs)
+        self.assertNotIn(p1, qs)
+
+        data = {'area': "non-existing"}
+
+        url = reverse('popular_proposals:home')
+        response = self.client.get(url, data)
+        qs = response.context['popular_proposals']
+        self.assertIn(p2, qs)
+        self.assertIn(p3, qs)
+        self.assertIn(p1, qs)

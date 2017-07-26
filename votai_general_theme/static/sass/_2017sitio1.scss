@@ -483,8 +483,8 @@ input[type=file]{
     margin: 0 auto;
   img{
     mix-blend-mode: screen;
-    -webkit-filter: grayscale(100%) contrast(200%) opacity(1);
-    filter: grayscale(100%) contrast(200%) opacity(1);
+    -webkit-filter: grayscale(1) contrast(100%) opacity(1);
+    filter: grayscale(1) contrast(100%) opacity(1);
   }
 }
 

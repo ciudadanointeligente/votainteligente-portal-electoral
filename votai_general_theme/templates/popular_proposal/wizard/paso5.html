@@ -24,14 +24,14 @@
         </div>
     {% endfor %}
     </div>
-
-
+<h2 class="text-center">{% if form.step_title %}{{form.step_title}}{% endif %}</h2>
+<section>
+    <p class="long_text">{% include form.explanation_template %}</p>
+</section>
 <form role="form" action="" method="post">
         {% csrf_token %}
         {{ wizard.management_form }}
-        <section>
-            <p class="long_text">{% include form.explanation_template %}</p>
-        </section>
+
         <section>
             {% if form.organization %}
                 {% bootstrap_field form.organization show_help=false %}

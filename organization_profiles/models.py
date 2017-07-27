@@ -92,6 +92,7 @@ class OrganizationTemplate(models.Model):
                                                    'ImageField',
                                                    "%s.jpg" %self.logo.name.split('.')[0],
                                                    'image/jpeg', sys.getsizeof(output), None)
+            self.save()
 
     def create_default_extra_pages(self):
         for data in settings.DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS:

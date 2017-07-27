@@ -481,10 +481,17 @@ input[type=file]{
     width: 70px;
     height: 70px;
     margin: 0 auto;
+    &:hover{
+      background: transparent;
+    }
   img{
     mix-blend-mode: screen;
     -webkit-filter: grayscale(1) contrast(100%) opacity(1);
     filter: grayscale(1) contrast(100%) opacity(1);
+    &:hover{
+      -webkit-filter: opacity(1);
+      filter: opacity(1);
+    }
   }
 }
 

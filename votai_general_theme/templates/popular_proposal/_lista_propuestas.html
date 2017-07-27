@@ -19,6 +19,7 @@ $(function(){
 
     {% if form %}
     {% include 'modal.html' with modalId='subscribeToSearch' title='Mantente al dia con tus tematicas de interes' %}
+    <a id="top"></a>
 		<form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form">
       <div class="row">
         <div class="col-md-3">{% bootstrap_field form.text %}</div>
@@ -54,6 +55,15 @@ $(function(){
           this.disabled = !($(this).val());
         });
       });
+
+      window.onscroll = function (e) {
+        if( document.body.scrollTop >= 600 ) {
+          $('#raiseToTop i').css('display','block');
+        }
+        if( document.body.scrollTop < 600 ) {
+          $('#raiseToTop i').css('display','none');
+        }
+      }
     });
     </script>
 
@@ -89,4 +99,11 @@ $(function(){
     {% endblocktrans %}
     {% endfor %}
 
+</div>
+<div class="container" id="raiseToTop">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <a href="#top" title="ir arriba"><i class="fa fa-arrow-up fa-2x pull-right" style="display:none"></i></a>
+    </div>
+  </div>
 </div>

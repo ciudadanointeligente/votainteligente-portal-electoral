@@ -488,6 +488,21 @@ input[type=file]{
   }
 }
 
+#raiseToTop {
+    bottom: 15px;
+    display: block;
+    position: sticky;
+    width: 100%;
+    a {
+      color: white;
+      i {
+        background-color: #233346;
+        padding: 10px;
+        border-radius: 30px;
+      }
+    }
+}
+
 /*Material ciudadano*/
 #video-encuentro{
   margin-bottom: 40px;

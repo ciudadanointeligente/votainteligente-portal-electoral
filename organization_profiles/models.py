@@ -82,7 +82,7 @@ class OrganizationTemplate(models.Model):
         return "Template for %s" % (str(self.organization))
 
     def generate_logo_small(self):
-        if self.logo:
+        if self.logo and not self.logo_small:
             im = Image.open(self.logo).convert('RGB')
             output = BytesIO()
             im = im.resize( (LOGO_SIZE,LOGO_SIZE), Image.ANTIALIAS )
@@ -92,6 +92,7 @@ class OrganizationTemplate(models.Model):
                                                    'ImageField',
                                                    "%s.jpg" %self.logo.name.split('.')[0],
                                                    'image/jpeg', sys.getsizeof(output), None)
+            self.save()
 
     def create_default_extra_pages(self):
         for data in settings.DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS:

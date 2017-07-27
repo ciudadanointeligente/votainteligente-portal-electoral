@@ -54,7 +54,10 @@ class ProposalWithoutAreaFilter(FilterSet):
         if self.area is None and data is not None:
             self.area = data.get('area', None)
             if self.area:
-                self.area = Area.objects.get(id=self.area)
+                try:
+                    self.area = Area.objects.get(id=self.area)
+                except Area.DoesNotExist as e:
+                    self.area = None
         if queryset is None:
             queryset = PopularProposal.ordered.all()
         if self.area is not None:
@@ -71,7 +74,8 @@ class ProposalWithoutAreaFilter(FilterSet):
         for k in self.data:
             i = self.data[k]
             is_filled_search = True
-            self._form.fields[k].initial = i
+            if k in self._form.fields:
+                self._form.fields[k].initial = i
         self._form.is_filled_search = is_filled_search
         return self._form
 

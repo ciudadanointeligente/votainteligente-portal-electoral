@@ -5,7 +5,10 @@ Los datos son:
 
 el id de la propuesta es: {{temporary_data.id}}
 el título de la propuesta es: {{temporary_data.get_title}}
-
+{% if temporary_data.created_proposal %}
+Y la podís verla en el siguiente link:
+https://votainteligente.cl{{temporary_data.created_proposal.get_absolute_url}}
+{% endif %}
 
 Recuerda que te queremos más que la chucha por eso tienes un <3 ahí donde dice Perfil del Staff.
 --

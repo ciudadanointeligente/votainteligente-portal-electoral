@@ -82,7 +82,7 @@ class OrganizationTemplate(models.Model):
         return "Template for %s" % (str(self.organization))
 
     def generate_logo_small(self):
-        if self.logo and not self.logo_small:
+        if self.logo:
             im = Image.open(self.logo).convert('RGB')
             output = BytesIO()
             im = im.resize( (LOGO_SIZE,LOGO_SIZE), Image.ANTIALIAS )

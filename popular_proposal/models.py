@@ -18,7 +18,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.template.loader import get_template
 from PIL import Image, ImageDraw, ImageFont
-from model_utils.managers import InheritanceManagerMixin
+from model_utils.managers import InheritanceQuerySetMixin
 import textwrap
 
 
@@ -148,17 +148,15 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
     def __str__(self):
         return self.get_title()
 
+
 class ProposalsManager(models.Manager):
     def get_queryset(self):
         qs = super(ProposalsManager, self).get_queryset()
         qs = qs.exclude(is_reported=True)
         return qs
-class WithSubclassesManager(InheritanceManagerMixin, ProposalsManager):
-    def get_queryset(self):
-        qs = super(WithSubclassesManager, self).get_queryset().select_subclasses()
-        return qs
 
-class ProposalQuerySet(models.QuerySet):
+
+class ProposalQuerySet(InheritanceQuerySetMixin, models.QuerySet):
     def by_likers(self, *args, **kwargs):
         return self.order_by('-num_likers', 'proposer__profile__is_organization')
 
@@ -167,6 +165,7 @@ class ProposalsOrderedManager(ProposalsManager):
     def get_queryset(self):
         qs = ProposalQuerySet(self.model, using=self._db).exclude(is_reported=True)
         qs = qs.annotate(num_likers=Count('likers'))
+        qs = qs.select_subclasses()
         return qs
 
 
@@ -215,7 +214,6 @@ class PopularProposal(models.Model, OGPMixin):
     ordered = ProposalsOrderedManager.from_queryset(ProposalQuerySet)()
     objects = ProposalsManager()
     all_objects = models.Manager()
-    with_subclasses = WithSubclassesManager()
 
     class Meta:
         ordering = ['for_all_areas', '-created']

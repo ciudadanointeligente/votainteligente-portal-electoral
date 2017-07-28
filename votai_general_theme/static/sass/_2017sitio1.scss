@@ -605,7 +605,7 @@ input[type=file]{
 /*Pasos creando propuesta*/
 .tips, .tips-invert{
   background: $grey-one;
-  margin: 10px 0;
+  margin: 10px 0 0 0;
   border-radius: 10px;
   .main-title{
     color: $yellow;
@@ -632,5 +632,5 @@ label{
   letter-spacing: 1.2px;
   font-size: 12px;
   font-weight: 700;
-  margin: 10px 0;
+  margin: 10px 0 0 0;
 }

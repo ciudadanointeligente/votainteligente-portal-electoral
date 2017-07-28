@@ -5,15 +5,14 @@ from elections.models import Area
 from popular_proposal.forms.forms import wizard_forms_fields
 from django import forms
 
+example_fields = {
+    'CharField': 'fieraFeroz',
+    'URLField': 'http://fieraFeroz.com',
+    'BooleanField': True,
+}
 
 def get_example_data_for_testing():
     data = {}
-
-    example_fields = {
-        'CharField': 'fieraFeroz',
-        'URLField': 'http://fieraFeroz.com',
-        'BooleanField': True,
-    }
 
     for step in wizard_forms_fields:
         for f in step['fields']:

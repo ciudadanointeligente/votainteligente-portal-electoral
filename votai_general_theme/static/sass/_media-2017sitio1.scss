@@ -66,7 +66,11 @@
     position: relative;
     top: 90px;
   }
-  .logo-org {}
+  .wizard {
+    .paso {
+      font-size: 11px;
+    }
+  }
 }
 
 @media screen and (max-width: 388px) {

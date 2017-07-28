@@ -30,6 +30,7 @@
                 {% if proposals_enabled  %}
                 <li><a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'nav-conoce-propuestas', 'click')">Conoce propuestas</a></li>
                 {% endif %}
+                <li><a href="{% url 'material_ciudadano' %}" onclick="ga('send', 'event', 'nav-material-ciudadano', 'click')">Material ciudadano</a></li>
 
                 {% if user.is_authenticated %}
                 <li class="dropdown">

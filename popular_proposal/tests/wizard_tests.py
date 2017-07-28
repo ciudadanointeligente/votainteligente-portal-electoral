@@ -46,12 +46,8 @@ class WizardDataMixin(object):
                     test_response[cntr][field] = choice
                 elif field_dict:
                     help_text = example_fields.get(field_type, None)
-                    if not help_text:
-                        test_response[cntr][str(cntr) + '-' + field] = field
-                        test_response[cntr][field] = field
-                    else:
-                        test_response[cntr][str(cntr) + '-' + field] = help_text
-                        test_response[cntr][field] = help_text
+                    test_response[cntr][str(cntr) + '-' + field] = help_text
+                    test_response[cntr][field] = help_text
                 else:
                     test_response[cntr]['fields'] = field
 

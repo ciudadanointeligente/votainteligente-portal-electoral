@@ -71,7 +71,6 @@ class PopularProposalFilterTestCase(ProposingCycleTestCaseBase):
     def test_filter_where_generated_area(self):
         chonchi = Area.objects.create(name="Chonchi", classification="Comuna")
         p = PopularProposal.objects.create(proposer=self.fiera,
-                                           area=self.algarrobo,
                                            data=self.data,
                                            title=u'P2',
                                            generated_at=chonchi,
@@ -88,8 +87,22 @@ class PopularProposalFilterTestCase(ProposingCycleTestCaseBase):
         laja = Area.objects.create(name="Laja", classification="Comuna")
         rm = Area.objects.create(name="region metropolitana",
                                  classification=u"Región")
+        osorno = Area.objects.create(name="Osorno", classification="Comuna")
         areas = filterable_areas("This is a request")
+        p = PopularProposal.objects.create(proposer=self.fiera,
+                                           data=self.data,
+                                           title=u'P2',
+                                           generated_at=rm,
+                                           clasification=TOPIC_CHOICES[2][0]
+                                           )
+        p2 = PopularProposal.objects.create(proposer=self.fiera,
+                                           data=self.data,
+                                           title=u'P2',
+                                           generated_at=laja,
+                                           clasification=TOPIC_CHOICES[2][0]
+                                           )
         self.assertIn(laja, areas)
+        self.assertNotIn(osorno, areas)
         self.assertNotIn(rm, areas)
 
     def test_filters_by_text(self):

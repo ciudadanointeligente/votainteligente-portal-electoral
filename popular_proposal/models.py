@@ -18,6 +18,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.template.loader import get_template
 from PIL import Image, ImageDraw, ImageFont
+from model_utils.managers import InheritanceManagerMixin
 import textwrap
 
 
@@ -152,6 +153,10 @@ class ProposalsManager(models.Manager):
         qs = super(ProposalsManager, self).get_queryset()
         qs = qs.exclude(is_reported=True)
         return qs
+class WithSubclassesManager(InheritanceManagerMixin, ProposalsManager):
+    def get_queryset(self):
+        qs = super(WithSubclassesManager, self).get_queryset().select_subclasses()
+        return qs
 
 class ProposalQuerySet(models.QuerySet):
     def by_likers(self, *args, **kwargs):
@@ -210,6 +215,7 @@ class PopularProposal(models.Model, OGPMixin):
     ordered = ProposalsOrderedManager.from_queryset(ProposalQuerySet)()
     objects = ProposalsManager()
     all_objects = models.Manager()
+    with_subclasses = WithSubclassesManager()
 
     class Meta:
         ordering = ['for_all_areas', '-created']

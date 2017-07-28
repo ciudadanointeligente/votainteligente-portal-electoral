@@ -37,6 +37,18 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertIsInstance(popular_proposal, PopularProposal)
         self.assertTrue(popular_proposal.is_kids)
 
+    def test_card(self):
+        kids_proposal = KidsProposal.objects.create(proposer=self.fiera,
+                                                    area=self.arica,
+                                                    data=self.data,
+                                                    title=u'Kids!!',
+                                                    clasification=u'education'
+                                                    )
+        expected_card_html =  get_template("votita/card.html").render({
+            'proposal': kids_proposal
+        })
+        popular_proposal = PopularProposal.with_subclasses.get(id=kids_proposal.id)
+        self.assertEquals(popular_proposal.card, expected_card_html)
 
 @override_config(DEFAULT_AREA='argentina')
 class VotitaWizardTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
@@ -56,4 +68,3 @@ class VotitaWizardTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         temporary_data = response.context['popular_proposal']
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
         self.assertTrue(temporary_data.created_proposal)
-

@@ -14,12 +14,12 @@
 
 {% block content %}
 <div>
-  <div class="text-width wizard">
+  <div class="text-width">
     <div class="row">
     {% for i in wizard.steps.count|times %}
-    <div class="col-md-3 col-sm-3 col-xs-3 text-center">
+    <div class="col-md-3 col-sm-3 col-xs-3 text-center wizard">
         Paso
-        <div class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}">{{i|add:1}}</div>
+        <p class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}"><span class="badge">{{i|add:1}}</span></p>
     </div>
     {% endfor %}
     </div>
@@ -34,8 +34,10 @@
 
 {% endblock messages %}
 
-<p class="text-center action">Creando una propuesta</p>
-<h2 class="text-center">{% if form.step_title %}{{form.step_title}}{% endif %}</h2>
+<div class="text-center proposal-step">
+<p class="small">Creando una propuesta</p>
+<h2>{% if form.step_title %}{{form.step_title}}{% endif %}</h2>
+</div>
 
 {% if form.explanation_template %}
 <div class="col-md-4 tips">

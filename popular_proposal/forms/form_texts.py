@@ -2,7 +2,7 @@
 from collections import OrderedDict
 
 WHEN_CHOICES = [
-    ('', u'Selecciona cuando'),
+    ('', u'Selecciona cuándo'),
     ('1_year', u'1 año'),
     ('2_year', u'2 años'),
     ('3_year', u'3 años'),
@@ -46,12 +46,12 @@ TOPIC_CHOICES = (('', u'Selecciona una categoría'),
                  )
 
 TEXTS = OrderedDict({
-    'problem': {'label': u'¿Cuál es el problema?',
+    'problem': {'label': u'El problema que se quiere solucionar es',
                 'preview_question': u'¿Cuál es el problema que quieres solucionar?',
                 'help_text': u'Contaminación en la ciudad',
                 'placeholder': u'Escribe el problema que quieres solucionar con tu propuesta.',
                 },
-    'causes': {'label': u'Elección de una causa',
+    'causes': {'label': u'La causa de este problema es',
                'preview_question': u'Cuáles son las causas de este problema?',
                'placeholder': u'Escribe aquí la causa de tu problema que quieres abordar. Recuerda solo escribir una.',
                'long_text': "causes_help.html"},
@@ -60,11 +60,11 @@ TEXTS = OrderedDict({
                  'help_text': u'',
                  'placeholder': u'Escribe aquí la situación ideal a la que quieres llegar.',
                  'long_text': "paso3.html"},
-    'solution_at_the_end': {'label': u'Propuesta',
+    'solution_at_the_end': {'label': u'La propuesta para solucionar este problema es',
                             'preview_question': u'¿Cuál sería la solución?',
                             'help_text': u'Se puede regular el uso de bolsas plásticas en los supermercados a solo tres por persona, las otras bolsas que se usen deben ser reutilizables.',
                             'placeholder': u'Escribe aquí la solucion para el problema que definiste.'},
-    'when': {'label': u'¿Cuándo?',
+    'when': {'label': u'Tiempo en el cual se puede llevar a cabo la propuesta',
              'preview_question': u'¿Cuándo debería estar esto listo?',
              'help_text': u'1 año',
              'placeholder': u'',},
@@ -73,7 +73,7 @@ TEXTS = OrderedDict({
               'help_text': u'',
               'placeholder': u'Título de la propuesta',
               'long_text': ""},
-    'clasification': {'label': u'Primero elige una categoría',
+    'clasification': {'label': u'Selecciona una categoría',
                       'preview_question': u'Clasificación',
                       'help_text': u'Medio Ambiente',
                       'placeholder': u'',

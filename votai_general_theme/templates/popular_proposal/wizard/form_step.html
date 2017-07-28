@@ -15,9 +15,6 @@
 {% block content %}
 <div>
   <div class="text-width wizard">
-    {% if area %}
-    <p class="text-light">Creando una propuesta para {{ area }}</p>
-    {% endif %}
     <div class="row">
     {% for i in wizard.steps.count|times %}
     <div class="col-md-3 col-sm-3 col-xs-3">
@@ -36,6 +33,7 @@
 
 {% endblock messages %}
 
+<p class="text-center action">Creando una propuesta</p>
 <h2 class="text-center">{% if form.step_title %}{{form.step_title}}{% endif %}</h2>
 
 {% if form.explanation_template %}

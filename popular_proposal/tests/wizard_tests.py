@@ -19,6 +19,7 @@ from collections import OrderedDict
 from constance.test import override_config
 from django.test import override_settings
 from constance import config
+from popular_proposal.tests import example_fields
 
 USER_PASSWORD = 'secr3t'
 
@@ -35,6 +36,7 @@ class WizardDataMixin(object):
                 if field == "is_testing":
                     continue
                 field_type = step['fields'][field].__class__.__name__
+
                 if field_type in ['ChoiceField']:
                     test_response[cntr][str(cntr) + '-' + field] = step['fields'][field].choices[-1][0]
                     test_response[cntr][field] = step['fields'][field].choices[-1][0]
@@ -43,10 +45,9 @@ class WizardDataMixin(object):
                     test_response[cntr][str(cntr) + '-' + field] = choice
                     test_response[cntr][field] = choice
                 elif field_dict:
-                    help_text = field_dict.get('help_text', None)
-                    if not help_text:
-                        test_response[cntr][str(cntr) + '-' + field] = field
-                        test_response[cntr][field] = field
+                    help_text = example_fields.get(field_type, None)
+                    test_response[cntr][str(cntr) + '-' + field] = help_text
+                    test_response[cntr][field] = help_text
                 else:
                     test_response[cntr]['fields'] = field
 

@@ -3,6 +3,10 @@ html .navbar_visible, body .navbar_visible{
   padding-top: 55px;
 }
 
+.navbar{
+  min-height: 55px;
+}
+
 .high-home{
   font-family: 'Arvo', serif;
   font-size: 18px;
@@ -268,6 +272,24 @@ input[type=checkbox], input[type=radio]{
 
 input[type=file]{
   display: initial;
+}
+
+.has-success .form-control{
+  border-color: transparent;
+  box-shadow: none;
+  &:focus{
+    border-color: transparent;
+    box-shadow: none;
+  }
+}
+
+
+.form-control{
+  border-radius: 58px;
+}
+
+.has-success .checkbox, .has-success .checkbox-inline, .has-success .control-label, .has-success .help-block, .has-success .radio, .has-success .radio-inline, .has-success.checkbox label, .has-success.checkbox-inline label, .has-success.radio label, .has-success.radio-inline label{
+  color: $grey-one;
 }
 
 /*General*/

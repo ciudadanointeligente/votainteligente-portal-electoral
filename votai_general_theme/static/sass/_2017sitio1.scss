@@ -79,10 +79,9 @@ td.cal-date{
 }
 
 #welcome{
-  background: url("../img/welcome.svg") no-repeat $yellow 0 11px;
-  min-height: 470px;
+  background: $yellow ;
   background-size: cover;
-  padding-top: 180px;
+  padding: 20px 0 20px;
   h1{
     margin: 60px 0;
   }

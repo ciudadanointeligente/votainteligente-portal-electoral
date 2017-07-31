@@ -17,9 +17,6 @@
     text-align: center;
   }
 
-  #welcome{
-    padding-top: 50px;
-  }
 }
 
 @media screen and (max-width: 900px) {
@@ -45,11 +42,6 @@
 }
 
 @media screen and (max-width: 499px) {
-  #welcome{
-    background: none $yellow;
-    min-height: inherit;
-    height: 240px;
-  }
   .presidents{
     display: none;
   }

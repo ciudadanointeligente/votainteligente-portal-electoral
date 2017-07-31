@@ -1,0 +1,43 @@
+{% extends "votita/base.html" %}
+{% load bootstrap3 %}
+{% load i18n %}
+{% block extra_scripts %}
+
+{% endblock extra_scripts %}
+
+
+
+
+{% block content %}
+<h1>Agregando propuestas para {{object.name}}</h1>
+<form method="post" action="{% url 'votita:proposal_for_gathering' pk=object.pk %}">{% csrf_token %}
+  <!-- more form stuff -->
+  {{ formset.management_form }}
+  <!-- A div to contain your formset -->
+  <div id="proposals-container">
+    {% bootstrap_formset formset %}
+
+  </div>
+  <script type="text/html" id="proposals-template">
+  <fieldset class="proposals-fieldset-__prefix__" style="display: none;">
+      {% bootstrap_form formset.empty_form %}
+  </fieldset>
+  </script>
+
+
+  <!-- buttons - these live outside of the container, above -->
+  <div>
+    <button id="add-proposal" type="button">Agregar</button>
+  </div>
+  <!-- more form stuff -->
+  <input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
+</form>
+<script>
+$(function(){
+  $('#add-proposal').djangoInlineFormAdd({
+    prefix: "proposals",
+    deleteButtonId: "delete-proposal"
+  });
+});
+</script>
+{% endblock content %}

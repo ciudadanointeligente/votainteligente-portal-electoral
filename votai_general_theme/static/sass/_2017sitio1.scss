@@ -221,16 +221,14 @@ td.cal-date{
   top: 270px;
 }
 
-.logo-org {}
-
 .org-info{
   h2{
     font-weight: 700;
     margin-top: 70px;
   }
   p{
-    font-size: 24px;
-    font-family: 'Arvo', serif;
+    font-size: 20px;
+    line-height: 25px;
   }
 }
 
@@ -397,7 +395,7 @@ input[type=file]{
   padding: 25px 20px 35px;
   .logo-ong{
     position: absolute;
-    left: 227px;
+    right: 8%;
   }
 }
 

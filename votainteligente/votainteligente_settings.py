@@ -31,6 +31,7 @@ INSTALLED_APPS = (
     'bootstrap3',
     'formtools',
     # "registration_defaults",
+    'multiselectfield',
     "sass_processor",
     "images",
     'candidator',

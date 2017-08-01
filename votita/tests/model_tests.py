@@ -75,7 +75,9 @@ class KidsGatheringTestCase(ProposingCycleTestCaseBase):
             'others': 10
         }
         gathering = KidsGathering.objects.create(name=u"Título",
-                                                 stats_data=stats_data)
+                                                 stats_data=stats_data,
+                                                 presidents_features=['ingeligente',
+                                                                      'honesto'])
         self.assertTrue(gathering.created)
         self.assertTrue(gathering.updated)
 

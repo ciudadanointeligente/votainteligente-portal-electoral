@@ -23,6 +23,14 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
+    def test_no_template_return_404(self):
+        url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
+        self.user.organization_template.delete()
+        self.user.profile.is_organization = False
+        self.user.profile.save()
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+
     def test_return_basic_data(self):
         self.user.organization_template.content = u'<h1>{{object}}</h1>'
         self.user.organization_template.save()

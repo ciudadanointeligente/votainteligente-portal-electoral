@@ -22,6 +22,11 @@ class CreateGatheringView(CreateView):
     template_name = 'votita/create_gathering.html'
     fields = ['name',]
 
+    def get_success_url(self):
+        return reverse('votita:proposal_for_gathering',
+                      kwargs={'pk':self.object.id})
+
+
 
 ProposalFormSet = inlineformset_factory(KidsGathering,
                                         KidsProposal,

@@ -13,7 +13,7 @@ urlpatterns = [
         name='proposal_for_gathering'),
     url(r'^crear_propuestas_wizard/(?P<pk>\d+)/?$',
         VotitaWizard.as_view(),
-        name='create_proposal_for_gathering'),
+        name='create_proposal_for_gathering_wizard'),
     url(r'^crear_encuentro/?$',
         CreateGatheringView.as_view(),
         name='create_gathering'),

@@ -132,7 +132,7 @@ class VotitaWizardInsideAGathering(ProposingCycleTestCaseBase, WizardDataMixin):
         }
         self.gathering = KidsGathering.objects.create(name=u"Título",
                                                       stats_data=stats_data)
-        self.url = reverse('votita:create_proposal_for_gathering',
+        self.url = reverse('votita:create_proposal_for_gathering_wizard',
                            kwargs={'pk':self.gathering.id})
 
     def test_create_a_proposal_with_a_gathering(self):

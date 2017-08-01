@@ -19,8 +19,15 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
     def test_get_to_create_a_gathering(self):
         self.client.login(username=self.feli.username, password=USER_PASSWORD)
         url = reverse('votita:create_gathering')
-        print url
         response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+    def test_post_to_create_a_gathering(self):
+        self.client.login(username=self.feli.username, password=USER_PASSWORD)
+        url = reverse('votita:create_gathering')
+        data = {'name': u"Título"}
+        response = self.client.post(url, data=data, follow=True)
+        self.assertEquals(response.context['object'].name, data['name'])
         self.assertEquals(response.status_code, 200)
 
     def test_creating_proposal_for_gathering_get_view(self):

@@ -20,7 +20,7 @@ class VotitaWizard(ProposalWizardBase):
 class CreateGatheringView(CreateView):
     model = KidsGathering
     template_name = 'votita/create_gathering.html'
-    fields = ['name',]
+    fields = ['name', 'presidents_features']
 
     def get_success_url(self):
         return reverse('votita:proposal_for_gathering',

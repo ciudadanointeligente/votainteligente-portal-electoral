@@ -6,14 +6,25 @@ from popular_proposal.models import PopularProposal
 from multiselectfield import MultiSelectField
 
 
-PRESIDENTS_FEATURES = (('ingeligente', 'Inteligente'),
-                       ('honesto', 'Honesto'),)
-
-
+PRESIDENTS_FEATURES = (
+ (u'Habilidades intelectuales', (
+   ('ingeligente', 'Inteligente'),
+   ('honesto', 'Honesto')
+  )
+ ),
+ ('Valores', (
+   ('responsabilidad', 'Responsabilidad'),
+   ('transparencia', 'Transparencia'),
+  )
+ ),
+)
 class KidsGathering(models.Model):
     name = models.CharField(max_length=255)
     stats_data = PickledObjectField()
-    presidents_features = MultiSelectField(choices=PRESIDENTS_FEATURES)
+    presidents_features = MultiSelectField(choices=PRESIDENTS_FEATURES,
+                                           null=True,
+                                           max_choices=7,
+                                           max_length=64)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
 

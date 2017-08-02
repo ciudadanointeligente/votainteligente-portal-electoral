@@ -8,7 +8,7 @@ from multiselectfield import MultiSelectField
 
 PRESIDENTS_FEATURES = (
  (u'Habilidades intelectuales', (
-   ('ingeligente', 'Inteligente'),
+   ('inteligente', 'Inteligente'),
    ('honesto', 'Honesto')
   )
  ),
@@ -27,6 +27,10 @@ class KidsGathering(models.Model):
                                            max_length=64)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='votita/images/',
+                              max_length=512,
+                              null=True,
+                              blank=True)
 
 
 class KidsProposal(PopularProposal):

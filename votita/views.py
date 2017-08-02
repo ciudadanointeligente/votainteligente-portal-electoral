@@ -1,5 +1,5 @@
 from popular_proposal.views.wizard import ProposalWizardBase
-from votita.forms.forms import wizard_forms_fields
+from votita.forms.forms import wizard_forms_fields, CreateGatheringForm
 from popular_proposal.forms import (get_form_list,)
 from django.views.generic.edit import CreateView, UpdateView
 from votita.models import KidsProposal, KidsGathering
@@ -18,9 +18,8 @@ class VotitaWizard(ProposalWizardBase):
 
 
 class CreateGatheringView(CreateView):
-    model = KidsGathering
+    form_class = CreateGatheringForm
     template_name = 'votita/create_gathering.html'
-    fields = ['name', 'presidents_features']
 
     def get_success_url(self):
         return reverse('votita:proposal_for_gathering',

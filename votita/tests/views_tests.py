@@ -61,3 +61,10 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         proposal = KidsProposal.objects.get(gathering=gathering)
         self.assertEquals(proposal.title, data['proposals-0-title'])
         self.assertEquals(proposal.proposer, self.feli)
+
+class LandingPage(ProposingCycleTestCaseBase, WizardDataMixin):
+    def test_get_home(self):
+        url = reverse('votita:index')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'votita/index.html')

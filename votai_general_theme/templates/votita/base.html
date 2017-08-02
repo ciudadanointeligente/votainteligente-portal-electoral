@@ -42,17 +42,13 @@
   <script src="{% static 'js/django-inline-form.js' %}"></script>
 </head>
 <body>
-  <div>
-    {% if config.SHOW_NAVBAR or user.is_authenticated %}
-      {% include '_navbar.html' %}
-    {% endif %}
+  {% if config.SHOW_NAVBAR or user.is_authenticated %}
+    {% include 'votita/_navbar.html' %}
+  {% endif %}
 
-    <!-- content -->
-    <div class="container content_padding">
-      {% block content %}{% endblock content %}
-    </div>
-    <!-- eocontent -->
-  </div>
+  <!-- content -->
+  {% block content %}{% endblock content %}
+  <!-- eocontent -->
 
   <!-- footer -->
   {% include '_footer.html' %}

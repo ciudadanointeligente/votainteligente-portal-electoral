@@ -2,9 +2,12 @@
 from django.conf.urls import url
 from votita.views import (VotitaWizard,
                           CreateGatheringView,
-                          CreateProposalsForGathering)
+                          CreateProposalsForGathering,)
+from django.views.generic import TemplateView
 
 urlpatterns = [
+    url(r'^/?$', TemplateView.as_view(template_name="votita/index.html"),
+                                      name='index'),
     url(r'^crear/?$',
         VotitaWizard.as_view(),
         name='create_proposal'),

@@ -33,7 +33,6 @@ class CreateGatheringFormTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(gathering.presidents_features)
 
     def test_update_gathering(self):
-
         gathering = KidsGathering.objects.create(name=u"Título",
                                                  presidents_features=['ingeligente',
                                                                       'honesto'])

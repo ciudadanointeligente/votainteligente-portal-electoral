@@ -1,5 +1,7 @@
 from popular_proposal.views.wizard import ProposalWizardBase
-from votita.forms.forms import wizard_forms_fields, CreateGatheringForm
+from votita.forms.forms import (wizard_forms_fields,
+                                CreateGatheringForm,
+                                UpdateGatheringForm)
 from popular_proposal.forms import (get_form_list,)
 from django.views.generic.edit import CreateView, UpdateView
 from votita.models import KidsProposal, KidsGathering
@@ -7,6 +9,7 @@ from django.forms import inlineformset_factory
 from django.views.generic.base import View
 from django.shortcuts import render_to_response, redirect
 from django.core.urlresolvers import reverse
+from django.views.generic.detail import DetailView
 
 
 wizard_form_list = get_form_list(wizard_forms_fields=wizard_forms_fields)
@@ -26,6 +29,20 @@ class CreateGatheringView(CreateView):
                       kwargs={'pk':self.object.id})
 
 
+class UpdateGatheringView(UpdateView):
+    model = KidsGathering
+    form_class = UpdateGatheringForm
+    template_name = 'votita/update_gathering.html'
+
+    def get_success_url(self):
+        return reverse('votita:thanks_for_creating_a_gathering',
+                       kwargs={'pk': self.object.pk})
+
+class ThanksForCreating(DetailView):
+    model = KidsGathering
+    template_name = 'votita/thanks_for_creating_a_gathering.html'
+    context_object_name = 'gathering'
+
 
 ProposalFormSet = inlineformset_factory(KidsGathering,
                                         KidsProposal,
@@ -36,7 +53,7 @@ class CreateProposalsForGathering(UpdateView):
     model = KidsGathering
     template_name = 'votita/agregar_propuestas_a_encuentro.html'
     fields = []
-    success_url = 'votita:proposal_for_gathering'
+    success_url = 'votita:update_gathering'
 
     def get_context_data(self, *args, **kwargs):
         context = super(CreateProposalsForGathering, self).get_context_data(*args, **kwargs)

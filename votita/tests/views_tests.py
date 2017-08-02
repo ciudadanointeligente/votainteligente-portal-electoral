@@ -4,6 +4,7 @@ from popular_proposal.tests.wizard_tests import WizardDataMixin
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from votita.models import KidsProposal, KidsGathering
+from votita.forms.forms import UpdateGatheringForm
 
 
 USER_PASSWORD = 'secr3t'
@@ -58,10 +59,53 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
                 "proposals-MAX_NUM_FORMS": 1000
                 }
         response = self.client.post(url, data=data)
-
+        update_gathering_url = reverse('votita:update_gathering',
+                                       kwargs={'pk':gathering.id})
+        self.assertRedirects(response, update_gathering_url)
         proposal = KidsProposal.objects.get(gathering=gathering)
         self.assertEquals(proposal.title, data['proposals-0-title'])
         self.assertEquals(proposal.proposer, self.feli)
+
+    def test_update_gathering_get(self):
+        gathering = KidsGathering.objects.create(name=u"Título")
+        url = reverse('votita:update_gathering',
+                      kwargs={'pk':gathering.id})
+        self.client.login(username=self.feli.username, password=USER_PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        form = response.context['form']
+        self.assertIsInstance(form, UpdateGatheringForm)
+        self.assertEquals(form.instance, gathering)
+
+    def test_get_thanks_for_creating_a_proposal(self):
+        gathering = KidsGathering.objects.create(name=u"Título")
+        url = reverse('votita:thanks_for_creating_a_gathering',
+                      kwargs={'pk':gathering.id})
+        self.client.login(username=self.feli.username, password=USER_PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['gathering'], gathering)
+
+    def test_update_gathering_post(self):
+        gathering = KidsGathering.objects.create(name=u"Título")
+        url = reverse('votita:update_gathering',
+                      kwargs={'pk':gathering.id})
+        self.client.login(username=self.feli.username, password=USER_PASSWORD)
+        photo = self.get_image()
+        data = {
+            'male': 10,
+            'female': 11,
+            'others': 10,
+            'image': photo
+        }
+        response = self.client.post(url, data=data)
+        thanks_url = reverse('votita:thanks_for_creating_a_gathering',
+                             kwargs={'pk':gathering.id})
+        self.assertRedirects(response, thanks_url)
+        g = KidsGathering.objects.get(id=gathering.id)
+        self.assertEquals(g.stats_data['male'], data['male'])
+        self.assertTrue(g.image)
+
 
 class LandingPage(ProposingCycleTestCaseBase, WizardDataMixin):
     def test_get_home(self):

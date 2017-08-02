@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container">
-  <form action="/your-name/" method="post">
+  <form action="{% url 'votita:create_gathering' %}" method="post">
       {% csrf_token %}
       {% bootstrap_form form %}
       <input type="submit" value="Enviar" class="btn btn-default" />

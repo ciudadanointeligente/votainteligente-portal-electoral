@@ -1,0 +1,5 @@
+<form method='POST' action="{% url 'votita:update_gathering' pk=object.pk %}">
+  {% csrf_token %}
+  {{form}}
+  <button type="submit" value="vamos jefe!" />
+</form>

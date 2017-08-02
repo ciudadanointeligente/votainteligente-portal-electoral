@@ -20,6 +20,7 @@ from django.template.loader import get_template
 from PIL import Image, ImageDraw, ImageFont
 from model_utils.managers import InheritanceQuerySetMixin
 import textwrap
+from django.contrib.contenttypes.models import ContentType
 
 
 class NeedingModerationManager(models.Manager):
@@ -209,6 +210,8 @@ class PopularProposal(models.Model, OGPMixin):
     is_local_meeting = models.BooleanField(default=False)
     is_reported = models.BooleanField(default=False)
 
+    content_type = models.ForeignKey(ContentType, null=True)
+
     ogp_enabled = True
 
     ordered = ProposalsOrderedManager.from_queryset(ProposalQuerySet)()
@@ -222,6 +225,14 @@ class PopularProposal(models.Model, OGPMixin):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        created = self.pk is not None
+        if not created:
+            content_type = ContentType.objects.get_for_model(self.__class__)
+            self.content_type = content_type
+        super(PopularProposal, self).save(*args, **kwargs)
+
 
     def get_absolute_url(self):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})

@@ -14,6 +14,7 @@ from votita.models import KidsProposal, KidsGathering
 from django.core.urlresolvers import reverse
 from votita.forms.forms import wizard_forms_fields
 from constance.test import override_config
+from django.contrib.contenttypes.models import ContentType
 
 
 USER_PASSWORD = 'secr3t'
@@ -36,6 +37,9 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
                                                        )
         self.assertIsInstance(popular_proposal, PopularProposal)
         self.assertTrue(popular_proposal.is_kids)
+        content_type = popular_proposal.content_type
+        expected_content_type = ContentType.objects.get_for_model(KidsProposal)
+        self.assertEquals(content_type, expected_content_type)
 
     def test_card(self):
         kids_proposal = KidsProposal.objects.create(proposer=self.fiera,

@@ -5,10 +5,6 @@
 
 
 {% block everything %}
-{% if config.LAUNCHED or user.is_staff %}
 {% include "index_first_launch.html" %}
-{% else %}
-{% include "index_pre_launch.html" %}
-{% endif %}
 
 {% endblock everything %}

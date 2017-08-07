@@ -355,7 +355,6 @@ POSSIBLE_GENERATING_AREAS_FILTER = []
 
 CONSTANCE_CONFIG = {
     'SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES':(0,'Duracion cache media naranja'),
-    'LAUNCHED':(False,'Está el sitio lanzado???'),
     'INFINITE_CACHE':(1440,'Tiempo Cache'),
     'DEFAULT_AREA': ('chile-pais', u'El territorio que mostramos por defecto'),
     'AREAS_ARE_FORCED_IN_PROPOSALS' : (False, u'No te preguntamos por el territorio de la propuesta y asumimos que es el que viene por defecto'),
@@ -375,7 +374,6 @@ CONSTANCE_CONFIG = {
     'HIDDEN_AREAS': ('fundacion-ciudadano-inteligente', 'Seccion oculta'),
     'NAV_BAR': ('profiles, questionary, soulmate, facetoface, ask, ranking', 'Menu de navegacion'),
     'CAN_CREATE_TEST_PROPOSAL': (False, u'Se pueden crear propuestas de prueba?'),
-    'SHOW_NAVBAR': (False, u'Se debe mostrar el navbar a los visitantes??? (atento aquí por que a los usuarios loggeados se lo vamos a mostrar igual)'),
     'SEARCH_SUBSCRIPTION_ENABLED': (True, u'Suscribirse a una búsqueda está habilitado? esto sólo esconde los links.'),
     'WEBSITE_METADATA_AUTHOR': ('', 'Nombre del autor'),
     'WEBSITE_METADATA_DESCRIPTION': ('', 'Descripcion del sitio'),

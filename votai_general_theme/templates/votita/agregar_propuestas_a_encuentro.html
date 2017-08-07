@@ -5,9 +5,11 @@
 
 {% endblock extra_scripts %}
 
+{% block title %}- Agregar propuestas al encuentro infantil{% endblock title %}
+
 {% block content %}
 <div class="container">
-  <h1 class="page-header">Agregando propuestas para {{object.name}}</h1>
+  <h1 class="page-header">Agregando propuestas para <small>"{{object.name}}"</small></h1>
   <form method="post" action="{% url 'votita:proposal_for_gathering' pk=object.pk %}">{% csrf_token %}
     <!-- more form stuff -->
     {{ formset.management_form }}

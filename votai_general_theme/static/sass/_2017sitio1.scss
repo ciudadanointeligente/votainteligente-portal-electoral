@@ -101,7 +101,7 @@ td.cal-date{
   letter-spacing: 0;
 }
 
-#you-org{
+#proposals-counter{
   min-height: 60px;
   color: white;
   font-family: 'Montserrat', sans-serif;
@@ -109,7 +109,30 @@ td.cal-date{
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 12px;
+  padding-top: 10px;
+}
+
+.counter-number{
+  font-family: 'Arvo', serif;
+  color: $yellow;
+  font-weight: 700;
+  font-size: 44px;
+  position: relative;
+  top: 9px;
+}
+
+#you-org{
+  min-height: 60px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 10px;
   padding-top: 12px;
+  .btn{
+    font-size: 10px;
+  }
 }
 
 #actions{

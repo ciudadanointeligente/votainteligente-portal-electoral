@@ -29,7 +29,7 @@
       <h2>Propuestas generadas</h2>
       <ul>
         {% for proposal in object.proposals.all %}
-        <li>{{ proposal }}</li>
+        <li>{{ proposal }} en la categoría {{ proposal.clasification }}</li>
         {% endfor %}
       </ul>
     </div>

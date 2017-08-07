@@ -34,19 +34,19 @@
     <div class="row">
       <h2 class="text-center">Propuestas ciudadanas</h2>
       <div class="col-md-4 text-center">
-        <a href="{% url 'encuentro_ciudadano' %}" onclick="ga('send', 'event', 'home-realiza-encuentro', 'click')">
-        <div class="action-encuentro"><p class="action">Realiza un encuentro</p></div>
-        </a>
+        <div class="action-encuentro">
+          <a href="{% url 'encuentro_ciudadano' %}" onclick="ga('send', 'event', 'home-realiza-encuentro', 'click')" class="btn btn-line">Realiza un encuentro</a>
+        </div>
       </div>
       <div class="col-md-4 text-center">
-        <a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" onclick="ga('send', 'event', 'home-crea-propuesta', 'click')">
-        <div class="action-crea"><p class="action">Crea una propuesta</p></div>
-        </a>
+        <div class="action-crea">
+          <a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" onclick="ga('send', 'event', 'home-crea-propuesta', 'click')" class="btn btn-line">Crea una propuesta</a>
+        </div>
       </div>
       <div class="col-md-4 text-center">
-        <a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'home-conoce-apoya', 'click')">
-        <div class="action-apoya"><p class="action">Conoce y apoya propuestas</p></div>
-        </a>
+        <div class="action-apoya">
+          <a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'home-conoce-apoya', 'click')" class="btn btn-line">Conoce y apoya propuestas</a>
+        </div>
       </div>
     </div>
   </div>

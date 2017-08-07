@@ -60,11 +60,9 @@
     {% block extra_css %}
     {% endblock extra_css %}
 </head>
-    <body{% if config.LAUNCHED or config.SHOW_NAVBAR or user.is_authenticated %} class="navbar_visible"{% endif %}>
+    <body class="navbar_visible">
       <div>
-        {% if config.SHOW_NAVBAR or user.is_authenticated %}
-          {% include '_navbar.html' %}
-        {% endif %}
+        {% include '_navbar.html' %}
         {% block everything %}
         <div class="{% block content_container %}container content_padding{% endblock content_container %}">
             {% block content %}

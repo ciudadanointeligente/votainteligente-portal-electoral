@@ -26,18 +26,14 @@
   Para apoyar una propuesta debes estar registrado.
 </div>
 {% endif %}
-	<div class="col-xs-12 col-md-6">
-				<h3>{% trans '¿Ya tienes cuenta?' %}</h3>
-				<p>Si eres candidato debes ingresar con el usuario y contraseña que enviamos a tu correo con el asunto "¡Bienvenida/o a Vota Inteligente!"</p>
-        <!-- form -->
-          {% basic_login url=next %}
-				<!-- form -->
-				<div>
-					{% include '_social_login_buttons.html' with url=next %}
-				</div>
-	</div>
-
 {% block login_tabs %}
   {% include '_login_tabs.html' with next=next %}
 {% endblock login_tabs %}
+<div class="col-md-6 col-md-offset-3">
+        <!-- form -->
+          {% basic_login url=next %}
+				<!-- form -->
+</div>
+
+
 {% endblock content %}

@@ -1,9 +1,10 @@
 {% load i18n %}
 {% load bootstrap3 %}
+
 <form  role="form" action="{% url 'backend_citizen:create_group' %}" method="post" class="landing-form">
     {% csrf_token %}
     {% bootstrap_form form show_label=false show_help=false %}
     <div class="form-actions">
-      <input type="submit" class="btn btn-success pull-right" id="" value="{% trans 'Regístrame' %}"/>
+      <input type="submit" class="btn btn-success btn-block" id="" value="{% trans 'Regístrame' %}"/>
     </div>
 </form>

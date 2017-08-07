@@ -1,11 +1,12 @@
 from popular_proposal.views.wizard import ProposalWizardBase
 from votita.forms.forms import (wizard_forms_fields,
                                 CreateGatheringForm,
-                                UpdateGatheringForm)
+                                UpdateGatheringForm,
+                                TOPIC_CHOICES)
 from popular_proposal.forms import (get_form_list,)
 from django.views.generic.edit import CreateView, UpdateView
 from votita.models import KidsProposal, KidsGathering
-from django.forms import inlineformset_factory
+from django.forms import inlineformset_factory, ChoiceField
 from django.views.generic.base import View
 from django.shortcuts import render_to_response, redirect
 from django.core.urlresolvers import reverse
@@ -48,9 +49,15 @@ class GatheringView(DetailView):
     template_name = 'votita/view_gathering_detail.html'
 
 
+def formfield_callback(field):
+    if field.name == 'clasification':
+        return ChoiceField(choices=TOPIC_CHOICES)
+    return field.formfield()
+
 ProposalFormSet = inlineformset_factory(KidsGathering,
                                         KidsProposal,
-                                        fields=('title',))
+                                        fields=('title','clasification'),
+                                        formfield_callback=formfield_callback)
 
 
 class CreateProposalsForGathering(UpdateView):

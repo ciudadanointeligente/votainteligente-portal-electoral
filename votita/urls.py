@@ -9,7 +9,7 @@ from votita.views import (VotitaWizard,
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    url(r'^/?$', TemplateView.as_view(template_name="votita/index.html"),
+    url(r'^$', TemplateView.as_view(template_name="votita/index.html"),
                                       name='index'),
     url(r'^crear/?$',
         VotitaWizard.as_view(),

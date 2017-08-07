@@ -52,6 +52,7 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
 
         self.client.login(username=self.feli.username, password=USER_PASSWORD)
         data = {'proposals-0-title': "perrito",
+                'proposals-0-clasification': "ciencias",
                 "proposals-1-gathering": 1,
                 "proposals-TOTAL_FORMS": 1,
                 "proposals-INITIAL_FORMS": 0,
@@ -65,6 +66,7 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         proposal = KidsProposal.objects.get(gathering=gathering)
         self.assertEquals(proposal.title, data['proposals-0-title'])
         self.assertEquals(proposal.proposer, self.feli)
+        self.assertEquals(proposal.clasification, data['proposals-0-clasification'])
 
     def test_update_gathering_get(self):
         gathering = KidsGathering.objects.create(name=u"Título")

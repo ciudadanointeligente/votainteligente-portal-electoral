@@ -1,3 +1,4 @@
+# coding=utf-8
 from __future__ import unicode_literals
 from django.db import models
 from django.template.loader import get_template
@@ -9,12 +10,40 @@ from multiselectfield import MultiSelectField
 PRESIDENTS_FEATURES = (
  (u'Habilidades intelectuales', (
    ('inteligente', 'Inteligente'),
-   ('honesto', 'Honesto')
+   ('creativo', 'Creativo/a'),
+   ('objetivo', 'Objetivo'),
+   ('con_iniciativa', 'Con Iniciativa'),
+   ('profesional', 'Profesional'),
+   ('culto', 'Culto/a'),
+   ('bilingue', 'Bilingüe'),
   )
  ),
  ('Valores', (
-   ('responsabilidad', 'Responsabilidad'),
-   ('transparencia', 'Transparencia'),
+   ('responsable', 'Responsable'),
+   ('transparente', 'Transparente'),
+   ('honesto', 'Honesto/a'),
+   ('equitativo', 'Equitativo/a'),
+   ('justo', 'Justo/a'),
+   ('comprometido', 'Comprometido/a'),
+  )
+ ),
+ ('Habilidades personales', (
+   ('integrador', 'Integrador/a'),
+   ('motivador', 'Motivador/a'),
+   ('abierto', 'Abierto/a a escuchar'),
+   ('accesible', 'Accesible'),
+   ('empatico', 'Empático/a'),
+   ('confiable', 'Confiable'),
+  )
+ ),
+ ('Habilidades de rol', (
+   ('lider', 'Lider'),
+   ('administrador', 'Buen Administrador/a'),
+   ('negociante', 'Buen Negociante'),
+   ('comunicador', 'Buen Comunicador/a'),
+   ('influyente', 'Influyente'),
+   ('eficiente', 'Eficiente'),
+   ('experiencia', 'Con experiencia'),
   )
  ),
 )
@@ -25,7 +54,8 @@ class KidsGathering(models.Model):
     presidents_features = MultiSelectField(choices=PRESIDENTS_FEATURES,
                                            null=True,
                                            max_choices=7,
-                                           max_length=64)
+                                           max_length=64,
+                                           verbose_name="Características de un buen presidente")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='votita/images/',

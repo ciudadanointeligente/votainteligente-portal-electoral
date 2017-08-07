@@ -47,6 +47,16 @@
   }
 }
 
+@media screen and (max-width: 495px) {
+  #you-org{
+    .btn{
+      margin-top: 10px;
+    }
+  }
+}
+
+
+
 @media screen and (max-width: 425px) {
   .content_padding {
     padding-top: 20px;
@@ -62,6 +72,13 @@
     .paso {
       font-size: 11px;
     }
+  }
+}
+
+@media screen and (max-width: 397px) {
+  .counter-number{
+    font-size: 32px;
+    top: 5px;
   }
 }
 

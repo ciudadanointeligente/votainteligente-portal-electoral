@@ -12,6 +12,17 @@ class CreateGatheringForm(ModelForm):
         model = KidsGathering
         fields = ['name', 'presidents_features']
 
+    def __init__(self, *args, **kwargs):
+        self.proposer = kwargs.pop('proposer')
+        super(CreateGatheringForm, self).__init__(*args, **kwargs)
+
+    def save(self):
+        instance = super(CreateGatheringForm, self).save(commit=False)
+        instance.proposer = self.proposer
+        instance.save()
+        return instance
+
+
 
 class UpdateGatheringForm(ModelForm):
     male = forms.IntegerField(label = "# Hombres",

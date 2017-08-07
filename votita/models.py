@@ -5,6 +5,7 @@ from django.template.loader import get_template
 from picklefield.fields import PickledObjectField
 from popular_proposal.models import PopularProposal
 from multiselectfield import MultiSelectField
+from django.contrib.auth.models import User
 
 
 PRESIDENTS_FEATURES = (
@@ -48,6 +49,7 @@ PRESIDENTS_FEATURES = (
  ),
 )
 class KidsGathering(models.Model):
+    proposer = models.ForeignKey(User, related_name="kids_proposals")
     name = models.CharField(max_length=512,
                             verbose_name="Nombre del encuentro")
     stats_data = PickledObjectField()

@@ -4,7 +4,7 @@ from popular_proposal.tests.wizard_tests import WizardDataMixin
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from votita.models import KidsProposal, KidsGathering
-from votita.forms.forms import UpdateGatheringForm
+from votita.forms.forms import UpdateGatheringForm, TOPIC_CHOICES
 
 
 USER_PASSWORD = 'secr3t'
@@ -31,9 +31,11 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         response = self.client.post(url, data=data, follow=True)
         self.assertEquals(response.context['object'].name, data['name'])
         self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['object'].proposer, self.feli)
 
     def test_creating_proposal_for_gathering_get_view(self):
-        gathering = KidsGathering.objects.create(name=u"Título")
+        gathering = KidsGathering.objects.create(name=u"Título",
+                                                 proposer=self.feli)
         url = reverse('votita:proposal_for_gathering',
                       kwargs={'pk':gathering.id})
         self.client.login(username=self.feli.username, password=USER_PASSWORD)
@@ -46,13 +48,14 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         form = formset.forms
 
     def test_creating_proposal_for_gathering_post_view(self):
-        gathering = KidsGathering.objects.create(name=u"Título")
+        gathering = KidsGathering.objects.create(name=u"Título",
+                                                 proposer=self.feli)
         url = reverse('votita:proposal_for_gathering',
                       kwargs={'pk':gathering.id})
 
         self.client.login(username=self.feli.username, password=USER_PASSWORD)
         data = {'proposals-0-title': "perrito",
-                'proposals-0-clasification': "ciencias",
+                'proposals-0-clasification': TOPIC_CHOICES[1][0],
                 "proposals-1-gathering": 1,
                 "proposals-TOTAL_FORMS": 1,
                 "proposals-INITIAL_FORMS": 0,
@@ -69,7 +72,8 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         self.assertEquals(proposal.clasification, data['proposals-0-clasification'])
 
     def test_update_gathering_get(self):
-        gathering = KidsGathering.objects.create(name=u"Título")
+        gathering = KidsGathering.objects.create(name=u"Título",
+                                                 proposer=self.feli)
         url = reverse('votita:update_gathering',
                       kwargs={'pk':gathering.id})
         self.client.login(username=self.feli.username, password=USER_PASSWORD)
@@ -80,7 +84,8 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         self.assertEquals(form.instance, gathering)
 
     def test_get_thanks_for_creating_a_proposal(self):
-        gathering = KidsGathering.objects.create(name=u"Título")
+        gathering = KidsGathering.objects.create(name=u"Título",
+                                                 proposer=self.feli)
         url = reverse('votita:thanks_for_creating_a_gathering',
                       kwargs={'pk':gathering.id})
         self.client.login(username=self.feli.username, password=USER_PASSWORD)
@@ -89,7 +94,8 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         self.assertEquals(response.context['gathering'], gathering)
 
     def test_update_gathering_post(self):
-        gathering = KidsGathering.objects.create(name=u"Título")
+        gathering = KidsGathering.objects.create(name=u"Título",
+                                                 proposer=self.feli)
         url = reverse('votita:update_gathering',
                       kwargs={'pk':gathering.id})
         self.client.login(username=self.feli.username, password=USER_PASSWORD)
@@ -116,7 +122,8 @@ class GatheringViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         self.feli.save()
 
     def test_show_gathering_info(self):
-        gathering = KidsGathering.objects.create(name=u"Título")
+        gathering = KidsGathering.objects.create(name=u"Título",
+                                                 proposer=self.feli)
         url = reverse('votita:ver_encuentro',
                       kwargs={'pk':gathering.id})
         response = self.client.get(url)

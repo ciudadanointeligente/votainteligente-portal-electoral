@@ -25,6 +25,11 @@ class CreateGatheringView(CreateView):
     form_class = CreateGatheringForm
     template_name = 'votita/create_gathering.html'
 
+    def get_form_kwargs(self):
+        kwargs = super(CreateGatheringView, self).get_form_kwargs()
+        kwargs['proposer'] = self.request.user
+        return kwargs
+
     def get_success_url(self):
         return reverse('votita:proposal_for_gathering',
                       kwargs={'pk':self.object.id})
@@ -58,6 +63,7 @@ ProposalFormSet = inlineformset_factory(KidsGathering,
                                         KidsProposal,
                                         fields=('title','clasification'),
                                         formfield_callback=formfield_callback,
+                                        can_delete=False,
                                         labels={
                                             'title': u"La propuesta",
                                         })

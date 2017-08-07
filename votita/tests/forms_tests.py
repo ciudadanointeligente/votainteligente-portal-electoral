@@ -26,14 +26,15 @@ class CreateGatheringFormTestCase(ProposingCycleTestCaseBase):
     def test_create_a_gathering(self):
         data = {"name": "Segundo medio C",
                 "presidents_features": ["inteligente"]}
-        form = CreateGatheringForm(data)
+        form = CreateGatheringForm(data, proposer=self.feli)
         self.assertTrue(form.is_valid())
         gathering = form.save()
         self.assertEquals(gathering.name, data['name'])
         self.assertTrue(gathering.presidents_features)
 
     def test_update_gathering(self):
-        gathering = KidsGathering.objects.create(name=u"Título",
+        gathering = KidsGathering.objects.create(proposer=self.feli,
+                                                 name=u"Título",
                                                  presidents_features=['ingeligente',
                                                                       'honesto'])
         photo = self.get_image()

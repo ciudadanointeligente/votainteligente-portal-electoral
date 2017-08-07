@@ -78,7 +78,8 @@ class KidsGatheringTestCase(ProposingCycleTestCaseBase):
             'female': 10,
             'others': 10
         }
-        gathering = KidsGathering.objects.create(name=u"Título",
+        gathering = KidsGathering.objects.create(proposer=self.fiera,
+                                                 name=u"Título",
                                                  stats_data=stats_data,
                                                  presidents_features=['ingeligente',
                                                                       'honesto'])
@@ -91,7 +92,8 @@ class KidsGatheringTestCase(ProposingCycleTestCaseBase):
             'female': 10,
             'others': 10
         }
-        gathering = KidsGathering.objects.create(name=u"Título",
+        gathering = KidsGathering.objects.create(proposer=self.fiera,
+                                                 name=u"Título",
                                                  stats_data=stats_data)
         kids_proposal = KidsProposal.objects.create(proposer=self.fiera,
                                                     area=self.arica,
@@ -136,7 +138,8 @@ class VotitaWizardInsideAGathering(ProposingCycleTestCaseBase, WizardDataMixin):
             'female': 10,
             'others': 10
         }
-        self.gathering = KidsGathering.objects.create(name=u"Título",
+        self.gathering = KidsGathering.objects.create(proposer=self.feli,
+                                                      name=u"Título",
                                                       stats_data=stats_data)
         self.url = reverse('votita:create_proposal_for_gathering_wizard',
                            kwargs={'pk':self.gathering.id})

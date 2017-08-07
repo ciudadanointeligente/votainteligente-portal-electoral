@@ -101,7 +101,7 @@ td.cal-date{
   letter-spacing: 0;
 }
 
-#you-org{
+#proposals-counter{
   min-height: 60px;
   color: white;
   font-family: 'Montserrat', sans-serif;
@@ -109,7 +109,31 @@ td.cal-date{
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 12px;
+  padding-top: 10px;
+}
+
+.counter-number{
+  font-family: 'Arvo', serif;
+  color: $blue;
+  font-weight: 700;
+  font-size: 44px;
+  position: relative;
+  top: 9px;
+}
+
+#you-org{
+  min-height: 60px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 10px;
   padding-top: 12px;
+  line-height: 12px;
+  .btn{
+    font-size: 10px;
+  }
 }
 
 #actions{
@@ -131,11 +155,6 @@ td.cal-date{
   background-position: center;
   padding-top: 180px;
   margin-bottom: 70px;
-  &:hover{
-    color: $blue;
-    background: url("../img/a-encuentro-h.svg") no-repeat;
-    background-position: center;
-  }
 }
 
 .action-crea{
@@ -145,11 +164,6 @@ td.cal-date{
   background-position: center;
   padding-top: 180px;
   margin-bottom: 70px;
-  &:hover{
-    color: $blue;
-    background: url("../img/a-crea-h.svg") no-repeat;
-    background-position: center;
-  }
 }
 
 .action-apoya{
@@ -159,15 +173,19 @@ td.cal-date{
   background-position: center;
   padding-top: 180px;
   margin-bottom: 70px;
-  &:hover{
-    color: $blue;
-    background: url("../img/a-apoya-h.svg") no-repeat;
-    background-position: center;
-  }
 }
 
 #education{
   margin-bottom: 60px;
+  .btn{
+    font-size: 11px;
+  }
+  h2 > a{
+    color: $grey-one;
+    &:hover{
+      color: $blue;
+    }
+  }
 }
 
 .edu-1{
@@ -538,14 +556,6 @@ input[type=file]{
   border-radius: 5px;
   height: 230px;
   padding: 30px 15px;
-  img{
-    margin: 0 auto;
-    height: 140px;
-    margin-bottom: 15px;
-  }
-}
-
-.set-guide{
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   letter-spacing: 1.3px;
@@ -556,8 +566,12 @@ input[type=file]{
   &:hover{
     color: $blue;
   }
+  img{
+    margin: 0 auto;
+    height: 140px;
+    margin-bottom: 15px;
+  }
 }
-
 
 /*Botones*/
 .btn-blue{
@@ -572,11 +586,28 @@ input[type=file]{
 .btn-white{
   background-color: white;
   color: $grey-one;
-  word-wrap:break-word;
-  white-space: normal;
   &:hover{
     background-color: $grey-one;
     color: white;
+  }
+}
+
+.btn-line{
+  background-color: white;
+  color: $grey-one;
+  border: 3px solid $grey-five;
+  &:hover{
+    border: 3px solid $grey-one;
+    background-color: $grey-one;
+    color: white;
+  }
+}
+
+.btn{
+  word-wrap: break-word;
+  white-space: normal;
+  &:hover{
+  box-shadow: none;
   }
 }
 

@@ -43,6 +43,10 @@ class ThanksForCreating(DetailView):
     template_name = 'votita/thanks_for_creating_a_gathering.html'
     context_object_name = 'gathering'
 
+class GatheringView(DetailView):
+    model = KidsGathering
+    template_name = 'votita/view_gathering_detail.html'
+
 
 ProposalFormSet = inlineformset_factory(KidsGathering,
                                         KidsProposal,

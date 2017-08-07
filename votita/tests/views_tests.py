@@ -106,6 +106,20 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         self.assertEquals(g.stats_data['male'], data['male'])
         self.assertTrue(g.image)
 
+class GatheringViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
+    def setUp(self):
+        super(GatheringViewTestCase, self).setUp()
+        self.feli = User.objects.get(username='feli')
+        self.feli.set_password(USER_PASSWORD)
+        self.feli.save()
+
+    def test_show_gathering_info(self):
+        gathering = KidsGathering.objects.create(name=u"Título")
+        url = reverse('votita:ver_encuentro',
+                      kwargs={'pk':gathering.id})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
 
 class LandingPage(ProposingCycleTestCaseBase, WizardDataMixin):
     def test_get_home(self):

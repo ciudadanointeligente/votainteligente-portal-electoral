@@ -49,15 +49,18 @@ class GatheringView(DetailView):
     template_name = 'votita/view_gathering_detail.html'
 
 
-def formfield_callback(field):
+def formfield_callback(field, **kwargs):
     if field.name == 'clasification':
-        return ChoiceField(choices=TOPIC_CHOICES)
-    return field.formfield()
+        return ChoiceField(choices=TOPIC_CHOICES, **kwargs)
+    return field.formfield(**kwargs)
 
 ProposalFormSet = inlineformset_factory(KidsGathering,
                                         KidsProposal,
                                         fields=('title','clasification'),
-                                        formfield_callback=formfield_callback)
+                                        formfield_callback=formfield_callback,
+                                        labels={
+                                            'title': u"La propuesta",
+                                        })
 
 
 class CreateProposalsForGathering(UpdateView):

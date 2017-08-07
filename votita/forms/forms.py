@@ -14,12 +14,15 @@ class CreateGatheringForm(ModelForm):
 
 
 class UpdateGatheringForm(ModelForm):
-    male = forms.IntegerField(label = "# Hombres participantes",
-                              min_value = 0,)
-    female = forms.IntegerField(label = "# Mujeres participantes",
-                                min_value = 0,)
-    others = forms.IntegerField(label = "Otros participantes",
-                                min_value = 0,)
+    male = forms.IntegerField(label = "# Hombres",
+                              min_value = 0,
+                              initial=0)
+    female = forms.IntegerField(label = "# Mujeres",
+                                min_value = 0,
+                                initial=0)
+    others = forms.IntegerField(label = "# Otros",
+                                min_value = 0,
+                                initial=0)
     class Meta:
         model = KidsGathering
         fields = ['image']
@@ -41,39 +44,14 @@ class UpdateGatheringForm(ModelForm):
         return instance
 
 TOPIC_CHOICES = (('', u'Selecciona una categoría'),
-                 ('asistencia', u'Asistencia y protección social'),
-                 ('ciencias', u'Ciencias'),
-                 ('cultura', u'Cultura'),
-                 ('deporte', u'Deporte'),
-                 ('derechoshumanos', u'Derechos Humanos'),
-                 ('derechos', u'Derechos Sociales'),
-                 ('emergencia', u'Desastres Naturales'),
-                 ('economia', u'Economía'),
-                 ('educacion', u'Educación'),
-                 ('empleo', u'Empleo'),
-                 ('energia', u'Energía'),
-                 ('genero', u'Equidad y género'),
-                 ('diversidad', u'Inclusión'),
-                 ('infancia', u'Infancia y juventud'),
-                 ('justicia', u'Justicia'),
-                 ('medioambiente', u'Medio ambiente'),
-                 ('medios', u'Medios de comunicación'),
-                 ('migracion', u'Migración'),
-                 ('mineria', u'Minería'),
-                 ('pensiones', u'Pensiones'),
-                 ('participacion', u'Participación'),
-                 ('prevision', u'Previsión'),
-                 ('proteccionsocial', u'Protección social'),
-                 ('pueblosoriginarios', u'Pueblos originarios'),
-                 ('recursosnaturales', u'Recursos naturales'),
-                 ('salud', u'Salud'),
-                 ('seguridad', u'Seguridad'),
-                 ('sustentabilida', u'Sustentabilidad'),
-                 ('terceraedad', u'Tercera Edad'),
-                 ('trabajo', u'Trabajo'),
-                 ('transparencia', u'Transparencia'),
-                 ('transporte', u'Transporte'),
-                 ('espaciospublicos', u'Urbanismo y Espacios públicos'),
+                 ('proteccion_y_familia', u'Protección y familia'),
+                 ('educacion_y_trabajo', u'Educación y trabajo'),
+                 ('tecnologia', u'Tecnología y comunicaciones'),
+                 ('diversidad', u'Diversidad e integración'),
+                 ('cultura', u'Cultura y tiempo libre'),
+                 ('medio_ambiente', u'Medio ambiente'),
+                 ('salud', u'Salud y bienestar'),
+                 ('politica', u'Política y participación'),
                  )
 
 

@@ -48,13 +48,13 @@ PRESIDENTS_FEATURES = (
  ),
 )
 class KidsGathering(models.Model):
-    name = models.CharField(max_length=255,
+    name = models.CharField(max_length=512,
                             verbose_name="Nombre del encuentro")
     stats_data = PickledObjectField()
     presidents_features = MultiSelectField(choices=PRESIDENTS_FEATURES,
                                            null=True,
-                                           max_choices=7,
-                                           max_length=64,
+                                           max_choices=10,
+                                           max_length=512,
                                            verbose_name="Características de un buen presidente")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)

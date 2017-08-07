@@ -78,13 +78,16 @@ class KidsGatheringTestCase(ProposingCycleTestCaseBase):
             'female': 10,
             'others': 10
         }
+        a_comuna = Area.objects.filter(classification='Comuna').first()
         gathering = KidsGathering.objects.create(proposer=self.fiera,
                                                  name=u"Título",
+                                                 generated_at=a_comuna,
                                                  stats_data=stats_data,
                                                  presidents_features=['ingeligente',
                                                                       'honesto'])
         self.assertTrue(gathering.created)
         self.assertTrue(gathering.updated)
+        self.assertEquals(gathering.generated_at, a_comuna)
 
     def test_a_proposal_is_related_to_it(self):
         stats_data = {

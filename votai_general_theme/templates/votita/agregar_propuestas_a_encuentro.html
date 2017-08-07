@@ -5,31 +5,35 @@
 
 {% endblock extra_scripts %}
 
-{% block title %}- Agregar propuestas al encuentro infantil{% endblock title %}
+
+
 
 {% block content %}
-<div class="container">
-  <h1 class="page-header">Agregando propuestas para <small>"{{object.name}}"</small></h1>
-  <form method="post" action="{% url 'votita:proposal_for_gathering' pk=object.pk %}">{% csrf_token %}
-    <!-- more form stuff -->
-    {{ formset.management_form }}
-    <!-- A div to contain your formset -->
-    <div id="proposals-container">
-      {% bootstrap_formset formset %}
-    </div>
-    <script type="text/html" id="proposals-template">
-      <fieldset class="proposals-fieldset-__prefix__" style="display: none;">
-          {% bootstrap_form formset.empty_form %}
-      </fieldset>
-    </script>
+<h1>Agregando propuestas para {{object.name}}</h1>
+<form method="post" action="{% url 'votita:proposal_for_gathering' pk=object.pk %}">{% csrf_token %}
+  {{formset.management_form}}
+  <div id="proposals-container">
+    {% for form in formset.forms %}
+    <fieldset class="proposals-fieldset-{{forloop.counter0}}">
+      {% bootstrap_form form  layout='inline' %}
+    </fieldset>
+    {% endfor %}
 
-    <div>
-      <button id="add-proposal" type="button" class="btn btn-default"><i class="fa fa-plus"></i> Agregar propuesta</button>
-    </div>
-    <!-- more form stuff -->
-    <input type="submit" value="{% trans "Guardar" %}"  class="btn btn-default" />
-  </form>
-</div>
+  </div>
+  <script type="text/html" id="proposals-template">
+  <fieldset class="proposals-fieldset-__prefix__" style="display: none;">
+      {% bootstrap_form formset.empty_form  layout='inline' %}
+  </fieldset>
+  </script>
+
+
+  <!-- buttons - these live outside of the container, above -->
+  <div>
+    <button id="add-proposal" type="button">Agregar</button>
+  </div>
+  <!-- more form stuff -->
+  <input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
+</form>
 <script>
 $(function(){
   $('#add-proposal').djangoInlineFormAdd({

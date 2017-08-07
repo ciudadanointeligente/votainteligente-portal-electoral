@@ -180,6 +180,12 @@ td.cal-date{
   .btn{
     font-size: 11px;
   }
+  h2 > a{
+    color: $grey-one;
+    &:hover{
+      color: $blue;
+    }
+  }
 }
 
 .edu-1{

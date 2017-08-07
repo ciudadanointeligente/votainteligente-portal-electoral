@@ -1,1 +1,9 @@
-gracias jefe!
+{% extends "votita/base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container">
+  <h1 class="page-header">Gracias <small>jefe!</small></h1>
+  <p>{{gathering.name}}</p>
+</div>
+{% endblock content %}

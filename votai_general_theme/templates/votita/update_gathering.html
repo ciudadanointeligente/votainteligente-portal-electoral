@@ -3,12 +3,12 @@
 
 {% block content %}
 <div class="container">
-  <h1 class="page-header">Informaci'on sobre el encuentro</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, aut repudiandae. Reiciendis laboriosam aliquam totam illum cum nemo modi cupiditate ullam quisquam perferendis asperiores, nulla, mollitia molestiae ad debitis! Quam!</p>
+  <h1 class="page-header">Información sobre el encuentro <small>"{{object.name}}"</small></h1>
+  <p>Ayúdanos con algunos datos estadísticos</p>
   <form method='POST' action="{% url 'votita:update_gathering' pk=object.pk %}">
     {% csrf_token %}
     {% bootstrap_form form %}
-    <button type="submit" class="btn btn-default">Agregar informacion</button>
+    <button type="submit" class="btn btn-default btn-block">Agregar información</button>
   </form>
 </div>
 {% endblock content %}

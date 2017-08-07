@@ -19,7 +19,8 @@ PRESIDENTS_FEATURES = (
  ),
 )
 class KidsGathering(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255,
+                            verbose_name="Nombre del encuentro")
     stats_data = PickledObjectField()
     presidents_features = MultiSelectField(choices=PRESIDENTS_FEATURES,
                                            null=True,
@@ -30,7 +31,8 @@ class KidsGathering(models.Model):
     image = models.ImageField(upload_to='votita/images/',
                               max_length=512,
                               null=True,
-                              blank=True)
+                              blank=True,
+                              verbose_name="Foto del encuentro")
 
 
 class KidsProposal(PopularProposal):

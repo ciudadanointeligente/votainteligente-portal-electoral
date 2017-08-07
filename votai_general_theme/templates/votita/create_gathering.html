@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="container">
+  <h1 class="page-header">Crear encuentro infantil</h1>
   <form action="{% url 'votita:create_gathering' %}" method="post">
       {% csrf_token %}
       {% bootstrap_form form %}

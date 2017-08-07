@@ -14,9 +14,12 @@ class CreateGatheringForm(ModelForm):
 
 
 class UpdateGatheringForm(ModelForm):
-    male = forms.IntegerField(min_value=0)
-    female = forms.IntegerField(min_value=0)
-    others = forms.IntegerField(min_value=0)
+    male = forms.IntegerField(label = "# Hombres participantes",
+                              min_value = 0,)
+    female = forms.IntegerField(label = "# Mujeres participantes",
+                                min_value = 0,)
+    others = forms.IntegerField(label = "Otros participantes",
+                                min_value = 0,)
     class Meta:
         model = KidsGathering
         fields = ['image']

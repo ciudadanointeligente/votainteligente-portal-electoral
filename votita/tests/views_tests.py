@@ -23,6 +23,12 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
+    def test_get_to_create_a_gathering_non_user(self):
+        url = reverse('votita:create_gathering')
+        response = self.client.get(url)
+        login_url = reverse('auth_login') + "?next=" + url
+        self.assertRedirects(response, login_url)
+
     def test_post_to_create_a_gathering(self):
         self.client.login(username=self.feli.username, password=USER_PASSWORD)
         url = reverse('votita:create_gathering')
@@ -44,8 +50,21 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         self.assertIn('formset', response.context)
         formset = response.context['formset']
         self.assertEquals(formset.instance, gathering)
-        formset.model = KidsProposal
-        form = formset.forms
+        self.assertEquals(formset.model, KidsProposal)
+
+    def test_creating_proposal_for_gathering_get_view_by_non_owner(self):
+        gathering = KidsGathering.objects.create(name=u"Título",
+                                                 proposer=self.feli)
+        url = reverse('votita:proposal_for_gathering',
+                      kwargs={'pk':gathering.id})
+        response = self.client.get(url)
+        login_url = reverse('auth_login') + "?next=" + url
+        self.assertRedirects(response, login_url)
+        # The non owner
+        non_owner = User.objects.create_user(username="non_owner", password=USER_PASSWORD)
+        self.client.login(username=non_owner.username, password=USER_PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
 
     def test_creating_proposal_for_gathering_post_view(self):
         gathering = KidsGathering.objects.create(name=u"Título",
@@ -83,6 +102,20 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         self.assertIsInstance(form, UpdateGatheringForm)
         self.assertEquals(form.instance, gathering)
 
+    def test_update_gathering_get_view_by_non_owner(self):
+        gathering = KidsGathering.objects.create(name=u"Título",
+                                                 proposer=self.feli)
+        url = reverse('votita:update_gathering',
+                      kwargs={'pk':gathering.id})
+        response = self.client.get(url)
+        login_url = reverse('auth_login') + "?next=" + url
+        self.assertRedirects(response, login_url)
+        # The non owner
+        non_owner = User.objects.create_user(username="non_owner", password=USER_PASSWORD)
+        self.client.login(username=non_owner.username, password=USER_PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+
     def test_get_thanks_for_creating_a_proposal(self):
         gathering = KidsGathering.objects.create(name=u"Título",
                                                  proposer=self.feli)
@@ -92,6 +125,20 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.context['gathering'], gathering)
+
+    def test_get_thanks_for_creating_a_proposal_non_owner(self):
+        gathering = KidsGathering.objects.create(name=u"Título",
+                                                 proposer=self.feli)
+        url = reverse('votita:thanks_for_creating_a_gathering',
+                      kwargs={'pk':gathering.id})
+        response = self.client.get(url)
+        login_url = reverse('auth_login') + "?next=" + url
+        self.assertRedirects(response, login_url)
+        # The non owner
+        non_owner = User.objects.create_user(username="non_owner", password=USER_PASSWORD)
+        self.client.login(username=non_owner.username, password=USER_PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
 
     def test_update_gathering_post(self):
         gathering = KidsGathering.objects.create(name=u"Título",

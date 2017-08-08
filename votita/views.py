@@ -11,6 +11,7 @@ from django.views.generic.base import View
 from django.shortcuts import render_to_response, redirect
 from django.core.urlresolvers import reverse
 from django.views.generic.detail import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 wizard_form_list = get_form_list(wizard_forms_fields=wizard_forms_fields)
@@ -21,7 +22,7 @@ class VotitaWizard(ProposalWizardBase):
     template_name = 'popular_proposal/wizard/form_step.html'
 
 
-class CreateGatheringView(CreateView):
+class CreateGatheringView(LoginRequiredMixin, CreateView):
     form_class = CreateGatheringForm
     template_name = 'votita/create_gathering.html'
 
@@ -35,19 +36,29 @@ class CreateGatheringView(CreateView):
                       kwargs={'pk':self.object.id})
 
 
-class UpdateGatheringView(UpdateView):
+class UpdateGatheringView(LoginRequiredMixin, UpdateView):
     model = KidsGathering
     form_class = UpdateGatheringForm
     template_name = 'votita/update_gathering.html'
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(UpdateGatheringView, self).get_queryset(*args, **kwargs)
+        qs = qs.filter(proposer=self.request.user)
+        return qs
 
     def get_success_url(self):
         return reverse('votita:thanks_for_creating_a_gathering',
                        kwargs={'pk': self.object.pk})
 
-class ThanksForCreating(DetailView):
+class ThanksForCreating(LoginRequiredMixin, DetailView):
     model = KidsGathering
     template_name = 'votita/thanks_for_creating_a_gathering.html'
     context_object_name = 'gathering'
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(ThanksForCreating, self).get_queryset(*args, **kwargs)
+        qs = qs.filter(proposer=self.request.user)
+        return qs
 
 class GatheringView(DetailView):
     model = KidsGathering
@@ -69,11 +80,16 @@ ProposalFormSet = inlineformset_factory(KidsGathering,
                                         })
 
 
-class CreateProposalsForGathering(UpdateView):
+class CreateProposalsForGathering(LoginRequiredMixin, UpdateView):
     model = KidsGathering
     template_name = 'votita/agregar_propuestas_a_encuentro.html'
     fields = []
     success_url = 'votita:update_gathering'
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(CreateProposalsForGathering, self).get_queryset(*args, **kwargs)
+        qs = qs.filter(proposer=self.request.user)
+        return qs
 
     def get_context_data(self, *args, **kwargs):
         context = super(CreateProposalsForGathering, self).get_context_data(*args, **kwargs)

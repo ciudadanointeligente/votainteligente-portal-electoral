@@ -6,6 +6,7 @@ from picklefield.fields import PickledObjectField
 from popular_proposal.models import PopularProposal
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
+from elections.models import Area
 
 
 PRESIDENTS_FEATURES = (
@@ -65,6 +66,9 @@ class KidsGathering(models.Model):
                               null=True,
                               blank=True,
                               verbose_name="Foto del encuentro")
+    generated_at = models.ForeignKey(Area,
+                                     null=True,
+                                     blank=True)
 
 
 class KidsProposal(PopularProposal):

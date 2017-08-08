@@ -79,6 +79,7 @@ class KidsGathering(models.Model):
                 if hasattr(c, '__iter__'):
                     for feature in c:
                         all_features[feature[0]] = feature[1]
+
         for feature in self.presidents_features:
             result.append(all_features[feature])
         return result

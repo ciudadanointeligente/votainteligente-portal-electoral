@@ -73,11 +73,14 @@ class KidsGathering(models.Model):
     @property
     def presidents_features_str(self):
         result = []
+        all_features = {}
         for pf in PRESIDENTS_FEATURES:
             for c in pf:
                 if hasattr(c, '__iter__'):
                     for feature in c:
-                        result.append(feature[1])
+                        all_features[feature[0]] = feature[1]
+        for feature in self.presidents_features:
+            result.append(all_features[feature])
         return result
 
 class KidsProposal(PopularProposal):

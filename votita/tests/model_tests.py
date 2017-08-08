@@ -114,6 +114,8 @@ class KidsGatheringTestCase(ProposingCycleTestCaseBase):
                                                                       'comunicador'])
         self.assertIn(u'Buen Comunicador/a', gathering.presidents_features_str)
         self.assertIn(u'Buen Administrador/a', gathering.presidents_features_str)
+        self.assertNotIn(u'Con experiencia', gathering.presidents_features_str)
+
 
 @override_config(DEFAULT_AREA='argentina')
 class VotitaWizardTestCase(ProposingCycleTestCaseBase, WizardDataMixin):

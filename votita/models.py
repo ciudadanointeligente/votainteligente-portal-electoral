@@ -66,6 +66,15 @@ class KidsGathering(models.Model):
                               blank=True,
                               verbose_name="Foto del encuentro")
 
+    @property
+    def presidents_features_str(self):
+        result = []
+        for pf in PRESIDENTS_FEATURES:
+            for c in pf:
+                if hasattr(c, '__iter__'):
+                    for feature in c:
+                        result.append(feature[1])
+        return result
 
 class KidsProposal(PopularProposal):
     gathering = models.ForeignKey(KidsGathering,

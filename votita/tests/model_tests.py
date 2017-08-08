@@ -107,6 +107,14 @@ class KidsGatheringTestCase(ProposingCycleTestCaseBase):
                                                     )
         self.assertIn(kids_proposal, gathering.proposals.all())
 
+    def test_instanciate_model(self):
+        gathering = KidsGathering.objects.create(proposer=self.fiera,
+                                                 name=u"Título",
+                                                 presidents_features=['administrador',
+                                                                      'comunicador'])
+        self.assertIn(u'Buen Comunicador/a', gathering.presidents_features_str)
+        self.assertIn(u'Buen Administrador/a', gathering.presidents_features_str)
+
 @override_config(DEFAULT_AREA='argentina')
 class VotitaWizardTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
     url = reverse('votita:create_proposal')

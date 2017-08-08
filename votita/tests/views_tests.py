@@ -175,7 +175,21 @@ class GatheringViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
                       kwargs={'pk':gathering.id})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['object'], gathering)
 
+    def test_list_gatherings(self):
+        gathering1 = KidsGathering.objects.create(name=u"Título",
+                                                  proposer=self.feli)
+        gathering2 = KidsGathering.objects.create(name=u"Título",
+                                                  proposer=self.feli)
+        gathering3 = KidsGathering.objects.create(name=u"Título",
+                                                  proposer=self.feli)
+        url = reverse('votita:list_gatherings')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn(gathering1, response.context['gatherings'].all())
+        self.assertIn(gathering2, response.context['gatherings'].all())
+        self.assertIn(gathering3, response.context['gatherings'].all())
 
 class LandingPage(ProposingCycleTestCaseBase, WizardDataMixin):
     def test_get_home(self):

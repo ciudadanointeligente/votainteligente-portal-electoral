@@ -12,6 +12,7 @@ from django.shortcuts import render_to_response, redirect
 from django.core.urlresolvers import reverse
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.list import ListView
 
 
 wizard_form_list = get_form_list(wizard_forms_fields=wizard_forms_fields)
@@ -114,3 +115,9 @@ class CreateProposalsForGathering(LoginRequiredMixin, UpdateView):
             return redirect(reverse(self.success_url, kwargs={'pk': self.object.pk}))
         else:
             return self.render_to_response(self.get_context_data(form=form))
+
+
+class GatheringListView(ListView):
+    model = KidsGathering
+    template_name = "votita/lista_encuentros.html"
+    context_object_name = 'gatherings'

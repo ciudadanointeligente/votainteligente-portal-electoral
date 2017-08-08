@@ -11,6 +11,7 @@ from django.views.generic.base import View
 from django.shortcuts import render_to_response, redirect
 from django.core.urlresolvers import reverse
 from django.views.generic.detail import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 wizard_form_list = get_form_list(wizard_forms_fields=wizard_forms_fields)
@@ -21,7 +22,7 @@ class VotitaWizard(ProposalWizardBase):
     template_name = 'popular_proposal/wizard/form_step.html'
 
 
-class CreateGatheringView(CreateView):
+class CreateGatheringView(LoginRequiredMixin, CreateView):
     form_class = CreateGatheringForm
     template_name = 'votita/create_gathering.html'
 

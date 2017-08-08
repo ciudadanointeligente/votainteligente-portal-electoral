@@ -1,11 +1,15 @@
 {% extends "votita/base.html" %}
 
-{% block title %}- Portada{% endblock title %}
+{% block title %}- Lista de encuentros{% endblock title %}
 
 {% block content %}
 <div class="container">
-  {% for encuentro in gatherings %}
-    {{encuentro.name}}
-  {% endfor %}
+  <h1 class="page-header">Lista de encuentros infantiles/juveniles</h1>
+
+  <ul>
+    {% for encuentro in gatherings %}
+      <li><a href="{% url 'votita:ver_encuentro' encuentro.pk %}">{{encuentro.name}}</a></li>
+    {% endfor %}
+  </ul>
 </div>
 {% endblock content %}

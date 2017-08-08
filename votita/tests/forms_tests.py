@@ -14,6 +14,7 @@ from votita.models import KidsProposal, KidsGathering
 from django.core.urlresolvers import reverse
 from votita.forms.forms import CreateGatheringForm, UpdateGatheringForm
 from constance.test import override_config
+from elections.models import Area
 
 
 USER_PASSWORD = 'secr3t'
@@ -22,15 +23,18 @@ USER_PASSWORD = 'secr3t'
 class CreateGatheringFormTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(CreateGatheringFormTestCase, self).setUp()
+        self.a_comuna = Area.objects.filter(classification='Comuna').first()
 
     def test_create_a_gathering(self):
         data = {"name": "Segundo medio C",
-                "presidents_features": ["inteligente"]}
+                "presidents_features": ["inteligente"],
+                "generated_at": self.a_comuna.id}
         form = CreateGatheringForm(data, proposer=self.feli)
         self.assertTrue(form.is_valid())
         gathering = form.save()
         self.assertEquals(gathering.name, data['name'])
         self.assertTrue(gathering.presidents_features)
+        self.assertEquals(gathering.generated_at, self.a_comuna)
 
     def test_update_gathering(self):
         gathering = KidsGathering.objects.create(proposer=self.feli,

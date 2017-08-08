@@ -5,12 +5,25 @@ from popular_proposal.forms.forms import get_possible_generating_areas
 from django.utils.translation import ugettext as _
 from votita.models import KidsGathering
 from django.forms import ModelForm
+from elections.models import Area
 
+from django.conf import settings
+
+
+def filterable_areas():
+    areas = Area.public.all()
+    if settings.FILTERABLE_AREAS_TYPE:
+        return areas.filter(classification__in=settings.FILTERABLE_AREAS_TYPE)
+    return areas
 
 class CreateGatheringForm(ModelForm):
+    generated_at = forms.ModelChoiceField(queryset=filterable_areas(),
+                                          empty_label=u"Selecciona",
+                                          required=False,
+                                          label="Comuna donde fue generada")
     class Meta:
         model = KidsGathering
-        fields = ['name', 'presidents_features']
+        fields = ['name', 'generated_at', 'presidents_features']
 
     def __init__(self, *args, **kwargs):
         self.proposer = kwargs.pop('proposer')

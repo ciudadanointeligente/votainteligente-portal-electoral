@@ -36,12 +36,14 @@
           <div class="logo-color">
             <a href="{{proposal.proposer.organization_template.get_absolute_url}}">
             {% thumbnail proposal.proposer.profile.image "70x70" as im %}
-              <img src="{{ im.url }}" alt="{{template.title}}" title="{{template.title}}" class="">
+              <img src="{{ im.url }}" alt="{{proposal.proposer.organization_template.title}}" title="{{proposal.proposer.organization_template.title}}">
               {% endthumbnail %}
             </a>
           </div>
           {% else %}
-            <span><a href="{{proposal.proposer.organization_template.get_absolute_url}}">{{proposal.proposer.organization_template.title}}</a></span>
+          <div class="logo-color">
+          <img src="{% static 'img/org-default.png' %}" alt="{{proposal.proposer.organization_template.title}}" title="{{proposal.proposer.organization_template.title}}">
+        </div>
           {% endif %}
       </div>
     {% endif %}

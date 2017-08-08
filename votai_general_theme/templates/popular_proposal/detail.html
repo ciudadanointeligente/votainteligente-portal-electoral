@@ -420,11 +420,11 @@ $(function(){
               {% if org.organization_template.logo %}
                   {% thumbnail org.organization_template.logo "300x300" crop="center" as im %}
                   <a href="{{org.organization_template.get_absolute_url}}">
-                    <img src="{{im.url}}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small">
+                    <img src="{{im.url}}" alt="{{org.organization_template.title }}" title="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small">
                   </a>
                   {% endthumbnail %}
                 {% else %}
-                  <img src="{% static 'img/candidate-default.jpg' %}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small"></a>
+                  <img src="{% static 'img/org-default.png' %}" alt="{{org.organization_template.title }}" title="{{org.organization_template.title }}" class="img-responsive img-circle img-candidato-small"></a>
               {% endif %}
             </a>
           </li>

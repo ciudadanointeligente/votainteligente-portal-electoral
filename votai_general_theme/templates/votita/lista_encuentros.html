@@ -5,11 +5,10 @@
 {% block content %}
 <div class="container">
   <h1 class="page-header">Lista de encuentros infantiles/juveniles</h1>
-
   <ul>
-    {% for encuentro in gatherings %}
-      <li><a href="{% url 'votita:ver_encuentro' encuentro.pk %}">{{encuentro.name}}</a></li>
-    {% endfor %}
+  {% for encuentro in gatherings %}
+    {% include 'votita/encuentro_card.html' with encuentro=encuentro %}
+  {% endfor %}
   </ul>
 </div>
 {% endblock content %}

@@ -13,17 +13,26 @@ from django.core.urlresolvers import reverse
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
+from django.conf import settings
 
 
 wizard_form_list = get_form_list(wizard_forms_fields=wizard_forms_fields)
 
+
+class VotitaLoginRequiredMixin(LoginRequiredMixin):
+
+    def get_login_url(self):
+        votita_urlconf = 'votita.stand_alone_urls'
+        if settings.ROOT_URLCONF == votita_urlconf or (hasattr(self.request, 'urlconf') and self.request.urlconf == votita_urlconf):
+            return reverse('votita_auth:login')
+        return reverse('auth_login')
 
 class VotitaWizard(ProposalWizardBase):
     form_list = wizard_form_list
     template_name = 'popular_proposal/wizard/form_step.html'
 
 
-class CreateGatheringView(LoginRequiredMixin, CreateView):
+class CreateGatheringView(VotitaLoginRequiredMixin, CreateView):
     form_class = CreateGatheringForm
     template_name = 'votita/create_gathering.html'
 
@@ -37,7 +46,7 @@ class CreateGatheringView(LoginRequiredMixin, CreateView):
                       kwargs={'pk':self.object.id})
 
 
-class UpdateGatheringView(LoginRequiredMixin, UpdateView):
+class UpdateGatheringView(VotitaLoginRequiredMixin, UpdateView):
     model = KidsGathering
     form_class = UpdateGatheringForm
     template_name = 'votita/update_gathering.html'
@@ -51,7 +60,7 @@ class UpdateGatheringView(LoginRequiredMixin, UpdateView):
         return reverse('votita:thanks_for_creating_a_gathering',
                        kwargs={'pk': self.object.pk})
 
-class ThanksForCreating(LoginRequiredMixin, DetailView):
+class ThanksForCreating(VotitaLoginRequiredMixin, DetailView):
     model = KidsGathering
     template_name = 'votita/thanks_for_creating_a_gathering.html'
     context_object_name = 'gathering'
@@ -81,7 +90,7 @@ ProposalFormSet = inlineformset_factory(KidsGathering,
                                         })
 
 
-class CreateProposalsForGathering(LoginRequiredMixin, UpdateView):
+class CreateProposalsForGathering(VotitaLoginRequiredMixin, UpdateView):
     model = KidsGathering
     template_name = 'votita/agregar_propuestas_a_encuentro.html'
     fields = []

@@ -19,7 +19,7 @@ class VotaICurrentSiteMiddlewareTestCase(TestCase):
 
     def test_retorna_votita_si_la_url_es_votita_punto_ce_ele(self):
         votita = Site.objects.create(domain="votita.cl", name="votita")
-        custom_site = CustomSite.objects.create(site=votita, urlconf='votita.urls')
+        custom_site = CustomSite.objects.create(site=votita, urlconf='votita.stand_alone_urls')
         request = self.factory.get('/')
         request.META['HTTP_HOST'] = 'votita.cl'
         middleware = VotaIcurrentSiteMiddleware()

@@ -21,6 +21,23 @@
       }
     }
   }
+  .print-share-urls {
+    display: block;
+    transform: rotate(90deg);
+    position: absolute;
+    top: -200px;
+    border-left: 1px dashed;
+    padding-left: 10px;
+    margin-left: 270px;
+    li {
+      padding: 2px 0px;
+      margin: 2px 0px;
+      border-top: 1px dashed;
+    }
+  }
+  .proposal-banner-org {
+    display: none;
+  }
   .proposal-tools {
     display: none;
   }

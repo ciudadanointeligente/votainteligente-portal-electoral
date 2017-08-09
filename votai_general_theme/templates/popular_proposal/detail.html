@@ -42,7 +42,7 @@ $(function(){
 {% endcomment %}
 
 {% if popular_proposal.proposer == user %}
-<div class="container">
+<div class="container proposal-banner-org">
   <div class="alert alert-success text-center">
       <p>Esta es tu propuesta {{user}}, ¿quieres <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %}añadir antecedentes{% endblocktrans %}</a> a esta propuesta?</p>
   </div>
@@ -231,11 +231,15 @@ $(function(){
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
+
+
       <script>
        $(document).ready(function(){
           $('.reportar_propuesta').attr('href','mailto:'+'vota-2017'+'@'+'ciudadanointeligente.org?'+'Subject=Propuesta {{popular_proposal.id}} no debe estar en Votainteligente'+ '&body=La propuesta con título {{popular_proposal.title}} cuyo id es {{popular_proposal.id}} NO debe estar en la plataforma VotaInteligente.cl por ...\n La propuesta la pueden visitar en https://votainteligente.cl{{popular_proposal.get_absolute_url}}');
        })
       </script>
+
+
     </div>
 
       {% if user|is_candidate %}

@@ -197,3 +197,30 @@ class LandingPage(ProposingCycleTestCaseBase, WizardDataMixin):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'votita/index.html')
+
+
+from django.test import override_settings
+
+
+@override_settings(ROOT_URLCONF='votita.stand_alone_urls')
+class StandAloneSite(ProposingCycleTestCaseBase):
+    def test_get_all_public_urls(self):
+        response = self.client.get(reverse('votita:index'))
+        self.assertEquals(response.status_code, 200)
+
+        response = self.client.get(reverse('votita:list_gatherings'))
+        self.assertEquals(response.status_code, 200)
+
+        gathering = KidsGathering.objects.create(name=u"Título",
+                                                 proposer=self.feli)
+
+        url = reverse('votita:ver_encuentro',
+                      kwargs={'pk':gathering.id})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+    def test_login_page(self):
+        url = reverse('login')
+        response = self.client.get(url)
+        print url
+        self.assertEquals(response.status_code, 200)

@@ -220,7 +220,13 @@ class StandAloneSite(ProposingCycleTestCaseBase):
         self.assertEquals(response.status_code, 200)
 
     def test_login_page(self):
-        url = reverse('login')
+        url = reverse('votita_auth:login')
         response = self.client.get(url)
-        print url
+        self.assertTemplateUsed(response, 'votita/registration/login_citizens.html')
         self.assertEquals(response.status_code, 200)
+
+    def test_views_redirect_to_login(self):
+        url = reverse('votita:create_gathering')
+        login_url = reverse('votita_auth:login')
+        response = self.client.get(url)
+        self.assertRedirects(response, login_url + "?next=" + url)

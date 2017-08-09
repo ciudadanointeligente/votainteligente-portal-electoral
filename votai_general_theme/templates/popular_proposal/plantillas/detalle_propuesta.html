@@ -15,4 +15,13 @@
     <h3>En un plazo de</h3>
     <p>{{popular_proposal.data.when|popular_proposal_when}}</p>
   </div>
+  <!-- print visible share urls-->
+  <div class="col-md-12">
+    <ul class="list-unstyled print-share-urls">
+      {% for x in 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' %}
+      <li>{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{popular_proposal.get_absolute_url}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <!-- print visible share urls-->
 </div>

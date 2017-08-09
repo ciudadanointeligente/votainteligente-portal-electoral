@@ -8,7 +8,7 @@
 !function($) {
 
   $.fn.djangoInlineFormAdd = function(options) {
-    
+
     if(options.prefix != undefined) {
       this.prefix = options.prefix;
       this.containerId = '#' + this.prefix + '-container';
@@ -33,17 +33,17 @@
     this.totalFormsId = options.totalFormsId != undefined ? options.totalFormsId : this.totalFormsId;
     this.maxFormsId = options.maxFormsId != undefined ? options.maxFormsId : this.maxFormsId;
     this.deleteButtonId = options.deleteButtonId != undefined ? options.deleteButtonId : this.deleteButtonId;
-    
+
     this.postClick = options.postClick != undefined ? options.postClick : null;
     this.formHeight = options.formHeight != undefined ? options.formHeight : null;
-    
+
     var max = $(this.maxFormsId).attr('value');
-    
+
     var self = this;
-    
+
     this.addForm = function(ev) {
       ev.preventDefault();
-      var count = $(self.containerId).children().length;
+      var count = $(self.containerId).children('fieldset').length+1;
       if (count >= max) {
         console.log('exceeded max inline forms');  // should maybe have a callback option
         return;
@@ -54,34 +54,34 @@
 
       // run postClick method
       if (self.postClick != null) { self.postClick(); }
-      
+
       // animate it
       $(self.containerId).children().last().show('slow');
 
       // update form count
       $(self.totalFormsId).attr('value', count+1);
 
-      // some animate to scroll to view our new form 
+      // some animate to scroll to view our new form
       if(self.formHeight != null) {
         $('html, body').animate({
           scrollTop: $(window).scrollTop() + self.formHeight
         }, 800);
       }
     };
-    
+
     this.removeForm = function(ev) {
       $(self.containerId).children().last().hide('slow', function(){
         $(self.containerId).children().last().remove();
         $(self.totalFormsId).attr('value', $(self.containerId).children().length);
       });
-      // some animate to scroll up 
+      // some animate to scroll up
       if(self.formHeight != null) {
         $('html, body').animate({
           scrollTop: $(window).scrollTop() - self.formHeight
         }, 800);
       }
     }
-    
+
     this.click(this.addForm);
     if(this.deleteButtonId != null) {
       $(this.deleteButtonId).click(this.removeForm);

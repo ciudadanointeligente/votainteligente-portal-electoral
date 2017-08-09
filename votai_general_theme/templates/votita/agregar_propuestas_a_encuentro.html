@@ -10,13 +10,15 @@
     {{formset.management_form}}
     <div id="proposals-container">
       {% for form in formset.forms %}
-      <fieldset class="proposals-fieldset-{{forloop.counter0}}">
+      <p>Propuesta {{forloop.counter}}</p>
+      <fieldset class="proposals-fieldset-{{forloop.counter}}">
         {% bootstrap_form form  layout='inline' %}
       </fieldset>
       {% endfor %}
     </div>
 
     <script type="text/html" id="proposals-template">
+      <p>Propuesta __prefix__</p>
       <fieldset class="proposals-fieldset-__prefix__" style="display: none;">
           {% bootstrap_form formset.empty_form  layout='inline' %}
       </fieldset>

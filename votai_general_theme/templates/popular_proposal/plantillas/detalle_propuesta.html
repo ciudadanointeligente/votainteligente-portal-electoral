@@ -1,8 +1,8 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
 
-<div class="row" id="proposal-details">
-  <div class="col-md-12">
+<div class="row " id="proposal-details">
+  <div class="col-md-12 print_hidden">
     <h3>El problema que se quiere solucionar es:</h3>
     <p>{{popular_proposal.data.problem|popular_proposal_when|linebreaksbr}}</p>
 
@@ -16,10 +16,13 @@
     <p>{{popular_proposal.data.when|popular_proposal_when}}</p>
   </div>
   <!-- print visible share urls-->
-  <div class="col-md-12">
-    <ul class="list-unstyled print-share-urls">
-      {% for x in 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' %}
-      <li>{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{popular_proposal.get_absolute_url}}</li>
+  <h3 class="text-center">Si te gustó ¡compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año</h3>
+  <div class="col-md-12 ">
+
+    <ul class="list-unstyled  print-share-urls">
+
+      {% for x in 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' %}
+      <li>{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{popular_proposal.get_short_url}}</li>
       {% endfor %}
     </ul>
   </div>

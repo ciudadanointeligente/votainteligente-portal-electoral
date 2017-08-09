@@ -1,6 +1,10 @@
 @media print {
+  @page {size: landscape}
   html .navbar_visible {
     padding-top: 5px;
+  }
+  .print_hidden {
+    display: None;
   }
   .fondo-blanco {
     padding: 0px 15px;
@@ -28,7 +32,7 @@
     top: -200px;
     border-left: 1px dashed;
     padding-left: 10px;
-    margin-left: 270px;
+    margin-left: 465px;
     li {
       padding: 2px 0px;
       margin: 2px 0px;

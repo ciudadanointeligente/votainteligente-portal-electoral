@@ -222,6 +222,9 @@ class PopularProposal(models.Model, OGPMixin):
     def get_absolute_url(self):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})
 
+    def get_short_url(self):
+        return reverse('popular_proposals:short_detail', kwargs={'pk': self.pk})
+
     def generate_og_image(self):
         base = Image.open('votai_general_theme/static/img/plantilla.png').convert('RGBA')
 

@@ -52,11 +52,17 @@ $(function(){
 <section id="proposal">
   <div class="detalle-propuesta-total">
     <div class="container fondo-blanco detail text-width{% if proposal.for_all_areas %} transversal{% endif %}">
+      {% if popular_proposal.is_local_meeting %}
+      <div class="ribbon-wrapper">
+        <div class="ribbon">Generada desde un encuentro ciudadano</div>
+      </div>
+      {% endif %}
       <div class="pull-left">
         <span class="label label-default">{{popular_proposal.data.clasification}}</span>
       </div>
       <div class="line-space"></div>
-      <p class="text-center text-light small">Esta es una propuesta de
+      <p class="text-center text-light small">Propuesta nº{{popular_proposal.id}}<br>
+      Esta es una propuesta de
 
         {% if popular_proposal.proposer.profile.is_organization %}
           <a href="{{popular_proposal.proposer.organization_template.get_absolute_url}}">

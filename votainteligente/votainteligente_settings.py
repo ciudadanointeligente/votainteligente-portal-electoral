@@ -64,6 +64,7 @@ INSTALLED_APPS = (
     # 'debug_panel',
     'proposal_subscriptions',
     'constance',
+    'custom_sites',
 )
 INSTALLED_APPS_AFTER_ALL = ('el_pagination',)
 
@@ -110,20 +111,35 @@ STATICFILES_FINDERS = (
     'sass_processor.finders.CssFinder',
 )
 
-MIDDLEWARE_CLASSES = (
+# MIDDLEWARE_CLASSES = (
+#     'django.contrib.sessions.middleware.SessionMiddleware',
+#     'django.contrib.auth.middleware.AuthenticationMiddleware',
+#     'django.middleware.common.CommonMiddleware',
+#     'django.middleware.csrf.CsrfViewMiddleware',
+#     'debug_toolbar.middleware.DebugToolbarMiddleware',
+#     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+#     'django.contrib.messages.middleware.MessageMiddleware',
+#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+#     'django.middleware.security.SecurityMiddleware',
+#     'linaro_django_pagination.middleware.PaginationMiddleware',
+#     'social_django.middleware.SocialAuthExceptionMiddleware',
+# )
+
+## Funciona el de arriba??? no tengo callampa idea!!
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'linaro_django_pagination.middleware.PaginationMiddleware',
+    'custom_sites.middleware.VotaIcurrentSiteMiddleware',
+    # 'linaro_django_pagination.middleware.PaginationMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
-)
-
+]
+ALLOWED_HOSTS = ['*']
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

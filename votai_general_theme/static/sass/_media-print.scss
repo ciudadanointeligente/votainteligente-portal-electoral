@@ -29,7 +29,7 @@
     display: block;
     transform: rotate(90deg);
     position: absolute;
-    top: -200px;
+    top: 22px;
     border-left: 1px dashed;
     padding-left: 10px;
     margin-left: 465px;
@@ -38,6 +38,13 @@
       margin: 2px 0px;
       border-top: 1px dashed;
     }
+  }
+  .invitacion {
+    top: 492px;
+    position: absolute;
+  }
+  .print_only {
+    display:block;
   }
   .proposal-banner-org {
     display: none;

@@ -66,8 +66,10 @@ def get_possible_generating_areas_choices():
 
 wizard_forms_fields = [
     {
-        'template': 'popular_proposal/wizard/paso1.html',
-        'explation_template': "popular_proposal/steps/paso1.html",
+        'template': 'popular_proposal/wizard/form_step.html',
+        'explation_template': "popular_proposal/steps/tips_paso1.html",
+        'step_title': u"¿Cuál es el problema que quieres solucionar?",
+        'message': "Tu propuesta puede ser individual (a nombre tuyo) o colectiva (representando a un grupo de personas que hizo un Encuentro Ciudadano o a una organización). Una propuesta tiene más posibilidades de conseguir apoyos si está respaldada por varias personas. Si quieres saber cómo hacer un Encuentro Ciudadano te recomendamos revisar nuestra Guía de elaboración de propuestas ciudadanas",
         'fields': OrderedDict([(
             'clasification', forms.ChoiceField(choices=TOPIC_CHOICES,
                                                widget=forms.Select())
@@ -79,7 +81,8 @@ wizard_forms_fields = [
     },
     {
         'template': 'popular_proposal/wizard/form_step.html',
-        'explation_template': "popular_proposal/steps/paso2.html",
+        'explation_template': "popular_proposal/steps/tips_paso2.html",
+        'step_title': "¿Cuál es la causa de este problema?",
         'fields': OrderedDict([(
             'causes', forms.CharField(max_length=256,
                                       widget=forms.Textarea()
@@ -89,7 +92,8 @@ wizard_forms_fields = [
     },
     {
         'template': 'popular_proposal/wizard/form_step.html',
-        'explation_template': "popular_proposal/steps/paso4.html",
+        'explation_template': "popular_proposal/steps/tips_paso3.html",
+        'step_title': "¿Qué propuesta puede solucionar este problema?",
         'fields': OrderedDict([(
             'solution_at_the_end', forms.CharField(widget=forms.Textarea(),
                                                    required=False)
@@ -101,7 +105,8 @@ wizard_forms_fields = [
     },
     {
         'template': 'popular_proposal/wizard/paso5.html',
-        'explation_template': "popular_proposal/steps/paso5.html",
+        'explation_template': "popular_proposal/steps/tips_paso4.html",
+        'step_title': "Resumen y título",
         'fields': OrderedDict([
             ('title', forms.CharField(max_length=256,
                                       widget=forms.TextInput())),
@@ -143,6 +148,8 @@ def get_form_list(wizard_forms_fields=wizard_forms_fields, **kwargs):
             self.add_texts_to_fields()
         cls_attrs = {"__init__": __init__,
                      "explanation_template": step['explation_template'],
+                     "step_title": step.get('step_title',""),
+                     "message": step.get('message',""),
                      "template": step['template']}
         form_class = type('Step%d' % (counter),
                           (forms.Form, TextsFormMixin, object), cls_attrs)

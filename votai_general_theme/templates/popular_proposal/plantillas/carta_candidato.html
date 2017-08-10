@@ -3,19 +3,22 @@
 <p>
 {% if user.get_full_name %}{{user.get_full_name}}{% else %}{{user}}{% endif %} ha creado una propuesta para mejorar {{ area }} en Vota Inteligente 2017.
 </p>
-
-<p><b>El problema que se quiere solucionar es:</b></br>
+<div>
+<h3>El problema que se quiere solucionar es:</h3>
 {{preview_data.problem|popular_proposal_when|linebreaksbr}}
-</p>
-
-<p><b>La causa de este problema es:</b></br>
+</div>
+<div>
+<h3>La causa de este problema es:</h3>
 {{preview_data.causes}}
-</p>
-
-<p><b>La propuesta para solucionar este problema es:</b></br>
-{{preview_data.solution_at_the_end|popular_proposal_when|linebreaksbr}} El plazo de implementación de esta propuesta es de <b>{{preview_data.when|popular_proposal_when}}</b>.
-</p>
-
-<p>Revísala, si te gustó compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año!</p>
-<p>El equipo de VotaInteligente a nombre de {% if user.get_full_name %}{{user.get_full_name}}{% else %}{{user}}{% endif %}.
-</p>
+</div>
+<div>
+<h3>La propuesta para solucionar este problema es:</h3>
+{{preview_data.solution_at_the_end|popular_proposal_when|linebreaksbr}}
+</div>
+<div>
+<h3>El plazo de implementación de esta propuesta es de</h3>
+{{preview_data.when|popular_proposal_when}}
+</div>
+<div>
+<p class="llamado text-center">Revísala, si te gustó ¡compártela y apóyala!<br>Así todos/as tendremos voz en las elecciones de este año!</p>
+</div>

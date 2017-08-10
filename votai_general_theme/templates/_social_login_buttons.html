@@ -2,9 +2,9 @@
 {% if not url %}
 	{% url 'backend_citizen:index' as url %}
 {% endif %}
-<a class="btn btn-block" href="{% url 'social:begin' 'facebook' %}?next={{url}}">
+<a class="btn btn-block btn-facebook" href="{% url 'social:begin' 'facebook' %}?next={{url}}">
     <i class="fa fa-facebook"></i> {% trans 'Entra con Facebook' %}
 </a>
-<a class="btn btn-block" href="{% url 'social:begin' 'google-oauth2' %}?next={{url}}">
+<a class="btn btn-block btn-google" href="{% url 'social:begin' 'google-oauth2' %}?next={{url}}">
     <i class="fa fa-google"></i> {% trans 'Entra con Google' %}
 </a>

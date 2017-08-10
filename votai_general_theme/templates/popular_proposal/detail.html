@@ -42,7 +42,7 @@ $(function(){
 {% endcomment %}
 
 {% if popular_proposal.proposer == user %}
-<div class="container">
+<div class="container proposal-banner-org">
   <div class="alert alert-success text-center">
       <p>Esta es tu propuesta {{user}}, ¿quieres <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %}añadir antecedentes{% endblocktrans %}</a> a esta propuesta?</p>
   </div>
@@ -186,7 +186,7 @@ $(function(){
       {% endif %}
 
       {% if popular_proposal.background %}
-        <div class="antecedentes text-width light-text">
+        <div class="antecedentes text-width light-text  print_hidden">
           <div class="row">
             <hr>
             <div class="col-xs-12 col-md-9">
@@ -231,11 +231,15 @@ $(function(){
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
+
+
       <script>
        $(document).ready(function(){
           $('.reportar_propuesta').attr('href','mailto:'+'vota-2017'+'@'+'ciudadanointeligente.org?'+'Subject=Propuesta {{popular_proposal.id}} no debe estar en Votainteligente'+ '&body=La propuesta con título {{popular_proposal.title}} cuyo id es {{popular_proposal.id}} NO debe estar en la plataforma VotaInteligente.cl por ...\n La propuesta la pueden visitar en https://votainteligente.cl{{popular_proposal.get_absolute_url}}');
        })
       </script>
+
+
     </div>
 
       {% if user|is_candidate %}
@@ -271,7 +275,7 @@ $(function(){
           </div>
         <!-- Fin de el modal con lo de los contactos -->
 
-        <div class="text-width{% if proposal.for_all_areas %} transversal{% endif %}">
+        <div class="text-width print_hidden{% if proposal.for_all_areas %} transversal{% endif %} print_hidden">
         {% for candidacy in user.candidacies.all %}
           {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
             <div id="compromiso" class="tips-invert">
@@ -328,7 +332,7 @@ $(function(){
       {% endif %}<!-- is_candidate -->
 
       {% if popular_proposal.commitments.all %}
-        <div class="container{% if proposal.for_all_areas %} transversal{% endif %} compromiso">
+        <div class="container{% if proposal.for_all_areas %} transversal{% endif %} compromiso print_hidden">
           {% commiters_by_election_position popular_proposal 'presidenciales' as presidenciales %}
           {% if presidenciales.all %}
             <h3 class="text-center">Que dicen los candidatos presidenciales?</h3>
@@ -410,9 +414,9 @@ $(function(){
       {% endif %}
       <!-- Organizaciones patrocinantes -->
       {% if popular_proposal.sponsoring_orgs.all %}
-      <div class="apoyo-orgs">
+      <div class="apoyo-orgs print_hidden">
       <div class="container text-center">
-      <h4 class="text-center">Organizaciones que apoyan esta propuesta</h4>
+      <h4 class="text-center ">Organizaciones que apoyan esta propuesta</h4>
         <ul class="list-inline">
           {% for org in popular_proposal.sponsoring_orgs %}
           <li>

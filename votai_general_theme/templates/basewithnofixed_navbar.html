@@ -5,7 +5,7 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load votainteligente_extras %}
-<html lang="es"{% if config.SHOW_NAVBAR or user.is_authenticated %} class="navbar_visible"{% endif %}>
+<html lang="es" class="navbar_visible">
 <head>
     <meta charset="utf-8">
     <title>{% trans "Vota Inteligente" %} {% block title %}- {{ config.WEBSITE_GENERAL_SETTINGS_HOME_TITLE }}{% endblock title %}</title>
@@ -61,11 +61,28 @@
     {% block extra_css %}
     {% endblock extra_css %}
 </head>
-    <body{% if config.SHOW_NAVBAR or user.is_authenticated %} class="navbar_visible"{% endif %}>
+    <body class="navbar_visible">
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId            : '{{ config.WEBSITE_OGP_APP_ID }}',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v2.10'
+          });
+          FB.AppEvents.logPageView();
+        };
+
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "//connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+      </script>
       <div>
-        {% if config.SHOW_NAVBAR or user.is_authenticated %}
           {% include '_navbar.html' with fixed_nav_class="nav-detalle-propuesta" %}
-        {% endif %}
         {% block everything %}
         <div class="{% block content_container %}container content_padding{% endblock content_container %}">
             {% block content %}

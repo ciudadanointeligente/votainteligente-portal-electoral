@@ -22,7 +22,8 @@
     <ul class="list-unstyled  print-share-urls">
 
       {% for x in 'xxxxxxxxxxxxxxxxxxxx' %}
-      <li>{{popular_proposal.title}}<br >{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{popular_proposal.get_short_url}}</li>
+      <li>{{popular_proposal.title|truncatechars:40}}<br >
+        {% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{popular_proposal.get_short_url}}</li>
       {% endfor %}
     </ul>
   </div>

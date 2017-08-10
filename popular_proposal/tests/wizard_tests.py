@@ -25,10 +25,12 @@ USER_PASSWORD = 'secr3t'
 
 
 class WizardDataMixin(object):
+    url = reverse('popular_proposals:propose_wizard_full_without_area')
+    wizard_forms_fields =  wizard_forms_fields
     def get_example_data_for_post(self, **kwargs):
         test_response = kwargs.pop('test_response', {})
         cntr = len(test_response)
-        for step in wizard_forms_fields:
+        for step in self.wizard_forms_fields:
             test_response[cntr] = {}
             for field in step['fields']:
                 test_response[cntr][field] = ''
@@ -54,6 +56,47 @@ class WizardDataMixin(object):
             cntr += 1
         return test_response
 
+    def fill_the_whole_wizard(self,
+                              override_example_data={},
+                              default_view_slug='proposal_wizard_full_without_area',
+                              **kwargs):
+        '''
+        en:
+        This method fills the whole wizard and returns the last response, in other words the done step.
+        This method is designed to only work in testing environment.
+        es-cl:
+        Este método le completa todo el wizard y devuelve el response del final, es decir el done.
+        Sólo funca para escribir tests.
+        '''
+        example_data = kwargs.pop("data", self.example_data)
+        example_data.update(override_example_data)
+        url = kwargs.pop("url", self.url)
+        user = kwargs.pop("user", self.feli)
+        password = kwargs.pop("password", USER_PASSWORD)
+
+        self.client.login(username=user,
+                          password=password)
+        response = self.client.get(url)
+        steps = response.context['wizard']['steps']
+        for i in range(steps.count):
+            self.assertEquals(steps.current, unicode(i))
+            data = example_data[i]
+            data.update({default_view_slug + '-current_step': unicode(i)})
+            response = self.client.post(url, data=data)
+            if 'form' in response.context:
+                if response.context['form'] is not None:
+                    self.assertFalse(response.context['form'].errors,
+                                     u"Error en el paso" + unicode(i) + unicode(response.context['form'].errors))
+                    self.assertTrue(response.context['preview_data'])
+                    steps = response.context['wizard']['steps']
+        is_done = False
+        for template in response.templates:
+            if template.name.endswith('done.html'):
+                is_done = True
+        self.assertTrue(is_done)
+        return response
+
+
 @override_settings(MODERATION_ENABLED=True)
 class WizardTestCase(TestCase, WizardDataMixin):
     def setUp(self):
@@ -69,7 +112,7 @@ class WizardTestCase(TestCase, WizardDataMixin):
 
     def test_get_form_list(self):
         list_ = get_form_list()
-        self.assertEquals(len(list_), len(wizard_forms_fields))
+        self.assertEquals(len(list_), len(self.wizard_forms_fields))
         for step in list_:
             f = step()
             self.assertIsInstance(f, forms.Form)
@@ -325,45 +368,7 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
         self.feli.set_password(USER_PASSWORD)
         self.feli.save()
         ProposalTemporaryData.objects.all().delete()
-        self.url = reverse('popular_proposals:propose_wizard_full_without_area')
         self.example_data = self.get_example_data_for_post()
-
-    def fill_the_whole_wizard(self, override_example_data={}, **kwargs):
-        '''
-        en:
-        This method fills the whole wizard and returns the last response, in other words the done step.
-        This method is designed to only work in testing environment.
-        es-cl:
-        Este método le completa todo el wizard y devuelve el response del final, es decir el done.
-        Sólo funca para escribir tests.
-        '''
-        example_data = kwargs.pop("data", self.example_data)
-        example_data.update(override_example_data)
-        url = kwargs.pop("url", self.url)
-        user = kwargs.pop("user", self.feli)
-        password = kwargs.pop("password", USER_PASSWORD)
-
-        self.client.login(username=user,
-                          password=password)
-        response = self.client.get(url)
-        steps = response.context['wizard']['steps']
-        for i in range(steps.count):
-            self.assertEquals(steps.current, unicode(i))
-            data = example_data[i]
-            data.update({'proposal_wizard_full_without_area-current_step': unicode(i)})
-            response = self.client.post(url, data=data)
-            if 'form' in response.context:
-                if response.context['form'] is not None:
-                    self.assertFalse(response.context['form'].errors,
-                                     u"Error en el paso" + unicode(i) + unicode(response.context['form'].errors))
-                    self.assertTrue(response.context['preview_data'])
-                    steps = response.context['wizard']['steps']
-        is_done = False
-        for template in response.templates:
-            if template.name.endswith('done.html'):
-                is_done = True
-        self.assertTrue(is_done)
-        return response
 
     def test_create_a_proposal(self):
         original_amount = len(mail.outbox)

@@ -1,0 +1,39 @@
+{% extends "votita/base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+{% load votainteligente_extras %}
+{% load staticfiles %}
+{% block title %}- Ingreso/Registro{% endblock %}
+{% block extra_css %}
+	<link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
+{% endblock extra_css %}
+{% block content %}
+
+<script type="text/javascript">
+	$( document ).ready(function() {
+	    $('.dropdown-menu li').on("click", function(){
+		  txt_selected = $(this).text();
+		  $('.nav li.dropdown a')[0].innerHTML = txt_selected
+		})
+	});
+</script>
+
+
+<h1 class="text-center">Ingresa</h1>
+{% url 'popular_proposals:home' as proposals_home %}
+{% if proposals_home in request.META.HTTP_REFERER %}
+<div class="alert alert-warning" role="alert">
+  Para apoyar una propuesta debes estar registrado.
+</div>
+{% endif %}
+{% block login_tabs %}
+  {% include '_login_tabs.html' with next=next %}
+{% endblock login_tabs %}
+<div class="col-md-6 col-md-offset-3">
+        <!-- form -->
+          {% basic_login url=next %}
+				<!-- form -->
+</div>
+
+
+{% endblock content %}

@@ -18,7 +18,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.template.loader import get_template
 from PIL import Image, ImageDraw, ImageFont
+from model_utils.managers import InheritanceQuerySetMixin
 import textwrap
+from django.contrib.contenttypes.models import ContentType
 
 
 class NeedingModerationManager(models.Manager):
@@ -147,13 +149,15 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
     def __str__(self):
         return self.get_title()
 
+
 class ProposalsManager(models.Manager):
     def get_queryset(self):
         qs = super(ProposalsManager, self).get_queryset()
         qs = qs.exclude(is_reported=True)
         return qs
 
-class ProposalQuerySet(models.QuerySet):
+
+class ProposalQuerySet(InheritanceQuerySetMixin, models.QuerySet):
     def by_likers(self, *args, **kwargs):
         return self.order_by('-num_likers', 'proposer__profile__is_organization')
 
@@ -162,6 +166,7 @@ class ProposalsOrderedManager(ProposalsManager):
     def get_queryset(self):
         qs = ProposalQuerySet(self.model, using=self._db).exclude(is_reported=True)
         qs = qs.annotate(num_likers=Count('likers'))
+        qs = qs.select_subclasses()
         return qs
 
 
@@ -205,6 +210,8 @@ class PopularProposal(models.Model, OGPMixin):
     is_local_meeting = models.BooleanField(default=False)
     is_reported = models.BooleanField(default=False)
 
+    content_type = models.ForeignKey(ContentType, null=True)
+
     ogp_enabled = True
 
     ordered = ProposalsOrderedManager.from_queryset(ProposalQuerySet)()
@@ -218,6 +225,14 @@ class PopularProposal(models.Model, OGPMixin):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        created = self.pk is not None
+        if not created:
+            content_type = ContentType.objects.get_for_model(self.__class__)
+            self.content_type = content_type
+        super(PopularProposal, self).save(*args, **kwargs)
+
 
     def get_absolute_url(self):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})

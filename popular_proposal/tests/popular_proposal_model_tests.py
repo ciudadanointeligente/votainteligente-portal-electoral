@@ -9,6 +9,7 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.template.loader import get_template
 from django.contrib.sites.models import Site
 from django.test import override_settings
+from django.contrib.contenttypes.models import ContentType
 
 
 class PopularProposalTestCase(ProposingCycleTestCaseBase):
@@ -41,6 +42,9 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertFalse(popular_proposal.for_all_areas)
         self.assertFalse(popular_proposal.is_local_meeting)
         self.assertFalse(popular_proposal.is_reported)
+        content_type = popular_proposal.content_type
+        expected_content_type = ContentType.objects.get_for_model(PopularProposal)
+        self.assertEquals(content_type, expected_content_type)
 
     def test_popular_proposal_card_as_property(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
@@ -93,7 +97,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
                                         popular_proposal.get_absolute_url())
         self.assertEquals(expected_url, popular_proposal.ogp_url())
         self.assertTrue(popular_proposal.ogp_image())
-        
+
 
     def test_generate_og_image(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,

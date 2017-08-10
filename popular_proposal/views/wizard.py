@@ -13,11 +13,7 @@ from django.http import HttpResponseNotFound
 
 from django.shortcuts import get_object_or_404, render
 
-from django.shortcuts import render_to_response
-
 from django.utils.decorators import method_decorator
-
-from django.views.generic.edit import UpdateView
 
 from elections.models import Area
 
@@ -27,18 +23,16 @@ from popular_proposal.forms import (AreaForm,
                                     UpdateProposalForm,
                                     get_form_list,)
 
-from popular_proposal.models import (PopularProposal,
-                                     ProposalTemporaryData)
+from popular_proposal.models import (ProposalTemporaryData)
 
 from votainteligente.send_mails import send_mails_to_staff
-
-from django.template import RequestContext
 
 wizard_form_list = get_form_list()
 
 
 class ProposalWizardBase(SessionWizardView):
     form_list = wizard_form_list
+    model = ProposalTemporaryData
     template_name = 'popular_proposal/wizard/form_step.html'
 
     def get_template_names(self):
@@ -48,17 +42,6 @@ class ProposalWizardBase(SessionWizardView):
 
     def get_previous_forms(self):
         return []
-
-    def get_form_list(self):
-        form_list = OrderedDict()
-        previous_forms = self.get_previous_forms()
-        my_list = previous_forms + get_form_list(user=self.request.user)
-        counter = 0
-        for form_class in my_list:
-            form_list[str(counter)] = form_class
-            counter += 1
-        self.form_list = form_list
-        return form_list
 
     def determine_area(self, data):
         is_testing = data.pop("is_testing", False)
@@ -80,11 +63,11 @@ class ProposalWizardBase(SessionWizardView):
         }
 
         kwargs['area'] = self.determine_area(data)
-        temporary_data = ProposalTemporaryData.objects.create(**kwargs)
+        temporary_data = self.model.objects.create(**kwargs)
         context = self.get_context_data(form=None)
         context.update({'popular_proposal': temporary_data,
-        'area': kwargs['area']
-        })
+                        'area': kwargs['area']
+                        })
         if not settings.MODERATION_ENABLED:
             temporary_data.create_proposal()
             context['form_update'] = UpdateProposalForm(instance=temporary_data.created_proposal)
@@ -129,6 +112,17 @@ class ProposalWizard(ProposalWizardBase):
     def dispatch(self, request, *args, **kwargs):
         self.area = get_object_or_404(Area, id=self.kwargs['slug'])
         return super(ProposalWizard, self).dispatch(request, *args, **kwargs)
+
+    def get_form_list(self):
+        form_list = OrderedDict()
+        previous_forms = self.get_previous_forms()
+        my_list = previous_forms + get_form_list(user=self.request.user)
+        counter = 0
+        for form_class in my_list:
+            form_list[str(counter)] = form_class
+            counter += 1
+        self.form_list = form_list
+        return form_list
 
 
 class ProposalWizardFull(ProposalWizardBase):

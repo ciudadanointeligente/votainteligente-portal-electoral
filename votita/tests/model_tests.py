@@ -72,7 +72,7 @@ class KidsGatheringTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(KidsGatheringTestCase, self).setUp()
 
-    def test_instanciate_model(self):
+    def test_gathering_can_have_area(self):
         stats_data = {
             'male': 10,
             'female': 10,

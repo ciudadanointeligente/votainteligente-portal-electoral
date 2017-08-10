@@ -124,7 +124,6 @@ class WizardTestCase(TestCase, WizardDataMixin):
             f = step()
             for field in f.fields:
                 self.assertTrue(f.explanation_template)
-                self.assertTrue(f.fields[field].widget.attrs['long_text'])
 
     def test_get_form_list_depending_on_user(self):
         def return_none(user=None):

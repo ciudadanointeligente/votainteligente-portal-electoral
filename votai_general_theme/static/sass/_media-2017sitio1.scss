@@ -17,9 +17,6 @@
     text-align: center;
   }
 
-  #welcome{
-    padding-top: 50px;
-  }
 }
 
 @media screen and (max-width: 900px) {
@@ -45,15 +42,20 @@
 }
 
 @media screen and (max-width: 499px) {
-  #welcome{
-    background: none $yellow;
-    min-height: inherit;
-    height: 240px;
-  }
   .presidents{
     display: none;
   }
 }
+
+@media screen and (max-width: 495px) {
+  #you-org{
+    .btn{
+      margin-top: 10px;
+    }
+  }
+}
+
+
 
 @media screen and (max-width: 425px) {
   .content_padding {
@@ -70,6 +72,13 @@
     .paso {
       font-size: 11px;
     }
+  }
+}
+
+@media screen and (max-width: 397px) {
+  .counter-number{
+    font-size: 32px;
+    top: 5px;
   }
 }
 

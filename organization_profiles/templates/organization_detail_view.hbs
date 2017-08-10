@@ -64,11 +64,10 @@
 </div>
 <!--  extra pages -->
 <div class="container" style="padding-top:10px; padding-bottom:10px;">
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#propuestas" aria-controls="propuestas" role="tab" data-toggle="tab">Proponemos</a></li>
-    <li role="presentation"><a href="#propuestas-apoyadas" aria-controls="propuestas-apoyadas" role="tab" data-toggle="tab">Apoyamos</a></li>
+  <ul class="nav nav-pills list-inline" role="tablist">
+    <li role="presentation" class="active"><a href="#propuestas" aria-controls="propuestas" role="tab" data-toggle="tab" class="small">Proponemos y apoyamos</a></li>
     {{#each extra_pages}}
-    <li role="presentation"><a href="#{{slug}}" aria-controls="{{slug}}" role="tab" data-toggle="tab">{{title}}</a></li>
+    <li role="presentation"><a href="#{{slug}}" aria-controls="{{slug}}" role="tab" data-toggle="tab" class="small">{{title}}</a></li>
     {{/each}}
   </ul>
 
@@ -88,8 +87,6 @@
         <p>Comienza a generar tus propuestas en el siguiente <a href="{{create_proposal_url}}">enlace</a></p>
         {{/if}}
       {{/if}}
-    </div>
-    <div role="tabpanel" class="tab-pane" id="propuestas-apoyadas">
       <h3 class="page-header">Apoyamos</h3>
       {{#if sponsorships}}
       <div class="row">

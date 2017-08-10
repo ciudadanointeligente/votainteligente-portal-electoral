@@ -14,31 +14,36 @@
 
 {% block content %}
 <div>
-  <div class="text-width wizard">
-    <p class="text-light">Creando una propuesta para {{ area }}</p>
-
+  <div class="text-width">
     <div class="row">
     {% for i in wizard.steps.count|times %}
-        <div class="col-md-3 col-sm-3 col-xs-3">
-            <div class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}">Paso {{i|add:1}} de {{wizard.steps.count}}</div>
-        </div>
+    <div class="col-md-3 col-sm-3 col-xs-3 text-center wizard">
+        Paso
+        <p class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}"><span class="badge">{{i|add:1}}</span></p>
+    </div>
     {% endfor %}
     </div>
+</div>
+<div class="text-center proposal-step">
+<p class="small">Creando una propuesta</p>
+<h2>{% if form.step_title %}{{form.step_title}}{% endif %}</h2>
+</div>
 
-
+<section>
+    <p class="long_text">{% include form.explanation_template %}</p>
+</section>
+<div class="col-md-8 col-md-offset-2">
 <form role="form" action="" method="post">
         {% csrf_token %}
         {{ wizard.management_form }}
-        <section>
-            <p class="long_text">{% include form.explanation_template %}</p>
-        </section>
+
         <section>
             {% if form.organization %}
                 {% bootstrap_field form.organization show_help=false %}
             {% endif %}
         </section>
     <div class="preview fondo-blanco">
-        <p class="small text-center">Propuesta para {{ area }}</p>
+        <p class="small text-center">Propuesta</p>
         <section>
             {% bootstrap_field form.title show_help=false show_label=false %}
         </section>
@@ -46,7 +51,7 @@
     </div>
     <div class="panel panel-default extra-info">
       <div class="panel-heading extra-info">
-        <h3 class="panel-title">Información adicional sobre tu propuesta</h3>
+        <p class="small text-center">Información adicional sobre tu propuesta</p>
       </div>
       <div class="panel-body">
        {% bootstrap_field form.is_local_meeting  %}
@@ -76,6 +81,7 @@
 
 
 </form>
+</div>
 </div>
 </div>
 

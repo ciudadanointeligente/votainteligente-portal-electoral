@@ -79,10 +79,9 @@ td.cal-date{
 }
 
 #welcome{
-  background: url("../img/welcome.svg") no-repeat $yellow 0 11px;
-  min-height: 470px;
+  background: $yellow ;
   background-size: cover;
-  padding-top: 180px;
+  padding: 20px 0 20px;
   h1{
     margin: 60px 0;
   }
@@ -102,7 +101,7 @@ td.cal-date{
   letter-spacing: 0;
 }
 
-#you-org{
+#proposals-counter{
   min-height: 60px;
   color: white;
   font-family: 'Montserrat', sans-serif;
@@ -110,7 +109,31 @@ td.cal-date{
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 12px;
+  padding-top: 10px;
+}
+
+.counter-number{
+  font-family: 'Arvo', serif;
+  color: $blue;
+  font-weight: 700;
+  font-size: 44px;
+  position: relative;
+  top: 9px;
+}
+
+#you-org{
+  min-height: 60px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 10px;
   padding-top: 12px;
+  line-height: 12px;
+  .btn{
+    font-size: 10px;
+  }
 }
 
 #actions{
@@ -132,11 +155,6 @@ td.cal-date{
   background-position: center;
   padding-top: 180px;
   margin-bottom: 70px;
-  &:hover{
-    color: $blue;
-    background: url("../img/a-encuentro-h.svg") no-repeat;
-    background-position: center;
-  }
 }
 
 .action-crea{
@@ -146,11 +164,6 @@ td.cal-date{
   background-position: center;
   padding-top: 180px;
   margin-bottom: 70px;
-  &:hover{
-    color: $blue;
-    background: url("../img/a-crea-h.svg") no-repeat;
-    background-position: center;
-  }
 }
 
 .action-apoya{
@@ -160,15 +173,19 @@ td.cal-date{
   background-position: center;
   padding-top: 180px;
   margin-bottom: 70px;
-  &:hover{
-    color: $blue;
-    background: url("../img/a-apoya-h.svg") no-repeat;
-    background-position: center;
-  }
 }
 
 #education{
   margin-bottom: 60px;
+  .btn{
+    font-size: 11px;
+  }
+  h2 > a{
+    color: $grey-one;
+    &:hover{
+      color: $blue;
+    }
+  }
 }
 
 .edu-1{
@@ -222,16 +239,14 @@ td.cal-date{
   top: 270px;
 }
 
-.logo-org {}
-
 .org-info{
   h2{
     font-weight: 700;
     margin-top: 70px;
   }
   p{
-    font-size: 24px;
-    font-family: 'Arvo', serif;
+    font-size: 20px;
+    line-height: 25px;
   }
 }
 
@@ -259,7 +274,7 @@ td.cal-date{
 /*Forms*/
 .form-control{
   background-color: $grey-five;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .help-block{
@@ -281,11 +296,6 @@ input[type=file]{
     border-color: transparent;
     box-shadow: none;
   }
-}
-
-
-.form-control{
-  border-radius: 58px;
 }
 
 .has-success .checkbox, .has-success .checkbox-inline, .has-success .control-label, .has-success .help-block, .has-success .radio, .has-success .radio-inline, .has-success.checkbox label, .has-success.checkbox-inline label, .has-success.radio label, .has-success.radio-inline label{
@@ -403,7 +413,7 @@ input[type=file]{
   padding: 25px 20px 35px;
   .logo-ong{
     position: absolute;
-    left: 227px;
+    right: 8%;
   }
 }
 
@@ -546,14 +556,6 @@ input[type=file]{
   border-radius: 5px;
   height: 230px;
   padding: 30px 15px;
-  img{
-    margin: 0 auto;
-    height: 140px;
-    margin-bottom: 15px;
-  }
-}
-
-.set-guide{
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   letter-spacing: 1.3px;
@@ -564,8 +566,12 @@ input[type=file]{
   &:hover{
     color: $blue;
   }
+  img{
+    margin: 0 auto;
+    height: 140px;
+    margin-bottom: 15px;
+  }
 }
-
 
 /*Botones*/
 .btn-blue{
@@ -580,11 +586,28 @@ input[type=file]{
 .btn-white{
   background-color: white;
   color: $grey-one;
-  word-wrap:break-word;
-  white-space: normal;
   &:hover{
     background-color: $grey-one;
     color: white;
+  }
+}
+
+.btn-line{
+  background-color: white;
+  color: $grey-one;
+  border: 3px solid $grey-five;
+  &:hover{
+    border: 3px solid $grey-one;
+    background-color: $grey-one;
+    color: white;
+  }
+}
+
+.btn{
+  word-wrap: break-word;
+  white-space: normal;
+  &:hover{
+  box-shadow: none;
   }
 }
 
@@ -622,4 +645,74 @@ input[type=file]{
     background-color: #FF645B;
     color: white;
   }
+}
+
+/*Pasos creando propuesta*/
+.tips, .tips-invert{
+  background: $grey-one;
+  margin: 10px 0 0 0;
+  border-radius: 10px;
+  .main-title{
+    color: $yellow;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  .step-title{
+    font-family: 'Arvo', serif;
+    font-weight: 700;
+  }
+}
+
+.tips:after{
+  display: none;
+}
+
+label{
+  font-family: 'Montserrat', sans-serif;
+  color: $grey-one;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 10px 0 0 0;
+}
+
+.proposal-step{
+  margin-top: 30px;
+  h2{
+    margin: 0 0 40px 0;
+  }
+}
+
+.wizard{
+  font-family: 'Arvo', serif;
+  font-weight: 700;
+  color: $grey-one;
+  .badge{
+    padding: 6px 10px;
+    background-color: $grey-one;
+    font-size: 14px;
+    margin-bottom: 10px;
+    border-radius: 14px;
+  }
+}
+
+.preview.fondo-blanco{
+  margin: 30px 0 30px 0;
+}
+
+.panel{
+  border-radius: 10px;
+}
+
+/*LOGIN*/
+.nav-pills.list-inline{
+  margin-bottom: 40px;
+}
+
+.line-space{
+  height: 30px;
 }

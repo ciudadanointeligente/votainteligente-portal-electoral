@@ -81,8 +81,8 @@ TOPIC_CHOICES = (('', u'Selecciona una categoría'),
 
 wizard_forms_fields = [
     {
-        'template': 'popular_proposal/wizard/paso1.html',
-        'explation_template': "popular_proposal/steps/paso1.html",
+        'template': 'popular_proposal/wizard/form_step.html',
+        'explation_template': "popular_proposal/steps/tips_vacio.html",
         'fields': OrderedDict([(
             'clasification', forms.ChoiceField(choices=TOPIC_CHOICES,
                                                widget=forms.Select())
@@ -94,7 +94,7 @@ wizard_forms_fields = [
     },
     {
         'template': 'popular_proposal/wizard/paso5.html',
-        'explation_template': "popular_proposal/steps/paso5.html",
+        'explation_template': "popular_proposal/steps/tips_vacio.html",
         'fields': OrderedDict([
             ('title', forms.CharField(max_length=256,
                                       widget=forms.TextInput())),

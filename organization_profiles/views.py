@@ -48,6 +48,11 @@ class OrganizationDetailView(DetailView):
     context_object_name = 'organization'
     response_class = HandleBarsResponse
 
+    def get_queryset(self):
+        qs = super(OrganizationDetailView, self).get_queryset()
+        qs = qs.exclude(organization_template__isnull=True)
+        return qs
+
     def create_context_based_on_organization_template(self, context):
 
         context['extra_pages'] = []

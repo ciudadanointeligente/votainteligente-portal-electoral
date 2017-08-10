@@ -42,9 +42,7 @@
   <script src="{% static 'js/django-inline-form.js' %}"></script>
 </head>
 <body>
-  {% if config.SHOW_NAVBAR or user.is_authenticated %}
     {% include 'votita/_navbar.html' %}
-  {% endif %}
 
   <!-- content -->
   {% block content %}{% endblock content %}

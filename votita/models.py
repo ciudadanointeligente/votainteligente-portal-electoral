@@ -7,6 +7,7 @@ from popular_proposal.models import PopularProposal
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
 from elections.models import Area
+from taggit.managers import TaggableManager
 
 
 PRESIDENTS_FEATURES = (
@@ -54,11 +55,7 @@ class KidsGathering(models.Model):
     name = models.CharField(max_length=512,
                             verbose_name="Nombre del encuentro")
     stats_data = PickledObjectField()
-    presidents_features = MultiSelectField(choices=PRESIDENTS_FEATURES,
-                                           null=True,
-                                           max_choices=10,
-                                           max_length=512,
-                                           verbose_name="Características de un buen presidente")
+    presidents_features = TaggableManager(verbose_name="Características de un buen presidente")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='votita/images/',

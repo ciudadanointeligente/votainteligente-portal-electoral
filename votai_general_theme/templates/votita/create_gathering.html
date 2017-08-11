@@ -1,5 +1,14 @@
 {% extends "votita/base.html" %}
 {% load bootstrap3 %}
+{% load static %}
+
+{% block extrascripts %}
+<link href="{% static 'css/bootstrap-tagsinput.css' %}" rel="stylesheet" crossorigin="anonymous">
+
+
+<script src="{% static 'js/bootstrap-tagsinput.js' %}"></script>
+<script src="{% static 'js/typeahead.bundle.js' %}"></script>
+{% endblock extrascripts %}
 
 {% block title %}- Crear encuentro infantil{% endblock title %}
 
@@ -8,8 +17,79 @@
   <h1 class="page-header">Crear encuentro infantil</h1>
   <form action="{% url 'votita:create_gathering' %}" method="post">
       {% csrf_token %}
-      {% bootstrap_form form %}
+      {% bootstrap_field form.name %}
+      {% bootstrap_field form.generated_at %}
+      <div class="form-group">
+        <label class="control-label" for="id_presidents_features">Características de un buen presidente</label>
+        <input class="form-control"
+          id="id_presidents_features" name="presidents_features"
+          placeholder="Características de un buen presidente" title="Una lista de etiquetas separadas por coma." type="text" required />
+        <div class="help-block">Una lista de etiquetas separadas por coma.</div>
+      </div>
       <input type="submit" value="Enviar" class="btn btn-default" />
   </form>
 </div>
+
+
+<script>
+var substringMatcher = function(strs) {
+  return function findMatches(q, cb) {
+    var matches, substringRegex;
+
+    // an array that will be populated with substring matches
+    matches = [];
+
+    // regex used to determine if a string contains the substring `q`
+    substrRegex = new RegExp(q, 'i');
+
+    // iterate through the pool of strings and for any string that
+    // contains the substring `q`, add it to the `matches` array
+    $.each(strs, function(i, str) {
+      if (substrRegex.test(str)) {
+        matches.push(str);
+      }
+    });
+
+    cb(matches);
+  };
+};
+
+var features = ['Inteligente',
+'Creativo/a',
+'Objetivo',
+'Con Iniciativa',
+'Profesional',
+'Culto/a',
+'Bilingüe',
+'Responsable',
+'Transparente',
+'Honesto/a',
+'Equitativo/a',
+'Justo/a',
+'Comprometido/a',
+'Integrador/a',
+'Motivador/a',
+'Abierto/a a escuchar',
+'Accesible',
+'Empático/a',
+'Confiable',
+'Lider',
+'Buen Administrador/a',
+'Buen Negociante',
+'Buen Comunicador/a',
+'Influyente',
+'Eficiente',
+'Con experiencia'];
+
+
+$(function(){
+  $('#id_presidents_features').tagsinput({
+    typeahead: {
+      source: features
+    },
+    freeInput: true,
+  });
+});
+
+</script>
 {% endblock content %}

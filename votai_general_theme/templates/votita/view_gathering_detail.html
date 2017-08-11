@@ -4,11 +4,11 @@
 {% block title %}- Ver encuentro - {{object.name}}{% endblock title %}
 
 {% block content %}
-{% if object.image %}
-<div class="container-fluid">
-  <div class="photo-gathering" style="background-image: url(/cache/{{object.image}}); background-position: center; background-repeat: no-repeat; height: 320px;"></div>
+
+<div class="container-fluid kids-gathering-detail">
+  <div class="photo-gathering" style="{% if object.image %}background-image: url(/cache/{{object.image}});{% else %}background-color: red;{% endif %} background-position: center; background-repeat: no-repeat; height: 320px;"></div>
 </div>
-{% endif %}
+
 <div class="container">
   <h1 class="page-header">Encuentro <small>{{object.name}}</small></h1>
   <div class="row">

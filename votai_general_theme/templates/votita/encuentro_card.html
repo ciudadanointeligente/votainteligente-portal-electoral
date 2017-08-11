@@ -1,1 +1,14 @@
-<li><a href="{% url 'votita:ver_encuentro' encuentro.pk %}">{{encuentro.name}}</a></li>
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading panel-kids-gathering">
+      <div class="img-gathering" style="{% if encuentro.image %}background-image: url(/cache/{{encuentro.image}});{% else %}background-color: #CCC;{% endif %} height: 150px; background-position: center center;"></div>
+    </div>
+    <div class="panel-body">
+      <ul class="list-inline">
+        <li>Encuentro #{{forloop.counter}}</li>
+      </ul>
+      <h3><a href="{% url 'votita:ver_encuentro' encuentro.pk %}">{{encuentro.name}}</a></h3>
+    </div>
+  </div>
+</div>
+{% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}

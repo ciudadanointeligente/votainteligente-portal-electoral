@@ -29,10 +29,11 @@ class CreateGatheringForm(ModelForm):
         self.proposer = kwargs.pop('proposer')
         super(CreateGatheringForm, self).__init__(*args, **kwargs)
 
-    def save(self):
+    def save(self, commit=True):
         instance = super(CreateGatheringForm, self).save(commit=False)
         instance.proposer = self.proposer
         instance.save()
+        self.save_m2m()
         return instance
 
 

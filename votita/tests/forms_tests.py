@@ -27,13 +27,13 @@ class CreateGatheringFormTestCase(ProposingCycleTestCaseBase):
 
     def test_create_a_gathering(self):
         data = {"name": "Segundo medio C",
-                "presidents_features": ["inteligente"],
+                "presidents_features": "inteligente,honesto",
                 "generated_at": self.a_comuna.id}
         form = CreateGatheringForm(data, proposer=self.feli)
         self.assertTrue(form.is_valid())
         gathering = form.save()
         self.assertEquals(gathering.name, data['name'])
-        self.assertTrue(gathering.presidents_features)
+        self.assertTrue(gathering.presidents_features.all())
         self.assertEquals(gathering.generated_at, self.a_comuna)
 
     def test_update_gathering(self):

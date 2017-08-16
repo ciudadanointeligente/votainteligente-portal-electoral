@@ -17,6 +17,7 @@
         <li><a href="{% url 'votita:create_gathering' %}">Crear encuentro</a></li>
         <li><a href="{% url 'votita:list_gatherings' %}">Todos los encuentros</a></li>
       </ul>
+        {% include "_dropdown_user.html" with user=user %}
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

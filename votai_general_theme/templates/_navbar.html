@@ -32,72 +32,9 @@
                 {% endif %}
                 <li><a href="{% url 'material_ciudadano' %}" onclick="ga('send', 'event', 'nav-material-ciudadano', 'click')">Material ciudadano</a></li>
 
-                {% if user.is_authenticated %}
-                <li class="dropdown">
 
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                      {{user}}
-                      <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    {% if user.is_superuser %}
-                    <li><a href="/admin"><i class="fa fa-beer" aria-hidden="true"></i>{% blocktrans %}Sección de administración{% endblocktrans %}</a></li>
-                    {% endif %}
-                    {% if user.is_staff %}
-                    <li><a href="{% url 'backend_staff:index' %}"><i class="fa fa-heart" aria-hidden="true"></i>{% blocktrans %}Sección del Staff{% endblocktrans %}</a></li>
-                    <li><a href="{% url 'backend_staff:stats' %}"><i class="fa fa-line-chart" aria-hidden="true"></i>{% blocktrans %}Estadísticas{% endblocktrans %}</a></li>
-                    <li><a href="{% url 'backend_staff:per_area_stats' %}"><i class="fa fa-bar-chart" aria-hidden="true"></i>{% blocktrans %}Estadísticas por area{% endblocktrans %}</a></li>
-                    {% endif %}
 
-                    {% if user|is_candidate %}
-                    <li><a href="{% url 'backend_candidate:home' %}" onclick="ga('send', 'event', 'nav-candidato', 'click')">
-                            <i class="fa fa-certificate" aria-hidden="true"></i>
-                            {% blocktrans %}Sección del candidato{% endblocktrans %}</a></li>
-                    {% endif %}
-                    <li><a href="{% url 'backend_citizen:index' %}" onclick="ga('send', 'event', 'nav-edita-perfil', 'click')">
-                            <i class="fa fa-home" aria-hidden="true"></i>
-                            {% blocktrans %}Editar mi perfil{% endblocktrans %}
-                        </a>
-                    </li>
-                    {% if user.profile.is_journalist %}
-                        <li><a href="{% url 'backend_staff:all_commitments' %}">
-                            <i class="fa fa-heart" aria-hidden="true"></i>
-                            {% blocktrans %}Todos los compromisos{% endblocktrans %}
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if user.enrollments.all %}
-                    <li role="separator" class="divider"></li>
-                    {% endif %}
-                    {% for enrollment in user.enrollments.all %}
 
-                    <li>
-                        <a target="_blank" href="{{enrollment.organization.get_absolute_url}}">
-                            {% if enrollment.organization.primary_image %}
-
-                            {% thumbnail enrollment.organization.primary_image "x16" as im %}
-                            <img src={% static im.url %}>
-                            {% endthumbnail %}
-                            {% else %}
-                            <i class="fa fa-home" aria-hidden="true"></i>
-                            {% endif %}
-
-                            {{enrollment.organization}}
-                            <i class="fa fa-external-link" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    {% endfor %}
-                    <li role="separator" class="divider"></li>
-                    <li>
-                        <a href="{% url 'auth_logout' %}">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i>
-                            {% blocktrans %}Salir{% endblocktrans %}
-                        </a>
-                    </li>
-                  </ul>
-                </li>
-                {% else %}
-                <li><a href="{% url 'auth_login' %}" onclick="ga('send', 'event', 'nav-login', 'click')">{% blocktrans %}Ingresar{% endblocktrans %}</a></li>
-                {% endif %}
                 <li>
                     <a href="#" onclick="ga('send', 'event', 'nav-twitter-share', 'click'); window.open(&quot;//twitter.com/share?via=Ciudadanoi&hashtags={{ config.WEBSITE_TWITTER_HASHTAG }}&text={{ config.WEBSITE_TWITTER_TEXT }}&quot;,&quot;twitter&quot;,&quot;width=450, height=250&quot;)">
                       <span class="fa-stack fa-lg">

@@ -50,7 +50,7 @@ class UpdateGatheringForm(ModelForm):
                                 initial=0)
     class Meta:
         model = KidsGathering
-        fields = ['image']
+        fields = ['image', 'comments']
 
     def clean(self):
         cleaned_data = super(UpdateGatheringForm, self).clean()

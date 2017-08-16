@@ -84,10 +84,12 @@ class KidsGatheringTestCase(ProposingCycleTestCaseBase):
                                                  generated_at=a_comuna,
                                                  stats_data=stats_data,
                                                  presidents_features=['ingeligente',
-                                                                      'honesto'])
+                                                                      'honesto'],
+                                                 comments="This is a comment")
         self.assertTrue(gathering.created)
         self.assertTrue(gathering.updated)
         self.assertEquals(gathering.generated_at, a_comuna)
+        self.assertTrue(gathering.comments)
 
     def test_a_proposal_is_related_to_it(self):
         stats_data = {

@@ -21,6 +21,14 @@
     <meta property="og:url" content="https://{% url_domain %}">
     <meta property="og:image" content="https://{% url_domain %}{% static 'img/logo_vi_og.jpg' %}">
     <meta property="og:description" content="{{ config.WEBSITE_OGP_DESCRIPTION }}">
+
+    <meta name="twitter:card" content="{{config.WEBSITE_TWITTER_HASHTAG}}">
+    <meta name="twitter:site" content="https://{% url_domain %}">
+    <meta name="twitter:creator" content="@ciudadanoi">
+    <meta name="twitter:title" content="{{config.WEBSITE_TWITTER_HASHTAG}}">
+    <meta name="twitter:description" content="{{config.WEBSITE_TWITTER_TEXT}}">
+    <meta name="twitter:image" content="https://{% url_domain %}{% static 'img/logo_vi_og.jpg' %}">
+
     {% endblock ogp %}
     <meta property="fb:app_id" content="{{ config.WEBSITE_OGP_APP_ID }}">
     <!--eoff-->

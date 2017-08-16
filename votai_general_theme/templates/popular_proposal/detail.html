@@ -23,6 +23,13 @@ $(function(){
 
 {% block ogp %}
   {% render_ogp popular_proposal %}
+
+  <meta name="twitter:card" content="{{config.WEBSITE_TWITTER_HASHTAG}}">
+  <meta name="twitter:site" content="https://{% url_domain %}">
+  <meta name="twitter:creator" content="@ciudadanoi">
+  <meta name="twitter:title" content="{{popular_proposal.title}}">
+  <meta name="twitter:description" content="{{ popular_proposal.data.solution }}">
+  <meta name="twitter:image" content="{{popular_proposal.ogp_image}}">
   <meta property="og:description" content="{{ popular_proposal.data.solution }}">
 {% endblock ogp %}
 

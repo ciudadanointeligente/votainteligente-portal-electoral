@@ -107,7 +107,7 @@ $(function(){
             </div>
             {% endif %}
             <span class="corazon-{{proposal.id}}">
-                <a class="btn btn-apoyo text-center {{support_button_extra_class}}" href="{% url 'auth_login' %}">
+                <a class="btn btn-apoyo text-center {{support_button_extra_class}}" href="{% url 'auth_login' %}" onclick="ga('send','event','apoyo-propuesta-no-usuario')">
                 Apoyar <i class="fa fa-heart" aria-hidden="true"></i>
                 </a>
             </span>

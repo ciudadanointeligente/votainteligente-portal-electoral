@@ -45,7 +45,8 @@ class CreateGatheringFormTestCase(ProposingCycleTestCaseBase):
         data = {
             'male': 10,
             'female': 10,
-            'others': 10
+            'others': 10,
+            'comments': "Muy buena actividad, esto es lindo",
         }
         file_data = {'image': photo}
         form = UpdateGatheringForm(data=data,
@@ -56,3 +57,4 @@ class CreateGatheringFormTestCase(ProposingCycleTestCaseBase):
         g = KidsGathering.objects.get(id=g.id)
         self.assertTrue(g.stats_data)
         self.assertTrue(g.image)
+        self.assertTrue(g.comments)

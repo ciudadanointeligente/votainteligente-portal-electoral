@@ -16,8 +16,9 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{% url 'votita:create_gathering' %}">Crear encuentro</a></li>
         <li><a href="{% url 'votita:list_gatherings' %}">Todos los encuentros</a></li>
-      </ul>
         {% include "_dropdown_user.html" with user=user %}
+      </ul>
+
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

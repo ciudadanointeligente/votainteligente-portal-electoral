@@ -226,6 +226,9 @@ class PopularProposal(models.Model, OGPMixin):
     def __str__(self):
         return self.title
 
+    def ogp_title(self):
+        return u'Apoya en VotaInteligente'
+
     def save(self, *args, **kwargs):
         created = self.pk is not None
         if not created:

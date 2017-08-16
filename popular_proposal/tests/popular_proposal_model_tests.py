@@ -91,7 +91,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
                                                           clasification=u'education'
                                                           )
         self.assertTrue(popular_proposal.ogp_enabled)
-        self.assertIn(popular_proposal.title, popular_proposal.ogp_title())
+        self.assertTrue(popular_proposal.ogp_title())
         self.assertEquals('website', popular_proposal.ogp_type())
         expected_url = "http://%s%s" % (site.domain,
                                         popular_proposal.get_absolute_url())

@@ -25,14 +25,17 @@
       }
     }
   }
+  .container {
+    width: 90%;
+  }
   .print-share-urls {
     display: block;
     transform: rotate(90deg);
     position: absolute;
-    top: -10px;
+    top: -54px;
     border-left: 1px dashed;
     padding-left: 10px;
-    margin-left: 465px;
+    margin-left: 382px;
     li {
       padding: 2px 0px;
       margin: 2px 0px;
@@ -40,7 +43,7 @@
     }
   }
   .invitacion {
-    top: 450px;
+    top: 300px;
     position: absolute;
   }
   .print_only {

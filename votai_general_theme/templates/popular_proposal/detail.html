@@ -50,59 +50,65 @@ $(function(){
 
 {% if popular_proposal.proposer == user %}
 <div class="container proposal-banner-org">
-  <div class="alert alert-success text-center">
-      <p>Esta es tu propuesta {{user}}, ¿quieres <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %}añadir antecedentes{% endblocktrans %}</a> a esta propuesta?</p>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-success text-center">
+        <p>Esta es tu propuesta {{user}}, ¿quieres <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %}añadir antecedentes{% endblocktrans %}</a> a esta propuesta?</p>
+      </div>
+    </div>
   </div>
 </div>
 {% endif%}
 
 <section id="proposal">
-  <div class="detalle-propuesta-total">
-    <div class="container fondo-blanco detail text-width{% if proposal.for_all_areas %} transversal{% endif %}">
-      <div class="pull-left">
-        <span class="label label-default">{{popular_proposal.data.clasification}}</span>
-      </div>
-      <div class="line-space"></div>
-      <p class="text-center text-light small">Esta es una propuesta de
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 detalle-propuesta detail{% if proposal.for_all_areas %} transversal{% endif %}">
+          <span class="label label-default">{{popular_proposal.data.clasification}}</span>
+          <div class="line-space"></div>
+          <p class="text-light small">Propuesta nº{{popular_proposal.id}}</p>
+          {% if popular_proposal.is_local_meeting %}
+            <img src="{% static 'img/local-meeting.svg' %}" class="img-responsive" alt="Generada desde un encuentro ciudadano">
+          {% endif %}
+          <h1>{{popular_proposal.title}}</h1>
+          <p class="text-light small">
+            Esta es una propuesta de
 
-        {% if popular_proposal.proposer.profile.is_organization %}
-          <a href="{{popular_proposal.proposer.organization_template.get_absolute_url}}">
-            {% if popular_proposal.proposer.get_full_name %}
-              {{popular_proposal.proposer.get_full_name}}
-            {% else %}
-              {{popular_proposal.proposer}}
+            {% if popular_proposal.proposer.profile.is_organization %}
+              <a href="{{popular_proposal.proposer.organization_template.get_absolute_url}}">
+              {% if popular_proposal.proposer.get_full_name %}
+                {{popular_proposal.proposer.get_full_name}}
+              {% else %}
+                {{popular_proposal.proposer}}
+              {% endif %}
+              </a>
+              {% else %}
+              {% if popular_proposal.proposer.get_full_name %}
+                {{popular_proposal.proposer.get_full_name}}
+              {% else %}
+                {{popular_proposal.proposer}}
+              {% endif %}
             {% endif %}
-          </a>
-          {% else %}
-            {% if popular_proposal.proposer.get_full_name %}
-              {{popular_proposal.proposer.get_full_name}}
-            {% else %}
-              {{popular_proposal.proposer}}
-            {% endif %}
-        {% endif %}
-      </p>
-      <h1 class="text-center">{{popular_proposal.title}}</h1>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="pull-right">
-            <ul class="list-inline proposal-tools">
-              <li class="hidden-xs hidden-sm">
-                <i class="fa fa-print" onclick="print()"></i>
-              </li>
-              <li>
-                <i class="fa fa-font"></i>
-              </li>
-              <li>
-                <i class="fa fa-plus" onclick="UpSize(2)"></i>
-              </li>
-              <li>
-                <i class="fa fa-minus" onclick="DownSize(2)"></i>
-              </li>
-            </ul>
-          </div>
+          </p>
         </div>
-      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-9 detalle-propuesta">
+        <ul class="list-inline proposal-tools">
+          <li class="hidden-xs hidden-sm">
+            <i class="fa fa-print" onclick="print()"></i>
+          </li>
+          <li>
+            <i class="fa fa-font"></i>
+          </li>
+          <li>
+            <i class="fa fa-plus" onclick="UpSize(2)"></i>
+          </li>
+          <li>
+            <i class="fa fa-minus" onclick="DownSize(2)"></i>
+          </li>
+        </ul>
+        <div class="line-space"></div>
       <script>
         function UpSize(size) {
           var fontSizeMax = 20;
@@ -119,7 +125,6 @@ $(function(){
             $('#proposal-details p').css('font-size', fontNewSize+'px');
         }
       </script>
-
       {% comment %}<!-- Apoyos -->
       <div class="row detail-numbers">
         <div class="col-md-3">{% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path %}</div>
@@ -193,32 +198,25 @@ $(function(){
       {% endif %}
 
       {% if popular_proposal.background %}
-        <div class="antecedentes text-width light-text  print_hidden">
+        <div class="antecedentes light-text print_hidden">
           <div class="row">
             <hr>
-            <div class="col-xs-12 col-md-9">
               <h3>{% trans 'Antecedentes' %}</h3>
               <p>{{popular_proposal.background|linebreaksbr}}</p>
-            </div>
-            <div class="col-xs-12 col-md-3">
               {% if popular_proposal.document|length %}
               <h3>Documentos</h3>
               <ul>
                 <li><a href="{{popular_proposal.document.url}}" target="_blank"><i class="fa fa-file"></i> Documento</a></li>
               </ul>
               {% endif %}
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
               {% if popular_proposal.image|length %}
               <img src="{{popular_proposal.image.url}}" class="img-responsive">
               {% endif %}
-            </div>
-          </div>
-
         </div>
+      </div>
       {% endif %}
-      <p class="text-center llamado">
-        Si te gustó ¡compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año.
+      <p class="llamado">
+        Si te gustó ¡apóyala y compártela! Así todos/as tendremos voz en las elecciones de este año.
         <br>
         Si por el contrario, encuentras que esta propuesta viola los "<a href="#" data-toggle="modal" data-target="#terms_and_conditions">Términos y Condiciones</a>" para la creación de una propuesta, ayúdanos <a class="reportar_propuesta">reportando</a> esta propuesta.
       </p>
@@ -245,10 +243,6 @@ $(function(){
           $('.reportar_propuesta').attr('href','mailto:'+'vota-2017'+'@'+'ciudadanointeligente.org?'+'Subject=Propuesta {{popular_proposal.id}} no debe estar en Votainteligente'+ '&body=La propuesta con título {{popular_proposal.title}} cuyo id es {{popular_proposal.id}} NO debe estar en la plataforma VotaInteligente.cl por ...\n La propuesta la pueden visitar en https://votainteligente.cl{{popular_proposal.get_absolute_url}}');
        })
       </script>
-
-
-    </div>
-
       {% if user|is_candidate %}
 
         <!-- El modal con lo de los contactos -->
@@ -417,13 +411,23 @@ $(function(){
                 {% endif %}
               {% endfor %}
           {% endif %}
-
       {% endif %}
+    </div>
+    <div class="col-md-3 hidden-sm hidden-xs text-center print_hidden">
+      <label>Apoya esta propuesta</label>
+      <p class="apoyo-ciudadano">Esta propuesta tiene <span id='likers_count_{{popular_proposal.id}}' class="conteo">{{popular_proposal.likers.count}} <i class="fa fa-heart blue-light-txt" aria-hidden="true"></i></span> apoyos</p>
+      <div class="share-detail">
+        {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path avoid_counter=True %}
+      <hr>
+      <label>Comparte esta propuesta</label>
+      <div class="share-detail">
+        {% include 'popular_proposal/_share.html' with proposal=popular_proposal next_url=request.path %}
+      </div>
       <!-- Organizaciones patrocinantes -->
       {% if popular_proposal.sponsoring_orgs.all %}
-      <div class="apoyo-orgs print_hidden">
-      <div class="container text-center">
-      <h4 class="text-center ">Organizaciones que apoyan esta propuesta</h4>
+      <div class="print_hidden">
+      <hr>
+      <label>Organizaciones que apoyan esta propuesta</label>
         <ul class="list-inline">
           {% for org in popular_proposal.sponsoring_orgs %}
           <li>
@@ -431,48 +435,41 @@ $(function(){
               {% if org.organization_template.logo %}
                   {% thumbnail org.organization_template.logo "300x300" crop="center" as im %}
                   <a href="{{org.organization_template.get_absolute_url}}">
-                    <img src="{{im.url}}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small">
+                    <img src="{{im.url}}" alt="{{org.organization_template.title }}" title="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small">
                   </a>
                   {% endthumbnail %}
                 {% else %}
-                  <img src="{% static 'img/candidate-default.jpg' %}" alt="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small"></a>
+                  <img src="{% static 'img/org-default.png' %}" alt="{{org.organization_template.title }}" title="{{org.organization_template.title }}" class="img-responsive img-circle img-candidato-small"></a>
               {% endif %}
             </a>
           </li>
           {% endfor %}
         </ul>
       </div>
-      </div>
       {% endif %}
-
     </div>
-  </div><!-- Todo antes de comparte -->
+    </div>
+    </div>
+  </div>
+  </div>
 </section>
-    <div class="apoya-comparte">
-      <div class="container">
-        {% comment %}
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2 visible-md visible-lg">
-            <p class="text-center llamado">Si te gustó ¡compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año</p>
-          </div>
+<div class="apoya-comparte hidden-md hidden-lg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-2">
+        <div class="apoyo-contador">
+          <p class="apoyo-ciudadano">Esta propuesta tiene <span id='likers_count_{{popular_proposal.id}}' class="conteo">{{popular_proposal.likers.count}}</span> apoyos</p>
         </div>
-        {% endcomment %}
-        <div class="row">
-          <div class="col-md-4 col-md-offset-2">
-            <div class="apoyo-contador">
-              <p class="apoyo-ciudadano"><span id='likers_count_{{popular_proposal.id}}' class="conteo">{{popular_proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="share-detail">
-
-              {% include 'popular_proposal/_share.html' with proposal=popular_proposal next_url=request.path %}
-              {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path avoid_counter=True %}
-            </div>
-          </div>
+      </div>
+      <div class="col-md-4">
+        <div class="share-detail">
+          {% include 'popular_proposal/_share.html' with proposal=popular_proposal next_url=request.path %}
+          {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path avoid_counter=True %}
         </div>
       </div>
     </div>
+  </div>
+</div>
     {% with "supportProposal"|add:popular_proposal.slug as modalid %}
       {% include 'modal_like_proposal.html' with modalId=modalid title='Apoya una propuesta' url=like_this_proposal_url next_url=request.path proposal=popular_proposal %}
     {% endwith %}

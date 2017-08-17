@@ -16,6 +16,33 @@
   .share-detail{
     text-align: center;
   }
+  .share-detail{
+    .btn-apoyo{
+      background-color: $grey-one;
+      top: 11px;
+      width: initial;
+      &:hover{
+        color: $grey-one;
+        background-color: white;
+      }
+    }
+    .btn-no-apoyo{
+      width: initial;
+    }
+  }
+
+  .share-detail .fa-inverse {
+      color: $yellow;
+  }
+
+  .share-detail a .fa-stack {
+      color: white;
+      top: 7px;
+  }
+
+  .share-detail a .fa-stack:hover {
+      color: $grey-one;
+  }
 
 }
 

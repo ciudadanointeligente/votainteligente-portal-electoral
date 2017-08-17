@@ -18,11 +18,11 @@
   <!-- print visible share urls-->
   <h3 class="text-center print_only invitacion">Si te gustó ¡compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año</h3>
   <div class="col-md-12 print_only">
-    <p>{{popular_proposal.data.solution_at_the_end|popular_proposal_when|linebreaksbr|truncatechars:1000}}</p>
+    <p>{{popular_proposal.data.solution_at_the_end|popular_proposal_when|linebreaksbr|truncatechars:700}}</p>
     <ul class="list-unstyled  print-share-urls">
 
       {% for x in 'xxxxxxxxxxxxxxxxxx' %}
-      <li>{{popular_proposal.title|truncatechars:40}}<br >
+      <li>{{popular_proposal.title|truncatechars:30}}<br >
         {{ request.get_host }}{{popular_proposal.get_short_url}}</li>
       {% endfor %}
     </ul>

@@ -341,6 +341,7 @@ input[type=file]{
   background-color: $yellow;
   color: $grey-one;
   padding: 0px 0 10px 0;
+  -webkit-position: sticky;
   position: sticky;
   bottom: 0;
   width: 100%;

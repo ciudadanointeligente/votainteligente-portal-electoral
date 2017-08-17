@@ -3,7 +3,7 @@
 {% url_domain as url_d %}
 {% with 'http://'|add:url_d|add:detail_url as full_detail_url %}
 {% with full_detail_url|iriencode as encoded_full_detail_url %}
-<a class="{{btn_extra_class}}" href="#" onclick="ga('send', 'event', 'twitter-share', 'click'); window.open(&quot;//twitter.com/share&quot;)">
+<a class="{{btn_extra_class}}" href="#" onclick="ga('send', 'event', 'twitter-share', 'click'); window.open(&quot;//twitter.com/share?hashtags={{ config.WEBSITE_TWITTER_HASHTAG }}&text={{ popular_proposal }}&quot;,&quot;twitter&quot;,&quot;width=450, height=250&quot;)">
     {% if show_texts %}
       <i class="fa fa-twitter"></i>
       Compartir en Twitter

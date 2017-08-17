@@ -41,5 +41,17 @@
   </span>
 </a>
 {%endif%}
+<a class="share-btn share-btn-branded share-btn-facebook {{btn_extra_class}}" onclick="ga('send', 'event', 'image-download', 'click');"  href="{{popular_proposal.ogp_image}}" title="Descarga la imagen de esta propuesta">
+  <span class="fa-stack fa-lg">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-image fa-stack-1x fa-inverse"></i>
+  </span>
+</a>
+<a class="share-btn share-btn-branded share-btn-facebook {{btn_extra_class}}" onclick="print();ga('send', 'event', 'print', 'click');"title="Imprime esta propuesta">
+  <span class="fa-stack fa-lg">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-print fa-stack-1x fa-inverse"></i>
+  </span>
+</a>
 {% endwith %}
 {% endwith %}

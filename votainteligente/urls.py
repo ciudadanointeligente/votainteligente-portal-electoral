@@ -7,10 +7,19 @@ from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import password_change, password_change_done, login
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from votainteligente.sitemaps  import ElectionsSitemap, CandidatesSitemap, ProposalSitemap
 
 
 admin.autodiscover()
 admin.site.site_header = getattr(settings, 'ADMIN_HEADER', 'Vota Inteligente')
+
+
+sitemaps = {
+    'elections': ElectionsSitemap,
+    'candidates': CandidatesSitemap,
+    'proposals': ProposalSitemap,
+}
 
 urlpatterns = [
     # Examples:
@@ -57,6 +66,9 @@ urlpatterns = [
         password_change_done,
         {'template_name': 'registration/password_change_done_.html'},
         name='password_change_done'),
+    url(r'^robots\.txt$', include('robots.urls')),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}),
+
 ]
 
 urlpatterns += [

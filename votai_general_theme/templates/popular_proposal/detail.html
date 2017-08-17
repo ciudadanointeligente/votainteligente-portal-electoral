@@ -23,13 +23,13 @@ $(function(){
 
 {% block ogp %}
   {% render_ogp popular_proposal %}
-  <meta property="og:description" content="{{ popular_proposal.data.solution }}">
+  <meta property="og:description" content="{{ popular_proposal.data.solution_at_the_end }}">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ciudadanoi">
   <meta name="twitter:creator" content="@ciudadanoi">
   <meta name="twitter:title" content="{{popular_proposal.title}}">
-  <meta name="twitter:description" content="{{ popular_proposal.data.solution }}">
+  <meta name="twitter:description" content="{{ popular_proposal.data.solution_at_the_end }}">
   <meta name="twitter:image" content="{{popular_proposal.ogp_image}}">
 {% endblock ogp %}
 

@@ -37,8 +37,7 @@ $(function(){
 
 {% url 'popular_proposals:embedded_detail' slug=popular_proposal.slug as embedded_url%}
 
-{% comment %}
-<div class="container">
+<div class="container print_hidden">
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}"><i class="fa fa-home" aria-label="Inicio"></i></a></li>
     <li><a href="{% url 'popular_proposals:home' %}">Propuestas</a></li>
@@ -46,7 +45,7 @@ $(function(){
     <li class="active">{{popular_proposal.title}}</li>
   </ol>
 </div>
-{% endcomment %}
+
 
 {% if popular_proposal.proposer == user %}
 <div class="container proposal-banner-org">
@@ -65,7 +64,6 @@ $(function(){
     <div class="row">
       <div class="col-md-9 detalle-propuesta detail{% if proposal.for_all_areas %} transversal{% endif %}">
           <span class="label label-default">{{popular_proposal.data.clasification}}</span>
-          <div class="line-space"></div>
           <p class="text-light small">Propuesta nº{{popular_proposal.id}}</p>
           {% if popular_proposal.is_local_meeting %}
             <img src="{% static 'img/local-meeting.svg' %}" class="img-responsive" alt="Generada desde un encuentro ciudadano">

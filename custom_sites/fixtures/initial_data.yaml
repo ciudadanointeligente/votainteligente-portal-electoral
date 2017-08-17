@@ -1,0 +1,6 @@
+- model: sites.site
+  pk: 2
+  fields: {domain: 'votita.127.0.0.1.xip.io:8000', name: 'votita.127.0.0.1.xip.io:8000'}
+- model: custom_sites.customsite
+  pk: 1
+  fields: {site: 2, urlconf: votita.stand_alone_urls}

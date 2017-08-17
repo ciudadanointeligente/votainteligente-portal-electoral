@@ -13,19 +13,16 @@ from elections.views import (
     )
 
 from elections.soul_mate import SoulMateDetailView
-from django.contrib.sitemaps.views import sitemap
+
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.views.decorators.cache import cache_page
-from elections.sitemaps  import ElectionsSitemap, CandidatesSitemap
+
 
 media_root = getattr(settings, 'MEDIA_ROOT', '/')
 
 
-sitemaps = {
-    'elections': ElectionsSitemap,
-    'candidates': CandidatesSitemap,
-}
+
 
 urlpatterns = [
     url(r'^$', cache_page(60 * settings.CACHE_MINUTES)(xframe_options_exempt(HomeView.as_view())), name='home'),
@@ -74,8 +71,6 @@ urlpatterns = [
     url(r'^comuna/(?P<slug>[-\w]+)/?$',
         AreaDetailView.as_view(template_name='elections/area.html'),
         name='area'),
-
-    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}),
 ]
 
 # urlpatterns += [

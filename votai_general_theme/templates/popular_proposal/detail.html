@@ -23,7 +23,14 @@ $(function(){
 
 {% block ogp %}
   {% render_ogp popular_proposal %}
-  <meta property="og:description" content="{{ popular_proposal.data.solution }}">
+  <meta property="og:description" content="{{ popular_proposal.data.solution_at_the_end }}">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ciudadanoi">
+  <meta name="twitter:creator" content="@ciudadanoi">
+  <meta name="twitter:title" content="¡Ingresa a votainteligente.cl y apoya esta propuesta!">
+  <meta name="twitter:description" content="{{ popular_proposal.title }}">
+  <meta name="twitter:image" content="{{popular_proposal.ogp_image}}">
 {% endblock ogp %}
 
 {% block everything %}
@@ -42,7 +49,7 @@ $(function(){
 {% endcomment %}
 
 {% if popular_proposal.proposer == user %}
-<div class="container">
+<div class="container proposal-banner-org">
   <div class="row">
     <div class="col-md-12">
       <div class="alert alert-success text-center">
@@ -191,7 +198,8 @@ $(function(){
       {% endif %}
 
       {% if popular_proposal.background %}
-        <div class="antecedentes light-text">
+        <div class="antecedentes light-text print_hidden">
+          <div class="row">
             <hr>
               <h3>{% trans 'Antecedentes' %}</h3>
               <p>{{popular_proposal.background|linebreaksbr}}</p>
@@ -205,6 +213,7 @@ $(function(){
               <img src="{{popular_proposal.image.url}}" class="img-responsive">
               {% endif %}
         </div>
+      </div>
       {% endif %}
       <p class="llamado">
         Si te gustó ¡apóyala y compártela! Así todos/as tendremos voz en las elecciones de este año.
@@ -227,6 +236,8 @@ $(function(){
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
+
+
       <script>
        $(document).ready(function(){
           $('.reportar_propuesta').attr('href','mailto:'+'vota-2017'+'@'+'ciudadanointeligente.org?'+'Subject=Propuesta {{popular_proposal.id}} no debe estar en Votainteligente'+ '&body=La propuesta con título {{popular_proposal.title}} cuyo id es {{popular_proposal.id}} NO debe estar en la plataforma VotaInteligente.cl por ...\n La propuesta la pueden visitar en https://votainteligente.cl{{popular_proposal.get_absolute_url}}');
@@ -265,7 +276,7 @@ $(function(){
           </div>
         <!-- Fin de el modal con lo de los contactos -->
 
-        <div class="text-width{% if proposal.for_all_areas %} transversal{% endif %}">
+        <div class="text-width print_hidden{% if proposal.for_all_areas %} transversal{% endif %} print_hidden">
         {% for candidacy in user.candidacies.all %}
           {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
             <div id="compromiso" class="tips-invert">
@@ -322,7 +333,7 @@ $(function(){
       {% endif %}<!-- is_candidate -->
 
       {% if popular_proposal.commitments.all %}
-        <div class="container{% if proposal.for_all_areas %} transversal{% endif %} compromiso">
+        <div class="container{% if proposal.for_all_areas %} transversal{% endif %} compromiso print_hidden">
           {% commiters_by_election_position popular_proposal 'presidenciales' as presidenciales %}
           {% if presidenciales.all %}
             <h3 class="text-center">Que dicen los candidatos presidenciales?</h3>
@@ -414,6 +425,7 @@ $(function(){
       </div>
       <!-- Organizaciones patrocinantes -->
       {% if popular_proposal.sponsoring_orgs.all %}
+      <div class="print_hidden">
       <hr>
       <label>Organizaciones que apoyan esta propuesta</label>
         <ul class="list-inline">
@@ -433,6 +445,7 @@ $(function(){
           </li>
           {% endfor %}
         </ul>
+      </div>
       {% endif %}
     </div>
     </div>

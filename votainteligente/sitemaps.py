@@ -1,6 +1,15 @@
 from django.contrib.sitemaps import Sitemap
 from django.core.urlresolvers import reverse
 from elections.models import Election, Candidate
+from popular_proposal.models import PopularProposal
+
+
+class ProposalSitemap(Sitemap):
+    priority = 0.9
+    changefreq = 'daily'
+
+    def items(self):
+        return PopularProposal.objects.all()
 
 
 class ElectionsSitemap(Sitemap):

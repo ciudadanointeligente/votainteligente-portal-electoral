@@ -132,12 +132,11 @@ class CandidacyJoinView(RedirectView):
         return profile_url
 
 
-form_class = get_candidate_profile_form_class()
-
-
 class ProfileView(FormView):
-    form_class = form_class
     template_name = 'backend_candidate/complete_profile.html'
+
+    def get_form_class(self):
+        return get_candidate_profile_form_class()
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -171,7 +170,7 @@ class ProfileView(FormView):
     def get_initial(self):
         initial = super(ProfileView, self).get_initial()
         labels = []
-        for field in self.form_class.base_fields:
+        for field in self.get_form_class().base_fields:
             labels.append(field)
         personal_datas = PersonalData.objects.filter(candidate=self.candidate,
                                                      label__in=labels)

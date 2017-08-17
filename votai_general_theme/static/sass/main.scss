@@ -2029,6 +2029,9 @@ input#id_4-title {
 }
 
 
+.print_only {
+  display:none;
+}
 /*Masonry*/
 
 /* Grid */
@@ -2109,6 +2112,8 @@ Can this be done with Masonry options? */
     padding-right: 15px;
   }
 }
+
+.print-share-urls { display:none; }
 
 @import 'mediaqueries';
 @import '2017sitio1';

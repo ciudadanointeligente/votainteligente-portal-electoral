@@ -3,7 +3,7 @@
 {% url_domain as url_d %}
 {% with 'http://'|add:url_d|add:detail_url as full_detail_url %}
 {% with full_detail_url|iriencode as encoded_full_detail_url %}
-<a class="{{btn_extra_class}}" href="#" onclick="ga('send', 'event', 'twitter-share', 'click'); window.open(&quot;//twitter.com/share?via=Ciudadanoi&hashtags={{ 'hashtags'|website_twitter }}&text=Conoce sobre {{popular_proposal.title}} en &url={{encoded_full_detail_url}}&quot;,&quot;twitter&quot;,&quot;width=450, height=250&quot;)">
+<a class="{{btn_extra_class}}" href="#" onclick="ga('send', 'event', 'twitter-share', 'click'); window.open(&quot;//twitter.com/share?hashtags={{ config.WEBSITE_TWITTER_HASHTAG }}&text={{ popular_proposal }}&quot;,&quot;twitter&quot;,&quot;width=450, height=250&quot;)">
     {% if show_texts %}
       <i class="fa fa-twitter"></i>
       Compartir en Twitter
@@ -41,5 +41,17 @@
   </span>
 </a>
 {%endif%}
+<a class="share-btn share-btn-branded share-btn-facebook {{btn_extra_class}}" onclick="ga('send', 'event', 'image-download', 'click');"  href="{{popular_proposal.ogp_image}}" title="Descarga la imagen de esta propuesta">
+  <span class="fa-stack fa-lg">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-image fa-stack-1x fa-inverse"></i>
+  </span>
+</a>
+<a class="share-btn share-btn-branded share-btn-facebook {{btn_extra_class}}" onclick="print();ga('send', 'event', 'print', 'click');"title="Imprime esta propuesta">
+  <span class="fa-stack fa-lg">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-print fa-stack-1x fa-inverse"></i>
+  </span>
+</a>
 {% endwith %}
 {% endwith %}

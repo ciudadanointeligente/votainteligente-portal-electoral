@@ -8,20 +8,20 @@
 				<div>
 					<!-- Nav tabs -->
 					<ul class="nav nav-pills list-inline" role="tablist">
-            <li role="presentation" class="active"><a class="small" href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Individual' %} <i class="fa fa-user" aria-hidden="true"></i></a></li>
-						<li role="presentation"><a class="small" href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Organización' %}<i class="fa fa-users" aria-hidden="true"></i></a></li>
+            <li role="presentation" {% if not organizacion %}class="active"{% endif %}><a class="small" href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Individual' %} <i class="fa fa-user" aria-hidden="true"></i></a></li>
+						<li role="presentation" {% if organizacion %}class="active"{% endif %}><a class="small" href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Organización' %}<i class="fa fa-users" aria-hidden="true"></i></a></li>
 					</ul>
 
 					<!-- Tab panes -->
 					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane active" id="userRegister">
+						<div role="tabpanel" class="tab-pane{% if not organizacion %} active{% endif %}" id="userRegister">
 							<div class="form-group">
 								{% include '_social_login_buttons.html' with url=next %}
 							</div>
 							<h3 class="text-center">{% trans 'O regístrate con un usuario y contraseña' %}</h3>
 							{% user_register %}
 						</div>
-						<div role="tabpanel" class="tab-pane" id="groupRegister">
+						<div role="tabpanel" class="tab-pane{% if organizacion %} active{% endif %}" id="groupRegister">
 							{% group_register %}
 						</div>
 						<div class="line-space"></div>

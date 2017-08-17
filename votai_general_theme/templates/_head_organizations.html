@@ -19,6 +19,13 @@
     <meta property="og:url" content="https://{% url_domain %}">
     <meta property="og:image" content="https://{% url_domain %}{{background_image}}">
     <meta property="og:description" content="{{sub_title}}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ciudadanoi">
+    <meta name="twitter:creator" content="@ciudadanoi">
+    <meta name="twitter:title" content="{% if title %}{{title}}{% else %}{{organization}}{% endif %}">
+    <meta name="twitter:description" content="{{sub_title}}">
+    <meta name="twitter:image" content="https://{% url_domain %}{% if background_image %}{{background_image}}{% else %}{% static 'img/logo_vi_og.jpg' %}{% endif %}">
     {% endblock ogp %}
     <meta property="fb:app_id" content="{{ config.WEBSITE_OGP_APP_ID }}">
     <!--eoff-->

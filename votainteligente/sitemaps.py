@@ -6,7 +6,7 @@ from popular_proposal.models import PopularProposal
 
 class ProposalSitemap(Sitemap):
     priority = 0.9
-    changefreq = 'daily'
+    changefreq = 'never'
 
     def items(self):
         return PopularProposal.objects.all()

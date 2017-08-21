@@ -91,7 +91,6 @@
               <p><b>Contactos</b></p>
               <ul class="list-inline">
                 {% include 'elections/candidates/social_media.html' with candidate=candidate %}
-                <li><a target="_blank" href="{{program_link.value}}"><i class="fa fa-book" alt="Programa de Gobierno" title="Programa de Gobierno"></i></a></li>
               </ul>
             </td>
           </tr>
@@ -117,9 +116,12 @@
     </div><!-- .row .content_padding -->
   </div><!-- container -->
 </div><!-- profile -->
+<div id="candidato-programa" class="container-fluid">
+  <p class="text-center">Revisa su programa <a target="_blank" href="{{program_link.value}}" class="btn btn-default">aquí</a></p>
+</div>
 
 <div id="candidato-propuestas" class="container">
-
+  <h3 class="text-center">Compromisos Ciudadanos</h3>
 </div>
 {% endblock mainelection %}
 

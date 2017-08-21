@@ -211,6 +211,7 @@ class PopularProposal(models.Model, OGPMixin):
     is_reported = models.BooleanField(default=False)
 
     content_type = models.ForeignKey(ContentType, null=True)
+    featured = models.BooleanField(default=False)
 
     ogp_enabled = True
 
@@ -219,7 +220,7 @@ class PopularProposal(models.Model, OGPMixin):
     all_objects = models.Manager()
 
     class Meta:
-        ordering = ['for_all_areas', '-created']
+        ordering = ['-featured' ,'for_all_areas', '-created']
         verbose_name = _(u'Propuesta Ciudadana')
         verbose_name_plural = _(u'Propuestas Ciudadanas')
 

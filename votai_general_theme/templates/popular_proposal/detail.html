@@ -37,7 +37,7 @@ $(function(){
   <meta name="twitter:title" content="¡Ingresa a votainteligente.cl y apoya esta propuesta!">
   <meta name="twitter:description" content="{% spaceless %}
   {% if popular_proposal.proposer.profile.is_organization and popular_proposal.proposer.organization_template.twitter %}
-  .{{popular_proposal.proposer.organization_template.twitter|extract_twitter_username}} propone {{ popular_proposal.title }}
+  {{popular_proposal.proposer.organization_template.twitter|extract_twitter_username}} propone {{ popular_proposal.title }}
   {% else %}
   {{ popular_proposal.title }}
   {% endif %}

@@ -66,7 +66,7 @@ urlpatterns = [
         password_change_done,
         {'template_name': 'registration/password_change_done_.html'},
         name='password_change_done'),
-    url(r'^robots\.txt$', include('robots.urls')),
+    url(r'^robots\.txt', include('robots.urls')),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}),
 
 ]

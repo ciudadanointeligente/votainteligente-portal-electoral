@@ -14,12 +14,13 @@
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}">VotaInteligente</a></li>
     {% if commitment.proposal.area %}
-      <li><a href="{% url 'area' slug=proposal.area.id%}">{{commitment.proposal.area}}</a></li>
+      <li><a href="{% url 'area' slug=commitment.proposal.area.id%}">{{commitment.proposal.area}}</a></li>
     {% endif %}
     <li><a href="{{commitment.proposal.get_absolute_url}}">{{commitment.proposal.title}}</a></li>
     <li class="active">Compromiso</li>
   </ol>
 </div>
+
 <div class="container">
 	<div class="text-width">
 		{% if messages %}
@@ -30,51 +31,15 @@
             </div>
             {% endfor %}
         {% endif %}
-		{% if commitment.candidate.election.position == 'concejal' %}
-		Yo <b>{{commitment.candidate.name}}</b> candidata/o al concejo municipal de <b>{{commitment.proposal.area}}</b> me comprometo a apoyar desde el concejo municipal la propuesta ciudadana <b>{{commitment.proposal.title}}</b>.
 
-		<p>Que consiste en:
-		<b>{{commitment.proposal.data.solution|linebreaksbr }}</b>
-		</p>
-		<p>
-		Y me comprometo a posicionarla desde el concejo municipal y hacer seguimiento de su implementación durante <b>{{commitment.proposal.data.when|popular_proposal_when}}</b> a partir del inicio de mi mandato.</p>
-		<p>
-		Para dar solución a: <b>{{commitment.proposal.data.problem|linebreaksbr}}</b>.
-		</p>
-		<p>
-		Además, entiendo que la propuesta estará cumplida con la siguiente tarea:
-
-		<b>{{commitment.proposal.data.solution_at_the_end|linebreaksbr}}</b>
-		</p>
-
-	{% elif commitment.candidate.election.position == 'alcalde' %}
-		<p>Yo <strong>{{commitment.candidate.name}}</strong> candidata/o a la alcaldía de <strong>{{commitment.proposal.area}}</strong> me comprometo con la propuesta ciudadana <b>{{commitment.proposal.title}}</b>.</p>
-
-		<p>Que consiste en:
-		<b>{{commitment.proposal.data.solution|linebreaksbr }}</b>
-		</p>
-		<p>
-		La incluiré en mi programa y la cumpliré dentro de un plazo de <b>{{commitment.proposal.data.when|popular_proposal_when}}</b> a partir del inicio de mi mandato.</p>
-		<p>
-		Para dar solución a: <b>{{commitment.proposal.data.problem|linebreaksbr}}</b>.
-		</p>
-		<p>
-		Además, entiendo que la propuesta estará cumplida con la siguiente tarea:
-
-		<b>{{commitment.proposal.data.solution_at_the_end|linebreaksbr}}</b>
-		</p>
-
-
-	{% else %}
 
 		Yo <strong>{{candidate.name}}</strong> candidata/o por <strong>{{candidate.election.area}}</strong> me comprometo con la propuesta ciudadana:
-			{% include 'popular_proposal/plantillas/candidate_commitment.html' with proposal=proposal %}
-	{% endif %}
+			{% include 'popular_proposal/plantillas/candidate_commitment.html' with proposal=commitment.proposal %}
 
 		<div class="pull-right">
 			<p><strong>{{commitment.candidate.name}}</strong></p>
 
-			<p>Candidata/o {% if commitment.candidate.election.position %}a {{commitment.candidate.election.position|title }}{% endif %} por {{commitment.proposal.area}}.</p>
+			<p>Candidata/o {% if commitment.candidate.election.position %}a {{commitment.candidate.election.position|title }}{% endif %} por {{commitment.candidate.election}}.</p>
 
 		</div>
 	</div>

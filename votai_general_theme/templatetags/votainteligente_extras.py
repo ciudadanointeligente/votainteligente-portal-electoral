@@ -324,10 +324,7 @@ def manages_this(user, candidate):
 
 @register.simple_tag(name='commiters_by_election_position')
 def commiters_by_election_position(proposal, position):
-    candidates = Candidate.objects.filter(elections__in=proposal.area.elections.filter(position=position))
-    return Commitment.objects.filter(candidate__in=candidates,
-                                     proposal=proposal,
-                                     commited=True)
+    return proposal.commitments.filter(candidate__elections__position=position)
 
 
 @register.filter

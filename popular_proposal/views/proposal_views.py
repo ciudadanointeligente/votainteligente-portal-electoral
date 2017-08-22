@@ -240,6 +240,7 @@ class CommitView(FormView):
         get_object_or_404(Candidacy,
                           candidate=self.candidate,
                           user=self.request.user)
+
         if not config.CANDIDATES_CAN_COMMIT_IN_ALL_AREAS:
             areas = []
             for election in self.candidate.elections.all():

@@ -18,7 +18,8 @@
     </div>
     {% comment %}
     <div class="small text-light">Propuesta para
-      {% if not is_embedded %}
+      {% if not is_embedded and proposal.area %}
+
         <a href="{% url 'area' slug=proposal.area.id %}">
       {% endif %}
         {{proposal.area}}

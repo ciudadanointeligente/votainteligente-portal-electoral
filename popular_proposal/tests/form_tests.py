@@ -402,6 +402,7 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(commitment.detail, data['detail'])
         self.assertFalse(commitment.commited)
 
+    @override_config(CANDIDATES_CAN_COMMIT_IN_ALL_AREAS=False)
     def test_validating_form(self):
         '''
         Un candidato no se puede comprometer a una propuesta de una
@@ -420,3 +421,21 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
                                        data=data)
 
         self.assertFalse(form.is_valid())
+
+    @override_config(CANDIDATES_CAN_COMMIT_IN_ALL_AREAS=True)
+    def test_validating_form_when_proposals_are_for_all_areas(self):
+        '''
+        Un candidato si se puede comprometer a una propuesta de una
+        comuna en la que no está compitiendo
+        '''
+        proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                  data=self.data,
+                                                  title=u'This is a title'
+                                                  )
+        data = {'detail': 'Yo me comprometo',
+                'terms_and_conditions': True}
+        form = CandidateCommitmentForm(candidate=self.candidate,
+                                       proposal=proposal,
+                                       data=data)
+
+        self.assertTrue(form.is_valid())

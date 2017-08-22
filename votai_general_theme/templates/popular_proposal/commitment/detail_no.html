@@ -14,7 +14,7 @@
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}">VotaInteligente</a></li>
     {% if commitment.proposal.area %}
-      <li><a href="{% url 'area' slug=proposal.area.id%}">{{commitment.proposal.area}}</a></li>
+      <li><a href="{% url 'area' slug=commitment.proposal.area.id%}">{{commitment.proposal.area}}</a></li>
     {% endif %}
     <li><a href="{{commitment.proposal.get_absolute_url}}">{{commitment.proposal.title}}</a></li>
     <li class="active">Resultado</li>

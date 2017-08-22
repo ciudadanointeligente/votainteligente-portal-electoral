@@ -131,3 +131,9 @@ class SubscribingToPopularProposal(TestCase):
         self.assertFalse(ProposalLike.objects.filter(id=like.id))
         content = json.loads(response.content)
         self.assertEquals(int(content['deleted_item']), like.id)
+
+    def test_like_str(self):
+        like = ProposalLike.objects.create(user=self.feli,
+                                           message=u"Hello we like your proposal so please contact us",
+                                           proposal=self.proposal)
+        self.assertTrue(like.__str__())

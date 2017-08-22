@@ -353,6 +353,13 @@ class ProposalLike(models.Model):
                                                           number=the_number)
             notifier.notify()
 
+    def __str__(self):
+        return u'{} apoya {}'.format(self.user.username, self.proposal.title)
+
+    class Meta:
+            verbose_name = _(u'Apoyo')
+            verbose_name_plural = _(u'Apoyos')
+
 
 class Commitment(models.Model):
     proposal = models.ForeignKey(PopularProposal,

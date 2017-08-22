@@ -116,9 +116,12 @@
     </div><!-- .row .content_padding -->
   </div><!-- container -->
 </div><!-- profile -->
+{% get_personal_data candidate=candidate personal_data='program_link' as program_link %}
+{% if program_link.value %}
 <div id="candidato-programa" class="container-fluid">
   <p class="text-center">Revisa su programa <a target="_blank" href="{{program_link.value}}" class="btn btn-default">aquí</a></p>
 </div>
+{% endif %}
 
 <div id="candidato-propuestas" class="container">
   <h3 class="text-center">Compromisos Ciudadanos</h3>

@@ -1,0 +1,31 @@
+{% load votainteligente_extras %}
+{% load i18n %}
+
+{% for candidacy in user.candidacies.all %}
+  <div class="apoyo-btn">
+      {% if not avoid_counter %}
+      <div class="apoyo-contador text-center">
+          <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
+      </div>
+      {% endif %}
+  </div>
+
+  {% get_commitment candidacy proposal as commitment %}
+  {% if commitment %}
+    {% if commitment.commited %}
+      <!-- El candidato es terrible de pulento y nos dijo que si-->
+      <a class="btn btn-success" href="{{commitment.get_absolute_url}}" role="button"  data-toggle="tooltip" data-placement="top" title="Te comprometiste =). Puedes revisar tu compromiso acá"><i class="fa fa-star" aria-hidden="true"></i></a>
+    {% else %}
+      <!-- El candidato no está ni ahí con nosotros-->
+      <a class="btn btn-danger" href="{{commitment.get_absolute_url}}" role="button"  data-toggle="tooltip" data-placement="top" title="Dijiste que NO a esta propuesta y puedes revisar tu justificación acá"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
+    {% endif %}
+  {% else %}<!-- Si es que el candidato no se ha pronunciado -->
+    {% if not candidacy|has_commited_with:popular_proposal %}
+      {% get_proposals_enabled as proposals_enabled %}
+      {% if proposals_enabled  %}
+        <a class="btn btn-success" href="{% url 'popular_proposals:commit_yes' proposal_pk=popular_proposal.id candidate_pk=candidacy.candidate.id %}" role="button">{% trans 'Me quiero comprometer' %}</a>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+{% endfor %}

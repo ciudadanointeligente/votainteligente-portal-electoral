@@ -327,6 +327,7 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         # Already commited
         self.assertEquals(response.status_code, 404)
 
+    @override_config(CANDIDATES_CAN_COMMIT_IN_ALL_AREAS=False)
     def test_not_commiting_if_representing_someone_else(self):
         url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,
                                                               'candidate_pk': self.candidate2.id})
@@ -342,6 +343,23 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         logged_in = self.client.login(username=self.fiera.username, password='feroz')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 404)
+
+    @override_config(CANDIDATES_CAN_COMMIT_IN_ALL_AREAS=True)
+    def test_commiting_if_representing_everyone(self):
+        url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,
+                                                              'candidate_pk': self.candidate2.id})
+        logged_in = self.client.login(username=self.fiera.username, password='feroz')
+        self.assertTrue(logged_in)
+        response = self.client.get(url)
+        # Fiera has nothing to do with candidate2
+        self.assertEquals(response.status_code, 404)
+
+        # Fiera can commit to a promise for another area
+        url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal3.id,
+                                                              'candidate_pk': self.candidate.id})
+        logged_in = self.client.login(username=self.fiera.username, password='feroz')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
 
     def test_not_commiting_as_candidate(self):
         url = reverse('popular_proposals:commit_no', kwargs={'proposal_pk': self.popular_proposal1.id,

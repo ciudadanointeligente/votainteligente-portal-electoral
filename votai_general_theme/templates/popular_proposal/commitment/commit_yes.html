@@ -13,7 +13,9 @@
 <div class="container">
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}">VotaInteligente</a></li>
-    <li><a href="{% url 'area' slug=proposal.area.id%}">{{proposal.area}}</a></li>
+    {% if proposal.area %}
+      <li><a href="{% url 'area' slug=proposal.area.id%}">{{proposal.area}}</a></li>
+    {% endif %}
     <li><a href="{{proposal.get_absolute_url}}">{{proposal.title}}</a></li>
     <li class="active">Firmar {% if candidate.election.position == 'concejal' %}
 				apoyo
@@ -23,11 +25,11 @@
 				compromiso
 			{% endif %}</li>
   </ol>
-</div> 
+</div>
 <div class="container">
 	<div class="fondo-blanco text-width">
 		<h1>
-			Firmar 
+			Firmar
 			{% if candidate.election.position == 'concejal' %}
 				Apoyo
 			{% elif candidate.election.position == 'alcalde' %}
@@ -52,7 +54,7 @@
 		</p>
 	{% elif candidate.election.position == 'alcalde' %}
 		<p>Yo <strong>{{candidate.name}}</strong> candidata/o a la alcaldía de <strong>{{proposal.area}}</strong> me comprometo con la propuesta ciudadana: <b>{{proposal.title}}</b>.</p>
-		
+
 		<p>
 		Que consiste en: <b>{{proposal.data.solution|linebreaksbr }}</b>
 		</p>

@@ -13,11 +13,13 @@
 <div class="container">
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}">VotaInteligente</a></li>
-    <li><a href="{% url 'area' slug=proposal.area.id%}">{{proposal.area}}</a></li>
+    {% if proposal.area %}
+      <li><a href="{% url 'area' slug=proposal.area.id%}">{{proposal.area}}</a></li>
+    {% endif %}
     <li><a href="{{proposal.get_absolute_url}}">{{proposal.title}}</a></li>
     <li class="active">No lo incluiré</li>
   </ol>
-</div> 
+</div>
 <div class="container">
 	<div class="fondo-blanco text-width">
 
@@ -37,12 +39,12 @@
 
 
 
-	
+
 
 
 	<form enctype="multipart/form-data" action="{% url 'popular_proposals:commit_no' proposal_pk=proposal.id candidate_pk=candidate.id %}" method="POST" role="form">{% csrf_token %}
 
-		{% bootstrap_field form.detail show_label=false %}	
+		{% bootstrap_field form.detail show_label=false %}
 	    <div class="tips">
 		  <b class="text-dark">Terminos y Condiciones</b>
 		  {% include 'popular_proposal/commitment/terms_and_conditions.html' %}

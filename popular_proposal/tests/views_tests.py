@@ -7,7 +7,7 @@ from popular_proposal.models import (PopularProposal,
                                      ProposalTemporaryData)
 from popular_proposal.filters import (ProposalWithoutAreaFilter,
                                       ProposalWithAreaFilter)
-from elections.models import Area, Candidate
+from elections.models import Area, Candidate, Election
 from backend_candidate.models import Candidacy
 from popular_proposal.forms import (CandidateCommitmentForm,
                                     CandidateNotCommitingForm,
@@ -327,8 +327,13 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         # Already commited
         self.assertEquals(response.status_code, 404)
 
-    @override_config(CANDIDATES_CAN_COMMIT_IN_ALL_AREAS=False)
     def test_not_commiting_if_representing_someone_else(self):
+        election = Election.objects.get(id=self.candidate2.election.id)
+        election.candidates_can_commit_everywhere = False
+        election.save()
+        election2 = Election.objects.get(id=self.candidate.election.id)
+        election2.candidates_can_commit_everywhere = False
+        election2.save()
         url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,
                                                               'candidate_pk': self.candidate2.id})
         logged_in = self.client.login(username=self.fiera.username, password='feroz')
@@ -344,17 +349,10 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 404)
 
-    @override_config(CANDIDATES_CAN_COMMIT_IN_ALL_AREAS=True)
     def test_commiting_if_representing_everyone(self):
-        url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,
-                                                              'candidate_pk': self.candidate2.id})
-        logged_in = self.client.login(username=self.fiera.username, password='feroz')
-        self.assertTrue(logged_in)
-        response = self.client.get(url)
-        # Fiera has nothing to do with candidate2
-        self.assertEquals(response.status_code, 404)
-
-        # Fiera can commit to a promise for another area
+        election = Election.objects.get(id=self.candidate.election.id)
+        election.candidates_can_commit_everywhere = True
+        election.save()
         url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal3.id,
                                                               'candidate_pk': self.candidate.id})
         logged_in = self.client.login(username=self.fiera.username, password='feroz')

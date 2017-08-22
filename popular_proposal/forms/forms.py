@@ -412,7 +412,7 @@ class CandidateCommitmentFormBase(forms.Form):
 
     def clean(self):
         cleaned_data = super(CandidateCommitmentFormBase, self).clean()
-        if not config.CANDIDATES_CAN_COMMIT_IN_ALL_AREAS:
+        if not self.candidate.election.candidates_can_commit_everywhere:
             if self.candidate.election:
                 if self.candidate.election.area != self.proposal.area:
                     raise forms.ValidationError(_(u'El candidato no pertenece al area'))

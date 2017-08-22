@@ -20,7 +20,7 @@ from popular_proposal.forms import (WHEN_CHOICES,
                                     CandidateCommitmentForm)
 from popular_proposal.forms.form_texts import TEXTS
 from django.core.urlresolvers import reverse
-from elections.models import Candidate, Area
+from elections.models import Candidate, Area, Election
 from django.test import override_settings
 from constance.test import override_config
 
@@ -367,7 +367,18 @@ class ModelFormTest(ProposingCycleTestCaseBase):
 class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(CandidateCommitmentTestCase, self).setUp()
-        self.candidate = Candidate.objects.get(id=1)
+
+        self.election1= Election.objects.get(id=1)
+        self.election1.candidates_can_commit_everywhere = True
+        self.election1.save()
+        self.candidate = self.election1.candidates.first()
+        self.election2 = Election.objects.get(id=2)
+        self.election2.candidates_can_commit_everywhere = False
+        self.election2.save()
+        self.candidate2 = self.election2.candidates.first()
+
+        self.candidate2.election.candidates_can_commit_everywhere = False
+        self.candidate2.election.save()
         self.proposal = PopularProposal.objects.create(proposer=self.fiera,
                                                        area=self.candidate.election.area,
                                                        data=self.data,
@@ -402,7 +413,6 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(commitment.detail, data['detail'])
         self.assertFalse(commitment.commited)
 
-    @override_config(CANDIDATES_CAN_COMMIT_IN_ALL_AREAS=False)
     def test_validating_form(self):
         '''
         Un candidato no se puede comprometer a una propuesta de una
@@ -414,15 +424,15 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
                                                   data=self.data,
                                                   title=u'This is a title'
                                                   )
+
         data = {'detail': 'Yo me comprometo',
                 'terms_and_conditions': True}
-        form = CandidateCommitmentForm(candidate=self.candidate,
+        form = CandidateCommitmentForm(candidate=self.candidate2,
                                        proposal=proposal,
                                        data=data)
 
         self.assertFalse(form.is_valid())
 
-    @override_config(CANDIDATES_CAN_COMMIT_IN_ALL_AREAS=True)
     def test_validating_form_when_proposals_are_for_all_areas(self):
         '''
         Un candidato si se puede comprometer a una propuesta de una

@@ -5,7 +5,7 @@ from django.db import models
 
 
 class Activity(models.Model):
-    date = models.DateField()
+    date = models.DateTimeField()
     url = models.URLField()
     location = models.CharField(max_length=1024)
     description = models.TextField(blank=True)

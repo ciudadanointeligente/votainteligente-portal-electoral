@@ -407,7 +407,6 @@ CONSTANCE_CONFIG = {
     'WEBSITE_DISQUS_ENABLED': (True, 'Activar Disqus'),
     'WEBSITE_DISQUS_SHORTNAME': (True, 'Disqus shortname'),
     'WEBSITE_DISQUS_DEV_MODE': (False, 'Modo desarrollo'),
-    'CANDIDATES_CAN_COMMIT_IN_ALL_AREAS': (True, u'Los candidatos se pueden comprometer con las propuestas de todos los territorios. Debes marcar esto en falso si por ejemplo esta elección es municipal y no quieres que el candidato de un municipio A se pueda comprometer a una propuesta de un municipio B'),
     'WEBSITE_GA_CODE': ('UA-XXXXX-X', 'Codigo Google Analytics'),
     'WEBSITE_GA_NAME': ('votainteligente.cl', 'Nombre Google Analytics'),
     'WEBSITE_GA_GSITE_VERIFICATION': ('BCyMskdezWX8ObDCMsm_1zIQAayxYzEGbLve8MJmxHk', 'Verificacion Google Site'),

@@ -7,6 +7,7 @@ from backend_candidate.views import (HomeView,
                                      MyCommitments,
                                      ProposalsForMe,
                                      HelpFindingCandidates,
+                                     AddActivityToCandidateView,
                                      )
 from django.contrib.auth.views import login
 
@@ -34,4 +35,7 @@ urlpatterns = [
     url(r'^candidacy_user_join/(?P<identifier>[-\w]+)/?$',
         CandidacyJoinView.as_view(),
         name='candidacy_user_join'),
+    url(r'^add_activity/(?P<slug>[-\w]+)/?$',
+        AddActivityToCandidateView.as_view(),
+        name='add_activity'),
 ]

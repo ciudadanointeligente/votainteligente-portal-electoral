@@ -38,7 +38,7 @@ $(function(){
                     <div class="apoyo-btn pull-left">
                         {% if not avoid_counter %}
                         <div class="apoyo-contador text-center">
-                            <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
+                            <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
                         </div>
                         {% endif %}
                         <a class="btn-apoyo disabled" data-toggle="tooltip" data-placement="top" title="Este tipo de apoyo esta reservado sólo para ciudadanos">
@@ -74,7 +74,7 @@ $(function(){
                     {% with "supportProposal"|add:proposal.slug as modalid %}
                     {% if not avoid_counter %}
                     <div class="apoyo-contador text-center">
-                        <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
+                        <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
                     </div>
                     {% endif %}
                     <span class="corazon-{{proposal.id}}">
@@ -90,7 +90,7 @@ $(function(){
                     {% with  user|support:proposal as support %}
                     {% if not avoid_counter %}
                     <div class="apoyo-contador text-center">
-                          <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
+                          <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
                       </div>
                       {% endif %}
                         <span class="corazon-{{proposal.id}} btn btn-no-apoyo text-center {% if not avoid_counter %} pull-left{% endif %}" style="cursor:auto;">
@@ -103,7 +103,7 @@ $(function(){
         {% else %}<!-- Cuando usuario no esta logueado -->
         {% if not avoid_counter %}
         <div class="apoyo-contador text-center">
-                <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
+                <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
             </div>
             {% endif %}
             <span class="corazon-{{proposal.id}}">
@@ -116,7 +116,7 @@ $(function(){
     <a class="btn-apoyo" href="{{proposal.get_absolute_url}}">
         {% if not avoid_counter %}
           <div class="apoyo-contador text-center">
-              <p class="apoyo-ciudadano"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
+              <p class="apoyo-ciudadano">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
           </div>
           {% endif %}
           <span class="corazon-{{proposal.id}}">

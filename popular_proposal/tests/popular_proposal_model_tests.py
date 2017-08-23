@@ -9,6 +9,7 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.template.loader import get_template
 from django.contrib.sites.models import Site
 from django.test import override_settings
+from django.contrib.contenttypes.models import ContentType
 
 
 class PopularProposalTestCase(ProposingCycleTestCaseBase):
@@ -41,6 +42,10 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertFalse(popular_proposal.for_all_areas)
         self.assertFalse(popular_proposal.is_local_meeting)
         self.assertFalse(popular_proposal.is_reported)
+        self.assertFalse(popular_proposal.featured)
+        content_type = popular_proposal.content_type
+        expected_content_type = ContentType.objects.get_for_model(PopularProposal)
+        self.assertEquals(content_type, expected_content_type)
 
     def test_popular_proposal_card_as_property(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
@@ -78,6 +83,29 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertIn(p1, PopularProposal.all_objects.all())
         self.assertIn(p2, PopularProposal.all_objects.all())
 
+    def test_featured_proposals_are_first(self):
+        p1 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title1',
+                                            clasification=u'education'
+                                            )
+        p2 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title2',
+                                            clasification=u'education',
+                                            featured=True
+                                            )
+        p3 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title3',
+                                            clasification=u'education'
+                                            )
+        proposals = PopularProposal.objects.all()
+        self.assertEquals(p2, proposals.first())
+
     def test_proposal_ogp(self):
         site = Site.objects.get_current()
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
@@ -87,13 +115,13 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
                                                           clasification=u'education'
                                                           )
         self.assertTrue(popular_proposal.ogp_enabled)
-        self.assertIn(popular_proposal.title, popular_proposal.ogp_title())
+        self.assertTrue(popular_proposal.ogp_title())
         self.assertEquals('website', popular_proposal.ogp_type())
         expected_url = "http://%s%s" % (site.domain,
                                         popular_proposal.get_absolute_url())
         self.assertEquals(expected_url, popular_proposal.ogp_url())
         self.assertTrue(popular_proposal.ogp_image())
-        
+
 
     def test_generate_og_image(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,

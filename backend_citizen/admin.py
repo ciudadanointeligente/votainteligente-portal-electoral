@@ -21,5 +21,5 @@ class CandidacyAdmin(admin.ModelAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'is_journalist')
+    list_display = ('user', 'is_organization')
     search_fields = ['user__username', 'user__email', 'user__first_name']

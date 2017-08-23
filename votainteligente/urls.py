@@ -7,10 +7,19 @@ from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import password_change, password_change_done, login
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from votainteligente.sitemaps  import ElectionsSitemap, CandidatesSitemap, ProposalSitemap
 
 
 admin.autodiscover()
 admin.site.site_header = getattr(settings, 'ADMIN_HEADER', 'Vota Inteligente')
+
+
+sitemaps = {
+    'elections': ElectionsSitemap,
+    'candidates': CandidatesSitemap,
+    'proposals': ProposalSitemap,
+}
 
 urlpatterns = [
     # Examples:
@@ -33,6 +42,8 @@ urlpatterns = [
     url(r'^organizacion/', include('organization_profiles.urls', namespace='organization_profiles')),
     url(r'^candidatos/', include('backend_candidate.urls', namespace='backend_candidate')),
     url(r'^proposal_subscriptions/', include('proposal_subscriptions.urls', namespace='proposal_subscriptions')),
+    url(r'^votita/', include('votita.urls', namespace='votita')),
+    url(r'^cuentas/', include('votita.urls.auth_urls', namespace="votita_auth")),
     url(r'^ayudanos/$',
         HelpFindingCandidates.as_view(),
         name='help'),
@@ -43,9 +54,9 @@ urlpatterns = [
         TemplateView.as_view(template_name='material_ciudadano.html'),
         name='material_ciudadano'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
-    url(r'^accounts/login/ciudadanos/?$',
+    url(r'^accounts/login/organizacion/?$',
         login,
-        {'template_name': 'registration/login_citizens.html'},
+        {'template_name': 'registration/login_organizacion.html'},
         name='login_users'),
     url(r'^accounts/passwordchange/?$',
         password_change,
@@ -55,6 +66,9 @@ urlpatterns = [
         password_change_done,
         {'template_name': 'registration/password_change_done_.html'},
         name='password_change_done'),
+    url(r'^robots\.txt', include('robots.urls')),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}),
+
 ]
 
 urlpatterns += [

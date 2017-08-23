@@ -1,6 +1,10 @@
 @media print {
+  @page {size: landscape}
   html .navbar_visible {
     padding-top: 5px;
+  }
+  .print_hidden {
+    display: None;
   }
   .fondo-blanco {
     padding: 0px 15px;
@@ -20,6 +24,33 @@
         margin-bottom: 10px;
       }
     }
+  }
+  .container {
+    width: 90%;
+  }
+  .print-share-urls {
+    display: block;
+    transform: rotate(90deg);
+    position: absolute;
+    top: -144px;
+    border-left: 1px dashed;
+    padding-left: 10px;
+    margin-left: 382px;
+    li {
+      padding: 2px 0px;
+      margin: 2px 0px;
+      border-top: 1px dashed;
+    }
+  }
+  .invitacion {
+    top: 200px;
+    position: absolute;
+  }
+  .print_only {
+    display:block;
+  }
+  .proposal-banner-org {
+    display: none;
   }
   .proposal-tools {
     display: none;

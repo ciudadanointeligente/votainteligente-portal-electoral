@@ -63,6 +63,18 @@ class ProposalViewTestCase(TestCase):
         self.assertEqual(response.context['popular_proposal'], popular_proposal)
         self.assertTemplateUsed(response, 'popular_proposal/detail.html')
 
+    def test_detail_redirect_view(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.algarrobo,
+                                                          data=self.data,
+                                                          title=u'This is a title'
+                                                          )
+        # no need to be logged in
+        url = reverse('popular_proposals:short_detail', kwargs={'pk': popular_proposal.pk})
+        response = self.client.get(url)
+        self.assertRedirects(response, popular_proposal.get_absolute_url())
+        self.assertEquals(popular_proposal.get_short_url(), url)
+
     def test_proposal_og_image(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
                                                           area=self.algarrobo,

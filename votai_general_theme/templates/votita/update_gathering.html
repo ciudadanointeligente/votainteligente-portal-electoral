@@ -1,0 +1,16 @@
+{% extends "votita/base.html" %}
+{% load bootstrap3 %}
+
+{% block title %}- Información sobre el encuentro infantil{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <h1 class="page-header">Información sobre el encuentro <small>"{{object.name}}"</small></h1>
+  <p>Ayúdanos con algunos datos estadísticos</p>
+  <form method='POST' action="{% url 'votita:update_gathering' pk=object.pk %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-default btn-block">Agregar información</button>
+  </form>
+</div>
+{% endblock content %}

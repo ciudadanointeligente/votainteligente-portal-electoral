@@ -27,6 +27,7 @@ from django.views.generic import View
 from django.views.generic.detail import DetailView
 
 from django.views.generic.edit import FormView, UpdateView
+from django.views.generic.base import RedirectView
 
 from django.views.generic.list import ListView
 
@@ -135,6 +136,12 @@ class PopularProposalDetailView(EmbeddedViewBase, DetailView):
     template_name = 'popular_proposal/detail.html'
     context_object_name = 'popular_proposal'
     layout = "basewithnofixed_navbar.html"
+
+
+class PopularProposalDetailRedirectView(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        proposal = get_object_or_404(PopularProposal, pk=kwargs['pk'])
+        return proposal.get_absolute_url()
 
 
 class PopularProposalOGImageView(DetailView):

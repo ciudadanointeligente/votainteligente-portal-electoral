@@ -21,6 +21,14 @@
     <meta property="og:url" content="https://{% url_domain %}">
     <meta property="og:image" content="https://{% url_domain %}{% static 'img/logo_vi_og.jpg' %}">
     <meta property="og:description" content="{{ config.WEBSITE_OGP_DESCRIPTION }}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://{% url_domain %}">
+    <meta name="twitter:creator" content="@ciudadanoi">
+    <meta name="twitter:title" content="{{config.WEBSITE_TWITTER_HASHTAG}}">
+    <meta name="twitter:description" content="{{config.WEBSITE_TWITTER_TEXT}}">
+    <meta name="twitter:image" content="https://{% url_domain %}{% static 'img/logo_vi_og.jpg' %}">
+
     {% endblock ogp %}
     <meta property="fb:app_id" content="{{ config.WEBSITE_OGP_APP_ID }}">
     <!--eoff-->
@@ -60,11 +68,30 @@
     {% block extra_css %}
     {% endblock extra_css %}
 </head>
-    <body{% if config.LAUNCHED or config.SHOW_NAVBAR or user.is_authenticated %} class="navbar_visible"{% endif %}>
-      <div>
-        {% if config.SHOW_NAVBAR or user.is_authenticated %}
-          {% include '_navbar.html' %}
+    <body class="navbar_visible">
+      <script>
+        {% if config.WEBSITE_OF_APP_ID %}
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId            : '{{ config.WEBSITE_OGP_APP_ID }}',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v2.10'
+          });
+          FB.AppEvents.logPageView();
+        };
         {% endif %}
+
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "//connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+      </script>
+      <div>
+        {% include '_navbar.html' %}
         {% block everything %}
         <div class="{% block content_container %}container content_padding{% endblock content_container %}">
             {% block content %}

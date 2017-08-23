@@ -8,6 +8,7 @@ from backend_candidate.views import (HomeView,
                                      ProposalsForMe,
                                      HelpFindingCandidates,
                                      AddActivityToCandidateView,
+                                     MyActivitiesListView,
                                      )
 from django.contrib.auth.views import login
 
@@ -38,4 +39,7 @@ urlpatterns = [
     url(r'^add_activity/(?P<slug>[-\w]+)/?$',
         AddActivityToCandidateView.as_view(),
         name='add_activity'),
+    url(r'^all_my_activities/(?P<slug>[-\w]+)/?$',
+        MyActivitiesListView.as_view(),
+        name='all_my_activities'),
 ]

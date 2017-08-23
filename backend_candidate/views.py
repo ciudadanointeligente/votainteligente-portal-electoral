@@ -16,6 +16,7 @@ from popular_proposal.models import Commitment, PopularProposal
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext as _
+from agenda.models import Activity
 
 
 class BackendCandidateBase(View):
@@ -256,7 +257,7 @@ class AddActivityToCandidateView(LoginRequiredMixin, CreateView):
     def get_content_object(self):
         self.candidate = get_object_or_404(Candidate,
                                            id=self.kwargs['slug'])
-        c = get_object_or_404(Candidacy,
+        get_object_or_404(Candidacy,
                           candidate=self.candidate,
                           user=self.request.user)
         return self.candidate
@@ -270,3 +271,23 @@ class AddActivityToCandidateView(LoginRequiredMixin, CreateView):
         return reverse('backend_candidate:complete_profile',
                         kwargs={'slug': self.candidate.election.slug,
                                 'candidate_id': self.candidate.id})
+
+
+class MyActivitiesListView(LoginRequiredMixin, ListView):
+    model = Activity
+    template_name = 'backend_candidate/all_my_activities.html'
+    context_object_name = 'activities'
+    
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        self.candidate = get_object_or_404(Candidate,
+                                           id=self.kwargs['slug'])
+        get_object_or_404(Candidacy,
+                          candidate=self.candidate,
+                          user=self.request.user)
+        return super(MyActivitiesListView, self).dispatch(request,
+                                                          *args,
+                                                          **kwargs)
+    
+    def get_queryset(self):
+        return self.candidate.agenda

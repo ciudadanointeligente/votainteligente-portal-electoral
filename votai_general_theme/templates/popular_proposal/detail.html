@@ -424,7 +424,7 @@ $(function(){
     </div>
     <div class="col-md-3 hidden-sm hidden-xs text-center print_hidden">
       <label>Apoya esta propuesta</label>
-      <p class="apoyo-ciudadano">Esta propuesta tiene <span id='likers_count_{{popular_proposal.id}}' class="conteo">{{popular_proposal.likers.count}} <i class="fa fa-heart blue-light-txt" aria-hidden="true"></i></span> apoyos</p>
+      <p class="apoyo-ciudadano">Esta propuesta tiene <span id='likers_count_{{popular_proposal.id}}' class="conteo">{{popular_proposal.likers.count}} <i class="fa fa-heart blue-light-txt" aria-hidden="true"></i></span> apoyo(s)</p>
       <div class="share-detail">
         {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path avoid_counter=True %}
       <hr>

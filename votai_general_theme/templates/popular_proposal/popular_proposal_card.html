@@ -26,9 +26,8 @@
     </div>
     {% endcomment %}
 
-    {% if proposal.title %}
-        <h4><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title|truncatechars:100 }}</a></h4>
-    {% endif %}
+    <h4><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title|truncatechars:100 }}</a></h4>
+    <p class="intro">{{proposal.data.solution_at_the_end|linebreaksbr|truncatechars:150}}</p>
     {% if proposal.proposer.profile.is_organization %}
       <div class="logo-ong text-center text-light">
         <span>Propuesta de </span>
@@ -51,16 +50,15 @@
 
 
   {% if user %}
-  <div class="share-card">
+  <div class="share-card text-center">
     <div class="text-center">{% url 'popular_proposals:home' as popular_proposals_home %}</div>
-
     {% include 'popular_proposal/_likers.html' with proposal=proposal area=area next_url=popular_proposals_home  support_button_extra_class="pull-left" %}
-
+    {% comment %}
     <div class="share">
-
       {% include 'popular_proposal/_share.html' with popular_proposal=proposal %}
-
     </div>
+    {% endcomment %}
+    <a href="{% url 'popular_proposals:detail' slug=proposal.slug %}" class="btn btn-blue">Leer más</a>
   </div>
   {% endif %}
 </div>

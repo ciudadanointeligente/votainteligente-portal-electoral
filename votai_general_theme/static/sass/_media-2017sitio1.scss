@@ -1,12 +1,12 @@
 @media screen and (max-width: 1199px) {
   .presidents{
-    bottom: -76px;
+    bottom: -250px;
   }
 }
 
 @media screen and (max-width: 991px) {
   .presidents{
-    bottom: -2px;
+    bottom: -20px;
   }
 
   .apoya-comparte{
@@ -53,18 +53,26 @@
 }
 
 @media screen and (max-width: 560px) {
-  #welcome h1{
-    font-size: 22px;
+  #welcome{
+    h1{
+    font-size: 28px;
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: none;
     line-height: 1.2;
+    }
+    h2{
+      line-height: 1.2;
+    }
+    .hashtag{
+      font-size: 22px;
+    }
   }
 }
 
 @media screen and (max-width: 520px) {
   #welcome h1{
-    line-height: 1.5;
-    margin: 0;
+    line-height: 1.3;
+    margin: 30px 0 -39px;
   }
 }
 

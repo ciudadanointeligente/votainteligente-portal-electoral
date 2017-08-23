@@ -124,11 +124,18 @@ td.cal-date{
 
 .counter-number{
   font-family: 'Arvo', serif;
-  color: $blue;
+  color: $blue-light;
   font-weight: 700;
   font-size: 44px;
   position: relative;
   top: 9px;
+}
+
+.bajada{
+  font-size: 19px;
+  font-family: 'Arvo', sans-serif;
+  color: $grey-three;
+  margin: -30px 0 20px;
 }
 
 #you-org{
@@ -159,30 +166,30 @@ td.cal-date{
 }
 
 .action-encuentro{
-  color: $grey-one;
+  color: $grey-two;
   background: url("../img/a-encuentro.svg") no-repeat;
   height: 170px;
   background-position: center;
   padding-top: 180px;
-  margin-bottom: 70px;
+  margin: 40px 0 110px;
 }
 
 .action-crea{
-  color: $grey-one;
+  color: $grey-two;
   background: url("../img/a-crea.svg") no-repeat;
   height: 170px;
   background-position: center;
   padding-top: 180px;
-  margin-bottom: 70px;
+  margin: 40px 0 110px;
 }
 
 .action-apoya{
-  color: $grey-one;
+  color: $grey-two;
   background: url("../img/a-apoya.svg") no-repeat;
   height: 170px;
   background-position: center;
   padding-top: 180px;
-  margin-bottom: 70px;
+  margin: 40px 0 110px;
 }
 
 #education{

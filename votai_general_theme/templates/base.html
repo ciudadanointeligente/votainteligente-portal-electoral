@@ -70,6 +70,7 @@
 </head>
     <body class="navbar_visible">
       <script>
+        {% if config.WEBSITE_OF_APP_ID %}
         window.fbAsyncInit = function() {
           FB.init({
             appId            : '{{ config.WEBSITE_OGP_APP_ID }}',
@@ -79,6 +80,7 @@
           });
           FB.AppEvents.logPageView();
         };
+        {% endif %}
 
         (function(d, s, id){
            var js, fjs = d.getElementsByTagName(s)[0];

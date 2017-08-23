@@ -42,6 +42,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertFalse(popular_proposal.for_all_areas)
         self.assertFalse(popular_proposal.is_local_meeting)
         self.assertFalse(popular_proposal.is_reported)
+        self.assertFalse(popular_proposal.featured)
         content_type = popular_proposal.content_type
         expected_content_type = ContentType.objects.get_for_model(PopularProposal)
         self.assertEquals(content_type, expected_content_type)
@@ -81,6 +82,29 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         #but they appear in the all Manager
         self.assertIn(p1, PopularProposal.all_objects.all())
         self.assertIn(p2, PopularProposal.all_objects.all())
+
+    def test_featured_proposals_are_first(self):
+        p1 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title1',
+                                            clasification=u'education'
+                                            )
+        p2 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title2',
+                                            clasification=u'education',
+                                            featured=True
+                                            )
+        p3 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title3',
+                                            clasification=u'education'
+                                            )
+        proposals = PopularProposal.objects.all()
+        self.assertEquals(p2, proposals.first())
 
     def test_proposal_ogp(self):
         site = Site.objects.get_current()

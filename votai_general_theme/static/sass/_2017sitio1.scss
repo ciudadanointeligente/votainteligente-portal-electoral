@@ -86,14 +86,13 @@ td.cal-date{
   background-size: cover;
   padding: 20px 0 20px;
   h1{
-    margin: 60px 0;
+    text-transform: none;
+    letter-spacing: 0;
+    margin: 80px 0 -35px;
   }
-}
-
-.presidents{
-  position: relative;
-  margin: 0 auto;
-  bottom: -28px;
+  h2{
+    font-size: 19px;
+  }
 }
 
 .hashtag{
@@ -102,6 +101,14 @@ td.cal-date{
   font-weight: 700;
   text-transform: none;
   letter-spacing: 0;
+  font-size: 30px;
+  margin: -40px 0 60px;
+}
+
+.presidents{
+  position: relative;
+  margin: 0 auto;
+  bottom: -166px;
 }
 
 #proposals-counter{
@@ -117,11 +124,18 @@ td.cal-date{
 
 .counter-number{
   font-family: 'Arvo', serif;
-  color: $blue;
+  color: $blue-light;
   font-weight: 700;
   font-size: 44px;
   position: relative;
   top: 9px;
+}
+
+.bajada{
+  font-size: 19px;
+  font-family: 'Arvo', sans-serif;
+  color: $grey-three;
+  margin: -30px 0 20px;
 }
 
 #you-org{
@@ -134,6 +148,7 @@ td.cal-date{
   font-size: 10px;
   padding-top: 12px;
   line-height: 12px;
+  margin-top: 50px;
   .btn{
     font-size: 10px;
   }
@@ -152,30 +167,30 @@ td.cal-date{
 }
 
 .action-encuentro{
-  color: $grey-one;
+  color: $grey-two;
   background: url("../img/a-encuentro.svg") no-repeat;
   height: 170px;
   background-position: center;
   padding-top: 180px;
-  margin-bottom: 70px;
+  margin: 40px 0 110px;
 }
 
 .action-crea{
-  color: $grey-one;
+  color: $grey-two;
   background: url("../img/a-crea.svg") no-repeat;
   height: 170px;
   background-position: center;
   padding-top: 180px;
-  margin-bottom: 70px;
+  margin: 40px 0 110px;
 }
 
 .action-apoya{
-  color: $grey-one;
+  color: $grey-two;
   background: url("../img/a-apoya.svg") no-repeat;
   height: 170px;
   background-position: center;
   padding-top: 180px;
-  margin-bottom: 70px;
+  margin: 40px 0 110px;
 }
 
 #education{
@@ -341,6 +356,7 @@ input[type=file]{
   background-color: $yellow;
   color: $grey-one;
   padding: 0px 0 10px 0;
+  position: -webkit-sticky;
   position: sticky;
   bottom: 0;
   width: 100%;
@@ -714,6 +730,10 @@ label{
 
 .panel{
   border-radius: 10px;
+}
+
+.small{
+  line-height: 1.4;
 }
 
 /*LOGIN*/

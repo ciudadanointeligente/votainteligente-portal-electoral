@@ -1,5 +1,8 @@
+# coding=utf-8
 from django.contrib import admin
-from popular_proposal.models import PopularProposal, ProposalTemporaryData
+from popular_proposal.models import (PopularProposal,
+                                     ProposalTemporaryData,
+                                     ProposalLike)
 from popular_proposal.forms import ProposalTemporaryDataModelForm
 from popular_proposal.forms.form_texts import TEXTS
 
@@ -42,3 +45,12 @@ class ProposalTemporaryDataAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         return ProposalTemporaryDataModelForm
+
+
+@admin.register(ProposalLike)
+class ProposalLikeAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'is_organization', 'proposal', 'created')
+    def is_organization(self, obj):
+        return obj.user.profile.is_organization
+    is_organization.short_description = u'Es organización?'
+    is_organization.admin_order_field = 'user__profile__is_organization'

@@ -27,9 +27,21 @@ $(function(){
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ciudadanoi">
-  <meta name="twitter:creator" content="@ciudadanoi">
+  <meta name="twitter:creator" content="{% spaceless %}
+  {% if popular_proposal.proposer.profile.is_organization and popular_proposal.proposer.organization_template.twitter %}
+    {{popular_proposal.proposer.organization_template.twitter|extract_twitter_username}}
+  {% else %}
+    @ciudadanoi
+  {% endif %}
+  {% endspaceless %}">
   <meta name="twitter:title" content="¡Ingresa a votainteligente.cl y apoya esta propuesta!">
-  <meta name="twitter:description" content="{{ popular_proposal.title }}">
+  <meta name="twitter:description" content="{% spaceless %}
+  {% if popular_proposal.proposer.profile.is_organization and popular_proposal.proposer.organization_template.twitter %}
+  {{popular_proposal.proposer.organization_template.twitter|extract_twitter_username}} propone {{ popular_proposal.title }}
+  {% else %}
+  {{ popular_proposal.title }}
+  {% endif %}
+  {% endspaceless %}">
   <meta name="twitter:image" content="{{popular_proposal.ogp_image}}">
 {% endblock ogp %}
 
@@ -41,7 +53,6 @@ $(function(){
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}"><i class="fa fa-home" aria-label="Inicio"></i></a></li>
     <li><a href="{% url 'popular_proposals:home' %}">Propuestas</a></li>
-    <!--<li><a href="{% url 'area' slug=popular_proposal.area.id%}">{{popular_proposal.area}}</a></li>-->
     <li class="active">{{popular_proposal.title}}</li>
   </ol>
 </div>

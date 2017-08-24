@@ -5,16 +5,14 @@
 <section id="welcome" class="yellow">
   <div class="container">
     <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="videoWrapper">
-          <iframe src="https://www.youtube.com/embed/U38lztdh0z4" frameborder="0" allowfullscreen></iframe>
-        </div>
+      <div class="col-md-6">
+        <h1>Lleva tus propuestas a los programas de candidatos y candidatas de las elecciones de Chile 2017.</h1>
+        <h2>Crea y sube tu propuesta, compártela y hagamos sentir la voz de la ciudadanía más fuerte que nunca en estas elecciones.</h2>
+        <p class="hashtag">#LaElecciónEsNuestra</p>
       </div>
-      {% comment %}
-      <div class="col-md-4 text-center">
-        <img src="{% static 'img/presidencia.svg' %}" class="presidents img-responsive">
+      <div class="col-md-6 text-center">
+        <img src="{% static 'img/ciudadania.svg' %}" class="presidents img-responsive">
       </div>
-      {% endcomment %}
     </div>
   </div>
 </section>
@@ -33,19 +31,23 @@
   <div class="container">
     <div class="row">
       <h2 class="text-center">Propuestas ciudadanas</h2>
+      <p class="bajada text-center">Tú propones, las candidaturas se comprometen</p>
       <div class="col-md-4 text-center">
         <div class="action-encuentro">
           <a href="{% url 'encuentro_ciudadano' %}" onclick="ga('send', 'event', 'home-realiza-encuentro', 'click')" class="btn btn-line">Realiza un encuentro</a>
+          <p>¿Quieres crear una propuesta con un grupo, organización o comunidad?</p>
         </div>
       </div>
       <div class="col-md-4 text-center">
         <div class="action-crea">
           <a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" onclick="ga('send', 'event', 'home-crea-propuesta', 'click')" class="btn btn-line">Crea una propuesta</a>
+          <p>¿Tienes una propuesta para Chile? ¿Quieres publicar la propuesta de un encuentro ciudadano?</p>
         </div>
       </div>
       <div class="col-md-4 text-center">
         <div class="action-apoya">
           <a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'home-conoce-apoya', 'click')" class="btn btn-line">Conoce y apoya propuestas</a>
+          <p>¿Quieres saber lo que la ciudadanía propone para Chile?</p>
         </div>
       </div>
     </div>
@@ -54,6 +56,7 @@
 
 <section id="education" class="container-fluid">
   <h2 class="text-center"><a href="{% url 'material_ciudadano' %}" onclick="ga('send', 'event', 'home-material-ciudadano', 'click')">Material ciudadano</a></h2>
+  <p class="bajada text-center">Materiales para generar propuestas, hacer incidencia y saber todo lo necesario de las elecciones</p>
     <div class="row">
       <div class="col-md-6 text-center blue edu-1">
         <a href="{% static 'material-ciudadano/manual-formacion-ciudadana.pdf' %}" target="_blank" class="btn btn-white" onclick="ga('send', 'event', 'home-manual-formacion-ciudadana', 'click')">Manual de formación ciudadana</a>

@@ -33,14 +33,79 @@
 <div class="apoyo">
 {% endif %}
 
-{% if not is_embedded %}
-  {% if user.is_authenticated %}
-    {% if user|is_candidate %}
-      {% for candidacy in user.candidacies.all %}
-        <div class="apoyo-btn">
-          {% if not avoid_counter %}
-            <div class="apoyo-contador text-center">
-              <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
+    {% if not is_embedded %}
+        {% if user.is_authenticated %}
+            {% if user|is_candidate %}
+                {% for candidacy in user.candidacies.all %}
+                    <div class="apoyo-btn pull-left">
+                        {% if not avoid_counter %}
+                        <div class="apoyo-contador text-center">
+                            <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
+                        </div>
+                        {% endif %}
+                        <a class="btn-apoyo disabled" data-toggle="tooltip" data-placement="top" title="Este tipo de apoyo esta reservado sólo para ciudadanos">
+                            {% blocktrans %}
+                            <span class="corazon-{{proposal.id}}">
+                                <a class="btn btn-apoyo text-center {{support_button_extra_class}}">
+                                Apoyar <i class="fa fa-heart" aria-hidden="true"></i>
+                                </a>
+                            </span>
+                            {% endblocktrans %}
+                        </a>
+                        <!-- fin de los deshabilitados -->
+                    </div>
+                    {% if candidacy.candidate|is_candidate_for:proposal.area %}
+                        {% get_commitment candidacy proposal as commitment %}
+                        {% if commitment %}
+                        {% else %}<!-- Si es que el candidato no se ha pronunciado -->
+                            {% with proposal.get_absolute_url as detail_url %}
+                                <script type="text/javascript">
+                                        $(function(){
+                                            $('.btn_pronunciarme').append('<a class="btn btn-primary" href="{% if request.path == detail_url %}#compromiso{% else %}{{detail_url}}{% endif %}" role="button">Yo quiero pronunciarme</a>');
+                                            console.log($('.btn_pronunciarme'))
+                                        })
+
+                                    </script>
+                            {% endwith %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}<!-- Si el usuario no es candidato -->
+                {% if not user|likes:proposal %}
+                    {% url 'popular_proposals:like_a_proposal' pk=proposal.id as like_this_proposal_url %}
+                    {% with "supportProposal"|add:proposal.slug as modalid %}
+                    {% if not avoid_counter %}
+                    <div class="apoyo-contador text-center">
+                        <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
+                    </div>
+                    {% endif %}
+                    <span class="corazon-{{proposal.id}}">
+                        <a class="btn btn-apoyo text-center {{support_button_extra_class}}" data-toggle="modal" data-target="#{{modalid}}" onclick="ga('send','event','apoyo-propuesta-usuario','click')">
+                        Apoyar <i class="fa fa-heart" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                    {% if not avoid_counter %}
+                      {% include 'modal_like_proposal.html' with modalId=modalid title='Apoya una propuesta' url=like_this_proposal_url next_url=request.path %}
+                    {% endif %}
+                    {% endwith %}
+                {% else %}
+                    {% with  user|support:proposal as support %}
+                    {% if not avoid_counter %}
+                    <div class="apoyo-contador text-center">
+                          <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
+                      </div>
+                      {% endif %}
+                        <span class="corazon-{{proposal.id}} btn btn-no-apoyo text-center {% if not avoid_counter %} pull-left{% endif %}" style="cursor:auto;">
+                            Estoy apoyando <i class="fa fa-heart" aria-hidden="true"></i>
+                        </span>
+                    {% endwith %}
+                {% endif %}
+            {% endif %}
+
+        {% else %}<!-- Cuando usuario no esta logueado -->
+        {% if not avoid_counter %}
+        <div class="apoyo-contador text-center">
+                <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
             </div>
           {% endif %}
         {% if candidacy.candidate %}
@@ -53,18 +118,13 @@
             {% endwith %}
           {% endif %}
         {% endif %}
-        </div>
-      {% endfor %}
-    {% else %}<!-- Si el usuario no es candidato -->
-      {% if not user|likes:proposal %}
-        {% url 'popular_proposals:like_a_proposal' pk=proposal.id as like_this_proposal_url %}
-        {% with "supportProposal"|add:proposal.slug as modalid %}
-          {% if not avoid_counter %}
-            <div class="apoyo-contador text-center">
-              <p class="nota">
-                <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> ciudadanos apoyan esta propuesta
-              </p>
-            </div>
+
+    {% else %}
+    <a class="btn-apoyo" href="{{proposal.get_absolute_url}}">
+        {% if not avoid_counter %}
+          <div class="apoyo-contador text-center">
+              <p class="apoyo-ciudadano">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
+          </div>
           {% endif %}
           <span class="corazon-{{proposal.id}}">
             <a class="btn btn-apoyo text-center {{support_button_extra_class}}" data-toggle="modal" data-target="#{{modalid}}" onclick="ga('send','event','apoyo-propuesta-usuario','click')">

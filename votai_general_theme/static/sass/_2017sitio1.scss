@@ -420,6 +420,19 @@ input[type=file]{
     color: $grey-one;
 }
 
+#proposal-side {
+  .apoyo-btn {
+    .btn-apoyo {
+      background-color: $blue;
+    }
+  }
+  ul.social-buttons>li {
+    a>.fa-stack {
+      color: $blue;
+    }
+  }
+}
+
 /*Propuestas*/
 .propuesta{
   border: 3px solid $grey-one;
@@ -743,4 +756,19 @@ label{
 
 .line-space{
   height: 30px;
+}
+
+/*candidatos*/
+#candidato-programa {
+  background-color: #7AB7FF;
+  color: #233346;
+  padding-top: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+  a {
+    color: #233346;
+    &hover {
+      color: #233346;
+    }
+  }
 }

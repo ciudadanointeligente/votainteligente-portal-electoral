@@ -19,22 +19,22 @@
 {% block content %}
 <section id="election">
 {% block election_breadcrumbs %}
-	<div class="row breadscrumb-social hidden-xs">
-		<div class="col-md-9">
-			<ul class="breadcrumb">
-				<li><a href="/">{% trans "Portada" %}</a></li>
-				{% if election.area %}
-					<li><a href="{% url 'area' slug=election.area.id %}">{{ election.area }}</a></li>
-				{% endif %}
-				<li><a href="{% url 'election_view' slug=election.slug %}">{{ election }}</a></li>
-				<li class="active">{% block last_breadcrumb %}{% trans "Perfiles"%}{% endblock last_breadcrumb %}</li>
-			</ul>
-		</div>
-	</div>
+  <div class="row breadscrumb-social hidden-xs">
+    <div class="col-md-9">
+      <ul class="breadcrumb">
+        <li><a href="/">{% trans "Portada" %}</a></li>
+        {% if election.area %}
+          <li><a href="{% url 'area' slug=election.area.id %}">{{ election.area }}</a></li>
+        {% endif %}
+        <li><a href="{% url 'election_view' slug=election.slug %}">{{ election }}</a></li>
+        <li class="active">{% block last_breadcrumb %}{% trans "Perfiles"%}{% endblock last_breadcrumb %}</li>
+      </ul>
+    </div>
+  </div>
 {% endblock %}
 
-	{% block mainelection %}
-	{% endblock mainelection %}
+  {% block mainelection %}
+  {% endblock mainelection %}
 
 </section>
 {% endblock content %}

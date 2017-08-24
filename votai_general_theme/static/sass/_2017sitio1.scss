@@ -405,6 +405,19 @@ input[type=file]{
     color: $grey-one;
 }
 
+#proposal-side {
+  .apoyo-btn {
+    .btn-apoyo {
+      background-color: $blue;
+    }
+  }
+  ul.social-buttons>li {
+    a>.fa-stack {
+      color: $blue;
+    }
+  }
+}
+
 /*Propuestas*/
 .propuesta{
   border: 3px solid $grey-one;

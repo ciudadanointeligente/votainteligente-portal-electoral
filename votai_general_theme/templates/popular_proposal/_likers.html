@@ -37,34 +37,23 @@
   {% if user.is_authenticated %}
     {% if user|is_candidate %}
       {% for candidacy in user.candidacies.all %}
-        <div class="apoyo-btn pull-left">
+        <div class="apoyo-btn">
           {% if not avoid_counter %}
             <div class="apoyo-contador text-center">
               <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> ciudadanos apoyan esta propuesta</p>
             </div>
           {% endif %}
-
-          {% blocktrans %}
-            <span class="corazon-{{proposal.id}}">
-              <a class="btn btn-apoyo disabled text-center {{support_button_extra_class}}" data-toggle="tooltip" data-placement="top" title="Este tipo de apoyo esta reservado sólo para ciudadanos">
-                Apoyar <i class="fa fa-heart" aria-hidden="true"></i>
-              </a>
-            </span>
-          {% endblocktrans %}
-        </div>
-        {% if candidacy.candidate|is_candidate_for:proposal.area %}
+        {% if candidacy.candidate %}
           {% get_commitment candidacy proposal as commitment %}
           {% if commitment %}
+          <a href="#" class="btn btn-apoyo" disabled="disabled">Ya me comprometí</a>
           {% else %}
             {% with proposal.get_absolute_url as detail_url %}
-            <script type="text/javascript">
-              $(function(){
-                $('.btn_pronunciarme').append('<a class="btn btn-primary" href="{% if request.path == detail_url %}#compromiso{% else %}{{detail_url}}{% endif %}" role="button">Yo quiero pronunciarme</a>');
-              });
-            </script>
+            <a href="{% url 'popular_proposals:commit_yes' candidate_pk=candidacy.candidate.id proposal_pk=proposal.id %}" class="btn btn-apoyo">Deseo comprometerme</a>
             {% endwith %}
           {% endif %}
         {% endif %}
+        </div>
       {% endfor %}
     {% else %}<!-- Si el usuario no es candidato -->
       {% if not user|likes:proposal %}

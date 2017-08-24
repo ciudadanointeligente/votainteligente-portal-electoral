@@ -19,6 +19,14 @@
     </a>
   </li>
 
+  {% url 'backend_candidate:all_my_activities' slug=candidacy.candidate.id as all_my_activities %}
+  <li role="presentation" class="{% if not mobile %}hidden-xs{% endif %} all_my_activities {% ifequal request.path all_my_activities%} active{% endifequal %}">
+    <a class="small" href="{{all_my_activities}}">
+      Mi agenda
+    </a>
+  </li>
+
+
   {% url 'backend_candidate:my_proposals_with_a_resolution' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as my_proposals %}
   <li role="presentation" class="{% if not mobile %}hidden-xs{% endif %} my_proposals {% ifequal request.path my_proposals%} active{% endifequal %}">
     <a class="small" href="{{my_proposals}}">

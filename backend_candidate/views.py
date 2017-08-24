@@ -268,9 +268,13 @@ class AddActivityToCandidateView(LoginRequiredMixin, CreateView):
         return kwargs
 
     def get_success_url(self):
-        return reverse('backend_candidate:complete_profile',
-                        kwargs={'slug': self.candidate.election.slug,
-                                'candidate_id': self.candidate.id})
+        return reverse('backend_candidate:all_my_activities',
+                        kwargs={'slug': self.candidate.id})
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super(AddActivityToCandidateView, self).get_context_data(*args, **kwargs)
+        context['object'] = self.candidate
+        return context
 
 
 class MyActivitiesListView(LoginRequiredMixin, ListView):
@@ -280,14 +284,21 @@ class MyActivitiesListView(LoginRequiredMixin, ListView):
     
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        self.candidate = get_object_or_404(Candidate,
+        self.object = get_object_or_404(Candidate,
                                            id=self.kwargs['slug'])
         get_object_or_404(Candidacy,
-                          candidate=self.candidate,
+                          candidate=self.object,
                           user=self.request.user)
         return super(MyActivitiesListView, self).dispatch(request,
                                                           *args,
                                                           **kwargs)
     
     def get_queryset(self):
-        return self.candidate.agenda
+        return self.object.agenda.all()
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super(MyActivitiesListView, self).get_context_data(*args, **kwargs)
+        context['object'] = self.object
+        return context
+         
+    

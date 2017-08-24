@@ -40,6 +40,7 @@ class AgendaViewTestCase(TestCase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'backend_candidate/add_activity.html')
+        self.assertEquals(response.context['object'], self.candidate)
         
     def test_posting_to_create_an_activity(self):
         url = reverse('backend_candidate:add_activity', kwargs={'slug': self.candidate.pk})
@@ -54,9 +55,8 @@ class AgendaViewTestCase(TestCase):
             'location': 'secret location'
         }
         response = self.client.post(url, data=data)
-        url_complete_profile = reverse('backend_candidate:complete_profile',
-                                       kwargs={'slug': self.candidate.election.slug,
-                                               'candidate_id': self.candidate.id})
+        url_complete_profile = reverse('backend_candidate:all_my_activities',
+                                       kwargs={'slug':self.candidate.id})
         self.assertRedirects(response, url_complete_profile)
         self.assertTrue(self.candidate.agenda.all())
     
@@ -89,5 +89,6 @@ class AgendaViewTestCase(TestCase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'backend_candidate/all_my_activities.html')
+        self.assertEquals(response.context['object'], self.candidate)
         self.assertIn(activity1, response.context['activities'].all())
         self.assertNotIn(activity2, response.context['activities'].all())

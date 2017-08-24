@@ -16,6 +16,6 @@ class Activity(models.Model):
                                      on_delete=models.CASCADE,
                                      blank=True,
                                      null=True)
-    object_id = models.PositiveIntegerField(blank=True,
+    object_id = models.CharField(max_length=1024,blank=True,
                                             null=True)
     content_object = GenericForeignKey('content_type', 'object_id')

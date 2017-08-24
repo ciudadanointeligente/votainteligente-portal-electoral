@@ -6,9 +6,10 @@
 {% load votainteligente_extras %}
 
 {% block content %}
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
+  
+<script src="{% static 'js/bootstrap-datetimepicker.js' %}"></script>
+<link href="{% static 'css/bootstrap-datetimepicker.css' %}" rel='stylesheet' type='text/css'>
   <!-- Featured Elections  -->
   <!--
   {% if user|is_candidate %}
@@ -136,7 +137,6 @@ $(function(){
 {% endblock extra_scripts %}
 <script src="{% static 'js/bootstrap-tour.js' %}"></script>
 <link href="{% static 'css/bootstrap-tour.min.css' %}" rel='stylesheet' type='text/css'>
-
 
 {% endblock content %}
 

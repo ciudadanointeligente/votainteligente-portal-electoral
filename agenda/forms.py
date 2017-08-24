@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.forms import ModelForm
 from agenda.models import Activity
 
@@ -17,3 +18,8 @@ class ActivityForm(ModelForm):
     class Meta:
         model = Activity
         fields = ['date', 'url', 'description', 'location']
+        labels = {'date': u"Fecha",
+                  'url': u"Link a tu actividad, puede ser al evento en Facebook",
+                  'description': u"Descripción de tu actividad",
+                  'location': u"El lugar donde se realizará esta actividad",
+                  }

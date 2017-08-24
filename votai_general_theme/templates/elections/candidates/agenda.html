@@ -3,8 +3,8 @@
 {% cache 500 political_positions candidate.id %}
 <div class="container content_padding">
 <h2>Agenda</h2>
-<div id="grid">
-	<div id="posts">
+<div>
+	<div>
 		<ul>
 		{% for activity in candidate.agenda.all %}
 		{% include 'activity_card.html' with activity=activity object=candidate %}

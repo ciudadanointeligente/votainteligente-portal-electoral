@@ -394,6 +394,11 @@ class LoginFormsTemplateTags(TestCase):
                                                   title=u'This is a title',
                                                   clasification=u'education'
                                                   )
+        proposal_without_area = PopularProposal.objects.create(proposer=u,
+                                                               data=data,
+                                                               title=u'This is a title',
+                                                               clasification=u'education'
+                                                               )
         Commitment.objects.create(candidate=candidate,
                                   proposal=proposal,
                                   commited=True)
@@ -404,6 +409,7 @@ class LoginFormsTemplateTags(TestCase):
         Commitment.objects.create(candidate=candidate3,
                                   proposal=proposal,
                                   commited=True)
+
         # Officially 1 alcaldes have said I commit and 2 concejales
         template = Template("{% load votainteligente_extras %}{% commiters_by_election_position proposal 'alcalde' as commiters %}{{commiters.count}}")
         context = Context({'proposal': proposal})
@@ -412,6 +418,12 @@ class LoginFormsTemplateTags(TestCase):
         template = Template("{% load votainteligente_extras %}{% commiters_by_election_position proposal 'concejal' as commiters %}{{commiters.count}}")
         context = Context({'proposal': proposal})
         self.assertEquals(template.render(context), '2')
+        Commitment.objects.create(candidate=candidate3,
+                                  proposal=proposal_without_area,
+                                  commited=True)
+        template = Template("{% load votainteligente_extras %}{% commiters_by_election_position proposal 'concejal' as commiters %}{{commiters.count}}")
+        context = Context({'proposal': proposal_without_area})
+        self.assertEquals(template.render(context), '1')
 
     def test_twitter_parser(self):
         asserts = [{'entered': 'https://twitter.com/fiera',

@@ -27,9 +27,7 @@
                     <li><a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" onclick="ga('send', 'event', 'nav-crea-propuestas', 'click')">Crea tu propuesta</a></li>
                     {% endif %}
                 {% endif %}
-                {% if proposals_enabled  %}
                 <li><a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'nav-conoce-propuestas', 'click')">Conoce propuestas</a></li>
-                {% endif %}
                 <li><a href="{% url 'material_ciudadano' %}" onclick="ga('send', 'event', 'nav-material-ciudadano', 'click')">Material ciudadano</a></li>
                 {% include "_dropdown_user.html" with user=user %}
                 <li>

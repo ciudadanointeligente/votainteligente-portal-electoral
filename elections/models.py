@@ -98,6 +98,10 @@ class RankingManager(models.Manager):
         qs = self.get_queryset()
         return get_position_in_(qs, candidate)
 
+from django.contrib.contenttypes.fields import GenericRelation
+from agenda.models import Activity
+
+
 class Candidate(Person, ExtraInfoMixin, OGPMixin):
     elections = models.ManyToManyField('Election', related_name='candidates', default=None)
     force_has_answer = models.BooleanField(default=False,
@@ -106,6 +110,7 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
     has_won = models.BooleanField(default=False)
 
     default_extra_info = settings.DEFAULT_CANDIDATE_EXTRA_INFO
+    agenda = GenericRelation(Activity)
 
     objects = HaveAnsweredFirst()
     answered_first = HaveAnsweredFirst()
@@ -231,6 +236,8 @@ class Election(ExtraInfoMixin, models.Model, OGPMixin):
     uses_face_to_face = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar frente a frente"))
     uses_soul_mate = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar 1/2 naranja"))
     uses_questionary = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar cuestionario"))
+    candidates_can_commit_everywhere = models.BooleanField(default=True,
+                                                           help_text=_(u"Los candidatos en esta elección pueden comprometerse en todas las elecciones"))
     position = models.CharField(default='',
                                 null=True,
                                 blank=True,

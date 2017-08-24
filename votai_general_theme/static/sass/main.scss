@@ -141,6 +141,23 @@ hr {
 .content_padding {
     padding-top: 90px;
     padding-bottom: 90px;
+    #info-candidato {
+      color: #233346;
+      a {
+        color: #233346;
+        &hover {
+          color: #233346;
+        }
+      }
+      .table>tbody>tr>td {
+        border: 0px;
+      }
+    }
+    #agenda-candidato {
+      background-color: #FFF;
+      padding: 10px 15px;
+      border-radius: 10px;
+    }
 }
 
 .fondo-blanco {

@@ -6,9 +6,10 @@
 {% load votainteligente_extras %}
 
 {% block content %}
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
+  
+<script src="{% static 'js/bootstrap-datetimepicker.js' %}"></script>
+<link href="{% static 'css/bootstrap-datetimepicker.css' %}" rel='stylesheet' type='text/css'>
   <!-- Featured Elections  -->
   <!--
   {% if user|is_candidate %}
@@ -33,74 +34,9 @@
 
 
       {% if user|is_candidate %}
-        {% for candidacy in user.candidacies.all %}
-
-          {% url 'backend_candidate:complete_profile' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as complete_profile %}
-          <li role="presentation" class="{% ifequal request.path complete_profile%} active{% endifequal %} hidden-xs mi-perfil">
-            <a class="small" href="{{complete_profile}}">
-              Completa tu perfil
-            </a>
-          </li>
-
-          {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
-          <li role="presentation" class="{% ifequal request.path backend_candidate%} active{% endifequal %} hidden-xs 12naranja destacado">
-            <a class="small" href="{{backend_candidate}}">
-              Completa la 1/2 naranja
-            </a>
-          </li>
-
-          {% url 'backend_candidate:my_proposals_with_a_resolution' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as my_proposals %}
-          <li role="presentation" class="{% ifequal request.path my_proposals%} active{% endifequal %} hidden-xs my_proposals">
-            <a class="small" href="{{my_proposals}}">
-              Mis compromisos
-            </a>
-          </li>
-          {% url 'backend_candidate:proposals_for_me' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as proposals_for_me %}
-          <li role="presentation" class="{% ifequal request.path proposals_for_me%} active{% endifequal %} hidden-xs proposals_for_me">
-            <a class="small" href="{{proposals_for_me}}">
-              Propuestas para mi
-            </a>
-          </li>
-        {% endfor %}
+        {% include 'backend_candidate/menu.html' with candidacy=candidacy %}
       {% else %}
-        {% url 'backend_citizen:my_proposals' as backend_index %}
-         <li role="presentation" class="{% ifequal request.path backend_index%} active{% endifequal %} hidden-xs">
-        <a class="small" href="{{backend_index}}">{% trans 'Las propuestas que he hecho' %}</a></li>
-          {% url 'backend_citizen:my_supports' as my_supports_url %}
-         <li role="presentation" class="{% ifequal request.path my_supports_url %} active{% endifequal %} hidden-xs">
-          <a class="small" href="{{my_supports_url}}">
-          {% blocktrans %}Las propuestas que apoyo{% endblocktrans %}</a></li>
-        {% if user.profile.is_organization %}
-          {% url 'organization_profiles:update' as org_profile %}
-         <li role="presentation" class="{% ifequal request.path org_profile %} active{% endifequal %} hidden-xs">
-          <a class="small" href="{{org_profile}}" data-toggle="dropdown" data-target="submenu">
-          {% blocktrans %}Actualizar mi organización{% endblocktrans %} <span class="caret"></span></a>
-          <ul class="dropdown-menu" id="submenu">
-            <li><a href="{% url 'organization_profiles:update' %}">Pagina Organizacion</a></li>
-            {% for extra_page in user.organization_template.extra_pages.all %}
-            <li><a href="{% url 'organization_profiles:update_extrapage' extra_page.id %}">{{extra_page.title}}</a></li>
-            {% endfor %}
-          </ul>
-         </li>
-        {% else %}
-        {% url 'backend_citizen:update_my_profile' as my_profile_url %}
-         <li role="presentation" class="{% ifequal request.path my_profile_url %} active{% endifequal %} hidden-xs">
-          <a class="small" href="{{my_profile_url}}">
-          {% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a></li>
-        {% endif %}
-        {% comment %}
-        {% url 'backend_citizen:stats' as stats_url %}
-         <li role="presentation" class="{% ifequal request.path stats_url %} active{% endifequal %} hidden-xs">
-          <a class="small" href="{{stats_url}}">
-          {% blocktrans %}Estadísticas{% endblocktrans %}</a></li>
-        {% endcomment %}
-        {% if config.SEARCH_SUBSCRIPTION_ENABLED %}
-          {% url 'proposal_subscriptions:list' as search_proposal_subscriptions_url %}
-           <li role="presentation" class="{% ifequal request.path search_proposal_subscriptions_url%} active{% endifequal %} hidden-xs">
-            <a class="small" href="{{search_proposal_subscriptions_url}}">
-            {% blocktrans %}Búsquedas{% endblocktrans %}</a></li>
-        {% endif %}
-
+        {% include 'backend_citizen/menu.html' with user=user %}
       {% endif %}
 
         {% url 'password_reset' as password_reset %}
@@ -114,58 +50,12 @@
       <!-- Versión moviles -->
 
           <li class="dropdown hidden-sm hidden-md hidden-lg" role="presentation" >
-              <a href="#" class="dropdown-toggle small" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Escritorio' %}<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle small" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Menú' %}<span class="caret"></span></a>
               <ul class="dropdown-menu">
                     {% if user|is_candidate %}
-                      {% for candidacy in user.candidacies.all %}
-                        {% url 'backend_candidate:complete_profile' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as complete_profile %}
-                        <li class="{% ifequal request.path complete_profile%} active{% endifequal %}">
-                          <a class="small" href="{{complete_profile}}">
-                            Completa tu perfil
-                          </a>
-                        </li>
-
-                        {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
-                        <li class="{% ifequal request.path backend_candidate%} active{% endifequal %} destacado">
-                          <a class="small" href="{{backend_candidate}}">
-                            Completa la 1/2 naranja
-                          </a>
-                        </li>
-                        {% url 'backend_candidate:my_proposals_with_a_resolution' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as my_proposals %}
-                        <li class="{% ifequal request.path my_proposals%} active{% endifequal %}">
-                          <a class="small" href="{{my_proposals}}">
-                            Mis compromisos
-                          </a>
-                        </li>
-
-                        {% url 'backend_candidate:proposals_for_me' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as proposals_for_me %}
-                        <li class="{% ifequal request.path proposals_for_me%} active{% endifequal %}">
-                          <a class="small" href="{{proposals_for_me}}">
-                            Mis compromisos
-                          </a>
-                        </li>
-                      {% endfor %}
+                      {% include 'backend_candidate/menu.html' with candidacy=candidacy mobile=True %}
                     {% else %}
-                      {% url 'backend_citizen:my_proposals' as backend_index %}
-                      <li class="{% ifequal request.path backend_index%} active{% endifequal %}">
-                        <a class="small" href="{{backend_index}}">{% trans 'Las propuestas que he hecho' %}</a></li>
-                      {% url 'backend_citizen:my_supports' as my_supports_url %}
-                       <li class="{% ifequal request.path my_supports_url %} active{% endifequal %}">
-                        <a class="small" href="{{my_supports_url}}">
-                        {% blocktrans %}Las propuestas que apoyo{% endblocktrans %}</a></li>
-                      {% if user.profile.is_organization %}
-                        {% url 'organization_profiles:update' as org_profile %}
-                        <li class="{% ifequal request.path org_profile %} active{% endifequal %}">
-                          <a class="small" href="{{org_profile}}">
-                          {% blocktrans %}Actualizar mi organización{% endblocktrans %}</a>
-                        </li>
-                      {% else %}
-                        {% url 'backend_citizen:update_my_profile' as my_profile_url %}
-                        <li class="{% ifequal request.path my_profile_url %} active{% endifequal %}">
-                          <a class="small" href="{{my_profile_url}}">
-                          {% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a>
-                        </li>
-                      {% endif %}
+                      {% include 'backend_citizen/menu.html' with user=user mobile=True %}
                     {% endif %}
                       {% url 'password_reset' as password_reset %}
                        <li class="{% ifequal request.path password_reset %} active{% endifequal %}">
@@ -240,13 +130,13 @@ $(function(){
   // Start the tour
   tour.start();
 });
+</script>
 {% endif %}
 
 {% block extra_scripts %}
 {% endblock extra_scripts %}
 <script src="{% static 'js/bootstrap-tour.js' %}"></script>
 <link href="{% static 'css/bootstrap-tour.min.css' %}" rel='stylesheet' type='text/css'>
-
 
 {% endblock content %}
 

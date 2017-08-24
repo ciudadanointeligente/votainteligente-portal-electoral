@@ -240,14 +240,15 @@ class CommitView(FormView):
         get_object_or_404(Candidacy,
                           candidate=self.candidate,
                           user=self.request.user)
-        # The following can be refactored
-        areas = []
-        for election in self.candidate.elections.all():
-            if election.area:
-                areas.append(election.area)
-        if self.proposal.area not in areas:
-            return HttpResponseNotFound()
-        # The former can be refactored
+        elections_where_the_candidate_cannot_commit = self.candidate.elections.filter(candidates_can_commit_everywhere=False)
+        if elections_where_the_candidate_cannot_commit:
+            areas = []
+            for election in self.candidate.elections.all():
+                if election.area:
+                    areas.append(election.area)
+            if self.proposal.area not in areas:
+                return HttpResponseNotFound()
+            # The former can be refactored
         return super(CommitView, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):

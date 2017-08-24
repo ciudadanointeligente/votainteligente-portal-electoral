@@ -4,77 +4,64 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load bootstrap3 %}
+{% load ogp_tags %}
+
+{% block title %} - Compromiso final - {{commitment.candidate.name}} - {{commitment.proposal.title}}{% endblock title%}
+
+{% block ogp %}
+  {% render_ogp popular_proposal %}
+  <meta property="og:title" content="En votainteligente.cl revisa el compromiso que he firmado!">
+  <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
+  <meta property="og:url" content="https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}">
+  <meta property="og:image" content="{{commitment.proposal.ogp_image}}">
+  <meta property="og:description" content="Yo, {{commitment.candidate.name}}, me he comprometido con la Propuesta Ciudadana: {{commitment.proposal.title}}">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ciudadanoi">
+  <meta name="twitter:creator" content="@ciudadanoi">
+  <meta name="twitter:title" content="En votainteligente.cl revisa el compromiso que he firmado!">
+  <meta name="twitter:description" content="Yo, {{commitment.candidate.name}}, me he comprometido con la Propuesta Ciudadana: {{commitment.proposal.title}}">
+  <meta name="twitter:image" content="{{commitment.proposal.ogp_image}}">
+{% endblock ogp %}
 
 {% block extrajs %}
-{% load ogp_tags %}
+  {% load ogp_tags %}
 {% endblock extrajs %}
 
 {% block content %}
-<div class="container">
-  <ol class="breadcrumb">
-    <li><a href="{% url 'home' %}">VotaInteligente</a></li>
-    <li><a href="{% url 'area' slug=commitment.proposal.area.id%}">{{commitment.proposal.area}}</a></li>
-    <li><a href="{{commitment.proposal.get_absolute_url}}">{{commitment.proposal.title}}</a></li>
-    <li class="active">Compromiso</li>
-  </ol>
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="{% url 'home' %}"><i class="fa fa-home" aria-label="Inicio"></i></a></li>
+      <li><a href="{% url 'popular_proposals:home' %}">Propuestas</a></li>
+      <li><a href="{{commitment.proposal.get_absolute_url}}">{{commitment.proposal.title}}</a></li>
+      <li class="active">Compromiso</li>
+    </ul>
+  </div>
+  <div class="container">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}default{% endif %}">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <p>{{ message }}</p>
+        </div>
+      {% endfor %}
+    {% endif %}
+    <h1 class="page-header">Compromiso</h1>
+    Yo <b>{{commitment.candidate.name}}</b> me comprometo con la propuesta ciudadana:
+
+    {% include 'popular_proposal/plantillas/candidate_commitment.html' with proposal=commitment.proposal %}
+
+    <div class="pull-right">
+      <p><b>{{commitment.candidate.name}}</b></p>
+      <p>Candidata/o {% if commitment.candidate.election.position %}a {{commitment.candidate.election.position|title }}{% endif %} por {{commitment.candidate.election}}.</p>
+    </div>
 </div>
-<div class="container">
-	<div class="text-width">
-		{% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}default{% endif %}">
-              <p>{{ message }}</p>
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            </div>
-            {% endfor %}
-        {% endif %}
-		{% if commitment.candidate.election.position == 'concejal' %}
-		Yo <b>{{commitment.candidate.name}}</b> candidata/o al concejo municipal de <b>{{commitment.proposal.area}}</b> me comprometo a apoyar desde el concejo municipal la propuesta ciudadana <b>{{commitment.proposal.title}}</b>.
-
-		<p>Que consiste en:
-		<b>{{commitment.proposal.data.solution|linebreaksbr }}</b>
-		</p>
-		<p>
-		Y me comprometo a posicionarla desde el concejo municipal y hacer seguimiento de su implementación durante <b>{{commitment.proposal.data.when|popular_proposal_when}}</b> a partir del inicio de mi mandato.</p>
-		<p>
-		Para dar solución a: <b>{{commitment.proposal.data.problem|linebreaksbr}}</b>.
-		</p>
-		<p>
-		Además, entiendo que la propuesta estará cumplida con la siguiente tarea:
-
-		<b>{{commitment.proposal.data.solution_at_the_end|linebreaksbr}}</b>
-		</p>
-
-	{% elif commitment.candidate.election.position == 'alcalde' %}
-		<p>Yo <strong>{{commitment.candidate.name}}</strong> candidata/o a la alcaldía de <strong>{{commitment.proposal.area}}</strong> me comprometo con la propuesta ciudadana <b>{{commitment.proposal.title}}</b>.</p>
-
-		<p>Que consiste en:
-		<b>{{commitment.proposal.data.solution|linebreaksbr }}</b>
-		</p>
-		<p>
-		La incluiré en mi programa y la cumpliré dentro de un plazo de <b>{{commitment.proposal.data.when|popular_proposal_when}}</b> a partir del inicio de mi mandato.</p>
-		<p>
-		Para dar solución a: <b>{{commitment.proposal.data.problem|linebreaksbr}}</b>.
-		</p>
-		<p>
-		Además, entiendo que la propuesta estará cumplida con la siguiente tarea:
-
-		<b>{{commitment.proposal.data.solution_at_the_end|linebreaksbr}}</b>
-		</p>
-
-
-	{% else %}
-
-		Yo <strong>{{candidate.name}}</strong> candidata/o por <strong>{{proposal.area}}</strong> me comprometo con la propuesta ciudadana:
-			{% include 'popular_proposal/plantillas/candidate_commitment.html' with proposal=proposal %}
-	{% endif %}
-
-		<div class="pull-right">
-			<p><strong>{{commitment.candidate.name}}</strong></p>
-
-			<p>Candidata/o {% if commitment.candidate.election.position %}a {{commitment.candidate.election.position|title }}{% endif %} por {{commitment.proposal.area}}.</p>
-
-		</div>
-	</div>
+<div class="container text-center">
+  <h3>Hazlo público!</h3>
+  <p>Cuéntales a tus futuros electores el compromiso que acabas de firmar!</p>
+  <ul class="list-inline">
+    <li><a href="#" onclick="window.open('https://twitter.com/share?text=Me he comprometido con la propuesta ciudadana: {{commitment.proposal.title}}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
+    <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
+  </ul>
 </div>
 {% endblock content %}

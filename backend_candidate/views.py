@@ -4,7 +4,7 @@ from django.views.generic.base import TemplateView, RedirectView
 from django.views.generic import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, CreateView
 from django.views.generic.list import ListView
 from django.shortcuts import get_object_or_404
 from backend_candidate.forms import get_form_for_election
@@ -14,7 +14,9 @@ from django.http import HttpResponseRedirect
 from backend_candidate.forms import get_candidate_profile_form_class
 from popular_proposal.models import Commitment, PopularProposal
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext as _
+from agenda.models import Activity
 
 
 class BackendCandidateBase(View):
@@ -243,3 +245,60 @@ class ProposalsForMe(BackendCandidateBase, ListView):
         context['candidate'] = self.candidate
         context['election'] = self.election
         return context
+
+
+from agenda.forms import ActivityForm
+
+
+class AddActivityToCandidateView(LoginRequiredMixin, CreateView):
+    form_class = ActivityForm
+    template_name = 'backend_candidate/add_activity.html'
+    
+    def get_content_object(self):
+        self.candidate = get_object_or_404(Candidate,
+                                           id=self.kwargs['slug'])
+        get_object_or_404(Candidacy,
+                          candidate=self.candidate,
+                          user=self.request.user)
+        return self.candidate
+    
+    def get_form_kwargs(self):
+        kwargs = super(AddActivityToCandidateView, self).get_form_kwargs()
+        kwargs['content_object'] = self.get_content_object()
+        return kwargs
+
+    def get_success_url(self):
+        return reverse('backend_candidate:all_my_activities',
+                        kwargs={'slug': self.candidate.id})
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super(AddActivityToCandidateView, self).get_context_data(*args, **kwargs)
+        context['object'] = self.candidate
+        return context
+
+
+class MyActivitiesListView(LoginRequiredMixin, ListView):
+    model = Activity
+    template_name = 'backend_candidate/all_my_activities.html'
+    context_object_name = 'activities'
+    
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        self.object = get_object_or_404(Candidate,
+                                           id=self.kwargs['slug'])
+        get_object_or_404(Candidacy,
+                          candidate=self.object,
+                          user=self.request.user)
+        return super(MyActivitiesListView, self).dispatch(request,
+                                                          *args,
+                                                          **kwargs)
+    
+    def get_queryset(self):
+        return self.object.agenda.all()
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super(MyActivitiesListView, self).get_context_data(*args, **kwargs)
+        context['object'] = self.object
+        return context
+         
+    

@@ -9,6 +9,9 @@ from django.test import override_settings
 from elections.models import Topic
 from django.contrib.auth.models import User
 from backend_candidate.models import Candidacy
+import datetime
+from django.utils import timezone
+from agenda.models import Activity
 
 
 class Version2TestCase(TestCase):
@@ -198,6 +201,16 @@ class CandidaTeTestCase(Version2TestCase):
         c = Candidate.objects.get(id=3)
         possible_answers = Topic.objects.filter(category__in=c.election.categories.all())
         self.assertEquals(possible_answers.count(), c.possible_answers().count())
+
+    def test_candidates_can_have_activities_in_their_agenda(self):
+        candidate = Candidate.objects.get(id=3)
+        tomorrow = timezone.now() + datetime.timedelta(days=1)
+        activity = Activity.objects.create(date=tomorrow,
+                                           url='https://perrito.cl/actividad_secreta',
+                                           description='This is a description',
+                                           location='secret location',
+                                           content_object=candidate)
+        self.assertTrue(candidate.agenda.all())
 
 
 class CandidateExtraInfoTestCase(Version2TestCase):

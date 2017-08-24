@@ -1,0 +1,42 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+{% load votainteligente_extras %}
+
+{% for candidacy in user.candidacies.all %}
+  {% url 'backend_candidate:complete_profile' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as complete_profile %}
+
+  <li role="presentation" class="{% if not mobile %}hidden-xs{% endif %} mi-perfil {% ifequal request.path complete_profile%} active{% endifequal %}">
+    <a class="small" href="{{complete_profile}}">
+      Completa tu perfil
+    </a>
+  </li>
+
+  {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
+  <li role="presentation" class="{% if not mobile %}hidden-xs{% endif %} 12naranja destacado {% ifequal request.path backend_candidate%} active{% endifequal %}">
+    <a class="small" href="{{backend_candidate}}">
+      Completa la 1/2 naranja
+    </a>
+  </li>
+
+  {% url 'backend_candidate:all_my_activities' slug=candidacy.candidate.id as all_my_activities %}
+  <li role="presentation" class="{% if not mobile %}hidden-xs{% endif %} all_my_activities {% ifequal request.path all_my_activities%} active{% endifequal %}">
+    <a class="small" href="{{all_my_activities}}">
+      Mi agenda
+    </a>
+  </li>
+
+
+  {% url 'backend_candidate:my_proposals_with_a_resolution' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as my_proposals %}
+  <li role="presentation" class="{% if not mobile %}hidden-xs{% endif %} my_proposals {% ifequal request.path my_proposals%} active{% endifequal %}">
+    <a class="small" href="{{my_proposals}}">
+      Mis compromisos
+    </a>
+  </li>
+  {% url 'backend_candidate:proposals_for_me' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as proposals_for_me %}
+  <li role="presentation" class="{% if not mobile %}hidden-xs{% endif %} proposals_for_me {% ifequal request.path proposals_for_me%} active{% endifequal %}">
+    <a class="small" href="{{proposals_for_me}}">
+      Propuestas para mi
+    </a>
+  </li>
+{% endfor %}

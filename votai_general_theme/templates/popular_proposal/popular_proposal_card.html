@@ -52,7 +52,8 @@
 
   {% if user %}
   <div class="share-card text-center">
-    <div class="text-center">{% url 'popular_proposals:home' as popular_proposals_home %}</div>
+    <div class="text-center"></div>
+    {% url 'popular_proposals:home' as popular_proposals_home %}
     {% include 'popular_proposal/_likers.html' with proposal=proposal area=area next_url=popular_proposals_home  support_button_extra_class="pull-left" %}
     {% comment %}
     <div class="share">

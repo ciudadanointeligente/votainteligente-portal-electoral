@@ -28,7 +28,7 @@
           {% else %}
             {% with proposal.get_absolute_url as detail_url %}
             <div class="btn_pronunciarme">
-              <a href="{% url 'popular_proposals:commit_yes' candidate_pk=candidacy.candidate.id proposal_pk=proposal.id %}" class="btn btn-apoyo">Deseo comprometerme</a>
+              <a href="{% url 'popular_proposals:commit_yes' candidate_pk=candidacy.candidate.id proposal_pk=proposal.id %}" class="btn btn-apoyo {{support_button_extra_class}}">Deseo comprometerme</a>
             </div>
             {% endwith %}
           {% endif %}
@@ -63,7 +63,7 @@
               <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
             </div>
           {% endif %}
-          <span class="corazon-{{proposal.id}} btn btn-no-apoyo text-center {% if not avoid_counter %} pull-left{% endif %}" style="cursor:auto;">
+          <span class="corazon-{{proposal.id}} btn btn-no-apoyo text-center {{support_button_extra_class}}" style="cursor:auto;">
             Estoy apoyando <i class="fa fa-heart" aria-hidden="true"></i>
           </span>
         <!-- eoapoyando -->
@@ -73,6 +73,11 @@
     {% endif %}
   {% else %}
     <!-- usuario no logueado -->
+      {% if not avoid_counter %}
+      <div class="apoyo-contador text-center">
+        <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
+      </div>
+      {% endif %}
       <span class="corazon-{{proposal.id}}">
         <a href="{% url 'auth_login' %}" class="btn btn-apoyo text-center {{support_button_extra_class}}" onclick="ga('send','event','apoyo-propuesta-no-usuario','click')">
           Apoyar <i class="fa fa-heart" aria-hidden="true"></i>

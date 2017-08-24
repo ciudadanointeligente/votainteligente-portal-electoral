@@ -1,16 +1,17 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
 <p>
-<strong>{{proposal.data.solution|linebreaks }}</strong>
+<strong>{{proposal.title }}</strong>
 </p>
 <p>
 A incluirla en mi programa y cumplirla antes de <strong>{{proposal.data.when|popular_proposal_when}}</strong>.</p>
 <p>
-Entiendo que esta propuesta ciudadana surge como respuesta a la siguiente problemática: {{proposal.data.problem|linebreaks}}.
+  {{proposal.data.problem}}
+Entiendo que esta propuesta ciudadana surge como respuesta a la siguiente problemática:
+<strong>{{proposal.data.problem|popular_proposal_when|safe|linebreaks}}</strong>
 </p>
 <p>
 Además, entiendo que el problema estará solucionado cuando:
 
-{{proposal.data.solution_at_the_end|linebreaks}}
+<strong>{{proposal.data.solution_at_the_end|linebreaks}}</strong>
 </p>
-

@@ -4,84 +4,34 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load bootstrap3 %}
-
+{% block title %} - Firma Compromiso - {{candidate.name}} - {{proposal.title}}{% endblock title%}
 {% block extrajs %}
 {% load ogp_tags %}
 {% endblock extrajs %}
-
 {% block content %}
 <div class="container">
-  <ol class="breadcrumb">
+  <ul class="breadcrumb">
     <li><a href="{% url 'home' %}">VotaInteligente</a></li>
-    <li><a href="{% url 'area' slug=proposal.area.id%}">{{proposal.area}}</a></li>
+    <li><a href="{% url 'popular_proposals:home' %}">Propuestas</a></li>
     <li><a href="{{proposal.get_absolute_url}}">{{proposal.title}}</a></li>
-    <li class="active">Firmar {% if candidate.election.position == 'concejal' %}
-				apoyo
-			{% elif candidate.election.position == 'alcalde' %}
-			 	compromiso
-			{% else %}
-				compromiso
-			{% endif %}</li>
-  </ol>
-</div> 
+    <li class="active">Firmar compromiso</li>
+  </ul>
+</div>
 <div class="container">
-	<div class="fondo-blanco text-width">
-		<h1>
-			Firmar 
-			{% if candidate.election.position == 'concejal' %}
-				Apoyo
-			{% elif candidate.election.position == 'alcalde' %}
-			 	Compromiso
-			{% else %}
-				Compromiso
-			{% endif %}
-		</h1>
-	{% if candidate.election.position == 'concejal' %}
-		<p>Yo <strong>{{candidate.name}}</strong> candidata/o al concejo municipal de <strong>{{proposal.area}}</strong> apoyo a la propuesta ciudadana: <b>{{proposal.title}}</b>.</p>
+  <div class="fondo-blanco text-width">
+    <h1>Firmar Compromiso</h1>
+    <p>Yo <strong>{{candidate.name}}</strong> candidata/o por <strong>{{proposal.area}}</strong> me comprometo con la propuesta ciudadana:</p>
 
-		<p>
-		Que consiste en: <b>{{proposal.data.solution|linebreaksbr }}</b>
-		</p>
-		<p>
-		Y me comprometo a posicionarla desde el concejo municipal y hacer seguimiento de su implementación durante <strong>{{proposal.data.when|popular_proposal_when}}</strong>.</p>
-		<p>
-		Para dar solución a: <b>{{proposal.data.problem|linebreaksbr}}</b>.
-		</p>
-		<p>
-		Además, entiendo que la propuesta estará cumplida con la siguiente tarea: <b>{{proposal.data.solution_at_the_end|linebreaksbr}}</b>
-		</p>
-	{% elif candidate.election.position == 'alcalde' %}
-		<p>Yo <strong>{{candidate.name}}</strong> candidata/o a la alcaldía de <strong>{{proposal.area}}</strong> me comprometo con la propuesta ciudadana: <b>{{proposal.title}}</b>.</p>
-		
-		<p>
-		Que consiste en: <b>{{proposal.data.solution|linebreaksbr }}</b>
-		</p>
-		<p>
-		Estoy dispuesta/o a incluirla en mi programa y cumplirla a más tardar en <strong>{{proposal.data.when|popular_proposal_when}}</strong>.</p>
-		<p>
-		Para dar solución a: <b>{{proposal.data.problem|linebreaksbr}}</b>.
-		</p>
-		<p>
-		Además, entiendo que la propuesta estará cumplida con la siguiente tarea: <b>{{proposal.data.solution_at_the_end|linebreaksbr}}</b>
-		</p>
+    {% include 'popular_proposal/plantillas/candidate_commitment.html' with proposal=proposal %}
 
-
-	{% else %}
-
-		Yo <strong>{{candidate.name}}</strong> candidata/o por <strong>{{proposal.area}}</strong> me comprometo con la propuesta ciudadana:
-			{% include 'popular_proposal/plantillas/candidate_commitment.html' with proposal=proposal %}
-	{% endif %}
-
-
-	<form enctype="multipart/form-data" action="{% url 'popular_proposals:commit_yes' proposal_pk=proposal.id candidate_pk=candidate.id %}" method="POST" role="form">{% csrf_token %}
-
-	    <div class="tips">
-		  <b class="text-dark">Terminos y Condiciones</b>
-		  {% include 'popular_proposal/commitment/terms_and_conditions.html' %}
-		</div>
-		{% bootstrap_field form.terms_and_conditions show_label=false %}
-		<button type="submit" class="btn btn-success">{% trans 'Firmar compromiso'%}</button>
-	</form>
-	</div>
+    <form enctype="multipart/form-data" action="{% url 'popular_proposals:commit_yes' proposal_pk=proposal.id candidate_pk=candidate.id %}" method="POST" role="form">{% csrf_token %}
+      <div class="tips">
+        <b class="text-dark">Terminos y Condiciones</b>
+        {% include 'popular_proposal/commitment/terms_and_conditions.html' %}
+      </div>
+      {% bootstrap_field form.terms_and_conditions show_label=false %}
+      <button type="submit" class="btn btn-success" onclick="ga('send','event','firma-compromiso','click')">{% trans 'Firmar compromiso'%}</button>
+    </form>
+  </div>
 </div>
 {% endblock content %}

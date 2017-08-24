@@ -236,6 +236,8 @@ class Election(ExtraInfoMixin, models.Model, OGPMixin):
     uses_face_to_face = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar frente a frente"))
     uses_soul_mate = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar 1/2 naranja"))
     uses_questionary = models.BooleanField(default=True, help_text=_(u"Esta elección debe usar cuestionario"))
+    candidates_can_commit_everywhere = models.BooleanField(default=True,
+                                                           help_text=_(u"Los candidatos en esta elección pueden comprometerse en todas las elecciones"))
     position = models.CharField(default='',
                                 null=True,
                                 blank=True,

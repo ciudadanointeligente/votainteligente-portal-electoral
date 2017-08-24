@@ -23,180 +23,110 @@
 
 
 {% block mainelection %}
+<div class="container text-center">
+  <h1>{{ candidate.name }}</h1>
+  <h3>{% get_personal_data candidate=candidate personal_data='lema' as lema %}{{lema.value}}</h3>
+</div>
+
 <div class="profile">
-	<div class="container">
-		<div class="row breadscrumb-social yellow-breadcrumbs">
-			<div class="col-md-9">
-				<ul class="breadcrumb">
-					<li><a href="/">{% trans "Portada" %}</a></li>
-					{% if election.area %}
-						<li><a href="{% url 'area' slug=election.area.id %}">{{ election.area }}</a></li>
-					{% endif %}
-					<li><a href="{% url 'election_view' slug=election.slug %}">{{ election }}</a></li>
-					<li class="active">{% block last_breadcrumb %}{% trans "Perfiles"%}{% endblock last_breadcrumb %}</li>
-				</ul>
-			</div>
-		</div>
-    <div class="container">
-      <div class="btn-group col-xs-12 visible-xs">
-        <button type="button" class="btn btn-default dropdown-toggle col-xs-12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Ver más <span class="caret"></span>
-        </button>
-        <ul class="profile dropdown-menu">
+  <div class="container">
+    <div class="row content_padding">
+      <div class="col-md-2 col-sm-2 col-xs-12">
+          <div id="candidate-img-profile">
+            {% if candidate.image %}
+              {% thumbnail candidate.image "300x300" crop="center" as im %}
+                  <img src="{{ im.url }}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive img-circle img-candidato">
+              {% endthumbnail %}
+              {% else %}
+              <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato img-candidato">
+            {% endif %}
+            {% if not candidate.has_answered %}<div class="ribbon label label-danger">No ha respondido</div>{% endif %}
+          </div>
+      </div>
+      <div id="info-candidato" class="col-xs-12 col-sm-7 col-md-7">
+        <table class="table">
+          <tr>
+            <td>
+            {% get_personal_data candidate=candidate personal_data='Partido' as partido %}
+              {% if partido.value %}
+              <p><b>Partido</b></p>
+              <p>{{partido.value}}</p>
+            {% endif %}
+            </td>
+            <td>
+              {% if candidate.elections.count %}
+              <p><b>Circunscripción</b></p>
+              <ul class="list-inline">
+                {% for e in candidate.elections.all %}
+                <li>{{e}}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </td>
+          </tr>
+          {% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}
+          {% if pacto.value %}
+          <tr>
+            <td colspan="2">
+              <p><b>Pacto</b></p>
+              <p>{{pacto.value}}</p>
+            </td>
+          </tr>
+          {% endif %}
+          {% if candidate.biography %}
+          <tr>
+            <td colspan="2">
+              <p><b>Reseña</b></p>
+              {{ candidate.biography|markdown }}
+            </td>
+          </tr>
+          {% endif %}
+          <tr>
+            <td>
+              <p><b>Compromisos Ciudadanos</b></p>
+              <p>Este candidato se ha comprometido con</p>
+              <p class="btn btn-info"><i class="fa fa-heart"></i>{{candidate.commitments.count}} Propuestas ciudadanas</p>
+            </td>
+            <td>
+              <p><b>Contactos</b></p>
+              <ul class="list-inline">
+                {% include 'elections/candidates/social_media.html' with candidate=candidate %}
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-3">
+        <h5 class="text-center">Agenda</h5>
+        <ul id="agenda-candidato" class="list-unstyled">
           <li>
-            <a href="{% url 'election_view' slug=election.slug %}" class="btn">Volver a perfiles</a>
+            <b>Agenda 01</b>
+            <p>Alguna boludez</p>
           </li>
           <li>
-            <a href="{% url 'soul_mate_detail_view' slug=candidate.election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn"><i class="icon-heart"></i> {% trans "Encuentra tu 1/2 Naranja" %}</a>
+            <b>Agenda 01</b>
+            <p>Alguna boludez</p>
           </li>
           <li>
-            <a href="{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}" accesskey="f" title="{% trans "Frente a Frente" %} (Alt+f)" class="btn"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a>
+            <b>Agenda 01</b>
+            <p>Alguna boludez</p>
           </li>
         </ul>
       </div>
-    </div>
-
-		<div class="pull-left hidden-xs">
-			<a class="btn btn-danger" href="">
-        <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-    <title>Previous</title>
-    <g stroke="#233346" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px">
-        <path d="M9 1L.4 9 9 17M1.5 9h16"/>
-    </g></svg> Volver a perfiles</a>
-		</div>
-		<div class="pull-right hidden-xs">
-			<a href="{% url 'soul_mate_detail_view' slug=candidate.election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info"><i class="icon-heart"></i> {% trans "Encuentra tu 1/2 Naranja" %}</a>
-			<a href="{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}" accesskey="f" title="{% trans "Frente a Frente" %} (Alt+f)" class="btn btn-warning"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a>
-		</div>
-		<div class="row content_padding">
-			<div class="col-md-2 col-sm-2 col-xs-12">
-					<div id="candidate-img-profile">
-						{% if candidate.image %}
-							{% thumbnail candidate.image "300x300" crop="center" as im %}
-							    <img src="{{ im.url }}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive img-circle img-candidato">
-							{% endthumbnail %}
-							{% else %}
-							<img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato img-candidato">
-						{% endif %}
-						{% if not candidate.has_answered %}<div class="ribbon label label-danger">No ha respondido</div>{% endif %}
-					</div>
-			</div>
-			<div class="col-md-8 col-sm-8 col-xs-12">
-        {% cache 500 name_links_and_ranking candidate.id %}
-				<ul class="small text-white list-inline visible-xs text-right">
-          {% get_personal_data candidate=candidate personal_data='Partido' as partido %}
-          {% if partido.value %}
-          <li>{{partido.value}}</li>
-          {% endif %}
-          {% include 'elections/candidates/social_media.html' with candidate=candidate %}
-        </ul>
-        <ul class="small text-white list-inline hidden-xs">
-          {% get_personal_data candidate=candidate personal_data='Partido' as partido %}
-          {% if partido.value %}
-          <li>{{partido.value}}</li>
-          {% endif %}
-          <li>{% include 'elections/candidates/links_extra_pages.html' with candidate=candidate %}</li>
-          {% include 'elections/candidates/contacts.html' with candidate=candidate %}
-        </ul>
-				<h1 class="text-white">{{ candidate.name }}</h1>
-				{% if candidate.ranking_in_election %}
-                <div class="alert alert-info">
-                  <p>Número {{candidate.ranking_in_election}} en el ranking de VotaInteligente <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="{{candidate.naranja_completeness|floatformat}}% de la media naranja y se ha pronunciado sobre un {{candidate.commitmenness|floatformat}}% de las propuestas para {{area}}"></i></p>
-                </div>
-                  {% endif %}
-                {% endcache %}
-				{% if user|manages_this:candidate %}
-
-					{% with user.candidacies.first as candidacy %}
-					{% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as backend_candidate %}
-					<div class="alert alert-info">
-              <p>
-  						  <span>Hola {{ candidate.name }}, Actualiza <a href="{{backend_candidate}}" style="text-decoration:underline">tu perfil</a>{% if not candidate.has_answered %} y ayúdanos a conocer tus propuestas respondiendo la </span>
-  							<a href="{{backend_candidate}}" style="text-decoration:underline">{% trans '1/2 naranja' %}</a>{% endif %}
-              </p>
-					</div>
-					{% endwith %}
-				  {% endif %}
-
-				<!-- para staff -->
-        {% if user.is_staff %}
-					<div class="panel panel-default">
-					  <div class="panel-body">
-						  <span>Hola staff, </span>
-              	{% include 'elections/_is_staff_candidate_detail.html' %}
-              	{% if "elections/candidates/extra_info_per_candidate.html"|template_exists %}
-									{% include 'elections/candidates/extra_info_per_candidate.html' %}
-								{% endif %}
-					  </div>
-					</div>
-        {% endif %}
-				{% cache 500 personal_datas candidate.id %}
-				<ul class="text-white">
-					<!-- {% include 'elections/candidates/personal_data_candidate.html' with candidate=candidate %} -->
-					<li>Pacto: {% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}{{pacto.value}}</li>
-					<li>Edad: {% get_personal_data candidate=candidate personal_data='age' as edad %}{{edad.value}}</li>
-					<li>Lema de campaña: {% get_personal_data candidate=candidate personal_data='lema' as lema %}{{lema.value}}</li>
-					<li>Ocupación: {% get_personal_data candidate=candidate personal_data='ocupacion' as ocupacion %}{{ocupacion.value}}</li>
-					<li>Experiencia en cargos públicos: {% get_personal_data candidate=candidate personal_data='experiencia' as experiencia %}{{experiencia.value}}</li>
-          <li class="hidden-xs">
-            {% get_personal_data candidate=candidate personal_data='program_link' as program_link %}
-            Descarga su  <a target="_blank" href="{{program_link.value}}" style="color:#FFF; text-decoration:underline;">Programa de gobierno</a>
-          </li>
-					{% get_contact_detail candidate type_='CPLT' as candidato_transparente %}
-					{% if candidato_transparente %}
-					<li><a target="_blank" href="{{candidato_transparente.value}}">{{candidate}} en CandidatoTransparente.cl</a></li>
-					{% endif %}
-				</ul>
-
-        <a target="_blank" href="{{program_link.value}}" class="btn btn-primary visible-xs">Programa de gobierno</a>
-				{% endcache %}
-
-				
-
-			</div>
-		</div>
-
-		<div>
-
-				<div class="antecedentes text-white">
-					<div class="info">
-					{% for background_category in election.can_election.backgroundcategory_set.all %}
-			 			{% for background in background_category.background_set.all %}
-			 				{% for background_candidate in background.backgroundcandidate_set.all %}
-				 				{{background_candidate.value}}
-			 				{% endfor %}
-			 			{% endfor %}
-			 		{% endfor %}
-
-					{{ candidate.biography|markdown }}
-			 		</div>
-			 	</div>
-		</div>
-
-	</div>
+    </div><!-- .row .content_padding -->
+  </div><!-- container -->
+</div><!-- profile -->
+{% get_personal_data candidate=candidate personal_data='program_link' as program_link %}
+{% if program_link.value %}
+<div id="candidato-programa" class="container-fluid">
+  <p class="text-center">Revisa su programa <a target="_blank" href="{{program_link.value}}" class="btn btn-default">aquí</a></p>
 </div>
-{% include 'elections/candidates/agenda.html' with candidate=candidate election=election %}
-{% include 'elections/candidates/propuestas_a_las_que_se_ha_comprometido.html' with candidate=candidate election=election %}
-{% include 'elections/candidates/posiciones_politicas_de_los_candidatos.html' with candidate=candidate election=election %}
+{% endif %}
 
-
-
-	<script type="text/javascript">
-	var API_KEY = '{{ 'client_id'|website_imgur }}';
-	var candidate_name = '{{candidate.name}}';
-	var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}';
-	</script>
+<div id="candidato-propuestas" class="container">
+  <h3 class="text-center">Compromisos Ciudadanos</h3>
+</div>
 
 {% endblock mainelection %}
 
-{% block extrajs %}
-	$(document).ready(function() {
-		$('div.antecedentes div.info').expander({
-			expandText: '<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i><i class="fa fa-chevron-down fa-stack-1x fa-inverse" aria-hidden="true"></i></span>',
-			userCollapseText: '<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i><i class="fa fa-chevron-up fa-stack-1x fa-inverse" aria-hidden="true"></i></span>',
-			slicePoint: 180,
-		});
-
-		$('.pop-fuente').popover();
-	});
-{% endblock extrajs %}
+{% block extrajs %}{% endblock extrajs %}

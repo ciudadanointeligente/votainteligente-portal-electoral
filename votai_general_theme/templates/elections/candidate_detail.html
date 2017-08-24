@@ -151,28 +151,7 @@
         <a target="_blank" href="{{program_link.value}}" class="btn btn-primary visible-xs">Programa de gobierno</a>
 				{% endcache %}
 
-				{% cache 500 commitments candidate.id %}
-				<!-- Promesas que se ha comprometido -->
-				{% if candidate.commitments.count %}
-				<h3 class="text-white">Propuestas ciudadanas en las que se ha pronunciado:</h3>
-				<ul>
-					{% for commitment in candidate.commitments.all %}
-							<li>
-							<a href="{{commitment.proposal.get_absolute_url}}" class="text-white">{{commitment.proposal.title}}</a>
-						{% if commitment.commited %}
-							{% if candidate.election.position == 'concejal' %}
-								<span class="label label-default">apoya</span>
-							{% else %}
-								<span class="label label-default">se comprometió</span>
-							{% endif %}
-						{% else %}
-							<span class="label label-danger">la rechazó</span>
-						{% endif %}
-							</li>
-					{% endfor %}
-				</ul>
-				{% endif %}
-				{% endcache %}
+				
 
 			</div>
 		</div>
@@ -196,49 +175,11 @@
 
 	</div>
 </div>
-{% cache 500 political_positions candidate.id %}
-<div class="container content_padding">
-<h2>Posiciones políticas</h2>
+{% include 'elections/candidates/agenda.html' with candidate=candidate election=election %}
+{% include 'elections/candidates/propuestas_a_las_que_se_ha_comprometido.html' with candidate=candidate election=election %}
+{% include 'elections/candidates/posiciones_politicas_de_los_candidatos.html' with candidate=candidate election=election %}
 
-	{% if 'questionary'|val_navbars and election.uses_questionary  %}
-	<div class="questionary">
-		<div class="row">
-			<div class="col-md-6">
-				<h3>{% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
-			</div>
-		</div>
-		{% if election.categories.count > 1 %}
-		<ul class="nav nav-tabs nav-justified" role="tablist">
-			{% for category in election.categories.all %}
-				<li role="presentation" class="{% if forloop.first %}active{% endif %}">
-					<a href="#{{category.name|slugify}}" class="small" aria-controls="{{ category.name|slugify }}" role="tab" data-toggle="tab">{{category.name}}</a>
-				</li>
-			{% endfor %}
-		</ul>
-		{% endif %}
-		<div class="tab-content">
-		{% for category in election.categories.all %}
-			<div role="tabpanel" class="tab-pane {% if forloop.first %}active{% endif %}" id="{{category.name|slugify}}">
-				{% for topic in category.topics.all %}
-				<div class="question-answer">
-					<h4 class="question text-dark">
-						{{topic.label}}
-					</h4>
-					<p class="answer">
-						{% get_taken_position_for topic candidate %}
-						<!-- source -->
-						<!-- eosource -->
-					</p>
-				</div>
-				{% endfor %}
-			</div>
-		{% endfor %}
-		</div>
-	</div>
-	{% endif %}
 
-</div>
-{% endcache %}
 
 	<script type="text/javascript">
 	var API_KEY = '{{ 'client_id'|website_imgur }}';

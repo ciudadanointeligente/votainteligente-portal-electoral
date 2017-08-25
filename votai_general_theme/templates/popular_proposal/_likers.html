@@ -24,11 +24,13 @@
         {% if candidacy.candidate %}
           {% get_commitment candidacy proposal as commitment %}
           {% if commitment %}
-            <a href="#" class="btn btn-apoyo" disabled="disabled">Ya me comprometí</a>
+          <div class="btn_pronunciarme {{support_button_extra_class}}">
+            <a href="#" class="btn btn-apoyo" disabled="disabled">Comprometido</a>
+          </div>
           {% else %}
             {% with proposal.get_absolute_url as detail_url %}
-            <div class="btn_pronunciarme">
-              <a href="{% url 'popular_proposals:commit_yes' candidate_pk=candidacy.candidate.id proposal_pk=proposal.id %}" class="btn btn-apoyo {{support_button_extra_class}}">Deseo comprometerme</a>
+            <div class="btn_pronunciarme {{support_button_extra_class}}">
+              <a href="{% url 'popular_proposals:commit_yes' candidate_pk=candidacy.candidate.id proposal_pk=proposal.id %}" class="btn btn-apoyo">Comprometerme</a>
             </div>
             {% endwith %}
           {% endif %}

@@ -1,16 +1,11 @@
 {% load cache %}
 {% load votainteligente_extras %}
 {% cache 500 political_positions candidate.id %}
-<div class="container content_padding">
-<h2>Agenda</h2>
-<div>
-	<div>
-		<ul>
-		{% for activity in candidate.agenda.all %}
-		{% include 'activity_card.html' with activity=activity object=candidate %}
-		{% endfor %}
-		</ul>
-	</div>
-</div>
-</div>
+
+<h5 class="text-center">Agenda</h5>
+<ul id="agenda-candidato" class="list-unstyled">
+  {% for activity in candidate.agenda.all|slice:":3" %}
+  {% include 'activity_card.html' with activity=activity object=candidate even_odd=forloop.counter %}
+  {% endfor %}
+</ul>
 {% endcache %}

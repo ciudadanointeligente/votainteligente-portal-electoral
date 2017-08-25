@@ -21,10 +21,16 @@ from registration.backends.hmac.views import RegistrationView
 from django.views.generic.list import ListView
 from backend_citizen.stats import StatsPerProposal, PerUserTotalStats
 from django.views.generic.base import RedirectView
+from backend_candidate.models import is_candidate
 
 
 class IndexView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
+        if is_candidate(self.request.user):
+            candidacy = self.request.user.candidacies.first()
+            return reverse('backend_candidate:complete_profile',
+                                         kwargs={'slug': candidacy.candidate.election.slug,
+                                                 'candidate_id': candidacy.candidate.id})
         if self.request.user.profile.is_organization:
             return reverse('organization_profiles:update')
 

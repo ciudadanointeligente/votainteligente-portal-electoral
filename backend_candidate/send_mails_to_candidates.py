@@ -7,7 +7,7 @@ def send_user_to_candidates():
         send_candidate_username_and_password(candidate)
 
 
-excluded = ['guillermo-urquiza-tapia', 'jose-luis-yanez-maldonado']
+excluded = []
 
 
 def send_user_to_candidate_from(area):

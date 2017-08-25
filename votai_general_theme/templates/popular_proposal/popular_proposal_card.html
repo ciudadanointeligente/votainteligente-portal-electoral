@@ -60,7 +60,7 @@
       {% include 'popular_proposal/_share.html' with popular_proposal=proposal %}
     </div>
     {% endcomment %}
-    <a href="{% url 'popular_proposals:detail' slug=proposal.slug %}" class="btn btn-blue">Leer más</a>
+    <a href="{% url 'popular_proposals:detail' slug=proposal.slug %}" class="btn btn-blue pull-right">Leer más</a>
   </div>
   {% endif %}
 </div>

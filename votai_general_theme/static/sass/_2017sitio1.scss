@@ -330,6 +330,10 @@ input[type=file]{
   border-radius: 8px;
 }
 
+.modal-body{
+  text-align: left;
+}
+
 /*Detalle*/
 .nav-detalle-propuesta{
   border: none;
@@ -411,6 +415,10 @@ input[type=file]{
   }
 }
 
+.fa-stack{
+  top: 8px;
+}
+
 .share-detail .fa-inverse {
     color: white;
 }
@@ -482,7 +490,7 @@ input[type=file]{
 
 .share-card a .fa-stack {
     color: white;
-    margin-left: -5px;
+    margin-left: -10px;
 }
 
 .share-card a .fa-stack:hover {

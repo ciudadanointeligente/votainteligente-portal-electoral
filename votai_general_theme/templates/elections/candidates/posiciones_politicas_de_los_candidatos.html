@@ -1,45 +1,43 @@
 {% load cache %}
 {% load votainteligente_extras %}
 {% cache 500 political_positions candidate.id %}
-<div class="container content_padding">
-<h2>Posiciones políticas</h2>
 
-	{% if 'questionary'|val_navbars and election.uses_questionary  %}
-	<div class="questionary">
-		<div class="row">
-			<div class="col-md-6">
-				<h3>{% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h3>
-			</div>
-		</div>
-		{% if election.categories.count > 1 %}
-		<ul class="nav nav-tabs nav-justified" role="tablist">
-			{% for category in election.categories.all %}
-				<li role="presentation" class="{% if forloop.first %}active{% endif %}">
-					<a href="#{{category.name|slugify}}" class="small" aria-controls="{{ category.name|slugify }}" role="tab" data-toggle="tab">{{category.name}}</a>
-				</li>
-			{% endfor %}
-		</ul>
-		{% endif %}
-		<div class="tab-content">
-		{% for category in election.categories.all %}
-			<div role="tabpanel" class="tab-pane {% if forloop.first %}active{% endif %}" id="{{category.name|slugify}}">
-				{% for topic in category.topics.all %}
-				<div class="question-answer">
-					<h4 class="question text-dark">
-						{{topic.label}}
-					</h4>
-					<p class="answer">
-						{% get_taken_position_for topic candidate %}
-						<!-- source -->
-						<!-- eosource -->
-					</p>
-				</div>
-				{% endfor %}
-			</div>
-		{% endfor %}
+<h3 class="text-center">Posiciones políticas</h3>
+
+{% if 'questionary'|val_navbars and election.uses_questionary  %}
+<div class="questionary">
+	<div class="row">
+		<div class="col-md-6">
+			<h4>{% if not candidate.has_answered %}{% no_ha_respondido_twitter_button %}{% endif %}</h4>
 		</div>
 	</div>
+	{% if election.categories.count > 1 %}
+	<ul class="nav nav-tabs nav-justified" role="tablist">
+		{% for category in election.categories.all %}
+			<li role="presentation" class="{% if forloop.first %}active{% endif %}">
+				<a href="#{{category.name|slugify}}" class="small" aria-controls="{{ category.name|slugify }}" role="tab" data-toggle="tab">{{category.name}}</a>
+			</li>
+		{% endfor %}
+	</ul>
 	{% endif %}
-
+	<div class="tab-content">
+	{% for category in election.categories.all %}
+		<div role="tabpanel" class="tab-pane {% if forloop.first %}active{% endif %}" id="{{category.name|slugify}}">
+			{% for topic in category.topics.all %}
+			<div class="question-answer">
+				<h5 class="question text-dark">
+					{{topic.label}}
+				</h5>
+				<p class="answer">
+					{% get_taken_position_for topic candidate %}
+					<!-- source -->
+					<!-- eosource -->
+				</p>
+			</div>
+			{% endfor %}
+		</div>
+	{% endfor %}
+	</div>
 </div>
+{% endif %}
 {% endcache %}

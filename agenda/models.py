@@ -6,9 +6,9 @@ from django.db import models
 
 class Activity(models.Model):
     date = models.DateTimeField()
-    url = models.URLField()
+    url = models.URLField(blank=True, null=True)
     location = models.CharField(max_length=1024)
-    description = models.TextField(blank=True)
+    description = models.CharField(blank=True,max_length=1024)
     updated = models.DateTimeField(auto_now_add=True)
     created = models.DateTimeField(auto_now=True)
 
@@ -19,3 +19,8 @@ class Activity(models.Model):
     object_id = models.CharField(max_length=1024,blank=True,
                                             null=True)
     content_object = GenericForeignKey('content_type', 'object_id')
+
+    class Meta:
+        # sort by "the date" in descending order unless
+        # overridden in the query with order_by()
+        ordering = ['-date']

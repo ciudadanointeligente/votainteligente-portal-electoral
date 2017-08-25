@@ -1,5 +1,8 @@
-<li>
-	<a href="{{activity.url}}" target="_blank">
-	{{activity.date}} - {{activity.description}} - {{activity.location}}
-	</a>
+<li class="{% if even_odd|divisibleby:2 %}par{% else %}impar{% endif %}">
+  <p><i class="fa fa-calendar"></i> {{activity.date}}</p>
+  <p><b>{{activity.description|truncatechars:100}}</b></p>
+
+  {% if activity.url %}<a href="{{activity.url}}" target="_blank">{% endif %}
+	 <i class="fa fa-crosshairs"></i> {{activity.location}}
+  {% if activity.url %}</a>{% endif %}
 </li>

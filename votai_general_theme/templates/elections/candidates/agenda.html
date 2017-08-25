@@ -4,7 +4,7 @@
 
 <h5 class="text-center">Agenda</h5>
 <ul id="agenda-candidato" class="list-unstyled">
-  {% for activity in candidate.agenda.all %}
+  {% for activity in candidate.agenda.all|slice:":3" %}
   {% include 'activity_card.html' with activity=activity object=candidate even_odd=forloop.counter %}
   {% endfor %}
 </ul>

@@ -239,49 +239,83 @@ def export_commitments_for_all_areas():
     for a in as_:
         export_commitments_per_area_csv(a)
 
+def procesar_circunscripciones():
+    chile = Area.objects.get(id="chile-pais")
+    reader = codecs.open("circunscripciones_y_otros.csv", 'r', encoding='utf-8')
+    counter = 1
+    candidates_ids = []
+    for line in reader:
+        row = line.split(u',')
+        region_str = row[0].strip()
+        region, created_region = Area.objects.get_or_create(classification=u"Región", name=region_str)
+        if created_region:
+            print u"Creee la región " + unicode(region)
+        circunscripcion_str = row[1].strip()
+        circunscripcion, created_circunscripcion = Area.objects.get_or_create(classification=u"Circunscripción", name=circunscripcion_str)
+        if created_circunscripcion:
+           print u"Creee la circunscripcion " + unicode(circunscripcion)
+        distrito_str = row[2].strip()
+        distrito, created_distrito = Area.objects.get_or_create(classification=u"Distrito", name=distrito_str)
+        if created_distrito:
+            print u"Creee el distrito " + unicode(distrito)
+        comuna_str = row[3].strip()
+        
+        comuna, created_comuna = Area.objects.get_or_create(classification=u"Comuna", name=comuna_str)
+        if created_comuna:
+            print u"Creee la comuna " + unicode(comuna)
+        
+        comuna.parent = distrito
+        comuna.save()
+        distrito.parent = circunscripcion
+        distrito.save()
+        circunscripcion.parent = region
+        circunscripcion.save()
+        region.parent = chile
+        region.save()
+        
 
 
-
-for usuario in User.objects.exclude(proposals__isnull=True).filter(proposals__commitments__candidate__has_won=True).distinct():
-    print u'Con ' + usuario.username + u',' + usuario.email
-    alcaldes = Candidate.objects.filter(has_won=True, commitments__proposal__proposer=usuario).filter(elections__position='alcalde')
-    if alcaldes:
-        for a in alcaldes:
-            print u', , ' + a.name + ', alcalde,' + a.election.area.name
-    concejales = Candidate.objects.filter(has_won=True, commitments__proposal__proposer=usuario).filter(elections__position='concejal')
-    if concejales:
-        for con in concejales:
-            print u', , ' + con.name + ', concejal,' + con.election.area.name
-
-
-type_ = 'alcalde'
-for usuario in User.objects.exclude(proposals__isnull=True).filter(proposals__commitments__candidate__has_won=True).distinct():
-    
-    alcaldes = Candidate.objects.filter(has_won=True,
-                                        commitments__commited=True,
-                                        commitments__proposal__proposer=usuario).filter(elections__position=type_)
-    if alcaldes:
+def other():
+    for usuario in User.objects.exclude(proposals__isnull=True).filter(proposals__commitments__candidate__has_won=True).distinct():
         print u'Con ' + usuario.username + u',' + usuario.email
-        for a in alcaldes:
-            cs = Commitment.objects.filter(candidate=a, proposal__proposer=usuario)
-            commitments = ""
-            for c in cs:
-                commitments += ','
-                commitments += '"' +c.proposal.title +'"'
+        alcaldes = Candidate.objects.filter(has_won=True, commitments__proposal__proposer=usuario).filter(elections__position='alcalde')
+        if alcaldes:
+            for a in alcaldes:
+                print u', , ' + a.name + ', alcalde,' + a.election.area.name
+        concejales = Candidate.objects.filter(has_won=True, commitments__proposal__proposer=usuario).filter(elections__position='concejal')
+        if concejales:
+            for con in concejales:
+                print u', , ' + con.name + ', concejal,' + con.election.area.name
 
-            print u', , ' + a.name + ', '+ type_ + ',' + a.election.area.name + commitments
 
-
-for usuario in User.objects.exclude(proposals__isnull=True).filter(proposals__commitments__candidate__has_won=True).distinct():
-    concejales = Candidate.objects.filter(has_won=True,
-                                          commitments__commited=True,
-                                          commitments__proposal__proposer=usuario).filter(elections__position='concejal')
-    if concejales:
-        for con in concejales:
-            cs = Commitment.objects.filter(candidate=con, proposal__proposer=usuario)
-            commitments = ""
-            for c in cs:
-                commitments += ','
-                commitments += c.proposal.title
+    type_ = 'alcalde'
+    for usuario in User.objects.exclude(proposals__isnull=True).filter(proposals__commitments__candidate__has_won=True).distinct():
+        
+        alcaldes = Candidate.objects.filter(has_won=True,
+                                            commitments__commited=True,
+                                            commitments__proposal__proposer=usuario).filter(elections__position=type_)
+        if alcaldes:
             print u'Con ' + usuario.username + u',' + usuario.email
-            print u', , ' + con.name + ', concejal,' + con.election.area.name + commitments
+            for a in alcaldes:
+                cs = Commitment.objects.filter(candidate=a, proposal__proposer=usuario)
+                commitments = ""
+                for c in cs:
+                    commitments += ','
+                    commitments += '"' +c.proposal.title +'"'
+
+                print u', , ' + a.name + ', '+ type_ + ',' + a.election.area.name + commitments
+
+
+    for usuario in User.objects.exclude(proposals__isnull=True).filter(proposals__commitments__candidate__has_won=True).distinct():
+        concejales = Candidate.objects.filter(has_won=True,
+                                              commitments__commited=True,
+                                              commitments__proposal__proposer=usuario).filter(elections__position='concejal')
+        if concejales:
+            for con in concejales:
+                cs = Commitment.objects.filter(candidate=con, proposal__proposer=usuario)
+                commitments = ""
+                for c in cs:
+                    commitments += ','
+                    commitments += c.proposal.title
+                print u'Con ' + usuario.username + u',' + usuario.email
+                print u', , ' + con.name + ', concejal,' + con.election.area.name + commitments

@@ -78,7 +78,7 @@ $(function(){
         <p class="text-light small">Propuesta nº{{popular_proposal.id}}</p>
 
         {% if popular_proposal.is_local_meeting %}
-        <img src="{% static 'img/local-meeting.svg' %}" class="img-responsive" alt="Generada desde un encuentro ciudadano">
+        <img src="{% static 'img/local-meeting.svg' %}" alt="Generada desde un encuentro ciudadano">
         {% endif %}
 
         <h1>{{popular_proposal.title}}</h1>

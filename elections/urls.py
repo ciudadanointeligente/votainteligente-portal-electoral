@@ -68,7 +68,7 @@ urlpatterns = [
     url(r'^eleccion/(?P<slug>[-\w]+)/extra_info.html$',
         ElectionDetailView.as_view(template_name='elections/extra_info.html'),
         name='election_extra_info'),
-    url(r'^comuna/(?P<slug>[-\w]+)/?$',
+    url(r'^territorio/(?P<slug>[-\w]+)/?$',
         AreaDetailView.as_view(template_name='elections/area.html'),
         name='area'),
 ]

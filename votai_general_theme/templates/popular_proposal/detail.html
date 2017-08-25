@@ -206,17 +206,19 @@ $(function(){
       </div><!-- col-md-9 -->
 
       <div class="col-md-3 hidden-sm hidden-xs text-center print_hidden">
-        <h4>Apoya esta propuesta</h4>
+        <label>Apoya esta propuesta</label>
         <p class="apoyo-ciudadano">Esta propuesta tiene <span id='likers_count_{{popular_proposal.id}}' class="conteo">{{popular_proposal.likers.count}} <i class="fa fa-heart blue-light-txt" aria-hidden="true"></i></span> apoyo(s)</p>
         <div class="share-detail">
           {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path  avoid_counter=True %}
         </div>
-        <h4>Comparte esta propuesta</h4>
+        <hr>
+        <label>Comparte esta propuesta</label>
         <div class="share-detail">
           {% include 'popular_proposal/_share.html' with proposal=popular_proposal next_url=request.path %}
         </div>
         {% if popular_proposal.sponsoring_orgs.all %}
-          <h4>Organizaciones que apoyan esta propuesta</h4>
+        <hr>
+          <label>Organizaciones que apoyan esta propuesta</label>
           <ul class="list-inline">
             {% for org in popular_proposal.sponsoring_orgs %}
             <li>

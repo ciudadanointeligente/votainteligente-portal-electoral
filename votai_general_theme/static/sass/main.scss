@@ -157,6 +157,14 @@ hr {
       background-color: #FFF;
       padding: 10px 15px;
       border-radius: 10px;
+      li {
+        &.impar {
+          background-color: #DDD;
+        }
+        &.par {
+         background-color: #FFF;
+        }
+      }
     }
 }
 

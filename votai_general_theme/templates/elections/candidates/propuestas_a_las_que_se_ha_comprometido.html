@@ -1,18 +1,16 @@
 {% load cache %}
-<div class="container content_padding">
-	{% cache 500 commitments candidate.id %}
-	<!-- Promesas que se ha comprometido -->
-	{% if candidate.commitments.count %}
-	<div id="grid">
-		<div id="posts">
-		{% for commitment in candidate.commitments.all %}
-			{% if commitment.commited %}
-				{% include 'popular_proposal/popular_proposal_card.html' with proposal=commitment.proposal %}
-			{% else %}
-			{% endif %}
-		{% endfor %}
-		</div>
+{% cache 500 commitments candidate.id %}
+<!-- Promesas que se ha comprometido -->
+{% if candidate.commitments.count %}
+<div id="grid">
+	<div id="posts">
+	{% for commitment in candidate.commitments.all %}
+		{% if commitment.commited %}
+			{% include 'popular_proposal/popular_proposal_card.html' with proposal=commitment.proposal %}
+		{% else %}
+		{% endif %}
+	{% endfor %}
 	</div>
-	{% endif %}
-	{% endcache %}
 </div>
+{% endif %}
+{% endcache %}

@@ -96,22 +96,8 @@
           </tr>
         </table>
       </div>
-      <div class="col-md-3">
-        <h5 class="text-center">Agenda</h5>
-        <ul id="agenda-candidato" class="list-unstyled">
-          <li>
-            <b>Agenda 01</b>
-            <p>Alguna boludez</p>
-          </li>
-          <li>
-            <b>Agenda 01</b>
-            <p>Alguna boludez</p>
-          </li>
-          <li>
-            <b>Agenda 01</b>
-            <p>Alguna boludez</p>
-          </li>
-        </ul>
+      <div class="col-xs-12 col-sm-3 col-md-3">
+        {% include 'elections/candidates/agenda.html' with candidate=candidate election=election %}
       </div>
     </div><!-- .row .content_padding -->
   </div><!-- container -->
@@ -125,7 +111,6 @@
 
 <div id="candidato-propuestas" class="container">
   <h3 class="text-center">Compromisos Ciudadanos</h3>
-  {% include 'elections/candidates/agenda.html' with candidate=candidate election=election %}
   {% include 'elections/candidates/propuestas_a_las_que_se_ha_comprometido.html' with candidate=candidate election=election %}
   {% include 'elections/candidates/posiciones_politicas_de_los_candidatos.html' with candidate=candidate election=election %}
 </div>

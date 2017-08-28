@@ -10,8 +10,9 @@
 {% block main_content %}
 
   <form method="post"  enctype="multipart/form-data" action="{% url 'backend_candidate:complete_profile' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
-  <h2>Información para tu perfil</h2>
   {% with user.candidacies.first as candidacy %}
+  <h2>Información para el perfil de {{candidacy.candidate.name}}</h2>
+
     <p><a href="{{candidacy.candidate.get_absolute_url}}">
       {% trans 'Ir a ver mi perfil' %}</a></p>
   {% endwith %}

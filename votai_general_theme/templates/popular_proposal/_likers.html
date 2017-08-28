@@ -65,6 +65,11 @@
               <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
             </div>
           {% endif %}
+          {% if not proposals_list %}
+          <span class="corazon-{{proposal.id}} btn btn-no-apoyo text-center {{support_button_extra_class}}" style="cursor:auto;">
+             Estoy apoyando <i class="fa fa-heart" aria-hidden="true"></i>
+          </span>
+          {% endif %}
           {% if support_button_extra_class %}
           <div class="col-md-6">
             <div class="share pull-left">

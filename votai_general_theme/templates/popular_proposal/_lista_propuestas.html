@@ -101,7 +101,7 @@ $(function(){
       {% endif %}
     <div id="posts">
       {% for proposal in popular_proposals %}
-          {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal is_embedded=is_embedded %}
+        {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal is_embedded=is_embedded proposals_list=True %}
       {% empty %}
       {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
     </div>

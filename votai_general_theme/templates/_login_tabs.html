@@ -3,13 +3,14 @@
 {% load votainteligente_extras %}
 {% load staticfiles %}
 
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-8 col-md-offset-2">
 			<div class="line-space"></div>
 				<div>
 					<!-- Nav tabs -->
 					<ul class="nav nav-pills list-inline" role="tablist">
             <li role="presentation" {% if not organizacion %}class="active"{% endif %}><a class="small" href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Individual' %} <i class="fa fa-user" aria-hidden="true"></i></a></li>
 						<li role="presentation" {% if organizacion %}class="active"{% endif %}><a class="small" href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Organización' %}<i class="fa fa-users" aria-hidden="true"></i></a></li>
+						<li role="presentation" ><a class="small" href="#login" aria-controls="login" role="tab" data-toggle="tab">{% trans '¿Tienes cuenta?' %}<i class="fa fa-users" aria-hidden="true"></i></a></li>
 					</ul>
 
 					<!-- Tab panes -->
@@ -22,11 +23,16 @@
 							{% user_register %}
 						</div>
 						<div role="tabpanel" class="tab-pane{% if organizacion %} active{% endif %}" id="groupRegister">
+							<h3 class="text-center">{% trans 'Registrate como organización' %}</h3>
+
 							{% group_register %}
+						</div>
+						<div role="tabpanel" class="tab-pane" id="login">
+							<h3 class="text-center">{% trans 'Ingresa tu usuario y contraseña' %}</h3>
+							{% basic_login url=next %}
 						</div>
 						<div class="line-space"></div>
 						<div class="line-space"></div>
 					</div>
 				</div>
-				<h3 class="text-center">{% trans '¿Ya tienes cuenta? Ingresa aquí' %}</h3>
 	</div>

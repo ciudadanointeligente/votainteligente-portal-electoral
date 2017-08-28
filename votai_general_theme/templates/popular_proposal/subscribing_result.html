@@ -1,4 +1,5 @@
 {% load static %}
 $('#likers_count_{{proposal.id}}').text('{{proposal.likers.count}}')
 $('.modal').modal('hide');
-$('.corazon-{{proposal.id}}').html({% include 'popular_proposal/_share.html' with popular_proposal=proposal %});
+
+$('.corazon-{{proposal.id}}').html(`{% include 'popular_proposal/_share.html' with popular_proposal=proposal say_thanks=True %}`);

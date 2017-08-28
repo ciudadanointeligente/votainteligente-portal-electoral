@@ -21,29 +21,17 @@
 	    <tr>
             <td>
             	<a href="{{commitment.proposal.get_absolute_url}}">{{commitment.proposal.title}}</a>
-            	
+
             </td>
             <td>
             	<a href="{{commitment.get_absolute_url}}">
             		{% if commitment.commited %}
             			<span class="label label-success">
-            				{% if commitment.candidate.election.position == 'concejal' %}
-            				Apoyas
-            				{% elif commitment.candidate.election.position == 'alcalde' %}
             				Te comprometiste
-            				{% else %}
-            				Te comprometiste
-            				{% endif %}
             			</span>
             		{% else %}
             			<span class="label label-danger">
-            				{% if commitment.candidate.election.position == 'concejal' %}
-            				No apoyas
-            				{% elif commitment.candidate.election.position == 'alcalde' %}
             				No te comprometiste
-            				{% else %}
-            				No te comprometiste
-            				{% endif %}
             			</span>
             		{% endif %}
             	</a>
@@ -53,13 +41,16 @@
 	    {% endfor %}
 	    </table>
 	{% else %}
+  {% with user.candidacies.first as candidacy %}
+  {% url 'backend_candidate:proposals_for_me' slug=election.slug candidate_id=candidacy.candidate.id  as url %}
+	{% blocktrans with url=url area_name=election.area.name %}
 
-	{% blocktrans with url=election.area.get_absolute_url area_name=election.area.name %}
-	Aún no tienes compromisos, sin embargo puedes revisar <a href="{{url}}">{{area_name}}</a> para aceptar aquellas que quieres.
-	
+	Aún no tienes compromisos, sin embargo puedes revisar <a href="{{url}}">La sección de propuestas para mi</a> para aceptar aquellas que quieres.
+
 	{% endblocktrans %}
-	
+  {% endwith %}
     {% endif %}
+
 
 </div>
 {% endblock main_content %}

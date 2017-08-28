@@ -6,6 +6,15 @@
 <ul id="agenda-candidato" class="list-unstyled">
   {% for activity in candidate.agenda.all|slice:":3" %}
   {% include 'activity_card.html' with activity=activity object=candidate even_odd=forloop.counter %}
+  {% empty %}
+  {% if user|is_candidate %}
+    {% with user.candidacies.first as candidacy %}
+      {% if candidacy.candidate == candidate %}
+        {% url 'backend_candidate:all_my_activities' slug=candidacy.candidate.id as all_my_activities %}
+        <a href="{{all_my_activities}}" class="btn btn-default">Agregar eventos a tu agenda</a>
+      {% endif %}
+    {% endwith%}
+  {% endif %}
   {% endfor %}
 </ul>
 {% endcache %}

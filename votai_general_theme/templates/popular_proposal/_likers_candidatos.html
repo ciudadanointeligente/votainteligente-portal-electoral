@@ -4,22 +4,27 @@
 {% load thumbnail %}
 {% load cache %}
 
-{% cache 300 alcaldes_comprometidos proposal.id %}
-{% commiters_by_election_position proposal 'alcalde' as alcaldes %}
-  {% if alcaldes.all %} 
+{% cache 300 presidentes_comprometidos proposal.id %}
+{% commiters_by_election_position proposal cargo as commitments %}
+  {% if commitments.all %}
+  <h4>{{commitments.count}} candidatos a {{cargo}} se han comprometido con esta propuesta:</h4>
     <ul class="list-inline">
-      <li>{{alcaldes.count}} candidatos a la alcaldía se han comprometido con esta propuesta:</li>
-      {% commiters_by_election_position proposal 'alcalde' as alcaldes %}
-      {% for commitment in alcaldes %}
-      <li><a href="{{commitment.candidate.get_absolute_url}}">{{commitment.candidate}},</a></li>
+
+      {% for commitment in commitments.all %}
+      <li>
+        <a href="{{commitment.get_absolute_url}}">
+          {% if commitment.candidate.image %}
+            {% thumbnail commitment.candidate.image "50x50" crop="center" as im %}
+                <img src="{{ im.url }}" alt="{{commitment.candidate.name}}" height="50" width="50" border="0" class="img-responsive img-circle img-candidato">
+            {% endthumbnail %}
+            {% else %}
+            <img src="{% static 'img/candidate-default.jpg' %}" alt="{{commitment.candidate.name}}" border="0" class="img-responsive img-circle img-candidato img-candidato">
+          {% endif %}
+
+          {{commitment.candidate}}
+        </a>
+      </li>
       {% endfor %}
     </ul>
-{% endif %}
-{% endcache %}
-
-{% cache 300 concejales_comprometidos proposal.id %}
-{% commiters_by_election_position proposal 'concejal' as concejales %}
-  {% if concejales.all %}
-    <p>{{concejales.count}} candidatos a concejal apoyan esta propuesta.</p>
 {% endif %}
 {% endcache %}

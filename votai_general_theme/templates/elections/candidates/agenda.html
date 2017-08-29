@@ -3,18 +3,17 @@
 {% cache 500 political_positions candidate.id %}
 
 <h5 class="text-center">Agenda</h5>
+
+{% if candidate.agenda.count %}
 <ul id="agenda-candidato" class="list-unstyled">
-  {% for activity in candidate.agenda.all|slice:":3" %}
-  {% include 'activity_card.html' with activity=activity object=candidate even_odd=forloop.counter %}
-  {% empty %}
-  {% if user|is_candidate %}
-    {% with user.candidacies.first as candidacy %}
-      {% if candidacy.candidate == candidate %}
-        {% url 'backend_candidate:all_my_activities' slug=candidacy.candidate.id as all_my_activities %}
-        <a href="{{all_my_activities}}" class="btn btn-default">Agregar eventos a tu agenda</a>
-      {% endif %}
-    {% endwith%}
-  {% endif %}
-  {% endfor %}
+    {% for activity in candidate.agenda.all|slice:":3" %}
+    {% include 'activity_card.html' with activity=activity object=candidate even_odd=forloop.counter %}
+    {% endfor %}
 </ul>
+{% else %}
+  <p>Este candidato no cuenta con una agenda de actividades</p>
+{% endif %}
+{% if user|manages_this:candidate %}
+  <a href="{% url 'backend_candidate:add_activity' slug=candidate.id %}" class="btn btn-default"><i class="fa fa-plus"></i> Agrega tus actividades</a>
+{% endif %}
 {% endcache %}

@@ -158,6 +158,9 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         Candidacy.objects.create(user=self.feli,
                                  candidate=self.candidate
                                  )
+        election = self.candidate.election
+        election.candidates_can_commit_everywhere = False
+        election.save()
         # Proposal1 doesn't have a commitment so it should be in the lis
         # Proposal for another area
         another_area = Area.objects.create(name='another area')
@@ -194,6 +197,36 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         self.assertNotIn(proposal3, response.context['proposals'])
         self.assertEquals(self.candidate, response.context['candidate'])
         self.assertEquals(self.candidate.election, response.context['election'])
+
+    def test_proposals_for_me_when_election_can_accept_from_everywhere(self):
+        Candidacy.objects.create(user=self.feli,
+                                 candidate=self.candidate
+                                 )
+        election = self.candidate.election
+        election.candidates_can_commit_everywhere = True
+        election.save()
+        # Proposal1 doesn't have a commitment so it should be in the lis
+        # Proposal for another area
+        another_area = Area.objects.create(name='another area')
+        Commitment.objects.create(candidate=self.candidate,
+                                  proposal=self.proposal2,
+                                  commited=True)
+        proposal3 = PopularProposal.objects.create(proposer=self.fiera,
+                                                   area=another_area,
+                                                   data=self.data,
+                                                   title=u'This is a title2'
+                                                   )
+        url = reverse('backend_candidate:proposals_for_me',
+                      kwargs={'slug': self.candidate.election.slug,
+                              'candidate_id': self.candidate.id})
+        self.client.login(username=self.feli,
+                          password='alvarez')
+        response = self.client.get(url)
+        self.assertIn(self.proposal, response.context['proposals'])
+        # Should not be here since it has a commitment
+        self.assertNotIn(self.proposal2, response.context['proposals'])
+        # Should totaly be here since it was made for another area, but my election allows me to commit everywhere
+        self.assertIn(proposal3, response.context['proposals'])
 
     def test_get_complete_12_naranja(self):
         election = Election.objects.get(id=2)
@@ -398,7 +431,7 @@ class UnifyCandidateAndUserWhenTheyHaveTheSamePassword(CandidacyTestCaseBase):
 
     def test_unify_at_creation(self):
         email = 'candidate@party.com'
-        
+
         CandidacyContact.objects.create(candidate=self.candidate,
                                         mail=email)
         user_that_is_also_candidate = User.objects.create_user(username='Name',

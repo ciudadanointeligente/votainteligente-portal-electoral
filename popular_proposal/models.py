@@ -153,6 +153,8 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
 class ProposalsManager(models.Manager):
     def get_queryset(self):
         qs = super(ProposalsManager, self).get_queryset()
+        if settings.EXCLUDED_PROPOSALS_APPS:
+            qs = qs.exclude(content_type__app_label__in=settings.EXCLUDED_PROPOSALS_APPS)
         qs = qs.exclude(is_reported=True)
         return qs
 

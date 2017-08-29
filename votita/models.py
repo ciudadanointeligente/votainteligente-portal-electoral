@@ -5,6 +5,7 @@ from django.template.loader import get_template
 from picklefield.fields import PickledObjectField
 from popular_proposal.models import PopularProposal
 from multiselectfield import MultiSelectField
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from elections.models import Area
 from taggit.managers import TaggableManager
@@ -71,6 +72,10 @@ class KidsGathering(models.Model):
                                 blank=True,
                                 default=u"")
 
+    class Meta:
+        verbose_name = _(u'Encuentro')
+        verbose_name_plural = _(u"Encuentros")
+
     @property
     def presidents_features_str(self):
         result = []
@@ -89,6 +94,11 @@ class KidsProposal(PopularProposal):
     gathering = models.ForeignKey(KidsGathering,
                                   related_name='proposals',
                                   null=True)
+
+    class Meta:
+        verbose_name = _(u'Medida')
+        verbose_name_plural = _(u"Medidas")
+
     @property
     def is_kids(self):
         return True

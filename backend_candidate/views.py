@@ -236,7 +236,9 @@ class ProposalsForMe(BackendCandidateBase, ListView):
         proposals_ids = []
         for commitment in self.candidate.commitments.all():
             proposals_ids.append(commitment.proposal.id)
-        qs = qs.filter(area=self.election.area).exclude(id__in=proposals_ids)
+        if not self.election.candidates_can_commit_everywhere:
+            qs = qs.filter(area=self.election.area)
+        qs = qs.exclude(id__in=proposals_ids)
         return qs
 
     def get_context_data(self, **kwargs):
@@ -253,7 +255,7 @@ from agenda.forms import ActivityForm
 class AddActivityToCandidateView(LoginRequiredMixin, CreateView):
     form_class = ActivityForm
     template_name = 'backend_candidate/add_activity.html'
-    
+
     def get_content_object(self):
         self.candidate = get_object_or_404(Candidate,
                                            id=self.kwargs['slug'])
@@ -261,7 +263,7 @@ class AddActivityToCandidateView(LoginRequiredMixin, CreateView):
                           candidate=self.candidate,
                           user=self.request.user)
         return self.candidate
-    
+
     def get_form_kwargs(self):
         kwargs = super(AddActivityToCandidateView, self).get_form_kwargs()
         kwargs['content_object'] = self.get_content_object()
@@ -270,7 +272,7 @@ class AddActivityToCandidateView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('backend_candidate:all_my_activities',
                         kwargs={'slug': self.candidate.id})
-    
+
     def get_context_data(self, *args, **kwargs):
         context = super(AddActivityToCandidateView, self).get_context_data(*args, **kwargs)
         context['object'] = self.candidate
@@ -281,7 +283,7 @@ class MyActivitiesListView(LoginRequiredMixin, ListView):
     model = Activity
     template_name = 'backend_candidate/all_my_activities.html'
     context_object_name = 'activities'
-    
+
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.object = get_object_or_404(Candidate,
@@ -292,13 +294,11 @@ class MyActivitiesListView(LoginRequiredMixin, ListView):
         return super(MyActivitiesListView, self).dispatch(request,
                                                           *args,
                                                           **kwargs)
-    
+
     def get_queryset(self):
         return self.object.agenda.all()
-    
+
     def get_context_data(self, *args, **kwargs):
         context = super(MyActivitiesListView, self).get_context_data(*args, **kwargs)
         context['object'] = self.object
         return context
-         
-    

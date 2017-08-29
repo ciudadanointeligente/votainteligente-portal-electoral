@@ -35,8 +35,7 @@
         {% endif %}
 
 
-		{% if commitment.candidate.election.position == 'concejal' %}
-		<p> <strong>{{commitment.candidate.name}}</strong> candidata/o al concejo municipal de {{commitment.proposal.area}} <strong>NO</strong> apoyará la propuesta ciudadana <strong>{{commitment.proposal.title}}</strong>.</p>
+		<p>Lamentablemente <strong>{{commitment.candidate.name}}</strong> candidata/o a {{commitment.candidate.election.position}} de {{commitment.proposal.area}} <strong>NO</strong> incluirá <strong>{{commitment.proposal.title}}</strong> en su programa.</p>
 
 		<p>Sus razones fueron las siguientes:</p>
 		<p>{{commitment.detail|linebreaksbr}}</p>
@@ -47,39 +46,6 @@
 			<p>Candidata/o {% if commitment.candidate.election.position %}a {{commitment.candidate.election.position|title }}{% endif %} por {{commitment.proposal.area}}.</p>
 
 		</div>
-	{% elif commitment.candidate.election.position == 'alcalde' %}
-		<p> <strong>{{commitment.candidate.name}}</strong> candidata/o la alcaldía de {{commitment.proposal.area}} <strong>NO</strong> incluirá <strong>{{commitment.proposal.title}}</strong> en su programa.</p>
-
-		<p>Sus razones fueron las siguientes:</p>
-		<p>{{commitment.detail|linebreaksbr}}</p>
-
-		<div class="pull-right">
-			<p><strong>{{commitment.candidate.name}}</strong></p>
-
-			<p>Candidata/o {% if commitment.candidate.election.position %}a {{commitment.candidate.election.position|title }}{% endif %} por {{commitment.proposal.area}}.</p>
-
-		</div>
-
-
-	{% else %}
-
-		<p>Lamentablemente <strong>{{commitment.candidate.name}}</strong> candidata/o por {{commitment.proposal.area}} <strong>NO</strong> incluirá <strong>{{commitment.proposal.title}}</strong> en su programa.</p>
-
-		<p>Sus razones fueron las siguientes:</p>
-		<p>{{commitment.detail|linebreaksbr}}</p>
-
-		<div class="pull-right">
-			<p><strong>{{commitment.candidate.name}}</strong></p>
-
-			<p>Candidata/o {% if commitment.candidate.election.position %}a {{commitment.candidate.election.position|title }}{% endif %} por {{commitment.proposal.area}}.</p>
-
-		</div>
-	{% endif %}
-
-
-
-
-
 
 
 

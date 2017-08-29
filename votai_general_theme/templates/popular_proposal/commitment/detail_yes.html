@@ -56,6 +56,7 @@
       <p>Candidata/o {% if commitment.candidate.election.position %}a {{commitment.candidate.election.position|title }}{% endif %} por {{commitment.candidate.election.area}}.</p>
     </div>
 </div>
+{% if user|manages_this:commitment.candidate %}
 <div class="container text-center">
   <h3>Hazlo público!</h3>
   <p>Cuéntales a tus futuros electores el compromiso que acabas de firmar!</p>
@@ -64,4 +65,5 @@
     <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
   </ul>
 </div>
+{% endif %}
 {% endblock content %}

@@ -106,6 +106,33 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         proposals = PopularProposal.objects.all()
         self.assertEquals(p2, proposals.first())
 
+    @override_settings(EXCLUDED_PROPOSALS_APPS=["sites" ,])
+    def test_proposals_exclude_certain_types_of_proposals(self):
+        p1 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title1',
+                                            clasification=u'education'
+                                            )
+        p2 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title2',
+                                            clasification=u'education',
+                                            featured=True
+                                            )
+        p3 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title3',
+                                            clasification=u'education'
+                                            )
+        something_else = ContentType.objects.get_for_model(Site)
+        p3.content_type = something_else
+        p3.save()
+        proposals = PopularProposal.objects.all()
+        self.assertNotIn(p3, proposals)
+
     def test_proposal_ogp(self):
         site = Site.objects.get_current()
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,

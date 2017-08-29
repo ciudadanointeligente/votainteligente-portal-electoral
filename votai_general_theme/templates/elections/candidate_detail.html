@@ -95,6 +95,9 @@
             </td>
           </tr>
         </table>
+        {% if user|manages_this:candidate %}
+        <a href="{% url 'backend_candidate:home' %}" class="btn btn-default">Mejora tu perfil</a>
+        {% endif %}
       </div>
       <div class="col-xs-12 col-sm-3 col-md-3">
         {% include 'elections/candidates/agenda.html' with candidate=candidate election=election %}

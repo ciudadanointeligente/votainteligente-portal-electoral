@@ -24,16 +24,7 @@
 	<div class="fondo-blanco text-width">
 
 
-
-	{% if candidate.election.position == 'concejal' %}
-		Yo <strong>{{candidate.name}}</strong> candidata/o al Concejo Municipal de {{proposal.area}} <strong>NO</strong> apoyaré la propuesta ciudadana <strong>{{proposal.title}}</strong>.
-	{% elif candidate.election.position == 'alcalde' %}
-		Yo <strong>{{candidate.name}}</strong> candidata/o a la alcaldía de {{proposal.area}} <strong>NO</strong> me comprometo con la propuesta ciudadana <strong>{{proposal.title}}</strong>.
-
-	{% else %}
-
-		Yo <strong>{{candidate.name}}</strong> candidata/o por {{proposal.area}} <strong>NO</strong> me comprometo con la propuesta ciudadana <strong>{{proposal.title}}</strong>.
-	{% endif %}
+		Yo <strong>{{candidate.name}}</strong> candidata/o a {{candidate.election.position}} de {{proposal.area}} <strong>NO</strong> me comprometo con la propuesta ciudadana <strong>{{proposal.title}}</strong>.
 
 		<p>Por las razones que explicaré a continuación:</p>
 

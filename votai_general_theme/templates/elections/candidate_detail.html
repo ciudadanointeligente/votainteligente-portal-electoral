@@ -97,10 +97,12 @@
               <p class="btn btn-info"><i class="fa fa-heart"></i>{{candidate.commitments.count}} Propuestas ciudadanas</p>
             </td>
             <td>
+              {% if candidate.contact_details.count %}
               <p><b>Contactos</b></p>
               <ul class="list-inline">
                 {% include 'elections/candidates/social_media.html' with candidate=candidate %}
               </ul>
+              {% endif %}
             </td>
           </tr>
         </table>

@@ -631,6 +631,15 @@ p.intro{
 }
 
 /*Botones*/
+.btn-dark{
+  background-color: $grey-one;
+  color: white;
+  &:hover{
+    background-color: $yellow;
+    color: white;
+  }
+}
+
 .btn-blue{
   background-color: $blue;
   color: white;

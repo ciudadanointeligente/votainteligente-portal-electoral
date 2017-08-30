@@ -87,6 +87,8 @@ $(function(){
       {% else %}
       <h3 class="text-center">Hay {{popular_proposals|length}} propuestas ciudadanas</h3>
       {% endif %}
+      {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
+      <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark btn-xs">Crea la tuya</a></div>
       {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
       <div class="row hidden-xs">
         <div class="col-md-6 col-md-offset-3">
@@ -106,13 +108,11 @@ $(function(){
       {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
     </div>
     {% blocktrans %}
-    <p class="bg-info">
+    <p class="bg-info text-center">
       Aún no se han generado propuestas para esta búsqueda.
-      Se tu la/el primera/o en generar la primera propuesta en el siguiente <a href="{{create_proposal_url}}">enlace</a>.
     </p>
     {% endblocktrans %}
     {% endfor %}
-
 </div>
 <div class="container" id="raiseToTop">
   <div class="row">

@@ -21,7 +21,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center">
-        <p>Tenemos <span class="counter-number">{{total_proposals}}</span> propuestas ciudadanas</p>
+        <p>Tenemos <a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'counter-propuestas-ciudadanas', 'click')"><span class="counter-number">{{total_proposals}}</span></a> propuestas ciudadanas</p>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
 <section id="actions">
   <div class="container">
     <div class="row">
-      <h2 class="text-center">Propuestas ciudadanas</h2>
+      <h2 class="text-center"><a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'home-propuestas-ciudadanas', 'click')">Propuestas ciudadanas</a></h2>
       <p class="bajada text-center">Tú propones, las candidaturas se comprometen</p>
       <div class="col-md-4 text-center">
         <div class="action-encuentro">

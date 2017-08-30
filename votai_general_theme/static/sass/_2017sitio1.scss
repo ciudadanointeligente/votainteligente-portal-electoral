@@ -129,6 +129,9 @@ td.cal-date{
   font-size: 44px;
   position: relative;
   top: 9px;
+  &:hover{
+    color: $blue;
+  }
 }
 
 .bajada{
@@ -156,6 +159,12 @@ td.cal-date{
 
 #actions{
   margin: 40px 0 60px;
+  h2 > a{
+    color: $grey-one;
+    &:hover{
+      color: $blue;
+    }
+  }
 }
 .action{
     font-family: 'Montserrat', sans-serif;
@@ -655,6 +664,15 @@ p.intro{
 
 
 /*Botones*/
+.btn-dark{
+  background-color: $grey-one;
+  color: white;
+  &:hover{
+    background-color: $yellow;
+    color: white;
+  }
+}
+
 .btn-blue{
   background-color: $blue;
   color: white;

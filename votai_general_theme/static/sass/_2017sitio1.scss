@@ -601,7 +601,7 @@ p.intro{
 
 .set-guide{
   background-color: $blue-light;
-  border-radius: 5px;
+  border-radius: 10px;
   height: 230px;
   padding: 30px 15px;
   font-family: 'Montserrat', sans-serif;
@@ -620,6 +620,39 @@ p.intro{
     margin-bottom: 15px;
   }
 }
+
+.set-guide-rep{
+  background-color: $blue-light;
+  border-radius: 10px;
+  height: 420px;
+  padding: 30px 15px;
+  line-height: 1.4;
+  color: $grey-one;
+  margin-bottom: 10px;
+  h2{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: $grey-one;
+    margin: 0 0 15px 0;
+  }
+  img{
+    margin: 0 auto;
+    height: 140px;
+    margin-bottom: 15px;
+  }
+  .btn{
+    font-size: 11px;
+    padding: 5px 10px;
+    width: 125px;
+    position: absolute;
+    bottom: 20px;
+  }
+}
+
 
 /*Botones*/
 .btn-blue{

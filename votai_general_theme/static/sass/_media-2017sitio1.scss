@@ -2,6 +2,9 @@
   .presidents{
     bottom: -250px;
   }
+  .set-guide-rep{
+    height: 460px;
+  }
 }
 
 @media screen and (max-width: 991px) {
@@ -56,12 +59,26 @@
   .share-detail a .fa-stack:hover {
       color: $grey-one;
   }
-
+  .set-guide-rep{
+    height: 330px;
+  }
 }
 
 @media screen and (max-width: 900px) {
   .fondo-blanco{
     border: none;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .set-guide-rep{
+    height: 350px;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .set-guide-rep{
+    height: 370px;
   }
 }
 
@@ -103,7 +120,11 @@
   }
 }
 
-
+@media screen and (max-width: 484px) {
+  .set-guide-rep{
+    height: 420px;
+  }
+}
 
 @media screen and (max-width: 425px) {
   .content_padding {

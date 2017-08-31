@@ -633,11 +633,13 @@ p.intro{
 .set-guide-rep{
   background-color: $blue-light;
   border-radius: 10px;
-  height: 420px;
   padding: 30px 15px;
   line-height: 1.4;
   color: $grey-one;
   margin-bottom: 10px;
+  .content {
+    min-height: 340px;
+  }
   h2{
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -655,10 +657,10 @@ p.intro{
   }
   .btn{
     font-size: 11px;
-    padding: 5px 10px;
-    width: 125px;
-    position: absolute;
-    bottom: 20px;
+    &.btn-lg {
+      padding: 10px 16px;
+      height: 36px;
+    }
   }
 }
 

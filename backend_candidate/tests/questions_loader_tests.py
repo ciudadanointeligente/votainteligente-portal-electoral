@@ -22,10 +22,9 @@ class QuestionsLoaderTestCase(SoulMateCandidateAnswerTestsBase):
     	self.assertEquals(category.name, u"preguntas Buenas")
 
     	self.assertEquals(len(category.topics.all()), 2)
-    	question1 = category.topics.all()[0]
+    	question1 = category.topics.get(label=u"Esto es una pregunta y quiero una respuesta")
     	self.assertTrue(question1.label, u"Esto es una pregunta y quiero una respuesta")
-    	question2 = category.topics.all()[1]
-    	self.assertTrue(question2.label, u"Pregunta 2")
+    	question2 = category.topics.get(label=u"Pregunta 2")
 
     	a1 = question1.positions.get(label=u"Respuesta 1")
     	a2 = question1.positions.get(label=u"Respuesta 2")

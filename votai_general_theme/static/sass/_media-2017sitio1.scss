@@ -13,6 +13,7 @@
   }
   .presidents{
     bottom: -20px;
+    margin-top: -20px;
   }
 
   .action-encuentro{
@@ -106,12 +107,6 @@
   }
 }
 
-@media screen and (max-width: 499px) {
-  .presidents{
-    display: none;
-  }
-}
-
 @media screen and (max-width: 495px) {
   #you-org{
     .btn{
@@ -154,6 +149,23 @@
 @media screen and (max-width: 388px) {
   .org-info h2{
     margin-top: 120px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  #actions {
+    margin: 20px 0px;
+    h2 {
+      font-size: 30px;
+      margin: 20px 0px;
+    }
+  }
+  #welcome h1{
+    margin-top: 0px;
+    font-size: 26px;
+  }
+  .bajada {
+    margin: 0px;
   }
 }
 

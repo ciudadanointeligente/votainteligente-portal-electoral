@@ -34,20 +34,20 @@
       <p class="bajada text-center">Tú propones, las candidaturas se comprometen</p>
       <div class="col-md-4 text-center">
         <div class="action-encuentro">
-          <a href="{% url 'encuentro_ciudadano' %}" onclick="ga('send', 'event', 'home-realiza-encuentro', 'click')" class="btn btn-line">Realiza un encuentro</a>
           <p>¿Quieres crear una propuesta con un grupo, organización o comunidad?</p>
+          <a href="{% url 'encuentro_ciudadano' %}" onclick="ga('send', 'event', 'home-realiza-encuentro', 'click')" class="btn btn-line">Realiza un encuentro</a>
         </div>
       </div>
       <div class="col-md-4 text-center">
         <div class="action-crea">
-          <a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" onclick="ga('send', 'event', 'home-crea-propuesta', 'click')" class="btn btn-line">Crea una propuesta</a>
           <p>¿Tienes una propuesta para Chile? ¿Quieres publicar la propuesta de un encuentro ciudadano?</p>
+          <a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" onclick="ga('send', 'event', 'home-crea-propuesta', 'click')" class="btn btn-line">Crea una propuesta</a>
         </div>
       </div>
       <div class="col-md-4 text-center">
         <div class="action-apoya">
-          <a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'home-conoce-apoya', 'click')" class="btn btn-line">Conoce y apoya propuestas</a>
           <p>¿Quieres saber lo que la ciudadanía propone para Chile?</p>
+          <a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'home-conoce-apoya', 'click')" class="btn btn-line">Conoce y apoya propuestas</a>
         </div>
       </div>
     </div>

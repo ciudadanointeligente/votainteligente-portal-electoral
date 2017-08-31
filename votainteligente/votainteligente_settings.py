@@ -422,3 +422,6 @@ try:
     from local_settings import *
 except ImportError, e:
     pass
+
+if TESTING:
+    from testing_settings import *

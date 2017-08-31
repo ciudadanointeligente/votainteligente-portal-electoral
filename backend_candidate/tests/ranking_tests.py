@@ -93,11 +93,11 @@ class RankingTests(TestCase):
         self.assertEquals(self.candidate2, ordered_candidates[2])
         self.assertEquals(ordered_candidates[0].possible_answers,
                           Topic.objects.filter(category__in=self.candidate4.election.categories.all()).distinct().count())
-        
+
         self.assertEquals(ordered_candidates[0].num_answers, 3)
         self.assertEquals(ordered_candidates[0].naranja_completeness, float(100))
-        self.assertEquals(ordered_candidates[1].naranja_completeness, (float(2) / float(3)) * 100)
-        self.assertEquals(ordered_candidates[2].naranja_completeness, (float(1) / float(3)) * 100)
+        self.assertAlmostEqual(ordered_candidates[1].naranja_completeness, (float(2) / float(3)) * 100)
+        self.assertAlmostEqual(ordered_candidates[2].naranja_completeness, (float(1) / float(3)) * 100)
 
     def test_ordering_according_to_commitment(self):
         # Candidate 4 has commited with all proposals
@@ -129,13 +129,13 @@ class RankingTests(TestCase):
                                   commited=False)
         ordered_candidates = Candidate.ranking.all()
         self.assertEquals(ordered_candidates.count(), Candidate.objects.all().count())
-
+        print ordered_candidates[1].elections.first().area.proposals.count()
         self.assertEquals(ordered_candidates[1].num_proposals, 3)
         self.assertEquals(ordered_candidates[1].num_commitments, 2)
 
         self.assertEquals(ordered_candidates[0].commitmenness, float(100))
-        self.assertEquals(ordered_candidates[1].commitmenness, (float(2) / float(3)) * 100)
-        self.assertEquals(ordered_candidates[2].commitmenness, (float(1) / float(3)) * 100)
+        self.assertAlmostEqual(ordered_candidates[1].commitmenness, (float(2) / float(3)) * 100)
+        self.assertAlmostEqual(ordered_candidates[2].commitmenness, (float(1) / float(3)) * 100)
 
         self.assertEquals(self.candidate4, ordered_candidates[0])
         self.assertEquals(self.candidate3, ordered_candidates[1])

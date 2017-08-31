@@ -317,10 +317,9 @@ class StaffHomeViewTest(TestCase):
         self.assertIn(org, stats.organizations.all())
         self.assertIn(org2, stats.organizations.all())
         self.assertNotIn(normal_user, stats.organizations.all())
-        
+
 
     def test_stats_mixin(self):
-        User.objects.all().delete()
         stats = Stats()
         self.assertTrue(Candidate.objects.count())
         self.assertEquals(stats.total_candidates(), Candidate.objects.count())
@@ -382,7 +381,7 @@ class StaffHomeViewTest(TestCase):
 
         self.assertEquals(stats.participation().with_us, 2)
         self.assertEquals(stats.participation().got_email, 2)
-        self.assertGreater(stats.participation().no_contact, 2)
+        self.assertGreater(stats.participation().no_contact, 1)
 
         self.assertEquals(stats.participation_alcalde().with_us, 1)
         self.assertEquals(stats.participation_alcalde().got_email, 1)

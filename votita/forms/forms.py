@@ -39,13 +39,13 @@ class CreateGatheringForm(ModelForm):
 
 
 class UpdateGatheringForm(ModelForm):
-    male = forms.IntegerField(label = "# Hombres",
+    male = forms.IntegerField(label = "Nº de Niños",
                               min_value = 0,
                               initial=0)
-    female = forms.IntegerField(label = "# Mujeres",
+    female = forms.IntegerField(label = "Nº de Niñas",
                                 min_value = 0,
                                 initial=0)
-    others = forms.IntegerField(label = "# Otros",
+    others = forms.IntegerField(label = "Nº de Otros",
                                 min_value = 0,
                                 initial=0)
     class Meta:

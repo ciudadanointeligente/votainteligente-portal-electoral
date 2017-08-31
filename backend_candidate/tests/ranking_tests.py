@@ -93,7 +93,7 @@ class RankingTests(TestCase):
         self.assertEquals(self.candidate2, ordered_candidates[2])
         self.assertEquals(ordered_candidates[0].possible_answers,
                           Topic.objects.filter(category__in=self.candidate4.election.categories.all()).distinct().count())
-        
+
         self.assertEquals(ordered_candidates[0].num_answers, 3)
         self.assertEquals(ordered_candidates[0].naranja_completeness, float(100))
         self.assertEquals(ordered_candidates[1].naranja_completeness, (float(2) / float(3)) * 100)
@@ -169,7 +169,7 @@ class RankingTests(TestCase):
                                   proposal=self.p2,
                                   detail=u'Yo no me comprometo',
                                   commited=False)
-
+        print Candidate.ranking
         self.assertEquals(Candidate.ranking.position(self.candidate4), 1)
         self.assertEquals(Candidate.ranking.position(self.candidate3), 2)
         self.assertEquals(Candidate.ranking.position(self.candidate1), 3)

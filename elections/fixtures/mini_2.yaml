@@ -202,24 +202,6 @@
 - fields: {person_ptr: 6, name: Daniel Guevara, elections: [1], extra_info: {}}
   model: elections.candidate
   pk: 6
-- fields: {person_ptr: 7, name: Jimena Orrego, elections: [1]}
-  model: elections.candidate
-  pk: 7
-- fields: {person_ptr: 8, name: Gonzalo Uriarte, elections: [1]}
-  model: elections.candidate
-  pk: 8
-- fields: {person_ptr: 9, name: Mario Bertolino, elections: [1]}
-  model: elections.candidate
-  pk: 9
-- fields: {person_ptr: 10, name: Jorge Pizarro, elections: [1]}
-  model: elections.candidate
-  pk: 10
-- fields: {person_ptr: 11, name: "Adriana Munoz", elections: [1]}
-  model: elections.candidate
-  pk: 11
-- fields: {person_ptr: 12, name: Luis Vega, elections: [1]}
-  model: elections.candidate
-  pk: 12
 - fields: {topic: 4, position: 8, person: 1}
   model: candidator.takenposition
   pk: 1

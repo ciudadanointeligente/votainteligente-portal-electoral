@@ -381,7 +381,7 @@ class StaffHomeViewTest(TestCase):
 
         self.assertEquals(stats.participation().with_us, 2)
         self.assertEquals(stats.participation().got_email, 2)
-        self.assertGreater(stats.participation().no_contact, 2)
+        self.assertGreater(stats.participation().no_contact, 1)
 
         self.assertEquals(stats.participation_alcalde().with_us, 1)
         self.assertEquals(stats.participation_alcalde().got_email, 1)

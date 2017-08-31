@@ -32,9 +32,9 @@ $(function(){
       <div class="row">
         <!-- mobile version -->
         <div class="col-md-12 text-right visible-xs-*">
-          <button type="submit" class="btn btn-success btn-block">{% trans 'Filtrar'%}</button>
+          <button type="submit" class="btn btn-success btn-block">{% trans 'Buscar'%}</button>
           {% if form.is_filled_search %}
-            <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary btn-block">{% trans 'Limpiar Filtro'%}</a>
+            <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary btn-block">{% trans 'Limpiar búsqueda'%}</a>
           {% endif %}
           {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
             <a id="subscribeToSearchButton" class="btn btn-info btn-block" data-toggle="modal" data-url="{% url 'proposal_subscriptions:subscribe' %}" data-target="#subscribeToSearch"><i class="fa fa-bell-o"></i> {% trans 'Subscribete a este resultado' %}</a>
@@ -53,9 +53,9 @@ $(function(){
       </div>
       <div class="row">
         <div class="col-md-12 text-right visible-md-*">
-          <button type="submit" class="btn btn-success">{% trans 'Filtrar'%}</button>
+          <button type="submit" class="btn btn-success">{% trans 'Buscar'%}</button>
           {% if form.is_filled_search %}
-            <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary">{% trans 'Limpiar Filtro'%}</a>
+            <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary">{% trans 'Limpiar búsqueda'%}</a>
           {% endif %}
         </div>
       </div>
@@ -88,7 +88,7 @@ $(function(){
       <h3 class="text-center">Hay {{popular_proposals|length}} propuestas ciudadanas</h3>
       {% endif %}
       {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
-      <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark btn-xs">Crea la tuya</a></div>
+      <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark">Crear nueva propuesta</a></div>
       {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
       <div class="row hidden-xs">
         <div class="col-md-6 col-md-offset-3">

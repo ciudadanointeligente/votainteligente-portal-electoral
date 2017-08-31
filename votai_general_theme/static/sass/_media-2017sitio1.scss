@@ -98,6 +98,10 @@
 }
 
 @media screen and (max-width: 425px) {
+  #welcome h1{
+    margin-top: 0px;
+    font-size: 26px;
+  }
   .content_padding {
     padding-top: 20px;
   }

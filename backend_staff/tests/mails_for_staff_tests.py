@@ -46,6 +46,5 @@ class MailsForStaffTestCase(TestCase):
         the_mail = mail.outbox[0]
         self.assertIn(self.staff1.email, the_mail.to)
         self.assertIn(self.staff2.email, the_mail.to)
-        self.assertIn(str(self.proposal.id), the_mail.body)
         self.assertIn(self.temporary_data.get_title(), the_mail.body)
         self.assertIn(self.temporary_data.area.name, the_mail.subject)

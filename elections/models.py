@@ -89,22 +89,24 @@ class RankingManager(models.Manager):
             ))
         qs = qs.annotate(num_proposals=
                          Case(
-
-                             When(elections__candidates_can_commit_everywhere=False, then=Count(F('elections__area__proposals'))),
-                             When(elections__candidates_can_commit_everywhere=True, then=1),
+                             When(elections__isnull=True, then=1.0),
+                             When(elections__candidates_can_commit_everywhere=False, then=Count(F('elections__area__proposals'),distinct=True)),
+                             When(elections__candidates_can_commit_everywhere=True, then=1.0),
                              output_field=FloatField(),
+                             distinct=True,
                              )
                          )
+        for q in qs:
+            print q, q.elections.all()
+            # print q.elections.first().candidates_can_commit_everywhere,  q.num_proposals
         qs = qs.annotate(num_commitments=Count(F('commitments'), distinct=True))
         first_then = (F('num_commitments') * 1.0 / F('num_proposals') * 1.0) * 100
         second_then = F('num_commitments') * 1.0
-        print qs
         qs = qs.annotate(commitmenness=Case(When(num_proposals__gt=0.0, then=first_then),
                                             When(num_proposals=0.0, then=second_then),
                                             output_field=FloatField()
                                          )
                          )
-        print qs
         # This can be a bit tricky
         # and it is the sum of the percentage of completeness of 1/2 naranja and the commitmenness
         qs = qs.annotate(participation_index=ExpressionWrapper(F('naranja_completeness') + F('commitmenness'),

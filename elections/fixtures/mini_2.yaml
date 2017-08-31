@@ -54,10 +54,12 @@
   fields: {user: 2, image: '', description: '', first_time_in_backend_citizen: true}
 - fields: {description: '', extra_info_content: null, extra_info_title: null,
     highlighted: true, name: "2a Circunscripcion Antofagasta",
+    candidates_can_commit_everywhere: false,
     searchable: true, slug: 2a-circunscripcion-antofagasta, area: algarrobo-5602}
   model: elections.election
   pk: 1
 - fields: {description: '', extra_info_content: null, extra_info_title: null,
+    candidates_can_commit_everywhere: false,
     highlighted: true, name: "4a Circunscripcion Coquimbo",
     searchable: true, slug: 4a-circunscripcion-coquimbo, area: algarrobo-5602}
   model: elections.election
@@ -200,22 +202,22 @@
 - fields: {person_ptr: 6, name: Daniel Guevara, elections: [1], extra_info: {}}
   model: elections.candidate
   pk: 6
-- fields: {person_ptr: 7, name: Jimena Orrego}
+- fields: {person_ptr: 7, name: Jimena Orrego, elections: [1]}
   model: elections.candidate
   pk: 7
-- fields: {person_ptr: 8, name: Gonzalo Uriarte}
+- fields: {person_ptr: 8, name: Gonzalo Uriarte, elections: [1]}
   model: elections.candidate
   pk: 8
-- fields: {person_ptr: 9, name: Mario Bertolino}
+- fields: {person_ptr: 9, name: Mario Bertolino, elections: [1]}
   model: elections.candidate
   pk: 9
-- fields: {person_ptr: 10, name: Jorge Pizarro}
+- fields: {person_ptr: 10, name: Jorge Pizarro, elections: [1]}
   model: elections.candidate
   pk: 10
-- fields: {person_ptr: 11, name: "Adriana Munoz"}
+- fields: {person_ptr: 11, name: "Adriana Munoz", elections: [1]}
   model: elections.candidate
   pk: 11
-- fields: {person_ptr: 12, name: Luis Vega}
+- fields: {person_ptr: 12, name: Luis Vega, elections: [1]}
   model: elections.candidate
   pk: 12
 - fields: {topic: 4, position: 8, person: 1}

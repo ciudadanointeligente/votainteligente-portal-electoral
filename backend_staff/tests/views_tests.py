@@ -317,10 +317,9 @@ class StaffHomeViewTest(TestCase):
         self.assertIn(org, stats.organizations.all())
         self.assertIn(org2, stats.organizations.all())
         self.assertNotIn(normal_user, stats.organizations.all())
-        
+
 
     def test_stats_mixin(self):
-        User.objects.all().delete()
         stats = Stats()
         self.assertTrue(Candidate.objects.count())
         self.assertEquals(stats.total_candidates(), Candidate.objects.count())

@@ -114,7 +114,6 @@ class CreateProposalsForGathering(VotitaLoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         context = self.get_context_data()
         formset = context['formset']
-        print formset.errors
         if formset.is_valid():
             self.object = form.save()
             proposals = formset.save(commit=False)

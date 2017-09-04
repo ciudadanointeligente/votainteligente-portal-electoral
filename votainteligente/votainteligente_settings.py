@@ -402,6 +402,7 @@ CONSTANCE_CONFIG = {
     'TWITTER_CON_SECRET_KEY': ('', 'Twitter connection secret key'),
     'HIDDEN_AREAS': ('fundacion-ciudadano-inteligente', 'Seccion oculta'),
     'NAV_BAR': ('profiles, questionary, soulmate, facetoface, ask, ranking', 'Menu de navegacion'),
+    'SHOW_RIBBON_IN_CANDIDATE': (False, u"Debería aparecerles la franja roja que dice 'No se ha compormetido?'"),
     'CAN_CREATE_TEST_PROPOSAL': (False, u'Se pueden crear propuestas de prueba?'),
     'SEARCH_SUBSCRIPTION_ENABLED': (True, u'Suscribirse a una búsqueda está habilitado? esto sólo esconde los links.'),
     'WEBSITE_METADATA_AUTHOR': ('', 'Nombre del autor'),

@@ -103,9 +103,6 @@ class RankingManager(models.Manager):
                              distinct=True,
                              )
                          )
-        for q in qs:
-            print q, q.elections.all()
-            # print q.elections.first().candidates_can_commit_everywhere,  q.num_proposals
         qs = qs.annotate(num_commitments=Count(F('commitments'), distinct=True))
         first_then = (F('num_commitments') * 1.0 / F('num_proposals') * 1.0) * 100
         second_then = F('num_commitments') * 1.0

@@ -19,10 +19,10 @@
             <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
           {% endif %}
         {% endif %}
-        {% if not candidate.has_answered %}
-        <div class="ribbon label label-danger {% if position == 'concejal' %}ribbon-noimg{% endif %}">
-          <p>No ha respondido</p>
-        </div>
+        {% if config.SHOW_RIBBON_IN_CANDIDATE and not candidate.commitments.count%}
+          <div class="ribbon label label-danger {% if position == 'concejal' %}ribbon-noimg{% endif %}">
+            <p>No se ha comprometido</p>
+          </div>
         {% endif %}
         <h3 class="caption text-white"><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}">{{ candidate.name }}</a></h3>
         <p class="small text-white">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</p>
@@ -80,9 +80,9 @@
                   {% endif %}
                 {% endif %}
                 <!-- Ribbon -->
-                {% if not candidate.has_answered %}
+                {% if config.SHOW_RIBBON_IN_CANDIDATE and not candidate.commitments.count%}
                 <div class="ribbon label label-danger {% if position == 'concejal' %}ribbon-noimg{% endif %}">
-                  <p>No ha respondido</p>
+                  <p>No se ha compormetido</p>
                 </div>
                 {% endif %}
                 <h3 class="caption text-white"><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}">{{ candidate.name }}</a></h3>

@@ -217,6 +217,7 @@ LOGGING = {
             'filename': 'critical.log',
         },
     },
+
     'loggers': {
         '': {
             'handlers': ['file'],
@@ -238,6 +239,11 @@ LOGGING = {
             'level': 'CRITICAL',
             'propagate': True,
        },
+        'django.security.DisallowedHost': {
+            'handlers': ['mail_admins'],
+            'level': 'CRITICAL',
+            'propagate': False,
+        },
     }
 }
 # CELERY STUFF

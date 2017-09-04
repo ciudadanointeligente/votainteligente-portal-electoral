@@ -87,8 +87,10 @@ $(function(){
       {% else %}
       <h3 class="text-center">Hay {{popular_proposals|length}} propuestas ciudadanas</h3>
       {% endif %}
-      {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
-      <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark">Crear nueva propuesta</a></div>
+      {% if not user|is_candidate %}
+        {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
+        <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark">Crear nueva propuesta</a></div>
+      {% endif %}
       {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
       <div class="row hidden-xs">
         <div class="col-md-6 col-md-offset-3">

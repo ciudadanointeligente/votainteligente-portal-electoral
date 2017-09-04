@@ -230,17 +230,17 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertIn(str(2), the_mail.body)
         # this should be the email to the candidate
         the_mail = mail.outbox[1]
-        self.assertIn(self.contact.mail, the_mail.to)
+        self.assertIn(the_mail.to[0], [self.contact.mail, self.contact2.mail])
         self.assertEquals(len(the_mail.to), 1)
         self.assertIn(self.proposal.title, the_mail.body)
-        self.assertIn(self.candidate.name, the_mail.body)
+        self.assertTrue(self.candidate.name in the_mail.body or self.candidate2.name in the_mail.body)
         self.assertIn(str(2), the_mail.body)
         # this should be the email to the other candidate
         the_mail = mail.outbox[2]
-        self.assertIn(self.contact2.mail, the_mail.to)
+        self.assertIn(the_mail.to[0], [self.contact.mail, self.contact2.mail])
         self.assertEquals(len(the_mail.to), 1)
         self.assertIn(self.proposal.title, the_mail.body)
-        self.assertIn(self.candidate2.name, the_mail.body)
+        self.assertTrue(self.candidate.name in the_mail.body or self.candidate2.name in the_mail.body)
         self.assertIn(str(2), the_mail.body)
 
     def test_proposal_notification_for_candidates(self):

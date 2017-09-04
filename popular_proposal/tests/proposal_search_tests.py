@@ -34,7 +34,10 @@ class PopularProposalSearchIndexTestCase(ProposingCycleTestCaseBase):
                                                  )
         for key, opts in haystack.connections.connections_info.items():
             haystack.connections.reload(key)
-        call_command('update_index', interactive=False, verbosity=0)
+        call_command('rebuild_index', interactive=False, verbosity=0)
+
+    def tearDown(self):
+        call_command('clear_index', interactive=False, verbosity=0)
 
     def test_index_template(self):
         r = SearchQuerySet().all()
@@ -44,7 +47,7 @@ class PopularProposalSearchIndexTestCase(ProposingCycleTestCaseBase):
     def test_index_getProposals(self):
         r = SearchQuerySet().models(PopularProposal).auto_query("bicicletas")
         self.assertEquals(r[0].object, self.p2)
-    
+
     def test_what_texts_it_searchs(self):
         data_with_texts = {'title': u'Que solucionen los problemas',
                            'terms_and_conditions': True,
@@ -67,7 +70,7 @@ class PopularProposalSearchIndexTestCase(ProposingCycleTestCaseBase):
         self.assertIn(data_with_texts['solution'], p1.data_as_text)
         self.assertIn(data_with_texts['problem'],  p1.data_as_text)
         self.assertIn(data_with_texts['causes'],  p1.data_as_text)
-        
+
         self.assertIn(data_with_texts['solution'], indexed_proposal)
         self.assertIn(data_with_texts['problem'], indexed_proposal)
         self.assertIn(data_with_texts['causes'], indexed_proposal)

@@ -12,6 +12,7 @@ from uuid import uuid4
 from django.utils import timezone
 from popolo.models import Person
 from votainteligente.send_mails import send_mail
+from django.db.models import Case, Value, When, PositiveSmallIntegerField
 
 
 class MessageManagerBase(models.Manager):
@@ -23,7 +24,12 @@ class MessageManagerBase(models.Manager):
 class MessageManager(MessageManagerBase):
     def get_queryset(self):
         queryset = super(MessageManager, self).get_queryset().annotate(num_answers=Count('answers'))
-        return queryset.order_by('-num_answers', '-status__accepted', '-created')
+        queryset = queryset.annotate(
+                        accepted_0_1=Case(When(status__accepted=True, then=Value(1)),
+                                              default=Value(0),
+                                              output_field=PositiveSmallIntegerField())
+                    )
+        return queryset.order_by('-num_answers', '-accepted_0_1', '-created')
 
 
 def uuid_with_no_dashes():

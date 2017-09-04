@@ -16,6 +16,8 @@ from votainteligente.open_graph import OGPMixin
 from django.db.models import Count, F, FloatField, IntegerField, ExpressionWrapper, Case, Value, When
 from django.shortcuts import render
 from constance import config
+from django.db.models import Case, Value, When, PositiveSmallIntegerField
+
 
 class AreaManager(models.Manager):
     def get_queryset(self):
@@ -65,7 +67,12 @@ class ExtraInfoMixin(models.Model):
 class HaveAnsweredFirst(models.Manager):
     def get_queryset(self):
         qs = super(HaveAnsweredFirst, self).get_queryset().annotate(num_answers=Count('taken_positions'))
-        qs = qs.order_by('-num_answers', '-image')
+        qs = qs.annotate(
+                        has_image_0_1=Case(When(image__isnull=True, then=Value(0)),
+                                              default=Value(1),
+                                              output_field=PositiveSmallIntegerField())
+                    )
+        qs = qs.order_by('-num_answers', '-has_image_0_1')
         return qs
 
 class WinnersFirst(models.Manager):

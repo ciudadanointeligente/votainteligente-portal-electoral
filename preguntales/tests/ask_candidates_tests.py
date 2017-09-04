@@ -588,6 +588,7 @@ class PreguntalesWebTestCase(TestCase):
                 'author_email': 'mail@mail.er',
                 }
         message_form = MessageForm(data, election=self.election)
+        print message_form.errors
         self.assertTrue(message_form.is_valid())
         message = message_form.save()
         self.assertTrue(message.confirmation)

@@ -1,7 +1,6 @@
 {% load staticfiles %}
 {% load votainteligente_extras %}
 {% load i18n %}
-
 <section id="welcome" class="yellow">
   <div class="container">
     <div class="row">
@@ -16,7 +15,6 @@
     </div>
   </div>
 </section>
-
 <section id="proposals-counter" class="grey-one">
   <div class="container">
     <div class="row">
@@ -26,7 +24,6 @@
     </div>
   </div>
 </section>
-
 <section id="actions">
   <div class="container">
     <div class="row">
@@ -46,29 +43,26 @@
       </div>
       <div class="col-md-4 text-center">
         <div class="action-apoya">
-          <p>¿Quieres saber lo que la ciudadanía propone para Chile?</p>
+          <p>¿Quieres saber lo que la ciudadanía está proponiendo para Chile?</p>
           <a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'home-conoce-apoya', 'click')" class="btn btn-line">Conoce y apoya propuestas</a>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 <section id="education" class="container-fluid">
   <h2 class="text-center"><a href="{% url 'material_ciudadano' %}" onclick="ga('send', 'event', 'home-material-ciudadano', 'click')">Material ciudadano</a></h2>
   <p class="bajada text-center">Materiales para generar propuestas, hacer incidencia y saber todo lo necesario de las elecciones</p>
-    <div class="row">
-      <div class="col-md-6 text-center blue edu-1">
-        <a href="{% static 'material-ciudadano/manual-formacion-ciudadana.pdf' %}" target="_blank" class="btn btn-white" onclick="ga('send', 'event', 'home-manual-formacion-ciudadana', 'click')">Manual de formación ciudadana</a>
-      </div>
-      <div class="col-md-6 text-center blue-light edu-2">
-        <a href="{% static 'material-ciudadano/manual-herramientas-activismo.pdf' %}" target="_blank" class="btn btn-white" onclick="ga('send', 'event', 'home-manual-herramienta-activismo', 'click')">Manual de herramientas de activismo</a>
-      </div>
+  <div class="row">
+    <div class="col-md-6 text-center blue edu-1">
+      <a href="{% static 'material-ciudadano/manual-formacion-ciudadana.pdf' %}" target="_blank" class="btn btn-white" onclick="ga('send', 'event', 'home-manual-formacion-ciudadana', 'click')">Manual de formación ciudadana</a>
     </div>
+    <div class="col-md-6 text-center blue-light edu-2">
+      <a href="{% static 'material-ciudadano/manual-herramientas-activismo.pdf' %}" target="_blank" class="btn btn-white" onclick="ga('send', 'event', 'home-manual-herramienta-activismo', 'click')">Manual de herramientas de activismo</a>
+    </div>
+  </div>
 </section>
-
 {% organization_logos %}
-
 <section id="you-org" class="grey-one">
   <div class="container">
     <div class="row">

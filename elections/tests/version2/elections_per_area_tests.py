@@ -152,6 +152,24 @@ class ElectionsPerAreaTestCase(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertIsNone(response.context['default_election'])
 
+    def test_get_area_parents(self):
+        child = Area.objects.create(name="children")
+        mother = Area.objects.create(name="mother")
+        mother.children.add(child)
+        grand_mother = Area.objects.create(name="grand_mother")
+        grand_mother.children.add(mother)
+
+        self.assertIn(grand_mother, child.parents)
+        self.assertIn(mother, child.parents)
+
+
+    def test_get_area_parents_prevent_cicles(self):
+        child = Area.objects.create(name="children")
+        mother = Area.objects.create(name="mother")
+        mother.children.add(child)
+        child.children.add(mother)
+
+        self.assertEquals(len(child.parents), 2)
 
 class AreaOGPTestCase(TestCase):
     def setUp(self):

@@ -45,6 +45,20 @@ class Area(PopoloArea, OGPMixin):
         return self.name
 
     @property
+    def parents(self):
+        parents = [self]
+        current_area = self
+        while True:
+            if current_area.parent is not None:
+                if current_area.parent in parents:
+                    break
+                parents.append(current_area.parent)
+                current_area = current_area.parent
+            else:
+                break
+        return parents
+
+    @property
     def elections_without_position(self):
         return self.elections.filter(position__isnull=True).filter(position__exact='')
 

@@ -30,27 +30,14 @@ $(function(){
 {% block keywords %},{{area.name}}{% endblock keywords %}
 
 {% block content %}
-{% get_election_by_position 'alcalde' as election %}
-{% if election %}
-  {% url 'popular_proposals:area_embedded' slug=area.id as embedded_url%}
-  <div class="profile">
-    <div class="container content_padding">
-      <h1 class="text-center text-white">{{area.name}}</h1>
-      <!-- Alcaldes -->
-      {% cache 500 alcaldes area.id %}
-      <section class="comuna-alcaldes text-center">
-        <h2 class="text-white">Candidatos a alcalde</h2>
-        <div class="bajada">
-
-              <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info">Encuentra tu 1/2 <i class="fa fa-heart" aria-hidden="true"></i> Naranja</a>
-              <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning">Frente a frente</a>
-        </div>
-         {% include 'elections/_election_with_position.html' with position='alcalde' area=area %}
-      </section>
-      {% endcache %}
-    </div>
-  </div>
-  {% endif %}
+<h1>Todos los candidatos para {{area}}</h1>
+{% for p in area.parents %}
+  {% with p.elections.first as election %}
+    {% if election %}
+      {% display_election_card election %}
+    {% endif %}
+  {% endwith %}
+{% endfor %}
 
 {% endblock content %}
 

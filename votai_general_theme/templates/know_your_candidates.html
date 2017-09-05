@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
+{% load votainteligente_extras %}
 {% load bootstrap3 %}
 {% block title %}
 - Conoce las candidaturas.
@@ -15,6 +16,8 @@
 	  	</div>
 	</div>
 </div>
+<div>
 
+{% display_election_card default_election %}
 
 {% endblock everything %}

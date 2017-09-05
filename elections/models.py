@@ -17,6 +17,7 @@ from django.db.models import Count, F, FloatField, IntegerField, ExpressionWrapp
 from django.shortcuts import render
 from constance import config
 from django.db.models import Case, Value, When, PositiveSmallIntegerField
+from django.template.loader import get_template
 
 
 class AreaManager(models.Manager):
@@ -291,6 +292,11 @@ class Election(ExtraInfoMixin, models.Model, OGPMixin):
 
     def has_anyone_answered(self):
         return TakenPosition.objects.filter(person__in=self.candidates.all()).exists()
+
+    def card(self, context):
+        template_str = get_template('elections/election_card.html')
+        context['election'] = self
+        return template_str.render(context)
 
     class Meta:
             verbose_name = _(u'Mi Elección')

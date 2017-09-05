@@ -8,6 +8,8 @@ from django.views.generic import DetailView
 from django.conf import settings
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.contrib.sites.models import Site
+from django.template.loader import get_template
+from django.template import Context
 
 
 class ElectionTestCase(TestCase):
@@ -108,6 +110,19 @@ class ElectionTestCase(TestCase):
         expected_url = reverse('election_extra_info', kwargs={'slug': election.slug})
 
         self.assertEquals(election.get_extra_info_url(), expected_url)
+
+    def test_get_election_card(self):
+        election = Election.objects.create(
+            name='Distrito',
+            slug='distrito'
+            )
+        template_str = get_template('elections/election_card.html')
+        context = {"name": "thename", 'election': election}
+        expected_template = template_str.render(context)
+
+        actual_rendered_template = election.card(context=context)
+
+        self.assertEqual(expected_template, actual_rendered_template)
 
 
 class ElectionExtraInfo(TestCase):

@@ -16,6 +16,7 @@ from organization_profiles.models import ExtraPage
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+import copy
 
 
 def read_template_as_string(path, file_source_path=__file__):
@@ -28,16 +29,23 @@ def read_template_as_string(path, file_source_path=__file__):
 
 class HandleBarsResponse(HttpResponse):
     def __init__(self, source, obj, **kwargs):
+        self.user = obj['user']
         compiler = Compiler()
         base_template = compiler.compile(u'<!DOCTYPE html><html lang="es">{{> head}}<body><div>{{> nav}}<div>{{> content}}</div></div>{{> footer}}</body></html>')
         head = compiler.compile(get_template("_head_organizations.html").render(obj))
         footer = compiler.compile(get_template("_footer.html").render({}))
         content_template = compiler.compile(source)
         nav = compiler.compile(get_template("_navbar.html").render(obj))
+        def _proposal_card_renderer(proposal, *args, **kwargs):
+            context = copy.copy(obj)
+            request = context['view'].request
+            context['proposal'] = proposal.get('this')
+            return get_template("popular_proposal/popular_proposal_card.html").render(context, request)
         everything = base_template(obj, partials={"content": content_template,
                                                   "head": head,
                                                   "nav": nav,
-                                                  "footer": footer})
+                                                  "footer": footer},
+                                       helpers={"proposal_card_renderer": _proposal_card_renderer})
         super(HandleBarsResponse, self).__init__(content=everything, **kwargs)
 
 
@@ -76,6 +84,7 @@ class OrganizationDetailView(DetailView):
         return context
 
     def render_to_response(self, context, **kwargs):
+        context = super(OrganizationDetailView, self).get_context_data(**kwargs)
         context = self.create_context_based_on_organization_template(context)
         context['user'] = self.request.user
         context['is_owner'] = self.request.user == self.object

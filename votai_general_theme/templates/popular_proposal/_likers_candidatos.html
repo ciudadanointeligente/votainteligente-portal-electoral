@@ -7,11 +7,10 @@
 {% cache 300 presidentes_comprometidos proposal.id %}
 {% commiters_by_election_position proposal cargo as commitments %}
   {% if commitments.all %}
+    <h5>Candidatos a {{cargo}}</h5>
     <ul class="list-inline">
-
       {% for commitment in commitments.all %}
-
-        <li class="{% if not commitment.commited %}no-comprometido{% endif %}">
+        <li class="{% if not commitment.commited %}bg-danger{% else %}bg-success{% endif %}">
           <a href="{{commitment.get_absolute_url}}">
             {% if commitment.commited %}
               {% if commitment.candidate.image %}
@@ -19,13 +18,12 @@
                     <img src="{{ im.url }}" alt="{{commitment.candidate.name}}" height="50" width="50" border="0" class="img-responsive img-circle img-candidato">
                 {% endthumbnail %}
                 {% else %}
-                <img src="{% static 'img/candidate-default.jpg' %}" alt="{{commitment.candidate.name}}" border="0" class="img-responsive img-circle img-candidato img-candidato">
+                <img src="{% static 'img/candidate-default.jpg' %}" alt="{{commitment.candidate.name}}" border="0" class="img-responsive img-circle img-candidato">
               {% endif %}
             {% endif %}
             {{commitment.candidate}}
           </a>
         </li>
-
       {% endfor %}
     </ul>
 {% endif %}

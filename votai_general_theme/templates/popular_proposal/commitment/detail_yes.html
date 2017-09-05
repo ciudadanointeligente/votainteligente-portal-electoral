@@ -65,5 +65,14 @@
     <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
   </ul>
 </div>
+{% else %}
+<div class="container text-center">
+  <h3>Comunícalo!</h3>
+  <p>Cuéntales a tus amigos sobre este compromiso!</p>
+  <ul class="list-inline">
+    <li><a href="#" onclick="window.open('https://twitter.com/share?text={{commitment.candidate.name}} se comprometió con la propuesta ciudadana: {{commitment.proposal.title}}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
+    <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
+  </ul>
+</div>
 {% endif %}
 {% endblock content %}

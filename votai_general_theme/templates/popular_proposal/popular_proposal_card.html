@@ -8,8 +8,10 @@
     {% if proposal.is_local_meeting %}
     <div class="ribbon-wrapper">
       <div class="ribbon">Generada desde un encuentro ciudadano</div>
-    </div>    {% endif %}
-    <span class="label label-default">{{proposal.data.clasification}}</span>
+    </div>
+    {% endif %}
+    <a href="/propuestas/?clasification={{proposal.data.clasification}}"><span class="label label-default">{{proposal.data.clasification}}</span></a>
+    <a href="/propuestas/?generated_at={{proposal.generated_at}}"><span class="label label-success">{{proposal.generated_at}}</span></a>
     <!-- Estado de una propuesta para el alcalde de esa comuna -->
     <div class="pull-right">
       {% include 'popular_proposal/_estado_para_candidato.html' with proposal=proposal next_url=popular_proposals_home %}

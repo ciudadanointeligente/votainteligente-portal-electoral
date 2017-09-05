@@ -26,107 +26,19 @@ $(function(){
   {% render_ogp area %}
 {% endblock ogp %}
 
-{% block description %}Todos los candidatos para elecciones municipales 2016 en {{area.name}}{% endblock description %}
+{% block description %}Todos los candidatos para estas elecciones.{% endblock description %}
 {% block keywords %},{{area.name}}{% endblock keywords %}
 
 {% block content %}
-{% get_election_by_position 'alcalde' as election %}
-{% if election %}
-  {% url 'popular_proposals:area_embedded' slug=area.id as embedded_url%}
-  <div class="profile">
-    <div class="container content_padding">
-      <h1 class="text-center text-white">{{area.name}}</h1>
-      <!-- Alcaldes -->
-      {% cache 500 alcaldes area.id %}
-      <section class="comuna-alcaldes text-center">
-        <h2 class="text-white">Candidatos a alcalde</h2>
-        <div class="bajada">
-
-              <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info">Encuentra tu 1/2 <i class="fa fa-heart" aria-hidden="true"></i> Naranja</a>
-              <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning">Frente a frente</a>
-        </div>
-         {% include 'elections/_election_with_position.html' with position='alcalde' area=area %}
-      </section>
-      {% endcache %}
-    </div>
-  </div>
-  {% endif %}
-
-  {% cache 500 number_proposals_area area.id user|is_candidate %}
-  {% if area.proposals.exists %}
-  {% with area.proposals.count|stringformat:"04d" as n_created %}
-  <section class="banner">
-    <div class="container">
-      <ul class="list-inline text-center">
-         <li><h4 class="counter">
-          <span>{{ n_created|slice:"0:1" }}</span>
-          <span>{{ n_created|slice:"1:2" }}</span>
-          <span>{{ n_created|slice:"2:3" }}</span>
-          <span>{{ n_created|slice:"3:4" }}</span></h4></li>
-        <li><h4 class="text-white">propuestas ciudadanas se han creado para {{area}}</h4></li>
-        {% if not user|is_candidate %}
-        {% get_proposals_enabled as proposals_enabled %}
-        {% if proposals_enabled  %}
-        <li><a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full_without_area' %}">Crea la tuya</a></li>
-        {% endif %}
-        {% endif %}
-
-      </ul>
-    </div>
-  </section>
+<h1>Todos los candidatos para {{area}}</h1>
+{% for p in area.parents %}
+  {% with p.elections.first as election %}
+    {% if election %}
+      {% display_election_card election %}
+    {% endif %}
   {% endwith %}
-  {% endif %}
-  {% endcache %}
+{% endfor %}
 
-<!-- Concejales -->
-{% get_election_by_position 'concejal' as election %}
-{% if election %}
-  {% cache 500 concejales area.id %}
-  <section class="comuna-concejales text-center">
-    <div class="container">
-      <h2 class="text-white">Candidatos a concejal</h2>
-      <div class="bajada">
-            <a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-info hidden-xs">Encuentra tu 1/2 <i class="fa fa-heart" aria-hidden="true"></i> Naranja</a>
-            <a href="{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}" class="btn btn-warning hidden-xs">Frente a frente</a>
-      </div>
-      {% with area=area %}
-      {% include 'elections/_election_with_position.html' with position='concejal' area=area %}
-      {% endwith %}
-    </div>
-    {% endcache %}
-  </section>
-  {% endif %}
-      {% cache 500 create_new_proposal_link area.id %}
-      {% if not popular_proposals.exists %}
-      {% get_proposals_enabled as proposals_enabled %}
-      {% if proposals_enabled  %}
-      {% blocktrans %}
-      <p>Acá aún no hay propuestas, pero puedes:</p>
-      {% endblocktrans %}
-      <a class="btn btn-info" href="{% url 'popular_proposals:propose_wizard' slug=area.id %}">{% blocktrans with area=area.name %}Crear una propuesta ciudadana para {{ area }}{% endblocktrans %}</a>
-      {% endif %}
-      {% endif %}
-      {% endcache %}
-    </div>
-
-  <!-- Featured Elections  -->
-  <section class="comuna-propuestas">
-    <div class="container content_padding">
-      <h2 class="text-center">Propuestas ciudadanas para {{ area }}</h2>
-      {% get_proposals_enabled as proposals_enabled %}
-      {% if proposals_enabled  %}
-      <div class="text-center bajada">
-        <div>
-          <p>Mientras más apoyo tenga una propuesta, es más probable que los candidatos asuman un compromiso con ella</p>
-        </div>
-        {% if not user|is_candidate %}
-          <a class="btn btn-success" href="{% url 'popular_proposals:propose_wizard_full_without_area' %}">Tengo una propuesta</a>
-        {% endif %}
-      </div>
-      {% endif %}
-    </div>
-  </section>
-  <!-- /contenedorDestacado -->
 {% endblock content %}
 
 {% block extrafooter %}

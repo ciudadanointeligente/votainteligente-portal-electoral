@@ -131,6 +131,46 @@ class ElectionsPerAreaTestCase(TestCase):
         self.assertEquals(position_c1, election.position_in_ranking(c1))
         self.assertEquals(position_c2, election.position_in_ranking(c2))
 
+    @override_config(DEFAULT_AREA='argentina')
+    def test_area_index_view(self):
+        argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        election = Election.objects.create(
+            name='the name',
+            area=argentina)
+        url = reverse('know_your_candidates')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['default_election'], election)
+
+    def test_area_index_view_if_not_default_area(self):
+        argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        election = Election.objects.create(
+            name='the name',
+            area=argentina)
+        url = reverse('know_your_candidates')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIsNone(response.context['default_election'])
+
+    def test_get_area_parents(self):
+        child = Area.objects.create(name="children")
+        mother = Area.objects.create(name="mother")
+        mother.children.add(child)
+        grand_mother = Area.objects.create(name="grand_mother")
+        grand_mother.children.add(mother)
+
+        self.assertIn(grand_mother, child.parents)
+        self.assertIn(mother, child.parents)
+
+
+    def test_get_area_parents_prevent_cicles(self):
+        child = Area.objects.create(name="children")
+        mother = Area.objects.create(name="mother")
+        mother.children.add(child)
+        child.children.add(mother)
+
+        self.assertEquals(len(child.parents), 2)
+
 class AreaOGPTestCase(TestCase):
     def setUp(self):
         self.argentina = Area.objects.create(name=u'Argentina')

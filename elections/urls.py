@@ -10,6 +10,7 @@ from elections.views import (
     FaceToFaceView,
     AreaDetailView,
     CandidateFlatPageDetailView,
+    KnowYourCandidatesView,
     )
 
 from elections.soul_mate import SoulMateDetailView
@@ -71,6 +72,7 @@ urlpatterns = [
     url(r'^territorio/(?P<slug>[-\w]+)/?$',
         AreaDetailView.as_view(template_name='elections/area.html'),
         name='area'),
+    url(r'^territorio/?$', KnowYourCandidatesView.as_view(), name='know_your_candidates'),
 ]
 
 # urlpatterns += [

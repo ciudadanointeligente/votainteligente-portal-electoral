@@ -404,6 +404,7 @@ CONSTANCE_CONFIG = {
     'NAV_BAR': ('profiles, questionary, soulmate, facetoface, ask, ranking', 'Menu de navegacion'),
     'SHOW_RIBBON_IN_CANDIDATE': (False, u"Debería aparecerles la franja roja que dice 'No se ha compormetido?'"),
     'CAN_CREATE_TEST_PROPOSAL': (False, u'Se pueden crear propuestas de prueba?'),
+    'CANDIDATES_ARE_DISPLAYED': (False, u'Se muestra el menú "Conoce tus candidatos"?(recuerda que si eres staff lo verás igual no más sin importar esta wea)'),
     'SEARCH_SUBSCRIPTION_ENABLED': (True, u'Suscribirse a una búsqueda está habilitado? esto sólo esconde los links.'),
     'WEBSITE_METADATA_AUTHOR': ('', 'Nombre del autor'),
     'WEBSITE_METADATA_DESCRIPTION': ('', 'Descripcion del sitio'),

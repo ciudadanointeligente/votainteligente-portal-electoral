@@ -1,6 +1,6 @@
 from backend_candidate.models import is_candidate, CandidacyContact, Candidacy
 from django.http import Http404
-from django.views.generic.base import TemplateView, RedirectView
+from django.views.generic.base import RedirectView
 from django.views.generic import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required

@@ -480,3 +480,10 @@ class LoginFormsTemplateTags(TestCase):
         template = Template("{% load votainteligente_extras %}{% get_proposals_enabled as proposals_enabled %}{% if proposals_enabled  %}si{% else %}no{% endif %}")
         context = Context({})
         self.assertEquals(template.render(context), 'si')
+
+    def test_get_election_tag(self):
+        election = Election.objects.get(id=2)
+        template = Template("{% load votainteligente_extras %}{% display_election_card election %}")
+        context = Context({'election': election})
+
+        self.assertEquals(template.render(context), election.card(context))

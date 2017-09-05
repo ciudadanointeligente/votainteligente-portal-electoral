@@ -367,3 +367,7 @@ def get_proposals_enabled():
 @register.inclusion_tag('organizations_logos.html')
 def organization_logos():
     return {'templates' : OrganizationTemplate.objects.only_with_logos()}
+
+@register.inclusion_tag('elections/election_card.html', takes_context=True)
+def display_election_card(context, election):
+    return {'election': election}

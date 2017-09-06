@@ -3,7 +3,7 @@ from django import forms
 from collections import OrderedDict
 from popular_proposal.forms.forms import get_possible_generating_areas
 from django.utils.translation import ugettext as _
-from votita.models import KidsGathering
+from votita.models import KidsGathering, KidsProposal
 from django.forms import ModelForm
 from elections.models import Area
 
@@ -16,7 +16,41 @@ def filterable_areas():
         return areas.filter(classification__in=settings.FILTERABLE_AREAS_TYPE)
     return areas
 
-class CreateGatheringForm(ModelForm):
+
+class GatheringsWithStatsDataMixin(object):
+    def clean(self):
+        cleaned_data = super(GatheringsWithStatsDataMixin, self).clean()
+        base_fields = [field.name for field in self._meta.model._meta.get_fields()]
+        stats_data = {}
+        for key  in cleaned_data.keys():
+            if key not in base_fields:
+                stats_data[key] = cleaned_data.pop(key)
+        cleaned_data['stats_data'] = stats_data
+        return cleaned_data
+
+    def save(self, commit=True):
+        instance = super(GatheringsWithStatsDataMixin, self).save(commit=False)
+        creating = instance.pk is None
+        if creating:
+            instance.proposer = self.proposer
+
+        instance.stats_data = self.cleaned_data['stats_data']
+        instance.save()
+        if creating:
+            self.save_m2m()
+        return instance
+
+
+class CreateGatheringForm(GatheringsWithStatsDataMixin, ModelForm):
+    male = forms.IntegerField(label = "Nº de Niños",
+                              min_value = 0,
+                              initial=0)
+    female = forms.IntegerField(label = "Nº de Niñas",
+                                min_value = 0,
+                                initial=0)
+    others = forms.IntegerField(label = "Nº de Otros",
+                                min_value = 0,
+                                initial=0)
     generated_at = forms.ModelChoiceField(queryset=filterable_areas(),
                                           empty_label=u"Selecciona",
                                           required=False,
@@ -29,44 +63,12 @@ class CreateGatheringForm(ModelForm):
         self.proposer = kwargs.pop('proposer')
         super(CreateGatheringForm, self).__init__(*args, **kwargs)
 
-    def save(self, commit=True):
-        instance = super(CreateGatheringForm, self).save(commit=False)
-        instance.proposer = self.proposer
-        instance.save()
-        self.save_m2m()
-        return instance
 
-
-
-class UpdateGatheringForm(ModelForm):
-    male = forms.IntegerField(label = "Nº de Niños",
-                              min_value = 0,
-                              initial=0)
-    female = forms.IntegerField(label = "Nº de Niñas",
-                                min_value = 0,
-                                initial=0)
-    others = forms.IntegerField(label = "Nº de Otros",
-                                min_value = 0,
-                                initial=0)
+class UpdateGatheringForm(GatheringsWithStatsDataMixin, ModelForm):
     class Meta:
         model = KidsGathering
         fields = ['image', 'comments']
 
-    def clean(self):
-        cleaned_data = super(UpdateGatheringForm, self).clean()
-        base_fields = [field.name for field in self._meta.model._meta.get_fields()]
-        stats_data = {}
-        for key  in cleaned_data.keys():
-            if key not in base_fields:
-                stats_data[key] = cleaned_data.pop(key)
-        cleaned_data['stats_data'] = stats_data
-        return cleaned_data
-
-    def save(self):
-        instance = super(UpdateGatheringForm, self).save(commit=False)
-        instance.stats_data = self.cleaned_data['stats_data']
-        instance.save()
-        return instance
 
 TOPIC_CHOICES = (('', u'Selecciona una categoría'),
                  ('proteccion_y_familia', u'Protección y familia'),
@@ -112,3 +114,19 @@ wizard_forms_fields = [
         ])
     }
 ]
+
+
+class KidsProposalForm(ModelForm):
+    solution = forms.CharField(required=False)
+    clasification = forms.ChoiceField(choices=TOPIC_CHOICES)
+
+    class Meta:
+        model = KidsProposal
+        fields = ['title', 'clasification']
+
+    def save(self, *args, **kwargs):
+        instance = super(KidsProposalForm, self).save( *args, **kwargs)
+        instance.data = {
+            'solution': self.cleaned_data['solution']
+        }
+        return instance

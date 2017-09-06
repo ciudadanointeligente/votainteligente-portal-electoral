@@ -33,11 +33,16 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         self.client.login(username=self.feli.username, password=USER_PASSWORD)
         url = reverse('votita:create_gathering')
         data = {'name': u"Título",
-                "presidents_features": ["inteligente"]}
+                "presidents_features": ["inteligente"],
+                'male': 10,
+                'female': 10,
+                'others': 10,}
         response = self.client.post(url, data=data, follow=True)
         self.assertEquals(response.context['object'].name, data['name'])
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.context['object'].proposer, self.feli)
+        self.assertEquals(response.context['object'].stats_data['male'],
+                          data['male'])
 
     def test_creating_proposal_for_gathering_get_view(self):
         gathering = KidsGathering.objects.create(name=u"Título",
@@ -148,9 +153,6 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         self.client.login(username=self.feli.username, password=USER_PASSWORD)
         photo = self.get_image()
         data = {
-            'male': 10,
-            'female': 11,
-            'others': 10,
             'image': photo
         }
         response = self.client.post(url, data=data)
@@ -158,7 +160,6 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
                              kwargs={'pk':gathering.id})
         self.assertRedirects(response, thanks_url)
         g = KidsGathering.objects.get(id=gathering.id)
-        self.assertEquals(g.stats_data['male'], data['male'])
         self.assertTrue(g.image)
 
 class GatheringViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):

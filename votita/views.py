@@ -2,6 +2,7 @@ from popular_proposal.views.wizard import ProposalWizardBase
 from votita.forms.forms import (wizard_forms_fields,
                                 CreateGatheringForm,
                                 UpdateGatheringForm,
+                                KidsProposalForm,
                                 TOPIC_CHOICES)
 from popular_proposal.forms import (get_form_list,)
 from django.views.generic.edit import CreateView, UpdateView
@@ -82,8 +83,7 @@ def formfield_callback(field, **kwargs):
 
 ProposalFormSet = inlineformset_factory(KidsGathering,
                                         KidsProposal,
-                                        fields=('title','clasification'),
-                                        formfield_callback=formfield_callback,
+                                        form=KidsProposalForm,
                                         can_delete=False,
                                         labels={
                                             'title': u"La propuesta",

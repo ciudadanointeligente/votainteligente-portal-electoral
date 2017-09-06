@@ -29,6 +29,9 @@
                     {% endif %}
                 {% endif %}
                 <li><a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'nav-conoce-propuestas', 'click')">Conoce propuestas</a></li>
+                {% if user.is_staff or config.CANDIDATES_ARE_DISPLAYED %}
+                  <li><a href="{% url 'know_your_candidates' %}" onclick="ga('send', 'event', 'nav-conoce-tus-candidatos', 'click')">Candidaturas</a></li>
+                {% endif %}
                 <li><a href="{% url 'material_ciudadano' %}" onclick="ga('send', 'event', 'nav-material-ciudadano', 'click')">Material ciudadano</a></li>
                 {% include "_dropdown_user.html" with user=user %}
                 <li>

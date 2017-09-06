@@ -1,6 +1,6 @@
 {% load votainteligente_extras %}
 {% load cache %}
-
+var app = angular.module('votainteligente', []);
 angular.module('votainteligente').config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('[[');
   $interpolateProvider.endSymbol(']]');

@@ -17,6 +17,7 @@ from django.db.models import Count, F, FloatField, IntegerField, ExpressionWrapp
 from django.shortcuts import render
 from constance import config
 from django.db.models import Case, Value, When, PositiveSmallIntegerField
+from django.template.loader import get_template
 
 
 class AreaManager(models.Manager):
@@ -42,6 +43,20 @@ class Area(PopoloArea, OGPMixin):
 
     def ogp_description(self):
         return self.name
+
+    @property
+    def parents(self):
+        parents = [self]
+        current_area = self
+        while True:
+            if current_area.parent is not None:
+                if current_area.parent in parents:
+                    break
+                parents.append(current_area.parent)
+                current_area = current_area.parent
+            else:
+                break
+        return parents
 
     @property
     def elections_without_position(self):
@@ -103,9 +118,6 @@ class RankingManager(models.Manager):
                              distinct=True,
                              )
                          )
-        for q in qs:
-            print q, q.elections.all()
-            # print q.elections.first().candidates_can_commit_everywhere,  q.num_proposals
         qs = qs.annotate(num_commitments=Count(F('commitments'), distinct=True))
         first_then = (F('num_commitments') * 1.0 / F('num_proposals') * 1.0) * 100
         second_then = F('num_commitments') * 1.0
@@ -294,6 +306,11 @@ class Election(ExtraInfoMixin, models.Model, OGPMixin):
 
     def has_anyone_answered(self):
         return TakenPosition.objects.filter(person__in=self.candidates.all()).exists()
+
+    def card(self, context):
+        template_str = get_template('elections/election_card.html')
+        context['election'] = self
+        return template_str.render(context)
 
     class Meta:
             verbose_name = _(u'Mi Elección')

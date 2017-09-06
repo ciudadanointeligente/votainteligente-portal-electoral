@@ -49,7 +49,7 @@
               {% else %}
               <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato img-candidato">
             {% endif %}
-            {% if not candidate.commitments.count %}<div class="ribbon label label-danger">No se ha comprometido</div>{% endif %}
+            {% if config.SHOW_RIBBON_IN_CANDIDATE and not candidate.commitments.count %}<div class="ribbon label label-danger">No se ha comprometido</div>{% endif %}
           </div>
       </div>
       <div id="info-candidato" class="col-xs-12 col-sm-7 col-md-7">

@@ -3,6 +3,7 @@ from django.views.generic.edit import FormView
 from elections.forms import ElectionSearchByTagsForm
 from django.core.urlresolvers import reverse
 from django.views.generic import DetailView
+from django.views.generic.base import TemplateView
 from elections.models import Election, Area
 from elections.models import Candidate, QuestionCategory, CandidateFlatPage
 from votainteligente.views import HomeViewBase
@@ -175,13 +176,13 @@ class AreaDetailView(DetailView, FilterMixin):
     def get_context_data(self, **kwargs):
         context = super(AreaDetailView, self).get_context_data(**kwargs)
         initial = self.request.GET or None
-        
+
         kwargs = {'data': initial or None,
                   'area': self.object
                   }
         filterset = ProposalWithoutAreaFilter(**kwargs)
         context['proposal_filter_form'] = filterset.form
-        
+
         context['popular_proposals'] = filterset.qs
         return context
 
@@ -208,4 +209,13 @@ class CandidateFlatPageDetailView(DetailView):
             .get_context_data(**kwargs)
         context['election'] = self.object.candidate.election
         context['candidate'] = self.object.candidate
+        return context
+
+
+class KnowYourCandidatesView(TemplateView):
+    template_name = "know_your_candidates.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(KnowYourCandidatesView, self).get_context_data(**kwargs)
+        context['default_election'] = Election.objects.filter(area__id=config.DEFAULT_AREA).first()
         return context

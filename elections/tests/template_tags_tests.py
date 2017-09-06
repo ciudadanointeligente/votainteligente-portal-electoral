@@ -20,6 +20,7 @@ from django.test import override_settings
 from django.shortcuts import render
 from constance import config
 from constance.test import override_config
+from votita.models import KidsProposal
 
 class TemplateTagsTestCase(TestCase):
     def setUp(self):
@@ -487,3 +488,30 @@ class LoginFormsTemplateTags(TestCase):
         context = Context({'election': election})
 
         self.assertEquals(template.render(context), election.card(context))
+
+    def test_proposal_card(self):
+        u = User.objects.get(username='feli')
+        data = {'clasification': 'educacion',
+                'title': u'Mar para Bolivia',
+                'problem': u'Los bolivianos no tienen mar y son bacanes',
+                'solution': u'Que le den mar soberano a Bolivia',
+                'when': u'1_year',
+                'causes': u'El egoismo chileno.'
+                }
+        popular_proposal = PopularProposal.objects.create(proposer=u,
+                                                          data=data,
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+        template = Template("{% load votainteligente_extras %}{% display_proposal_card popular_proposal %}")
+        context = Context({'popular_proposal': popular_proposal})
+
+        self.assertEquals(template.render(context), popular_proposal.display_card(context))
+
+        kids_proposal = KidsProposal.objects.create(proposer=u,
+                                                    data=data,
+                                                    title=u'This is a title',
+                                                    clasification=u'education'
+                                                    )
+        context = Context({'popular_proposal': kids_proposal})
+        self.assertEquals(template.render(context), kids_proposal.display_card(context))

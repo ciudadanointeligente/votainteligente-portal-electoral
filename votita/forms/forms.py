@@ -124,9 +124,11 @@ class KidsProposalForm(ModelForm):
         model = KidsProposal
         fields = ['title', 'clasification']
 
-    def save(self, *args, **kwargs):
-        instance = super(KidsProposalForm, self).save( *args, **kwargs)
+    def save(self, commit=True):
+        instance = super(KidsProposalForm, self).save(commit=commit)
         instance.data = {
             'solution': self.cleaned_data['solution']
         }
+        if commit:
+            instance.save()
         return instance

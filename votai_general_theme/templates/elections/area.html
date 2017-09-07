@@ -32,9 +32,25 @@ $(function(){
 {% block keywords %},{{area.name}}{% endblock keywords %}
 
 {% block content %}
+<div id="buscador-area" class="container-fluid navbar-fixed-top" style="top: 55px; padding: 15px 0px; background-color: #233346; display: none;">
+  <div class="container">
+    {% include '_election_search_form.html' %}
+    <script>
+      $(function(){
+        window.onscroll = function (e) {
+          if( document.documentElement.scrollTop >= 100 ) {
+            $('#buscador-area').fadeIn("slow");
+          }
+          if( document.documentElement.scrollTop < 100 ) {
+            $('#buscador-area').fadeOut("slow");
+          }
+        }
+      });
+    </script>
+  </div>
+</div>
 <div class="container">
   <h1>Candidatos para {{area}}</h1>
-  {% include '_election_search_form.html' %}
 </div>
 {% for p in area.parents %}
   {% with p.elections.first as election %}

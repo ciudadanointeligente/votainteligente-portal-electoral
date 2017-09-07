@@ -36,7 +36,7 @@
       {% include 'popular_proposal/_share.html' with popular_proposal=proposal %}
     </div>
     {% endcomment %}
-    <a href="{% url 'popular_proposals:detail' slug=proposal.slug %}" class="btn btn-blue pull-right">Leer más</a>
+    <a href="{{proposal.get_absolute_url}}" class="btn btn-blue pull-right">Leer más</a>
   </div>
 </div>
 <!--FinCard-->

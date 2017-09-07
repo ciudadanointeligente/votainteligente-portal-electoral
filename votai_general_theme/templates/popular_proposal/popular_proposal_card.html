@@ -27,7 +27,7 @@
     </div>
     {% endcomment %}
 
-    <h4><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title|truncatechars:100 }}</a></h4>
+    <h4><a href="{{proposal.get_absolute_url}}">{{proposal.title|truncatechars:100 }}</a></h4>
     <p class="intro">{{proposal.data.solution_at_the_end|linebreaksbr|truncatechars:150}}</p>
     {% if proposal.proposer.profile.is_organization %}
       <div class="logo-ong text-center text-light">
@@ -60,7 +60,7 @@
       {% include 'popular_proposal/_share.html' with popular_proposal=proposal %}
     </div>
     {% endcomment %}
-    <a href="{% url 'popular_proposals:detail' slug=proposal.slug %}" class="btn btn-blue pull-right">Leer más</a>
+    <a href="{{proposal.get_absolute_url}}" class="btn btn-blue pull-right">Leer más</a>
   </div>
   {% endif %}
 </div>

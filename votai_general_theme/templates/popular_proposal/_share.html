@@ -1,9 +1,9 @@
 {% load votainteligente_extras %}{% spaceless %}
 {% if not say_thanks %}
-  {% url 'popular_proposals:detail' slug=popular_proposal.slug as detail_url%}
+  {% with popular_proposal.get_absolute_url as detail_url%}
   {% url_domain as url_d %}
 
-  {% with 'http://'|add:url_d|add:detail_url as full_detail_url %}
+  {% with 'http://'|add:url_d|add:popular_proposal.get_absolute_url as full_detail_url %}
     {% with full_detail_url|iriencode as encoded_full_detail_url %}
     <ul class="list-inline social-buttons text-center">
       <li>
@@ -69,6 +69,8 @@
     </ul>
     {% endwith %}
   {% endwith %}
+{% endwith %}
+
 {% else %}<!-- Aquí estamos agradeciendo que le pusieron corazon pero no le dibujamos las redesh shoshialesh -->
 <p class="bg-success">Gracias por apoyar<i class="fa fa-star" aria-hidden="true"></i></p>
 {% endif %}

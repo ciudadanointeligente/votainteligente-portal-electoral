@@ -136,3 +136,9 @@ class ProposalListView(ListView):
     model = KidsProposal
     template_name = "votita/lista_propuesta.html"
     context_object_name = 'proposals'
+
+
+class ProposalDetailView(DetailView):
+    model = KidsProposal
+    template_name = "votita/detalle_propuesta.html"
+    context_object_name = 'proposal'

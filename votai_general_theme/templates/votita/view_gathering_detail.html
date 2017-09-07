@@ -4,40 +4,6 @@
 {% block title %}- Ver encuentro - {{object.name}}{% endblock title %}
 
 {% block content %}
-{% if object.image %}
-<div class="container-fluid">
-  <div class="photo-gathering" style="background-image: url(/cache/{{object.image}}); background-position: center; background-repeat: no-repeat; height: 320px;"></div>
-</div>
-{% endif %}
-<div class="container">
-  <h1 class="page-header">Encuentro <small>{{object.name}}</small></h1>
-  <div class="row">
-    <div class="col-md-6">
-      <h3>Datos Estadísticos</h3>
-      <ul>
-        {% for key,value in object.stats_data.items %}
-        <li>{{key}}: {{value}}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <h3>Datos sobre un "Buen Presidente"</h3>
-      <ul>
-        {% for cualidades in object.presidents_features.all %}
-        <li>{{ cualidades }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Propuestas generadas</h2>
-      <ul>
-        {% for proposal in object.proposals.all %}
-        <li>{{ proposal }} en la categoría {{ proposal.clasification }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-</div>
+
+{% include "votita/gathering_detail.html" with gathering=object %}
 {% endblock content %}

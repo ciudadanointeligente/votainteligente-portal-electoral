@@ -9,6 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from elections.models import Area
 from taggit.managers import TaggableManager
+from django.core.urlresolvers import reverse
 
 
 PRESIDENTS_FEATURES = (
@@ -100,6 +101,9 @@ class KidsProposal(PopularProposal):
     class Meta:
         verbose_name = _(u'Medida')
         verbose_name_plural = _(u"Medidas")
+
+    def get_absolute_url(self):
+        return reverse('votita:proposal_detail', kwargs={'slug': self.slug})
 
     @property
     def is_kids(self):

@@ -225,6 +225,20 @@ class KidsProposalViewsTestCase(ProposingCycleTestCaseBase):
         self.assertIn(proposal2, response.context['proposals'].all())
         self.assertNotIn(p1, response.context['proposals'].all())
 
+    def test_detail_view(self):
+        proposal1 = KidsProposal.objects.create(proposer=self.fiera,
+                                                area=self.arica,
+                                                data=self.data,
+                                                title=u'This is a title1',
+                                                clasification=u'education'
+                                                )
+        url = reverse("votita:proposal_detail", kwargs={'slug': proposal1.slug})
+        self.assertEquals(url, proposal1.get_absolute_url())
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(proposal1, response.context['proposal'])
+        self.assertTemplateUsed(response, 'votita/detalle_propuesta.html')
+
 
 from django.test import override_settings
 

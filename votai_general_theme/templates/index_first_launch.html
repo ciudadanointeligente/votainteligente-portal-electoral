@@ -8,7 +8,7 @@
         <p class="hashtag">#LaElecciónEsNuestra</p>
       </div>
       <div class="col-md-6 text-center">
-        <!-- <img src="{% static 'img/ciudadania.svg' %}" class="presidents img-responsive"> -->
+        <!--
         <h3>Candidatos que se han comprometido con las ciudadanos</h3>
         <ul class="list-unstyled">
           <li>
@@ -63,6 +63,12 @@
             </div>
           </li>
         </ul>
+        -->
+        <h2>Ya tenemos <a style="color: #fff;" href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'counter-propuestas-ciudadanas', 'click')"><span class="counter-number" style="color: #fff;">{{total_proposals}}</span></a> propuestas ciudadanas!!
+        <br>de las cuales <span class="counter-number" style="color: #fff;">5</span> fueron realizadas en una Encuentro Local
+        <br>y <span class="counter-number" style="color: #fff;">6</span> de estas ya tienen compromisos</h2>
+        <h2>Hagamos sentir la voz de la ciudadanía más fuerte que nunca</h2>
+        <h2><a style="color: #fff;" href="{% url 'material_ciudadano' %}" onclick="ga('send', 'event', 'home-material-ciudadano', 'click')">Reúnete</a>, <a style="color: #fff;" href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" onclick="ga('send', 'event', 'home-propuestas-ciudadanas', 'click')">crea</a> y <a style="color: #fff;" href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'home-propuestas-ciudadanas', 'click')">apoya</a> nuevas propuestas</h2>
       </div>
     </div>
   </div>

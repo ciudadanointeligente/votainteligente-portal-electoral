@@ -221,6 +221,8 @@ class PopularProposal(models.Model, OGPMixin):
     objects = ProposalsManager()
     all_objects = models.Manager()
 
+    card_template = "popular_proposal/popular_proposal_card.html"
+
     class Meta:
         ordering = ['-featured' ,'for_all_areas', '-created']
         verbose_name = _(u'Propuesta Ciudadana')
@@ -287,11 +289,13 @@ class PopularProposal(models.Model, OGPMixin):
                                image_url)
         return url
 
+    def display_card(self, context={}):
+        context['proposal'] = self
+        return get_template(self.card_template).render(context)
+
     @property
     def card(self):
-        return get_template("popular_proposal/popular_proposal_card.html").render({
-            'proposal': self
-        })
+        return self.display_card({})
 
     @property
     def data_as_text(self):

@@ -26,6 +26,10 @@
           placeholder="Características de un buen presidente" title="Una lista de etiquetas separadas por coma." type="text" required />
         <div class="help-block">Una lista de etiquetas separadas por coma.</div>
       </div>
+      {% bootstrap_field form.male %}
+      {% bootstrap_field form.female %}
+      {% bootstrap_field form.others %}
+
       <input type="submit" value="Enviar" class="btn btn-default" />
   </form>
 </div>

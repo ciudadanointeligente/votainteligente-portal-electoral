@@ -6,6 +6,7 @@ from votita.views import (VotitaWizard,
                           UpdateGatheringView,
                           ThanksForCreating,
                           GatheringListView,
+                          ProposalListView,
                           GatheringView)
 from django.views.generic import TemplateView
 
@@ -36,5 +37,8 @@ urlpatterns = [
     url(r'^encuentros/?$',
         GatheringListView.as_view(),
         name='list_gatherings'),
+    url(r'^propuestas/?$',
+        ProposalListView.as_view(),
+        name='list_proposals'),
 
 ]

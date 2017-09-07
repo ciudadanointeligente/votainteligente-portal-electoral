@@ -15,10 +15,10 @@
             {% if commitment.commited %}
               {% if commitment.candidate.image %}
                 {% thumbnail commitment.candidate.image "50x50" crop="center" as im %}
-                    <img src="{{ im.url }}" alt="{{commitment.candidate.name}}" height="50" width="50" border="0" class="img-responsive img-circle img-candidato">
+                    <img src="{{ im.url }}" alt="{{commitment.candidate.name}}" border="0" class="img-responsive img-circle img-candidato">
                 {% endthumbnail %}
                 {% else %}
-                <img src="{% static 'img/candidate-default.jpg' %}" alt="{{commitment.candidate.name}}" border="0" class="img-responsive img-circle img-candidato">
+                <img src="{% static 'img/candidate-default.jpg' %}" alt="{{commitment.candidate.name}}" height="50" width="50" border="0" class="img-responsive img-circle">
               {% endif %}
             {% endif %}
             {{commitment.candidate}}

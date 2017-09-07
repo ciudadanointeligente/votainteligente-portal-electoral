@@ -103,3 +103,27 @@ class CommitmentTestCase(ProposingCycleTestCaseBase):
         candidate4 = Candidate.objects.get(id=4)
         self.assertNotIn(candidate4, exporter_alcalde.candidates)
 
+    def test_filter_commited(self):
+        c1 =Candidate.objects.get(id=1)
+        c2 = Candidate.objects.get(id=2)
+        c3 = Candidate.objects.get(id=3)
+        commitment = Commitment.objects.create(candidate=c1,
+                                                       proposal=self.popular_proposal,
+                                                       detail=u'Yo me comprometo',
+                                                       commited=True)
+        commitment2 = Commitment.objects.create(candidate=c2,
+                                                       proposal=self.popular_proposal,
+                                                       detail=u'Yo me comprometo',
+                                                       commited=True)
+        commitment3 = Commitment.objects.create(candidate=c3,
+                                                       proposal=self.popular_proposal,
+                                                       detail=u'Yo me comprometo',
+                                                       commited=False)
+        ## y luego podis hacer algo así:
+        self.assertIn(commitment, Commitment.objects.committed())
+        self.assertIn(commitment2, Commitment.objects.committed())
+        self.assertNotIn(commitment3, Commitment.objects.committed())
+        ## Y luego el uncommitted
+        self.assertNotIn(commitment, Commitment.objects.uncommitted())
+        self.assertNotIn(commitment2, Commitment.objects.uncommitted())
+        self.assertIn(commitment3, Commitment.objects.uncommitted())

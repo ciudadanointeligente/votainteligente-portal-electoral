@@ -5,24 +5,28 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular.min.js"></script>
 
-<div class="input-group input-group-lg">
-  <span class="input-group-addon small" id="sizing-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-  <div data-ng-app="votainteligente">
-    <div id="home-search" class="row" data-ng-controller="searchFormController">
-      <div>
-        <input type="" id="id_q" name="q" placeholder="{% trans "Ingresa tu comuna" %}" autocomplete="off" ng-enter="console.log('something')"  data-ng-model="searchElection">
-      </div>
-      <div class="elections-results">
-        <ul class="list-inline" data-ng-show="searchElection">
-          <li class="label label-default" data-ng-repeat="election in (filteredItems = (elections | filter:searchElection:comperator))">
-            <a href="[[election.detaillink]]">[[election.name]]</a>
-            <ul>
-              <li data-ng-repeat="tag in election.tags | filter:searchElection:comperator">[[tag]]</li>
-            </ul>
-          </li>
-        </ul>
+<div data-ng-app="votainteligente" data-ng-controller="searchFormController">
+  <div class="input-group input-group-lg">
+    <span class="input-group-addon small" id="sizing-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+    <div>
+      <div id="home-search" class="row">
+        <div>
+          <input type="" id="id_q" name="q" placeholder="{% trans "Ingresa aquí tu Comuna, Distrito o Circunscripción al que perteneces" %}" autocomplete="off" ng-enter="console.log('something')"  data-ng-model="searchElection">
+        </div>
       </div>
     </div>
+  </div>
+
+  <div class="elections-results" data-ng-show="searchElection">
+    <h4>Resultado para "[[searchElection]]"</h4>
+    <ul class="list-inline">
+      <li class="label label-default" data-ng-repeat="election in (filteredItems = (elections | filter:searchElection:comperator))">
+        <a href="[[election.detaillink]]">[[election.name]]</a>
+        <ul>
+          <li data-ng-repeat="tag in election.tags | filter:searchElection:comperator">[[tag]]</li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </div>
 

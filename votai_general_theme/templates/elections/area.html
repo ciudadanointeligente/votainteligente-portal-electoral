@@ -7,6 +7,8 @@
 {% load votainteligente_extras %}
 {% load cache %}
 
+{% block title %}- Candidatos para {{area}}{% endblock title %}
+
 {% block extrajs %}
 $(function(){
     $('.loadFromUrl').on('show.bs.modal', function (event) {
@@ -30,13 +32,16 @@ $(function(){
 {% block keywords %},{{area.name}}{% endblock keywords %}
 
 {% block content %}
-<h1>Todos los candidatos para {{area}}</h1>
+<div class="container">
+  <h1>Candidatos para {{area}}</h1>
+  {% include '_election_search_form.html' %}
+</div>
 {% for p in area.parents %}
   {% with p.elections.first as election %}
     {% if election %}
       {% display_election_card election %}
     {% endif %}
-  {% endwith %}
+    {% endwith %}
 {% endfor %}
 
 {% endblock content %}

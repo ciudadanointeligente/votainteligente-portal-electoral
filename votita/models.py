@@ -95,6 +95,8 @@ class KidsProposal(PopularProposal):
                                   related_name='proposals',
                                   null=True)
 
+    card_template = "votita/card.html"
+
     class Meta:
         verbose_name = _(u'Medida')
         verbose_name_plural = _(u"Medidas")
@@ -102,9 +104,3 @@ class KidsProposal(PopularProposal):
     @property
     def is_kids(self):
         return True
-
-    @property
-    def card(self):
-        return get_template("votita/card.html").render({
-            'proposal': self
-        })

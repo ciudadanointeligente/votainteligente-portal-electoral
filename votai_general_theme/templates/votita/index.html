@@ -1,23 +1,30 @@
 {% extends "votita/base.html" %}
+{% load staticfiles %}
 
 {% block title %}- Portada{% endblock title %}
 
 {% block content %}
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      [bigbanner]
+    <div class="col-md-6">
+      <img src="{% static 'img/lm-banner.svg' %}" class="img-responsive">
+    </div>
+    <div class="col-md-6">
+      <img src="{% static 'img/lm-nna.svg' %}" class="img-responsive">
     </div>
   </div>
+</div>
+<div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      [sometxt]
+    <div class="col-md-12">
+      <img src="{% static 'img/lm-met.svg' %}" class="img-responsive">
     </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      [sometxt]
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      [sometxt] {{request.get_host}}
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <img src="{% static 'img/lm-footer.svg' %}" class="img-responsive">
     </div>
   </div>
 </div>

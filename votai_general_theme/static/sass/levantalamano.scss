@@ -1,0 +1,11 @@
+@import 'lm-colors';
+
+html, body {
+  color: $pink;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+}

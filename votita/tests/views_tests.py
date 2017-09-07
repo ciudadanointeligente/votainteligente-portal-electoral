@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from votita.models import KidsProposal, KidsGathering
 from votita.forms.forms import UpdateGatheringForm, TOPIC_CHOICES
+from popular_proposal.models import PopularProposal
 
 
 USER_PASSWORD = 'secr3t'
@@ -198,6 +199,31 @@ class LandingPage(ProposingCycleTestCaseBase, WizardDataMixin):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'votita/index.html')
+
+
+class KidsProposalViewsTestCase(ProposingCycleTestCaseBase):
+    def test_list_proposals(self):
+        p1 = PopularProposal.objects.create(proposer=self.fiera,
+                                            data=self.data,
+                                            title="Title",
+                                            clasification=u'education')
+        proposal1 = KidsProposal.objects.create(proposer=self.fiera,
+                                                area=self.arica,
+                                                data=self.data,
+                                                title=u'This is a title1',
+                                                clasification=u'education'
+                                                )
+        proposal2 = KidsProposal.objects.create(proposer=self.fiera,
+                                                area=self.arica,
+                                                data=self.data,
+                                                title=u'This is a title2',
+                                                clasification=u'education'
+                                                )
+        url = reverse("votita:list_proposals")
+        response = self.client.get(url)
+        self.assertIn(proposal1, response.context['proposals'].all())
+        self.assertIn(proposal2, response.context['proposals'].all())
+        self.assertNotIn(p1, response.context['proposals'].all())
 
 
 from django.test import override_settings

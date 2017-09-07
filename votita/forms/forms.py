@@ -117,7 +117,7 @@ wizard_forms_fields = [
 
 
 class KidsProposalForm(ModelForm):
-    solution = forms.CharField(required=False)
+    solution = forms.CharField(widget=forms.Textarea, required=False)
     clasification = forms.ChoiceField(choices=TOPIC_CHOICES)
 
     class Meta:

@@ -129,3 +129,10 @@ class GatheringListView(ListView):
     model = KidsGathering
     template_name = "votita/lista_encuentros.html"
     context_object_name = 'gatherings'
+
+
+
+class ProposalListView(ListView):
+    model = KidsProposal
+    template_name = "votita/lista_propuesta.html"
+    context_object_name = 'proposals'

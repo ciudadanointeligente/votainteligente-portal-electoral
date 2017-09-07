@@ -3,7 +3,8 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js" />
+<!-- Inicio _lista_propuestas -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js"></script>
 <script>
 $(function(){
     $('.loadFromUrl').on('show.bs.modal', function (event) {
@@ -80,7 +81,7 @@ $(function(){
     });
 
     </script>
-
+<!-- inicio grid -->
 <div id="grid">
       {% if form.is_filled_search %}
       <h3 class="text-center">Hay {{popular_proposals|length}} propuestas ciudadanas con tus criterios de búsqueda seleccionados</h3>
@@ -120,7 +121,10 @@ $(function(){
     </p>
     {% endblocktrans %}
     {% endfor %}
+  </div>
 </div>
+<!-- fin grid -->
+
 <div class="container" id="raiseToTop">
   <div class="row">
     <div class="col-xs-12 col-md-12">
@@ -128,3 +132,4 @@ $(function(){
     </div>
   </div>
 </div>
+<!-- Fin _lista_propuestas -->

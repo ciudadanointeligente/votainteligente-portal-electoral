@@ -26,7 +26,23 @@ html, body {
   font-size: 12px;
   line-height: 14px;
   margin-top: 10px;
+  border: 3px solid white;
   @extend .small;
+}
+.btn-default{
+  border: 3px solid white;
+  &:hover{
+    background-color: transparent;
+    color: white;
+    border: 3px solid white;
+  }
+  &:focus{
+    @extend .btn-default:hover;
+  }
+  &:active:hover{
+    @extend .btn-default:hover;
+    box-shadow: none;
+  }
 }
 h1{
   font-family: 'Fredoka One', sans-serif;

@@ -1,0 +1,220 @@
+{% extends "votita/base.html" %}
+
+{% load votainteligente_extras %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+{% block extrajs %}
+{% load ogp_tags %}
+
+
+$(function(){
+    $('.loadFromUrl').on('show.bs.modal', function (event) {
+      var anchor = $(event.relatedTarget) // Button that triggered the modal
+      var modal = $(this)
+      var body = modal.find('.modal-body');
+      body.load(anchor.data('url'));
+    })
+    $('[data-toggle="tooltip"]').tooltip();
+});
+{% endblock extrajs %}
+
+{% block title %}- Propuesta - {{proposal.title}}{% endblock title%}
+
+{% block ogp %}
+  {% render_ogp proposal %}
+  <meta property="og:description" content="{{ proposal.data.solution_at_the_end }}">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ciudadanoi">
+  <meta name="twitter:creator" content="{% spaceless %}
+  {% if proposal.proposer.profile.is_organization and proposal.proposer.organization_template.twitter %}
+    {{proposal.proposer.organization_template.twitter|extract_twitter_username}}
+  {% else %}
+    @ciudadanoi
+  {% endif %}
+  {% endspaceless %}">
+  <meta name="twitter:title" content="¡Ingresa a votainteligente.cl y apoya esta propuesta!">
+  <meta name="twitter:description" content="{% spaceless %}
+  {% if proposal.proposer.profile.is_organization and proposal.proposer.organization_template.twitter %}
+  {{proposal.proposer.organization_template.twitter|extract_twitter_username}} propone {{ proposal.title }}
+  {% else %}
+  {{ proposal.title }}
+  {% endif %}
+  {% endspaceless %}">
+  <meta name="twitter:image" content="{{proposal.ogp_image}}">
+{% endblock ogp %}
+
+{% block content %}
+
+
+<div class="container print_hidden">
+  <ol class="breadcrumb">
+    <li><a href="{% url 'home' %}"><i class="fa fa-home" aria-label="Inicio"></i></a></li>
+    <li><a href="{% url 'votita:list_proposals' %}">Propuestas</a></li>
+    <li class="active">{{proposal.title}}</li>
+  </ol>
+</div>
+
+<section class="votita-love-{{proposal.clasification}}">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 detalle-propuesta detail">
+        <span class="label label-default">{{proposal.data.clasification}}</span>
+
+        <h1>{{proposal.title}}</h1>
+        <p class="text-light small">
+            Esta es una propuesta de {{proposal.gathering.name}}
+        </p>
+      </div><!-- col-md-9 -->
+    </div><!-- row -->
+    <div class="row">
+      <!-- propuesta -->
+      <div class="col-md-9 detalle-propuesta">
+        <ul class="list-inline proposal-tools">
+          <li class="hidden-xs hidden-sm">
+            <i class="fa fa-print" onclick="print()"></i>
+          </li>
+          <li>
+            <i class="fa fa-font"></i>
+          </li>
+          <li>
+            <i class="fa fa-plus" onclick="UpSize(2)"></i>
+          </li>
+          <li>
+            <i class="fa fa-minus" onclick="DownSize(2)"></i>
+          </li>
+        </ul>
+        <div class="line-space"></div>
+        <script>
+          function UpSize(size) {
+            var fontSizeMax = 20;
+            var FontSizeActual = parseInt($('#proposal-details p').css('font-size'));
+            var fontNewSize = FontSizeActual+size;
+            if(fontNewSize <= fontSizeMax)
+              $('#proposal-details p').css('font-size', fontNewSize+'px');
+          }
+          function DownSize(size) {
+            var fontSizeMin = 14;
+            var FontSizeActual = parseInt($('#proposal-details p').css('font-size'));
+            var fontNewSize = FontSizeActual-size;
+            if(fontNewSize >= fontSizeMin)
+              $('#proposal-details p').css('font-size', fontNewSize+'px');
+          }
+        </script>
+
+        <!-- detalle propueta -->
+        {% if not user|is_candidate %}
+          {% include "votita/plantillas/detalle_propuesta.html" with proposal=proposal %}
+        {% else %}
+          {% with user.candidacies.first as candidacy %}
+          {% if candidacy.candidate|is_candidate_for:proposal.area %}
+            {% include "votita/plantillas/detalle_propuesta.html" with proposal=proposal candidate=candidacy.candidate %}
+          {% else %}
+            {% include "votita/plantillas/detalle_propuesta.html" with proposal=proposal %}
+          {% endif %}
+          {% endwith %}
+        {% endif %}
+        <!-- fin detalle propuesta -->
+
+        {% include "votita/gathering_detail.html" with gathering=proposal.gathering %}
+
+        <p class="llamado">
+          Si te gustó ¡apóyala y compártela! Así todos/as tendremos voz en las elecciones de este año.
+          <br>
+          Si por el contrario, encuentras que esta propuesta viola los "<a href="#" data-toggle="modal" data-target="#terms_and_conditions">Términos y Condiciones</a>" para la creación de una propuesta, ayúdanos <a class="reportar_propuesta">reportando</a> esta propuesta.
+        </p>
+
+        <div class="modal fade" id="terms_and_conditions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Términos y Condiciones</h4>
+              </div>
+              <div class="modal-body">
+                {% include 'popular_proposal/terms_and_conditions.html' %}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <script>
+         $(document).ready(function(){
+            $('.reportar_propuesta').attr('href','mailto:'+'vota-2017'+'@'+'ciudadanointeligente.org?'+'Subject=Propuesta {{proposal.id}} no debe estar en Votainteligente'+ '&body=La propuesta con título {{proposal.title}} cuyo id es {{proposal.id}} NO debe estar en la plataforma VotaInteligente.cl por ...\n La propuesta la pueden visitar en https://votainteligente.cl{{proposal.get_absolute_url}}');
+         })
+        </script>
+      </div><!-- col-md-9 -->
+
+      <div class="col-md-3 hidden-sm hidden-xs text-center print_hidden">
+        <label>Apoya esta propuesta</label>
+        <p class="apoyo-ciudadano">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}} <i class="fa fa-heart blue-light-txt" aria-hidden="true"></i></span> apoyo(s)</p>
+        <div class="share-detail">
+          {% include 'popular_proposal/_likers.html' with proposal=proposal next_url=request.path  avoid_counter=True %}
+        </div>
+        <hr>
+        <label>Comparte esta propuesta</label>
+        <div class="share-detail">
+          {% include 'popular_proposal/_share.html' with popular_proposal=proposal next_url=request.path %}
+        </div>
+        {% if proposal.sponsoring_orgs.all %}
+        <hr>
+          <label>Organizaciones que apoyan esta propuesta</label>
+          <ul class="list-inline">
+            {% for org in proposal.sponsoring_orgs %}
+            <li>
+              <a href="{% url 'organization_profiles:home' slug=org.username %}" target="_blank">
+                {% if org.organization_template.logo %}
+                    {% thumbnail org.organization_template.logo "300x300" crop="center" as im %}
+                    <a href="{{org.organization_template.get_absolute_url}}">
+                      <img src="{{im.url}}" alt="{{org.organization_template.title }}" title="{{org.organization_template.title }}" border="0" class="img-responsive img-circle img-candidato-small">
+                    </a>
+                    {% endthumbnail %}
+                  {% else %}
+                    <img src="{% static 'img/org-default.png' %}" alt="{{org.organization_template.title }}" title="{{org.organization_template.title }}" class="img-responsive img-circle img-candidato-small"></a>
+                {% endif %}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+
+          {% endif %}
+          {% include 'popular_proposal/_likers_candidatos.html' with proposal=proposal cargo='Presidenta o Presidente'%}
+          {% include 'popular_proposal/_likers_candidatos.html' with proposal=proposal cargo='Senadora o Senador'%}
+           {% include 'popular_proposal/_likers_candidatos.html' with proposal=proposal cargo='Diputada o Diputado'%}
+
+      </div><!-- col-md-3 -->
+    </div><!-- row -->
+  </div><!-- container -->
+</section>
+
+<div class="apoya-comparte hidden-md hidden-lg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-2">
+        <div class="apoyo-contador">
+          <p class="apoyo-ciudadano">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyos</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="share-detail">
+          {% include 'popular_proposal/_share.html' with proposal=proposal next_url=request.path %}
+          {% include 'popular_proposal/_likers.html' with proposal=proposal next_url=request.path avoid_counter=True %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% with "supportProposal"|add:proposal.slug as modalid %}
+  {% include 'modal_like_proposal.html' with modalId=modalid title='Apoya una propuesta' url=like_this_proposal_url next_url=request.path proposal=proposal %}
+{% endwith %}
+
+{% endblock content %}
+
+{% block extrafooter %}
+{% endblock extrafooter %}

@@ -1,0 +1,18 @@
+<div class="container">
+  <h2 class="page-header">Propuestas de <small>{{gathering.name}}</small></h2>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Propuestas generadas</h3>
+      <ul>
+        {% for proposal in gathering.proposals.all %}
+        <li>{{ proposal }} en la categoría {{ proposal.clasification }} y el link es <a href="{{proposal.get_absolute_url}}">Link</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% if gathering.image %}
+  <div class="container-fluid">
+    <div class="photo-gathering" style="background-image: url({{gathering.image.url}}); background-position: center; background-repeat: no-repeat; height: 320px;"></div>
+  </div>
+  {% endif %}
+</div>

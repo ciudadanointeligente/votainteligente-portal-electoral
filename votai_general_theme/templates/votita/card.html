@@ -22,7 +22,7 @@
     </div>
     {% endcomment %}
 
-    <h4><a href="{% url 'popular_proposals:detail' slug=proposal.slug %}">{{proposal.title|truncatechars:100 }}</a></h4>
+    <h4><a href="{{proposal.get_absolute_url}}">{{proposal.title|truncatechars:100 }}</a></h4>
     <p class="intro">{{proposal.data.solution_at_the_end|linebreaksbr|truncatechars:150}}</p>
   </div>
 

@@ -16,8 +16,20 @@ html, body {
   text-transform: uppercase;
   letter-spacing: 2px;
 }
+.img-responsive{
+  display: inline;
+}
+.btn{
+  border-radius: 20px;
+  border: none;
+  padding: 10px 18px;
+  font-size: 12px;
+  line-height: 14px;
+  margin-top: 10px;
+  @extend .small;
+}
 
-/*MAIN SECTIONS*/
+/*MAIN CONTAINERS*/
 .color{
   color: white;
 }
@@ -50,8 +62,16 @@ html, body {
   min-height: 46px;
   margin-top: -48px;
 }
+.special-position{
+  position: relative;
+  top: 100px;
+}
 
 /*HOME 0*/
+.logo-title{
+  position: relative;
+  top: 100px;
+}
 #banner{
   min-height: 400px;
 }

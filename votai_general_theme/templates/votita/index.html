@@ -8,10 +8,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <img src="{% static 'img/lm-banner.svg' %}" class="img-responsive" alt="Levanta la mano">
+        <div class="logo-title"><img src="{% static 'img/lm-banner.svg' %}" class="img-responsive" alt="Levanta la mano"></div>
       </div>
       <div class="col-md-6">
-        <img src="{% static 'img/lm-nna.svg' %}" class="img-responsive">
+        <img src="{% static 'img/lm-nna.svg' %}" class="img-responsive special-position">
       </div>
     </div>
   </div>
@@ -25,8 +25,9 @@
         <h2>¿Qué es?</h2>
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu</p>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 text-center special-position">
         <img src="{% static 'img/lm-met.svg' %}" class="img-responsive">
+        <div><a class="btn btn-default" href="{% static 'material-ciudadano/metodologia-levantalamano.pdf' %}" target="_blank" onclick="ga('send', 'event', 'home-manual-metodologia.pdf', 'click')">Descarga la metodología</a></div>
       </div>
     </div>
   </div>

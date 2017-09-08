@@ -4,28 +4,44 @@
 {% block title %}- Portada{% endblock title %}
 
 {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <img src="{% static 'img/lm-banner.svg' %}" class="img-responsive">
-    </div>
-    <div class="col-md-6">
-      <img src="{% static 'img/lm-nna.svg' %}" class="img-responsive">
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <img src="{% static 'img/lm-met.svg' %}" class="img-responsive">
+<section id="banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{% static 'img/lm-banner.svg' %}" class="img-responsive" alt="Levanta la mano">
+      </div>
+      <div class="col-md-6">
+        <img src="{% static 'img/lm-nna.svg' %}" class="img-responsive">
+      </div>
     </div>
   </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <img src="{% static 'img/lm-footer.svg' %}" class="img-responsive">
+</section>
+<section class="purpleline">
+</section>
+<section id="que-es" class="color purple">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>¿Qué es?</h2>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu</p>
+      </div>
+      <div class="col-md-6">
+        <img src="{% static 'img/lm-met.svg' %}" class="img-responsive">
+      </div>
     </div>
   </div>
-</div>
+</section>
+<section class="yellowline">
+</section>
+<section id="contact" class="color yellow">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        Como estai
+      </div>
+    </div>
+  </div>
+</section>
+<section class="greenline">
+</section>
 {% endblock content %}

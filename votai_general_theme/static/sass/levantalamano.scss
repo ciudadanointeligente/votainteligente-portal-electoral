@@ -1,11 +1,91 @@
 @import 'lm-colors';
 
+/*BASICS*/
 html, body {
-  color: $pink;
+  color: $main-text;
   height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Work Sans', sans-serif;
   font-size: 14px;
-  line-height: 24px;
+  line-height: 20px;
+}
+.small{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/*MAIN SECTIONS*/
+.color{
+  color: white;
+}
+.purple{
+  background-color: $purple;
+}
+.blue{
+  background-color: $blue;
+}
+.green{
+  background-color: $green;
+}
+.yellow{
+  background-color: $yellow;
+}
+.pink{
+  background-color: $pink;
+}
+.red{
+  background-color: $red;
+}
+.purpleline{
+  background-image: url("../img/lm-purpleline.svg");
+  background-repeat: no-repeat;
+  min-height: 28px;
+}
+.yellowline{
+  background-image: url("../img/lm-yellowline.svg");
+  background-repeat: no-repeat;
+  min-height: 46px;
+  margin-top: -48px;
+}
+
+/*HOME 0*/
+#banner{
+  min-height: 400px;
+}
+#que-es{
+  padding: 30px 0 60px;
+}
+#contact{
+  padding: 30px 0 240px;
+}
+
+/*FOOTER*/
+.greenline{
+  background-image: url("../img/lm-footer.svg");
+  background-repeat: no-repeat;
+  min-height: 144px;
+  margin-top: -148px;
+}
+footer{
+  background-color: $green;
+  min-height: 170px;
+  font-size: 10px;
+  color: white;
+  padding: 60px 0 30px;
+  a{
+    color: white;
+    font-size: 14px;
+    &:hover{
+      color: white;
+    }
+  }
+}
+.footer-logo{
+  margin: 20px 0;
+}
+.redes{
+  margin: 45px 0;
 }

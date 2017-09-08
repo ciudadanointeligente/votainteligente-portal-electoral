@@ -1,24 +1,50 @@
 {% extends "votita/base.html" %}
+{% load staticfiles %}
 
 {% block title %}- Portada{% endblock title %}
 
 {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      [bigbanner]
+<section id="banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="logo-title"><img src="{% static 'img/lm-banner.svg' %}" class="img-responsive" alt="Levanta la mano"></div>
+      </div>
+      <div class="col-md-6">
+        <img src="{% static 'img/lm-nna.svg' %}" class="img-responsive special-position">
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      [sometxt]
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      [sometxt]
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      [sometxt] {{request.get_host}}
+</section>
+<section class="purpleline">
+</section>
+<section id="que-es" class="color purple">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>¿Qué es?</h2>
+        <p>La formación ciudadana debe iniciarse desde la infancia y consolidarse durante la adolescencia. Por ello, desde Fundación Ciudadano Inteligente y el Fondo de las Naciones Unidas para la Infancia, UNICEF Chile, proponemos la iniciativa “Levanta la mano” como una alternativa para abrir el debate con niños, niñas y adolescentes, de manera que analicen y discutan, desde su perspectiva y vivencias, los problemas y desafíos que enfrenta actualmente Chile, y las posibles soluciones que pueden llevarse a cabo.</p>
+        <p><b>Te invitamos a descargar la metodología y generar un encuentro con tu curso o grupo</b></p>
+      </div>
+      <div class="col-md-6 text-center special-position">
+        <img src="{% static 'img/lm-met.svg' %}" class="img-responsive">
+        <div><a class="btn btn-default" href="{% static 'materiales/metodologia-levantalamano.pdf' %}" target="_blank" onclick="ga('send', 'event', 'home-metodologia.pdf', 'click')">Descarga la metodología</a></div>
+      </div>
     </div>
   </div>
-</div>
+</section>
+<section class="yellowline">
+</section>
+<section id="contact" class="color yellow">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Próximamente</h2>
+        <p>Próximamente podrás subir las propuestas de tu encuentro y ver todas las propuestas que otros niños, niñas y adolescentes han generado</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="greenline">
+</section>
 {% endblock content %}

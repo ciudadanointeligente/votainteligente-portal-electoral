@@ -28,6 +28,13 @@ html, body {
   margin-top: 10px;
   @extend .small;
 }
+h1{
+  font-family: 'Fredoka One', sans-serif;
+  letter-spacing: 2px;
+}
+h2{
+  @extend h1;
+}
 
 /*MAIN CONTAINERS*/
 .color{

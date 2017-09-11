@@ -9,7 +9,7 @@ from popolo.models import Person
 from candidator.comparer import InformationHolder
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.contrib.sites.models import Site
-
+from constance.test import override_config
 
 class CandidateInElectionsViewsTestCase(TestCase):
     def setUp(self):
@@ -39,6 +39,7 @@ class CandidateInElectionsViewsTestCase(TestCase):
         self.assertEqual(response.context['election'], self.coquimbo)
         self.assertEqual(response.context['candidate'], candidate)
 
+    @override_config(CANDIDATE_ABSOLUTE_URL_USING_AREA=False)
     def test_candidate_get_absolute_url(self):
         candidate = self.coquimbo.candidates.get(id=1)
         candidate.slug = self.tarapaca.candidates.all()[0].id
@@ -49,6 +50,23 @@ class CandidateInElectionsViewsTestCase(TestCase):
             'slug': candidate.id
         })
         self.assertEquals(candidate.get_absolute_url(), url_2)
+
+    def test_candidate_get_absolute_url_with_area(self):
+        candidate = self.coquimbo.candidates.get(id=1)
+        url = reverse('candidate_detail_view_area', kwargs={
+            'area_slug': self.tarapaca.area.id,
+            'slug': candidate.id
+        })
+        self.assertEquals(candidate.get_absolute_url(), url)
+        url_2 = reverse('candidate_detail_view', kwargs={
+            'election_slug': self.coquimbo.slug,
+            'slug': candidate.id
+        })
+
+        response = self.client.get(candidate.get_absolute_url())
+        self.assertEquals(response.status_code, 200)
+        response1 = self.client.get(url_2)
+        # self.assertEquals(response, response1)
 
     def test_url_is_reachable(self):
         url = reverse('candidate_detail_view', kwargs={

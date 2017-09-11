@@ -135,19 +135,31 @@ class CandidateDetailView(DetailView):
 
     def get_queryset(self):
         queryset = super(CandidateDetailView, self).get_queryset()
-        candidates_per_election_key = u'candidates_for_' + self.kwargs['election_slug']
+        candidates_per_election_key = u'candidates_for_' + self.get_cache_post_fix()
         queryset_ = cache.get(candidates_per_election_key)
         if queryset_ is None:
-            queryset_ = queryset.filter(elections__slug=self.kwargs['election_slug'])
+
+            if 'election_slug' in self.kwargs.keys():
+                queryset_ = queryset.filter(elections__slug=self.kwargs['election_slug'])
+            if 'area_slug' in self.kwargs.keys():
+                queryset_ = queryset.filter(elections__area__id=self.kwargs['area_slug'])
             cache.set(candidates_per_election_key,
                       queryset_,
                       60 * config.INFINITE_CACHE
                       )
 
         return queryset_
+    def get_cache_post_fix(self):
+        cache_key = ""
+        kwarg_keys = self.kwargs.keys()
+        kwarg_keys.remove('slug')
+        for k in kwarg_keys:
+            cache_key += self.kwargs.get(k)
+        cache_key += self.kwargs['slug']
+        return cache_key
 
     def get_object(self, queryset=None):
-        cache_key = 'candidate_' + self.kwargs['election_slug'] + self.kwargs['slug']
+        cache_key = 'candidate_' + self.get_cache_post_fix()
         candidate = cache.get(cache_key)
         if candidate is None:
             candidate = super(CandidateDetailView, self).get_object(queryset)

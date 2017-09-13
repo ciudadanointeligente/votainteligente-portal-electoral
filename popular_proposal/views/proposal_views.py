@@ -60,9 +60,9 @@ class ProposalCreationView(FormView):
     form_class = ProposalForm
 
     @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         self.area = get_object_or_404(Area, id=self.kwargs['slug'])
-        return super(ProposalCreationView, self).dispatch(*args, **kwargs)
+        return super(ProposalCreationView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         kwargs = super(ProposalCreationView, self).get_context_data(**kwargs)
@@ -100,14 +100,14 @@ class SubscriptionView(FormView):
     form_class = SubscriptionForm
 
     @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         self.proposal = get_object_or_404(PopularProposal,
                                           id=self.kwargs['pk'])
         if self.request.method == 'GET':
             self.next_url = self.request.GET.get('next', None)
         elif self.request.method == 'POST':
             self.next_url = self.request.POST.get('next', None)
-        return super(SubscriptionView, self).dispatch(*args, **kwargs)
+        return super(SubscriptionView, self).dispatch(request, *args, **kwargs)
 
     def get_form_kwargs(self):
         kwargs = super(SubscriptionView, self).get_form_kwargs()
@@ -193,8 +193,8 @@ class ProposalFilterMixin(object):
     def get_queryset(self):
         return self._get_filterset().qs
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(ProposalFilterMixin, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(ProposalFilterMixin, self).get_context_data(**kwargs)
         context['form'] = self.get_form()
         return context
 #    def get_queryset(self):
@@ -226,7 +226,7 @@ class CommitView(FormView):
     form_class = CandidateCommitmentForm
 
     @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         if not config.PROPOSALS_ENABLED:
             return HttpResponseNotFound()
         self.proposal = get_object_or_404(PopularProposal,
@@ -249,7 +249,7 @@ class CommitView(FormView):
             if self.proposal.area not in areas:
                 return HttpResponseNotFound()
             # The former can be refactored
-        return super(CommitView, self).dispatch(*args, **kwargs)
+        return super(CommitView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         self.commitment = form.save()
@@ -296,10 +296,10 @@ class CommitmentDetailView(DetailView):
         else:
             return 'popular_proposal/commitment/detail_no.html'
 
-    def dispatch(self, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         self.proposal = get_object_or_404(PopularProposal, slug=self.kwargs['proposal_slug'])
         self.candidate = get_object_or_404(Candidate, id=self.kwargs['candidate_slug'])
-        return super(CommitmentDetailView, self).dispatch(*args, **kwargs)
+        return super(CommitmentDetailView, self).dispatch(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
         return get_object_or_404(self.model, candidate=self.candidate, proposal=self.proposal)

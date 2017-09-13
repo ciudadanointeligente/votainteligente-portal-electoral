@@ -39,8 +39,8 @@ class IndexView(LoginRequiredMixin, RedirectView):
 class MyProposalsView(LoginRequiredMixin, TemplateView):
     template_name = 'backend_citizen/my_proposals.html'
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(MyProposalsView, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(MyProposalsView, self).get_context_data(**kwargs)
         context['temporary_proposals'] = ProposalTemporaryData.objects.filter(proposer=self.request.user).order_by('-updated')
         return context
 
@@ -57,8 +57,8 @@ class PopularProposalTemporaryDataUpdateView(LoginRequiredMixin, FormView):
         kwargs['proposer'] = self.request.user
         return kwargs
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(PopularProposalTemporaryDataUpdateView, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(PopularProposalTemporaryDataUpdateView, self).get_context_data(**kwargs)
         context['temporary_data'] = self.temporary_data
         return context
 
@@ -142,8 +142,8 @@ class MySupportsView(LoginRequiredMixin, ListView):
 class MyStats(LoginRequiredMixin, TemplateView):
     template_name = 'backend_citizen/stats.html'
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(MyStats, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(MyStats, self).get_context_data(**kwargs)
         stats = {}
         proposals = PopularProposal.objects.filter(proposer=self.request.user)
         for proposal in proposals:

@@ -101,8 +101,8 @@ class CreateProposalsForGathering(VotitaLoginRequiredMixin, UpdateView):
         qs = qs.filter(proposer=self.request.user)
         return qs
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(CreateProposalsForGathering, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(CreateProposalsForGathering, self).get_context_data(**kwargs)
 
         if self.request.POST:
             context['formset'] = ProposalFormSet(self.request.POST, instance=self.object)

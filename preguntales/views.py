@@ -29,10 +29,10 @@ class ElectionAskCreateView(CreateView):
     model = Message
     form_class = MessageForm
 
-    def dispatch(self, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         if 'slug' in kwargs:
             self.election = Election.objects.get(slug = kwargs['slug'])
-        return super(ElectionAskCreateView, self).dispatch(*args, **kwargs)
+        return super(ElectionAskCreateView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(ElectionAskCreateView, self).get_context_data(**kwargs)
@@ -186,4 +186,3 @@ class ConfirmationView(DetailView):
         message = get_object_or_404(queryset, confirmation__key=self.key)
         message.confirm()
         return message
-

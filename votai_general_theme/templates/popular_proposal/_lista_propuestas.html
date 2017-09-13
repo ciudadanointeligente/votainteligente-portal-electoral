@@ -23,7 +23,7 @@ $(function(){
     {% if form.is_filled_search %}
     <button class="hidden-md hidden-lg btn btn-link btn-block" type="button" data-toggle="collapse" data-target=".filter-mobile" aria-expanded="false" aria-controls="filter-mobile"><i class="fa fa-filter"></i> Mostrar filtros</button>
     {% endif %}
-		<form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form" class="hidden-md hidden-lg filter-mobile {% if form.is_filled_search %}collapse{% endif %}">
+    <form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form" class="hidden-md hidden-lg filter-mobile {% if form.is_filled_search %}collapse{% endif %}">
       <div class="row">
         <div class="col-md-3">{% bootstrap_field form.text %}</div>
         <div class="col-md-3">{% bootstrap_field form.clasification %}</div>
@@ -43,7 +43,7 @@ $(function(){
         </div>
         <!-- end mobile version -->
       </div>
-		</form>
+    </form>
 
     <form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form" class="hidden-xs hidden-sm">
       <div class="row">

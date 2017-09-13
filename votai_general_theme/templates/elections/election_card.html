@@ -1,31 +1,29 @@
 {% load thumbnail %}
 {% load static %}
 
-<div class="contenedorDestacado fondo-blanco">
-  <h3>{{election.name}}</h3>
-    <div class="containerAccordion">
-      <script type="text/javascript">
-      jQuery(document).ready(function($){
-        screenwidth = $(".containerAccordion").width();
-        $('#gridaccordion-{{election.id}}').gridAccordion({
-          width:screenwidth, height:250, columns:{{ election.candidates.all|length }},
-          distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true
-        });
-      });
-      </script>
-      <ul class="accordion" id="gridaccordion-{{election.id}}">
-        {% for candidate in election.candidates.all %}
-        <li>
-            {% if candidate.image %}
-            {% thumbnail candidate.image "x300" as im %}
-              <a href="{{ candidate.get_absolute_url}}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
-            {% endthumbnail %}
-            {% else %}
-              <a href="{{ candidate.get_absolute_url}}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
-            {% endif %}
-            <div class="caption">{{ candidate.name }}</div>
-        </li>
-        {% endfor %}
-      </ul>
+<div class="container" itemscope itemtype="http://schema.org/Person">
+  <h2>{{election.name}}</h2>
+  <div class="row">
+    {% for candidate in election.candidates.all %}
+    <div class="col-md-3">
+      <div class="panel-heading">
+        {% if candidate.image %}
+        {% thumbnail candidate.image "300x300" crop="center" as im %}
+          <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive img-circle" itemprop="image" /></a>
+        {% endthumbnail %}
+        {% else %}
+          <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle"></a>
+        {% endif %}
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}" itemprop="name"><h3>{{ candidate.name }}</h3></a>
+        </div>
+      </div>
     </div>
+    {% if forloop.counter|divisibleby:4 %}
+    </div><div class="row">
+    {% endif %}
+    {% endfor %}
+  </div>
 </div>

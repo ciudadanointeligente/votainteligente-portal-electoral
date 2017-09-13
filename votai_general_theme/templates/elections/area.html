@@ -7,6 +7,8 @@
 {% load votainteligente_extras %}
 {% load cache %}
 
+{% block title %}- Candidatos para {{area}}{% endblock title %}
+
 {% block extrajs %}
 $(function(){
     $('.loadFromUrl').on('show.bs.modal', function (event) {
@@ -24,19 +26,44 @@ $(function(){
 
 {% block ogp %}
   {% render_ogp area %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ciudadanoi">
+  <meta name="twitter:creator" content="@ciudadanoi">
+  <meta name="twitter:title" content="¡Ingresa a votainteligente.cl para conocer los candidatos de {{area}}!">
+  <meta name="twitter:description" content="Conoce a los candidatos a Senador y Diputado por {{area}}">
+  <meta name="twitter:image" content="https://{% url_domain %}{% static 'img/logo_vi_og.jpg' %}">
 {% endblock ogp %}
 
 {% block description %}Todos los candidatos para estas elecciones.{% endblock description %}
 {% block keywords %},{{area.name}}{% endblock keywords %}
 
 {% block content %}
-<h1>Todos los candidatos para {{area}}</h1>
+<div id="buscador-area" class="container-fluid navbar-fixed-top" style="top: 55px; padding: 15px 0px; background-color: #233346; display: none;">
+  <div class="container">
+    {% include '_election_search_form.html' %}
+    <script>
+      $(function(){
+        window.onscroll = function (e) {
+          if( document.documentElement.scrollTop >= 100 ) {
+            $('#buscador-area').fadeIn("slow");
+          }
+          if( document.documentElement.scrollTop < 100 ) {
+            $('#buscador-area').fadeOut("slow");
+          }
+        }
+      });
+    </script>
+  </div>
+</div>
+<div class="container">
+  <h1>Candidatos para {{area}}</h1>
+</div>
 {% for p in area.parents %}
   {% with p.elections.first as election %}
     {% if election %}
       {% display_election_card election %}
     {% endif %}
-  {% endwith %}
+    {% endwith %}
 {% endfor %}
 
 {% endblock content %}

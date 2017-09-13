@@ -46,9 +46,28 @@
 			<p>Candidata/o {% if commitment.candidate.election.position %}a {{commitment.candidate.election.position|title }}{% endif %} por {{commitment.proposal.area}}.</p>
 
 		</div>
+  </div>
+
+    {% if user|manages_this:commitment.candidate %}
+    <div class="container text-center">
+      <h3>Hazlo público!</h3>
+      <p>Cuéntales a tus futuros electores el porqué rechazaste esta propuesta! Te queremos honesto y directo frente a los ciudadanos.</p>
+      <ul class="list-inline">
+        <li><a href="#" onclick="window.open('https://twitter.com/share?text=He rechazado la propuesta ciudadana: {{commitment.proposal.title}}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
+        <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
+      </ul>
+    </div>
+    {% else %}
+    <div class="container text-center">
+      <h3>Comunícalo!</h3>
+      <p>Pregúntale el porqué de su determinación a rechazar esta propuesta ciudadana!</p>
+      <ul class="list-inline">
+        <li><a href="#" onclick="window.open('https://twitter.com/share?text=Hey {{commitment.candidate.name}} porqué rechazaste la propuesta ciudadana: {{commitment.proposal.title}}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
+        <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
+      </ul>
+    </div>
+    {% endif %}
 
 
-
-	</div>
 </div>
 {% endblock content %}

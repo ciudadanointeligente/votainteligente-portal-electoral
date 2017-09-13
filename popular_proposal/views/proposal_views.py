@@ -193,8 +193,8 @@ class ProposalFilterMixin(object):
     def get_queryset(self):
         return self._get_filterset().qs
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(ProposalFilterMixin, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(ProposalFilterMixin, self).get_context_data(**kwargs)
         context['form'] = self.get_form()
         return context
 #    def get_queryset(self):

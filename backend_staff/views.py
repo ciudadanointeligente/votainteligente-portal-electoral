@@ -49,8 +49,8 @@ class PopularProposalCommentsView(FormView):
         kwargs['moderator'] = self.request.user
         return kwargs
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(PopularProposalCommentsView, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(PopularProposalCommentsView, self).get_context_data(**kwargs)
         context['temporary_data'] = self.temporary_data
         return context
 
@@ -69,8 +69,8 @@ class ModeratePopularProposalView(DetailView):
     def dispatch(self, request, *args, **kwargs):
         return super(ModeratePopularProposalView, self).dispatch(request, *args, **kwargs)
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(ModeratePopularProposalView, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(ModeratePopularProposalView, self).get_context_data(**kwargs)
         pk = self.kwargs.pop('pk')
         temporary_data = get_object_or_404(ProposalTemporaryData, pk=pk)
 
@@ -138,8 +138,8 @@ class AddContactAndSendMailView(FormView):
     def get_success_url(self):
         return self.candidate.get_absolute_url()
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(AddContactAndSendMailView, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(AddContactAndSendMailView, self).get_context_data(**kwargs)
         context['candidate'] = self.candidate
         return context
 

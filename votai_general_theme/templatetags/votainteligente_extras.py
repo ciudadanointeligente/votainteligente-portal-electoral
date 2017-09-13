@@ -371,3 +371,7 @@ def organization_logos():
 @register.inclusion_tag('elections/election_card.html', takes_context=True)
 def display_election_card(context, election):
     return {'election': election}
+
+@register.simple_tag(takes_context=True)
+def display_proposal_card(context, proposal):
+    return proposal.display_card(context)

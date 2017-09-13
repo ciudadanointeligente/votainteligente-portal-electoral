@@ -20,7 +20,7 @@
           <div class="row">
             {% for proposal in proposals %}
             <div class="col-md-4">
-              {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
+              {% display_proposal_card proposal %}
             </div>
             {% if forloop.counter|divisibleby:3 and not forloop.last%}
             </div></div><div class="item"><div class="row">

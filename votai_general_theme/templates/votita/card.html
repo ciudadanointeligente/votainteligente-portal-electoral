@@ -1,1 +1,42 @@
-<h4>{{proposal}}</h4>
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load thumbnail %}
+<!--InicioCard-->
+<div class="post propuesta votita-love-{{proposal.clasification}}">
+<!-- Hola Liss esta es la tarjeta de las propuestas del votita, se verán en el vota igual-->
+  <div class="propuesta-content">
+    <span class="label label-default">{{proposal.clasification}}</span>
+    <!-- Estado de una propuesta para el alcalde de esa comuna -->
+    <div class="pull-right">
+      {% include 'popular_proposal/_estado_para_candidato.html' with proposal=proposal next_url=popular_proposals_home %}
+    </div>
+    {% comment %}
+    <div class="small text-light">Propuesta generada en
+      {% if not is_embedded and proposal.area %}
+
+        <a href="{% url 'area' slug=proposal.generated_at.id %}">
+      {% endif %}
+        {{proposal.generated_at}}
+      {% if not is_embedded %}</a>{% endif %}
+    </div>
+    {% endcomment %}
+
+    <h4><a href="{{proposal.get_absolute_url}}">{{proposal.title|truncatechars:100 }}</a></h4>
+    <p class="intro">{{proposal.data.solution_at_the_end|linebreaksbr|truncatechars:150}}</p>
+  </div>
+
+
+  <div class="share-card text-center">
+    <div class="text-center"></div>
+    {% url 'popular_proposals:home' as popular_proposals_home %}
+    {% include 'popular_proposal/_likers.html' with proposal=proposal area=area next_url=popular_proposals_home  support_button_extra_class="pull-left" %}
+    {% comment %}
+    <div class="share">
+      {% include 'popular_proposal/_share.html' with popular_proposal=proposal %}
+    </div>
+    {% endcomment %}
+    <a href="{% url 'popular_proposals:detail' slug=proposal.slug %}" class="btn btn-blue pull-right">Leer más</a>
+  </div>
+</div>
+<!--FinCard-->

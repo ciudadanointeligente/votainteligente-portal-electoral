@@ -1,0 +1,134 @@
+@import 'lm-colors';
+
+/*BASICS*/
+html, body {
+  color: $main-text;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+.small{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.img-responsive{
+  display: inline;
+}
+.btn{
+  border-radius: 20px;
+  border: none;
+  padding: 10px 18px;
+  font-size: 12px;
+  line-height: 14px;
+  margin-top: 10px;
+  border: 3px solid white;
+  @extend .small;
+}
+.btn-default{
+  border: 3px solid white;
+  &:hover{
+    background-color: transparent;
+    color: white;
+    border: 3px solid white;
+  }
+  &:focus{
+    @extend .btn-default:hover;
+  }
+  &:active:hover{
+    @extend .btn-default:hover;
+    box-shadow: none;
+  }
+}
+h1{
+  font-family: 'Fredoka One', sans-serif;
+  letter-spacing: 2px;
+}
+h2{
+  @extend h1;
+}
+
+/*MAIN CONTAINERS*/
+.color{
+  color: white;
+}
+.purple{
+  background-color: $purple;
+}
+.blue{
+  background-color: $blue;
+}
+.green{
+  background-color: $green;
+}
+.yellow{
+  background-color: $yellow;
+}
+.pink{
+  background-color: $pink;
+}
+.red{
+  background-color: $red;
+}
+.purpleline{
+  background-image: url("../img/lm-purpleline.svg");
+  background-repeat: no-repeat;
+  min-height: 28px;
+}
+.yellowline{
+  background-image: url("../img/lm-yellowline.svg");
+  background-repeat: no-repeat;
+  min-height: 46px;
+  margin-top: -48px;
+}
+.special-position{
+  position: relative;
+  top: 100px;
+}
+
+/*HOME 0*/
+.logo-title{
+  position: relative;
+  top: 100px;
+}
+#banner{
+  min-height: 400px;
+}
+#que-es{
+  padding: 30px 0 60px;
+}
+#contact{
+  padding: 30px 0 240px;
+}
+
+/*FOOTER*/
+.greenline{
+  background-image: url("../img/lm-footer.svg");
+  background-repeat: no-repeat;
+  min-height: 144px;
+  margin-top: -148px;
+}
+footer{
+  background-color: $green;
+  min-height: 170px;
+  font-size: 10px;
+  color: white;
+  padding: 60px 0 30px;
+  a{
+    color: white;
+    font-size: 14px;
+    &:hover{
+      color: white;
+    }
+  }
+}
+.footer-logo{
+  margin: 20px 0;
+}
+.redes{
+  margin: 45px 0;
+}

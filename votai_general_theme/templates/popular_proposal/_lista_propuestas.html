@@ -3,7 +3,8 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js" />
+<!-- Inicio _lista_propuestas -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js"></script>
 <script>
 $(function(){
     $('.loadFromUrl').on('show.bs.modal', function (event) {
@@ -80,7 +81,7 @@ $(function(){
     });
 
     </script>
-
+<!-- inicio grid -->
 <div id="grid">
       {% if form.is_filled_search %}
       <h3 class="text-center">Hay {{popular_proposals|length}} propuestas ciudadanas con tus criterios de búsqueda seleccionados</h3>
@@ -105,7 +106,12 @@ $(function(){
       {% endif %}
     <div id="posts">
       {% for proposal in popular_proposals %}
+        {% comment %}
         {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal is_embedded=is_embedded proposals_list=True %}
+        {% endcomment %}
+        {% with is_embedded as is_embedded %}
+        {% display_proposal_card proposal %}
+        {% endwith %}
       {% empty %}
       {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
     </div>
@@ -115,7 +121,10 @@ $(function(){
     </p>
     {% endblocktrans %}
     {% endfor %}
+  </div>
 </div>
+<!-- fin grid -->
+
 <div class="container" id="raiseToTop">
   <div class="row">
     <div class="col-xs-12 col-md-12">
@@ -123,3 +132,4 @@ $(function(){
     </div>
   </div>
 </div>
+<!-- Fin _lista_propuestas -->

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from votita.models import KidsProposal, KidsGathering
 from votita.forms.forms import UpdateGatheringForm, TOPIC_CHOICES
+from popular_proposal.models import PopularProposal
 
 
 USER_PASSWORD = 'secr3t'
@@ -33,11 +34,16 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         self.client.login(username=self.feli.username, password=USER_PASSWORD)
         url = reverse('votita:create_gathering')
         data = {'name': u"Título",
-                "presidents_features": ["inteligente"]}
+                "presidents_features": ["inteligente"],
+                'male': 10,
+                'female': 10,
+                'others': 10,}
         response = self.client.post(url, data=data, follow=True)
         self.assertEquals(response.context['object'].name, data['name'])
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.context['object'].proposer, self.feli)
+        self.assertEquals(response.context['object'].stats_data['male'],
+                          data['male'])
 
     def test_creating_proposal_for_gathering_get_view(self):
         gathering = KidsGathering.objects.create(name=u"Título",
@@ -148,9 +154,6 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         self.client.login(username=self.feli.username, password=USER_PASSWORD)
         photo = self.get_image()
         data = {
-            'male': 10,
-            'female': 11,
-            'others': 10,
             'image': photo
         }
         response = self.client.post(url, data=data)
@@ -158,7 +161,6 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
                              kwargs={'pk':gathering.id})
         self.assertRedirects(response, thanks_url)
         g = KidsGathering.objects.get(id=gathering.id)
-        self.assertEquals(g.stats_data['male'], data['male'])
         self.assertTrue(g.image)
 
 class GatheringViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
@@ -197,6 +199,45 @@ class LandingPage(ProposingCycleTestCaseBase, WizardDataMixin):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'votita/index.html')
+
+
+class KidsProposalViewsTestCase(ProposingCycleTestCaseBase):
+    def test_list_proposals(self):
+        p1 = PopularProposal.objects.create(proposer=self.fiera,
+                                            data=self.data,
+                                            title="Title",
+                                            clasification=u'education')
+        proposal1 = KidsProposal.objects.create(proposer=self.fiera,
+                                                area=self.arica,
+                                                data=self.data,
+                                                title=u'This is a title1',
+                                                clasification=u'education'
+                                                )
+        proposal2 = KidsProposal.objects.create(proposer=self.fiera,
+                                                area=self.arica,
+                                                data=self.data,
+                                                title=u'This is a title2',
+                                                clasification=u'education'
+                                                )
+        url = reverse("votita:list_proposals")
+        response = self.client.get(url)
+        self.assertIn(proposal1, response.context['proposals'].all())
+        self.assertIn(proposal2, response.context['proposals'].all())
+        self.assertNotIn(p1, response.context['proposals'].all())
+
+    def test_detail_view(self):
+        proposal1 = KidsProposal.objects.create(proposer=self.fiera,
+                                                area=self.arica,
+                                                data=self.data,
+                                                title=u'This is a title1',
+                                                clasification=u'education'
+                                                )
+        url = reverse("votita:proposal_detail", kwargs={'slug': proposal1.slug})
+        self.assertEquals(url, proposal1.get_absolute_url())
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(proposal1, response.context['proposal'])
+        self.assertTemplateUsed(response, 'votita/detalle_propuesta.html')
 
 
 from django.test import override_settings

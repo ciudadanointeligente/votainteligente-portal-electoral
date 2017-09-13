@@ -12,7 +12,10 @@ from django.contrib.sites.models import Site
 from django.test import override_settings
 from votita.models import KidsProposal, KidsGathering
 from django.core.urlresolvers import reverse
-from votita.forms.forms import CreateGatheringForm, UpdateGatheringForm
+from votita.forms.forms import (CreateGatheringForm,
+                                UpdateGatheringForm,
+                                KidsProposalForm,
+                                TOPIC_CHOICES)
 from constance.test import override_config
 from elections.models import Area
 
@@ -28,13 +31,17 @@ class CreateGatheringFormTestCase(ProposingCycleTestCaseBase):
     def test_create_a_gathering(self):
         data = {"name": "Segundo medio C",
                 "presidents_features": "inteligente,honesto",
-                "generated_at": self.a_comuna.id}
+                "generated_at": self.a_comuna.id,
+                'male': 10,
+                'female': 10,
+                'others': 10,}
         form = CreateGatheringForm(data, proposer=self.feli)
         self.assertTrue(form.is_valid())
         gathering = form.save()
         self.assertEquals(gathering.name, data['name'])
         self.assertTrue(gathering.presidents_features.all())
         self.assertEquals(gathering.generated_at, self.a_comuna)
+        self.assertTrue(gathering.stats_data)
 
     def test_update_gathering(self):
         gathering = KidsGathering.objects.create(proposer=self.feli,
@@ -43,9 +50,7 @@ class CreateGatheringFormTestCase(ProposingCycleTestCaseBase):
                                                                       'honesto'])
         photo = self.get_image()
         data = {
-            'male': 10,
-            'female': 10,
-            'others': 10,
+
             'comments': "Muy buena actividad, esto es lindo",
         }
         file_data = {'image': photo}
@@ -55,6 +60,17 @@ class CreateGatheringFormTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(form.is_valid())
         g = form.save()
         g = KidsGathering.objects.get(id=g.id)
-        self.assertTrue(g.stats_data)
         self.assertTrue(g.image)
         self.assertTrue(g.comments)
+
+    def test_create_proposal_form(self):
+        data = {"title": "Propuesta",
+                "solution": "Una muy buena propuesta",
+                "clasification" : TOPIC_CHOICES[1][0],
+                }
+        form = KidsProposalForm(data=data)
+        self.assertTrue(form.is_valid())
+        proposal = form.save(commit=False)
+        self.assertEquals(proposal.title, data['title'])
+        self.assertEquals(proposal.data['solution'], data['solution'])
+        self.assertEquals(proposal.clasification, data['clasification'])

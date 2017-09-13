@@ -115,10 +115,10 @@ class CandidacyJoinView(RedirectView):
     query_string = True
 
     @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         self.contact = get_object_or_404(CandidacyContact,
                                          identifier=self.kwargs['identifier'])
-        return super(CandidacyJoinView, self).dispatch(*args, **kwargs)
+        return super(CandidacyJoinView, self).dispatch(request, *args, **kwargs)
 
     def get_redirect_url(self, *args, **kwargs):
         candidacy, created = Candidacy.objects.get_or_create(candidate=self.contact.candidate,

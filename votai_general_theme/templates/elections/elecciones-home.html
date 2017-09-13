@@ -13,9 +13,9 @@
             <script type="text/javascript">
             jQuery(document).ready(function($){
               screenwidth = $(".containerAccordion").width();
-              $('#gridaccordion-{{forloop.counter}}').gridAccordion({ 
-                width:screenwidth, height:250, columns:{{ featured_election.candidates.all|length }}, 
-                distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true 
+              $('#gridaccordion-{{forloop.counter}}').gridAccordion({
+                width:screenwidth, height:250, columns:{{ featured_election.candidates.all|length }},
+                distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true
               });
             });
             </script>
@@ -24,10 +24,10 @@
               <li>
                   {% if candidate.image %}
                   {% thumbnail candidate.image "x300" as im %}
-                    <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
+                    <a href="{{ candidate.get_absolute_url}}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
                   {% endthumbnail %}
                   {% else %}
-                    <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+                    <a href="{{ candidate.get_absolute_url}}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
                   {% endif %}
                   <div class="caption">{{ candidate.name }}</div>
               </li>
@@ -35,7 +35,7 @@
             </ul>
             <a href="{{ featured_election.get_absolute_url }}"><h3 class="portada">{{featured_election.name}}</h3></a>
             <div class="election-description">
-              <p>{{ featured_election.description|truncatewords:100 }}</p> 
+              <p>{{ featured_election.description|truncatewords:100 }}</p>
             </div>
           </li>
         {% endfor %}
@@ -53,7 +53,7 @@
             jQuery(document).ready(function($){
               screenwidth = $(".containerAccordion").width();
               $('#gridaccordion-{{forloop.counter}}').gridAccordion({
-                width:screenwidth, height:250, columns:{{ featured_election.candidates.all|length }}, 
+                width:screenwidth, height:250, columns:{{ featured_election.candidates.all|length }},
                 distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true
               });
             });
@@ -63,10 +63,10 @@
               <li>
                 {% if candidate.image %}
                   {% thumbnail candidate.image "300x300" crop="center" as im %}
-                    <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
+                    <a href="{{ candidate.get_absolute_url}}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
                   {% endthumbnail %}
                 {% else %}
-                  <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+                  <a href="{{ candidate.get_absolute_url}}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
                 {% endif %}
                 <div class="caption">{{ candidate.name }}</div>
               </li>
@@ -74,7 +74,7 @@
             </ul>
             <a href="{{ featured_election.get_absolute_url }}"><h3 class="portada">{{ featured_election.name }}</h3></a>
             <div class="election-description">
-              <p>{{ featured_election.description|truncatewords:50 }}</p> 
+              <p>{{ featured_election.description|truncatewords:50 }}</p>
             </div>
           </li>
         {% endfor %}
@@ -91,7 +91,7 @@
           jQuery(document).ready(function($){
             screenwidth = $(".containerAccordion").width();
             $('#gridaccordion-{{forloop.counter}}').gridAccordion({
-              width:screenwidth, height:250, columns:{{featured_election.candidates.all|length}}, 
+              width:screenwidth, height:250, columns:{{featured_election.candidates.all|length}},
               distance:2, closedPanelWidth:10, closedPanelHeight:10, alignType:'centerCenter', linkTarget: "_self", slideshow:true
             });
           });
@@ -101,10 +101,10 @@
             <li>
               {% if candidate.image %}
                 {% thumbnail candidate.image "x300" as im %}
-                  <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
+                  <a href="{{ candidate.get_absolute_url}}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0"/></a>
                 {% endthumbnail %}
               {% else %}
-                <a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
+                <a href="{{ candidate.get_absolute_url}}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive"></a>
               {% endif %}
               <div class="caption">{{ candidate.name }}</div>
             </li>
@@ -112,7 +112,7 @@
           </ul>
           <a href="{{ featured_election.get_absolute_url }}"><h3 class="portada">{{ featured_election.name }}</h3></a>
           <div class="election-description">
-            <p>{{ featured_election.description|truncatewords:33 }}</p> 
+            <p>{{ featured_election.description|truncatewords:33 }}</p>
           </div>
         </li>
         {% if forloop.counter == 3 %}
@@ -132,7 +132,7 @@
 
       <ul>
       {% for candidate in featured_election.candidates.all %}
-        <li><a href="{% url 'candidate_detail_view' election_slug=featured_election.slug slug=candidate.id %}">{{ candidate.name }}</a></li>
+        <li><a href="{{ candidate.get_absolute_url}}">{{ candidate.name }}</a></li>
       {% endfor %}
       </ul>
     {% endfor %}

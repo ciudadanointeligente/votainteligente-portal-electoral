@@ -171,6 +171,22 @@ class ElectionsPerAreaTestCase(TestCase):
 
         self.assertEquals(len(child.parents), 2)
 
+    @override_settings(FILTERABLE_AREAS_TYPE = ['Comuna'])
+    def test_areas_redirect_when_necesary(self):
+        child = Area.objects.create(name="children", classification="Comuna")
+        mother = Area.objects.create(name="mother")
+        mother.children.add(child)
+
+        url = reverse('area', kwargs={'slug': child.id})
+        response = self.client.get(url)
+        url_mother = reverse('area', kwargs={'slug': mother.id})
+        self.assertRedirects(response, url_mother)
+
+        child2 = Area.objects.create(name="children", classification="Comuna")
+        url = reverse('area', kwargs={'slug': child2.id})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
 class AreaOGPTestCase(TestCase):
     def setUp(self):
         self.argentina = Area.objects.create(name=u'Argentina')

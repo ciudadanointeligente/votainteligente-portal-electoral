@@ -198,6 +198,11 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
             return self.election.position_in_ranking(self)
 
     def get_absolute_url(self):
+        if config.CANDIDATE_ABSOLUTE_URL_USING_AREA:
+            return reverse('candidate_detail_view_area', kwargs={
+                'area_slug': self.election.area.id,
+                'slug': self.id
+            })
         election_slug = ''
         if self.election:
             election_slug = self.election.slug

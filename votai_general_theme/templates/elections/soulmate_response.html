@@ -6,7 +6,7 @@
 
 {% if winner %}
 <div id="soulmate-result">
-	
+
 	<div class="row">
 		<div class="col-md-3" id="candidate-img-profile">
 			{% if winner.candidate.image %}
@@ -22,18 +22,18 @@
 		</div>
 		<div class="col-md-9">
 			<p class="small">Tu 1/2 naranja política es</p>
-			<h2><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}">{{winner.candidate.name}} ({% get_personal_data candidate=winner.candidate personal_data='Partido' as partido %}{{partido.value}})<br> con un {{winner.percentage|mul:100|floatformat}}% {% trans "de afinidad" %}</a><i class="icon-heart"></i></h2>
+			<h2><a href="{{ candidate.get_absolute_url}}">{{winner.candidate.name}} ({% get_personal_data candidate=winner.candidate personal_data='Partido' as partido %}{{partido.value}})<br> con un {{winner.percentage|mul:100|floatformat}}% {% trans "de afinidad" %}</a><i class="icon-heart"></i></h2>
 			<ul class="list-inline">
 				<li>
 					{% trans "Declara tu amor publicamente:" %}
 				</li>
-				<li><a href="#" onclick="window.open('https://twitter.com/share?url=https://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}&text={% if winner.candidate.twitter %}{{winner.candidate.twitter.value|extract_twitter_username}}{% else %}{{winner.candidate.name}}{% endif %}+<3&hashtags={{ 'hashtags'|website_twitter }}', 'twitter-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-twitter', 'click');">
+				<li><a href="#" onclick="window.open('https://twitter.com/share?url=https://{% url_domain %}{{ candidate.get_absolute_url}}&text={% if winner.candidate.twitter %}{{winner.candidate.twitter.value|extract_twitter_username}}{% else %}{{winner.candidate.name}}{% endif %}+<3&hashtags={{ 'hashtags'|website_twitter }}', 'twitter-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-twitter', 'click');">
 					<span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
             <i class="fa fa-twitter fa-stack-1x fa-inverse" aria-hidden="true"></i>
           </span></a>
         </li>
-				<li><a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}', 'facebook-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-facebook', 'click');">
+				<li><a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://{% url_domain %}{{ candidate.get_absolute_url}}', 'facebook-share-dialog', 'width=626,height=436'); ga('send', 'event', 'share-soulmate-facebook', 'click');">
 						<span class="fa-stack fa-lg">
               <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
               <i class="fa fa-facebook fa-stack-1x fa-inverse" aria-hidden="true"></i>
@@ -46,7 +46,7 @@
 				</div>
 		</div>
 	</div>
-	
+
 </div>
 {% endif%}
 
@@ -58,7 +58,7 @@
 		<h3 class="text-center"><i class="fa fa-heartbeat" aria-hidden="true"></i> No hemos podido encontrar tu 1/2 naranja política</h3>
 		<h4 class="text-center">En {{election.name}} ningún candidato ha respondido. Recuerda que siempre puedes <a href="{% url 'help'  %}">ayudarnos a que se unan.</a></h4>
 		{% endif %}
-		
+
 	<div class="row">
 		{% if not winner and others %}
 		<div class="alert alert-info soulmate-header text-center" role="alert">
@@ -79,7 +79,7 @@
 				</div>
 				<div class="col-md-9">
 					<h2>{{other.percentage|mul:100|floatformat}}%</h2>
-					<h4><a href="{% url 'candidate_detail_view' election_slug=election.slug slug=other.candidate.id %}">{{other.candidate.name}}</a></h4>
+					<h4><a href="{{ other.candidate.get_absolute_url}}">{{other.candidate.name}}</a></h4>
 					<p class="small text-light">{% get_personal_data candidate=other.candidate personal_data='Partido' as partido %}{{partido.value}}</p>
 					<ul class="list-unstyled">
 						{% for other_cat in other.category_score %}
@@ -99,9 +99,8 @@
 var API_KEY = '{{ 'client_id'|website_imgur }}';
 var candidate_name = '{{winner.candidate.name}}'
 {% if winner %}
-var twitter_url = '{% url_domain %}{% url 'candidate_detail_view' election_slug=election.slug slug=winner.candidate.id %}';
+var twitter_url = '{% url_domain %}{{ winner.candidate.get_absolute_url}}';
 {% else %}
 var twitter_url = '{% url_domain %}{% url 'election_view' slug=election.slug %}';
 {% endif %}
 </script>
-

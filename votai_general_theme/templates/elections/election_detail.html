@@ -46,17 +46,17 @@
 		<div class="col-sm-4 col-md-4">
 			{% if candidate.image %}
 				{% thumbnail candidate.image "300x300" crop="center" as im %}
-				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
+				<a href="{{ candidate.get_absolute_url}}"><img src="{{im.url}}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
 				{% endthumbnail %}
 			{% else %}
-				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
+				<a href="{{ candidate.get_absolute_url}}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato"></a>
 			{% endif %}
 			<p class="text-center">
 				{% if config.SHOW_RIBBON_IN_CANDIDATE and not candidate.commitments.count%}
 
 				<div class="ribbon label label-danger {% if position == 'concejal' %}ribbon-noimg{% endif %}">No ha respondido</div>
 				{% endif %}
-				<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><h3 class="text-center">{{candidate.name}}</h3></a>
+				<a href="{{ candidate.get_absolute_url}}"><h3 class="text-center">{{candidate.name}}</h3></a>
 				<p class="small text-light text-center small-bajada">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</p>
                 {% if candidate.has_won %}
                 <div class="small label-info ranking text-white row text-center">

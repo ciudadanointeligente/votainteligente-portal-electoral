@@ -66,7 +66,7 @@ class CandidateInElectionsViewsTestCase(TestCase):
         response = self.client.get(candidate.get_absolute_url())
         self.assertEquals(response.status_code, 200)
         response1 = self.client.get(url_2)
-        # self.assertEquals(response, response1)
+        self.assertEquals(response.content, response1.content)
 
     def test_url_is_reachable(self):
         url = reverse('candidate_detail_view', kwargs={

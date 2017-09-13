@@ -61,6 +61,10 @@ urlpatterns = [
         cache_page(60 * settings.CACHE_MINUTES)(CandidateDetailView.as_view(template_name='elections/candidate_detail.html')),
         name='candidate_detail_view'
         ),
+    url(r'^territorio/(?P<area_slug>[-\w]+)/(?P<slug>[-\w]+)/?$',
+        cache_page(60 * settings.CACHE_MINUTES)(CandidateDetailView.as_view(template_name='elections/candidate_detail.html')),
+        name='candidate_detail_view_area'
+        ),
     # End Preguntales
     url(r'^eleccion/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/(?P<url>[-\w]+)/?$',
         cache_page(60 * settings.CACHE_MINUTES)(CandidateFlatPageDetailView.as_view()),

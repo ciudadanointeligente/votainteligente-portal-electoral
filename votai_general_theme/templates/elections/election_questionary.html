@@ -35,11 +35,11 @@
 									{% with candidate=taken_position.person %}
                     {% if candidate.image %}
                         {% thumbnail candidate.image "100x100" crop="center" as im %}
-                        <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{im.url}}" height="100" width="100" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
+                        <a href="{{ candidate.get_absolute_url}}"><img src="{{im.url}}" height="100" width="100" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
                         {% endthumbnail %}
                     {% else %}
                         {% thumbnail "img/candidate-default.jpg" "100x100" crop="center" as im %}
-                        <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{im.url}}"  height="100" width="100" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
+                        <a href="{{ candidate.get_absolute_url}}"><img src="{{im.url}}"  height="100" width="100" alt="{{candidate.name}}" border="0" class="img-responsive" title="{{candidate.name}}"></a>
                         {% endthumbnail %}
                     {% endif %}
 										<span>{{candidate.name}}</span>
@@ -64,11 +64,11 @@
 								{% for taken_position in position.taken_positions.all %}
 									{% with candidate=taken_position.person %}
 										{% if forloop.first %}
-											<a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}">{{candidate.name}}</a>
+											<a href="{{ candidate.get_absolute_url}}">{{candidate.name}}</a>
 										{% elif forloop.last %}
-											{% trans "y" %} <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}">{{candidate.name}}</a>
+											{% trans "y" %} <a href="{{ candidate.get_absolute_url}}">{{candidate.name}}</a>
 										{% else %}
-											, <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}">{{candidate.name}}</a>
+											, <a href="{{ candidate.get_absolute_url}}">{{candidate.name}}</a>
 										{% endif %}
 									{% endwith %}
 								{% endfor %}

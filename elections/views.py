@@ -17,6 +17,8 @@ from popular_proposal.models import PopularProposal
 from popular_proposal.filters import ProposalWithoutAreaFilter
 from django_filters.views import FilterMixin
 from django.core.cache import cache
+from django.conf import settings
+from django.http import HttpResponseRedirect
 from constance import config
 
 logger = logging.getLogger(__name__)
@@ -135,19 +137,31 @@ class CandidateDetailView(DetailView):
 
     def get_queryset(self):
         queryset = super(CandidateDetailView, self).get_queryset()
-        candidates_per_election_key = u'candidates_for_' + self.kwargs['election_slug']
+        candidates_per_election_key = u'candidates_for_' + self.get_cache_post_fix()
         queryset_ = cache.get(candidates_per_election_key)
         if queryset_ is None:
-            queryset_ = queryset.filter(elections__slug=self.kwargs['election_slug'])
+
+            if 'election_slug' in self.kwargs.keys():
+                queryset_ = queryset.filter(elections__slug=self.kwargs['election_slug'])
+            if 'area_slug' in self.kwargs.keys():
+                queryset_ = queryset.filter(elections__area__id=self.kwargs['area_slug'])
             cache.set(candidates_per_election_key,
                       queryset_,
                       60 * config.INFINITE_CACHE
                       )
 
         return queryset_
+    def get_cache_post_fix(self):
+        cache_key = ""
+        kwarg_keys = self.kwargs.keys()
+        kwarg_keys.remove('slug')
+        for k in kwarg_keys:
+            cache_key += self.kwargs.get(k)
+        cache_key += self.kwargs['slug']
+        return cache_key
 
     def get_object(self, queryset=None):
-        cache_key = 'candidate_' + self.kwargs['election_slug'] + self.kwargs['slug']
+        cache_key = 'candidate_' + self.get_cache_post_fix()
         candidate = cache.get(cache_key)
         if candidate is None:
             candidate = super(CandidateDetailView, self).get_object(queryset)
@@ -166,12 +180,18 @@ class CandidateDetailView(DetailView):
         context['election'] = self.object.election
         return context
 
-
 class AreaDetailView(DetailView, FilterMixin):
     model = Area
     context_object_name = 'area'
     template_name = 'area.html'
     slug_field = 'id'
+
+    def dispatch(self, request, *args, **kwargs):
+        area = self.get_object()
+        if area.classification in settings.FILTERABLE_AREAS_TYPE and area.parent:
+            return HttpResponseRedirect(reverse('area', kwargs={'slug': area.parent.id}))
+        return super(AreaDetailView, self).dispatch(request, *args, **kwargs)
+
 
     def get_context_data(self, **kwargs):
         context = super(AreaDetailView, self).get_context_data(**kwargs)

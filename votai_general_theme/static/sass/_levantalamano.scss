@@ -105,6 +105,86 @@ h2{
   padding: 30px 0 240px;
 }
 
+/*PROPOSALS REPOSITORY*/
+#grid{
+  position: relative;
+}
+#grid > #posts .post{
+  width: 340px;
+}
+#posts{
+  position: relative;
+  height: -webkit-fill-available;
+}
+.post.propuesta{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.post{
+  margin: 0 0 50px;
+}
+.propuesta{
+  min-height: 310px;
+  border-radius: 10px;
+  padding: 0;
+  position: relative;
+}
+.propuesta-content{
+  padding: 25px 20px 35px;
+}
+.votita-love-politica{
+  border: 3px solid $yellow;
+  .label-default{
+    background: $yellow;
+  }
+}
+.votita-love-salud{
+  border: 3px solid $blue;
+  .label-default{
+    background: $blue;
+  }
+}
+.votita-love-medio_ambiente{
+  border: 3px solid $green;
+  .label-default{
+    background: $green;
+  }
+}
+.votita-love-cultura{
+  border: 3px solid $red;
+  .label-default{
+    background: $red;
+  }
+}
+.votita-love-diversidad{
+  border: 3px solid $purple;
+  .label-default{
+    background: $purple;
+  }
+}
+.votita-love-tecnologia{
+  border: 3px solid $blue;
+  .label-default{
+    background: $blue;
+  }
+}
+.votita-love-educacion_y_trabajo{
+  border: 3px solid $pink;
+  .label-default{
+    background: $pink;
+  }
+}
+.votita-love-proteccion_y_familia{
+  border: 3px solid $yellow;
+  .label-default{
+    background: $yellow;
+  }
+}
+.label-default{
+  @extend .small;
+}
+
 /*FOOTER*/
 .greenline{
   background-image: url("../img/lm-footer.svg");

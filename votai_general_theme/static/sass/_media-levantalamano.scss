@@ -10,3 +10,15 @@
     padding: 80px 0 240px;
   }
 }
+@media screen and (max-width: 991px) {
+  /*PROPOSALS REPOSITORY*/
+  #grid > #posts .post{
+    width: 440px;
+  }
+}
+@media screen and (max-width: 768px) {
+  /*PROPOSALS REPOSITORY*/
+  #grid > #posts .post{
+    width: 100%;
+  }
+}

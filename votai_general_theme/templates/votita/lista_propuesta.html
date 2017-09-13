@@ -9,8 +9,27 @@
 {% block content %}
 <div class="container">
   <h1 class="page-header">{% trans "Propuestas" %}</h1>
-    <div>
+    <div id="posts">
       {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=proposals %}
     </div>
 </div>
+<script>
+$(function(){
+  $('#proposalFilterForm').submit(function() {
+    $(':input', this).each(function() {
+      this.disabled = !($(this).val());
+    });
+  });
+
+  window.onscroll = function (e) {
+    if( document.body.scrollTop >= 600 ) {
+      $('#raiseToTop i').css('display','block');
+    }
+    if( document.body.scrollTop < 600 ) {
+      $('#raiseToTop i').css('display','none');
+    }
+  }
+});
+
+</script>
 {% endblock content %}

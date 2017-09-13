@@ -17,6 +17,8 @@ $(function(){
 });
 </script>
 
+    <div id="filters" class="container-fluid">
+      <div class="container">
     {% if form %}
     {% include 'modal.html' with modalId='subscribeToSearch' title='Mantente al dia con tus tematicas de interes' %}
     <a id="top"></a>
@@ -61,6 +63,8 @@ $(function(){
         </div>
       </div>
     </form>
+    </div>
+    </div>
     {% endif %}
     <script>
     $(function(){
@@ -82,6 +86,7 @@ $(function(){
 
     </script>
 <!-- inicio grid -->
+<div class="container">
 <div id="grid">
       {% if form.is_filled_search %}
       <h3 class="text-center">Hay {{popular_proposals|length}} propuestas ciudadanas con tus criterios de búsqueda seleccionados</h3>
@@ -122,6 +127,7 @@ $(function(){
     {% endblocktrans %}
     {% endfor %}
   </div>
+</div>
 </div>
 <!-- fin grid -->
 

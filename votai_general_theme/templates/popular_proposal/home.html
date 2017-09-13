@@ -10,10 +10,10 @@
 <div class="container">
 	<div>
 	  <h1 class="text-center">{% trans "Propuestas Ciudadanas" %}</h1>
-	  	<div>
-	  		{% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=form is_embedded=is_embedded %}
-	  	</div>
-	</div>
+  </div>
+</div>
+<div>
+	{% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=form is_embedded=is_embedded %}
 </div>
 
 

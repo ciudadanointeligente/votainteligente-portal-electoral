@@ -24,9 +24,15 @@
         {% if candidacy.candidate %}
           {% get_commitment candidacy proposal as commitment %}
           {% if commitment %}
-          <div class="btn_pronunciarme {{support_button_extra_class}}">
-            <a href="#" class="btn btn-apoyo" disabled="disabled">Comprometido</a>
-          </div>
+            {% if commitment.commited %}
+            <div class="btn_pronunciarme {{support_button_extra_class}}">
+              <a href="#" class="btn btn-apoyo" disabled="disabled">Comprometido</a>
+            </div>
+            {% else %}
+            <div class="btn_pronunciarme {{support_button_extra_class}}">
+              <a href="#" class="btn btn-apoyo" disabled="disabled">No Comprometido</a>
+            </div>
+            {% endif %}
           {% else %}
             {% with proposal.get_absolute_url as detail_url %}
             <div class="btn_pronunciarme {{support_button_extra_class}}">

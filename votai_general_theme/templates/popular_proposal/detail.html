@@ -53,7 +53,7 @@ $(function(){
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}"><i class="fa fa-home" aria-label="Inicio"></i></a></li>
     <li><a href="{% url 'popular_proposals:home' %}">Propuestas</a></li>
-    <li class="active">{{popular_proposal.title}}</li>
+    <li class="active">{{popular_proposal.title|truncatechars:60}}</li>
   </ol>
 </div>
 

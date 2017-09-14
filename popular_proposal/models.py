@@ -367,6 +367,13 @@ class ProposalLike(models.Model):
             verbose_name_plural = _(u'Apoyos')
 
 
+class CommitmentManager(models.Manager):
+    def committed(self,*args, **kwargs):
+        return self.get_queryset(*args, **kwargs).filter(commited=True)
+
+    def uncommitted(self,*args, **kwargs):
+        return self.get_queryset(*args, **kwargs).filter(commited=False)
+
 class Commitment(models.Model):
     proposal = models.ForeignKey(PopularProposal,
                                  related_name='commitments')
@@ -376,6 +383,7 @@ class Commitment(models.Model):
                               null=True,
                               blank=True)
     commited = models.NullBooleanField(default=None)
+    objects = CommitmentManager()
 
     def save(self, *args, **kwargs):
         instance = super(Commitment, self).save(*args, **kwargs)

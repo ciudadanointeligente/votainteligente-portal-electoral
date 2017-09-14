@@ -579,7 +579,6 @@ section#propuestas-mas-apoyo {
 
 #home-search {
   position: relative;
-  max-width: 400px;
 }
 
 #home-search input {
@@ -605,13 +604,15 @@ section#propuestas-mas-apoyo {
 }
 
 .elections-results {
-    position: absolute;
-    bottom: -40px;
     left: 15px;
+    margin: 40px 0px;
 }
 
 .elections-results .list-inline>li {
     margin-right: 5px;
+    a {
+      color: inherit;
+    }
 }
 
 

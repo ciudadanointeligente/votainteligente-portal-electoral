@@ -381,6 +381,7 @@ MARKED_AREAS = ['teodoro-schmidt-9117','cunco-9103','lumaco-9207','melipeuco-911
 
 POSSIBLE_GENERATING_AREAS_FILTER = []
 EXCLUDED_PROPOSALS_APPS = ['votita', ]
+AREAS_THAT_SHOULD_BE_REDIRECTING_TO_THEIR_PARENTS = ['comuna']
 
 CONSTANCE_CONFIG = {
     'SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES':(0,'Duracion cache media naranja'),
@@ -397,6 +398,7 @@ CONSTANCE_CONFIG = {
     'MAX_AMOUNT_OF_MAILS_TO_CANDIDATE': (3, 'Numero maximo de envios de emails a candidatos'),
     'TWITTER_TOKEN': ('', 'Twitter token'),
     'MARKED_AREAS': (", ".join(MARKED_AREAS), u'Areas que tienen alguna marca'),
+    'CANDIDATE_ABSOLUTE_URL_USING_AREA': (True, u'para ver el perfil de los candidatos utilziamos el territorio o utilizamos la elección a la que pertenece?'),
     'TWITTER_TOKEN_KEY': ('', 'Twitter token key'),
     'TWITTER_CON_KEY': ('', 'Twitter connection key'),
     'TWITTER_CON_SECRET_KEY': ('', 'Twitter connection secret key'),

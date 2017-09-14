@@ -17,13 +17,15 @@ $(function(){
 });
 </script>
 
+    <div id="filters" class="container-fluid">
+      <div class="container">
     {% if form %}
     {% include 'modal.html' with modalId='subscribeToSearch' title='Mantente al dia con tus tematicas de interes' %}
     <a id="top"></a>
     {% if form.is_filled_search %}
     <button class="hidden-md hidden-lg btn btn-link btn-block" type="button" data-toggle="collapse" data-target=".filter-mobile" aria-expanded="false" aria-controls="filter-mobile"><i class="fa fa-filter"></i> Mostrar filtros</button>
     {% endif %}
-		<form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form" class="hidden-md hidden-lg filter-mobile {% if form.is_filled_search %}collapse{% endif %}">
+    <form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form" class="hidden-md hidden-lg filter-mobile {% if form.is_filled_search %}collapse{% endif %}">
       <div class="row">
         <div class="col-md-3">{% bootstrap_field form.text %}</div>
         <div class="col-md-3">{% bootstrap_field form.clasification %}</div>
@@ -43,7 +45,7 @@ $(function(){
         </div>
         <!-- end mobile version -->
       </div>
-		</form>
+    </form>
 
     <form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form" class="hidden-xs hidden-sm">
       <div class="row">
@@ -61,6 +63,8 @@ $(function(){
         </div>
       </div>
     </form>
+    </div>
+    </div>
     {% endif %}
     <script>
     $(function(){
@@ -82,6 +86,7 @@ $(function(){
 
     </script>
 <!-- inicio grid -->
+<div class="container">
 <div id="grid">
       {% if form.is_filled_search %}
       <h3 class="text-center">Hay {{popular_proposals|length}} propuestas ciudadanas con tus criterios de búsqueda seleccionados</h3>
@@ -122,6 +127,7 @@ $(function(){
     {% endblocktrans %}
     {% endfor %}
   </div>
+</div>
 </div>
 <!-- fin grid -->
 

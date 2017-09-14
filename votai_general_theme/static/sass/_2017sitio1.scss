@@ -344,6 +344,11 @@ input[type=file]{
 }
 
 /*Detalle*/
+#filters {
+  background-color: $blue-light;
+  padding: 20px 0px;
+}
+
 .nav-detalle-propuesta{
   border: none;
   margin-top: -55px;

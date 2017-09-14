@@ -23,8 +23,8 @@ class IndexView(TemplateView):
     template_name = 'backend_staff/index.html'
 
     @method_decorator(staff_member_required)
-    def dispatch(self, *args, **kwargs):
-        return super(IndexView, self).dispatch(*args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        return super(IndexView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
@@ -38,10 +38,10 @@ class PopularProposalCommentsView(FormView):
     template_name = 'backend_staff/popular_proposal_comments.html'
 
     @method_decorator(staff_member_required)
-    def dispatch(self, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         pk = self.kwargs.pop('pk')
         self.temporary_data = get_object_or_404(ProposalTemporaryData, pk=pk)
-        return super(PopularProposalCommentsView, self).dispatch(*args, **kwargs)
+        return super(PopularProposalCommentsView, self).dispatch(request, *args, **kwargs)
 
     def get_form_kwargs(self):
         kwargs = super(PopularProposalCommentsView, self).get_form_kwargs()
@@ -49,8 +49,8 @@ class PopularProposalCommentsView(FormView):
         kwargs['moderator'] = self.request.user
         return kwargs
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(PopularProposalCommentsView, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(PopularProposalCommentsView, self).get_context_data(**kwargs)
         context['temporary_data'] = self.temporary_data
         return context
 
@@ -66,11 +66,11 @@ class ModeratePopularProposalView(DetailView):
     template_name = 'backend_staff/proposal_moderation.html'
 
     @method_decorator(staff_member_required)
-    def dispatch(self, *args, **kwargs):
-        return super(ModeratePopularProposalView, self).dispatch(*args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ModeratePopularProposalView, self).dispatch(request, *args, **kwargs)
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(ModeratePopularProposalView, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(ModeratePopularProposalView, self).get_context_data(**kwargs)
         pk = self.kwargs.pop('pk')
         temporary_data = get_object_or_404(ProposalTemporaryData, pk=pk)
 
@@ -83,8 +83,8 @@ class AcceptPopularProposalView(View, SingleObjectMixin):
     model = ProposalTemporaryData
 
     @method_decorator(staff_member_required)
-    def dispatch(self, *args, **kwargs):
-        return super(AcceptPopularProposalView, self).dispatch(*args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        return super(AcceptPopularProposalView, self).dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         temporary_data = self.get_object()
@@ -97,8 +97,8 @@ class RejectPopularProposalView(FormView):
     http_method_names = ['post',]
 
     @method_decorator(staff_member_required)
-    def dispatch(self, *args, **kwargs):
-        return super(RejectPopularProposalView, self).dispatch(*args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        return super(RejectPopularProposalView, self).dispatch(request, *args, **kwargs)
 
     def get_form_kwargs(self):
         kwargs = super(RejectPopularProposalView, self).get_form_kwargs()
@@ -121,10 +121,10 @@ class AddContactAndSendMailView(FormView):
     template_name = 'backend_staff/add_contact_and_send_mail.html'
 
     @method_decorator(staff_member_required)
-    def dispatch(self, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         pk = self.kwargs.pop('pk')
         self.candidate = get_object_or_404(Candidate, pk=pk)
-        return super(AddContactAndSendMailView, self).dispatch(*args, **kwargs)
+        return super(AddContactAndSendMailView, self).dispatch(request, *args, **kwargs)
 
     def get_form_kwargs(self):
         kwargs = super(AddContactAndSendMailView, self).get_form_kwargs()
@@ -138,8 +138,8 @@ class AddContactAndSendMailView(FormView):
     def get_success_url(self):
         return self.candidate.get_absolute_url()
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(AddContactAndSendMailView, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(AddContactAndSendMailView, self).get_context_data(**kwargs)
         context['candidate'] = self.candidate
         return context
 
@@ -150,18 +150,18 @@ class AllCommitmentsView(ListView):
     context_object_name = 'commitments'
 
     @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         if not self.request.user.profile.is_journalist:
             return HttpResponseNotFound()
-        return super(AllCommitmentsView, self).dispatch(*args, **kwargs)
+        return super(AllCommitmentsView, self).dispatch(request, *args, **kwargs)
 
 
 class StatsView(TemplateView):
     template_name = 'backend_staff/stats.html'
 
     @method_decorator(staff_member_required)
-    def dispatch(self, *args, **kwargs):
-        return super(StatsView, self).dispatch(*args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        return super(StatsView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(StatsView, self).get_context_data(**kwargs)
@@ -172,8 +172,8 @@ class StatsPerAreaView(TemplateView):
     template_name = 'backend_staff/per_area_stats.html'
 
     @method_decorator(staff_member_required)
-    def dispatch(self, *args, **kwargs):
-        return super(StatsPerAreaView, self).dispatch(*args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        return super(StatsPerAreaView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(StatsPerAreaView, self).get_context_data(**kwargs)

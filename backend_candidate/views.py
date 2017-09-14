@@ -55,8 +55,8 @@ class HelpFindingCandidates(ListView):
 class HomeView(BackendCandidateBase, RedirectView):
     template_name = "backend_candidate/home.html"
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
         context['candidacies'] = self.user.candidacies.all()
         return context
 
@@ -115,10 +115,10 @@ class CandidacyJoinView(RedirectView):
     query_string = True
 
     @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         self.contact = get_object_or_404(CandidacyContact,
                                          identifier=self.kwargs['identifier'])
-        return super(CandidacyJoinView, self).dispatch(*args, **kwargs)
+        return super(CandidacyJoinView, self).dispatch(request, *args, **kwargs)
 
     def get_redirect_url(self, *args, **kwargs):
         candidacy, created = Candidacy.objects.get_or_create(candidate=self.contact.candidate,
@@ -273,8 +273,8 @@ class AddActivityToCandidateView(LoginRequiredMixin, CreateView):
         return reverse('backend_candidate:all_my_activities',
                         kwargs={'slug': self.candidate.id})
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(AddActivityToCandidateView, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(AddActivityToCandidateView, self).get_context_data(**kwargs)
         context['object'] = self.candidate
         return context
 
@@ -298,7 +298,7 @@ class MyActivitiesListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return self.object.agenda.all()
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(MyActivitiesListView, self).get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(MyActivitiesListView, self).get_context_data(**kwargs)
         context['object'] = self.object
         return context

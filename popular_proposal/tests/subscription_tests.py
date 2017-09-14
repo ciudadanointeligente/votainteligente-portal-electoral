@@ -6,7 +6,6 @@ from popular_proposal.models import (ProposalLike,
                                      )
 from popular_proposal.subscriptions import (SubscriptionEventBase,
                                             EventDispatcher,
-                                            NewCommitmentNotification,
                                             ManyCitizensSupportingNotification,
                                             YouAreAHeroNotification,
                                             NewCommitmentNotificationToProposer,
@@ -100,42 +99,6 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertEquals(len(the_mail.to), 1)
         self.assertIn(self.proposal.title, the_mail.body)
         self.assertIn(self.candidate.name, the_mail.body)
-
-    def test_letting_know_the_citizens_that_a_candidate_has_commited_to_a_proposal(self):
-        ProposalLike.objects.create(user=self.feli,
-                                    proposal=self.proposal)
-        commitment = Commitment.objects.create(candidate=self.candidate,
-                                               proposal=self.proposal,
-                                               commited=True)
-        previous_amount = len(mail.outbox)
-        notifier = NewCommitmentNotification(proposal=self.proposal,
-                                             commitment=commitment)
-        notifier.notify()
-        self.assertEquals(len(mail.outbox), previous_amount + 1)
-        the_mail = mail.outbox[previous_amount]
-        self.assertIn(self.feli.email, the_mail.to)
-        self.assertEquals(len(the_mail.to), 1)
-        self.assertIn(self.proposal.title, the_mail.body)
-        self.assertIn(self.candidate.name, the_mail.body)
-
-    def test_letting_the_citizens_know_that_a_candidate_has_said_no(self):
-        ProposalLike.objects.create(user=self.feli,
-                                    proposal=self.proposal)
-        commitment = Commitment.objects.create(candidate=self.candidate,
-                                               proposal=self.proposal,
-                                               detail=u'Yo No me comprometo',
-                                               commited=False)
-        previous_amount = len(mail.outbox)
-        notifier = NewCommitmentNotification(proposal=self.proposal,
-                                             commitment=commitment)
-        notifier.notify()
-        self.assertEquals(len(mail.outbox), previous_amount + 1)
-        the_mail = mail.outbox[previous_amount]
-        self.assertIn(self.feli.email, the_mail.to)
-        self.assertEquals(len(the_mail.to), 1)
-        self.assertIn(self.proposal.title, the_mail.body)
-        self.assertIn(self.candidate.name, the_mail.body)
-        self.assertIn(commitment.detail, the_mail.body)
 
     def test_notification_trigger_candidate_commit(self):
         ProposalLike.objects.create(user=self.feli,

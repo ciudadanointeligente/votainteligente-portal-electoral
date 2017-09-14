@@ -19,6 +19,15 @@ html, body {
 .img-responsive{
   display: inline;
 }
+h1{
+  font-family: 'Fredoka One', sans-serif;
+  letter-spacing: 2px;
+}
+h2{
+  @extend h1;
+}
+
+/*BUTTONS*/
 .btn{
   border-radius: 20px;
   border: none;
@@ -44,14 +53,23 @@ html, body {
     box-shadow: none;
   }
 }
-h1{
-  font-family: 'Fredoka One', sans-serif;
-  letter-spacing: 2px;
+.btn-blue{
+  border: 3px solid $blue;
+  background-color: $blue;
+  color: white;
+  &:hover{
+    background-color: transparent;
+    color: white;
+    border: 3px solid white;
+  }
+  &:focus{
+    @extend .btn-blue:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue:hover;
+    box-shadow: none;
+  }
 }
-h2{
-  @extend h1;
-}
-
 /*MAIN CONTAINERS*/
 .color{
   color: white;
@@ -79,15 +97,21 @@ h2{
   background-repeat: no-repeat;
   min-height: 28px;
 }
-.yellowline{
-  background-image: url("../img/lm-yellowline.svg");
+.redline{
+  background-image: url("../img/lm-redline.svg");
   background-repeat: no-repeat;
   min-height: 46px;
   margin-top: -48px;
 }
+.yellowline{
+  background-image: url("../img/lm-yellowline.svg");
+  background-repeat: no-repeat;
+  min-height: 28px;
+  margin-top: -30px;
+}
 .special-position{
   position: relative;
-  top: 100px;
+  top: 80px;
 }
 
 /*HOME 0*/
@@ -96,13 +120,26 @@ h2{
   top: 100px;
 }
 #banner{
-  min-height: 400px;
+  min-height: 380px;
 }
 #que-es{
-  padding: 30px 0 60px;
+  padding: 30px 0 70px;
+}
+p.bajada{
+  font-size: 18px;
+  line-height: 22px;
+}
+p.aviso{
+  font-size: 22px;
+  line-height: 26px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
 }
 #contact{
-  padding: 30px 0 240px;
+  padding: 30px 0 80px;
+}
+#soon{
+  padding: 40px 0 210px;
 }
 
 /*FOOTER*/

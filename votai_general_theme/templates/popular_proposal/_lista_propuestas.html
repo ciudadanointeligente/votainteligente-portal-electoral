@@ -7,130 +7,127 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js"></script>
 <script>
 $(function(){
-    $('.loadFromUrl').on('show.bs.modal', function (event) {
-      var anchor = $(event.relatedTarget) // Button that triggered the modal
-      var modal = $(this)
-      var body = modal.find('.modal-body');
-      body.load(anchor.data('url'));
-    })
-    $('[data-toggle="tooltip"]').tooltip();
+$('.loadFromUrl').on('show.bs.modal', function (event) {
+var anchor = $(event.relatedTarget) // Button that triggered the modal
+var modal = $(this)
+var body = modal.find('.modal-body');
+body.load(anchor.data('url'));
+})
+$('[data-toggle="tooltip"]').tooltip();
 });
 </script>
-
-    <div id="filters" class="container-fluid">
-      <div class="container">
-    {% if form %}
+{% if form %}
+<div id="filters" class="container-fluid">
+  <div class="container">
     {% include 'modal.html' with modalId='subscribeToSearch' title='Mantente al dia con tus tematicas de interes' %}
     <a id="top"></a>
     {% if form.is_filled_search %}
-    <button class="hidden-md hidden-lg btn btn-link btn-block" type="button" data-toggle="collapse" data-target=".filter-mobile" aria-expanded="false" aria-controls="filter-mobile"><i class="fa fa-filter"></i> Mostrar filtros</button>
+      <button class="hidden-md hidden-lg btn btn-link btn-block" type="button" data-toggle="collapse" data-target=".filter-mobile" aria-expanded="false" aria-controls="filter-mobile"><i class="fa fa-filter"></i> Mostrar filtros</button>
     {% endif %}
     <form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form" class="hidden-md hidden-lg filter-mobile {% if form.is_filled_search %}collapse{% endif %}">
-      <div class="row">
-        <div class="col-md-3">{% bootstrap_field form.text %}</div>
-        <div class="col-md-3">{% bootstrap_field form.clasification %}</div>
-        <div class="col-md-3">{% bootstrap_field form.generated_at %}</div>
-        <div class="col-md-3">{% bootstrap_field form.order_by %}</div>
+    <div class="row">
+      <div class="col-md-3">{% bootstrap_field form.text %}</div>
+      <div class="col-md-3">{% bootstrap_field form.clasification %}</div>
+      <div class="col-md-3">{% bootstrap_field form.generated_at %}</div>
+      <div class="col-md-3">{% bootstrap_field form.order_by %}</div>
+    </div>
+    <div class="row">
+      <!-- mobile version -->
+      <div class="col-md-12 text-right visible-xs-*">
+        <button type="submit" class="btn btn-success btn-block">{% trans 'Buscar'%}</button>
+        {% if form.is_filled_search %}
+          <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary btn-block">{% trans 'Limpiar búsqueda'%}</a>
+        {% endif %}
+        {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
+          <a id="subscribeToSearchButton" class="btn btn-info btn-block" data-toggle="modal" data-url="{% url 'proposal_subscriptions:subscribe' %}" data-target="#subscribeToSearch"><i class="fa fa-bell-o"></i> {% trans 'Subscribete a este resultado' %}</a>
+        {% endif %}
       </div>
-      <div class="row">
-        <!-- mobile version -->
-        <div class="col-md-12 text-right visible-xs-*">
-          <button type="submit" class="btn btn-success btn-block">{% trans 'Buscar'%}</button>
-          {% if form.is_filled_search %}
-            <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary btn-block">{% trans 'Limpiar búsqueda'%}</a>
-          {% endif %}
-          {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
-            <a id="subscribeToSearchButton" class="btn btn-info btn-block" data-toggle="modal" data-url="{% url 'proposal_subscriptions:subscribe' %}" data-target="#subscribeToSearch"><i class="fa fa-bell-o"></i> {% trans 'Subscribete a este resultado' %}</a>
-          {% endif %}
-        </div>
-        <!-- end mobile version -->
-      </div>
+      <!-- end mobile version -->
+    </div>
     </form>
-
     <form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form" class="hidden-xs hidden-sm">
-      <div class="row">
-        <div class="col-md-3">{% bootstrap_field form.text %}</div>
-        <div class="col-md-3">{% bootstrap_field form.clasification %}</div>
-        <div class="col-md-3">{% bootstrap_field form.generated_at %}</div>
-        <div class="col-md-3">{% bootstrap_field form.order_by %}</div>
+    <div class="row">
+      <div class="col-md-3">{% bootstrap_field form.text %}</div>
+      <div class="col-md-3">{% bootstrap_field form.clasification %}</div>
+      <div class="col-md-3">{% bootstrap_field form.generated_at %}</div>
+      <div class="col-md-3">{% bootstrap_field form.order_by %}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-right visible-md-*">
+        <button type="submit" class="btn btn-success">{% trans 'Buscar'%}</button>
+        {% if form.is_filled_search %}
+          <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary">{% trans 'Limpiar búsqueda'%}</a>
+        {% endif %}
       </div>
-      <div class="row">
-        <div class="col-md-12 text-right visible-md-*">
-          <button type="submit" class="btn btn-success">{% trans 'Buscar'%}</button>
-          {% if form.is_filled_search %}
-            <a href="{% url 'popular_proposals:home' %}" class="btn btn-primary">{% trans 'Limpiar búsqueda'%}</a>
-          {% endif %}
-        </div>
-      </div>
+    </div>
     </form>
-    </div>
-    </div>
-    {% endif %}
-    <script>
-    $(function(){
-      $('#proposalFilterForm').submit(function() {
-        $(':input', this).each(function() {
-          this.disabled = !($(this).val());
-        });
-      });
-
-      window.onscroll = function (e) {
-        if( document.body.scrollTop >= 600 ) {
-          $('#raiseToTop i').css('display','block');
-        }
-        if( document.body.scrollTop < 600 ) {
-          $('#raiseToTop i').css('display','none');
-        }
-      }
+  </div>
+</div>
+<script>
+$(function(){
+  $('#proposalFilterForm').submit(function() {
+    $(':input', this).each(function() {
+      this.disabled = !($(this).val());
     });
-
-    </script>
+  });
+  window.onscroll = function (e) {
+    if( document.body.scrollTop >= 600 ) {
+      $('#raiseToTop i').css('display','block');
+    }
+    if( document.body.scrollTop < 600 ) {
+      $('#raiseToTop i').css('display','none');
+    }
+  }
+});
+</script>
+{% endif %}
 <!-- inicio grid -->
 <div class="container">
-<div id="grid">
-      {% if form.is_filled_search %}
+  <div id="grid">
+  {% if not hide_proposal_list_header %}
+    {% if form.is_filled_search %}
       <h3 class="text-center">Hay {{popular_proposals|length}} propuestas ciudadanas con tus criterios de búsqueda seleccionados</h3>
-      {% else %}
+    {% else %}
       <h3 class="text-center">Hay {{popular_proposals|length}} propuestas ciudadanas</h3>
-      {% endif %}
-      {% if not user|is_candidate %}
-        {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
-        <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark">Crear nueva propuesta</a></div>
-      {% endif %}
-      {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
+    {% endif %}
+    {% if not user|is_candidate %}
+      {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
+      <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark">Crear nueva propuesta</a></div>
+    {% endif %}
+    {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
       <div class="row hidden-xs">
         <div class="col-md-6 col-md-offset-3">
           <div class="alert alert-info text-center" role='alert'>
             <button type="button" class="close" data-dismiss='alert' aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true">&times;</span>
             </button>
             <a id="subscribeToSearchButton" data-toggle="modal" data-url="{% url 'proposal_subscriptions:subscribe' %}" data-target="#subscribeToSearch"><i class="fa fa-bell-o"></i> {% trans 'Recibe notificaciones en tu correo con el resultado de esta búsqueda' %}</a>
           </div>
         </div>
       </div>
-      {% endif %}
+    {% endif %}
+  {% endif %}
+
     <div id="posts">
-      {% for proposal in popular_proposals %}
-        {% comment %}
-        {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal is_embedded=is_embedded proposals_list=True %}
-        {% endcomment %}
-        {% with is_embedded as is_embedded %}
+    {% for proposal in popular_proposals %}
+      {% comment %}
+      {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal is_embedded=is_embedded proposals_list=True %}
+      {% endcomment %}
+      {% with is_embedded as is_embedded %}
         {% display_proposal_card proposal %}
-        {% endwith %}
+      {% endwith %}
       {% empty %}
       {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
-    </div>
-    {% blocktrans %}
-    <p class="bg-info text-center">
-      Aún no se han generado propuestas para esta búsqueda.
-    </p>
-    {% endblocktrans %}
+      {% blocktrans %}
+        <p class="bg-info text-center">
+          Aún no se han generado propuestas para esta búsqueda.
+        </p>
+      {% endblocktrans %}
     {% endfor %}
+    </div>
   </div>
 </div>
-</div>
 <!-- fin grid -->
-
 <div class="container" id="raiseToTop">
   <div class="row">
     <div class="col-xs-12 col-md-12">

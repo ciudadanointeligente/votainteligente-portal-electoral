@@ -83,6 +83,9 @@ class HomeView(HomeViewBase):
             proposals_with_likers = PopularProposal.ordered.by_likers()[:9]
             cache.set('proposals_with_likers', proposals_with_likers, 600)
         context['proposals_with_likers'] = proposals_with_likers
+        featured_proposals = PopularProposal.objects.filter(featured=True)
+        cache.set('featured_proposals', featured_proposals, 600)
+        context['featured_proposals'] = featured_proposals
         return context
 
 

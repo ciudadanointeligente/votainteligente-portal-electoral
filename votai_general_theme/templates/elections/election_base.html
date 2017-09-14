@@ -22,7 +22,9 @@
     <ol class="breadcrumb">
       <li><a href="{% url 'home' %}" onclick="ga('send','event','breadcrumb-home-election','click')"><i class="fa fa-home"></i></a></li>
       <li><a href="{% url 'know_your_candidates' %}" onclick="ga('send','event','breadcrumb-candidaturas-election','click')">Candidaturas</a></li>
+      {% if candidate.election and candidate.election.area %}
       <li><a href="{% url 'area' slug=candidate.election.area.id %}" onclick="ga('send','event','breadcrumb-area-election','click')">{{candidate.election.area}}</a></li>
+      {% endif %}
       <li class="active">{{candidate.name}}</li>
     </ol>
   </div>

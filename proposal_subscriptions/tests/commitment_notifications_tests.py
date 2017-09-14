@@ -2,7 +2,6 @@
 from popular_proposal.tests import ProposingCycleTestCaseBase
 from proposal_subscriptions.models import (CommitmentNotification,
                                            CommitmentNotificationSender,)
-from django.core.urlresolvers import reverse
 from popular_proposal.models import (PopularProposal,
                                      Commitment,
                                      ProposalLike,
@@ -94,7 +93,7 @@ class CommitmentNotifications(ProposingCycleTestCaseBase):
 
     def test_email_sender(self):
         u = User.objects.create_user(username="user", email="bono_u1@themail.com")
-        u3 = User.objects.create_user(username="user3", email="bono_u3@themail.com")
+        User.objects.create_user(username="user3", email="bono_u3@themail.com")
         ProposalLike.objects.create(user=u,
                                     proposal=self.popular_proposal)
         ProposalLike.objects.create(user=u,
@@ -102,12 +101,12 @@ class CommitmentNotifications(ProposingCycleTestCaseBase):
         u2 = User.objects.create_user(username="user2", email="bono_u2@themail.com")
         ProposalLike.objects.create(user=u2,
                                     proposal=self.popular_proposal)
-        commitment = Commitment.objects.create(candidate=self.candidate,
-                                               commited=True,
-                                               proposal=self.popular_proposal)
-        commitment2 = Commitment.objects.create(candidate=self.candidate,
-                                                commited=True,
-                                                proposal=self.popular_proposal2)
+        Commitment.objects.create(candidate=self.candidate,
+                                  commited=True,
+                                  proposal=self.popular_proposal)
+        Commitment.objects.create(candidate=self.candidate,
+                                  commited=True,
+                                  proposal=self.popular_proposal2)
         original_amount_of_mails = len(mail.outbox)
         CommitmentNotificationSender.send_to_users()
 

@@ -269,6 +269,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
     def test_new_proposal_notification_with_login_info(self):
         self.feli.last_login = None
         self.feli.save()
+        CandidacyContact.objects.all().delete()
         candidacy = Candidacy.objects.create(user=self.feli,
                                              candidate=self.candidate
                                              )

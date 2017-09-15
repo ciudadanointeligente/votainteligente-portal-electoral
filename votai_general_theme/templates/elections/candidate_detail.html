@@ -81,11 +81,12 @@
             </td>
           </tr>
           {% endif %}
-          {% if candidate.biography %}
+          {% get_personal_data candidate=candidate personal_data='experiencia' as experiencia %}
+          {% if experiencia.value %}
           <tr>
             <td colspan="2">
-              <p><b>Reseña</b></p>
-              {{ candidate.biography|markdown }}
+              <p><b>Experiencia</b></p>
+              {{ experiencia.value|markdown }}
             </td>
           </tr>
           {% endif %}

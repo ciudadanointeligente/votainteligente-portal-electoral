@@ -1,3 +1,4 @@
+{% load votainteligente_extras%}
 {% for contact_detail in candidate.contact_details.all %}
 <li>
   <a href="{{contact_detail.value}}" class="social-link-candidate" target="_blank">
@@ -16,3 +17,7 @@
     {% endfor%}
 {% endif %}
 {% endfor %}
+{% get_personal_data candidate=candidate personal_data='telefono' as telefono %}
+{% if telefono.value %}
+<li><a href="tel:{{telefono.value}}"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
+{% endif %}

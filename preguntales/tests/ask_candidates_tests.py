@@ -525,6 +525,9 @@ class PreguntalesWebTestCase(TestCase):
         self.candidate1 = Candidate.objects.get(id=4)
         self.candidate2 = Candidate.objects.get(id=5)
         self.candidate3 = Candidate.objects.get(id=6)
+        self.election.candidates.add(self.candidate1)
+        self.election.candidates.add(self.candidate2)
+        self.election.candidates.add(self.candidate3)
 
     def tearDown(self):
         pass

@@ -58,6 +58,15 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
     def setUp(self):
         super(SubscriptionEventsTestCase, self).setUp()
 
+    def test_raises_not_implemented_error(self):
+        class OnlyForThisTest(SubscriptionEventBase):
+            pass
+        bad_dispatcher = OnlyForThisTest(None)
+        with self.assertRaises(NotImplementedError):
+            bad_dispatcher.get_who()
+        with self.assertRaises(NotImplementedError):
+            bad_dispatcher.get_mail_from(None)
+
     def test_triggering_an_event(self):
         dispatcher = EventDispatcher()
         dispatcher.register('test-event', [TestNewCandidateCommitment, ])

@@ -70,7 +70,6 @@ h2{
     box-shadow: none;
   }
 }
-<<<<<<< HEAD
 h4{
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
@@ -90,8 +89,6 @@ h4{
     }
   }
 }
-=======
->>>>>>> master
 /*MAIN CONTAINERS*/
 .color{
   color: white;
@@ -192,10 +189,54 @@ p.aviso{
 .propuesta-content{
   padding: 25px 20px 35px;
 }
+.group{
+  margin-top: 30px;
+  margin-bottom: -6px;
+}
 .votita-love-politica{
   border: 3px solid $yellow;
   .label-default{
     background: $yellow;
+  }
+  .group{
+    color: $yellow;
+  }
+  hr{
+    border: 1px solid $yellow;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $yellow;
+    border: 3px solid $yellow;
+    &:hover{
+      background-color: transparent;
+      color: $yellow;
+      border: 3px solid $yellow;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $yellow;
+    background-color: transparent;
+    border: 3px solid $yellow;
+    &:hover{
+      background-color: $yellow;
+      color: white;
+      border: 3px solid $yellow;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
   }
   h4{
     a{
@@ -218,6 +259,46 @@ p.aviso{
   .label-default{
     background: $blue;
   }
+  .group{
+    color: $blue;
+  }
+  hr{
+    border: 1px solid $blue;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $blue;
+    border: 3px solid $blue;
+    &:hover{
+      background-color: transparent;
+      color: $blue;
+      border: 3px solid $blue;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $blue;
+    background-color: transparent;
+    border: 3px solid $blue;
+    &:hover{
+      background-color: $blue;
+      color: white;
+      border: 3px solid $blue;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
+  }
   h4{
     a{
       &:hover{
@@ -238,6 +319,46 @@ p.aviso{
   border: 3px solid $green;
   .label-default{
     background: $green;
+  }
+  .group{
+    color: $green;
+  }
+  hr{
+    border: 1px solid $green;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $green;
+    border: 3px solid $green;
+    &:hover{
+      background-color: transparent;
+      color: $green;
+      border: 3px solid $green;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $green;
+    background-color: transparent;
+    border: 3px solid $green;
+    &:hover{
+      background-color: $green;
+      color: white;
+      border: 3px solid $green;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
   }
   h4{
     a{
@@ -260,6 +381,46 @@ p.aviso{
   .label-default{
     background: $red;
   }
+  .group{
+    color: $red;
+  }
+  hr{
+    border: 1px solid $red;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $red;
+    border: 3px solid $red;
+    &:hover{
+      background-color: transparent;
+      color: $red;
+      border: 3px solid $red;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $red;
+    background-color: transparent;
+    border: 3px solid $red;
+    &:hover{
+      background-color: $red;
+      color: white;
+      border: 3px solid $red;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
+  }
   h4{
     a{
       &:hover{
@@ -280,6 +441,46 @@ p.aviso{
   border: 3px solid $purple;
   .label-default{
     background: $purple;
+  }
+  .group{
+    color: $purple;
+  }
+  hr{
+    border: 1px solid $purple;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $purple;
+    border: 3px solid $purple;
+    &:hover{
+      background-color: transparent;
+      color: $purple;
+      border: 3px solid $purple;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $purple;
+    background-color: transparent;
+    border: 3px solid $purple;
+    &:hover{
+      background-color: $purple;
+      color: white;
+      border: 3px solid $purple;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
   }
   h4{
     a{
@@ -302,6 +503,46 @@ p.aviso{
   .label-default{
     background: $blue;
   }
+  .group{
+    color: $blue;
+  }
+  hr{
+    border: 1px solid $blue;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $blue;
+    border: 3px solid $blue;
+    &:hover{
+      background-color: transparent;
+      color: $blue;
+      border: 3px solid $blue;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $blue;
+    background-color: transparent;
+    border: 3px solid $blue;
+    &:hover{
+      background-color: $blue;
+      color: white;
+      border: 3px solid $blue;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
+  }
   h4{
     a{
       &:hover{
@@ -322,6 +563,46 @@ p.aviso{
   border: 3px solid $pink;
   .label-default{
     background: $pink;
+  }
+  .group{
+    color: $pink;
+  }
+  hr{
+    border: 1px solid $pink;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $pink;
+    border: 3px solid $pink;
+    &:hover{
+      background-color: transparent;
+      color: $pink;
+      border: 3px solid $pink;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $pink;
+    background-color: transparent;
+    border: 3px solid $pink;
+    &:hover{
+      background-color: $pink;
+      color: white;
+      border: 3px solid $pink;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
   }
   h4{
     a{
@@ -344,6 +625,46 @@ p.aviso{
   .label-default{
     background: $yellow;
   }
+  .group{
+    color: $yellow;
+  }
+  hr{
+    border: 1px solid $yellow;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $yellow;
+    border: 3px solid $yellow;
+    &:hover{
+      background-color: transparent;
+      color: $yellow;
+      border: 3px solid $yellow;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $yellow;
+    background-color: transparent;
+    border: 3px solid $yellow;
+    &:hover{
+      background-color: $yellow;
+      color: white;
+      border: 3px solid $yellow;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
+  }
   h4{
     a{
       &:hover{
@@ -362,6 +683,19 @@ p.aviso{
 }
 .label-default{
   @extend .small;
+}
+.share-card{
+  padding: 25px 20px 75px;
+}
+.apoyo-contador {
+  text-align: left;
+}
+.conteo{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  position: relative;
+  top: 6px;
 }
 
 /*FOOTER*/

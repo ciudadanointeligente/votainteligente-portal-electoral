@@ -8,9 +8,11 @@ from votainteligente.send_mails import send_mail
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from django.conf import settings
+from django.utils.encoding import python_2_unicode_compatible
 import uuid
 
 
+@python_2_unicode_compatible
 class Candidacy(models.Model):
     user = models.ForeignKey(User, related_name='candidacies')
     candidate = models.ForeignKey(Candidate)
@@ -21,6 +23,12 @@ class Candidacy(models.Model):
                                    blank=True,
                                    null=True)
 
+    def __str__(self):
+        return u'{} pertenece a la candidatura de {}'.format(self.user.username, self.candidate.name)
+
+    class Meta:
+        verbose_name = u"Candidatura"
+        verbose_name_plural = u"Candidaturas"
 
 def is_candidate(user):
     if not user.is_authenticated():
@@ -78,6 +86,10 @@ class CandidacyContact(models.Model):
                                   default=None)
     initial_password = models.CharField(max_length=255,
                                         blank=True)
+
+    class Meta:
+        verbose_name = u"Contacto de Candidatura"
+        verbose_name_plural = u"Contactos de Candidaturas"
 
     def send_mail_with_link(self):
         if self.times_email_has_been_sent >= settings.MAX_AMOUNT_OF_MAILS_TO_CANDIDATE:

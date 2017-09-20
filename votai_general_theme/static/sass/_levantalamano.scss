@@ -51,7 +51,25 @@ h1{
 h2{
   @extend h1;
 }
-
+h4{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  color: black;
+  a{
+    color: black;
+    &:hover{
+      color: black;
+      text-decoration: none;
+    }
+    &:focus{
+      @extend a:hover;
+    }
+    &:active:hover{
+      @extend a:hover;
+      box-shadow: none;
+    }
+  }
+}
 /*MAIN CONTAINERS*/
 .color{
   color: white;
@@ -138,11 +156,41 @@ h2{
   .label-default{
     background: $yellow;
   }
+  h4{
+    a{
+      &:hover{
+        color: $yellow;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
+  }
 }
 .votita-love-salud{
   border: 3px solid $blue;
   .label-default{
     background: $blue;
+  }
+  h4{
+    a{
+      &:hover{
+        color: $blue;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
   }
 }
 .votita-love-medio_ambiente{
@@ -150,11 +198,41 @@ h2{
   .label-default{
     background: $green;
   }
+  h4{
+    a{
+      &:hover{
+        color: $green;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
+  }
 }
 .votita-love-cultura{
   border: 3px solid $red;
   .label-default{
     background: $red;
+  }
+  h4{
+    a{
+      &:hover{
+        color: $red;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
   }
 }
 .votita-love-diversidad{
@@ -162,11 +240,41 @@ h2{
   .label-default{
     background: $purple;
   }
+  h4{
+    a{
+      &:hover{
+        color: $purple;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
+  }
 }
 .votita-love-tecnologia{
   border: 3px solid $blue;
   .label-default{
     background: $blue;
+  }
+  h4{
+    a{
+      &:hover{
+        color: $blue;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
   }
 }
 .votita-love-educacion_y_trabajo{
@@ -174,11 +282,41 @@ h2{
   .label-default{
     background: $pink;
   }
+  h4{
+    a{
+      &:hover{
+        color: $pink;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
+  }
 }
 .votita-love-proteccion_y_familia{
   border: 3px solid $yellow;
   .label-default{
     background: $yellow;
+  }
+  h4{
+    a{
+      &:hover{
+        color: $yellow;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
   }
 }
 .label-default{

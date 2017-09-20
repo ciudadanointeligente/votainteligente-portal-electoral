@@ -185,13 +185,18 @@ p.aviso{
   border-radius: 10px;
   padding: 0;
   position: relative;
+  padding: 20px 20px 5px;
 }
 .propuesta-content{
-  padding: 25px 20px 35px;
+  height: 110px;
 }
 .group{
   margin-top: 30px;
   margin-bottom: -6px;
+}
+hr{
+  position: relative;
+  top: 26px;
 }
 .votita-love-politica{
   border: 3px solid $yellow;
@@ -685,7 +690,7 @@ p.aviso{
   @extend .small;
 }
 .share-card{
-  padding: 25px 20px 75px;
+  padding: 20px 0 0;
 }
 .apoyo-contador {
   text-align: left;

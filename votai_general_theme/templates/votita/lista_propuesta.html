@@ -9,9 +9,7 @@
 {% block content %}
 <div class="container">
   <h1 class="page-header">{% trans "Propuestas" %}</h1>
-    <div id="posts">
       {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=proposals %}
-    </div>
 </div>
 <script>
 $(function(){

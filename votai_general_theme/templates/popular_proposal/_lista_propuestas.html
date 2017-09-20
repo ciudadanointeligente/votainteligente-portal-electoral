@@ -17,9 +17,9 @@ $(function(){
 });
 </script>
 
+{% if form %}
     <div id="filters" class="container-fluid">
       <div class="container">
-    {% if form %}
     {% include 'modal.html' with modalId='subscribeToSearch' title='Mantente al dia con tus tematicas de interes' %}
     <a id="top"></a>
     {% if form.is_filled_search %}
@@ -65,7 +65,7 @@ $(function(){
     </form>
     </div>
     </div>
-    {% endif %}
+{% endif %}
     <script>
     $(function(){
       $('#proposalFilterForm').submit(function() {

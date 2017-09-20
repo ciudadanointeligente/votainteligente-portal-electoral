@@ -17,8 +17,8 @@
     <h4><a href="{{proposal.get_absolute_url}}">{{proposal.title|truncatechars:100 }}</a></h4>
     <p class="intro">{{proposal.data.solution_at_the_end|linebreaksbr|truncatechars:150}}</p>
   </div>
-  <div class="share-card">
   <hr>
+  <div class="share-card">
       {% url 'popular_proposals:home' as popular_proposals_home %}
       {% include 'popular_proposal/_likers.html' with proposal=proposal area=area next_url=popular_proposals_home  support_button_extra_class="pull-left" %}
     {% comment %}

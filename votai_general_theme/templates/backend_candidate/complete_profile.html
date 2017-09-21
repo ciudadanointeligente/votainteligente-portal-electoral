@@ -22,7 +22,7 @@
     <img src="{{ im.url }}" alt="{{candidate.name}}" height="96" width="96" border="0" class="img-responsive img-circle">
     {% endthumbnail %}
   {% else %}
-    <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">
+    <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle">
   {% endif %}
   {% bootstrap_field form.image %}
   {% for field in form %}

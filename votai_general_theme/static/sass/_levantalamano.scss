@@ -745,7 +745,7 @@ hr{
   padding-bottom: 40px;
 }
 .votita-love-detail-tecnologia{
-  background-color: $yellow;
+  background-color: $blue;
   padding-bottom: 40px;
 }
 .votita-love-detail-educacion_y_trabajo{
@@ -810,6 +810,33 @@ hr{
     }
   }
 }
+
+/*PLAN*/
+.votita-plan{
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 20px 40px 20px;
+  margin: 20px 0;
+  h2{
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    text-align: center;
+  }
+}
+.proposal-plan{
+  border: none;
+  margin: 20px 0 15px;
+  a{
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 15px;
+    font-weight: 700;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}
+
 
 /*MODALS*/
 .modal-content{

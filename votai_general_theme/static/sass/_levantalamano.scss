@@ -27,6 +27,23 @@ h2{
   @extend h1;
 }
 
+/*NAV*/
+.navbar-default{
+  background-color: black;
+  border: none;
+}
+.navbar{
+  min-height: 70px;
+  @extend .small;
+  font-size: 10px;
+}
+.navbar-default .navbar-nav>li>a{
+  color: white;
+  &:hover{
+    color: $purple;
+  }
+}
+
 /*BUTTONS*/
 .btn{
   border-radius: 20px;

@@ -159,6 +159,7 @@ p.aviso{
 }
 #soon{
   padding: 40px 0 210px;
+  margin-bottom: -170px;
 }
 
 /*PROPOSALS REPOSITORY*/
@@ -691,6 +692,14 @@ hr{
 }
 .share-card{
   padding: 20px 0 0;
+  .social-buttons{
+    font-size: 10px;
+    position: relative;
+    top: 17px;
+    a{
+      color: black;
+    }
+  }
 }
 .apoyo-contador {
   text-align: left;
@@ -870,7 +879,7 @@ hr{
   background-image: url("../img/lm-footer.svg");
   background-repeat: no-repeat;
   min-height: 144px;
-  margin-top: -148px;
+  margin-top: 0px;
 }
 footer{
   background-color: $green;

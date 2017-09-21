@@ -704,6 +704,26 @@ hr{
 }
 
 /*DETAIL*/
+.breadcrumb{
+  background-color: transparent;
+  border-radius: none;
+  margin: 20px 0;
+  padding: 0;
+  color: black;
+  a{
+    color: black;
+    &:hover{
+      color: white;
+      text-decoration: none;
+    }
+  }
+  .active{
+    color: white;
+  }
+  li+li:before{
+    color: black;
+  }
+}
 .votita-love-detail-politica{
   background-color: $yellow;
   padding-bottom: 40px;
@@ -777,6 +797,7 @@ hr{
   }
 }
 .share-detail{
+  padding: 70px 10px 20px;
   a{
     color: black;
     &:hover{
@@ -789,6 +810,7 @@ hr{
     }
   }
 }
+
 /*MODALS*/
 .modal-content{
   box-shadow: none;

@@ -1,20 +1,18 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
 
-<div class="row " id="proposal-details">
-  <div class="col-md-12 print_hidden">
+<div class="row" id="proposal-details">
+  <div class="col-md-12 print_hidden votita-detail">
     {% if proposal.data.solution %}
-    <h3>El detalle de la propuesta es:</h3>
     <p>{{proposal.data.solution|popular_proposal_when|linebreaksbr}}</p>
     {% endif %}
   </div>
   <!-- print visible share urls-->
-  <h3 class="text-center print_only invitacion">Si te gustó ¡compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año</h3>
   <div class="col-md-12 print_only">
+    <h3 class="invitacion">Si te gustó ¡compártela y apóyala! Así todos/as tendremos voz en las elecciones de este año</h3>
     <ul class="list-unstyled  print-share-urls">
-
       {% for x in 'xxxxxxxxxxxxxxxxxx' %}
-      <li>{{popular_proposal.title|truncatechars:30}}<br >
+      <li class="print_only">{{popular_proposal.title|truncatechars:30}}<br >
         {{ request.get_host }}{{popular_proposal.get_short_url}}</li>
       {% endfor %}
     </ul>

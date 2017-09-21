@@ -703,6 +703,119 @@ hr{
   top: 6px;
 }
 
+/*DETAIL*/
+.votita-love-detail-politica{
+  background-color: $yellow;
+  padding-bottom: 40px;
+}
+.votita-love-detail-salud{
+  background-color: $blue;
+  padding-bottom: 40px;
+}
+.votita-love-detail-medio_ambiente{
+  background-color: $green;
+  padding-bottom: 40px;
+}
+.votita-love-detail-cultura{
+  background-color: $red;
+  padding-bottom: 40px;
+}
+.votita-love-detail-diversidad{
+  background-color: $purple;
+  padding-bottom: 40px;
+}
+.votita-love-detail-tecnologia{
+  background-color: $yellow;
+  padding-bottom: 40px;
+}
+.votita-love-detail-educacion_y_trabajo{
+  background-color: $pink;
+  padding-bottom: 40px;
+}
+.votita-love-detail-proteccion_y_familia{
+  background-color: $yellow;
+  padding-bottom: 40px;
+}
+.votita-detail{
+  .label-default{
+    background: white;
+    color: black;
+  }
+  h1{
+    font-family: 'Nunito', sans-serif;
+    font-size: 40px;
+    color: white;
+    font-weight: 700;
+  }
+  p{
+    font-size: 15px;
+  }
+  .group{
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+  .invitacion{
+    font-size: 20px;
+  }
+  .btn-apoyo{
+    background-color: white;
+    color: black;
+    width: 100%;
+    &:hover{
+      background-color: transparent;
+      color: white;
+    }
+  }
+  .blue-light-txt{
+    font-size: 18px;
+    position: relative;
+    top: -4px;
+  }
+  hr{
+    border: 1px solid white;
+    margin: 0 0 40px;
+  }
+}
+.share-detail{
+  a{
+    color: black;
+    &:hover{
+      color: white;
+    }
+  }
+  .fa-inverse{
+    &:hover{
+      color: black;
+    }
+  }
+}
+/*MODALS*/
+.modal-content{
+  box-shadow: none;
+  border: none;
+}
+.modal-header{
+  border-bottom: none;
+}
+.modal-footer{
+  border-top: none;
+}
+.btn-info{
+  background-color: black;
+  border: 3px solid black;
+  &:hover{
+    background-color: transparent;
+    color: black;
+    border: 3px solid black;
+  }
+  &:focus{
+    @extend .btn-info:hover;
+  }
+  &:active:hover{
+    @extend .btn-info:hover;
+    box-shadow: none;
+  }
+}
 /*FOOTER*/
 .greenline{
   background-image: url("../img/lm-footer.svg");
@@ -729,4 +842,12 @@ footer{
 }
 .redes{
   margin: 45px 0;
+}
+
+/*PRINT*/
+.print_only {
+  display:none;
+}
+.print-share-urls{
+  display:none;
 }

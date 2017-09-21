@@ -39,7 +39,7 @@ urlpatterns = [
         ProposalWizardFullWithoutArea.as_view(),
         name='propose_wizard_full_without_area'),
     url(r'^detail/(?P<slug>[-\w]+)/?$',
-        PopularProposalDetailView.as_view(),
+        xframe_options_exempt(PopularProposalDetailView.as_view()),
         name='detail'),
     url(r'^d/(?P<pk>\d+)/?$',
         PopularProposalDetailRedirectView.as_view(),

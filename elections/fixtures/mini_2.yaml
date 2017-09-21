@@ -28,22 +28,22 @@
     user_permissions: []
 - model: popolo.area
   pk: algarrobo-5602
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {slug: algarrobo, content_type: null, object_id: null, start_date: null, end_date: null,
     name: Algarrobo, identifier: '5602', classification: 'Comuna', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: alhue-13502
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {slug: alhue, content_type: null, object_id: null, start_date: null, end_date: null,
     name: "Alhu\xE9", identifier: '13502', classification: 'Comuna', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: arica-15101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {slug: alhue, content_type: null, object_id: null, start_date: null, end_date: null,
     name: Arica, identifier: '15101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: fundacion-ciudadano-inteligente
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {slug: ciudadanoi, content_type: null, object_id: null, start_date: null, end_date: null,
     name: CiudadanoI, identifier: '15101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: backend_citizen.profile

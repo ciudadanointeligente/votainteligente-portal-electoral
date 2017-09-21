@@ -24,7 +24,7 @@ class ElectionsPerAreaTestCase(TestCase):
 
     def test_there_is_a_url_with_the_area(self):
         argentina = Area.objects.create(name=u'Argentina')
-        url = reverse('area', kwargs={'slug': argentina.id})
+        url = argentina.get_absolute_url()
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'elections/area.html')
@@ -37,7 +37,7 @@ class ElectionsPerAreaTestCase(TestCase):
     @override_config(HIDDEN_AREAS='argentina')
     def test_hidden_area_is_still_reachable(self):
         argentina = Area.objects.create(name=u'Argentina')
-        url = reverse('area', kwargs={'slug': argentina.id})
+        url = argentina.get_absolute_url()
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
@@ -177,13 +177,13 @@ class ElectionsPerAreaTestCase(TestCase):
         mother = Area.objects.create(name="mother")
         mother.children.add(child)
 
-        url = reverse('area', kwargs={'slug': child.id})
+        url = child.get_absolute_url()
         response = self.client.get(url)
-        url_mother = reverse('area', kwargs={'slug': mother.id})
+        url_mother = mother.get_absolute_url()
         self.assertRedirects(response, url_mother)
 
         child2 = Area.objects.create(name="children", classification="Comuna")
-        url = reverse('area', kwargs={'slug': child2.id})
+        url = child2.get_absolute_url()
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
@@ -193,7 +193,7 @@ class AreaOGPTestCase(TestCase):
         self.site = Site.objects.get_current()
 
     def test_get_absolute_url(self):
-        url = reverse('area', kwargs={'slug': self.argentina.id})
+        url = reverse('area', kwargs={'slug': self.argentina.slug})
         self.assertEquals(url, self.argentina.get_absolute_url())
 
     def test_ogp_things(self):

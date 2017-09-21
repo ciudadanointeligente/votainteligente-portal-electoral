@@ -15,7 +15,7 @@
       {% for candidacy in user.candidacies.all %}
         <div class="apoyo-btn">
         {% if not avoid_counter %}
-          <div class="apoyo-contador text-center">
+          <div class="apoyo-contador">
             <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
           </div>
         {% endif %}
@@ -54,7 +54,7 @@
         {% with "supportProposal"|add:proposal.slug as modalid %}
           <!-- "logueado sin support" -->
           {% if not avoid_counter %}
-          <div class="apoyo-contador text-center">
+          <div class="apoyo-contador">
             <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
           </div>
           {% endif %}
@@ -72,7 +72,7 @@
         {% with user|support:proposal as support %}
         <!-- apoyando -->
           {% if not avoid_counter %}
-            <div class="apoyo-contador text-center">
+            <div class="apoyo-contador">
               <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
             </div>
           {% endif %}
@@ -96,7 +96,7 @@
   {% else %}
     <!-- usuario no logueado -->
       {% if not avoid_counter %}
-      <div class="apoyo-contador text-center">
+      <div class="apoyo-contador">
         <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
       </div>
       {% endif %}

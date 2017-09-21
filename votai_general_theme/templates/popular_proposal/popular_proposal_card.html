@@ -22,7 +22,7 @@
     <div class="small text-light">Propuesta para
       {% if not is_embedded and proposal.area %}
 
-        <a href="{% url 'area' slug=proposal.area.id %}">
+        <a href="{{proposal.area.get_absolute_url}}">
       {% endif %}
         {{proposal.area}}
       {% if not is_embedded %}</a>{% endif %}

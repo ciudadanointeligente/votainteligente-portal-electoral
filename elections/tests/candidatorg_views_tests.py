@@ -54,7 +54,7 @@ class CandidateInElectionsViewsTestCase(TestCase):
     def test_candidate_get_absolute_url_with_area(self):
         candidate = self.coquimbo.candidates.get(id=1)
         url = reverse('candidate_detail_view_area', kwargs={
-            'area_slug': self.tarapaca.area.id,
+            'area_slug': self.tarapaca.area.slug,
             'slug': candidate.id
         })
         self.assertEquals(candidate.get_absolute_url(), url)

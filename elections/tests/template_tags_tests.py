@@ -81,9 +81,9 @@ class TemplateTagsTestCase(TestCase):
         Area.objects.create(name="Mar para Bolivia")
         Area.objects.create(name="Guatemala")
         for area in Area.public.all():
-            area_dict = {'slug': area.id,
+            area_dict = {'slug': area.slug,
                          'name': area.name,
-                         'detaillink': reverse('area', kwargs={'slug': area.id})
+                         'detaillink': area.get_absolute_url()
                          }
             expected_areas.append(area_dict)
 

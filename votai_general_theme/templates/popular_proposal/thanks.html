@@ -22,8 +22,8 @@
           <p>{% blocktrans %}Por favor, espera a nuestros Ciudadanos Inteligentes para que la evalúen.{% endblocktrans %}</p>
 
           <p>Muchas gracias</p>
-          
-          <div class="col-md-12">  
+
+          <div class="col-md-12">
             <li class="list-unstyled">
               {% get_proposals_enabled as proposals_enabled %}
               {% if proposals_enabled  %}
@@ -32,7 +32,7 @@
               <a href="{% url 'backend_citizen:my_proposals' %}" class="btn btn-primary btn-block" role="button">{% blocktrans %}Ir a mi perfil ciudadano{% endblocktrans %}</a>
             </li>
           </div>
-        <!--<a href="{% url 'area' slug=area.id %}" class="btn btn-success btn-lg active" role="button">
+        <!--<a href="{{area.get_absolute_url}}" class="btn btn-success btn-lg active" role="button">
             {% blocktrans with area=area %}Revisa otras propuestas en {{area}}{% endblocktrans %}
         </a>-->
 
@@ -45,4 +45,3 @@
 
 {% block extrafooter %}
 {% endblock extrafooter %}
-

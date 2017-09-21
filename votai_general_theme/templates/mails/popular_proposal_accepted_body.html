@@ -29,7 +29,7 @@ Puedes ver tu propuesta en el siguiente link:
 https://{{site.domain}}{{ temporary_data.created_proposal.get_absolute_url }}
 
 Y acá puedes ver la lista de todas las propuestas de {{area}}:
-https://{{site.domain}}{% url 'area' slug=area.id %}
+https://{{site.domain}}{{area.get_absolute_url}}
 
 
 Para hacer que tu propuesta llegue a ser parte de los programas

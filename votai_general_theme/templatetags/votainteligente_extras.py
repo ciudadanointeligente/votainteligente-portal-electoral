@@ -46,9 +46,9 @@ def elections_json():
 def areas_json(url='area'):
     areas = []
     for area in Area.public.all():
-        area_dict = {'slug': area.id,
+        area_dict = {'slug': area.slug,
                      'name': area.name,
-                     'detaillink': reverse(url, kwargs={'slug': area.id}),
+                     'detaillink': reverse(url, kwargs={'slug': area.slug}),
                      }
         areas.append(area_dict)
     return mark_safe(json.dumps(areas))

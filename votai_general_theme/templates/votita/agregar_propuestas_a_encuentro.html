@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container">
-  <h1 class="page-header">Agregando propuestas para <small>"{{object.name}}"</small></h1>
+  <h1>Agregando propuestas para <small>"{{object.name}}"</small></h1>
   <form method="post" action="{% url 'votita:proposal_for_gathering' pk=object.pk %}">
     {% csrf_token %}
     {{formset.management_form}}
@@ -24,9 +24,9 @@
       </fieldset>
     </script>
     <div>
-      <button id="add-proposal" type="button" class="btn btn-default">Agregar</button>
+      <button id="add-proposal" type="button" class="btn btn-agregar pull-left">Agregar más propuestas</button>
     </div>
-    <input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
+    <input type="submit" value="{% trans "Enviar" %}"  class="btn btn-enviar pull-right" />
   </form>
 </div>
 <script>

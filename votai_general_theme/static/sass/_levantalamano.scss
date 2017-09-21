@@ -874,6 +874,30 @@ hr{
     box-shadow: none;
   }
 }
+
+/*FORMS*/
+.form-control{
+  border: 2px solid black;
+}
+.btn-enviar{
+  background-color: $yellow;
+  border: 3px solid $yellow;
+  color: white;
+  &:hover{
+    background-color: transparent;
+    color: $yellow;
+  }
+}
+.btn-agregar{
+  background-color: $green;
+  border: 3px solid $green;
+  color: white;
+  &:hover{
+    background-color: transparent;
+    color: $green;
+  }
+}
+
 /*FOOTER*/
 .greenline{
   background-image: url("../img/lm-footer.svg");

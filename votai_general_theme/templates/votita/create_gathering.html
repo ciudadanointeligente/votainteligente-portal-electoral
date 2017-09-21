@@ -14,7 +14,7 @@
 
 {% block content %}
 <div class="container">
-  <h1 class="page-header">Crear encuentro infantil</h1>
+  <h1>Crear encuentro</h1>
   <form action="{% url 'votita:create_gathering' %}" method="post">
       {% csrf_token %}
       {% bootstrap_field form.name %}
@@ -30,7 +30,7 @@
       {% bootstrap_field form.female %}
       {% bootstrap_field form.others %}
 
-      <input type="submit" value="Enviar" class="btn btn-default" />
+      <input type="submit" value="Enviar" class="btn btn-enviar pull-right" />
   </form>
 </div>
 

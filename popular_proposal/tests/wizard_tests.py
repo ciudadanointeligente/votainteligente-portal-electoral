@@ -405,14 +405,3 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
         self.assertIsInstance(form, UpdateProposalForm)
         self.assertEquals(form.instance, temporary_data.created_proposal)
 
-    def test_if_we_say_is_testing_in_wizard_it_creates_a_proposal_in_testing_area(self):
-        try:
-            testing_area = Area.objects.get(id=config.HIDDEN_AREAS)
-        except Area.DoesNotExist:
-            testing_area = Area.objects.create(id=config.HIDDEN_AREAS, name=config.HIDDEN_AREAS)
-        response = self.fill_the_whole_wizard(override_example_data={3: {'3-title':'title',
-                                                                         '3-terms_and_conditions': True,
-                                                                         "3-is_testing":True}})
-        temporary_data = response.context['popular_proposal']
-
-        self.assertEquals(temporary_data.created_proposal.area, testing_area)

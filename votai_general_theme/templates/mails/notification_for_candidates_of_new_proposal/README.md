@@ -1,0 +1,1 @@
+notification_for_candidates_of_new_proposal

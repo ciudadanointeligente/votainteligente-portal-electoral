@@ -14,24 +14,30 @@
 
 {% block content %}
 <div class="container">
-  <h1>Crear encuentro</h1>
+<div class="row">
+  <div class="col-md-12"><h2>Crear encuentro</h2>
+  <h3 class="theme-form">Datos básicos de los participantes</h3></div>
   <form action="{% url 'votita:create_gathering' %}" method="post">
       {% csrf_token %}
-      {% bootstrap_field form.name %}
-      {% bootstrap_field form.generated_at %}
+      <div class="col-md-6">{% bootstrap_field form.name %}</div>
+      <div class="col-md-6">{% bootstrap_field form.generated_at %}</div>
+      <div class="col-md-6">{% bootstrap_field form.others %}</div>
+      <div class="col-md-6">{% bootstrap_field form.male %}</div>
+      <div class="col-md-6">{% bootstrap_field form.female %}</div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h2>Características de un buen presidente o una buena presidenta</h2>
+    <h3 class="theme-form">Una lista de 7 a 10 características separadas por coma</h3>
       <div class="form-group">
-        <label class="control-label" for="id_presidents_features">Características de un buen presidente</label>
         <input class="form-control"
           id="id_presidents_features" name="presidents_features"
-          placeholder="Características de un buen presidente" title="Una lista de etiquetas separadas por coma." type="text" required />
-        <div class="help-block">Una lista de etiquetas separadas por coma.</div>
+          placeholder="Características" title="Una lista de 7 a 10 características separadas por coma" type="text" required />
       </div>
-      {% bootstrap_field form.male %}
-      {% bootstrap_field form.female %}
-      {% bootstrap_field form.others %}
-
       <input type="submit" value="Enviar" class="btn btn-enviar pull-right" />
   </form>
+  </div>
+</div>
 </div>
 
 

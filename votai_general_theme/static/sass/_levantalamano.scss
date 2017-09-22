@@ -117,6 +117,23 @@ h2{
     box-shadow: none;
   }
 }
+.btn-yellow{
+  border: 3px solid $yellow;
+  background-color: $yellow;
+  color: white;
+  &:hover{
+    background-color: transparent;
+    color: $yellow;
+    border: 3px solid $yellow;
+  }
+  &:focus{
+    @extend .btn-yellow:hover;
+  }
+  &:active:hover{
+    @extend .btn-yellow:hover;
+    box-shadow: none;
+  }
+}
 h4{
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
@@ -943,6 +960,24 @@ hr{
     background-color: transparent;
     color: $green;
   }
+}
+.bootstrap-tagsinput{
+  width: 1180px !important;
+  box-shadow: none;
+  border: 2px solid black !important;
+}
+.label-info{
+  background-color: $purple;
+}
+.theme-form{
+  font-weight: 700;
+  color: $purple;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 0;
+}
+#thanks-gathering{
+  margin-top: 40px;
+  min-height: 500px;
 }
 
 /*FOOTER*/

@@ -42,19 +42,19 @@ class GatheringsWithStatsDataMixin(object):
 
 
 class CreateGatheringForm(GatheringsWithStatsDataMixin, ModelForm):
-    male = forms.IntegerField(label = "Nº de Niños",
+    male = forms.IntegerField(label = "Cantidad de Niños",
                               min_value = 0,
                               initial=0)
-    female = forms.IntegerField(label = "Nº de Niñas",
+    female = forms.IntegerField(label = "Cantidad de Niñas",
                                 min_value = 0,
                                 initial=0)
-    others = forms.IntegerField(label = "Nº de Otros",
+    others = forms.IntegerField(label = "Cantidad de Otros",
                                 min_value = 0,
                                 initial=0)
     generated_at = forms.ModelChoiceField(queryset=filterable_areas(),
-                                          empty_label=u"Selecciona",
+                                          empty_label=u"Selecciona la comuna",
                                           required=False,
-                                          label="Comuna donde fue generada")
+                                          label="Comuna donde se realizó el encuentro")
     class Meta:
         model = KidsGathering
         fields = ['name', 'generated_at', 'presidents_features']

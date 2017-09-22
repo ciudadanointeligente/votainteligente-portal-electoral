@@ -4,13 +4,13 @@
 
 {% block content %}
 <div class="container">
-  <h1>Agregando propuestas para <small>"{{object.name}}"</small></h1>
+  <h2>Elaboración de programa de {{object.name}}</h2>
   <form method="post" action="{% url 'votita:proposal_for_gathering' pk=object.pk %}">
     {% csrf_token %}
     {{formset.management_form}}
     <div id="proposals-container">
       {% for form in formset.forms %}
-      <p>Propuesta {{forloop.counter}}</p>
+      <h3 class="theme-form">Propuesta {{forloop.counter}}</h3>
       <fieldset class="proposals-fieldset-{{forloop.counter}}">
         {% bootstrap_form form  layout='inline' %}
       </fieldset>

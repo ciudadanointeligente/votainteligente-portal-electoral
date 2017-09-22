@@ -89,11 +89,13 @@ $(function(){
 <div class="container">
 <div id="grid">
       {% if form.is_filled_search %}
-      <h3 class="text-center">Hay {{popular_proposals|length}} propuestas ciudadanas con tus criterios de búsqueda seleccionados</h3>
+      <h3 class="text-center">Hay {{popular_proposals|length}}
+        {% if not tipo_propuestas %}propuestas ciudadanas{% else %}{{tipo_propuestas}}{% endif %}
+         con tus criterios de búsqueda seleccionados</h3>
       {% else %}
-      <h3 class="text-center">Hay {{popular_proposals|length}} propuestas ciudadanas</h3>
+      <h3 class="text-center">Hay {{popular_proposals|length}} {% if not tipo_propuestas %}propuestas ciudadanas{% else %}{{tipo_propuestas}}{% endif %}</h3>
       {% endif %}
-      {% if not user|is_candidate %}
+      {% if not user|is_candidate and not hidden_create_proposal_button %}
         {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
         <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark">Crear nueva propuesta</a></div>
       {% endif %}

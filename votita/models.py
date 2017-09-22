@@ -55,16 +55,16 @@ PRESIDENTS_FEATURES = (
 class KidsGathering(models.Model):
     proposer = models.ForeignKey(User, related_name="kids_proposals")
     name = models.CharField(max_length=512,
-                            verbose_name="Nombre del encuentro")
+                            verbose_name="Grupo de participantes")
     stats_data = PickledObjectField()
-    presidents_features = TaggableManager(verbose_name="Características de un buen presidente")
+    presidents_features = TaggableManager(verbose_name="")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='votita/images/',
                               max_length=512,
                               null=True,
                               blank=True,
-                              verbose_name="Foto del encuentro")
+                              verbose_name="")
     generated_at = models.ForeignKey(Area,
                                      null=True,
                                      blank=True)

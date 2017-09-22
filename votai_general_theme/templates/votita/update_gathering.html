@@ -5,12 +5,13 @@
 
 {% block content %}
 <div class="container">
-  <h1 class="page-header">Información sobre el encuentro <small>"{{object.name}}"</small></h1>
-  <p>Ayúdanos con algunos datos estadísticos</p>
+  <h2>Información sobre el encuentro de "{{object.name}}"</h2>
+  <h3 class="theme-form">¿Quieres compartir una foto de la actividad?</h3>
   <form method='POST' action="{% url 'votita:update_gathering' pk=object.pk %}" enctype="multipart/form-data">
     {% csrf_token %}
+    <h3 class="theme-form">¿Tienes algún comentario sobre la actividad?</h3>
     {% bootstrap_form form %}
-    <button type="submit" class="btn btn-default btn-block">Agregar información</button>
+    <button type="submit" class="btn btn-enviar pull-right">Agregar Información</button>
   </form>
 </div>
 {% endblock content %}

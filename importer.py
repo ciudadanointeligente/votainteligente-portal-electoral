@@ -1,4 +1,8 @@
 # coding=utf-8
+import os
+import django
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "votainteligente.settings")
+django.setup()
 import codecs
 from elections.models import Candidate, Election, PersonalData, Area
 from django.core.urlresolvers import reverse
@@ -8,6 +12,7 @@ from django.utils.text import slugify
 from backend_candidate.models import send_candidate_username_and_password
 from popular_proposal.models import PopularProposal
 from popular_proposal.exporter import CommitmentsExporter
+from votainteligente.send_mails import validateEmail
 
 
 def area_getter(area_name):
@@ -22,6 +27,87 @@ def area_getter(area_name):
         except Exception as e:
             return None
 
+
+def senadores():
+    reader = codecs.open("senadores.csv", 'r', encoding='utf-8')
+    counter = 0
+    candidates_ids = []
+    reader.readline()
+    values = {1: u"I", 2:u"II", 4:u"IV", 6:u"VI", 9:u"IX", 11:u"XI", 14:u"XIV"}
+    for line in reader:
+        row = line.split(u',')
+        nombres = row[0].title().strip()
+        apellidos = row[1].title().strip()
+        largo_apellidos = len(apellidos.split(u" "))
+        # if largo_apellidos == 2:
+        #     apellidos = apellidos.split(u" ")[0]
+        full_name = nombres + u" " + apellidos
+        num_circ = int(row[5])
+        area_name = values[num_circ] + u" Circunscripción Senatorial"
+        area = Area.objects.get(name=area_name)
+        election = area.elections.first()
+        candidate, created = Candidate.objects.get_or_create(name=full_name)
+        if created:
+            election.candidates.add(candidate)
+            pacto = row[9].strip().title().replace("Pacto ", "")
+            partido = row[8].strip().title()
+            email = row[10].strip().lower()
+            if pacto:
+                PersonalData.objects.create(candidate=candidate,
+                                            label=u'Pacto',
+                                            value=pacto)
+            if partido:
+                PersonalData.objects.create(candidate=candidate,
+                                            label=u'Partido',
+                                            value=partido)
+            # if email and validateEmail(email):
+            #     contact = CandidacyContact.objects.create(candidate=candidate,
+            #                                               mail=email)
+            # elif not validateEmail(email):
+            #     print u"Amiga el mail "+email +u" de " + full_name+u" ta malena"
+
+def diputados():
+    reader = codecs.open("diputados.csv", 'r', encoding='utf-8')
+    counter = 0
+    candidates_ids = []
+    reader.readline()
+    for line in reader:
+        row = line.split(u'|')
+        nombres = row[0].title().strip()
+        apellidos = row[1].title().strip()
+        largo_apellidos = len(apellidos.split(u" "))
+        # if largo_apellidos == 2:
+        #     apellidos = apellidos.split(u" ")[0]
+        full_name = nombres + u" " + apellidos
+        num_dist = int(row[5])
+        area_name = u"Distrito " + unicode(num_dist)
+        area = Area.objects.get(name=area_name)
+        election = area.elections.first()
+        candidate, created = Candidate.objects.get_or_create(name=full_name)
+        created = True
+        if created:
+            election.candidates.add(candidate)
+            pacto = row[9].strip().title().replace("Pacto ", "")
+            partido = row[8].strip().title()
+            email = row[10].strip().lower()
+            # print partido
+            if pacto:
+                PersonalData.objects.create(candidate=candidate,
+                                            label=u'Pacto',
+                                            value=pacto)
+            if partido:
+                PersonalData.objects.create(candidate=candidate,
+                                            label=u'Partido',
+                                            value=partido)
+            # if email and validateEmail(email):
+            #     contact = CandidacyContact.objects.create(candidate=candidate,
+            #                                               mail=email)
+            # elif not validateEmail(email):
+            #     print u"Amiga el mail "+email +u" de " + full_name+u" ta malena"
+
+if __name__ == "__main__":
+    diputados()
+    senadores()
 
 def process_candidates_with_names():
     reader = codecs.open("candidatos_y_mails.csv", 'r', encoding='utf-8')
@@ -259,11 +345,11 @@ def procesar_circunscripciones():
         if created_distrito:
             print u"Creee el distrito " + unicode(distrito)
         comuna_str = row[3].strip()
-        
+
         comuna, created_comuna = Area.objects.get_or_create(classification=u"Comuna", name=comuna_str)
         if created_comuna:
             print u"Creee la comuna " + unicode(comuna)
-        
+
         comuna.parent = distrito
         comuna.save()
         distrito.parent = circunscripcion
@@ -272,7 +358,7 @@ def procesar_circunscripciones():
         circunscripcion.save()
         region.parent = chile
         region.save()
-        
+
 
 
 def other():
@@ -290,7 +376,7 @@ def other():
 
     type_ = 'alcalde'
     for usuario in User.objects.exclude(proposals__isnull=True).filter(proposals__commitments__candidate__has_won=True).distinct():
-        
+
         alcaldes = Candidate.objects.filter(has_won=True,
                                             commitments__commited=True,
                                             commitments__proposal__proposer=usuario).filter(elections__position=type_)

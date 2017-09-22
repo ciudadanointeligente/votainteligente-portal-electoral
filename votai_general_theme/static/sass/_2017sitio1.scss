@@ -350,11 +350,6 @@ input[type=file]{
 }
 
 /*Detalle*/
-#filters {
-  background-color: $blue-light;
-  padding: 20px 0px;
-}
-
 .nav-detalle-propuesta{
   border: none;
   margin-top: -55px;
@@ -466,6 +461,17 @@ input[type=file]{
 }
 
 /*Propuestas*/
+#filters {
+  background-color: $blue-light;
+  padding: 20px 0px;
+  select.form-control{
+    background-color: white;
+  }
+  .form-control{
+    background-color: white;
+  }
+}
+
 .propuesta{
   border: 3px solid $grey-one;
   min-height: 550px;
@@ -484,6 +490,10 @@ input[type=file]{
 
 .label-default{
   background-color: $blue;
+  color: white;
+}
+.label-success{
+  background-color: $blue-light;
   color: white;
 }
 

@@ -1,0 +1,1 @@
+notify_staff_new_proposal_update

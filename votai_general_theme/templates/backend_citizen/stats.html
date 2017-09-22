@@ -85,7 +85,7 @@
                   {% for commitment in stat.pronouncing__alcalde.all %}
                   <li><a href="{{commitment.candidate.get_absolute_url}}">{{commitment.candidate}}</a>
                     {% if commitment.commited %}
-                      <span class="label label-success">Se comprometió</span>
+                      <span class="label label-warning">Se comprometió</span>
                     {% else %}
                       <span class="label label-danger">Dijo que NO</span>
                     {% endif %}(<a href="{{commitment.get_absolute_url}}">ver el compromiso</a>)</li>

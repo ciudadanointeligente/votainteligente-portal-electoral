@@ -33,7 +33,7 @@
               <a href="#" class="btn btn-apoyo" disabled="disabled">No Comprometido</a>
             </div>
             {% endif %}
-          {% else %}
+          {% else %}<!-- esto sólo lo ven los candidatos -->
             {% with proposal.get_absolute_url as detail_url %}
             <div class="btn_pronunciarme {{support_button_extra_class}}">
               <a href="{% url 'popular_proposals:commit_yes' candidate_pk=candidacy.candidate.id proposal_pk=proposal.id %}" alt="Comprometerme" class="btn btn-apoyo">
@@ -43,6 +43,11 @@
                 {% if not support_button_extra_class %}No comprometerme{% else %}<i class="fa fa-thumbs-down" aria-hidden="true"></i>{% endif %}
               </a>
             </div>
+            {% if proposal.contact_details %}
+            <hr>
+            <label>Contacta a esta organización</label>
+            <p>{{proposal.contact_details}}</p>
+            {% endif %}
             {% endwith %}
           {% endif %}
         {% endif %}

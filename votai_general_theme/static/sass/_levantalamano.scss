@@ -36,12 +36,45 @@ h2{
   min-height: 70px;
   @extend .small;
   font-size: 10px;
+  margin-bottom: 0;
+  border-radius: 0;
 }
 .navbar-default .navbar-nav>li>a{
   color: white;
   &:hover{
     color: $purple;
   }
+  &:focus{
+    color: $purple;
+  }
+  &:active{
+    color: $purple;
+  }
+}
+.navbar-right{
+  position: relative;
+  top: 12px;
+}
+.navbar-nav{
+  margin-top: 20px;
+}
+.navbar-collapse{
+  box-shadow: none;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form{
+  border: none;
+}
+.navbar-default .navbar-toggle{
+  border: none;
+}
+.navbar-default .navbar-toggle .icon-bar{
+  background-color: white;
+}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
+  background-color: transparent;
+}
+.navbar-toggle{
+  top: 10px;
 }
 
 /*BUTTONS*/

@@ -42,6 +42,7 @@ class GatheringsWithStatsDataMixin(object):
 
 
 class CreateGatheringForm(GatheringsWithStatsDataMixin, ModelForm):
+    age_range = forms.CharField(label= "Rango etario", widget=forms.TextInput(attrs={'placeholder': 'Ejemplo: 9 a 11 años'}))
     male = forms.IntegerField(label = "Cantidad de Niños",
                               min_value = 0,
                               initial=0)
@@ -58,6 +59,9 @@ class CreateGatheringForm(GatheringsWithStatsDataMixin, ModelForm):
     class Meta:
         model = KidsGathering
         fields = ['name', 'generated_at', 'presidents_features']
+        widgets = {
+            "name" :forms.TextInput(attrs={'placeholder': 'Perrito'})
+        }
 
     def __init__(self, *args, **kwargs):
         self.proposer = kwargs.pop('proposer')
@@ -117,12 +121,15 @@ wizard_forms_fields = [
 
 
 class KidsProposalForm(ModelForm):
-    solution = forms.CharField(widget=forms.Textarea, required=False)
+    solution = forms.CharField(required=False, widget=forms.Textarea(attrs={'placeholder': 'Gatito'}))
     clasification = forms.ChoiceField(choices=TOPIC_CHOICES)
 
     class Meta:
         model = KidsProposal
         fields = ['title', 'clasification']
+        widgets = {
+            "title" : forms.TextInput(attrs={'placeholder': 'Perrito'})
+        }
 
     def save(self, commit=True):
         instance = super(KidsProposalForm, self).save(commit=commit)

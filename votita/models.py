@@ -68,8 +68,7 @@ class KidsGathering(models.Model):
     generated_at = models.ForeignKey(Area,
                                      null=True,
                                      blank=True)
-    comments = models.TextField(verbose_name=u"¿Tienes algún comentario sobre la actividad?",
-                                help_text=u"¿Cómo podemos empoderar mejor a nuestros niños?",
+    comments = models.TextField(verbose_name=u"¿Cómo podemos empoderar mejor a nuestros niños?",
                                 blank=True,
                                 default=u"")
 

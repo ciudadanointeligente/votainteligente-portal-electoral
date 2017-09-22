@@ -6,11 +6,13 @@
 {% block content %}
 <div class="container">
   <h2 class="h-header">Información sobre el encuentro de "{{object.name}}"</h2>
-  <h3 class="theme-form">¿Quieres compartir una foto de la actividad?</h3>
+
   <form method='POST' action="{% url 'votita:update_gathering' pk=object.pk %}" enctype="multipart/form-data">
     {% csrf_token %}
+    <h3 class="theme-form">¿Quieres compartir una foto de la actividad?</h3>
+    {% bootstrap_field form.image %}
     <h3 class="theme-form">¿Tienes algún comentario sobre la actividad?</h3>
-    {% bootstrap_form form %}
+    {% bootstrap_field form.comments show_label=False %}
     <button type="submit" class="btn btn-enviar pull-right">Agregar Información</button>
   </form>
 </div>

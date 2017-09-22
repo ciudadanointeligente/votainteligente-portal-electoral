@@ -2,6 +2,7 @@
 from django.contrib import admin
 from popular_proposal.models import (PopularProposal,
                                      ProposalTemporaryData,
+                                     Commitment,
                                      ProposalLike)
 from popular_proposal.forms import ProposalTemporaryDataModelForm
 from popular_proposal.forms.form_texts import TEXTS
@@ -54,3 +55,8 @@ class ProposalLikeAdmin(admin.ModelAdmin):
         return obj.user.profile.is_organization
     is_organization.short_description = u'Es organización?'
     is_organization.admin_order_field = 'user__profile__is_organization'
+
+
+@admin.register(Commitment)
+class CommitmentAdmin(admin.ModelAdmin):
+    list_display = ('id', "candidate", "proposal")

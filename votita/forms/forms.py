@@ -60,7 +60,7 @@ class CreateGatheringForm(GatheringsWithStatsDataMixin, ModelForm):
         model = KidsGathering
         fields = ['name', 'generated_at', 'presidents_features']
         widgets = {
-            "name" :forms.TextInput(attrs={'placeholder': 'Perrito'})
+            "name" :forms.TextInput(attrs={'placeholder': 'Ejemplo: “Quinto básico C Escuela Santa Isabel”'})
         }
 
     def __init__(self, *args, **kwargs):
@@ -74,7 +74,7 @@ class UpdateGatheringForm(GatheringsWithStatsDataMixin, ModelForm):
         fields = ['image', 'comments']
 
 
-TOPIC_CHOICES = (('', u'Selecciona una categoría'),
+TOPIC_CHOICES = (('', u'Selecciona el tema'),
                  ('proteccion_y_familia', u'Protección y familia'),
                  ('educacion_y_trabajo', u'Educación y trabajo'),
                  ('tecnologia', u'Tecnología y comunicaciones'),
@@ -121,14 +121,14 @@ wizard_forms_fields = [
 
 
 class KidsProposalForm(ModelForm):
-    solution = forms.CharField(required=False, widget=forms.Textarea(attrs={'placeholder': 'Gatito'}))
+    solution = forms.CharField(required=False, widget=forms.Textarea(attrs={'placeholder': 'Detalle de la propuesta'}))
     clasification = forms.ChoiceField(choices=TOPIC_CHOICES)
 
     class Meta:
         model = KidsProposal
         fields = ['title', 'clasification']
         widgets = {
-            "title" : forms.TextInput(attrs={'placeholder': 'Perrito'})
+            "title" : forms.TextInput(attrs={'placeholder': 'Título de la propuesta'})
         }
 
     def save(self, commit=True):

@@ -16,15 +16,15 @@
 <div class="container">
 <div class="row">
   <div class="col-md-12"><h2 class="h-header">Crear encuentro</h2>
-  <h3 class="theme-form">Datos básicos de los participantes</h3></div>
+  <h3 class="theme-form">Datos básicos</h3></div>
   <form action="{% url 'votita:create_gathering' %}" method="post">
       {% csrf_token %}
       <div class="col-md-6">{% bootstrap_field form.name %}</div>
       <div class="col-md-6">{% bootstrap_field form.generated_at %}</div>
       <div class="col-md-6">{% bootstrap_field form.age_range %}</div>
-      <div class="col-md-6">{% bootstrap_field form.others %}</div>
-      <div class="col-md-6">{% bootstrap_field form.male %}</div>
       <div class="col-md-6">{% bootstrap_field form.female %}</div>
+      <div class="col-md-6">{% bootstrap_field form.male %}</div>
+      <div class="col-md-6">{% bootstrap_field form.others %}</div>
 </div>
 <div class="row">
   <div class="col-md-12">

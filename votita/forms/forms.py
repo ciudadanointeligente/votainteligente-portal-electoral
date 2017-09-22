@@ -42,7 +42,7 @@ class GatheringsWithStatsDataMixin(object):
 
 
 class CreateGatheringForm(GatheringsWithStatsDataMixin, ModelForm):
-    age_range = forms.CharField(label= "Rango etario", widget=forms.TextInput(attrs={'placeholder': 'Ejemplo: 9 a 11 años'}))
+    age_range = forms.CharField(label= "Rango etario de los participantes", widget=forms.TextInput(attrs={'placeholder': 'Ejemplo: 9 a 11 años'}))
     male = forms.IntegerField(label = "Cantidad de Niños",
                               min_value = 0,
                               initial=0)

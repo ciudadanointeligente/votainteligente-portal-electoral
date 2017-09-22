@@ -26,6 +26,9 @@ h1{
 h2{
   @extend h1;
 }
+.h-header{
+  margin-top: 50px;
+}
 
 /*NAV*/
 .navbar-default{
@@ -223,7 +226,7 @@ p.aviso{
 }
 #soon{
   padding: 40px 0 210px;
-  margin-bottom: -170px;
+  margin-bottom: -250px;
 }
 
 /*PROPOSALS REPOSITORY*/
@@ -985,7 +988,7 @@ hr{
   background-image: url("../img/lm-footer.svg");
   background-repeat: no-repeat;
   min-height: 144px;
-  margin-top: 0px;
+  margin-top: 90px;
 }
 footer{
   background-color: $green;

@@ -15,7 +15,7 @@
 {% block content %}
 <div class="container">
 <div class="row">
-  <div class="col-md-12"><h2>Crear encuentro</h2>
+  <div class="col-md-12"><h2 class="h-header">Crear encuentro</h2>
   <h3 class="theme-form">Datos básicos de los participantes</h3></div>
   <form action="{% url 'votita:create_gathering' %}" method="post">
       {% csrf_token %}

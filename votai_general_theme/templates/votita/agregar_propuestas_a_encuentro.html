@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container">
-  <h2>Elaboración de programa de {{object.name}}</h2>
+  <h2 class="h-header">Elaboración de programa de {{object.name}}</h2>
   <form method="post" action="{% url 'votita:proposal_for_gathering' pk=object.pk %}">
     {% csrf_token %}
     {{formset.management_form}}

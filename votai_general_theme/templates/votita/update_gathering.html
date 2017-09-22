@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="container">
-  <h2>Información sobre el encuentro de "{{object.name}}"</h2>
+  <h2 class="h-header">Información sobre el encuentro de "{{object.name}}"</h2>
   <h3 class="theme-form">¿Quieres compartir una foto de la actividad?</h3>
   <form method='POST' action="{% url 'votita:update_gathering' pk=object.pk %}" enctype="multipart/form-data">
     {% csrf_token %}

@@ -43,7 +43,7 @@
                 {% if not support_button_extra_class %}No comprometerme{% else %}<i class="fa fa-thumbs-down" aria-hidden="true"></i>{% endif %}
               </a>
             </div>
-            {% if proposal.contact_details %}
+            {% if proposal.contact_details and not support_button_extra_class %}
             <hr>
             <label>Contacta a esta organización</label>
             <p>{{proposal.contact_details}}</p>

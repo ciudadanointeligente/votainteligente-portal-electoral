@@ -39,7 +39,7 @@ $(function(){
         <tbody>
     {% for support in supports %}
         <tr class="proposal_{{support.id}}">
-            <!--<td><a href="{% url 'area' slug=support.proposal.area.id %}">{{support.proposal.area}}</a></td>-->
+            <!--<td><a href="{{support.proposal.area.get_absolute_url}}">{{support.proposal.area}}</a></td>-->
             <td><a href="{{ support.proposal.get_absolute_url }}" target="blank">{{support.proposal.title|truncatechars:50}}</a></td>
             <td>{{support.proposal.proposer}}</td>
             <td>

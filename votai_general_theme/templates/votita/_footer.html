@@ -1,5 +1,7 @@
 {% load staticfiles %}
 {% load votainteligente_extras %}
+<section class="greenline">
+</section>
 <footer id="footer">
     {% block extrafooter %}
     {% endblock extrafooter %}
@@ -17,16 +19,12 @@
               <div><a href="//www.ciudadanointeligente.org/" onclick="ga('send', 'event', 'footer-ciudadanoi', 'click')" target="_blank"><img src="{% static 'img/lm-footer-fci.svg' %}" alt="Ciudadano Inteligente"></a></div>
             </div>
             <div class="col-sm-6 col-md-2 footer-logo">
-              <span class="small">En colaboración con</span>
+              <span class="small">Con el apoyo de</span>
               <div><a href="//www.unicef.cl/" onclick="ga('send', 'event', 'footer-unicef', 'click')" target="_blank"><img src="{% static 'img/lm-footer-unicef.svg' %}" alt="Unicef para cada niño"></a></div>
             </div>
-            <div class="col-md-2 text-right redes">
-              <ul class="list-inline">
-                <li><a href="info@ciudadanointeligente.org" class="email-prensa" target="_top"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-                <li><a target="_blank" href="//github.com/ciudadanointeligente/votainteligente-portal-electoral"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-                <li><a target="_blank" href="//www.facebook.com/ciudadanointeligente/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a target="_blank" href="//twitter.com/ciudadanoi"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-              </ul>
+            <div class="col-sm-6 col-md-2 footer-logo">
+              <span class="small">Con el patrocinio de</span>
+              <div><a href="//www.mineduc.cl/" onclick="ga('send', 'event', 'footer-mineduc', 'click')" target="_blank"><img src="{% static 'img/lm-footer-mineduc.svg' %}" alt="Ministerio de Educación"></a></div>
             </div>
         </div>
     </div>

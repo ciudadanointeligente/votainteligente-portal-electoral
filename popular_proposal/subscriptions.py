@@ -34,30 +34,6 @@ class SubscriptionEventBase(object):
                       to=[email])
 
 
-class NewCommitmentNotification(SubscriptionEventBase):
-
-    def __init__(self, *args, **kwargs):
-        super(NewCommitmentNotification, self).__init__(*args, **kwargs)
-        self.commitment = kwargs.pop('commitment')
-
-    def get_who(self):
-        return self.proposal.likers.exclude(id=self.proposal.proposer.id)
-
-    def get_mail_from(self, person):
-        return person.email
-
-    def get_template(self):
-        if self.commitment.commited:
-            return 'new_commitment'
-        else:
-            return 'not_new_commitment'
-
-    def get_context(self, **kwargs):
-        context = super(NewCommitmentNotification, self).get_context(**kwargs)
-        context['commitment'] = self.commitment
-        return context
-
-
 class NewCommitmentNotificationToProposer(SubscriptionEventBase):
     mail_template = 'genia_lograste_compromiso'
 
@@ -146,6 +122,3 @@ def notification_trigger(event, **kwargs):
     dispatcher = EventDispatcher()
     proposal = kwargs.pop('proposal')
     dispatcher.trigger(event, proposal, kwargs)
-
-
-

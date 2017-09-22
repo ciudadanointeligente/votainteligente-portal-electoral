@@ -81,11 +81,12 @@
             </td>
           </tr>
           {% endif %}
-          {% if candidate.biography %}
+          {% get_personal_data candidate=candidate personal_data='experiencia' as experiencia %}
+          {% if experiencia.value %}
           <tr>
             <td colspan="2">
-              <p><b>Reseña</b></p>
-              {{ candidate.biography|markdown }}
+              <p><b>Experiencia</b></p>
+              {{ experiencia.value|markdown }}
             </td>
           </tr>
           {% endif %}
@@ -129,7 +130,11 @@
   <p>Acá encontrarás un total de {{candidate.commitments.committed.count}} propuestas a las que {{candidate.name}} se comprometió a cumplir dentro del plan de gobierno.</p>
   {% include 'elections/candidates/propuestas_a_las_que_se_ha_comprometido.html' with candidate=candidate election=election %}
   {% else %}
-  <p>Este candidato aún no se ha comprometido</p>
+    {% if user|is_candidate %}
+      {{candidate.name}} aun no te haz comprometido! Es hora de
+    {% else %}
+      <p>Este candidato aún no se ha comprometido</p>
+    {% endif %}
   {% endif %}
 
   {% if user|is_candidate %}

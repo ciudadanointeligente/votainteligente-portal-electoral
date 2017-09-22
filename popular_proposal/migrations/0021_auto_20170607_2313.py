@@ -7,15 +7,7 @@ from constance import config
 
 
 def create_areas(apps, schema_editor):
-    Area = apps.get_model('elections', 'Area')
-    try:
-        Area.objects.get(id=config.HIDDEN_AREAS)
-    except Area.DoesNotExist as e:
-        Area.objects.create(id=config.HIDDEN_AREAS, name=config.HIDDEN_AREAS)
-    try:
-        Area.objects.get(id=config.DEFAULT_AREA)
-    except Area.DoesNotExist as e:
-        Area.objects.create(id=config.DEFAULT_AREA, name=config.DEFAULT_AREA)
+    pass
 
 
 class Migration(migrations.Migration):

@@ -1,18 +1,20 @@
 <div class="container">
-  <h2 class="page-header">Propuestas de <small>{{gathering.name}}</small></h2>
   <div class="row">
-    <div class="col-md-12">
-      <h3>Propuestas generadas</h3>
-      <ul>
-        {% for proposal in gathering.proposals.all %}
-        <li>{{ proposal }} en la categoría {{ proposal.clasification }} y el link es <a href="{{proposal.get_absolute_url}}">Link</a></li>
-        {% endfor %}
-      </ul>
+    <div class="col-md-8 col-md-offset-2">
+      <p class="group text-center">Otras propuestas de {{gathering.name}}</p>
+      <div class="votita-plan">
+          <h2>Programa electoral de {{gathering.name}}</h2>
+            {% for proposal in gathering.proposals.all %}
+            <div class="votita-love-{{proposal.clasification}} proposal-plan">
+              <span class="label label-default votita-love-">{{proposal.clasification}}</span>
+              <br>
+              <a href="{{proposal.get_absolute_url}}">{{ proposal }}</a>
+            </div>
+            {% endfor %}
+          {% if gathering.image %}
+          <div class="photo-gathering" style="background-image: url({{gathering.image.url}}); background-position: center; background-repeat: no-repeat; height: 320px;"></div>
+          {% endif %}
+      </div>
     </div>
   </div>
-  {% if gathering.image %}
-  <div class="container-fluid">
-    <div class="photo-gathering" style="background-image: url({{gathering.image.url}}); background-position: center; background-repeat: no-repeat; height: 320px;"></div>
-  </div>
-  {% endif %}
 </div>

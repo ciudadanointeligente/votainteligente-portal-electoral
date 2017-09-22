@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{% trans "Vota Inteligente" %} {% block title %}- {{ config.WEBSITE_GENERAL_SETTINGS_HOME_TITLE }}{% endblock title %}</title>
+  <title>{% trans "Levanta la mano" %} {% block title %}- {{ config.WEBSITE_GENERAL_SETTINGS_HOME_TITLE }}{% endblock title %}</title>
   <meta name="author" content="{{ config.WEBSITE_METADATA_AUTHOR }}">
   <meta name="description" content="{% block description %}{{ config.WEBSITE_METADATA_DESCRIPTION }}{% endblock description %}">
   <meta name="keywords" content="{{ config.WEBSITE_METADATA_KEYWORD }}{% block keywords %}{% endblock keywords %}">
@@ -26,16 +26,18 @@
   <meta property="fb:app_id" content="{{ config.WEBSITE_OGP_APP_ID }}">
   <!--eoff-->
   <link rel="shortcut icon" sizes="196x196" href="{% static 'img/votai-196.png' %}">
+  <link rel="icon" type="image/x-icon" href="{% static 'lm-favicon.ico' %}" />
 
   <link href='//fonts.googleapis.com/css?family=Nunito+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
   <link href="//fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
-  <link href="//fonts.googleapis.com/css?family=Work+Sans:400,700" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Work+Sans:400,600" rel="stylesheet">
 
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="{% sass_src 'sass/_levantalamano.scss' %}" rel="stylesheet" type="text/css" />
   <link href="{% sass_src 'sass/_media-levantalamano.scss' %}" rel="stylesheet" type="text/css" />
+  <link href="{% sass_src 'sass/_lm-media-print.scss' %}" rel="stylesheet" type="text/css" />
 
   <script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
   <script src="//use.fontawesome.com/9304d8597d.js"></script>
@@ -65,7 +67,7 @@
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', "{{ config.WEBSITE_GA_CODE }}", 'auto');
+    ga('create', "UA-39579984-8", 'auto');
     {% block analytics %}{% endblock analytics %}
     ga('send', 'pageview');
   </script>

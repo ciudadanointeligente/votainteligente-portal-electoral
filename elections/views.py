@@ -147,7 +147,7 @@ class CandidateDetailView(DetailView):
             if 'election_slug' in self.kwargs.keys():
                 queryset_ = queryset.filter(elections__slug=self.kwargs['election_slug'])
             if 'area_slug' in self.kwargs.keys():
-                queryset_ = queryset.filter(elections__area__id=self.kwargs['area_slug'])
+                queryset_ = queryset.filter(elections__area__slug=self.kwargs['area_slug'])
             cache.set(candidates_per_election_key,
                       queryset_,
                       60 * config.INFINITE_CACHE
@@ -187,12 +187,12 @@ class AreaDetailView(DetailView, FilterMixin):
     model = Area
     context_object_name = 'area'
     template_name = 'area.html'
-    slug_field = 'id'
+    # slug_field = 'id'
 
     def dispatch(self, request, *args, **kwargs):
         area = self.get_object()
         if area.classification in settings.FILTERABLE_AREAS_TYPE and area.parent:
-            return HttpResponseRedirect(reverse('area', kwargs={'slug': area.parent.id}))
+            return HttpResponseRedirect(Area.objects.get(id=area.parent.id).get_absolute_url())
         return super(AreaDetailView, self).dispatch(request, *args, **kwargs)
 
 

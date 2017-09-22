@@ -45,8 +45,6 @@ class ProposalWizardBase(SessionWizardView):
 
     def determine_area(self, data):
         is_testing = data.pop("is_testing", False)
-        if is_testing:
-            return Area.objects.get(id=config.HIDDEN_AREAS)
         if 'area' in data.keys():
             return data['area']
         elif hasattr(self, 'area'):

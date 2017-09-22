@@ -13,7 +13,7 @@
   {% with user.candidacies.first as candidacy %}
   <h2>Información para el perfil de {{candidacy.candidate.name}}</h2>
 
-    <p><a href="{{candidacy.candidate.get_absolute_url}}" class="btn btn-default">
+    <p><a href="{{candidacy.candidate.get_absolute_url}}" class="btn btn-dark">
       {% trans 'Ir a ver mi perfil' %}</a></p>
   {% endwith %}
   <!-- image -->

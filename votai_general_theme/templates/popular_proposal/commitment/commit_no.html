@@ -37,11 +37,11 @@
 
 		{% bootstrap_field form.detail show_label=false %}
 	    <div class="tips">
-		  <b class="text-dark">Terminos y Condiciones</b>
+		  <b class="main-title">Terminos y Condiciones</b>
 		  {% include 'popular_proposal/commitment/terms_and_conditions.html' %}
 		</div>
 		{% bootstrap_field form.terms_and_conditions show_label=false %}
-		<button type="submit" class="btn btn-danger">
+		<button type="submit" class="btn btn-dark">
 
 			{% if candidate.election.position == 'concejal' %}
 				{% trans 'No apoyaré esta propuesta'%}

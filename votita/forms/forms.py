@@ -42,22 +42,26 @@ class GatheringsWithStatsDataMixin(object):
 
 
 class CreateGatheringForm(GatheringsWithStatsDataMixin, ModelForm):
-    male = forms.IntegerField(label = "Nº de Niños",
+    age_range = forms.CharField(label= "Rango etario de los participantes", widget=forms.TextInput(attrs={'placeholder': 'Ejemplo: 9 a 11 años'}))
+    male = forms.IntegerField(label = "Cantidad de Niños",
                               min_value = 0,
                               initial=0)
-    female = forms.IntegerField(label = "Nº de Niñas",
+    female = forms.IntegerField(label = "Cantidad de Niñas",
                                 min_value = 0,
                                 initial=0)
-    others = forms.IntegerField(label = "Nº de Otros",
+    others = forms.IntegerField(label = "Cantidad de Otros",
                                 min_value = 0,
                                 initial=0)
     generated_at = forms.ModelChoiceField(queryset=filterable_areas(),
-                                          empty_label=u"Selecciona",
+                                          empty_label=u"Selecciona la comuna",
                                           required=False,
-                                          label="Comuna donde fue generada")
+                                          label="Comuna donde se realizó el encuentro")
     class Meta:
         model = KidsGathering
         fields = ['name', 'generated_at', 'presidents_features']
+        widgets = {
+            "name" :forms.TextInput(attrs={'placeholder': 'Ejemplo: “Quinto básico C Escuela Santa Isabel”'})
+        }
 
     def __init__(self, *args, **kwargs):
         self.proposer = kwargs.pop('proposer')
@@ -70,7 +74,7 @@ class UpdateGatheringForm(GatheringsWithStatsDataMixin, ModelForm):
         fields = ['image', 'comments']
 
 
-TOPIC_CHOICES = (('', u'Selecciona una categoría'),
+TOPIC_CHOICES = (('', u'Selecciona el tema'),
                  ('proteccion_y_familia', u'Protección y familia'),
                  ('educacion_y_trabajo', u'Educación y trabajo'),
                  ('tecnologia', u'Tecnología y comunicaciones'),
@@ -117,12 +121,15 @@ wizard_forms_fields = [
 
 
 class KidsProposalForm(ModelForm):
-    solution = forms.CharField(widget=forms.Textarea, required=False)
+    solution = forms.CharField(required=False, widget=forms.Textarea(attrs={'placeholder': 'Detalle de la propuesta'}))
     clasification = forms.ChoiceField(choices=TOPIC_CHOICES)
 
     class Meta:
         model = KidsProposal
         fields = ['title', 'clasification']
+        widgets = {
+            "title" : forms.TextInput(attrs={'placeholder': 'Título de la propuesta'})
+        }
 
     def save(self, commit=True):
         instance = super(KidsProposalForm, self).save(commit=commit)

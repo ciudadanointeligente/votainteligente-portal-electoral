@@ -35,6 +35,7 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         url = reverse('votita:create_gathering')
         data = {'name': u"Título",
                 "presidents_features": ["inteligente"],
+                "age_range": "de 9 a 11",
                 'male': 10,
                 'female': 10,
                 'others': 10,}

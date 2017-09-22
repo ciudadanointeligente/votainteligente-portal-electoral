@@ -26,6 +26,56 @@ h1{
 h2{
   @extend h1;
 }
+.h-header{
+  margin-top: 50px;
+}
+
+/*NAV*/
+.navbar-default{
+  background-color: black;
+  border: none;
+}
+.navbar{
+  min-height: 70px;
+  @extend .small;
+  font-size: 10px;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+.navbar-default .navbar-nav>li>a{
+  color: white;
+  &:hover{
+    color: $purple;
+  }
+  &:focus{
+    color: $purple;
+  }
+  &:active{
+    color: $purple;
+  }
+}
+.navbar-right{
+  position: relative;
+  top: 12px;
+}
+.navbar-collapse{
+  box-shadow: none;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form{
+  border: none;
+}
+.navbar-default .navbar-toggle{
+  border: none;
+}
+.navbar-default .navbar-toggle .icon-bar{
+  background-color: white;
+}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
+  background-color: transparent;
+}
+.navbar-toggle{
+  top: 10px;
+}
 
 /*BUTTONS*/
 .btn{
@@ -67,6 +117,23 @@ h2{
   }
   &:active:hover{
     @extend .btn-blue:hover;
+    box-shadow: none;
+  }
+}
+.btn-yellow{
+  border: 3px solid $yellow;
+  background-color: $yellow;
+  color: white;
+  &:hover{
+    background-color: transparent;
+    color: $yellow;
+    border: 3px solid $yellow;
+  }
+  &:focus{
+    @extend .btn-yellow:hover;
+  }
+  &:active:hover{
+    @extend .btn-yellow:hover;
     box-shadow: none;
   }
 }
@@ -159,7 +226,7 @@ p.aviso{
 }
 #soon{
   padding: 40px 0 210px;
-  margin-bottom: -170px;
+  margin-bottom: -250px;
 }
 
 /*PROPOSALS REPOSITORY*/
@@ -874,12 +941,54 @@ hr{
     box-shadow: none;
   }
 }
+
+/*FORMS*/
+.form-control{
+  border: 2px solid black;
+}
+.btn-enviar{
+  background-color: $yellow;
+  border: 3px solid $yellow;
+  color: white;
+  &:hover{
+    background-color: transparent;
+    color: $yellow;
+  }
+}
+.btn-agregar{
+  background-color: $green;
+  border: 3px solid $green;
+  color: white;
+  &:hover{
+    background-color: transparent;
+    color: $green;
+  }
+}
+.bootstrap-tagsinput{
+  width: 1180px !important;
+  box-shadow: none;
+  border: 2px solid black !important;
+}
+.label-info{
+  background-color: $purple;
+}
+.theme-form{
+  font-weight: 700;
+  color: $purple;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 0;
+}
+#thanks-gathering{
+  margin-top: 40px;
+  min-height: 500px;
+}
+
 /*FOOTER*/
 .greenline{
   background-image: url("../img/lm-footer.svg");
   background-repeat: no-repeat;
   min-height: 144px;
-  margin-top: 0px;
+  margin-top: 90px;
 }
 footer{
   background-color: $green;

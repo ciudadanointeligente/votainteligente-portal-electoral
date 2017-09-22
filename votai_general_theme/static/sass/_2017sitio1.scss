@@ -159,11 +159,14 @@ td.cal-date{
 
 #actions{
   margin: 40px 0 60px;
-  h2 > a{
+  h3 > a{
     color: $grey-one;
     &:hover{
       color: $blue;
     }
+  }
+  .bajada {
+    margin: 0 0 10px;
   }
 }
 .action{
@@ -207,11 +210,14 @@ td.cal-date{
   .btn{
     font-size: 11px;
   }
-  h2 > a{
+  h3 > a{
     color: $grey-one;
     &:hover{
       color: $blue;
     }
+  }
+  .bajada {
+    margin: 0 0 10px;
   }
 }
 

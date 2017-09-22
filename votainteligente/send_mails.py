@@ -25,9 +25,9 @@ def send_mail(context, template_prefix, to=[], reply_to=None, from_email=setting
     if 'site' not in context.keys():
         context['site'] = Site.objects.get_current()
     template_prefix_dict = {'template_prefix': template_prefix}
-    template_body = get_template('mails/%(template_prefix)s/body.html' % template_prefix_dict)
+    template_body = get_template('mails/%(template_prefix)s/body.txt' % template_prefix_dict)
     body = template_body.render(context)
-    template_subject = get_template('mails/%(template_prefix)s/subject.html' % template_prefix_dict)
+    template_subject = get_template('mails/%(template_prefix)s/subject.txt' % template_prefix_dict)
     subject = template_subject.render(context).replace('\n', '').replace('\r', '')
     email = EmailMessage(subject, body, from_email, to)
     if reply_to is not None:

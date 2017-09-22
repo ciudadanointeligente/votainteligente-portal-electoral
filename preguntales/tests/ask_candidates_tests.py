@@ -133,10 +133,10 @@ class MessageTestCase(TestCase):
                            'candidate': self.candidate1,
                            'message': message
                           })
-        template_body = get_template('mails/nueva_pregunta_candidato/body.html')
+        template_body = get_template('mails/nueva_pregunta_candidato/body.txt')
         expected_content= template_body.render(context)
         self.assertEquals(the_mail.body, expected_content)
-        template_subject = get_template('mails/nueva_pregunta_candidato/subject.html')
+        template_subject = get_template('mails/nueva_pregunta_candidato/subject.txt')
         expected_subject = template_subject.render(context).replace('\n', '').replace('\r', '')
         self.assertEquals(the_mail.subject, expected_subject)
         message = Message.objects.get(id=message.id)
@@ -381,8 +381,8 @@ class ConfirmationTestCase(TestCase):
         self.assertTrue(self.message.confirmation)
         self.assertEquals(len(mail.outbox), 1)
         context = Context({'election': self.election, 'message': self.message})
-        template_subject = get_template('mails/confirmation/subject.html')
-        template_body = get_template('mails/confirmation/body.html')
+        template_subject = get_template('mails/confirmation/subject.txt')
+        template_body = get_template('mails/confirmation/body.txt')
         expected_subject = template_subject.render(context)
         expected_body = template_body.render(context)
         the_mail = mail.outbox[0]

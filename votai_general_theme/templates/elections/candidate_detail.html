@@ -21,6 +21,7 @@
   {% render_ogp candidate %}
 {% endblock ogp %}
 
+{% block extrakeywords %}{{candidate.name}},{{candidate.election.area.name}}, {{candidate.election.position}},{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{% if partido.value %} {{partido.value}}, {% endif %}{% endblock extrakeywords %}
 
 {% block mainelection %}
 <div class="container text-center" itemscope itemtype="http://schema.org/Person">

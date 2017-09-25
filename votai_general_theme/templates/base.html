@@ -10,7 +10,7 @@
     <title>{% trans "Vota Inteligente" %} {% block title %}- {{ config.WEBSITE_GENERAL_SETTINGS_HOME_TITLE }}{% endblock title %}</title>
     <meta name="author" content="{{ config.WEBSITE_METADATA_AUTHOR }}">
     <meta name="description" content="{% block description %}{{ config.WEBSITE_METADATA_DESCRIPTION }}{% endblock description %}">
-    <meta name="keywords" content="{{ config.WEBSITE_METADATA_KEYWORD }}{% block keywords %}{% endblock keywords %}">
+    <meta name="keywords" content="{% block extrakeywords %}{% endblock extrakeywords %}{{ config.WEBSITE_METADATA_KEYWORD }}{% block keywords %}{% endblock keywords %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="google-site-verification" content="{{ config.WEBSITE_GA_GSITE_VERIFICATION }}">

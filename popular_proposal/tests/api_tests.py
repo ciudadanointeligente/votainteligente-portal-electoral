@@ -1,6 +1,6 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
-from popular_proposal.models import ProposalTemporaryData, PopularProposal, ProposalLike
+from popular_proposal.models import PopularProposal
 from rest_framework.test import APIClient
 from rest_framework.reverse import reverse
 import json
@@ -30,12 +30,12 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
         self.assertEquals(self.fiera.username, content[0]['proposer'])
 
     def test_get_filtered_proposal(self):
-        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                          area=self.arica,
-                                                          data=self.data,
-                                                          title=u'This is a title',
-                                                          clasification=u'education'
-                                                      )
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       clasification=u'education'
+                                       )
         popular_proposal2 = PopularProposal.objects.create(proposer=self.feli,
                                                           area=self.arica,
                                                           data=self.data,

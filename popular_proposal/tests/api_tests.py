@@ -26,3 +26,5 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
         self.assertEquals(content[0]['title'], popular_proposal.title)
         self.assertEquals(content[0]['id'], popular_proposal.id)
         self.assertIn(popular_proposal.get_absolute_url(), content[0]['get_absolute_url'])
+        self.assertEquals(self.data, content[0]['data'])
+        self.assertEquals(self.fiera.username, content[0]['proposer'])

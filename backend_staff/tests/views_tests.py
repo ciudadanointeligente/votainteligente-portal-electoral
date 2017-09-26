@@ -272,6 +272,30 @@ class StaffHomeViewTest(TestCase):
         self.assertIsInstance(response.context['stats'], Stats)
         self.assertTemplateUsed(response, 'backend_staff/stats.html')
 
+    def tests_get_local_meetings(self):
+        stats = Stats()
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       clasification=u'education'
+                                       )
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       is_local_meeting=True,
+                                       title=u'This is a title',
+                                       clasification=u'education'
+                                       )
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       is_local_meeting=True,
+                                       clasification=u'education'
+                                       )
+        self.assertEquals(stats.local_gatherings(), 2)
+
     def test_stats_v2_organizations_supporting(self):
         User.objects.all().delete()
         stats = Stats()

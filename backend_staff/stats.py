@@ -35,6 +35,9 @@ class Stats(object):
     def proposals(self):
         return PopularProposal.objects.exclude(for_all_areas=True).count()
 
+    def local_gatherings(self):
+        return PopularProposal.objects.filter(is_local_meeting=True).count()
+
     def commitments(self):
         return Commitment.objects.count()
 

@@ -27,6 +27,35 @@ h1{
 h2{
   @extend h1;
 }
+h4{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  color: black;
+  a{
+    color: black;
+    &:hover{
+      color: black;
+      text-decoration: none;
+    }
+    &:focus{
+      @extend a:hover;
+    }
+    &:active:hover{
+      @extend a:hover;
+      box-shadow: none;
+    }
+  }
+}
+h5{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+h6{
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+}
 .h-header{
   margin-top: 50px;
 }
@@ -138,25 +167,24 @@ h2{
     box-shadow: none;
   }
 }
-h4{
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700;
+.btn-line{
+  border: 3px solid black;
   color: black;
-  a{
-    color: black;
-    &:hover{
-      color: black;
-      text-decoration: none;
-    }
-    &:focus{
-      @extend a:hover;
-    }
-    &:active:hover{
-      @extend a:hover;
-      box-shadow: none;
-    }
+  &:hover{
+    background-color: black;
+    color: white;
+    border: 3px solid black;
+  }
+  &:focus{
+    @extend .btn-line:hover;
+  }
+  &:active:hover{
+    @extend .btn-line:hover;
+    box-shadow: none;
   }
 }
+
+
 /*MAIN CONTAINERS*/
 .color{
   color: white;
@@ -195,6 +223,12 @@ h4{
   background-repeat: no-repeat;
   min-height: 28px;
   margin-top: -30px;
+}
+.blueline{
+  background-image: url("../img/lm-blueline.svg");
+  background-repeat: no-repeat;
+  min-height: 148px;
+  margin-top: -115px;
 }
 .special-position{
   position: relative;
@@ -914,6 +948,19 @@ hr{
   }
 }
 
+/*MATERIALS*/
+#main-materiales{
+  background-color: $blue;
+  color: white;
+}
+.col-materiales{
+  width: 230px;
+  margin: 0 auto;
+  height: 320px;
+}
+.material-download{
+  height: 60px;
+}
 
 /*MODALS*/
 .modal-content{
@@ -982,6 +1029,16 @@ hr{
 #thanks-gathering{
   margin-top: 40px;
   min-height: 500px;
+}
+
+/*OTHER*/
+.alert-success{
+  color: white;
+  background-color: transparent;
+  border: 3px solid white;
+  border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
 }
 
 /*FOOTER*/

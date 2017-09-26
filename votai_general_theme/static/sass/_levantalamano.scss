@@ -183,7 +183,56 @@ h6{
     box-shadow: none;
   }
 }
-
+.btn-success{
+  border: 3px solid $yellow;
+  background-color: $yellow;
+  &:hover{
+    background-color: transparent;
+    color: $yellow;
+    border: 3px solid $yellow;
+  }
+  &:focus{
+    @extend .btn-success:hover;
+  }
+  &:active:hover{
+    @extend .btn-success:hover;
+    box-shadow: none;
+  }
+}
+.btn-facebook{
+  border: 3px solid $blue;
+  background-color: $blue;
+  color: white;
+  &:hover{
+    background-color: transparent;
+    color: $blue;
+    border: 3px solid $blue;
+  }
+  &:focus{
+    @extend .btn-facebook:hover;
+  }
+  &:active:hover{
+    @extend .btn-facebook:hover;
+    box-shadow: none;
+  }
+}
+.btn-google{
+  border: 3px solid $red;
+  background-color: $red;
+  color: white;
+  &:hover{
+    background-color: transparent;
+    color: $red;
+    border: 3px solid $red;
+  }
+  &:focus{
+    @extend .btn-google:hover;
+  }
+  &:active:hover{
+    @extend .btn-google:hover;
+    box-shadow: none;
+  }
+}
 
 /*MAIN CONTAINERS*/
 .color{
@@ -1029,6 +1078,12 @@ hr{
 #thanks-gathering{
   margin-top: 40px;
   min-height: 500px;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+  background-color: black;
+}
+.nav-pills>li>a{
+  color: black;
 }
 
 /*OTHER*/

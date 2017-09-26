@@ -26,8 +26,9 @@
 {% block mainelection %}
 <div class="container text-center" itemscope itemtype="http://schema.org/Person">
   <h1 itemprop="name" class="candidate-name">{{ candidate.name }}</h1>
-    {% if user|is_candidate %}
+
   <h3>{% get_personal_data candidate=candidate personal_data='lema' as lema %}{{lema.value}}</h3>
+  {% if user|is_candidate %}
   {% with user.candidacies.first as candidacy %}
     {% if candidacy.candidate == candidate %}
     {% url 'backend_candidate:complete_profile' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as complete_profile %}

@@ -564,7 +564,7 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
 
     def test_send_mail_area_management_command(self):
         a = Area.objects.create(name='Area')
-        e = Election.objects.create(name='Election', area=a)
+        e = Election.objects.create(name=u'Election', area=a)
         other_candidate2 = Candidate.objects.create(name='Nombre')
         e.candidates.add(other_candidate2)
         self.assertNotEqual(other_candidate2.election.area,

@@ -14,7 +14,7 @@
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}">VotaInteligente</a></li>
     {% if proposal.area %}
-      <li><a href="{% url 'area' slug=proposal.area.id%}">{{proposal.area}}</a></li>
+      <li><a href="{{proposal.area.get_absolute_url}}">{{proposal.area}}</a></li>
     {% endif %}
     <li><a href="{{proposal.get_absolute_url}}">{{proposal.title}}</a></li>
     <li class="active">No lo incluiré</li>
@@ -37,11 +37,11 @@
 
 		{% bootstrap_field form.detail show_label=false %}
 	    <div class="tips">
-		  <b class="text-dark">Terminos y Condiciones</b>
+		  <b class="main-title">Terminos y Condiciones</b>
 		  {% include 'popular_proposal/commitment/terms_and_conditions.html' %}
 		</div>
 		{% bootstrap_field form.terms_and_conditions show_label=false %}
-		<button type="submit" class="btn btn-danger">
+		<button type="submit" class="btn btn-dark">
 
 			{% if candidate.election.position == 'concejal' %}
 				{% trans 'No apoyaré esta propuesta'%}

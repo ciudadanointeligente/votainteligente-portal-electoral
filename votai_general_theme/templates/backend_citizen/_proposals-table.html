@@ -50,7 +50,7 @@
           <span class="label label-danger"><i class="fa fa-times"></i> {% trans 'Rechazada' %}</span>
           {% endif %}
         </td>
-        <!--<td><a href="{% url 'area' slug=proposal.area.id %}">{{proposal.area}}</a></td>-->
+        <!--<td><a href="{{area.get_absolute_url}}">{{proposal.area}}</a></td>-->
         <td>
           {% if proposal.status == 'accepted' %}
             {% if proposal.created_proposal %}

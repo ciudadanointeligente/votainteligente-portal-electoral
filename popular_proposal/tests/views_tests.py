@@ -174,7 +174,7 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
         self.assertTrue(form.is_valid())
 
     def test_area_detail_view_brings_proposals(self):
-        url = reverse('area', kwargs={'slug': self.algarrobo.id})
+        url = self.algarrobo.get_absolute_url()
         response = self.client.get(url)
         self.assertIn(self.popular_proposal1,
                       response.context['popular_proposals'])
@@ -182,7 +182,7 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
                       response.context['popular_proposals'])
 
     def test_get_area_with_form(self):
-        url = reverse('area', kwargs={'slug': self.algarrobo.id})
+        url = self.algarrobo.get_absolute_url()
         response = self.client.get(url)
         self.assertIsInstance(response.context['proposal_filter_form'],
                               Form)

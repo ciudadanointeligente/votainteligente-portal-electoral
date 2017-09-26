@@ -32,6 +32,7 @@ class CreateGatheringFormTestCase(ProposingCycleTestCaseBase):
         data = {"name": "Segundo medio C",
                 "presidents_features": "inteligente,honesto",
                 "generated_at": self.a_comuna.id,
+                "age_range": "de 9 a 11",
                 'male': 10,
                 'female': 10,
                 'others': 10,}

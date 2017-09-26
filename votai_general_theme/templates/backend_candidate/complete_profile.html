@@ -13,7 +13,7 @@
   {% with user.candidacies.first as candidacy %}
   <h2>Información para el perfil de {{candidacy.candidate.name}}</h2>
 
-    <p><a href="{{candidacy.candidate.get_absolute_url}}">
+    <p><a href="{{candidacy.candidate.get_absolute_url}}" class="btn btn-dark">
       {% trans 'Ir a ver mi perfil' %}</a></p>
   {% endwith %}
   <!-- image -->
@@ -22,7 +22,7 @@
     <img src="{{ im.url }}" alt="{{candidate.name}}" height="96" width="96" border="0" class="img-responsive img-circle">
     {% endthumbnail %}
   {% else %}
-    <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive">
+    <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle">
   {% endif %}
   {% bootstrap_field form.image %}
   {% for field in form %}

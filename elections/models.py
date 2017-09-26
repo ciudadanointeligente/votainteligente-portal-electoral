@@ -39,7 +39,7 @@ class Area(PopoloArea, OGPMixin):
         proxy = True
 
     def get_absolute_url(self):
-        return reverse('area', kwargs={'slug': self.id})
+        return reverse('area', kwargs={'slug': self.slug})
 
     def ogp_description(self):
         return self.name
@@ -200,7 +200,7 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
     def get_absolute_url(self):
         if config.CANDIDATE_ABSOLUTE_URL_USING_AREA:
             return reverse('candidate_detail_view_area', kwargs={
-                'area_slug': self.election.area.id,
+                'area_slug': self.election.area.slug,
                 'slug': self.id
             })
         election_slug = ''

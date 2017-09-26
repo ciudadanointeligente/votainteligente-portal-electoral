@@ -9,15 +9,15 @@
       <div class="panel-heading">
         {% if candidate.image %}
         {% thumbnail candidate.image "300x300" crop="center" as im %}
-          <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive img-circle" itemprop="image" /></a>
+          <a href="{{candidate.get_absolute_url}}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive img-circle" itemprop="image" /></a>
         {% endthumbnail %}
         {% else %}
-          <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle"></a>
+          <a href="{{candidate.get_absolute_url}}"><img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle"></a>
         {% endif %}
       </div>
       <div class="panel panel-default">
         <div class="panel-body">
-          <a href="{% url 'candidate_detail_view' election_slug=election.slug slug=candidate.id %}" itemprop="name"><h3>{{ candidate.name }}</h3></a>
+          <a href="{{candidate.get_absolute_url}}" itemprop="name"><h3>{{ candidate.name }}</h3></a>
         </div>
       </div>
     </div>

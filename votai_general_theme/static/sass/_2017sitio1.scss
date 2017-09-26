@@ -142,12 +142,9 @@ td.cal-date{
 }
 
 #you-org{
+  @extend .small-basic;
   min-height: 60px;
   color: white;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
   font-size: 10px;
   padding-top: 12px;
   line-height: 12px;
@@ -159,11 +156,14 @@ td.cal-date{
 
 #actions{
   margin: 40px 0 60px;
-  h2 > a{
+  h3 > a{
     color: $grey-one;
     &:hover{
       color: $blue;
     }
+  }
+  .bajada {
+    margin: 0 0 10px;
   }
 }
 .action{
@@ -207,11 +207,14 @@ td.cal-date{
   .btn{
     font-size: 11px;
   }
-  h2 > a{
+  h3 > a{
     color: $grey-one;
     &:hover{
       color: $blue;
     }
+  }
+  .bajada {
+    margin: 0 0 10px;
   }
 }
 
@@ -344,11 +347,6 @@ input[type=file]{
 }
 
 /*Detalle*/
-#filters {
-  background-color: $blue-light;
-  padding: 20px 0px;
-}
-
 .nav-detalle-propuesta{
   border: none;
   margin-top: -55px;
@@ -460,6 +458,17 @@ input[type=file]{
 }
 
 /*Propuestas*/
+#filters {
+  background-color: $blue-light;
+  padding: 20px 0px;
+  select.form-control{
+    background-color: white;
+  }
+  .form-control{
+    background-color: white;
+  }
+}
+
 .propuesta{
   border: 3px solid $grey-one;
   min-height: 550px;
@@ -480,7 +489,18 @@ input[type=file]{
   background-color: $blue;
   color: white;
 }
-
+.label-success{
+  background-color: $blue-light;
+  color: white;
+}
+.label-warning{
+  background-color: $yellow;
+  color: white;
+}
+.label-danger{
+  background-color: $red;
+  color: white;
+}
 .propuesta:after{
   display: none;
 }
@@ -777,14 +797,11 @@ p.intro{
 }
 
 label{
-  font-family: 'Montserrat', sans-serif;
+  @extend .small-basic;
   color: $grey-one;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 11px;
-  font-weight: 700;
   margin: 10px 0 0 0;
   line-height: 1.3;
+  font-size: 11px;
 }
 
 .proposal-step{
@@ -819,6 +836,14 @@ label{
   line-height: 1.4;
 }
 
+.small-basic{
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
 /*LOGIN*/
 .nav-pills.list-inline{
   margin-bottom: 40px;
@@ -828,17 +853,27 @@ label{
   height: 30px;
 }
 
-/*candidatos*/
+/*CANDIDATES*/
 #candidato-programa {
-  background-color: #7AB7FF;
-  color: #233346;
+  background-color: $blue-light;
+  color: $grey-one;
   padding-top: 15px;
   text-transform: uppercase;
   font-weight: bold;
-  a {
-    color: #233346;
-    &hover {
-      color: #233346;
-    }
-  }
+  @extend .small-basic;
+  font-size: 11px;
+}
+.content_padding #agenda-candidato li.impar{
+  background-color: white;
+}
+.content_padding #agenda-candidato li.par{
+  border-top: 1px solid $grey-one;
+  margin-top: 10px;
+  padding-top: 14px;
+}
+.candidate-name{
+  margin: 30px 0 -10px;
+}
+.candidate-diary{
+  color: $grey-one;
 }

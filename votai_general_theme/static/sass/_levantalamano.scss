@@ -20,6 +20,65 @@ html, body {
 .img-responsive{
   display: inline;
 }
+h1{
+  font-family: 'Fredoka One', sans-serif;
+  letter-spacing: 2px;
+}
+h2{
+  @extend h1;
+}
+.h-header{
+  margin-top: 50px;
+}
+
+/*NAV*/
+.navbar-default{
+  background-color: black;
+  border: none;
+}
+.navbar{
+  min-height: 70px;
+  @extend .small;
+  font-size: 10px;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+.navbar-default .navbar-nav>li>a{
+  color: white;
+  &:hover{
+    color: $purple;
+  }
+  &:focus{
+    color: $purple;
+  }
+  &:active{
+    color: $purple;
+  }
+}
+.navbar-right{
+  position: relative;
+  top: 12px;
+}
+.navbar-collapse{
+  box-shadow: none;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form{
+  border: none;
+}
+.navbar-default .navbar-toggle{
+  border: none;
+}
+.navbar-default .navbar-toggle .icon-bar{
+  background-color: white;
+}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
+  background-color: transparent;
+}
+.navbar-toggle{
+  top: 10px;
+}
+
+/*BUTTONS*/
 .btn{
   border-radius: 20px;
   border: none;
@@ -45,14 +104,59 @@ html, body {
     box-shadow: none;
   }
 }
-h1{
-  font-family: 'Fredoka One', sans-serif;
-  letter-spacing: 2px;
+.btn-blue{
+  border: 3px solid $blue;
+  background-color: $blue;
+  color: white;
+  &:hover{
+    background-color: transparent;
+    color: white;
+    border: 3px solid white;
+  }
+  &:focus{
+    @extend .btn-blue:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue:hover;
+    box-shadow: none;
+  }
 }
-h2{
-  @extend h1;
+.btn-yellow{
+  border: 3px solid $yellow;
+  background-color: $yellow;
+  color: white;
+  &:hover{
+    background-color: transparent;
+    color: $yellow;
+    border: 3px solid $yellow;
+  }
+  &:focus{
+    @extend .btn-yellow:hover;
+  }
+  &:active:hover{
+    @extend .btn-yellow:hover;
+    box-shadow: none;
+  }
 }
-
+h4{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  color: black;
+  a{
+    color: black;
+    &:hover{
+      color: black;
+      text-decoration: none;
+    }
+    &:focus{
+      @extend a:hover;
+    }
+    &:active:hover{
+      @extend a:hover;
+      box-shadow: none;
+    }
+  }
+}
 /*MAIN CONTAINERS*/
 .color{
   color: white;
@@ -80,15 +184,21 @@ h2{
   background-repeat: no-repeat;
   min-height: 28px;
 }
-.yellowline{
-  background-image: url("../img/lm-yellowline.svg");
+.redline{
+  background-image: url("../img/lm-redline.svg");
   background-repeat: no-repeat;
   min-height: 46px;
   margin-top: -48px;
 }
+.yellowline{
+  background-image: url("../img/lm-yellowline.svg");
+  background-repeat: no-repeat;
+  min-height: 28px;
+  margin-top: -30px;
+}
 .special-position{
   position: relative;
-  top: 100px;
+  top: 80px;
 }
 
 /*HOME 0*/
@@ -97,13 +207,781 @@ h2{
   top: 100px;
 }
 #banner{
-  min-height: 400px;
+  min-height: 380px;
 }
 #que-es{
-  padding: 30px 0 60px;
+  padding: 30px 0 70px;
+}
+p.bajada{
+  font-size: 18px;
+  line-height: 22px;
+}
+p.aviso{
+  font-size: 22px;
+  line-height: 26px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
 }
 #contact{
-  padding: 30px 0 240px;
+  padding: 30px 0 80px;
+}
+#soon{
+  padding: 40px 0 210px;
+  margin-bottom: -250px;
+}
+
+/*PROPOSALS REPOSITORY*/
+#grid{
+  position: relative;
+}
+#grid > #posts .post{
+  width: 340px;
+}
+#posts{
+  position: relative;
+  height: -webkit-fill-available;
+}
+.post.propuesta{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.post{
+  margin: 0 0 50px;
+}
+.propuesta{
+  min-height: 310px;
+  border-radius: 10px;
+  padding: 0;
+  position: relative;
+  padding: 20px 20px 5px;
+}
+.propuesta-content{
+  height: 110px;
+}
+.group{
+  margin-top: 30px;
+  margin-bottom: -6px;
+}
+hr{
+  position: relative;
+  top: 26px;
+}
+.votita-love-politica{
+  border: 3px solid $yellow;
+  .label-default{
+    background: $yellow;
+  }
+  .group{
+    color: $yellow;
+  }
+  hr{
+    border: 1px solid $yellow;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $yellow;
+    border: 3px solid $yellow;
+    &:hover{
+      background-color: transparent;
+      color: $yellow;
+      border: 3px solid $yellow;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $yellow;
+    background-color: transparent;
+    border: 3px solid $yellow;
+    &:hover{
+      background-color: $yellow;
+      color: white;
+      border: 3px solid $yellow;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
+  }
+  h4{
+    a{
+      &:hover{
+        color: $yellow;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
+  }
+}
+.votita-love-salud{
+  border: 3px solid $blue;
+  .label-default{
+    background: $blue;
+  }
+  .group{
+    color: $blue;
+  }
+  hr{
+    border: 1px solid $blue;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $blue;
+    border: 3px solid $blue;
+    &:hover{
+      background-color: transparent;
+      color: $blue;
+      border: 3px solid $blue;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $blue;
+    background-color: transparent;
+    border: 3px solid $blue;
+    &:hover{
+      background-color: $blue;
+      color: white;
+      border: 3px solid $blue;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
+  }
+  h4{
+    a{
+      &:hover{
+        color: $blue;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
+  }
+}
+.votita-love-medio_ambiente{
+  border: 3px solid $green;
+  .label-default{
+    background: $green;
+  }
+  .group{
+    color: $green;
+  }
+  hr{
+    border: 1px solid $green;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $green;
+    border: 3px solid $green;
+    &:hover{
+      background-color: transparent;
+      color: $green;
+      border: 3px solid $green;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $green;
+    background-color: transparent;
+    border: 3px solid $green;
+    &:hover{
+      background-color: $green;
+      color: white;
+      border: 3px solid $green;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
+  }
+  h4{
+    a{
+      &:hover{
+        color: $green;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
+  }
+}
+.votita-love-cultura{
+  border: 3px solid $red;
+  .label-default{
+    background: $red;
+  }
+  .group{
+    color: $red;
+  }
+  hr{
+    border: 1px solid $red;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $red;
+    border: 3px solid $red;
+    &:hover{
+      background-color: transparent;
+      color: $red;
+      border: 3px solid $red;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $red;
+    background-color: transparent;
+    border: 3px solid $red;
+    &:hover{
+      background-color: $red;
+      color: white;
+      border: 3px solid $red;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
+  }
+  h4{
+    a{
+      &:hover{
+        color: $red;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
+  }
+}
+.votita-love-diversidad{
+  border: 3px solid $purple;
+  .label-default{
+    background: $purple;
+  }
+  .group{
+    color: $purple;
+  }
+  hr{
+    border: 1px solid $purple;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $purple;
+    border: 3px solid $purple;
+    &:hover{
+      background-color: transparent;
+      color: $purple;
+      border: 3px solid $purple;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $purple;
+    background-color: transparent;
+    border: 3px solid $purple;
+    &:hover{
+      background-color: $purple;
+      color: white;
+      border: 3px solid $purple;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
+  }
+  h4{
+    a{
+      &:hover{
+        color: $purple;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
+  }
+}
+.votita-love-tecnologia{
+  border: 3px solid $blue;
+  .label-default{
+    background: $blue;
+  }
+  .group{
+    color: $blue;
+  }
+  hr{
+    border: 1px solid $blue;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $blue;
+    border: 3px solid $blue;
+    &:hover{
+      background-color: transparent;
+      color: $blue;
+      border: 3px solid $blue;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $blue;
+    background-color: transparent;
+    border: 3px solid $blue;
+    &:hover{
+      background-color: $blue;
+      color: white;
+      border: 3px solid $blue;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
+  }
+  h4{
+    a{
+      &:hover{
+        color: $blue;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
+  }
+}
+.votita-love-educacion_y_trabajo{
+  border: 3px solid $pink;
+  .label-default{
+    background: $pink;
+  }
+  .group{
+    color: $pink;
+  }
+  hr{
+    border: 1px solid $pink;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $pink;
+    border: 3px solid $pink;
+    &:hover{
+      background-color: transparent;
+      color: $pink;
+      border: 3px solid $pink;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $pink;
+    background-color: transparent;
+    border: 3px solid $pink;
+    &:hover{
+      background-color: $pink;
+      color: white;
+      border: 3px solid $pink;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
+  }
+  h4{
+    a{
+      &:hover{
+        color: $pink;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
+  }
+}
+.votita-love-proteccion_y_familia{
+  border: 3px solid $yellow;
+  .label-default{
+    background: $yellow;
+  }
+  .group{
+    color: $yellow;
+  }
+  hr{
+    border: 1px solid $yellow;
+  }
+  .btn-apoyo {
+    color: white;
+    background-color: $yellow;
+    border: 3px solid $yellow;
+    &:hover{
+      background-color: transparent;
+      color: $yellow;
+      border: 3px solid $yellow;
+    }
+    &:focus{
+      @extend .btn-apoyo:hover;
+    }
+    &:active:hover{
+      @extend .btn-apoyo:hover;
+      box-shadow: none;
+    }
+  }
+  .btn-blue {
+    color: $yellow;
+    background-color: transparent;
+    border: 3px solid $yellow;
+    &:hover{
+      background-color: $yellow;
+      color: white;
+      border: 3px solid $yellow;
+    }
+    &:focus{
+      @extend .btn-blue:hover;
+    }
+    &:active:hover{
+      @extend .btn-blue:hover;
+      box-shadow: none;
+    }
+  }
+  h4{
+    a{
+      &:hover{
+        color: $yellow;
+        text-decoration: none;
+      }
+      &:focus{
+        @extend a:hover;
+      }
+      &:active:hover{
+        @extend a:hover;
+        box-shadow: none;
+      }
+    }
+  }
+}
+.label-default{
+  @extend .small;
+}
+.share-card{
+  padding: 20px 0 0;
+  .social-buttons{
+    font-size: 10px;
+    position: relative;
+    top: 17px;
+    a{
+      color: black;
+    }
+  }
+}
+.apoyo-contador {
+  text-align: left;
+}
+.conteo{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  position: relative;
+  top: 6px;
+}
+
+/*DETAIL*/
+.breadcrumb{
+  background-color: transparent;
+  border-radius: none;
+  margin: 20px 0;
+  padding: 0;
+  color: black;
+  a{
+    color: black;
+    &:hover{
+      color: white;
+      text-decoration: none;
+    }
+  }
+  .active{
+    color: white;
+  }
+  li+li:before{
+    color: black;
+  }
+}
+.votita-love-detail-politica{
+  background-color: $yellow;
+  padding-bottom: 40px;
+}
+.votita-love-detail-salud{
+  background-color: $blue;
+  padding-bottom: 40px;
+}
+.votita-love-detail-medio_ambiente{
+  background-color: $green;
+  padding-bottom: 40px;
+}
+.votita-love-detail-cultura{
+  background-color: $red;
+  padding-bottom: 40px;
+}
+.votita-love-detail-diversidad{
+  background-color: $purple;
+  padding-bottom: 40px;
+}
+.votita-love-detail-tecnologia{
+  background-color: $blue;
+  padding-bottom: 40px;
+}
+.votita-love-detail-educacion_y_trabajo{
+  background-color: $pink;
+  padding-bottom: 40px;
+}
+.votita-love-detail-proteccion_y_familia{
+  background-color: $yellow;
+  padding-bottom: 40px;
+}
+.votita-detail{
+  .label-default{
+    background: white;
+    color: black;
+  }
+  h1{
+    font-family: 'Nunito', sans-serif;
+    font-size: 40px;
+    color: white;
+    font-weight: 700;
+  }
+  p{
+    font-size: 15px;
+  }
+  .group{
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+  .invitacion{
+    font-size: 20px;
+  }
+  .btn-apoyo{
+    background-color: white;
+    color: black;
+    width: 100%;
+    &:hover{
+      background-color: transparent;
+      color: white;
+    }
+  }
+  .blue-light-txt{
+    font-size: 18px;
+    position: relative;
+    top: -4px;
+  }
+  hr{
+    border: 1px solid white;
+    margin: 0 0 40px;
+  }
+}
+.share-detail{
+  padding: 70px 10px 20px;
+  a{
+    color: black;
+    &:hover{
+      color: white;
+    }
+  }
+  .fa-inverse{
+    &:hover{
+      color: black;
+    }
+  }
+}
+
+/*PLAN*/
+.votita-plan{
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 20px 40px 20px;
+  margin: 20px 0;
+  h2{
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    text-align: center;
+  }
+}
+.proposal-plan{
+  border: none;
+  margin: 20px 0 15px;
+  a{
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 15px;
+    font-weight: 700;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}
+
+
+/*MODALS*/
+.modal-content{
+  box-shadow: none;
+  border: none;
+}
+.modal-header{
+  border-bottom: none;
+}
+.modal-footer{
+  border-top: none;
+}
+.btn-info{
+  background-color: black;
+  border: 3px solid black;
+  &:hover{
+    background-color: transparent;
+    color: black;
+    border: 3px solid black;
+  }
+  &:focus{
+    @extend .btn-info:hover;
+  }
+  &:active:hover{
+    @extend .btn-info:hover;
+    box-shadow: none;
+  }
+}
+
+/*FORMS*/
+.form-control{
+  border: 2px solid black;
+}
+.btn-enviar{
+  background-color: $yellow;
+  border: 3px solid $yellow;
+  color: white;
+  &:hover{
+    background-color: transparent;
+    color: $yellow;
+  }
+}
+.btn-agregar{
+  background-color: $green;
+  border: 3px solid $green;
+  color: white;
+  &:hover{
+    background-color: transparent;
+    color: $green;
+  }
+}
+.bootstrap-tagsinput{
+  width: 1180px !important;
+  box-shadow: none;
+  border: 2px solid black !important;
+}
+.label-info{
+  background-color: $purple;
+}
+.theme-form{
+  font-weight: 700;
+  color: $purple;
+  font-family: 'Nunito', sans-serif;
+  margin-top: 0;
+}
+#thanks-gathering{
+  margin-top: 40px;
+  min-height: 500px;
 }
 
 /*FOOTER*/
@@ -111,7 +989,7 @@ h2{
   background-image: url("../img/lm-footer.svg");
   background-repeat: no-repeat;
   min-height: 144px;
-  margin-top: -148px;
+  margin-top: 90px;
 }
 footer{
   background-color: $green;
@@ -132,4 +1010,12 @@ footer{
 }
 .redes{
   margin: 45px 0;
+}
+
+/*PRINT*/
+.print_only {
+  display:none;
+}
+.print-share-urls{
+  display:none;
 }

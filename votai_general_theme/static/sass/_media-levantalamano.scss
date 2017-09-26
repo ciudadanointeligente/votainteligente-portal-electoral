@@ -1,12 +1,48 @@
 @media screen and (max-width: 991px) {
   /*HOME 0*/
   .logo-title{
-    top: 70px;
+    top: 30px;
+  }
+  .special-position{
+    top: 30px;
   }
   #que-es{
-    padding: 100px 0 60px;
+    padding: 50px 0 60px;
   }
   #contact{
-    padding: 80px 0 240px;
+    padding: 20px 0 90px;
+  }
+  #soon{
+    padding: 40px 0 210px;
+  }
+  p.bajada{
+    font-size: 16px;
+    line-height: 20px;
+  }
+  p.aviso{
+    font-size: 20px;
+    line-height: 24px;
+  }
+  /*DETAIL*/
+  .share-detail{
+    padding: 50px 10px 0 10px;
+  }
+}
+@media screen and (max-width: 991px) {
+  /*PROPOSALS REPOSITORY*/
+  #grid > #posts .post{
+    width: 440px;
+  }
+}
+@media screen and (max-width: 768px) {
+  /*PROPOSALS REPOSITORY*/
+  #grid > #posts .post{
+    width: 100%;
+  }
+  .navbar-right{
+    top: 0;
+  }
+  .navbar-nav{
+    margin-top: 20px;
   }
 }

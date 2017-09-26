@@ -15,7 +15,7 @@
       {% for candidacy in user.candidacies.all %}
         <div class="apoyo-btn">
         {% if not avoid_counter %}
-          <div class="apoyo-contador text-center">
+          <div class="apoyo-contador">
             <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
           </div>
         {% endif %}
@@ -33,7 +33,7 @@
               <a href="#" class="btn btn-apoyo" disabled="disabled">No Comprometido</a>
             </div>
             {% endif %}
-          {% else %}
+          {% else %}<!-- esto sólo lo ven los candidatos -->
             {% with proposal.get_absolute_url as detail_url %}
             <div class="btn_pronunciarme {{support_button_extra_class}}">
               <a href="{% url 'popular_proposals:commit_yes' candidate_pk=candidacy.candidate.id proposal_pk=proposal.id %}" alt="Comprometerme" class="btn btn-apoyo">
@@ -43,6 +43,11 @@
                 {% if not support_button_extra_class %}No comprometerme{% else %}<i class="fa fa-thumbs-down" aria-hidden="true"></i>{% endif %}
               </a>
             </div>
+            {% if proposal.contact_details and not support_button_extra_class %}
+            <hr>
+            <label>Contacta a esta organización</label>
+            <p>{{proposal.contact_details}}</p>
+            {% endif %}
             {% endwith %}
           {% endif %}
         {% endif %}
@@ -54,7 +59,7 @@
         {% with "supportProposal"|add:proposal.slug as modalid %}
           <!-- "logueado sin support" -->
           {% if not avoid_counter %}
-          <div class="apoyo-contador text-center">
+          <div class="apoyo-contador">
             <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
           </div>
           {% endif %}
@@ -72,7 +77,7 @@
         {% with user|support:proposal as support %}
         <!-- apoyando -->
           {% if not avoid_counter %}
-            <div class="apoyo-contador text-center">
+            <div class="apoyo-contador">
               <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
             </div>
           {% endif %}
@@ -96,7 +101,7 @@
   {% else %}
     <!-- usuario no logueado -->
       {% if not avoid_counter %}
-      <div class="apoyo-contador text-center">
+      <div class="apoyo-contador">
         <p class="nota">Esta propuesta tiene <span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s)</p>
       </div>
       {% endif %}

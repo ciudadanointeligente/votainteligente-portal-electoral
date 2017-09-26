@@ -12,3 +12,7 @@ class PersonalDataForm(forms.Form):
                                   required=False,
                                   initial=''
                                   )
+    telefono = forms.CharField(label=u'Teléfono',
+                               required=False,
+                               initial='',
+                               help_text=u"¿Hay algún teléfono donde los ciudadanos interesados en tu campaña se puedan comunicar con tu comando?")

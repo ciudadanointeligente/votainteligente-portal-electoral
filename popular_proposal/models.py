@@ -360,7 +360,7 @@ class ProposalLike(models.Model):
             notifier.notify()
 
     def __str__(self):
-        return u'{} apoya {}'.format(self.user.username, self.proposal.title)
+        return u'{} apoya {}'.format(self.user.username, self.proposal.id)
 
     class Meta:
             verbose_name = _(u'Apoyo')

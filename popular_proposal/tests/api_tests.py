@@ -3,6 +3,7 @@ from popular_proposal.tests import ProposingCycleTestCaseBase
 from popular_proposal.models import ProposalTemporaryData, PopularProposal, ProposalLike
 from rest_framework.test import APIClient
 from rest_framework.reverse import reverse
+import json
 
 
 class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
@@ -18,5 +19,10 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
                                                           clasification=u'education'
                                                       )
         url = reverse('popularproposal-list')
-        response = self.client.get(url)
+        response = self.client.get(url, format='json')
         self.assertEquals(response.status_code, 200)
+        content = json.loads(response.content)
+        self.assertEquals(len(content), 1)
+        self.assertEquals(content[0]['title'], popular_proposal.title)
+        self.assertEquals(content[0]['id'], popular_proposal.id)
+        self.assertIn(popular_proposal.get_absolute_url(), content[0]['get_absolute_url'])

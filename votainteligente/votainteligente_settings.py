@@ -353,6 +353,15 @@ CACHES = {
 
 NEW_ANSWER_ENDPOINT = 'NEW_ANSWER_ENDPOINT'
 
+REST_FRAMEWORK = {
+    # specifying the renderers
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework_csv.renderers.CSVRenderer',
+    ),
+}
+
 THEME = None
 
 

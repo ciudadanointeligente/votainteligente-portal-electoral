@@ -4,7 +4,7 @@ from popular_proposal.models import PopularProposal
 class ProposalSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = PopularProposal
-        fields = ('title', 'slug')
+        fields = ('id','title', 'slug', 'get_absolute_url')
 
 class ProposalViewSet(viewsets.ModelViewSet):
     queryset = PopularProposal.objects.all()

@@ -52,3 +52,4 @@ django-test-without-migrations==0.6
 django-model-utils==3.0.0
 django-multiselectfield==0.1.7
 django-robots==3.0
+djangorestframework-csv==2.0.0

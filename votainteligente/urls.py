@@ -9,7 +9,7 @@ from django.contrib.auth.views import password_change, password_change_done, log
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from votainteligente.sitemaps  import ElectionsSitemap, CandidatesSitemap, ProposalSitemap
-
+from votainteligente.rest_api_router import router
 
 admin.autodiscover()
 admin.site.site_header = getattr(settings, 'ADMIN_HEADER', 'Vota Inteligente')
@@ -73,6 +73,7 @@ urlpatterns = [
         password_change_done,
         {'template_name': 'registration/password_change_done_.html'},
         name='password_change_done'),
+    url(r'^api/', include(router.urls)),
     url(r'^robots\.txt', include('robots.urls')),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}),
 

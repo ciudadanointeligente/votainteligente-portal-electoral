@@ -1,0 +1,12 @@
+Hermana o hermano!
+Este mail es para contarte que hay un nuevo compromiso:
+
+Candidato: {{commitment.candidate.name}}
+Propuesta: {{commitment.proposal.title}} de {{commitment.proposal.proposer}}
+url: https://{{site}}{{commitment.get_absolute_url}}
+
+Estamos más felices que la chucha de contarte esto!
+Arriba los corazones y abajo los pantalones.
+
+--
+El equipo de Votainteligente

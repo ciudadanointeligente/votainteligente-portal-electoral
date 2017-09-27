@@ -404,6 +404,7 @@ CONSTANCE_CONFIG = {
     'PROPOSALS_ENABLED' : (True, 'Habilitar propuestas'),
     'WHEN_TO_NOTIFY': ('25, 50, 100, 150, 200', 'Cuando notificar'),
     'NOTIFY_CANDIDATES': (True, 'Notificar a los candidatos'),
+    'NOTIFY_STAFF_OF_NEW_COMMITMENT': (True, 'Notificar al staff si es que hay un nuevo compromiso'),
     'NOTIFY_CANDIDATES_OF_NEW_PROPOSAL': (True, 'Notificar a los candidatos por una nueva propuesta'),
     'NO_REPLY_MAIL': ("no-reply@localhost", 'Cuenta email de envio de correos'),
     'EMAIL_LOCALPART': ("municipales2016", 'Cuenta email localhost'),

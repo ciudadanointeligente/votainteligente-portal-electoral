@@ -96,6 +96,12 @@ class KidsProposal(PopularProposal):
                                   null=True)
 
     card_template = "votita/card.html"
+    detail_template_html = "votita/plantillas/detalle_propuesta.html"
+
+    @classmethod
+    def get_topic_choices_dict(cls):
+        from votita.forms.forms import TOPIC_CHOICES_DICT
+        return TOPIC_CHOICES_DICT
 
     class Meta:
         verbose_name = _(u'Medida')

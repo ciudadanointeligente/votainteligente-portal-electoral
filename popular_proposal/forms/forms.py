@@ -408,6 +408,7 @@ class CandidateCommitmentFormBase(forms.Form):
         commitment = Commitment.objects.create(proposal=self.proposal,
                                                candidate=self.candidate,
                                                commited=self.commited)
+        send_mails_to_staff({'commitment': commitment}, 'notify_staff_new_commitment')
         return commitment
 
     def clean(self):

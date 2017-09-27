@@ -1,1 +1,1 @@
-NUEVO COMPROMISO en el vota CSM!!!
+NUEVO COMPROMISO de {{commitment.candidate.name}} en el vota CSM!!!

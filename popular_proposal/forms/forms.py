@@ -396,7 +396,7 @@ class CandidateCommitmentFormBase(forms.Form):
     detail = forms.CharField(required=False,
                              widget=forms.Textarea(),
                              label=_(u'Cuentanos un poco más sobre tu compromiso:'),
-                             help_text=_(u'Este texto será visible para los usuarios que visiten este compromiso y para la persona u organización que la propuso.'))
+                             help_text=_(u'¿Cómo te imaginas que esta propuesta puede ser concreatada?.'))
     terms_and_conditions = forms.BooleanField(initial=False,
                                               required=True,
                                               label=_(u'Términos y Condiciones'))

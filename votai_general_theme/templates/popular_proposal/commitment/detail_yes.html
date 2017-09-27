@@ -49,7 +49,7 @@
     <h1 class="page-header">Compromiso</h1>
     Yo <b>{{commitment.candidate.name}}</b> me comprometo con la propuesta ciudadana:
 
-    {% include 'popular_proposal/plantillas/candidate_commitment.html' with proposal=commitment.proposal %}
+    {% include 'popular_proposal/plantillas/candidate_commitment.html' with proposal=commitment.proposal detail=commitment.detail %}
 
     <div class="pull-right">
       <p><b>{{commitment.candidate.name}}</b></p>

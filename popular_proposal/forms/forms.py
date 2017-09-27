@@ -393,6 +393,10 @@ class ProposalTemporaryDataModelForm(forms.ModelForm, ProposalFormBase):
 
 
 class CandidateCommitmentFormBase(forms.Form):
+    detail = forms.CharField(required=False,
+                             widget=forms.Textarea(),
+                             label=_(u'Cuentanos un poco más sobre tu compromiso:'),
+                             help_text=_(u'Este texto será visible para los usuarios que visiten este compromiso y para la persona u organización que la propuso.'))
     terms_and_conditions = forms.BooleanField(initial=False,
                                               required=True,
                                               label=_(u'Términos y Condiciones'))
@@ -405,8 +409,10 @@ class CandidateCommitmentFormBase(forms.Form):
         self.proposal = proposal
 
     def save(self):
+        detail = self.cleaned_data['detail']
         commitment = Commitment.objects.create(proposal=self.proposal,
                                                candidate=self.candidate,
+                                               detail=detail,
                                                commited=self.commited)
         return commitment
 
@@ -424,15 +430,5 @@ class CandidateCommitmentFormBase(forms.Form):
 class CandidateCommitmentForm(CandidateCommitmentFormBase):
     commited = True
 
-
 class CandidateNotCommitingForm(CandidateCommitmentFormBase):
-    detail = forms.CharField(required=False,
-                             widget=forms.Textarea(),
-                             label=_(u'Explica tus razones para NO comprometerte con esta propuesta ciudadana'))
     commited = False
-
-    def save(self):
-        commitment = super(CandidateNotCommitingForm, self).save()
-        commitment.detail = self.cleaned_data['detail']
-        commitment.save()
-        return commitment

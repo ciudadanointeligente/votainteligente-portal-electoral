@@ -1,14 +1,17 @@
-¡Genia/o {% include '_user_printable.html' with user=person %}!
-Escribimos para contarte que {{commitment.candidate.name}} {% if candidate.election.position == 'concejal' %}acaba de apoyar{% elif candidate.election.position == 'alcalde' %}se acaba de comprometer con{% else %}se acaba de comprometer  con{% endif %} la propuesta ciudadana {{proposal.title}}.
+¡Genia o genio {% if person.get_short_name %}{{ person.get_short_name}}{% else %}{{ person.get_username}}{% endif %}!
+Escribimos para contarte que {{commitment.candidate.name}} se acaba de comprometer con la propuesta ciudadana {{proposal.title}}.
 
+Te queríamos contar que {{ commitment.candidate.name }} agregó los siguientes comentarios a su compromiso:
 
-Para revisar {% if candidate.election.position == 'concejal' %}el apoyo a{% elif candidate.election.position == 'alcalde' %}el compromiso con{% else %}el compromiso con{% endif %} la propuesta ciudadana puedes acceder a la siguiente url:
-https://votainteligente.cl{{commitment.get_absolute_url}}
+{{commitment.detail}}
+
+Para revisar el compromiso con la propuesta ciudadana puedes acceder a la siguiente url:
+https://{{site}}{{commitment.get_absolute_url}}
 
 Te queremos mucho, esperamos que entiendas que este es un gran paso para cambiar Chile.
 Aún queda un gran trecho que recorrer y queremos que estés atenta/o a que este candidato cumpla su compromiso en caso de salir electa/o.
 
-Para esto puedes usar las Herramientas de Activismo:
-https://votainteligente.cl/static/material-ciudadano/manual-herramientas-activismo.pdf
+Este es un mail automático pero si respondes le llegará a todo el equipo de VotaInteligente.cl
+
 --
 El equipo de VotaInteligente.cl

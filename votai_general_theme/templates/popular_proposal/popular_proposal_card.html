@@ -10,7 +10,7 @@
       <div class="ribbon">Generada desde un encuentro ciudadano</div>
     </div>
     {% endif %}
-    <a href="/propuestas/?clasification={{proposal.data.clasification}}" onclick="ga('send','event','card-filterby-clasification','click')"><span class="label label-default">{{proposal.data.clasification}}</span></a>
+    <a href="/propuestas/?clasification={{proposal.clasification}}" onclick="ga('send','event','card-filterby-clasification','click')"><span class="label label-default">{{proposal.get_classification}}</span></a>
     {% if proposal.generated_at != None %}<span class="label label-success">{{proposal.generated_at}}</span>{% endif %}
     <!-- Estado de una propuesta para el alcalde de esa comuna -->
     <div class="pull-right">

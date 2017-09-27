@@ -74,7 +74,7 @@ $(function(){
   <div class="container">
     <div class="row">
       <div class="col-md-9 detalle-propuesta detail{% if proposal.for_all_areas %} transversal{% endif %}">
-        <span class="label label-default">{{popular_proposal.data.clasification}}</span>
+        <span class="label label-default">{{popular_proposal.get_classification}}</span>
         <p class="text-light small">Propuesta nº{{popular_proposal.id}}</p>
 
         {% if popular_proposal.is_local_meeting %}

@@ -232,6 +232,11 @@ class PopularProposal(models.Model, OGPMixin):
     def __str__(self):
         return self.title
 
+    @classmethod
+    def get_topic_choices_dict(cls):
+        from popular_proposal.forms.form_texts import TOPIC_CHOICES_DICT
+        return TOPIC_CHOICES_DICT
+
     def ogp_title(self):
         return u'¡Ingresa a votainteligente.cl y apoya esta propuesta!'
 
@@ -281,6 +286,8 @@ class PopularProposal(models.Model, OGPMixin):
         out = Image.alpha_composite(base, txt)
 
         return out
+    def get_classification(self):
+        return self.__class__.get_topic_choices_dict().get(self.clasification, u"")
 
     def ogp_image(self):
         site = Site.objects.get_current()

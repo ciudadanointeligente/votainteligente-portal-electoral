@@ -45,7 +45,7 @@ TOPIC_CHOICES = (('', u'Selecciona una categoría'),
                  ('transporte', u'Transporte'),
                  ('espaciospublicos', u'Urbanismo y Espacios públicos'),
                  )
-
+TOPIC_CHOICES_DICT = dict(TOPIC_CHOICES)
 TEXTS = OrderedDict({
     'problem': {'label': u'El problema que se quiere solucionar es',
                 'preview_question': u'¿Cuál es el problema que quieres solucionar?',

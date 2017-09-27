@@ -59,7 +59,7 @@ $(function(){
         </ol>
       </div>
       <div class="col-md-9">
-        <span class="label label-default">{{proposal.clasification}}</span>
+        <span class="label label-default">{{proposal.get_classification}}</span>
         <p class="group">
             Propuesta de {{proposal.gathering.name}}
         </p>
@@ -97,17 +97,7 @@ $(function(){
         </script>
 
         <!-- detalle propueta -->
-        {% if not user|is_candidate %}
-          {% include "votita/plantillas/detalle_propuesta.html" with proposal=proposal %}
-        {% else %}
-          {% with user.candidacies.first as candidacy %}
-          {% if candidacy.candidate|is_candidate_for:proposal.area %}
-            {% include "votita/plantillas/detalle_propuesta.html" with proposal=proposal candidate=candidacy.candidate %}
-          {% else %}
-            {% include "votita/plantillas/detalle_propuesta.html" with proposal=proposal %}
-          {% endif %}
-          {% endwith %}
-        {% endif %}
+        {{proposal.detail_as_html}}
         <!-- fin detalle propuesta -->
 
         <div class="modal fade" id="terms_and_conditions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

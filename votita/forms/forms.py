@@ -84,7 +84,7 @@ TOPIC_CHOICES = (('', u'Selecciona el tema'),
                  ('salud', u'Salud y bienestar'),
                  ('politica', u'Política y participación'),
                  )
-
+TOPIC_CHOICES_DICT = dict(TOPIC_CHOICES)
 
 wizard_forms_fields = [
     {

@@ -12,7 +12,7 @@ from django.contrib.sites.models import Site
 from django.test import override_settings
 from votita.models import KidsProposal, KidsGathering
 from django.core.urlresolvers import reverse
-from votita.forms.forms import wizard_forms_fields
+from votita.forms.forms import wizard_forms_fields, TOPIC_CHOICES
 from constance.test import override_config
 from django.contrib.contenttypes.models import ContentType
 
@@ -53,6 +53,36 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         })
         popular_proposal = PopularProposal.ordered.get(id=kids_proposal.id)
         self.assertEquals(popular_proposal.card, expected_card_html)
+
+    def test_display_original_card(self):
+        kids_proposal = KidsProposal.objects.create(proposer=self.fiera,
+                                                    area=self.arica,
+                                                    data=self.data,
+                                                    title=u'Kids!!',
+                                                    clasification=u'education'
+                                                    )
+        expected_card_html =  get_template("popular_proposal/popular_proposal_card.html").render({
+            'proposal': kids_proposal,
+            'original_template': True
+        })
+
+        self.assertEquals(kids_proposal.display_card({'original_template': True}), expected_card_html)
+
+    def test_get_classification_text(self):
+        popular_proposal = KidsProposal.objects.create(proposer=self.fiera,
+                                                       area=self.arica,
+                                                       data=self.data,
+                                                       title=u'This is a title',
+                                                       clasification=TOPIC_CHOICES[1][0]
+                                                       )
+        self.assertEquals(popular_proposal.get_classification(), TOPIC_CHOICES[1][1])
+        popular_proposal = KidsProposal.objects.create(proposer=self.fiera,
+                                                       area=self.arica,
+                                                       data=self.data,
+                                                       title=u'This is a title',
+                                                       clasification="perrito"
+                                                       )
+        self.assertEquals(popular_proposal.get_classification(), u"")
 
     def test_listing_all_proposals(self):
         url = reverse('popular_proposals:home')

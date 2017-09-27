@@ -7,8 +7,8 @@
 {% load votainteligente_extras %}
 {% load cache %}
 
-{% block title %}- Candidatos para {{area}}{% endblock title %}
-
+{% block title %}- Candidatos para el {{area}}{% endblock title %}
+{% block description %}Conoce los candidatos a Senador, Diputado y Presidente para el {{area}}{% endblock description %}
 {% block extrajs %}
 $(function(){
     $('.loadFromUrl').on('show.bs.modal', function (event) {
@@ -34,7 +34,6 @@ $(function(){
   <meta name="twitter:image" content="https://{% url_domain %}{% static 'img/logo_vi_og.jpg' %}">
 {% endblock ogp %}
 
-{% block description %}Todos los candidatos para estas elecciones.{% endblock description %}
 {% block keywords %},{{area.name}},candidatos para {{area.name}},diputados {{area.name}},senadores {{area.name}},{% endblock keywords %}
 
 {% block content %}

@@ -10,7 +10,7 @@
 
 {% block keywords %}{% for tag in election.tags.all %}, {{tag}}{% endfor %}{% endblock keywords %}
 
-{% block description %}{{election.description|truncatewords:100}}{% endblock description %}
+{% block description %}Conoce los candidatos a Senador, Diputado y Presidente para las elecciones de Chile 2017{% endblock description %}
 
 {% block ogp %}
   {% render_ogp election %}

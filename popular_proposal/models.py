@@ -222,6 +222,7 @@ class PopularProposal(models.Model, OGPMixin):
     all_objects = models.Manager()
 
     card_template = "popular_proposal/popular_proposal_card.html"
+    detail_template_html = "popular_proposal/plantillas/detalle_propuesta.html"
 
     class Meta:
         ordering = ['-featured' ,'for_all_areas', '-created']
@@ -291,11 +292,22 @@ class PopularProposal(models.Model, OGPMixin):
 
     def display_card(self, context={}):
         context['proposal'] = self
-        return get_template(self.card_template).render(context)
+        original_template = context.get('original_template', False)
+        if original_template:
+            template = PopularProposal.card_template
+        else:
+            template = self.card_template
+        return get_template(template).render(context)
 
     @property
     def card(self):
         return self.display_card({})
+
+    @property
+    def detail_as_html(self):
+        template = get_template(self.detail_template_html)
+        context = {'popular_proposal': self}
+        return template.render(context)
 
     @property
     def data_as_text(self):

@@ -54,6 +54,20 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         popular_proposal = PopularProposal.ordered.get(id=kids_proposal.id)
         self.assertEquals(popular_proposal.card, expected_card_html)
 
+    def test_display_original_card(self):
+        kids_proposal = KidsProposal.objects.create(proposer=self.fiera,
+                                                    area=self.arica,
+                                                    data=self.data,
+                                                    title=u'Kids!!',
+                                                    clasification=u'education'
+                                                    )
+        expected_card_html =  get_template("popular_proposal/popular_proposal_card.html").render({
+            'proposal': kids_proposal,
+            'original_template': True
+        })
+
+        self.assertEquals(kids_proposal.display_card({'original_template': True}), expected_card_html)
+
     def test_listing_all_proposals(self):
         url = reverse('popular_proposals:home')
         kids_proposal = KidsProposal.objects.create(proposer=self.fiera,

@@ -143,7 +143,7 @@ class ElectionsPerAreaTestCase(TestCase):
         self.assertEquals(response.context['default_election'], election)
 
     def test_area_index_view_if_not_default_area(self):
-        argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        argentina = Area.objects.create(name=u'Argentina', id='argentina-pais')
         election = Election.objects.create(
             name='the name',
             area=argentina)

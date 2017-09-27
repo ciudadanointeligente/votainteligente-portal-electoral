@@ -139,17 +139,7 @@ $(function(){
         </script>
 
         <!-- detalle propueta -->
-        {% if not user|is_candidate %}
-          {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
-        {% else %}
-          {% with user.candidacies.first as candidacy %}
-          {% if candidacy.candidate|is_candidate_for:popular_proposal.area %}
-            {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal candidate=candidacy.candidate %}
-          {% else %}
-            {% include "popular_proposal/plantillas/detalle_propuesta.html" with popular_proposal=popular_proposal %}
-          {% endif %}
-          {% endwith %}
-        {% endif %}
+        {{popular_proposal.detail_as_html}}
         <!-- fin detalle propuesta -->
 
         {% if popular_proposal.background %}

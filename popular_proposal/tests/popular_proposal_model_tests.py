@@ -285,3 +285,15 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertIn(supporting_org, popular_proposal.sponsoring_orgs.all())
         self.assertIn(supporting_org2, popular_proposal.sponsoring_orgs.all())
         self.assertEquals(popular_proposal.sponsoring_orgs.count(), 2)
+
+    def test_render_proposal_detail(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title'
+                                                          )
+        expected_detail_html =  get_template("popular_proposal/plantillas/detalle_propuesta.html").render({
+            'popular_proposal': popular_proposal
+        })
+
+        self.assertEquals(popular_proposal.detail_as_html, expected_detail_html)

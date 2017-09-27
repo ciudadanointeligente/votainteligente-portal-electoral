@@ -417,6 +417,7 @@ CONSTANCE_CONFIG = {
     'TWITTER_CON_SECRET_KEY': ('', 'Twitter connection secret key'),
     'HIDDEN_AREAS': ('', 'Seccion oculta'),
     'NAV_BAR': ('profiles, questionary, soulmate, facetoface, ask, ranking', 'Menu de navegacion'),
+    'NAV_BAR_VOTITA_DISPLAYED': (False, 'Desplegamos el navbar del votita??????'),
     'SHOW_RIBBON_IN_CANDIDATE': (False, u"Debería aparecerles la franja roja que dice 'No se ha compormetido?'"),
     'CAN_CREATE_TEST_PROPOSAL': (False, u'Se pueden crear propuestas de prueba?'),
     'CANDIDATES_ARE_DISPLAYED': (False, u'Se muestra el menú "Conoce tus candidatos"?(recuerda que si eres staff lo verás igual no más sin importar esta wea)'),

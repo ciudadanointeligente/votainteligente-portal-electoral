@@ -4,7 +4,7 @@ from popular_proposal.tests.wizard_tests import WizardDataMixin
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from votita.models import KidsProposal, KidsGathering
-from votita.forms.forms import UpdateGatheringForm, TOPIC_CHOICES
+from votita.forms.forms import UpdateGatheringForm, TOPIC_CHOICES, AGE_CHOICES
 from popular_proposal.models import PopularProposal
 
 
@@ -35,7 +35,7 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         url = reverse('votita:create_gathering')
         data = {'name': u"Título",
                 "presidents_features": ["inteligente"],
-                "age_range": "de 9 a 11",
+                "age_range": AGE_CHOICES[1][0],
                 'male': 10,
                 'female': 10,
                 'others': 10,}

@@ -37,7 +37,7 @@
             {% with proposal.get_absolute_url as detail_url %}
             <div class="btn_pronunciarme {{support_button_extra_class}}">
               <a href="{% url 'popular_proposals:commit_yes' candidate_pk=candidacy.candidate.id proposal_pk=proposal.id %}" alt="Comprometerme" class="btn btn-apoyo">
-                {% if not support_button_extra_class %}Comprometerme{% else %}<i class="fa fa-thumbs-up" aria-hidden="true"></i>{% endif %}
+                {% if not support_button_extra_class or not config.CAN_CANDIDATES_NOT_COMMIT %}Comprometerme{% else %}<i class="fa fa-thumbs-up" aria-hidden="true"></i>{% endif %}
               </a>
               {% if config.CAN_CANDIDATES_NOT_COMMIT %}
               <a href="{% url 'popular_proposals:commit_no' candidate_pk=candidacy.candidate.id proposal_pk=proposal.id %}" alt="No comprometerme" class="btn btn-no-apoyo">

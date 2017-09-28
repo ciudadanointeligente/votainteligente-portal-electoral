@@ -406,6 +406,7 @@ CONSTANCE_CONFIG = {
     'NOTIFY_CANDIDATES': (True, 'Notificar a los candidatos'),
     'NOTIFY_STAFF_OF_NEW_COMMITMENT': (True, 'Notificar al staff si es que hay un nuevo compromiso'),
     'NOTIFY_CANDIDATES_OF_NEW_PROPOSAL': (True, 'Notificar a los candidatos por una nueva propuesta'),
+    'CAN_CANDIDATES_NOT_COMMIT': (False, 'Pueden los candidatos NO comprometerse?'),
     'NO_REPLY_MAIL': ("no-reply@localhost", 'Cuenta email de envio de correos'),
     'EMAIL_LOCALPART': ("municipales2016", 'Cuenta email localhost'),
     'EMAIL_DOMAIN': ("votainteligente.cl", 'Nombre dominio'),

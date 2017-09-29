@@ -141,6 +141,14 @@ td.cal-date{
   margin: -30px 0 20px;
 }
 
+#highlighted-proposals{
+  background-color: $blue-light;
+}
+
+#home-search-candidate{
+  padding: 20px 0 90px;
+}
+
 #you-org{
   @extend .small-basic;
   min-height: 60px;

@@ -52,7 +52,7 @@
 <section id="highlighted-proposals">
   <h3 class="text-center">Conoce algunas de las propuestas ciudadanas</h3>
   {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=featured_proposals form=Nil hide_proposal_list_header=True %}
-  <p class="text-center"><a href="{% url 'popular_proposals:home' %}" class="text-center">Ver todas las propuestas</a></p>
+  <p class="text-center"><a href="{% url 'popular_proposals:home' %}" class="btn btn-white">Ver todas las propuestas</a></p>
 </section>
 {% endif %}
 <section id="education" class="container-fluid">

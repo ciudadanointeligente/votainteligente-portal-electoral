@@ -8,26 +8,32 @@
 				<div>
 					<!-- Nav tabs -->
 					<ul class="nav nav-pills list-inline" role="tablist">
-            <li role="presentation" {% if not organizacion %}class="active"{% endif %}><a class="small" href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% trans 'Individual' %} <i class="fa fa-user" aria-hidden="true"></i></a></li>
+            <li role="presentation" {% if not organizacion and not username_and_password %}class="active"{% endif %}>
+							<a class="small" href="#userRegister" aria-controls="userRegister" role="tab" data-toggle="tab">{% if text_userregister %}{{text_userregister}}{% else %}{% trans 'Individual' %}{% endif %} <i class="fa fa-user" aria-hidden="true"></i></a></li>
+						{% if not hide_organization_tab %}
 						<li role="presentation" {% if organizacion %}class="active"{% endif %}><a class="small" href="#groupRegister" aria-controls="groupRegister" role="tab" data-toggle="tab">{% trans 'Organización' %}<i class="fa fa-users" aria-hidden="true"></i></a></li>
-						<li role="presentation" ><a class="small" href="#login" aria-controls="login" role="tab" data-toggle="tab">{% trans '¿Tienes cuenta?' %}<i class="fa fa-users" aria-hidden="true"></i></a></li>
+						{% endif %}
+						<li role="presentation" {% if username_and_password %}class="active"{% endif %}><a class="small" href="#login" aria-controls="login" role="tab" data-toggle="tab">{% trans '¿Tienes cuenta?' %}<i class="fa fa-users" aria-hidden="true"></i></a></li>
 					</ul>
 
 					<!-- Tab panes -->
 					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane{% if not organizacion %} active{% endif %}" id="userRegister">
+						<div role="tabpanel" class="tab-pane{% if not organizacion and not username_and_password %} active{% endif %}" id="userRegister">
 							<div class="form-group">
 								{% include '_social_login_buttons.html' with url=next %}
 							</div>
 							<h3 class="text-center">{% trans 'O regístrate con un usuario y contraseña' %}</h3>
 							{% user_register %}
 						</div>
+						{% if not hide_organization_tab %}
 						<div role="tabpanel" class="tab-pane{% if organizacion %} active{% endif %}" id="groupRegister">
 							<h3 class="text-center">{% trans 'Registrate como organización' %}</h3>
 
 							{% group_register %}
 						</div>
-						<div role="tabpanel" class="tab-pane" id="login">
+						{% endif %}
+
+						<div role="tabpanel" class="tab-pane{% if username_and_password %} active{% endif %}" id="login">
 							<h3 class="text-center">{% trans 'Ingresa tu usuario y contraseña' %}</h3>
 							{% basic_login url=next %}
 						</div>

@@ -353,6 +353,16 @@ CACHES = {
 
 NEW_ANSWER_ENDPOINT = 'NEW_ANSWER_ENDPOINT'
 
+REST_FRAMEWORK = {
+    # specifying the renderers
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework_csv.renderers.CSVRenderer',
+    ),
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+}
+
 THEME = None
 
 
@@ -394,7 +404,9 @@ CONSTANCE_CONFIG = {
     'PROPOSALS_ENABLED' : (True, 'Habilitar propuestas'),
     'WHEN_TO_NOTIFY': ('25, 50, 100, 150, 200', 'Cuando notificar'),
     'NOTIFY_CANDIDATES': (True, 'Notificar a los candidatos'),
+    'NOTIFY_STAFF_OF_NEW_COMMITMENT': (True, 'Notificar al staff si es que hay un nuevo compromiso'),
     'NOTIFY_CANDIDATES_OF_NEW_PROPOSAL': (True, 'Notificar a los candidatos por una nueva propuesta'),
+    'CAN_CANDIDATES_NOT_COMMIT': (False, 'Pueden los candidatos NO comprometerse?'),
     'NO_REPLY_MAIL': ("no-reply@localhost", 'Cuenta email de envio de correos'),
     'EMAIL_LOCALPART': ("municipales2016", 'Cuenta email localhost'),
     'EMAIL_DOMAIN': ("votainteligente.cl", 'Nombre dominio'),
@@ -407,6 +419,7 @@ CONSTANCE_CONFIG = {
     'TWITTER_CON_SECRET_KEY': ('', 'Twitter connection secret key'),
     'HIDDEN_AREAS': ('', 'Seccion oculta'),
     'NAV_BAR': ('profiles, questionary, soulmate, facetoface, ask, ranking', 'Menu de navegacion'),
+    'NAV_BAR_VOTITA_DISPLAYED': (False, 'Desplegamos el navbar del votita??????'),
     'SHOW_RIBBON_IN_CANDIDATE': (False, u"Debería aparecerles la franja roja que dice 'No se ha compormetido?'"),
     'CAN_CREATE_TEST_PROPOSAL': (False, u'Se pueden crear propuestas de prueba?'),
     'CANDIDATES_ARE_DISPLAYED': (False, u'Se muestra el menú "Conoce tus candidatos"?(recuerda que si eres staff lo verás igual no más sin importar esta wea)'),

@@ -49,6 +49,12 @@ class UserCreationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', )
+        labels = {'username': _(u'Nombre de usuario, ej: votante1975, animal-mamifero, joven-idealista'),
+                  'email': _(u'Email')
+                  }
+        help_texts = {'username': _(u'El nombre de usuario no tiene espacios ni acentos.')
+                  }
+
 
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=commit)

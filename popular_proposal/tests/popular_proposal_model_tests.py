@@ -4,6 +4,7 @@ from backend_citizen.models import Organization, Enrollment
 from elections.models import Area
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData, PopularProposal, ProposalLike
+from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from django.core import mail
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.template.loader import get_template
@@ -60,6 +61,22 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         })
 
         self.assertEquals(popular_proposal.card, expected_card_html)
+
+    def test_get_classification_text(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                       area=self.arica,
+                                                       data=self.data,
+                                                       title=u'This is a title',
+                                                       clasification=TOPIC_CHOICES[1][0]
+                                                       )
+        self.assertEquals(popular_proposal.get_classification(), TOPIC_CHOICES[1][1])
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                       area=self.arica,
+                                                       data=self.data,
+                                                       title=u'This is a title',
+                                                       clasification="perrito"
+                                                       )
+        self.assertEquals(popular_proposal.get_classification(), u"")
 
     def test_reportedproposals_are_not_in_default_manager(self):
         p1 = PopularProposal.objects.create(proposer=self.fiera,
@@ -285,3 +302,15 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertIn(supporting_org, popular_proposal.sponsoring_orgs.all())
         self.assertIn(supporting_org2, popular_proposal.sponsoring_orgs.all())
         self.assertEquals(popular_proposal.sponsoring_orgs.count(), 2)
+
+    def test_render_proposal_detail(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title'
+                                                          )
+        expected_detail_html =  get_template("popular_proposal/plantillas/detalle_propuesta.html").render({
+            'popular_proposal': popular_proposal
+        })
+
+        self.assertEquals(popular_proposal.detail_as_html, expected_detail_html)

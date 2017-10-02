@@ -4,7 +4,7 @@
 {% load thumbnail %}
 {% load cache %}
 
-{% cache 300 presidentes_comprometidos proposal.id %}
+{% cache 300 presidentes_comprometidos cargo proposal.id %}
 {% commiters_by_election_position proposal cargo as commitments %}
   {% if commitments.all %}
     <h5>Candidatos a {{cargo}}</h5>

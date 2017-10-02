@@ -50,7 +50,7 @@
   {% endblock extrascripts %}
 </head>
 <body>
-  {% if user.is_staff %}
+  {% if user.is_staff or config.NAV_BAR_VOTITA_DISPLAYED %}
     {% include 'votita/_navbar.html' %}
   {% endif %}
   <!-- content -->

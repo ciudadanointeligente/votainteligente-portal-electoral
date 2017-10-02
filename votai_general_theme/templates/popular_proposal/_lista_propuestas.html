@@ -112,12 +112,7 @@ $(function(){
 
     <div id="posts">
     {% for proposal in popular_proposals %}
-      {% comment %}
-      {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal is_embedded=is_embedded proposals_list=True %}
-      {% endcomment %}
-      {% with is_embedded as is_embedded %}
         {% display_proposal_card proposal %}
-      {% endwith %}
       {% empty %}
       {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
       {% blocktrans %}

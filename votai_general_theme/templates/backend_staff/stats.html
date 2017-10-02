@@ -12,9 +12,22 @@
 <h3>Le cuento que le tenimoh:</h3>
 <p>Un total de {{stats.total_candidates}} candidatos.</p>
 
+<div class="panel panel-default">
+  <div class="panel-heading ">Esto está aca de adorno y no para que dejemos de trabajar cuando las cumplamos.</div>
+  <div class="panel-body">
+    <p>Hay un total de:</p>
+    <p><b>{{stats.proposals}}/5000</b> propuestas ciudadanas.</p>
+    <p><b>{{stats.participation.with_us}}/{{stats.total_candidates}}</b> candidatos.</p>
+    <p><b>{{stats.likes_by_organizations}}/40</b> apadrinamientos.</p>
+    <p><b>{{stats.local_gatherings}}/300</b> encuentros ciudadanos.</p>
+    <p><b>{{stats.organizations_online.count}}/300</b> organizaciones aliadas</p>
+    <p><b>{{stats.candidates_that_have_commited}}/{{stats.total_candidates}}</b> comprometidos (igual queríamos que se comprometiera un 20% no más)</p>
+    <p><b>3/3</b> alianzas temísticas. (votita, chile5050, EncuentroMigrantes en Antofa)</p>
+  </div>
 
-
-<hr><!--
+</div>
+{% comment %}
+<hr>
 <p>Un total de {{stats.participation.with_us}} candidatos se unieron al sitio y están con losotros.</p>
 <p>Un total de {{stats.participation.got_email}} candidatos recibieron el mail pero no han cachao na.</p>
 <p>Un total de {{stats.participation.no_contact}} candidatos no tienen mail.</p>
@@ -34,21 +47,23 @@
 <p>{{stats.participation_concejal.with_us}} candidatos a concejal de {{stats.total_candidates_concejal}} se unieron al sitio y están con losotros.</p>
 <p>Un total de {{stats.participation_concejal.got_email}} candidatos a concejal recibieron el mail pero no han cachao na.</p>
 <p>Un total de {{stats.participation_concejal.no_contact}} candidatos a concejal no tienen mail.</p>
-<hr> -->
+<hr>
 <h4>Propuestas Ciudadanas:</h4>
-<p>Hay un total de {{stats.proposals}} propuestas ciudadanas.</p>
+
 <hr>
 <h4>Organizaciones pulentas:</h4>
 <p>Hay un total de {{stats.organizations_online.count}} organizaciones con perfil arriba con nosotros!.</p>
 <p>Estas organizaciones pulentas han hecho un total de {{stats.proposals_made_by_organizations.count}} propuestas.</p>
 <p>Y más maravilloso, aún han apoyado un total de {{stats.likes_by_organizations}} propuestas hechas por alguien más.</p>
 <h5>Hermana: además te contamos que acá está todo el mote de las organizaciones</h5>
+{% endcomment %}
 <div class="table-responsive">
   <table class="table">
   	<thead>
       <tr>
         <th>Loguito</th>
         <th>Nombre</th>
+        <th>Usuario</th>
         <th>N Propuestas</th>
         <th>N <i class="fa fa-heart" aria-hidden="true"></i>s </th>
         <th>email de contacto</th>
@@ -57,7 +72,7 @@
     <tbody
     {{stats.organizations}}
     	{% for org in stats.organizations %}
-      <tr>
+      <tr {% if org.proposals.count or org.likes.count %}class="success"{% endif %}>
         <td>{% if org.organization_template.logo %}
           {% thumbnail org.organization_template.logo "25x25" as im %}
             <img src="{{ im.url }}"
@@ -66,8 +81,8 @@
 
             {% endthumbnail %}
           {% else %}SL{% endif %}</td>
-        <td><a href="{{ org.get_absolute_url }}">{{ org.get_full_name }}</a>
-        </td>
+          <td><a href="{{ org.organization_template.get_absolute_url }}">{{ org.get_full_name }}</a></td>
+        <td>{{ org.profile.user.username }}</a></td>
         <td>{{ org.proposals.count }}
 
         </td>
@@ -82,7 +97,7 @@
     </tbody>
 
   </table>
-<!-- <hr>
+<hr>
 <h4>Compromisos:</h4>
 <p>Hay un total de {{stats.commitments}} compromisos de candidatos con propuestas ciudadanas.</p>
 <p>Estos compromisos corresponden a <a data-toggle="modal" data-target="#proposals_with_commitments">{{stats.proposals_with_commitments.count}}</a> propuestas.</p>
@@ -111,8 +126,6 @@
 <p>Estos compromisos han sido adquiridos por un total de {{stats.candidates_that_have_commited}} candidatos.</p>
 <p>De los cuales {{stats.candidates_that_have_commited_alcalde}} son candidatos a alcalde.</p>
 <p>Y {{stats.candidates_that_have_commited_concejal}} son candidatos al concejo.</p>
-
--->
 
 {% endblock content %}
 

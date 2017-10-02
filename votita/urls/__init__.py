@@ -14,6 +14,9 @@ from django.views.generic import TemplateView
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name="votita/index.html"),
                                       name='index'),
+    url(r'^materiales/$',
+        TemplateView.as_view(template_name='votita/materiales.html'),
+        name='materiales'),
     url(r'^crear/?$',
         VotitaWizard.as_view(),
         name='create_proposal'),

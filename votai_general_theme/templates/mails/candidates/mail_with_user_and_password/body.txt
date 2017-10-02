@@ -1,6 +1,6 @@
 Hola {{contact.candidate.name}}
 
-http://Votainteligente.cl es una plataforma de la Fundación Ciudadano Inteligente que busca acercar a candidatas/os con la ciudadanía en estas próximas elecciones.
+http://Votainteligente.cl es una plataforma de la Fundación Ciudadano Inteligente que busca acercar a candidatas/os con la ciudadanía en estas próximas elecciones. http://Votainteligente.cl recibe propuestas ciudadanas y de organizaciones de la sociedad civil de todo el país a las cuales las candidaturas pueden comprometerse en la misma plataforma.
 
 Para facilitar este encuentro, es que creamos un perfil básico sobre tu candidatura en el sitio, al que puedes acceder para contactarte con tus electores, darles información, promover tus ideas y apoyar las de la ciudadanía.
 

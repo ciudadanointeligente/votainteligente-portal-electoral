@@ -1,7 +1,7 @@
 Hola {{user}}:
 Este mail es para contarte que hay novedades con algunas propuestas ciudadanas
 que apoyaste:
-{% for commitment in commitments.all %}{%if commitment.commited %}
+{% for commitment in commitments %}{%if commitment.commited %}
 - {{commitment.candidate}} se ha comprometido con {{commitment.proposal}} y
 puedes revisar el compromiso en el siguiente link: https://{{site.domain}}{{commitment.get_absolute_url}}
 {% else %}

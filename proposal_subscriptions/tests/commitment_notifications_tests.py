@@ -84,12 +84,13 @@ class CommitmentNotifications(ProposingCycleTestCaseBase):
         self.assertEquals(len(mail.outbox), original_amount_of_mails + 1)
         the_mail = mail.outbox[original_amount_of_mails]
         self.assertIn(u.email, the_mail.to)
+        # No están llegando la info sobre los compromisos
+        self.assertIn(commitment.get_absolute_url(), the_mail.body)
         # ahora me quiero asegurar que no se envían de nuevo
         sender = CommitmentNotificationSender(user=u)
         sender.send()
         self.assertFalse(CommitmentNotification.objects.filter(user=u, notified=False))
         self.assertEquals(len(mail.outbox), original_amount_of_mails + 1)
-
 
     def test_email_sender(self):
         u = User.objects.create_user(username="user", email="bono_u1@themail.com")

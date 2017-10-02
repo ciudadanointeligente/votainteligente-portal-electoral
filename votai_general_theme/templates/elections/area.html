@@ -66,6 +66,15 @@ $(function(){
 {% for p in area.parents %}
   {% with p.elections.first as election %}
     {% if election %}
+      <a href="#election-area-{{p.id}}">{{p}}</a>
+    {% endif %}
+    {% endwith %}
+{% endfor %}
+
+
+{% for p in area.parents %}
+  {% with p.elections.first as election %}
+    {% if election %}
       {% display_election_card election %}
     {% endif %}
     {% endwith %}

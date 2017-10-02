@@ -395,7 +395,7 @@ class ProposalTemporaryDataModelForm(forms.ModelForm, ProposalFormBase):
 class CandidateCommitmentFormBase(forms.Form):
     detail = forms.CharField(required=False,
                              widget=forms.Textarea(),
-                             label=_(u'Cuentanos un poco más sobre tu compromiso:'),
+                             label=_(u'Cuentanos los términos de tu compromiso:'),
                              help_text=_(u'¿Cómo te imaginas que esta propuesta puede ser concreatada?.'))
     terms_and_conditions = forms.BooleanField(initial=False,
                                               required=True,

@@ -16,7 +16,10 @@ class CandidacyContactAdmin(admin.ModelAdmin):
 
 @admin.register(Candidacy)
 class CandidacyAdmin(admin.ModelAdmin):
-    list_display = ('user', 'candidate', 'created', 'updated')
+    list_display = ('user', 'candidate', 'created', 'updated', 'get_last_log_in')
+
+    def get_last_log_in(self, candidacy):
+        return candidacy.user.last_login
 
 
 @admin.register(Profile)

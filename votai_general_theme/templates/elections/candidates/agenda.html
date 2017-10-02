@@ -11,7 +11,7 @@
     {% endfor %}
 </ul>
 {% else %}
-  <p>Este candidato no cuenta con una agenda de actividades</p>
+  <p id="agenda-candidato">Este candidato no cuenta con una agenda de actividades</p>
 {% endif %}
 {% if user|manages_this:candidate %}
   <a href="{% url 'backend_candidate:add_activity' slug=candidate.id %}" class="btn btn-white"><i class="fa fa-plus"></i> Agrega tus actividades</a>

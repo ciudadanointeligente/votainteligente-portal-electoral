@@ -42,7 +42,7 @@ urlpatterns = [
     url(r'^organizacion/', include('organization_profiles.urls', namespace='organization_profiles')),
     url(r'^candidatos/', include('backend_candidate.urls', namespace='backend_candidate')),
     url(r'^proposal_subscriptions/', include('proposal_subscriptions.urls', namespace='proposal_subscriptions')),
-    url(r'^votita/', include('votita.urls', namespace='votita')),
+    url(r'^levantalamano/', include('votita.urls', namespace='votita')),
     url(r'^cuentas/', include('votita.urls.auth_urls', namespace="votita_auth")),
     url(r'^ayudanos/$',
         HelpFindingCandidates.as_view(),

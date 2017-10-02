@@ -17,6 +17,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext as _
 from agenda.models import Activity
+from popular_proposal.filters import ProposalWithoutAreaFilter
 
 
 class BackendCandidateBase(View):
@@ -232,7 +233,7 @@ class ProposalsForMe(BackendCandidateBase, ListView):
         return super(ProposalsForMe, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        qs = super(ProposalsForMe, self).get_queryset()
+        qs = ProposalWithoutAreaFilter().qs.by_likers()
         proposals_ids = []
         for commitment in self.candidate.commitments.all():
             proposals_ids.append(commitment.proposal.id)

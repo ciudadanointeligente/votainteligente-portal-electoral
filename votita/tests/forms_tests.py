@@ -15,6 +15,7 @@ from django.core.urlresolvers import reverse
 from votita.forms.forms import (CreateGatheringForm,
                                 UpdateGatheringForm,
                                 KidsProposalForm,
+                                AGE_CHOICES,
                                 TOPIC_CHOICES)
 from constance.test import override_config
 from elections.models import Area
@@ -32,7 +33,7 @@ class CreateGatheringFormTestCase(ProposingCycleTestCaseBase):
         data = {"name": "Segundo medio C",
                 "presidents_features": "inteligente,honesto",
                 "generated_at": self.a_comuna.id,
-                "age_range": "de 9 a 11",
+                "age_range": AGE_CHOICES[1][0],
                 'male': 10,
                 'female': 10,
                 'others': 10,}

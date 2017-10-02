@@ -18,7 +18,7 @@ Solo debes ingresar a {{login_url}} con el siguiente usuario y contraseña (pued
 
     -Darte a conocer: Puedes agregar a tu perfil tus cargos públicos previos y otros antecedentes que quieras compartir con tus electores.
 
-    -Compartir tu postura política respecto a temas cruciales: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx (por llenar)
+    -Ser la media naranja política de las y los votantes: Pronto te enviaremos un cuestionario para compartir tu postura política respecto a temas cruciales. Quienes entren al sitio podrán responder las mismas preguntas y ver con qué candidatura son más afines en relación a su programa y respuestas. 
 OJO: si no contestas, no podrás ser la media naranja política de ningún usuario.
 
     -Entérate de las ideas y demandas de tus electores y apóyalas públicamente: Ingresando con tu usuario podrás leer lo que propone la ciudadanía y comprometerte con las ideas que podrías llevar a cabo en caso de salir electa/o.

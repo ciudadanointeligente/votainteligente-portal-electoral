@@ -65,6 +65,18 @@
   }
 }
 
+@media screen and (max-width: 900px) {
+  #home-search:after{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 784px) {
+  #home-search input{
+    width: 90%;
+  }
+}
+
 @media screen and (max-width: 560px) {
   #welcome{
     h1{

@@ -193,25 +193,24 @@ class ElectionsPerAreaTestCase(TestCase):
         mother = Area.objects.create(name="mother")
         mother.children.add(child)
 
-        election_mother = Election.objects.create(name='the election_mother',
-                                                  description='this is a description',
-                                                  extra_info_title=u'ver más',
-                                                  area=mother,
-                                                  position='alcalde',
-                                                  extra_info_content=u'Más Información')
+        Election.objects.create(name='the election_mother',
+                                description='this is a description',
+                                extra_info_title=u'ver más',
+                                area=mother,
+                                position='alcalde',
+                                extra_info_content=u'Más Información')
 
         grand_mother = Area.objects.create(name="grand_mother")
         grand_mother.children.add(mother)
 
-        election_grand_mother = Election.objects.create(name='the election_grand_mother',
-                                                        description='this is a description',
-                                                        extra_info_title=u'ver más',
-                                                        area=grand_mother,
-                                                        position='alcalde',
-                                                        extra_info_content=u'Más Información')
+        Election.objects.create(name='the election_grand_mother',
+                                description='this is a description',
+                                extra_info_title=u'ver más',
+                                area=grand_mother,
+                                position='alcalde',
+                                extra_info_content=u'Más Información')
 
         # assertions
-        
         related_to_mother = mother.get_related()
         self.assertIn(grand_mother, related_to_mother)
         related_to_grand_mother = grand_mother.get_related()

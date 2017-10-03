@@ -76,7 +76,6 @@ class Area(PopoloArea, OGPMixin):
         return related
 
     def get_containing_filterable_areas(self):
-        
         filterable_contained = []
         for area in self.children.all():
             if area.classification in settings.FILTERABLE_AREAS_TYPE:

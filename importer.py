@@ -104,10 +104,20 @@ def diputados():
             #                                               mail=email)
             # elif not validateEmail(email):
             #     print u"Amiga el mail "+email +u" de " + full_name+u" ta malena"
+def mails_2017():
+    reader = codecs.open("mails.csv", 'r', encoding='utf-8')
+    reader.readline()
+    for line in reader:
+        row = line.split(u',')
+        nombres = row[0].strip()
+        candidate = Candidate.objects.get(name=nombres)
+        email = row[2].strip()
+        CandidacyContact.objects.create(candidate=candidate, mail=email)
 
 if __name__ == "__main__":
-    diputados()
-    senadores()
+    mails_2017()
+
+
 
 def process_candidates_with_names():
     reader = codecs.open("candidatos_y_mails.csv", 'r', encoding='utf-8')

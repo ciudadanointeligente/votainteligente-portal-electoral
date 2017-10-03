@@ -26,6 +26,8 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
         self.assertEquals(content[0]['title'], popular_proposal.title)
         self.assertEquals(content[0]['id'], popular_proposal.id)
         self.assertEquals(content[0]['clasification'], popular_proposal.clasification)
+        self.assertEquals(content[0]['is_local_meeting'], popular_proposal.is_local_meeting)
+        self.assertEquals(content[0]['nro_supports'], popular_proposal.nro_supports)
         self.assertTrue(popular_proposal.created)
         self.assertIn(popular_proposal.get_absolute_url(), content[0]['get_absolute_url'])
         self.assertEquals(self.data, content[0]['data'])

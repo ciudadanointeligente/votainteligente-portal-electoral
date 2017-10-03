@@ -328,6 +328,10 @@ class PopularProposal(models.Model, OGPMixin):
     def sponsoring_orgs(self):
         return self.likers.filter(profile__is_organization=True)
 
+    @property
+    def nro_supports(self):
+      return self.likers.count()
+
     def notify_candidates_of_new(self):
         if not (settings.NOTIFY_CANDIDATES and settings.NOTIFY_CANDIDATES_OF_NEW_PROPOSAL):
             return

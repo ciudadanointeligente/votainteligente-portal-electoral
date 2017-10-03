@@ -9,7 +9,7 @@ class ProposalSerializer(HyperlinkedModelSerializer):
     proposer = StringRelatedField()
     class Meta:
         model = PopularProposal
-        fields = ('id','title', 'slug', 'get_absolute_url', 'data', 'proposer','created', 'clasification')
+        fields = ('id','title', 'slug', 'get_absolute_url', 'data', 'proposer','created', 'clasification','is_local_meeting','nro_supports')
 
 class ProposalViewSet(ReadOnlyModelViewSet):
     queryset = PopularProposal.objects.all()

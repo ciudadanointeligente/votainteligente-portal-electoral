@@ -187,6 +187,37 @@ class ElectionsPerAreaTestCase(TestCase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
+    @override_settings(FILTERABLE_AREAS_TYPE = ['Comuna'])
+    def test_related_areas_elections(self):
+        child = Area.objects.create(name="children", classification="Comuna")
+        mother = Area.objects.create(name="mother")
+        mother.children.add(child)
+
+        Election.objects.create(name='the election_mother',
+                                description='this is a description',
+                                extra_info_title=u'ver más',
+                                area=mother,
+                                position='alcalde',
+                                extra_info_content=u'Más Información')
+
+        grand_mother = Area.objects.create(name="grand_mother")
+        grand_mother.children.add(mother)
+
+        Election.objects.create(name='the election_grand_mother',
+                                description='this is a description',
+                                extra_info_title=u'ver más',
+                                area=grand_mother,
+                                position='alcalde',
+                                extra_info_content=u'Más Información')
+
+        # assertions
+        related_to_mother = mother.get_related()
+        self.assertIn(grand_mother, related_to_mother)
+        related_to_grand_mother = grand_mother.get_related()
+        self.assertIn(mother, related_to_grand_mother)
+        comunas = mother.get_containing_filterable_areas()
+        self.assertIn(child, comunas)
+
 class AreaOGPTestCase(TestCase):
     def setUp(self):
         self.argentina = Area.objects.create(name=u'Argentina')

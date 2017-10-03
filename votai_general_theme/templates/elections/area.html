@@ -59,8 +59,17 @@ $(function(){
     <li><a href="{% url 'home' %}" onclick="ga('send','event','breadcrumb-home-area','click')"><i class="fa fa-home"></i></a></li>
     <li><a href="{% url 'know_your_candidates' %}" onclick="ga('send','event','breadcrumb-candidaturas-area','click')">Candidaturas</a></li>
     <li class="active">{{area.name}}</li>
-  </ol>
   <h1>Candidatos para {{area}}</h1>
+  {% if area.get_containing_filterable_areas %}
+  <h4>Comunas de {{area}}</h4>
+    {% for comuna in area.get_containing_filterable_areas %}
+      {{comuna}}
+      {% if not forloop.last %}
+      ,
+      {% endif%}
+    {% endfor %}
+  {% endif %}
+  </ol>
 </div>
 {% for p in area.parents %}
   {% with p.elections.first as election %}

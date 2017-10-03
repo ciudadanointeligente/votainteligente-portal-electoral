@@ -27,6 +27,13 @@
       {% endif %}
       <li class="active">{{candidate.name}}</li>
     </ol>
+    {% if candidate.election.area.get_related %}
+    También te podría interesar:
+        {% for area in candidate.election.area.get_related %}
+          
+          <span class="label label-primary"><a href="{{area.get_absolute_url}}">{{area.name}}</a></span>
+        {% endfor %}
+    {% endif %}
   </div>
 
   {% block mainelection %}

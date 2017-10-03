@@ -69,10 +69,10 @@ class Area(PopoloArea, OGPMixin):
         related = []
         for child in self.children.all():
             if child.elections.exists():
-                related.append(child)
+                related.append(self.__class__.objects.get(id=child.id))
         for parent in self.parents:
             if parent !=self and parent.elections.exists():
-                related.append(parent)
+                related.append(self.__class__.objects.get(id=parent.id))
         return related
 
     def get_containing_filterable_areas(self):

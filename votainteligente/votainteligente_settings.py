@@ -442,6 +442,11 @@ CONSTANCE_CONFIG = {
     'WEBSITE_GENERAL_SETTINGS_HOME_TITLE': ('Lorem ipsum dolor sit amet, consectetur adipisicing elit.', 'Titulo Home'),
     'WEBSITE_TWITTER_HASHTAG': ('votainteligente', 'Twitter Hashtags'),
     'WEBSITE_TWITTER_TEXT': ('Conoce a tus candidat@s y encuentra a tu Media Naranja Política en', 'Texto twitts'),
+    'AYUDANOS_TEXTO1' : (u'Tenemos poca info de candidatos. Ayuda a candidatos y electores haciendo que respondan la ½ naranja', 'texto 1 del ayudanos'),
+    'AYUDANOS_TEXTO2' : (u'Si no conoces a tus candidatos y no sabes ', 'texto 2 del ayudanos'),
+    'AYUDANOS_TEXTO3' : (u'Invita a tus candidatos a dejar su información en VotaInteligente.cl para saber qué piensan y ', 'texto 3 del ayudanos'),
+    'AYUDANOS_TEXTO4' : (u'Necesitamos que los candidatos compartan su infromación con los vecinos, para conocerlos y saber ', 'texto 4 del ayudanos'),
+    'AYUDANOS_TEXTO_CANDIDATOS' : (u'Ya puedes comprometerte con nuestras propuestas ', 'texto a los candidatos del ayudanos'),
 }
 
 try:

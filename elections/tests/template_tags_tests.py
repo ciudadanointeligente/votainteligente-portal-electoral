@@ -77,10 +77,15 @@ class TemplateTagsTestCase(TestCase):
 
     def test_areas_json_template_tag(self):
         expected_areas = []
-        Area.objects.create(name="Chile")
-        Area.objects.create(name="Mar para Bolivia")
+        Area.objects.all().delete()
+        chile = Area.objects.create(name="Chile")
+        Election.objects.create(name="Election Chile", area=chile)
+        mar_para_bolivia = Area.objects.create(name="Mar para Bolivia")
+
+        Election.objects.create(name="Election Mar para Bolivia",
+                                area=mar_para_bolivia)
         Area.objects.create(name="Guatemala")
-        for area in Area.public.all():
+        for area in [chile, mar_para_bolivia]:
             area_dict = {'slug': area.slug,
                          'name': area.name,
                          'detaillink': area.get_absolute_url()

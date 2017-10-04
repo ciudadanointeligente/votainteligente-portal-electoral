@@ -45,7 +45,7 @@ def elections_json():
 @register.simple_tag
 def areas_json(url='area'):
     areas = []
-    for area in Area.public.exclude(elections__isnull=True):
+    for area in Area.public.filter(classification__in=settings.FILTERABLE_AREAS_TYPE):
         area_dict = {'slug': area.slug,
                      'name': area.name,
                      'detaillink': reverse(url, kwargs={'slug': area.slug}),

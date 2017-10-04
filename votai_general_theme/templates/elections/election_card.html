@@ -1,7 +1,8 @@
 {% load thumbnail %}
 {% load static %}
 
-<div class="container" itemscope itemtype="http://schema.org/Person">
+<div id="election-area-{{election.area.id}}" class="container" itemscope>
+  {% if election %}
   <h2>{{election.name}}</h2>
   <div class="row">
     {% for candidate in election.candidates.all %}
@@ -26,4 +27,6 @@
     {% endif %}
     {% endfor %}
   </div>
+  {% else %}
+  {% endif %}
 </div>

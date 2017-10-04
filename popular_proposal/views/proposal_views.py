@@ -53,6 +53,7 @@ from popular_proposal.models import (Commitment,
                                      ProposalTemporaryData,)
 
 from votainteligente.view_mixins import EmbeddedViewBase
+import random
 
 
 class ProposalCreationView(FormView):
@@ -206,6 +207,11 @@ class HomeView(EmbeddedViewBase, ProposalFilterMixin, FilterView):
     template_name = 'popular_proposal/home.html'
     filterset_class = ProposalGeneratedAtFilter
     context_object_name = 'popular_proposals'
+
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['form_type'] = random.randint(0,1)
+        return context
 
 
 class ProposalsPerArea(EmbeddedViewBase, ProposalFilterMixin, ListView):

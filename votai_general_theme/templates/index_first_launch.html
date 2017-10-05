@@ -1,4 +1,8 @@
-{% load staticfiles %} {% load votainteligente_extras %} {% load i18n %}
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load cache %}
+
 <section id="welcome" class="yellow">
   <div class="container">
     <div class="row">
@@ -51,7 +55,9 @@
 {% if featured_proposals.count %}
 <section id="highlighted-proposals">
   <h3 class="text-center">Conoce algunas de las propuestas ciudadanas</h3>
+  {% cache 86400 main-proposals_list %}
   {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=featured_proposals form=Nil hide_proposal_list_header=True %}
+  {% endcache %}
   <p class="text-center"><a href="{% url 'popular_proposals:home' %}" class="btn btn-white">Ver todas las propuestas</a></p>
 </section>
 {% endif %}
@@ -60,7 +66,9 @@
     <h3 class="text-center">Conoce a las candidaturas</h3>
     <div class="row">
       <div class="col-md-12">
+        {% cache 86400 main-know-candidates %}
         {% include "_election_search_form.html" %}
+        {% endcache %}
       </div>
     </div>
   </div>
@@ -77,7 +85,9 @@
     </div>
   </div>
 </section>
+{% cache 86400 main-organizations-list %}
 {% organization_logos %}
+{% endcache %}
 <section id="you-org" class="grey-one">
   <div class="container">
     <div class="row">

@@ -283,9 +283,13 @@ class PopularProposal(models.Model, OGPMixin):
         propuesta_de = u"Una propuesta de " + proposer_name
         propuesta_de = propuesta_de.upper()
         d.multiline_text((81,471), propuesta_de, font=montserrat_autor, fill=(255,255,255,255))
-        out = Image.alpha_composite(base, txt)
 
-        return out
+        image_out = cache.get('image-out')
+        if image_out is None:
+          image_out = Image.alpha_composite(base, txt)
+          cache.set('image-out', image_out, 3600)
+
+        return image_out
     def get_classification(self):
         return self.__class__.get_topic_choices_dict().get(self.clasification, u"")
 

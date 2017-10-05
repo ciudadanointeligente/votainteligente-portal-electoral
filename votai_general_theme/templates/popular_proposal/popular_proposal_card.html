@@ -2,8 +2,10 @@
 {% load votainteligente_extras %}
 {% load i18n %}
 {% load thumbnail %}
+{% load cache %}
+
+{% cache 3600 proposalcard %}
 <div class="post propuesta{% if proposal.for_all_areas %} transversal{% endif %}">
-<!-- Cata compañera puedes saber si la propuesta es para todas las comunas mediante esto {% comment %}{% if proposal.for_all_areas %}{% else %}{% endif %}{% endcomment %}-->
   <div class="propuesta-content">
     {% if proposal.is_local_meeting %}
     <div class="ribbon-wrapper">
@@ -66,3 +68,4 @@
   </div>
   {% endif %}
 </div>
+{% endcache %}

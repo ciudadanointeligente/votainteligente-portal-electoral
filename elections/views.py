@@ -66,7 +66,7 @@ class HomeView(HomeViewBase):
         featured_elections = cache.get('featured_elections')
         if featured_elections is None:
             featured_elections = Election.objects.filter(highlighted=True)
-            cache.set('featured_elections', featured_elections, 600)
+            cache.set('featured_elections', featured_elections, 3600)
         context['featured_elections'] = featured_elections
 
         context['searchable_elections_enabled'] = True
@@ -76,15 +76,18 @@ class HomeView(HomeViewBase):
         total_proposals = cache.get('total_proposals')
         if total_proposals is None:
             total_proposals = PopularProposal.objects.count()
-            cache.set('total_proposals', total_proposals, 600)
+            cache.set('total_proposals', total_proposals, 3600)
         context['total_proposals'] = total_proposals
         proposals_with_likers = cache.get('proposals_with_likers')
         if proposals_with_likers is None:
             proposals_with_likers = PopularProposal.ordered.by_likers()[:9]
-            cache.set('proposals_with_likers', proposals_with_likers, 600)
+            cache.set('proposals_with_likers', proposals_with_likers, 3600)
         context['proposals_with_likers'] = proposals_with_likers
-        featured_proposals = PopularProposal.objects.filter(featured=True)
-        cache.set('featured_proposals', featured_proposals, 600)
+
+        featured_proposals = cache.get('featured_proposals')
+        if proposals_with_likers is None:
+          featured_proposals = PopularProposal.objects.filter(featured=True)
+          cache.set('featured_proposals', featured_proposals, 3600)
         context['featured_proposals'] = featured_proposals
         return context
 

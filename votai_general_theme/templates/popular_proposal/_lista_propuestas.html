@@ -3,6 +3,7 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
+{% load cache %}
 <!-- Inicio _lista_propuestas -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js"></script>
 <script>
@@ -51,6 +52,7 @@ $('[data-toggle="tooltip"]').tooltip();
   {% endif %}
 
     <div id="posts">
+    {% cache 3600 popular-proposal-list %}
     {% for proposal in popular_proposals %}
         {% display_proposal_card proposal %}
       {% empty %}
@@ -61,6 +63,7 @@ $('[data-toggle="tooltip"]').tooltip();
         </p>
       {% endblocktrans %}
     {% endfor %}
+    {% endcache %}
     </div>
   </div>
 </div>

@@ -70,7 +70,7 @@ class SearchSubscriptionCreateView(LoginRequiredMixin, CreateView):
         return JsonResponse({'subscription_id': subscription.id})
 
 
-class SearchSubscriptionDeleteView(DeleteView):
+class SearchSubscriptionDeleteView(LoginRequiredMixin, DeleteView):
     model = SearchSubscription
     slug_field = 'token'
     slug_url_kwarg = 'token'
@@ -78,7 +78,7 @@ class SearchSubscriptionDeleteView(DeleteView):
     success_url = reverse_lazy('popular_proposals:home')
 
 
-class SearchSubscriptionListView(ListView):
+class SearchSubscriptionListView(LoginRequiredMixin, ListView):
     model = SearchSubscription
     template_name = "proposal_subscriptions/list.html"
     context_object_name = 'subscriptions'

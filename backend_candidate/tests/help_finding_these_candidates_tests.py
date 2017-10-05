@@ -67,5 +67,6 @@ class HelpFindingCandidatesTestCase(SoulMateCandidateAnswerTestsBase):
         Candidacy.objects.create(user=self.feli,
                                  candidate=self.candidate3)
         self.candidate3.taken_positions.all().delete()
+        self.candidate3.add_contact_detail(contact_type='TWITTER', value='perrito', label='perrito')
         response = self.client.get(url)
-        self.assertNotIn(self.candidate3, response.context['candidates'])
+        self.assertIn(self.candidate3, response.context['candidates'])

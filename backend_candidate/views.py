@@ -48,8 +48,6 @@ class HelpFindingCandidates(ListView):
 
     def get_queryset(self):
         qs = super(HelpFindingCandidates, self).get_queryset().distinct()
-        qs = qs.exclude(taken_positions__isnull=False)
-        qs = qs.filter(candidacy__user__last_login__isnull=True)
         qs = qs.filter(contact_details__contact_type__in=['TWITTER', 'FACEBOOK'])
         return qs
 

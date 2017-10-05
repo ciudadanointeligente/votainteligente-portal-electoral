@@ -242,7 +242,7 @@ CELERYBEAT_SCHEDULE = {'sending-new-proposals-once-a-day': {'task': 'proposal_su
                                                          'schedule': timedelta(days=1),
                                                          },
                        'new-commitments-notifications': {'task': 'proposal_subscriptions.tasks.send_commitment_notifications',
-                                                                                'schedule': timedelta(days=1),
+                                                                                'schedule': timedelta(days=7),
                                                                                 },
                        # 'letting-candidates-know-about-us-every-two-days':
                        # {'task': 'backend_candidate.tasks.send_candidates_their_username_and_password',

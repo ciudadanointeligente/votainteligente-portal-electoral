@@ -5,6 +5,7 @@ from django.conf import settings
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from constance import config
+from popular_proposal.forms.form_texts import TOPIC_CHOICES
 
 class CandidateParticipation(object):
     no_contact = 0
@@ -44,6 +45,24 @@ class Stats(object):
     @property
     def organizations(self):
         return User.objects.filter(profile__is_organization=True)
+
+    @property
+    def likes(self):
+        return ProposalLike.objects.count()
+
+    @property
+    def likers(self):
+        return User.objects.filter(likes__isnull=False).distinct().count()
+
+    @property
+    def per_classification_proposals_count(self):
+
+        count = {
+
+        }
+        for topic in TOPIC_CHOICES:
+            count[topic[0]] = PopularProposal.objects.filter(clasification=topic[0]).count()
+        return count
 
     def candidates_that_have_commited(self, filter_kwargs={}):
         qs = Candidate.objects.exclude(commitments__isnull=True)

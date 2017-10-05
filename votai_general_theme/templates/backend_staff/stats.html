@@ -26,6 +26,33 @@
   </div>
 
 </div>
+<div class="panel panel-default">
+  <div class="panel-heading ">Otras estadísticas.</div>
+  <div class="panel-body">
+    <p>Hay un total de:</p>
+    <p><b>{{stats.likes}}</b> corazones.</p>
+    <p>hechos por <b>{{stats.likers}}</b> ciudadanos.</p>
+
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading ">Propuestas por clasificación.</div>
+  <div class="panel-body">
+    <table>
+      <tr>
+        <th>Tópico</th>
+        <th>Cantidad</th>
+      </tr>
+    {% for key, count in stats.per_classification_proposals_count.items %}
+      {% if key %}
+        <tr>
+          <td>{{key}}</td>
+          <td>{{count}}</td>
+        </tr>
+      {% endif %}
+    {% endfor %}
+  </table>
+</div>
 {% comment %}
 <hr>
 <p>Un total de {{stats.participation.with_us}} candidatos se unieron al sitio y están con losotros.</p>

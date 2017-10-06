@@ -13,6 +13,13 @@ class CandidacyContactAdmin(admin.ModelAdmin):
                     'used_by_candidate')
     search_fields = ['candidate__name', "candidate__elections__name", 'mail']
 
+    actions = ['send_mail_candidate']
+
+    def send_mail_candidate(self, request, queryset):
+        for contact in queryset.all():
+            contact.send_mail_with_user_and_password()
+    send_mail_candidate.short_description = u"Mail estos contactos con usuario y password"
+
 
 @admin.register(Candidacy)
 class CandidacyAdmin(admin.ModelAdmin):

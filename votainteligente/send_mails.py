@@ -1,6 +1,6 @@
 # coding=utf-8
 from django.template.loader import get_template
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.validators import validate_email
@@ -29,7 +29,7 @@ def send_mail(context, template_prefix, to=[], reply_to=None, from_email=setting
     body = template_body.render(context)
     template_subject = get_template('mails/%(template_prefix)s/subject.txt' % template_prefix_dict)
     subject = template_subject.render(context).replace('\n', '').replace('\r', '')
-    email = EmailMessage(subject, body, from_email, to)
+    email = EmailMultiAlternatives(subject, body, from_email, to)
     if reply_to is not None:
         email.reply_to = [reply_to]
     email.send()

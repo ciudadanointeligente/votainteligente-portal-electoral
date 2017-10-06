@@ -16,13 +16,18 @@ class CandidacyContactAdmin(admin.ModelAdmin):
 
 @admin.register(Candidacy)
 class CandidacyAdmin(admin.ModelAdmin):
-    list_display = ('user', 'candidate', 'created', 'updated', 'get_last_log_in')
+    list_display = ('user', 'candidate', 'get_last_log_in', 'get_commited')
     search_fields = ['candidate__name', "candidate__elections__name"]
 
     def get_last_log_in(self, candidacy):
         return candidacy.user.last_login
 
+    def get_commited(self, candidacy):
+        return candidacy.candidate.commitments.exists()
+
+
     get_last_log_in.admin_order_field = 'user__last_login'
+    get_commited.boolean = True
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):

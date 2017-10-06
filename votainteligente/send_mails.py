@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.contrib.sites.models import Site
+from django.template.exceptions import TemplateDoesNotExist
 
 
 def validateEmail(email):
@@ -30,6 +31,12 @@ def send_mail(context, template_prefix, to=[], reply_to=None, from_email=setting
     template_subject = get_template('mails/%(template_prefix)s/subject.txt' % template_prefix_dict)
     subject = template_subject.render(context).replace('\n', '').replace('\r', '')
     email = EmailMultiAlternatives(subject, body, from_email, to)
+    try:
+        template_body_html = get_template('mails/%(template_prefix)s/body.html' % template_prefix_dict)
+        html_content = template_body_html.render(context)
+        email.attach_alternative(html_content, "text/html")
+    except TemplateDoesNotExist:
+        pass
     if reply_to is not None:
         email.reply_to = [reply_to]
     email.send()

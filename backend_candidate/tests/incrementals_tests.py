@@ -123,7 +123,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
         exclude_qs = {'elections__position': "Presidenta o Presidente"}
         f = IncrementalsCandidateFilter.objects.create(filter_qs=filter_qs,
                                                        exclude_qs=exclude_qs,
-                                                       text=u"te querimos musho\n\r saltode linea",
+                                                       text=u"te querimos musho\n\rsaltode linea",
                                                        name=u"Candidatos al parlamento de Frente Amplio")
         p1 = PopularProposal.objects.create(proposer=self.feli,
                                             area=self.arica,
@@ -171,6 +171,3 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
                                                      f_1.email,
                                                      f_2.email]
         self.assertIn(first_email.to[0], possible_emails_that_could_have_been_used)
-
-        print first_email.body
-        self.fail()

@@ -9,6 +9,8 @@ from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from django.conf import settings
 import uuid
+from picklefield.fields import PickledObjectField
+from django.utils.translation import ugettext_lazy as _
 
 
 class Candidacy(models.Model):
@@ -112,3 +114,27 @@ class CandidacyContact(models.Model):
         path = reverse('backend_candidate:candidacy_user_join',
                        kwargs={'identifier': self.identifier.hex})
         return "http://%s%s" % (site.domain, path)
+
+
+class ProposalSuggestionForIncremental(models.Model):
+    incremental = models.ForeignKey('IncrementalsCandidateFilter', related_name="suggestions")
+    proposal = models.ForeignKey('popular_proposal.PopularProposal', related_name="suggested_proposals")
+    sent = models.BooleanField(default=False)
+
+
+class IncrementalsCandidateFilter(models.Model):
+    name = models.CharField(max_length=12288,
+                            null=True,
+                            blank=True)
+    text = models.TextField()
+    filter_qs = PickledObjectField()
+    exclude_qs = PickledObjectField()
+    suggested_proposals = models.ManyToManyField('popular_proposal.PopularProposal',
+                                                 through=ProposalSuggestionForIncremental)
+
+    class Meta:
+        verbose_name = _(u"Filtro de propuestas para candidatos")
+        verbose_name_plural = _(u"Filtros de propuestas para candidatos")
+
+    def get_candidates(self):
+        return Candidate.objects.filter(**self.filter_qs).exclude(**self.exclude_qs)

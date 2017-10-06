@@ -1,0 +1,14 @@
+<p>Hola {{candidate.name}}:</p>
+{{text|linebreaks}}
+<ul>
+{% for proposal in proposals %}
+<li><a href="https://{{site.domain}}{{proposal.get_absolute_url}}">{{proposal.title}}</a></li>
+{% endfor %}
+</ul>
+<p>Te queríamos recordar que para ingresar puedes hacerlo en https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}.</p>
+
+<p>Tu nombre de usuario es: {{candidacy.user.username}}</p>
+
+<p>Atentamente.</p>
+<p>--</p>
+<p>El equipo de VotaInteligente.cl</p>

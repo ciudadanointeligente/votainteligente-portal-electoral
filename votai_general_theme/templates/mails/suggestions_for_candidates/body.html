@@ -7,7 +7,7 @@
 <p>Hemos seleccionado algunas propuestas que consideramos podrían ser de tu interés:</p>
 <ul>
 	{% for proposal in proposals %}
-<li><a href="https://{{site.domain}}{{proposal.get_absolute_url}}">{{proposal.title}}</a> de {{proposal.proposer}}</li>
+<li><a href="https://{{site.domain}}{{proposal.get_absolute_url}}">{{proposal.title}}</a>{% if proposal.proposer.profile.is_organization %} de <a href="https://{{site.domain}}{{proposal.proposer.organization_template.get_absolute_url}}">{{proposal.proposer.organization_template}}</a>{% endif %}</li>
 {% endfor %}
 </ul>
 

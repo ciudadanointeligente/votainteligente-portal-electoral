@@ -12,6 +12,7 @@ import uuid
 from picklefield.fields import PickledObjectField
 from django.utils.translation import ugettext_lazy as _
 from votainteligente.send_mails import send_mail
+import time
 
 
 class Candidacy(models.Model):
@@ -157,7 +158,7 @@ class IncrementalsCandidateFilter(models.Model):
                 'text': self.text,
                 'proposals': self.get_proposals_for_candidate(candidate)}
 
-    def send_mails(self):
+    def send_mails(self, sleep=0):
         candidates = self.get_candidates()
         for c in candidates:
             context = self.get_context_for_candidate(c)
@@ -165,3 +166,4 @@ class IncrementalsCandidateFilter(models.Model):
                 context['candidacy'] = candidacy
                 send_mail(context, 'suggestions_for_candidates',
                       to=[candidacy.user.email])
+                time.sleep(sleep)

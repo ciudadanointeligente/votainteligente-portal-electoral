@@ -116,9 +116,6 @@ class OrganizationTemplate(models.Model):
         txt = Image.new('RGBA', base.size, (122,183,255,0))
 
         d = ImageDraw.Draw(txt)
-        n_propuesta = u"Propuesta N º"+ unicode(self.id)
-        n_propuesta = n_propuesta.upper()
-        d.multiline_text((81,95), n_propuesta, font=montserrat_n_propuesta, fill=(122,183,255,255))
 
         lines = textwrap.wrap(self.title, width=30)
         max_lines = 5

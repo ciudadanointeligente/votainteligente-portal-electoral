@@ -16,6 +16,8 @@ from organization_profiles.models import ExtraPage
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from organization_profiles.models import OrganizationTemplate
+from elections.models import Candidate
 import copy
 
 
@@ -127,3 +129,14 @@ class ExtraPageUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('organization_profiles:update_extrapage', kwargs={'pk':self.object.pk})
+
+
+class AyuranosView(DetailView):
+    model = OrganizationTemplate
+    template_name = "organization_profiles/ayuranos.html"
+    slug_field = 'organization__username'
+
+    def get_context_data(self, **kwargs):
+        context = super(AyuranosView, self).get_context_data(**kwargs)
+        context['candidates'] = Candidate.objects.all()
+        return context

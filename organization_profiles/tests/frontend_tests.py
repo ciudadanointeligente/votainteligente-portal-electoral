@@ -6,6 +6,7 @@ from organization_profiles.models import OrganizationTemplate, ExtraPage, LOGO_S
 from popular_proposal.models import PopularProposal, ProposalLike
 from django.test import override_settings
 from elections.models import Candidate
+from django.contrib.sites.models import Site
 
 
 class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
@@ -110,6 +111,20 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
         fiera.profile.save()
         self.assertFalse(OrganizationTemplate.objects.filter(organization=fiera))
         self.assertIn(str(self.user), str(template))
+
+    def test_get_image(self):
+        self.user.first_name = 'Fundacion'
+        self.user.last_name = 'Ciudadano Inteligente'
+        self.user.profile.is_organization = True
+        self.user.profile.save()
+        #  Acá se crea un OrganizationTemplate
+        # y se crea porque en la linea anterior le dijimos que la wea era organización
+        template = OrganizationTemplate.objects.get(organization=self.user)
+        self.assertTrue(template.get_shared_image())
+        site = Site.objects.get_current()
+        expected_url = "http://%s%s" % (site.domain,
+                                        template.ogp_image())
+        self.assertEquals(expected_url, template.ogp_image())
 
     def test_change_image_size(self):
         self.user.first_name = 'Fundacion'

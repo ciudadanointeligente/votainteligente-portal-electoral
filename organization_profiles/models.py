@@ -17,6 +17,9 @@ from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 import sys
+from PIL import Image, ImageDraw, ImageFont
+from django.contrib.sites.models import Site
+import textwrap
 
 LOGO_SIZE = 154
 
@@ -102,6 +105,42 @@ class OrganizationTemplate(models.Model):
 
     def get_absolute_url(self):
         return reverse('organization_profiles:home', kwargs={'slug': self.organization.username})
+
+    def get_shared_image(self):
+        base = Image.open('votai_general_theme/static/img/plantilla.png').convert('RGBA')
+
+        montserrat_n_propuesta = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 16)
+        arvo_titulo = ImageFont.truetype("votai_general_theme/static/fonts/Arvo-Bold.ttf", 60)
+        montserrat_autor = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 22)
+
+        txt = Image.new('RGBA', base.size, (122,183,255,0))
+
+        d = ImageDraw.Draw(txt)
+        n_propuesta = u"Propuesta N º"+ unicode(self.id)
+        n_propuesta = n_propuesta.upper()
+        d.multiline_text((81,95), n_propuesta, font=montserrat_n_propuesta, fill=(122,183,255,255))
+
+        lines = textwrap.wrap(self.title, width=30)
+        max_lines = 5
+        if len(lines) > max_lines:
+            last_line = lines[max_lines - 1] + u'...'
+            lines = lines[0:max_lines]
+            lines[max_lines - 1] = last_line
+
+        title = '\n'.join(lines)
+
+        d.multiline_text((81,133), title, font=arvo_titulo, fill=(255,255,255,255))
+        out = Image.alpha_composite(base, txt)
+
+        return out
+
+    def ogp_image(self):
+        site = Site.objects.get_current()
+        image_url = reverse('organization_profiles:og_image',
+                            kwargs={'slug': self.organization.username})
+        url = "http://%s%s" % (site.domain,
+                               image_url)
+        return url
 
 
 BASIC_FIELDS = ["logo", "background_image", "title", "sub_title",

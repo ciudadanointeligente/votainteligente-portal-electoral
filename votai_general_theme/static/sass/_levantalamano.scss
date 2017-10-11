@@ -307,8 +307,8 @@ h6{
 .blueline-down{
   background-image: url("../img/lm-blueline-down.svg");
   background-repeat: no-repeat;
-  min-height: 173px;
-  margin-top: -12px;
+  min-height: 175px;
+  margin-top: -13px;
   position: relative;
   z-index: 2000;
 }
@@ -328,6 +328,10 @@ h6{
   max-width: 70%;
   margin: 0 auto;
   padding: 50px 0 70px;
+}
+.img-down{
+  position: relative;
+  z-index: -20;
 }
 
 /*HOME 0*/
@@ -356,6 +360,7 @@ p.aviso{
 }
 #enter{
   padding: 20px 0 80px;
+  margin-bottom: -150px;
 }
 #proposals{
   padding: 40px 0 60px;
@@ -1065,6 +1070,9 @@ hr{
 }
 .material-download{
   height: 60px;
+}
+#materiales{
+  margin-top: -120px;
 }
 
 /*MODALS*/

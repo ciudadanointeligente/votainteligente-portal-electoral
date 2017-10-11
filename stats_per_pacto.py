@@ -12,5 +12,5 @@ stats = {}
 for p in PersonalData.objects.filter(label="Pacto").distinct("value"):
     ps = PopularProposal.objects.filter(commitments__candidate__personal_datas__label="Pacto", commitments__candidate__personal_datas__value=p.value).distinct()
     stats[p.value] = [proposal.title for proposal in ps ]
-
-pp.pprint(stats)
+    for proposal in ps:
+    	print p.value + "|" + proposal.title

@@ -14,7 +14,7 @@
 {% with candidate.contacts.last as contact %}
 {% if not candidate.has_joined %}
 
-<p>Para comprometerte con éstas y otras propuestas debes ingresar a <a href="https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}">aquí</a> tu usuario y password son:</p>
+<p>Para comprometerte con éstas y otras propuestas debes ingresar a <a href="https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}">aquí</a> con tu usuario y password:</p>
 <ul>
 <li><b>Usuario:</b> {{contact.candidacy.user.username}}</li>
 <li><b>Password:</b> {{contact.initial_password}}</li>

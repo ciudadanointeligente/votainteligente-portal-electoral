@@ -11,7 +11,7 @@
 {% endblock navbar %}
 
 {% block content %}
-{% cache 60 ayudanos %}
+{% cache 60 ayudanos object.id %}
 <div class="container">
   <h2>¡Pidámosle a las candidaturas que se comprometan con nuestras propuestas!</h2>
   <div class="table-responsive">

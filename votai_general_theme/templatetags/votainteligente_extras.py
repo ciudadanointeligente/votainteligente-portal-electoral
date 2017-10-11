@@ -335,6 +335,13 @@ def extract_twitter_username(value):
         return ''
     return u'@' + result.groups()[4]
 
+@register.filter
+def extract_twitter_username_without_at(value):
+    pattern = re.compile(r'((https?://)?(www\.)?twitter\.com/)?(@|#!/)?([A-Za-z0-9_]{1,15})(/([-a-z]{1,20}))?')
+    result = pattern.search(value)
+    if result is None:
+        return ''
+    return result.groups()[4]
 
 @register.filter
 @stringfilter

@@ -313,6 +313,15 @@ td.cal-date{
 #difunde {
   padding: 15px 0;
   background-color: #233346;
+  p {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    color: #FFF;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1.3;
+    font-size: 10px;
+  }
 }
 
 /*Forms*/

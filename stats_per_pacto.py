@@ -5,16 +5,12 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "votainteligente.settings")
 django.setup()
 import pprint
 from popular_proposal.models import PopularProposal
+from elections.models import PersonalData
 pp = pprint.PrettyPrinter(indent=4)
 stats = {}
-for p in PopularProposal.objects.exclude(commitments__isnull=True):
-    stats[p.slug] = {}
-    for c in p.commitments.all():
-        if c.candidate.personal_datas.filter(label="Pacto").exists():
-            if c.candidate.personal_datas.get(label="Pacto").value in stats[p.slug].keys():
 
-                stats[p.slug][c.candidate.personal_datas.get(label="Pacto").value] += 1
-            else:
-                stats[p.slug][c.candidate.personal_datas.get(label="Pacto").value] = 1
+for p in PersonalData.objects.filter(label="Pacto").distinct("value"):
+    ps = PopularProposal.objects.filter(commitments__candidate__personal_datas__label="Pacto", commitments__candidate__personal_datas__value=p.value).distinct()
+    stats[p.value] = [proposal.title for proposal in ps ]
 
 pp.pprint(stats)

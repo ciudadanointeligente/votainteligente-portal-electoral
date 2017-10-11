@@ -90,6 +90,7 @@ class OrganizationDetailView(DetailView):
         context = self.create_context_based_on_organization_template(context)
         context['user'] = self.request.user
         context['is_owner'] = self.request.user == self.object
+        context['ayuranos'] = reverse('organization_profiles:ayuranos', kwargs={'slug':self.object.username})
         if context['is_owner']:
           context['update_url'] = reverse('organization_profiles:update')
           context['create_proposal_url'] = reverse('popular_proposals:propose_wizard_full_without_area')

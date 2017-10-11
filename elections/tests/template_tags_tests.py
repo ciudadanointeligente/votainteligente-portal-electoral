@@ -451,6 +451,29 @@ class LoginFormsTemplateTags(TestCase):
                               a['expected'],
                               u'Intentando con ' + a['entered'] + u' obtengo ' + rendered + u' en lugar de ' + a['expected'])
 
+    def test_twitter_parser_without_at(self):
+        asserts = [{'entered': 'https://twitter.com/fiera',
+                    'expected': 'fiera'},
+                   {'entered': '@fiera',
+                    'expected': 'fiera'},
+                   {'entered': 'twitter.com/fiera',
+                    'expected': 'fiera'},
+                   {'entered': 'http://www.twitter.com/#!/fiera',
+                    'expected': 'fiera'},
+                   {'entered': 'https://twitter.com/fiera',
+                    'expected': 'fiera'},
+                   {'entered': 'http://www.twitter.com/#!/fiera/following',
+                    'expected': 'fiera'},
+                   {'entered': 'http://twitter.com/#!/fiera/lists/memberships',
+                    'expected': 'fiera'}
+                   ]
+        for a in asserts:
+            template = Template("{% load votainteligente_extras %}{{ twitter|extract_twitter_username_without_at }}")
+            rendered = template.render(Context({'twitter': a['entered']}))
+            self.assertEquals(rendered,
+                              a['expected'],
+                              u'Intentando con ' + a['entered'] + u' obtengo ' + rendered + u' en lugar de ' + a['expected'])
+
     @override_config(MARKED_AREAS=['argentina',])
     def test_marked_areas(self):
         argentina = Area.objects.create(name=u'Argentina')

@@ -141,3 +141,14 @@ class AyuranosView(DetailView):
         context = super(AyuranosView, self).get_context_data(**kwargs)
         context['candidates'] = Candidate.objects.all().order_by('created_at')
         return context
+
+
+class OrganizationTemplateOGPImage(DetailView):
+    model = OrganizationTemplate
+    slug_field = 'organization__username'
+
+    def render_to_response(self, context, **response_kwargs):
+        im = self.object.get_shared_image()
+        response = HttpResponse( content_type="image/png")
+        im.save(response, "PNG")
+        return response

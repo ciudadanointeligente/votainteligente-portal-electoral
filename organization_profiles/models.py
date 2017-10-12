@@ -107,7 +107,7 @@ class OrganizationTemplate(models.Model):
         return reverse('organization_profiles:home', kwargs={'slug': self.organization.username})
 
     def get_shared_image(self):
-        base = Image.open('votai_general_theme/static/img/plantilla_org.png').convert('RGBA')
+        plantilla = Image.open('votai_general_theme/static/img/plantilla_org.png')
 
         montserrat_n_propuesta = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 16)
         arvo_titulo = ImageFont.truetype("votai_general_theme/static/fonts/Arvo-Bold.ttf", 60)
@@ -118,20 +118,33 @@ class OrganizationTemplate(models.Model):
         h = bg_color.lstrip('#')
         rgb_color = tuple(int(h[i:i+2], 16) for i in (0, 2 ,4))
         rgb_color = rgb_color+(0,)
-        img_org = Image.new('RGBA',(1200,630),rgb_color)
+        base = Image.new('RGBA',(1200,630),rgb_color)
+        if self.background_image:
+            bg_image = Image.open(self.background_image)
+            bg_image.thumbnail((1200,1200), Image.ANTIALIAS)
+            base.paste(bg_image,(0,0))
         if self.logo:
             logo = Image.open(self.logo)
             logo = logo.copy().convert('RGBA')
             base.paste(logo,(0,0))
-        if self.background_image:
-            bg_image = Image.open(self.background_image)
-            width, height = bg_image.size
-            bg_image.thumbnail((width, height), Image.ANTIALIAS)
-            
-            bg_image.crop((0,0,width, 0))
-            base.paste(bg_image,(0,0))
+        base.paste(plantilla, (0,0), plantilla)
+        txt = Image.new('RGBA', base.size, (122,183,255,0))
 
-        return base
+        d = ImageDraw.Draw(txt)
+
+        lines = textwrap.wrap(self.title, width=30)
+        max_lines = 5
+        if len(lines) > max_lines:
+            last_line = lines[max_lines - 1] + u'...'
+            lines = lines[0:max_lines]
+            lines[max_lines - 1] = last_line
+
+        title = '\n'.join(lines)
+
+        d.multiline_text((81,133), title, font=arvo_titulo, fill=(rgb_color[0],rgb_color[1],rgb_color[2],255))
+
+        out = Image.alpha_composite(base, txt)
+        return out
 
     def ogp_image(self):
         site = Site.objects.get_current()

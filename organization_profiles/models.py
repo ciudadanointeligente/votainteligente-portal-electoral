@@ -107,29 +107,32 @@ class OrganizationTemplate(models.Model):
         return reverse('organization_profiles:home', kwargs={'slug': self.organization.username})
 
     def get_shared_image(self):
-        base = Image.open('votai_general_theme/static/img/plantilla.png').convert('RGBA')
+        bg_color = self.primary_color
+        bg_image = Image.open(self.background_image)
+        logo = Image.open(self.logo)
+        logo = logo.copy().convert('RGBA')
 
-        montserrat_n_propuesta = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 16)
-        arvo_titulo = ImageFont.truetype("votai_general_theme/static/fonts/Arvo-Bold.ttf", 60)
-        montserrat_autor = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 22)
+        width, height = bg_image.size
 
-        txt = Image.new('RGBA', base.size, (122,183,255,0))
+        left = (width - 600)/2
+        top = (height - 1200)/2
+        right = (width + 600)/2
+        bottom = (height + 1200)/2
 
-        d = ImageDraw.Draw(txt)
+        # output = BytesIO()
+        # bg_image.crop((left, top, right, bottom))
+        # bg_image.save(output, format='JPEG', quality=100)
+        # output.seek(0)
 
-        lines = textwrap.wrap(self.title, width=30)
-        max_lines = 5
-        if len(lines) > max_lines:
-            last_line = lines[max_lines - 1] + u'...'
-            lines = lines[0:max_lines]
-            lines[max_lines - 1] = last_line
+        h = bg_color.lstrip('#')
+        rgb_color = tuple(int(h[i:i+2], 16) for i in (0, 2 ,4))
+        rgb_color = rgb_color+(0,)
+        
+        img_org = Image.new('RGBA',(1200,630),rgb_color)
+        # img_org = img_org.paste(logo,(0,0))
+        
 
-        title = '\n'.join(lines)
-
-        d.multiline_text((81,133), title, font=arvo_titulo, fill=(255,255,255,255))
-        out = Image.alpha_composite(base, txt)
-
-        return out
+        return img_org
 
     def ogp_image(self):
         site = Site.objects.get_current()

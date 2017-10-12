@@ -156,7 +156,7 @@ class OrganizationTemplate(models.Model):
         site = Site.objects.get_current()
         image_url = reverse('organization_profiles:og_image',
                             kwargs={'slug': self.organization.username})
-        url = "http://%s%s" % (site.domain,
+        url = "https://%s%s" % (site.domain,
                                image_url)
         return url
 

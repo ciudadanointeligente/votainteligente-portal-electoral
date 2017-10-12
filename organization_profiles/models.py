@@ -126,6 +126,7 @@ class OrganizationTemplate(models.Model):
         if self.logo:
             logo = Image.open(self.logo)
             logo = logo.copy().convert('RGBA')
+            logo.thumbnail((154, 154), Image.ANTIALIAS)
             base.paste(logo,(81,133))
         else:
             txt = Image.new('RGBA', base.size, (122,183,255,0))

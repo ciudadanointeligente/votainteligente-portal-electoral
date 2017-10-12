@@ -12,3 +12,14 @@ class KidsProposalInline(admin.TabularInline):
 class KidsGatheringAdmin(admin.ModelAdmin):
     list_display = ('proposer', 'name', 'created')
     inlines = [KidsProposalInline, ]
+
+
+@admin.register(KidsProposal)
+class KidsProposalAdmin(admin.ModelAdmin):
+    list_display = ('id',
+                    'area',
+                    'title',
+                    'data',
+                    'proposer',
+                    )
+    exclude = ('organization',)

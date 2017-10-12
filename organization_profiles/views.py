@@ -139,5 +139,5 @@ class AyuranosView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AyuranosView, self).get_context_data(**kwargs)
-        context['candidates'] = Candidate.objects.all()
+        context['candidates'] = Candidate.objects.all().order_by('created_at')
         return context

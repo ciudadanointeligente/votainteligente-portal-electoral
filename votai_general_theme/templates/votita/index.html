@@ -71,7 +71,7 @@
       <div class="col-md-8 col-md-offset-2 text-center">
         <h3>Conoce y apoya propuestas</h3>
         <p class="aviso"><b>¡Conoce y apoya las propuestas que otros niños, niñas y adolescentes han generado!</b></p>
-        <div><a class="btn btn-default" href="{% url 'votita:list_proposals' %}" target="_blank" onclick="ga('send', 'event', 'home-ver-propuestas', 'click')">Ver todas las propuestas</a></div>
+        <div><a class="btn btn-default" href="{% url 'votita:list_proposals' %}" onclick="ga('send', 'event', 'home-ver-propuestas', 'click')">Ver todas las propuestas</a></div>
       </div>
     </div>
     {% if featured_proposals.count %}

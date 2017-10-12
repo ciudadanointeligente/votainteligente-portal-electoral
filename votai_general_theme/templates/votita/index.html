@@ -74,14 +74,13 @@
         <div><a class="btn btn-default" href="{% url 'votita:list_proposals' %}" onclick="ga('send', 'event', 'home-ver-propuestas', 'click')">Ver todas las propuestas</a></div>
       </div>
     </div>
-    {% if featured_proposals.count %}
-    <section id="highlighted-proposals">
-      <h3 class="text-center">Conoce algunas de las propuestas infantiles</h3>
-      {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=featured_proposals form=Nil hide_proposal_list_header=True hidden_search=True %}
-    </section>
-    {% endif %}
   </div>
 </section>
 <section class="yellowline-down">
 </section>
+{% if featured_proposals.count %}
+<section id="highlighted-proposals">
+  {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=featured_proposals form=Nil hide_proposal_list_header=True hidden_search=True %}
+</section>
+{% endif %}
 {% endblock content %}

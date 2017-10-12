@@ -8,12 +8,15 @@ from votita.views import (VotitaWizard,
                           GatheringListView,
                           ProposalListView,
                           ProposalDetailView,
-                          GatheringView)
+                          GatheringView,
+                          HomeView,)
 from django.views.generic import TemplateView
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name="votita/index.html"),
-                                      name='index'),
+    #url(r'^$', TemplateView.as_view(template_name="votita/index.html"),
+    #                                  name='index'),
+    url(r'^$', (xframe_options_exempt(HomeView.as_view())), name='index'),
     url(r'^materiales/$',
         TemplateView.as_view(template_name='votita/materiales.html'),
         name='materiales'),

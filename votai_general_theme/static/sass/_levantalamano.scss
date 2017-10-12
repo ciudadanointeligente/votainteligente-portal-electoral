@@ -384,6 +384,9 @@ p.aviso{
   position: relative;
   height: -webkit-fill-available;
 }
+#highlighted-proposals{
+  margin: -50px 0 0;
+}
 .post.propuesta{
   position: absolute;
   left: 0px;
@@ -398,6 +401,7 @@ p.aviso{
   padding: 0;
   position: relative;
   padding: 20px 20px 5px;
+  background-color: white;
 }
 .propuesta-content{
   height: 110px;

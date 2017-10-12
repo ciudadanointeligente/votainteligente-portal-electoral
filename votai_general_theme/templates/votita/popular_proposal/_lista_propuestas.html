@@ -1,0 +1,77 @@
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+{% load votainteligente_extras %}
+<!-- Inicio _lista_propuestas -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js"></script>
+<script>
+$(function(){
+$('.loadFromUrl').on('show.bs.modal', function (event) {
+var anchor = $(event.relatedTarget) // Button that triggered the modal
+var modal = $(this)
+var body = modal.find('.modal-body');
+body.load(anchor.data('url'));
+})
+$('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+{% if not hidden_search %}
+    {% if form_type %}
+      {% include 'popular_proposal/_filter_form.html' %}
+    {% else %}
+      {% include 'popular_proposal/_filter_tag_form.html' %}
+    {% endif %}
+{% endif %}
+<!-- inicio grid -->
+<div class="container">
+<div id="grid">
+  {% if not hide_proposal_list_header %}
+      {% if form.is_filled_search %}
+      <h3 class="text-center">Hay {{popular_proposals|length}}
+        {% if not tipo_propuestas %}propuestas ciudadanas{% else %}{{tipo_propuestas}}{% endif %}
+         con tus criterios de búsqueda seleccionados</h3>
+      {% else %}
+      <h3 class="text-center">Hay {{popular_proposals|length}} {% if not tipo_propuestas %}propuestas ciudadanas{% else %}{{tipo_propuestas}}{% endif %}</h3>
+      {% endif %}
+      {% if not user|is_candidate and not hidden_create_proposal_button %}
+        {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
+        <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark">Crear nueva propuesta</a></div>
+      {% endif %}
+      {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
+      <div class="row hidden-xs">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="alert alert-info text-center" role='alert'>
+            <button type="button" class="close" data-dismiss='alert' aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            <a id="subscribeToSearchButton" data-toggle="modal" data-url="{% url 'proposal_subscriptions:subscribe' %}" data-target="#subscribeToSearch"><i class="fa fa-bell-o"></i> {% trans 'Recibe notificaciones en tu correo con el resultado de esta búsqueda' %}</a>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endif %}
+
+    <div id="posts">
+    {% for proposal in popular_proposals %}
+        {% display_proposal_card proposal %}
+      {% empty %}
+      {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
+      {% blocktrans %}
+        <p class="bg-info text-center">
+          Aún no se han generado propuestas para esta búsqueda.
+        </p>
+      {% endblocktrans %}
+    {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- fin grid -->
+<div class="container" id="raiseToTop">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <a href="#top" title="ir arriba"><i class="fa fa-arrow-up fa-2x pull-right" style="display:none"></i></a>
+    </div>
+  </div>
+</div>
+<!-- Fin _lista_propuestas -->

@@ -4,14 +4,14 @@
 {% load thumbnail %}
 {% load cache %}
 
-{% cache 300 presidentes_comprometidos proposal.id %}
+{% cache 300 presidentes_comprometidos cargo proposal.id %}
 {% commiters_by_election_position proposal cargo as commitments %}
   {% if commitments.all %}
     <h5>Candidatos a {{cargo}}</h5>
     <ul class="list-inline">
       {% for commitment in commitments.all %}
         <li>
-          <a href="{{commitment.get_absolute_url}}">
+          <a href="{{commitment.candidate.get_absolute_url}}">
             {% if commitment.commited %}
               {% if commitment.candidate.image %}
                 {% thumbnail commitment.candidate.image "50x50" crop="center" as im %}

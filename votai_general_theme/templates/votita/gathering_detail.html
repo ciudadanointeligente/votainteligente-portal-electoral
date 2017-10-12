@@ -6,7 +6,7 @@
           <h2>Programa electoral de {{gathering.name}}</h2>
             {% for proposal in gathering.proposals.all %}
             <div class="votita-love-{{proposal.clasification}} proposal-plan">
-              <span class="label label-default votita-love-">{{proposal.clasification}}</span>
+              <span class="label label-default votita-love-">{{proposal.get_classification}}</span>
               <br>
               <a href="{{proposal.get_absolute_url}}">{{ proposal }}</a>
             </div>

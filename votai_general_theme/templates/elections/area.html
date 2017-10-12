@@ -7,8 +7,8 @@
 {% load votainteligente_extras %}
 {% load cache %}
 
-{% block title %}- Candidatos para {{area}}{% endblock title %}
-
+{% block title %}- Candidatos para el {{area}}{% endblock title %}
+{% block description %}Conoce los candidatos a Senador, Diputado y Presidente para el {{area}}{% endblock description %}
 {% block extrajs %}
 $(function(){
     $('.loadFromUrl').on('show.bs.modal', function (event) {
@@ -34,7 +34,6 @@ $(function(){
   <meta name="twitter:image" content="https://{% url_domain %}{% static 'img/logo_vi_og.jpg' %}">
 {% endblock ogp %}
 
-{% block description %}Todos los candidatos para estas elecciones.{% endblock description %}
 {% block keywords %},{{area.name}},candidatos para {{area.name}},diputados {{area.name}},senadores {{area.name}},{% endblock keywords %}
 
 {% block content %}
@@ -60,9 +59,19 @@ $(function(){
     <li><a href="{% url 'home' %}" onclick="ga('send','event','breadcrumb-home-area','click')"><i class="fa fa-home"></i></a></li>
     <li><a href="{% url 'know_your_candidates' %}" onclick="ga('send','event','breadcrumb-candidaturas-area','click')">Candidaturas</a></li>
     <li class="active">{{area.name}}</li>
-  </ol>
   <h1>Candidatos para {{area}}</h1>
+  </ol>
+  {% for p in area.parents %}
+  {% with p.elections.first as election %}
+    {% if election %}
+      <span class="label label-primary"><a href="#election-area-{{p.id}}">{{p}}</a></span>
+    {% endif %}
+    {% endwith %}
+{% endfor %}
 </div>
+
+
+
 {% for p in area.parents %}
   {% with p.elections.first as election %}
     {% if election %}

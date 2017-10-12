@@ -9,6 +9,10 @@ from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from django.conf import settings
 import uuid
+from picklefield.fields import PickledObjectField
+from django.utils.translation import ugettext_lazy as _
+from votainteligente.send_mails import send_mail
+import time
 
 
 class Candidacy(models.Model):
@@ -47,7 +51,8 @@ def send_candidate_username_and_password(candidate):
         contact.send_mail_with_user_and_password()
 
 def add_contact_and_send_mail(mail, candidate):
-    contact = CandidacyContact.objects.create(mail=mail, candidate=candidate)
+    contact = CandidacyContact.objects.create(mail=mail,
+                                              candidate=candidate)
     send_candidate_username_and_password(candidate)
     for candidacy in candidate.candidacy_set.all():
         candidacy.user.email = mail
@@ -112,3 +117,53 @@ class CandidacyContact(models.Model):
         path = reverse('backend_candidate:candidacy_user_join',
                        kwargs={'identifier': self.identifier.hex})
         return "http://%s%s" % (site.domain, path)
+
+
+class ProposalSuggestionForIncremental(models.Model):
+    incremental = models.ForeignKey('IncrementalsCandidateFilter', related_name="suggestions")
+    proposal = models.ForeignKey('popular_proposal.PopularProposal', related_name="suggested_proposals")
+    sent = models.BooleanField(default=False)
+
+
+class IncrementalsCandidateFilter(models.Model):
+    name = models.CharField(max_length=12288,
+                            null=True,
+                            blank=True)
+    text = models.TextField()
+    filter_qs = PickledObjectField()
+    exclude_qs = PickledObjectField()
+    suggested_proposals = models.ManyToManyField('popular_proposal.PopularProposal',
+                                                 through=ProposalSuggestionForIncremental)
+
+    class Meta:
+        verbose_name = _(u"Filtro de propuestas para candidatos")
+        verbose_name_plural = _(u"Filtros de propuestas para candidatos")
+
+    def get_candidates(self):
+        return Candidate.objects.filter(**self.filter_qs).exclude(**self.exclude_qs)
+
+
+    def get_mail_context(self):
+        return {'proposals': self.suggested_proposals}
+
+    def get_proposals_for_candidate(self, candidate):
+        proposals = []
+        for p in self.suggested_proposals.all():
+            if not candidate.commitments.filter(proposal=p):
+                proposals.append(p)
+        return proposals
+
+    def get_context_for_candidate(self, candidate):
+        return {'candidate': candidate,
+                'text': self.text,
+                'proposals': self.get_proposals_for_candidate(candidate)}
+
+    def send_mails(self, sleep=0):
+        candidates = self.get_candidates()
+        for c in candidates:
+            context = self.get_context_for_candidate(c)
+            for candidacy in c.candidacy_set.all():
+                context['candidacy'] = candidacy
+                send_mail(context, 'suggestions_for_candidates',
+                      to=[candidacy.user.email])
+                time.sleep(sleep)

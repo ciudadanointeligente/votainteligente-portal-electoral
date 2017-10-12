@@ -166,3 +166,35 @@ class OrganizationDetailViewTests(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'backend_citizen/organization.html')
         self.assertEquals(response.context['organization'], self.organization)
+
+
+class UnsuscribeViewTestCase(BackendCitizenTestCaseBase):
+    def setUp(self):
+        super(UnsuscribeViewTestCase, self).setUp()
+
+    def test_get_view(self):
+        url = reverse('backend_citizen:unsuscribe',
+                      kwargs={'token': self.fiera.profile.unsubscribe_token})
+
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('form', response.context)
+        self.assertEquals(self.fiera.profile.get_unsubscribe_url(), url)
+
+    def test_post_unsuscribe(self):
+        url = self.fiera.profile.get_unsubscribe_url()
+        response = self.client.post(url, {'unsubscribed': True})
+        url_unsubscribed = reverse('backend_citizen:already_unsuscribed',
+                        kwargs={'token': self.fiera.profile.unsubscribe_token})
+        self.assertRedirects(response, url_unsubscribed)
+        #I didn't know I could do this!
+        self.fiera.profile.refresh_from_db()
+        self.assertTrue(self.fiera.profile.unsubscribed)
+
+    def test_get_already_subscribed(self):
+        url = reverse('backend_citizen:already_unsuscribed',
+                      kwargs={'token': self.fiera.profile.unsubscribe_token})
+
+        response =  self.client.get(url)
+        self.assertEquals(response.context['object'], self.fiera.profile)
+        self.assertTemplateUsed(response, 'backend_citizen/already_unsuscribed.html')

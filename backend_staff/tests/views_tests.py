@@ -11,6 +11,7 @@ from django.core import mail
 from backend_staff.views import Stats
 from backend_staff.stats import PerAreaStaffStats
 from backend_candidate.models import CandidacyContact, Candidacy
+from popular_proposal.forms.form_texts import TOPIC_CHOICES
 
 
 NON_STAFF_PASSWORD = 'gatito'
@@ -272,6 +273,30 @@ class StaffHomeViewTest(TestCase):
         self.assertIsInstance(response.context['stats'], Stats)
         self.assertTemplateUsed(response, 'backend_staff/stats.html')
 
+    def tests_get_local_meetings(self):
+        stats = Stats()
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       clasification=u'education'
+                                       )
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       is_local_meeting=True,
+                                       title=u'This is a title',
+                                       clasification=u'education'
+                                       )
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       is_local_meeting=True,
+                                       clasification=u'education'
+                                       )
+        self.assertEquals(stats.local_gatherings(), 2)
+
     def test_stats_v2_organizations_supporting(self):
         User.objects.all().delete()
         stats = Stats()
@@ -317,7 +342,40 @@ class StaffHomeViewTest(TestCase):
         self.assertIn(org, stats.organizations.all())
         self.assertIn(org2, stats.organizations.all())
         self.assertNotIn(normal_user, stats.organizations.all())
+        self.assertEquals(stats.likes, ProposalLike.objects.count())
+        self.assertEquals(stats.likers, User.objects.filter(likes__isnull=False).count())
 
+    def test_stats_per_classification(self):
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       clasification=TOPIC_CHOICES[1][0]
+                                       )
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       clasification=TOPIC_CHOICES[2][0]
+                                       )
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       clasification=TOPIC_CHOICES[3][0]
+                                       )
+        PopularProposal.objects.create(proposer=self.fiera,
+                                       area=self.arica,
+                                       data=self.data,
+                                       title=u'This is a title',
+                                       clasification=TOPIC_CHOICES[3][0]
+                                       )
+        
+        stats = Stats()
+        count = stats.per_classification_proposals_count
+        self.assertEquals(count[TOPIC_CHOICES[1][0]], 1)
+        self.assertEquals(count[TOPIC_CHOICES[2][0]], 1)
+        self.assertEquals(count[TOPIC_CHOICES[3][0]], 2)
 
     def test_stats_mixin(self):
         stats = Stats()

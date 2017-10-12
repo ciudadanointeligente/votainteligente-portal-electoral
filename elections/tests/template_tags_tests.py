@@ -75,12 +75,14 @@ class TemplateTagsTestCase(TestCase):
 
         self.assertEqual(template.render(context), json.dumps(expected_elections))
 
+    @override_settings(FILTERABLE_AREAS_TYPE = ['Comuna'])
     def test_areas_json_template_tag(self):
+        Area.objects.all().delete()
         expected_areas = []
-        Area.objects.create(name="Chile")
-        Area.objects.create(name="Mar para Bolivia")
+        chile = Area.objects.create(name="Chile", classification="Comuna")
+        bolivia = Area.objects.create(name="Mar para Bolivia", classification="Comuna")
         Area.objects.create(name="Guatemala")
-        for area in Area.public.all():
+        for area in [chile, bolivia]:
             area_dict = {'slug': area.slug,
                          'name': area.name,
                          'detaillink': area.get_absolute_url()

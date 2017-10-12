@@ -1,8 +1,20 @@
 {% load thumbnail %}
 {% load static %}
 
-<div class="container" itemscope itemtype="http://schema.org/Person">
+<div id="election-area-{{election.area.id}}" class="container" itemscope>
+  {% if election %}
+  <div class="text-center">
   <h2>{{election.name}}</h2>
+  {% if election.area.get_containing_filterable_areas %}
+    <h4>Comunas</h4>
+      {% for comuna in election.area.get_containing_filterable_areas %}
+        {{comuna}}
+        {% if not forloop.last %}
+        ,
+        {% endif%}
+      {% endfor %}
+  {% endif %}
+  </div>
   <div class="row">
     {% for candidate in election.candidates.all %}
     <div class="col-md-3">
@@ -26,4 +38,6 @@
     {% endif %}
     {% endfor %}
   </div>
+  {% else %}
+  {% endif %}
 </div>

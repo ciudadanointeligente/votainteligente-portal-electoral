@@ -390,7 +390,7 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
         self.fiera.save()
 
     def test_instanciating_form(self):
-        data = {'terms_and_conditions': True}
+        data = {'terms_and_conditions': True, 'detail': 'Esto es un detalle'}
         form = CandidateCommitmentForm(candidate=self.candidate,
                                        proposal=self.proposal,
                                        data=data)
@@ -398,6 +398,7 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
         commitment = form.save()
         self.assertEquals(commitment.proposal, self.proposal)
         self.assertEquals(commitment.candidate, self.candidate)
+        self.assertEquals(commitment.detail, data['detail'])
         self.assertTrue(commitment.commited)
 
     def test_instanciating_form_with_no_commiting(self):

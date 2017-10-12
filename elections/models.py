@@ -65,6 +65,22 @@ class Area(PopoloArea, OGPMixin):
     def candidates(self):
         return Candidate.objects.filter(elections__area=self)
 
+    def get_related(self):
+        related = []
+        for child in self.children.all():
+            if child.elections.exists():
+                related.append(self.__class__.objects.get(id=child.id))
+        for parent in self.parents:
+            if parent !=self and parent.elections.exists():
+                related.append(self.__class__.objects.get(id=parent.id))
+        return related
+
+    def get_containing_filterable_areas(self):
+        filterable_contained = []
+        for area in self.children.all():
+            if area.classification in settings.FILTERABLE_AREAS_TYPE:
+                filterable_contained.append(area)
+        return filterable_contained
 
 class ExtraInfoMixin(models.Model):
     extra_info = PickledObjectField(default={})

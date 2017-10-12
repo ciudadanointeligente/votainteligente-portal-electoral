@@ -10,7 +10,7 @@
 
 {% block keywords %}{% for tag in election.tags.all %}, {{tag}}{% endfor %}{% endblock keywords %}
 
-{% block description %}{{election.description|truncatewords:100}}{% endblock description %}
+{% block description %}Conoce los candidatos a Senador, Diputado y Presidente para las elecciones de Chile 2017{% endblock description %}
 
 {% block ogp %}
   {% render_ogp election %}
@@ -27,6 +27,14 @@
       {% endif %}
       <li class="active">{{candidate.name}}</li>
     </ol>
+    {% if candidate.election.area.get_related %}
+    También te podría interesar:
+        {% for area in candidate.election.area.get_related %}
+          {% if area.elections.count %}
+          <span class="label label-primary"><a href="{{area.get_absolute_url}}">{{area.name}}</a></span>
+          {% endif %}
+        {% endfor %}
+    {% endif %}
   </div>
 
   {% block mainelection %}

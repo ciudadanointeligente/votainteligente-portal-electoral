@@ -29,6 +29,8 @@ class CreateSubscriptionViewsTestCase(ProposingCycleTestCaseBase):
 
     def test_post_creates_the_subscription(self):
         url = reverse('proposal_subscriptions:subscribe')
+        response = self.client.get(url)
+        self.assertNotEquals(response.status_code, 200)
         self.client.login(username=self.feli.username, password='PASSWORD')
         data = {'oftenity': OFTENITY_CHOICES[0][0],
                 'text': "bicicletas"}
@@ -57,6 +59,8 @@ class DeleteSubscriptionViewsTestCase(ProposingCycleTestCaseBase):
 
     def test_get_view(self):
         url = reverse('proposal_subscriptions:unsubscribe', kwargs={'token': self.subscription.token})
+        response = self.client.get(url)
+        self.assertNotEquals(response.status_code, 200)
         self.client.login(username=self.feli.username, password='PASSWORD')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
@@ -88,6 +92,8 @@ class SubscriptionListViewsTestCase(ProposingCycleTestCaseBase):
                                                           filter_class_name="ProposalWithoutAreaFilter",
                                                           oftenity=timedelta(weeks=1))
         url = reverse('proposal_subscriptions:list')
+        response = self.client.get(url)
+        self.assertNotEquals(response.status_code, 200)
         self.client.login(username=self.feli.username, password='PASSWORD')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)

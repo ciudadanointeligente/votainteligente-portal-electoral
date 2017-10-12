@@ -37,6 +37,8 @@ class SearchSubscriptionModel(ProposingCycleTestCaseBase):
                                                          oftenity=timedelta(weeks=1))
         expected_url = reverse('proposal_subscriptions:unsubscribe', kwargs={'token': subscription.token})
         self.assertEquals(subscription.unsubscribe_url(), expected_url)
+        response = self.client.get(subscription.unsubscribe_url())
+        self.assertNotEquals(response.status_code, 200)
 
     def test_run_sends_hits_to_user(self):
         a_week_ago = timezone.now() - timedelta(weeks=1)

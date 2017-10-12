@@ -79,7 +79,7 @@ class CommitmentNotificationSender(object):
 
     @classmethod
     def send_to_users(cls):
-        users = User.objects.exclude(commitment_notifications__isnull=True)
+        users = User.objects.exclude(commitment_notifications__isnull=True).exclude(profile__unsubscribed=True)
         for u in users:
             instance = cls(user=u)
             instance.send()

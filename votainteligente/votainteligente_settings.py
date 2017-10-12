@@ -113,19 +113,6 @@ STATICFILES_FINDERS = (
     'sass_processor.finders.CssFinder',
 )
 
-# MIDDLEWARE_CLASSES = (
-#     'django.contrib.sessions.middleware.SessionMiddleware',
-#     'django.contrib.auth.middleware.AuthenticationMiddleware',
-#     'django.middleware.common.CommonMiddleware',
-#     'django.middleware.csrf.CsrfViewMiddleware',
-#     'debug_toolbar.middleware.DebugToolbarMiddleware',
-#     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-#     'django.contrib.messages.middleware.MessageMiddleware',
-#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-#     'django.middleware.security.SecurityMiddleware',
-#     'linaro_django_pagination.middleware.PaginationMiddleware',
-#     'social_django.middleware.SocialAuthExceptionMiddleware',
-# )
 
 ## Funciona el de arriba??? no tengo callampa idea!!
 MIDDLEWARE = [
@@ -142,6 +129,7 @@ MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 ALLOWED_HOSTS = ['*']
+INTERNAL_IPS = ["127.0.0.1", "localhost"]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -254,7 +242,7 @@ CELERYBEAT_SCHEDULE = {'sending-new-proposals-once-a-day': {'task': 'proposal_su
                                                          'schedule': timedelta(days=1),
                                                          },
                        'new-commitments-notifications': {'task': 'proposal_subscriptions.tasks.send_commitment_notifications',
-                                                                                'schedule': timedelta(days=1),
+                                                                                'schedule': timedelta(days=7),
                                                                                 },
                        # 'letting-candidates-know-about-us-every-two-days':
                        # {'task': 'backend_candidate.tasks.send_candidates_their_username_and_password',
@@ -353,6 +341,16 @@ CACHES = {
 
 NEW_ANSWER_ENDPOINT = 'NEW_ANSWER_ENDPOINT'
 
+REST_FRAMEWORK = {
+    # specifying the renderers
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework_csv.renderers.CSVRenderer',
+    ),
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+}
+
 THEME = None
 
 
@@ -394,7 +392,9 @@ CONSTANCE_CONFIG = {
     'PROPOSALS_ENABLED' : (True, 'Habilitar propuestas'),
     'WHEN_TO_NOTIFY': ('25, 50, 100, 150, 200', 'Cuando notificar'),
     'NOTIFY_CANDIDATES': (True, 'Notificar a los candidatos'),
+    'NOTIFY_STAFF_OF_NEW_COMMITMENT': (True, 'Notificar al staff si es que hay un nuevo compromiso'),
     'NOTIFY_CANDIDATES_OF_NEW_PROPOSAL': (True, 'Notificar a los candidatos por una nueva propuesta'),
+    'CAN_CANDIDATES_NOT_COMMIT': (False, 'Pueden los candidatos NO comprometerse?'),
     'NO_REPLY_MAIL': ("no-reply@localhost", 'Cuenta email de envio de correos'),
     'EMAIL_LOCALPART': ("municipales2016", 'Cuenta email localhost'),
     'EMAIL_DOMAIN': ("votainteligente.cl", 'Nombre dominio'),
@@ -407,6 +407,7 @@ CONSTANCE_CONFIG = {
     'TWITTER_CON_SECRET_KEY': ('', 'Twitter connection secret key'),
     'HIDDEN_AREAS': ('', 'Seccion oculta'),
     'NAV_BAR': ('profiles, questionary, soulmate, facetoface, ask, ranking', 'Menu de navegacion'),
+    'NAV_BAR_VOTITA_DISPLAYED': (False, 'Desplegamos el navbar del votita??????'),
     'SHOW_RIBBON_IN_CANDIDATE': (False, u"Debería aparecerles la franja roja que dice 'No se ha compormetido?'"),
     'CAN_CREATE_TEST_PROPOSAL': (False, u'Se pueden crear propuestas de prueba?'),
     'CANDIDATES_ARE_DISPLAYED': (False, u'Se muestra el menú "Conoce tus candidatos"?(recuerda que si eres staff lo verás igual no más sin importar esta wea)'),
@@ -429,6 +430,11 @@ CONSTANCE_CONFIG = {
     'WEBSITE_GENERAL_SETTINGS_HOME_TITLE': ('Lorem ipsum dolor sit amet, consectetur adipisicing elit.', 'Titulo Home'),
     'WEBSITE_TWITTER_HASHTAG': ('votainteligente', 'Twitter Hashtags'),
     'WEBSITE_TWITTER_TEXT': ('Conoce a tus candidat@s y encuentra a tu Media Naranja Política en', 'Texto twitts'),
+    'AYUDANOS_TEXTO1' : (u'Tenemos poca info de candidatos. Ayuda a candidatos y electores haciendo que respondan la ½ naranja', 'texto 1 del ayudanos'),
+    'AYUDANOS_TEXTO2' : (u'Si no conoces a tus candidatos y no sabes ', 'texto 2 del ayudanos'),
+    'AYUDANOS_TEXTO3' : (u'Invita a tus candidatos a dejar su información en VotaInteligente.cl para saber qué piensan y ', 'texto 3 del ayudanos'),
+    'AYUDANOS_TEXTO4' : (u'Necesitamos que los candidatos compartan su infromación con los vecinos, para conocerlos y saber ', 'texto 4 del ayudanos'),
+    'AYUDANOS_TEXTO_CANDIDATOS' : (u'Ya puedes comprometerte con nuestras propuestas ', 'texto a los candidatos del ayudanos'),
 }
 
 try:

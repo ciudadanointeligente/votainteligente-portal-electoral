@@ -84,12 +84,13 @@ class CommitmentNotifications(ProposingCycleTestCaseBase):
         self.assertEquals(len(mail.outbox), original_amount_of_mails + 1)
         the_mail = mail.outbox[original_amount_of_mails]
         self.assertIn(u.email, the_mail.to)
+        # No están llegando la info sobre los compromisos
+        self.assertIn(commitment.get_absolute_url(), the_mail.body)
         # ahora me quiero asegurar que no se envían de nuevo
         sender = CommitmentNotificationSender(user=u)
         sender.send()
         self.assertFalse(CommitmentNotification.objects.filter(user=u, notified=False))
         self.assertEquals(len(mail.outbox), original_amount_of_mails + 1)
-
 
     def test_email_sender(self):
         u = User.objects.create_user(username="user", email="bono_u1@themail.com")
@@ -115,3 +116,28 @@ class CommitmentNotifications(ProposingCycleTestCaseBase):
         self.assertIn(the_mail.to[0], [u.email, u2.email])
         the_mail2 = mail.outbox[original_amount_of_mails + 1]
         self.assertIn(the_mail2.to[0], [u.email, u2.email])
+
+    def test_unsubscribed_user(self):
+        u = User.objects.create_user(username="user", email="bono_u1@themail.com")
+        u.profile.unsubscribed = True
+        u.profile.save()
+        User.objects.create_user(username="user3", email="bono_u3@themail.com")
+        ProposalLike.objects.create(user=u,
+                                    proposal=self.popular_proposal)
+        ProposalLike.objects.create(user=u,
+                                    proposal=self.popular_proposal2)
+        u2 = User.objects.create_user(username="user2", email="bono_u2@themail.com")
+        u2.profile.unsubscribed = True
+        u2.profile.save()
+        ProposalLike.objects.create(user=u2,
+                                    proposal=self.popular_proposal)
+        Commitment.objects.create(candidate=self.candidate,
+                                  commited=True,
+                                  proposal=self.popular_proposal)
+        Commitment.objects.create(candidate=self.candidate,
+                                  commited=True,
+                                  proposal=self.popular_proposal2)
+        original_amount_of_mails = len(mail.outbox)
+        CommitmentNotificationSender.send_to_users()
+        #NO HAY MAILS NUEVOS POR QUE LOS DOS ESTÁN DESSUSCRITOS
+        self.assertEquals(len(mail.outbox), original_amount_of_mails)

@@ -1,5 +1,4 @@
 {% load cache %}
-{% cache 500 commitments candidate.id %}
 <!-- Promesas que se ha comprometido -->
 {% if candidate.commitments.count %}
 <div id="grid">
@@ -10,4 +9,3 @@
 	</div>
 </div>
 {% endif %}
-{% endcache %}

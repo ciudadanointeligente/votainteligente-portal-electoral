@@ -222,6 +222,7 @@ class PopularProposal(models.Model, OGPMixin):
     all_objects = models.Manager()
 
     card_template = "popular_proposal/popular_proposal_card.html"
+    detail_template_html = "popular_proposal/plantillas/detalle_propuesta.html"
 
     class Meta:
         ordering = ['-featured' ,'for_all_areas', '-created']
@@ -230,6 +231,11 @@ class PopularProposal(models.Model, OGPMixin):
 
     def __str__(self):
         return self.title
+
+    @classmethod
+    def get_topic_choices_dict(cls):
+        from popular_proposal.forms.form_texts import TOPIC_CHOICES_DICT
+        return TOPIC_CHOICES_DICT
 
     def ogp_title(self):
         return u'¡Ingresa a votainteligente.cl y apoya esta propuesta!'
@@ -280,6 +286,8 @@ class PopularProposal(models.Model, OGPMixin):
         out = Image.alpha_composite(base, txt)
 
         return out
+    def get_classification(self):
+        return self.__class__.get_topic_choices_dict().get(self.clasification, u"")
 
     def ogp_image(self):
         site = Site.objects.get_current()
@@ -291,11 +299,22 @@ class PopularProposal(models.Model, OGPMixin):
 
     def display_card(self, context={}):
         context['proposal'] = self
-        return get_template(self.card_template).render(context)
+        original_template = context.get('original_template', False)
+        if original_template:
+            template = PopularProposal.card_template
+        else:
+            template = self.card_template
+        return get_template(template).render(context)
 
     @property
     def card(self):
         return self.display_card({})
+
+    @property
+    def detail_as_html(self):
+        template = get_template(self.detail_template_html)
+        context = {'popular_proposal': self}
+        return template.render(context)
 
     @property
     def data_as_text(self):
@@ -308,6 +327,10 @@ class PopularProposal(models.Model, OGPMixin):
     @property
     def sponsoring_orgs(self):
         return self.likers.filter(profile__is_organization=True)
+
+    @property
+    def nro_supports(self):
+      return self.likers.count()
 
     def notify_candidates_of_new(self):
         if not (settings.NOTIFY_CANDIDATES and settings.NOTIFY_CANDIDATES_OF_NEW_PROPOSAL):

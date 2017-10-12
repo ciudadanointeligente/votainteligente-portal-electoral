@@ -3,9 +3,8 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load bootstrap3 %}
-{% block title %}
-- Propuestas Ciudadanas
-{% endblock title %}
+{% block description %}Participa activamente creando y apoyando propuestas ciudadanas generadas por ciudadanos y organizaciones de la sociedad civil{% endblock description %}
+{% block title %}- Propuestas Ciudadanas{% endblock title %}
 {% block everything %}
 <div class="container">
 	<div>
@@ -13,7 +12,7 @@
   </div>
 </div>
 <div>
-	{% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=form is_embedded=is_embedded %}
+	{% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=popular_proposals form=form is_embedded=is_embedded original_template=True %}
 </div>
 
 

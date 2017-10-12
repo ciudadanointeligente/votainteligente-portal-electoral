@@ -27,6 +27,9 @@ h1{
 h2{
   @extend h1;
 }
+h3{
+  @extend h1;
+}
 h4{
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
@@ -183,6 +186,22 @@ h6{
     box-shadow: none;
   }
 }
+.btn-blue-line{
+  border: 3px solid $blue;
+  color: $blue;
+  &:hover{
+    background-color: $blue;
+    color: white;
+    border: 3px solid $blue;
+  }
+  &:focus{
+    @extend .btn-blue-line:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue-line:hover;
+    box-shadow: none;
+  }
+}
 .btn-success{
   border: 3px solid $yellow;
   background-color: $yellow;
@@ -267,21 +286,52 @@ h6{
   min-height: 46px;
   margin-top: -48px;
 }
-.yellowline{
-  background-image: url("../img/lm-yellowline.svg");
+.yellowline-up{
+  background-image: url("../img/lm-yellowline-up.svg");
   background-repeat: no-repeat;
   min-height: 28px;
   margin-top: -30px;
 }
-.blueline{
-  background-image: url("../img/lm-blueline.svg");
+.yellowline-down{
+  background-image: url("../img/lm-yellowline-down.svg");
   background-repeat: no-repeat;
-  min-height: 148px;
-  margin-top: -115px;
+  min-height: 38px;
+  margin-top: -19px;
+}
+.blueline-up{
+  background-image: url("../img/lm-blueline-up.svg");
+  background-repeat: no-repeat;
+  min-height: 34px;
+  margin-top: -5px;
+}
+.blueline-down{
+  background-image: url("../img/lm-blueline-down.svg");
+  background-repeat: no-repeat;
+  min-height: 175px;
+  margin-top: -13px;
+  position: relative;
+  z-index: 2000;
+}
+.whiteline{
+  background-image: url("../img/lm-whiteline.svg");
+  background-repeat: no-repeat;
+  min-height: 80px;
+  margin-top: -28px;
+  position: relative;
+  z-index: 2000;
 }
 .special-position{
   position: relative;
   top: 80px;
+}
+.control-width{
+  max-width: 70%;
+  margin: 0 auto;
+  padding: 50px 0 70px;
+}
+.img-down{
+  position: relative;
+  z-index: -20;
 }
 
 /*HOME 0*/
@@ -292,8 +342,8 @@ h6{
 #banner{
   min-height: 380px;
 }
-#que-es{
-  padding: 30px 0 70px;
+#about{
+  padding: 50px 0 80px;
 }
 p.bajada{
   font-size: 18px;
@@ -304,6 +354,16 @@ p.aviso{
   line-height: 26px;
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
+}
+#join{
+  margin-top: -162px;
+}
+#enter{
+  padding: 20px 0 80px;
+  margin-bottom: -150px;
+}
+#proposals{
+  padding: 40px 0 60px;
 }
 #contact{
   padding: 30px 0 80px;
@@ -1010,6 +1070,9 @@ hr{
 }
 .material-download{
   height: 60px;
+}
+#materiales{
+  margin-top: -120px;
 }
 
 /*MODALS*/

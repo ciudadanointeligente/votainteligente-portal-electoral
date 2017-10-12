@@ -13,11 +13,28 @@ class CandidacyContactAdmin(admin.ModelAdmin):
                     'used_by_candidate')
     search_fields = ['candidate__name', "candidate__elections__name", 'mail']
 
+    actions = ['send_mail_candidate']
+
+    def send_mail_candidate(self, request, queryset):
+        for contact in queryset.all():
+            contact.send_mail_with_user_and_password()
+    send_mail_candidate.short_description = u"Mail estos contactos con usuario y password"
+
 
 @admin.register(Candidacy)
 class CandidacyAdmin(admin.ModelAdmin):
-    list_display = ('user', 'candidate', 'created', 'updated')
+    list_display = ('user', 'candidate', 'get_last_log_in', 'get_commited')
+    search_fields = ['candidate__name', "candidate__elections__name"]
 
+    def get_last_log_in(self, candidacy):
+        return candidacy.user.last_login
+
+    def get_commited(self, candidacy):
+        return candidacy.candidate.commitments.exists()
+
+
+    get_last_log_in.admin_order_field = 'user__last_login'
+    get_commited.boolean = True
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):

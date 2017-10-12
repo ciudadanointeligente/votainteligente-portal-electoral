@@ -10,6 +10,7 @@ from images.models import Image, HasImageMixin
 from popolo.models import Organization as PopoloOrganization
 from django.contrib.contenttypes.fields import GenericRelation
 from backend_candidate.models import unite_with_candidate_if_corresponds
+import uuid
 
 
 class Profile(models.Model):
@@ -24,6 +25,13 @@ class Profile(models.Model):
     first_time_in_backend_citizen = models.BooleanField(default=False)
     is_organization = models.BooleanField(default=False)
     is_journalist = models.BooleanField(default=False)
+    unsubscribed = models.BooleanField(default=False,
+                                       verbose_name= _(u'No quiero recibir noticias sobre las propuestas que me gustan'))
+    unsubscribe_token = models.UUIDField(default=uuid.uuid4)
+
+    def get_unsubscribe_url(self):
+        return reverse('backend_citizen:unsuscribe',
+                      kwargs={'token': self.unsubscribe_token})
 
 
 @receiver(post_save, sender=User, dispatch_uid="create_user_profile")

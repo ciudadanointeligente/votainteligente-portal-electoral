@@ -13,7 +13,7 @@ from backend_citizen.forms import (UserChangeForm,
                                    OrganizationCreationForm,
                                    GroupCreationForm)
 from django.contrib.auth.models import User
-from backend_citizen.models import Organization
+from backend_citizen.models import Organization, Profile
 from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -80,6 +80,24 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('backend_citizen:index')
+
+class UpdateSubscription(UpdateView):
+    model = Profile
+    template_name = 'backend_citizen/update_subscription.html'
+    slug_url_kwarg = 'token'
+    slug_field = 'unsubscribe_token'
+    fields = ['unsubscribed',]
+
+    def get_success_url(self):
+        return reverse('backend_citizen:already_unsuscribed',
+                        kwargs={'token': self.object.unsubscribe_token})
+
+
+class AlreadyUnsubscribed(DetailView):
+    model = Profile
+    template_name = 'backend_citizen/already_unsuscribed.html'
+    slug_url_kwarg = 'token'
+    slug_field = 'unsubscribe_token'
 
 
 class OrganizationDetailView(DetailView):

@@ -6,7 +6,7 @@ import time
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        for area in Area.objects.all():
+        for area in Area.objects.exclude(elections__candidates__isnull=True):
             self.stdout.write('Enviando mails a los candidatos de ' + area.name)
             send_user_to_candidate_from(area)
             time.sleep(1)

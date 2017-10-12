@@ -107,32 +107,31 @@ class OrganizationTemplate(models.Model):
         return reverse('organization_profiles:home', kwargs={'slug': self.organization.username})
 
     def get_shared_image(self):
+        base = Image.open('votai_general_theme/static/img/plantilla_org.png').convert('RGBA')
+
+        montserrat_n_propuesta = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 16)
+        arvo_titulo = ImageFont.truetype("votai_general_theme/static/fonts/Arvo-Bold.ttf", 60)
+        montserrat_autor = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 22)
         bg_color = self.primary_color
-        bg_image = Image.open(self.background_image)
-        logo = Image.open(self.logo)
-        logo = logo.copy().convert('RGBA')
-
-        width, height = bg_image.size
-
-        left = (width - 600)/2
-        top = (height - 1200)/2
-        right = (width + 600)/2
-        bottom = (height + 1200)/2
-
-        # output = BytesIO()
-        # bg_image.crop((left, top, right, bottom))
-        # bg_image.save(output, format='JPEG', quality=100)
-        # output.seek(0)
-
+        output = BytesIO()
+        output.seek(0)
         h = bg_color.lstrip('#')
         rgb_color = tuple(int(h[i:i+2], 16) for i in (0, 2 ,4))
         rgb_color = rgb_color+(0,)
-        
         img_org = Image.new('RGBA',(1200,630),rgb_color)
-        # img_org = img_org.paste(logo,(0,0))
-        
+        if self.logo:
+            logo = Image.open(self.logo)
+            logo = logo.copy().convert('RGBA')
+            base.paste(logo,(0,0))
+        if self.background_image:
+            bg_image = Image.open(self.background_image)
+            width, height = bg_image.size
+            bg_image.thumbnail((width, height), Image.ANTIALIAS)
+            
+            bg_image.crop((0,0,width, 0))
+            base.paste(bg_image,(0,0))
 
-        return img_org
+        return base
 
     def ogp_image(self):
         site = Site.objects.get_current()

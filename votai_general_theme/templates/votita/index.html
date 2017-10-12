@@ -57,7 +57,7 @@
         <h3>Ingresa las propuestas de un encuentro</h3>
         <p class="aviso"><b>¿Fuiste moderador o moderadora de un encuentro?</b></p>
         <p class="bajada">Ingresa los resultados</p>
-        <div><a class="btn btn-blue-line" href="{% url 'votita:create_gathering' %}" target="_blank" onclick="ga('send', 'event', 'home-formulario-inscripcion', 'click')">Ingresar propuestas</a></div>
+        <div><a class="btn btn-blue-line" href="{% url 'votita:create_gathering' %}" target="_blank" onclick="ga('send', 'event', 'home-ingresar-propuestas', 'click')">Ingresar propuestas</a></div>
         <img src="{% static 'img/lm-yellow-nna.svg' %}" class="img-responsive img-down">
       </div>
     </div>
@@ -71,7 +71,7 @@
       <div class="col-md-8 col-md-offset-2 text-center">
         <h3>Conoce y apoya propuestas</h3>
         <p class="aviso"><b>¡Conoce y apoya las propuestas que otros niños, niñas y adolescentes han generado!</b></p>
-        <div><a class="btn btn-default" href="{% url 'votita:list_proposals' %}" target="_blank" onclick="ga('send', 'event', 'home-formulario-inscripcion', 'click')">Ver todas las propuestas</a></div>
+        <div><a class="btn btn-default" href="{% url 'votita:list_proposals' %}" target="_blank" onclick="ga('send', 'event', 'home-ver-propuestas', 'click')">Ver todas las propuestas</a></div>
       </div>
     </div>
     {% if featured_proposals.count %}

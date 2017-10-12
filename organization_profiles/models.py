@@ -126,25 +126,31 @@ class OrganizationTemplate(models.Model):
         if self.logo:
             logo = Image.open(self.logo)
             logo = logo.copy().convert('RGBA')
-            base.paste(logo,(0,0))
+            base.paste(logo,(81,133))
+        else:
+            txt = Image.new('RGBA', base.size, (122,183,255,0))
+
+            d = ImageDraw.Draw(txt)
+
+            lines = textwrap.wrap(self.title, width=30)
+            max_lines = 5
+            if len(lines) > max_lines:
+                last_line = lines[max_lines - 1] + u'...'
+                lines = lines[0:max_lines]
+                lines[max_lines - 1] = last_line
+
+            title = '\n'.join(lines)
+
+            fg_color = self.secondary_color
+            h = fg_color.lstrip('#')
+            rgb_color = tuple(int(h[i:i+2], 16) for i in (0, 2 ,4))
+            rgb_color = rgb_color
+            d.multiline_text((81,133), title, font=arvo_titulo, fill=rgb_color)
+
+            base = Image.alpha_composite(base, txt)
+            
         base.paste(plantilla, (0,0), plantilla)
-        txt = Image.new('RGBA', base.size, (122,183,255,0))
-
-        d = ImageDraw.Draw(txt)
-
-        lines = textwrap.wrap(self.title, width=30)
-        max_lines = 5
-        if len(lines) > max_lines:
-            last_line = lines[max_lines - 1] + u'...'
-            lines = lines[0:max_lines]
-            lines[max_lines - 1] = last_line
-
-        title = '\n'.join(lines)
-
-        d.multiline_text((81,133), title, font=arvo_titulo, fill=(rgb_color[0],rgb_color[1],rgb_color[2],255))
-
-        out = Image.alpha_composite(base, txt)
-        return out
+        return base
 
     def ogp_image(self):
         site = Site.objects.get_current()

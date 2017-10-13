@@ -24,7 +24,7 @@
     <meta name="twitter:site" content="@ciudadanoi">
     <meta name="twitter:creator" content="@ciudadanoi">
     <meta name="twitter:title" content="{% if title %}{{title}}{% else %}{{organization}}{% endif %}">
-    <meta name="twitter:description" content="Revisa sus propuestas">
+    <meta name="twitter:description" content="Revisa las propuestas para los candidatos a estas elecciones de {% if title %}{{title}}{% else %}{{organization}}{% endif %} en VotaInteligente.cl">
     <meta name="twitter:image" content="{{organization.organization_template.ogp_image}}">
     {% endblock ogp %}
     <meta property="fb:app_id" content="{{ config.WEBSITE_OGP_APP_ID }}">

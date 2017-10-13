@@ -152,7 +152,6 @@
       </tr>
     </thead>
     <tbody>
-    {{stats.organizations}}
       {% for org in stats.organizations %}
       <tr {% if org.proposals.count or org.likes.count %}class="success"{% endif %}>
         <td>

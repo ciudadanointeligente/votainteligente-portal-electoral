@@ -117,7 +117,7 @@ class OrganizationTemplate(models.Model):
         output.seek(0)
         h = bg_color.lstrip('#')
         rgb_color = tuple(int(h[i:i+2], 16) for i in (0, 2 ,4))
-        rgb_color = rgb_color+(0,)
+        rgb_color = rgb_color
         base = Image.new('RGBA',(1200,630),rgb_color)
         if self.background_image:
             bg_image = Image.open(self.background_image)
@@ -130,7 +130,8 @@ class OrganizationTemplate(models.Model):
             txt = Image.new('RGBA', base.size, (122,183,255,0))
 
             d = ImageDraw.Draw(txt)
-
+            if not self.title:
+                self.title = self.organization.get_full_name()
             lines = textwrap.wrap(self.title, width=30)
             max_lines = 5
             if len(lines) > max_lines:

@@ -25,7 +25,7 @@
 
 <h4 class="page-header">Propuestas por clasificación</h4>
 <div class="table-responsive">
-  <table class="table table-stripped">
+  <table class="table table-striped">
       <thead>
         <tr>
           <th>Categoría</th>
@@ -46,7 +46,7 @@
 </div>
 
 {% comment %}
-<table class="table table-stripped">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Nro</th>
@@ -82,7 +82,7 @@
 </table>
 
 <h4 class="page-header">Por Alcaldes:</h4>
-<table class="table table-stripped">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Nro</th>
@@ -110,7 +110,7 @@
 </table>
 
 <h4 class="page-header">Por concejal:</h4>
-<table class="table table-stripped">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Nro</th>
@@ -140,7 +140,7 @@
 
 <div class="table-responsive">
   <h4 class="page-header">Organizaciones</h4>
-  <table class="table table-stripped">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>Logo</th>
@@ -152,7 +152,6 @@
       </tr>
     </thead>
     <tbody>
-    {{stats.organizations}}
       {% for org in stats.organizations %}
       <tr {% if org.proposals.count or org.likes.count %}class="success"{% endif %}>
         <td>

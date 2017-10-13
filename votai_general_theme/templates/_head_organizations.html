@@ -16,7 +16,7 @@
 
     <meta property="og:title" content="{% if title %}{{title}}{% else %}{{organization}}{% endif %}">
     <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
-    <meta property="og:url" content="https://{% url_domain %}">
+    <meta property="og:url" content="https://{% url_domain %}{{organization.organization_template.get_absolute_url}}">
     <meta property="og:image" content="{{organization.organization_template.ogp_image}}">
     <meta property="og:description" content="Revisa sus propuestas">
 

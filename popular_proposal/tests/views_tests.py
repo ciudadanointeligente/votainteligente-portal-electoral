@@ -62,7 +62,7 @@ class ProposalViewTestCase(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertEqual(response.context['popular_proposal'], popular_proposal)
         self.assertTemplateUsed(response, 'popular_proposal/detail.html')
-
+    
     def test_detail_redirect_view(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
                                                           area=self.algarrobo,
@@ -374,3 +374,25 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         detail_url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
                                                                      'proposal_slug': self.popular_proposal1.slug})
         self.assertRedirects(response_post, detail_url)
+
+    def test_ayuranos_per_proposal(self):
+        election = Election.objects.get(id=self.candidate.election.id)
+        election.candidates_can_commit_everywhere = True
+        election.save()
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.algarrobo,
+                                                          data=self.data,
+                                                          title=u'This is a title'
+                                                          )
+        Commitment.objects.create(candidate=self.candidate,
+                                  proposal=popular_proposal,
+                                  commited=True)
+        # no need to be logged in
+        url = reverse('popular_proposals:ayuranos', kwargs={'slug': popular_proposal.slug})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.context['popular_proposal'], popular_proposal)
+        self.assertTemplateUsed(response, 'popular_proposal/ayuranos.html')
+        candidates = response.context['candidates']
+        self.assertIn(self.candidate2, candidates.all())
+        self.assertNotIn(self.candidate, candidates.all())

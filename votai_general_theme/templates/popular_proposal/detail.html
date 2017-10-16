@@ -205,6 +205,10 @@ $(function(){
         <label>Comparte esta propuesta</label>
         <div class="share-detail">
           {% include 'popular_proposal/_share.html' with proposal=popular_proposal next_url=request.path %}
+          {% if config.MOSTRAR_AYUDANOS_PROPUESTA %}
+          <div id="btn-difunde" class="text-center"><a href="{% url 'popular_proposals:ayuranos' slug=popular_proposal.slug%}" class="btn btn-blue" onclick="ga('send','event','ayudanos-proposal','click')">Ayúdanos a difundir nuestras propuestas entre las candidaturas</a>
+          </div>
+          {% endif %}
         </div>
         {% if popular_proposal.sponsoring_orgs.all %}
         <hr>

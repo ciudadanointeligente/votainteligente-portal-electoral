@@ -19,6 +19,9 @@
     {% for candidate in election.candidates.all %}
     <div class="col-md-3">
       <div class="panel-heading">
+        {% if candidate.commitments.count %}
+        <img src="{% static 'img/comprometido.jpg' %}" alt="comprometido" class="comprometido">
+        {% endif %}
         {% if candidate.image %}
         {% thumbnail candidate.image "300x300" crop="center" as im %}
           <a href="{{candidate.get_absolute_url}}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive img-circle" itemprop="image" /></a>

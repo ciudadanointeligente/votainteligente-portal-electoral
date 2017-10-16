@@ -28,6 +28,7 @@ from popular_proposal.models import (Commitment,
                                      )
 from popolo.models import ContactDetail
 from elections.models import PersonalData
+from django.core.management import call_command
 
 
 class IncrementalsTestCase(ProposingCycleTestCaseBase):
@@ -95,3 +96,161 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
         candidates = f.get_candidates()
         self.assertIn(fiera_candidata, candidates)
         self.assertNotIn(benito_candidato, candidates)
+
+    def test_send_mail_per_candidate(self):
+        e = Election.objects.first()
+        damian_candidato = Candidate.objects.create(name='Jefe!')
+        damian_candidato.elections.add(e)
+        d_1 = User.objects.create(username='d1', email='damian1@perrito.cl')
+        d_2 = User.objects.create(username='d2', email='damian2@perrito.cl')
+        Candidacy.objects.create(candidate=damian_candidato, user=d_1)
+        Candidacy.objects.create(candidate=damian_candidato, user=d_2)
+        PersonalData.objects.create(candidate=damian_candidato, label='Pacto', value="Frente Amplio")
+
+        fiera_candidata = Candidate.objects.create(name='Fiera Feroz la mejor candidata del mundo!')
+        fiera_candidata.elections.add(e)
+        PersonalData.objects.create(candidate=fiera_candidata, label='Pacto', value="Frente Amplio")
+        f_1 = User.objects.create(username='f1', email='mail1@perrito.cl')
+        f_2 = User.objects.create(username='f2', email='mail2@perrito.cl')
+        Candidacy.objects.create(candidate=fiera_candidata, user=f_1)
+        Candidacy.objects.create(candidate=fiera_candidata, user=f_2)
+
+        benito_candidato = Candidate.objects.create(name='Beni el mejor del mundo!')
+        PersonalData.objects.create(candidate=benito_candidato, label='Pacto', value="Otro Pacto")
+        CandidacyContact.objects.create(candidate=benito_candidato,
+                                        mail='mail3@perrito.cl')
+        
+        CandidacyContact.objects.create(candidate=benito_candidato,
+                                        mail='mail4@perrito.cl')
+
+        filter_qs = {'personal_datas__label': "Pacto", "personal_datas__value": u"Frente Amplio"}
+        exclude_qs = {'elections__position': "Presidenta o Presidente"}
+        f = IncrementalsCandidateFilter.objects.create(filter_qs=filter_qs,
+                                                       exclude_qs=exclude_qs,
+                                                       text=u"te querimos musho\n\rsaltode linea",
+                                                       name=u"Candidatos al parlamento de Frente Amplio")
+        p1 = PopularProposal.objects.create(proposer=self.feli,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title1'
+                                            )
+        p2 = PopularProposal.objects.create(proposer=self.feli,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title1'
+                                            )
+        ProposalSuggestionForIncremental.objects.create(incremental=f,
+                                                        proposal=p1)
+        ProposalSuggestionForIncremental.objects.create(incremental=f,
+                                                        proposal=p2)
+        context = f.get_mail_context()
+        self.assertIn(p1, context['proposals'].all())
+        self.assertIn(p2, context['proposals'].all())
+
+        # Jefe comprometido y enamorado
+        Commitment.objects.create(candidate=damian_candidato,
+                                  proposal=p1,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
+        propuestas_for_damian = f.get_proposals_for_candidate(damian_candidato)
+        self.assertNotIn(p1, propuestas_for_damian)
+        self.assertIn(p2, propuestas_for_damian)
+        propuestas_for_fiera = f.get_proposals_for_candidate(fiera_candidata)
+        self.assertIn(p1, propuestas_for_fiera)
+        self.assertIn(p2, propuestas_for_fiera)
+        
+        context_for_damian = f.get_context_for_candidate(damian_candidato)
+        expected_context_for_d = {"candidate": damian_candidato,
+                                  "proposals": propuestas_for_damian,
+                                  "text": f.text}
+        self.assertEquals(context_for_damian, expected_context_for_d)
+
+        original_amount_of_mails = len(mail.outbox)
+        f.send_mails()
+
+        self.assertEquals(len(mail.outbox), original_amount_of_mails + 4)
+        first_email = mail.outbox[original_amount_of_mails]
+        possible_emails_that_could_have_been_used = [d_1.email,
+                                                     d_2.email,
+                                                     f_1.email,
+                                                     f_2.email]
+        self.assertIn(first_email.to[0], possible_emails_that_could_have_been_used)
+
+    def test_command_line(self):
+        e = Election.objects.first()
+        damian_candidato = Candidate.objects.create(name='Jefe!')
+        damian_candidato.elections.add(e)
+        d_1 = User.objects.create(username='d1', email='damian1@perrito.cl')
+        d_2 = User.objects.create(username='d2', email='damian2@perrito.cl')
+        Candidacy.objects.create(candidate=damian_candidato, user=d_1)
+        Candidacy.objects.create(candidate=damian_candidato, user=d_2)
+        PersonalData.objects.create(candidate=damian_candidato, label='Pacto', value="Frente Amplio")
+
+        fiera_candidata = Candidate.objects.create(name='Fiera Feroz la mejor candidata del mundo!')
+        fiera_candidata.elections.add(e)
+        PersonalData.objects.create(candidate=fiera_candidata, label='Pacto', value="Frente Amplio")
+        f_1 = User.objects.create(username='f1', email='mail1@perrito.cl')
+        f_2 = User.objects.create(username='f2', email='mail2@perrito.cl')
+        Candidacy.objects.create(candidate=fiera_candidata, user=f_1)
+        Candidacy.objects.create(candidate=fiera_candidata, user=f_2)
+
+        benito_candidato = Candidate.objects.create(name='Beni el mejor del mundo!')
+        PersonalData.objects.create(candidate=benito_candidato, label='Pacto', value="Otro Pacto")
+        CandidacyContact.objects.create(candidate=benito_candidato,
+                                        mail='mail3@perrito.cl')
+        
+        CandidacyContact.objects.create(candidate=benito_candidato,
+                                        mail='mail4@perrito.cl')
+
+        filter_qs = {'personal_datas__label': "Pacto", "personal_datas__value": u"Frente Amplio"}
+        exclude_qs = {'elections__position': "Presidenta o Presidente"}
+        f = IncrementalsCandidateFilter.objects.create(filter_qs=filter_qs,
+                                                       exclude_qs=exclude_qs,
+                                                       text=u"te querimos musho\n\rsaltode linea",
+                                                       name=u"Candidatos al parlamento de Frente Amplio")
+        p1 = PopularProposal.objects.create(proposer=self.feli,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title1'
+                                            )
+        p2 = PopularProposal.objects.create(proposer=self.feli,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title1'
+                                            )
+        ProposalSuggestionForIncremental.objects.create(incremental=f,
+                                                        proposal=p1)
+        ProposalSuggestionForIncremental.objects.create(incremental=f,
+                                                        proposal=p2)
+        context = f.get_mail_context()
+        self.assertIn(p1, context['proposals'].all())
+        self.assertIn(p2, context['proposals'].all())
+
+        # Jefe comprometido y enamorado
+        Commitment.objects.create(candidate=damian_candidato,
+                                  proposal=p1,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
+        propuestas_for_damian = f.get_proposals_for_candidate(damian_candidato)
+        self.assertNotIn(p1, propuestas_for_damian)
+        self.assertIn(p2, propuestas_for_damian)
+        propuestas_for_fiera = f.get_proposals_for_candidate(fiera_candidata)
+        self.assertIn(p1, propuestas_for_fiera)
+        self.assertIn(p2, propuestas_for_fiera)
+        
+        context_for_damian = f.get_context_for_candidate(damian_candidato)
+        expected_context_for_d = {"candidate": damian_candidato,
+                                  "proposals": propuestas_for_damian,
+                                  "text": f.text}
+        self.assertEquals(context_for_damian, expected_context_for_d)
+
+        original_amount_of_mails = len(mail.outbox)
+
+        call_command("send_all_filters_to_candidates")
+        self.assertEquals(len(mail.outbox), original_amount_of_mails + 4)
+        first_email = mail.outbox[original_amount_of_mails]
+        possible_emails_that_could_have_been_used = [d_1.email,
+                                                     d_2.email,
+                                                     f_1.email,
+                                                     f_2.email]
+        self.assertIn(first_email.to[0], possible_emails_that_could_have_been_used)

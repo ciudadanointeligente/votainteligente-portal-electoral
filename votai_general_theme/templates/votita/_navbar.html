@@ -16,9 +16,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'votita:materiales' %}">Materiales</a></li>
-        <li><a href="{% url 'votita:create_gathering' %}">Ingresar propuestas</a></li>
-        <li><a href="{% url 'votita:list_proposals' %}">Todas las propuestas</a></li>
+        <li><a href="{% url 'votita:materiales' %}" onclick="ga('send', 'event', 'menu-materiales', 'click')">Materiales</a></li>
+        <li><a href="{% url 'votita:create_gathering' %}" onclick="ga('send', 'event', 'menu-crear-encuentro', 'click')">Ingresar propuestas</a></li>
+        <li><a href="{% url 'votita:list_proposals' %}" onclick="ga('send', 'event', 'menu-ver-propuestas', 'click')">Todas las propuestas</a></li>
         {% url "votita_auth:login" as login_url %}
         {% include "_dropdown_user.html" with user=user login_url=login_url %}
       </ul>

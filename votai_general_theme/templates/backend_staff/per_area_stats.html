@@ -10,10 +10,8 @@
 <h1>Las instituciones van a intentar preservar el problema para el cual ellas son la solución</h1>
 <h2>Los números por comuna:</h2>
 
-<h3>Le cuento que le tenimoh:</h3>
-<span>Esta página podría tener un desfase de hasta 500 segundos.</span>
 <div class="table-responsive">
-  <table class="table">
+  <table class="table table-striped">
   	<thead>
       <tr>
         <th>Comuna</th>
@@ -21,33 +19,25 @@
         <th>Promesas Ciudadanas totales</th>
         <th>Compromisos</th>
         <th>Candidatos</th>
-        <th>1/2 Naranja Alcaldes</th>
-        <th>1/2 Naranja concejales</th>
       </tr>
     </thead>
     <tbody>
-    	{% cache 500 comunas %}
-    	{% for id, stats_per_area in stats.items %}
+    {% cache 500 comunas %}
+    {% for id, stats_per_area in stats.items %}
+      {% if stats_per_area.area.candidates.count %}
       <tr class="{% if stats_per_area.area|is_marked_area %}success{% endif %}">
         <td><a href="{{ stats_per_area.area.get_absolute_url }}">{{ stats_per_area.area }}</a></td>
-        <td>{{ stats_per_area.proposals__for_all_areas__.count }}
-        </td>
-        <td>{{ stats_per_area.proposals.count }}
-
-        </td>
-        <td>{{ stats_per_area.commitments.count }}
-        
-        </td>
-        <td>{{stats_per_area.commiters.count}}/ {{stats_per_area.area.candidates.count}}
-        
-        </td>
-        <td>{{stats_per_area.candidates_that_have_12_naranja__alcalde.count}}/{{stats_per_area.total_candidates__alcalde.count}}</td>
-        <td>{{stats_per_area.candidates_that_have_12_naranja__concejal.count}}/{{stats_per_area.total_candidates__concejal.count}}</td>
+        <td>{{ stats_per_area.proposals__for_all_areas__.count }}</td>
+        <td>{{ stats_per_area.proposals.count }}</td>
+        <td>{{ stats_per_area.commitments.count }}</td>
+        <td>{{stats_per_area.commiters.count}}/ {{stats_per_area.area.candidates.count}}</td>
+        <!--td>{{stats_per_area.candidates_that_have_12_naranja__alcalde.count}}/{{stats_per_area.total_candidates__alcalde.count}}</td>
+        <td>{{stats_per_area.candidates_that_have_12_naranja__concejal.count}}/{{stats_per_area.total_candidates__concejal.count}}</td-->
       </tr>
-      	{% endfor %}
-      	{% endcache %}
+      {% endif %}
+    {% endfor %}
+    {% endcache %}
     </tbody>
-
   </table>
  </div>
 {% endblock content %}

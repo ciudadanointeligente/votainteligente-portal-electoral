@@ -5,6 +5,8 @@ from django.core.urlresolvers import reverse
 from organization_profiles.models import OrganizationTemplate, ExtraPage, LOGO_SIZE
 from popular_proposal.models import PopularProposal, ProposalLike
 from django.test import override_settings
+from elections.models import Candidate
+from django.contrib.sites.models import Site
 
 
 class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
@@ -109,6 +111,17 @@ class OrganizationTemplateTestCase(BackendCitizenTestCaseBase):
         fiera.profile.save()
         self.assertFalse(OrganizationTemplate.objects.filter(organization=fiera))
         self.assertIn(str(self.user), str(template))
+
+    def test_get_image(self):
+        self.user.first_name = 'Fundacion'
+        self.user.last_name = 'Ciudadano Inteligente'
+        self.user.profile.is_organization = True
+        self.user.profile.save()
+        #  Acá se crea un OrganizationTemplate
+        # y se crea porque en la linea anterior le dijimos que la wea era organización
+        template = OrganizationTemplate.objects.get(organization=self.user)
+        self.assertTrue(template.get_shared_image())
+        self.assertTrue(template.ogp_image())
 
     def test_change_image_size(self):
         self.user.first_name = 'Fundacion'
@@ -273,3 +286,18 @@ class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
 
         self.assertIn(popular_proposal.title, content)
         self.assertIn(popular_proposal2.title, content)
+
+    def test_get_ayuranos(self):
+        first_candidate = Candidate.objects.first()
+        popular_proposal = PopularProposal.objects.create(proposer=self.user,
+                                                          area=self.arica,
+                                                          data={"name": "FieraFeroz"},
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+
+        url = reverse('organization_profiles:ayuranos', kwargs={'slug': self.user.username})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'organization_profiles/ayuranos.html')
+        self.assertIn(first_candidate, response.context['candidates'])

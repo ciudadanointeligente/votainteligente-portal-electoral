@@ -15,6 +15,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.conf import settings
+from votainteligente.views import HomeViewBase
 
 
 wizard_form_list = get_form_list(wizard_forms_fields=wizard_forms_fields)
@@ -142,3 +143,13 @@ class ProposalDetailView(DetailView):
     model = KidsProposal
     template_name = "votita/detalle_propuesta.html"
     context_object_name = 'proposal'
+
+class HomeView(HomeViewBase):
+    template_name="votita/index.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        featured_proposals = KidsProposal.objects.filter(featured=True)
+        #cache.set('featured_proposals', featured_proposals, 600)
+        context['featured_proposals'] = featured_proposals
+        return context

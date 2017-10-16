@@ -43,6 +43,9 @@
     <div class="row content_padding">
       <div class="col-md-2 col-sm-2 col-xs-12">
           <div id="candidate-img-profile">
+            {% if candidate.commitments.count == 0 %}
+            <img src="{% static 'img/comprometido.jpg' %}" alt="comprometido" class="comprometido">
+            {% endif %}
             {% if candidate.image %}
               {% thumbnail candidate.image "300x300" crop="center" as im %}
                   <img src="{{ im.url }}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive img-circle img-candidato" itemprop="image">

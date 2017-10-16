@@ -1,30 +1,18 @@
-Hola {{contact.candidate.name}}
+Hola 
 
-Te escribimos para reiterarte nuestra invitación a participar de http://Votainteligente.cl, plataforma de la Fundación Ciudadano Inteligente que busca acercar a candidatas/os con la ciudadanía en estas próximas elecciones. http://Votainteligente.cl recibe propuestas ciudadanas y de organizaciones de la sociedad civil de todo el país a las cuales las candidaturas pueden comprometerse en la misma plataforma.
+Te escribimos en tu calidad de jefe de campaña de {{contact.candidate.name}}, para invitarlos a participar de http://Votainteligente.cl, plataforma de la Fundación Ciudadano Inteligente que busca acercar a candidatas/os con la ciudadanía en estas próximas elecciones. 
 
-Para facilitar este encuentro, es que creamos un perfil básico sobre tu candidatura en el sitio, al que puedes acceder para contactarte con tus electores, darles información, promover tus ideas y apoyar las de la ciudadanía.
+http://Votainteligente.cl es una plataforma, SIN COSTO ASOCIADO, que recibe propuestas ciudadanas y de la sociedad civil en el marco de las elecciones presidenciales y parlamentarias de este año.
 
-VotaInteligente.cl lleva más de 14 ediciones en Chile y Latinoamérica. Su última edición en Chile recibió más de 200.000 votantes que buscan información para saber por quién votar y poder contactarse con las candidaturas.
+Cada candidatura cuenta con un perfil básico, al que puede acceder para difundir información sobre su campaña y comprometerse con aquellas propuestas ciudadanas que le sean afines.
 
-  -http://VotaInteligente.cl NO tiene costo asociado.
+Con fecha 3 de octubre enviamos a los correos de todos los candidatos y candidatas la información para acceder a la plataforma y completar su perfil, pero hemos querido facilitar su participación entregandote acceso a ti al perfil de tu candidatura. Si ya están participando de la plataforma, desde acá podrn seguir actualizando la información y comprometiéndose con propuestas.
 
-¿Cómo entrar a tu perfil?
+¿Cómo entrar al perfil?
 Solo debes ingresar a {{login_url}} con el siguiente usuario y contraseña (puedes modificarla ingresando en el sitio).
 
 **Tu usuario es: {{contact.candidacy.user.username}}
 **Tu contraseña es: {{contact.initial_password}}
-
-¿Qué puedes hacer con tu perfil en VotaInteligente?
-
-    -Darte a conocer: Puedes agregar a tu perfil tus cargos públicos previos y otros antecedentes que quieras compartir con tus electores.
-
-    -Ser la media naranja política de las y los votantes: Pronto te enviaremos un cuestionario para compartir tu postura política respecto a temas cruciales. Quienes entren al sitio podrán responder las mismas preguntas y ver con qué candidatura son más afines en relación a su programa y respuestas. 
-OJO: si no contestas, no podrás ser la media naranja política de ningún usuario.
-
-    -Entérate de las ideas y demandas de tus electores y apóyalas públicamente: Ingresando con tu usuario podrás leer lo que propone la ciudadanía y comprometerte con las ideas que podrías llevar a cabo en caso de salir electa/o.
-
-  Más información: 
-VotaInteligente.cl es una iniciativa de la fundación apartidista y sin fines de lucro Ciudadano Inteligente, puedes revisar nuestro financiamiento y quiénes son los que trabajan para este y otros proyectos en nuestra página web https://ciudadanointeligente.org.
 
 Si quieres que utilicemos otra dirección de correo electrónico para comunicarnos contigo o con otra persona de tu comando encargada de estos temas, puedes responder a este mismo mail con su contacto y cualquier otra duda que tengas.
 

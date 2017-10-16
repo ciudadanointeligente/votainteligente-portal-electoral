@@ -19,7 +19,7 @@
     {% for candidate in election.candidates.all %}
     <div class="col-md-3">
       <div class="panel-heading">
-        {% if candidate.commitments.count %}
+        {% if candidate.commitments.count == 0 %}
         <img src="{% static 'img/comprometido.jpg' %}" alt="comprometido" class="comprometido">
         {% endif %}
         {% if candidate.image %}

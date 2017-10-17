@@ -17,10 +17,9 @@ $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
 {% if not hidden_search %}
-    {% if form_type %}
-      {% include 'popular_proposal/_filter_form.html' %}
-    {% else %}
-      {% include 'popular_proposal/_filter_tag_form.html' %}
+    {% include 'popular_proposal/_filter_tag_form.html' %}
+    {% if form.is_filled_search %}
+    {% include 'popular_proposal/_filter_form.html' %}
     {% endif %}
 {% endif %}
 <!-- inicio grid -->
@@ -39,6 +38,7 @@ $('[data-toggle="tooltip"]').tooltip();
         <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark">Crear nueva propuesta</a></div>
       {% endif %}
       {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
+      <!--
       <div class="row hidden-xs">
         <div class="col-md-6 col-md-offset-3">
           <div class="alert alert-info text-center" role='alert'>
@@ -49,6 +49,7 @@ $('[data-toggle="tooltip"]').tooltip();
           </div>
         </div>
       </div>
+      -->
     {% endif %}
   {% endif %}
 

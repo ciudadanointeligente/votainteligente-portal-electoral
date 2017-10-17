@@ -27,7 +27,17 @@
   {% bootstrap_field form.image %}
   {% for field in form %}
     {% ifnotequal field.name 'image' %}
-      {% bootstrap_field field %}
+
+      {% ifequal field.name 'program_link' %}
+        {% ifequal candidate.election.position 'Presidenta o Presidente' %}
+          {% bootstrap_field field %}
+        {% else %}
+          {% bootstrap_label "Link a tus ideas y planteamientos" %}
+          {% bootstrap_field field show_label=False %}
+        {% endifequal %}
+      {% else %}
+        {% bootstrap_field field %}
+      {% endifequal %}
     {% endifnotequal %}
   {% endfor %}
 

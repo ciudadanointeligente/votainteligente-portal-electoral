@@ -1,6 +1,7 @@
 {% load i18n %}
 {% load bootstrap3 %}
 
+aa
 {% if form %}
 <div id="filters" class="container-fluid">
   <div class="container">
@@ -33,7 +34,7 @@
     <form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form" class="hidden-xs hidden-sm">
     <div class="row">
       <div class="col-md-4">{% bootstrap_field form.text %}</div>
-      <!--div class="col-md-3">{% bootstrap_field form.clasification %}</div-->
+      {% bootstrap_field form.clasification %}
       <div class="col-md-4">{% bootstrap_field form.generated_at %}</div>
       <div class="col-md-4">{% bootstrap_field form.order_by %}</div>
       <input type="hidden" id="id_clasification" value="{{request.GET.id_clasification}}">

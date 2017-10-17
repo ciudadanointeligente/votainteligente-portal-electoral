@@ -69,6 +69,7 @@
                 <p class="small-basic"><b>Pacto</b></p>
                 <p>{{pacto.value}}</p>
               </td>
+              {% endif %}
           <tr>
           </tr>
             <td>
@@ -81,10 +82,15 @@
               </ul>
               {% endif %}
             </td>
-
+            {% get_personal_data candidate=candidate personal_data='lupa' as lupa %}
+            {% if lupa %}
+              <td colspan="2">
+                <p class="small-basic"><a target="_blank" href="{{lupa.value}}"><i class="fa fa-money" aria-hidden="true"></i> Aportes y gastos de campaña</a></p>
+              </td>
+              {% endif %}
 
           </tr>
-          {% endif %}
+          
           {% get_personal_data candidate=candidate personal_data='experiencia' as experiencia %}
           {% if experiencia.value %}
           <tr>

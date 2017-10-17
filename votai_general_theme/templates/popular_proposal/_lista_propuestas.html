@@ -38,6 +38,7 @@ $('[data-toggle="tooltip"]').tooltip();
         <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark">Crear nueva propuesta</a></div>
       {% endif %}
       {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
+      <!--
       <div class="row hidden-xs">
         <div class="col-md-6 col-md-offset-3">
           <div class="alert alert-info text-center" role='alert'>
@@ -48,6 +49,7 @@ $('[data-toggle="tooltip"]').tooltip();
           </div>
         </div>
       </div>
+      -->
     {% endif %}
   {% endif %}
 

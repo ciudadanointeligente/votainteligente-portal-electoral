@@ -16,6 +16,7 @@ from django.contrib.auth.models import User
 from django import forms
 from backend_candidate.models import Candidacy
 from popular_proposal.models import PopularProposal, Commitment
+from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from django.test import override_settings
 from django.shortcuts import render
 from constance import config
@@ -540,3 +541,13 @@ class LoginFormsTemplateTags(TestCase):
                                                     )
         context = Context({'popular_proposal': kids_proposal})
         self.assertEquals(template.render(context), kids_proposal.display_card(context))
+
+    def test_proposal_TOPIC_CHOICES(self):
+        expected_r = ""
+        for t in TOPIC_CHOICES:
+            if t[0]:
+                expected_r += u"<" +  t[0] + u"|" + t[1] + u">"
+        template = Template("{% load votainteligente_extras %}{% proposals_topic_choices as classifications %}{% for k,v in classifications %}<{{k}}|{{v}}>{% endfor %}")
+        context = Context({})
+
+        self.assertEquals(template.render(context), expected_r)

@@ -8,7 +8,7 @@ from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from elections.models import Area
 from django.conf import settings
 from constance import config
-from django.forms import CharField, Form, ChoiceField
+from django.forms import CharField, Form, ChoiceField, HiddenInput
 from haystack.query import SearchQuerySet
 
 
@@ -43,6 +43,7 @@ class TextSearchForm(Form):
 class ProposalWithoutAreaFilter(FilterSet):
     clasification = ChoiceFilter(choices=TOPIC_CHOICES,
                                  empty_label=u"Selecciona",
+                                 widget=HiddenInput(),
                                  label=u"Clasificación")
 
     def __init__(self,

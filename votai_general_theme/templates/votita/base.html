@@ -19,9 +19,18 @@
   {% block ogp %}
   <meta property="og:title" content="{{ config.WEBSITE_OGP_TITLE }}">
   <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
-  <meta property="og:url" content="https://{% url_domain %}">
-  <meta property="og:image" content="https://{% url_domain %}{% static 'img/levantalamano-og.png' %}">
+  <meta property="og:url" content="http://{% url_domain %}">
+  <meta property="og:image" content="http://{% url_domain %}{% static 'img/levantalamano-og.png' %}">
   <meta property="og:description" content="{{ config.WEBSITE_OGP_DESCRIPTION }}">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ciudadanoi">
+  <meta name="twitter:creator" content="@ciudadanoi">
+  <meta name="twitter:title" content="{{ config.WEBSITE_OGP_TITLE }}">
+  <meta name="twitter:image" content="http://{% url_domain %}{% static 'img/levantalamano-og.png' %}">
+  <meta name="twitter:description" content="{{ config.WEBSITE_OGP_DESCRIPTION }}">
+
+
   {% endblock ogp %}
   <meta property="fb:app_id" content="{{ config.WEBSITE_OGP_APP_ID }}">
   <!--eoff-->

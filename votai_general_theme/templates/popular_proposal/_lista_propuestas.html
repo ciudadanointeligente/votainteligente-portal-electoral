@@ -3,6 +3,8 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
+{% load el_pagination_tags %}
+
 <!-- Inicio _lista_propuestas -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js"></script>
 <script>
@@ -52,6 +54,7 @@ $('[data-toggle="tooltip"]').tooltip();
   {% endif %}
 
     <div id="posts">
+    {% paginate 30 popular_proposals %}
     {% for proposal in popular_proposals %}
         {% display_proposal_card proposal %}
       {% empty %}
@@ -62,7 +65,9 @@ $('[data-toggle="tooltip"]').tooltip();
         </p>
       {% endblocktrans %}
     {% endfor %}
+
     </div>
+    {% show_pages %}
   </div>
 </div>
 <!-- fin grid -->

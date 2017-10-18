@@ -18,9 +18,7 @@ $('[data-toggle="tooltip"]').tooltip();
 </script>
 {% if not hidden_search %}
     {% include 'popular_proposal/_filter_tag_form.html' %}
-    {% if form.is_filled_search %}
     {% include 'popular_proposal/_filter_form.html' %}
-    {% endif %}
 {% endif %}
 <!-- inicio grid -->
 <div class="container">

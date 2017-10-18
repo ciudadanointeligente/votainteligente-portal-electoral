@@ -5,7 +5,7 @@
 {% load votainteligente_extras %}
 {% load cache %}
 
-{% block title %}- Ayúdanos{% endblock title %}
+{% block title %}- Ayúdanos - {{popular_proposal.title}}{% endblock title %}
 
 {% block navbar %}
 {% endblock navbar %}
@@ -19,7 +19,6 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Lugar</th>
           <th>Candidato</th>
           <th>Twiteale!</th>
         </tr>
@@ -30,11 +29,10 @@
         {% for candidate in candidates.all %}
       {% if candidate.twitter %}
       <tr class="">
-        <td><a href="{{ candidate.area.get_absolute_url }}">{{ candidate.election.area }}</a></td>
         <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
         <td>
-              {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
-          </td>
+          {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
+        </td>
       </tr>
         {% endif %}
       	{% endfor %}

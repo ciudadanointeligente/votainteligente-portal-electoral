@@ -60,7 +60,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.5/masonry.pkgd.min.js"></script>
-    <!--script src="{% static 'js/masonry-script.js' %}"></script-->
+    <script data-cfasync="false" src="{% static 'js/masonry-script.js' %}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.0/chosen.jquery.min.js" type="text/javascript"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.js"></script>
     <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
@@ -88,40 +88,6 @@
            js.src = "//connect.facebook.net/en_US/sdk.js";
            fjs.parentNode.insertBefore(js, fjs);
          }(document, 'script', 'facebook-jssdk'));
-
-        jQuery(window).load(function () {
-        // Takes the gutter width from the bottom margin of .post
-        var gutter = parseInt(jQuery('.post').css('marginBottom'));
-        var container = jQuery('#posts');
-        if( container.length ) {
-          // Creates an instance of Masonry on #posts
-          container.masonry({
-            gutter: gutter,
-            itemSelector: '.post',
-            columnWidth: '.post'
-          });
-          // This code fires every time a user resizes the screen and only affects .post elements
-          // whose parent class isn't .container. Triggers resize first so nothing looks weird.
-          jQuery(window).bind('resize', function () {
-            if (!jQuery('#posts').parent().hasClass('container')) {
-              // Calculates how many .post elements will actually fit per row. Could this code be cleaner?
-              if(typeof post_width !== 'undefined'){
-                posts_per_row = jQuery('#posts').innerWidth() / post_width;
-                floor_posts_width = (Math.floor(posts_per_row) * post_width) - gutter;
-                ceil_posts_width = (Math.ceil(posts_per_row) * post_width) - gutter;
-                posts_width = (ceil_posts_width > jQuery('#posts').innerWidth()) ? floor_posts_width : ceil_posts_width;
-                if (posts_width == jQuery('.post').width()) {
-                  posts_width = '100%';
-                }
-                // Ensures that all top-level elements have equal width and stay centered
-                jQuery('#posts, #grid').css('width', posts_width);
-                jQuery('#grid').css({'margin': '0 auto'});
-              }
-            }
-          }).trigger('resize');
-        }
-      });
-
       </script>
       <div>
         {% include '_navbar.html' %}

@@ -89,8 +89,11 @@ class HomeView(HomeViewBase):
         return context
 
 
-class ElectionDetailView(DetailView):
+class ElectionDetailViewBase(DetailView):
     model = Election
+
+
+class ElectionDetailView(ElectionDetailViewBase):
 
     def get_context_data(self, **kwargs):
         context = super(ElectionDetailView, self).get_context_data(**kwargs)

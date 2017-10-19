@@ -63,6 +63,7 @@ INSTALLED_APPS = (
     'django_ogp',
     'debug_toolbar',
     'agenda',
+    'medianaranja2',
     # 'debug_panel',
     'proposal_subscriptions',
     'constance',

@@ -1,4 +1,4 @@
-from numpy import matrix, concatenate
+from numpy import matrix, concatenate, ones
 
 
 class Adapter(object):
@@ -45,22 +45,50 @@ class Adapter(object):
 		return matrix
 
 
-class Calculator(object):
-	def __init__(self, adapter):
-		self.adapter = adapter
-	
+class CommitmentsAdapter(object):
+	def __init__(self, election, proposals):
+		self.candidates = []
+		for candidate in election.candidates.order_by('id'):
+			self.candidates.append(candidate)
+		self.proposals = proposals
+		self.ones = ones((len(self.proposals),1))
 
-	def _get_vector_result(self):
-		P = matrix(self.adapter.get_responses_matrix())
-		R = matrix(self.adapter.get_responses_vector()).transpose()
+	def get_commitments_matrix(self):
+		_C = []
+		for candidate in self.candidates:
+			vector = []
+			for p in self.proposals:
+				if candidate.commitments.filter(proposal=p, commited=True).exists():
+					vector.append(1)
+				else:
+					vector.append(0)
+			_C.append(vector)
+		return matrix(_C)
+
+
+class Calculator(object):
+
+	def set_questions_adapter(self, adapter):
+		self.questions_adapter = adapter
+	
+	def set_commitments_adapter(self, adapter):
+		self.commitments_adapter = adapter
+
+	def _get_questions_vector_result(self):
+		P = matrix(self.questions_adapter.get_responses_matrix())
+		R = matrix(self.questions_adapter.get_responses_vector()).transpose()
 		_r = P * R
 		return _r
 
-	def get_result(self):
-		candidates_vector = matrix(self.adapter.candidates).transpose().tolist()
-		_result = self._get_vector_result().tolist()
+	def get_questions_result(self):
+		candidates_vector = matrix(self.questions_adapter.candidates).transpose().tolist()
+		_result = self._get_questions_vector_result().tolist()
 		concatenated = []
 		for index in range(len(_result)):
 			concatenated.append({'candidate': candidates_vector[index][0], 'value': _result[index][0]})
 		concatenated = sorted(concatenated, key=lambda t: -t['value'])
 		return concatenated
+
+	def get_commitments_result(self):
+		C = self.commitments_adapter.get_commitments_matrix()
+		return C * self.commitments_adapter.ones

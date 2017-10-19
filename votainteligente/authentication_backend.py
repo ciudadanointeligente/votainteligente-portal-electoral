@@ -19,7 +19,7 @@ class VotaIAuthenticationBackend(ModelBackend):
                 kwargs = {'email': username}
             except ValidationError:
                 kwargs = {'username': username}
-            user = UserModel._default_manager.get(**kwargs)
+            user = UserModel._default_manager.filter(**kwargs).first()
 
         except UserModel.DoesNotExist:
             # Run the default password hasher once to reduce the timing

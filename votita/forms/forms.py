@@ -6,7 +6,7 @@ from django.utils.translation import ugettext as _
 from votita.models import KidsGathering, KidsProposal
 from django.forms import ModelForm
 from elections.models import Area
-
+from votainteligente.send_mails import send_mails_to_staff
 from django.conf import settings
 
 
@@ -76,6 +76,11 @@ class UpdateGatheringForm(GatheringsWithStatsDataMixin, ModelForm):
     class Meta:
         model = KidsGathering
         fields = ['image', 'comments']
+
+    def save(self, commit=True):
+        instance = super(UpdateGatheringForm, self).save(commit)
+        send_mails_to_staff({'gathering': instance}, 'nuevo_encuentro_en_votita')
+        return instance
 
 
 TOPIC_CHOICES = (('', u'Selecciona el tema'),

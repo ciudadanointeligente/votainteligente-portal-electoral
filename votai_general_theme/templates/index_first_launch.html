@@ -61,10 +61,13 @@
 </section>
 {% if featured_proposals.count %}
 <section id="highlighted-proposals">
-  <h3 class="text-center">Conoce algunas de las propuestas ciudadanas</h3>
-  <p class="bajada text-center">Te invitamos a filtar y encontrar propuestas ciudadanas en las siguientes áreas</p>
-  {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=featured_proposals form=Nil hide_proposal_list_header=True %}
-  <p class="text-center"><a href="{% url 'popular_proposals:home' %}" class="btn btn-white">Ver todas las propuestas</a></p>
+  <div class="container">
+    <h3 class="text-center">Conoce algunas de las propuestas ciudadanas</h3>
+    <p class="bajada text-center">Te invitamos a filtrar y encontrar propuestas ciudadanas en las siguientes áreas</p>
+    {% include 'popular_proposal/_filter_tag_form.html' %}
+    {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=featured_proposals form=Nil hide_proposal_list_header=True hidden_search=True %}
+    <p class="text-center"><a href="{% url 'popular_proposals:home' %}" class="btn btn-success">Ver todas las propuestas</a></p>
+  </div>
 </section>
 {% endif %}
 <section id="education" class="container-fluid">

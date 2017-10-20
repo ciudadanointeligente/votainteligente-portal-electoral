@@ -24,10 +24,7 @@ class MediaNaranjaAdaptersBase(TestCase):
         self.c3 = Candidate.objects.create(name='C3')
         self.election.candidates.add(self.c3)
 
-class AdaptersTest(MediaNaranjaAdaptersBase):
-    def setUp(self):
-        super(AdaptersTest, self).setUp()
-        
+    def setUpQuestions(self):
         self.category1 = QuestionCategory.objects.create(name="marijuana", election=self.election)
         self.topic1 = Topic.objects.create(
             label=u"Should marijuana be legalized?",
@@ -78,6 +75,38 @@ class AdaptersTest(MediaNaranjaAdaptersBase):
                                                        person=self.c1,
                                                        position=self.position5)
 
+    def setUpProposals(self):
+        proposer = User.objects.create_user(username="proposer")
+        self.p1 = PopularProposal.objects.create(proposer=proposer,
+                                                 title=u'p1',
+                                                 data={}
+                                                 )
+        self.p2 = PopularProposal.objects.create(proposer=proposer,
+                                                 title=u'P2',
+                                                 data={}
+                                                 )
+        self.p3 = PopularProposal.objects.create(proposer=proposer,
+                                                 title=u'P3',
+                                                 data={}
+                                                 )
+        #       p1,p2,p3
+        # c1 = | 1, 0, 1|
+        # c2 = | 1, 1, 1|
+        # c3 = | 0, 1, 0|
+        commitments = {'c1': [self.p1, self.p3],
+                       'c2': [self.p1, self.p2, self.p3],
+                       'c3': [self.p2]}
+        for key in commitments:
+            c = getattr(self, key)
+            proposals = commitments[key]
+            for proposal in proposals:
+                Commitment.objects.create(candidate=c, proposal=proposal, commited=True)
+
+class AdaptersTest(MediaNaranjaAdaptersBase):
+    def setUp(self):
+        super(AdaptersTest, self).setUp()
+        self.setUpQuestions()
+
     def test_preparing_data(self):
         user_positions = [self.position1, self.position4]
         adapter = Adapter(self.election, user_positions)
@@ -126,7 +155,7 @@ class AdaptersTest(MediaNaranjaAdaptersBase):
         positions = [self.position1, self.position4]
         adapter = Adapter(self.election, positions)
 
-        calculator = Calculator()
+        calculator = Calculator(self.election)
         calculator.set_questions_adapter(adapter)
         result = calculator._get_questions_vector_result().tolist()
         expected_result = [[1], [0], [2]]
@@ -142,31 +171,7 @@ class AdaptersTest(MediaNaranjaAdaptersBase):
 class CommitmentsAdaptersTest(MediaNaranjaAdaptersBase):
     def setUp(self):
         super(CommitmentsAdaptersTest, self).setUp()
-        proposer = User.objects.create_user(username="proposer")
-        self.p1 = PopularProposal.objects.create(proposer=proposer,
-                                                 title=u'p1',
-                                                 data={}
-                                                 )
-        self.p2 = PopularProposal.objects.create(proposer=proposer,
-                                                 title=u'P2',
-                                                 data={}
-                                                 )
-        self.p3 = PopularProposal.objects.create(proposer=proposer,
-                                                 title=u'P3',
-                                                 data={}
-                                                 )
-        #       p1,p2,p3
-        # c1 = | 1, 0, 1|
-        # c2 = | 1, 1, 1|
-        # c3 = | 0, 1, 0|
-        commitments = {'c1': [self.p1, self.p3],
-                       'c2': [self.p1, self.p2, self.p3],
-                       'c3': [self.p2]}
-        for key in commitments:
-            c = getattr(self, key)
-            proposals = commitments[key]
-            for proposal in proposals:
-                Commitment.objects.create(candidate=c, proposal=proposal, commited=True)
+        self.setUpProposals()
 
     def test_commitments_matrix(self):
         adapter = CommitmentsAdapter(self.election, [self.p1, self.p3])
@@ -180,7 +185,33 @@ class CommitmentsAdaptersTest(MediaNaranjaAdaptersBase):
 
     def test_get_result(self):
         adapter = CommitmentsAdapter(self.election, [self.p1, self.p3])
-        calculator = Calculator()
+        calculator = Calculator(self.election)
         calculator.set_commitments_adapter(adapter)
         R = calculator.get_commitments_result().tolist()
         self.assertEquals(R, [[2], [2], [0]])
+
+
+class CalculatorTests(MediaNaranjaAdaptersBase):
+    def setUp(self):
+        super(CalculatorTests, self).setUp()
+        self.setUpQuestions()
+        self.setUpProposals()
+
+    def test_instanciate(self):
+        selected_positions = [self.position1, self.position4]
+        selected_proposals = [self.p1, self.p3]
+        calculator = Calculator(self.election, selected_positions, selected_proposals)
+        P_x_R = calculator._get_questions_vector_result().tolist()
+        expected_questions_result = [[1], [0], [0]]
+        self.assertEquals(P_x_R, expected_questions_result)
+        C = calculator.get_commitments_result().tolist()
+        self.assertEquals(C, [[2], [2], [0]])
+
+    def test_get_final_result(self):
+        selected_positions = [self.position1, self.position4]
+        selected_proposals = [self.p1, self.p3]
+        calculator = Calculator(self.election, selected_positions, selected_proposals)
+        calculator.set_questions_importance(0.5)
+        calculator.set_proposals_importance(0.5)
+        R = calculator.get_result().tolist()
+        self.assertEquals(R, [[1.5],[1],[0]])

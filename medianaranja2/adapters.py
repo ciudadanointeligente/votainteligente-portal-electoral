@@ -68,6 +68,22 @@ class CommitmentsAdapter(object):
 
 class Calculator(object):
 
+	def __init__(self,
+				election,
+				selected_positions=[],
+				selected_proposals=[],
+				questions_adapter_class=Adapter,
+				commitments_adapter_class=CommitmentsAdapter):
+		self.set_questions_adapter(questions_adapter_class(election, selected_positions))
+		self.set_commitments_adapter(commitments_adapter_class(election, selected_proposals))
+
+
+	def	set_questions_importance(self, importance):
+		self.questions_importance = importance
+
+	def	set_proposals_importance(self, importance):
+		self.proposals_importance = importance
+
 	def set_questions_adapter(self, adapter):
 		self.questions_adapter = adapter
 	
@@ -92,3 +108,9 @@ class Calculator(object):
 	def get_commitments_result(self):
 		C = self.commitments_adapter.get_commitments_matrix()
 		return C * self.commitments_adapter.ones
+
+	def get_result(self):
+		P_x_R = self._get_questions_vector_result()
+		C = self.get_commitments_result()
+		result = P_x_R * self.questions_importance + C * self.proposals_importance
+		return result

@@ -382,6 +382,14 @@ input[type=file]{
 }
 
 /*Detalle*/
+#proposal-details{
+  h3{
+    text-transform: none;
+    font-weight: 300;
+    letter-spacing: 0;
+    color: $grey-one;
+  }
+}
 .nav-detalle-propuesta{
   border: none;
   margin-top: -55px;

@@ -73,6 +73,9 @@ td.cal-date{
 }
 .blue{
   background-color: $blue;
+  .bajada{
+    color: white;
+  }
 }
 .blue-light{
   background-color: $blue-light;
@@ -147,7 +150,6 @@ td.cal-date{
 
 #home-search-candidate{
   padding: 60px 0 90px;
-  background-color: $blue-light;
 }
 
 #you-org{
@@ -501,9 +503,11 @@ input[type=file]{
   }
 }
 
-#filters {
-  background-color: $blue-light;
-  padding: 20px 0px;
+
+/*filters*/
+.filter {
+  padding: 20px 0px 20px;
+  margin-bottom: 10px;
   select.form-control{
     background-color: white;
   }
@@ -919,10 +923,4 @@ label{
 }
 .candidate-diary{
   color: $grey-one;
-}
-
-/*filters*/
-.container-fluid.filter {
-  background-color: $blue-light;
-  padding: 10px 0px;
 }

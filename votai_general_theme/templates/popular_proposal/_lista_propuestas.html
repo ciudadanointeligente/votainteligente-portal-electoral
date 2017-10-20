@@ -18,9 +18,12 @@ body.load(anchor.data('url'));
 $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
+<p class="bajada text-center">Te invitamos a filtar y encontrar propuestas ciudadanas en las siguientes áreas</p>
 {% if not hidden_search %}
+<div class="blue-light">
     {% include 'popular_proposal/_filter_tag_form.html' %}
     {% include 'popular_proposal/_filter_form.html' %}
+</div>
 {% endif %}
 <!-- inicio grid -->
 <div class="container">

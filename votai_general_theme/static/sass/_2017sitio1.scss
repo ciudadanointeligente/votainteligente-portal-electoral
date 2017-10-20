@@ -500,6 +500,16 @@ input[type=file]{
   }
 }
 
+a.candidate-commit-name {
+    font-weight: 700;
+    font-family: 'Arvo', sans-serif;
+    color: $grey-one;
+    font-size: 13px;
+    &:hover{
+      color: $blue;
+    }
+}
+
 /*Propuestas*/
 .badge{
   font-size: 11px;

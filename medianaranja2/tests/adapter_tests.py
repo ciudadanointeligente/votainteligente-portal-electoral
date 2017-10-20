@@ -5,7 +5,8 @@ from elections.models import Candidate, Election, QuestionCategory, PersonalData
 from candidator.models import Category, Position, TakenPosition
 from django.test import override_settings
 from elections.models import Topic
-from medianaranja2.adapters import Adapter, Calculator, CommitmentsAdapter
+from medianaranja2.adapters import Adapter, CommitmentsAdapter
+from medianaranja2.calculator import Calculator
 from numpy import matrix, ones
 from django.contrib.auth.models import User
 from popular_proposal.models import (PopularProposal,
@@ -194,10 +195,11 @@ class CommitmentsAdaptersTest(MediaNaranjaAdaptersBase):
 class CalculatorTests(MediaNaranjaAdaptersBase):
     def setUp(self):
         super(CalculatorTests, self).setUp()
-        self.setUpQuestions()
+        
         self.setUpProposals()
 
     def test_instanciate(self):
+        self.setUpQuestions()
         selected_positions = [self.position1, self.position4]
         selected_proposals = [self.p1, self.p3]
         calculator = Calculator(self.election, selected_positions, selected_proposals)
@@ -208,10 +210,27 @@ class CalculatorTests(MediaNaranjaAdaptersBase):
         self.assertEquals(C, [[2], [2], [0]])
 
     def test_get_final_result(self):
+        self.setUpQuestions()
         selected_positions = [self.position1, self.position4]
         selected_proposals = [self.p1, self.p3]
         calculator = Calculator(self.election, selected_positions, selected_proposals)
         calculator.set_questions_importance(0.5)
         calculator.set_proposals_importance(0.5)
-        R = calculator.get_result().tolist()
+        R = calculator._get_result().tolist()
         self.assertEquals(R, [[1.5],[1],[0]])
+        final_result = calculator.get_result()
+        expected = [{'candidate':self.c1, 'value': 1.5},
+                    {'candidate':self.c2, 'value': 1},
+                    {'candidate':self.c3, 'value': 0}]
+        self.assertEquals(final_result, expected)
+
+    def test_get_final_result_without_questions(self):
+        selected_proposals = [self.p1, self.p3]
+        calculator = Calculator(self.election, [], selected_proposals)
+        R = calculator._get_result().tolist()
+        self.assertEquals(R, [[2], [2], [0]])
+        final_result = calculator.get_result()
+        expected = [{'candidate':self.c1, 'value': 2},
+                    {'candidate':self.c2, 'value': 2},
+                    {'candidate':self.c3, 'value': 0}]
+        self.assertEquals(final_result, expected)

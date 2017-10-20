@@ -17,11 +17,20 @@
   <meta name="google-site-verification" content="{{ config.WEBSITE_GA_GSITE_VERIFICATION }}">
   <!--for facebook fans-->
   {% block ogp %}
-  <meta property="og:title" content="{{ config.WEBSITE_OGP_TITLE }}">
-  <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
-  <meta property="og:url" content="https://{% url_domain %}">
-  <meta property="og:image" content="https://{% url_domain %}{% static 'img/levantalamano-og.png' %}">
-  <meta property="og:description" content="{{ config.WEBSITE_OGP_DESCRIPTION }}">
+  <meta property="og:title" content="Levanta La Mano">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://levantalamano.cl">
+  <meta property="og:image" content="http://levantalamano.cl{% static 'img/levantalamano-og.png' %}">
+  <meta property="og:description" content="Proyecto que permite que niñas, niños y adolescentes, aunque no tengan derecho a voto, puedan participar, haciendo propuestas a las candidaturas presidenciales.">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ciudadanoi">
+  <meta name="twitter:creator" content="@ciudadanoi">
+  <meta name="twitter:title" content="Levanta La Mano">
+  <meta name="twitter:image" content="http://levantalamano.cl{% static 'img/levantalamano-og.png' %}">
+  <meta name="twitter:description" content="Proyecto que permite que niñas, niños y adolescentes, aunque no tengan derecho a voto, puedan participar, haciendo propuestas a las candidaturas presidenciales.">
+
+
   {% endblock ogp %}
   <meta property="fb:app_id" content="{{ config.WEBSITE_OGP_APP_ID }}">
   <!--eoff-->

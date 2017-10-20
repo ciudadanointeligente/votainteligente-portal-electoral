@@ -102,6 +102,7 @@ class CandidacyContact(models.Model):
             self.initial_password = password
             user = User.objects.create(username=username)
             user.set_password(self.initial_password)
+            user.email = self.mail
             user.save()
             self.candidacy = Candidacy.objects.create(user=user, candidate=self.candidate)
 

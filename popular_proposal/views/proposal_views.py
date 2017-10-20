@@ -139,6 +139,17 @@ class PopularProposalDetailView(EmbeddedViewBase, DetailView):
     layout = "basewithnofixed_navbar.html"
 
 
+class PopularProposalAyuranosView(DetailView):
+    model = PopularProposal
+    template_name = 'popular_proposal/ayuranos.html'
+    context_object_name = 'popular_proposal'
+
+    def get_context_data(self, **kwargs):
+        context = super(PopularProposalAyuranosView, self).get_context_data(**kwargs)
+        context['candidates'] = Candidate.objects.exclude(commitments__proposal__id=self.object.id).order_by('created_at')
+        return context
+
+
 class PopularProposalDetailRedirectView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         proposal = get_object_or_404(PopularProposal, pk=kwargs['pk'])

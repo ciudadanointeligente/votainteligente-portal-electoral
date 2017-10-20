@@ -190,9 +190,9 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
             return links.first()
 
     def has_logged_in(self):
-        if self.candidacy_set.filter(user__last_login__isnull=True).exists():
-            return False
-        return True
+        if self.candidacy_set.exclude(user__last_login__isnull=True).exists():
+            return True
+        return False
 
     def possible_answers(self):
         return Topic.objects.filter(category__in=self.election.categories.all())

@@ -46,3 +46,10 @@
     margin-top: 20px;
   }
 }
+
+@media screen and (max-width: 495px) {
+  #banner{
+    padding: 40px 0 30px 0;
+    margin-bottom: -80px;
+  }
+}

@@ -452,6 +452,7 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
         initial_password = contact.initial_password
         self.assertTrue(initial_password)
         user = User.objects.get(username__contains=self.candidate.id)
+        self.assertEquals(user.email, contact.mail)
         contact = CandidacyContact.objects.get(id=contact.id)
         candidacy = contact.candidacy
         self.assertEquals(len(mail.outbox), 1)

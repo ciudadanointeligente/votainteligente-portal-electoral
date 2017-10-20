@@ -12,7 +12,7 @@
     <ul class="list-inline">
       {% for commitment in commitments.all %}
         <li>
-          <a href="{{commitment.candidate.get_absolute_url}}">
+          <a href="{{commitment.candidate.get_absolute_url}}" class="candidate-commit-name">
             {% if commitment.commited %}
               {% if commitment.candidate.image %}
                 {% thumbnail commitment.candidate.image "50x50" crop="center" as im %}

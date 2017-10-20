@@ -3,6 +3,8 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
+{% load el_pagination_tags %}
+
 <!-- Inicio _lista_propuestas -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js"></script>
 <script>
@@ -17,11 +19,8 @@ $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
 {% if not hidden_search %}
-    {% if form_type %}
-      {% include 'popular_proposal/_filter_form.html' %}
-    {% else %}
-      {% include 'popular_proposal/_filter_tag_form.html' %}
-    {% endif %}
+    {% include 'popular_proposal/_filter_tag_form.html' %}
+    {% include 'popular_proposal/_filter_form.html' %}
 {% endif %}
 <!-- inicio grid -->
 <div class="container">
@@ -39,6 +38,7 @@ $('[data-toggle="tooltip"]').tooltip();
         <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark">Crear nueva propuesta</a></div>
       {% endif %}
       {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
+      <!--
       <div class="row hidden-xs">
         <div class="col-md-6 col-md-offset-3">
           <div class="alert alert-info text-center" role='alert'>
@@ -49,10 +49,12 @@ $('[data-toggle="tooltip"]').tooltip();
           </div>
         </div>
       </div>
+      -->
     {% endif %}
   {% endif %}
 
     <div id="posts">
+    {% paginate 30 popular_proposals %}
     {% for proposal in popular_proposals %}
         {% display_proposal_card proposal %}
       {% empty %}
@@ -63,7 +65,9 @@ $('[data-toggle="tooltip"]').tooltip();
         </p>
       {% endblocktrans %}
     {% endfor %}
+
     </div>
+    {% show_pages %}
   </div>
 </div>
 <!-- fin grid -->

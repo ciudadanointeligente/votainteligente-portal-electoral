@@ -134,7 +134,8 @@ class CandidateProfileFormBase(forms.Form):
     image = forms.ImageField(required=False,
                              label=_(u"Imagen de perfil"))
     program_link = forms.URLField(required=False,
-                                  label=_(u"Link del programa"))
+                                  label=_(u"Link del programa"),
+                                  help_text=_(u"Link a tus ideas y/o planteamientos que quieras que la ciudadanía conozca. Ej: http://micandidatura.cl/mis-ideas/"))
 
     social_networks = {
         'facebook': {'field': forms.URLField(required=False),

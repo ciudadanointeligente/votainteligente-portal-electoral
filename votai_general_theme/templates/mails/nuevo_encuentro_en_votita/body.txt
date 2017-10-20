@@ -1,0 +1,10 @@
+Querida Liss, (el resto no importa):
+Hay un nuevo encuentro de votita acá te van las propuestas que traen:
+Nombre del encuentro: {{gathering.name}}.
+Propuestas:
+{% for p in gathering.proposals.all %}
+http://levantalamano.cl{{p.get_absolute_url}} -- {{p.title}}
+{% endfor %}
+Liss eres una bacán!
+--
+La máquina

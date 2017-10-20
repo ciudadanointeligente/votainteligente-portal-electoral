@@ -1,43 +1,14 @@
-<div id="filters" class="container-fluid">
+{% load votainteligente_extras %}
+<div class="container-fluid filter">
   <div class="container">
 <!-- filtros por tema -->
     <div id="category-container" class="container">
       <h3 class="text-center">Te invitamos a filtar y encontrar propuestas ciudadanas en las siguientes áreas</h3>
       <ul class="list-inline">
-        <li><a href="/propuestas/?clasification=asistencia" onclick="ga('send','event','filterby-asistencia','click')" class="badge">Asistencia y protección social</a></li>
-        <li><a href="/propuestas/?clasification=ciencias" onclick="ga('send','event','filterby-ciencias','click')" class="badge">Ciencias</a></li>
-        <li><a href="/propuestas/?clasification=cultura" onclick="ga('send','event','filterby-cultura','click')" class="badge">Cultura</a></li>
-        <li><a href="/propuestas/?clasification=deporte" onclick="ga('send','event','filterby-deporte','click')" class="badge">Deporte</a></li>
-        <li><a href="/propuestas/?clasification=derechoshumanos" onclick="ga('send','event','filterby-derechoshumanos','click')" class="badge">Derechos Humanos</a></li>
-        <li><a href="/propuestas/?clasification=derechos" onclick="ga('send','event','filterby-derechos','click')" class="badge">Derechos Sociales</a></li>
-        <li><a href="/propuestas/?clasification=emergencia" onclick="ga('send','event','filterby-emergencia','click')" class="badge">Desastres Naturales</a></li>
-        <li><a href="/propuestas/?clasification=economia" onclick="ga('send','event','filterby-economia','click')" class="badge">Economía</a></li>
-        <li><a href="/propuestas/?clasification=educacion" onclick="ga('send','event','filterby-educacion','click')" class="badge">Educación</a></li>
-        <li><a href="/propuestas/?clasification=empleo" onclick="ga('send','event','filterby-empleo','click')" class="badge">Empleo</a></li>
-        <li><a href="/propuestas/?clasification=emprendimiento" onclick="ga('send','event','filterby-emprendimiento','click')" class="badge">Emprendimiento</a></li>
-        <li><a href="/propuestas/?clasification=energia" onclick="ga('send','event','filterby-energia','click')" class="badge">Energía</a></li>
-        <li><a href="/propuestas/?clasification=genero" onclick="ga('send','event','filterby-genero','click')" class="badge">Equidad y género</a></li>
-        <li><a href="/propuestas/?clasification=diversidad" onclick="ga('send','event','filterby-diversidad','click')" class="badge">Inclusión</a></li>
-        <li><a href="/propuestas/?clasification=infancia" onclick="ga('send','event','filterby-infancia','click')" class="badge">Infancia y juventud</a></li>
-        <li><a href="/propuestas/?clasification=justicia" onclick="ga('send','event','filterby-justicia','click')" class="badge">Justicia</a></li>
-        <li><a href="/propuestas/?clasification=medioambiente" onclick="ga('send','event','filterby-medioambiente','click')" class="badge">Medio ambiente</a></li>
-        <li><a href="/propuestas/?clasification=medios" onclick="ga('send','event','filterby-medios','click')" class="badge">Medios de comunicación</a></li>
-        <li><a href="/propuestas/?clasification=migracion" onclick="ga('send','event','filterby-migracion','click')" class="badge">Migración</a></li>
-        <li><a href="/propuestas/?clasification=mineria" onclick="ga('send','event','filterby-mineria','click')" class="badge">Minería</a></li>
-        <li><a href="/propuestas/?clasification=pensiones" onclick="ga('send','event','filterby-pensiones','click')" class="badge">Pensiones</a></li>
-        <li><a href="/propuestas/?clasification=participacion" onclick="ga('send','event','filterby-participacion','click')" class="badge">Participación</a></li>
-        <li><a href="/propuestas/?clasification=prevision" onclick="ga('send','event','filterby-prevision','click')" class="badge">Previsión</a></li>
-        <li><a href="/propuestas/?clasification=proteccionsocial" onclick="ga('send','event','filterby-proteccionsocial','click')" class="badge">Protección social</a></li>
-        <li><a href="/propuestas/?clasification=pueblosoriginarios" onclick="ga('send','event','filterby-pueblosoriginarios','click')" class="badge">Pueblos originarios</a></li>
-        <li><a href="/propuestas/?clasification=recursosnaturales" onclick="ga('send','event','filterby-recursosnaturales','click')" class="badge">Recursos naturales</a></li>
-        <li><a href="/propuestas/?clasification=salud" onclick="ga('send','event','filterby-salud','click')" class="badge">Salud</a></li>
-        <li><a href="/propuestas/?clasification=seguridad" onclick="ga('send','event','filterby-seguridad','click')" class="badge">Seguridad</a></li>
-        <li><a href="/propuestas/?clasification=sustentabilida" onclick="ga('send','event','filterby-sustentabilida','click')" class="badge">Sustentabilidad</a></li>
-        <li><a href="/propuestas/?clasification=terceraedad" onclick="ga('send','event','filterby-terceraedad','click')" class="badge">Tercera Edad</a></li>
-        <li><a href="/propuestas/?clasification=trabajo" onclick="ga('send','event','filterby-trabajo','click')" class="badge">Trabajo</a></li>
-        <li><a href="/propuestas/?clasification=transparencia" onclick="ga('send','event','filterby-transparencia','click')" class="badge">Transparencia</a></li>
-        <li><a href="/propuestas/?clasification=transporte" onclick="ga('send','event','filterby-transporte','click')" class="badge">Transporte</a></li>
-        <li><a href="/propuestas/?clasification=espaciospublicos" onclick="ga('send','event','filterby-espaciospublicos','click')" class="badge">Urbanismo y Espacios públicos</a></li>
+        {% proposals_topic_choices as classifications %}
+        {% for k,v in classifications %}
+            <li><a href="/propuestas/?clasification={{k}}" onclick="ga('send','event','filterby-{{k}}','click')" class="badge">{{v}}</a></li>
+        {% endfor %}
       </ul>
     </div>
   </div>

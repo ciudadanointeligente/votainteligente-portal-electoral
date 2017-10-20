@@ -2,9 +2,8 @@
 {% load bootstrap3 %}
 
 {% if form %}
-<div id="filters" class="container-fluid">
+<div class="container-fluid filter">
   <div class="container">
-    {% include 'modal.html' with modalId='subscribeToSearch' title='Mantente al dia con tus tematicas de interes' %}
     <a id="top"></a>
     {% if form.is_filled_search %}
       <button class="hidden-md hidden-lg btn btn-link btn-block" type="button" data-toggle="collapse" data-target=".filter-mobile" aria-expanded="false" aria-controls="filter-mobile"><i class="fa fa-filter"></i> Mostrar filtros</button>
@@ -32,10 +31,10 @@
     </form>
     <form id="proposalFilterForm" action="{{ request.path }}" method="GET" role="form" class="hidden-xs hidden-sm">
     <div class="row">
-      <div class="col-md-3">{% bootstrap_field form.text %}</div>
-      <div class="col-md-3">{% bootstrap_field form.clasification %}</div>
-      <div class="col-md-3">{% bootstrap_field form.generated_at %}</div>
-      <div class="col-md-3">{% bootstrap_field form.order_by %}</div>
+      <div class="col-md-4">{% bootstrap_field form.text %}</div>
+      {% bootstrap_field form.clasification %}
+      <div class="col-md-4">{% bootstrap_field form.generated_at %}</div>
+      <div class="col-md-4">{% bootstrap_field form.order_by %}</div>
     </div>
     <div class="row">
       <div class="col-md-12 text-right visible-md-*">

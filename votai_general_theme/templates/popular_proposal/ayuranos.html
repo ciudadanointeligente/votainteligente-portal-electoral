@@ -5,7 +5,7 @@
 {% load votainteligente_extras %}
 {% load cache %}
 
-{% block title %}- Ayúdanos{% endblock title %}
+{% block title %}- Ayúdanos - {{popular_proposal.title}}{% endblock title %}
 
 {% block navbar %}
 {% endblock navbar %}
@@ -15,36 +15,100 @@
 <div class="container">
   <h2>¡Pidámosle a las candidaturas que se comprometan con {{popular_proposal.title}}!</h2>
   <p>Utiliza Ctrl+f (Cmd+f) para buscar tu distrito o tu candidato.</p>
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Lugar</th>
-          <th>Candidato</th>
-          <th>Twiteale!</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% with object.twitter|extract_twitter_username_without_at as twitter_org %}
-      {% with url="https://votainteligente.cl"|add:object.get_absolute_url|add:"#propuestas" %}
-        {% for candidate in candidates.all %}
-      {% if candidate.twitter %}
-      <tr class="">
-        <td><a href="{{ candidate.area.get_absolute_url }}">{{ candidate.election.area }}</a></td>
-        <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
-        <td>
-              {% include 'twitter_poking_button.html' with url=popular_proposal.get_absolute_url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
-          </td>
-      </tr>
-        {% endif %}
-      	{% endfor %}
-        {% endwith %}
-        {% endwith %}
-      </tbody>
-    </table>
-   </div>
-  </div>
-</div>
+
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#presidente" aria-controls="presidente" role="tab" data-toggle="tab">Presidenta o Presidente</a></li>
+    <li role="presentation"><a href="#senador" aria-controls="senador" role="tab" data-toggle="tab">Senadora o Senador</a></li>
+    <li role="presentation"><a href="#diputado" aria-controls="diputado" role="tab" data-toggle="tab">Diputada o Diputado</a></li>
+  </ul>
+
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="presidente">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Candidato</th>
+              <th>Twiteale!</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% with object.twitter|extract_twitter_username_without_at as twitter_org %}
+          {% with url="https://votainteligente.cl"|add:object.get_absolute_url %}
+          {% for candidate in candidates.all %}
+            {% if candidate.election.position == 'Presidenta o Presidente' %}
+            <tr>
+              <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
+              <td>
+                {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
+              </td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+          {% endwith %}
+          {% endwith %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="senador">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Candidato</th>
+              <th>Twiteale!</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% with object.twitter|extract_twitter_username_without_at as twitter_org %}
+          {% with url="https://votainteligente.cl"|add:object.get_absolute_url %}
+          {% for candidate in candidates.all %}
+            {% if candidate.election.position == 'Senadora o Senador' %}
+            <tr>
+              <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
+              <td>
+                {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
+              </td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+          {% endwith %}
+          {% endwith %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="diputado">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Candidato</th>
+              <th>Twiteale!</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% with object.twitter|extract_twitter_username_without_at as twitter_org %}
+          {% with url="https://votainteligente.cl"|add:object.get_absolute_url %}
+          {% for candidate in candidates.all %}
+            {% if candidate.election.position == 'Diputada o Diputado' %}
+            <tr>
+              <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
+              <td>
+                {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
+              </td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+          {% endwith %}
+          {% endwith %}
+          </tbody>
+        </table>
+      </div>
+    </div>
 {% endcache %}
 {% endblock content %}
 

@@ -76,7 +76,11 @@ urlpatterns = [
     url(r'^candidaturas/(?P<slug>[-\w]+)/?$',
         AreaDetailView.as_view(template_name='elections/area.html'),
         name='area'),
+    url(r'^ayudanos/(?P<slug>[-\w]+)/?$',
+        ElectionDetailView.as_view(template_name='elections/ayudanos.html'),
+        name='help_election'),
     url(r'^candidaturas/?$', KnowYourCandidatesView.as_view(), name='know_your_candidates'),
+    
 ]
 
 # urlpatterns += [

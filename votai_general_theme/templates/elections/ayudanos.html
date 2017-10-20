@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+{% load cache %}
+
+{% block title %}- Ayúdanos - {{election.name}}{% endblock title %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block content %}
+{% cache 60 ayudanos object.id %}
+<div class="container">
+  <h2>¡Pidámosle a las candidaturas a {{election.name}} que se comprometan!</h2>
+  <p>Utiliza Ctrl+f (Cmd+f) para buscar tu candidato.</p>
+<div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Candidato</th>
+          <th>Twiteale!</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for candidate in object.candidates.all %}
+      {% if candidate.twitter and not candidate.commitments.all %}
+      <tr class="">
+        <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
+        <td>
+              {% include 'twitter_poking_button.html' with texto=config.AYUDANOS_TEXTO_CANDIDATOS twitter=candidate.twitter.value button_text=config.AYUDANOS_TEXTO_CANDIDATOS %}
+          </td>
+      </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+   </div>
+  </div>
+</div>
+{% endcache %}
+{% endblock content %}
+

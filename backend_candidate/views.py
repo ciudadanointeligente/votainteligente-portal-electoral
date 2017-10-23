@@ -1,4 +1,4 @@
-from backend_candidate.models import is_candidate, CandidacyContact, Candidacy
+from backend_candidate.models import is_candidate, CandidacyContact, Candidacy, CandidateIncremental
 from django.http import Http404
 from django.views.generic.base import RedirectView
 from django.views.generic import View
@@ -18,6 +18,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext as _
 from agenda.models import Activity
 from popular_proposal.filters import ProposalWithoutAreaFilter
+from django.views.generic.detail import DetailView
 
 
 class BackendCandidateBase(View):
@@ -301,3 +302,26 @@ class MyActivitiesListView(LoginRequiredMixin, ListView):
         context = super(MyActivitiesListView, self).get_context_data(**kwargs)
         context['object'] = self.object
         return context
+
+
+class CandidateIncrementalDetailView(DetailView):
+    model = CandidateIncremental
+    slug_url_kwarg = "identifier"
+    slug_field = 'identifier'
+    template_name = 'backend_candidate/commit_to_suggestions.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CandidateIncrementalDetailView, self).get_context_data(**kwargs)
+        context['formset'] = self.object.formset
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        CommitmentIcrementalFormset = self.object._formset_class
+        formset = CommitmentIcrementalFormset(request.POST, request.FILES)
+        if formset.is_valid():
+            formset.save()
+            return HttpResponseRedirect(reverse('backend_candidate:thanks_for_commiting'))
+        self.get(request, *args, **kwargs)
+
+

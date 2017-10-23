@@ -8,7 +8,6 @@ from votainteligente.send_mails import send_mail
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from django.conf import settings
-import uuid
 from picklefield.fields import PickledObjectField
 from django.utils.translation import ugettext_lazy as _
 from votainteligente.send_mails import send_mail
@@ -123,9 +122,32 @@ class CandidacyContact(models.Model):
 class ProposalSuggestionForIncremental(models.Model):
     incremental = models.ForeignKey('IncrementalsCandidateFilter', related_name="suggestions")
     proposal = models.ForeignKey('popular_proposal.PopularProposal', related_name="suggested_proposals")
-    summary = models.TextField(default=u"")
+    summary = models.TextField(default=u"", blank=True)
     sent = models.BooleanField(default=False)
 
+
+class CandidateIncremental(models.Model):
+    suggestion = models.ForeignKey('IncrementalsCandidateFilter')
+    candidate = models.ForeignKey(Candidate)
+    identifier = models.UUIDField(default=uuid.uuid4)
+
+    @property
+    def _formset_class(self):
+        proposals = []
+        summaries = []
+        for p in self.suggestion.suggested_proposals.order_by('id'):
+            proposals.append(p)
+            summaries.append(self.suggestion.suggestions.get(proposal=p).summary)
+        from backend_candidate.forms import get_multi_commitment_forms
+        return get_multi_commitment_forms(self.candidate, proposals, summaries)
+
+    @property
+    def formset(self):
+        formset = self._formset_class()
+        return formset
+
+    def get_absolute_url(self):
+        return reverse("backend_candidate:commit_to_suggestions", kwargs={"identifier": self.identifier})
 
 class IncrementalsCandidateFilter(models.Model):
     name = models.CharField(max_length=12288,
@@ -163,7 +185,11 @@ class IncrementalsCandidateFilter(models.Model):
     def send_mails(self, sleep=0):
         candidates = self.get_candidates()
         for c in candidates:
+            candidate_incremental = CandidateIncremental.objects.create(candidate=c,
+                                                                        suggestion=self)
             context = self.get_context_for_candidate(c)
+            context['formset'] = candidate_incremental.formset
+            context['candidate_incremental'] = candidate_incremental
             for candidacy in c.candidacy_set.all():
                 context['candidacy'] = candidacy
                 send_mail(context, 'suggestions_for_candidates',

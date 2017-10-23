@@ -1,0 +1,10 @@
+{% load i18n %}
+<form method="post" action="https://votainteligente.cl{{object.get_absolute_url}}">
+    {{ formset.management_form }}
+    {% for form in formset %}
+    <h4>{{form.proposal.title}}</h4>
+    <h5>{{form.summary}}</h5>
+        {{form.as_ul}}
+    {% endfor %}
+<input type="submit" value="{% trans "Enviar" %}"/>
+</form>

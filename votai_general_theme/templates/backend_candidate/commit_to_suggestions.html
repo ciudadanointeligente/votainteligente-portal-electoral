@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+{% include 'backend_candidate/_suggestions_formset.html' with formset=formset%}
+
+{% endblock content %}

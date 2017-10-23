@@ -220,3 +220,7 @@ def get_candidate_profile_form_class():
                               object),
                              cls_attrs)
     return PARENT_FORM_CLASS
+
+
+class SimpleCommitmentForm(forms.Form):
+    pass

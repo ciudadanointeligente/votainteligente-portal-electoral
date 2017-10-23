@@ -11,7 +11,7 @@ from backend_candidate.models import (Candidacy,
                                       IncrementalsCandidateFilter,
                                       ProposalSuggestionForIncremental,
                                       send_candidate_username_and_password)
-from backend_candidate.forms import get_form_for_election
+from backend_candidate.forms import get_form_for_election, SimpleCommitmentForm
 from backend_candidate.tasks import (let_candidate_now_about_us,
                                      send_candidate_username_and_pasword_task,
                                      send_candidates_their_username_and_password)
@@ -29,6 +29,7 @@ from popular_proposal.models import (Commitment,
 from popolo.models import ContactDetail
 from elections.models import PersonalData
 from django.core.management import call_command
+from django.forms import Form
 
 
 class IncrementalsTestCase(ProposingCycleTestCaseBase):
@@ -58,6 +59,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
                                                   title=u'This is a title'
                                                   )
         suggestion = ProposalSuggestionForIncremental.objects.create(incremental=f,
+        															 summary=u"Por esta razón",
                                                                      proposal=proposal)
         self.assertFalse(suggestion.sent)
 
@@ -254,3 +256,28 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
                                                      f_1.email,
                                                      f_2.email]
         self.assertIn(first_email.to[0], possible_emails_that_could_have_been_used)
+
+
+class MultiCommitmentForm(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(MultiCommitmentForm, self).setUp()
+        self.feli = User.objects.get(username='feli')
+
+    # def test_instanciate_single_form(self):
+    # 	fiera_candidata = Candidate.objects.create(name='Fiera Feroz la mejor candidata del mundo!')
+    # 	proposal = PopularProposal.objects.create(proposer=self.feli,
+    #                                               area=self.arica,
+    #                                               data=self.data,
+    #                                               title=u'This is a title'
+    #                                               )
+    # 	form = SimpleCommitmentForm(fiera_candidata, proposal)
+    # 	self.assertIsInstance(form, Form)
+    # 	self.assertTrue(form.fields['commit'])
+    # 	self.assertTrue(form.fields['details'])
+    # 	data = {'commit': True, "details": u"Sí por supuesto"}
+    # 	form = SimpleCommitmentForm(fiera_candidata, proposal, data=data)
+    # 	self.assertTrue(form.is_valid())
+    # 	commitment = form.save()
+    # 	self.assertTrue(commitment.commited)
+    # 	self.assertEquals(commitment.candidate, fiera_candidata)
+    # 	self.assertEquals(commitment.proposal, proposal)

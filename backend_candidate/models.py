@@ -123,6 +123,7 @@ class CandidacyContact(models.Model):
 class ProposalSuggestionForIncremental(models.Model):
     incremental = models.ForeignKey('IncrementalsCandidateFilter', related_name="suggestions")
     proposal = models.ForeignKey('popular_proposal.PopularProposal', related_name="suggested_proposals")
+    summary = models.TextField(default=u"")
     sent = models.BooleanField(default=False)
 
 

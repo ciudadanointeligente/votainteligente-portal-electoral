@@ -1,3 +1,4 @@
+# coding=utf-8
 from .adapter_tests import MediaNaranjaAdaptersBase
 from medianaranja2.proposals_getter import ProposalsGetter
 from elections.models import Area, Election, Candidate

@@ -63,6 +63,7 @@ INSTALLED_APPS = (
     'django_ogp',
     'debug_toolbar',
     'agenda',
+    'medianaranja2',
     # 'debug_panel',
     'proposal_subscriptions',
     'constance',
@@ -439,6 +440,8 @@ CONSTANCE_CONFIG = {
     'AYUDANOS_TEXTO_CANDIDATOS' : (u'Ya puedes comprometerte con nuestras propuestas ', 'texto a los candidatos del ayudanos'),
     'AYUDANOS_PROPUESTA': (u'Ya puedes comprometerte en votainteligente.cl', 'texto a los candidatos del ayudanos específico de cada propuesta'),
     'MOSTRAR_AYUDANOS_PROPUESTA': (False, 'texto a los candidatos del ayudanos específico de cada propuesta'),
+    'DEFAULT_12_N_QUESTIONS_IMPORTANCE': (0.5, "Importancia de las preguntas en la media naranja"),
+    'DEFAULT_12_N_PROPOSALS_IMPORTANCE': (0.5, "Importancia de las propuestas en la media naranja"),
 }
 
 try:

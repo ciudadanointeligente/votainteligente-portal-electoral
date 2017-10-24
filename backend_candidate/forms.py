@@ -252,8 +252,12 @@ def get_multi_commitment_forms(candidate, proposals, summaries):
             return kwargs
 
         def save(self):
+            commitments = []
             for f in self.forms:
-                f.save()
+                c = f.save()
+                if c is not None:
+                    commitments.append(c)
+            return commitments
 
     num_forms = len(proposals)
     return formset_factory(SimpleCommitmentForm,

@@ -292,6 +292,7 @@ class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
         candidate_incremental = CandidateIncremental.objects.create(candidate=self.fiera_candidata,
                                                                     suggestion=self.filter)
         self.assertTrue(candidate_incremental.identifier)
+        self.assertFalse(candidate_incremental.used)
 
     def test_candidate_incremental_autocreatel(self):
         self.filter.send_mails()
@@ -336,12 +337,13 @@ class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
                                                   suggestion=self.filter)
         url = reverse("backend_candidate:commit_to_suggestions", kwargs={"identifier": c_i.identifier})
         response = self.client.post(url, data)
-
-        self.assertTrue(Commitment.objects.filter(candidate=self.fiera_candidata,
-                                                  proposal=self.p1))
+        c1 = Commitment.objects.get(candidate=self.fiera_candidata,
+                                    proposal=self.p1)
         self.assertFalse(Commitment.objects.filter(candidate=self.fiera_candidata,
                                                    proposal=self.p2))
-        
+        self.assertIn(c1, response.context['commitments'])
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
 
 
 class MultiCommitmentForm(ProposingCycleTestCaseBase):

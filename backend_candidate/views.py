@@ -313,6 +313,11 @@ class CandidateIncrementalDetailView(DetailView):
     slug_field = 'identifier'
     template_name = 'mails/suggestions_for_candidates/body.html'
 
+    def get_queryset(self):
+        qs = super(CandidateIncrementalDetailView, self).get_queryset().filter(used=False)
+        return qs
+
+
     def get_context_data(self, **kwargs):
         context = super(CandidateIncrementalDetailView, self).get_context_data(**kwargs)
         context['formset'] = self.object.formset
@@ -325,11 +330,13 @@ class CandidateIncrementalDetailView(DetailView):
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
+        self.object.used = True
+        self.object.save()
         CommitmentIcrementalFormset = self.object._formset_class
         formset = CommitmentIcrementalFormset(request.POST, request.FILES)
         if formset.is_valid():
-            formset.save()
-            return render(request, 'backend_candidate/thanks_for_commiting.html', context={'post': request.POST})
+            commitments = formset.save()
+            return render(request, 'backend_candidate/thanks_for_commiting.html', context={'commitments': commitments})
         self.get(request, *args, **kwargs)
 
 

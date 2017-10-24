@@ -130,6 +130,7 @@ class CandidateIncremental(models.Model):
     suggestion = models.ForeignKey('IncrementalsCandidateFilter')
     candidate = models.ForeignKey(Candidate)
     identifier = models.UUIDField(default=uuid.uuid4)
+    used = models.BooleanField(default=False)
 
     @property
     def _formset_class(self):

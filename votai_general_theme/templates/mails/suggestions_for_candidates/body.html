@@ -2,6 +2,10 @@
 
 <p><a href="https://Votainteligente.cl">Vota Inteligente</a> es una plataforma, SIN COSTO ASOCIADO, de la Fundación Ciudadano Inteligente que recibe propuestas ciudadanas y de la sociedad civil en el marco de las elecciones presidenciales y parlamentarias de este año.</p>
 
+{% if text %}
+<p>{{text|linebreaksbr}}</p>
+{% endif %}
+
 {% include 'backend_candidate/_suggestions_formset.html' with formset=formset object=candidate_incremental %}
 
 {% with candidate.contacts.last as contact %}

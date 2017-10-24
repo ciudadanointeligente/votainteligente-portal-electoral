@@ -153,7 +153,7 @@ class IncrementalsCandidateFilter(models.Model):
     name = models.CharField(max_length=12288,
                             null=True,
                             blank=True)
-    text = models.TextField()
+    text = models.TextField(blank=True)
     filter_qs = PickledObjectField()
     exclude_qs = PickledObjectField()
     suggested_proposals = models.ManyToManyField('popular_proposal.PopularProposal',

@@ -21,6 +21,8 @@ from PIL import Image, ImageDraw, ImageFont
 from model_utils.managers import InheritanceQuerySetMixin
 import textwrap
 from django.contrib.contenttypes.models import ContentType
+from votainteligente.send_mails import send_mails_to_staff
+from constance import config
 
 
 class NeedingModerationManager(models.Manager):
@@ -410,14 +412,19 @@ class Commitment(models.Model):
     objects = CommitmentManager()
 
     def save(self, *args, **kwargs):
+        creating = self.pk is None
         instance = super(Commitment, self).save(*args, **kwargs)
         from popular_proposal.subscriptions import notification_trigger
         notification_trigger('new-commitment',
                              proposal=self.proposal,
                              commitment=self)
+        if creating and config.NOTIFY_STAFF_OF_NEW_COMMITMENT:
+            send_mails_to_staff({'commitment': self}, 'notify_staff_new_commitment')
         return instance
 
     def get_absolute_url(self):
+        if self.candidate.election is None:
+            return self.proposal.get_absolute_url()
         url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
                                                               'proposal_slug': self.proposal.slug})
         return url

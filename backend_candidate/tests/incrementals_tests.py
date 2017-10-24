@@ -266,6 +266,8 @@ class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
     def setUp(self):
         super(CandidateIncrementalIdentifier, self).setUp()
         self.fiera_candidata = Candidate.objects.create(name='Fiera Feroz la mejor candidata del mundo!')
+        e = Election.objects.first()
+        e.candidates.add(self.fiera_candidata)
         PersonalData.objects.create(candidate=self.fiera_candidata, label='Pacto', value="Frente Amplio")
         filter_qs = {'personal_datas__label': "Pacto", "personal_datas__value": u"Frente Amplio"}
         exclude_qs = {'elections__position': "Presidenta o Presidente"}
@@ -333,6 +335,7 @@ class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
             'form-1-commited': False,
 
         }
+
         c_i = CandidateIncremental.objects.create(candidate=self.fiera_candidata,
                                                   suggestion=self.filter)
         url = reverse("backend_candidate:commit_to_suggestions", kwargs={"identifier": c_i.identifier})
@@ -343,7 +346,7 @@ class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
                                                    proposal=self.p2))
         self.assertIn(c1, response.context['commitments'])
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)
+        self.assertEquals(response.status_code, 200)
 
 
 class MultiCommitmentForm(ProposingCycleTestCaseBase):
@@ -353,6 +356,8 @@ class MultiCommitmentForm(ProposingCycleTestCaseBase):
 
     def test_instanciate_single_form(self):
         fiera_candidata = Candidate.objects.create(name='Fiera Feroz la mejor candidata del mundo!')
+        e = Election.objects.first()
+        e.candidates.add(fiera_candidata)
         proposal = PopularProposal.objects.create(proposer=self.feli,
                                                   area=self.arica,
                                                   data=self.data,
@@ -391,6 +396,8 @@ class MultiCommitmentForm(ProposingCycleTestCaseBase):
 
     def test_get_formset(self):
         fiera_candidata = Candidate.objects.create(name='Fiera Feroz la mejor candidata del mundo!')
+        e = Election.objects.first()
+        e.candidates.add(fiera_candidata)
         proposal1 = PopularProposal.objects.create(proposer=self.feli,
                                                    area=self.arica,
                                                    data=self.data,

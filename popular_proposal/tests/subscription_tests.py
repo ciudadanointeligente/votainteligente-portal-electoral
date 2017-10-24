@@ -110,13 +110,14 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertIn(self.candidate.name, the_mail.body)
 
     def test_notification_trigger_candidate_commit(self):
+        original_amount_of_emails = len(mail.outbox)
         ProposalLike.objects.create(user=self.feli,
                                     proposal=self.proposal)
         Commitment.objects.create(candidate=self.candidate,
                                   proposal=self.proposal,
                                   commited=True)
 
-        self.assertEquals(len(mail.outbox), 1)
+        self.assertEquals(len(mail.outbox), original_amount_of_emails + 2)
         the_mail = mail.outbox[0]
         # Citizens are not notified if a candidate commits to a proposal
         # until further notice
@@ -132,22 +133,23 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertIn(self.candidate.name, the_mail.body)
 
     def test_there_are_two_different_emails_sent_if_a_candidate_has_not_commited(self):
+        original_amount_of_emails = len(mail.outbox)
         ProposalLike.objects.create(user=self.feli,
                                     proposal=self.proposal)
         commitment = Commitment.objects.create(candidate=self.candidate,
                                                proposal=self.proposal,
                                                commited=True)
 
-        self.assertEquals(len(mail.outbox), 1)
-        the_mail = mail.outbox[0]
+        self.assertEquals(len(mail.outbox), original_amount_of_emails + 2)
+        the_mail = mail.outbox[original_amount_of_emails]
         commitment.delete()
 
         commitment = Commitment.objects.create(candidate=self.candidate,
                                                proposal=self.proposal,
                                                detail=u'Yo No me comprometo',
                                                commited=False)
-        self.assertEquals(len(mail.outbox), 2)
-        the_mail2 = mail.outbox[1]
+        self.assertEquals(len(mail.outbox), original_amount_of_emails + 4)
+        the_mail2 = mail.outbox[original_amount_of_emails + 1]
         self.assertNotEqual(the_mail.subject, the_mail2.subject)
         self.assertNotEqual(the_mail.body, the_mail2.body)
         self.assertTrue(the_mail2.body)

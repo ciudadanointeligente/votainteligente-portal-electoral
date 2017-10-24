@@ -414,8 +414,6 @@ class CandidateCommitmentFormBase(forms.Form):
                                                candidate=self.candidate,
                                                detail=detail,
                                                commited=self.commited)
-        if config.NOTIFY_STAFF_OF_NEW_COMMITMENT:
-            send_mails_to_staff({'commitment': commitment}, 'notify_staff_new_commitment')
         return commitment
 
     def clean(self):

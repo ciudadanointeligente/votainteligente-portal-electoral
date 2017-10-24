@@ -314,7 +314,7 @@ class CandidateIncrementalDetailView(DetailView):
     template_name = 'mails/suggestions_for_candidates/body.html'
 
     def get_queryset(self):
-        qs = super(CandidateIncrementalDetailView, self).get_queryset().filter(used=False)
+        qs = super(CandidateIncrementalDetailView, self).get_queryset()
         return qs
 
 

@@ -19,11 +19,8 @@
 <p>Desde ahí podrás difundir información sobre tu campaña y comprometerse con aquellas propuestas ciudadanas que te sean afines.</p>
 
 <p>Hemos seleccionado algunas propuestas que consideramos podrían ser de tu interés:</p>
-<ul>
-	{% for proposal in proposals %}
-<li><a href="https://{{site.domain}}{{proposal.get_absolute_url}}">{{proposal.title}}</a>{% if proposal.proposer.profile.is_organization %} de <a href="https://{{site.domain}}{{proposal.proposer.organization_template.get_absolute_url}}">{{proposal.proposer.organization_template.title}}</a>{% endif %}</li>
-{% endfor %}
-</ul>
+
+{% include 'backend_candidate/_suggestions_formset.html' with formset=formset object=candidate_incremental %}
 
 <p>Si quieres que utilicemos otra dirección de correo electrónico para comunicarnos contigo, o si tienes alguna duda, puedes responder a este mismo mail.</p>
 

@@ -10,8 +10,11 @@ from backend_candidate.models import (Candidacy,
                                       add_contact_and_send_mail,
                                       IncrementalsCandidateFilter,
                                       ProposalSuggestionForIncremental,
+                                      CandidateIncremental,
                                       send_candidate_username_and_password)
-from backend_candidate.forms import get_form_for_election, SimpleCommitmentForm
+from backend_candidate.forms import (get_form_for_election,
+                                     SimpleCommitmentForm,
+                                     get_multi_commitment_forms)
 from backend_candidate.tasks import (let_candidate_now_about_us,
                                      send_candidate_username_and_pasword_task,
                                      send_candidates_their_username_and_password)
@@ -30,6 +33,7 @@ from popolo.models import ContactDetail
 from elections.models import PersonalData
 from django.core.management import call_command
 from django.forms import Form
+from django.core.urlresolvers import reverse
 
 
 class IncrementalsTestCase(ProposingCycleTestCaseBase):
@@ -59,7 +63,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
                                                   title=u'This is a title'
                                                   )
         suggestion = ProposalSuggestionForIncremental.objects.create(incremental=f,
-        															 summary=u"Por esta razón",
+                                                                     summary=u"Por esta razón",
                                                                      proposal=proposal)
         self.assertFalse(suggestion.sent)
 
@@ -258,26 +262,157 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
         self.assertIn(first_email.to[0], possible_emails_that_could_have_been_used)
 
 
+class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(CandidateIncrementalIdentifier, self).setUp()
+        self.fiera_candidata = Candidate.objects.create(name='Fiera Feroz la mejor candidata del mundo!')
+        PersonalData.objects.create(candidate=self.fiera_candidata, label='Pacto', value="Frente Amplio")
+        filter_qs = {'personal_datas__label': "Pacto", "personal_datas__value": u"Frente Amplio"}
+        exclude_qs = {'elections__position': "Presidenta o Presidente"}
+        self.filter = IncrementalsCandidateFilter.objects.create(filter_qs=filter_qs,
+                                                                 exclude_qs=exclude_qs,
+                                                                 text=u"te querimos musho\n\rsaltode linea",
+                                                                 name=u"Candidatos al parlamento de Frente Amplio")
+        self.p1 = PopularProposal.objects.create(proposer=self.feli,
+                                                 area=self.arica,
+                                                 data=self.data,
+                                                 title=u'This is a title1'
+                                                 )
+        self.p2 = PopularProposal.objects.create(proposer=self.feli,
+                                                 area=self.arica,
+                                                 data=self.data,
+                                                 title=u'This is a title1'
+                                                 )
+        ProposalSuggestionForIncremental.objects.create(incremental=self.filter,
+                                                        proposal=self.p1)
+        ProposalSuggestionForIncremental.objects.create(incremental=self.filter,
+                                                        proposal=self.p2)
+
+    def test_candidate_incremental_model(self):
+        candidate_incremental = CandidateIncremental.objects.create(candidate=self.fiera_candidata,
+                                                                    suggestion=self.filter)
+        self.assertTrue(candidate_incremental.identifier)
+
+    def test_candidate_incremental_autocreatel(self):
+        self.filter.send_mails()
+        c_i = CandidateIncremental.objects.get(suggestion=self.filter, candidate=self.fiera_candidata)
+        self.assertTrue(c_i)
+
+    def test_candidate_incremental_formset(self):
+        self.filter.send_mails()
+        c_i = CandidateIncremental.objects.get(suggestion=self.filter, candidate=self.fiera_candidata)
+        self.assertEquals(len(c_i.formset.forms), 2)
+        self.assertEquals(c_i.formset.forms[0].candidate, self.fiera_candidata)
+        self.assertEquals(c_i.formset.forms[1].candidate, self.fiera_candidata)
+        self.assertEquals(c_i.formset.forms[0].proposal, self.p1)
+        self.assertEquals(c_i.formset.forms[1].proposal, self.p2)
+
+
+    def test_reverse_self(self):
+        c_i = CandidateIncremental.objects.create(candidate=self.fiera_candidata,
+                                                  suggestion=self.filter)
+        url = reverse("backend_candidate:commit_to_suggestions", kwargs={"identifier": c_i.identifier})
+        self.assertEquals(c_i.get_absolute_url(), url)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('formset', response.context)
+        formset = response.context['formset']
+        self.assertEquals(len(formset.forms), 2)
+        self.assertEquals(formset.forms[0].candidate, self.fiera_candidata)
+        self.assertEquals(formset.forms[1].candidate, self.fiera_candidata)
+        self.assertEquals(formset.forms[0].proposal, self.p1)
+        self.assertEquals(formset.forms[1].proposal, self.p2)
+
+    def test_post_to_commit(self):
+        data = {
+            'form-TOTAL_FORMS': '2',
+            'form-INITIAL_FORMS': '2',
+            'form-MAX_NUM_FORMS': '2',
+            'form-0-commited': True,
+            'form-1-commited': False,
+            'form-0-detail': "hola",
+            'form-1-detail': "",
+
+        }
+        c_i = CandidateIncremental.objects.create(candidate=self.fiera_candidata,
+                                                  suggestion=self.filter)
+        url = reverse("backend_candidate:commit_to_suggestions", kwargs={"identifier": c_i.identifier})
+        url_thanks_for_commiting = reverse("backend_candidate:thanks_for_commiting")
+        response = self.client.post(url, data)
+
+        self.assertRedirects(response, url_thanks_for_commiting)
+        self.assertTrue(Commitment.objects.filter(candidate=self.fiera_candidata,
+                                                  proposal=self.p1,
+                                                  detail="hola"))
+        self.assertFalse(Commitment.objects.filter(candidate=self.fiera_candidata,
+                                                   proposal=self.p2))
+        
+
+
 class MultiCommitmentForm(ProposingCycleTestCaseBase):
     def setUp(self):
         super(MultiCommitmentForm, self).setUp()
         self.feli = User.objects.get(username='feli')
 
-    # def test_instanciate_single_form(self):
-    # 	fiera_candidata = Candidate.objects.create(name='Fiera Feroz la mejor candidata del mundo!')
-    # 	proposal = PopularProposal.objects.create(proposer=self.feli,
-    #                                               area=self.arica,
-    #                                               data=self.data,
-    #                                               title=u'This is a title'
-    #                                               )
-    # 	form = SimpleCommitmentForm(fiera_candidata, proposal)
-    # 	self.assertIsInstance(form, Form)
-    # 	self.assertTrue(form.fields['commit'])
-    # 	self.assertTrue(form.fields['details'])
-    # 	data = {'commit': True, "details": u"Sí por supuesto"}
-    # 	form = SimpleCommitmentForm(fiera_candidata, proposal, data=data)
-    # 	self.assertTrue(form.is_valid())
-    # 	commitment = form.save()
-    # 	self.assertTrue(commitment.commited)
-    # 	self.assertEquals(commitment.candidate, fiera_candidata)
-    # 	self.assertEquals(commitment.proposal, proposal)
+    def test_instanciate_single_form(self):
+        fiera_candidata = Candidate.objects.create(name='Fiera Feroz la mejor candidata del mundo!')
+        proposal = PopularProposal.objects.create(proposer=self.feli,
+                                                  area=self.arica,
+                                                  data=self.data,
+                                                  title=u'This is a title'
+                                                  )
+        form = SimpleCommitmentForm(candidate=fiera_candidata,
+                                    proposal=proposal)
+        self.assertIsInstance(form, Form)
+        self.assertTrue(form.fields['commited'])
+        self.assertTrue(form.fields['detail'])
+        data = {'commited': True, "detail": u"Sí por supuesto"}
+        form = SimpleCommitmentForm(data=data,
+                                    candidate=fiera_candidata,
+                                    proposal=proposal)
+        self.assertTrue(form.is_valid())
+        commitment = form.save()
+        self.assertTrue(commitment.commited)
+        self.assertEquals(commitment.candidate, fiera_candidata)
+        self.assertEquals(commitment.proposal, proposal)
+        #  DONT CREATE TWO COMMITMENTS
+        form = SimpleCommitmentForm(data=data,
+                                    candidate=fiera_candidata,
+                                    proposal=proposal)
+        self.assertTrue(form.is_valid())
+        result = form.save()
+        self.assertIsNone(result)
+        self.assertEquals(len(Commitment.objects.filter(proposal=proposal)), 1)
+        commitment.delete()
+        data = {}
+        form = SimpleCommitmentForm(data=data,
+                                    candidate=fiera_candidata,
+                                    proposal=proposal)
+        self.assertTrue(form.is_valid())
+        result = form.save()
+        self.assertIsNone(result)
+        self.assertFalse(len(Commitment.objects.filter(proposal=proposal)))
+
+    def test_get_formset(self):
+        fiera_candidata = Candidate.objects.create(name='Fiera Feroz la mejor candidata del mundo!')
+        proposal1 = PopularProposal.objects.create(proposer=self.feli,
+                                                   area=self.arica,
+                                                   data=self.data,
+                                                   title=u'This is a title'
+                                                   )
+        proposal2 = PopularProposal.objects.create(proposer=self.feli,
+                                                   area=self.arica,
+                                                   data=self.data,
+                                                   title=u'This is a title'
+                                                   )
+        formset = get_multi_commitment_forms(fiera_candidata, [proposal1, proposal2], ['s1', 's2'])()
+        self.assertEquals(len(formset.forms), 2)
+        self.assertEquals(formset.forms[0].candidate, fiera_candidata)
+        self.assertEquals(formset.forms[1].candidate, fiera_candidata)
+        self.assertEquals(formset.forms[0].proposal, proposal1)
+        self.assertEquals(formset.forms[1].proposal, proposal2)
+        self.assertEquals(formset.forms[0].summary, 's1')
+        self.assertEquals(formset.forms[1].summary, 's2')
+
+    # def test_commitment_view(self):
+    #     url = reverse('proposal_subscriptions:unsubscribe', kwargs={'token': subscription.token})

@@ -14,7 +14,7 @@
 {% with candidate.contacts.last as contact %}
 {% if not candidate.has_joined %}
 
-<p>En cualquier momento puedes ingresar y editar la información que consta en tu perfil o comprometerte con otras propuestas. Para ello debes ingresar a <a href="https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}">{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}</a> ({{contact.candidacy.user.username}} ) y contraseña (que podrás cambiar una vez dentro de la página): ({{contact.initial_password}}).</p>
+<p>En cualquier momento puedes ingresar y editar la información que consta en tu perfil o comprometerte con otras propuestas. Para ello debes ingresar a <a href="https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}">{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}</a> con tu usuario ({{contact.candidacy.user.username}}) y contraseña ({{contact.initial_password}}).</p>
 {% else %}
 <p>En cualquier momento puedes ingresar y editar la información que consta en tu perfil o comprometerte con otras propuestas. Para ello debes ingresar a <a href="https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}">{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}</a> con tu usuario: <b>{{contact.candidacy.user.username}}</b>.</p>
 {% endif %}

@@ -20,6 +20,8 @@ from agenda.models import Activity
 from popular_proposal.filters import ProposalWithoutAreaFilter
 from django.views.generic.detail import DetailView
 from django.conf import settings
+from django.contrib.sites.models import Site
+from django.shortcuts import render
 
 
 class BackendCandidateBase(View):
@@ -315,7 +317,8 @@ class CandidateIncrementalDetailView(DetailView):
         context = super(CandidateIncrementalDetailView, self).get_context_data(**kwargs)
         context['formset'] = self.object.formset
         if settings.DEBUG:
-
+            context['candidate_incremental'] = self.object
+            context['site'] = Site.objects.get_current()
             context['candidate'] = self.object.candidate
             context['text'] = self.object.suggestion.text
         return context
@@ -326,7 +329,7 @@ class CandidateIncrementalDetailView(DetailView):
         formset = CommitmentIcrementalFormset(request.POST, request.FILES)
         if formset.is_valid():
             formset.save()
-            return HttpResponseRedirect(reverse('backend_candidate:thanks_for_commiting'))
+            return render(request, 'backend_candidate/thanks_for_commiting.html', context={'post': request.POST})
         self.get(request, *args, **kwargs)
 
 

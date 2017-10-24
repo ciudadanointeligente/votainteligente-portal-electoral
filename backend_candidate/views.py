@@ -19,6 +19,7 @@ from django.utils.translation import ugettext as _
 from agenda.models import Activity
 from popular_proposal.filters import ProposalWithoutAreaFilter
 from django.views.generic.detail import DetailView
+from django.conf import settings
 
 
 class BackendCandidateBase(View):
@@ -308,11 +309,15 @@ class CandidateIncrementalDetailView(DetailView):
     model = CandidateIncremental
     slug_url_kwarg = "identifier"
     slug_field = 'identifier'
-    template_name = 'backend_candidate/commit_to_suggestions.html'
+    template_name = 'mails/suggestions_for_candidates/body.html'
 
     def get_context_data(self, **kwargs):
         context = super(CandidateIncrementalDetailView, self).get_context_data(**kwargs)
         context['formset'] = self.object.formset
+        if settings.DEBUG:
+
+            context['candidate'] = self.object.candidate
+            context['text'] = self.object.suggestion.text
         return context
 
     def post(self, request, *args, **kwargs):

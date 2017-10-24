@@ -229,9 +229,6 @@ class SimpleCommitmentForm(forms.Form):
     commited = forms.NullBooleanField(label=u"Me comprometo con esta propuesta.",
                                       widget=forms.CheckboxInput,
                                       required=False)
-    detail = forms.CharField(widget=forms.Textarea,
-                             label=u"Términos en los cuales me comprometo",
-                             required=False)
 
     def __init__(self, *args, **kwargs):
         self.candidate = kwargs.pop('candidate')

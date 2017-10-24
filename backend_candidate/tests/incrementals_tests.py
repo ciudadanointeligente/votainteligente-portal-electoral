@@ -330,8 +330,6 @@ class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
             'form-MAX_NUM_FORMS': '2',
             'form-0-commited': True,
             'form-1-commited': False,
-            'form-0-detail': "hola",
-            'form-1-detail': "",
 
         }
         c_i = CandidateIncremental.objects.create(candidate=self.fiera_candidata,
@@ -342,8 +340,7 @@ class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
 
         self.assertRedirects(response, url_thanks_for_commiting)
         self.assertTrue(Commitment.objects.filter(candidate=self.fiera_candidata,
-                                                  proposal=self.p1,
-                                                  detail="hola"))
+                                                  proposal=self.p1))
         self.assertFalse(Commitment.objects.filter(candidate=self.fiera_candidata,
                                                    proposal=self.p2))
         
@@ -365,8 +362,7 @@ class MultiCommitmentForm(ProposingCycleTestCaseBase):
                                     proposal=proposal)
         self.assertIsInstance(form, Form)
         self.assertTrue(form.fields['commited'])
-        self.assertTrue(form.fields['detail'])
-        data = {'commited': True, "detail": u"Sí por supuesto"}
+        data = {'commited': True}
         form = SimpleCommitmentForm(data=data,
                                     candidate=fiera_candidata,
                                     proposal=proposal)

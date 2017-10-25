@@ -36,6 +36,7 @@
           {% with object.twitter|extract_twitter_username_without_at as twitter_org %}
           {% with url="https://votainteligente.cl"|add:object.get_absolute_url %}
           {% for candidate in candidates.all %}
+            {% if candidate.twitter.value %}
             {% if candidate.election.position == 'Presidenta o Presidente' %}
             <tr>
               <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
@@ -43,6 +44,7 @@
                 {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
               </td>
             </tr>
+            {% endif %}
             {% endif %}
           {% endfor %}
           {% endwith %}
@@ -65,6 +67,7 @@
           {% with object.twitter|extract_twitter_username_without_at as twitter_org %}
           {% with url="https://votainteligente.cl"|add:object.get_absolute_url %}
           {% for candidate in candidates.all %}
+            {% if candidate.twitter.value %}
             {% if candidate.election.position == 'Senadora o Senador' %}
             <tr>
               <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
@@ -72,6 +75,7 @@
                 {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
               </td>
             </tr>
+            {% endif %}
             {% endif %}
           {% endfor %}
           {% endwith %}
@@ -94,6 +98,7 @@
           {% with object.twitter|extract_twitter_username_without_at as twitter_org %}
           {% with url="https://votainteligente.cl"|add:object.get_absolute_url %}
           {% for candidate in candidates.all %}
+            {% if candidate.twitter.value %}
             {% if candidate.election.position == 'Diputada o Diputado' %}
             <tr>
               <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
@@ -101,6 +106,7 @@
                 {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
               </td>
             </tr>
+            {% endif %}
             {% endif %}
           {% endfor %}
           {% endwith %}

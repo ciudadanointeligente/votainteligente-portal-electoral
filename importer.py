@@ -114,8 +114,69 @@ def mails_2017():
         email = row[2].strip()
         CandidacyContact.objects.create(candidate=candidate, mail=email)
 
+def senadores2():
+    reader = codecs.open("senadores2.csv", 'r', encoding='utf-8')
+    counter = 0
+    candidates_ids = []
+    reader.readline()
+    values = {1: u"I", 2:u"II", 4:u"IV", 6:u"VI", 9:u"IX", 11:u"XI", 14:u"XIV"}
+    for line in reader:
+        row = line.split(u',')
+        nombres = row[2].title().strip()
+        # apellidos = row[1].title().strip()
+        # largo_apellidos = len(apellidos.split(u" "))
+        # # if largo_apellidos == 2:
+        # #     apellidos = apellidos.split(u" ")[0]
+        # full_name = nombres + u" " + apellidos
+        num_circ = row[1].strip().replace(u"Circunscripción", "").strip()
+        area_name = num_circ + u" Circunscripción Senatorial"
+        area = Area.objects.get(name=area_name)
+        election = area.elections.first()
+        pacto = row[4].strip().title().replace("Pacto ", "")
+        partido = row[3].strip().title()
+        if not Candidate.objects.filter(name__icontains=nombres).exists():
+            candidate = Candidate.objects.create(name=nombres)
+            print candidate.id, "|", nombres,"|", election,"|", pacto,"|", partido
+            election.candidates.add(candidate)
+            PersonalData.objects.create(candidate=candidate,
+                                        label=u'Pacto',
+                                        value=pacto)
+            PersonalData.objects.create(candidate=candidate,
+                                        label=u'Partido',
+                                        value=partido)
+
+def diputados2():
+    reader = codecs.open("diputados2.csv", 'r', encoding='utf-8')
+    counter = 0
+    candidates_ids = []
+    reader.readline()
+    for line in reader:
+        row = line.split(u',')
+        nombres = row[3].title().strip()
+        # apellidos = row[1].title().strip()
+        # largo_apellidos = len(apellidos.split(u" "))
+        # # if largo_apellidos == 2:
+        # #     apellidos = apellidos.split(u" ")[0]
+        # full_name = nombres + u" " + apellidos
+        num_circ = row[2].strip()
+        area_name = u"Distrito " + str(num_circ)
+        area = Area.objects.get(name=area_name)
+        election = area.elections.first()
+        pacto = row[5].strip().title()
+        partido = row[4].strip().title()
+        if not Candidate.objects.filter(name__icontains=nombres).exists():
+            candidate = Candidate.objects.create(name=nombres)
+            print candidate.id, "|", nombres,"|", election,"|", pacto,"|", partido
+            election.candidates.add(candidate)
+            PersonalData.objects.create(candidate=candidate,
+                                        label=u'Pacto',
+                                        value=pacto)
+            PersonalData.objects.create(candidate=candidate,
+                                        label=u'Partido',
+                                        value=partido)
 if __name__ == "__main__":
-    mails_2017()
+    diputados2()
+    senadores2()
 
 
 

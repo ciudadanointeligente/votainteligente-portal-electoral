@@ -336,8 +336,8 @@ class CandidateIncrementalDetailView(DetailView):
         formset = CommitmentIcrementalFormset(request.POST, request.FILES)
         if formset.is_valid():
             commitments = formset.save()
-            return render(request, 'backend_candidate/thanks_for_commiting.html', context={'commitments': commitments})
-
+            if commitments:
+                return render(request, 'backend_candidate/thanks_for_commiting.html', context={'commitments': commitments})
         self.get(request, *args, **kwargs)
 
 

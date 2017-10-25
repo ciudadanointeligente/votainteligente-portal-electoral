@@ -321,11 +321,11 @@ class CandidateIncrementalDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(CandidateIncrementalDetailView, self).get_context_data(**kwargs)
         context['formset'] = self.object.formset
+        context['candidate_incremental'] = self.object
+        context['site'] = Site.objects.get_current()
+        context['text'] = self.object.suggestion.text
         if settings.DEBUG:
-            context['candidate_incremental'] = self.object
-            context['site'] = Site.objects.get_current()
             context['candidate'] = self.object.candidate
-            context['text'] = self.object.suggestion.text
         return context
 
     def post(self, request, *args, **kwargs):
@@ -337,6 +337,7 @@ class CandidateIncrementalDetailView(DetailView):
         if formset.is_valid():
             commitments = formset.save()
             return render(request, 'backend_candidate/thanks_for_commiting.html', context={'commitments': commitments})
+
         self.get(request, *args, **kwargs)
 
 

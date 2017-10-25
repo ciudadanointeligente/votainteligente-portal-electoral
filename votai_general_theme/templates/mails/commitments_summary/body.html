@@ -6,14 +6,14 @@
 		<td><b>Candidato</b></td>
 		<td><b>Propuesta</b></td>
 	</tr>
-	{% for commitment in commitments %}	
+	{% for commitment in commitments %}
 	<tr style="background-color:{% cycle '#FFFFFF' '#EEEEEE' %}">
 	{%if commitment.commited %}
 		<td><b>{{commitment.candidate}}</b></td>
-		<td><a href="https://{{site.domain}}{{commitment.get_absolte_url}}">{{commitment.proposal}}</a></td>
+		<td><a href="https://{{site.domain}}{{commitment.get_absolute_url}}">{{commitment.proposal}}</a></td>
 	{% else %}
 		<td><b>{{commitment.candidate}}</b></td>
-		<td><a href="https://{{site.domain}}{{commitment.get_absolte_url}}">{{commitment.proposal}}</a></td>
+		<td><a href="https://{{site.domain}}{{commitment.get_absolute_url}}">{{commitment.proposal}}</a></td>
 	{% endif %}
 	</tr>
 	{% endfor %}

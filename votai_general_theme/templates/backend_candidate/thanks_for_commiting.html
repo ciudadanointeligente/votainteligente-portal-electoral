@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block content %}
+  <h1>Gracias por comprometerte!</h1>
+  <ul>
+  {% for commitment in commitments %}
+    <li><a href="{{commitment.get_absolute_url}}">Revisa y publicita tu compromiso con {{commitment.proposal.title}}</a></li>
+  {% endfor %}
+  </ul>
+{% endblock content %}

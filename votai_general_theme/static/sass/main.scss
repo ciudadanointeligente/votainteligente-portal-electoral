@@ -62,9 +62,11 @@ h2 {
 
 h3 {
   font-family: 'Arvo', serif;
-  font-weight: 300;
+  font-weight: 700;
   font-size: 22px;
   color: $grey-one;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
 h4 {

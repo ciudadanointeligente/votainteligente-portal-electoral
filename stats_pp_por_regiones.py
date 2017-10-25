@@ -10,9 +10,4 @@ pp = pprint.PrettyPrinter(indent=4)
 regiones = {}
 for p in PopularProposal.objects.filter(generated_at__classification="Comuna"):
 	region = p.generated_at.parent.parent.parent
-	if region.id not in regiones.keys():
-		regiones[region.id] = [p]
-	else:
-		regiones[region.id].append(p)
-
-pp.pprint(regiones)
+	print region.id + u"|" + unicode(p.id) + u"|" + p.title

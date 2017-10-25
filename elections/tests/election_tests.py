@@ -174,3 +174,9 @@ class ElectionViewTestCase(TestCase):
         expected_url = "http://%s%s" % (self.site.domain,
                                         static('img/logo_vi_og.jpg'))
         self.assertEquals(expected_url, self.election.ogp_image())
+
+    def test_ayudanos_per_election_(self):
+        url = reverse('help_election', kwargs={'slug': self.election.slug})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['object'], self.election)

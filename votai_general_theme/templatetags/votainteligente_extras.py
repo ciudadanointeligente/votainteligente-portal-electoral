@@ -20,6 +20,7 @@ import re
 from django.shortcuts import render
 from constance import config
 from organization_profiles.models import OrganizationTemplate
+from popular_proposal.forms.form_texts import TOPIC_CHOICES
 
 register = template.Library()
 
@@ -329,12 +330,26 @@ def commiters_by_election_position(proposal, position):
 
 @register.filter
 def extract_twitter_username(value):
-    pattern = re.compile(r'((https?://)?(www\.)?twitter\.com/)?(@|#!/)?([A-Za-z0-9_]{1,15})(/([-a-z]{1,20}))?')
-    result = pattern.search(value)
-    if result is None:
-        return ''
-    return u'@' + result.groups()[4]
+    if value:
 
+        pattern = re.compile(r'((https?://)?(www\.)?twitter\.com/)?(@|#!/)?([A-Za-z0-9_]{1,15})(/([-a-z]{1,20}))?')
+        result = pattern.search(value)
+        if result is None:
+            return ''
+        return u'@' + result.groups()[4]
+    else:
+        return ""
+
+@register.filter
+def extract_twitter_username_without_at(value):
+    if value:
+        pattern = re.compile(r'((https?://)?(www\.)?twitter\.com/)?(@|#!/)?([A-Za-z0-9_]{1,15})(/([-a-z]{1,20}))?')
+        result = pattern.search(value)
+        if result is None:
+            return ''
+        return result.groups()[4]
+    else:
+        return ""
 
 @register.filter
 @stringfilter
@@ -375,3 +390,11 @@ def display_election_card(context, election):
 @register.simple_tag(takes_context=True)
 def display_proposal_card(context, proposal):
     return proposal.display_card(context)
+
+@register.simple_tag()
+def proposals_topic_choices():
+    result = []
+    for k,v in TOPIC_CHOICES:
+        if k:
+            result.append((k, v))
+    return result

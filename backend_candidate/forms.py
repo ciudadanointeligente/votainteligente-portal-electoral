@@ -8,6 +8,9 @@ from elections.models import PersonalData
 import os
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
+from popular_proposal.models import Commitment
+from django.forms import formset_factory
+from django.forms import BaseFormSet
 
 
 def get_field_from_topic(topic):
@@ -134,7 +137,8 @@ class CandidateProfileFormBase(forms.Form):
     image = forms.ImageField(required=False,
                              label=_(u"Imagen de perfil"))
     program_link = forms.URLField(required=False,
-                                  label=_(u"Link del programa"))
+                                  label=_(u"Link del programa"),
+                                  help_text=_(u"Link a tus ideas y/o planteamientos que quieras que la ciudadanía conozca. Ej: http://micandidatura.cl/mis-ideas/"))
 
     social_networks = {
         'facebook': {'field': forms.URLField(required=False),
@@ -219,3 +223,44 @@ def get_candidate_profile_form_class():
                               object),
                              cls_attrs)
     return PARENT_FORM_CLASS
+
+
+class SimpleCommitmentForm(forms.Form):
+    commited = forms.NullBooleanField(label=u"Me comprometo con esta propuesta.",
+                                      widget=forms.CheckboxInput,
+                                      required=False)
+
+    def __init__(self, *args, **kwargs):
+        self.candidate = kwargs.pop('candidate')
+        self.proposal = kwargs.pop('proposal')
+        self.summary = kwargs.pop('summary', None)
+        return super(SimpleCommitmentForm, self).__init__(*args, **kwargs)
+
+    def save(self):
+        initial_commitment_kwargs = {"proposal": self.proposal, "candidate": self.candidate}
+        if self.cleaned_data['commited'] and not Commitment.objects.filter(**initial_commitment_kwargs):
+            initial_commitment_kwargs.update(**self.cleaned_data)
+            return Commitment.objects.create(**initial_commitment_kwargs)
+
+def get_multi_commitment_forms(candidate, proposals, summaries):
+    class BaseCommitmentFormSet(BaseFormSet):
+        def get_form_kwargs(self, index):
+            kwargs = super(BaseCommitmentFormSet, self).get_form_kwargs(index)
+            kwargs['proposal'] = proposals[index]
+            kwargs['summary'] = summaries[index]
+            kwargs['candidate'] = candidate
+            return kwargs
+
+        def save(self):
+            commitments = []
+            for f in self.forms:
+                c = f.save()
+                if c is not None:
+                    commitments.append(c)
+            return commitments
+
+    num_forms = len(proposals)
+    return formset_factory(SimpleCommitmentForm,
+                           formset=BaseCommitmentFormSet,
+                           max_num=num_forms,
+                           min_num=num_forms, )

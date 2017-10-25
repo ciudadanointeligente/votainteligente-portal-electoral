@@ -48,6 +48,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         content_type = popular_proposal.content_type
         expected_content_type = ContentType.objects.get_for_model(PopularProposal)
         self.assertEquals(content_type, expected_content_type)
+        self.assertFalse(popular_proposal.summary)
 
     def test_popular_proposal_card_as_property(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,

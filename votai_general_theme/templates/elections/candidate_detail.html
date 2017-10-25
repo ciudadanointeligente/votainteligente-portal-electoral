@@ -50,7 +50,7 @@
               {% else %}
               <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato img-candidato">
             {% endif %}
-            {% if config.SHOW_RIBBON_IN_CANDIDATE and not candidate.commitments.count %}<div class="ribbon label label-danger">No se ha comprometido</div>{% endif %}
+            {% if config.SHOW_RIBBON_IN_CANDIDATE and not candidate.commitments.count %}<div class="ribbon label label-danger">No se ha comprometido en VotaInteligente</div>{% endif %}
           </div>
       </div>
       <div id="info-candidato" class="col-xs-12 col-sm-7 col-md-7">
@@ -69,6 +69,7 @@
                 <p class="small-basic"><b>Pacto</b></p>
                 <p>{{pacto.value}}</p>
               </td>
+              {% endif %}
           <tr>
           </tr>
             <td>
@@ -81,10 +82,15 @@
               </ul>
               {% endif %}
             </td>
-
+            {% get_personal_data candidate=candidate personal_data='lupa' as lupa %}
+            {% if lupa %}
+              <td colspan="2">
+                <p class="small-basic"><a target="_blank" href="{{lupa.value}}"><i class="fa fa-money" aria-hidden="true"></i> Aportes y gastos de campaña <i class="fa fa-external-link"></i></a></p>
+              </td>
+              {% endif %}
 
           </tr>
-          {% endif %}
+
           {% get_personal_data candidate=candidate personal_data='experiencia' as experiencia %}
           {% if experiencia.value %}
           <tr>
@@ -98,10 +104,10 @@
             <td>
               <p class="small-basic"><b>Compromisos Ciudadanos</b></p>
               {% if candidate.commitments.committed.count %}
-              <p>Este candidato se ha comprometido con</p>
+              <p>Este candidato se ha comprometido en VotaInteligente con</p>
               <p class="btn btn-info"><i class="fa fa-heart"></i>{{candidate.commitments.committed.count}} Propuestas ciudadanas</p>
               {% else %}
-              <p>Este candidato aún no se ha comprometido</p>
+              <p>Este candidato aún no se ha comprometido en VotaInteligente</p>
               {% endif %}
             </td>
             <td>
@@ -124,20 +130,25 @@
 {% get_personal_data candidate=candidate personal_data='program_link' as program_link %}
 {% if program_link.value %}
 <div id="candidato-programa" class="container-fluid">
-  <p class="text-center">Revisa su programa <a target="_blank" href="{{program_link.value}}" class="btn btn-white">aquí</a></p>
+
+  <p class="text-center">{% ifequal candidate.election.position 'Presidenta o Presidente' %}
+      Revisa su programa
+    {% else %}
+      Revisa sus ideas y planteamientos
+    {% endifequal %}<a target="_blank" href="{{program_link.value}}" class="btn btn-white">aquí</a></p>
 </div>
 {% endif %}
 
 <div id="candidato-propuestas" class="container">
   <h3 class="text-center">Compromisos Ciudadanos</h3>
   {% if candidate.commitments.committed.count %}
-  <p class="text-center">Acá encontrarás un total de {{candidate.commitments.committed.count}} propuestas a las que {{candidate.name}} se comprometió a cumplir dentro del plan de gobierno.</p>
+  <p class="text-center">Acá encontrarás un total de {{candidate.commitments.committed.count}} propuestas a las que {{candidate.name}} se comprometió en VotaInteligente a cumplir dentro del plan de gobierno.</p>
   {% include 'elections/candidates/propuestas_a_las_que_se_ha_comprometido.html' with candidate=candidate election=election %}
   {% else %}
     {% if user|is_candidate %}
-      {{candidate.name}} aun no te haz comprometido! Es hora de
+      {{candidate.name}} aún no te haz comprometido en VotaInteligente!
     {% else %}
-      <p class="text-center">Este candidato aún no se ha comprometido</p>
+      <p class="text-center">Este candidato aún no se ha comprometido en VotaInteligente</p>
     {% endif %}
   {% endif %}
 

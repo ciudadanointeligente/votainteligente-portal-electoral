@@ -7,11 +7,12 @@
 {% cache 300 presidentes_comprometidos cargo proposal.id %}
 {% commiters_by_election_position proposal cargo as commitments %}
   {% if commitments.all %}
-    <h5>Candidatos a {{cargo}}</h5>
+    <hr>
+    <label>Candidaturas a {{cargo}} comprometidas con esta propuesta en VotaInteligente</label>
     <ul class="list-inline">
       {% for commitment in commitments.all %}
         <li>
-          <a href="{{commitment.candidate.get_absolute_url}}">
+          <a href="{{commitment.candidate.get_absolute_url}}" class="candidate-commit-name">
             {% if commitment.commited %}
               {% if commitment.candidate.image %}
                 {% thumbnail commitment.candidate.image "50x50" crop="center" as im %}
@@ -23,6 +24,7 @@
               {{commitment.candidate}}
             {% endif %}
           </a>
+          <a href="{{commitment.get_absolute_url}}" alt="Lee el compromiso" class="candidate-commit-name"><i class="fa fa-file-text" aria-hidden="true"></i></a>
         </li>
       {% endfor %}
     </ul>

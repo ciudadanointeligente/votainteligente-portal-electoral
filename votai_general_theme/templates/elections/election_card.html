@@ -37,6 +37,9 @@
     </div><div class="row">
     {% endif %}
     {% endfor %}
+    {% if user.is_staff %}
+    <a href="{% url 'help_election' slug=election.slug %}">Ayudanos!</a>
+    {% endif %}
   </div>
   {% else %}
   {% endif %}

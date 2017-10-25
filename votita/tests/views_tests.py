@@ -196,10 +196,25 @@ class GatheringViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
 
 class LandingPage(ProposingCycleTestCaseBase, WizardDataMixin):
     def test_get_home(self):
+        proposal1 = KidsProposal.objects.create(proposer=self.fiera,
+                                                area=self.arica,
+                                                data=self.data,
+                                                title=u'This is a title1',
+                                                clasification=u'education'
+                                                )
+        proposal2 = KidsProposal.objects.create(proposer=self.fiera,
+                                                area=self.arica,
+                                                data=self.data,
+                                                title=u'This is a title2',
+                                                clasification=u'education',
+                                                featured=True,
+                                                )
         url = reverse('votita:index')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'votita/index.html')
+        self.assertIn(proposal2, response.context['featured_proposals'])
+        self.assertNotIn(proposal1, response.context['featured_proposals'])
 
 
 class KidsProposalViewsTestCase(ProposingCycleTestCaseBase):

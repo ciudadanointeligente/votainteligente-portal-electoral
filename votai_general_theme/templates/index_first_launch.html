@@ -48,16 +48,10 @@
     </div>
   </div>
 </section>
-{% if featured_proposals.count %}
-<section id="highlighted-proposals">
-  <h3 class="text-center">Conoce algunas de las propuestas ciudadanas</h3>
-  {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=featured_proposals form=Nil hide_proposal_list_header=True %}
-  <p class="text-center"><a href="{% url 'popular_proposals:home' %}" class="btn btn-white">Ver todas las propuestas</a></p>
-</section>
-{% endif %}
-<section id="home-search-candidate">
+<section id="home-search-candidate" class="blue">
   <div class="container">
     <h3 class="text-center">Conoce a las candidaturas</h3>
+    <p class="bajada text-center">Encuentra aquí a todos los candidatos y candidatas a Senador, Diputado y Presidente para estas elecciones.</p>
     <div class="row">
       <div class="col-md-12">
         {% include "_election_search_form.html" %}
@@ -65,6 +59,17 @@
     </div>
   </div>
 </section>
+{% if featured_proposals.count %}
+<section id="highlighted-proposals">
+  <div class="container">
+    <h3 class="text-center">Conoce algunas de las propuestas ciudadanas</h3>
+    <p class="bajada text-center">Te invitamos a filtrar y encontrar propuestas ciudadanas en las siguientes áreas</p>
+    {% include 'popular_proposal/_filter_tag_form.html' %}
+    {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=featured_proposals form=Nil hide_proposal_list_header=True hidden_search=True %}
+    <p class="text-center"><a href="{% url 'popular_proposals:home' %}" class="btn btn-success">Ver todas las propuestas</a></p>
+  </div>
+</section>
+{% endif %}
 <section id="education" class="container-fluid">
   <h3 class="text-center"><a href="{% url 'material_ciudadano' %}" onclick="ga('send', 'event', 'home-material-ciudadano', 'click')">Material ciudadano</a></h3>
   <p class="bajada text-center">Materiales para generar propuestas, hacer incidencia y saber todo lo necesario de las elecciones</p>

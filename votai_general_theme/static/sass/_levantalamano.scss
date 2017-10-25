@@ -325,7 +325,7 @@ h6{
   top: 80px;
 }
 .control-width{
-  max-width: 70%;
+  max-width: 73%;
   margin: 0 auto;
   padding: 50px 0 70px;
 }
@@ -341,6 +341,9 @@ h6{
 }
 #banner{
   min-height: 380px;
+  padding: 40px 0 70px 0;
+  margin-bottom: -40px;
+  background-color: $yellow;
 }
 #about{
   padding: 50px 0 80px;
@@ -409,6 +412,8 @@ p.aviso{
 .group{
   margin-top: 30px;
   margin-bottom: -6px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 hr{
   position: relative;
@@ -1201,4 +1206,20 @@ footer{
 }
 .print-share-urls{
   display:none;
+}
+
+/*VIDEO*/
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 25px;
+	height: 0;
+}
+
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }

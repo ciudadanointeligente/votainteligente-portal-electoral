@@ -3,13 +3,15 @@ from .adapter_tests import MediaNaranjaAdaptersBase
 from elections.models import Area
 from medianaranja2.forms import SetupForm, QuestionsForm, ProposalsForm, MediaNaranjaWizardForm
 from django.conf import settings
-from elections.models import Candidate, Election
+from elections.models import Candidate, Election, Area
+from constance import config
 from django import forms
 from popular_proposal.models import (PopularProposal,
                                      Commitment,
                                      )
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from constance.test import override_config
 
 class FormsTestCase(MediaNaranjaAdaptersBase):
     def setUp(self):
@@ -32,6 +34,16 @@ class FormsTestCase(MediaNaranjaAdaptersBase):
         self.assertIn(self.category1, form.cleaned_data['categories'])
         self.assertIn(self.category2, form.cleaned_data['categories'])
 
+    @override_config(DEFAULT_AREA='argentina')
+    def test_if_no_area_given_then_selects_the_default_area(self):
+        argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        data = {
+            'categories': [self.category1.id, self.category2.id]
+        }
+        form = SetupForm(data)
+        self.assertTrue(form.is_valid())
+        self.assertEquals(form.cleaned_data['area'], argentina)
+
     def test_questions_form_instanciate(self):
         kwargs = {'categories': [self.category1, self.category2]}
         form = QuestionsForm(**kwargs)
@@ -39,13 +51,13 @@ class FormsTestCase(MediaNaranjaAdaptersBase):
         self.assertIn(self.topic1.slug, form.fields)
         self.assertIsInstance(form.fields[self.topic1.slug], forms.ModelChoiceField)
         topic_1_choices = list(form.fields[self.topic1.slug].choices)
-        self.assertIn((self.position1.id, unicode(self.position1)), topic_1_choices)
-        self.assertIn((self.position2.id, unicode(self.position2)), topic_1_choices)
+        self.assertIn((self.position1.id, self.position1.label), topic_1_choices)
+        self.assertIn((self.position2.id, self.position2.label), topic_1_choices)
         self.assertIn(self.topic2.slug, form.fields)
         self.assertIsInstance(form.fields[self.topic2.slug], forms.ModelChoiceField)
         topic_2_choices = list(form.fields[self.topic2.slug].choices)
-        self.assertIn((self.position3.id, unicode(self.position3)), topic_2_choices)
-        self.assertIn((self.position4.id, unicode(self.position4)), topic_2_choices)
+        self.assertIn((self.position3.id, self.position3.label), topic_2_choices)
+        self.assertIn((self.position4.id, self.position4.label), topic_2_choices)
 
     def test_get_cleaned_data_from_questions_form(self):
         data = {self.topic1.slug: self.position1.id,

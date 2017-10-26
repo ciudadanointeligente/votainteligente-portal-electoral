@@ -261,6 +261,93 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
                                                      f_2.email]
         self.assertIn(first_email.to[0], possible_emails_that_could_have_been_used)
 
+    def test_command_line_for_selected_filters(self):
+        e = Election.objects.first()
+        damian_candidato = Candidate.objects.create(name='Jefe!', id="jefe")
+        damian_candidato.elections.add(e)
+        d_1 = User.objects.create(username='d1', email='damian1@perrito.cl')
+        d_2 = User.objects.create(username='d2', email='damian2@perrito.cl')
+        Candidacy.objects.create(candidate=damian_candidato, user=d_1)
+        Candidacy.objects.create(candidate=damian_candidato, user=d_2)
+        PersonalData.objects.create(candidate=damian_candidato, label='Pacto', value="Frente Amplio")
+
+        fiera_candidata = Candidate.objects.create(name='Fiera Feroz la mejor candidata del mundo!')
+        fiera_candidata.elections.add(e)
+        PersonalData.objects.create(candidate=fiera_candidata, label='Pacto', value="Frente Amplio")
+        f_1 = User.objects.create(username='f1', email='mail1@perrito.cl')
+        f_2 = User.objects.create(username='f2', email='mail2@perrito.cl')
+        Candidacy.objects.create(candidate=fiera_candidata, user=f_1)
+        Candidacy.objects.create(candidate=fiera_candidata, user=f_2)
+
+        benito_candidato = Candidate.objects.create(name='Beni el mejor del mundo!', id="beni")
+        beni_1 = User.objects.create(username='beni', email='beni@perrito.cl')
+        Candidacy.objects.create(candidate=benito_candidato, user=beni_1)
+        PersonalData.objects.create(candidate=benito_candidato, label='Pacto', value="Otro Pacto")
+        filter_qs2 = {'id':'beni'}
+        exclude_qs2 = {}
+        f2 = IncrementalsCandidateFilter.objects.create(filter_qs=filter_qs2,
+                                                       exclude_qs=exclude_qs2,
+                                                       name=u"Candidatos benitos")
+
+        filter_qs = {'personal_datas__label': "Pacto", "personal_datas__value": u"Frente Amplio"}
+        exclude_qs = {'elections__position': "Presidenta o Presidente"}
+        f = IncrementalsCandidateFilter.objects.create(filter_qs=filter_qs,
+                                                       exclude_qs=exclude_qs,
+                                                       text=u"te querimos musho\n\rsaltode linea",
+                                                       name=u"Candidatos al parlamento de Frente Amplio")
+
+
+        
+        p1 = PopularProposal.objects.create(proposer=self.feli,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title1'
+                                            )
+        p2 = PopularProposal.objects.create(proposer=self.feli,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title1'
+                                            )
+        ProposalSuggestionForIncremental.objects.create(incremental=f,
+                                                        proposal=p1)
+        ProposalSuggestionForIncremental.objects.create(incremental=f,
+                                                        proposal=p2)
+        ProposalSuggestionForIncremental.objects.create(incremental=f2,
+                                                        proposal=p1)
+        ProposalSuggestionForIncremental.objects.create(incremental=f2,
+                                                        proposal=p2)
+        context = f.get_mail_context()
+        self.assertIn(p1, context['proposals'].all())
+        self.assertIn(p2, context['proposals'].all())
+
+        # Jefe comprometido y enamorado
+        Commitment.objects.create(candidate=damian_candidato,
+                                  proposal=p1,
+                                  detail=u'Yo me comprometo',
+                                  commited=True)
+        propuestas_for_damian = f.get_proposals_for_candidate(damian_candidato)
+        self.assertNotIn(p1, propuestas_for_damian)
+        self.assertIn(p2, propuestas_for_damian)
+        propuestas_for_fiera = f.get_proposals_for_candidate(fiera_candidata)
+        self.assertIn(p1, propuestas_for_fiera)
+        self.assertIn(p2, propuestas_for_fiera)
+        
+        context_for_damian = f.get_context_for_candidate(damian_candidato)
+        expected_context_for_d = {"candidate": damian_candidato,
+                                  "proposals": propuestas_for_damian,
+                                  "text": f.text}
+        self.assertEquals(context_for_damian, expected_context_for_d)
+
+        original_amount_of_mails = len(mail.outbox)
+
+        call_command("send_selected_filters_to_candidates", str(f2.id))
+        self.assertEquals(len(mail.outbox), original_amount_of_mails + 1)
+        first_email = mail.outbox[original_amount_of_mails]
+        possible_emails_that_could_have_been_used = [beni_1.email]
+        for mail_index in range(original_amount_of_mails, original_amount_of_mails + 1):
+            m = mail.outbox[mail_index]
+            self.assertIn(m.to[0], possible_emails_that_could_have_been_used)
+
 
 class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
     def setUp(self):

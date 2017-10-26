@@ -299,7 +299,9 @@ class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
     def test_candidate_incremental_autocreatel(self):
         self.filter.send_mails()
         c_i = CandidateIncremental.objects.get(suggestion=self.filter, candidate=self.fiera_candidata)
-        self.assertTrue(c_i)
+        self.filter.send_mails()
+        cis = CandidateIncremental.objects.filter(suggestion=self.filter, candidate=self.fiera_candidata)
+        self.assertEquals(cis.count(), 2)
 
     def test_candidate_incremental_formset(self):
         self.filter.send_mails()

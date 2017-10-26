@@ -421,7 +421,9 @@ class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
             'form-INITIAL_FORMS': '2',
             'form-MAX_NUM_FORMS': '2',
             'form-0-commited': True,
+            'form-0-detail': "me gustan estas propuestas",
             'form-1-commited': False,
+            'form-1-detail': "me gustan estas propuestas",
 
         }
 
@@ -456,7 +458,8 @@ class MultiCommitmentForm(ProposingCycleTestCaseBase):
                                     proposal=proposal)
         self.assertIsInstance(form, Form)
         self.assertTrue(form.fields['commited'])
-        data = {'commited': True}
+        self.assertTrue(form.fields['detail'])
+        data = {'commited': True, 'detail': u"si así funcion"}
         form = SimpleCommitmentForm(data=data,
                                     candidate=fiera_candidata,
                                     proposal=proposal)

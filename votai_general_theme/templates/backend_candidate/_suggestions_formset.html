@@ -13,6 +13,9 @@
         {% endif %}
         <p>{{form.summary|linebreaksbr}}</p>
         <hr>
+            <label><b>Los términos en los cuales me comprometo son:</b>(opcional)</label></p>
+            <p style="margin-top: 20px;">{{form.detail}}
+
             <p style="margin-top: 20px;">{{form.commited}}
             <label><b>Me comprometo con esta propuesta</b></label></p>
         {% if not forloop.last %}

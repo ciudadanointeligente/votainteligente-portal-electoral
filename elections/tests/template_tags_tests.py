@@ -328,12 +328,17 @@ class LoginFormsTemplateTags(TestCase):
 
         self.assertEqual(template.render(Context({'candidacy': candidacy,
                                                   'proposal': popular_proposal})), 'si')
+        template = Template("{% load votainteligente_extras %}{% if candidate|has_commited_with:proposal %}si{% else %}no{% endif %}")
+        self.assertEqual(template.render(Context({'candidate': candidate,
+                                                  'proposal': popular_proposal})), 'si')
         template2 = Template("{% load votainteligente_extras %}{% get_commitment candidacy proposal as commitment %}{{commitment.proposal.title}}")
         self.assertEqual(template2.render(Context({'candidacy': candidacy,
                                                   'proposal': popular_proposal})), popular_proposal.title)
         commitment.delete()
         self.assertEqual(template.render(Context({'candidacy': candidacy,
                                                   'proposal': popular_proposal})), 'no')
+
+
 
     def test_is_candidate_for_this_area(self):
         candidate = Candidate.objects.get(pk=1)

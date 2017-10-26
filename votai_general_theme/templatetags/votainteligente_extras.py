@@ -274,8 +274,9 @@ def user_image(user, height, width):
 
 
 @register.filter(name='has_commited_with', takes_context=True)
-def has_commited_with(candidacy, proposal):
-    if proposal.commitments.filter(candidate=candidacy.candidate).exists():
+def has_commited_with(element, proposal):
+    candidate = getattr(element, 'candidate', element)
+    if proposal.commitments.filter(candidate=candidate).exists():
         return True
     return False
 

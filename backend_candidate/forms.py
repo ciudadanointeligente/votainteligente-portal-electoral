@@ -230,7 +230,7 @@ class SimpleCommitmentForm(forms.Form):
                                       widget=forms.CheckboxInput,
                                       required=False)
     detail = forms.CharField(label=u"Los términos a los que me comprometo con esta propuesta son",
-                             widget=forms.Textarea,
+                             widget=forms.Textarea(attrs={'rows': 5, 'cols': 40,}),
                              required=False)
 
     def __init__(self, *args, **kwargs):

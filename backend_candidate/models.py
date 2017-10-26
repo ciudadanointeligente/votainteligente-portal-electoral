@@ -131,6 +131,12 @@ class CandidateIncremental(models.Model):
     candidate = models.ForeignKey(Candidate)
     identifier = models.UUIDField(default=uuid.uuid4)
     used = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True,
+                                   blank=True,
+                                   null=True)
+    updated = models.DateTimeField(auto_now=True,
+                                   blank=True,
+                                   null=True)
 
     @property
     def _formset_class(self):
@@ -149,6 +155,16 @@ class CandidateIncremental(models.Model):
 
     def get_absolute_url(self):
         return reverse("backend_candidate:commit_to_suggestions", kwargs={"identifier": self.identifier})
+
+    def send_mail(self, sleep):
+        context = self.suggestion.get_context_for_candidate(self.candidate)
+        context['formset'] = self.formset
+        context['candidate_incremental'] = self
+        for candidacy in self.candidate.candidacy_set.all():
+            context['candidacy'] = candidacy
+            send_mail(context, 'suggestions_for_candidates',
+                  to=[candidacy.user.email])
+            time.sleep(sleep)
 
 class IncrementalsCandidateFilter(models.Model):
     name = models.CharField(max_length=12288,
@@ -188,11 +204,4 @@ class IncrementalsCandidateFilter(models.Model):
         for c in candidates:
             candidate_incremental = CandidateIncremental.objects.create(candidate=c,
                                                                         suggestion=self)
-            context = self.get_context_for_candidate(c)
-            context['formset'] = candidate_incremental.formset
-            context['candidate_incremental'] = candidate_incremental
-            for candidacy in c.candidacy_set.all():
-                context['candidacy'] = candidacy
-                send_mail(context, 'suggestions_for_candidates',
-                      to=[candidacy.user.email])
-                time.sleep(sleep)
+            candidate_incremental.send_mail(sleep)

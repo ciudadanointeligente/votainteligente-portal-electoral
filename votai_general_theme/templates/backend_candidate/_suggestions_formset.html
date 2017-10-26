@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load thumbnail %}
+<p>Si estás en un celular <a href="https://votainteligente.cl{{object.get_absolute_url}}">has click acá</a></p>
 <form method="post" action="https://votainteligente.cl{{object.get_absolute_url}}" style="font-family: 'Arial', sans-serif;">
     {{ formset.management_form }}
     {% for form in formset %}

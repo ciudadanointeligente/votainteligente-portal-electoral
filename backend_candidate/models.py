@@ -127,7 +127,7 @@ class ProposalSuggestionForIncremental(models.Model):
 
 
 class CandidateIncremental(models.Model):
-    suggestion = models.ForeignKey('IncrementalsCandidateFilter')
+    suggestion = models.ForeignKey('IncrementalsCandidateFilter', null=True, on_delete=models.SET_NULL)
     candidate = models.ForeignKey(Candidate)
     identifier = models.UUIDField(default=uuid.uuid4)
     used = models.BooleanField(default=False)

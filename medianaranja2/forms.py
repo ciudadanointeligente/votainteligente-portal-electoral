@@ -9,6 +9,7 @@ from medianaranja2.proposals_getter import ProposalsGetter
 from django.shortcuts import render
 from medianaranja2.calculator import Calculator
 from constance import config
+from organization_profiles.models import OrganizationTemplate
 from django.views.generic.base import TemplateView
 
 class CategoryMultipleChoiceField(forms.ModelMultipleChoiceField):
@@ -93,8 +94,10 @@ class MediaNaranjaWizardForm(SessionWizardView):
                 has_parent = False
             else:
                 area = area.parent
+        organization_templates = OrganizationTemplate.objects.filter(organization__proposals__in=cleaned_data['proposals'])
         return render(self.request, 'medianaranja2/resultado.html', {
             'results': results,
+            'organizations': organization_templates
         })
 
 
@@ -118,14 +121,18 @@ class MediaNaranjaResultONLYFORDEBUG(TemplateView):# pragma: no cover
 
     def get_context_data(self, **kwargs):
         context = super(MediaNaranjaResultONLYFORDEBUG, self).get_context_data(**kwargs)
-        from elections.models import Candidate
+        from elections.models import Candidate, Election
         from organization_profiles.models import OrganizationTemplate
         templates = OrganizationTemplate.objects.all()[:3]
         context['organizations'] = templates
-        context['results'] =  [[{'value': 1.0, 'candidate': Candidate.objects.get(name=u"Patricio Antonio Neira Pezoa")},
-                      {'value': 0.5, 'candidate': Candidate.objects.get(name=u"Alberto Mayol Miranda")},
-                      {'value': 0.5, 'candidate': Candidate.objects.get(name=u"Ana Maria Hernandez San Martin")}], 
-                    [{'value': 2.0, 'candidate': Candidate.objects.get(name=u"Beatriz Sánchez")},
-                      {'value': 1.0, 'candidate': Candidate.objects.get(name=u"Carolina Goic")},
-                      {'value': 0.5, 'candidate': Candidate.objects.get(name=u"José Antonio Kast")}]]
+        e1 = Election.objects.all()[0]
+        e2 = Election.objects.all()[1]
+        context['results'] =  [{'election': e2,
+                                'candidates':[{'value': 1.0, 'candidate': e2.candidates.all()[0]},
+                      {'value': 0.5, 'candidate': e2.candidates.all()[1]},
+                      {'value': 0.5, 'candidate': e2.candidates.all()[2]}]}, 
+                    {'election': e1,
+                       'candidates': [{'value': 2.0, 'candidate': e1.candidates.all()[0]},
+                      {'value': 1.0, 'candidate': e1.candidates.all()[1]},
+                      {'value': 0.5, 'candidate': e1.candidates.all()[2]}]}]
         return context

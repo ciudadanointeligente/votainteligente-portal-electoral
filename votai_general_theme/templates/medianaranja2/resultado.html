@@ -11,9 +11,46 @@
 {% endblock navbar %}
 
 {% block content %}
-<div class="container">
-  {{organizations}}
-  {{results}}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      {% for o in organizations.all %}
+      <div>
+          {% if o.logo_small %}
+          <a href="{{o.get_absolute_url}}"  target="_blank"><img src="{{o.logo_small.url}}" alt="{{o.title}}"></img></a>
+          {% endif %}
+          <p>{{o.title}}</p>
+          {% if o.org_url %}
+          <a href="{{o.org_url}}"><i class="fa fa-globe" aria-label="Website"></i></a>
+          {% endif %}
+          {% if o.facebook %}
+          <a href="{{o.facebook}}" target="_blank"><i class="fa fa-facebook" aria-label="Facebook"></i></a>
+          {% endif %}
+          {% if o.twitter %}
+          <a href="{{o.twitter}}" target="_blank"><i class="fa fa-twitter" aria-label="Twitter"></i></a>
+          {% endif %}
+          {% if o.instagram %}
+          <a href="{{o.instagram}}" target="_blank"><i class="fa fa-instagram" aria-label="Instagram"></i></a>
+          {% endif %}
+          {% if o.rss_url %}
+          <a href="{{o.rss_url}}" target="_blank"><i class="fa fa-rss" aria-label="RSS"></i></a>
+          {% endif %}
+      </div>
+      {% endfor %}</div>
+    <div class="col-md-8">
+      {% for election_result in results %}
+        <p>{{election_result.election}}</p>
+        {% for candidate_result in election_result.candidates %}
+          <div><img src="{{candidate.get_absolute_url}}"></img>
+            <p>{{candidate_result.candidate}}</p>
+          </div>
+        {% endfor %}
+      
+      {% endfor %}
+    </div>
+  </div>
+  
+  
 </div>
 {% endblock content %}
 

@@ -13,6 +13,8 @@ from backend_candidate.models import send_candidate_username_and_password
 from popular_proposal.models import PopularProposal
 from popular_proposal.exporter import CommitmentsExporter
 from votainteligente.send_mails import validateEmail
+from elections.models import QuestionCategory, Topic
+from candidator.models import Position, TakenPosition
 
 
 def area_getter(area_name):
@@ -174,10 +176,36 @@ def diputados2():
             PersonalData.objects.create(candidate=candidate,
                                         label=u'Partido',
                                         value=partido)
-if __name__ == "__main__":
-    diputados2()
-    senadores2()
 
+def load_questions_2017():
+    election = Election.objects.get(name ='Presidencia')
+    reader = codecs.open("preguntas_media_naranja_2017.csv", 'r', encoding='utf-8')
+    counter = 0
+    candidates_ids = []
+    candidates = {}
+    header = reader.readline()
+    header = header.split(u"|")
+    for candidate_index in range(2, 9):
+        name = header[candidate_index]
+        candidates[candidate_index] = Candidate.objects.get(name__icontains=name)
+    for line in reader:
+        row = line.split(u'|')
+        question_category = row[0].title().strip()
+        category, created = QuestionCategory.objects.get_or_create(name=question_category, election=election)
+        topic_text = row[1].title().strip()
+        topic, created = Topic.objects.get_or_create(
+            label=topic_text,
+            category=category)
+        for answer_index in range(2, 9):
+            position, created = Position.objects.get_or_create(
+                topic=topic,
+                label=row[answer_index]
+            )
+            taken_position,created = TakenPosition.objects.get_or_create(topic=topic,
+                                                                          person=candidates[answer_index],
+                                                                          position=position)
+if __name__ == "__main__":
+    load_questions_2017()
 
 
 def process_candidates_with_names():

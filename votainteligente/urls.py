@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'^newsletter/', include('newsletter.urls')),
     url(r'^backend_staff/', include('backend_staff.urls', namespace='backend_staff')),
     url(r'^perfil_ciudadano/', include('backend_citizen.urls', namespace='backend_citizen')),
+    url(r'^media_naranja/', include('medianaranja2.urls', namespace='medianaranja2')),
     url(r'^organizacion/', include('organization_profiles.urls', namespace='organization_profiles')),
     url(r'^candidatos/', include('backend_candidate.urls', namespace='backend_candidate')),
     url(r'^proposal_subscriptions/', include('proposal_subscriptions.urls', namespace='proposal_subscriptions')),

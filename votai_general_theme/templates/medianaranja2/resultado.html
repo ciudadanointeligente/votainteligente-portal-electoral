@@ -12,15 +12,61 @@
 
 {% block content %}
 <div class="container">
-  <div class="col-md-4">
-    {{organizations}}
-  </div>
-  <div class="div-col-8">
-  {{results}}
-    {% for r in results.first %}
-      {{r.value}}-{{r.candidate}}
-    {% endfor %}
+  <h2 class="page-header">Resultado</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Organizaciones</h3>
+      <p>Listado de organizaciones que te podr'ian interesar</p>
+      <ul class="list-unstyled">
+        {% for o in organizations.all %}
+        <li>
+            {% if o.logo_small %}
+            <a href="{{o.get_absolute_url}}"><img src="{{o.logo_small.url}}" alt="{{o.title}}" title="{{o.title}}" class="img-responsive"></img></a>
+            {% endif %}
+            <p>{{o.title}}</p>
+            <ul class="list-unstyled list-inline">
+              {% if o.org_url %}
+              <li><a href="{{o.org_url}}"><i class="fa fa-globe" aria-label="Website"></i></a></li>
+              {% endif %}
+              {% if o.facebook %}
+              <li><a href="{{o.facebook}}"><i class="fa fa-facebook" aria-label="Facebook"></i></a></li>
+              {% endif %}
+              {% if o.twitter %}
+              <li><a href="{{o.twitter}}"><i class="fa fa-twitter" aria-label="Twitter"></i></a></li>
+              {% endif %}
+              {% if o.instagram %}
+              <li><a href="{{o.instagram}}"><i class="fa fa-instagram" aria-label="Instagram"></i></a></li>
+              {% endif %}
+              {% if o.rss_url %}
+              <li><a href="{{o.rss_url}}"><i class="fa fa-rss" aria-label="RSS"></i></a></li>
+              {% endif %}
+            </ul>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-8">
+      {% for election_result in results %}
+        <h3>{{election_result.election}}</h3>
+        <ul class="list-unstyled">
+        {% for candidate_result in election_result.candidates %}
+          <li>
+            <a href="{{candidate_result.candidate.get_absolute_url}}">
+            {% if candidate_result.candidate.image %}
+              {% thumbnail candidate_result.candidate.image "100x100" crop="center" as im %}
+              <img src="{{ im.url }}" alt="{{candidate_result.candidate.name}}" height="96" width="96" border="0" class="img-circle">
+              {% endthumbnail %}
+            {% else %}
+              <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate_result.candidate.name}}" height="96" width="96" border="0" class="img-circle">
+            {% endif %}
+            </a>
+            <p><a href="{{candidate_result.candidate.get_absolute_url}}">{{candidate_result.candidate}}</a></p>
+          </li>
+        {% endfor %}
+        </ul>
+
+      {% endfor %}
+    </div>
   </div>
 </div>
 {% endblock content %}
-

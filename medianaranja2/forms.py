@@ -8,9 +8,13 @@ from formtools.wizard.views import SessionWizardView
 from medianaranja2.proposals_getter import ProposalsGetter
 from django.shortcuts import render
 from medianaranja2.calculator import Calculator
-from constance import config 
+from constance import config
+from django.views.generic.base import TemplateView
 
 class CategoryMultipleChoiceField(forms.ModelMultipleChoiceField):
+    template_name = 'django/forms/widgets/checkbox_select.html'
+    option_template_name = 'django/forms/widgets/checkbox_option.html'
+
     def label_from_instance(self, obj):
         return obj.name
 
@@ -107,3 +111,21 @@ class MediaNaranjaWizardForm(SessionWizardView):
             return {'proposals': proposals}
 
         return {}
+
+
+class MediaNaranjaResultONLYFORDEBUG(TemplateView):# pragma: no cover
+    template_name = 'medianaranja2/resultado.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(MediaNaranjaResultONLYFORDEBUG, self).get_context_data(**kwargs)
+        from elections.models import Candidate
+        from organization_profiles.models import OrganizationTemplate
+        templates = OrganizationTemplate.objects.all()[:3]
+        context['organizations'] = templates
+        context['results'] =  [[{'value': 1.0, 'candidate': Candidate.objects.get(name=u"Patricio Antonio Neira Pezoa")},
+                      {'value': 0.5, 'candidate': Candidate.objects.get(name=u"Alberto Mayol Miranda")},
+                      {'value': 0.5, 'candidate': Candidate.objects.get(name=u"Ana Maria Hernandez San Martin")}], 
+                    [{'value': 2.0, 'candidate': Candidate.objects.get(name=u"Beatriz Sánchez")},
+                      {'value': 1.0, 'candidate': Candidate.objects.get(name=u"Carolina Goic")},
+                      {'value': 0.5, 'candidate': Candidate.objects.get(name=u"José Antonio Kast")}]]
+        return context

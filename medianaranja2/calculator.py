@@ -64,5 +64,6 @@ class Calculator(object):
         for index in range(len(_result)):
             concatenated.append({'candidate': candidates_vector[index][0], 'value': _result[index][0]})
         concatenated = sorted(concatenated, key=lambda t: -t['value'])
+        concatenated = concatenated[:config.N_CANDIDATOS_RESULTADO_12_N]
         result = {'election': self.election, 'candidates': concatenated}
         return result

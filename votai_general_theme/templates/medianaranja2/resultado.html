@@ -5,52 +5,68 @@
 {% load votainteligente_extras %}
 {% load cache %}
 {% load bootstrap3 %}
-{% block title %}- 1/2 Naranja{% endblock title %}
+{% block title %}- 1/2 Naranja - Resultado{% endblock title %}
 
 {% block navbar %}
 {% endblock navbar %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container">
+  <h2 class="page-header">Resultado</h2>
   <div class="row">
     <div class="col-md-4">
-      {% for o in organizations.all %}
-      <div>
-          {% if o.logo_small %}
-          <a href="{{o.get_absolute_url}}"  target="_blank"><img src="{{o.logo_small.url}}" alt="{{o.title}}"></img></a>
-          {% endif %}
-          <p>{{o.title}}</p>
-          {% if o.org_url %}
-          <a href="{{o.org_url}}"><i class="fa fa-globe" aria-label="Website"></i></a>
-          {% endif %}
-          {% if o.facebook %}
-          <a href="{{o.facebook}}" target="_blank"><i class="fa fa-facebook" aria-label="Facebook"></i></a>
-          {% endif %}
-          {% if o.twitter %}
-          <a href="{{o.twitter}}" target="_blank"><i class="fa fa-twitter" aria-label="Twitter"></i></a>
-          {% endif %}
-          {% if o.instagram %}
-          <a href="{{o.instagram}}" target="_blank"><i class="fa fa-instagram" aria-label="Instagram"></i></a>
-          {% endif %}
-          {% if o.rss_url %}
-          <a href="{{o.rss_url}}" target="_blank"><i class="fa fa-rss" aria-label="RSS"></i></a>
-          {% endif %}
-      </div>
-      {% endfor %}</div>
+      <h3>Organizaciones</h3>
+      <p>Listado de organizaciones que te podr'ian interesar</p>
+      <ul class="list-unstyled">
+        {% for o in organizations.all %}
+        <li>
+            {% if o.logo_small %}
+            <a href="{{o.get_absolute_url}}"><img src="{{o.logo_small.url}}" alt="{{o.title}}" title="{{o.title}}" class="img-responsive"></img></a>
+            {% endif %}
+            <p>{{o.title}}</p>
+            <ul class="list-unstyled list-inline">
+              {% if o.org_url %}
+              <li><a href="{{o.org_url}}"><i class="fa fa-globe" aria-label="Website"></i></a></li>
+              {% endif %}
+              {% if o.facebook %}
+              <li><a href="{{o.facebook}}"><i class="fa fa-facebook" aria-label="Facebook"></i></a></li>
+              {% endif %}
+              {% if o.twitter %}
+              <li><a href="{{o.twitter}}"><i class="fa fa-twitter" aria-label="Twitter"></i></a></li>
+              {% endif %}
+              {% if o.instagram %}
+              <li><a href="{{o.instagram}}"><i class="fa fa-instagram" aria-label="Instagram"></i></a></li>
+              {% endif %}
+              {% if o.rss_url %}
+              <li><a href="{{o.rss_url}}"><i class="fa fa-rss" aria-label="RSS"></i></a></li>
+              {% endif %}
+            </ul>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
     <div class="col-md-8">
       {% for election_result in results %}
-        <p>{{election_result.election}}</p>
+        <h3>{{election_result.election}}</h3>
+        <ul class="list-unstyled">
         {% for candidate_result in election_result.candidates %}
-          <div><img src="{{candidate.get_absolute_url}}"></img>
-            <p>{{candidate_result.candidate}}</p>
-          </div>
+          <li>
+            <a href="{{candidate_result.candidate.get_absolute_url}}">
+            {% if candidate_result.candidate.image %}
+              {% thumbnail candidate_result.candidate.image "100x100" crop="center" as im %}
+              <img src="{{ im.url }}" alt="{{candidate_result.candidate.name}}" height="96" width="96" border="0" class="img-circle">
+              {% endthumbnail %}
+            {% else %}
+              <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate_result.candidate.name}}" height="96" width="96" border="0" class="img-circle">
+            {% endif %}
+            </a>
+            <p><a href="{{candidate_result.candidate.get_absolute_url}}">{{candidate_result.candidate}}</a></p>
+          </li>
         {% endfor %}
-      
+        </ul>
+
       {% endfor %}
     </div>
   </div>
-  
-  
 </div>
 {% endblock content %}
-

@@ -5,15 +5,22 @@
 {% load votainteligente_extras %}
 {% load cache %}
 {% load bootstrap3 %}
-{% block title %}- 1/2 Naranja{% endblock title %}
+{% block title %}- 1/2 Naranja - Resultado{% endblock title %}
 
 {% block navbar %}
 {% endblock navbar %}
 
 {% block content %}
 <div class="container">
-  {{organizations}}
+  <div class="col-md-4">
+    {{organizations}}
+  </div>
+  <div class="div-col-8">
   {{results}}
+    {% for r in results.first %}
+      {{r.value}}-{{r.candidate}}
+    {% endfor %}
+  </div>
 </div>
 {% endblock content %}
 

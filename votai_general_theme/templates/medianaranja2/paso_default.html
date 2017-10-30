@@ -5,7 +5,7 @@
 {% load votainteligente_extras %}
 {% load cache %}
 {% load bootstrap3 %}
-{% block title %}- 1/2 Naranja{% endblock title %}
+{% block title %}- 1/2 Naranja - Paso {{wizard.steps.step1}}{% endblock title %}
 
 {% block navbar %}
 {% endblock navbar %}
@@ -19,10 +19,10 @@
   {% bootstrap_form wizard.form%}
 
   {% if wizard.steps.prev %}
-  <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
-  <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
+  <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}" class="btn btn-default" onclick="ga('send','event','primer-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "first step" %}</button>
+  <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}" class="btn btn-default" onclick="ga('send','event','anterior-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "prev step" %}</button>
   {% endif %}
-  <input type="submit" name="submit" value="{% trans "submit" %}" />
+  <input type="submit" name="submit" value="{% trans "Paso Siguiente" %}" class="btn btn-default" onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')" />
   </form>
 </div>
 {% endblock content %}

@@ -1,14 +1,46 @@
-{% load staticfiles %} {% load votainteligente_extras %} {% load i18n %}{% load cache %}
-<section id="welcome" class="yellow">
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load thumbnail %}
+{% load cache %}
+<section id="candidatos" class="yellow">
+  <div class="container">
+    <h1>Candidatos y candidatas a la presidencia comprometidos con propuestas ciudadanas</h1>
+    <ul class="list-inline">
+      {% for c in candidates %}
+      <li>
+        <a href="{{c.get_absolute_url}}">
+        {% if c.image %}
+          {% thumbnail c.image "100x100" crop="center" as im %}
+          <img src="{{ im.url }}" alt="{{c.name}}" height="96" width="96" border="0" class="img-circle">
+          {% endthumbnail %}
+        {% else %}
+          <img src="{% static 'img/candidate-default.jpg' %}" alt="{{c.name}}" height="96" width="96" border="0" class="img-circle">
+        {% endif %}
+        </a>
+        <p><a href="{{c.get_absolute_url}}">{{c}}</a></p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section id="proposals-counter" class="grey-one">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        <h1>Lleva tus propuestas a los programas de candidatos y candidatas de las elecciones de Chile 2017.</h1>
-        <h2>Crea y sube tu propuesta, compártela y hagamos sentir la voz de la ciudadanía más fuerte que nunca en estas elecciones.</h2>
-        <p class="hashtag">#LaElecciónEsNuestra</p>
+      <div class="col-md-12 text-center">
+        <p>Haz <a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'home-banner-propuestas-ciudadanas', 'click')"><span class="">aquí</span></a> tu propuesta a candidatos y candidatas</p>
       </div>
-      <div class="col-md-6 text-center">
-        <img src="{% static 'img/ciudadania.svg' %}" class="presidents img-responsive">
+    </div>
+  </div>
+</section>
+<section id="home-search-candidate" class="blue">
+  <div class="container">
+    <h3 class="text-center">Conoce las candidaturas y sus compromisos</h3>
+    <p class="bajada text-center">Encuentra aquí a todos los candidatos y candidatas a Senador, Diputado y Presidente para estas elecciones.</p>
+    <div class="row">
+      <div class="col-md-12">
+        {% include "_election_search_form.html" %}
       </div>
     </div>
   </div>
@@ -18,43 +50,6 @@
     <div class="row">
       <div class="col-md-12 text-center">
         <p>Tenemos <a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'counter-propuestas-ciudadanas', 'click')"><span class="counter-number">{{total_proposals}}</span></a> propuestas ciudadanas</p>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="actions">
-  <div class="container">
-    <div class="row">
-      <h3 class="text-center"><a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'home-propuestas-ciudadanas', 'click')">Propuestas ciudadanas</a></h3>
-      <p class="bajada text-center">Tú propones, las candidaturas se comprometen</p>
-      <div class="col-md-4 text-center">
-        <div class="action-encuentro">
-          <p>¿Quieres crear una propuesta con un grupo, organización o comunidad?</p>
-          <a href="{% url 'encuentro_ciudadano' %}" onclick="ga('send', 'event', 'home-realiza-encuentro', 'click')" class="btn btn-line">Realiza un encuentro</a>
-        </div>
-      </div>
-      <div class="col-md-4 text-center">
-        <div class="action-crea">
-          <p>¿Tienes una propuesta para Chile? ¿Quieres publicar la propuesta de un encuentro ciudadano?</p>
-          <a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" onclick="ga('send', 'event', 'home-crea-propuesta', 'click')" class="btn btn-line">Crea una propuesta</a>
-        </div>
-      </div>
-      <div class="col-md-4 text-center">
-        <div class="action-apoya">
-          <p>¿Quieres saber lo que la ciudadanía está proponiendo para Chile?</p>
-          <a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'home-conoce-apoya', 'click')" class="btn btn-line">Conoce y apoya propuestas</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="home-search-candidate" class="blue">
-  <div class="container">
-    <h3 class="text-center">Conoce a las candidaturas</h3>
-    <p class="bajada text-center">Encuentra aquí a todos los candidatos y candidatas a Senador, Diputado y Presidente para estas elecciones.</p>
-    <div class="row">
-      <div class="col-md-12">
-        {% include "_election_search_form.html" %}
       </div>
     </div>
   </div>

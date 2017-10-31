@@ -83,9 +83,16 @@ class HomeView(HomeViewBase):
             proposals_with_likers = PopularProposal.ordered.by_likers()[:9]
             cache.set('proposals_with_likers', proposals_with_likers, 600)
         context['proposals_with_likers'] = proposals_with_likers
-        featured_proposals = PopularProposal.objects.filter(featured=True)
-        cache.set('featured_proposals', featured_proposals, 600)
+        featured_proposals = cache.get('featured_proposals')
+        if featured_proposals is None:
+            featured_proposals = PopularProposal.objects.filter(featured=True)
+            cache.set('featured_proposals', featured_proposals, 600)
         context['featured_proposals'] = featured_proposals
+        featured_candidates = cache.get('featured_candidates')
+        if featured_candidates is None:
+            featured_candidates = Candidate.objects.filter(commitments__isnull=False).filter(elections__name="Presidencia")
+            cache.set('featured_candidates', featured_candidates)
+        context['candidates'] = featured_candidates
         return context
 
 

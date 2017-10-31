@@ -84,7 +84,7 @@ td.cal-date{
   color: $blue-light;
 }
 
-#welcome{
+#welcome {
   background: $yellow ;
   background-size: cover;
   padding: 20px 0 20px;
@@ -95,6 +95,16 @@ td.cal-date{
   }
   h2{
     font-size: 19px;
+  }
+}
+
+#candidatos{
+  background: $yellow ;
+  h1 {
+    font-size: 32px;
+  }
+  a {
+    color: #FFF;
   }
 }
 

@@ -9,7 +9,7 @@
     <ul class="list-inline text-center">
       {% for c in candidates %}
       <li>
-        <a href="{{c.get_absolute_url}}">
+        <a href="{{c.get_absolute_url}}" onclick="ga('send','event','candidate-home-{{c|slugify}}','click')">
         {% if c.image %}
           {% thumbnail c.image "100x100" crop="center" as im %}
           <img src="{{ im.url }}" alt="{{c.name}}" height="96" width="96" border="0" class="img-circle">

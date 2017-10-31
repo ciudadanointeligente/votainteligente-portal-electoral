@@ -2,7 +2,8 @@ from rest_framework.serializers import (HyperlinkedModelSerializer,
                                         JSONField,
                                         StringRelatedField)
 from rest_framework.viewsets import ReadOnlyModelViewSet
-from popular_proposal.models import PopularProposal
+from popular_proposal.models import PopularProposal, Commitment
+from elections.models import Candidate
 
 class ProposalSerializer(HyperlinkedModelSerializer):
     data = JSONField()
@@ -22,3 +23,25 @@ class ProposalViewSet(ReadOnlyModelViewSet):
         if username is not None:
             queryset = queryset.filter(proposer__username=username)
         return queryset
+
+
+class CommitmentsSerializer(HyperlinkedModelSerializer):
+    class Meta:
+        model = Commitment
+        fields = ('id','proposal','candidate', 'detail', 'commited', 'get_absolute_url')
+
+
+class CommitmentViewSet(ReadOnlyModelViewSet):
+    queryset = Commitment.objects.all()
+    serializer_class = CommitmentsSerializer
+
+
+class CandidateSerializer(HyperlinkedModelSerializer):
+    class Meta:
+        model = Candidate
+        fields = ('id','name', 'get_absolute_url', 'commitments')
+
+
+class CandidateViewSet(ReadOnlyModelViewSet):
+    queryset = Candidate.objects.all()
+    serializer_class = CandidateSerializer

@@ -3,7 +3,7 @@ import os
 LOCAL_ELASTICSEARCH = True
 CELERY_ALWAYS_EAGER = True
 TRAVIS = os.environ.get('TRAVIS')
-
+CACHES={'default': {'BACKEND': 'django.core.cache.backends.dummy.DummyCache'}}
 
 if TRAVIS:
     DB = os.environ.get('DB')

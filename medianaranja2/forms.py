@@ -11,6 +11,8 @@ from medianaranja2.calculator import Calculator
 from constance import config
 from organization_profiles.models import OrganizationTemplate
 from django.views.generic.base import TemplateView
+from django.core.cache import cache
+
 
 class CategoryMultipleChoiceField(forms.ModelMultipleChoiceField):
     template_name = 'django/forms/widgets/checkbox_select.html'
@@ -69,8 +71,14 @@ class ProposalsForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.proposals = kwargs.pop('proposals')
+        area = kwargs.pop('area')
         super(ProposalsForm, self).__init__(*args, **kwargs)
+        proposals_qs_cache_key = 'proposals_qs_' + area.id
+        if cache.get(proposals_qs_cache_key) is not None:
+            self.fields['proposals'].queryset = cache.get(proposals_qs_cache_key)
+            return
         qs = PopularProposal.objects.filter(id__in=[p.id for p in self.proposals])
+        cache.set(proposals_qs_cache_key, qs)
         self.fields['proposals'].queryset = qs
 
 
@@ -111,7 +119,7 @@ class MediaNaranjaWizardForm(SessionWizardView):
             cleaned_data = self.get_cleaned_data_for_step(str(0))
             getter = ProposalsGetter()
             proposals = getter.get_all_proposals(cleaned_data['area'])
-            return {'proposals': proposals}
+            return {'proposals': proposals, 'area': cleaned_data['area']}
 
         return {}
 

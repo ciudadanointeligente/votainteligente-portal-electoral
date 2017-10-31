@@ -8,6 +8,7 @@ from django.forms import ModelForm
 from elections.models import Area
 from votainteligente.send_mails import send_mails_to_staff
 from django.conf import settings
+from taggit.forms import TagWidget
 
 
 def filterable_areas():
@@ -64,7 +65,8 @@ class CreateGatheringForm(GatheringsWithStatsDataMixin, ModelForm):
         model = KidsGathering
         fields = ['name', 'generated_at', 'presidents_features']
         widgets = {
-            "name" :forms.TextInput(attrs={'placeholder': 'Ejemplo: “Quinto básico C Escuela Santa Isabel”'})
+            "name" :forms.TextInput(attrs={'placeholder': 'Ejemplo: “Quinto básico C Escuela Santa Isabel”'}),
+            "presidents_features": TagWidget(attrs={"max_length":100})
         }
 
     def __init__(self, *args, **kwargs):

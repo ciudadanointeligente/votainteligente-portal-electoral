@@ -34,7 +34,7 @@ class SetupForm(forms.Form):
                                   queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE))
     categories = CategoryMultipleChoiceField(label=u"Selecciona las categorías que te parecen importantes",
                                              queryset=QuestionCategory.objects.all(),
-                                             widget=forms.CheckboxSelectMultiple,)
+                                             widget=forms.CheckboxSelectMultiple(),)
 
     def clean(self):
         cleaned_data = super(SetupForm, self).clean()
@@ -66,7 +66,7 @@ class QuestionsForm(forms.Form):
 
 class ProposalsForm(forms.Form):
     proposals = forms.ModelMultipleChoiceField(queryset=PopularProposal.objects.none(),
-                                               widget=forms.CheckboxSelectMultiple,
+                                               widget=forms.CheckboxSelectMultiple(attrs={'class': 'proposal_option'}),
                                                label=u'Si fueras presidenta o presidente, ¿Cuáles serían tus primeras 5 medidas?')
 
     def __init__(self, *args, **kwargs):
@@ -83,6 +83,10 @@ class ProposalsForm(forms.Form):
 
 
 FORMS = [SetupForm, QuestionsForm, ProposalsForm]
+TEMPLATES = {"0": "medianaranja2/paso_0_setup.html",
+             "1": "medianaranja2/paso_1_preguntas_y_respuestas.html",
+             "2": "medianaranja2/paso_2_proposals_list.html"}
+
 
 class MediaNaranjaWizardForm(SessionWizardView):
     form_list = FORMS
@@ -108,7 +112,8 @@ class MediaNaranjaWizardForm(SessionWizardView):
             'organizations': organization_templates
         })
 
-
+    def get_template_names(self):
+        return [TEMPLATES[self.steps.current]]
 
     def get_form_kwargs(self, step):
         step = int(step)

@@ -16,7 +16,16 @@
   {% csrf_token %}
   {{ wizard.form.media }}
   {{ wizard.management_form }}
-  {% bootstrap_form wizard.form%}
+  {% bootstrap_label wizard.form.proposals.label %}
+
+  {% for choice_id, choice_label in wizard.form.proposals.field.choices %}
+  <div class="checkbox">
+    <label for="id_{{wizard.steps.current}}-proposals_{{forloop.counter}}">
+      <input class="proposal_option" id="id_{{wizard.steps.current}}-proposals_{{forloop.counter}}" name="{{wizard.steps.current}}-{{wizard.form.proposals.name}}" title="" type="checkbox" value="{{choice_id}}" /> {{choice_label}}
+    </label>
+  </div>
+  {% endfor %}
+
 
   {% if wizard.steps.prev %}
   <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}" class="btn btn-default" onclick="ga('send','event','primer-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "first step" %}</button>
@@ -25,10 +34,6 @@
   <input type="submit" name="submit" value="{% trans "Paso Siguiente" %}" class="btn btn-default" onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')" />
   </form>
 </div>
-<script type="text/javascript">
-$(function(){
-   $("select").chosen({no_results_text: "Oh! no pillamos eso!"}); 
-});
-</script>
 {% endblock content %}
+
 

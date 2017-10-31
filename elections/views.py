@@ -86,6 +86,8 @@ class HomeView(HomeViewBase):
         featured_proposals = PopularProposal.objects.filter(featured=True)
         cache.set('featured_proposals', featured_proposals, 600)
         context['featured_proposals'] = featured_proposals
+
+        context['candidates'] = Candidate.objects.filter(commitments__isnull=False).filter(elections__name="Presidencia")
         return context
 
 

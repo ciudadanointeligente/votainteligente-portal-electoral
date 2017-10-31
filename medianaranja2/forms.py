@@ -33,8 +33,17 @@ class SetupForm(forms.Form):
                                   required=False,
                                   queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE))
     categories = CategoryMultipleChoiceField(label=u"Selecciona las categorías que te parecen importantes",
-                                             queryset=QuestionCategory.objects.all(),
+                                             queryset=QuestionCategory.objects.none(),
                                              widget=forms.CheckboxSelectMultiple,)
+
+    def __init__(self, *args, **kwargs):
+        super(SetupForm, self).__init__(*args, **kwargs)
+        cache_key = "possible_categories"
+        possible_categories_qs = cache.get(cache_key)
+        if possible_categories_qs is None:
+            possible_categories_qs = QuestionCategory.objects.all()
+            cache.set(cache_key, possible_categories_qs)
+        self.fields['categories'].queryset = possible_categories_qs
 
     def clean(self):
         cleaned_data = super(SetupForm, self).clean()

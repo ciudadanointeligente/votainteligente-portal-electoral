@@ -1,4 +1,4 @@
-{% load staticfiles %} {% load votainteligente_extras %} {% load i18n %}
+{% load staticfiles %} {% load votainteligente_extras %} {% load i18n %}{% load cache %}
 <section id="welcome" class="yellow">
   <div class="container">
     <div class="row">
@@ -82,7 +82,9 @@
     </div>
   </div>
 </section>
+{% cache 600 organization_logos %}
 {% organization_logos %}
+{% endcache %}
 <section id="you-org" class="grey-one">
   <div class="container">
     <div class="row">

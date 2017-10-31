@@ -5,7 +5,9 @@ from elections.models import Area, Election, Candidate
 from django.contrib.auth.models import User
 from popular_proposal.models import (PopularProposal,
                                      Commitment,
+                                     ProposalLike,
                                      )
+from constance.test import override_config
 
 
 class ProposalsGetterTestCase(MediaNaranjaAdaptersBase):
@@ -72,3 +74,17 @@ class ProposalsGetterTestCase(MediaNaranjaAdaptersBase):
         self.assertIn(pb, proposed_proposals)
         self.assertNotIn(pc, proposed_proposals)
         self.assertEquals(len(proposed_proposals), 5)
+
+    @override_config(MEDIA_NARANJA_MAX_NUM_PR=2)
+    def test_excluding_proposals_by_commitments_and_likes(self):
+        child = Area.objects.create(name="children")
+        self.election.area = child
+        self.election.save()
+        liker = User.objects.create_user(username="lovable_user")
+        ProposalLike.objects.create(proposal=self.p2, user=liker)
+        ProposalLike.objects.create(proposal=self.p3, user=liker)
+        getter = ProposalsGetter()
+        proposals = getter.get_all_proposals(child)
+        self.assertNotIn(self.p1, proposals)
+        self.assertIn(self.p2, proposals)
+        self.assertIn(self.p3, proposals)

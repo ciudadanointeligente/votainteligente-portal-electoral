@@ -2,6 +2,8 @@
 from popular_proposal.models import (PopularProposal,
                                      Commitment,
                                      )
+from constance import config
+from django.core.cache import cache
 
 class ProposalsGetter(object):
     def __init__(self):
@@ -12,6 +14,9 @@ class ProposalsGetter(object):
         return list(PopularProposal.objects.filter(commitments__in=commitments).distinct())
 
     def get_all_proposals(self, area):
+        cache_key = 'proposals_for_' + area.id
+        if cache.get(cache_key) is not None:
+            return cache.get(cache_key)
         proposals = []
         has_parent = True
         while has_parent:
@@ -22,4 +27,6 @@ class ProposalsGetter(object):
                 has_parent = False
             else:
                 area = area.parent
-        return proposals
+        proposals = sorted(proposals, key=lambda p: -p.likers.count())
+        cache.set(cache_key, proposals)
+        return proposals[:config.MEDIA_NARANJA_MAX_NUM_PR]

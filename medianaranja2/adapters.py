@@ -1,22 +1,43 @@
 from numpy import matrix, ones
 from constance import config
+from django.core.cache import cache
 
 
-class Adapter(object):
+class CandidateGetterFromElectionMixin(object):
+    @classmethod
+    def get_candidates_from_election_as_list(cls, election):
+        cache_key = 'candidates_for_' + str(election.id)
+        if cache.get(cache_key) is not None:
+            candidates = cache.get(cache_key)
+        else:
+            candidates = list(election.candidates.order_by('id'))
+            cache.set(cache_key, candidates)
+        return candidates
+
+class Adapter(CandidateGetterFromElectionMixin):
     def __init__(self, election, positions):
         self.user_positions = positions
         self.user_questions = []
         for position in self.user_positions:
             if position.topic not in self.user_questions:
                 self.user_questions.append(position.topic)
-        self.candidates = list(election.candidates.order_by('id'))
-        self.topics = []
-        self.positions = []
+        self.candidates = Adapter.get_candidates_from_election_as_list(election)
+        self.topics, self.positions = self.get_topics_and_positions(election)
+        
+
+    def get_topics_and_positions(self, election):
+        cache_key = 'topics_and_positions_' + str(election.id)
+        if cache.get(cache_key) is not None:
+            return cache.get(cache_key)
+        topics = []
+        positions = []
         for category in election.categories.all().order_by('id'):
             for topic in category.topics.all().order_by('id'):
-                self.topics.append(topic)
+                topics.append(topic)
                 for position in topic.positions.all().order_by('id'):
-                    self.positions.append(position)
+                    positions.append(position)
+        cache.set(cache_key, (topics, positions))
+        return (topics, positions)
 
     def get_responses_vector(self):
         response = []
@@ -46,11 +67,9 @@ class Adapter(object):
         return matrix
 
 
-class CommitmentsAdapter(object):
+class CommitmentsAdapter(CandidateGetterFromElectionMixin):
     def __init__(self, election, proposals):
-        self.candidates = []
-        for candidate in election.candidates.order_by('id'):
-            self.candidates.append(candidate)
+        self.candidates = CommitmentsAdapter.get_candidates_from_election_as_list(election)
         self.proposals = proposals
         self.ones = ones((len(self.proposals),1))
 

@@ -217,6 +217,7 @@ class PopularProposal(models.Model, OGPMixin):
     content_type = models.ForeignKey(ContentType, null=True)
     featured = models.BooleanField(default=False)
     summary = models.TextField(default=u"", blank=True)
+    important_within_organization = models.BooleanField(default=False)
 
     ogp_enabled = True
 

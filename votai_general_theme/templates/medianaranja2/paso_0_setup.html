@@ -1,19 +1,18 @@
-{% extends "base.html" %}
+{% extends "medianaranja2/base.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
 {% load votainteligente_extras %}
 {% load cache %}
 {% load bootstrap3 %}
-{% block title %}- 1/2 Naranja - Paso {{wizard.steps.step1}}{% endblock title %}
 
-{% block navbar %}
-{% endblock navbar %}
+{% block questions %}
 
-{% block content %}
-<div class="container">
-  <h2 class="page-header">1/2 Naranja - Paso {{wizard.steps.step1}}</h2>
-  <p>Este paso a paso consta de 3 etapas. Para poder lograr un buen resultado, necesitamos que nos entregues un poco de información básica sobre tus intereses.</p>
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  Para poder decirte con qué candidatura eres más compatible, necesitamos conocer un poco de ti.
+</div>
+
   <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ wizard.form.media }}
@@ -27,11 +26,11 @@
   {% endif %}
   <input type="submit" name="submit" value="{% trans "Paso Siguiente" %}" class="btn btn-default" onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')" />
   </form>
-</div>
+
 <script type="text/javascript">
 $(function(){
    $("select").chosen({no_results_text: "Oh! no pillamos eso!"});
 });
 </script>
-{% endblock content %}
+{% endblock questions %}
 

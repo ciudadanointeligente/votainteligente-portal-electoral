@@ -28,11 +28,11 @@ class PositionChoiceField(forms.ModelChoiceField):
 
 class SetupForm(forms.Form):
     area = forms.ModelChoiceField(label=u"¿En qué comuna votas?",
-                                  help_text=u"Esto lo utilizamos para incluir parlamentarios en tu media naranja",
-                                  empty_label=u"Tranqui, sólo quiero los presidenciales.",
+                                  help_text=u"Esta selección te permitirá ver con qué candidaturas al Congreso eres más compatible. Si no quieres incluirlas en tu media naranja, elige NO APLICA.",
+                                  empty_label=u"NO APLICA",
                                   required=False,
                                   queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE))
-    categories = CategoryMultipleChoiceField(label=u"Selecciona las categorías que te parecen importantes",
+    categories = CategoryMultipleChoiceField(label=u"De estos temas, ¿cuáles son los 3 que te parecen más importantes para el país?",
                                              queryset=QuestionCategory.objects.all(),
                                              widget=forms.CheckboxSelectMultiple(),)
 

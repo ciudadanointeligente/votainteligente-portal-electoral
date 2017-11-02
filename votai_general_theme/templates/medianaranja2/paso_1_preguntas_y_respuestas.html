@@ -1,25 +1,21 @@
-{% extends "base.html" %}
+{% extends "medianaranja2/base.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
 {% load votainteligente_extras %}
 {% load cache %}
 {% load bootstrap3 %}
-{% block title %}- 1/2 Naranja - Paso {{wizard.steps.step1}}{% endblock title %}
 
-{% block navbar %}
-{% endblock navbar %}
-
-{% block content %}
-<div class="container">
-  <h2 class="page-header">1/2 Naranja - Paso {{wizard.steps.step1}}</h2>
+{% block questions %}
   <p>Responde a conciencia las siguientes preguntas para que podamos entregarte un mejor resultado para tu 1/2 naranja.</p>
 
   <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ wizard.form.media }}
   {{ wizard.management_form }}
-  {% bootstrap_form wizard.form%}
+  {% for field in wizard.form %}
+    {% bootstrap_field field %}
+  {% endfor %}
 
   {% if wizard.steps.prev %}
   <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}" class="btn btn-default" onclick="ga('send','event','primer-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "first step" %}</button>
@@ -27,11 +23,10 @@
   {% endif %}
   <input type="submit" name="submit" value="{% trans "Paso Siguiente" %}" class="btn btn-default" onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')" />
   </form>
-</div>
 <script type="text/javascript">
 $(function(){
    $("select").chosen({no_results_text: "Oh! no pillamos eso!"});
 });
 </script>
-{% endblock content %}
+{% endblock questions %}
 

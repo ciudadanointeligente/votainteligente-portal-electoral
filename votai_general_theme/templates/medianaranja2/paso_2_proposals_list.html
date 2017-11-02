@@ -1,18 +1,12 @@
-{% extends "base.html" %}
+{% extends "medianaranja2/base.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
 {% load votainteligente_extras %}
 {% load cache %}
 {% load bootstrap3 %}
-{% block title %}- 1/2 Naranja - Paso {{wizard.steps.step1}}{% endblock title %}
 
-{% block navbar %}
-{% endblock navbar %}
-
-{% block content %}
-<div class="container">
-  <h2 class="page-header">1/2 Naranja - Paso {{wizard.steps.step1}}</h2>
+{% block questions %}
   <p>Acá puedes encontrar algunas de las propuestas formuladas dentro de la plataforma, con este último ingrediente seremos más certeros en la recomendación de tu 1/2 naranja.</p>
 
   <form method="post" enctype="multipart/form-data">
@@ -36,7 +30,6 @@
   {% endif %}
   <input type="submit" name="submit" value="{% trans "Paso Siguiente" %}" class="btn btn-default" onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')" />
   </form>
-</div>
-{% endblock content %}
+{% endblock questions %}
 
 

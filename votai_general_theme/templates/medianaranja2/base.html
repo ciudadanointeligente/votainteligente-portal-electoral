@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+{% load cache %}
+{% load bootstrap3 %}
+{% block title %}- 1/2 Naranja - Paso {{wizard.steps.step1}}{% endblock title %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block content %}
+<div class="content">
+  <div class="text-width">
+    <div class="row">
+    {% for i in wizard.steps.count|times %}
+    <div class="col-md-4 col-sm-4 col-xs-4 text-center wizard">
+        Paso
+        <p class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}"><span class="badge">{{i|add:1}}</span></p>
+    </div>
+    {% endfor %}
+    </div>
+  </div>
+{% block questions %}
+{% endblock questions %}
+</div>
+{% endblock content %}

@@ -11,15 +11,15 @@
 {% endblock navbar %}
 
 {% block content %}
-<div class="content">
+<div class="content-fluid medianaranja">
   <div class="text-width">
     <div class="row">
-    {% for i in wizard.steps.count|times %}
-    <div class="col-md-4 col-sm-4 col-xs-4 text-center wizard">
-        Paso
-        <p class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}"><span class="badge">{{i|add:1}}</span></p>
+        <h1 class="ribbon-medianaranja text-center">
+            Media Naranja
+        </h1>
+    <div class="text-center paso_title">
+        Paso <span class="badge">{{wizard.steps.step1}}</span>
     </div>
-    {% endfor %}
     </div>
   </div>
 {% block questions %}

@@ -71,8 +71,7 @@ class QuestionsForm(forms.Form):
 
 class ProposalsForm(forms.Form):
     proposals = ProposalModelMultipleChoiceField(queryset=PopularProposal.objects.none(),
-                                               widget=forms.CheckboxSelectMultiple(attrs={'class': 'proposal_option'}),
-                                               label=u'Si fueras presidenta o presidente, ¿Cuáles serían tus primeras 5 medidas?')
+                                               widget=forms.CheckboxSelectMultiple(attrs={'class': 'proposal_option'}))
 
     def __init__(self, *args, **kwargs):
         self.proposals = kwargs.pop('proposals')

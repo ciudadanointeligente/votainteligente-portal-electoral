@@ -50,6 +50,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(content_type, expected_content_type)
         self.assertFalse(popular_proposal.summary)
         self.assertFalse(popular_proposal.important_within_organization)
+        self.assertEquals(popular_proposal.one_liner, "")
 
     def test_popular_proposal_card_as_property(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
@@ -316,3 +317,13 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         })
 
         self.assertEquals(popular_proposal.detail_as_html, expected_detail_html)
+
+    def test_get_oneliner(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title'
+                                                          )
+        self.assertEquals(popular_proposal.get_one_liner(), popular_proposal.title)
+        popular_proposal.one_liner = "one_liner"
+        self.assertEquals(popular_proposal.get_one_liner(), popular_proposal.one_liner)

@@ -15,16 +15,14 @@
   <h2 class="page-header">Resultado</h2>
   <p>Además de entregarte quién es el candidato que más te representa, tenemos algunas organizaciones que quizás puedan ser de tu interés.</p>
   <div class="row">
-    <div class="col-md-4">
+    
       <h3>Organizaciones</h3>
       <p>Listado de organizaciones que te podrían interesar</p>
-      <ul class="list-unstyled">
         {% for o in organizations.all %}
-        <li>
+        <div class="col-md-4  text-center">
             {% if o.logo_small %}
             <a href="{{o.get_absolute_url}}"><img src="{{o.logo_small.url}}" alt="{{o.title}}" title="{{o.title}}" class="img-responsive"></img></a>
             {% endif %}
-            <p>{{o.title}}</p>
             <ul class="list-unstyled list-inline">
               {% if o.org_url %}
               <li><a href="{{o.org_url}}"><i class="fa fa-globe" aria-label="Website"></i></a></li>
@@ -42,16 +40,16 @@
               <li><a href="{{o.rss_url}}"><i class="fa fa-rss" aria-label="RSS"></i></a></li>
               {% endif %}
             </ul>
-        </li>
+        </div>
         {% endfor %}
-      </ul>
-    </div>
-    <div class="col-md-8">
+      </div>
+    
+    
       {% for election_result in results %}
+      <div class="row">
         <h3>{{election_result.election}}</h3>
-        <ul class="list-unstyled">
         {% for candidate_result in election_result.candidates %}
-          <li>
+        <div class="col-md-4 text-center">
             <a href="{{candidate_result.candidate.get_absolute_url}}">
             {% if candidate_result.candidate.image %}
               {% thumbnail candidate_result.candidate.image "100x100" crop="center" as im %}
@@ -62,12 +60,18 @@
             {% endif %}
             </a>
             <p><a href="{{candidate_result.candidate.get_absolute_url}}">{{candidate_result.candidate}}</a></p>
-          </li>
+            {% get_personal_data candidate=candidate_result.candidate personal_data='Partido' as partido %}
+              {% if partido.value %}
+              <p>{{partido.value}}</p>
+              {% endif %}
+              {% get_personal_data candidate=candidate_result.candidate personal_data='Pacto' as pacto %}
+              {% if pacto.value %}
+              <p>{{pacto.value}}</p>
+              {% endif %}
+          </div>
         {% endfor %}
-        </ul>
-
+          </div>
       {% endfor %}
-    </div>
-  </div>
+    
 </div>
 {% endblock content %}

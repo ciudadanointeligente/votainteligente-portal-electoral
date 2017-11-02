@@ -13,7 +13,7 @@
   {% csrf_token %}
   {{ wizard.form.media }}
   {{ wizard.management_form }}
-  {% bootstrap_label wizard.form.proposals.label %}
+  <label>Si fueras presidenta o presidente, ¿Cuáles serían tus primeras {{config.MEDIA_NARANJA_MAX_SELECT_PROPOSALS}} medidas?</label>
 
   {% for choice_id, choice_label in wizard.form.proposals.field.choices %}
   <div class="checkbox">
@@ -28,8 +28,20 @@
   <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}" class="btn btn-default" onclick="ga('send','event','primer-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "first step" %}</button>
   <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}" class="btn btn-default" onclick="ga('send','event','anterior-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "prev step" %}</button>
   {% endif %}
-  <input type="submit" name="submit" value="{% trans "Paso Siguiente" %}" class="btn btn-default" onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')" />
+<input type="submit" name="submit" value="{% trans "Paso Siguiente" %}" class="btn btn-success " onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')" />
   </form>
+  <script type="text/javascript">
+  $(function(){
+
+    $("input[type=checkbox][name={{wizard.steps.current}}-{{wizard.form.proposals.name}}]").click(function() {
+
+        var bol = $("input[type=checkbox][name={{wizard.steps.current}}-{{wizard.form.proposals.name}}]:checked").length >= {{config.MEDIA_NARANJA_MAX_SELECT_PROPOSALS}};     
+        $("input[type=checkbox][name={{wizard.steps.current}}-{{wizard.form.proposals.name}}]").not(":checked").attr("disabled",bol);
+
+    });
+  });
+  
+  </script>
 {% endblock questions %}
 
 

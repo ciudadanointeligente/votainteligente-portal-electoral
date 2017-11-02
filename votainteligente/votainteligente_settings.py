@@ -444,7 +444,8 @@ CONSTANCE_CONFIG = {
     'DEFAULT_12_N_PROPOSALS_IMPORTANCE': (0.5, "Importancia de las propuestas en la media naranja"),
     'SHOW_MAIL_NOT_TEMPLATE': (True, 'mostrar el mail que se envía en lugar de un html'),
     'N_CANDIDATOS_RESULTADO_12_N': (3, u'Máximo número de candidatos en el resultado de la 1/2 Naranja'),
-    'MEDIA_NARANJA_MAX_NUM_PR': (20, u'Máximo número de candidatos en el resultado de la 1/2 Naranja'),
+    'MEDIA_NARANJA_MAX_NUM_PR': (20, u'Máximo número de propuestas listadas en la 1/2 Naranja'),
+    'MEDIA_NARANJA_MAX_SELECT_PROPOSALS': (5, u'Máximo número de propuestas seleccionables en la 1/2 Naranja'),
 }
 
 try:

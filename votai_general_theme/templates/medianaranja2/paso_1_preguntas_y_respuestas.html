@@ -12,6 +12,9 @@
 
 {% block content %}
 <div class="container">
+  <h2 class="page-header">1/2 Naranja - Paso {{wizard.steps.step1}}</h2>
+  <p>Responde a conciencia las siguientes preguntas para que podamos entregarte un mejor resultado para tu 1/2 naranja.</p>
+
   <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ wizard.form.media }}
@@ -27,7 +30,7 @@
 </div>
 <script type="text/javascript">
 $(function(){
-   $("select").chosen({no_results_text: "Oh! no pillamos eso!"}); 
+   $("select").chosen({no_results_text: "Oh! no pillamos eso!"});
 });
 </script>
 {% endblock content %}

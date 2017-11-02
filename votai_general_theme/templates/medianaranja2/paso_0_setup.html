@@ -12,6 +12,8 @@
 
 {% block content %}
 <div class="container">
+  <h2 class="page-header">1/2 Naranja - Paso {{wizard.steps.step1}}</h2>
+  <p>Este paso a paso consta de 3 etapas. Para poder lograr un buen resultado, necesitamos que nos entregues un poco de información básica sobre tus intereses.</p>
   <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ wizard.form.media }}
@@ -27,7 +29,7 @@
 </div>
 <script type="text/javascript">
 $(function(){
-   $("select").chosen({no_results_text: "Oh! no pillamos eso!"}); 
+   $("select").chosen({no_results_text: "Oh! no pillamos eso!"});
 });
 </script>
 {% endblock content %}

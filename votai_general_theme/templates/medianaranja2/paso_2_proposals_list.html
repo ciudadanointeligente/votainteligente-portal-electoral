@@ -12,6 +12,9 @@
 
 {% block content %}
 <div class="container">
+  <h2 class="page-header">1/2 Naranja - Paso {{wizard.steps.step1}}</h2>
+  <p>Acá puedes encontrar algunas de las propuestas formuladas dentro de la plataforma, con este último ingrediente seremos más certeros en la recomendación de tu 1/2 naranja.</p>
+
   <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ wizard.form.media }}

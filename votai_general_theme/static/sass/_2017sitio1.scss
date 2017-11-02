@@ -138,13 +138,13 @@ td.cal-date{
 
 .counter-number{
   font-family: 'Arvo', serif;
-  color: $blue-light;
+  color: $blue;
   font-weight: 700;
   font-size: 44px;
   position: relative;
   top: 9px;
   &:hover{
-    color: $blue;
+    color: $blue-light;
   }
 }
 

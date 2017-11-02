@@ -108,6 +108,7 @@ class KidsProposal(PopularProposal):
                                   null=True)
 
     card_template = "votita/card.html"
+    detail_template_html = "votita/plantillas/detalle_propuesta.html"
 
     def generate_og_image(self):
         plantilla = Image.open('votai_general_theme/static/img/plantilla_llm.png')

@@ -399,3 +399,23 @@ def proposals_topic_choices():
         if k:
             result.append((k, v))
     return result
+
+@register.inclusion_tag('popular_proposal_author.html')
+def get_proposal_author(popular_proposal):
+    link = None
+    text = ''
+    if popular_proposal.proposer.profile.is_organization:
+        link = popular_proposal.proposer.organization_template.get_absolute_url
+        text = popular_proposal.proposer.organization_template.title
+    if hasattr(popular_proposal, 'gathering'):
+        text = popular_proposal.gathering.name
+    else:
+        proposer = popular_proposal.proposer
+        if not proposer.profile.is_organization:
+            if proposer.get_full_name():
+                text = proposer.get_full_name()
+            else:
+                text = proposer.username
+    return {'link': link,
+            'text': text
+            }

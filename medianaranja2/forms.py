@@ -26,6 +26,11 @@ class PositionChoiceField(forms.ModelChoiceField):
         return obj.label
 
 
+class ProposalModelMultipleChoiceField(forms.ModelMultipleChoiceField):
+    def label_from_instance(self, obj):
+        return obj.get_one_liner() 
+
+
 class SetupForm(forms.Form):
     area = forms.ModelChoiceField(label=u"¿En qué comuna votas?",
                                   help_text=u"Esta selección te permitirá ver con qué candidaturas al Congreso eres más compatible. Si no quieres incluirlas en tu media naranja, elige NO APLICA.",
@@ -65,7 +70,7 @@ class QuestionsForm(forms.Form):
         return r
 
 class ProposalsForm(forms.Form):
-    proposals = forms.ModelMultipleChoiceField(queryset=PopularProposal.objects.none(),
+    proposals = ProposalModelMultipleChoiceField(queryset=PopularProposal.objects.none(),
                                                widget=forms.CheckboxSelectMultiple(attrs={'class': 'proposal_option'}),
                                                label=u'Si fueras presidenta o presidente, ¿Cuáles serían tus primeras 5 medidas?')
 

@@ -18,7 +18,8 @@
   {% csrf_token %}
   {{ wizard.form.media }}
   {{ wizard.management_form }}
-  {% bootstrap_form wizard.form%}
+  {% bootstrap_field wizard.form.area%}
+  {% bootstrap_field wizard.form.categories%}
 
   {% if wizard.steps.prev %}
   <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}" class="btn btn-default" onclick="ga('send','event','primer-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "first step" %}</button>

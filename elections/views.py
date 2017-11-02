@@ -85,7 +85,7 @@ class HomeView(HomeViewBase):
         context['proposals_with_likers'] = proposals_with_likers
         featured_proposals = cache.get('featured_proposals')
         if featured_proposals is None:
-            featured_proposals = PopularProposal.objects.filter(featured=True)
+            featured_proposals = PopularProposal.objects.filter(featured=True).filter(content_type__app_label="popular_proposal")
             cache.set('featured_proposals', featured_proposals, 600)
         context['featured_proposals'] = featured_proposals
         featured_candidates = cache.get('featured_candidates')

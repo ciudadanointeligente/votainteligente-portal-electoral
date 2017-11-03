@@ -1,6 +1,6 @@
 {% load staticfiles %}
 {% load votainteligente_extras %}
-<footer id="footer">
+<footer id="footer" class="{% if show_xs %} hidden-sm hidden-xs{% endif %}">
     {% block extrafooter %}
     {% endblock extrafooter %}
     <div class="container">

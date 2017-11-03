@@ -2133,18 +2133,11 @@ input#id_4-title {
 
 }
 .post.propuesta.votita {
-  border: 3px solid $yellow;
-  .share-card{
-    background-color: $yellow;
-  }
+  background-image: url(../img/nna-proposal.svg);
+  background-position: 24% 78%;
+  background-repeat: no-repeat;
   .ribbon{
-    top: 44px;
-    width: 260px;
-    font-size: 13px;
-    background-color: $grey-one;
-  }
-  .btn-apoyo{
-    background-color: #FF645B;
+    display: none;
   }
 }
 

@@ -12,6 +12,7 @@ from constance import config
 from organization_profiles.models import OrganizationTemplate
 from django.views.generic.base import TemplateView
 from django.core.cache import cache
+from django.utils.safestring import mark_safe
 
 
 class CategoryMultipleChoiceField(forms.ModelMultipleChoiceField):
@@ -28,7 +29,7 @@ class PositionChoiceField(forms.ModelChoiceField):
 
 class ProposalModelMultipleChoiceField(forms.ModelMultipleChoiceField):
     def label_from_instance(self, obj):
-        return obj.get_one_liner() 
+        return mark_safe(u'<span class="label label-default">' + obj.get_classification() + u"</span> " + obj.get_one_liner() )
 
 
 class SetupForm(forms.Form):
@@ -36,7 +37,7 @@ class SetupForm(forms.Form):
                                   help_text=u"Esta selección te permitirá ver con qué candidaturas al Congreso eres más compatible. Si no quieres incluirlas en tu media naranja, elige NO APLICA.",
                                   empty_label=u"NO APLICA",
                                   required=False,
-                                  queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE))
+                                  queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE).order_by('name'))
     categories = CategoryMultipleChoiceField(label=u"De estos temas, ¿cuáles son los 3 que te parecen más importantes para el país?",
                                              queryset=QuestionCategory.objects.all(),
                                              widget=forms.CheckboxSelectMultiple(),)

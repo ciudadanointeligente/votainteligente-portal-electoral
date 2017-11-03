@@ -75,9 +75,9 @@ class FormsTestCase(MediaNaranjaAdaptersBase):
         kwargs = {'proposals': proposals, 'area': argentina} 
         form = ProposalsForm(**kwargs)
         proposals_choices = list(form.fields['proposals'].choices)
-        self.assertIn((self.p1.id, unicode(self.p1)), proposals_choices)
-        self.assertIn((self.p2.id, unicode(self.p2)), proposals_choices)
-        self.assertIn((self.p3.id, unicode(self.p3)), proposals_choices)
+        self.assertIn((self.p1.id, u'<span class="label label-default"></span> ' + unicode(self.p1)), proposals_choices)
+        self.assertIn((self.p2.id, u'<span class="label label-default"></span> ' + unicode(self.p2)), proposals_choices)
+        self.assertIn((self.p3.id, u'<span class="label label-default"></span> ' + unicode(self.p3)), proposals_choices)
 
     def test_posting_proposals_form(self):
         argentina = Area.objects.create(name=u'Argentina', id='argentina')

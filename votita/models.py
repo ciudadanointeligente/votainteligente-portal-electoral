@@ -73,6 +73,9 @@ class KidsGathering(models.Model):
     comments = models.TextField(verbose_name=u"¿Cómo podemos empoderar mejor a nuestros niños?",
                                 blank=True,
                                 default=u"")
+    school = models.CharField(max_length=512,
+                            verbose_name="Establecimiento u organización",
+                            blank=True)
 
     class Meta:
         verbose_name = _(u'Encuentro')

@@ -31,6 +31,7 @@ class CreateGatheringFormTestCase(ProposingCycleTestCaseBase):
 
     def test_create_a_gathering(self):
         data = {"name": "Segundo medio C",
+                "school": "Del mejor cole",
                 "presidents_features": "inteligente,honesto",
                 "generated_at": self.a_comuna.id,
                 "age_range": AGE_CHOICES[1][0],
@@ -48,6 +49,7 @@ class CreateGatheringFormTestCase(ProposingCycleTestCaseBase):
     def test_update_gathering(self):
         gathering = KidsGathering.objects.create(proposer=self.feli,
                                                  name=u"Título",
+                                                 school=u"Colegio",
                                                  presidents_features=['ingeligente',
                                                                       'honesto'])
         photo = self.get_image()

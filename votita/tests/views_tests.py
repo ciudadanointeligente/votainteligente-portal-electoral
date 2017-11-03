@@ -35,6 +35,7 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
         url = reverse('votita:create_gathering')
         data = {'name': u"Título",
                 "presidents_features": ["inteligente"],
+                'school': "La mejor escuela de todas",
                 "age_range": AGE_CHOICES[1][0],
                 'male': 10,
                 'female': 10,
@@ -48,6 +49,7 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
 
     def test_creating_proposal_for_gathering_get_view(self):
         gathering = KidsGathering.objects.create(name=u"Título",
+                                                 school=u"Colegio",
                                                  proposer=self.feli)
         url = reverse('votita:proposal_for_gathering',
                       kwargs={'pk':gathering.id})
@@ -61,6 +63,7 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
 
     def test_creating_proposal_for_gathering_get_view_by_non_owner(self):
         gathering = KidsGathering.objects.create(name=u"Título",
+                                                 school=u"Colegio",
                                                  proposer=self.feli)
         url = reverse('votita:proposal_for_gathering',
                       kwargs={'pk':gathering.id})
@@ -75,6 +78,7 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
 
     def test_creating_proposal_for_gathering_post_view(self):
         gathering = KidsGathering.objects.create(name=u"Título",
+                                                 school=u"Colegio",
                                                  proposer=self.feli)
         url = reverse('votita:proposal_for_gathering',
                       kwargs={'pk':gathering.id})
@@ -99,6 +103,7 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
 
     def test_update_gathering_get(self):
         gathering = KidsGathering.objects.create(name=u"Título",
+                                                 school=u"Colegio",
                                                  proposer=self.feli)
         url = reverse('votita:update_gathering',
                       kwargs={'pk':gathering.id})
@@ -111,6 +116,7 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
 
     def test_update_gathering_get_view_by_non_owner(self):
         gathering = KidsGathering.objects.create(name=u"Título",
+                                                 school=u"Colegio",
                                                  proposer=self.feli)
         url = reverse('votita:update_gathering',
                       kwargs={'pk':gathering.id})
@@ -125,6 +131,7 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
 
     def test_get_thanks_for_creating_a_proposal(self):
         gathering = KidsGathering.objects.create(name=u"Título",
+                                                 school=u"Colegio",
                                                  proposer=self.feli)
         url = reverse('votita:thanks_for_creating_a_gathering',
                       kwargs={'pk':gathering.id})
@@ -135,6 +142,7 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
 
     def test_get_thanks_for_creating_a_proposal_non_owner(self):
         gathering = KidsGathering.objects.create(name=u"Título",
+                                                 school=u"Colegio",
                                                  proposer=self.feli)
         url = reverse('votita:thanks_for_creating_a_gathering',
                       kwargs={'pk':gathering.id})
@@ -149,6 +157,7 @@ class GateheringCreateViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
 
     def test_update_gathering_post(self):
         gathering = KidsGathering.objects.create(name=u"Título",
+                                                 school=u"Colegio",
                                                  proposer=self.feli)
         url = reverse('votita:update_gathering',
                       kwargs={'pk':gathering.id})
@@ -173,6 +182,7 @@ class GatheringViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
 
     def test_show_gathering_info(self):
         gathering = KidsGathering.objects.create(name=u"Título",
+                                                 school=u"Colegio",
                                                  proposer=self.feli)
         url = reverse('votita:ver_encuentro',
                       kwargs={'pk':gathering.id})
@@ -182,10 +192,13 @@ class GatheringViewTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
 
     def test_list_gatherings(self):
         gathering1 = KidsGathering.objects.create(name=u"Título",
+                                                 school=u"Colegio",
                                                   proposer=self.feli)
         gathering2 = KidsGathering.objects.create(name=u"Título",
+                                                 school=u"Colegio",
                                                   proposer=self.feli)
         gathering3 = KidsGathering.objects.create(name=u"Título",
+                                                 school=u"Colegio",
                                                   proposer=self.feli)
         url = reverse('votita:list_gatherings')
         response = self.client.get(url)

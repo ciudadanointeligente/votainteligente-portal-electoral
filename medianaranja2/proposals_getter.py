@@ -32,6 +32,6 @@ class ProposalsGetter(object):
             return cache.get(cache_key)
         elections = self.get_elections(area)
         proposals = PopularProposal.ordered.filter(commitments__candidate__elections__in=elections)
-        proposals = list(proposals[:config.MEDIA_NARANJA_MAX_NUM_PR])
+        proposals = proposals[:config.MEDIA_NARANJA_MAX_NUM_PR]
         cache.set(cache_key, proposals)
         return proposals[:config.MEDIA_NARANJA_MAX_NUM_PR]

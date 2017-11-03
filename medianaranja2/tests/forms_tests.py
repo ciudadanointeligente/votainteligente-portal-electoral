@@ -71,7 +71,8 @@ class FormsTestCase(MediaNaranjaAdaptersBase):
 
     def test_proposals_form_instanciate(self):
         argentina = Area.objects.create(name=u'Argentina', id='argentina')
-        kwargs = {'proposals': [self.p1, self.p2, self.p3], 'area': argentina} 
+        proposals = PopularProposal.objects.filter(id__in=[self.p1.id, self.p2.id, self.p3.id])
+        kwargs = {'proposals': proposals, 'area': argentina} 
         form = ProposalsForm(**kwargs)
         proposals_choices = list(form.fields['proposals'].choices)
         self.assertIn((self.p1.id, unicode(self.p1)), proposals_choices)
@@ -81,7 +82,8 @@ class FormsTestCase(MediaNaranjaAdaptersBase):
     def test_posting_proposals_form(self):
         argentina = Area.objects.create(name=u'Argentina', id='argentina')
         data = {'proposals': [self.p1.id, self.p2.id]}
-        kwargs = {'proposals': [self.p1, self.p2, self.p3],'area': argentina, 'data':data}
+        proposals = PopularProposal.objects.filter(id__in=[self.p1.id, self.p2.id, self.p3.id])
+        kwargs = {'proposals': proposals,'area': argentina, 'data':data}
         form = ProposalsForm(**kwargs)
         self.assertTrue(form.is_bound)
         self.assertTrue(form.is_valid())

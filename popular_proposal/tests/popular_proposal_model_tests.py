@@ -156,6 +156,16 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertIn(p3, featured_proposals)
         self.assertNotIn(p1, featured_proposals)
 
+    def test_get_ribbon_text(self):
+        p1 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title1',
+                                            clasification=u'education'
+                                            )
+        self.assertFalse(p1.ribbon_text)
+        p1.is_local_meeting = True
+        self.assertTrue(p1.ribbon_text)
 
 
     @override_settings(EXCLUDED_PROPOSALS_APPS=["sites" ,])

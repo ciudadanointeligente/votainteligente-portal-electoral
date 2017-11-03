@@ -23,8 +23,13 @@ $(function(){
 {% block title %}- Propuesta - {{proposal.title}}{% endblock title%}
 
 {% block ogp %}
-  {% render_ogp proposal %}
-  <meta property="og:description" content="{{ proposal.data.solution_at_the_end }}">
+  <meta property="og:title" content="Levanta La Mano">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://levantalamano.cl{{ proposal.get_absolute_url }}">
+  <meta property="og:image" content="http://levantalamano.cl{% static 'img/levantalamano-og.png' %}">
+  <meta property="og:description" content="{{ proposal.title }}">
+
+  <meta property="og:description" content="{{ proposal.title }}">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ciudadanoi">

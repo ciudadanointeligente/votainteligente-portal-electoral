@@ -7,6 +7,7 @@ from popular_proposal.models import PopularProposal, ProposalLike
 from django.test import override_settings
 from elections.models import Candidate
 from django.contrib.sites.models import Site
+from django.test import override_settings
 
 
 class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
@@ -301,3 +302,19 @@ class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'organization_profiles/ayuranos.html')
         self.assertIn(first_candidate, response.context['candidates'])
+
+    @override_settings(PRIORITY_CANDIDATES=[2,])
+    def test_get_priority_candidates(self):
+        first_candidate = Candidate.objects.get(id=2)
+        popular_proposal = PopularProposal.objects.create(proposer=self.user,
+                                                          area=self.arica,
+                                                          data={"name": "FieraFeroz"},
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+
+        url = reverse('organization_profiles:ayuranos', kwargs={'slug': self.user.username})
+        response = self.client.get(url)
+        self.assertTemplateUsed(response, 'organization_profiles/ayuranos.html')
+        self.assertIn(first_candidate, response.context['candidates'])
+        self.assertEquals(len(response.context['candidates']), 1)

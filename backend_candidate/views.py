@@ -54,6 +54,8 @@ class HelpFindingCandidates(ListView):
     def get_queryset(self):
         qs = super(HelpFindingCandidates, self).get_queryset().distinct()
         qs = qs.filter(contact_details__contact_type__in=['TWITTER', 'FACEBOOK'])
+        if settings.PRIORITY_CANDIDATES:
+            qs = qs.filter(id__in=settings.PRIORITY_CANDIDATES)
         return qs
 
 class HomeView(BackendCandidateBase, RedirectView):

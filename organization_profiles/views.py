@@ -18,6 +18,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from organization_profiles.models import OrganizationTemplate
 from elections.models import Candidate
+from django.conf import settings
 import copy
 
 
@@ -139,7 +140,10 @@ class AyuranosView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AyuranosView, self).get_context_data(**kwargs)
-        context['candidates'] = Candidate.objects.all().order_by('created_at')
+        candidate_qs = Candidate.objects.all().order_by('created_at')
+        if settings.PRIORITY_CANDIDATES:
+            candidate_qs = candidate_qs.filter(id__in=settings.PRIORITY_CANDIDATES)
+        context['candidates'] = candidate_qs
         return context
 
 

@@ -312,6 +312,11 @@ class PopularProposal(models.Model, OGPMixin):
         return get_template(template).render(context)
 
     @property
+    def ribbon_text(self):
+        if self.is_local_meeting:
+            return u"Generada desde un encuentro ciudadano"
+
+    @property
     def card(self):
         return self.display_card({})
 

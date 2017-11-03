@@ -158,6 +158,10 @@ class KidsProposal(PopularProposal):
         from votita.forms.forms import TOPIC_CHOICES_DICT
         return TOPIC_CHOICES_DICT
 
+    @property
+    def ribbon_text(self):
+        return u"Propuesta generada por niñas, niños y adolescentes"
+
     class Meta:
         verbose_name = _(u'Medida')
         verbose_name_plural = _(u"Medidas")

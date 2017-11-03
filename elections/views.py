@@ -182,7 +182,10 @@ class CandidateDetailView(DetailView):
         cache_key = u'ranking-for-' + candidate.id
         _candidate = cache.get(cache_key)
         if _candidate is None:
-            _candidate = self.model.ranking.get(id=candidate.id)
+            try:
+                _candidate = self.model.ranking.get(id=candidate.id)
+            except self.model.DoesNotExist:
+                raise Http404(u"Este candidato no existe")
             cache.set(cache_key,
                       _candidate,
                       60 * config.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)

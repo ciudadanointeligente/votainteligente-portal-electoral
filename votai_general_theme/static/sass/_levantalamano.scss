@@ -34,6 +34,7 @@ h4{
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
   color: black;
+  font-size: 20px;
   a{
     color: black;
     &:hover{
@@ -427,7 +428,7 @@ p.aviso{
   margin: 0 0 50px;
 }
 .propuesta{
-  min-height: 310px;
+  min-height: 330px;
   border-radius: 10px;
   padding: 0;
   position: relative;
@@ -445,7 +446,7 @@ p.aviso{
 }
 hr{
   position: relative;
-  top: 26px;
+  top: 47px;
 }
 .votita-love-politica{
   border: 3px solid $yellow;
@@ -939,7 +940,7 @@ hr{
   @extend .small;
 }
 .share-card{
-  padding: 20px 0 0;
+  padding: 40px 0 0;
   .social-buttons{
     font-size: 10px;
     position: relative;
@@ -1066,6 +1067,10 @@ hr{
       color: black;
     }
   }
+}
+
+.img-candidato-small{
+  width: 60px;
 }
 
 /*PLAN*/

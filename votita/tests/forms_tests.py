@@ -48,6 +48,7 @@ class CreateGatheringFormTestCase(ProposingCycleTestCaseBase):
     def test_update_gathering(self):
         gathering = KidsGathering.objects.create(proposer=self.feli,
                                                  name=u"Título",
+                                                 school=u"Colegio",
                                                  presidents_features=['ingeligente',
                                                                       'honesto'])
         photo = self.get_image()

@@ -111,6 +111,7 @@ class KidsGatheringTestCase(ProposingCycleTestCaseBase):
         a_comuna = Area.objects.filter(classification='Comuna').first()
         gathering = KidsGathering.objects.create(proposer=self.fiera,
                                                  name=u"Título",
+                                                 school=u"Colegio",
                                                  generated_at=a_comuna,
                                                  stats_data=stats_data,
                                                  presidents_features=['ingeligente',
@@ -129,6 +130,7 @@ class KidsGatheringTestCase(ProposingCycleTestCaseBase):
         }
         gathering = KidsGathering.objects.create(proposer=self.fiera,
                                                  name=u"Título",
+                                                 school=u"Colegio",
                                                  stats_data=stats_data)
         kids_proposal = KidsProposal.objects.create(proposer=self.fiera,
                                                     area=self.arica,
@@ -142,6 +144,7 @@ class KidsGatheringTestCase(ProposingCycleTestCaseBase):
     def test_instanciate_model(self):
         gathering = KidsGathering.objects.create(proposer=self.fiera,
                                                  name=u"Título",
+                                                 school=u"Colegio",
                                                  presidents_features=['administrador',
                                                                       'comunicador'])
         self.assertIn(u'Buen Comunicador/a', gathering.presidents_features_str)
@@ -185,6 +188,7 @@ class VotitaWizardInsideAGathering(ProposingCycleTestCaseBase, WizardDataMixin):
         }
         self.gathering = KidsGathering.objects.create(proposer=self.feli,
                                                       name=u"Título",
+                                                      school=u"Colegio",
                                                       stats_data=stats_data)
         self.url = reverse('votita:create_proposal_for_gathering_wizard',
                            kwargs={'pk':self.gathering.id})

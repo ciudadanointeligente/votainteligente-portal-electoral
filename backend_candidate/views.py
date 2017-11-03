@@ -338,7 +338,7 @@ class CandidateIncrementalDetailView(DetailView):
             commitments = formset.save()
             if commitments:
                 return render(request, 'backend_candidate/thanks_for_commiting.html', context={'commitments': commitments})
-        self.get(request, *args, **kwargs)
+        return self.get(request, *args, **kwargs)
 
     def get_template_names(self):
         if settings.DEBUG and config.SHOW_MAIL_NOT_TEMPLATE:

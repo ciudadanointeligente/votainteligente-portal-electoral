@@ -1,0 +1,36 @@
+{% extends "medianaranja2/base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+{% load cache %}
+{% load bootstrap3 %}
+
+{% block questions %}
+
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  Para poder decirte con qué candidatura eres más compatible, necesitamos conocer un poco de ti.
+</div>
+
+  <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ wizard.form.media }}
+  {{ wizard.management_form }}
+  {% bootstrap_field wizard.form.area%}
+  {% bootstrap_field wizard.form.categories%}
+
+  {% if wizard.steps.prev %}
+  <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}" class="btn btn-default" onclick="ga('send','event','primer-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "first step" %}</button>
+  <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}" class="btn btn-default" onclick="ga('send','event','anterior-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "prev step" %}</button>
+  {% endif %}
+  <input type="submit" name="submit" value="{% trans "Paso Siguiente" %}" class="btn btn-success " onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')" />
+  </form>
+
+<script type="text/javascript">
+$(function(){
+   $("select").chosen({no_results_text: "Oh! no pillamos eso!"});
+});
+</script>
+{% endblock questions %}
+

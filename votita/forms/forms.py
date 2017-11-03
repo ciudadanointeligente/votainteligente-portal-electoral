@@ -8,6 +8,7 @@ from django.forms import ModelForm
 from elections.models import Area
 from votainteligente.send_mails import send_mails_to_staff
 from django.conf import settings
+from taggit.forms import TagWidget
 
 
 def filterable_areas():
@@ -41,7 +42,7 @@ class GatheringsWithStatsDataMixin(object):
         return instance
 
 
-AGE_CHOICES = (("", u"Selecciona un rango de etareo"), ("basica", u"Educación Básica"),("media", u"Educación Media"),("otro", u"Otro"),)
+AGE_CHOICES = (("", u"Selecciona un rango de etario"), ("basica", u"Educación Básica"),("media", u"Educación Media"),("otro", u"Otro"),)
 
 class CreateGatheringForm(GatheringsWithStatsDataMixin, ModelForm):
     age_range = forms.ChoiceField(label= "Rango etario de los participantes",
@@ -60,11 +61,16 @@ class CreateGatheringForm(GatheringsWithStatsDataMixin, ModelForm):
                                           empty_label=u"Selecciona la comuna",
                                           required=False,
                                           label="Comuna donde se realizó el encuentro")
+    school = forms.CharField(required=True,
+                             widget=forms.TextInput(attrs={'placeholder': 'Ejemplo: “Escuela Santa Isabel”'}),
+                             label=u"Establecimiento u organización")
+
     class Meta:
         model = KidsGathering
-        fields = ['name', 'generated_at', 'presidents_features']
+        fields = ['name', 'generated_at', 'presidents_features', 'school']
         widgets = {
-            "name" :forms.TextInput(attrs={'placeholder': 'Ejemplo: “Quinto básico C Escuela Santa Isabel”'})
+            "name" :forms.TextInput(attrs={'placeholder': 'Ejemplo: “Quinto básico C”'}),
+            "presidents_features": TagWidget(attrs={"max_length":100})
         }
 
     def __init__(self, *args, **kwargs):

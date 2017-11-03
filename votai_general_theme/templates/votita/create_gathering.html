@@ -20,11 +20,12 @@
   <form action="{% url 'votita:create_gathering' %}" method="post">
       {% csrf_token %}
       <div class="col-md-6">{% bootstrap_field form.name %}</div>
+      <div class="col-md-6">{% bootstrap_field form.school %}</div>
       <div class="col-md-6">{% bootstrap_field form.generated_at %}</div>
       <div class="col-md-6">{% bootstrap_field form.age_range %}</div>
-      <div class="col-md-6">{% bootstrap_field form.female %}</div>
-      <div class="col-md-6">{% bootstrap_field form.male %}</div>
-      <div class="col-md-6">{% bootstrap_field form.others %}</div>
+      <div class="col-md-4">{% bootstrap_field form.female %}</div>
+      <div class="col-md-4">{% bootstrap_field form.male %}</div>
+      <div class="col-md-4">{% bootstrap_field form.others %}</div>
 </div>
 <div class="row">
   <div class="col-md-12">

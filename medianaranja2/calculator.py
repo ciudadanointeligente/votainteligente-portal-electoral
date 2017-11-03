@@ -11,6 +11,7 @@ class Calculator(object):
                 commitments_adapter_class=CommitmentsAdapter):
         self.set_questions_adapter(questions_adapter_class(election, selected_positions))
         self.set_commitments_adapter(commitments_adapter_class(election, selected_proposals))
+        self.election = election
         if not self.questions_adapter.positions:
             self.questions_importance = 0
             self.proposals_importance = 1
@@ -43,7 +44,8 @@ class Calculator(object):
         for index in range(len(_result)):
             concatenated.append({'candidate': candidates_vector[index][0], 'value': _result[index][0]})
         concatenated = sorted(concatenated, key=lambda t: -t['value'])
-        return concatenated
+        result = {'election': self.election, 'candidates': concatenated}
+        return result
 
     def get_commitments_result(self):
         C = self.commitments_adapter.get_commitments_matrix()
@@ -62,4 +64,6 @@ class Calculator(object):
         for index in range(len(_result)):
             concatenated.append({'candidate': candidates_vector[index][0], 'value': _result[index][0]})
         concatenated = sorted(concatenated, key=lambda t: -t['value'])
-        return concatenated
+        concatenated = concatenated[:config.N_CANDIDATOS_RESULTADO_12_N]
+        result = {'election': self.election, 'candidates': concatenated}
+        return result

@@ -85,21 +85,7 @@ $(function(){
         <p class="text-light small">
             Esta es una propuesta de
 
-            {% if popular_proposal.proposer.profile.is_organization %}
-              <a href="{{popular_proposal.proposer.organization_template.get_absolute_url}}">
-              {% if popular_proposal.proposer.get_full_name %}
-                {{popular_proposal.proposer.get_full_name}}
-              {% else %}
-                {{popular_proposal.proposer}}
-              {% endif %}
-              </a>
-              {% else %}
-              {% if popular_proposal.proposer.get_full_name %}
-                {{popular_proposal.proposer.get_full_name}}
-              {% else %}
-                {{popular_proposal.proposer}}
-              {% endif %}
-            {% endif %}
+            {% get_proposal_author popular_proposal %}
         </p>
       </div><!-- col-md-9 -->
     </div><!-- row -->

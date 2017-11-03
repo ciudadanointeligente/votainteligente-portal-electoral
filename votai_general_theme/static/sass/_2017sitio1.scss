@@ -84,7 +84,7 @@ td.cal-date{
   color: $blue-light;
 }
 
-#welcome{
+#welcome {
   background: $yellow ;
   background-size: cover;
   padding: 20px 0 20px;
@@ -95,6 +95,18 @@ td.cal-date{
   }
   h2{
     font-size: 19px;
+  }
+}
+
+#candidatos{
+  background: $yellow ;
+  padding: 30px 0 30px;
+  h1 {
+    font-size: 32px;
+  }
+  a {
+    color: $grey-one;
+    font-weight: bold;
   }
 }
 
@@ -122,18 +134,18 @@ td.cal-date{
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 12px;
-  padding-top: 10px;
+  padding-top: 18px;
 }
 
 .counter-number{
   font-family: 'Arvo', serif;
-  color: $blue-light;
+  color: $blue;
   font-weight: 700;
   font-size: 44px;
   position: relative;
   top: 9px;
   &:hover{
-    color: $blue;
+    color: $blue-light;
   }
 }
 

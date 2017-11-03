@@ -1,8 +1,9 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
-from popular_proposal.models import PopularProposal
+from popular_proposal.models import PopularProposal, Commitment
 from rest_framework.test import APIClient
 from rest_framework.reverse import reverse
+from elections.models import Candidate
 import json
 
 
@@ -52,3 +53,35 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
         content = json.loads(response.content)
         self.assertEquals(len(content), 1)
         self.assertEquals(content[0]['id'], popular_proposal2.id)
+
+    def test_get_candidates(self):
+        url = reverse('candidate-list')
+        response = self.client.get(url, format='json')
+        self.assertEquals(response.status_code, 200)
+        content = json.loads(response.content)
+        self.assertEquals(len(content), Candidate.objects.count())
+        self.assertTrue(content[0]['name'])
+        self.assertTrue(content[0]['id'])
+
+
+    def test_get_commitments(self):
+        any_candidate = Candidate.objects.first()
+        popular_proposal2 = PopularProposal.objects.create(proposer=self.feli,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                      )
+        commitment = Commitment.objects.create(candidate=any_candidate,
+                                               proposal=popular_proposal2,
+                                               detail=u'Yo me comprometo',
+                                               commited=True)
+        url = reverse('commitment-list')
+        response = self.client.get(url, format='json')
+        self.assertEquals(response.status_code, 200)
+        content = json.loads(response.content)
+        self.assertEquals(len(content), 1)
+        self.assertTrue(content[0]['proposal'])
+        self.assertTrue(content[0]['candidate'])
+        self.assertEquals(content[0]['detail'], commitment.detail)
+        self.assertEquals(content[0]['commited'], commitment.commited)

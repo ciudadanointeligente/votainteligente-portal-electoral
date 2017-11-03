@@ -73,6 +73,9 @@ class KidsGathering(models.Model):
     comments = models.TextField(verbose_name=u"¿Cómo podemos empoderar mejor a nuestros niños?",
                                 blank=True,
                                 default=u"")
+    school = models.CharField(max_length=512,
+                            verbose_name="Establecimiento u organización",
+                            blank=True)
 
     class Meta:
         verbose_name = _(u'Encuentro')
@@ -108,6 +111,7 @@ class KidsProposal(PopularProposal):
                                   null=True)
 
     card_template = "votita/card.html"
+    detail_template_html = "votita/plantillas/detalle_propuesta.html"
 
     def generate_og_image(self):
         plantilla = Image.open('votai_general_theme/static/img/plantilla_llm.png')
@@ -153,6 +157,10 @@ class KidsProposal(PopularProposal):
     def get_topic_choices_dict(cls):
         from votita.forms.forms import TOPIC_CHOICES_DICT
         return TOPIC_CHOICES_DICT
+
+    @property
+    def ribbon_text(self):
+        return u"Propuesta generada por niñas, niños y adolescentes"
 
     class Meta:
         verbose_name = _(u'Medida')

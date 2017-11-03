@@ -2,12 +2,12 @@
 {% load votainteligente_extras %}
 {% load i18n %}
 {% load thumbnail %}
-<div class="post propuesta{% if proposal.for_all_areas %} transversal{% endif %}">
+<div class="post propuesta {{proposal.content_type.app_label}}">
 <!-- Cata compañera puedes saber si la propuesta es para todas las comunas mediante esto {% comment %}{% if proposal.for_all_areas %}{% else %}{% endif %}{% endcomment %}-->
   <div class="propuesta-content">
-    {% if proposal.is_local_meeting %}
+    {% if proposal.ribbon_text %}
     <div class="ribbon-wrapper">
-      <div class="ribbon">Generada desde un encuentro ciudadano</div>
+      <div class="ribbon">{{proposal.ribbon_text}}</div>
     </div>
     {% endif %}
     <a href="/propuestas/?clasification={{proposal.clasification}}" onclick="ga('send','event','card-filterby-clasification','click')"><span class="label label-default">{{proposal.get_classification}}</span></a>

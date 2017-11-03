@@ -20,7 +20,7 @@
 <p>{{text|linebreaksbr}}</p>
 {% endif %}
 
-{% include 'backend_candidate/_suggestions_formset.html' with formset=formset object=candidate_incremental site=site %}
+{% include 'backend_candidate/_suggestions_formset.html' with formset=formset object=candidate_incremental site=site candidate=candidate %}
 
 
 {% endblock content %}

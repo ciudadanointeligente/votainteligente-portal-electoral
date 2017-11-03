@@ -217,6 +217,8 @@ class PopularProposal(models.Model, OGPMixin):
     content_type = models.ForeignKey(ContentType, null=True)
     featured = models.BooleanField(default=False)
     summary = models.TextField(default=u"", blank=True)
+    important_within_organization = models.BooleanField(default=False)
+    one_liner = models.CharField(blank=True, max_length=140, default="")
 
     ogp_enabled = True
 
@@ -310,6 +312,11 @@ class PopularProposal(models.Model, OGPMixin):
         return get_template(template).render(context)
 
     @property
+    def ribbon_text(self):
+        if self.is_local_meeting:
+            return u"Generada desde un encuentro ciudadano"
+
+    @property
     def card(self):
         return self.display_card({})
 
@@ -348,6 +355,11 @@ class PopularProposal(models.Model, OGPMixin):
                     send_mail(context,
                               template,
                               to=[contact.mail])
+
+    def get_one_liner(self):
+        if self.one_liner:
+            return self.one_liner
+        return self.title
 
 
 class ProposalLike(models.Model):

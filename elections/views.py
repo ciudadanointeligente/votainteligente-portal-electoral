@@ -18,7 +18,7 @@ from popular_proposal.filters import ProposalWithoutAreaFilter
 from django_filters.views import FilterMixin
 from django.core.cache import cache
 from django.conf import settings
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from constance import config
 
 logger = logging.getLogger(__name__)

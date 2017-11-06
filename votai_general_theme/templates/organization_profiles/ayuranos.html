@@ -29,16 +29,18 @@
       {% with object.twitter|extract_twitter_username_without_at as twitter_org %}
       {% with url="https://votainteligente.cl"|add:object.get_absolute_url|add:"#propuestas" %}
         {% for candidate in candidates %}
-      {% if candidate.twitter %}
       <tr class="">
         <td>
-              {% include 'twitter_poking_button.html' with url=url via=twitter_org texto=config.AYUDANOS_ORGANIZACIONES twitter=candidate.twitter.value button_text=config.AYUDANOS_ORGANIZACIONES %}
+          {% if candidate.twitter %}
+            {% include 'twitter_poking_button.html' with url=url via=twitter_org texto=config.AYUDANOS_ORGANIZACIONES twitter=candidate.twitter.value button_text=config.AYUDANOS_ORGANIZACIONES %}
+          {% else %}
+            {% include 'twitter_poking_button.html' with url=url via=twitter_org texto=config.AYUDANOS_ORGANIZACIONES twitter="@A_TU_CANDIDATO" button_text=config.AYUDANOS_ORGANIZACIONES %}
+          {% endif %}
           </td>
         <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
         <td>{% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}{{pacto.value}}</td>
         <td>{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</td>
       </tr>
-        {% endif %}
       	{% endfor %}
         {% endwith %}
         {% endwith %}

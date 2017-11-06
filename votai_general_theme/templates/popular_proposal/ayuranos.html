@@ -29,6 +29,8 @@
           <thead>
             <tr>
               <th>Candidato</th>
+              <th>Pacto</th>
+              <th>Partido</th>
               <th>Twiteale!</th>
             </tr>
           </thead>
@@ -40,6 +42,8 @@
             {% if candidate.election.position == 'Presidenta o Presidente' %}
             <tr>
               <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
+              <td>{% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}{{pacto.value}}</td>
+              <td>{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</td>
               <td>
                 {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
               </td>
@@ -60,6 +64,8 @@
           <thead>
             <tr>
               <th>Candidato</th>
+              <th>Pacto</th>
+              <th>Partido</th>
               <th>Twiteale!</th>
             </tr>
           </thead>
@@ -71,6 +77,8 @@
             {% if candidate.election.position == 'Senadora o Senador' %}
             <tr>
               <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
+              <td>{% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}{{pacto.value}}</td>
+              <td>{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</td>
               <td>
                 {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
               </td>
@@ -91,6 +99,8 @@
           <thead>
             <tr>
               <th>Candidato</th>
+              <th>Pacto</th>
+              <th>Partido</th>
               <th>Twiteale!</th>
             </tr>
           </thead>
@@ -102,6 +112,8 @@
             {% if candidate.election.position == 'Diputada o Diputado' %}
             <tr>
               <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
+              <td>{% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}{{pacto.value}}</td>
+              <td>{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</td>
               <td>
                 {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
               </td>

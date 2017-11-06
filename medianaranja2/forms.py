@@ -143,12 +143,8 @@ class MediaNaranjaResultONLYFORDEBUG(TemplateView):# pragma: no cover
         from organization_profiles.models import OrganizationTemplate
         templates = OrganizationTemplate.objects.all()[:3]
         context['organizations'] = templates
-        e1 = Election.objects.all()[0]
-        e2 = Election.objects.all()[1]
-        context['results'] =  [{'election': e2,
-                                'candidates':[{'value': 1.0, 'candidate': e2.candidates.all()[0]},
-                      {'value': 0.5, 'candidate': e2.candidates.all()[1]},
-                      {'value': 0.5, 'candidate': e2.candidates.all()[2]}]}, 
+        e1 = Election.objects.exclude(candidates__isnull=True)[0]
+        context['results'] =  [
                     {'election': e1,
                        'candidates': [{'value': 2.0, 'candidate': e1.candidates.all()[0]},
                       {'value': 1.0, 'candidate': e1.candidates.all()[1]},

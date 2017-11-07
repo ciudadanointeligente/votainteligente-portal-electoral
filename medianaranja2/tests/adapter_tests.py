@@ -223,9 +223,8 @@ class CalculatorTests(MediaNaranjaAdaptersBase):
         R = calculator._get_result().tolist()
         self.assertEquals(R, [[1.5],[1],[0]])
         final_result = calculator.get_result()
-        expected = {'candidates': [{'candidate':self.c1, 'value': 1.5},
-                    {'candidate':self.c2, 'value': 1},
-                    {'candidate':self.c3, 'value': 0}],
+        expected = {'candidates': [{'candidate':self.c1, 'value': 37.5},
+                    {'candidate':self.c2, 'value': 25.0}],
                     'election': self.election}
         self.assertEquals(final_result, expected)
 
@@ -235,8 +234,7 @@ class CalculatorTests(MediaNaranjaAdaptersBase):
         R = calculator._get_result().tolist()
         self.assertEquals(R, [[2], [2], [0]])
         final_result = calculator.get_result()
-        expected = {'candidates': [{'candidate':self.c1, 'value': 2},
-                    {'candidate':self.c2, 'value': 2},
-                    {'candidate':self.c3, 'value': 0}],
+        expected = {'candidates': [{'candidate':self.c1, 'value': 100},
+                    {'candidate':self.c2, 'value': 100}],
                     'election': self.election}
         self.assertEquals(final_result, expected)

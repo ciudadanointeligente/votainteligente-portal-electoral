@@ -20,7 +20,7 @@
   {% if organizations.all %}
   <div>
     <h3>Organizaciones</h3>
-    <ul class="list-unstyled">
+    <ul class="list-unstyled text-center">
     {% for o in organizations.all %}
       <li>
         {% if o.logo_small %}
@@ -53,7 +53,7 @@
   {% for election_result in results %}
   <div>
     <h3>{{election_result.election}}</h3>
-    <ul class="list-unstyled">
+    <ul class="list-unstyled text-center">
     {% for candidate_result in election_result.candidates %}
       <li>
         <a href="{{candidate_result.candidate.get_absolute_url}}">

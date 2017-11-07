@@ -958,3 +958,53 @@ label{
 .candidate-diary{
   color: $grey-one;
 }
+
+/*MEDIA NARANJA*/
+.media-naranja{
+  background-color: #E2F4FF;
+  padding-top: 60px;
+}
+
+.naranja-form{
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 60px;
+  h1{
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .checkbox label, .radio label{
+    font-family: 'Nunito', sans-serif;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .badge{
+    font-size: 30px;
+    color: $grey-one;
+    background-color: $blue-light;
+    border-radius: 45px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 4px 13px;
+  }
+  .pregunta{
+    border: 3px solid $blue-light;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+}
+
+.mano{
+  background-image: url("../img/mano.svg");
+  min-height: 410px;
+  background-repeat: no-repeat;
+  background-position: 90%;
+  margin-bottom: -70px;
+  margin-top: -40px;
+}

@@ -10,19 +10,25 @@
 {% block navbar %}
 {% endblock navbar %}
 
-{% block content %}
-<div class="content-fluid medianaranja">
-  <div class="text-width">
-    <div class="row">
-        <h1 class="ribbon-medianaranja text-center">
-            Media Naranja
-        </h1>
-    <div class="text-center paso_title">
-        Paso <span class="badge">{{wizard.steps.step1}}</span>
+{% block everything %}
+<section class="media-naranja">
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+      <img src="{% static 'img/logo-media-naranja.svg' %}" alt="Media Naranja Política">
     </div>
+    <div class="col-md-4 mano">
     </div>
   </div>
-{% block questions %}
-{% endblock questions %}
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 naranja-form">
+      <div class="text-center paso_title">
+        <h1>Paso <span class="badge">{{wizard.steps.step1}}</span></h1>
+      </div>
+      {% block questions %}
+      {% endblock questions %}
+    </div>
+  </div>
 </div>
-{% endblock content %}
+</section>
+{% endblock everything %}

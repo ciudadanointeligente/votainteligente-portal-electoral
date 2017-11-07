@@ -992,11 +992,36 @@ label{
     font-family: 'Montserrat', sans-serif;
     padding: 4px 13px;
   }
+  .label-default{
+    background-color: $blue;
+    color: white;
+    padding: 2px 5px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    border-radius: 5px;
+  }
+  .label-warning{
+    @extend .label-default;
+    background-color: $yellow;
+  }
   .pregunta{
     border: 3px solid $blue-light;
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 20px;
+  }
+  .candidate-result-name{
+    font-family: 'Arvo', sans-serif;
+    font-weight: 700;
+    color: $grey-one;
+    a{
+      color: $grey-one;
+      &:hover{
+        color: $blue;
+      }
+    }
   }
 }
 

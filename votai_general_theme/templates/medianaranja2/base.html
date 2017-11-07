@@ -23,7 +23,9 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1 naranja-form">
       <div class="text-center paso_title">
+        {% block paso %}
         <h1>Paso <span class="badge">{{wizard.steps.step1}}</span></h1>
+        {% endblock paso %}
       </div>
       {% block questions %}
       {% endblock questions %}

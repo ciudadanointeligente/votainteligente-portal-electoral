@@ -57,6 +57,16 @@
   .share-detail a .fa-stack:hover {
       color: $grey-one;
   }
+
+  .naranja-form{
+    .candidate-result-value{
+      margin: 60px 0 10px;
+    }
+  }
+
+  .mano{
+    display: none;
+  }
 }
 
 @media screen and (max-width: 900px) {

@@ -186,14 +186,14 @@ class MediaNaranjaWizardFormTests(MediaNaranjaAdaptersBase):
         response = self.complete_wizard()
         self.assertEquals(len(response.context['results']), 3)
         result_0 = response.context['results'][0]
-        expected_0 = {'candidates': [{'candidate':self.candidate_3_2, 'value': 1}],
+        expected_0 = {'candidates': [{'candidate':self.candidate_3_2, 'value': 20.0}],
                       'election': self.election3}
         self.assertEquals(result_0, expected_0)
         expected_1 = {'candidates': [], 'election': self.election2}
         result_1 = response.context['results'][1]
         self.assertEquals(result_1, expected_1)
-        expected = { 'candidates': [{'candidate':self.c1, 'value': 1.5},
-                    {'candidate':self.c2, 'value': 1}], 'election': self.election}
+        expected = { 'candidates': [{'candidate':self.c1, 'value': 30.0},
+                    {'candidate':self.c2, 'value': 20.0}], 'election': self.election}
         result_2 = response.context['results'][2]
         self.assertEquals(result_2, expected)
         self.assertIn(self.p1.proposer.organization_template, response.context['organizations'].all())

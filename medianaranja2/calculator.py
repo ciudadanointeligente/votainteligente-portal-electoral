@@ -61,10 +61,13 @@ class Calculator(object):
         candidates_vector = matrix(self.questions_adapter.candidates).transpose().tolist()
         _result = self._get_result().tolist()
         concatenated = []
+        hundred_percent = len(self.questions_adapter.user_positions) + len(self.commitments_adapter.ones)
         for index in range(len(_result)):
-            concatenated.append({'candidate': candidates_vector[index][0], 'value': _result[index][0]})
+            concatenated.append({'candidate': candidates_vector[index][0],
+                                 'value': (_result[index][0]/hundred_percent) * 100})
         concatenated = filter(lambda v: v['value'], concatenated)
         concatenated = sorted(concatenated, key=lambda t: -t['value'])
+        
         concatenated = concatenated[:config.N_CANDIDATOS_RESULTADO_12_N]
         result = {'election': self.election, 'candidates': concatenated}
         return result

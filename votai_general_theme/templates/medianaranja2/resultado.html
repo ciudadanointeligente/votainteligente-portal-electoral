@@ -57,6 +57,8 @@
               {% for candidate_result in election_result.candidates %}
               <div class="col-md-4 text-center">
                   <a href="{{candidate_result.candidate.get_absolute_url}}">
+                  {{ candidate_result.value }}%
+
                   {% if candidate_result.candidate.image %}
                     {% thumbnail candidate_result.candidate.image "100x100" crop="center" as im %}
                     <img src="{{ im.url }}" alt="{{candidate_result.candidate.name}}" height="96" width="96" border="0" class="img-circle">

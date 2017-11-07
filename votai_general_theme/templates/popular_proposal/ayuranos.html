@@ -38,17 +38,19 @@
           {% with object.twitter|extract_twitter_username_without_at as twitter_org %}
           {% with url="https://votainteligente.cl"|add:object.get_absolute_url %}
           {% for candidate in candidates.all %}
-            {% if candidate.twitter.value %}
             {% if candidate.election.position == 'Presidenta o Presidente' %}
             <tr>
               <td>
-                {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
+                {% if candidate.twitter.value %}
+                  {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
+                {% else %}
+                  {% include 'twitter_poking_button.html' with url=url via=twitter_org texto=config.AYUDANOS_ORGANIZACIONES twitter="@A_TU_CANDIDATO" button_text=config.AYUDANOS_ORGANIZACIONES %}
+                {% endif %}
               </td>
               <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
               <td>{% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}{{pacto.value}}</td>
               <td>{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</td>
             </tr>
-            {% endif %}
             {% endif %}
           {% endfor %}
           {% endwith %}
@@ -73,17 +75,19 @@
           {% with object.twitter|extract_twitter_username_without_at as twitter_org %}
           {% with url="https://votainteligente.cl"|add:object.get_absolute_url %}
           {% for candidate in candidates.all %}
-            {% if candidate.twitter.value %}
             {% if candidate.election.position == 'Senadora o Senador' %}
             <tr>
               <td>
-                {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
+                {% if candidate.twitter.value %}
+                  {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
+                {% else %}
+                  {% include 'twitter_poking_button.html' with url=url via=twitter_org texto=config.AYUDANOS_ORGANIZACIONES twitter="@A_TU_CANDIDATO" button_text=config.AYUDANOS_ORGANIZACIONES %}
+                {% endif %}
               </td>
               <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
               <td>{% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}{{pacto.value}}</td>
               <td>{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</td>
             </tr>
-            {% endif %}
             {% endif %}
           {% endfor %}
           {% endwith %}
@@ -108,17 +112,19 @@
           {% with object.twitter|extract_twitter_username_without_at as twitter_org %}
           {% with url="https://votainteligente.cl"|add:object.get_absolute_url %}
           {% for candidate in candidates.all %}
-            {% if candidate.twitter.value %}
             {% if candidate.election.position == 'Diputada o Diputado' %}
             <tr>
               <td>
-                {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
+                {% if candidate.twitter.value %}
+                  {% include 'twitter_poking_button.html' with url=url  texto=config.AYUDANOS_PROPUESTA twitter=candidate.twitter.value button_text=config.AYUDANOS_PROPUESTA %}
+                {% else %}
+                  {% include 'twitter_poking_button.html' with url=url via=twitter_org texto=config.AYUDANOS_ORGANIZACIONES twitter="@A_TU_CANDIDATO" button_text=config.AYUDANOS_ORGANIZACIONES %}
+                {% endif %}
               </td>
               <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
               <td>{% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}{{pacto.value}}</td>
               <td>{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</td>
             </tr>
-            {% endif %}
             {% endif %}
           {% endfor %}
           {% endwith %}

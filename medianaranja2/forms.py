@@ -32,7 +32,7 @@ class PositionChoiceField(forms.ModelChoiceField):
 class ProposalModelMultipleChoiceField(GroupedModelMultiChoiceField):
 
     def label_from_instance(self, obj):
-        return mark_safe(u'<span class="label label-default">' + obj.get_classification() + u"</span> " + obj.get_one_liner() )
+        return mark_safe( obj.get_one_liner() )
 
 
 class SetupForm(forms.Form):

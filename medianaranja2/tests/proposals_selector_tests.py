@@ -85,6 +85,7 @@ class ProposalsGetterTestCase(MediaNaranjaAdaptersBase):
         ProposalLike.objects.create(proposal=self.p3, user=liker)
         getter = ProposalsGetter()
         proposals = getter.get_all_proposals(child)
-        self.assertNotIn(self.p1, proposals)
+        self.assertEquals(self.p1, proposals.last())
+        self.assertIn(self.p1, proposals)
         self.assertIn(self.p2, proposals)
         self.assertIn(self.p3, proposals)

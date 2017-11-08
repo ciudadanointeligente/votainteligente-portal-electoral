@@ -56,11 +56,12 @@ class QuestionsForm(forms.Form):
         super(QuestionsForm, self).__init__(*args, **kwargs)
         for category in self.categories:
             for topic in category.topics.order_by('id'):
-                self.fields[topic.slug] = PositionChoiceField(label=topic.label,
-                                                              empty_label=None,
-                                                              queryset=topic.positions,
-                                                              widget=forms.RadioSelect
-                                                              )
+                field = PositionChoiceField(label=topic.label,
+                                            empty_label=None,
+                                            queryset=topic.positions,
+                                            widget=forms.RadioSelect
+                                            )
+                self.fields[topic.slug] = field
 
     def clean(self):
         cleaned_data = super(QuestionsForm, self).clean()
@@ -82,10 +83,10 @@ class ProposalsForm(forms.Form):
         if cache.get(proposals_qs_cache_key) is not None:
             self.fields['proposals'].queryset = cache.get(proposals_qs_cache_key)
             return
-        qs = PopularProposal.objects.filter(id__in=[p.id for p in self.proposals])
+        self.proposals = self.proposals[:config.MEDIA_NARANJA_MAX_NUM_PR]
+        qs = PopularProposal.objects.filter(id__in=[p.id for p in self.proposals]).order_by('clasification')
         cache.set(proposals_qs_cache_key, qs)
         self.fields['proposals'].queryset = qs
-
 
 FORMS = [SetupForm, QuestionsForm, ProposalsForm]
 TEMPLATES = {"0": "medianaranja2/paso_0_setup.html",

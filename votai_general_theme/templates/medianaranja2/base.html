@@ -10,7 +10,7 @@
 {% block ogp %}
   <meta property="og:title" content="Media Naranja Política en VotaInteligente">
   <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
-  <meta property="og:url" content="https://{% url_domain %}">
+  <meta property="og:url" content="https://{% url_domain %}{% url 'medianaranja2:index' %}">
   <meta property="og:image" content="https://{% url_domain %}{% static 'img/logo_media_naranja_og.jpg' %}">
   <meta property="og:description" content="¿Con quién será tu cita el próximo 19 de noviembre?">
 

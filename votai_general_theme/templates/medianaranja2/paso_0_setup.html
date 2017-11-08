@@ -15,11 +15,9 @@
   {% bootstrap_field wizard.form.area%}
   {% bootstrap_field wizard.form.categories%}
 
-  {% if wizard.steps.prev %}
-  <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}" class="btn btn-default" onclick="ga('send','event','primer-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "first step" %}</button>
-  <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}" class="btn btn-default" onclick="ga('send','event','anterior-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "prev step" %}</button>
-  {% endif %}
-  <input type="submit" name="submit" value="{% trans "Paso Siguiente" %}" class="btn btn-success pull-right" onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')" />
+
+  <button type="submit" name="submit" value="{% trans "Paso Siguiente" %}" class="btn btn-success pull-right" onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "Paso Siguiente" %}</button>
+
   </form>
 
 <script type="text/javascript">

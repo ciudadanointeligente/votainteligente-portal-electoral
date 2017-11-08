@@ -13,7 +13,7 @@
     {% csrf_token %}
     {{ wizard.form.media }}
     {{ wizard.management_form }}
-    <label>Si fueras presidenta o presidente, ¿Cuáles serían tus primeras {{config.MEDIA_NARANJA_MAX_SELECT_PROPOSALS}} medidas?</label>
+    <label>Si fueras presidenta, presidente o congresista, ¿Cuáles serían tus primeras {{config.MEDIA_NARANJA_MAX_SELECT_PROPOSALS}} medidas o prioridades?</label>
 
     {% for choice_id, choice_label in wizard.form.proposals.field.choices %}
     <div class="checkbox">

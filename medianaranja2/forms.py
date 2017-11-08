@@ -35,7 +35,7 @@ class ProposalModelMultipleChoiceField(forms.ModelMultipleChoiceField):
 
 class SetupForm(forms.Form):
     area = forms.ModelChoiceField(label=u"¿En qué comuna votas?",
-                                  help_text=u"Esta selección te permitirá ver con qué candidaturas al Congreso eres más compatible. Si no quieres incluirlas en tu media naranja, elige NO APLICA.",
+                                  help_text=u"Si quieres conocer con qué candidatura al Congreso eres más compatible, elige la comuna en la que votas. Si sólo te interesa tu media naranja presidencial, elige “no aplica”.",
                                   empty_label=u"NO APLICA",
                                   required=False,
                                   queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE).order_by('name'))

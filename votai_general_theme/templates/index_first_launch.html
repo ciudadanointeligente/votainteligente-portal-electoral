@@ -4,8 +4,15 @@
 {% load thumbnail %}
 {% load cache %}
 <section id="candidatos" class="yellow">
+
+  <div class="container text-center">
+    
+    <a href="{% url 'medianaranja2:index' %}" onclick="ga('send','event','media-naranja','click')">
+    <h1>Con quién será tu cita el próximo 19 de noviembre?</h1>
+      <img src="{% static 'img/logo-media-naranja.svg' %}" alt="Media Naranja Política">
+    </a>
+  </div>
   <div class="container">
-    <h1>Candidatos y candidatas a la presidencia comprometidos con propuestas ciudadanas</h1>
     <ul class="list-inline text-center">
       {% for c in candidates %}
       <li>

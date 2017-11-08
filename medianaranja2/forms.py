@@ -13,6 +13,7 @@ from organization_profiles.models import OrganizationTemplate
 from django.views.generic.base import TemplateView
 from django.core.cache import cache
 from django.utils.safestring import mark_safe
+from django.db.models import Q
 
 
 class CategoryMultipleChoiceField(forms.ModelMultipleChoiceField):
@@ -112,7 +113,9 @@ class MediaNaranjaWizardForm(SessionWizardView):
                 has_parent = False
             else:
                 area = area.parent
-        organization_templates = OrganizationTemplate.objects.filter(organization__proposals__in=cleaned_data['proposals'])
+        is_creator_of_this_proposals_filter = Q(organization__proposals__in=cleaned_data['proposals'])
+        is_liker_of_this_proposals = Q(organization__likes__proposal__in=cleaned_data['proposals'])
+        organization_templates = OrganizationTemplate.objects.filter(is_creator_of_this_proposals_filter|is_liker_of_this_proposals).distinct()
         return render(self.request, 'medianaranja2/resultado.html', {
             'results': results,
             'organizations': organization_templates

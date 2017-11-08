@@ -31,7 +31,7 @@ class CommitmentsExporter(object):
         line_1 = ['','']
         line_2 = [u'Postulando a', u'Candidato']
         for p in self.proposals:
-            line_0.append('http://votainteligente.cl' + p.get_absolute_url())
+            line_0.append('https://votainteligente.cl' + p.get_absolute_url())
             line_1.append(p.data['clasification'])
             line_2.append(p.title)
         result =  [line_0, line_1, line_2]

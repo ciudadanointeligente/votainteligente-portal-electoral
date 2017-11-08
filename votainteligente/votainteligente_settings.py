@@ -446,6 +446,7 @@ CONSTANCE_CONFIG = {
     'N_CANDIDATOS_RESULTADO_12_N': (3, u'Máximo número de candidatos en el resultado de la 1/2 Naranja'),
     'MEDIA_NARANJA_MAX_NUM_PR': (20, u'Máximo número de propuestas listadas en la 1/2 Naranja'),
     'MEDIA_NARANJA_MAX_SELECT_PROPOSALS': (5, u'Máximo número de propuestas seleccionables en la 1/2 Naranja'),
+    'PRUEBAS_DE_CARGA_MEDIA_NARANJA': (False, u'Esto baja el csrf para las pruebas de la medianaranja2'),
 }
 
 try:

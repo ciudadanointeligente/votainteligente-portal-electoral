@@ -9,19 +9,19 @@
 {% block questions %}
 
   <form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ wizard.form.media }}
-  {{ wizard.management_form }}
-  {% for field in wizard.form %}
-  <div class="pregunta">
-    {% bootstrap_field field %}
-  </div>
-  {% endfor %}
+    {% csrf_token %}
+    {{ wizard.form.media }}
+    {{ wizard.management_form }}
+    {% for field in wizard.form %}
+    <div class="pregunta">
+      {% bootstrap_field field %}
+    </div>
+    {% endfor %}
 
-  {% if wizard.steps.prev %}
-  <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}" class="btn btn-default" onclick="ga('send','event','anterior-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "prev step" %}</button>
-  {% endif %}
-<input type="submit" name="submit" value="{% trans "Paso Siguiente" %}" class="btn btn-success pull-right" onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')"/>
+    {% if wizard.steps.prev %}
+    <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}" class="btn btn-default pull-left" onclick="ga('send','event','anterior-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "prev step" %}</button>
+    {% endif %}
+    <input type="submit" name="submit" value="{% trans "Paso Siguiente" %}" class="btn btn-success pull-right" onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')"/>
   </form>
 <script type="text/javascript">
 $(function(){

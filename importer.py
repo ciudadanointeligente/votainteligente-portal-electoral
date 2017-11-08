@@ -178,6 +178,7 @@ def diputados2():
                                         value=partido)
 
 def load_questions_2017():
+    QuestionCategory.objects.all().delete()
     election = Election.objects.get(name ='Presidencia')
     reader = codecs.open("preguntas_media_naranja_2017.csv", 'r', encoding='utf-8')
     counter = 0

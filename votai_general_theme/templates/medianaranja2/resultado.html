@@ -53,7 +53,7 @@
   <h3>Tu media naranja política para {{election_result.election}} es</h3>
   {% for candidate_result in election_result.candidates %}
   <div class="col-md-4 text-center">
-      <div class="text-center candidate-result-value">{{ candidate_result.value }}%</div>
+      <div class="text-center candidate-result-value">{{ candidate_result.value|floatformat }}%</div>
       <a href="{{candidate_result.candidate.get_absolute_url}}">
       {% if candidate_result.candidate.image %}
         {% thumbnail candidate_result.candidate.image "100x100" crop="center" as im %}
@@ -87,5 +87,5 @@
 <p>Para calcular con qué candidaturas a la Cámara de Diputados y al Senado eres más compatible, sólo consideramos la información sobre compromisos de las candidaturas en Vota Inteligente. Dado que el Servel no exige que estas candidaturas entreguen un programa formal, no podemos comparar sus posturas con las tuyas.</p>
 </div>
 
-<a href="{% url 'medianaranja2:index' %}" class="btn btn-success pull-right" role="button">Juega de nuevo</a>
+<a href="{% url 'medianaranja2:index' %}" class="btn btn-success pull-right" role="button" onclick="ga('send','event','juega-de-nuevo','click')">Juega de nuevo</a>
 {% endblock questions %}

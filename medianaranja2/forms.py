@@ -13,6 +13,7 @@ from organization_profiles.models import OrganizationTemplate
 from django.views.generic.base import TemplateView
 from django.core.cache import cache
 from django.utils.safestring import mark_safe
+from django.db.models import Q
 
 
 class CategoryMultipleChoiceField(forms.ModelMultipleChoiceField):
@@ -38,7 +39,7 @@ class SetupForm(forms.Form):
                                   empty_label=u"NO APLICA",
                                   required=False,
                                   queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE).order_by('name'))
-    categories = CategoryMultipleChoiceField(label=u"De estos temas, ¿cuáles son los 3 que te parecen más importantes para el país?",
+    categories = CategoryMultipleChoiceField(label=u"De estos temas, ¿cuáles son los que te parecen más importantes para el país?",
                                              queryset=QuestionCategory.objects.all(),
                                              widget=forms.CheckboxSelectMultiple(),)
 
@@ -56,11 +57,12 @@ class QuestionsForm(forms.Form):
         super(QuestionsForm, self).__init__(*args, **kwargs)
         for category in self.categories:
             for topic in category.topics.order_by('id'):
-                self.fields[topic.slug] = PositionChoiceField(label=topic.label,
-                                                              empty_label=None,
-                                                              queryset=topic.positions,
-                                                              widget=forms.RadioSelect
-                                                              )
+                field = PositionChoiceField(label=topic.label,
+                                            empty_label=None,
+                                            queryset=topic.positions,
+                                            widget=forms.RadioSelect
+                                            )
+                self.fields[topic.slug] = field
 
     def clean(self):
         cleaned_data = super(QuestionsForm, self).clean()
@@ -82,10 +84,10 @@ class ProposalsForm(forms.Form):
         if cache.get(proposals_qs_cache_key) is not None:
             self.fields['proposals'].queryset = cache.get(proposals_qs_cache_key)
             return
-        qs = PopularProposal.objects.filter(id__in=[p.id for p in self.proposals])
+        self.proposals = self.proposals[:config.MEDIA_NARANJA_MAX_NUM_PR]
+        qs = PopularProposal.objects.filter(id__in=[p.id for p in self.proposals]).order_by('clasification')
         cache.set(proposals_qs_cache_key, qs)
         self.fields['proposals'].queryset = qs
-
 
 FORMS = [SetupForm, QuestionsForm, ProposalsForm]
 TEMPLATES = {"0": "medianaranja2/paso_0_setup.html",
@@ -111,7 +113,9 @@ class MediaNaranjaWizardForm(SessionWizardView):
                 has_parent = False
             else:
                 area = area.parent
-        organization_templates = OrganizationTemplate.objects.filter(organization__proposals__in=cleaned_data['proposals'])
+        is_creator_of_this_proposals_filter = Q(organization__proposals__in=cleaned_data['proposals'])
+        is_liker_of_this_proposals = Q(organization__likes__proposal__in=cleaned_data['proposals'])
+        organization_templates = OrganizationTemplate.objects.filter(is_creator_of_this_proposals_filter|is_liker_of_this_proposals).distinct()
         return render(self.request, 'medianaranja2/resultado.html', {
             'results': results,
             'organizations': organization_templates

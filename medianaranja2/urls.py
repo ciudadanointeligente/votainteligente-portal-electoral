@@ -1,10 +1,17 @@
 from django.conf.urls import url
 from medianaranja2.forms import MediaNaranjaWizardForm
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+from constance import config
+
+media_naranja2_view = MediaNaranjaWizardForm.as_view()
+
+if config.PRUEBAS_DE_CARGA_MEDIA_NARANJA:
+    media_naranja2_view = csrf_exempt(media_naranja2_view)
 
 urlpatterns = [
     url(r'^$',
-        MediaNaranjaWizardForm.as_view(),
+        media_naranja2_view,
         name='index'),
 ]
 if settings.DEBUG:# pragma: no cover

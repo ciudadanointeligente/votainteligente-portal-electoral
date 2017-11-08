@@ -7,7 +7,6 @@
 {% load bootstrap3 %}
 
 {% block questions %}
-  <p>Responde a conciencia las siguientes preguntas para que podamos entregarte un mejor resultado para tu 1/2 naranja.</p>
 
   <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
@@ -15,7 +14,6 @@
   {{ wizard.management_form }}
   {% for field in wizard.form %}
   <div class="pregunta">
-    <span class="label-default">Economía y desarrollo</span>
     {% bootstrap_field field %}
   </div>
   {% endfor %}

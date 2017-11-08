@@ -50,7 +50,7 @@
 
 {% for election_result in results %}
 <div class="col-md-12">
-  <h3>{{election_result.election}}</h3>
+  <h3>Tu media naranja política para {{election_result.election}} es</h3>
   {% for candidate_result in election_result.candidates %}
   <div class="col-md-4 text-center">
       <div class="text-center candidate-result-value">{{ candidate_result.value }}%</div>
@@ -66,15 +66,24 @@
       <p class="candidate-result-name"><a href="{{candidate_result.candidate.get_absolute_url}}">{{candidate_result.candidate}}</a></p>
       {% get_personal_data candidate=candidate_result.candidate personal_data='Partido' as partido %}
         {% if partido.value %}
-        <span class="label-default">{{partido.value}}</span>
+        <div><span class="label-default">{{partido.value}}</span></div>
         {% endif %}
+
         {% get_personal_data candidate=candidate_result.candidate personal_data='Pacto' as pacto %}
         {% if pacto.value %}
-        <span class="label-warning">{{pacto.value}}</span>
+        <div><span class="label-warning">{{pacto.value}}</span></div>
         {% endif %}
     </div>
   {% endfor %}
 </div>
 <hr>
 {% endfor %}
+
+<div class="col-md-12 media-naranja-info">
+<h4>¿CÓMO CALCULAMOS TU MEDIA NARANJA PRESIDENCIAL?</h4>
+<p>En la primera pregunta, te mostramos todos aquellos temas en los que las candidaturas presidenciales muestran posiciones concretas en sus programas. Una vez que elegiste tus prioridades, en la segunda pregunta te mostramos como opciones las posturas de las candidaturas en esas áreas. En el paso tres, te pedimos que definas tus cinco primeras medidas de gobierno, si fueras presidente o presidenta, que corresponden a las propuestas ciudadanas que hay en Vota Inteligente con las que las candidaturas se han comprometido. ¡Usando todos estos resultados calculamos cuál es tu grado de compatibilidad!</p>
+
+<h4>¿CÓMO CALCULAMOS TU MEDIA NARANJA PARLAMENTARIA?</h4>
+<p>Para calcular con qué candidaturas a la Cámara de Diputados y al Senado eres más compatible, sólo consideramos la información sobre compromisos de las candidaturas en Vota Inteligente. Dado que el Servel no exige que estas candidaturas entreguen un programa formal, no podemos comparar sus posturas con las tuyas.</p>
+</div>
 {% endblock questions %}

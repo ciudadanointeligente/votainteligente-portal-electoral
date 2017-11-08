@@ -963,6 +963,24 @@ label{
 .media-naranja{
   background-color: #E2F4FF;
   padding-top: 60px;
+  h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    margin: 0 0 10px;
+    font-weight: 700;
+    line-height: 1;
+  }
+}
+.media-naranja-info{
+  margin-top: 30px;
+  h4{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 22px 0 0;
+  }
 }
 
 .naranja-form{
@@ -1028,6 +1046,15 @@ label{
     font-size: 30px;
     font-weight: 700;
     margin: 10px 0 10px;
+    color: $yellow;
+  }
+  h3{
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .bajada{
+    font-family: 'Arvo', serif;
+    font-size: 16px;
   }
 }
 

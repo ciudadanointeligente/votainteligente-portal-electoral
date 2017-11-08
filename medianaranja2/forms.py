@@ -39,7 +39,7 @@ class SetupForm(forms.Form):
                                   empty_label=u"NO APLICA",
                                   required=False,
                                   queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE).order_by('name'))
-    categories = CategoryMultipleChoiceField(label=u"De estos temas, ¿cuáles son los 3 que te parecen más importantes para el país?",
+    categories = CategoryMultipleChoiceField(label=u"De estos temas, ¿cuáles son los que te parecen más importantes para el país?",
                                              queryset=QuestionCategory.objects.all(),
                                              widget=forms.CheckboxSelectMultiple(),)
 

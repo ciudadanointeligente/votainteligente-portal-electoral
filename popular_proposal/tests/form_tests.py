@@ -9,6 +9,7 @@ from popular_proposal.forms import (ProposalForm,
                                     UpdateProposalForm,
                                     CandidateNotCommitingForm,
                                     AreaForm)
+from popular_proposal.forms.form_texts import TOPIC_CHOICES_DICT
 from django.contrib.auth.models import User
 from django.forms import CharField
 from popular_proposal.models import (ProposalTemporaryData,
@@ -239,6 +240,14 @@ class FormTestCase(ProposingCycleTestCaseBase):
             self.load + "{% get_questions_and_descriptions popular_proposal %}")
         actual = template.render(Context({'popular_proposal': t_data}))
         self.assertEquals(rendered_template, actual)
+
+    def test_get_classification_str(self):
+        key = 'espaciospublicos'
+        clasification = TOPIC_CHOICES_DICT[key]
+        template = Template(
+            self.load + "{{ choice_id|get_classification_from_str }}")
+        actual = template.render(Context({'choice_id': key}))
+        self.assertEquals(clasification, actual)
 
 
 class UpdateFormTestCase(ProposingCycleTestCaseBase):

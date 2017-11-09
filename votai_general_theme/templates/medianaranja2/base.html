@@ -10,14 +10,14 @@
 {% block ogp %}
   <meta property="og:title" content="Media Naranja Política en VotaInteligente">
   <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
-  <meta property="og:url" content="https://{% url_domain %}">
+  <meta property="og:url" content="https://{% url_domain %}{% url 'medianaranja2:index' %}">
   <meta property="og:image" content="https://{% url_domain %}{% static 'img/logo_media_naranja_og.jpg' %}">
   <meta property="og:description" content="¿Con quién será tu cita el próximo 19 de noviembre?">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ciudadanoi">
   <meta name="twitter:creator" content="@ciudadanoi">
-  <meta name="twitter:title" content="{{config.WEBSITE_TWITTER_HASHTAG}}">
+  <meta name="twitter:title" content="Media Naranja Política en VotaInteligente">
   <meta name="twitter:description" content="¿Con quién será tu cita el próximo 19 de noviembre?">
   <meta name="twitter:image" content="https://{% url_domain %}{% static 'img/logo_media_naranja_og.jpg' %}">
 
@@ -31,7 +31,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-1">
-      <img src="{% static 'img/logo-media-naranja.svg' %}" alt="Media Naranja Política" class="img-responsive">
+      <img src="{% static 'img/logo-media-naranja.svg' %}" alt="Media Naranja Política">
       <h2>¿Con quién será tu cita el próximo 19 de noviembre?</h2>
       <p>La Media Naranja es un juego de preguntas para ver tu afinidad con las candidaturas a la presidencia y al parlamento. El contenido se basa en la información de los programas de gobierno de la candidaturas presidenciales y en los compromisos ciudadanos hechos en Vota Inteligente por quienes quieren tu voto.</p>
     </div>

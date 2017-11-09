@@ -6,9 +6,9 @@
 <section id="candidatos" class="yellow">
 
   <div class="container text-center">
-    
+
     <a href="{% url 'medianaranja2:index' %}" onclick="ga('send','event','media-naranja','click')">
-    
+
       <img src="{% static 'img/logo-media-naranja.svg' %}" alt="Media Naranja Política">
       <h1>¿Con quién será tu cita el próximo 19 de noviembre?</h1>
     </a>
@@ -37,14 +37,14 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center">
-        <p>Haz <a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'home-banner-propuestas-ciudadanas', 'click')"><span class="">aquí</span></a> tu propuesta a candidatos y candidatas</p>
+        <p>Encuentra tu media naranja política <a href="{% url 'medianaranja2:index' %}" onclick="ga('send', 'event', 'home-banner-propuestas-ciudadanas', 'click')"><span class="">aquí</span></a></p>
       </div>
     </div>
   </div>
 </section>
 <section id="home-search-candidate" class="blue">
   <div class="container">
-    <h2 class="text-center">Por quién votar?</h2>
+    <h2 class="text-center">¿Por quién votar?</h2>
     <h3 class="text-center">Conoce las candidaturas y sus compromisos</h3>
     <p class="bajada text-center">Encuentra aquí a todos los candidatos y candidatas a Senador, Diputado y Presidente para estas elecciones.</p>
     <div class="row">
@@ -61,7 +61,10 @@
     <p class="bajada text-center">Te invitamos a filtrar y encontrar propuestas ciudadanas en las siguientes áreas</p>
     {% include 'popular_proposal/_filter_tag_form.html' %}
     {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=featured_proposals form=Nil hide_proposal_list_header=True hidden_search=True %}
-    <p class="text-center"><a href="{% url 'popular_proposals:home' %}" class="btn btn-success">Ver todas las propuestas</a></p>
+    <div class="col-md-6 col-md-offset-3">
+      <p class="text-center"><a href="{% url 'popular_proposals:home' %}" class="btn btn-success">Ver todas las propuestas</a></p>
+      <p class="text-center"><a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" class="btn btn-dark">Crear nueva propuesta</a></p>
+    </div>
   </div>
 </section>
 {% endif %}

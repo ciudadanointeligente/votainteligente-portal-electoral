@@ -14,6 +14,7 @@ from django.views.generic.base import TemplateView
 from django.core.cache import cache
 from django.utils.safestring import mark_safe
 from django.db.models import Q
+from medianaranja2.grouped_multiple_choice_fields import GroupedModelMultiChoiceField
 
 
 class CategoryMultipleChoiceField(forms.ModelMultipleChoiceField):
@@ -28,9 +29,10 @@ class PositionChoiceField(forms.ModelChoiceField):
         return obj.label
 
 
-class ProposalModelMultipleChoiceField(forms.ModelMultipleChoiceField):
+class ProposalModelMultipleChoiceField(GroupedModelMultiChoiceField):
+
     def label_from_instance(self, obj):
-        return mark_safe(u'<span class="label label-default">' + obj.get_classification() + u"</span> " + obj.get_one_liner() )
+        return mark_safe( obj.get_one_liner() )
 
 
 class SetupForm(forms.Form):
@@ -40,7 +42,7 @@ class SetupForm(forms.Form):
                                   required=False,
                                   queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE).order_by('name'))
     categories = CategoryMultipleChoiceField(label=u"De estos temas, ¿cuáles son los que te parecen más importantes para el país?",
-                                             queryset=QuestionCategory.objects.all(),
+                                             queryset=QuestionCategory.objects.all().order_by('name'),
                                              widget=forms.CheckboxSelectMultiple(),)
 
     def clean(self):
@@ -74,7 +76,8 @@ class QuestionsForm(forms.Form):
 
 class ProposalsForm(forms.Form):
     proposals = ProposalModelMultipleChoiceField(queryset=PopularProposal.objects.none(),
-                                               widget=forms.CheckboxSelectMultiple(attrs={'class': 'proposal_option'}))
+                                                 group_by_field='clasification',
+                                                 widget=forms.CheckboxSelectMultiple(attrs={'class': 'proposal_option'}))
 
     def __init__(self, *args, **kwargs):
         self.proposals = kwargs.pop('proposals')
@@ -93,6 +96,10 @@ FORMS = [SetupForm, QuestionsForm, ProposalsForm]
 TEMPLATES = {"0": "medianaranja2/paso_0_setup.html",
              "1": "medianaranja2/paso_1_preguntas_y_respuestas.html",
              "2": "medianaranja2/paso_2_proposals_list.html"}
+
+
+class MediaNaranjaException(Exception):
+    pass
 
 
 class MediaNaranjaWizardForm(SessionWizardView):
@@ -124,13 +131,24 @@ class MediaNaranjaWizardForm(SessionWizardView):
     def get_template_names(self):
         return [TEMPLATES[self.steps.current]]
 
+    def post(self, *args, **kwargs):
+        try:
+            return super(MediaNaranjaWizardForm, self).post(*args, **kwargs)
+        except MediaNaranjaException:
+            self.storage.reset()
+            self.storage.current_step = self.steps.first
+            return self.render(self.get_form())
+
     def get_form_kwargs(self, step):
         step = int(step)
-        if step == 1:
+        cleaned_data = {}
+        if step:
             cleaned_data = self.get_cleaned_data_for_step(str(0))
+            if cleaned_data is None:
+                raise MediaNaranjaException()
+        if step == 1:
             return {'categories': list(cleaned_data['categories'])}
         if step == 2:
-            cleaned_data = self.get_cleaned_data_for_step(str(0))
             getter = ProposalsGetter()
             proposals = getter.get_all_proposals(cleaned_data['area'])
             return {'proposals': proposals, 'area': cleaned_data['area']}

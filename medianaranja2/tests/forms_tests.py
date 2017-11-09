@@ -75,9 +75,13 @@ class FormsTestCase(MediaNaranjaAdaptersBase):
         kwargs = {'proposals': proposals, 'area': argentina} 
         form = ProposalsForm(**kwargs)
         proposals_choices = list(form.fields['proposals'].choices)
-        self.assertIn((self.p1.id, u'<span class="label label-default"></span> ' + unicode(self.p1)), proposals_choices)
-        self.assertIn((self.p2.id, u'<span class="label label-default"></span> ' + unicode(self.p2)), proposals_choices)
-        self.assertIn((self.p3.id, u'<span class="label label-default"></span> ' + unicode(self.p3)), proposals_choices)
+        possible_labels = {}
+        for t in proposals_choices[0][1]:
+            if type(t) == tuple:
+                possible_labels[t[0]] = t[1]
+        self.assertIn(unicode(self.p1), possible_labels[self.p1.id])
+        self.assertIn(unicode(self.p2), possible_labels[self.p2.id])
+        self.assertIn(unicode(self.p3), possible_labels[self.p3.id])
 
     def test_posting_proposals_form(self):
         argentina = Area.objects.create(name=u'Argentina', id='argentina')
@@ -99,14 +103,18 @@ class MediaNaranjaWizardFormTests(MediaNaranjaAdaptersBase):
         proposer = User.objects.create_user(username="proposer2")
         self.p5 = PopularProposal.objects.create(proposer=proposer,
                                                  title=u'p5',
+                                                 clasification='educ',
                                                  data={}
                                                  )
         self.p6 = PopularProposal.objects.create(proposer=proposer,
                                                  title=u'p6',
+                                                 clasification='educ',
+
                                                  data={}
                                                  )
         self.p7 = PopularProposal.objects.create(proposer=proposer,
                                                  title=u'p7',
+                                                 clasification='educ',
                                                  data={}
                                                  )
         self.child = Area.objects.create(name="children",

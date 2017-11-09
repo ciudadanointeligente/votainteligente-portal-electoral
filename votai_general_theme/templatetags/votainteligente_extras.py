@@ -419,3 +419,8 @@ def get_proposal_author(popular_proposal):
     return {'link': link,
             'text': text
             }
+
+@register.filter
+def get_classification_from_str(classification):
+    from popular_proposal.forms.form_texts import TOPIC_CHOICES_DICT
+    return TOPIC_CHOICES_DICT.get(classification, "")

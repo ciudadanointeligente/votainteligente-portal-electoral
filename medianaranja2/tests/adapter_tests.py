@@ -82,13 +82,16 @@ class MediaNaranjaAdaptersBase(TestCase):
         proposer = User.objects.create_user(username="proposer")
         self.p1 = PopularProposal.objects.create(proposer=proposer,
                                                  title=u'p1',
+                                                 clasification='educ',
                                                  data={}
                                                  )
         self.p2 = PopularProposal.objects.create(proposer=proposer,
                                                  title=u'P2',
+                                                 clasification='educ',
                                                  data={}
                                                  )
         self.p3 = PopularProposal.objects.create(proposer=proposer,
+                                                 clasification='educ',
                                                  title=u'P3',
                                                  data={}
                                                  )

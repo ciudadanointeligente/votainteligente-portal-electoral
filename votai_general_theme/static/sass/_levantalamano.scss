@@ -446,7 +446,7 @@ p.aviso{
 }
 hr{
   position: relative;
-  top: 47px;
+  top: 20px;
 }
 .votita-love-politica{
   border: 3px solid $yellow;
@@ -941,6 +941,10 @@ hr{
 }
 .share-card{
   padding: 40px 0 0;
+  hr{
+    position: relative;
+    top: 7px;
+  }
   .social-buttons{
     font-size: 10px;
     position: relative;

@@ -16,7 +16,7 @@
     <label>Si fueras presidenta, presidente o congresista, ¿Cuáles serían tus primeras {{config.MEDIA_NARANJA_MAX_SELECT_PROPOSALS}} medidas o prioridades?</label>
 
     {% for choice_id, choice_label in wizard.form.proposals.field.choices %}
-    <div class="pregunta">
+    <div class="pregunta naranja-medida">
       <span class="label-default">{{choice_id|get_classification_from_str}}</span>
         <br />
         {% for k,v in choice_label %}

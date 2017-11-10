@@ -90,7 +90,7 @@ class CommitmentTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(header, header_)
         counter = 2
         for p in exporter.proposals:
-            self.assertEquals(header[0][counter], 'http://votainteligente.cl' + p.get_absolute_url())
+            self.assertEquals(header[0][counter], 'https://votainteligente.cl' + p.get_absolute_url())
             self.assertEquals(header[2][counter], p.title)
             self.assertEquals(header[1][counter], p.data['clasification'])
             counter += 1

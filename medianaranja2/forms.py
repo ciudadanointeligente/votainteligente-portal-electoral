@@ -5,7 +5,7 @@ from popular_proposal.models import (PopularProposal
 from elections.models import Area, QuestionCategory
 from django.conf import settings
 from formtools.wizard.views import SessionWizardView
-from medianaranja2.proposals_getter import ProposalsGetter
+from medianaranja2.proposals_getter import ProposalsGetter, ProposalsGetterByReadingGroup
 from django.shortcuts import render
 from medianaranja2.calculator import Calculator
 from constance import config
@@ -106,6 +106,11 @@ class MediaNaranjaWizardForm(SessionWizardView):
     form_list = FORMS
     template_name = 'medianaranja2/paso_default.html'
 
+    def get_proposal_class(self):
+        if config.ESTRATEGIA_SELECCION_PROPUESTAS == 'reading_group':
+            return ProposalsGetterByReadingGroup
+        return ProposalsGetter
+
     def done(self, form_list, **kwargs):
         cleaned_data = self.get_all_cleaned_data()
         results = []
@@ -149,7 +154,7 @@ class MediaNaranjaWizardForm(SessionWizardView):
         if step == 1:
             return {'categories': list(cleaned_data['categories'])}
         if step == 2:
-            getter = ProposalsGetter()
+            getter = self.get_proposal_class()()
             proposals = getter.get_all_proposals(cleaned_data['area'])
             return {'proposals': proposals, 'area': cleaned_data['area']}
 

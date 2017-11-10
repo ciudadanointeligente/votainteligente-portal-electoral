@@ -1,6 +1,6 @@
 # coding=utf-8
 from .adapter_tests import MediaNaranjaAdaptersBase
-from medianaranja2.proposals_getter import ProposalsGetter
+from medianaranja2.proposals_getter import ProposalsGetter, ProposalsGetterByReadingGroup
 from elections.models import Area, Election, Candidate
 from django.contrib.auth.models import User
 from popular_proposal.models import (PopularProposal,
@@ -8,6 +8,7 @@ from popular_proposal.models import (PopularProposal,
                                      ProposalLike,
                                      )
 from constance.test import override_config
+from medianaranja2.models import ReadingGroup
 
 
 class ProposalsGetterTestCase(MediaNaranjaAdaptersBase):
@@ -89,3 +90,36 @@ class ProposalsGetterTestCase(MediaNaranjaAdaptersBase):
         self.assertIn(self.p1, proposals)
         self.assertIn(self.p2, proposals)
         self.assertIn(self.p3, proposals)
+
+@override_config(MEDIA_NARANJA_MAX_NUM_PR=2)
+class ByLectureGroupAdapterTest(MediaNaranjaAdaptersBase):
+    def setUp(self):
+        super(ByLectureGroupAdapterTest, self).setUp()
+        self.setUpProposals()
+        self.child = Area.objects.create(name="children")
+        self.election.area = self.child
+        self.election.save()
+        liker = User.objects.create_user(username="lovable_user")
+        liker2 = User.objects.create_user(username="lovable_user2")
+        ProposalLike.objects.create(proposal=self.p1, user=liker)
+        ProposalLike.objects.create(proposal=self.p3, user=liker)
+        ProposalLike.objects.create(proposal=self.p1, user=liker2)
+
+
+        self.group = ReadingGroup.objects.create(name=u"los del c1")
+        self.group.candidates.add(self.c1)
+
+        self.group3 = ReadingGroup.objects.create(name=u"los del c3")
+        self.group3.candidates.add(self.c3)
+
+        #       p1,p2,p3
+        # c1 = | 1, 0, 1|
+        # c2 = | 1, 1, 1|
+        # c3 = | 0, 1, 0|
+
+    def test_selector(self):
+        getter = ProposalsGetterByReadingGroup()
+        proposals = getter.get_all_proposals(self.child)
+        self.assertIn(self.p1, proposals)
+        self.assertIn(self.p2, proposals)
+        self.assertNotIn(self.p3, proposals)

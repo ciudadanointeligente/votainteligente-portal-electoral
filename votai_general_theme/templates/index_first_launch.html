@@ -7,9 +7,10 @@
 
   <div class="container text-center">
 
-    <a href="{% url 'medianaranja2:index' %}" onclick="ga('send','event','media-naranja','click')">
-
-      <img src="{% static 'img/logo-media-naranja.svg' %}" alt="Media Naranja Política">
+    <a href="{% url 'medianaranja2:index' %}" onclick="ga('send','event','media-naranja-banner','click')">
+      <img src="{% static 'img/logo-media-naranja.svg' %}" alt="Media Naranja Política" class="img-responsive">
+    </a>
+    <a href="{% url 'medianaranja2:index' %}" onclick="ga('send','event','media-naranja-h1','click')">
       <h1>¿Con quién será tu cita el próximo 19 de noviembre?</h1>
     </a>
   </div>

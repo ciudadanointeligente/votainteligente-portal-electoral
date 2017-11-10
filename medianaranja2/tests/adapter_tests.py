@@ -216,6 +216,19 @@ class CalculatorTests(MediaNaranjaAdaptersBase):
         C = calculator.get_commitments_result().tolist()
         self.assertEquals(C, [[2], [2], [0]])
 
+    def test_get_the_hundred(self):
+        self.setUpQuestions()
+        selected_positions = [self.position1, self.position4]
+        selected_proposals = [self.p1, self.p3]
+        calculator = Calculator(self.election, selected_positions, selected_proposals)
+        self.assertEquals(calculator.hundred_percent, 4)
+        
+        a = Area.objects.create(name="Valdivia")
+        election2 = Election.objects.create(
+            name='the name', area=a)
+        calculator = Calculator(election2, selected_positions, selected_proposals)
+        self.assertEquals(calculator.hundred_percent, 2)
+
     def test_get_final_result(self):
         self.setUpQuestions()
         selected_positions = [self.position1, self.position4]

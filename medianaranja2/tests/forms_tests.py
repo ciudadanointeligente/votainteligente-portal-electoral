@@ -194,9 +194,10 @@ class MediaNaranjaWizardFormTests(MediaNaranjaAdaptersBase):
         response = self.complete_wizard()
         self.assertEquals(len(response.context['results']), 3)
         result_0 = response.context['results'][0]
-        expected_0 = {'candidates': [{'candidate':self.candidate_3_2, 'value': 20.0}],
-                      'election': self.election3}
-        self.assertEquals(result_0, expected_0)
+        self.assertEquals(result_0['election'], self.election3)
+        self.assertEquals(result_0['candidates'][0]['candidate'], self.candidate_3_2)
+        self.assertEquals(len(result_0['candidates']), 1)
+        self.assertAlmostEqual(result_0['candidates'][0]['value'], (float(1) * 100/float(3)))
         expected_1 = {'candidates': [], 'election': self.election2}
         result_1 = response.context['results'][1]
         self.assertEquals(result_1, expected_1)

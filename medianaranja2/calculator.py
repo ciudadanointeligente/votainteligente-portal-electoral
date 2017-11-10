@@ -12,12 +12,20 @@ class Calculator(object):
         self.set_questions_adapter(questions_adapter_class(election, selected_positions))
         self.set_commitments_adapter(commitments_adapter_class(election, selected_proposals))
         self.election = election
+
+        self.hundred_percent = self.get_hundred(selected_positions, selected_proposals)
         if not self.questions_adapter.positions:
             self.questions_importance = 0
             self.proposals_importance = 1
         else:
             self.questions_importance = config.DEFAULT_12_N_QUESTIONS_IMPORTANCE
             self.proposals_importance = config.DEFAULT_12_N_PROPOSALS_IMPORTANCE
+    def get_hundred(self, selected_positions, selected_proposals):
+        possible_questions = 0
+        for category in self.election.categories.all():
+            possible_questions += category.topics.count()
+        questions_hundred_percent = min(possible_questions, len(selected_positions))
+        return questions_hundred_percent + len(selected_proposals)
 
     def set_questions_importance(self, importance):
         self.questions_importance = importance
@@ -61,10 +69,9 @@ class Calculator(object):
         candidates_vector = matrix(self.questions_adapter.candidates).transpose().tolist()
         _result = self._get_result().tolist()
         concatenated = []
-        hundred_percent = len(self.questions_adapter.user_positions) + len(self.commitments_adapter.ones)
         for index in range(len(_result)):
             concatenated.append({'candidate': candidates_vector[index][0],
-                                 'value': (_result[index][0]/hundred_percent) * 100})
+                                 'value': (_result[index][0]/self.hundred_percent) * 100})
         concatenated = filter(lambda v: v['value'], concatenated)
         concatenated = sorted(concatenated, key=lambda t: -t['value'])
         

@@ -8,6 +8,7 @@
 
 {% block questions %}
     <p>Para poder decirte con qué candidatura eres más compatible, necesitamos conocer un poco de ti.</p>
+    <p>Las temas elegidos en este paso corresponden a los que muestran posiciones claras en todos los programas de gobierno de las candidaturas presidenciales.</p>
   <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ wizard.form.media }}

@@ -16,21 +16,14 @@
     <label>Si fueras presidenta, presidente o congresista, ¿Cuáles serían tus primeras {{config.MEDIA_NARANJA_MAX_SELECT_PROPOSALS}} medidas o prioridades?</label>
 
     {% for choice_id, choice_label in wizard.form.proposals.field.choices %}
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">{{choice_id}}</h3>
-      </div>
-      <div class="panel-body">
-        <ul class="list-unstyled">
+    <div class="pregunta naranja-medida">
+      <span class="label-default">{{choice_id|get_classification_from_str}}</span>
+        <br />
         {% for k,v in choice_label %}
-        <li>
           <label for="id_{{wizard.steps.current}}-proposals_{{k}}">
             <input class="proposal_option" id="id_{{wizard.steps.current}}-proposals_{{k}}" name="{{wizard.steps.current}}-{{wizard.form.proposals.name}}" title="" type="checkbox" value="{{k}}" /> {{v}}
           </label>
-        </li>
         {% endfor %}
-        </ul>
-      </div>
     </div>
     {% endfor %}
 

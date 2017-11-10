@@ -98,6 +98,10 @@ TEMPLATES = {"0": "medianaranja2/paso_0_setup.html",
              "2": "medianaranja2/paso_2_proposals_list.html"}
 
 
+class MediaNaranjaException(Exception):
+    pass
+
+
 class MediaNaranjaWizardForm(SessionWizardView):
     form_list = FORMS
     template_name = 'medianaranja2/paso_default.html'
@@ -127,13 +131,24 @@ class MediaNaranjaWizardForm(SessionWizardView):
     def get_template_names(self):
         return [TEMPLATES[self.steps.current]]
 
+    def post(self, *args, **kwargs):
+        try:
+            return super(MediaNaranjaWizardForm, self).post(*args, **kwargs)
+        except MediaNaranjaException:
+            self.storage.reset()
+            self.storage.current_step = self.steps.first
+            return self.render(self.get_form())
+
     def get_form_kwargs(self, step):
         step = int(step)
-        if step == 1:
+        cleaned_data = {}
+        if step:
             cleaned_data = self.get_cleaned_data_for_step(str(0))
+            if cleaned_data is None:
+                raise MediaNaranjaException()
+        if step == 1:
             return {'categories': list(cleaned_data['categories'])}
         if step == 2:
-            cleaned_data = self.get_cleaned_data_for_step(str(0))
             getter = ProposalsGetter()
             proposals = getter.get_all_proposals(cleaned_data['area'])
             return {'proposals': proposals, 'area': cleaned_data['area']}

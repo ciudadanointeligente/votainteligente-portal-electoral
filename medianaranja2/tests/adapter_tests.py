@@ -228,6 +228,9 @@ class CalculatorTests(MediaNaranjaAdaptersBase):
             name='the name', area=a)
         calculator = Calculator(election2, selected_positions, selected_proposals)
         self.assertEquals(calculator.hundred_percent, 2)
+        calculator = Calculator(election2, [], [])
+        self.assertEquals(calculator.hundred_percent, 1)
+
 
     def test_get_final_result(self):
         self.setUpQuestions()

@@ -1,3 +1,4 @@
+# coding=utf-8
 from constance import config
 from numpy import matrix
 from .adapters import Adapter, CommitmentsAdapter
@@ -25,7 +26,15 @@ class Calculator(object):
         for category in self.election.categories.all():
             possible_questions += category.topics.count()
         questions_hundred_percent = min(possible_questions, len(selected_positions))
-        return questions_hundred_percent + len(selected_proposals)
+        final_hundred = questions_hundred_percent + len(selected_proposals)
+        '''
+        Esto es una chanchería en el caso (extraño) que el 100% o el número que va abajo sea 0 y así evitamos un DivisionByZeroException
+        Quizás deberíamos tirar una excepción que diga:
+        Primero debes seleccionar propuestas
+        '''
+        if not final_hundred:
+            return 1
+        return final_hundred
 
     def set_questions_importance(self, importance):
         self.questions_importance = importance

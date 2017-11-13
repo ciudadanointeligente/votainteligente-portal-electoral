@@ -2,7 +2,8 @@
 {% load votainteligente_extras %}
 {% load i18n %}
 {% load thumbnail %}
-<div class="post propuesta {{proposal.content_type.app_label}}">
+<div class="post">
+<div class="propuesta {{proposal.content_type.app_label}}">
 <!-- Cata compañera puedes saber si la propuesta es para todas las comunas mediante esto {% comment %}{% if proposal.for_all_areas %}{% else %}{% endif %}{% endcomment %}-->
   <div class="propuesta-content">
     {% if proposal.ribbon_text %}
@@ -11,7 +12,10 @@
     </div>
     {% endif %}
     <a href="/propuestas/?clasification={{proposal.clasification}}" onclick="ga('send','event','card-filterby-clasification','click')"><span class="label label-default">{{proposal.get_classification}}</span></a>
-    {% if proposal.generated_at != None %}<span class="label label-success">{{proposal.generated_at}}</span>{% endif %}
+    {% if proposal.generated_at is not None %}<span class="label label-success">{{proposal.generated_at}}</span>{% endif %}
+    
+
+
     <!-- Estado de una propuesta para el alcalde de esa comuna -->
     <div class="pull-right">
       {% include 'popular_proposal/_estado_para_candidato.html' with proposal=proposal next_url=popular_proposals_home %}
@@ -65,4 +69,10 @@
     <a href="{{ proposal.get_absolute_url }}" class="btn btn-blue pull-right">Leer más</a>
   </div>
   {% endif %}
+
+</div>
+{% if commitment %}
+    <a href="{{ commitment.get_absolute_url }}" style="margin-top:10px;" class='btn btn-default btn-block'>Compromiso</a>
+
+{% endif %}
 </div>

@@ -4,7 +4,7 @@
 <div id="grid">
 	<div id="posts">
 	{% for commitment in candidate.commitments.committed.all %}
-		{% include 'popular_proposal/popular_proposal_card.html' with proposal=commitment.proposal is_embedded=is_embedded %}
+		{% include 'popular_proposal/popular_proposal_card.html' with proposal=commitment.proposal is_embedded=is_embedded commitment=commitment %}
 	{% endfor %}
 	</div>
 </div>

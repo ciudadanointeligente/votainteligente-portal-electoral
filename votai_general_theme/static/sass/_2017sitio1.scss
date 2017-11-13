@@ -1064,6 +1064,14 @@ label{
   }
 }
 
+.resultado.ayuda {
+  background-color: $yellow;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-top: 15px;
+  color: $grey-one;
+}
+
 .mano{
   background-image: url("../img/mano.svg");
   min-height: 410px;

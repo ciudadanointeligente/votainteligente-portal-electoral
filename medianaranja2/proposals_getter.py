@@ -52,9 +52,28 @@ class ProposalsGetterByReadingGroup(ProposalsGetterBase):
         for reading_group in ReadingGroup.objects.all():
             reading_groups_proposals[reading_group.id] = reading_group.get_proposals(elections=elections)
         index = 0
-        for _id in reading_groups_proposals:
-            proposal_id = reading_groups_proposals[_id][index].id
-            if proposal_id not in ids:
-                ids.append(proposal_id)
-                if len(ids) == config.MEDIA_NARANJA_MAX_NUM_PR:
-                    return PopularProposal.objects.filter(id__in=ids)
+        reading_group_not_to_check = []
+        are_there_still_more_proposals = True
+        amount_of_reading_groups = len(reading_groups_proposals)
+        while are_there_still_more_proposals:
+            for reading_group_id in reading_groups_proposals:
+                if reading_group_id not in reading_group_not_to_check:
+                    try:
+                        proposal = reading_groups_proposals[reading_group_id][index]
+                    except IndexError:
+                        proposal = None
+                    #  No hay propuestas en este grupo de lectura
+                    if proposal is None:
+                        reading_group_not_to_check.append(reading_group_id)
+                        if len(reading_group_not_to_check) == amount_of_reading_groups:  #  Tamos listos ya revisamos todos los grupos
+                            are_there_still_more_proposals = False
+                    else: # Si hay propuestas
+                        proposal_id = proposal.id
+                
+                        if proposal_id not in ids:
+                            ids.append(proposal_id)
+                        if len(ids) == config.MEDIA_NARANJA_MAX_NUM_PR:
+                            are_there_still_more_proposals = False
+            index += 1
+        
+        return PopularProposal.objects.filter(id__in=ids)

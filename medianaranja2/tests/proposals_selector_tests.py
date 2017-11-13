@@ -91,7 +91,7 @@ class ProposalsGetterTestCase(MediaNaranjaAdaptersBase):
         self.assertIn(self.p2, proposals)
         self.assertIn(self.p3, proposals)
 
-@override_config(MEDIA_NARANJA_MAX_NUM_PR=2)
+
 class ByLectureGroupAdapterTest(MediaNaranjaAdaptersBase):
     def setUp(self):
         super(ByLectureGroupAdapterTest, self).setUp()
@@ -117,9 +117,19 @@ class ByLectureGroupAdapterTest(MediaNaranjaAdaptersBase):
         # c2 = | 1, 1, 1|
         # c3 = | 0, 1, 0|
 
+    @override_config(MEDIA_NARANJA_MAX_NUM_PR=2)
     def test_selector(self):
         getter = ProposalsGetterByReadingGroup()
         proposals = getter.get_all_proposals(self.child)
         self.assertIn(self.p1, proposals)
         self.assertIn(self.p2, proposals)
         self.assertNotIn(self.p3, proposals)
+
+    @override_config(MEDIA_NARANJA_MAX_NUM_PR=200)
+    def test_selector_when_commitments_are_not_enough(self):
+
+        getter = ProposalsGetterByReadingGroup()
+        proposals = getter.get_all_proposals(self.child)
+        self.assertIn(self.p1, proposals)
+        self.assertIn(self.p2, proposals)
+        self.assertIn(self.p3, proposals)

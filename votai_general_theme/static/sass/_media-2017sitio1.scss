@@ -67,6 +67,9 @@
   .mano{
     display: none;
   }
+  .gallery > div:hover > img {
+    transform: none;
+  }
 }
 
 @media screen and (max-width: 900px) {

@@ -728,7 +728,7 @@ p.intro{
 }
 
 #manual-encuentro{
-  margin-bottom: 80px;
+  margin: 70px 0 80px;
 }
 
 .set-guide{
@@ -1101,4 +1101,41 @@ label{
     font-size: 14px;
     line-height: 1;
   }
+}
+
+.gallery {
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.gallery > div {
+  position: relative;
+  float: left;
+  padding: 5px;
+}
+
+.gallery > div > img {
+  display: block;
+  width: 100%;
+  transition: .1s transform;
+  transform: translateZ(0); /* hack */
+}
+
+.gallery > div:hover {
+  z-index: 1;
+}
+
+.gallery > div:hover > img {
+  transform: scale(2,2);
+  transition: .3s transform;
+}
+
+.cf:before, .cf:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+.cf:after {
+  clear: both;
 }

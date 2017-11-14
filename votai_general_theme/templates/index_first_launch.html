@@ -4,46 +4,65 @@
 {% load thumbnail %}
 {% load cache %}
 {% cache 600 landing_candidatos %}
-<section id="candidatos" class="yellow">
-
+<section id="welcome">
   <div class="container text-center">
-
-    <a href="{% url 'medianaranja2:index' %}" onclick="ga('send','event','media-naranja-banner','click')">
-      <img src="{% static 'img/logo-media-naranja.svg' %}" alt="Media Naranja Política" class="img-responsive">
-    </a>
-    <a href="{% url 'medianaranja2:index' %}" onclick="ga('send','event','media-naranja-h1','click')">
-      <h1>¿Con quién será tu cita el próximo 19 de noviembre?</h1>
-    </a>
+    <h1>¿Dudas sobre las elecciones 2017?</h1>
+    <h3>¡En Ciudadano Inteligente te ayudamos con nuestras herramientas para esta primera vuelta!</h3>
   </div>
-  <div class="container">
-    <ul class="list-inline text-center">
-      {% for c in candidates %}
-      <li>
-        <a href="{{c.get_absolute_url}}" onclick="ga('send','event','candidate-home-{{c|slugify}}','click')">
-        {% if c.image %}
-          {% thumbnail c.image "100x100" crop="center" as im %}
-          <img src="{{ im.url }}" alt="{{c.name}}" height="96" width="96" border="0" class="img-circle">
-          {% endthumbnail %}
-        {% else %}
-          <img src="{% static 'img/candidate-default.jpg' %}" alt="{{c.name}}" height="96" width="96" border="0" class="img-circle">
-        {% endif %}
-        </a>
-        <p><a href="{{c.get_absolute_url}}">{{c}}</a></p>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
-
-<section id="proposals-counter" class="grey-one">
   <div class="container">
     <div class="row">
-      <div class="col-md-12 text-center">
-        <p>Encuentra tu media naranja política <a href="{% url 'medianaranja2:index' %}" onclick="ga('send', 'event', 'home-banner-propuestas-ciudadanas', 'click')"><span class="">aquí</span></a></p>
+      <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-4">
+          <a href="{% url 'medianaranja2:index' %}" onclick="ga('send','event','home-media-naranja','click')">
+            <img src="{% static 'img/h-naranja.svg' %}" alt="Media Naranja Política" class="img-responsive">
+          </a>
+          <p class="text-center tool-description">Encuentra candidaturas afines a tus ideas</p>
+        </div>
+        <div class="col-md-4">
+          <a href="https://api.whatsapp.com/send?phone=56932973444&text=hola,%20tengo%20una%20pregunta%20sobre%20las%20elecciones" onclick="ga('send','event','home-wsp-pregunton','click')" target="_blank">
+            <img src="{% static 'img/h-pregunton.svg' %}" alt="WhatsApp Preguntón" class="img-responsive">
+          </a>
+          <p class="text-center tool-description">Pregunta aquí tus dudas sobre las votaciones</p>
+        </div>
+        <div class="col-md-4">
+          <a href="https://api.whatsapp.com/send?phone=56932973444&text=hola,%20quiero%20denunciar%20propaganda%20ilegal" onclick="ga('send','event','home-wsp-acusete','click')" target="_blank">
+            <img src="{% static 'img/h-acusete.svg' %}" alt="WhatsApp Acusete" class="img-responsive">
+          </a>
+          <p class="text-center tool-description">Denuncia aquí propaganda ilegal</p>
+        </div>
+      </div>
+      <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-3">
+          <a href="{% url 'material_ciudadano' %}" onclick="ga('send','event','home-infografias','click')">
+            <img src="{% static 'img/h-infografias.svg' %}" alt="Infografías electorales" class="img-responsive">
+          </a>
+          <p class="text-center tool-description">Revisa datos clave para el día de votación</p>
+        </div>
+        <div class="col-md-3">
+          <a href="{% url 'know_your_candidates' %}" onclick="ga('send','event','home-compromisos','click')">
+            <img src="{% static 'img/h-procom.svg' %}" alt="Propuestas y compromisos" class="img-responsive">
+          </a>
+          <p class="text-center tool-description">Mira los compromisos de candidat@s con propuestas ciudadanas</p>
+        </div>
+        <div class="col-md-3">
+          <a href="http://levantalamano.cl" onclick="ga('send','event','home-nna','click')" target="_blank">
+            <img src="{% static 'img/h-nna.svg' %}" alt="Propuestas de niños, niñas y adolescentes" class="img-responsive">
+          </a>
+          <p class="text-center tool-description">Apoya las propuestas de niños, niñas y adolescentes hacia las candidaturas</p>
+        </div>
+        <div class="col-md-3">
+          <a href="https://open.spotify.com/user/1curudtk4qxgx0dejcvcaogvr/playlist/6b8xpAv7QXaNCwQ0nasbca" onclick="ga('send','event','home-playlist','click')" target="_blank">
+            <img src="{% static 'img/h-playlist.svg' %}" alt="La playlist electoral" class="img-responsive">
+          </a>
+          <p class="text-center tool-description">Relaja tu ansiedad ante los resultados con estos hits</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+
+
 <section id="home-search-candidate" class="blue">
   <div class="container">
     <h2 class="text-center">¿Por quién votar?</h2>

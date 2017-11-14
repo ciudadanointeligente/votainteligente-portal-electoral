@@ -56,22 +56,27 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Lugar</th>
-          <th>Candidato</th>
           <th>Twiteale!</th>
+          <th>Candidato</th>
+          <th>Pacto</th>
+          <th>Partido</th>
         </tr>
       </thead>
       <tbody>
         {% for candidate in candidates %}
-      {% if candidate.twitter %}
       <tr class="">
-        <td><a href="{{ candidate.area.get_absolute_url }}">{{ candidate.election.area }}</a></td>
-        <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
         <td>
-              {% include 'twitter_poking_button.html' with texto=config.AYUDANOS_TEXTO_CANDIDATOS twitter=candidate.twitter.value button_text=config.AYUDANOS_TEXTO_CANDIDATOS %}
+          {% if candidate.twitter %}
+            {% include 'twitter_poking_button.html' with texto=config.AYUDANOS_TEXTO_CANDIDATOS twitter=candidate.twitter.value button_text=config.AYUDANOS_TEXTO_CANDIDATOS %}
+          {% else %}
+            {% include 'twitter_poking_button.html' with url=url via=twitter_org texto=config.AYUDANOS_ORGANIZACIONES twitter="@A_TU_CANDIDATO" button_text=config.AYUDANOS_ORGANIZACIONES %}
+          {% endif %}
           </td>
+        <td><a href="{{ candidate.get_absolute_url }}">{{ candidate }}</a></td>
+        <td><a href="{{ candidate.area.get_absolute_url }}">{{ candidate.election.area }}</a></td>
+        <td>{% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}{{pacto.value}}</td>
+        <td>{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</td>
       </tr>
-        {% endif %}
       	{% endfor %}
       </tbody>
     </table>

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block content %}
+{% if text %}
+<p>{{text|linebreaksbr}}</p>
+{% else %}
+
+<p>Hola <b>{{candidate.name}}</b>:</p>
+<p><a href="https://Votainteligente.cl">Vota Inteligente</a> es una plataforma, SIN COSTO ASOCIADO, de la Fundación Ciudadano Inteligente que recibe propuestas ciudadanas y de la sociedad civil en el marco de las elecciones de este año.</p>
+<p>A continuación hemos seleccionado algunas propuestas que creemos te pueden interesar. En caso de que así sea y quieras comprometerte con ellas, basta que marques en el casillero de bajo de la propuesta y luego nos envíes tu respuesta presionando “enviar compromisos”. Tus respuestas se verán reflejados en tu perfil en la página web.
+</p>
+<p>Tus respuestas son utilizadas para calcular la <a href="https://votainteligente.cl/media_naranja">Media Naranja Política</a>, herramienta que facilita que los votantes encuentren a la candidatura que responde a las propuestas e ideas que más los identifican.</p>
+
+{% endif %}
+
+
+{% include 'backend_candidate/_suggestions_formset.html' with formset=formset object=candidate_incremental site=site candidate=candidate %}
+
+
+{% endblock content %}
+

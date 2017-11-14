@@ -54,6 +54,7 @@ from popular_proposal.models import (Commitment,
 
 from votainteligente.view_mixins import EmbeddedViewBase
 import random
+from django.conf import settings
 
 
 class ProposalCreationView(FormView):
@@ -146,7 +147,10 @@ class PopularProposalAyuranosView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PopularProposalAyuranosView, self).get_context_data(**kwargs)
-        context['candidates'] = Candidate.objects.exclude(commitments__proposal__id=self.object.id).order_by('created_at')
+        candidates_qs = Candidate.objects.exclude(commitments__proposal__id=self.object.id).order_by('created_at')
+        if settings.PRIORITY_CANDIDATES:
+            candidates_qs = candidates_qs.filter(id__in=settings.PRIORITY_CANDIDATES)
+        context['candidates'] = candidates_qs
         return context
 
 

@@ -8,7 +8,7 @@
 {% commiters_by_election_position proposal cargo as commitments %}
   {% if commitments.all %}
     <hr>
-    <label>Candidaturas a {{cargo}} comprometidas con esta propuesta</label>
+    <label>Candidaturas a {{cargo}} comprometidas con esta propuesta en VotaInteligente</label>
     <ul class="list-inline">
       {% for commitment in commitments.all %}
         <li>
@@ -24,8 +24,7 @@
               {{commitment.candidate}}
             {% endif %}
           </a>
-          <a href="{{commitment.get_absolute_url}}" alt="Lee el compromiso" class="candidate-commit-name"><i class="fa fa-file-text" aria-hidden="true"></i>
-</a>
+          <a href="{{commitment.get_absolute_url}}" alt="Lee el compromiso" class="candidate-commit-name"><i class="fa fa-file-text" aria-hidden="true"></i></a>
         </li>
       {% endfor %}
     </ul>

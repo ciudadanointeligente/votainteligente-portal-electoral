@@ -328,12 +328,17 @@ class LoginFormsTemplateTags(TestCase):
 
         self.assertEqual(template.render(Context({'candidacy': candidacy,
                                                   'proposal': popular_proposal})), 'si')
+        template = Template("{% load votainteligente_extras %}{% if candidate|has_commited_with:proposal %}si{% else %}no{% endif %}")
+        self.assertEqual(template.render(Context({'candidate': candidate,
+                                                  'proposal': popular_proposal})), 'si')
         template2 = Template("{% load votainteligente_extras %}{% get_commitment candidacy proposal as commitment %}{{commitment.proposal.title}}")
         self.assertEqual(template2.render(Context({'candidacy': candidacy,
                                                   'proposal': popular_proposal})), popular_proposal.title)
         commitment.delete()
         self.assertEqual(template.render(Context({'candidacy': candidacy,
                                                   'proposal': popular_proposal})), 'no')
+
+
 
     def test_is_candidate_for_this_area(self):
         candidate = Candidate.objects.get(pk=1)
@@ -541,6 +546,38 @@ class LoginFormsTemplateTags(TestCase):
                                                     )
         context = Context({'popular_proposal': kids_proposal})
         self.assertEquals(template.render(context), kids_proposal.display_card(context))
+
+    def test_get_proposer_name(self):
+        u = User.objects.get(username='feli')
+        data = {'clasification': 'educacion',
+                'title': u'Mar para Bolivia',
+                'problem': u'Los bolivianos no tienen mar y son bacanes',
+                'solution': u'Que le den mar soberano a Bolivia',
+                'when': u'1_year',
+                'causes': u'El egoismo chileno.'
+                }
+        popular_proposal = PopularProposal.objects.create(proposer=u,
+                                                          data=data,
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+        template = Template("{% load votainteligente_extras %}{% get_proposal_author popular_proposal %}")
+        template_str = get_template('popular_proposal_author.html')
+        context = Context({'link': None,
+                           'text': 'feli'})
+        expected_template = template_str.render(context)
+        self.assertEquals(expected_template, template.render(Context({'popular_proposal': popular_proposal})))
+        o = User.objects.create(username='organization')
+        o.profile.is_organization = True
+        o.profile.save()
+        o.organization_template.title = "Esta es una org"
+        o.organization_template.save()
+        popular_proposal.proposer = o
+        popular_proposal.save()
+        context = Context({'link': o.organization_template.get_absolute_url(),
+                           'text': o.organization_template.title })
+        expected_template = template_str.render(context)
+        self.assertEquals(expected_template, template.render(Context({'popular_proposal': popular_proposal})))
 
     def test_proposal_TOPIC_CHOICES(self):
         expected_r = ""

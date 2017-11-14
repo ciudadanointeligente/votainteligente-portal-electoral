@@ -2,23 +2,28 @@
 {% load votainteligente_extras %}
 {% load i18n %}
 {% load thumbnail %}
+{% load cache %}
 <!--InicioCard-->
 <div class="post propuesta votita-love-{{proposal.clasification}}">
 <!-- Hola Liss esta es la tarjeta de las propuestas del votita, se verán en el vota igual-->
   <div class="propuesta-content">
+    {% cache 600 classification proposal.id  %}
     <span class="label label-default">{{proposal.get_classification}}</span>
+    {% endcache %}
     <!-- Estado de una propuesta para el alcalde de esa comuna -->
     <div class="pull-right">
       {% include 'popular_proposal/_estado_para_candidato.html' with proposal=proposal next_url=popular_proposals_home %}
     </div>
+    {% cache 600 gathering_name proposal.id  %}
     <div class="group">Propuesta de
       {{ proposal.gathering.name }}
     </div>
+    {% endcache %}
     <h4><a href="{{proposal.get_absolute_url}}">{{proposal.title|truncatechars:100 }}</a></h4>
     <p class="intro">{{proposal.data.solution_at_the_end|linebreaksbr|truncatechars:150}}</p>
   </div>
-  <hr>
   <div class="share-card">
+    <hr>
       {% url 'popular_proposals:home' as popular_proposals_home %}
       {% include 'popular_proposal/_likers.html' with proposal=proposal area=area next_url=popular_proposals_home  support_button_extra_class="pull-left" %}
     {% comment %}

@@ -1,0 +1,29 @@
+{% extends "medianaranja2/base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+{% load cache %}
+{% load bootstrap3 %}
+
+{% block questions %}
+    <p>Para poder decirte con qué candidatura eres más compatible, necesitamos conocer un poco de ti.</p>
+    <p>Las temas elegidos en este paso corresponden a los que muestran posiciones claras en todos los programas de gobierno de las candidaturas presidenciales.</p>
+  <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ wizard.form.media }}
+  {{ wizard.management_form }}
+  {% bootstrap_field wizard.form.area%}
+  {% bootstrap_field wizard.form.categories%}
+
+
+  <button type="submit" name="submit" value="{% trans "Paso Siguiente" %}" class="btn btn-success pull-right" onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "Paso Siguiente" %}</button>
+
+  </form>
+
+<script type="text/javascript">
+$(function(){
+   $("select").chosen({no_results_text: "Oh! no pillamos eso!"});
+});
+</script>
+{% endblock questions %}

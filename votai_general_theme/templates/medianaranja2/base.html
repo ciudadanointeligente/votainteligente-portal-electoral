@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+{% load cache %}
+{% load bootstrap3 %}
+{% block title %}- 1/2 Naranja - Paso {{wizard.steps.step1}}{% endblock title %}
+
+{% block ogp %}
+  <meta property="og:title" content="Media Naranja Política en VotaInteligente">
+  <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
+  <meta property="og:url" content="https://{% url_domain %}{% url 'medianaranja2:index' %}">
+  <meta property="og:image" content="https://{% url_domain %}{% static 'img/logo_media_naranja_og.jpg' %}">
+  <meta property="og:description" content="¿Con quién será tu cita el próximo 19 de noviembre?">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ciudadanoi">
+  <meta name="twitter:creator" content="@ciudadanoi">
+  <meta name="twitter:title" content="Media Naranja Política en VotaInteligente">
+  <meta name="twitter:description" content="¿Con quién será tu cita el próximo 19 de noviembre?">
+  <meta name="twitter:image" content="https://{% url_domain %}{% static 'img/logo_media_naranja_og.jpg' %}">
+
+  {% endblock ogp %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block everything %}
+<section class="media-naranja">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1">
+      <img src="{% static 'img/logo-media-naranja.svg' %}" class="img-responsive" alt="Media Naranja Política">
+      <h2>¿Con quién será tu cita el próximo 19 de noviembre?</h2>
+      <p>La Media Naranja es un juego de preguntas para ver tu afinidad con las candidaturas a la presidencia y al Congreso. El contenido se basa en la información de los programas de gobierno de la candidaturas presidenciales y en los compromisos de las candidaturas con propuestas ciudadanas hechos en Vota Inteligente. Como cualquier juego, su resultado podría no coincidir con lo que crees.</p>
+    </div>
+    <div class="col-md-4 mano">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 naranja-form">
+      <div class="text-center paso_title">
+        {% block paso %}
+        <h1>Paso <span class="badge">{{wizard.steps.step1}}</span></h1>
+        {% endblock paso %}
+      </div>
+      {% block questions %}
+      {% endblock questions %}
+    </div>
+  </div>
+</div>
+</section>
+{% endblock everything %}

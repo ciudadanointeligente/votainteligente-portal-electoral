@@ -1,7 +1,7 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from popolo.models import Person, ContactDetail
-from elections.models import Candidate, Election, QuestionCategory, PersonalData
+from elections.models import Candidate, Election, QuestionCategory, PersonalData, Area
 from candidator.models import Category, Position, TakenPosition
 from django.test import override_settings
 from elections.models import Topic
@@ -12,11 +12,15 @@ from django.contrib.auth.models import User
 from popular_proposal.models import (PopularProposal,
                                      Commitment,
                                      )
+from constance.test import override_config
+
 
 class MediaNaranjaAdaptersBase(TestCase):
     def setUp(self):
+        a = Area.objects.create(name="Territory")
         self.election = Election.objects.create(
-            name='the name')
+            name='the name', area=a)
+
         TakenPosition.objects.all().delete()
         self.c1 = Candidate.objects.create(name='C1')
         self.election.candidates.add(self.c1)
@@ -80,13 +84,16 @@ class MediaNaranjaAdaptersBase(TestCase):
         proposer = User.objects.create_user(username="proposer")
         self.p1 = PopularProposal.objects.create(proposer=proposer,
                                                  title=u'p1',
+                                                 clasification='educ',
                                                  data={}
                                                  )
         self.p2 = PopularProposal.objects.create(proposer=proposer,
                                                  title=u'P2',
+                                                 clasification='educ',
                                                  data={}
                                                  )
         self.p3 = PopularProposal.objects.create(proposer=proposer,
+                                                 clasification='educ',
                                                  title=u'P3',
                                                  data={}
                                                  )
@@ -163,9 +170,11 @@ class AdaptersTest(MediaNaranjaAdaptersBase):
         self.assertEquals(result, expected_result)
 
         candidate_result = calculator.get_questions_result()
-        expected = [{'candidate':self.c3, 'value': 2},
+        expected = {'candidates': [{'candidate':self.c3, 'value': 2},
                     {'candidate':self.c1, 'value': 1},
-                    {'candidate':self.c2, 'value': 0}]
+                    {'candidate':self.c2, 'value': 0}],
+                    "election": self.election
+                   }
         self.assertEquals(candidate_result, expected)
 
 
@@ -209,6 +218,24 @@ class CalculatorTests(MediaNaranjaAdaptersBase):
         C = calculator.get_commitments_result().tolist()
         self.assertEquals(C, [[2], [2], [0]])
 
+    @override_config(DEFAULT_12_N_QUESTIONS_IMPORTANCE=0.5,
+                     DEFAULT_12_N_PROPOSALS_IMPORTANCE=0.5)
+    def test_get_the_hundred(self):
+        self.setUpQuestions()
+        selected_positions = [self.position1, self.position4]
+        selected_proposals = [self.p1, self.p3]
+        calculator = Calculator(self.election, selected_positions, selected_proposals)
+        self.assertEquals(calculator.hundred_percent, 2.0)
+        
+        a = Area.objects.create(name="Valdivia")
+        election2 = Election.objects.create(
+            name='the name', area=a)
+        calculator = Calculator(election2, selected_positions, selected_proposals)
+        self.assertEquals(calculator.hundred_percent, 2)
+        calculator = Calculator(election2, [], [])
+        self.assertEquals(calculator.hundred_percent, 1)
+
+
     def test_get_final_result(self):
         self.setUpQuestions()
         selected_positions = [self.position1, self.position4]
@@ -219,9 +246,9 @@ class CalculatorTests(MediaNaranjaAdaptersBase):
         R = calculator._get_result().tolist()
         self.assertEquals(R, [[1.5],[1],[0]])
         final_result = calculator.get_result()
-        expected = [{'candidate':self.c1, 'value': 1.5},
-                    {'candidate':self.c2, 'value': 1},
-                    {'candidate':self.c3, 'value': 0}]
+        expected = {'candidates': [{'candidate':self.c1, 'value':75.0},
+                    {'candidate':self.c2, 'value': 50.0}],
+                    'election': self.election}
         self.assertEquals(final_result, expected)
 
     def test_get_final_result_without_questions(self):
@@ -230,7 +257,7 @@ class CalculatorTests(MediaNaranjaAdaptersBase):
         R = calculator._get_result().tolist()
         self.assertEquals(R, [[2], [2], [0]])
         final_result = calculator.get_result()
-        expected = [{'candidate':self.c1, 'value': 2},
-                    {'candidate':self.c2, 'value': 2},
-                    {'candidate':self.c3, 'value': 0}]
+        expected = {'candidates': [{'candidate':self.c1, 'value': 100},
+                    {'candidate':self.c2, 'value': 100}],
+                    'election': self.election}
         self.assertEquals(final_result, expected)

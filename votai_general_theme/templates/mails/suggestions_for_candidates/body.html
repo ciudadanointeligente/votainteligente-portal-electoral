@@ -1,33 +1,34 @@
+<div style="font-family: 'Arial', sans-serif;">
+
+
+{% if text %}
+<p>{{text|linebreaksbr}}</p>
+{% else %}
+
 <p>Hola <b>{{candidate.name}}</b>:</p>
+<p><a href="https://Votainteligente.cl">Vota Inteligente</a> es una plataforma, SIN COSTO ASOCIADO, de la Fundación Ciudadano Inteligente que recibe propuestas ciudadanas y de la sociedad civil en el marco de las elecciones de este año.</p>
+<p>A continuación hemos seleccionado algunas propuestas que creemos te pueden interesar. En caso de que así sea y quieras comprometerte con ellas, basta que marques en el casillero de bajo de la propuesta y luego nos envíes tu respuesta presionando “enviar compromisos”. Tus respuestas se verán reflejados en tu perfil en la página web.
+</p>
+<p>Tus respuestas son utilizadas para calcular la <a href="https://votainteligente.cl/media_naranja">Media Naranja Política</a>, herramienta que facilita que los votantes encuentren a la candidatura que responde a las propuestas e ideas que más los identifican.</p>
 
-<p><a href="https://Votainteligente.cl">Vota Inteligente</a> es una plataforma, SIN COSTO ASOCIADO, de la Fundación Ciudadano Inteligente que recibe propuestas ciudadanas y de la sociedad civil en el marco de las elecciones presidenciales y parlamentarias de este año.</p>
+{% endif %}
 
+{% include 'backend_candidate/_suggestions_formset.html' with formset=formset object=candidate_incremental site=site candidate=candidate %}
 
 {% with candidate.contacts.last as contact %}
 {% if not candidate.has_joined %}
 
-<p>Cada candidatura cuenta con un perfil básico, al que puedes acceder <a href="https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}">aquí</a> con tu usuario y password:</p>
-<ul>
-<li><b>Usuario:</b> {{contact.candidacy.user.username}}</li>
-<li><b>Password:</b> {{contact.initial_password}}</li>
-</ul>
+<p>En cualquier momento puedes ingresar y editar la información que consta en tu perfil o comprometerte con otras propuestas. Para ello debes ingresar a <a href="https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}">{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}</a> con tu usuario ({{contact.candidacy.user.username}}) y contraseña ({{contact.initial_password}}).</p>
 {% else %}
-<p>Cada candidatura cuenta con un perfil básico, al que puedes acceder <a href="https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}">aquí</a> con tu usuario: <b>{{contact.candidacy.user.username}}</b>.</p>
+<p>En cualquier momento puedes ingresar y editar la información que consta en tu perfil o comprometerte con otras propuestas. Para ello debes ingresar a <a href="https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}">{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}</a> con tu usuario: <b>{{contact.candidacy.user.username}}</b>.</p>
 {% endif %}
 
 {% endwith %}
-<p>Desde ahí podrás difundir información sobre tu campaña y comprometerse con aquellas propuestas ciudadanas que te sean afines.</p>
-
-<p>Hemos seleccionado algunas propuestas que consideramos podrían ser de tu interés:</p>
-<ul>
-	{% for proposal in proposals %}
-<li><a href="https://{{site.domain}}{{proposal.get_absolute_url}}">{{proposal.title}}</a>{% if proposal.proposer.profile.is_organization %} de <a href="https://{{site.domain}}{{proposal.proposer.organization_template.get_absolute_url}}">{{proposal.proposer.organization_template.title}}</a>{% endif %}</li>
-{% endfor %}
-</ul>
 
 <p>Si quieres que utilicemos otra dirección de correo electrónico para comunicarnos contigo, o si tienes alguna duda, puedes responder a este mismo mail.</p>
 
 <p>¡Súmate a VotaInteligente!</p>
 
---
+--<br>
 El equipo de VotaInteligente.cl
+</div>

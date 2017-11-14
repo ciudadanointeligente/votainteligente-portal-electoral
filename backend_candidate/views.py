@@ -1,4 +1,4 @@
-from backend_candidate.models import is_candidate, CandidacyContact, Candidacy
+from backend_candidate.models import is_candidate, CandidacyContact, Candidacy, CandidateIncremental
 from django.http import Http404
 from django.views.generic.base import RedirectView
 from django.views.generic import View
@@ -18,6 +18,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext as _
 from agenda.models import Activity
 from popular_proposal.filters import ProposalWithoutAreaFilter
+from django.views.generic.detail import DetailView
+from django.conf import settings
+from django.contrib.sites.models import Site
+from django.shortcuts import render
+from constance import config
 
 
 class BackendCandidateBase(View):
@@ -49,6 +54,8 @@ class HelpFindingCandidates(ListView):
     def get_queryset(self):
         qs = super(HelpFindingCandidates, self).get_queryset().distinct()
         qs = qs.filter(contact_details__contact_type__in=['TWITTER', 'FACEBOOK'])
+        if settings.PRIORITY_CANDIDATES:
+            qs = qs.filter(id__in=settings.PRIORITY_CANDIDATES)
         return qs
 
 class HomeView(BackendCandidateBase, RedirectView):
@@ -301,3 +308,43 @@ class MyActivitiesListView(LoginRequiredMixin, ListView):
         context = super(MyActivitiesListView, self).get_context_data(**kwargs)
         context['object'] = self.object
         return context
+
+
+class CandidateIncrementalDetailView(DetailView):
+    model = CandidateIncremental
+    slug_url_kwarg = "identifier"
+    slug_field = 'identifier'
+    
+
+    def get_queryset(self):
+        qs = super(CandidateIncrementalDetailView, self).get_queryset()
+        return qs
+
+
+    def get_context_data(self, **kwargs):
+        context = super(CandidateIncrementalDetailView, self).get_context_data(**kwargs)
+        context['formset'] = self.object.formset
+        context['candidate_incremental'] = self.object
+        context['site'] = Site.objects.get_current()
+        context['text'] = self.object.suggestion.text
+        context['candidate'] = self.object.candidate
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.used = True
+        self.object.save()
+        CommitmentIcrementalFormset = self.object._formset_class
+        formset = CommitmentIcrementalFormset(request.POST, request.FILES)
+        if formset.is_valid():
+            commitments = formset.save()
+            if commitments:
+                return render(request, 'backend_candidate/thanks_for_commiting.html', context={'commitments': commitments})
+        return self.get(request, *args, **kwargs)
+
+    def get_template_names(self):
+        if settings.DEBUG and config.SHOW_MAIL_NOT_TEMPLATE:
+            return ['mails/suggestions_for_candidates/body.html']
+        return ['backend_candidate/suggestions_for_candidate.html']
+
+

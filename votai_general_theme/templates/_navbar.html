@@ -22,16 +22,11 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="{% url 'que_es' %}" onclick="ga('send', 'event', 'nav-que-es', 'click')">¿Qué es?</a></li>
-                {% if not user|is_candidate %}
-                {% get_proposals_enabled as proposals_enabled %}
-                    {% if proposals_enabled  %}
-                    <li><a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" onclick="ga('send', 'event', 'nav-crea-propuestas', 'click')">Crea tu propuesta</a></li>
-                    {% endif %}
-                {% endif %}
-                <li><a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'nav-conoce-propuestas', 'click')">Conoce propuestas</a></li>
+                <li><a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'nav-conoce-propuestas', 'click')">Propuestas ciudadanas</a></li>
                 {% if user.is_staff or config.CANDIDATES_ARE_DISPLAYED %}
                   <li><a href="{% url 'know_your_candidates' %}" onclick="ga('send', 'event', 'nav-conoce-tus-candidatos', 'click')">Candidaturas</a></li>
                 {% endif %}
+                <li><a href="{% url 'medianaranja2:index' %}" onclick="ga('send', 'event', 'nav-media-naranja', 'click')">Media naranja</a></li>
                 <li><a href="{% url 'material_ciudadano' %}" onclick="ga('send', 'event', 'nav-material-ciudadano', 'click')">Material ciudadano</a></li>
                 {% include "_dropdown_user.html" with user=user %}
                 <li>

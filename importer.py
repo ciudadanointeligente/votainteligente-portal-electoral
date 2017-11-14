@@ -13,6 +13,8 @@ from backend_candidate.models import send_candidate_username_and_password
 from popular_proposal.models import PopularProposal
 from popular_proposal.exporter import CommitmentsExporter
 from votainteligente.send_mails import validateEmail
+from elections.models import QuestionCategory, Topic
+from candidator.models import Position, TakenPosition
 
 
 def area_getter(area_name):
@@ -114,9 +116,97 @@ def mails_2017():
         email = row[2].strip()
         CandidacyContact.objects.create(candidate=candidate, mail=email)
 
-if __name__ == "__main__":
-    mails_2017()
+def senadores2():
+    reader = codecs.open("senadores2.csv", 'r', encoding='utf-8')
+    counter = 0
+    candidates_ids = []
+    reader.readline()
+    values = {1: u"I", 2:u"II", 4:u"IV", 6:u"VI", 9:u"IX", 11:u"XI", 14:u"XIV"}
+    for line in reader:
+        row = line.split(u',')
+        nombres = row[2].title().strip()
+        # apellidos = row[1].title().strip()
+        # largo_apellidos = len(apellidos.split(u" "))
+        # # if largo_apellidos == 2:
+        # #     apellidos = apellidos.split(u" ")[0]
+        # full_name = nombres + u" " + apellidos
+        num_circ = row[1].strip().replace(u"Circunscripción", "").strip()
+        area_name = num_circ + u" Circunscripción Senatorial"
+        area = Area.objects.get(name=area_name)
+        election = area.elections.first()
+        pacto = row[4].strip().title().replace("Pacto ", "")
+        partido = row[3].strip().title()
+        if not Candidate.objects.filter(name__icontains=nombres).exists():
+            candidate = Candidate.objects.create(name=nombres)
+            print candidate.id, "|", nombres,"|", election,"|", pacto,"|", partido
+            election.candidates.add(candidate)
+            PersonalData.objects.create(candidate=candidate,
+                                        label=u'Pacto',
+                                        value=pacto)
+            PersonalData.objects.create(candidate=candidate,
+                                        label=u'Partido',
+                                        value=partido)
 
+def diputados2():
+    reader = codecs.open("diputados2.csv", 'r', encoding='utf-8')
+    counter = 0
+    candidates_ids = []
+    reader.readline()
+    for line in reader:
+        row = line.split(u',')
+        nombres = row[3].title().strip()
+        # apellidos = row[1].title().strip()
+        # largo_apellidos = len(apellidos.split(u" "))
+        # # if largo_apellidos == 2:
+        # #     apellidos = apellidos.split(u" ")[0]
+        # full_name = nombres + u" " + apellidos
+        num_circ = row[2].strip()
+        area_name = u"Distrito " + str(num_circ)
+        area = Area.objects.get(name=area_name)
+        election = area.elections.first()
+        pacto = row[5].strip().title()
+        partido = row[4].strip().title()
+        if not Candidate.objects.filter(name__icontains=nombres).exists():
+            candidate = Candidate.objects.create(name=nombres)
+            print candidate.id, "|", nombres,"|", election,"|", pacto,"|", partido
+            election.candidates.add(candidate)
+            PersonalData.objects.create(candidate=candidate,
+                                        label=u'Pacto',
+                                        value=pacto)
+            PersonalData.objects.create(candidate=candidate,
+                                        label=u'Partido',
+                                        value=partido)
+
+def load_questions_2017():
+    # QuestionCategory.objects.all().delete()
+    election = Election.objects.get(name ='Presidencia')
+    reader = codecs.open("nuevas_preguntas_12naranja.csv", 'r', encoding='utf-8')
+    counter = 0
+    candidates_ids = []
+    candidates = {}
+    header = reader.readline()
+    header = header.split(u"|")
+    for candidate_index in range(2, 9):
+        name = header[candidate_index]
+        candidates[candidate_index] = Candidate.objects.get(name__icontains=name)
+    for line in reader:
+        row = line.split(u'|')
+        question_category = row[0].title().strip()
+        category, created = QuestionCategory.objects.get_or_create(name=question_category, election=election)
+        topic_text = row[1].title().strip()
+        topic, created = Topic.objects.get_or_create(
+            label=topic_text,
+            category=category)
+        for answer_index in range(2, 9):
+            position, created = Position.objects.get_or_create(
+                topic=topic,
+                label=row[answer_index]
+            )
+            taken_position,created = TakenPosition.objects.get_or_create(topic=topic,
+                                                                          person=candidates[answer_index],
+                                                                          position=position)
+if __name__ == "__main__":
+    load_questions_2017()
 
 
 def process_candidates_with_names():

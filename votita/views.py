@@ -16,6 +16,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.conf import settings
 from votainteligente.views import HomeViewBase
+from django.db.models import Count
 
 
 wizard_form_list = get_form_list(wizard_forms_fields=wizard_forms_fields)
@@ -137,6 +138,12 @@ class ProposalListView(ListView):
     model = KidsProposal
     template_name = "votita/lista_propuesta.html"
     context_object_name = 'proposals'
+
+    def get_queryset(self):
+        qs = super(ProposalListView, self).get_queryset()
+        qs = qs.annotate(num_likers=Count('likers'))
+        qs = qs.order_by('-num_likers')
+        return qs
 
 
 class ProposalDetailView(DetailView):

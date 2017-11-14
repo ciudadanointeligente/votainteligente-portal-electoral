@@ -5,11 +5,11 @@
 {% block content %}
 <h1>Bienvenida/o! Ahora ya activamos tu cuenta!</h1>
 <p>Estamos redirigiendote para que edites tu perfil.</p>
-<p>Si no funciona, puedes hacer click en <a href="{% url 'backend_citizen:index' %}">En este link.</a>.</p>
+<p>Si no funciona, puedes hacer click en <a href="{% url 'username_and_password' %}">En este link.</a>.</p>
 
   <script>
 window.setTimeout(function() {
-  location.href = "{% url 'backend_citizen:index' %}";
+  location.href = "{% url 'username_and_password' %}";
 }, 5000);
   </script>
 {% endblock %}

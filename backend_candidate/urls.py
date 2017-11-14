@@ -9,8 +9,11 @@ from backend_candidate.views import (HomeView,
                                      HelpFindingCandidates,
                                      AddActivityToCandidateView,
                                      MyActivitiesListView,
+                                     CandidateIncrementalDetailView,
                                      )
 from django.contrib.auth.views import login
+from django.views.generic.base import TemplateView
+from django.views.decorators.csrf import csrf_exempt
 
 
 urlpatterns = [
@@ -42,4 +45,10 @@ urlpatterns = [
     url(r'^all_my_activities/(?P<slug>[-\w]+)/?$',
         MyActivitiesListView.as_view(),
         name='all_my_activities'),
+    url(r'^commit_to_suggestions/(?P<identifier>[-\w]+)/?$',
+        csrf_exempt(CandidateIncrementalDetailView.as_view()),
+        name='commit_to_suggestions'),
+    url(r'^gracias_totales/$',
+        TemplateView.as_view(template_name='backend_candidate/thanks_for_commiting.html'),
+        name='thanks_for_commiting'),
 ]

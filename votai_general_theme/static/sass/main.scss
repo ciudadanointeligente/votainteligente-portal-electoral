@@ -1943,6 +1943,39 @@ input#id_4-title {
   left: -15px;
 }
 
+.ribbon-medianaranja {
+  @extend .ranking-content;
+  padding: 0px;
+  background: $yellow;
+  &:before {
+    content: url(../img/ribbon-deco-median.png);
+  }
+  &:after {
+    content: url(../img/ribbon-deco-right-median.png);
+  }
+}
+.medianaranja {
+  @extend .wizard;
+  .checkbox{
+    label {
+      text-transform: none;
+    }
+
+  }
+  .paso_title {
+    font-size: 2em;
+    .badge {
+      background-color: $blue-light;
+
+    }
+  }
+  .pregunta {
+    border: 3px solid $blue-light;
+    border-radius: 10px;
+    padding: 0 5px;
+    margin-bottom: 5px;
+  }
+}
 /*Tabs*/
 
 .nav-tabs.nav-justified li.active a{
@@ -2094,6 +2127,17 @@ input#id_4-title {
   left: 90%;
   a {
     color: $grey-two;
+  }
+}
+.propuesta.popular_proposal {
+
+}
+.post.propuesta.votita {
+  background-image: url(../img/nna-proposal.svg);
+  background-position: 24% 78%;
+  background-repeat: no-repeat;
+  .ribbon{
+    display: none;
   }
 }
 

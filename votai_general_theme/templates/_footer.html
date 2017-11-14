@@ -1,6 +1,6 @@
 {% load staticfiles %}
 {% load votainteligente_extras %}
-<footer id="footer">
+<footer id="footer" class="{% if show_xs %} hidden-sm hidden-xs{% endif %}">
     {% block extrafooter %}
     {% endblock extrafooter %}
     <div class="container">
@@ -14,7 +14,7 @@
                     <li><a target="_blank" href="//github.com/ciudadanointeligente/votainteligente-portal-electoral"><i class="fa fa-github" aria-hidden="true"></i></a></li>
                     <li><a target="_blank" href="//www.facebook.com/ciudadanointeligente/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                     <li><a target="_blank" href="//twitter.com/ciudadanoi"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                    <li><a target="_blank" href="{% url 'auth_login' %}">Ingresar</a></li>
+                    <li><a target="_blank" href="https://docs.google.com/document/d/16_6kaGPtZm4P9LAHz2yC2M380hp3ZfZD3pBEi8MHKeA/edit" onclick="ga('send', 'event', 'nav-dedicatoria', 'click')">Dedicatoria y Agradecimientos</a></li>
                 </ul>
             </div>
         </div>

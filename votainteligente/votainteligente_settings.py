@@ -384,7 +384,13 @@ MARKED_AREAS = ['teodoro-schmidt-9117','cunco-9103','lumaco-9207','melipeuco-911
 POSSIBLE_GENERATING_AREAS_FILTER = []
 EXCLUDED_PROPOSALS_APPS = ['votita', ]
 AREAS_THAT_SHOULD_BE_REDIRECTING_TO_THEIR_PARENTS = ['comuna']
-
+PRIORITY_CANDIDATES = []
+CONSTANCE_ADDITIONAL_FIELDS = {
+    'proposals_getter_for_12_n': ['django.forms.fields.ChoiceField', {
+        'widget': 'django.forms.Select',
+        'choices': (("getter", "por corazones"), ("reading_group", "grupos de lectura"))
+    }],
+}
 CONSTANCE_CONFIG = {
     'SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES':(0,'Duracion cache media naranja'),
     'INFINITE_CACHE':(1440,'Tiempo Cache'),
@@ -442,6 +448,12 @@ CONSTANCE_CONFIG = {
     'MOSTRAR_AYUDANOS_PROPUESTA': (False, 'texto a los candidatos del ayudanos específico de cada propuesta'),
     'DEFAULT_12_N_QUESTIONS_IMPORTANCE': (0.5, "Importancia de las preguntas en la media naranja"),
     'DEFAULT_12_N_PROPOSALS_IMPORTANCE': (0.5, "Importancia de las propuestas en la media naranja"),
+    'SHOW_MAIL_NOT_TEMPLATE': (True, 'mostrar el mail que se envía en lugar de un html'),
+    'N_CANDIDATOS_RESULTADO_12_N': (3, u'Máximo número de candidatos en el resultado de la 1/2 Naranja'),
+    'MEDIA_NARANJA_MAX_NUM_PR': (20, u'Máximo número de propuestas listadas en la 1/2 Naranja'),
+    'MEDIA_NARANJA_MAX_SELECT_PROPOSALS': (5, u'Máximo número de propuestas seleccionables en la 1/2 Naranja'),
+    'PRUEBAS_DE_CARGA_MEDIA_NARANJA': (False, u'Esto baja el csrf para las pruebas de la medianaranja2'),
+    'ESTRATEGIA_SELECCION_PROPUESTAS': ("getter", u'Qué estrategia usamos para mostrar propuestas en la 1/2 naranja', 'proposals_getter_for_12_n'),
 }
 
 try:

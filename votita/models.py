@@ -10,7 +10,9 @@ from django.contrib.auth.models import User
 from elections.models import Area
 from taggit.managers import TaggableManager
 from django.core.urlresolvers import reverse
-
+from PIL import Image, ImageDraw, ImageFont
+from io import BytesIO
+import textwrap
 
 PRESIDENTS_FEATURES = (
  (u'Habilidades intelectuales', (
@@ -71,6 +73,9 @@ class KidsGathering(models.Model):
     comments = models.TextField(verbose_name=u"¿Cómo podemos empoderar mejor a nuestros niños?",
                                 blank=True,
                                 default=u"")
+    school = models.CharField(max_length=512,
+                            verbose_name="Establecimiento u organización",
+                            blank=True)
 
     class Meta:
         verbose_name = _(u'Encuentro')
@@ -90,6 +95,16 @@ class KidsGathering(models.Model):
             result.append(all_features[feature])
         return result
 
+COLORS = {"diversidad":  "#CB78D3",
+          "salud":  "#7AB7FF",
+          "medio_ambiente":  "#49B172",
+          "politica":  "#FEC70D",
+          "educacion_y_trabajo":  "#FA589A",
+          "cultura":  "#FF645B",
+          "tecnologia": "#7AB7FF",
+          "proteccion_y_familia": "#FEC70D",
+          }
+
 class KidsProposal(PopularProposal):
     gathering = models.ForeignKey(KidsGathering,
                                   related_name='proposals',
@@ -98,10 +113,54 @@ class KidsProposal(PopularProposal):
     card_template = "votita/card.html"
     detail_template_html = "votita/plantillas/detalle_propuesta.html"
 
+    def generate_og_image(self):
+        plantilla = Image.open('votai_general_theme/static/img/plantilla_llm.png')
+
+        font_n_propuesta = ImageFont.truetype("votai_general_theme/static/fonts/Nunito-Black.ttf", 24)
+        font_titulo = ImageFont.truetype("votai_general_theme/static/fonts/Nunito-Black.ttf", 76)
+        font_autor = ImageFont.truetype("votai_general_theme/static/fonts/WorkSans-Bold.ttf", 21)
+        bg_color = COLORS[self.clasification]
+        output = BytesIO()
+        output.seek(0)
+        h = bg_color.lstrip('#')
+        rgb_color = tuple(int(h[i:i+2], 16) for i in (0, 2 ,4))
+        rgb_color = rgb_color
+        base = Image.new('RGBA',(1200,630),rgb_color)
+        txt = Image.new('RGBA', base.size, (122,183,255,0))
+        d = ImageDraw.Draw(txt)
+        n_propuesta = u"Propuesta N º"+ unicode(self.id)
+        n_propuesta = n_propuesta.upper()
+        d.multiline_text((106,73), n_propuesta, font=font_n_propuesta, fill=(0,0,0))
+
+        lines = textwrap.wrap(self.title, width=30)
+        max_lines = 3
+        if len(lines) > max_lines:
+            last_line = lines[max_lines - 1] + u'...'
+            lines = lines[0:max_lines]
+            lines[max_lines - 1] = last_line
+
+        title = '\n'.join(lines)
+
+        fg_color = (255, 255, 255)
+        d.multiline_text((106,129), title, font=font_titulo, fill=fg_color)
+        
+        proposer_name = self.gathering.name
+        propuesta_de = proposer_name
+        d.multiline_text((106,448), propuesta_de, font=font_autor, fill=(0,0,0))
+
+
+        base = Image.alpha_composite(base, txt)
+        base.paste(plantilla, (0,0), plantilla)
+        return base
+
     @classmethod
     def get_topic_choices_dict(cls):
         from votita.forms.forms import TOPIC_CHOICES_DICT
         return TOPIC_CHOICES_DICT
+
+    @property
+    def ribbon_text(self):
+        return u"Propuesta generada por niñas, niños y adolescentes"
 
     class Meta:
         verbose_name = _(u'Medida')

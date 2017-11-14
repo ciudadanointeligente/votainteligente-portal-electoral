@@ -25,6 +25,7 @@ from popular_proposal.models import (Commitment,
                                      PopularProposal,
                                      )
 from popolo.models import ContactDetail
+from django.test import override_settings
 
 
 class HelpFindingCandidatesTestCase(SoulMateCandidateAnswerTestsBase):
@@ -70,3 +71,12 @@ class HelpFindingCandidatesTestCase(SoulMateCandidateAnswerTestsBase):
         self.candidate3.add_contact_detail(contact_type='TWITTER', value='perrito', label='perrito')
         response = self.client.get(url)
         self.assertIn(self.candidate3, response.context['candidates'])
+
+    @override_settings(PRIORITY_CANDIDATES=[2,])
+    def test_only_priority_candidates(self):
+        self.candidate2.add_contact_detail(contact_type='TWITTER', value='perrito', label='perrito')
+        self.candidate3.add_contact_detail(contact_type='TWITTER', value='gatito', label='gatito')
+        url = reverse('help')
+        response = self.client.get(url)
+        self.assertIn(self.candidate2, response.context['candidates'])
+        self.assertEquals(len(response.context['candidates']), 1)

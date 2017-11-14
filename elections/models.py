@@ -214,7 +214,7 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
             return self.election.position_in_ranking(self)
 
     def get_absolute_url(self):
-        if config.CANDIDATE_ABSOLUTE_URL_USING_AREA:
+        if config.CANDIDATE_ABSOLUTE_URL_USING_AREA and self.election is not None:
             return reverse('candidate_detail_view_area', kwargs={
                 'area_slug': self.election.area.slug,
                 'slug': self.id
@@ -222,10 +222,12 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
         election_slug = ''
         if self.election:
             election_slug = self.election.slug
-        return reverse('candidate_detail_view', kwargs={
-            'election_slug': election_slug,
-            'slug': self.id
-        })
+
+            return reverse('candidate_detail_view', kwargs={
+                'election_slug': election_slug,
+                'slug': self.id
+            })
+        return None
 
     class Meta:
         verbose_name = _("Candidato")

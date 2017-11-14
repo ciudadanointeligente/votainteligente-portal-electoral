@@ -14,6 +14,7 @@ from popular_proposal.forms import (CandidateCommitmentForm,
                                     )
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from constance.test import override_config
+from django.test import override_settings
 
 
 class PopularProposalTestCaseBase(TestCase):
@@ -396,3 +397,20 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         candidates = response.context['candidates']
         self.assertIn(self.candidate2, candidates.all())
         self.assertNotIn(self.candidate, candidates.all())
+
+    @override_settings(PRIORITY_CANDIDATES=[2,])
+    def test_only_showing_candidates_that_are_priority(self):
+        election = Election.objects.get(id=self.candidate.election.id)
+        election.candidates_can_commit_everywhere = True
+        election.save()
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.algarrobo,
+                                                          data=self.data,
+                                                          title=u'This is a title'
+                                                          )
+        url = reverse('popular_proposals:ayuranos', kwargs={'slug': popular_proposal.slug})
+        response = self.client.get(url)
+        candidates = response.context['candidates']
+        self.assertIn(self.candidate2, candidates.all())
+        self.assertNotIn(self.candidate, candidates.all())
+

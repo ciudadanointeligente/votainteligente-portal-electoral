@@ -21,6 +21,8 @@ from PIL import Image, ImageDraw, ImageFont
 from model_utils.managers import InheritanceQuerySetMixin
 import textwrap
 from django.contrib.contenttypes.models import ContentType
+from votainteligente.send_mails import send_mails_to_staff
+from constance import config
 
 
 class NeedingModerationManager(models.Manager):
@@ -214,7 +216,9 @@ class PopularProposal(models.Model, OGPMixin):
 
     content_type = models.ForeignKey(ContentType, null=True)
     featured = models.BooleanField(default=False)
-    summary = models.TextField(default=u"")
+    summary = models.TextField(default=u"", blank=True)
+    important_within_organization = models.BooleanField(default=False)
+    one_liner = models.CharField(blank=True, max_length=140, default="")
 
     ogp_enabled = True
 
@@ -308,6 +312,11 @@ class PopularProposal(models.Model, OGPMixin):
         return get_template(template).render(context)
 
     @property
+    def ribbon_text(self):
+        if self.is_local_meeting:
+            return u"Generada desde un encuentro ciudadano"
+
+    @property
     def card(self):
         return self.display_card({})
 
@@ -346,6 +355,11 @@ class PopularProposal(models.Model, OGPMixin):
                     send_mail(context,
                               template,
                               to=[contact.mail])
+
+    def get_one_liner(self):
+        if self.one_liner:
+            return self.one_liner
+        return self.title
 
 
 class ProposalLike(models.Model):
@@ -410,14 +424,19 @@ class Commitment(models.Model):
     objects = CommitmentManager()
 
     def save(self, *args, **kwargs):
+        creating = self.pk is None
         instance = super(Commitment, self).save(*args, **kwargs)
         from popular_proposal.subscriptions import notification_trigger
         notification_trigger('new-commitment',
                              proposal=self.proposal,
                              commitment=self)
+        if creating and config.NOTIFY_STAFF_OF_NEW_COMMITMENT:
+            send_mails_to_staff({'commitment': self}, 'notify_staff_new_commitment')
         return instance
 
     def get_absolute_url(self):
+        if self.candidate.election is None:
+            return self.proposal.get_absolute_url()
         url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
                                                               'proposal_slug': self.proposal.slug})
         return url

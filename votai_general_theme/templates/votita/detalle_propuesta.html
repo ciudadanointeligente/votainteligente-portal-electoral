@@ -7,6 +7,7 @@
 {% load bootstrap3 %}
 {% block extrajs %}
 {% load ogp_tags %}
+{% load cache %}
 
 
 $(function(){
@@ -23,8 +24,11 @@ $(function(){
 {% block title %}- Propuesta - {{proposal.title}}{% endblock title%}
 
 {% block ogp %}
-  {% render_ogp proposal %}
-  <meta property="og:description" content="{{ proposal.data.solution_at_the_end }}">
+  <meta property="og:title" content="Levanta La Mano">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://levantalamano.cl{{ proposal.get_absolute_url }}">
+  <meta property="og:image" content="{{proposal.ogp_image}}">
+  <meta property="og:description" content="{{proposal.data.solution}}">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ciudadanoi">
@@ -50,7 +54,7 @@ $(function(){
 
 <section class="votita-love-detail-{{proposal.clasification}} votita-detail">
   <div class="container">
-    <div class="row">
+    <div class="row h-header">
       <div class="container print_hidden">
         <ol class="breadcrumb">
           <li><a href="{% url 'home' %}"><i class="fa fa-home" aria-label="Inicio"></i></a></li>
@@ -135,13 +139,14 @@ $(function(){
         <div>
           {% include 'popular_proposal/_share.html' with popular_proposal=proposal next_url=request.path %}
         </div>
-        {% if proposal.sponsoring_orgs.all %}
+        {% if proposal.sponsoring_orgs.exists %}
         <hr>
           <label>Organizaciones que apoyan esta propuesta</label>
           <ul class="list-inline">
             {% for org in proposal.sponsoring_orgs %}
             <li>
               <a href="{% url 'organization_profiles:home' slug=org.username %}" target="_blank">
+                {% cache 600 organization_logo org.id %}
                 {% if org.organization_template.logo %}
                     {% thumbnail org.organization_template.logo "300x300" crop="center" as im %}
                     <a href="{{org.organization_template.get_absolute_url}}">
@@ -151,6 +156,7 @@ $(function(){
                   {% else %}
                     <img src="{% static 'img/org-default.png' %}" alt="{{org.organization_template.title }}" title="{{org.organization_template.title }}" class="img-responsive img-circle img-candidato-small"></a>
                 {% endif %}
+                {% endcache %}
               </a>
             </li>
             {% endfor %}

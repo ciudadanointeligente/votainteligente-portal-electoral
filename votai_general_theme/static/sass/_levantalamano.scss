@@ -34,6 +34,7 @@ h4{
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
   color: black;
+  font-size: 20px;
   a{
     color: black;
     &:hover{
@@ -60,7 +61,7 @@ h6{
   font-size: 13px;
 }
 .h-header{
-  margin-top: 50px;
+  margin-top: 120px;
 }
 
 /*NAV*/
@@ -109,7 +110,9 @@ h6{
 .navbar-toggle{
   top: 10px;
 }
-
+.navbar-fixed-top{
+  z-index: 3000;
+}
 /*BUTTONS*/
 .btn{
   border-radius: 20px;
@@ -133,6 +136,24 @@ h6{
   }
   &:active:hover{
     @extend .btn-default:hover;
+    box-shadow: none;
+  }
+}
+.btn-black{
+  border: 3px solid black;
+  color: black;
+  a{
+    color: black;
+  }
+  &:hover{
+    background-color: black;
+    color: white;
+  }
+  &:focus{
+    @extend .btn-black:hover;
+  }
+  &:active:hover{
+    @extend .btn-black:hover;
     box-shadow: none;
   }
 }
@@ -286,11 +307,17 @@ h6{
   min-height: 46px;
   margin-top: -48px;
 }
+.yellowline-up-banner{
+  background-image: url("../img/lm-yellowline-up.svg");
+  background-repeat: no-repeat;
+  min-height: 28px;
+  margin-top: 60px;
+}
 .yellowline-up{
   background-image: url("../img/lm-yellowline-up.svg");
   background-repeat: no-repeat;
   min-height: 28px;
-  margin-top: -30px;
+  margin-top: 47px;
 }
 .yellowline-down{
   background-image: url("../img/lm-yellowline-down.svg");
@@ -302,7 +329,7 @@ h6{
   background-image: url("../img/lm-blueline-up.svg");
   background-repeat: no-repeat;
   min-height: 34px;
-  margin-top: -5px;
+  margin-top: 35px;
 }
 .blueline-down{
   background-image: url("../img/lm-blueline-down.svg");
@@ -325,7 +352,7 @@ h6{
   top: 80px;
 }
 .control-width{
-  max-width: 70%;
+  max-width: 73%;
   margin: 0 auto;
   padding: 50px 0 70px;
 }
@@ -335,18 +362,15 @@ h6{
 }
 
 /*HOME 0*/
+#banner{
+  padding: 170px 0 0;
+}
 .logo-title{
   position: relative;
   top: 100px;
 }
-#banner{
-  min-height: 380px;
-  padding: 40px 0 70px 0;
-  margin-bottom: -40px;
-  background-color: $yellow;
-}
 #about{
-  padding: 50px 0 80px;
+  padding: 50px 0 40px;
 }
 p.bajada{
   font-size: 18px;
@@ -375,6 +399,11 @@ p.aviso{
   padding: 40px 0 210px;
   margin-bottom: -250px;
 }
+#videoabout{
+  min-height: 380px;
+  padding: 100px 0 220px 0;
+  margin-bottom: -250px;
+}
 
 /*PROPOSALS REPOSITORY*/
 #grid{
@@ -399,7 +428,7 @@ p.aviso{
   margin: 0 0 50px;
 }
 .propuesta{
-  min-height: 310px;
+  min-height: 330px;
   border-radius: 10px;
   padding: 0;
   position: relative;
@@ -412,10 +441,12 @@ p.aviso{
 .group{
   margin-top: 30px;
   margin-bottom: -6px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 hr{
   position: relative;
-  top: 26px;
+  top: 20px;
 }
 .votita-love-politica{
   border: 3px solid $yellow;
@@ -909,7 +940,11 @@ hr{
   @extend .small;
 }
 .share-card{
-  padding: 20px 0 0;
+  padding: 40px 0 0;
+  hr{
+    position: relative;
+    top: 7px;
+  }
   .social-buttons{
     font-size: 10px;
     position: relative;
@@ -1036,6 +1071,10 @@ hr{
       color: black;
     }
   }
+}
+
+.img-candidato-small{
+  width: 60px;
 }
 
 /*PLAN*/

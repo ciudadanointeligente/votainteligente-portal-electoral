@@ -18,7 +18,7 @@ from popular_proposal.filters import ProposalWithoutAreaFilter
 from django_filters.views import FilterMixin
 from django.core.cache import cache
 from django.conf import settings
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from constance import config
 
 logger = logging.getLogger(__name__)
@@ -83,9 +83,16 @@ class HomeView(HomeViewBase):
             proposals_with_likers = PopularProposal.ordered.by_likers()[:9]
             cache.set('proposals_with_likers', proposals_with_likers, 600)
         context['proposals_with_likers'] = proposals_with_likers
-        featured_proposals = PopularProposal.objects.filter(featured=True)
-        cache.set('featured_proposals', featured_proposals, 600)
+        featured_proposals = cache.get('featured_proposals')
+        if featured_proposals is None:
+            featured_proposals = PopularProposal.objects.filter(featured=True).filter(content_type__app_label="popular_proposal")
+            cache.set('featured_proposals', featured_proposals, 600)
         context['featured_proposals'] = featured_proposals
+        featured_candidates = cache.get('featured_candidates')
+        if featured_candidates is None:
+            featured_candidates = Candidate.objects.filter(commitments__isnull=False).filter(elections__name="Presidencia")
+            cache.set('featured_candidates', featured_candidates)
+        context['candidates'] = featured_candidates
         return context
 
 
@@ -175,7 +182,10 @@ class CandidateDetailView(DetailView):
         cache_key = u'ranking-for-' + candidate.id
         _candidate = cache.get(cache_key)
         if _candidate is None:
-            _candidate = self.model.ranking.get(id=candidate.id)
+            try:
+                _candidate = self.model.ranking.get(id=candidate.id)
+            except self.model.DoesNotExist:
+                raise Http404(u"Este candidato no existe")
             cache.set(cache_key,
                       _candidate,
                       60 * config.SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES)

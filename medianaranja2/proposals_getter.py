@@ -36,11 +36,14 @@ class ProposalsGetterBase(object):
         cache.set(cache_key, proposals)
         return proposals
 
+    def get_default_proposals_from_elections(self, elections):
+        return PopularProposal.ordered.filter(commitments__candidate__elections__in=elections).order_by('-num_likers')
+
 class ProposalsGetter(ProposalsGetterBase):
     cache_key = 'proposals_for_'
     
     def get_proposals_from_election(self, elections):
-        return PopularProposal.ordered.filter(commitments__candidate__elections__in=elections).order_by('-num_likers')
+        return self.get_default_proposals_from_elections(elections)
 
 
 class ProposalsGetterByReadingGroup(ProposalsGetterBase):
@@ -49,8 +52,14 @@ class ProposalsGetterByReadingGroup(ProposalsGetterBase):
     def get_proposals_from_election(self, elections):
         ids = []
         reading_groups_proposals = {}
+        are_there_any_proposals_by_reading_group = False
         for reading_group in ReadingGroup.objects.all():
-            reading_groups_proposals[reading_group.id] = reading_group.get_proposals(elections=elections)
+            proposals_by_reading_group = reading_group.get_proposals(elections=elections)
+            reading_groups_proposals[reading_group.id] = proposals_by_reading_group
+            if proposals_by_reading_group.exists() and not are_there_any_proposals_by_reading_group:
+                are_there_any_proposals_by_reading_group = True
+        if not are_there_any_proposals_by_reading_group:
+            return self.get_default_proposals_from_elections(elections)
         index = 0
         reading_group_not_to_check = []
         are_there_still_more_proposals = True

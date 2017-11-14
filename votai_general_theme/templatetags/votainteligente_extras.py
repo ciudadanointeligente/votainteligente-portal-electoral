@@ -423,4 +423,8 @@ def get_proposal_author(popular_proposal):
 @register.filter
 def get_classification_from_str(classification):
     from popular_proposal.forms.form_texts import TOPIC_CHOICES_DICT
-    return TOPIC_CHOICES_DICT.get(classification, "")
+    d = TOPIC_CHOICES_DICT
+    from votita.forms.forms import TOPIC_CHOICES_DICT
+    d.update(TOPIC_CHOICES_DICT)
+
+    return d.get(classification, "")

@@ -188,6 +188,8 @@ class MediaNaranjaWizardFormTests(MediaNaranjaAdaptersBase):
     def test_wizard_til_the_end(self):
         self.assertTrue(self.complete_wizard())
 
+    @override_config(DEFAULT_12_N_QUESTIONS_IMPORTANCE=0.5,
+                     DEFAULT_12_N_PROPOSALS_IMPORTANCE=0.5)
     def test_get_done(self):
         self.p1.proposer.profile.is_organization = True
         self.p1.proposer.profile.save()
@@ -201,8 +203,8 @@ class MediaNaranjaWizardFormTests(MediaNaranjaAdaptersBase):
         expected_1 = {'candidates': [], 'election': self.election2}
         result_1 = response.context['results'][1]
         self.assertEquals(result_1, expected_1)
-        expected = { 'candidates': [{'candidate':self.c1, 'value': 30.0},
-                    {'candidate':self.c2, 'value': 20.0}], 'election': self.election}
+        expected = { 'candidates': [{'candidate':self.c1, 'value': 60.0},
+                    {'candidate':self.c2, 'value': 40.0}], 'election': self.election}
         result_2 = response.context['results'][2]
         self.assertEquals(result_2, expected)
         self.assertIn(self.p1.proposer.organization_template, response.context['organizations'].all())

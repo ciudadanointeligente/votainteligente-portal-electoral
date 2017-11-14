@@ -17,7 +17,7 @@ class VotaIcurrentSiteMiddleware(MiddlewareMixin):
                 site = Site.objects.get(domain=host)
                 custom = CustomSite.objects.get(site=site)
                 site_and_custom = (site, custom)
-                cache.set(cache_key, site_and_custom)
+                r = cache.set(cache_key, site_and_custom)
             request.site = site_and_custom[0]
             request.urlconf = site_and_custom[1].urlconf
         except (Site.DoesNotExist, CustomSite.DoesNotExist):

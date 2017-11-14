@@ -53,11 +53,22 @@ class Adapter(CandidateGetterFromElectionMixin):
     def get_positions_from_candidate(self, candidate):
         positions = []
         for question in self.user_questions:
-            for position in question.positions.order_by('id'):
-                if question.taken_positions.filter(person=candidate, position=position):
-                    positions.append(1)
-                else:
-                    positions.append(0)
+            positions_from_question_cache_key = 'positions_from_question_' + str(question.id)
+            positions_from_question = cache.get(positions_from_question_cache_key)
+            if positions_from_question is None:
+                positions_from_question = question.positions.order_by('id')
+                cache.set(positions_from_question_cache_key, positions_from_question)
+            for position in positions_from_question:
+                taken_position_key = u"taken_position_" + str(candidate.id) + u"-" + str(position.id)
+                yes_or_no = cache.get(taken_position_key)
+                if yes_or_no is None:
+                    yes_or_no = None
+                    if question.taken_positions.filter(person=candidate, position=position):
+                        yes_or_no = 1
+                    else:
+                        yes_or_no = 0
+                    cache.set(taken_position_key, yes_or_no)
+                positions.append(yes_or_no)
         return positions
 
     def get_responses_matrix(self):

@@ -20,7 +20,7 @@
 </section>
 <section class="yellowline-down">
 </section>
-{% if featured_proposals.count %}
+{% if featured_proposals %}
 <section id="highlighted-proposals">
   {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=featured_proposals form=Nil hide_proposal_list_header=True hidden_search=True %}
 </section>

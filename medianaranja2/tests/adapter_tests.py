@@ -12,6 +12,8 @@ from django.contrib.auth.models import User
 from popular_proposal.models import (PopularProposal,
                                      Commitment,
                                      )
+from constance.test import override_config
+
 
 class MediaNaranjaAdaptersBase(TestCase):
     def setUp(self):
@@ -216,12 +218,14 @@ class CalculatorTests(MediaNaranjaAdaptersBase):
         C = calculator.get_commitments_result().tolist()
         self.assertEquals(C, [[2], [2], [0]])
 
+    @override_config(DEFAULT_12_N_QUESTIONS_IMPORTANCE=0.5,
+                     DEFAULT_12_N_PROPOSALS_IMPORTANCE=0.5)
     def test_get_the_hundred(self):
         self.setUpQuestions()
         selected_positions = [self.position1, self.position4]
         selected_proposals = [self.p1, self.p3]
         calculator = Calculator(self.election, selected_positions, selected_proposals)
-        self.assertEquals(calculator.hundred_percent, 4)
+        self.assertEquals(calculator.hundred_percent, 2.0)
         
         a = Area.objects.create(name="Valdivia")
         election2 = Election.objects.create(
@@ -242,8 +246,8 @@ class CalculatorTests(MediaNaranjaAdaptersBase):
         R = calculator._get_result().tolist()
         self.assertEquals(R, [[1.5],[1],[0]])
         final_result = calculator.get_result()
-        expected = {'candidates': [{'candidate':self.c1, 'value': 37.5},
-                    {'candidate':self.c2, 'value': 25.0}],
+        expected = {'candidates': [{'candidate':self.c1, 'value':75.0},
+                    {'candidate':self.c2, 'value': 50.0}],
                     'election': self.election}
         self.assertEquals(final_result, expected)
 

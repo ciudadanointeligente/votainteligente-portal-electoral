@@ -89,12 +89,23 @@ td.cal-date{
   background-size: cover;
   padding: 20px 0 20px;
   h1{
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    margin: 50px 0 20px;
+  }
+  h3{
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
     text-transform: none;
     letter-spacing: 0;
-    margin: 80px 0 -35px;
+    margin: 10px 0 40px;
+    font-weight: 400;
   }
-  h2{
-    font-size: 19px;
+  .tool-description{
+    color: $grey-one;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 10px 0 40px;
   }
 }
 
@@ -717,7 +728,7 @@ p.intro{
 }
 
 #manual-encuentro{
-  margin-bottom: 80px;
+  margin: 70px 0 80px;
 }
 
 .set-guide{
@@ -1051,7 +1062,7 @@ label{
     font-family: 'Arvo', serif;
     font-size: 30px;
     font-weight: 700;
-    margin: 10px 0 10px;
+    margin: 40px 0 10px;
     color: $yellow;
   }
   h3{
@@ -1088,6 +1099,43 @@ label{
     letter-spacing: 0;
     font-weight: 400;
     font-size: 14px;
-    line-height: 1;  
+    line-height: 1;
   }
+}
+
+.gallery {
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.gallery > div {
+  position: relative;
+  float: left;
+  padding: 5px;
+}
+
+.gallery > div > img {
+  display: block;
+  width: 100%;
+  transition: .1s transform;
+  transform: translateZ(0); /* hack */
+}
+
+.gallery > div:hover {
+  z-index: 1;
+}
+
+.gallery > div:hover > img {
+  transform: scale(2,2);
+  transition: .3s transform;
+}
+
+.cf:before, .cf:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+.cf:after {
+  clear: both;
 }

@@ -133,3 +133,21 @@ class ByLectureGroupAdapterTest(MediaNaranjaAdaptersBase):
         self.assertIn(self.p1, proposals)
         self.assertIn(self.p2, proposals)
         self.assertIn(self.p3, proposals)
+
+    @override_config(MEDIA_NARANJA_MAX_NUM_PR=200)
+    def test_selector_when_commitments_are_not_enough(self):
+
+        getter = ProposalsGetterByReadingGroup()
+        proposals = getter.get_all_proposals(self.child)
+        self.assertIn(self.p1, proposals)
+        self.assertIn(self.p2, proposals)
+        self.assertIn(self.p3, proposals)
+
+    @override_config(MEDIA_NARANJA_MAX_NUM_PR=200)
+    def test_selector_when_commitments_are_not_enough(self):
+        ReadingGroup.objects.all().delete()
+        getter = ProposalsGetterByReadingGroup()
+        proposals = getter.get_all_proposals(self.child)
+        self.assertIn(self.p1, proposals)
+        self.assertIn(self.p2, proposals)
+        self.assertIn(self.p3, proposals)

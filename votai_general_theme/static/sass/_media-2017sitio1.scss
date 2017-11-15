@@ -2,6 +2,15 @@
   .presidents{
     bottom: -250px;
   }
+
+  .ribbon-wrapper-candidate {
+    .ribbon-candidate {
+      padding: 6px 0 5px 0;
+      top: 84px;
+      right: -118px;
+      width: 188px;
+    }
+  }
 }
 
 @media screen and (max-width: 991px) {
@@ -70,6 +79,14 @@
   .gallery > div:hover > img {
     transform: none;
   }
+
+  .ribbon-wrapper-candidate {
+    width: 100%;
+    .ribbon-candidate {
+      right: -38%;
+      top: 47%;
+    }
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -90,6 +107,16 @@
   }
 }
 
+@media screen and (max-width: 630px) {
+  .ribbon-wrapper-candidate {
+    width: 100%;
+    .ribbon-candidate {
+      right: -36%;
+      top: 49%;
+    }
+  }
+}
+
 @media screen and (max-width: 560px) {
   #welcome{
     h1{
@@ -101,6 +128,13 @@
     }
     .hashtag{
       font-size: 22px;
+    }
+  }
+  .ribbon-wrapper-candidate {
+    width: 100%;
+    .ribbon-candidate {
+      right: -27%;
+      top: 49%;
     }
   }
 }
@@ -156,6 +190,13 @@
   .bajada {
     margin: 0px;
   }
+  .ribbon-wrapper-candidate {
+    width: 100%;
+    .ribbon-candidate {
+      right: -23%;
+      top: 47%;
+    }
+  }
 }
 
 
@@ -180,5 +221,15 @@
 
   .share-card a .fa-stack{
     margin: 10px 0 10px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .ribbon-wrapper-candidate {
+    width: 100%;
+    .ribbon-candidate {
+      right: -19%;
+      top: 41%;
+    }
   }
 }

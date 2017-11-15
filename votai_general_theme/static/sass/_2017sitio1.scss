@@ -871,6 +871,41 @@ p.intro{
   }
 }
 
+.ribbon-wrapper-candidate {
+  width: 333px;
+  height: 288px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  .ribbon-candidate {
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform:    rotate(-45deg);
+    -ms-transform:     rotate(-45deg);
+    -o-transform:      rotate(-45deg);
+    position: relative;
+    padding: 6px 0 5px 0;
+    top: 107px;
+    right: -93px;
+    width: 188px;
+    color: white;
+    word-wrap: break-word;
+    white-space: normal;
+    background-color: #FF645B;
+    border-radius: 6px;
+    span.no-commitments{
+      padding: 5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+    }
+  }
+}
 /*Pasos creando propuesta*/
 .tips, .tips-invert{
   background: $grey-one;
@@ -1148,8 +1183,14 @@ label{
 }
 
 .candidate-commitment-card{
-  font-family: 'Arvo', serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   text-align: center;
-  color: $blue;
+  color: white;
+  background-color: $blue;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px;
+  border-radius: 6px;
+  font-size: 13px;
 }

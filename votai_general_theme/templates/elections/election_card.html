@@ -18,7 +18,12 @@
   <div class="row">
     {% for candidate in election.candidates.all %}
     <div class="col-md-3">
-      <div class="panel-heading">
+      <div class="panel-heading text-center">
+        {% if not candidate.commitments.exists %}
+        <div class="ribbon-wrapper-candidate">
+          <div class="ribbon-candidate text-center"><span class="no-commitments text-center">Sin compromisos en votainteligente.cl</span></div>
+        </div>
+        {% endif %}
         {% if candidate.image %}
         {% thumbnail candidate.image "300x300" crop="center" as im %}
           <a href="{{candidate.get_absolute_url}}"><img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive img-circle" itemprop="image" /></a>
@@ -28,8 +33,11 @@
         {% endif %}
       </div>
       <div class="panel panel-default">
-        <div class="panel-body">
-          <a href="{{candidate.get_absolute_url}}" itemprop="name"><h3>{{ candidate.name }}</h3></a>
+        <div class="panel-body text-center">
+          <a href="{{candidate.get_absolute_url}}" itemprop="name"><h3 class="candidate-name-card">{{ candidate.name }}</h3>
+          {% if candidate.commitments.exists %}
+            <span class="candidate-commitment-card">{{ candidate.commitments.count }} compromisos</span></a>
+          {% endif %}
         </div>
       </div>
     </div>

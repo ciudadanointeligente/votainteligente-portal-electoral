@@ -22,6 +22,9 @@ class ProposalViewSet(ReadOnlyModelViewSet):
         username = self.request.query_params.get('proposer', None)
         if username is not None:
             queryset = queryset.filter(proposer__username=username)
+        clasification = self.request.query_params.get('clasification', None)
+        if clasification is not None:
+            queryset = queryset.filter(clasification=clasification)
         return queryset
 
 

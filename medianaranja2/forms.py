@@ -40,21 +40,10 @@ class SetupForm(forms.Form):
                                   help_text=u"Si quieres conocer con qué candidatura al Congreso eres más compatible, elige la comuna en la que votas. Si sólo te interesa tu media naranja presidencial, elige “no aplica”.",
                                   empty_label=u"NO APLICA",
                                   required=False,
-                                  queryset=Area.objects.none())
+                                  queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE).order_by('name'))
     categories = CategoryMultipleChoiceField(label=u"De estos temas, ¿cuáles son los que te parecen más importantes para el país?",
                                              queryset=QuestionCategory.objects.all().order_by('name'),
                                              widget=forms.CheckboxSelectMultiple(),)
-
-    def __init__(self, *args, **kwargs):
-        super(SetupForm, self).__init__(*args, **kwargs)
-        areas_qs_cache = 'areas_qs_cache_setup_form'
-        if cache.get(areas_qs_cache) is not None:
-            self.fields['area'].queryset = cache.get(areas_qs_cache)
-        else:
-            qs = Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE).order_by('name')
-            self.fields['area'].queryset = qs
-            cache.set(areas_qs_cache, qs)
-
 
     def clean(self):
         cleaned_data = super(SetupForm, self).clean()

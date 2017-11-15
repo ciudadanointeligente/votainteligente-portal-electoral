@@ -29,7 +29,10 @@
       </div>
       <div class="panel panel-default">
         <div class="panel-body">
-          <a href="{{candidate.get_absolute_url}}" itemprop="name"><h3>{{ candidate.name }}</h3></a>
+          <a href="{{candidate.get_absolute_url}}" itemprop="name"><h3 class="candidate-name-card">{{ candidate.name }}</h3></a>
+          {% if candidate.commitments.exists %}
+            <p class="candidate-commitment-card">{{ candidate.commitments.count }} compromisos</p>
+          {% endif %}
         </div>
       </div>
     </div>

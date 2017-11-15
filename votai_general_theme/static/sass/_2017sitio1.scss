@@ -1103,6 +1103,7 @@ label{
   }
 }
 
+/*IMAGE GALLERY*/
 .gallery {
   margin: 0 auto;
   padding: 5px;
@@ -1138,4 +1139,17 @@ label{
 
 .cf:after {
   clear: both;
+}
+
+/*CANDIDATE CARD*/
+.candidate-name-card{
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+.candidate-commitment-card{
+  font-family: 'Arvo', serif;
+  font-weight: 700;
+  text-align: center;
+  color: $blue;
 }

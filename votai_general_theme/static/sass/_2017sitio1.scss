@@ -166,6 +166,19 @@ td.cal-date{
   color: $grey-three;
   margin: -30px 0 20px;
 }
+.bajada-cores {
+  b {
+    color: $grey-one;
+  }
+  font-size: 19px;
+  font-family: 'Arvo', sans-serif;
+  color: $grey-three;
+  padding-top: 15px;
+  a {
+    color: $grey-three;
+    text-decoration: underline;
+  }
+}
 
 #highlighted-proposals{
   padding: 70px 0 50px;

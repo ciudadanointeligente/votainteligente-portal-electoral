@@ -51,6 +51,11 @@
 {% for election_result in results %}
 <div class="col-md-12">
   <h3>Tu media naranja política para {{election_result.election}} es</h3>
+  
+  {% if election_result.election.name != 'Presidencia' %}
+  <p class="alert alert-info">Los resultados se basan en la coincidencia entre tus respuesas en el paso 3 y los compromisos de las candidaturas a las propuestas ciudadanas del Vota Inteligente. Si alguna candidatura de tu comuna no aparece, se puede deber a que todavía no esté comprometida con ninguna propuesta de Vota Inteligente. Para que aparezca, invítalo a que se comprometa <a href="{% url 'know_your_candidates' %}">acá</a>.</p>
+  {% endif %}
+
   {% for candidate_result in election_result.candidates %}
   <div class="col-md-4 text-center">
       <div class="text-center candidate-result-value">{{ candidate_result.value|floatformat }}%</div>
@@ -91,6 +96,8 @@
 
 <h4>¿CÓMO CALCULAMOS TU MEDIA NARANJA PARLAMENTARIA?</h4>
 <p>Para calcular con qué candidaturas a la Cámara de Diputados y al Senado eres más compatible, sólo consideramos la información sobre compromisos de las candidaturas en Vota Inteligente. Dado que el Servel no exige que estas candidaturas entreguen un programa formal, no podemos comparar sus posturas con las tuyas.</p>
+
+
 </div>
 
 <a href="{% url 'medianaranja2:index' %}" class="btn btn-success pull-right" role="button" onclick="ga('send','event','juega-de-nuevo','click')">Juega de nuevo</a>

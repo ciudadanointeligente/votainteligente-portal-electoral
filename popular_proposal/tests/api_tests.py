@@ -22,7 +22,7 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
         url = reverse('popularproposal-list')
         response = self.client.get(url, format='json')
         self.assertEquals(response.status_code, 200)
-        content = json.loads(response.content)
+        content = json.loads(response.content)["results"]
         self.assertEquals(len(content), 1)
         self.assertEquals(content[0]['title'], popular_proposal.title)
         self.assertEquals(content[0]['id'], popular_proposal.id)
@@ -50,15 +50,35 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
         url = reverse('popularproposal-list') + "?proposer=" + self.feli.username
         response = self.client.get(url, format='json')
         self.assertEquals(response.status_code, 200)
-        content = json.loads(response.content)
+        content = json.loads(response.content)["results"]
         self.assertEquals(len(content), 1)
         self.assertEquals(content[0]['id'], popular_proposal2.id)
+
+    def test_get_filtered_proposal_2(self):
+        p1 = PopularProposal.objects.create(proposer=self.fiera,
+                                            area=self.arica,
+                                            data=self.data,
+                                            title=u'This is a title',
+                                            clasification=u'typos'
+                                            )
+        popular_proposal2 = PopularProposal.objects.create(proposer=self.feli,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                      )
+        url = reverse('popularproposal-list') + "?clasification=typos"
+        response = self.client.get(url, format='json')
+        self.assertEquals(response.status_code, 200)
+        content = json.loads(response.content)["results"]
+        self.assertEquals(len(content), 1)
+        self.assertEquals(content[0]['id'], p1.id)
 
     def test_get_candidates(self):
         url = reverse('candidate-list')
         response = self.client.get(url, format='json')
         self.assertEquals(response.status_code, 200)
-        content = json.loads(response.content)
+        content = json.loads(response.content)["results"]
         self.assertEquals(len(content), Candidate.objects.count())
         self.assertTrue(content[0]['name'])
         self.assertTrue(content[0]['id'])
@@ -79,7 +99,7 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
         url = reverse('commitment-list')
         response = self.client.get(url, format='json')
         self.assertEquals(response.status_code, 200)
-        content = json.loads(response.content)
+        content = json.loads(response.content)["results"]
         self.assertEquals(len(content), 1)
         self.assertTrue(content[0]['proposal'])
         self.assertTrue(content[0]['candidate'])

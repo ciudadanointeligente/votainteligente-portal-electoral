@@ -16,7 +16,7 @@
         <div class="apoyo-btn">
         {% if not avoid_counter %}
           <div class="apoyo-contador">
-            <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> candidatura(s) comprometida(s)</p>
+            <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.commitments.count}}</span> candidatura(s) comprometida(s)</p>
             <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s) ciudadano(s)</p>
           </div>
         {% endif %}
@@ -63,7 +63,7 @@
           <!-- "logueado sin support" -->
           {% if not avoid_counter %}
           <div class="apoyo-contador">
-            <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> candidatura(s) comprometida(s)</p>
+            <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.commitments.count}}</span> candidatura(s) comprometida(s)</p>
             <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s) ciudadano(s)</p>
           </div>
           {% endif %}
@@ -82,7 +82,7 @@
         <!-- apoyando -->
           {% if not avoid_counter %}
             <div class="apoyo-contador">
-              <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> candidatura(s) comprometida(s)</p>
+              <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.commitments.count}}</span> candidatura(s) comprometida(s)</p>
               <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s) ciudadano(s)</p>
             </div>
           {% endif %}
@@ -107,7 +107,7 @@
     <!-- usuario no logueado -->
       {% if not avoid_counter %}
       <div class="apoyo-contador">
-        <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> candidatura(s) comprometida(s)</p>
+        <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.commitments.count}}</span> candidatura(s) comprometida(s)</p>
         <p class="nota"><span id='likers_count_{{proposal.id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s) ciudadano(s)</p>
       </div>
       {% endif %}

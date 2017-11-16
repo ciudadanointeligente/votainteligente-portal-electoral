@@ -622,7 +622,7 @@ a.candidate-commit-name {
 
 .share-card{
   background-color: $grey-one;
-  min-height: 115px;
+  min-height: 122px;
   padding: 5px 17px 5px;
   position: absolute;
   bottom: 0;
@@ -669,7 +669,7 @@ a.candidate-commit-name {
   background-color: $yellow;
   color: white;
   position: relative;
-  top: 9px;
+  top: 0;
   &:hover{
     color: $grey-one;
   }

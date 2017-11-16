@@ -3,6 +3,7 @@ from medianaranja2.forms import MediaNaranjaWizardForm
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from constance import config
+from medianaranja2.views import ShareYourResult, ShareMyResultPlz
 
 media_naranja2_view = MediaNaranjaWizardForm.as_view()
 
@@ -13,6 +14,12 @@ urlpatterns = [
     url(r'^$',
         media_naranja2_view,
         name='index'),
+    url(r'^compartir/?$',
+        ShareMyResultPlz.as_view(),
+        name='create_share'),
+    url(r'^compartir/(?P<identifier>[-\w]+)/?$',
+        ShareYourResult.as_view(),
+        name='share'),
 ]
 if settings.DEBUG:# pragma: no cover
     from medianaranja2.forms import MediaNaranjaResultONLYFORDEBUG

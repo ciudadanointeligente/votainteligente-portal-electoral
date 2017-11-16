@@ -909,13 +909,16 @@ p.intro{
     white-space: normal;
     background-color: #FF645B;
     border-radius: 6px;
-    span.no-commitments{
-      padding: 5px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 700;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 13px;
+    a {
+      color: white;
+      span.no-commitments{
+        padding: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+      }
     }
   }
 }

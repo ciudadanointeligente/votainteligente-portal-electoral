@@ -1,9 +1,11 @@
 
 from django.views.generic import DetailView
 from medianaranja2.models import SharedResult
-from django.views.generic.base import RedirectView
 from django.contrib.contenttypes.models import ContentType
 from elections.models import Candidate
+from medianaranja2.forms import ShareForm
+from django.views.generic.edit import CreateView
+from organization_profiles.models import OrganizationTemplate
 
 
 class ShareYourResult(DetailView):
@@ -18,16 +20,17 @@ class ShareYourResult(DetailView):
         context['percentage'] = self.object.data['percentage']
         return context
 
-class ShareMyResultPlz(RedirectView):
+
+class ShareMyResultPlzBase(CreateView):
+    form_class = ShareForm
+
+    def get_form_kwargs(self):
+        kwargs = super(ShareMyResultPlzBase, self).get_form_kwargs()
+        kwargs['content_type'] = ContentType.objects.get_for_model(self.shared_object_class)
+        return kwargs
+
+class ShareMyResultPlz(ShareMyResultPlzBase):
     shared_object_class = Candidate
 
-    def post(self, request):
-        object_id = request.POST.get('object_id')
-        percentage = request.POST.get('percentage')
-        content_type = ContentType.objects.get_for_model(Candidate)
-        self.object = SharedResult.objects.create(data={'object_id': object_id, 'percentage': float(percentage)},
-                                                  content_type=content_type)
-        return super(ShareMyResultPlz, self).post(request)
-
-    def get_redirect_url(self, *args, **kwargs):
-        return self.object.get_absolute_url()
+class ShareMyResultOrgPlz(ShareMyResultPlzBase):
+    shared_object_class = OrganizationTemplate

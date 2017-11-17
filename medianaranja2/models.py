@@ -5,10 +5,11 @@ from popular_proposal.models import PopularProposal
 from picklefield.fields import PickledObjectField
 from django.contrib.contenttypes.models import ContentType
 import uuid
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 from django.core.urlresolvers import reverse
 from io import BytesIO
 from django.contrib.sites.models import Site
+import textwrap
 
 
 class ReadingGroup(models.Model):
@@ -33,27 +34,55 @@ class SharedResult(models.Model):
     def get_absolute_url(self):
         return reverse('medianaranja2:share', kwargs={'identifier': self.identifier})
 
-    def get_shared_image(self):
-        plantilla = Image.open('votai_general_theme/static/img/plantilla_org.png')
+    def get_text_for_image(self):
+        montserrat_n_propuesta = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 34)
+        txt = Image.new('RGBA', (1200,630), (255,255,255,0))
 
-        montserrat_n_propuesta = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 16)
-        arvo_titulo = ImageFont.truetype("votai_general_theme/static/fonts/Arvo-Bold.ttf", 60)
-        montserrat_autor = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 22)
+        d = ImageDraw.Draw(txt)
+        
+        lines = textwrap.wrap(self.object.name, width=29)
+        max_lines = 2
+        if len(lines) > max_lines:
+            last_line = lines[max_lines - 1]
+            lines = lines[0:max_lines]
+            lines[max_lines - 1] = last_line
+
+        title = '\n'.join(lines)
+
+        rgb_color = (255,255,255)
+        d.multiline_text((68,302), title, font=montserrat_n_propuesta, fill=rgb_color)
+        return txt
+
+    def get_shared_image(self):
+        
+        base = Image.new('RGBA',(1200,630),(254,199,13))
+
         bg_color = "#FF00FF"
         output = BytesIO()
         output.seek(0)
         h = bg_color.lstrip('#')
-        rgb_color = tuple(int(h[i:i+2], 16) for i in (0, 2 ,4))
-        rgb_color = rgb_color
-        base = Image.new('RGBA',(1200,630),rgb_color)
         
+        img = Image.open(self.object.image)
+        bigsize = (396, 396)
+        img = img.resize(bigsize, Image.ANTIALIAS)
+
+        base.paste(img,(784,96))
+        plantilla = Image.open('votai_general_theme/static/img/plantilla_naranja.png').convert("RGBA")
         base.paste(plantilla, (0,0), plantilla)
-        return base
+        text = self.get_text_for_image()
+
+        out = Image.alpha_composite(base, text)
+
+        return out
 
     def ogp_image(self):
         site = Site.objects.get_current()
         image_url = reverse('medianaranja2:og_image',
                             kwargs={'identifier': self.identifier})
-        url = "https://%s%s" % (site.domain,
+        url = "//%s%s" % (site.domain,
                                image_url)
         return url
+
+    @property
+    def object(self):
+        return self.content_type.get_object_for_this_type(id=self.data["object_id"])

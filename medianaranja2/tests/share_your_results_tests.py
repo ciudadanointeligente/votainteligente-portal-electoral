@@ -74,3 +74,11 @@ class ShareYourResultsTestCase(MediaNaranjaAdaptersBase):
         self.assertEquals(result.content_type, content_type)
         self.assertEquals(result.data['object_id'], self.c1.id)
         self.assertEquals(result.data['percentage'], 75.0)
+
+    def test_get_actual_object(self):
+        data = {'object_id': self.c1.id, 'percentage': 75.0}
+        content_type = ContentType.objects.get_for_model(Candidate)
+        result = SharedResult.objects.create(data=data,
+                                             content_type=content_type)
+        
+        self.assertEqual(result.object, self.c1)

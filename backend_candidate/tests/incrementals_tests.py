@@ -49,6 +49,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
                                                        exclude_qs=exclude_qs,
                                                        name=u"Candidatos al parlamento de Frente Amplio",
                                                        text=u"Este texto cambia en base al envío")
+        self.assertFalse(f.subject)
         self.assertTrue(f)
 
     def test_instanciate_suggestion_to_incremental_filter(self):
@@ -212,6 +213,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
         exclude_qs = {'elections__position': "Presidenta o Presidente"}
         f = IncrementalsCandidateFilter.objects.create(filter_qs=filter_qs,
                                                        exclude_qs=exclude_qs,
+                                                       subject="Esto es un custom subject", 
                                                        text=u"te querimos musho\n\rsaltode linea",
                                                        name=u"Candidatos al parlamento de Frente Amplio")
         p1 = PopularProposal.objects.create(proposer=self.feli,
@@ -260,6 +262,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
                                                      f_1.email,
                                                      f_2.email]
         self.assertIn(first_email.to[0], possible_emails_that_could_have_been_used)
+        self.assertEquals(first_email.subject, f.subject)
 
     def test_command_line_for_selected_filters(self):
         e = Election.objects.first()

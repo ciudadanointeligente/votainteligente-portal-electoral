@@ -162,7 +162,11 @@ class CandidateIncremental(models.Model):
         context['candidate_incremental'] = self
         for candidacy in self.candidate.candidacy_set.all():
             context['candidacy'] = candidacy
+            subject = None
+            if self.suggestion and self.suggestion.subject:
+                subject = self.suggestion.subject
             send_mail(context, 'suggestions_for_candidates',
+                  subject=subject,
                   to=[candidacy.user.email])
             time.sleep(sleep)
 
@@ -170,6 +174,9 @@ class IncrementalsCandidateFilter(models.Model):
     name = models.CharField(max_length=12288,
                             null=True,
                             blank=True)
+    subject = models.CharField(max_length=256,
+                               null=True,
+                               blank=True)
     text = models.TextField(blank=True)
     filter_qs = PickledObjectField()
     exclude_qs = PickledObjectField()

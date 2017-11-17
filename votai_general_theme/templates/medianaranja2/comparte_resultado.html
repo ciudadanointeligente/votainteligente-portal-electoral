@@ -27,13 +27,15 @@
 {% block content %}
 <div class="container">
   <h2>Declaración pública</h2>
-
+  <p>Tu también puedes tener tu <a href="{% url 'medianaranja2:index' %}">Media Naranja Política.</a></p>
   <div class="row">
     <div class="col-xs-12 col-md-4 col-md-offset-4">
 
       <div class="panel panel-default">
         <div class="panel-body">
-          <img src="{{object.ogp_image}}" class="img-responsive" alt="{{object.object.get_name}}" title="{{object.object.name}}">
+          <a href="{{object.object.get_absolute_url}}">
+            <img src="{{object.ogp_image}}" class="img-responsive" alt="{{object.object.get_name}}" title="{{object.object.name}}">
+          </a>
           <ul class="list-inline text-center">
             <li><a href="#" onclick="window.open('//twitter.com/share','twitter','width=450, height=250')"><i class="fa fa-twitter fa-2x"></i></a></li>
             <li><a href="#" onclick="window.open('//www.facebook.com/sharer/sharer.php','facebook','width=450, height=250')"><i class="fa fa-facebook fa-2x"></i></a></li>

@@ -41,6 +41,15 @@
           <li><a href="{{o.rss_url}}"><i class="fa fa-rss" aria-label="RSS"></i></a></li>
           {% endif %}
         </ul>
+      <div>
+        <form action="{% url 'medianaranja2:create_share_org' %}" method="POST"  target="_blank">
+          {% csrf_token %}
+          <input name='object_id' type="hidden" value="{{ o.id }}"/>
+          
+          <!-- <input type="submit" value="{% trans "Declárale tu amor!" %}"  class="btn btn-default" /> -->
+
+        </form>
+        </div>
     </div>
     {% endfor %}
 </div>
@@ -78,12 +87,22 @@
         {% if pacto.value %}
         <div><span class="label-warning">{{pacto.value}}</span></div>
         {% endif %}
+        
+        <div>
+        <form action="{% url 'medianaranja2:create_share' %}" method="POST"  target="_blank">
+          {% csrf_token %}
+          <input name='object_id' type="hidden" value="{{ candidate_result.candidate.id }}"/>
+          <input name="percentage" type="hidden" value="{{ candidate_result.value|floatformat:0 }}" />
+          
+          <!-- <input type="submit" value="{% trans "Declárale tu amor!" %}"  class="btn btn-default" /> -->
+
+        </form>
+        </div>
     </div>
   {% endfor %}
 </div>
 <hr>
 {% endfor %}
-
 <div class="col-md-12 resultado ayuda">
   <h4>Ayúdanos</h4>
   <p>Acabaste de hacer tu Media Naranja Política y queremos saber cómo te sentiste con ella, ¿nos ayudas contestando cinco preguntas?</p>

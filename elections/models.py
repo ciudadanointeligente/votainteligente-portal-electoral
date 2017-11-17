@@ -18,6 +18,8 @@ from django.shortcuts import render
 from constance import config
 from django.db.models import Case, Value, When, PositiveSmallIntegerField
 from django.template.loader import get_template
+from PIL import Image
+from votainteligente.shareable import ShareableMixin
 
 
 class AreaManager(models.Manager):
@@ -157,7 +159,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from agenda.models import Activity
 
 
-class Candidate(Person, ExtraInfoMixin, OGPMixin):
+class Candidate(Person, ExtraInfoMixin, OGPMixin, ShareableMixin):
     elections = models.ManyToManyField('Election', related_name='candidates', default=None)
     force_has_answer = models.BooleanField(default=False,
                                            help_text=_('Marca esto si quieres que el candidato aparezca como que no ha respondido'))
@@ -208,6 +210,9 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin):
         if self.candidacy_set.exclude(user__last_login__isnull=True):
             return True
         return False
+
+    def get_image(self):
+      return Image.open(self.image)
 
     def ranking_in_election(self):
         if self.election:

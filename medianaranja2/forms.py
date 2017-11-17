@@ -15,6 +15,7 @@ from django.core.cache import cache
 from django.utils.safestring import mark_safe
 from django.db.models import Q
 from medianaranja2.grouped_multiple_choice_fields import GroupedModelMultiChoiceField
+from django.forms import ModelForm
 
 
 class CategoryMultipleChoiceField(forms.ModelMultipleChoiceField):
@@ -177,3 +178,25 @@ class MediaNaranjaResultONLYFORDEBUG(TemplateView):# pragma: no cover
                       {'value': 1.0, 'candidate': e1.candidates.all()[1]},
                       {'value': 0.5, 'candidate': e1.candidates.all()[2]}]}]
         return context
+
+from medianaranja2.models import SharedResult
+
+class ShareForm(ModelForm):
+    object_id = forms.CharField()
+    percentage = forms.FloatField(required=False)
+
+    class Meta:
+        model = SharedResult
+        fields = ['object_id', 'percentage']
+
+    def __init__(self, *args, **kwargs):
+        self.content_type = kwargs.pop('content_type')
+        super(ShareForm, self).__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        instance = super(ShareForm, self).save(commit=False)
+        instance.content_type = self.content_type
+        instance.data = self.cleaned_data
+        if commit:
+            instance.save()
+        return instance

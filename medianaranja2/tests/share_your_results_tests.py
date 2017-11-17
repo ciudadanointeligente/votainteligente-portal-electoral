@@ -25,6 +25,8 @@ class ShareYourResultsTestCase(MediaNaranjaAdaptersBase):
                                              content_type=content_type)
         self.assertTrue(result.identifier)
         self.assertTrue(result.data)
+        self.assertTrue(result.get_shared_image())
+        self.assertTrue(result.ogp_image())
 
     def test_get_absolute_url(self):
         data = {'object_id': self.c1.id, 'percentage': 75.0}

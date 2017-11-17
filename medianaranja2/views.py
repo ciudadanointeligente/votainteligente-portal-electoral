@@ -6,6 +6,7 @@ from elections.models import Candidate
 from medianaranja2.forms import ShareForm
 from django.views.generic.edit import CreateView
 from organization_profiles.models import OrganizationTemplate
+from django.http import HttpResponse
 
 
 class ShareYourResult(DetailView):
@@ -23,6 +24,7 @@ class ShareYourResult(DetailView):
 
 class ShareMyResultPlzBase(CreateView):
     form_class = ShareForm
+    template_name = 'medianaranja2/create_share.html'
 
     def get_form_kwargs(self):
         kwargs = super(ShareMyResultPlzBase, self).get_form_kwargs()
@@ -34,3 +36,15 @@ class ShareMyResultPlz(ShareMyResultPlzBase):
 
 class ShareMyResultOrgPlz(ShareMyResultPlzBase):
     shared_object_class = OrganizationTemplate
+
+
+class SharedResultOGImageView(DetailView):
+    model = SharedResult
+    slug_url_kwarg = 'identifier'
+    slug_field = 'identifier'
+
+    def render_to_response(self, context, **response_kwargs):
+        im = self.object.get_shared_image()
+        response = HttpResponse( content_type="image/png")
+        im.save(response, "PNG")
+        return response

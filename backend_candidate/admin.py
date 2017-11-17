@@ -12,7 +12,7 @@ class SuggestionsInline(admin.TabularInline):
 
 @admin.register(IncrementalsCandidateFilter)
 class IncrementalAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+    list_display = ("name","subject")
     inlines = [
         SuggestionsInline
     ]

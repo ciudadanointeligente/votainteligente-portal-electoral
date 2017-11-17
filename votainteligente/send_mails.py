@@ -17,7 +17,12 @@ def validateEmail(email):
         return False
 
 
-def send_mail(context, template_prefix, to=[], reply_to=None, from_email=settings.DEFAULT_FROM_EMAIL):
+def send_mail(context,
+              template_prefix,
+              to=[],
+              reply_to=None,
+              subject=None,
+              from_email=settings.DEFAULT_FROM_EMAIL):
     validated_to = []
     for m in to:
         if validateEmail(m):
@@ -29,7 +34,7 @@ def send_mail(context, template_prefix, to=[], reply_to=None, from_email=setting
     template_body = get_template('mails/%(template_prefix)s/body.txt' % template_prefix_dict)
     body = template_body.render(context)
     template_subject = get_template('mails/%(template_prefix)s/subject.txt' % template_prefix_dict)
-    subject = template_subject.render(context).replace('\n', '').replace('\r', '')
+    subject = subject or template_subject.render(context).replace('\n', '').replace('\r', '')
     email = EmailMultiAlternatives(subject, body, from_email, to)
     try:
         template_body_html = get_template('mails/%(template_prefix)s/body.html' % template_prefix_dict)

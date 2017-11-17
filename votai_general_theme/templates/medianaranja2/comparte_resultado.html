@@ -10,16 +10,16 @@
 {% block ogp %}
   <meta property="og:title" content="Media Naranja Política en VotaInteligente">
   <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
-  <meta property="og:url" content="https://{% url_domain %}{% url 'medianaranja2:index' %}">
-  <meta property="og:image" content="{{object.ogp_image }}">
-  <meta property="og:description" content="Mi Media Naranja Política es {{ object.get_name }}">
+  <meta property="og:url" content="https://{% url_domain %}{{object.get_absolute_url}}">
+  <meta property="og:image" content="https:{{object.ogp_image }}">
+  <meta property="og:description" content="Mi Media Naranja Política es {{object.object.get_name}}">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ciudadanoi">
   <meta name="twitter:creator" content="@ciudadanoi">
   <meta name="twitter:title" content="Media Naranja Política en VotaInteligente">
-  <meta name="twitter:description" content="Mi Media Naranja Política es {{ object.get_name }}">
-  <meta name="twitter:image" content="{{object.ogp_image }}">
+  <meta name="twitter:description" content="Mi Media Naranja Política es {{object.object.get_name}}">
+  <meta name="twitter:image" content="https:{{object.ogp_image }}">
 
   {% endblock ogp %}
 
@@ -33,10 +33,10 @@
 
       <div class="panel panel-default">
         <div class="panel-body">
-          <img src="{{object.ogp_image}}" class="img-responsive" alt="{{object.object.name}}" title="{{object.object.name}}">
+          <img src="{{object.ogp_image}}" class="img-responsive" alt="{{object.object.get_name}}" title="{{object.object.name}}">
           <ul class="list-inline text-center">
-            <li><a href="#" onclick="window.open('//twitter.com/share?hashtags={{ config.WEBSITE_TWITTER_HASHTAG }}&text=El%2019N%20me%20comprometo%20con%20{{object.object.name}}%20en&url=https://votainteligente.cl/media_naranja/','twitter','width=450, height=250')"><i class="fa fa-twitter fa-2x"></i></a></li>
-            <li><a href="#" onclick="window.open('//www.facebook.com/sharer/sharer.php?u=https://votainteligente.cl/media_naranja/','facebook','width=450, height=250')"><i class="fa fa-facebook fa-2x"></i></a></li>
+            <li><a href="#" onclick="window.open('//twitter.com/share?hashtags={{ config.WEBSITE_TWITTER_HASHTAG }}&text=El%2019N%20me%20comprometo%20con%20{{object.object.get_name}}%20en&url=https://votainteligente.cl/media_naranja/','twitter','width=450, height=250')"><i class="fa fa-twitter fa-2x"></i></a></li>
+            <li><a href="#" onclick="window.open('//www.facebook.com/sharer/sharer.php','facebook','width=450, height=250')"><i class="fa fa-facebook fa-2x"></i></a></li>
           </ul>
         </div>
       </div>

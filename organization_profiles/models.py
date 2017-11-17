@@ -20,6 +20,8 @@ import sys
 from PIL import Image, ImageDraw, ImageFont
 from django.contrib.sites.models import Site
 import textwrap
+from votainteligente.shareable import ShareableMixin
+
 
 LOGO_SIZE = 154
 
@@ -35,7 +37,7 @@ class OrganizationTemplateManager(models.Manager):
 
 
 @python_2_unicode_compatible
-class OrganizationTemplate(models.Model):
+class OrganizationTemplate(models.Model, ShareableMixin):
     organization = models.OneToOneField(User, related_name='organization_template')
     content = models.TextField(default="")
     logo = models.ImageField(upload_to="organizations/profiles/",
@@ -102,6 +104,12 @@ class OrganizationTemplate(models.Model):
             ExtraPage.objects.create(template=self,
                                      title=data["title"],
                                      content=data["content"])
+
+    def get_image(self):
+        return Image.open(self.logo)
+
+    def get_name(self):
+        return self.title
 
     def get_absolute_url(self):
         return reverse('organization_profiles:home', kwargs={'slug': self.organization.username})

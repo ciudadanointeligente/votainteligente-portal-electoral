@@ -40,7 +40,7 @@ class SharedResult(models.Model):
 
         d = ImageDraw.Draw(txt)
         
-        lines = textwrap.wrap(self.object.name, width=29)
+        lines = textwrap.wrap(self.object.get_name(), width=29)
         max_lines = 2
         if len(lines) > max_lines:
             last_line = lines[max_lines - 1]
@@ -54,20 +54,25 @@ class SharedResult(models.Model):
         return txt
 
     def get_shared_image(self):
-        
         base = Image.new('RGBA',(1200,630),(254,199,13))
 
         bg_color = "#FF00FF"
         output = BytesIO()
         output.seek(0)
         h = bg_color.lstrip('#')
-        
-        img = Image.open(self.object.image)
-        bigsize = (396, 396)
-        img = img.resize(bigsize, Image.ANTIALIAS)
+        try:
+            img = self.object.get_image()
+            bigsize = (396, 396)
+            img = img.resize(bigsize, Image.ANTIALIAS)
 
-        base.paste(img,(784,96))
-        plantilla = Image.open('votai_general_theme/static/img/plantilla_naranja.png').convert("RGBA")
+            base.paste(img,(784,96))
+        except:
+            img = None
+        plantilla_name = 'votai_general_theme/static/img/plantilla_naranja_no_img.png'
+        if img is not None:
+            plantilla_name = 'votai_general_theme/static/img/plantilla_naranja.png'
+        
+        plantilla = Image.open(plantilla_name).convert("RGBA")
         base.paste(plantilla, (0,0), plantilla)
         text = self.get_text_for_image()
 

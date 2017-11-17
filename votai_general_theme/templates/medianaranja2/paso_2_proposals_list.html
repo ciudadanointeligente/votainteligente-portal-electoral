@@ -22,7 +22,7 @@
         {% for k,v in choice_label %}
         <br />
           <label for="id_{{wizard.steps.current}}-proposals_{{k}}">
-            <input class="proposal_option" id="id_{{wizard.steps.current}}-proposals_{{k}}" name="{{wizard.steps.current}}-{{wizard.form.proposals.name}}" title="" type="checkbox" value="{{k}}" /> {{v}}
+            <input class="proposal_option" id="id_{{wizard.steps.current}}-proposals_{{k}}" name="{{wizard.steps.current}}-{{wizard.form.proposals.name}}" title="" type="checkbox" value="{{k}}" /> {{v|lower|capfirst}}
           </label>
         {% endfor %}
     </div>

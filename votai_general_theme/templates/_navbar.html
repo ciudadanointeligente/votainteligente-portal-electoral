@@ -28,6 +28,7 @@
                 {% endif %}
                 <li><a href="{% url 'medianaranja2:index' %}" onclick="ga('send', 'event', 'nav-media-naranja', 'click')">Media naranja</a></li>
                 <li><a href="{% url 'material_ciudadano' %}" onclick="ga('send', 'event', 'nav-material-ciudadano', 'click')">Material ciudadano</a></li>
+                <li><a href="{% url 'cores' %}" onclick="ga('send', 'event', 'nav-cores', 'click')">Revisa COREs</a></li>
                 {% include "_dropdown_user.html" with user=user %}
                 <li>
                     <a href="#" onclick="ga('send', 'event', 'nav-twitter-share', 'click'); window.open(&quot;//twitter.com/share?via=Ciudadanoi&hashtags={{ config.WEBSITE_TWITTER_HASHTAG }}&text={{ config.WEBSITE_TWITTER_TEXT }}&quot;,&quot;twitter&quot;,&quot;width=450, height=250&quot;)">

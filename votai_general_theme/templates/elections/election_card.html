@@ -28,6 +28,13 @@
           </div>
         </div>
         {% endif %}
+        {% if candidate.has_won %}
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+              <span class="candidate-commitment-card">Electa/o</span>
+          </div>
+        </div>
+        {% endif %}
         <a href="{{candidate.get_absolute_url}}">
         {% if candidate.image %}
         {% thumbnail candidate.image "300x300" crop="center" as im %}

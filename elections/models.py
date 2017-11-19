@@ -105,7 +105,7 @@ class HaveAnsweredFirst(models.Manager):
                                               default=Value(1),
                                               output_field=PositiveSmallIntegerField())
                     )
-        qs = qs.order_by('-num_answers', '-has_image_0_1')
+        qs = qs.order_by('-has_won','-num_answers', '-has_image_0_1')
         return qs
 
 class WinnersFirst(models.Manager):

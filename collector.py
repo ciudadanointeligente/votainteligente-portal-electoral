@@ -8,16 +8,27 @@ import json
 import re
 from elections.models import Candidate, Election, Area
 import roman
+import sys
+
+
+def set_has_won(candidate):
+    c.has_won=True
+    c.save()
+
+def only_print_name(candidate):
+    print candidate
 
 class GetterAbstract(object):
-    commit = False
+    def __init__(self, commit=False):
+        self.commit = commit
 
     def set_winner(self, name):
         try:
             c= Candidate.objects.get(name__icontains=name)
             if self.commit:
-                c.has_won=True
-                c.save()
+                set_has_won(c)
+            else:
+                only_print_name(c)
         except:
             print u'nopilléa'+unicode(name)
 
@@ -27,11 +38,8 @@ class GetterAbstract(object):
         name = re.sub(regex,'', name)
         name = re.sub(r'\s\s', ' ', name)
         electo = dictionary.get('electo')
-        if not self.commit:
+        if electo:
             self.set_winner(name)
-        else:
-            if electo:
-                self.set_winner(name)
                 
 
     def extract_data_candidates_from(self, d):
@@ -68,21 +76,28 @@ class ElectionGetter(object):
         self.klass = klass
         self.election_qs = election_qs
         self.remover = remover
+        self.commit = commit
 
-    def do_it(self):
+    def do_it(self, commit=False):
         for e in self.election_qs:
             n = self.remover(e.name)
             if len(n) == 1:
                 n = '0' + n
-            getter = self.klass()
+            getter = self.klass(commit=commit)
             getter.get_json_for_distrito(n)
 
 if __name__ == "__main__":
+    commit = False
+    try:
+        if sys.argv[1] == '--commit':
+            commit = True
+    except IndexError:
+        pass
     def remover1(name):
         return name.replace('Diputados del Distrito ', '')
     qs = Election.objects.filter(name__icontains='Diputados del Distrito ')
     e = ElectionGetter(DistritoGetter, qs, remover1)
-    e.do_it()
+    e.do_it(commit=commit)
 
     def remover2(name):
         r = name.replace(u" Circunscripción Senatorial", "")
@@ -91,5 +106,5 @@ if __name__ == "__main__":
     qs = Area.objects.filter(name__icontains=u"Circunscripción Senatorial")
     e = ElectionGetter(CircunscriptionGetter, qs, remover2)
     e.do_it()
-    # e1 = ElectionGetter(CircunscriptionGetter, "Distrito",'Diputados del Distrito ')
-    # e.do_it()
+    e1 = ElectionGetter(CircunscriptionGetter, "Distrito",'Diputados del Distrito ')
+    e.do_it(commit=commit)

@@ -48,3 +48,4 @@ class CandidateSerializer(HyperlinkedModelSerializer):
 class CandidateViewSet(ReadOnlyModelViewSet):
     queryset = Candidate.objects.all()
     serializer_class = CandidateSerializer
+    pagination_class = None

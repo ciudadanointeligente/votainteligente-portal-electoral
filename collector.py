@@ -10,13 +10,22 @@ from elections.models import Candidate, Election, Area
 import roman
 import sys
 
-
-def set_has_won(candidate):
+pactos = {}
+def set_has_won(c):
     c.has_won=True
     c.save()
 
+def add_to_pactos(c):
+    pacto = c.personal_datas.get(label="Pacto").value
+    if pacto not in pactos.keys():
+        pactos[pacto] = 1
+    else:
+        pactos[pacto] += 1
+
 def only_print_name(candidate):
-    print candidate
+    pacto = candidate.personal_datas.get(label="Pacto").value
+
+    print candidate, pacto
 
 class GetterAbstract(object):
     def __init__(self, commit=False):
@@ -29,8 +38,9 @@ class GetterAbstract(object):
                 set_has_won(c)
             else:
                 only_print_name(c)
-        except:
-            print u'nopilléa'+unicode(name)
+            add_to_pactos(c)
+        except Exception as e:
+            print u'nopilléa'+unicode(name),  e
 
     def extract_candidate_and_name(self, dictionary):
         name = dictionary.get('name')
@@ -61,7 +71,8 @@ class GetterAbstract(object):
             data = json.loads(json_content)['data']
             for d in data:
                 self.extract_data_candidates_from(d['sd'])
-        except HTTPError:
+        except HTTPError, e:
+            # print "No pude con " + url, e
             pass
 
 
@@ -93,18 +104,20 @@ if __name__ == "__main__":
             commit = True
     except IndexError:
         pass
+    pactos = {}
+    
     def remover1(name):
         return name.replace('Diputados del Distrito ', '')
     qs = Election.objects.filter(name__icontains='Diputados del Distrito ')
     e = ElectionGetter(DistritoGetter, qs, remover1)
     e.do_it(commit=commit)
-
+    print pactos
+    pactos = {}
     def remover2(name):
         r = name.replace(u" Circunscripción Senatorial", "")
         i = roman.fromRoman(r)
         return str(i)
     qs = Area.objects.filter(name__icontains=u"Circunscripción Senatorial")
     e = ElectionGetter(CircunscriptionGetter, qs, remover2)
-    e.do_it()
-    e1 = ElectionGetter(CircunscriptionGetter, "Distrito",'Diputados del Distrito ')
     e.do_it(commit=commit)
+    print pactos

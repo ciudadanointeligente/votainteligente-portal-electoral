@@ -28,13 +28,6 @@
           </div>
         </div>
         {% endif %}
-        {% if candidate.has_won %}
-        <div class="panel panel-default">
-          <div class="panel-body text-center">
-              <span class="candidate-commitment-card">Electa/o</span>
-          </div>
-        </div>
-        {% endif %}
         <a href="{{candidate.get_absolute_url}}">
         {% if candidate.image %}
         {% thumbnail candidate.image "300x300" crop="center" as im %}
@@ -47,6 +40,11 @@
       </div>
       <div class="panel panel-default">
         <div class="panel-body text-center">
+          {% if candidate.has_won %}
+          <div class="text-center">
+            <span class="candidate-elected-card">Electa/o</span>
+          </div>
+          {% endif %}
           <a href="{{candidate.get_absolute_url}}" itemprop="name"><h3 class="candidate-name-card">{{ candidate.name }}</h3>
           {% if candidate.commitments.exists %}
             <span class="candidate-commitment-card">{{ candidate.commitments.count }} compromisos</span></a>

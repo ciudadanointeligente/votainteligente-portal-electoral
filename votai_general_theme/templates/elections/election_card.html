@@ -29,12 +29,12 @@
         </div>
         {% endif %}
         <a href="{{candidate.get_absolute_url}}">
-        {% if candidate.image %}
+          {% if candidate.image %}
         {% thumbnail candidate.image "300x300" crop="center" as im %}
-          <img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive img-circle" itemprop="image" />
+          <img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive img-circle {% if candidate.has_won %}ganador{% else %}no-gano-na{% endif %}" itemprop="image" />
         {% endthumbnail %}
         {% else %}
-          <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle">
+          <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle {% if candidate.has_won %}ganador{% else %}no-gano-na{% endif %}">
         {% endif %}
         </a>
       </div>

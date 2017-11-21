@@ -7,6 +7,7 @@
 <section id="home-results">
   <div class="container text-center">
     <h1>Pasan a segunda vuelta</h1>
+    <h2>Hemos logrado 12 compromisos con propuestas ciudadanas de los candidatos que van a segunda vuelta</h2>
     <div class="col-md-10 col-md-offset-1">
       <div class="col-md-6 text-center">
         <div class="panel-heading text-center">
@@ -39,20 +40,95 @@
     </div>
   </div>
 </section>
-
-
-
-<section id="home-search-candidate" class="blue">
+<section id="other-commitments">
   <div class="container">
-    <h2 class="text-center">CANDIDATURAS ELECTAS</h2>
-    <h3 class="text-center">Conoce las candidaturas y sus compromisos con propuestas ciudadanas de votainteligente.cl</h3>
-    <p class="bajada text-center">Encuentra aquí los nuevos/as diputados/as y senadores/as</p>
+    <h3 class="text-center">¿Hay algún compromiso de las demás candidaturas que quisieras promover con Piñera y Guillier?</h3>
     <div class="row">
-      <div class="col-md-12">
-        {% include "_election_search_form.html" %}
+      <div class="col-md-2 col-sm-6 col-xs-6 text-center">
+        <div class="panel-heading text-center">
+          <a href="/candidaturas/chile/beatriz-sanchez" onclick="ga('send','event','pic-sanchez-home-final')">
+            <img src="{% static 'img/sanchez.jpg' %}" alt="Beatriz Sánchez" border="0" class="img-responsive img-circle no-gano-na" itemprop="image" />
+          </a>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <a href="/candidaturas/chile/beatriz-sanchez" onclick="ga('send','event','nombre-sanchez-home-final')" itemprop="name"><h3 class="candidate-name-card">Beatriz Sánchez</h3>
+              <span class="candidate-commitment-card">43 compromisos</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6 col-xs-6 text-center">
+        <div class="panel-heading text-center">
+          <a href="/candidaturas/chile/jose-antonio-kast" onclick="ga('send','event','pic-kast-home-final')">
+            <img src="{% static 'img/kast.jpg' %}" alt="José Antonio Kast" border="0" class="img-responsive img-circle no-gano-na" itemprop="image" />
+          </a>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <a href="/candidaturas/chile/jose-antonio-kast" onclick="ga('send','event','nombre-kast-home-final')" itemprop="name"><h3 class="candidate-name-card">José Antonio Kast</h3>
+              <span class="candidate-commitment-card">22 compromisos</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6 col-xs-6 text-center">
+        <div class="panel-heading text-center">
+          <a href="/candidaturas/chile/carolina-goic" onclick="ga('send','event','pic-goic-home-final')">
+            <img src="{% static 'img/goic.jpg' %}" alt="Carolina Goic" border="0" class="img-responsive img-circle no-gano-na" itemprop="image" />
+          </a>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <a href="/candidaturas/chile/carolina-goic" onclick="ga('send','event','nombre-goic-home-final')" itemprop="name"><h3 class="candidate-name-card">Carolina Goic</h3>
+              <span class="candidate-commitment-card">59 compromisos</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6 col-xs-6 text-center">
+        <div class="panel-heading text-center">
+          <a href="/candidaturas/chile/marco-enriquez-ominami" onclick="ga('send','event','pic-meo-home-final')">
+            <img src="{% static 'img/meo.jpg' %}" alt="Marco Enríquez-Ominami" border="0" class="img-responsive img-circle no-gano-na" itemprop="image" />
+          </a>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <a href="/candidaturas/chile/marco-enriquez-ominami" onclick="ga('send','event','nombre-meo-home-final')" itemprop="name"><h3 class="candidate-name-card">Marco Enríquez-Ominami</h3>
+              <span class="candidate-commitment-card">12 compromisos</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6 col-xs-6 text-center">
+        <div class="panel-heading text-center">
+          <a href="/candidaturas/chile/eduardo-artes" onclick="ga('send','event','pic-artes-home-final')">
+            <img src="{% static 'img/artes.jpg' %}" alt="Eduardo Artés" border="0" class="img-responsive img-circle no-gano-na" itemprop="image" />
+          </a>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <a href="/candidaturas/chile/eduardo-artes" onclick="ga('send','event','nombre-artes-home-final')" itemprop="name"><h3 class="candidate-name-card">Eduardo Artés</h3>
+              <span class="candidate-commitment-card">8 compromisos</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6 col-xs-6 text-center">
+        <div class="panel-heading text-center">
+          <a href="/candidaturas/chile/alejandro-navarro" onclick="ga('send','event','pic-navarro-home-final')">
+            <img src="{% static 'img/navarro.jpg' %}" alt="Eduardo Artés" border="0" class="img-responsive img-circle no-gano-na" itemprop="image" />
+          </a>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <a href="/candidaturas/chile/alejandro-navarro" onclick="ga('send','event','nombre-navarro-home-final')" itemprop="name"><h3 class="candidate-name-card">Alejandro Navarro</h3>
+              <span class="candidate-commitment-card">5 compromisos</span></a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</section>
+<section id="you-proposal">
+  <h2 class="text-center">Hazle tu propuesta a candidatos y candidatas</h2><p class="text-center">
+    <a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" class="btn btn-dark">Aquí</a></p>
+
 </section>
 {% endcache %}
 {% if featured_proposals.count %}
@@ -64,20 +140,19 @@
     {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=featured_proposals form=Nil hide_proposal_list_header=True hidden_search=True %}
     <div class="col-md-6 col-md-offset-3">
       <p class="text-center"><a href="{% url 'popular_proposals:home' %}" class="btn btn-success">Ver todas las propuestas</a></p>
-      <p class="text-center"><a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" class="btn btn-dark">Crear nueva propuesta</a></p>
     </div>
   </div>
 </section>
 {% endif %}
-<section id="education" class="container-fluid">
-  <h3 class="text-center"><a href="{% url 'material_ciudadano' %}" onclick="ga('send', 'event', 'home-material-ciudadano', 'click')">Material ciudadano</a></h3>
-  <p class="bajada text-center">Materiales para generar propuestas, hacer incidencia y saber todo lo necesario de las elecciones</p>
-  <div class="row">
-    <div class="col-md-6 text-center blue edu-1">
-      <a href="{% static 'material-ciudadano/manual-formacion-ciudadana.pdf' %}" target="_blank" class="btn btn-white" onclick="ga('send', 'event', 'home-manual-formacion-ciudadana', 'click')">Manual de formación ciudadana</a>
-    </div>
-    <div class="col-md-6 text-center blue-light edu-2">
-      <a href="{% static 'material-ciudadano/manual-herramientas-activismo.pdf' %}" target="_blank" class="btn btn-white" onclick="ga('send', 'event', 'home-manual-herramienta-activismo', 'click')">Manual de herramientas de activismo</a>
+<section id="home-search-candidate" class="blue">
+  <div class="container">
+    <h2 class="text-center">CANDIDATURAS ELECTAS</h2>
+    <h3 class="text-center">Conoce las candidaturas y sus compromisos con propuestas ciudadanas de votainteligente.cl</h3>
+    <p class="bajada text-center">Encuentra aquí los nuevos/as diputados/as y senadores/as</p>
+    <div class="row">
+      <div class="col-md-12">
+        {% include "_election_search_form.html" %}
+      </div>
     </div>
   </div>
 </section>

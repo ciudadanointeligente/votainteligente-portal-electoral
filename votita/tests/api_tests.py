@@ -21,7 +21,7 @@ class VotitaRestAPITestCase(ProposingCycleTestCaseBase):
                                                           clasification=u'educacion'
                                                       )
 
-        url = reverse('kidsproposal-list')
+        url = reverse('votita:kidsproposal-list')
         response = self.client.get(url, format='json')
         self.assertEquals(response.status_code, 200)
         content = json.loads(response.content)["results"]
@@ -34,7 +34,7 @@ class VotitaRestAPITestCase(ProposingCycleTestCaseBase):
                                                  name="grupo de amigos",
                                                  school="alguna escuela"
                                                  )
-        url = reverse('kidsgathering-list')
+        url = reverse('votita:kidsgathering-list')
         response = self.client.get(url, format='json')
         self.assertEquals(response.status_code, 200)
         content = json.loads(response.content)["results"]

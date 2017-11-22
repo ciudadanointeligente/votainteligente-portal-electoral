@@ -8,9 +8,10 @@ from votita.models import KidsGathering, KidsProposal
 
 class KidsGatheringSerializer(HyperlinkedModelSerializer):
     proposer = StringRelatedField()
+    stats_data = StringRelatedField()
     class Meta:
       model = KidsGathering
-      fields = ['proposer','name','school', 'proposals']
+      fields = ['proposer','name','school','stats_data','proposals']
 
 class KidsGatheringViewSet(ReadOnlyModelViewSet):
     queryset = KidsGathering.objects.all()

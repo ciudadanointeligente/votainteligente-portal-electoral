@@ -55,3 +55,4 @@ django-robots==3.0
 djangorestframework-csv==2.0.0
 numpy==1.13.3
 roman==2.0.0
+pandas==0.21.0

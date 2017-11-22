@@ -10,7 +10,7 @@ class KidsGatheringSerializer(HyperlinkedModelSerializer):
     proposer = StringRelatedField()
     class Meta:
       model = KidsGathering
-      fields = ['proposer','name','school']
+      fields = ['proposer','name','school', 'proposals']
 
 class KidsGatheringViewSet(ReadOnlyModelViewSet):
     queryset = KidsGathering.objects.all()

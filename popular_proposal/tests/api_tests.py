@@ -105,3 +105,4 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
         self.assertTrue(content[0]['candidate'])
         self.assertEquals(content[0]['detail'], commitment.detail)
         self.assertEquals(content[0]['commited'], commitment.commited)
+        self.assertEquals(len(content[0]['proposals']), 1)

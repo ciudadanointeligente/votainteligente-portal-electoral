@@ -1,2248 +1,1008 @@
-- fields: {domain: 'localhost:8000', name: 'localhost:8000'}
-  model: sites.site
+- model: sites.site
   pk: 1
-- fields: {additional_name: '', biography: "\r\n* Naci\xF3 el 9 de marzo de 1956 en
-      la Ciudad Capital del departamento de Guatemala. Estudi\xF3 en el colegio Liceo
-      Guatemala durante la primaria y secundaria. Despu\xE9s de realizar sus estudios
-      de diversificado, estudi\xF3 la carrera de medicina en la Universidad de San
-      Carlos el 31 de octubre de 1980.\r\n\r\n* En el a\xF1o 1982 fue consultor de
-      la Organizaci\xF3n Panamericana de la Salud y termin\xF3 su servicio en el a\xF1o
-      1986. En el mismo a\xF1o, form\xF3 parte del Cuerpo de Bomberos Municipales
-      de Guatemala y tambi\xE9n fue director de la organizaci\xF3n de Transportes
-      P\xFAblicos Urbanos de la Municipalidad de Guatemala. Termin\xF3 sus servicios
-      en el Cuerpo de Bomberos en el a\xF1o 1990. \r\n\r\n* Fue Gerente general de
-      la Empresa Municipal de Agua. \r\n\r\n* Fungi\xF3 como director del sistema
-      penitenciario durante el gobierno de Oscar Berger Perdomo y se vio involucrado
-      en el caso de la toma de la granja modelo Pav\xF3n, caso por el que fue juzgado
-      en Guatemala y qued\xF3 en libertad.\r\n\r\n* Ha participado en anteriores elecciones:
-      en 2007 y en 2011 . \r\n", birth_date: '', created_at: ! '2015-07-07 22:44:28.111153+00:00',
-    death_date: '', email: test@example.com, end_date: '', family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: 'http://www.redciudadana.org/wp-content/uploads/2015/07/Alejandro-Giammattei.jpg',
-    name: Alejandro Eduardo Giammattei Falla, national_identity: Guatemalteco, patronymic_name: '',
-    sort_name: '', start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:00.502946+00:00'}
-  model: popolo.person
-  pk: alejandro-giammattei-falla
-- fields: {additional_name: '', biography: "**CANDIDATOS A DIPUTADOS LISTADO NACIONAL**\r\n\r\n
-      \r\n **Casilla 1**: LEOCADIO JURACAN SALOME\r\n \r\n **Casilla 2**: JOSE LUIS
-      SIGUIL LOPEZ\r\n \r\n **Casilla 3**: ALIDA ADELINA ARANA VICENTE\r\n \r\n **Casilla
-      4**: VALESKA JUDITH REYES LEIVA\r\n \r\n **Casilla 5**: DAVID HUMBERTO PAREDES
-      GUILLERMO\r\n \r\n **Casilla 6**: MARCO POLO CORONADO LUNA\r\n \r\n **Casilla
-      7**: SURIS DOMINGA ARREAGA OSORIO DE ALVARADO\r\n \r\n **Casilla 8**: OSEAS
-      MARTINEZ AREVALO\r\n \r\n **Casilla 9**: JURGEN ANDONI RAMIREZ RAMIREZ\r\n \r\n
-      **Casilla 10**: IXMUCANE NIDIA ASUCENA ROSALES GOMEZ\r\n \r\n **Casilla 12**:
-      CRISTIAN DOUGLAS PEREZ SANCHEZ\r\n \r\n **Casilla 13**: GLADYS MAGALY MEJIA",
-    birth_date: '', created_at: ! '2015-08-18 20:42:46.053364+00:00', death_date: '',
-    email: test@example.com, end_date: '', family_name: '', gender: '', given_name: '',
-    honorific_prefix: '', honorific_suffix: '', image: 'http://www.julioherrera.info/wp-content/uploads/2015/08/Convergencia.jpg',
-    name: Convergencia, national_identity: '', patronymic_name: '', sort_name: '',
-    start_date: '', summary: Candidatos a Diputados Listado Nacional, updated_at: ! '2015-08-27
-      18:50:00.693350+00:00'}
-  model: popolo.person
-  pk: convergencia
-- fields: {additional_name: '', biography: "\n \n **Casilla 1**: MARIO ANTONIO GUERRA
-      LEON\n \n **Casilla 10**: RONALD FERNANDO ESPINA GARCIA\n \n **Casilla 3**:
-      PEDRO ADOLFO CATALAN MU\xD1OZ\n \n **Casilla 7**: SARA NINETH CHU LIMA\n \n
-      **Casilla 8**: ANGELA SUSANA FRANCO PEREZ\n \n **Casilla 9**: MARIO ROBERTO
-      TOBAR AGUILAR", birth_date: '', created_at: ! '2015-08-18 20:42:46.078744+00:00',
-    death_date: '', email: test@example.com, end_date: null, family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: '', name: Corazon
-      Nueva Nacion, national_identity: null, patronymic_name: '', sort_name: '', start_date: null,
-    summary: '', updated_at: ! '2015-08-27 18:50:00.850064+00:00'}
-  model: popolo.person
-  pk: corazon-nueva-nacion
-- fields: {additional_name: '', biography: "**CANDIDATOS A DIPUTADOS LISTADO NACIONAL**\r\n\r\n
-      **Casilla 1**:\tALVARO ENRIQUE ARZU ESCOBAR \r\n\r\n **Casilla 2**:\tCARLOS
-      RAFAEL FION MORALES \r\n\r\n **Casilla 3**:\tJOB RAMIRO GARCIA Y GARCIA \r\n\r\n
-      **Casilla 4**:\tCRISTIAN RODOLFO ALVAREZ Y ALVAREZ \r\n\r\n **Casilla 5**:\tALVARO
-      GONZALEZ RICCI \r\n\r\n **Casilla 6**:\tRUBEN ESTUARDO MORALES MONROY \r\n\r\n
-      **Casilla 7**:\tJEOVANY RUDAMAN MIRANDA CASTA\xD1ON \r\n\r\n **Casilla 8**:\tRAUL
-      FRANCISCO PIMENTEL MATA \r\n\r\n **Casilla 9**:\tLUIS OSBERTO JUAREZ RODRIGUEZ
-      \r\n\r\n **Casilla 10**:\tSYLVIA RUIZ HOCHSTETTER \r\n\r\n **Casilla 11**:\tEDGAR
-      ROLANDO BARRIOS BARRERA \r\n\r\n **Casilla 12**:\tJOSE EMILIO MEJIA GIRON \r\n\r\n
-      **Casilla 13**:\tMARIO ANDRES FION PAPPA \r\n\r\n **Casilla 14**:\tMAYRA HAYDEE
-      LOPEZ MONZON \r\n\r\n **Casilla 15**:\tLILIANA EUGENIA GIRON AGUIRRE \r\n\r\n
-      **Casilla 16**:\tANA CECILIA ROMERO MARTINEZ \r\n\r\n **Casilla 17**:\tJOSE
-      MANUEL BARRIENTOS LUTIN \r\n\r\n **Casilla 18**:\tCARLOS GUSTAVO SANTIZO POLANCO
-      \r\n\r\n **Casilla 19**:\tANGELICA GABRIELA PACAJO GIRON \r\n\r\n **Casilla
-      20**:\tGLORIA ELENA HERRERA MARROQUIN \r\n\r\n **Casilla 21**:\tANDREA FERNANDA
-      GUILLEN RIVERA \r\n\r\n **Casilla 22**:\tRODOLFO ESTUARDO SANTIZO ASTURIAS \r\n\r\n
-      **Casilla 23**:\tISABEL DEL ROSARIO ARANA PEREZ DE PARDO \r\n\r\n **Casilla
-      24**:\tJOHANA IVONNE VASQUEZ TOBIAS \r\n\r\n **Casilla 25**:\tCLAUDIA CECILIA
-      CASTILLO TENAS DE AGUILAR \r\n", birth_date: '', created_at: ! '2015-08-18 20:42:46.092210+00:00',
-    death_date: '', email: test@example.com, end_date: '', family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: 'http://www.redciudadana.org/wp-content/uploads/2015/07/CREO-PU.jpg',
-    name: CREO-UNIONISTA, national_identity: '', patronymic_name: '', sort_name: '',
-    start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:01.006734+00:00'}
-  model: popolo.person
-  pk: creo-unionista
-- fields: {additional_name: '', biography: "\r\n \r\n **Casilla 1**: NINETH VARENCA
-      MONTENEGRO COTTOM\r\n \r\n **Casilla 2**: FERNANDO ENRIQUE DE LE\xD3N ASTURIAS\r\n
-      \r\n **Casilla 5**: CARLOS HUMBERTO ENR\xCDQUEZ MEJ\xCDA\r\n \r\n **Casilla
-      6**: EMANUEL RANFERY MONTUFAR FERN\xC1NDEZ\r\n \r\n **Casilla 7**: \xC1LVARO
-      EL\xCDAS FERN\xC1NDEZ MARROQU\xCDN", birth_date: '', created_at: ! '2015-08-18
-      20:42:46.144914+00:00', death_date: '', email: test@example.com, end_date: '',
-    family_name: '', gender: '', given_name: '', honorific_prefix: '', honorific_suffix: '',
-    image: '', name: Encuentro por Guatemala, national_identity: '', patronymic_name: '',
-    sort_name: '', start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:01.163365+00:00'}
-  model: popolo.person
-  pk: encuentro-por-guatemala
-- fields: {additional_name: '', biography: "\n \n **Casilla 1**: EDGAR JUSTINO OVALLE
-      MALDONADO\n \n **Casilla 10**: MARTIN DE JESUS ARANA MARROQUIN\n \n **Casilla
-      2**: JAVIER ALFONSO HERNANDEZ FRANCO\n \n **Casilla 3**: EDGAR ARMANDO SANDOVAL
-      TRIGUEROS\n \n **Casilla 4**: JUAN ADRIEL OROZCO MEJIA\n \n **Casilla 5**: GREGORIO
-      AUGUSTO LOPEZ GONZALEZ\n \n **Casilla 6**: CRISTIAN ALEXANDER AGUILAR LOPEZ\n
-      \n **Casilla 7**: JUAN CARLOS OVALLE VILLASE\xD1OR\n \n **Casilla 8**: JULIO
-      RAFAEL QUINTANILLA PEREDA\n \n **Casilla 9**: MARIO RUBEN SOTO", birth_date: '',
-    created_at: ! '2015-08-18 20:42:46.157895+00:00', death_date: '', email: test@example.com,
-    end_date: null, family_name: '', gender: '', given_name: '', honorific_prefix: '',
-    honorific_suffix: '', image: '', name: Frente de Convergencia Nacional, national_identity: null,
-    patronymic_name: '', sort_name: '', start_date: null, summary: '', updated_at: ! '2015-08-27
-      18:50:01.308820+00:00'}
-  model: popolo.person
-  pk: frente-de-convergencia-nacional
-- fields: {additional_name: '', biography: "\r\n**CANDIDATOS A DIPUTADOS LISTADO NACIONAL**\r\n
-      \r\n **Casilla 1**:\tJOSE MAURICIO RADFORD HERNANDEZ\r\n\r\n-[Ex-Integrante
-      del Directorio del Registro Nacional de Personas (Renap)](http://www.prensalibre.com/noticias/politica/Mauricio_Radford-Fuerza-Renap_0_1304269676.html).
-      \r\n\r\n-[Ex Funcionarios de RENAP deber\xE1n ser enviados a prisi\xF3n](http://www.cicig.org/index.php?mact=News,cntnt01,detail,0&cntnt01articleid=161&cntnt01returnid=67).\r\n\r\n\r\n
-      **Casilla 2**:\tALEXANDER MAGDONAL ESCOBAR CASTA\xD1ON\r\n\r\n **Casilla 3**:\tJOSE
-      PETRONILO VELASQUEZ GAMEROS\r\n\r\n **Casilla 4**:\tGUILLERMO ANTONIO MATHEU
-      ALAY\r\n\r\n **Casilla 5**:\tPEDRO DE JESUS MIX ALVAREZ\r\n\r\n **Casilla 6**:\tJOSE
-      CARLOS DARDON MALDONADO\r\n\r\n **Casilla 7**:\tEDGAR MARIANO DIAZ CUEVAS\r\n\r\n
-      **Casilla 8**:\tLUIS FELIPE MIRANDA MALDONADO\r\n\r\n **Casilla 9**:\tALONZO
-      FERNANDEZ LOPEZ\r\n\r\n **Casilla 10**:\tSALVADOR HUMBERTO RAMIREZ DIAZ\r\n\r\n
-      **Casilla 11**:\tDOUGLAS OMAR REYES ORANTES\r\n\r\n **Casilla 12**:\tFREDY ROLANDO
-      QUIROA NAVAS\r\n\r\n **Casilla 13**:\tLUIS ANTONIO ICUTE GARCIA\r\n\r\n **Casilla
-      14**:\tCRISTOPHER GABRIEL KELLY MORALES\r\n\r\n **Casilla 15**:\tLESLIE PAOLA
-      MENDEZ HERNANDEZ\r\n\r\n **Casilla 16**:\tJULIO EVERALDO CARIAS BENAVENTE\r\n\r\n
-      **Casilla 17**:\tWALTER JACOBO GALICIA GARCIA\r\n\r\n **Casilla 18**:\tALVARO
-      LEONEL SACTIC VARGAS\r\n\r\n **Casilla 19**:\tSIVORY ARESTI ORELLANA\r\n\r\n
-      **Casilla 20**:\tCARLOS ESTUARDO PEREZ SANDOVAL\r\n\r\n **Casilla 21**:\tGARY
-      ALEJANDRO CHANG NAVARRO\r\n\r\n **Casilla 22**:\tMAINOR JOEL PEREZ MORALES\r\n\r\n
-      **Casilla 23**:\tKARLA LISSETTE SANCHEZ MAZARIEGOS\r\n\r\n **Casilla 24**:\tMARIA
-      JOSE ARIAS ESTEVEZ\r\n", birth_date: '', created_at: ! '2015-08-18 05:43:05.272920+00:00',
-    death_date: '', email: test@example.com, end_date: '', family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: 'http://www.redciudadana.org/wp-content/uploads/2015/07/Fuerza.png',
-    name: Fuerza - Listado Nacional, national_identity: '', patronymic_name: '', sort_name: '',
-    start_date: '', summary: Candidatos a Diputados Listado Nacional, updated_at: ! '2015-08-27
-      18:50:01.465397+00:00'}
-  model: popolo.person
-  pk: fuerza
-- fields: {additional_name: '', biography: "Pol\xEDtico, productor, escritor, director
-      y actor de cine y televisi\xF3n en Guatemala. Como pol\xEDtico guatemalteco,
-      particip\xF3 en el a\xF1o 2011 como candidato a alcalde en el municipio de Mixco,
-      departamento de Guatemala, con el partido pol\xEDtico Acci\xF3n de Desarrollo
-      Nacional (ADN), quedando en tercer lugar.\r\n\r\nSu educaci\xF3n primaria, b\xE1sica
-      y diversificada la realiza en Instituto Evang\xE9lico Am\xE9rica Latina (IEAL)
-      obteniendo el t\xEDtulo de Perito Contador, ingresa a la Facultad de Ciencias
-      Econ\xF3micas de la Universidad de San Carlos de Guatemala (USAC) obteniendo
-      el t\xEDtulo de Licenciatura en Administraci\xF3n de Empresas, en simult\xE1neo,
-      estudia en el Seminario Teol\xF3gico Bautista un profesorado en teolog\xEDa,
-      sus estudios de postgrado los realiz\xF3 en la Universidad Mariano G\xE1lvez
-      de Guatemala en donde obtiene una maestr\xEDa en Altos Estudios Estrat\xE9gicos
-      con especializaci\xF3n en Seguridad y Defensa y cierra pensum en un Doctorado
-      en Seguridad Estrat\xE9gica en la Facultad de Ciencias Jur\xEDdicas y Sociales
-      de la Universidad de San Carlos de Guatemala.", birth_date: '', created_at: ! '2015-07-07
-      22:44:28.104510+00:00', death_date: '', email: test@example.com, end_date: '',
-    family_name: '', gender: '', given_name: '', honorific_prefix: '', honorific_suffix: '',
-    image: 'http://www.julioherrera.info/wp-content/uploads/2015/07/Jimmy-Morales2.jpg',
-    name: Jimmy Morales Cabrera, national_identity: '', patronymic_name: '', sort_name: '',
-    start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:01.622025+00:00'}
-  model: popolo.person
-  pk: jimmy-morales
-- fields: {additional_name: '', biography: "Cooperativista, empresario, cafetalero,
-      banquero y pol\xEDtico guatemalteco. Tiene una licenciatura en Ciencias Pol\xEDticas
-      de la Universidad de San Carlos de Guatemala. Presidente de Banrural desde 1998
-      a 2013; director de la Asociaci\xF3n Nacional del Caf\xE9 (Anacaf\xE9) durante
-      20 a\xF1os, de 1986 a 2006.\r\n\r\n\r\nPuestos que ha ostentado: \r\n----------------------------------\r\n\r\nEn
-      1984 fue miembro del Consejo Directivo de la Escuela de Ciencia Pol\xEDtica
-      de la Universidad de San Carlos de Guatemala. De 1985 a 1989 catedr\xE1tico
-      de la Escuela de Ciencia Pol\xEDtica de la Universidad San Carlos de Guatemala.
-      En 1988  y hasta 1990 fue catedr\xE1tico de la Facultad de Ciencia Pol\xEDtica
-      de la Universidad Rafael Land\xEDvar. Desde 1990 a 1998 gerente general de la
-      Federaci\xF3n de Cooperativas Agr\xEDcolas de productores de Caf\xE9 de Guatemala
-      R.L. FEDECOCAGUA.\r\nAdem\xE1s, en 1994 form\xF3 parte del mundo de la banca,
-      durante el proceso de transformaci\xF3n del Bandesa hacia Banrural. Durante
-      1997 a 1998 fue el presidente de la Junta Directiva de CONTIERRA.\r\nDesde enero
-      de 1998 a diciembre de 2013 fue miembro del Consejo de Administraci\xF3n del
-      Banco de Desarrollo Rural, S. A. Tambi\xE9n entre julio 1998 y  enero del a\xF1o
-      2000 fue viceministro de Ganader\xEDa, Recursos Hidrobiol\xF3gicos y Alimentaci\xF3n
-      en el Ministerio de Agricultura, Ganader\xEDa y Alimentaci\xF3n \u2013 MAGA,
-      durante el gobierno de \xC1lvaro Arz\xFA.\r\n\r\n\r\nA partir de diciembre de
-      1999 ha sido el presidente del Consejo de Administraci\xF3n del Banco de Desarrollo
-      Rural \u2013 Banrural. Desde noviembre de 2002 a noviembre 2003 fue el vicepresidente
-      de la Asociaci\xF3n Nacional del Caf\xE9 (Anacaf\xE9).Durante el 2002 a 2004
-      fungi\xF3 como miembro del Consejo Directivo Fondo de Tierras. A partir de abril
-      de 2003 a 2013 fue miembro de la Junta Directiva de la Asociaci\xF3n Bancaria
-      de Guatemala \u2013 ABG. En noviembre 2003 a noviembre de 2006 fue presidente
-      durante tres per\xEDodos consecutivos de la Fundaci\xF3n de la Caficultura para
-      el Desarrollo - FUNCAFE.  \r\n\r\n\r\nDesde septiembre de 2005 el Ministerio
-      de Relaciones Exteriores lo nombr\xF3 representante permanente de Guatemala
-      ante la Organizaci\xF3n Internacional del Caf\xE9, -OIC-, con sede en Londres,
-      en el Rango de Embajador.Desde septiembre de 2006 fue un a\xF1o presidente de
-      la Junta Ejecutiva de la Organizaci\xF3n Internacional del Caf\xE9 - OIC. A
-      partir de abril de 2008  a marzo de 2009 fue el presidente de Asociaci\xF3n
-      Bancaria de Guatemala \u2013 ABG. En noviembre 2008 durante un a\xF1o fue el
-      segundo vicepresidente de la Federaci\xF3n Latinoamericana de Bancos \u2013
-      FELABAN. Adem\xE1s, en marzo de 2013 fue presidente del concejo de la Organizaci\xF3n
-      Internacional del Caf\xE9 \u2013 OIC\r\nEn julio 2013 fue el vicepresidente
-      del Consejo Econ\xF3mico Social \u2013CES", birth_date: '', created_at: ! '2015-07-07
-      22:44:28.090279+00:00', death_date: '', email: test@example.com, end_date: '',
-    family_name: '', gender: '', given_name: '', honorific_prefix: '', honorific_suffix: '',
-    image: 'http://www.julioherrera.info/wp-content/uploads/2015/07/Jose-angel-Lopez.jpg',
-    name: "Jos\xE9 Angel L\xF3pez Camposeco ", national_identity: '', patronymic_name: '',
-    sort_name: '', start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:01.758026+00:00'}
-  model: popolo.person
-  pk: jose-angel-lopez
-- fields: {additional_name: '', biography: "\r\nNaci\xF3 en la ciudad de Quetzaltenango,
-      Quetzaltenango est\xE1 casado con Wencke de Guti\xE9rrez y es padre de 4 hijos.
-      Hoy en d\xEDa es un empresario, pol\xEDtico y economista guatemalteco. Estudio
-      en el Liceo de Guatemala. \r\n\r\nFue candidato a la Presidencia de Guatemala
-      durante las Elecciones Generales de Guatemala de 2011, y es presidente y cofundador
-      del grupo empresarial Xela Enterprises Ltd.\r\n\r\nEn el a\xF1o 1979 a 1982,
-      fungi\xF3 como gerente de Pollo Campero. Es el presidente y co-fundador del
-      grupo empresarial XELA ENTERPRISES LTD, fundado en el a\xF1o 1984. Es una corporaci\xF3n
-      guatemalteca-canadiense, se dedica a la producci\xF3n, distribuci\xF3n y venta
-      de alimentos. Actualmente opera en Guatemala, Estados Unidos, Canad\xE1, Sur
-      y Centroam\xE9rica. Tambi\xE9n se ha dedicado a administrar empresas de producci\xF3n
-      de frutas, verduras y flores que exportan a Norteam\xE9rica y Europa.\r\n\r\nCuenta
-      con una cadena de restaurantes en Venezuela, llamada Arturo\u2019s y una empresa
-      de internet en Canad\xE1. \r\n\r\nEn el a\xF1o 2008, asumi\xF3 ser  el Secretario
-      General del Partido Avanzada Nacional \u2013 PAN.\r\n\r\n", birth_date: '',
-    created_at: ! '2015-07-07 22:44:28.117772+00:00', death_date: '', email: test@example.com,
-    end_date: '', family_name: '', gender: '', given_name: '', honorific_prefix: '',
-    honorific_suffix: '', image: 'http://www.julioherrera.info/wp-content/uploads/2015/07/Juan-Gutierrez-copy.jpg',
-    name: "Juan Guillermo Guti\xE9rrez Strauss ", national_identity: '', patronymic_name: '',
-    sort_name: '', start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:01.936865+00:00'}
-  model: popolo.person
-  pk: juan-gutierrez
-- fields: {additional_name: '', biography: "\r\n **Casilla 1**: ROBERTO RICARDO VILLATE
-      VILLATORO\r\n \r\n **Casilla 10**: BEATRIZ CONCEPCION CANASTUJ CANASTUJ\r\n
-      \r\n **Casilla 12**: JOSE ALBERTO GANDARA TORREBIARTE\r\n \r\n **Casilla 13**:
-      GERARDO ENRIQUE PAIZ BONIFASI\r\n \r\n **Casilla 14**: JUAN ANTONIO GOMEZ GONZALEZ\r\n
-      \r\n **Casilla 15**: CARLOS FRANCISCO CATANIA DIAZ\r\n \r\n **Casilla 16**:
-      JUAN JOSE PAREDES GUZMAN\r\n \r\n **Casilla 17**: LESBIA AURORA CASTELLANOS
-      MORALES\r\n \r\n **Casilla 18**: JORGE MARIO SALGUERO Y SALGUERO\r\n \r\n **Casilla
-      19**: JAKELINE SHUSETH CONTRERAS IZQUIERDO\r\n \r\n **Casilla 2**: LUIS ARMANDO
-      RABBE TEJADA\r\n \r\n **Casilla 20**: BYRON DOMINGO NAVAS VILLATORO\r\n \r\n
-      **Casilla 22**: RENE NUFIO COJULUN\r\n \r\n **Casilla 23**: CARLOS SALVADOR
-      GONZALEZ DE LA CRUZ\r\n \r\n **Casilla 24**: MARIA ROXANA MERIDA ISMATUL\r\n
-      \r\n **Casilla 25**: GERBER MANOLO GARCIA SOC\r\n \r\n **Casilla 26**: JUAN
-      MIGUEL TUN ACOSTA\r\n \r\n **Casilla 28**: LILIANA MORALES RAMIREZ DE RICHARDSON\r\n
-      \r\n **Casilla 29**: SORY VANESSA GOMEZ RAMIREZ\r\n \r\n **Casilla 3**: JAIME
-      ANTONIO MARTINEZ LOHAYZA\r\n \r\n **Casilla 4**: OSCAR ROLANDO CORLETO RIVERA\r\n
-      \r\n **Casilla 5**: DELIA EMILDA BAC ALVARADO\r\n \r\n **Casilla 6**: GUSTAVO
-      ARNOLDO MEDRANO OSORIO\r\n \r\n **Casilla 7**: MARCO AURELIO PINEDA CASTELLANOS\r\n
-      \r\n **Casilla 8**: JUAN MANUEL GIORDANO GRAJEDA\r\n \r\n **Casilla 9**: HUGO
-      FERNANDO GARCIA GUDIEL", birth_date: '', created_at: ! '2015-08-18 20:42:46.222312+00:00',
-    death_date: '', email: test@example.com, end_date: '', family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: '', name: Libertad
-      Democratica Renovada, national_identity: '', patronymic_name: '', sort_name: '',
-    start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:02.093487+00:00'}
-  model: popolo.person
-  pk: libertad-democratica-renovada
-- fields: {additional_name: '', biography: "Fungi\xF3 como presidente del Banco de
-      Guatemala. Se desempe\xF1\xF3 como presidente de la Junta Monetaria de 1989
-      a 1990 y de 2000 a 2006. Tambi\xE9n fue diputado del Congreso de la Rep\xFAblica.
-      \r\n\r\nCargos p\xFAblicos:\r\n\r\n2000-2006: Fue presidente del Banco de Guatemala
-      (ejerci\xF3 el cargo en tres ocasiones).\r\n1985-1986 Ejerci\xF3 el cargo Ministro
-      de Finanzas P\xFAblicas.\r\n1986 a 1988: Fue ministro de Econom\xEDa.\r\n1988-1989:
-      Particip\xF3 como secretario de Planificaci\xF3n de la Presidencia de la Rep\xFAblica.\r\n1994-1996:
-      Particip\xF3 como diputado electo por listado nacional del Partido Democracia
-      Cristiana Guatemalteca, y fue vicepresidente y presidente en el Congreso de
-      la Rep\xFAblica.\r\n2006-2008: Fue miembro del Grupo Promotor del Di\xE1logo
-      Fiscal, consolidando las finanzas p\xFAblicas en el marco de los Acuerdos de
-      Paz.\r\n\r\nFue presidente de la junta directiva en la Asociaci\xF3n de Investigaci\xF3n
-      y Estudios Sociales (ASIES) y ha colaborado en varios esfuerzos multisectoriales
-      en favor de alcanzar acuerdos pol\xEDticos y sociales.\r\nFue director del Departamento
-      de Econom\xEDa, Decano de la Facultad de Ciencias Econ\xF3micas  en la Universidad
-      Rafael Land\xEDvar.\r\n\r\nOcup\xF3 el cargo de y fue director del Instituto
-      de Investigaciones Econ\xF3micas y Sociales (IDIES).\r\nActualmente, participa
-      como candidato a la presidencia por el partido TODOS, que pertenece a la ideolog\xEDa
-      socialista cristiana.", birth_date: '', created_at: ! '2015-07-07 22:44:28.060354+00:00',
-    death_date: '', email: test@example.com, end_date: '', family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: 'http://www.julioherrera.info/wp-content/uploads/2015/07/Lizardo-Sosa-copy.jpg',
-    name: 'Lizardo Arturo Sosa Lopez ', national_identity: '', patronymic_name: '',
-    sort_name: '', start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:02.250171+00:00'}
-  model: popolo.person
-  pk: lisardo-sosa
-- fields: {additional_name: '', biography: "Veterinario, administrador de Empresas
-      y diputado del Congreso. Fue proclamado precandidato presidencial por su partido
-      el 23 de noviembre de 2013. Inici\xF3 su trayectoria pol\xEDtica cuando fue
-      electo diputado por el Frente Republicano Guatemalteco en 1999. Fue jefe de
-      bancada del FRG y secretario general de este partido desde enero 2010 al 26
-      de enero de 2013, fecha en que fue refundado el FRG para transformarse en el
-      actual Partido Republicano Institucional.", birth_date: '', created_at: ! '2015-07-07
-      22:44:28.075207+00:00', death_date: '', email: test@example.com, end_date: '',
-    family_name: '', gender: '', given_name: '', honorific_prefix: '', honorific_suffix: '',
-    image: 'http://www.julioherrera.info/wp-content/uploads/2015/07/Luis-Fernando-Perez-copy.jpg',
-    name: "Luis Fernando P\xE9rez Mart\xEDnez ", national_identity: '', patronymic_name: '',
-    sort_name: '', start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:02.406774+00:00'}
-  model: popolo.person
-  pk: luis-fernando-perez
-- fields: {additional_name: '', biography: "Abogado, empresario y exdiputado del Congreso.
-      Fue proclamado como precandidato presidencial por su partido el 4 de julio de
-      2013 y como candidato oficial el 4 de mayo de 2015. Compiti\xF3 como candidato
-      presidencial en la elecci\xF3n presidencial de 2011, pero perdi\xF3 en segunda
-      vuelta frente al general retirado, Otto P\xE9rez Molina, del Partido Patriota.
-      Tan pronto como se inici\xF3 el gobierno de Otto P\xE9rez Molina, Baldiz\xF3n
-      fue declarado el candidato presidencial del LIDER.\r\n\r\nBiograf\xEDa\r\nNaci\xF3
-      en el municipio de Flores, Pet\xE9n, el 6 de mayo de 1970. Es hijo de Salvador
-      Baldiz\xF3n Tager, profesional de medicina y de Dora Gloria M\xE9ndez de Baldiz\xF3n.
-      Esposo de Rosa Mar\xEDa Vargas y padre de Manuel Antonio y Jorge Eduardo.\r\n\r\nCuenta
-      con: una licenciatura en Ciencias Jur\xEDdicas y Sociales, una maestr\xEDa en
-      Derecho P\xFAblico y Gesti\xF3n, y un doctorado en Derecho. Es pol\xEDtico,
-      abogado, empresario y fundador de empresas. Impulso las leyes del Adulto Mayor
-      y Fonpetrol.\r\n\r\nEn el 2003 fue diputado al Congreso con el partido PAN y
-      nuevamente en el 2007 con el partido UNE. En el a\xF1o 2008 se desintegr\xF3
-      del partido UNE y fund\xF3 el partido Libertad Democr\xE1tico Renovada \u2013
-      LIDER, donde fue secretario general.\r\n\r\nEn el 2011 perdi\xF3 la presidencia
-      contra el actual presidente Otto P\xE9rez Molina, actualmente es precandidato
-      del partido LIDER, por segunda ocasi\xF3n.\r\n\r\nFormaci\xF3n Educativa \r\nEntre
-      los a\xF1os 1974 y 1982, realiz\xF3 sus estudios de pre-primaria y primaria
-      en la escuela p\xFAblica Jos\xE9 Miguel Castellanos Pacheco, del Municipio de
-      Flores, Pet\xE9n.\r\n\r\nSus estudios de nivel medio y diversificado los realizo
-      en el Instituto Adolfo V. Hall Central, de la Ciudad de Guatemala, en donde
-      adem\xE1s del Diploma de Bachiller en Ciencias y Letras, obtuvo los Despachos
-      de Subteniente de Reserva en el Arma de Infanter\xEDa en 1987.\r\n\r\nEl a\xF1o
-      2000, obtuvo los T\xEDtulos de Licenciado en Ciencias Jur\xEDdicas y Sociales
-      y Abogado y Notario en la Universidad Mariano G\xE1lvez de Guatemala. En el
-      2001 comenz\xF3 sus estudios de Post Grado en las Facultades de Gesti\xF3n Institucional
-      y de Ciencias Econ\xF3micas y Administrativas de la Universidad de Valpara\xEDso,
-      Chile y al igual que el T\xEDtulo de Profesional del Derecho, culmin\xF3 las
-      Maestr\xEDas de Mag\xEDster en Gesti\xF3n de Organizaciones y de Administraci\xF3n
-      de Negocios; MBA con Menciones Honor\xEDficas. Con iguales resultados culmin\xF3
-      en 1989 sus estudios del Idioma Ingl\xE9s en la Universidad de Oxford, Inglaterra.\r\n\r\nContinu\xF3
-      sus estudios de Doctorado en Derecho, en la Facultad de Ciencias Jur\xEDdicas
-      y Sociales de la Universidad de San Carlos de Guatemala, habiendo obtenido el
-      T\xEDtulo de Doctor en Derecho dentro de la Primera Promoci\xF3n, siendo uno
-      de los primeros cinco profesionales graduados como Doctores en Derecho de esa
-      Tricentenaria Casa de Estudios Superiores, en el a\xF1o 2004.\r\n\r\nEn el a\xF1o
-      2005 prosigue sus Estudios de Post Doctorado, en la Universidad de Salamanca,
-      Espa\xF1a, cursando la especializaci\xF3n de Derecho Parlamentario.\r\n\r\nEn
-      el a\xF1o 2006 extendi\xF3 sus estudios de Post Doctorado, siempre en la Universidad
-      de Salamanca Espa\xF1a, cursando en esta ocasi\xF3n la especializaci\xF3n de
-      Derecho en Comercio Internacional. Ese mismo a\xF1o aprovechando su estad\xEDa
-      en Espa\xF1a, curs\xF3 la especializaci\xF3n en Derecho Internacional Privado
-      en la Escuela de Altos Estudios de la Universidad de Salamanca. A inicios del
-      a\xF1o 2009, curs\xF3 la especializaci\xF3n en Administraci\xF3n P\xFAblica,
-      en la prestigiosa Escuela de Administraci\xF3n P\xFAblica L-ENA, de Par\xEDs
-      Francia.", birth_date: '', created_at: ! '2015-07-07 22:44:28.040380+00:00',
-    death_date: '', email: test@example.com, end_date: '', family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: 'http://www.julioherrera.info/wp-content/uploads/2015/07/Manuel-Baldizon.jpg',
-    name: 'Manuel Antonio Baldizon Mendez ', national_identity: '', patronymic_name: '',
-    sort_name: '', start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:02.563525+00:00'}
-  model: popolo.person
-  pk: manuel-baldizon
-- fields: {additional_name: '', biography: "Abogado, notario, economista y periodista,
-      candidato a la presidencia en 1985, cuando a\xFAn no cumpl\xEDa los cuarenta
-      a\xF1os, edad que la Constituci\xF3n habr\xEDa de fijar como m\xEDnima tras
-      su entrada en vigor en enero de 1986.\r\n\r\n\r\nBiograf\xEDa\r\nMario David
-      Antonio Garc\xEDa Vel\xE1squez, naci\xF3 en el departamento de San Marcos, Guatemala,
-      el 13 de junio de 1946.\r\n\r\nEs un abogado, notario, economista y periodista
-      guatemalteco.\r\n\r\nEl 05 de marzo de 1981, sufri\xF3 un ataque terrorista
-      en su residencia familiar, la autor\xEDa fue adjudicada a la Organizaci\xF3n
-      del Pueblo en Armas (ORPA) una de los cuatro grupos guerrilleros de orientaci\xF3n
-      marxista que operaban en la \xE9poca. Su esposa Mar\xEDa Elena, y sus cuatro
-      peque\xF1os hijos de entre 5 y 12 a\xF1os de edad, fueron expatriados por cinco
-      a\xF1os, para ponerlos a salvo.\r\n\r\nEn 1985, quiso postularse para candidato
-      a la presidencia, sin embargo no pudo puesto que a\xFAn no cumpl\xEDa con los
-      40 a\xF1os de edad, requisito que pide la Constituci\xF3n Pol\xEDtica de Guatemala.
-      Participo con el partido Central Aut\xE9ntica Nacionalista \u2013 CAN, un partido
-      conservador que fue fundado por el general Carlos Arana Osorio y el finquero
-      Carlos Anzueto Vielman. \r\n\r\nEl 17 de mayo de 2015, fue presentado como el
-      candidato presidencial del partido patriota para las elecciones del 6 de septiembre
-      de 2015.\r\n\r\nEstudios\r\n\r\n\u2022\tEstudio Econom\xEDa, en la Universidad
-      Francisco Marroqu\xEDn\r\n\u2022\tLa carrera de Abogado y Notario en la Universidad
-      Rafael Land\xEDvar (URL), Universidad Mariano G\xE1lvez de Guatemala (UMG) y
-      la Universidad Panamericana de Guatemala (UPANA) de la cual es su primer egresado
-      y donde tambi\xE9n obtuvo una Maestr\xEDa en Derecho Procesal.\r\n\u2022\tObtuvo
-      una Maestr\xEDa en Derecho Procesal y Doctorado en la Universidad Nacional de
-      Rosario, Argentina.\r\nAcademia\r\nFund\xF3 la escuela de Ciencias de la Comunicaci\xF3n
-      de la Universidad Francisco Marroqu\xEDn. A partir de 2005 fue nombrado profesor
-      de posgrado en las facultades de Econom\xEDa, Ciencias Pol\xEDticas y Derecho
-      de la Universidad Mariano G\xE1lvez de Guatemala.\r\n\r\nPeriodismo\r\n\r\n\u2022\tDe
-      1970 a 1980 fue corresponsal centroamericano de la Agence France.\r\n\u2022\tDirector
-      y fundador de la Revista de Negocios.\r\n\u2022\tEn 1974 y 1981 fue el director
-      general de la revista econ\xF3mica Competencia.\r\n\u2022\tDe 1976 a 1988 fue
-      el director y fundador del Telenoticiero Aqu\xED el Mundo, programa televisado
-      por Canal 3, en frecuencia VHF de Guatemala. Siendo su mayor auge la d\xE9cada
-      de 1980.\r\n\u2022\tEn 1997, reinici\xF3 sus labores period\xEDsticas lanzando
-      Aqu\xED el Mundo Televisi\xF3n por Canal 25 UHF y cadenas de cable TV.\r\n\u2022\tDe
-      1997 a 2002 lanz\xF3 el programa radial Hablando Claro por Emisoras Unidas de
-      Guatemala.\r\n\u2022\tDe diciembre 1998 a enero de 2002 fue presidente y director
-      de la Revista Cr\xF3nica Centroamericana.\r\n\u2022\tEn 2004 presidi\xF3 la
-      C\xE1mara Guatemalteca de Periodismo.\r\n\u2022\tDe 2007 al 15 de mayo del 2015
-      tuvo el programa radial \u201CHablando claro\u201D \u201D, en la cadena Emisoras
-      Unidas de Guatemala.\r\n", birth_date: '', created_at: ! '2015-07-07 22:44:28.083263+00:00',
-    death_date: '', email: test@example.com, end_date: '', family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: 'http://www.julioherrera.info/wp-content/uploads/2015/07/Mario-David-Garci_a-copy.jpg',
-    name: "Mario David Garc\xEDa Vel\xE1squez", national_identity: '', patronymic_name: '',
-    sort_name: '', start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:03.042798+00:00'}
-  model: popolo.person
-  pk: mario-david-garcia-velasquez
-- fields: {additional_name: '', biography: "Particip\xF3 en la elecci\xF3n presidencial
-      de 2007 y qued\xF3 en sexto lugar. Tambi\xE9n particip\xF3 en la elecci\xF3n
-      presidencial de 2011, quedando en cuarto puesto. Fue diputado del Congreso desde
-      el 14 de enero de 2000 hasta su renuncia en 2007. Dirigi\xF3 la Secretar\xEDa
-      de Desarrollo Social durante el gobierno de Alfonso Portillo, pero fue disuelta
-      debido a la corrupci\xF3n que hab\xEDa dentro esta instituci\xF3n.", birth_date: '',
-    created_at: ! '2015-07-07 22:44:28.066444+00:00', death_date: '', email: test@example.com,
-    end_date: '', family_name: '', gender: '', given_name: '', honorific_prefix: '',
-    honorific_suffix: '', image: 'http://www.redciudadana.org/wp-content/uploads/2015/07/Mario-Estrada.jpg',
-    name: 'Mario Amilcar Estrada Orellana ', national_identity: '', patronymic_name: '',
-    sort_name: '', start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:03.199487+00:00'}
-  model: popolo.person
-  pk: mario-estrada-orellana
-- fields: {additional_name: '', biography: "Miguel \xC1ngel Sandoval V\xE1squez, tambi\xE9n
-      conocido como \u201CEl Zurdo\u201D. Tiene 65 a\xF1os de edad. \r\n\r\nEs un
-      analista pol\xEDtico reconocido en medios de comunicaci\xF3n en el pa\xEDs,
-      exguerrillero y soci\xF3logo.\r\n\r\nEs la segunda vez que participa como candidato
-      a la presidencia de Guatemala, la otra fue en las elecciones del a\xF1o 2007
-      donde se llevo el d\xE9cimo puesto, elecciones ganadas por \xC1lvaro Colom Caballeros.\r\n\r\n\r\nEstudios\r\nPosgrados
-      de la Escuela de Altos Estudios en Ciencias Sociales de Par\xEDs, Francia  y
-      en la Universidad Rafael  Land\xEDvar.\r\nEstudio sociolog\xEDa en Par\xEDs\r\n\r\nExperiencia
-      laboral\r\nInicio sus luchas reivindicativas como dirigente estudiantil del
-      Instituto Nacional Central para Varones, mejor conocido como El Central. \r\n\r\nEn
-      la d\xE9cada de los 60\u2019s se uni\xF3 al movimiento revolucionario insurgente.\r\n\r\nSe
-      incorpor\xF3 de nuevo al movimiento revolucionario insurgente y en la d\xE9cada
-      de 1970 fue cofundador del llamado Ej\xE9rcito Guerrillero de los Pobres \u2013
-      EGP, una de las cuatro organizaciones que conformaron la Unidad Revolucionaria
-      Nacional Guatemalteca - URNG.\r\n\r\nInici\xF3 el proceso de negociaci\xF3n,
-      como militante de URNG, desde el a\xF1o 1987 para alcanzar la Paz Firme y Duradera
-      en nuestro pa\xEDs.\r\n\r\nEs signatario de numerosos acuerdos en el proceso
-      de paz y a partir de 1996, a\xF1o en que se finaliza formalmente el conflicto
-      armado interno, se incorpora como activista social y asesor de Plataforma Agraria.
-      \r\n\r\nLa URNG dej\xF3 la clandestinidad en 1996 con la firma de los Acuerdos
-      de Paz entre la guerrilla y el Estado de Guatemala, despu\xE9s de 36 a\xF1os
-      de guerra interna entre 1960 y 1996.\r\n\r\nEs fundador de Mesa Global e integrante
-      de CALDH, instituci\xF3n que lucha por la defensa de los derechos humanos.\r\n\r\nHa
-      sido columnista en varios medios nacionales e internacionales, destacando a
-      nivel nacional elPeri\xF3dico y Prensa Libre. \r\n\r\nSe ha desempe\xF1ado como
-      asesor del proceso de modernizaci\xF3n del Organismo Legislativo y de la Bancada
-      de URNG.\r\n\r\nHa sido conferencista en m\xFAltiples foros nacionales e internacionales.\r\n\r\nHa
-      sido consultor del Programa de las Naciones Unidas para el Desarrollo (PNUD)
-      en Guatemala y de la Uni\xF3n Europea, entre otros organismos.\r\n", birth_date: '',
-    created_at: ! '2015-07-28 17:32:36.573294+00:00', death_date: '', email: test@example.com,
-    end_date: '', family_name: '', gender: '', given_name: '', honorific_prefix: '',
-    honorific_suffix: '', image: 'http://www.julioherrera.info/wp-content/uploads/2015/07/Miguel-Angel-Sandoval-copy.jpg',
-    name: "Miguel \xC1ngel Sandoval V\xE1squez", national_identity: '', patronymic_name: '',
-    sort_name: '', start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:03.367499+00:00'}
-  model: popolo.person
-  pk: miguel-angel-sandoval-vasquez
-- fields: {additional_name: '', biography: "\n \n **Casilla 1**: CARLOS MANUEL BEZARES
-      MARROQUIN\n \n **Casilla 10**: MARCO ANTONIO RAMIREZ MOLINA\n \n **Casilla 11**:
-      CLAUDIA REYMUNDA ENRIQUEZ ORELLANA\n \n **Casilla 13**: LUIS ARTURO SALAZAR
-      VASQUEZ\n \n **Casilla 2**: FABIAN US ALVAREZ\n \n **Casilla 3**: ANA MARIA
-      DE LA ROSA PEREZ\n \n **Casilla 5**: ESBYN JOHEL PEREZ\n \n **Casilla 7**: ALVARO
-      HERRERA GARCIA", birth_date: '', created_at: ! '2015-08-18 20:42:46.275507+00:00',
-    death_date: '', email: test@example.com, end_date: null, family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: '', name: Movimiento
-      Nueva Republica, national_identity: null, patronymic_name: '', sort_name: '',
-    start_date: null, summary: '', updated_at: ! '2015-08-27 18:50:03.525779+00:00'}
-  model: popolo.person
-  pk: movimiento-nueva-republica
-- fields: {additional_name: '', biography: "\n \n **Casilla 10**: EDDY ARIEL BARRIOS
-      HERRERA\n \n **Casilla 11**: JIAN CARLO SAMAYOA GARCIA\n \n **Casilla 2**: RUBEN
-      SALVADOR MAZARIEGOS VASQUEZ\n \n **Casilla 3**: SERGIO ARMANDO PADILLA REYES\n
-      \n **Casilla 4**: DAVID ALFONSO ORTIZ R\xCDMOLA\n \n **Casilla 7**: WALTER MANRIQUE
-      CIFUENTES CERON\n \n **Casilla 8**: MARCO ANTONIO MENENDEZ LOPEZ\n \n **Casilla
-      9**: NICOLAS CANTO ORDO\xD1EZ", birth_date: '', created_at: ! '2015-08-18 20:42:46.292288+00:00',
-    death_date: '', email: test@example.com, end_date: null, family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: '', name: Movimiento
-      Reformador, national_identity: null, patronymic_name: '', sort_name: '', start_date: null,
-    summary: '', updated_at: ! '2015-08-27 18:50:03.659759+00:00'}
-  model: popolo.person
-  pk: movimiento-reformador
-- fields: {additional_name: '', biography: "\r\n \r\n **Casilla 1**: FERNANDO LINARES
-      BELTRANENA\r\n \r\n **Casilla 2**: ERIK ANDERS JOHANNESSEN BOER\r\n \r\n **Casilla
-      3**: GERMAN ENRIQUE ACEVEDO ORELLANA\r\n \r\n **Casilla 4**: PETRONA LAURA REYES
-      QUINO\r\n \r\n **Casilla 7**: JAIME REN\xC9 KONG \xC1LVAREZ\r\n \r\n **Casilla
-      8**: JOS\xC9 RAM\xD3N MU\xD1OZ D\xCDAZ\r\n \r\n **Casilla 9**: JAMBLET YOVANI
-      D\xCDAZ AMBROCIO", birth_date: '', created_at: ! '2015-08-18 20:42:46.310512+00:00',
-    death_date: '', email: test@example.com, end_date: '', family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: '', name: Partido
-      de Avanzada Nacional, national_identity: '', patronymic_name: '', sort_name: '',
-    start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:03.838910+00:00'}
-  model: popolo.person
-  pk: partido-de-avanzada-nacional
-- fields: {additional_name: '', biography: "\r\n \r\n **Casilla 11**: OSCAR MOIS\xC9S
-      L\xD3PEZ FUENTES\r\n \r\n **Casilla 12**: H\xC9CTOR ALFREDO RUIZ FUENTES\r\n
-      \r\n **Casilla 2**: GERMAN ESTUARDO VEL\xC1SQUEZ P\xC9REZ\r\n \r\n **Casilla
-      24**: ABRAHAM MOIS\xC9S JU\xC1REZ SALAZAR\r\n \r\n **Casilla 3**: OLIVERIO GARC\xCDA
-      RODAS\r\n \r\n **Casilla 4**: MAYRA ALEJANDRA CARRILLO DE LE\xD3N\r\n \r\n **Casilla
-      5**: AMILCAR ALEKSANDER CASTILLO ROCA\r\n \r\n **Casilla 6**: LUIS JOS\xC9 FERN\xC1NDEZ
-      CHENAL\r\n \r\n **Casilla 7**: BENITA ODILIA DE LEON PEREZ DE CHIROY\r\n \r\n
-      **Casilla 8**: ANDREA SOL\xCDS RAM\xCDREZ DE GRAMAJO\r\n \r\n **Casilla 9**:
-      JORGE EMILIO CARDONA DE LE\xD3N", birth_date: '', created_at: ! '2015-08-18
-      20:42:46.327244+00:00', death_date: '', email: test@example.com, end_date: '',
-    family_name: '', gender: '', given_name: '', honorific_prefix: '', honorific_suffix: '',
-    image: '', name: Partido Patriota, national_identity: '', patronymic_name: '',
-    sort_name: '', start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:03.995590+00:00'}
-  model: popolo.person
-  pk: partido-patriota
-- fields: {additional_name: '', biography: "\n \n **Casilla 1**: JUAN JOSE PORRAS
-      CASTILLO\n \n **Casilla 10**: LEON ALEXANDER OSTROWIAK HARARI\n \n **Casilla
-      11**: JOSE MIGUEL ARGUETA BONE\n \n **Casilla 12**: FULVIA NINET GARCIA LOPEZ
-      DE PARADA\n \n **Casilla 13**: KAREN EDDA NESS BARNHILL\n \n **Casilla 14**:
-      WILLY ARGENIS ARDEANO VELASQUEZ\n \n **Casilla 15**: LIS REGINA LIMA CORDON
-      DE TEVALAN\n \n **Casilla 16**: FRIZDY MARLENY MU\xD1OZ CAMEY DE FUENTES\n \n
-      **Casilla 17**: CESAR AUGUSTO MENDEZ PEREDA\n \n **Casilla 18**: PAULA LISETH
-      CEBALLOS JARAMILLO DE ARRIOLA\n \n **Casilla 19**: ELMER JOSUE PALENCIA REYES\n
-      \n **Casilla 2**: ARMANDO DAMIAN CASTILLO ALVARADO\n \n **Casilla 20**: OROL
-      VINICIO GUERRA LORENZANA\n \n **Casilla 21**: LUIS ASDRUBAL CASTA\xD1EDA ROCA\n
-      \n **Casilla 22**: RENALDO JOSE CARRERA QUEZADA\n \n **Casilla 23**: MARIA ANGELICA
-      MARIN ASENCIO\n \n **Casilla 24**: CELESTE MAGDALENA LOPEZ ECHEVERRIA DE FRANCO\n
-      \n **Casilla 25**: CARLOS EDUARDO SOSA RUBIO\n \n **Casilla 26**: RODOLFO JOSE
-      MANSILLA CACACHO\n \n **Casilla 27**: JOSE OLIVERIO RUANO MARTINEZ\n \n **Casilla
-      28**: YANUARIO EMANUEL HERNANDEZ ERAZO\n \n **Casilla 29**: CARLOS ADOLFO MARTINEZ
-      LEAL\n \n **Casilla 3**: RUDY WOSTBELI GONZALEZ CARDONA\n \n **Casilla 30**:
-      ALFONSO ENRIQUE CORTEZ DE PAZ\n \n **Casilla 31**: KARY IVONNE TENI CACAO\n
-      \n **Casilla 4**: HUGO ENRIQUE PE\xD1A MEDINA\n \n **Casilla 5**: JUAN CARLOS
-      RODIL QUINTANA\n \n **Casilla 6**: JOSE NICOLAS ROMPICHE DE LEON\n \n **Casilla
-      7**: RICARDO ENRIQUE SCHAEUFFLER OSORIO\n \n **Casilla 8**: MYNOR RENE CARDONA
-      YAX", birth_date: '', created_at: ! '2015-08-18 20:54:39.042577+00:00', death_date: '',
-    email: test@example.com, end_date: null, family_name: '', gender: '', given_name: '',
-    honorific_prefix: '', honorific_suffix: '', image: '', name: "Partido Pol\xEDtico
-      Vision con Valores", national_identity: null, patronymic_name: '', sort_name: '',
-    start_date: null, summary: '', updated_at: ! '2015-08-27 18:50:04.152455+00:00'}
-  model: popolo.person
-  pk: partido-politico-vision-con-valores
-- fields: {additional_name: '', biography: "\n \n **Casilla 1**: PEDRO G\xC1LVEZ HERN\xC1NDEZ\n
-      \n **Casilla 11**: HOWARD FRANCIS HERRARTE POLANTINOS\n \n **Casilla 13**: DIEGO
-      LAGUARDIA HENKES\n \n **Casilla 18**: NICOLE RIVAS FONSECA\n \n **Casilla 2**:
-      ALEJANDRO JOS\xC9 P\xC9REZ MART\xCDNEZ\n \n **Casilla 22**: JORGE FRANCISCO
-      PINEDA SOZA\n \n **Casilla 23**: JUAN JOS\xC9 M\xC9RIDA REANDA\n \n **Casilla
-      26**: MANUEL ALEJANDRO R\xCDMOLA CORDERO\n \n **Casilla 28**: TRACY DENISSE
-      PACHECO MOR\xC1N\n \n **Casilla 3**: CARLOS IGNACIO G\xD3MEZ CH\xC1VARRY\n \n
-      **Casilla 4**: SERGIO AUGUSTO LAVARREDA ANLEU\n \n **Casilla 6**: CHRISTIAN
-      AGUILAR MOR\xC1N\n \n **Casilla 7**: ANA GABRIELA P\xC9REZ MENDIZABAL\n \n **Casilla
-      8**: MAR\xCDA DEL PILAR PINELO TAGER\n \n **Casilla 9**: JOS\xC9 ANTONIO DAVID
-      L\xD3PEZ MART\xCDNEZ", birth_date: '', created_at: ! '2015-08-18 20:54:39.101234+00:00',
-    death_date: '', email: test@example.com, end_date: null, family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: '', name: Partido
-      Republicano Institucional, national_identity: null, patronymic_name: '', sort_name: '',
-    start_date: null, summary: '', updated_at: ! '2015-08-27 18:50:04.308847+00:00'}
-  model: popolo.person
-  pk: partido-republicano-institucional
-- fields: {additional_name: '', biography: "Economista y exministro de Energ\xEDa
-      y Minas. El 8 de agosto de 2013 fue proclamado por su partido como el precandidato
-      presidencial para la elecci\xF3n presidencial de 2015 y el10 de mayo de 2015
-      fue nominado oficialmente como candidato presidencial.20 Gonz\xE1lez D\xEDaz
-      fue concejal V en la muncipalidad de Guatemala de 2004 al 2007, fue ministro
-      de Energ\xEDa y Minas de la Rep\xFAblica de Guatemala durante el gobierno de
-      \xD3scar Berger, tambi\xE9n estuvo encargado de la reconstrucci\xF3n luego del
-      hurac\xE1an Stan y, posteriormente, candidato a alcalde de la Ciudad de Guatemala\r\n\r\n**Biograf\xEDa**\r\nNaci\xF3
-      en la ciudad de Guatemala, en el a\xF1o 1970. Es hijo de Carlos Gonz\xE1lez
-      Cheesman y Emilia D\xEDaz-Dur\xE1n de Gonz\xE1lez. Es un pol\xEDtico, docente
-      y economista guatemalteco.\r\n\r\nEstudi\xF3 en el Liceo Javier toda su primaria
-      y educaci\xF3n posterior. Luego se gradu\xF3 de Ciencias Econ\xF3micas en la
-      Universidad Francisco Marroqu\xEDn y obtuvo un postgrado en Evaluaci\xF3n de
-      Proyectos en Chile. En la actualidad imparte c\xE1tedras universitarias.\r\n\r\nTiene
-      experiencia en la administraci\xF3n p\xFAblica:\r\n1991 a 1995 fue subgerente
-      de Empagua \r\n1996 a 1999 cofundador y primer gerente de Emetra y PMT de la
-      ciudad de Guatemala\r\n2004 a 2005 fue Ministro de Energ\xEDa y Minas, durante
-      el gobierno de \xD3scar Berger\r\n2004 a 2007 concejal V de la Municipalidad
-      de Guatemala, con el alcalde \xC1lvaro Arz\xFA.\r\n2005 a 2006 Presidente del
-      INDE.\r\n2005 a 2006 Coordinador nacional del diagn\xF3stico y planificaci\xF3n
-      de la reconstrucci\xF3n del desastre del Hurac\xE1n Stan.\r\n2005 a 2007 fue
-      gerente de la Presidencia de la Rep\xFAblica\r\n\r\nEs cofundador y secretario
-      general del partido CREO.\r\n\r\nFuentes: \r\n1. Informaci\xF3n del Tribunal
-      Supremo Electoral (TSE)\r\n2. Pagina Web http://robertogonzalez.gt/\r\n3. Medios
-      de Comunicaci\xF3n: \r\n", birth_date: '', created_at: ! '2015-07-07 22:44:28.054489+00:00',
-    death_date: '', email: test@example.com, end_date: '', family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: 'https://lh4.googleusercontent.com/-_eoJIUY3r5E/AAAAAAAAAAI/AAAAAAAAABY/IMCbCJvjnUc/photo.jpg',
-    name: "Roberto Gonz\xE1lez D\xEDaz Dur\xE1n ", national_identity: '', patronymic_name: '',
-    sort_name: '', start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:04.465569+00:00'}
-  model: popolo.person
-  pk: roberto-gonzalez-diaz-duran
-- fields: {additional_name: '', biography: '', birth_date: '', created_at: ! '2015-07-28
-      17:29:53.621529+00:00', death_date: '', email: test@example.com, end_date: '',
-    family_name: '', gender: '', given_name: '', honorific_prefix: '', honorific_suffix: '',
-    image: 'http://www.julioherrera.info/wp-content/uploads/2015/07/Anibal-Garcia.jpg',
-    name: Rodolfo Anibal Garcia Hernandez, national_identity: '', patronymic_name: '',
-    sort_name: '', start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:04.622364+00:00'}
-  model: popolo.person
-  pk: rodolfo-anibal-garcia-hernandez
-- fields: {additional_name: '', biography: "Licenciada en Ciencias de Comunicaci\xF3n
-      y ex primera dama de la Naci\xF3n. El 13 de mayo de 2013, su partido la proclam\xF3
-      precandidata para la elecci\xF3n presidencial de 2015. Busc\xF3 ser inscrita
-      para participar en la elecci\xF3n presidencial de 2011, pero fue rechazada por
-      el Tribunal Supremo Electoral, la Corte Suprema de Justicia y la Corte de Constitucionalidad
-      por divorciarse de \xC1lvaro Colom con la finalidad de ser inscrita como candidata
-      presidencial, siendo esto no permitido por ser un familiar cercano al presidente
-      en curso.\r\n\r\n\r\nBiograf\xEDa\r\nNaci\xF3 el 05 de octubre 1955, en el municipio
-      de Melchor de Mencos, Pet\xE9n. Hija de Enrique Torres y de Teresa Casanova,
-      mujer destacada en su trayectoria al dirigir la alcald\xEDa municipal de su
-      pueblo natal Melchor de Mencos. Es madre de 3 mujeres y 1 var\xF3n. Es la ex
-      esposa de \xC1lvaro Colom Caballeros, ex presidente de la Rep\xFAblica de  Guatemala.
-      Cuenta con una licenciatura en Ciencias de la Comunicaci\xF3n, con estudios
-      de maestr\xEDa en Pol\xEDticas P\xFAblicas. \r\n\r\nFue una exitosa empresaria
-      de la industria de la confecci\xF3n (textiles). Ocupo posiciones gerenciales
-      de alta responsabilidad en la industria textil y lleg\xF3 a administrar su propia
-      empresa dentro de esta rama econ\xF3mica tan importante.\r\n\r\nEn el a\xF1o
-      2002 fund\xF3 el partido Unidad Nacional de la Esperanza \u2013 UNE, de ideolog\xEDa
-      socialdem\xF3crata. Su exesposo \xC1lvaro Colom fue quien logr\xF3 el triunfo
-      en las elecciones de 2007. Por lo que fue la Primera Dama de la Naci\xF3n y
-      tuvo el puesto de coordinadora del Consejo de Cohesi\xF3n Social.\r\n\r\nEn
-      el a\xF1o 2012 fue electa como Secretaria General y se le solicit\xF3 ser la
-      precandidata presidencial. Actualmente, fue elegida candidata a presidente por
-      el partido UNE.\r\n\r\nFormaci\xF3n educativa\r\nSus estudios iniciaron en la
-      escuela p\xFAblica de Melchor de Mencos. Curs\xF3 estudios superiores en la
-      Universidad de San Carlos de Guatemala, donde obtuvo la Licenciatura en Ciencias
-      de la Comunicaci\xF3n. Desde siempre se interes\xF3 en el estudio del Estado.
-      Por ello, estudi\xF3 la Maestr\xEDa en Pol\xEDticas P\xFAblica en la Universidad
-      Rafael Land\xEDvar, que se encuentra pendiente de tesis. Adicionalmente, ha
-      participado en numerosos cursos relacionados con la Administraci\xF3n P\xFAblica.\r\n",
-    birth_date: '', created_at: ! '2015-07-07 22:44:28.047717+00:00', death_date: '',
-    email: test@example.com, end_date: '', family_name: '', gender: '', given_name: '',
-    honorific_prefix: '', honorific_suffix: '', image: 'http://www.redciudadana.org/wp-content/uploads/2015/07/Sandra-Torres.jpg',
-    name: 'Sandra Julieta Torres Casanova ', national_identity: '', patronymic_name: '',
-    sort_name: '', start_date: '', summary: "Licenciada en Ciencias de Comunicaci\xF3n
-      y ex primera dama de la Naci\xF3n. El 13 de mayo de 2013, su partido la proclam\xF3
-      precandidata", updated_at: ! '2015-08-27 18:50:04.778725+00:00'}
-  model: popolo.person
-  pk: sandra-torres-casanova
-- fields: {additional_name: '', biography: "\n \n **Casilla 10**: JOS\xC9 ALBERTO
-      SIERRA ROSALES\n \n **Casilla 12**: REN\xC9 ARTURO MORALES ROSAL\n \n **Casilla
-      13**: ESTEBAN LEMUEL COX CHAVAJAY\n \n **Casilla 16**: GILDA MARGARITA ALONZO
-      ARGUETA\n \n **Casilla 17**: MAR\xCDANELA PINEDA PRADO\n \n **Casilla 18**:
-      EDEL REGINALDO L\xD3PEZ\n \n **Casilla 19**: JORGE ANIBAL G\xD3MEZ GONZ\xC1LEZ\n
-      \n **Casilla 2**: FELIPE ALEJOS LORENZANA\n \n **Casilla 20**: SILVIA FERNANDA
-      BARILLAS ACEVEDO\n \n **Casilla 24**: ALBA MICHELLE CH\xC1VEZ AROCHE\n \n **Casilla
-      25**: JUAN ANTONIO JOSE DIAZ TOB\xCDAS\n \n **Casilla 26**: P\xC9DRO ROEL ESTRADA
-      QUIROA\n \n **Casilla 27**: FREDDY ROBERTO ESTRADA SANTOS\n \n **Casilla 4**:
-      JOS\xC9 RODRIGO DE LOS SANTOS VALLADARES GUILL\xC9N\n \n **Casilla 5**: JEAN
-      PAUL BRIERE SAMAYOA\n \n **Casilla 6**: GABRIELA MAYORGA ORDO\xD1EZ\n \n **Casilla
-      7**: MINOR SAMAYOA RECARI\n \n **Casilla 8**: CARLOS AUGUSTO OROZCO", birth_date: '',
-    created_at: ! '2015-08-18 20:54:39.130643+00:00', death_date: '', email: test@example.com,
-    end_date: null, family_name: '', gender: '', given_name: '', honorific_prefix: '',
-    honorific_suffix: '', image: '', name: TODOS, national_identity: null, patronymic_name: '',
-    sort_name: '', start_date: null, summary: '', updated_at: ! '2015-08-27 18:50:04.935560+00:00'}
-  model: popolo.person
-  pk: todos
-- fields: {additional_name: '', biography: "\n \n **Casilla 1**: MARIO TARACENA DIAZ-SOL\n
-      \n **Casilla 10**: JOSE CARLOS FORTUNY SOTO\n \n **Casilla 11**: JULIO FERNANDO
-      MELGAR PE\xD1A\n \n **Casilla 12**: EDWIN ENRIQUE ORTEGA FIGUEROA\n \n **Casilla
-      13**: GERMAN LAZO LEMUS\n \n **Casilla 14**: MILDRED YESENIA PEREIRA ORELLANA\n
-      \n **Casilla 15**: CESAR AUGUSTO DAVILA GOMEZ\n \n **Casilla 16**: RAFAEL CASTRO
-      MELLADO\n \n **Casilla 17**: NESTOR ALBERTO BUC RANGEL\n \n **Casilla 18**:
-      JOSE EDUARDO BASSILA AYUSO\n \n **Casilla 19**: MARIO ERNESTO GALVEZ MU\xD1OZ\n
-      \n **Casilla 2**: ORLANDO JOAQUIN BLANCO LAPOLA\n \n **Casilla 21**: HUGO FERNANDO
-      LOPEZ SOSA\n \n **Casilla 22**: HECTOR ENRIQUE LOPEZ JIMENEZ\n \n **Casilla
-      23**: ARNULFO ESAU MARTINEZ DE LEON\n \n **Casilla 24**: JORGE LUIS HERNANDEZ
-      GOMEZ\n \n **Casilla 3**: CARLOS ALBERTO BARREDA TARACENA\n \n **Casilla 4**:
-      CESAR EMILIO FAJARDO MORALES\n \n **Casilla 5**: JORGE ESTUARDO VARGAS MORALES\n
-      \n **Casilla 6**: KARINA ALEXANDRA PAZ ROSALES\n \n **Casilla 7**: CESAR ARNULFO
-      DUARTE SOTO\n \n **Casilla 9**: RENE ARMANDO DE LEON ESCRIBANO", birth_date: '',
-    created_at: ! '2015-08-18 20:54:39.173695+00:00', death_date: '', email: test@example.com,
-    end_date: null, family_name: '', gender: '', given_name: '', honorific_prefix: '',
-    honorific_suffix: '', image: '', name: Unidad Nacional de la Esperanza, national_identity: null,
-    patronymic_name: '', sort_name: '', start_date: null, summary: '', updated_at: ! '2015-08-27
-      18:50:05.104668+00:00'}
-  model: popolo.person
-  pk: unidad-nacional-de-la-esperanza
-- fields: {additional_name: '', biography: "\r\n \r\n **Casilla 1**: RUDY ROBERTO
-      CASTA\xD1EDA REYES\r\n \r\n **Casilla 10**: EDUARDO JOSUE ESTRADA RUANO\r\n
-      \r\n **Casilla 11**: RENE JACOB DE LEON MONTIEL\r\n \r\n **Casilla 12**: NELSON
-      GIOVANNI ESCALANTE MEDA\r\n \r\n **Casilla 13**: MIGUEL ESTUARDO ROMERO HURTARTE\r\n
-      \r\n **Casilla 15**: WILDER JOHNARY MENDOZA RODRIGUEZ\r\n \r\n **Casilla 16**:
-      MARIA MATZANEL GARCIA PALACIOS\r\n \r\n **Casilla 18**: MANUEL JOSE MENESES
-      RAMOS\r\n \r\n **Casilla 2**: JULIO FRANCISCO LAINFIESTA RIMOLA\r\n \r\n **Casilla
-      25**: KELIN ORCELIA MEJICANOS GARCIA\r\n \r\n **Casilla 3**: CLAUDIO GILBERTO
-      LOPEZ DE LA ROSA\r\n \r\n **Casilla 30**: JOSE LUCAS OLIVA\r\n \r\n **Casilla
-      5**: BYRON NORBERTO LOPEZ LARA\r\n \r\n **Casilla 6**: CLAUDIO SISNIEGA FERNANDEZ\r\n
-      \r\n **Casilla 7**: ALDO DAVID RUIZ ROQUE\r\n \r\n **Casilla 8**: JOSE FRANCISCO
-      YAX AJPACAJA\r\n \r\n **Casilla 9**: GUSTAVO BLADIMIR SOLANO CEREZO", birth_date: '',
-    created_at: ! '2015-08-18 20:54:39.230911+00:00', death_date: '', email: test@example.com,
-    end_date: '', family_name: '', gender: '', given_name: '', honorific_prefix: '',
-    honorific_suffix: '', image: '', name: UCN - Listado Nacional, national_identity: '',
-    patronymic_name: '', sort_name: '', start_date: '', summary: '', updated_at: ! '2015-08-27
-      18:50:05.261349+00:00'}
-  model: popolo.person
-  pk: union-del-cambio-nacional
-- fields: {additional_name: '', biography: "\n \n **Casilla 1**: AMILCAR DE JESUS
-      POP AC\n \n **Casilla 10**: MARTHA GALVAN CRUZ\n \n **Casilla 11**: JOSE IGNACIO
-      GUTIERREZ RAGUAY\n \n **Casilla 2**: ADA IVETH VALENZUELA LOPEZ\n \n **Casilla
-      3**: MARTA JUANA LOPEZ BATZIN\n \n **Casilla 4**: BEATRIZ EUGENIA ESTRADA ZEPEDA\n
-      \n **Casilla 5**: JACOBO VARGAS FORONDA\n \n **Casilla 7**: JORGE ANIBAL GUZMAN
-      LOPEZ\n \n **Casilla 8**: LESBIA VICTORIA REINA SANCHEZ\n \n **Casilla 9**:
-      KARLA YOLANDA QUIXTAN PASTOR", birth_date: '', created_at: ! '2015-08-18 20:54:39.275083+00:00',
-    death_date: '', email: test@example.com, end_date: null, family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: '', name: WINAQ-URNG-MAIZ,
-    national_identity: null, patronymic_name: '', sort_name: '', start_date: null,
-    summary: '', updated_at: ! '2015-08-27 18:50:05.417955+00:00'}
-  model: popolo.person
-  pk: winaq-urng-maiz
-- fields: {additional_name: '', biography: "Pol\xEDtica guatemalteca, miembro del
-      desaparecido partido FRG(hoy llamado PRI). Hija del general retirado y expresidente
-      de Guatemala Efra\xEDn R\xEDos Montt. Fue diputada al Congreso de Guatemala
-      durante cuatro legislaturas consecutivas.   \r\n   \r\nSu formaci\xF3n profesional
-      consiste en:   \r\nLicenciatura en Ciencias Pol\xEDticas y Sociales. Magna Cum
-      Laude, Universidad Francisco Marroqu\xEDn.   \r\nMag\xEDster Artium en Ciencias
-      Pol\xEDticas, Universidad Mariano G\xE1lvez.  \r\n   \r\nHa sido diputada al
-      Congreso de la Rep\xFAblica de Guatemala durante cuatro per\xEDodos legislativos
-      (1996-2012). \r\n  \r\nPresidenta del Grupo Latinoamericano y del Caribe -GRULAC-
-      de la Uni\xF3n Interparlamentaria Mundial por un per\xEDodo de dos a\xF1os.
-      \   Presidi\xF3 la Comisi\xF3n de Relaciones Exteriores durante los per\xEDodos
-      2008-2009 y 2010-2011. ", birth_date: '', created_at: ! '2015-07-07 22:44:28.097779+00:00',
-    death_date: '', email: test@example.com, end_date: '', family_name: '', gender: '',
-    given_name: '', honorific_prefix: '', honorific_suffix: '', image: 'http://www.redciudadana.org/wp-content/uploads/2015/07/Zury-Rios.jpg',
-    name: Zury Mayte Rios Sosa, national_identity: '', patronymic_name: '', sort_name: '',
-    start_date: '', summary: '', updated_at: ! '2015-08-27 18:50:05.574687+00:00'}
-  model: popolo.person
-  pk: zury-rios
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-07-09 15:58:20.323861+00:00',
-    end_date: null, label: '@ManuelBaldizon', note: '', object_id: manuel-baldizon,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.324196+00:00', value: 'https://twitter.com/ManuelBaldizon'}
-  model: popolo.contactdetail
-  pk: 73
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-07-09 15:58:20.325647+00:00',
-    end_date: null, label: "Manuel Baldiz\xF3n", note: '', object_id: manuel-baldizon,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.325842+00:00', value: 'https://www.facebook.com/ManuelBaldizonMendez'}
-  model: popolo.contactdetail
-  pk: 74
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-07-09 15:58:20.346592+00:00',
-    end_date: null, label: '@SandraTorresGUA', note: '', object_id: sandra-torres-casanova,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.346890+00:00', value: 'https://twitter.com/SandraTorresGUA'}
-  model: popolo.contactdetail
-  pk: 75
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-07-09 15:58:20.348491+00:00',
-    end_date: null, label: Sandra Torres Casanova, note: '', object_id: sandra-torres-casanova,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.348709+00:00', value: 'https://www.facebook.com/SandraTorresGua'}
-  model: popolo.contactdetail
-  pk: 76
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-07-09 15:58:20.368984+00:00',
-    end_date: null, label: '@canelaCREO', note: '', object_id: roberto-gonzalez-diaz-duran,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.369386+00:00', value: 'https://twitter.com/canelaCREO'}
-  model: popolo.contactdetail
-  pk: 77
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-07-09 15:58:20.371017+00:00',
-    end_date: null, label: "Roberto Gonz\xE1lez D\xEDaz-Dur\xE1n", note: '', object_id: roberto-gonzalez-diaz-duran,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.371354+00:00', value: 'https://www.facebook.com/RobertoGonzalezCanela'}
-  model: popolo.contactdetail
-  pk: 78
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-07-09 15:58:20.391974+00:00',
-    end_date: null, label: '@lizarsosa', note: '', object_id: lisardo-sosa, start_date: null,
-    updated_at: ! '2015-07-09 15:58:20.392241+00:00', value: 'https://twitter.com/lizarsosa'}
-  model: popolo.contactdetail
-  pk: 79
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-07-09 15:58:20.393457+00:00',
-    end_date: null, label: Lisardo Sosa, note: '', object_id: lisardo-sosa, start_date: null,
-    updated_at: ! '2015-07-09 15:58:20.393643+00:00', value: 'https://www.facebook.com/pages/Lizardo-Sosa/1442232346081140'}
-  model: popolo.contactdetail
-  pk: 80
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-07-09 15:58:20.410910+00:00',
-    end_date: null, label: '@MarioEstradaO', note: '', object_id: mario-estrada-orellana,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.411285+00:00', value: 'https://twitter.com/MarioEstradaO'}
-  model: popolo.contactdetail
-  pk: 81
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-07-09 15:58:20.412806+00:00',
-    end_date: null, label: Mario Estrada Orellana, note: '', object_id: mario-estrada-orellana,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.413129+00:00', value: 'https://www.facebook.com/pages/Mario-Estrada/139815769429897'}
-  model: popolo.contactdetail
-  pk: 82
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-07-09 15:58:20.432424+00:00',
-    end_date: null, label: '@luisferperezpri', note: '', object_id: luis-fernando-perez,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.432723+00:00', value: 'https://twitter.com/luisferperezpri'}
-  model: popolo.contactdetail
-  pk: 83
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-07-09 15:58:20.434138+00:00',
-    end_date: null, label: "Luis Fernando P\xE9rez", note: '', object_id: luis-fernando-perez,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.434438+00:00', value: 'https://www.facebook.com/PRI.LuisFernandoPerez'}
-  model: popolo.contactdetail
-  pk: 84
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-07-09 15:58:20.450996+00:00',
-    end_date: null, label: '@Dr_MDGarcia', note: '', object_id: mario-david-garcia-velasquez,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.451382+00:00', value: 'https://twitter.com/Dr_MDGarcia'}
-  model: popolo.contactdetail
-  pk: 85
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-07-09 15:58:20.453247+00:00',
-    end_date: null, label: "Mario David Garc\xEDa Vel\xE1squez", note: '', object_id: mario-david-garcia-velasquez,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.453553+00:00', value: 'https://www.facebook.com/hablandoclaroeu'}
-  model: popolo.contactdetail
-  pk: 86
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-07-09 15:58:20.472472+00:00',
-    end_date: null, label: '@JoseAngel_LC', note: '', object_id: jose-angel-lopez,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.472827+00:00', value: 'https://twitter.com/JoseAngel_LC'}
-  model: popolo.contactdetail
-  pk: 87
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-07-09 15:58:20.474652+00:00',
-    end_date: null, label: "Jos\xE9 \xC1ngel L\xF3pez", note: '', object_id: jose-angel-lopez,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.474996+00:00', value: 'https://www.facebook.com/JoseAngelLopezCamposeco'}
-  model: popolo.contactdetail
-  pk: 88
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-07-09 15:58:20.490491+00:00',
-    end_date: null, label: '@ZuryxGuate', note: '', object_id: zury-rios, start_date: null,
-    updated_at: ! '2015-07-09 15:58:20.490754+00:00', value: 'https://twitter.com/ZuryxGuate'}
-  model: popolo.contactdetail
-  pk: 89
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-07-09 15:58:20.492293+00:00',
-    end_date: null, label: "Zury R\xEDos", note: '', object_id: zury-rios, start_date: null,
-    updated_at: ! '2015-07-09 15:58:20.492553+00:00', value: 'https://www.facebook.com/zury.rios'}
-  model: popolo.contactdetail
-  pk: 90
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-07-09 15:58:20.506044+00:00',
-    end_date: null, label: '@jimmymoralesgt', note: '', object_id: jimmy-morales,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.506337+00:00', value: 'https://twitter.com/jimmymoralesgt'}
-  model: popolo.contactdetail
-  pk: 91
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-07-09 15:58:20.507964+00:00',
-    end_date: null, label: Jimmy Morales, note: '', object_id: jimmy-morales, start_date: null,
-    updated_at: ! '2015-07-09 15:58:20.508253+00:00', value: 'https://www.facebook.com/JimmyOficial'}
-  model: popolo.contactdetail
-  pk: 92
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-07-09 15:58:20.522053+00:00',
-    end_date: null, label: '@DrGiammattei', note: '', object_id: alejandro-giammattei-falla,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.522298+00:00', value: 'https://twitter.com/DrGiammattei'}
-  model: popolo.contactdetail
-  pk: 93
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-07-09 15:58:20.524278+00:00',
-    end_date: null, label: Alejandro Giammattei Falla, note: '', object_id: alejandro-giammattei-falla,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.524731+00:00', value: 'https://www.facebook.com/AlejandroGiammattei'}
-  model: popolo.contactdetail
-  pk: 94
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-07-09 15:58:20.543792+00:00',
-    end_date: null, label: '@JgutierrezPAN', note: '', object_id: juan-gutierrez,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.544088+00:00', value: 'https://twitter.com/JgutierrezPAN'}
-  model: popolo.contactdetail
-  pk: 95
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-07-09 15:58:20.545740+00:00',
-    end_date: null, label: "Juan Guti\xE9rrez", note: '', object_id: juan-gutierrez,
-    start_date: null, updated_at: ! '2015-07-09 15:58:20.545984+00:00', value: 'https://www.facebook.com/JuanGutierrezPAN'}
-  model: popolo.contactdetail
-  pk: 96
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-07-28 20:16:59.407806+00:00',
-    end_date: null, label: '@URNG_GT', note: '', object_id: miguel-angel-sandoval-vasquez,
-    start_date: null, updated_at: ! '2015-07-28 20:17:27.517529+00:00', value: 'https://twitter.com/URNG_GT'}
-  model: popolo.contactdetail
-  pk: 98
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-07-28 20:23:33.299642+00:00',
-    end_date: null, label: '@MNRguatemala', note: '', object_id: rodolfo-anibal-garcia-hernandez,
-    start_date: null, updated_at: ! '2015-07-28 20:24:02.433659+00:00', value: 'https://twitter.com/MNRguatemala'}
-  model: popolo.contactdetail
-  pk: 99
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-07-28 20:23:33.302403+00:00',
-    end_date: null, label: Movimiento Nueva Republica - MNR, note: '', object_id: rodolfo-anibal-garcia-hernandez,
-    start_date: null, updated_at: ! '2015-07-28 20:24:02.434657+00:00', value: 'https://www.facebook.com/MNRguatemala'}
-  model: popolo.contactdetail
-  pk: 100
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-08-18 20:16:50.331556+00:00',
-    end_date: null, label: Facebook, note: '', object_id: fuerza, start_date: null,
-    updated_at: ! '2015-08-20 16:43:27.007935+00:00', value: 'https://www.facebook.com/PartidoFuerza'}
-  model: popolo.contactdetail
-  pk: 101
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-08-18 20:16:50.333476+00:00',
-    end_date: null, label: Twitter, note: '', object_id: fuerza, start_date: null,
-    updated_at: ! '2015-08-20 16:43:27.009360+00:00', value: 'https://twitter.com/FUERZAGUATEMALA'}
-  model: popolo.contactdetail
-  pk: 102
-- fields: {contact_type: URL, content_type: 14, created_at: ! '2015-08-18 20:16:50.335589+00:00',
-    end_date: null, label: "P\xE1gina Web", note: '', object_id: fuerza, start_date: null,
-    updated_at: ! '2015-08-20 17:04:18.183714+00:00', value: 'http://www.fuerza.org.gt/'}
-  model: popolo.contactdetail
-  pk: 103
-- fields: {contact_type: URL, content_type: 14, created_at: ! '2015-08-19 16:44:09.637712+00:00',
-    end_date: null, label: "Mapa ideol\xF3gico del Congreso - Plaza P\xFAblica", note: '',
-    object_id: fuerza, start_date: null, updated_at: ! '2015-08-20 17:04:18.184763+00:00',
-    value: 'http://www.plazapublica.com.gt/content/mapa-ideologico-del-congreso'}
-  model: popolo.contactdetail
-  pk: 104
-- fields: {contact_type: VIDEO, content_type: 14, created_at: ! '2015-08-19 17:59:23.626487+00:00',
-    end_date: null, label: "Radiograf\xEDa de un mitin Soy502", note: '', object_id: encuentro-por-guatemala,
-    start_date: null, updated_at: ! '2015-08-19 17:59:23.666740+00:00', value: 'https://www.youtube.com/watch?v=BQusNPdItYU'}
-  model: popolo.contactdetail
-  pk: 105
-- fields: {contact_type: VIDEO, content_type: 14, created_at: ! '2015-08-19 21:37:33.544629+00:00',
-    end_date: null, label: "Radiograf\xEDa de un mitin Soy502", note: '', object_id: partido-de-avanzada-nacional,
-    start_date: null, updated_at: ! '2015-08-19 21:37:33.592442+00:00', value: 'https://www.youtube.com/watch?v=Fd4JgUUufog'}
-  model: popolo.contactdetail
-  pk: 106
-- fields: {contact_type: VIDEO, content_type: 14, created_at: ! '2015-08-20 14:58:22.457765+00:00',
-    end_date: null, label: "Radiograf\xEDa de un Mitin - Soy 502", note: '', object_id: libertad-democratica-renovada,
-    start_date: null, updated_at: ! '2015-08-20 14:58:22.507669+00:00', value: 'https://www.youtube.com/embed/nZ50kmwx9Mk'}
-  model: popolo.contactdetail
-  pk: 107
-- fields: {contact_type: URL, content_type: 14, created_at: ! '2015-08-20 16:43:26.928626+00:00',
-    end_date: null, label: "Radiograf\xEDa de un Mitin Pol\xEDtico - Soy 502", note: '',
-    object_id: fuerza, start_date: null, updated_at: ! '2015-08-20 17:04:18.185704+00:00',
-    value: 'https://www.youtube.com/user/canalsoy502'}
-  model: popolo.contactdetail
-  pk: 108
-- fields: {contact_type: VIDEO, content_type: 14, created_at: ! '2015-08-20 16:51:02.754855+00:00',
-    end_date: null, label: Plan de Gobierno, note: '', object_id: fuerza, start_date: null,
-    updated_at: ! '2015-08-20 16:54:34.272085+00:00', value: 'https://www.youtube.com/embed/7WfjYeTG6pI'}
-  model: popolo.contactdetail
-  pk: 109
-- fields: {contact_type: VIDEO, content_type: 14, created_at: ! '2015-08-20 16:57:11.306846+00:00',
-    end_date: null, label: "Radiograf\xEDa de un mitin Soy502", note: '', object_id: partido-patriota,
-    start_date: null, updated_at: ! '2015-08-20 16:57:11.372953+00:00', value: 'https://www.youtube.com/watch?v=1MfpT9d819A'}
-  model: popolo.contactdetail
-  pk: 110
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-08-21 20:30:39.542218+00:00',
-    end_date: null, label: Facebook, note: '', object_id: convergencia, start_date: null,
-    updated_at: ! '2015-08-21 20:30:39.616591+00:00', value: 'https://www.facebook.com/PartidoFuerza'}
-  model: popolo.contactdetail
-  pk: 111
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-08-21 20:30:39.544194+00:00',
-    end_date: null, label: Twitter, note: '', object_id: convergencia, start_date: null,
-    updated_at: ! '2015-08-21 20:30:39.617731+00:00', value: 'https://twitter.com/FUERZAGUATEMALA'}
-  model: popolo.contactdetail
-  pk: 112
-- fields: {contact_type: URL, content_type: 14, created_at: ! '2015-08-21 20:30:39.546341+00:00',
-    end_date: null, label: Pagina Web, note: '', object_id: convergencia, start_date: null,
-    updated_at: ! '2015-08-21 20:30:39.618406+00:00', value: 'http://redciudadana.org/'}
-  model: popolo.contactdetail
-  pk: 113
-- fields: {contact_type: URL, content_type: 14, created_at: ! '2015-08-21 20:30:39.548302+00:00',
-    end_date: null, label: "Mapa ideol\xF3gico del Congreso - Plaza P\xFAblica", note: '',
-    object_id: convergencia, start_date: null, updated_at: ! '2015-08-21 20:30:39.619020+00:00',
-    value: 'http://www.plazapublica.com.gt/content/mapa-ideologico-del-congreso'}
-  model: popolo.contactdetail
-  pk: 114
-- fields: {contact_type: VIDEO, content_type: 14, created_at: ! '2015-08-21 20:30:39.550147+00:00',
-    end_date: null, label: "Radiograf\xEDa de un Mitin Pol\xEDtico - Soy 502", note: '',
-    object_id: convergencia, start_date: null, updated_at: ! '2015-08-21 20:30:39.619630+00:00',
-    value: 'http://www.plazapublica.com.gt/content/mapa-ideologico-del-congreso'}
-  model: popolo.contactdetail
-  pk: 115
-- fields: {contact_type: FACEBOOK, content_type: 14, created_at: ! '2015-08-23 06:14:05.805742+00:00',
-    end_date: null, label: Facebook, note: '', object_id: creo-unionista, start_date: null,
-    updated_at: ! '2015-08-23 06:14:05.882874+00:00', value: 'https://www.facebook.com/PartidoFuerza'}
-  model: popolo.contactdetail
-  pk: 116
-- fields: {contact_type: TWITTER, content_type: 14, created_at: ! '2015-08-23 06:14:05.809130+00:00',
-    end_date: null, label: Twitter, note: '', object_id: creo-unionista, start_date: null,
-    updated_at: ! '2015-08-23 06:14:05.883941+00:00', value: 'https://twitter.com/FUERZAGUATEMALA'}
-  model: popolo.contactdetail
-  pk: 117
-- fields: {contact_type: URL, content_type: 14, created_at: ! '2015-08-23 06:14:05.812516+00:00',
-    end_date: null, label: "P\xE1gina Web", note: '', object_id: creo-unionista, start_date: null,
-    updated_at: ! '2015-08-23 06:14:05.884637+00:00', value: 'http://www.fuerza.org.gt/'}
-  model: popolo.contactdetail
-  pk: 118
-- fields: {contact_type: URL, content_type: 14, created_at: ! '2015-08-23 06:14:05.815020+00:00',
-    end_date: null, label: "Mapa ideol\xF3gico del Congreso - Plaza P\xFAblica", note: '',
-    object_id: creo-unionista, start_date: null, updated_at: ! '2015-08-23 06:14:05.885388+00:00',
-    value: 'http://www.plazapublica.com.gt/content/mapa-ideologico-del-congreso'}
-  model: popolo.contactdetail
-  pk: 119
-- fields: {contact_type: VIDEO, content_type: 14, created_at: ! '2015-08-23 06:14:05.817664+00:00',
-    end_date: null, label: "Radiograf\xEDa de un Mitin Pol\xEDtico - Soy 502", note: '',
-    object_id: creo-unionista, start_date: null, updated_at: ! '2015-08-23 06:14:05.886148+00:00',
-    value: 'https://www.youtube.com/embed/Vx0fwB0UIu0'}
-  model: popolo.contactdetail
-  pk: 120
-- fields: {content_type: 10, note: "\"Cada centro de salud requiere contar con el
-      m\xEDnimo recurso humano, farmacol\xF3gico y de infraestructura con lo que se
-      garantice la atenci\xF3n \xF3ptima de cada paciente. \"", object_id: '229',
-    url: 'http://baldizon.com/plan-gobierno/'}
-  model: popolo.link
-  pk: 1
-- fields: {content_type: 10, note: "\"Implementar un modelo que permita que pasemos
-      a prevenir para curar menos enfermedades y que el \xE1rea curativa debe ser
-      efectiva y tener como centro al paciente, gestionando el sistema en forma transparente
-      y proba.\"", object_id: '233', url: 'http://robertogonzalez.gt/plandegobierno'}
-  model: popolo.link
+  fields: {domain: 'localhost:8000', name: 'localhost:8000'}
+- model: sites.site
   pk: 2
-- fields: {content_type: 10, note: "\"Para un mejor funcionamiento y saneamiento de
-      la red hospitalaria y de Centros de Salud, proponemos una reorganizaci\xF3n
-      del sistema que brinde autonom\xEDa a cada hospital.\"", object_id: '230', url: 'http://www.pan.gt/propuestas/salud/'}
-  model: popolo.link
+  fields: {domain: 'votita.127.0.0.1.xip.io:8000', name: ''}
+- model: auth.permission
+  pk: 1
+  fields: {name: Can add site, content_type: 1, codename: add_site}
+- model: auth.permission
+  pk: 2
+  fields: {name: Can change site, content_type: 1, codename: change_site}
+- model: auth.permission
   pk: 3
-- fields: {content_type: 10, note: "\"Descentralizaci\xF3n, desconcentraci\xF3n, desburocratizaci\xF3n
-      y modernicaci\xF3n de la administraci\xF3n p\xFAblica.\"", object_id: '234',
-    url: 'http://www.movimientonuevarepublica.org/'}
-  model: popolo.link
+  fields: {name: Can delete site, content_type: 1, codename: delete_site}
+- model: auth.permission
   pk: 4
-- fields: {content_type: 10, note: "\"Hay que trabajar mucho en la prevenci\xF3n.
-      Hoy por hoy s\xF3lo hay centros de salud en los cascos urbanos, hab\xEDamos
-      logrado centros de atenci\xF3n permanente .\"", object_id: '238', url: 'http://www.plazapublica.com.gt/content/sandra-torres-y-una-socialdemocracia-maquilera'}
-  model: popolo.link
+  fields: {name: Can change config, content_type: 2, codename: change_config}
+- model: auth.permission
   pk: 5
-- fields: {content_type: 10, note: '"Regionalizar, descentralizar y desconcentrar
-      el Sistema Nacional de Salud para que sean eficientes las compras de medicamentos
-      y productos de medicina alternativa."', object_id: '236', url: 'https://drive.google.com/file/d/0B9xUljzDScQUWHdjQXNJT0VycVRyUTc4X1VfZzd1WGxjeWVj/view'}
-  model: popolo.link
+  fields: {name: Can add group, content_type: 3, codename: add_group}
+- model: auth.permission
   pk: 6
-- fields: {content_type: 10, note: "\"Como estrategia general, impulsaremos una pol\xEDtica
-      fiscal que favorezca el crecimiento econ\xF3mico por medio de un gasto publico
-      eficaz, que se concentre en el mejoramiento del capital humano. Primordialmente
-      estabilizar las finanzas p\xFAblicas, seguido por la atenci\xF3n de los problemas
-      sociales y econ\xF3micos del pa\xEDs.\" ", object_id: '294', url: 'http://baldizon.com/plan-gobierno/'}
-  model: popolo.link
+  fields: {name: Can change group, content_type: 3, codename: change_group}
+- model: auth.permission
   pk: 7
-- fields: {content_type: 10, note: "\"Le vamos a dar a la madre de casa una tarjeta
-      de d\xE9bito, se va a llamar la Tarjeta de Remesas Familiares y la tarjeta va
-      a tener un saldo de Q. 600. 00 que la madre de familia puede utilizar para comprar
-      comida en su comunidad, ac\xE1 en Zacapa\". Minuto 05:07", object_id: '243',
-    url: 'https://www.youtube.com/watch?v=Fd4JgUUufog'}
-  model: popolo.link
+  fields: {name: Can delete group, content_type: 3, codename: delete_group}
+- model: auth.permission
   pk: 8
-- fields: {classification: '', content_type: null, created_at: ! '2015-07-07 21:06:51.262640+00:00',
-    end_date: '', geom: '', identifier: '', inhabitants: null, name: Guatemala, object_id: '',
-    parent: null, start_date: '', updated_at: ! '2015-07-07 21:06:51.267639+00:00'}
-  model: popolo.area
-  pk: guatemala
-- fields: {category: 3, description: '', label: "\xBFC\xF3mo se podr\xEDa mejorar
-      la situaci\xF3n de los hospitales en el pa\xEDs?", slug: como-se-podria-mejorar-la-situacion-de-los-hospita}
-  model: candidator.topic
-  pk: 13
-- fields: {category: 3, description: '', label: "\xBFDe qu\xE9 manera se puede ayudar
-      a las familias en situaci\xF3n de pobreza?", slug: de-que-manera-se-puede-ayudar-a-las-familias-en-si}
-  model: candidator.topic
-  pk: 14
-- fields: {category: 4, description: CICIG es ..., label: "\xBFQu\xE9 medidas se deben
-      tomar respecto a la permanencia de la CICIG en el pa\xEDs?", slug: que-medidas-se-deben-tomar-respecto-a-la-permanenc}
-  model: candidator.topic
-  pk: 15
-- fields: {category: 4, description: '', label: "\xBFQu\xE9 se debe hacer para combatir
-      la delincuencia en el pa\xEDs?", slug: que-se-debe-hacer-para-combatir-la-delincuencia-en}
-  model: candidator.topic
-  pk: 16
-- fields: {category: 5, description: '', label: "\xBFCu\xE1l es la soluci\xF3n m\xE1s
-      adecuada para la falta de empleo?", slug: cual-es-la-solucion-mas-adecuada-para-la-falta-de-}
-  model: candidator.topic
-  pk: 17
-- fields: {category: 5, description: '', label: "\xBFC\xF3mo deber\xEDan funcionar
-      el sistema de impuestos para que el Estado cumpla sus responsabilidades?", slug: como-deberian-funcionar-el-sistema-de-impuestos-pa}
-  model: candidator.topic
-  pk: 18
-- fields: {category: 5, description: '', label: "\xBFC\xF3mo reducimos la desigualdad
-      en la forma en que est\xE1 distribuida la riqueza en el pa\xEDs?", slug: como-reducimos-la-desigualdad-en-la-forma-en-que-e}
-  model: candidator.topic
-  pk: 19
-- fields: {category: 5, description: '', label: "\xBFC\xF3mo se deber\xEDan proteger
-      los recursos naturales?", slug: como-se-deberian-proteger-los-recursos-naturales}
-  model: candidator.topic
-  pk: 20
-- fields: {category: 6, description: '', label: "\xBFDe qu\xE9 forma debe actuar el
-      Estado para garantizar nuestra libertad de expresi\xF3n?", slug: de-que-forma-debe-actuar-el-estado-para-garantizar}
-  model: candidator.topic
-  pk: 21
-- fields: {category: 6, description: '', label: "\xBFDe qu\xE9 manera podemos promover
-      los valores a trav\xE9s del programa de educaci\xF3n?", slug: de-que-manera-podemos-promover-los-valores-a-trave}
-  model: candidator.topic
-  pk: 22
-- fields: {description: '', label: "Facilitando alianzas entre el sector p\xFAblico
-      y privado para mejorar los servicios.", topic: 13}
-  model: candidator.position
-  pk: 37
-- fields: {description: '', label: Mejorar con pactos colectivos las condiciones de
-      los trabajadores de los hospitales., topic: 13}
-  model: candidator.position
-  pk: 38
-- fields: {description: '', label: "Aumentar la inversi\xF3n estatal para la prestaci\xF3n
-      de servicios y la prevenci\xF3n de enfermedades.", topic: 13}
-  model: candidator.position
-  pk: 39
-- fields: {description: '', label: "Descentralizando la prestaci\xF3n de los servicios
-      de salud.", topic: 13}
-  model: candidator.position
-  pk: 40
-- fields: {description: '', label: "Fortalecer la inversi\xF3n en programas de creaci\xF3n
-      de empleos.", topic: 14}
-  model: candidator.position
-  pk: 41
-- fields: {description: '', label: "Capacitar, ense\xF1ar aptitudes y entregar herramientas
-      de superaci\xF3n.", topic: 14}
-  model: candidator.position
-  pk: 42
-- fields: {description: '', label: "Garantizar transferencias condicionadas para la
-      superaci\xF3n de la pobreza.", topic: 14}
-  model: candidator.position
-  pk: 43
-- fields: {description: '', label: "Facilitar la inversi\xF3n dentro del pa\xEDs para
-      aumentar las oportunidades laborales.", topic: 14}
-  model: candidator.position
-  pk: 44
-- fields: {description: '', label: Garantizar su permanencia en el largo plazo y ampliar
-      los temas que actualmente investigan., topic: 15}
-  model: candidator.position
-  pk: 45
-- fields: {description: '', label: "Permitir que siga operando en el pa\xEDs siempre
-      que cumpla estrictamente con su mandato.", topic: 15}
-  model: candidator.position
-  pk: 46
-- fields: {description: '', label: Reducir su mandato a la brevedad para no estar
-      sometidos a intereses extranjeros., topic: 15}
-  model: candidator.position
-  pk: 47
-- fields: {description: '', label: "Trabajar en el fortalecimiento del Ministerio
-      P\xFAblico desde otras instituciones.", topic: 15}
-  model: candidator.position
-  pk: 48
-- fields: {description: '', label: "Promover una pol\xEDtica de seguridad ciudadana
-      basada en la prevenci\xF3n de delitos.", topic: 16}
-  model: candidator.position
-  pk: 49
-- fields: {description: '', label: "Enfocar el combate a la violencia a nivel local,
-      descentralizar la pol\xEDtica de seguridad.", topic: 16}
-  model: candidator.position
-  pk: 50
-- fields: {description: '', label: Garantizar el control territorial que se tiene
-      por parte de las instituciones de seguridad., topic: 16}
-  model: candidator.position
-  pk: 51
-- fields: {description: '', label: "Reformar la Polic\xEDa Nacional Civil garantizando
-      su independencia y su capacitaci\xF3n t\xE9cnica.", topic: 16}
-  model: candidator.position
-  pk: 52
-- fields: {description: '', label: "Fomentando la inversi\xF3n nacional y extranjera
-      para la creaci\xF3n de m\xE1s plazas de empleo.", topic: 17}
-  model: candidator.position
-  pk: 53
-- fields: {description: '', label: "Fortaleciendo la regulaci\xF3n de contratos, derechos
-      del trabajador y rol de los sindicatos", topic: 17}
-  model: candidator.position
-  pk: 54
-- fields: {description: '', label: "Generando empleos a trav\xE9s del sector privado,
-      con apoyo e involucramiento del Estado.", topic: 17}
-  model: candidator.position
-  pk: 55
-- fields: {description: '', label: Creando y regulando el empleo desde el Estado para
-      garantizar las mejores condiciones., topic: 17}
-  model: candidator.position
-  pk: 56
-- fields: {description: '', label: "Hacer esfuerzos que transparentan el gasto p\xFAblico
-      para utilizar mejor los recursos.", topic: 18}
-  model: candidator.position
-  pk: 57
-- fields: {description: '', label: "Pagando un impuesto proporcional para que quien
-      tiene m\xE1s pague m\xE1s.", topic: 18}
-  model: candidator.position
-  pk: 58
-- fields: {description: '', label: "Incrementar la carga tributaria para invertir
-      en pol\xEDticas p\xFAblicas de Estado.", topic: 18}
-  model: candidator.position
-  pk: 59
-- fields: {description: '', label: 'Reducir el gasto del Estado a sus funciones primordiales:
-      seguridad y justicia.', topic: 18}
-  model: candidator.position
-  pk: 60
-- fields: {description: '', label: Garantizando que el trabajo de cada persona no
-      se vea amenazado por reparticiones injustas., topic: 19}
-  model: candidator.position
-  pk: 61
-- fields: {description: '', label: "A trav\xE9s de desarrollo econ\xF3mico y la creaci\xF3n
-      de m\xE1s puestos de trabajo.", topic: 19}
-  model: candidator.position
-  pk: 62
-- fields: {description: '', label: "Promover programas de inversi\xF3n social que
-      atiendan a las poblaciones vulnerables.", topic: 19}
-  model: candidator.position
-  pk: 63
-- fields: {description: '', label: "Desarrollar medidas para que exista una distribuci\xF3n
-      m\xE1s justa en beneficio de los m\xE1s pobres.", topic: 19}
-  model: candidator.position
-  pk: 64
-- fields: {description: '', label: "Permitiendo la utilizaci\xF3n y extracci\xF3n
-      de recursos ya que la generaci\xF3n de riqueza permitir\xE1 cuidarlos.", topic: 20}
-  model: candidator.position
-  pk: 65
-- fields: {description: '', label: "Promover una regulaci\xF3n que garantice y vigile
-      los est\xE1ndares de calidad en las operaciones.", topic: 20}
-  model: candidator.position
-  pk: 66
-- fields: {description: '', label: "Involucrar el Estado como socio de estas operaciones
-      para que garantice los controles y la distribuci\xF3n de riqueza a las comunidades
-      cercanas.", topic: 20}
-  model: candidator.position
-  pk: 67
-- fields: {description: '', label: Velar porque estos recursos sean patrimonio del
-      Estado y se proteja la naturaleza a toda costa., topic: 20}
-  model: candidator.position
-  pk: 68
-- fields: {description: '', label: "Garantizar que no exista intervenci\xF3n del Estado,
-      su intromisi\xF3n es una amenaza a libertad.", topic: 21}
-  model: candidator.position
-  pk: 69
-- fields: {description: '', label: "Impulsar medidas que no permitan la formaci\xF3n
-      de monopolios en la propiedad de los medios.", topic: 21}
-  model: candidator.position
-  pk: 70
-- fields: {description: '', label: "Propiciar desde el Estado espacios de expresi\xF3n
-      para todos, democratizando el establecimiento de medios comunitarios.", topic: 21}
-  model: candidator.position
-  pk: 71
-- fields: {description: '', label: "Regular los l\xEDmites a la libertad de expresi\xF3n,
-      para que no se violen los derechos de las otras personas.", topic: 21}
-  model: candidator.position
-  pk: 72
-- fields: {description: '', label: "Incluir la ense\xF1anza de los valores que promueve
-      la biblia dentro del programa educativo.", topic: 22}
-  model: candidator.position
-  pk: 73
-- fields: {description: '', label: "Enfocarse m\xE1s en el alcance de valores a trav\xE9s
-      de la ciencia, tecnolog\xEDa y las artes.", topic: 22}
-  model: candidator.position
-  pk: 74
-- fields: {description: '', label: "Dentro del programa educativo incluir la ense\xF1anza
-      de los valores generales.", topic: 22}
-  model: candidator.position
-  pk: 75
-- fields: {description: '', label: "El programa no deber\xEDa estar basado en ninguna
-      religi\xF3n sino en la libertad del individuo.", topic: 22}
-  model: candidator.position
-  pk: 76
-- fields: {description: '', person: mario-estrada-orellana, position: 39, topic: 13}
-  model: candidator.takenposition
-  pk: 227
-- fields: {description: '', person: lisardo-sosa, position: 37, topic: 13}
-  model: candidator.takenposition
-  pk: 228
-- fields: {description: '', person: manuel-baldizon, position: 39, topic: 13}
-  model: candidator.takenposition
-  pk: 229
-- fields: {description: '', person: juan-gutierrez, position: 40, topic: 13}
-  model: candidator.takenposition
-  pk: 230
-- fields: {description: '', person: mario-david-garcia-velasquez, position: null,
-    topic: 13}
-  model: candidator.takenposition
-  pk: 231
-- fields: {description: '', person: luis-fernando-perez, position: 39, topic: 13}
-  model: candidator.takenposition
-  pk: 232
-- fields: {description: '', person: roberto-gonzalez-diaz-duran, position: 40, topic: 13}
-  model: candidator.takenposition
-  pk: 233
-- fields: {description: '', person: rodolfo-anibal-garcia-hernandez, position: 39,
-    topic: 13}
-  model: candidator.takenposition
-  pk: 234
-- fields: {description: '', person: alejandro-giammattei-falla, position: 39, topic: 13}
-  model: candidator.takenposition
-  pk: 235
-- fields: {description: '', person: jimmy-morales, position: 40, topic: 13}
-  model: candidator.takenposition
-  pk: 236
-- fields: {description: '', person: jose-angel-lopez, position: 39, topic: 13}
-  model: candidator.takenposition
-  pk: 237
-- fields: {description: '', person: sandra-torres-casanova, position: 39, topic: 13}
-  model: candidator.takenposition
-  pk: 238
-- fields: {description: '', person: miguel-angel-sandoval-vasquez, position: 39, topic: 13}
-  model: candidator.takenposition
-  pk: 239
-- fields: {description: '', person: mario-estrada-orellana, position: 42, topic: 14}
-  model: candidator.takenposition
-  pk: 240
-- fields: {description: '', person: lisardo-sosa, position: 42, topic: 14}
-  model: candidator.takenposition
-  pk: 241
-- fields: {description: '', person: manuel-baldizon, position: 42, topic: 14}
-  model: candidator.takenposition
-  pk: 242
-- fields: {description: '', person: juan-gutierrez, position: 41, topic: 14}
-  model: candidator.takenposition
-  pk: 243
-- fields: {description: '', person: mario-david-garcia-velasquez, position: null,
-    topic: 14}
-  model: candidator.takenposition
-  pk: 244
-- fields: {description: '', person: luis-fernando-perez, position: 41, topic: 14}
-  model: candidator.takenposition
-  pk: 245
-- fields: {description: '', person: roberto-gonzalez-diaz-duran, position: 42, topic: 14}
-  model: candidator.takenposition
-  pk: 246
-- fields: {description: '', person: rodolfo-anibal-garcia-hernandez, position: 41,
-    topic: 14}
-  model: candidator.takenposition
-  pk: 247
-- fields: {description: '', person: alejandro-giammattei-falla, position: 44, topic: 14}
-  model: candidator.takenposition
-  pk: 248
-- fields: {description: '', person: jimmy-morales, position: 42, topic: 14}
-  model: candidator.takenposition
-  pk: 249
-- fields: {description: '', person: jose-angel-lopez, position: 44, topic: 14}
-  model: candidator.takenposition
-  pk: 250
-- fields: {description: '', person: sandra-torres-casanova, position: 43, topic: 14}
-  model: candidator.takenposition
-  pk: 251
-- fields: {description: '', person: miguel-angel-sandoval-vasquez, position: 42, topic: 14}
-  model: candidator.takenposition
-  pk: 252
-- fields: {description: '', person: mario-estrada-orellana, position: 45, topic: 15}
-  model: candidator.takenposition
-  pk: 253
-- fields: {description: '', person: lisardo-sosa, position: 48, topic: 15}
-  model: candidator.takenposition
-  pk: 254
-- fields: {description: '', person: manuel-baldizon, position: null, topic: 15}
-  model: candidator.takenposition
-  pk: 255
-- fields: {description: '', person: juan-gutierrez, position: 45, topic: 15}
-  model: candidator.takenposition
-  pk: 256
-- fields: {description: '', person: mario-david-garcia-velasquez, position: null,
-    topic: 15}
-  model: candidator.takenposition
-  pk: 257
-- fields: {description: '', person: luis-fernando-perez, position: 45, topic: 15}
-  model: candidator.takenposition
-  pk: 258
-- fields: {description: '', person: roberto-gonzalez-diaz-duran, position: 46, topic: 15}
-  model: candidator.takenposition
-  pk: 259
-- fields: {description: '', person: rodolfo-anibal-garcia-hernandez, position: 45,
-    topic: 15}
-  model: candidator.takenposition
-  pk: 260
-- fields: {description: '', person: alejandro-giammattei-falla, position: 46, topic: 15}
-  model: candidator.takenposition
-  pk: 261
-- fields: {description: '', person: jimmy-morales, position: 46, topic: 15}
-  model: candidator.takenposition
-  pk: 262
-- fields: {description: '', person: jose-angel-lopez, position: 46, topic: 15}
-  model: candidator.takenposition
-  pk: 263
-- fields: {description: '', person: sandra-torres-casanova, position: 45, topic: 15}
-  model: candidator.takenposition
-  pk: 264
-- fields: {description: '', person: miguel-angel-sandoval-vasquez, position: 48, topic: 15}
-  model: candidator.takenposition
-  pk: 265
-- fields: {description: '', person: mario-estrada-orellana, position: 50, topic: 16}
-  model: candidator.takenposition
-  pk: 266
-- fields: {description: '', person: lisardo-sosa, position: 49, topic: 16}
-  model: candidator.takenposition
-  pk: 267
-- fields: {description: '', person: manuel-baldizon, position: 51, topic: 16}
-  model: candidator.takenposition
-  pk: 268
-- fields: {description: '', person: juan-gutierrez, position: 52, topic: 16}
-  model: candidator.takenposition
-  pk: 269
-- fields: {description: '', person: mario-david-garcia-velasquez, position: null,
-    topic: 16}
-  model: candidator.takenposition
-  pk: 270
-- fields: {description: '', person: luis-fernando-perez, position: 51, topic: 16}
-  model: candidator.takenposition
-  pk: 271
-- fields: {description: '', person: roberto-gonzalez-diaz-duran, position: 52, topic: 16}
-  model: candidator.takenposition
-  pk: 272
-- fields: {description: '', person: rodolfo-anibal-garcia-hernandez, position: 52,
-    topic: 16}
-  model: candidator.takenposition
-  pk: 273
-- fields: {description: '', person: alejandro-giammattei-falla, position: 52, topic: 16}
-  model: candidator.takenposition
-  pk: 274
-- fields: {description: '', person: jimmy-morales, position: 49, topic: 16}
-  model: candidator.takenposition
-  pk: 275
-- fields: {description: '', person: jose-angel-lopez, position: 50, topic: 16}
-  model: candidator.takenposition
-  pk: 276
-- fields: {description: '', person: sandra-torres-casanova, position: 52, topic: 16}
-  model: candidator.takenposition
-  pk: 277
-- fields: {description: '', person: miguel-angel-sandoval-vasquez, position: 52, topic: 16}
-  model: candidator.takenposition
-  pk: 278
-- fields: {description: '', person: mario-estrada-orellana, position: 55, topic: 17}
-  model: candidator.takenposition
-  pk: 279
-- fields: {description: '', person: lisardo-sosa, position: 53, topic: 17}
-  model: candidator.takenposition
-  pk: 280
-- fields: {description: '', person: manuel-baldizon, position: 55, topic: 17}
-  model: candidator.takenposition
-  pk: 281
-- fields: {description: '', person: juan-gutierrez, position: 53, topic: 17}
-  model: candidator.takenposition
-  pk: 282
-- fields: {description: '', person: mario-david-garcia-velasquez, position: null,
-    topic: 17}
-  model: candidator.takenposition
-  pk: 283
-- fields: {description: '', person: luis-fernando-perez, position: 55, topic: 17}
-  model: candidator.takenposition
-  pk: 284
-- fields: {description: '', person: roberto-gonzalez-diaz-duran, position: 55, topic: 17}
-  model: candidator.takenposition
-  pk: 285
-- fields: {description: '', person: rodolfo-anibal-garcia-hernandez, position: 53,
-    topic: 17}
-  model: candidator.takenposition
-  pk: 286
-- fields: {description: '', person: alejandro-giammattei-falla, position: 53, topic: 17}
-  model: candidator.takenposition
-  pk: 287
-- fields: {description: '', person: jimmy-morales, position: 55, topic: 17}
-  model: candidator.takenposition
-  pk: 288
-- fields: {description: '', person: jose-angel-lopez, position: 55, topic: 17}
-  model: candidator.takenposition
-  pk: 289
-- fields: {description: '', person: sandra-torres-casanova, position: 55, topic: 17}
-  model: candidator.takenposition
-  pk: 290
-- fields: {description: '', person: miguel-angel-sandoval-vasquez, position: 56, topic: 17}
-  model: candidator.takenposition
-  pk: 291
-- fields: {description: '', person: mario-estrada-orellana, position: 57, topic: 18}
-  model: candidator.takenposition
-  pk: 292
-- fields: {description: '', person: lisardo-sosa, position: 57, topic: 18}
-  model: candidator.takenposition
-  pk: 293
-- fields: {description: '', person: manuel-baldizon, position: 59, topic: 18}
-  model: candidator.takenposition
-  pk: 294
-- fields: {description: '', person: juan-gutierrez, position: 57, topic: 18}
-  model: candidator.takenposition
-  pk: 295
-- fields: {description: '', person: mario-david-garcia-velasquez, position: null,
-    topic: 18}
-  model: candidator.takenposition
-  pk: 296
-- fields: {description: '', person: luis-fernando-perez, position: 58, topic: 18}
-  model: candidator.takenposition
-  pk: 297
-- fields: {description: '', person: roberto-gonzalez-diaz-duran, position: 59, topic: 18}
-  model: candidator.takenposition
-  pk: 298
-- fields: {description: '', person: rodolfo-anibal-garcia-hernandez, position: 58,
-    topic: 18}
-  model: candidator.takenposition
-  pk: 299
-- fields: {description: '', person: alejandro-giammattei-falla, position: 57, topic: 18}
-  model: candidator.takenposition
-  pk: 300
-- fields: {description: '', person: jimmy-morales, position: 57, topic: 18}
-  model: candidator.takenposition
-  pk: 301
-- fields: {description: '', person: jose-angel-lopez, position: 58, topic: 18}
-  model: candidator.takenposition
-  pk: 302
-- fields: {description: '', person: sandra-torres-casanova, position: 57, topic: 18}
-  model: candidator.takenposition
-  pk: 303
-- fields: {description: '', person: miguel-angel-sandoval-vasquez, position: 59, topic: 18}
-  model: candidator.takenposition
-  pk: 304
-- fields: {description: '', person: mario-estrada-orellana, position: 62, topic: 19}
-  model: candidator.takenposition
-  pk: 305
-- fields: {description: '', person: lisardo-sosa, position: 62, topic: 19}
-  model: candidator.takenposition
-  pk: 306
-- fields: {description: '', person: manuel-baldizon, position: 63, topic: 19}
-  model: candidator.takenposition
-  pk: 307
-- fields: {description: '', person: juan-gutierrez, position: 63, topic: 19}
-  model: candidator.takenposition
-  pk: 308
-- fields: {description: '', person: mario-david-garcia-velasquez, position: null,
-    topic: 19}
-  model: candidator.takenposition
-  pk: 309
-- fields: {description: '', person: luis-fernando-perez, position: 62, topic: 19}
-  model: candidator.takenposition
-  pk: 310
-- fields: {description: '', person: roberto-gonzalez-diaz-duran, position: 63, topic: 19}
-  model: candidator.takenposition
-  pk: 311
-- fields: {description: '', person: rodolfo-anibal-garcia-hernandez, position: 64,
-    topic: 19}
-  model: candidator.takenposition
-  pk: 312
-- fields: {description: '', person: alejandro-giammattei-falla, position: 63, topic: 19}
-  model: candidator.takenposition
-  pk: 313
-- fields: {description: '', person: jimmy-morales, position: null, topic: 19}
-  model: candidator.takenposition
-  pk: 314
-- fields: {description: '', person: jose-angel-lopez, position: 63, topic: 19}
-  model: candidator.takenposition
-  pk: 315
-- fields: {description: '', person: sandra-torres-casanova, position: 63, topic: 19}
-  model: candidator.takenposition
-  pk: 316
-- fields: {description: '', person: miguel-angel-sandoval-vasquez, position: 63, topic: 19}
-  model: candidator.takenposition
-  pk: 317
-- fields: {description: '', person: mario-estrada-orellana, position: 66, topic: 20}
-  model: candidator.takenposition
-  pk: 318
-- fields: {description: '', person: lisardo-sosa, position: 66, topic: 20}
-  model: candidator.takenposition
-  pk: 319
-- fields: {description: '', person: manuel-baldizon, position: 67, topic: 20}
-  model: candidator.takenposition
-  pk: 320
-- fields: {description: '', person: juan-gutierrez, position: 66, topic: 20}
-  model: candidator.takenposition
-  pk: 321
-- fields: {description: '', person: mario-david-garcia-velasquez, position: null,
-    topic: 20}
-  model: candidator.takenposition
-  pk: 322
-- fields: {description: '', person: luis-fernando-perez, position: 66, topic: 20}
-  model: candidator.takenposition
-  pk: 323
-- fields: {description: '', person: roberto-gonzalez-diaz-duran, position: 66, topic: 20}
-  model: candidator.takenposition
-  pk: 324
-- fields: {description: '', person: rodolfo-anibal-garcia-hernandez, position: 67,
-    topic: 20}
-  model: candidator.takenposition
-  pk: 325
-- fields: {description: '', person: alejandro-giammattei-falla, position: 66, topic: 20}
-  model: candidator.takenposition
-  pk: 326
-- fields: {description: '', person: jimmy-morales, position: null, topic: 20}
-  model: candidator.takenposition
-  pk: 327
-- fields: {description: '', person: jose-angel-lopez, position: 67, topic: 20}
-  model: candidator.takenposition
-  pk: 328
-- fields: {description: '', person: sandra-torres-casanova, position: 67, topic: 20}
-  model: candidator.takenposition
-  pk: 329
-- fields: {description: '', person: miguel-angel-sandoval-vasquez, position: 67, topic: 20}
-  model: candidator.takenposition
-  pk: 330
-- fields: {description: '', person: mario-estrada-orellana, position: 71, topic: 21}
-  model: candidator.takenposition
-  pk: 331
-- fields: {description: '', person: lisardo-sosa, position: 69, topic: 21}
-  model: candidator.takenposition
-  pk: 332
-- fields: {description: '', person: manuel-baldizon, position: null, topic: 21}
-  model: candidator.takenposition
-  pk: 333
-- fields: {description: '', person: juan-gutierrez, position: 70, topic: 21}
-  model: candidator.takenposition
-  pk: 334
-- fields: {description: '', person: mario-david-garcia-velasquez, position: null,
-    topic: 21}
-  model: candidator.takenposition
-  pk: 335
-- fields: {description: '', person: luis-fernando-perez, position: 70, topic: 21}
-  model: candidator.takenposition
-  pk: 336
-- fields: {description: '', person: roberto-gonzalez-diaz-duran, position: 69, topic: 21}
-  model: candidator.takenposition
-  pk: 337
-- fields: {description: '', person: rodolfo-anibal-garcia-hernandez, position: 69,
-    topic: 21}
-  model: candidator.takenposition
-  pk: 338
-- fields: {description: '', person: alejandro-giammattei-falla, position: 69, topic: 21}
-  model: candidator.takenposition
-  pk: 339
-- fields: {description: '', person: jimmy-morales, position: null, topic: 21}
-  model: candidator.takenposition
-  pk: 340
-- fields: {description: '', person: jose-angel-lopez, position: 71, topic: 21}
-  model: candidator.takenposition
-  pk: 341
-- fields: {description: '', person: sandra-torres-casanova, position: 69, topic: 21}
-  model: candidator.takenposition
-  pk: 342
-- fields: {description: '', person: miguel-angel-sandoval-vasquez, position: 70, topic: 21}
-  model: candidator.takenposition
-  pk: 343
-- fields: {description: '', person: mario-estrada-orellana, position: 74, topic: 22}
-  model: candidator.takenposition
-  pk: 344
-- fields: {description: '', person: lisardo-sosa, position: 75, topic: 22}
-  model: candidator.takenposition
-  pk: 345
-- fields: {description: '', person: manuel-baldizon, position: null, topic: 22}
-  model: candidator.takenposition
-  pk: 346
-- fields: {description: '', person: juan-gutierrez, position: 74, topic: 22}
-  model: candidator.takenposition
-  pk: 347
-- fields: {description: '', person: mario-david-garcia-velasquez, position: null,
-    topic: 22}
-  model: candidator.takenposition
-  pk: 348
-- fields: {description: '', person: luis-fernando-perez, position: 76, topic: 22}
-  model: candidator.takenposition
-  pk: 349
-- fields: {description: '', person: roberto-gonzalez-diaz-duran, position: 75, topic: 22}
-  model: candidator.takenposition
-  pk: 350
-- fields: {description: '', person: rodolfo-anibal-garcia-hernandez, position: 75,
-    topic: 22}
-  model: candidator.takenposition
-  pk: 351
-- fields: {description: '', person: alejandro-giammattei-falla, position: 76, topic: 22}
-  model: candidator.takenposition
-  pk: 352
-- fields: {description: '', person: jimmy-morales, position: null, topic: 22}
-  model: candidator.takenposition
-  pk: 353
-- fields: {description: '', person: jose-angel-lopez, position: 75, topic: 22}
-  model: candidator.takenposition
-  pk: 354
-- fields: {description: '', person: sandra-torres-casanova, position: 75, topic: 22}
-  model: candidator.takenposition
-  pk: 355
-- fields: {description: '', person: miguel-angel-sandoval-vasquez, position: 74, topic: 22}
-  model: candidator.takenposition
-  pk: 356
-- fields: {description: '', person: zury-rios, position: 44, topic: 14}
-  model: candidator.takenposition
-  pk: 357
-- fields: {description: '', person: zury-rios, position: 37, topic: 13}
-  model: candidator.takenposition
-  pk: 358
-- fields: {description: '', person: zury-rios, position: 51, topic: 16}
-  model: candidator.takenposition
-  pk: 359
-- fields: {description: '', person: zury-rios, position: 46, topic: 15}
-  model: candidator.takenposition
-  pk: 360
-- fields: {description: '', person: zury-rios, position: 66, topic: 20}
-  model: candidator.takenposition
-  pk: 361
-- fields: {description: '', person: zury-rios, position: 62, topic: 19}
-  model: candidator.takenposition
-  pk: 362
-- fields: {description: '', person: zury-rios, position: 57, topic: 18}
-  model: candidator.takenposition
-  pk: 363
-- fields: {description: '', person: zury-rios, position: 53, topic: 17}
-  model: candidator.takenposition
-  pk: 364
-- fields: {description: '', person: zury-rios, position: 73, topic: 22}
-  model: candidator.takenposition
-  pk: 365
-- fields: {description: '', person: zury-rios, position: 69, topic: 21}
-  model: candidator.takenposition
-  pk: 366
-- fields: {name: Agenda Social, slug: agenda-social}
-  model: candidator.category
-  pk: 3
-- fields: {name: Agenda de Seguridad y Justicia, slug: agenda-de-seguridad-y-justicia}
-  model: candidator.category
-  pk: 4
-- fields: {name: "Agenda Econ\xF3mica", slug: agenda-economica}
-  model: candidator.category
-  pk: 5
-- fields: {name: "Agenda Val\xF3rica", slug: agenda-valorica}
-  model: candidator.category
-  pk: 6
-- fields: {url: 'http://writeit.ciudadanointeligente.org'}
-  model: writeit.writeitapiinstance
-  pk: 1
-- fields: {api_instance: 1, remote_id: null, url: /api/v1/instance/<THE_INSTANCE_ID>/}
-  model: writeit.writeitdocument
-  pk: 1
-- fields: {api_instance: 1, remote_id: 1, url: ''}
-  model: writeit.writeitdocument
-  pk: 2
-- fields: {name: votainteligente}
-  model: writeit.writeitinstance
-  pk: 1
-- fields:
-    author_email: falvarez@ciudadanoi.org
-    author_name: Felipe Feroz
-    content: Una prueba
-    people: [alejandro-giammattei-falla, jimmy-morales, luis-fernando-perez, mario-david-garcia-velasquez]
-    slug: ''
-    subject: Esto es una prueba
-    writeitinstance: 1
-  model: writeit.message
-  pk: 2
-- fields: {election: 1, extra_info: gAJ9cQEoVQRlZGFkcQJYAAAAAFUNY3VzdG9tX3JpYmJvbnEDVQBVEHBhcnRpZG9fcG9saXRpY29xBFgXAAAAUGFydGlkbyBQb2xpdGljbyBGVUVSWkFxBVUUdXJsX3BhcnRpZG9fcG9saXRpY29xBlgZAAAAaHR0cDovL3d3dy5mdWVyemEub3JnLmd0L3EHVQ5wb3J0cmFpdF9waG90b3EIWDoAAABodHRwOi8vdm90YWludGVsaWdlbnRlLmNsL3N0YXRpYy9pbWcvY2FuZGlkYXRlLWRlZmF1bHQuanBncQlVDGxlbWFfY2FtcGFuYXEKWAAAAABVFWxvZ29fcGFydGlkb19wb2xpdGljb3ELWEEAAABodHRwOi8vd3d3LnJlZGNpdWRhZGFuYS5vcmcvd3AtY29udGVudC91cGxvYWRzLzIwMTUvMDcvRnVlcnphLnBuZ3EMVQlwcm9mZXNpb25xDVgAAAAAdS4=,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: alejandro-giammattei-falla
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFgdAAAAUGFydGlkbyBQb2xpdGljbyBDb252ZXJnZW5jaWFxBVUUdXJsX3BhcnRpZG9fcG9saXRpY29xBlgAAAAAVQ5wb3J0cmFpdF9waG90b3EHWDoAAABodHRwOi8vdm90YWludGVsaWdlbnRlLmNsL3N0YXRpYy9pbWcvY2FuZGlkYXRlLWRlZmF1bHQuanBncQhVFWxvZ29fcGFydGlkb19wb2xpdGljb3EJWAAAAAB1Lg==,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: convergencia
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFUAVRR1cmxfcGFydGlkb19wb2xpdGljb3EFVQBVDnBvcnRyYWl0X3Bob3RvcQZVOmh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxB1UVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQhVAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: corazon-nueva-nacion
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFgOAAAAQ1JFTy1VTklPTklTVEFxBVUUdXJsX3BhcnRpZG9fcG9saXRpY29xBlgAAAAAVQ5wb3J0cmFpdF9waG90b3EHWDoAAABodHRwOi8vdm90YWludGVsaWdlbnRlLmNsL3N0YXRpYy9pbWcvY2FuZGlkYXRlLWRlZmF1bHQuanBncQhVFWxvZ29fcGFydGlkb19wb2xpdGljb3EJWAAAAAB1Lg==,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: creo-unionista
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFgAAAAAVRR1cmxfcGFydGlkb19wb2xpdGljb3EFWAAAAABVDnBvcnRyYWl0X3Bob3RvcQZYOgAAAGh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxB1UVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQhYAAAAAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: encuentro-por-guatemala
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFUAVRR1cmxfcGFydGlkb19wb2xpdGljb3EFVQBVDnBvcnRyYWl0X3Bob3RvcQZVOmh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxB1UVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQhVAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: frente-de-convergencia-nacional
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFgXAAAAUGFydGlkbyBQb2xpdGljbyBGVUVSWkFxBVUUdXJsX3BhcnRpZG9fcG9saXRpY29xBlgAAAAAVQ5wb3J0cmFpdF9waG90b3EHWDoAAABodHRwOi8vdm90YWludGVsaWdlbnRlLmNsL3N0YXRpYy9pbWcvY2FuZGlkYXRlLWRlZmF1bHQuanBncQhVFWxvZ29fcGFydGlkb19wb2xpdGljb3EJWAAAAAB1Lg==,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: fuerza
-- fields: {election: 1, extra_info: gAJ9cQEoVQRlZGFkcQJYAAAAAFUNY3VzdG9tX3JpYmJvbnEDVQBVEHBhcnRpZG9fcG9saXRpY29xBFgtAAAARnJlbnRlIGRlIENvbnZlcmdlbmNpYSBOYWNpb25hbCAoRkNOLU5hY2nDs24pcQVVFHVybF9wYXJ0aWRvX3BvbGl0aWNvcQZYHAAAAGh0dHA6Ly93d3cuamltbXltb3JhbGVzLmd0LyBxB1UOcG9ydHJhaXRfcGhvdG9xCFg6AAAAaHR0cDovL3ZvdGFpbnRlbGlnZW50ZS5jbC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EJVQxsZW1hX2NhbXBhbmFxClgAAAAAVRVsb2dvX3BhcnRpZG9fcG9saXRpY29xC1hFAAAAaHR0cDovL3d3dy5yZWRjaXVkYWRhbmEub3JnL3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDE1LzA3L0ZDTi1OQUNJT04ucG5ncQxVCXByb2Zlc2lvbnENWAAAAAB1Lg==,
-    force_has_answer: true}
-  model: elections.candidate
-  pk: jimmy-morales
-- fields: {election: 1, extra_info: gAJ9cQEoVQRlZGFkcQJYAAAAAFUNY3VzdG9tX3JpYmJvbnEDVQBVEHBhcnRpZG9fcG9saXRpY29xBFgcAAAARW5jdWVudHJvIHBvciBHdWF0ZW1hbGEgKEVHKXEFVRR1cmxfcGFydGlkb19wb2xpdGljb3EGWBgAAABodHRwOi8vd3d3LmVuY3VlbnRyby5ndC9xB1UOcG9ydHJhaXRfcGhvdG9xCFg6AAAAaHR0cDovL3ZvdGFpbnRlbGlnZW50ZS5jbC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EJVQxsZW1hX2NhbXBhbmFxClgAAAAAVRVsb2dvX3BhcnRpZG9fcG9saXRpY29xC1g9AAAAaHR0cDovL3d3dy5yZWRjaXVkYWRhbmEub3JnL3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDE1LzA3L0VHLmpwZ3EMVQlwcm9mZXNpb25xDVgAAAAAdS4=,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: jose-angel-lopez
-- fields: {election: 1, extra_info: gAJ9cQEoVQRlZGFkcQJYAAAAAFUNY3VzdG9tX3JpYmJvbnEDVQBVEHBhcnRpZG9fcG9saXRpY29xBFgjAAAAUGFydGlkbyBkZSBBdmFuemFkYSBOYWNpb25hbCAoUEFOKSBxBVUUdXJsX3BhcnRpZG9fcG9saXRpY29xBlgRAAAAaHR0cDovL3d3dy5wYW4uZ3RxB1UOcG9ydHJhaXRfcGhvdG9xCFg6AAAAaHR0cDovL3ZvdGFpbnRlbGlnZW50ZS5jbC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EJVQxsZW1hX2NhbXBhbmFxClgAAAAAVRVsb2dvX3BhcnRpZG9fcG9saXRpY29xC1g+AAAAaHR0cDovL3d3dy5yZWRjaXVkYWRhbmEub3JnL3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDE1LzA3L1BBTi5qcGdxDFUJcHJvZmVzaW9ucQ1YAAAAAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: juan-gutierrez
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFgAAAAAVRR1cmxfcGFydGlkb19wb2xpdGljb3EFWAAAAABVDnBvcnRyYWl0X3Bob3RvcQZYOgAAAGh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxB1UVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQhYAAAAAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: libertad-democratica-renovada
-- fields: {election: 1, extra_info: gAJ9cQEoVQRlZGFkcQJYAAAAAFUNY3VzdG9tX3JpYmJvbnEDVQBVEHBhcnRpZG9fcG9saXRpY29xBFgNAAAAUGFydGlkbyBUT0RPU3EFVRR1cmxfcGFydGlkb19wb2xpdGljb3EGWB8AAABodHRwOi8vd3d3LmVsYmlub21pb2RldG9kb3MuZ3QvcQdVDnBvcnRyYWl0X3Bob3RvcQhYOgAAAGh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxCVUMbGVtYV9jYW1wYW5hcQpYAAAAAFUVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQtYQAAAAGh0dHA6Ly93d3cucmVkY2l1ZGFkYW5hLm9yZy93cC1jb250ZW50L3VwbG9hZHMvMjAxNS8wNy9UT0RPUy5qcGdxDFUJcHJvZmVzaW9ucQ1YAAAAAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: lisardo-sosa
-- fields: {election: 1, extra_info: gAJ9cQEoVQRlZGFkcQJYAAAAAFUNY3VzdG9tX3JpYmJvbnEDVQBVEHBhcnRpZG9fcG9saXRpY29xBFgnAAAAUGFydGlkbyBSZXB1YmxpY2FubyBJbnN0aXR1Y2lvbmFsIChQUkkpcQVVFHVybF9wYXJ0aWRvX3BvbGl0aWNvcQZYDwAAAGh0dHA6Ly9wcmkuZ3QvIHEHVQ5wb3J0cmFpdF9waG90b3EIWDoAAABodHRwOi8vdm90YWludGVsaWdlbnRlLmNsL3N0YXRpYy9pbWcvY2FuZGlkYXRlLWRlZmF1bHQuanBncQlVDGxlbWFfY2FtcGFuYXEKWAAAAABVFWxvZ29fcGFydGlkb19wb2xpdGljb3ELWD4AAABodHRwOi8vd3d3LnJlZGNpdWRhZGFuYS5vcmcvd3AtY29udGVudC91cGxvYWRzLzIwMTUvMDcvUFJJLmpwZ3EMVQlwcm9mZXNpb25xDVgAAAAAdS4=,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: luis-fernando-perez
-- fields: {election: 1, extra_info: gAJ9cQEoVQRlZGFkcQJYAAAAAFUNY3VzdG9tX3JpYmJvbnEDWAAAAABVEHBhcnRpZG9fcG9saXRpY29xBFgmAAAATGliZXJ0YWQgRGVtb2Nyw6F0aWNhIFJlbm92YWRhIChMSURFUilxBVUUdXJsX3BhcnRpZG9fcG9saXRpY29xBlgYAAAAaHR0cDovL3d3dy5iYWxkaXpvbi5jb20vcQdVDnBvcnRyYWl0X3Bob3RvcQhYOgAAAGh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxCVUMbGVtYV9jYW1wYW5hcQpYAAAAAFUVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQtYQAAAAGh0dHA6Ly93d3cucmVkY2l1ZGFkYW5hLm9yZy93cC1jb250ZW50L3VwbG9hZHMvMjAxNS8wNy9MSURFUi5qcGdxDFUJcHJvZmVzaW9ucQ1YAAAAAHUu,
-    force_has_answer: true}
-  model: elections.candidate
-  pk: manuel-baldizon
-- fields: {election: 1, extra_info: gAJ9cQEoVQRlZGFkcQJYAAAAAFUNY3VzdG9tX3JpYmJvbnEDVQBVEHBhcnRpZG9fcG9saXRpY29xBFgVAAAAUGFydGlkbyBQYXRyaW90YSAoUFApcQVVFHVybF9wYXJ0aWRvX3BvbGl0aWNvcQZYGwAAAGh0dHA6Ly9wYXJ0aWRvcGF0cmlvdGEuY29tL3EHVQ5wb3J0cmFpdF9waG90b3EIWDoAAABodHRwOi8vdm90YWludGVsaWdlbnRlLmNsL3N0YXRpYy9pbWcvY2FuZGlkYXRlLWRlZmF1bHQuanBncQlVDGxlbWFfY2FtcGFuYXEKWAAAAABVFWxvZ29fcGFydGlkb19wb2xpdGljb3ELWD0AAABodHRwOi8vd3d3LnJlZGNpdWRhZGFuYS5vcmcvd3AtY29udGVudC91cGxvYWRzLzIwMTUvMDcvUFAuanBncQxVCXByb2Zlc2lvbnENWAAAAAB1Lg==,
-    force_has_answer: true}
-  model: elections.candidate
-  pk: mario-david-garcia-velasquez
-- fields: {election: 1, extra_info: gAJ9cQEoVQRlZGFkcQJYAAAAAFUNY3VzdG9tX3JpYmJvbnEDVQBVEHBhcnRpZG9fcG9saXRpY29xBFggAAAAVW5pw7NuIGRlbCBDYW1iaW8gTmFjaW9uYWwgKFVDTilxBVUUdXJsX3BhcnRpZG9fcG9saXRpY29xBlgAAAAAVQ5wb3J0cmFpdF9waG90b3EHWDoAAABodHRwOi8vdm90YWludGVsaWdlbnRlLmNsL3N0YXRpYy9pbWcvY2FuZGlkYXRlLWRlZmF1bHQuanBncQhVDGxlbWFfY2FtcGFuYXEJWAAAAABVFWxvZ29fcGFydGlkb19wb2xpdGljb3EKWD4AAABodHRwOi8vd3d3LnJlZGNpdWRhZGFuYS5vcmcvd3AtY29udGVudC91cGxvYWRzLzIwMTUvMDcvVUNOLmpwZ3ELVQlwcm9mZXNpb25xDFgAAAAAdS4=,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: mario-estrada-orellana
-- fields: {election: 1, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFgKAAAAVVJORy1XSU5BUXEFVRR1cmxfcGFydGlkb19wb2xpdGljb3EGWBgAAABodHRwOi8vdXJuZy1tYWl6Lm9yZy5ndC9xB1UOcG9ydHJhaXRfcGhvdG9xCFg6AAAAaHR0cDovL3ZvdGFpbnRlbGlnZW50ZS5jbC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EJVRVsb2dvX3BhcnRpZG9fcG9saXRpY29xClhgAAAAaHR0cDovL3d3dy5qdWxpb2hlcnJlcmEuaW5mby93cC1jb250ZW50L3VwbG9hZHMvMjAxNS8wNy8yMDE1LTA3LTI4LTE0XzEwXzQ5LUZyZW50ZUFtcGxpby5wZGYucG5ncQt1Lg==,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: miguel-angel-sandoval-vasquez
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFUAVRR1cmxfcGFydGlkb19wb2xpdGljb3EFVQBVDnBvcnRyYWl0X3Bob3RvcQZVOmh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxB1UVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQhVAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: movimiento-nueva-republica
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFUAVRR1cmxfcGFydGlkb19wb2xpdGljb3EFVQBVDnBvcnRyYWl0X3Bob3RvcQZVOmh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxB1UVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQhVAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: movimiento-reformador
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFgAAAAAVRR1cmxfcGFydGlkb19wb2xpdGljb3EFWAAAAABVDnBvcnRyYWl0X3Bob3RvcQZYOgAAAGh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxB1UVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQhYAAAAAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: partido-de-avanzada-nacional
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFgAAAAAVRR1cmxfcGFydGlkb19wb2xpdGljb3EFWAAAAABVDnBvcnRyYWl0X3Bob3RvcQZYOgAAAGh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxB1UVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQhYAAAAAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: partido-patriota
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFUAVRR1cmxfcGFydGlkb19wb2xpdGljb3EFVQBVDnBvcnRyYWl0X3Bob3RvcQZVOmh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxB1UVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQhVAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: partido-politico-vision-con-valores
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFUAVRR1cmxfcGFydGlkb19wb2xpdGljb3EFVQBVDnBvcnRyYWl0X3Bob3RvcQZVOmh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxB1UVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQhVAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: partido-republicano-institucional
-- fields: {election: 1, extra_info: gAJ9cQEoVQRlZGFkcQJYAAAAAFUNY3VzdG9tX3JpYmJvbnEDWAAAAABVEHBhcnRpZG9fcG9saXRpY29xBFgHAAAAQ1JFTy9QVXEFVRR1cmxfcGFydGlkb19wb2xpdGljb3EGWBoAAABodHRwOi8vcm9iZXJ0b2dvbnphbGV6Lmd0L3EHVQ5wb3J0cmFpdF9waG90b3EIWDoAAABodHRwOi8vdm90YWludGVsaWdlbnRlLmNsL3N0YXRpYy9pbWcvY2FuZGlkYXRlLWRlZmF1bHQuanBncQlVDGxlbWFfY2FtcGFuYXEKWAAAAABVFWxvZ29fcGFydGlkb19wb2xpdGljb3ELWEIAAABodHRwOi8vd3d3LnJlZGNpdWRhZGFuYS5vcmcvd3AtY29udGVudC91cGxvYWRzLzIwMTUvMDcvQ1JFTy1QVS5qcGdxDFUJcHJvZmVzaW9ucQ1YAAAAAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: roberto-gonzalez-diaz-duran
-- fields: {election: 1, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFggAAAATW92aW1pZW50byBOdWV2YSBSZXB1YmxpY2EgLSBNTlJxBVUUdXJsX3BhcnRpZG9fcG9saXRpY29xBlghAAAAd3d3Lm1vdmltaWVudG9udWV2YXJlcHVibGljYS5vcmcgcQdVDnBvcnRyYWl0X3Bob3RvcQhYOgAAAGh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxCVUVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQpYPwAAAGh0dHA6Ly93d3cuanVsaW9oZXJyZXJhLmluZm8vd3AtY29udGVudC91cGxvYWRzLzIwMTUvMDcvTU5SLnBuZ3ELdS4=,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: rodolfo-anibal-garcia-hernandez
-- fields: {election: 1, extra_info: gAJ9cQEoVQRlZGFkcQJYAAAAAFUNY3VzdG9tX3JpYmJvbnEDWAAAAABVEHBhcnRpZG9fcG9saXRpY29xBFglAAAAVW5pZGFkIE5hY2lvbmFsIGRlIGxhIEVzcGVyYW56YSAoVU5FKXEFVRR1cmxfcGFydGlkb19wb2xpdGljb3EGWBYAAABodHRwOi8vd3d3LnVuZS5jb20uZ3QvcQdVDnBvcnRyYWl0X3Bob3RvcQhYOgAAAGh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxCVUMbGVtYV9jYW1wYW5hcQpYAAAAAFUVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQtYPgAAAGh0dHA6Ly93d3cucmVkY2l1ZGFkYW5hLm9yZy93cC1jb250ZW50L3VwbG9hZHMvMjAxNS8wNy9VTkUuanBncQxVCXByb2Zlc2lvbnENWAAAAAB1Lg==,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: sandra-torres-casanova
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFUAVRR1cmxfcGFydGlkb19wb2xpdGljb3EFVQBVDnBvcnRyYWl0X3Bob3RvcQZVOmh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxB1UVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQhVAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: todos
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFUAVRR1cmxfcGFydGlkb19wb2xpdGljb3EFVQBVDnBvcnRyYWl0X3Bob3RvcQZVOmh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxB1UVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQhVAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: unidad-nacional-de-la-esperanza
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFgAAAAAVRR1cmxfcGFydGlkb19wb2xpdGljb3EFWAAAAABVDnBvcnRyYWl0X3Bob3RvcQZYOgAAAGh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxB1UVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQhYAAAAAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: union-del-cambio-nacional
-- fields: {election: 2, extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVEHBhcnRpZG9fcG9saXRpY29xBFUAVRR1cmxfcGFydGlkb19wb2xpdGljb3EFVQBVDnBvcnRyYWl0X3Bob3RvcQZVOmh0dHA6Ly92b3RhaW50ZWxpZ2VudGUuY2wvc3RhdGljL2ltZy9jYW5kaWRhdGUtZGVmYXVsdC5qcGdxB1UVbG9nb19wYXJ0aWRvX3BvbGl0aWNvcQhVAHUu,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: winaq-urng-maiz
-- fields: {election: 1, extra_info: gAJ9cQEoVQRlZGFkcQJYAAAAAFUNY3VzdG9tX3JpYmJvbnEDVQBVEHBhcnRpZG9fcG9saXRpY29xBFgaAAAAVmlzacOzbiBjb24gVmFsb3JlcyAoVklWQSlxBVUUdXJsX3BhcnRpZG9fcG9saXRpY29xBlgdAAAAaHR0cDovL3d3dy5ndWF0ZXlhY2FtYmlvLmNvbS9xB1UOcG9ydHJhaXRfcGhvdG9xCFg6AAAAaHR0cDovL3ZvdGFpbnRlbGlnZW50ZS5jbC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EJVQxsZW1hX2NhbXBhbmFxClgAAAAAVRVsb2dvX3BhcnRpZG9fcG9saXRpY29xC1g/AAAAaHR0cDovL3d3dy5yZWRjaXVkYWRhbmEub3JnL3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDE1LzA3L1ZJVkEuanBncQxVCXByb2Zlc2lvbnENWAAAAAB1Lg==,
-    force_has_answer: false}
-  model: elections.candidate
-  pk: zury-rios
-- fields: {candidate: manuel-baldizon, label: "Profesi\xF3n", value: 'Abogado, empresario
-      y exdiputado del Congreso'}
-  model: elections.personaldata
-  pk: 8
-- fields: {candidate: manuel-baldizon, label: Fecha Nacimiento, value: "06 de mayo
-      de 1970 (45 a\xF1os) "}
-  model: elections.personaldata
+  fields: {name: Can add permission, content_type: 4, codename: add_permission}
+- model: auth.permission
   pk: 9
-- fields: {candidate: manuel-baldizon, label: Lugar Nacimiento, value: "Isla de Flores
-      Pet\xE9n "}
-  model: elections.personaldata
+  fields: {name: Can change permission, content_type: 4, codename: change_permission}
+- model: auth.permission
   pk: 10
-- fields: {candidate: sandra-torres-casanova, label: "Profesi\xF3n", value: "Licenciada
-      en Ciencias de Comunicaci\xF3n y ex primera dama de la Naci\xF3n"}
-  model: elections.personaldata
+  fields: {name: Can delete permission, content_type: 4, codename: delete_permission}
+- model: auth.permission
+  pk: 11
+  fields: {name: Can add user, content_type: 5, codename: add_user}
+- model: auth.permission
+  pk: 12
+  fields: {name: Can change user, content_type: 5, codename: change_user}
+- model: auth.permission
   pk: 13
-- fields: {candidate: sandra-torres-casanova, label: Fecha Nacimiento, value: "05
-      de octubre de 1955 (59 a\xF1os) "}
-  model: elections.personaldata
+  fields: {name: Can delete user, content_type: 5, codename: delete_user}
+- model: auth.permission
   pk: 14
-- fields: {candidate: sandra-torres-casanova, label: Lugar Nacimiento, value: "Melchor
-      de Mencos, Pet\xE9n, Guatemala "}
-  model: elections.personaldata
+  fields: {name: Can add content type, content_type: 6, codename: add_contenttype}
+- model: auth.permission
   pk: 15
-- fields: {candidate: roberto-gonzalez-diaz-duran, label: "Profesi\xF3n", value: "Economista
-      y exministro de Energ\xEDa y Minas"}
-  model: elections.personaldata
+  fields: {name: Can change content type, content_type: 6, codename: change_contenttype}
+- model: auth.permission
+  pk: 16
+  fields: {name: Can delete content type, content_type: 6, codename: delete_contenttype}
+- model: auth.permission
+  pk: 17
+  fields: {name: Can add session, content_type: 7, codename: add_session}
+- model: auth.permission
   pk: 18
-- fields: {candidate: roberto-gonzalez-diaz-duran, label: Fecha Nacimiento, value: "15
-      de noviembre de 1970 (44 a\xF1os)"}
-  model: elections.personaldata
+  fields: {name: Can change session, content_type: 7, codename: change_session}
+- model: auth.permission
   pk: 19
-- fields: {candidate: roberto-gonzalez-diaz-duran, label: Lugar Nacimiento, value: Ciudad
-      de Guatemala}
-  model: elections.personaldata
+  fields: {name: Can delete session, content_type: 7, codename: delete_session}
+- model: auth.permission
   pk: 20
-- fields: {candidate: lisardo-sosa, label: "Profesi\xF3n", value: "Economista, que
-      fungi\xF3 como presidente del Banco de Guatemala de 2006 a 2010"}
-  model: elections.personaldata
+  fields: {name: Can add flat page, content_type: 8, codename: add_flatpage}
+- model: auth.permission
+  pk: 21
+  fields: {name: Can change flat page, content_type: 8, codename: change_flatpage}
+- model: auth.permission
+  pk: 22
+  fields: {name: Can delete flat page, content_type: 8, codename: delete_flatpage}
+- model: auth.permission
   pk: 23
-- fields: {candidate: lisardo-sosa, label: Fecha Nacimiento, value: "70 a\xF1os."}
-  model: elections.personaldata
+  fields: {name: Can add image, content_type: 9, codename: add_image}
+- model: auth.permission
   pk: 24
-- fields: {candidate: lisardo-sosa, label: Lugar Nacimiento, value: 'Ciudad de Guatemala '}
-  model: elections.personaldata
+  fields: {name: Can change image, content_type: 9, codename: change_image}
+- model: auth.permission
   pk: 25
-- fields: {candidate: mario-estrada-orellana, label: "Profesi\xF3n", value: Ingeniero
-      y exdiputado del Congreso}
-  model: elections.personaldata
+  fields: {name: Can delete image, content_type: 9, codename: delete_image}
+- model: auth.permission
+  pk: 26
+  fields: {name: Can add taken position, content_type: 10, codename: add_takenposition}
+- model: auth.permission
+  pk: 27
+  fields: {name: Can change taken position, content_type: 10, codename: change_takenposition}
+- model: auth.permission
   pk: 28
-- fields: {candidate: mario-estrada-orellana, label: Fecha Nacimiento, value: "19
-      de junio de 1960 (55 a\xF1os) "}
-  model: elections.personaldata
+  fields: {name: Can delete taken position, content_type: 10, codename: delete_takenposition}
+- model: auth.permission
   pk: 29
-- fields: {candidate: mario-estrada-orellana, label: Lugar Nacimiento, value: 'Monjas,
-      Jalapa'}
-  model: elections.personaldata
+  fields: {name: Can add topic, content_type: 11, codename: add_topic}
+- model: auth.permission
   pk: 30
-- fields: {candidate: luis-fernando-perez, label: "Profesi\xF3n", value: 'Veterinario,
-      administrador de Empresas y diputado del Congreso'}
-  model: elections.personaldata
+  fields: {name: Can change topic, content_type: 11, codename: change_topic}
+- model: auth.permission
+  pk: 31
+  fields: {name: Can delete topic, content_type: 11, codename: delete_topic}
+- model: auth.permission
+  pk: 32
+  fields: {name: Can add category, content_type: 12, codename: add_category}
+- model: auth.permission
   pk: 33
-- fields: {candidate: luis-fernando-perez, label: Fecha Nacimiento, value: 11 de marzo
-      de 1969}
-  model: elections.personaldata
+  fields: {name: Can change category, content_type: 12, codename: change_category}
+- model: auth.permission
   pk: 34
-- fields: {candidate: luis-fernando-perez, label: Lugar Nacimiento, value: Ciudad
-      de Guatemala}
-  model: elections.personaldata
+  fields: {name: Can delete category, content_type: 12, codename: delete_category}
+- model: auth.permission
   pk: 35
-- fields: {candidate: mario-david-garcia-velasquez, label: "Profesi\xF3n", value: 'Abogado,
-      notario, economista y periodista, candidato a la presidencia en 1985'}
-  model: elections.personaldata
+  fields: {name: Can add position, content_type: 13, codename: add_position}
+- model: auth.permission
+  pk: 36
+  fields: {name: Can change position, content_type: 13, codename: change_position}
+- model: auth.permission
+  pk: 37
+  fields: {name: Can delete position, content_type: 13, codename: delete_position}
+- model: auth.permission
   pk: 38
-- fields: {candidate: mario-david-garcia-velasquez, label: Fecha Nacimiento, value: "13
-      de junio de 1946 (69 a\xF1os)"}
-  model: elections.personaldata
+  fields: {name: Can add Tagged Item, content_type: 14, codename: add_taggeditem}
+- model: auth.permission
   pk: 39
-- fields: {candidate: mario-david-garcia-velasquez, label: Lugar Nacimiento, value: 'San
-      Marcos, Guatemala'}
-  model: elections.personaldata
+  fields: {name: Can change Tagged Item, content_type: 14, codename: change_taggeditem}
+- model: auth.permission
   pk: 40
-- fields: {candidate: jose-angel-lopez, label: "Profesi\xF3n", value: Ex-presidente
-      de Banrural}
-  model: elections.personaldata
+  fields: {name: Can delete Tagged Item, content_type: 14, codename: delete_taggeditem}
+- model: auth.permission
+  pk: 41
+  fields: {name: Can add Tag, content_type: 15, codename: add_tag}
+- model: auth.permission
+  pk: 42
+  fields: {name: Can change Tag, content_type: 15, codename: change_tag}
+- model: auth.permission
   pk: 43
-- fields: {candidate: jose-angel-lopez, label: Fecha Nacimiento, value: '9 de agosto
-      de 1959 '}
-  model: elections.personaldata
+  fields: {name: Can delete Tag, content_type: 15, codename: delete_tag}
+- model: auth.permission
   pk: 44
-- fields: {candidate: jose-angel-lopez, label: Lugar Nacimiento, value: 'Jacaltenango,
-      Huehuetanango'}
-  model: elections.personaldata
+  fields: {name: Can add organization, content_type: 16, codename: add_organization}
+- model: auth.permission
   pk: 45
-- fields: {candidate: zury-rios, label: "Profesi\xF3n", value: "Polit\xF3loga "}
-  model: elections.personaldata
+  fields: {name: Can change organization, content_type: 16, codename: change_organization}
+- model: auth.permission
+  pk: 46
+  fields: {name: Can delete organization, content_type: 16, codename: delete_organization}
+- model: auth.permission
+  pk: 47
+  fields: {name: Can add post, content_type: 17, codename: add_post}
+- model: auth.permission
   pk: 48
-- fields: {candidate: zury-rios, label: Fecha Nacimiento, value: 26 de enero de 1968}
-  model: elections.personaldata
+  fields: {name: Can change post, content_type: 17, codename: change_post}
+- model: auth.permission
   pk: 49
-- fields: {candidate: zury-rios, label: Lugar Nacimiento, value: Guatemala}
-  model: elections.personaldata
+  fields: {name: Can delete post, content_type: 17, codename: delete_post}
+- model: auth.permission
   pk: 50
-- fields: {candidate: jimmy-morales, label: "Profesi\xF3n", value: "Pol\xEDtico, productor,
-      escritor, director y actor de cine y televisi\xF3n"}
-  model: elections.personaldata
+  fields: {name: Can add membership, content_type: 18, codename: add_membership}
+- model: auth.permission
+  pk: 51
+  fields: {name: Can change membership, content_type: 18, codename: change_membership}
+- model: auth.permission
+  pk: 52
+  fields: {name: Can delete membership, content_type: 18, codename: delete_membership}
+- model: auth.permission
   pk: 53
-- fields: {candidate: jimmy-morales, label: Fecha Nacimiento, value: "18 de marzo
-      de 1969 (46 a\xF1os) "}
-  model: elections.personaldata
+  fields: {name: Can add identifier, content_type: 19, codename: add_identifier}
+- model: auth.permission
   pk: 54
-- fields: {candidate: jimmy-morales, label: Lugar Nacimiento, value: Ciudad de Guatemala}
-  model: elections.personaldata
+  fields: {name: Can change identifier, content_type: 19, codename: change_identifier}
+- model: auth.permission
   pk: 55
-- fields: {candidate: alejandro-giammattei-falla, label: "Profesi\xF3n", value: "Pol\xEDtico,
-      escritor, y m\xE9dico"}
-  model: elections.personaldata
+  fields: {name: Can delete identifier, content_type: 19, codename: delete_identifier}
+- model: auth.permission
+  pk: 56
+  fields: {name: Can add source, content_type: 20, codename: add_source}
+- model: auth.permission
+  pk: 57
+  fields: {name: Can change source, content_type: 20, codename: change_source}
+- model: auth.permission
   pk: 58
-- fields: {candidate: alejandro-giammattei-falla, label: Fecha Nacimiento, value: "09
-      de marzo de 1956 (59 a\xF1os)"}
-  model: elections.personaldata
+  fields: {name: Can delete source, content_type: 20, codename: delete_source}
+- model: auth.permission
   pk: 59
-- fields: {candidate: alejandro-giammattei-falla, label: Lugar Nacimiento, value: 'Ciudad
-      de Guatemala '}
-  model: elections.personaldata
+  fields: {name: Can add link, content_type: 21, codename: add_link}
+- model: auth.permission
   pk: 60
-- fields: {candidate: juan-gutierrez, label: "Profesi\xF3n", value: "Empresario y
-      Pol\xEDtico"}
-  model: elections.personaldata
+  fields: {name: Can change link, content_type: 21, codename: change_link}
+- model: auth.permission
+  pk: 61
+  fields: {name: Can delete link, content_type: 21, codename: delete_link}
+- model: auth.permission
+  pk: 62
+  fields: {name: Can add other name, content_type: 22, codename: add_othername}
+- model: auth.permission
   pk: 63
-- fields: {candidate: juan-gutierrez, label: Fecha Nacimiento, value: "1 de marzo
-      de 1956 (59 a\xF1os)"}
-  model: elections.personaldata
+  fields: {name: Can change other name, content_type: 22, codename: change_othername}
+- model: auth.permission
   pk: 64
-- fields: {candidate: juan-gutierrez, label: Lugar Nacimiento, value: 'Quetzaltenango,Quetzaltenango'}
-  model: elections.personaldata
+  fields: {name: Can delete other name, content_type: 22, codename: delete_othername}
+- model: auth.permission
   pk: 65
-- fields: {candidate: sandra-torres-casanova, label: "Lema de campa\xF1a", value: "\xA1Oportunidades!
-      -Trabajo -Educacion -Desarrollo Social"}
-  model: elections.personaldata
+  fields: {name: Can add I18N Name, content_type: 23, codename: add_areai18name}
+- model: auth.permission
   pk: 66
-- fields: {candidate: sandra-torres-casanova, label: Partido Politico, value: Unidad
-      Nacional De La Esperanza - UNE}
-  model: elections.personaldata
+  fields: {name: Can change I18N Name, content_type: 23, codename: change_areai18name}
+- model: auth.permission
   pk: 67
-- fields: {candidate: roberto-gonzalez-diaz-duran, label: "Lema de campa\xF1a", value: 'Elige
-      Capacidad #SiHayPorQuienVotar'}
-  model: elections.personaldata
+  fields: {name: Can delete I18N Name, content_type: 23, codename: delete_areai18name}
+- model: auth.permission
+  pk: 68
+  fields: {name: Can add contact detail, content_type: 24, codename: add_contactdetail}
+- model: auth.permission
+  pk: 69
+  fields: {name: Can change contact detail, content_type: 24, codename: change_contactdetail}
+- model: auth.permission
   pk: 70
-- fields: {candidate: roberto-gonzalez-diaz-duran, label: Partido Politico, value: CREO/PU}
-  model: elections.personaldata
+  fields: {name: Can delete contact detail, content_type: 24, codename: delete_contactdetail}
+- model: auth.permission
   pk: 71
-- fields: {candidate: roberto-gonzalez-diaz-duran, label: Vicepresidente, value: "Jos\xE9
-      Rodolfo Neutze Aguirre"}
-  model: elections.personaldata
+  fields: {name: Can add person, content_type: 25, codename: add_person}
+- model: auth.permission
+  pk: 72
+  fields: {name: Can change person, content_type: 25, codename: change_person}
+- model: auth.permission
+  pk: 73
+  fields: {name: Can delete person, content_type: 25, codename: delete_person}
+- model: auth.permission
   pk: 74
-- fields: {candidate: juan-gutierrez, label: "Lema de campa\xF1a:", value: "Cruzada
-      Contra la Corrupci\xF3n"}
-  model: elections.personaldata
+  fields: {name: Can add language, content_type: 26, codename: add_language}
+- model: auth.permission
   pk: 75
-- fields: {candidate: juan-gutierrez, label: Partido Politico, value: 'Partido de
-      Avanzada Nacional (PAN) '}
-  model: elections.personaldata
+  fields: {name: Can change language, content_type: 26, codename: change_language}
+- model: auth.permission
   pk: 76
-- fields: {candidate: alejandro-giammattei-falla, label: "Lema de campa\xF1a", value: Fuerza
-      Guatemala}
-  model: elections.personaldata
+  fields: {name: Can delete language, content_type: 26, codename: delete_language}
+- model: auth.permission
   pk: 77
-- fields: {candidate: alejandro-giammattei-falla, label: Partido Politico, value: FUERZA}
-  model: elections.personaldata
+  fields: {name: Can add area, content_type: 27, codename: add_area}
+- model: auth.permission
   pk: 78
-- fields: {candidate: alejandro-giammattei-falla, label: Vicepresidente, value: Luis
-      Fernando Paiz Rodas}
-  model: elections.personaldata
+  fields: {name: Can change area, content_type: 27, codename: change_area}
+- model: auth.permission
   pk: 79
-- fields: {candidate: jimmy-morales, label: "Lema de campa\xF1a", value: 'Por una
-      Guatemala, feliz e Inmortal'}
-  model: elections.personaldata
+  fields: {name: Can delete area, content_type: 27, codename: delete_area}
+- model: auth.permission
   pk: 80
-- fields: {candidate: jimmy-morales, label: Partido Politico, value: "Frente de Convergencia
-      Nacional (FCN-Naci\xF3n)"}
-  model: elections.personaldata
+  fields: {name: Can add personal data, content_type: 28, codename: add_personaldata}
+- model: auth.permission
   pk: 81
-- fields: {candidate: jimmy-morales, label: Vicepresidente, value: Jafet Ernesto Cabrera
-      Franco}
-  model: elections.personaldata
+  fields: {name: Can change personal data, content_type: 28, codename: change_personaldata}
+- model: auth.permission
   pk: 82
-- fields: {candidate: jose-angel-lopez, label: "Lema de campa\xF1a", value: '#CambiaLaHistoria'}
-  model: elections.personaldata
+  fields: {name: Can delete personal data, content_type: 28, codename: delete_personaldata}
+- model: auth.permission
   pk: 83
-- fields: {candidate: jose-angel-lopez, label: Partido Politico, value: Encuentro
-      Por Guatemala}
-  model: elections.personaldata
+  fields: {name: "Can add Mi Elecci\xF3n", content_type: 29, codename: add_election}
+- model: auth.permission
   pk: 84
-- fields: {candidate: jose-angel-lopez, label: Vicepresidente, value: 'Pedro Miguel
-      Lamport Kelsall '}
-  model: elections.personaldata
+  fields: {name: "Can change Mi Elecci\xF3n", content_type: 29, codename: change_election}
+- model: auth.permission
   pk: 85
-- fields: {candidate: juan-gutierrez, label: Vicepresidente, value: "Manuel Alfredo
-      Marroqu\xEDn Pineda "}
-  model: elections.personaldata
+  fields: {name: "Can delete Mi Elecci\xF3n", content_type: 29, codename: delete_election}
+- model: auth.permission
   pk: 86
-- fields: {candidate: lisardo-sosa, label: "Lema de campa\xF1a", value: Cambiemos
-      Guatemala YA}
-  model: elections.personaldata
+  fields: {name: Can add Candidato, content_type: 30, codename: add_candidate}
+- model: auth.permission
   pk: 87
-- fields: {candidate: lisardo-sosa, label: Partido Politico, value: TODOS}
-  model: elections.personaldata
+  fields: {name: Can change Candidato, content_type: 30, codename: change_candidate}
+- model: auth.permission
   pk: 88
-- fields: {candidate: lisardo-sosa, label: Vicepresidente, value: "Mario Alberto Garc\xEDa
-      Lara "}
-  model: elections.personaldata
+  fields: {name: Can delete Candidato, content_type: 30, codename: delete_candidate}
+- model: auth.permission
   pk: 89
-- fields: {candidate: luis-fernando-perez, label: "Lema de campa\xF1a", value: La
-      Oportunidad de Confiar}
-  model: elections.personaldata
+  fields: {name: "Can add P\xE1gina est\xE1ticas por candidato", content_type: 31,
+    codename: add_candidateflatpage}
+- model: auth.permission
   pk: 90
-- fields: {candidate: luis-fernando-perez, label: Partido Politico, value: Partido
-      Republicano Institucional  - PRI}
-  model: elections.personaldata
+  fields: {name: "Can change P\xE1gina est\xE1ticas por candidato", content_type: 31,
+    codename: change_candidateflatpage}
+- model: auth.permission
   pk: 91
-- fields: {candidate: luis-fernando-perez, label: Vicepresidente, value: "Jos\xE9
-      Rodolfo Dougherty Liekens"}
-  model: elections.personaldata
+  fields: {name: "Can delete P\xE1gina est\xE1ticas por candidato", content_type: 31,
+    codename: delete_candidateflatpage}
+- model: auth.permission
   pk: 92
-- fields: {candidate: manuel-baldizon, label: "Lema de campa\xF1a", value: 'Le toca
-      al pueblo, Te toca guatemala'}
-  model: elections.personaldata
+  fields: {name: "Can add Categor\xEDa de pregunta", content_type: 32, codename: add_questioncategory}
+- model: auth.permission
   pk: 93
-- fields: {candidate: manuel-baldizon, label: Partido Politico, value: Libertad Democratica
-      Renovada}
-  model: elections.personaldata
+  fields: {name: "Can change Categor\xEDa de pregunta", content_type: 32, codename: change_questioncategory}
+- model: auth.permission
   pk: 94
-- fields: {candidate: manuel-baldizon, label: Vicepresidente, value: Edgar Baltazar
-      Barquin Duran}
-  model: elections.personaldata
+  fields: {name: "Can delete Categor\xEDa de pregunta", content_type: 32, codename: delete_questioncategory}
+- model: auth.permission
   pk: 95
-- fields: {candidate: mario-david-garcia-velasquez, label: "Lema de campa\xF1a", value: Mano
-      Dura}
-  model: elections.personaldata
+  fields: {name: Can add nonce, content_type: 37, codename: add_nonce}
+- model: auth.permission
   pk: 96
-- fields: {candidate: mario-david-garcia-velasquez, label: Partido Politico, value: Partido
-      Patriota - PP}
-  model: elections.personaldata
+  fields: {name: Can change nonce, content_type: 37, codename: change_nonce}
+- model: auth.permission
   pk: 97
-- fields: {candidate: mario-david-garcia-velasquez, label: Vicepresidente, value: "Carlos
-      Valent\xEDn Gramajo Maldonado "}
-  model: elections.personaldata
+  fields: {name: Can delete nonce, content_type: 37, codename: delete_nonce}
+- model: auth.permission
   pk: 98
-- fields: {candidate: mario-estrada-orellana, label: "Lema de campa\xF1a", value: Nosotros
-      Si Podemos}
-  model: elections.personaldata
+  fields: {name: Can add code, content_type: 38, codename: add_code}
+- model: auth.permission
   pk: 99
-- fields: {candidate: mario-estrada-orellana, label: Partido Politico, value: "Uni\xF3n
-      del Cambio Nacional (UCN)"}
-  model: elections.personaldata
+  fields: {name: Can change code, content_type: 38, codename: change_code}
+- model: auth.permission
   pk: 100
-- fields: {candidate: mario-estrada-orellana, label: Vicepresidente, value: 'Jose
-      Roberto Diaz-Duran Quezada '}
-  model: elections.personaldata
+  fields: {name: Can delete code, content_type: 38, codename: delete_code}
+- model: auth.permission
   pk: 101
-- fields: {candidate: miguel-angel-sandoval-vasquez, label: "Profesi\xF3n", value: "analista
-      pol\xEDtico reconocido en medios de comunicaci\xF3n en el pa\xEDs y soci\xF3logo"}
-  model: elections.personaldata
+  fields: {name: Can add association, content_type: 39, codename: add_association}
+- model: auth.permission
   pk: 102
-- fields: {candidate: miguel-angel-sandoval-vasquez, label: Fecha Nacimiento, value: "65
-      a\xF1os de edad"}
-  model: elections.personaldata
+  fields: {name: Can change association, content_type: 39, codename: change_association}
+- model: auth.permission
   pk: 103
-- fields: {candidate: miguel-angel-sandoval-vasquez, label: Lugar Nacimiento, value: Guatemala}
-  model: elections.personaldata
+  fields: {name: Can delete association, content_type: 39, codename: delete_association}
+- model: auth.permission
   pk: 104
-- fields: {candidate: miguel-angel-sandoval-vasquez, label: "Lema de campa\xF1a",
-    value: 'Para vivir mejor, El pueblo al Poder'}
-  model: elections.personaldata
+  fields: {name: Can add partial, content_type: 40, codename: add_partial}
+- model: auth.permission
   pk: 105
-- fields: {candidate: miguel-angel-sandoval-vasquez, label: Partido Politico, value: URNG-WINAQ}
-  model: elections.personaldata
+  fields: {name: Can change partial, content_type: 40, codename: change_partial}
+- model: auth.permission
   pk: 106
-- fields: {candidate: miguel-angel-sandoval-vasquez, label: Vicepresidente, value: 'Mario
-      Gerardo Ellington Lambe '}
-  model: elections.personaldata
+  fields: {name: Can delete partial, content_type: 40, codename: delete_partial}
+- model: auth.permission
   pk: 107
-- fields: {candidate: rodolfo-anibal-garcia-hernandez, label: "Profesi\xF3n", value: 'Abogado
-      y Notario '}
-  model: elections.personaldata
+  fields: {name: Can add user social auth, content_type: 41, codename: add_usersocialauth}
+- model: auth.permission
   pk: 108
-- fields: {candidate: rodolfo-anibal-garcia-hernandez, label: Fecha Nacimiento, value: '14
-      de septiembre de 1967 '}
-  model: elections.personaldata
+  fields: {name: Can change user social auth, content_type: 41, codename: change_usersocialauth}
+- model: auth.permission
   pk: 109
-- fields: {candidate: rodolfo-anibal-garcia-hernandez, label: Lugar Nacimiento, value: 'San
-      Pedro Las Huertas, Antigua Guatemala '}
-  model: elections.personaldata
+  fields: {name: Can delete user social auth, content_type: 41, codename: delete_usersocialauth}
+- model: auth.permission
   pk: 110
-- fields: {candidate: rodolfo-anibal-garcia-hernandez, label: "Lema de campa\xF1a",
-    value: "\xA1Con el pueblo no se juega!"}
-  model: elections.personaldata
+  fields: {name: Can add kv store, content_type: 42, codename: add_kvstore}
+- model: auth.permission
   pk: 111
-- fields: {candidate: rodolfo-anibal-garcia-hernandez, label: Partido Politico, value: Movimiento
-      Nueva Republica - MNR}
-  model: elections.personaldata
+  fields: {name: Can change kv store, content_type: 42, codename: change_kvstore}
+- model: auth.permission
   pk: 112
-- fields: {candidate: rodolfo-anibal-garcia-hernandez, label: Vicepresidente, value: Pedro
-      Rafael Maldonado Flores}
-  model: elections.personaldata
+  fields: {name: Can delete kv store, content_type: 42, codename: delete_kvstore}
+- model: auth.permission
   pk: 113
-- fields: {candidate: sandra-torres-casanova, label: Vicepresidente, value: 'Mario
-      Roberto Leal Castillo '}
-  model: elections.personaldata
+  fields: {name: Can add log entry, content_type: 43, codename: add_logentry}
+- model: auth.permission
   pk: 114
-- fields: {candidate: zury-rios, label: "Lema de campa\xF1a", value: '#GuateYaCambio'}
-  model: elections.personaldata
+  fields: {name: Can change log entry, content_type: 43, codename: change_logentry}
+- model: auth.permission
   pk: 115
-- fields: {candidate: zury-rios, label: Partido Politico, value: "Partido Pol\xEDtico
-      Vision con Valores"}
-  model: elections.personaldata
+  fields: {name: Can delete log entry, content_type: 43, codename: delete_logentry}
+- model: auth.permission
   pk: 116
-- fields: {candidate: zury-rios, label: Vicepresidente, value: Juan Luis Pedro Miron
-      Aguilar}
-  model: elections.personaldata
+  fields: {name: Can add subscription, content_type: 44, codename: add_subscription}
+- model: auth.permission
   pk: 117
-- fields: {candidate: juan-gutierrez, label: Radiografia Mitin Soy502, value: 'https://youtu.be/Fd4JgUUufog'}
-  model: elections.personaldata
+  fields: {name: Can change subscription, content_type: 44, codename: change_subscription}
+- model: auth.permission
+  pk: 118
+  fields: {name: Can delete subscription, content_type: 44, codename: delete_subscription}
+- model: auth.permission
+  pk: 119
+  fields: {name: Can add newsletter, content_type: 45, codename: add_newsletter}
+- model: auth.permission
   pk: 120
-- fields: {candidate: fuerza, label: "Partido Pol\xEDtico", value: FUERZA}
-  model: elections.personaldata
+  fields: {name: Can change newsletter, content_type: 45, codename: change_newsletter}
+- model: auth.permission
   pk: 121
-- fields: {candidate: fuerza, label: Secretario General, value: Mauricio Radford}
-  model: elections.personaldata
+  fields: {name: Can delete newsletter, content_type: 45, codename: delete_newsletter}
+- model: auth.permission
   pk: 122
-- fields: {candidate: fuerza, label: "Fundaci\xF3n", value: '2011'}
-  model: elections.personaldata
+  fields: {name: Can add submission, content_type: 46, codename: add_submission}
+- model: auth.permission
   pk: 123
-- fields: {candidate: fuerza, label: "Ideolog\xEDa pol\xEDtica", value: Derecha}
-  model: elections.personaldata
+  fields: {name: Can change submission, content_type: 46, codename: change_submission}
+- model: auth.permission
   pk: 124
-- fields: {candidate: fuerza, label: Sede, value: 6ta Calle A 34-40 Zona 11. Col.
-      Residencial V.}
-  model: elections.personaldata
+  fields: {name: Can delete submission, content_type: 46, codename: delete_submission}
+- model: auth.permission
   pk: 125
-- fields: {candidate: fuerza, label: "Tel\xE9fono", value: '24393333'}
-  model: elections.personaldata
+  fields: {name: Can add message, content_type: 47, codename: add_message}
+- model: auth.permission
+  pk: 126
+  fields: {name: Can change message, content_type: 47, codename: change_message}
+- model: auth.permission
   pk: 127
-- fields: {candidate: fuerza, label: Candidatos, value: Diputados Listado Nacional}
-  model: elections.personaldata
+  fields: {name: Can delete message, content_type: 47, codename: delete_message}
+- model: auth.permission
   pk: 128
-- fields: {candidate: convergencia, label: "Partido Pol\xEDtico", value: Convergencia}
-  model: elections.personaldata
+  fields: {name: Can add article, content_type: 48, codename: add_article}
+- model: auth.permission
   pk: 129
-- fields: {candidate: convergencia, label: Secretario General, value: Pablo Monsanto}
-  model: elections.personaldata
+  fields: {name: Can change article, content_type: 48, codename: change_article}
+- model: auth.permission
   pk: 130
-- fields: {candidate: convergencia, label: "Fundaci\xF3n", value: '2015'}
-  model: elections.personaldata
+  fields: {name: Can delete article, content_type: 48, codename: delete_article}
+- model: auth.permission
   pk: 131
-- fields: {candidate: convergencia, label: "Ideolog\xEDa pol\xEDtica", value: Izquierda}
-  model: elections.personaldata
+  fields: {name: Can add message status, content_type: 49, codename: add_messagestatus}
+- model: auth.permission
   pk: 132
-- fields: {candidate: convergencia, label: Sede, value: No Sabe}
-  model: elections.personaldata
+  fields: {name: Can change message status, content_type: 49, codename: change_messagestatus}
+- model: auth.permission
   pk: 133
-- fields: {candidate: convergencia, label: Telefono, value: No Sabe}
-  model: elections.personaldata
+  fields: {name: Can delete message status, content_type: 49, codename: delete_messagestatus}
+- model: auth.permission
   pk: 134
-- fields: {candidate: convergencia, label: Candidatos, value: Diputados Listado Nacional}
-  model: elections.personaldata
+  fields: {name: Can add answer, content_type: 50, codename: add_answer}
+- model: auth.permission
   pk: 135
-- fields: {election: 1}
-  model: elections.questioncategory
-  pk: 3
-- fields: {election: 1}
-  model: elections.questioncategory
-  pk: 4
-- fields: {election: 1}
-  model: elections.questioncategory
-  pk: 5
-- fields: {election: 1}
-  model: elections.questioncategory
-  pk: 6
-- fields: {area: guatemala, description: "Las Elecciones generales de Guatemala de
-      2015 se llevar\xE1n a cabo el domingo 06 de septiembre de 2015, y en ellas se
-      renovar\xE1n los titulares de los cargos de elecci\xF3n popular de la Rep\xFAblica
-      de Guatemala.", extra_info: gAJ9cQFVBWV4dHJhcQJYEQAAAEV4dHJhIGV4dHJhIGV4dHJhcQNzLg==,
-    extra_info_content: '', extra_info_title: '', highlighted: true, name: "Elecci\xF3n
-      Presidencial", searchable: true, slug: presidencial, uses_face_to_face: true,
-    uses_preguntales: true, uses_questionary: true, uses_ranking: true, uses_soul_mate: true}
-  model: elections.election
+  fields: {name: Can change answer, content_type: 50, codename: change_answer}
+- model: auth.permission
+  pk: 136
+  fields: {name: Can delete answer, content_type: 50, codename: delete_answer}
+- model: auth.permission
+  pk: 137
+  fields: {name: Can add attachment, content_type: 51, codename: add_attachment}
+- model: auth.permission
+  pk: 138
+  fields: {name: Can change attachment, content_type: 51, codename: change_attachment}
+- model: auth.permission
+  pk: 139
+  fields: {name: Can delete attachment, content_type: 51, codename: delete_attachment}
+- model: auth.permission
+  pk: 140
+  fields: {name: Can add Mensaje de preguntales, content_type: 52, codename: add_message}
+- model: auth.permission
+  pk: 141
+  fields: {name: Can change Mensaje de preguntales, content_type: 52, codename: change_message}
+- model: auth.permission
+  pk: 142
+  fields: {name: Can delete Mensaje de preguntales, content_type: 52, codename: delete_message}
+- model: auth.permission
+  pk: 143
+  fields: {name: Can add outbound message, content_type: 53, codename: add_outboundmessage}
+- model: auth.permission
+  pk: 144
+  fields: {name: Can change outbound message, content_type: 53, codename: change_outboundmessage}
+- model: auth.permission
+  pk: 145
+  fields: {name: Can delete outbound message, content_type: 53, codename: delete_outboundmessage}
+- model: auth.permission
+  pk: 146
+  fields: {name: Can add message confirmation, content_type: 54, codename: add_messageconfirmation}
+- model: auth.permission
+  pk: 147
+  fields: {name: Can change message confirmation, content_type: 54, codename: change_messageconfirmation}
+- model: auth.permission
+  pk: 148
+  fields: {name: Can delete message confirmation, content_type: 54, codename: delete_messageconfirmation}
+- model: auth.permission
+  pk: 149
+  fields: {name: Can add kids gathering, content_type: 55, codename: add_kidsgathering}
+- model: auth.permission
+  pk: 150
+  fields: {name: Can change kids gathering, content_type: 55, codename: change_kidsgathering}
+- model: auth.permission
+  pk: 151
+  fields: {name: Can delete kids gathering, content_type: 55, codename: delete_kidsgathering}
+- model: auth.permission
+  pk: 152
+  fields: {name: Can add kids proposal, content_type: 56, codename: add_kidsproposal}
+- model: auth.permission
+  pk: 153
+  fields: {name: Can change kids proposal, content_type: 56, codename: change_kidsproposal}
+- model: auth.permission
+  pk: 154
+  fields: {name: Can delete kids proposal, content_type: 56, codename: delete_kidsproposal}
+- model: auth.permission
+  pk: 155
+  fields: {name: Can add Propuesta Ciudadana, content_type: 57, codename: add_popularproposal}
+- model: auth.permission
+  pk: 156
+  fields: {name: Can change Propuesta Ciudadana, content_type: 57, codename: change_popularproposal}
+- model: auth.permission
+  pk: 157
+  fields: {name: Can delete Propuesta Ciudadana, content_type: 57, codename: delete_popularproposal}
+- model: auth.permission
+  pk: 158
+  fields: {name: Can add proposal temporary data, content_type: 58, codename: add_proposaltemporarydata}
+- model: auth.permission
+  pk: 159
+  fields: {name: Can change proposal temporary data, content_type: 58, codename: change_proposaltemporarydata}
+- model: auth.permission
+  pk: 160
+  fields: {name: Can delete proposal temporary data, content_type: 58, codename: delete_proposaltemporarydata}
+- model: auth.permission
+  pk: 161
+  fields: {name: Can add commitment, content_type: 59, codename: add_commitment}
+- model: auth.permission
+  pk: 162
+  fields: {name: Can change commitment, content_type: 59, codename: change_commitment}
+- model: auth.permission
+  pk: 163
+  fields: {name: Can delete commitment, content_type: 59, codename: delete_commitment}
+- model: auth.permission
+  pk: 164
+  fields: {name: Can add proposal like, content_type: 60, codename: add_proposallike}
+- model: auth.permission
+  pk: 165
+  fields: {name: Can change proposal like, content_type: 60, codename: change_proposallike}
+- model: auth.permission
+  pk: 166
+  fields: {name: Can delete proposal like, content_type: 60, codename: delete_proposallike}
+- model: auth.permission
+  pk: 167
+  fields: {name: Can add enrollment, content_type: 61, codename: add_enrollment}
+- model: auth.permission
+  pk: 168
+  fields: {name: Can change enrollment, content_type: 61, codename: change_enrollment}
+- model: auth.permission
+  pk: 169
+  fields: {name: Can delete enrollment, content_type: 61, codename: delete_enrollment}
+- model: auth.permission
+  pk: 170
+  fields: {name: Can add organization, content_type: 62, codename: add_organization}
+- model: auth.permission
+  pk: 171
+  fields: {name: Can change organization, content_type: 62, codename: change_organization}
+- model: auth.permission
+  pk: 172
+  fields: {name: Can delete organization, content_type: 62, codename: delete_organization}
+- model: auth.permission
+  pk: 173
+  fields: {name: Can add profile, content_type: 63, codename: add_profile}
+- model: auth.permission
+  pk: 174
+  fields: {name: Can change profile, content_type: 63, codename: change_profile}
+- model: auth.permission
+  pk: 175
+  fields: {name: Can delete profile, content_type: 63, codename: delete_profile}
+- model: auth.permission
+  pk: 176
+  fields: {name: Can add candidacy contact, content_type: 64, codename: add_candidacycontact}
+- model: auth.permission
+  pk: 177
+  fields: {name: Can change candidacy contact, content_type: 64, codename: change_candidacycontact}
+- model: auth.permission
+  pk: 178
+  fields: {name: Can delete candidacy contact, content_type: 64, codename: delete_candidacycontact}
+- model: auth.permission
+  pk: 179
+  fields: {name: Can add candidacy, content_type: 65, codename: add_candidacy}
+- model: auth.permission
+  pk: 180
+  fields: {name: Can change candidacy, content_type: 65, codename: change_candidacy}
+- model: auth.permission
+  pk: 181
+  fields: {name: Can delete candidacy, content_type: 65, codename: delete_candidacy}
+- model: auth.permission
+  pk: 182
+  fields: {name: Can add extra page, content_type: 66, codename: add_extrapage}
+- model: auth.permission
+  pk: 183
+  fields: {name: Can change extra page, content_type: 66, codename: change_extrapage}
+- model: auth.permission
+  pk: 184
+  fields: {name: Can delete extra page, content_type: 66, codename: delete_extrapage}
+- model: auth.permission
+  pk: 185
+  fields: {name: Can add organization template, content_type: 67, codename: add_organizationtemplate}
+- model: auth.permission
+  pk: 186
+  fields: {name: Can change organization template, content_type: 67, codename: change_organizationtemplate}
+- model: auth.permission
+  pk: 187
+  fields: {name: Can delete organization template, content_type: 67, codename: delete_organizationtemplate}
+- model: auth.permission
+  pk: 188
+  fields: {name: Can add search subscription, content_type: 68, codename: add_searchsubscription}
+- model: auth.permission
+  pk: 189
+  fields: {name: Can change search subscription, content_type: 68, codename: change_searchsubscription}
+- model: auth.permission
+  pk: 190
+  fields: {name: Can delete search subscription, content_type: 68, codename: delete_searchsubscription}
+- model: auth.permission
+  pk: 191
+  fields: {name: Can add custom site, content_type: 69, codename: add_customsite}
+- model: auth.permission
+  pk: 192
+  fields: {name: Can change custom site, content_type: 69, codename: change_customsite}
+- model: auth.permission
+  pk: 193
+  fields: {name: Can delete custom site, content_type: 69, codename: delete_customsite}
+- model: auth.permission
+  pk: 194
+  fields: {name: Can add url, content_type: 70, codename: add_url}
+- model: auth.permission
+  pk: 195
+  fields: {name: Can change url, content_type: 70, codename: change_url}
+- model: auth.permission
+  pk: 196
+  fields: {name: Can delete url, content_type: 70, codename: delete_url}
+- model: auth.permission
+  pk: 197
+  fields: {name: Can add rule, content_type: 71, codename: add_rule}
+- model: auth.permission
+  pk: 198
+  fields: {name: Can change rule, content_type: 71, codename: change_rule}
+- model: auth.permission
+  pk: 199
+  fields: {name: Can delete rule, content_type: 71, codename: delete_rule}
+- model: auth.permission
+  pk: 200
+  fields: {name: Can add activity, content_type: 72, codename: add_activity}
+- model: auth.permission
+  pk: 201
+  fields: {name: Can change activity, content_type: 72, codename: change_activity}
+- model: auth.permission
+  pk: 202
+  fields: {name: Can delete activity, content_type: 72, codename: delete_activity}
+- model: auth.user
   pk: 1
-- fields: {area: guatemala, description: "Las Elecciones generales de Guatemala de
-      2015 se llevar\xE1n a cabo el domingo 06 de septiembre de 2015, y en ellas se
-      renovar\xE1n los titulares de los cargos de elecci\xF3n popular de la Rep\xFAblica
-      de Guatemala.", extra_info: gAJ9cQFVBWV4dHJhcQJYEQAAAEV4dHJhIGV4dHJhIGV4dHJhcQNzLg==,
-    extra_info_content: '', extra_info_title: '', highlighted: false, name: Diputados
-      Listado Nacional, searchable: true, slug: diputados-listado-nacional, uses_face_to_face: false,
-    uses_preguntales: false, uses_questionary: false, uses_ranking: false, uses_soul_mate: false}
-  model: elections.election
-  pk: 2
-- fields: {area: guatemala, description: "Las Elecciones generales de Guatemala de
-      2015 se llevar\xE1n a cabo el domingo 06 de septiembre de 2015, y en ellas se
-      renovar\xE1n los titulares de los cargos de elecci\xF3n popular de la Rep\xFAblica
-      de Guatemala.", extra_info: gAJ9cQFVBWV4dHJhcQJYEQAAAEV4dHJhIGV4dHJhIGV4dHJhcQNzLg==,
-    extra_info_content: '', extra_info_title: '', highlighted: false, name: Diputados
-      Distritos, searchable: true, slug: diputados-distritos, uses_face_to_face: false,
-    uses_preguntales: false, uses_questionary: false, uses_ranking: false, uses_soul_mate: false}
-  model: elections.election
-  pk: 3
-- fields: {area: guatemala, description: "Las Elecciones generales de Guatemala de
-      2015 se llevar\xE1n a cabo el domingo 06 de septiembre de 2015, y en ellas se
-      renovar\xE1n los titulares de los cargos de elecci\xF3n popular de la Rep\xFAblica
-      de Guatemala.", extra_info: gAJ9cQFVBWV4dHJhcQJYEQAAAEV4dHJhIGV4dHJhIGV4dHJhcQNzLg==,
-    extra_info_content: '', extra_info_title: '', highlighted: false, name: Diputados
-      Parlacen, searchable: true, slug: diputados-parlacen, uses_face_to_face: false,
-    uses_preguntales: false, uses_questionary: false, uses_ranking: false, uses_soul_mate: false}
-  model: elections.election
+  fields:
+    password: pbkdf2_sha256$30000$jsIz2bPJJXR4$YmXDV7K+0BEN1f7gseS8XpNobFm3rMVJYPfQEzmAXI0=
+    last_login: 2017-08-25 21:38:55.729193+00:00
+    is_superuser: true
+    username: admin
+    first_name: ''
+    last_name: ''
+    email: admin@admines.cl
+    is_staff: true
+    is_active: true
+    date_joined: 2017-08-10 22:13:18.124408+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
   pk: 4
-- fields: {area: guatemala, description: "Las Elecciones generales de Guatemala de
-      2015 se llevar\xE1n a cabo el domingo 06 de septiembre de 2015, y en ellas se
-      renovar\xE1n los titulares de los cargos de elecci\xF3n popular de la Rep\xFAblica
-      de Guatemala.", extra_info: gAJ9cQFVBWV4dHJhcQJYEQAAAEV4dHJhIGV4dHJhIGV4dHJhcQNzLg==,
-    extra_info_content: '', extra_info_title: '', highlighted: false, name: "Alcald\xEDa
-      Guatemala", searchable: true, slug: alcaldias, uses_face_to_face: false, uses_preguntales: false,
-    uses_questionary: false, uses_ranking: false, uses_soul_mate: false}
-  model: elections.election
+  fields:
+    password: pbkdf2_sha256$30000$yXkTyRX46mI6$1rAXM9yCo0QezjTGMKYyb8hz6O+EKPvHDi/LwEnldz8=
+    last_login: 2017-08-25 21:48:52.968026+00:00
+    is_superuser: false
+    username: organizacion
+    first_name: ''
+    last_name: ''
+    email: organizacion@perrogato.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-08-25 21:08:10.256138+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
   pk: 5
-- fields: {area: guatemala, description: "Las Elecciones generales de Guatemala de
-      2015 se llevar\xE1n a cabo el domingo 06 de septiembre de 2015, y en ellas se
-      renovar\xE1n los titulares de los cargos de elecci\xF3n popular de la Rep\xFAblica
-      de Guatemala.", extra_info: gAJ9cQFVBWV4dHJhcQJYEQAAAEV4dHJhIGV4dHJhIGV4dHJhcQNzLg==,
-    extra_info_content: '', extra_info_title: '', highlighted: false, name: "Alcald\xEDa
-      Mixco", searchable: true, slug: alcaldia-mixco, uses_face_to_face: false, uses_preguntales: false,
-    uses_questionary: false, uses_ranking: false, uses_soul_mate: false}
-  model: elections.election
+  fields:
+    password: pbkdf2_sha256$30000$HPfWRVZ2OdRU$ng+lvfSjSoWcjOg0LVoTr9ryQa9AD7gHNLz0ft8IGT0=
+    last_login: null
+    is_superuser: false
+    username: diputado
+    first_name: ''
+    last_name: ''
+    email: diputado@perrogato.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-08-25 21:10:47.491666+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
   pk: 6
-- fields: {area: guatemala, description: "Las Elecciones generales de Guatemala de
-      2015 se llevar\xE1n a cabo el domingo 06 de septiembre de 2015, y en ellas se
-      renovar\xE1n los titulares de los cargos de elecci\xF3n popular de la Rep\xFAblica
-      de Guatemala.", extra_info: gAJ9cQFVBWV4dHJhcQJYEQAAAEV4dHJhIGV4dHJhIGV4dHJhcQNzLg==,
-    extra_info_content: '', extra_info_title: '', highlighted: false, name: "Alcald\xEDa
-      Xela", searchable: true, slug: alcaldia-xela, uses_face_to_face: false, uses_preguntales: false,
-    uses_questionary: false, uses_ranking: false, uses_soul_mate: false}
-  model: elections.election
+  fields:
+    password: pbkdf2_sha256$30000$V9QaxOyvBPtY$pcnL6esPXIkmmY2eJsmxr+yvyDb3b9JRCzbb67t9Puw=
+    last_login: null
+    is_superuser: false
+    username: senador
+    first_name: ''
+    last_name: ''
+    email: senador@perrogato.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-08-25 21:11:05.935273+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
   pk: 7
-- fields: {area: guatemala, description: '', extra_info: gAJ9cQFVBWV4dHJhcQJYEQAAAEV4dHJhIGV4dHJhIGV4dHJhcQNzLg==,
-    extra_info_content: '', extra_info_title: '', highlighted: false, name: "Alcald\xEDa
-      Villa Nueva", searchable: true, slug: alcaldia-villa-nueva, uses_face_to_face: false,
-    uses_preguntales: false, uses_questionary: false, uses_ranking: false, uses_soul_mate: false}
-  model: elections.election
+  fields:
+    password: pbkdf2_sha256$30000$H7RIuAMWvrVF$7osyhzNCvW9+tVUCHbB4sHzwQZesbV+jOUGt/jnCsXE=
+    last_login: null
+    is_superuser: false
+    username: presidente
+    first_name: ''
+    last_name: ''
+    email: presidente@perrogato.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-08-25 21:11:27.062259+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
   pk: 8
-- fields:
-    created: 2015-08-27 18:49:20.420962+00:00
-    election: 1
-    moderated: true
-    people: [alejandro-giammattei-falla, jimmy-morales, luis-fernando-perez, mario-david-garcia-velasquez]
-  model: elections.votainteligentemessage
-  pk: 2
-- fields: {content: Esto es una respuesta, created: ! '2015-08-27 18:52:18.488738+00:00',
-    message: 2, person: alejandro-giammattei-falla}
-  model: elections.votainteligenteanswer
+  fields:
+    password: pbkdf2_sha256$30000$YuY1Y2ENokG7$jBwEP/M3tGMYBYFF9bGKwz6gI72Q5kH5a7rqkwkkcTY=
+    last_login: 2017-08-25 21:28:48.835769+00:00
+    is_superuser: false
+    username: proponedor
+    first_name: ''
+    last_name: ''
+    email: proponedor@perrogato.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-08-25 21:27:18.734020+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 9
+  fields:
+    password: pbkdf2_sha256$30000$5G8C48ufX8Ay$9joVHPpJDSa5gzNkTqBf/XmgsItiPP6WGqsT2djjq+Q=
+    last_login: null
+    is_superuser: false
+    username: ciudadano
+    first_name: ''
+    last_name: ''
+    email: ciudadano@perrogato.com
+    is_staff: false
+    is_active: true
+    date_joined: 2017-08-25 21:27:28.250383+00:00
+    groups: []
+    user_permissions: []
+- model: popolo.person
+  pk: candidato-1
+  fields: {start_date: null, end_date: null, created_at: !!timestamp '2017-08-25 20:57:18.831955+00:00',
+    updated_at: !!timestamp '2017-08-25 20:57:18.835111+00:00', name: Candidato 1,
+    family_name: '', given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
+    patronymic_name: '', sort_name: '', email: null, gender: '', birth_date: '', death_date: '',
+    image: null, summary: '', biography: '', national_identity: null}
+- model: popolo.person
+  pk: candidato-2
+  fields: {start_date: null, end_date: null, created_at: !!timestamp '2017-08-25 20:57:18.862753+00:00',
+    updated_at: !!timestamp '2017-08-25 20:57:18.864168+00:00', name: Candidato 2,
+    family_name: '', given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
+    patronymic_name: '', sort_name: '', email: null, gender: '', birth_date: '', death_date: '',
+    image: null, summary: '', biography: '', national_identity: null}
+- model: popolo.person
+  pk: candidato-3
+  fields: {start_date: null, end_date: null, created_at: !!timestamp '2017-08-25 20:57:18.883360+00:00',
+    updated_at: !!timestamp '2017-08-25 20:57:18.884569+00:00', name: Candidato 3,
+    family_name: '', given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
+    patronymic_name: '', sort_name: '', email: null, gender: '', birth_date: '', death_date: '',
+    image: null, summary: '', biography: '', national_identity: null}
+- model: popolo.person
+  pk: candidato-4
+  fields: {start_date: null, end_date: null, created_at: !!timestamp '2017-08-25 20:57:18.902212+00:00',
+    updated_at: !!timestamp '2017-08-25 20:57:18.904043+00:00', name: Candidato 4,
+    family_name: '', given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
+    patronymic_name: '', sort_name: '', email: null, gender: '', birth_date: '', death_date: '',
+    image: null, summary: '', biography: '', national_identity: null}
+- model: popolo.person
+  pk: elisabeth-taylor
+  fields: {start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 20:34:07.382775+00:00',
+    updated_at: !!timestamp '2017-08-25 20:34:07.438820+00:00', name: Elisabeth Taylor,
+    family_name: '', given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
+    patronymic_name: '', sort_name: '', email: '', gender: '', birth_date: '', death_date: '',
+    image: '', summary: '', biography: '', national_identity: ''}
+- model: popolo.person
+  pk: fiera
+  fields: {start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 21:01:57.787172+00:00',
+    updated_at: !!timestamp '2017-08-25 21:01:57.844307+00:00', name: Fiera, family_name: '',
+    given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
+    patronymic_name: '', sort_name: '', email: '', gender: '', birth_date: '', death_date: '',
+    image: '', summary: '', biography: '', national_identity: ''}
+- model: popolo.person
+  pk: jefe
+  fields: {start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 20:33:36.477330+00:00',
+    updated_at: !!timestamp '2017-08-25 20:33:36.539234+00:00', name: Jefe, family_name: '',
+    given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
+    patronymic_name: '', sort_name: '', email: '', gender: '', birth_date: '', death_date: '',
+    image: '', summary: '', biography: '', national_identity: ''}
+- model: popolo.person
+  pk: leon
+  fields: {start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 21:15:44.543208+00:00',
+    updated_at: !!timestamp '2017-08-25 21:15:44.598293+00:00', name: "Le\xF3n", family_name: '',
+    given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
+    patronymic_name: '', sort_name: '', email: '', gender: '', birth_date: '', death_date: '',
+    image: '', summary: '', biography: '', national_identity: ''}
+- model: popolo.person
+  pk: presidenciable-2
+  fields: {start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 21:16:02.265443+00:00',
+    updated_at: !!timestamp '2017-08-25 21:16:02.321933+00:00', name: presidenciable
+      2, family_name: '', given_name: '', additional_name: '', honorific_prefix: '',
+    honorific_suffix: '', patronymic_name: '', sort_name: '', email: '', gender: '',
+    birth_date: '', death_date: '', image: '', summary: '', biography: '', national_identity: ''}
+- model: popolo.area
+  pk: chile-pais
+  fields: {slug: chile-pais, content_type: null, object_id: null, start_date: null, end_date: null,
+    created_at: !!timestamp '2017-04-24 16:13:54.111260+00:00', updated_at: !!timestamp '2017-04-24
+      16:13:54.111689+00:00', name: Chile, identifier: '', classification: "Pa\xED\
+      s", parent: null, geom: null, inhabitants: null}
+- model: popolo.area
+  pk: distrito-23-distrito
+  fields: {slug: distrito-23-distrito, content_type: null, object_id: null, start_date: null, end_date: null,
+    created_at: !!timestamp '2017-04-24 16:13:58.512017+00:00', updated_at: !!timestamp '2017-08-25
+      20:52:51.943945+00:00', name: Distrito 23, identifier: '', classification: Distrito,
+    parent: xi-circunscripcion-senatorial-circunscripcion, geom: null, inhabitants: null}
+- model: popolo.area
+  pk: araucania-region
+  fields: {slug: araucania-region, content_type: null, object_id: null, start_date: null, end_date: null,
+    created_at: !!timestamp '2017-04-24 16:13:58.245002+00:00', updated_at: !!timestamp '2017-08-25
+      20:52:51.960387+00:00', name: "Araucan\xEDa", identifier: '', classification: "Regi\xF3\
+      n", parent: chile-pais, geom: null, inhabitants: null}
+- model: popolo.area
+  pk: villarrica-comuna
+  fields: {slug: villarrica-comuna, content_type: null, object_id: null, start_date: null, end_date: null,
+    created_at: !!timestamp '2017-04-24 16:13:58.744201+00:00', updated_at: !!timestamp '2017-08-25
+      20:52:51.935999+00:00', name: Villarrica, identifier: '', classification: Comuna,
+    parent: distrito-23-distrito, geom: null, inhabitants: null}
+- model: popolo.area
+  pk: xi-circunscripcion-senatorial-circunscripcion
+  fields: {slug: xi-circunscripcion-senatorial-circunscripcion, content_type: null, object_id: null, start_date: null, end_date: null,
+    created_at: !!timestamp '2017-08-25 19:53:03.928824+00:00', updated_at: !!timestamp '2017-08-25
+      20:52:51.952199+00:00', name: "XI Circunscripci\xF3n Senatorial", identifier: '',
+    classification: "Circunscripci\xF3n", parent: araucania-region, geom: null, inhabitants: null}
+- model: elections.candidate
+  pk: candidato-1
+  fields:
+    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRVIS9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
+    force_has_answer: false
+    has_won: false
+    elections: [17]
+- model: elections.candidate
+  pk: candidato-2
+  fields:
+    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRVIS9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
+    force_has_answer: false
+    has_won: false
+    elections: [17]
+- model: elections.candidate
+  pk: candidato-3
+  fields:
+    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRVIS9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
+    force_has_answer: false
+    has_won: false
+    elections: [17]
+- model: elections.candidate
+  pk: candidato-4
+  fields:
+    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRVIS9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
+    force_has_answer: false
+    has_won: false
+    elections: [17]
+- model: elections.candidate
+  pk: elisabeth-taylor
+  fields:
+    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJYCwAAAHJpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRYIQAAAC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
+    force_has_answer: false
+    has_won: false
+    elections: [35]
+- model: elections.candidate
+  pk: fiera
+  fields:
+    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJYCwAAAHJpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRYIQAAAC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
+    force_has_answer: false
+    has_won: false
+    elections: [17]
+- model: elections.candidate
+  pk: jefe
+  fields:
+    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJYCwAAAHJpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRYIQAAAC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
+    force_has_answer: false
+    has_won: false
+    elections: [35]
+- model: elections.candidate
+  pk: leon
+  fields:
+    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJYCwAAAHJpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRYIQAAAC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
+    force_has_answer: false
+    has_won: false
+    elections: [37]
+- model: elections.candidate
+  pk: presidenciable-2
+  fields:
+    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJYCwAAAHJpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRYIQAAAC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
+    force_has_answer: false
+    has_won: false
+    elections: [37]
+- model: elections.election
+  pk: 17
+  fields: {extra_info: gAJ9cQFVBWV4dHJhcQJVEUV4dHJhIGV4dHJhIGV4dHJhcQNzLg==, name: Diputados
+      por el Distrito 23, slug: diputados-por-el-distrito-23, description: '', searchable: true,
+    highlighted: false, extra_info_title: null, extra_info_content: null, uses_preguntales: false,
+    uses_ranking: false, uses_face_to_face: true, uses_soul_mate: true, uses_questionary: true,
+    candidates_can_commit_everywhere: true, position: Diputada o Diputado, area: distrito-23-distrito}
+- model: elections.election
+  pk: 37
+  fields: {extra_info: gAJ9cQFVBWV4dHJhcQJYEQAAAEV4dHJhIGV4dHJhIGV4dHJhcQNzLg==, name: "Presidente\
+      \ de la Rep\xFAblica", slug: presidente-de-la-republica, description: '', searchable: true,
+    highlighted: false, extra_info_title: '', extra_info_content: '', uses_preguntales: false,
+    uses_ranking: false, uses_face_to_face: true, uses_soul_mate: true, uses_questionary: true,
+    candidates_can_commit_everywhere: true, position: Presidenta o Presidente, area: chile-pais}
+- model: backend_candidate.candidacy
+  pk: 5
+  fields: {user: 6, candidate: jefe, created: !!timestamp '2017-08-25 21:16:44.548672+00:00',
+    updated: !!timestamp '2017-08-25 21:17:36.929165+00:00'}
+- model: backend_candidate.candidacy
+  pk: 6
+  fields: {user: 5, candidate: fiera, created: !!timestamp '2017-08-25 21:18:05.620921+00:00',
+    updated: !!timestamp '2017-08-25 21:18:05.620986+00:00'}
+- model: backend_candidate.candidacy
+  pk: 7
+  fields: {user: 7, candidate: leon, created: !!timestamp '2017-08-25 21:18:21.395976+00:00',
+    updated: !!timestamp '2017-08-25 21:18:21.396013+00:00'}
+- model: backend_candidate.candidacycontact
   pk: 1
-- fields: {content: Esto es otra respuesta, created: ! '2015-08-27 18:52:33.605329+00:00',
-    message: 2, person: mario-david-garcia-velasquez}
-  model: elections.votainteligenteanswer
+  fields: {candidate: jefe, mail: contacto@jefe.cl, times_email_has_been_sent: 0,
+    used_by_candidate: false, identifier: 0b36ba81-38df-4474-a835-a4879a1084ce, candidacy: 5,
+    initial_password: ''}
+- model: backend_candidate.candidacycontact
   pk: 2
+  fields: {candidate: fiera, mail: contacto@fiera.cl, times_email_has_been_sent: 0,
+    used_by_candidate: false, identifier: e0f3242b-d3e5-4f5e-bde8-4c89b6381f5a, candidacy: 6,
+    initial_password: ''}
+- model: backend_candidate.candidacycontact
+  pk: 3
+  fields: {candidate: leon, mail: contacto@leon.cl, times_email_has_been_sent: 0,
+    used_by_candidate: false, identifier: b65991dd-31e1-44cb-8be7-045d2c2b9591, candidacy: 7,
+    initial_password: ''}
+- model: backend_citizen.profile
+  pk: 1
+  fields: {user: 1, image: organizations/profiles/16508541_1167682506613605_8524588366064150851_n_vWdo8yr.png,
+    description: '', first_time_in_backend_citizen: false, is_organization: false,
+    is_journalist: false}
+- model: backend_citizen.profile
+  pk: 4
+  fields: {user: 4, image: '', description: '', first_time_in_backend_citizen: false,
+    is_organization: true, is_journalist: false}
+- model: backend_citizen.profile
+  pk: 5
+  fields: {user: 5, image: '', description: null, first_time_in_backend_citizen: false,
+    is_organization: false, is_journalist: false}
+- model: backend_citizen.profile
+  pk: 6
+  fields: {user: 6, image: '', description: null, first_time_in_backend_citizen: false,
+    is_organization: false, is_journalist: false}
+- model: backend_citizen.profile
+  pk: 7
+  fields: {user: 7, image: '', description: null, first_time_in_backend_citizen: false,
+    is_organization: false, is_journalist: false}
+- model: backend_citizen.profile
+  pk: 8
+  fields: {user: 8, image: '', description: null, first_time_in_backend_citizen: false,
+    is_organization: false, is_journalist: false}
+- model: backend_citizen.profile
+  pk: 9
+  fields: {user: 9, image: '', description: null, first_time_in_backend_citizen: false,
+    is_organization: false, is_journalist: false}
+- model: popular_proposal.popularproposal
+  pk: 8
+  fields: {title: Acceso a la cultura y el conocimiento, slug: acceso-a-la-cultura-y-el-conocimiento,
+    proposer: 4, area: chile-pais, join_advocacy_url: '', data: gAJ9cQEoVQV0aXRsZXECWCUAAABBY2Nlc28gYSBsYSBjdWx0dXJhIHkgZWwgY29ub2NpbWllbnRvcQNVFHRlcm1zX2FuZF9jb25kaXRpb25zcQSIVRNzb2x1dGlvbl9hdF90aGVfZW5kcQVY0AEAAEVzIG5lY2VzYXJpbyBhdmFuemFyIGVuIHVuYSByZXZpc2nDs24gYWwgcsOpZ2ltZW4gZGUgZGVyZWNobyBkZSBhdXRvciBxdWUgZm9ydGFsZXpjYSBzdXMgZXhjZXBjaW9uZXMsIHBlcm1pdGllbmRvIGFzw60gcXVlIHRvZGFzIHkgdG9kb3MgcHVlZGFuIHBhcnRpY2lwYXIgZGUgbGEgdmlkYSBjdWx0dXJhbCBkZWwgcGHDrXMsIGFwcm92ZWNoYW5kbyBsYXMgaGVycmFtaWVudGFzIHF1ZSBub3MgcHJvdmVlbiBsYXMgdGVjbm9sb2fDrWFzIGRpZ2l0YWxlcyBzaW4gaW5jdXJyaXIgZW4gdW4gcmllc2dvIGRlIGNyaW1pbmFsaXphY2nDs24uIEVzIGltcG9ydGFudGUgdGFtYmnDqW4gdW4gZm9ydGFsZWNpbWllbnRvIGRlbCBkb21pbmlvIHDDumJsaWNvIHkgdW4gcsOpZ2ltZW4gbcOhcyBmbGV4aWJsZSByZXNwZWN0byBhbCB1c28geSByZS11c28gZGUgbGFzIG9icmFzIGNyZWFkYXMgY29uIGZvbmRvcyBww7pibGljb3MucQZVBHdoZW5xB1gGAAAAM195ZWFycQhVB3Byb2JsZW1xCViQAAAARWwgc2lzdGVtYSBkZSBkZXJlY2hvcyBkZSBhdXRvciBzZSBlbmN1ZW50cmEgZGVzYmFsYW5jZWFkbyBlbiBmYXZvciBkZSBsb3MgaW50ZXJlc2VzIGRlIGxvcyB0aXR1bGFyZXMgZW4gZGV0cmltZW50byBkZSBsb3MgZGVyZWNob3MgZGVsIHDDumJsaWNvcQpVDWNsYXNpZmljYXRpb25xC1gHAAAAY3VsdHVyYXEMVQZjYXVzZXNxDVjDAAAARWwgc2lzdGVtYSBpbnRlcm5hY2lvbmFsIGRlIGNvcHlyaWdodCBzZSBoYSBlbmZvY2FkbyBlbiBsYSBwcm90ZWNjacOzbiBkZSBsb3MgZGVyZWNob3MgZGUgbG9zIHRpdHVsYXJlcyBzaW4gY29uc2lkZXJhciBlbCBlZmVjdG8gYWR2ZXJzbyBxdWUgZXN0byBwcm9kdWNlIGVuIGVsIGFjY2VzbyBhbCBjb25vY2ltaWVudG8geSBsYSBjdWx0dXJhcQ51Lg==,
+    created: !!timestamp '2017-08-25 21:31:01.601451+00:00', updated: !!timestamp '2017-08-25
+      21:31:01.601527+00:00', temporary: null, organization: null, background: '',
+    contact_details: '', document: '', image: '', clasification: cultura, for_all_areas: false,
+    generated_at: null, is_local_meeting: false, is_reported: false,
+    featured: false}
+- model: custom_sites.customsite
+  pk: 1
+  fields: {site: 2, urlconf: votita.stand_alone_urls}
+- model: organization_profiles.organizationtemplate
+  pk: 2
+  fields: {organization: 4, content: '', logo: '', logo_small: '', background_image: '',
+    title: 'Organizacion grande y buena', sub_title: null, org_url: null, facebook: null, twitter: null, instagram: null,
+    primary_color: '#CCDDCC', secondary_color: '#2DDC22', rss_url: null}
+- model: organization_profiles.extrapage
+  pk: 3
+  fields: {template: 2, content: "* **19 DE NOVIEMBRE**\r\nPrimera vuelta de Elecciones\
+      \ Presidenciales y Parlamentarias\n* **17 DE DICIEMBRE**\t*Segunda vuelta de\
+      \ Elecciones Presidenciales", title: Agenda, slug: agenda}
+- model: organization_profiles.extrapage
+  pk: 4
+  fields: {template: 2, content: '', title: Documentos, slug: documentos}
+- model: popular_proposal.commitment
+  pk: 1
+  fields: {proposal: 8, candidate: fiera, detail: '', commited: true}
+- model: popular_proposal.proposallike
+  pk: 1
+  fields: {user: 9, proposal: 8, message: null, created: !!timestamp '2017-11-28 21:08:48.211750+00:00',
+    updated: !!timestamp '2017-11-28 21:08:48.211791+00:00'}
+- model: backend_candidate.incrementalscandidatefilter
+  pk: 1
+  fields: {name: "Recomendaci\xF3n para Le\xF3n candidato a la presidencia", subject: '',
+    text: '', filter_qs: gAJ9cQFVAmlkcQJVBGxlb25xA3Mu, exclude_qs: gAJ9Lg==}
+- model: backend_candidate.proposalsuggestionforincremental
+  pk: 1
+  fields: {incremental: 1, proposal: 8, summary: La cultura es muy importante ...,
+    sent: false}
+- model: candidator.category
+  pk: 1
+  fields: {name: Postres, slug: postres}
+- model: candidator.topic
+  pk: 1
+  fields: {label: "Tiramis\xFA o una manzanita?", description: "Tiramis\xFA es rico\
+      \ pero dulce, la manzana es una fruta", category: 1, slug: tiramisu-o-una-manzanita}
+- model: candidator.position
+  pk: 1
+  fields: {label: "tiramis\xFA", topic: 1, description: ''}
+- model: candidator.position
+  pk: 2
+  fields: {label: manzana, topic: 1, description: ''}
+- model: candidator.takenposition
+  pk: 1
+  fields: {topic: 1, position: 1, person: presidenciable-2, description: ''}
+- model: candidator.takenposition
+  pk: 2
+  fields: {topic: 1, position: 2, person: leon, description: ''}
+- model: elections.questioncategory
+  pk: 1
+  fields: {election: 37}

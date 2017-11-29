@@ -1,5 +1,5 @@
 
-from django.conf.urls import url
+from django.conf.urls import include, url
 from votita.views import (VotitaWizard,
                           CreateGatheringView,
                           CreateProposalsForGathering,
@@ -12,6 +12,7 @@ from votita.views import (VotitaWizard,
                           HomeView,)
 from django.views.generic import TemplateView
 from django.views.decorators.clickjacking import xframe_options_exempt
+
 
 urlpatterns = [
     #url(r'^$', TemplateView.as_view(template_name="votita/index.html"),
@@ -50,5 +51,4 @@ urlpatterns = [
     url(r'^propuestas/(?P<slug>[-\w]+)/?$',
         ProposalDetailView.as_view(),
         name='proposal_detail'),
-
 ]

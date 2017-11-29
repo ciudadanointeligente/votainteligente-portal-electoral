@@ -78,7 +78,7 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
         url = reverse('candidate-list')
         response = self.client.get(url, format='json')
         self.assertEquals(response.status_code, 200)
-        content = json.loads(response.content)["results"]
+        content = json.loads(response.content)
         self.assertEquals(len(content), Candidate.objects.count())
         self.assertTrue(content[0]['name'])
         self.assertTrue(content[0]['id'])

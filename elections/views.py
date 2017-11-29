@@ -254,7 +254,7 @@ class KnowYourCandidatesView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(KnowYourCandidatesView, self).get_context_data(**kwargs)
         election = Election.objects.filter(area__id=config.DEFAULT_AREA).first()
-        if election.second_round:
+        if election and election.second_round:
             election = election.second_round
         context['default_election'] = election
         return context

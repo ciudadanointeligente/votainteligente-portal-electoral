@@ -19,7 +19,7 @@ class MediaNaranjaAdaptersBase(TestCase):
     def setUp(self):
         a = Area.objects.create(name="Territory")
         self.election = Election.objects.create(
-            name='the name', area=a)
+            name='the name', slug="the-election", area=a)
 
         TakenPosition.objects.all().delete()
         self.c1 = Candidate.objects.create(name='C1')

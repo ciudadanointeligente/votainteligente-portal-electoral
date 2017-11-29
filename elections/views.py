@@ -183,7 +183,7 @@ class CandidateDetailView(DetailView):
         _candidate = cache.get(cache_key)
         if _candidate is None:
             try:
-                _candidate = self.model.ranking.get(id=candidate.id)
+                _candidate = self.model.ranking.filter(id=candidate.id).last()
             except self.model.DoesNotExist:
                 raise Http404(u"Este candidato no existe")
             cache.set(cache_key,
@@ -253,5 +253,8 @@ class KnowYourCandidatesView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(KnowYourCandidatesView, self).get_context_data(**kwargs)
-        context['default_election'] = Election.objects.filter(area__id=config.DEFAULT_AREA).first()
+        election = Election.objects.filter(area__id=config.DEFAULT_AREA).first()
+        if election.second_round:
+            election = election.second_round
+        context['default_election'] = election
         return context

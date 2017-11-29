@@ -91,6 +91,11 @@ class ProposalsGetterTestCase(MediaNaranjaAdaptersBase):
         self.assertIn(self.p2, proposals)
         self.assertIn(self.p3, proposals)
 
+    def test_get_elections_with_an_election(self):
+        getter = ProposalsGetter()
+        elections = getter.get_elections(self.election)
+        self.assertEquals(elections, [self.election])
+
 
 class ByLectureGroupAdapterTest(MediaNaranjaAdaptersBase):
     def setUp(self):

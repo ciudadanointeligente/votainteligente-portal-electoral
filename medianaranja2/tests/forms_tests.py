@@ -72,7 +72,7 @@ class FormsTestCase(MediaNaranjaAdaptersBase):
     def test_proposals_form_instanciate(self):
         argentina = Area.objects.create(name=u'Argentina', id='argentina')
         proposals = PopularProposal.objects.filter(id__in=[self.p1.id, self.p2.id, self.p3.id])
-        kwargs = {'proposals': proposals, 'area': argentina} 
+        kwargs = {'proposals': proposals, 'element_selector': argentina} 
         form = ProposalsForm(**kwargs)
         proposals_choices = list(form.fields['proposals'].choices)
         possible_labels = {}
@@ -87,17 +87,16 @@ class FormsTestCase(MediaNaranjaAdaptersBase):
         argentina = Area.objects.create(name=u'Argentina', id='argentina')
         data = {'proposals': [self.p1.id, self.p2.id]}
         proposals = PopularProposal.objects.filter(id__in=[self.p1.id, self.p2.id, self.p3.id])
-        kwargs = {'proposals': proposals,'area': argentina, 'data':data}
+        kwargs = {'proposals': proposals,'element_selector': argentina, 'data':data}
         form = ProposalsForm(**kwargs)
         self.assertTrue(form.is_bound)
         self.assertTrue(form.is_valid())
         self.assertIn(self.p1, form.cleaned_data['proposals'])
         self.assertIn(self.p1, form.cleaned_data['proposals'])
 
-
-class MediaNaranjaWizardFormTests(MediaNaranjaAdaptersBase):
+class MediaNaranjaWizardFormTestsBase(MediaNaranjaAdaptersBase):
     def setUp(self):
-        super(MediaNaranjaWizardFormTests, self).setUp()
+        super(MediaNaranjaWizardFormTestsBase, self).setUp()
         self.setUpProposals()
         self.setUpQuestions()
         proposer = User.objects.create_user(username="proposer2")
@@ -184,6 +183,9 @@ class MediaNaranjaWizardFormTests(MediaNaranjaAdaptersBase):
                 is_done = True
         self.assertTrue(is_done)
         return response
+
+class MediaNaranjaWizardFormTests(MediaNaranjaWizardFormTestsBase):
+    
 
     def test_wizard_til_the_end(self):
         self.assertTrue(self.complete_wizard())

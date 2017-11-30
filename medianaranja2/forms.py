@@ -2,7 +2,7 @@
 from django import forms
 from popular_proposal.models import (PopularProposal
                                      )
-from elections.models import Area, QuestionCategory
+from elections.models import Area, QuestionCategory, Election
 from django.conf import settings
 from formtools.wizard.views import SessionWizardView
 from medianaranja2.proposals_getter import ProposalsGetter, ProposalsGetterByReadingGroup
@@ -35,21 +35,38 @@ class ProposalModelMultipleChoiceField(GroupedModelMultiChoiceField):
     def label_from_instance(self, obj):
         return mark_safe( obj.get_one_liner() )
 
+area_field = forms.ModelChoiceField(label=u"¿En qué comuna votas?",
+                                    help_text=u"Si quieres conocer con qué candidatura al Congreso eres más compatible, elige la comuna en la que votas. Si sólo te interesa tu media naranja presidencial, elige “no aplica”.",
+                                    empty_label=u"NO APLICA",
+                                    required=False,
+                                    queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE).order_by('name'))
 
+categories_field = CategoryMultipleChoiceField(label=u"De estos temas, ¿cuáles son los que te parecen más importantes para el país?",
+                                               queryset=QuestionCategory.objects.none(),
+                                               widget=forms.CheckboxSelectMultiple(),)
 class SetupForm(forms.Form):
-    area = forms.ModelChoiceField(label=u"¿En qué comuna votas?",
-                                  help_text=u"Si quieres conocer con qué candidatura al Congreso eres más compatible, elige la comuna en la que votas. Si sólo te interesa tu media naranja presidencial, elige “no aplica”.",
-                                  empty_label=u"NO APLICA",
-                                  required=False,
-                                  queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE).order_by('name'))
-    categories = CategoryMultipleChoiceField(label=u"De estos temas, ¿cuáles son los que te parecen más importantes para el país?",
-                                             queryset=QuestionCategory.objects.all().order_by('name'),
-                                             widget=forms.CheckboxSelectMultiple(),)
+    categories = categories_field
+
+    def __init__(self, *args, **kwargs):
+        super(SetupForm, self).__init__(*args, **kwargs)
+        if settings.SECOND_ROUND_ELECTION is None:
+            self.fields['area'] = area_field
+            self.fields['categories'].queryset = QuestionCategory.objects.all().order_by('-name')
+        else:
+            self.election = Election.objects.get(slug=settings.SECOND_ROUND_ELECTION)
+            self.fields['categories'].queryset = self.election.categories.order_by('-name')
 
     def clean(self):
         cleaned_data = super(SetupForm, self).clean()
-        if cleaned_data['area'] is None:
-            cleaned_data['area'] = Area.objects.get(id=config.DEFAULT_AREA)
+        if settings.SECOND_ROUND_ELECTION is not None:
+            cleaned_data['element_selector'] = Election.objects.get(slug=settings.SECOND_ROUND_ELECTION)
+        else:
+            if cleaned_data['area'] is None:
+                cleaned_data['area'] = Area.objects.get(id=config.DEFAULT_AREA)
+        
+        if 'area' in cleaned_data.keys():
+            cleaned_data['element_selector'] = cleaned_data['area']
+
         return cleaned_data
 
 
@@ -82,9 +99,9 @@ class ProposalsForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.proposals = kwargs.pop('proposals')
-        area = kwargs.pop('area')
+        element_selector = kwargs.pop('element_selector')
         super(ProposalsForm, self).__init__(*args, **kwargs)
-        proposals_qs_cache_key = 'proposals_qs_' + area.id
+        proposals_qs_cache_key = 'proposals_qs_' + str(element_selector.id)
         if cache.get(proposals_qs_cache_key) is not None:
             self.fields['proposals'].queryset = cache.get(proposals_qs_cache_key)
             return
@@ -116,16 +133,12 @@ class MediaNaranjaWizardForm(SessionWizardView):
         cleaned_data = self.get_all_cleaned_data()
         results = []
         has_parent = True
-        area = cleaned_data['area']
-        while has_parent:
-            if area.elections.all():
-                for election in area.elections.all():
-                    calculator = Calculator(election, cleaned_data['positions'], cleaned_data['proposals'])
-                    results.append(calculator.get_result())
-            if not area.parent:
-                has_parent = False
-            else:
-                area = area.parent
+        element_selector = cleaned_data['element_selector']
+        elections = self.get_proposal_class()().get_elections(element_selector)
+        for election in elections:
+            calculator = Calculator(election, cleaned_data['positions'], cleaned_data['proposals'])
+            results.append(calculator.get_result())
+
         is_creator_of_this_proposals_filter = Q(organization__proposals__in=cleaned_data['proposals'])
         is_liker_of_this_proposals = Q(organization__likes__proposal__in=cleaned_data['proposals'])
         organization_templates = OrganizationTemplate.objects.filter(is_creator_of_this_proposals_filter|is_liker_of_this_proposals).distinct()
@@ -156,8 +169,8 @@ class MediaNaranjaWizardForm(SessionWizardView):
             return {'categories': list(cleaned_data['categories'])}
         if step == 2:
             getter = self.get_proposal_class()()
-            proposals = getter.get_all_proposals(cleaned_data['area'])
-            return {'proposals': proposals, 'area': cleaned_data['area']}
+            proposals = getter.get_all_proposals(cleaned_data['element_selector'])
+            return {'proposals': proposals, 'element_selector': cleaned_data['element_selector']}
 
         return {}
 

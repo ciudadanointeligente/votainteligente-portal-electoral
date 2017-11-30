@@ -25,6 +25,8 @@ class SecondRoundCreationTestCase(TestCase):
         second_round = sc.get_second_round()
 
         self.assertIsInstance(second_round, Election)
+        self.tarapaca.refresh_from_db()
+        self.assertEquals(self.tarapaca.second_round, second_round)
 
         self.assertEquals(second_round.name, 'second Round election')
         self.assertNotEquals(second_round.slug, self.tarapaca.slug)

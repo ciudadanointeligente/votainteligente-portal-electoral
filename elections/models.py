@@ -313,6 +313,7 @@ class Election(ExtraInfoMixin, models.Model, OGPMixin):
 
     default_extra_info = settings.DEFAULT_ELECTION_EXTRA_INFO
     area = models.ForeignKey(Area, blank=True, null=True, related_name="elections")
+    second_round = models.ForeignKey('self', blank=True, null=True, default=None)
 
     ogp_enabled = True
 

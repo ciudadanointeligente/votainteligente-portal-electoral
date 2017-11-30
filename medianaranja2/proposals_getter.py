@@ -5,6 +5,7 @@ from popular_proposal.models import (PopularProposal,
 from constance import config
 from django.core.cache import cache
 from medianaranja2.models import ReadingGroup
+from elections.models import Election
 
 
 class ProposalsGetterBase(object):
@@ -12,23 +13,25 @@ class ProposalsGetterBase(object):
         commitments = Commitment.objects.filter(commited=True, candidate__elections=election)
         return list(PopularProposal.objects.filter(commitments__in=commitments).distinct())
 
-    def get_elections(self, area):
+    def get_elections(self, proposals_container_element):
+        if isinstance(proposals_container_element, Election):
+            return [proposals_container_element]
         has_parent = True
         elections = []
         while has_parent:
-            if area.elections.all():
-                elections += list(area.elections.all())
-            if not area.parent:
+            if proposals_container_element.elections.all():
+                elections += list(proposals_container_element.elections.all())
+            if not proposals_container_element.parent:
                 has_parent = False
             else:
-                area = area.parent
+                proposals_container_element = proposals_container_element.parent
         return elections
 
     def get_proposals_from_election(self, elections):
         raise NotImplementedError
 
     def get_all_proposals(self, area):
-        cache_key =  self.cache_key + area.id
+        cache_key =  self.cache_key + str(area.id)
         if cache.get(cache_key) is not None:
             return cache.get(cache_key)
         elections = self.get_elections(area)

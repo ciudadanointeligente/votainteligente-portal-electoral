@@ -394,6 +394,7 @@ MARKED_AREAS = ['teodoro-schmidt-9117','cunco-9103','lumaco-9207','melipeuco-911
 POSSIBLE_GENERATING_AREAS_FILTER = []
 EXCLUDED_PROPOSALS_APPS = ['votita', ]
 AREAS_THAT_SHOULD_BE_REDIRECTING_TO_THEIR_PARENTS = ['comuna']
+SECOND_ROUND_ELECTION = None
 PRIORITY_CANDIDATES = []
 CONSTANCE_ADDITIONAL_FIELDS = {
     'proposals_getter_for_12_n': ['django.forms.fields.ChoiceField', {

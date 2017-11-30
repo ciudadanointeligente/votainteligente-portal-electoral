@@ -31,6 +31,8 @@ class SecondRoundCreator(object):
             second_round.candidates.add(candidate)
         self.copy_categories(second_round)
         self.copy_messages(second_round)
+        self.election.second_round = second_round
+        self.election.save()
         return second_round
 
     def copy_messages(self, second_round):

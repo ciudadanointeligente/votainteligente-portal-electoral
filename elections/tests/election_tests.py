@@ -38,6 +38,7 @@ class ElectionTestCase(TestCase):
         self.assertTrue(election.uses_questionary)
         self.assertFalse(election.position)
         self.assertTrue(election.candidates_can_commit_everywhere)
+        self.assertIsNone(election.second_round)
 
     def test_there_are_no_two_elections_with_the_same_slug(self):
         election1 = Election.objects.create(slug='the-slug')

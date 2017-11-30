@@ -13,7 +13,9 @@
   {% csrf_token %}
   {{ wizard.form.media }}
   {{ wizard.management_form }}
-  {% bootstrap_field wizard.form.area%}
+  {% if wizard.form.area %}
+    {% bootstrap_field wizard.form.area%}
+  {% endif %}
   {% bootstrap_field wizard.form.categories%}
 
 

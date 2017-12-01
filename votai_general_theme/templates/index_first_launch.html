@@ -32,7 +32,7 @@
         <div class="panel panel-default">
           <div class="panel-body text-center">
             <a href="/candidaturas/chile/alejandro-guillier" onclick="ga('send','event','nombre-guiller-main-primera-vuelta')" itemprop="name"><h3 class="candidate-name-card">Alejandro Guillier</h3>
-              <p class="commitments-home">12 compromisos con propuestas de votainteligente.cl</p>
+              <p class="commitments-home">38 compromisos con propuestas de votainteligente.cl</p>
               <span class="candidate-commitment-card">Revisa sus compromisos</span></a>
           </div>
         </div>
@@ -144,6 +144,7 @@
   </div>
 </section>
 {% endif %}
+{% if config.CANDIDATE_SEARCH_ENABLED %}
 <section id="home-search-candidate" class="blue">
   <div class="container">
     <h2 class="text-center">CANDIDATURAS ELECTAS</h2>
@@ -156,6 +157,8 @@
     </div>
   </div>
 </section>
+{% endif %}
+
 {% cache 600 organization_logos %}
 {% organization_logos %}
 {% endcache %}

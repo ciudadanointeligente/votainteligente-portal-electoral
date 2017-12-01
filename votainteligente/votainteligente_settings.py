@@ -453,7 +453,7 @@ CONSTANCE_CONFIG = {
     'AYUDANOS_TEXTO3' : (u'Invita a tus candidatos a dejar su información en VotaInteligente.cl para saber qué piensan y ', 'texto 3 del ayudanos'),
     'AYUDANOS_TEXTO4' : (u'Necesitamos que los candidatos compartan su infromación con los vecinos, para conocerlos y saber ', 'texto 4 del ayudanos'),
     'AYUDANOS_ORGANIZACIONES' : (u'Ya puedes comprometerte con nuestras propuestas ', 'texto ayudanos en las organizaciones'),
-
+    "CANDIDATE_SEARCH_ENABLED": (True, 'La busqueda de candidatos está habilitada???'),
     'AYUDANOS_TEXTO_CANDIDATOS' : (u'Ya puedes comprometerte con nuestras propuestas ', 'texto a los candidatos del ayudanos'),
     'AYUDANOS_PROPUESTA': (u'Ya puedes comprometerte en votainteligente.cl', 'texto a los candidatos del ayudanos específico de cada propuesta'),
     'MOSTRAR_AYUDANOS_PROPUESTA': (False, 'texto a los candidatos del ayudanos específico de cada propuesta'),

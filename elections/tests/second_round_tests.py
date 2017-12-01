@@ -6,6 +6,7 @@ from candidator.models import TakenPosition
 from django.core.management import call_command
 from django.utils.six import StringIO
 from preguntales.models import Message, Answer
+from constance.test import override_config
 
 
 class SecondRoundCreationTestCase(TestCase):
@@ -33,6 +34,17 @@ class SecondRoundCreationTestCase(TestCase):
         self.assertEquals(second_round.candidates.count(), 2)
         self.assertIn(self.adela, second_round.candidates.all())
         self.assertIn(self.carlos, second_round.candidates.all())
+
+    def test_candidate_get_absolute_url(self):
+        sc = SecondRoundCreator(self.tarapaca)
+        sc.pick_one(self.adela)
+        sc.pick_one(self.carlos)
+
+        second_round = sc.get_second_round()
+
+        self.adela.refresh_from_db()
+
+        self.assertIsNotNone(self.adela.get_absolute_url())
 
     def test_copy_questions(self):
         sc = SecondRoundCreator(self.tarapaca)

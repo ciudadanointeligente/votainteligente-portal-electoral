@@ -177,8 +177,7 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin, ShareableMixin):
 
     @property
     def election(self):
-        if self.elections.count() == 1:
-            return self.elections.get()
+        return self.elections.last()
 
     @property
     def twitter(self):

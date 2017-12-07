@@ -179,15 +179,16 @@ def diputados2():
 
 def load_questions_2017():
     # QuestionCategory.objects.all().delete()
-    election = Election.objects.get(name ='Presidencia')
-    reader = codecs.open("nuevas_preguntas_12naranja.csv", 'r', encoding='utf-8')
+    election = Election.objects.get(slug='presidencia-2')
+    reader = codecs.open("preguntas_media_naranja_segunda_vuelta_2017.csv", 'r', encoding='utf-8')
     counter = 0
     candidates_ids = []
     candidates = {}
     header = reader.readline()
     header = header.split(u"|")
-    for candidate_index in range(2, 9):
+    for candidate_index in range(2,4):
         name = header[candidate_index]
+        name = name.strip()
         candidates[candidate_index] = Candidate.objects.get(name__icontains=name)
     for line in reader:
         row = line.split(u'|')
@@ -197,7 +198,7 @@ def load_questions_2017():
         topic, created = Topic.objects.get_or_create(
             label=topic_text,
             category=category)
-        for answer_index in range(2, 9):
+        for answer_index in range(2, 3):
             position, created = Position.objects.get_or_create(
                 topic=topic,
                 label=row[answer_index]

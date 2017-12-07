@@ -198,7 +198,7 @@ def load_questions_2017():
         topic, created = Topic.objects.get_or_create(
             label=topic_text,
             category=category)
-        for answer_index in range(2, 3):
+        for answer_index in range(2, 4):
             position, created = Position.objects.get_or_create(
                 topic=topic,
                 label=row[answer_index]

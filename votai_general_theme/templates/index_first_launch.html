@@ -4,122 +4,45 @@
 {% load thumbnail %}
 {% load cache %}
 {% cache 600 landing_candidatos %}
-<section id="home-results">
+<section id="welcome">
   <div class="container text-center">
-    <h1>Pasan a segunda vuelta</h1>
-    <h2>Hemos logrado compromisos con propuestas ciudadanas de los candidatos que van a segunda vuelta</h2>
-    <div class="col-md-10 col-md-offset-1">
-      <div class="col-md-6 text-center">
-        <div class="panel-heading text-center">
-          <a href="/candidaturas/chile/sebastian-pinera" onclick="ga('send','event','pic-piñera-main-primera-vuelta')">
-            <img src="{% static 'img/pinera.jpg' %}" alt="Sebastián Piñera" border="0" class="img-responsive img-circle" itemprop="image" />
-          </a>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-body text-center">
-            <a href="/candidaturas/chile/sebastian-pinera" onclick="ga('send','event','nombre-piñera-main-primera-vuelta')" itemprop="name"><h3 class="candidate-name-card">Sebastián Piñera</h3>
-              <p class="commitments-home">12 compromisos con propuestas de votainteligente.cl</p>
-              <span class="candidate-commitment-card">Revisa sus compromisos</span></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 text-center">
-        <div class="panel-heading text-center">
-          <a href="/candidaturas/chile/alejandro-guillier" onclick="ga('send','event','pic-guiller-main-primera-vuelta')">
-            <img src="{% static 'img/guillier.jpg' %}" alt="Alejandro Guillier" border="0" class="img-responsive img-circle" itemprop="image" />
-          </a>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-body text-center">
-            <a href="/candidaturas/chile/alejandro-guillier" onclick="ga('send','event','nombre-guiller-main-primera-vuelta')" itemprop="name"><h3 class="candidate-name-card">Alejandro Guillier</h3>
-              <p class="commitments-home">40 compromisos con propuestas de votainteligente.cl</p>
-              <span class="candidate-commitment-card">Revisa sus compromisos</span></a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h1>¿Dudas sobre las elecciones 2017?</h1>
+    <h3>¡En Ciudadano Inteligente te ayudamos con nuestras herramientas para esta segunda vuelta!</h3>
   </div>
-</section>
-<section id="other-commitments">
   <div class="container">
-    <h3 class="text-center">¿Hay algún compromiso de las demás candidaturas que quisieras promover con Piñera y Guillier?</h3>
     <div class="row">
-      <div class="col-md-2 col-sm-6 col-xs-6 text-center">
-        <div class="panel-heading text-center">
-          <a href="/candidaturas/chile/beatriz-sanchez" onclick="ga('send','event','pic-sanchez-home-final')">
-            <img src="{% static 'img/sanchez.jpg' %}" alt="Beatriz Sánchez" border="0" class="img-responsive img-circle no-gano-na" itemprop="image" />
+      <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-4">
+          <a href="http://ia.votainteligente.cl" onclick="ga('send','event','home-candidato-inteligente','click')">
+            <img src="{% static 'img/h-candidato.svg' %}" alt="Chatea con los candidatos en Candidato Inteligente" class="img-responsive">
           </a>
+          <p class="text-center tool-description">Chatea con los candidatos</p>
         </div>
-        <div class="panel panel-default">
-          <div class="panel-body text-center">
-            <a href="/candidaturas/chile/beatriz-sanchez" onclick="ga('send','event','nombre-sanchez-home-final')" itemprop="name"><h3 class="candidate-name-card">Beatriz Sánchez</h3>
-              <span class="candidate-commitment-card">43 compromisos</span></a>
-          </div>
+        <div class="col-md-4">
+          <a href="{% url 'know_your_candidates' %}" onclick="ga('send','event','home-perfiles','click')">
+            <img src="{% static 'img/h-perfiles.svg' %}" alt="Perfiles de los candidatos" class="img-responsive">
+          </a>
+          <p class="text-center tool-description">Revisa los perfiles de las candidaturas y sus compromisos</p>
+        </div>
+        <div class="col-md-4">
+          <a href="{% url 'medianaranja2:index' %}" onclick="ga('send','event','home-media-naranja','click')">
+            <img src="{% static 'img/h-naranja.svg' %}" alt="Media Naranja Política" class="img-responsive">
+          </a>
+          <p class="text-center tool-description">Encuentra candidaturas afines a tus ideas</p>
         </div>
       </div>
-      <div class="col-md-2 col-sm-6 col-xs-6 text-center">
-        <div class="panel-heading text-center">
-          <a href="/candidaturas/chile/jose-antonio-kast" onclick="ga('send','event','pic-kast-home-final')">
-            <img src="{% static 'img/kast.jpg' %}" alt="José Antonio Kast" border="0" class="img-responsive img-circle no-gano-na" itemprop="image" />
+      <div class="col-md-8 col-md-offset-3">
+        <div class="col-md-4">
+          <a href="https://api.whatsapp.com/send?phone=56932973444&text=hola,%20tengo%20una%20pregunta%20sobre%20las%20elecciones" onclick="ga('send','event','home-wsp-pregunton','click')" target="_blank">
+            <img src="{% static 'img/h-pregunton.svg' %}" alt="WhatsApp Preguntón" class="img-responsive">
           </a>
+          <p class="text-center tool-description">Pregunta aquí tus dudas sobre las votaciones<br>+569 3297 3444</p>
         </div>
-        <div class="panel panel-default">
-          <div class="panel-body text-center">
-            <a href="/candidaturas/chile/jose-antonio-kast" onclick="ga('send','event','nombre-kast-home-final')" itemprop="name"><h3 class="candidate-name-card">José Antonio Kast</h3>
-              <span class="candidate-commitment-card">22 compromisos</span></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 col-sm-6 col-xs-6 text-center">
-        <div class="panel-heading text-center">
-          <a href="/candidaturas/chile/carolina-goic" onclick="ga('send','event','pic-goic-home-final')">
-            <img src="{% static 'img/goic.jpg' %}" alt="Carolina Goic" border="0" class="img-responsive img-circle no-gano-na" itemprop="image" />
+        <div class="col-md-4">
+          <a href="https://open.spotify.com/user/1curudtk4qxgx0dejcvcaogvr/playlist/6b8xpAv7QXaNCwQ0nasbca" onclick="ga('send','event','home-playlist','click')" target="_blank">
+            <img src="{% static 'img/h-playlist.svg' %}" alt="La playlist electoral" class="img-responsive">
           </a>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-body text-center">
-            <a href="/candidaturas/chile/carolina-goic" onclick="ga('send','event','nombre-goic-home-final')" itemprop="name"><h3 class="candidate-name-card">Carolina Goic</h3>
-              <span class="candidate-commitment-card">59 compromisos</span></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 col-sm-6 col-xs-6 text-center">
-        <div class="panel-heading text-center">
-          <a href="/candidaturas/chile/marco-enriquez-ominami" onclick="ga('send','event','pic-meo-home-final')">
-            <img src="{% static 'img/meo.jpg' %}" alt="Marco Enríquez-Ominami" border="0" class="img-responsive img-circle no-gano-na" itemprop="image" />
-          </a>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-body text-center">
-            <a href="/candidaturas/chile/marco-enriquez-ominami" onclick="ga('send','event','nombre-meo-home-final')" itemprop="name"><h3 class="candidate-name-card">Marco Enríquez-Ominami</h3>
-              <span class="candidate-commitment-card">12 compromisos</span></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 col-sm-6 col-xs-6 text-center">
-        <div class="panel-heading text-center">
-          <a href="/candidaturas/chile/eduardo-artes" onclick="ga('send','event','pic-artes-home-final')">
-            <img src="{% static 'img/artes.jpg' %}" alt="Eduardo Artés" border="0" class="img-responsive img-circle no-gano-na" itemprop="image" />
-          </a>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-body text-center">
-            <a href="/candidaturas/chile/eduardo-artes" onclick="ga('send','event','nombre-artes-home-final')" itemprop="name"><h3 class="candidate-name-card">Eduardo Artés</h3>
-              <span class="candidate-commitment-card">8 compromisos</span></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 col-sm-6 col-xs-6 text-center">
-        <div class="panel-heading text-center">
-          <a href="/candidaturas/chile/alejandro-navarro" onclick="ga('send','event','pic-navarro-home-final')">
-            <img src="{% static 'img/navarro.jpg' %}" alt="Eduardo Artés" border="0" class="img-responsive img-circle no-gano-na" itemprop="image" />
-          </a>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-body text-center">
-            <a href="/candidaturas/chile/alejandro-navarro" onclick="ga('send','event','nombre-navarro-home-final')" itemprop="name"><h3 class="candidate-name-card">Alejandro Navarro</h3>
-              <span class="candidate-commitment-card">5 compromisos</span></a>
-          </div>
+          <p class="text-center tool-description">Relaja tu ansiedad ante los resultados con estos hits</p>
         </div>
       </div>
     </div>
@@ -128,7 +51,6 @@
 <section id="you-proposal">
   <h2 class="text-center">Revisa el libro que le entregamos a los candidatos</h2><p class="text-center">
     <a href="{% static 'material-ciudadano/propuestas-ciudadanas.pdf' %}" class="btn btn-dark">Aquí</a></p>
-
 </section>
 {% endcache %}
 {% if featured_proposals.count %}

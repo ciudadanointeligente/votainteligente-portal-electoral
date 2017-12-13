@@ -6,6 +6,7 @@ votainteligente-portal-electoral
 
 Votainteligente the electoral platform that Fundación Ciudadano Inteligente uses to transparent the electoral positions of different candidates to an election.
 
+![](http://code.iadb.org/sites/default/files/inline-images/votainteligente.gif)
 #Installation
 
 VotaInteligente depends on 3 parts candideit.org, popit and write-it. You might choose to use all of them or just part. In the following document it is described how to install.

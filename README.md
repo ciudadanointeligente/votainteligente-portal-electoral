@@ -4,74 +4,87 @@ votainteligente-portal-electoral
 [![Build Status](https://travis-ci.org/ciudadanointeligente/votainteligente-portal-electoral.png?branch=master)](https://travis-ci.org/ciudadanointeligente/votainteligente-portal-electoral)
 [![Coverage Status](https://coveralls.io/repos/ciudadanointeligente/votainteligente-portal-electoral/badge.png?branch=master)](https://coveralls.io/r/ciudadanointeligente/votainteligente-portal-electoral?branch=master)
 
-Votainteligente the electoral platform that Fundación Ciudadano Inteligente uses to transparent the electoral positions of different candidates to an election.
+## Descripción y contexto
+---
+Votainteligente, la plataforma electoral de la Fundación Ciudadano Inteligente, se utiliza para transparentar las posiciones electorales de los diferentes candidatos a una elección.
 
-#Installation
+En esta plataforma de participación ciudadana, cualquier persona, u organización puede proponer a los candidatos electorales iniciativas para que estos las añadan a sus compromisos electorales. 
+ 
+Una vez publicadas las propuestas de la ciudadanía, pueden ser apoyadas tanto por las personas u organizaciones registradas para que sean consideradas como compromisos por los candidatos parlamentarios y presidenciales en chile. 
+ 
+Esta herramienta fue desarrolla por la fundación Ciudadano Inteligente para las elecciones chilenas del 2017 en la que se lograron 12 compromisos por parte de los dos candidatos que pasan a la segunda vuelta electoral. 
+ 
+Actualmente 100 organizaciones se encuentran registradas y participando en la plataforma, fueron creadas 700 propuestas ciudadanas y después de la primera vuelta electoral fue visitada por 220 mil personas.  
+ 
+El desarrollo de la herramienta fue la base para crear http://levantalamano.cl/, plataforma que visibiliza las propuestas que niños, niñas y adolescentes tienen para Chile. 
 
-VotaInteligente depends on 3 parts candideit.org, popit and write-it. You might choose to use all of them or just part. In the following document it is described how to install.
+## Instalación
+---
+VotaInteligente depende de 3 partes de candideit.org, popit y write-it. Puede optar por usar todos o simplemente parte. En el siguiente documento se describe cómo instalar.
 
-## Assumptions
+### Supuestos
 
-This guide was made using an ubuntu 13.10 just installed.
+Esta guía se realizó utilizando un ubuntu 13.10 recién instalado.
 
-## Requirements
+### Requerimientos o dependencias
 
-Before the installation process is started a number of requirements is needed
+Antes de que se inicie el proceso de instalación, se necesitan varios requisitos:
 
 - [virtualenv](https://pypi.python.org/pypi/virtualenv)
 - [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/)
 - [Git](http://git-scm.com/)
-- The requirements that [sorl-thumbnail has](http://sorl-thumbnail.readthedocs.org/en/latest/requirements.html)
-- The requirements that [Pillow](http://pillow.readthedocs.org/en/3.1.x/installation.html#linux-installation) has for your distribution.
-- PgMagick (You can install PgMagick in ubuntu by running `sudo apt-get install python-pgmagick`)
+- Los requerimientos de [sorl-thumbnail has](http://sorl-thumbnail.readthedocs.org/en/latest/requirements.html)
+- Los requerimientos que [Pillow](http://pillow.readthedocs.org/en/3.1.x/installation.html#linux-installation) tiene para tu distribución.
+- PgMagick (Puedes instalar PgMagick en Ubuntu ejecutando `sudo apt-get install python-pgmagick`)
 
-## Installation process
+### Proceso de instalación
 
-* Clone votainteligente somewhere in your system.
+* Clone vota inteligente en algún lugar de tu sistema
 
 `git clone https://github.com/ciudadanointeligente/votainteligente-portal-electoral.git`
 
-Enter the installation directory
+Ingresa el directorio de instalación
 
 `cd votainteligente-portal-electoral`
 
-* Create a virtual environment
+* Crea un ambiente virtual
 
 `mkvirtualenv votainteligente`
 
-Here you can optionally give the command the full path to the installation directory by adding -a <full_path>.
-* If you didn't use the -a option you'll have to cd into the directory.
+Aquí puedes opcionalmente darle al comando la ruta completa al directorio de instalación agregando -a <full_path>.
+* Si no usaste la opción -a, deberás ingresar al directorio.
 
 `cd votainteligente-portal-electoral`
 
-* Install the requirements that votainteligente needs in the current virtualenvironment
+* Instala los requisitos que vota inteligente necesita en el entorno virtual actual
 
 `pip install -r requirements.txt`
 
-It might take some time to get all installed
+Puede tomar algo de tiempo el tener todo instalado
 
-* Create the database and tables.
+* Crea la base de datos y tablas.
 
 `python manage.py migrate`
 
 
-* Running VotaInteligente
+* corre VotaInteligente
 
 `python manage.py runserver`
 
-And hit http://localhost:8000/.
+y entra a  http://localhost:8000/.
 
-## Theming
+## Temas
+---
 
-### Previously created themes
+### Temas creados anteriormente
 
-* [votainteligente-venezuela-theme](https://github.com/ciudadanointeligente/votainteligente-venezuela-theme) is the theme for [eligetucandidato.org](http://eligetucandidato.org/)
+* [votainteligente-venezuela-theme](https://github.com/ciudadanointeligente/votainteligente-venezuela-theme) es el tema para [eligetucandidato.org](http://eligetucandidato.org/)
 
-### Creating your own custom theme
+### Creando tu propio tema personalizado
 
-If you want to create a new theme you have to create a directory containing two different subdirectories templates and static, and copy the templates that you want to replace.
+Si desea crear un nuevo tema, debe crear un directorio que contenga dos subdirectorios, plantillas y elementos estáticos, y copia las plantillas que desea reemplazar.
 
-And in your project in your local_settings.py file you have to add the following
+Y en su proyecto en tu archivo local_settings.py, tienes que agregar lo siguiente
 
 ```
  STATICFILES_DIRS = (
@@ -81,23 +94,21 @@ And in your project in your local_settings.py file you have to add the following
      '/full/path/to/your/theme/templates/',
  )
 ```
-## Testing
+## Testeo
+---
 
-You can run tests by doing:
+Puede ejecutar tests haciendo:
 ```
 $ ./test.sh
 ```
 
-And there is a shortcut for testing without migrations:
+Y hay un atajo para testear sin migraciones:
 
 ```
 $ ./t.sh
 ```
 
-## Localization
+## Licencia
+---
 
-If you want to help us translate votainteligente please join our project in [poeditor.com](https://poeditor.com/join/project?hash=6a3a384490bd4d69669db94c1cc22d78)
-
-## Licensing
-
-VotaInteligente is free and released as open source software covered by the terms of the [GNU Public License](http://www.gnu.org/licenses/gpl-3.0.html) (GPL v3)
+VotaInteligente es gratuito y se presenta como software de código abierto bajo los términos de [GNU Public License](http://www.gnu.org/licenses/gpl-3.0.html) (GPL v3)

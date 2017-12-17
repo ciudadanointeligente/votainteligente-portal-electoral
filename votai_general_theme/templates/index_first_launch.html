@@ -4,45 +4,27 @@
 {% load thumbnail %}
 {% load cache %}
 {% cache 600 herramientas %}
-<section id="welcome">
+<section id="home-elected-candidate">
   <div class="container text-center">
-    <h1>¿Dudas sobre las elecciones 2017?</h1>
-    <h3>¡En Ciudadano Inteligente te ayudamos con nuestras herramientas para esta segunda vuelta!</h3>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="col-md-4">
-          <a href="http://ia.votainteligente.cl" onclick="ga('send','event','home-candidato-inteligente','click')">
-            <img src="{% static 'img/h-candidato.svg' %}" alt="Chatea con los candidatos en Candidato Inteligente" class="img-responsive">
+    <h2>#AhoraLeTocaCumplir</h2>
+    <h1>Sebastián Piñera</h1>
+    <div class="col-md-10 col-md-offset-1">
+      <div class="col-md-6 text-center">
+        <div class="panel-heading text-center">
+          <a href="/candidaturas/chile/sebastian-pinera" onclick="ga('send','event','pic-piñera-main-electo')">
+            <img src="{% static 'img/pinera.jpg' %}" alt="Sebastián Piñera" border="0" class="img-responsive img-circle" itemprop="image" />
           </a>
-          <p class="text-center tool-description">Chatea con los candidatos</p>
-        </div>
-        <div class="col-md-4">
-          <a href="{% url 'know_your_candidates' %}" onclick="ga('send','event','home-perfiles','click')">
-            <img src="{% static 'img/h-perfiles.svg' %}" alt="Perfiles de los candidatos" class="img-responsive">
-          </a>
-          <p class="text-center tool-description">Revisa los perfiles de las candidaturas y sus compromisos</p>
-        </div>
-        <div class="col-md-4">
-          <a href="{% url 'medianaranja2:index' %}" onclick="ga('send','event','home-media-naranja','click')">
-            <img src="{% static 'img/h-naranja.svg' %}" alt="Media Naranja Política" class="img-responsive">
-          </a>
-          <p class="text-center tool-description">Encuentra candidaturas afines a tus ideas</p>
         </div>
       </div>
-      <div class="col-md-8 col-md-offset-3">
-        <div class="col-md-4">
-          <a href="https://api.whatsapp.com/send?phone=56932973444&text=hola,%20tengo%20una%20pregunta%20sobre%20las%20elecciones" onclick="ga('send','event','home-wsp-pregunton','click')" target="_blank">
-            <img src="{% static 'img/h-pregunton.svg' %}" alt="WhatsApp Preguntón" class="img-responsive">
-          </a>
-          <p class="text-center tool-description">Pregunta aquí tus dudas sobre las votaciones<br>+569 3297 3444</p>
-        </div>
-        <div class="col-md-4">
-          <a href="https://open.spotify.com/user/1curudtk4qxgx0dejcvcaogvr/playlist/6b8xpAv7QXaNCwQ0nasbca" onclick="ga('send','event','home-playlist','click')" target="_blank">
-            <img src="{% static 'img/h-playlist.svg' %}" alt="La playlist electoral" class="img-responsive">
-          </a>
-          <p class="text-center tool-description">Relaja tu ansiedad ante los resultados con estos hits</p>
+      <div class="col-md-6 text-center">
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <a href="/candidaturas/chile/sebastian-pinera" onclick="ga('send','event','nombre-pinera-main-electo')" itemprop="name">
+              <p class="commitments-home">Sebastián Piñera hizo</p>
+              <h3 class="candidate-name-card">15</h3>
+              <p class="commitments-home">compromisos con<br>propuestas ciudadanas<br>en votainteligente.cl</p>
+              <span class="candidate-commitment-card">Revisa sus compromisos</span></a>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 ![levantalamano.cl](http://levantalamano.cl/static/img/lm-banner.svg)
 ----------------
-Este es el código de levantalamano.cl. [Levantalamano.cl](Levantalamano.cl) es un proyecto en conjunto con [UNICEF Chile](http://www.unicef.cl/)
+[Levantalamano.cl](Levantalamano.cl) es un proyecto en conjunto con [UNICEF Chile](http://www.unicef.cl/)
 para llevar a cabo propuestas de niños, niñas y adolescentes a manos de candidatos para que ellos se puedan
 comprometer con estas propuestas.
 

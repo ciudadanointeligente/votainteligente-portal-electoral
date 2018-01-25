@@ -32,13 +32,268 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
+    'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.flatpages',
+    'test_without_migrations',
+    'django_nose',
+    'django.contrib.sitemaps',
+    'linaro_django_pagination',
+    'bootstrap3',
+    'formtools',
+    'robots',
+    # "registration_defaults",
+    'multiselectfield',
+    "sass_processor",
+    "images",
+    'candidator',
+    'taggit',
+    'haystack',
+    'popolo',
+    'elections',
+
+    'markdown_deux',
+    'django_extensions',
+    'social_django',
+    'sorl.thumbnail',
+    'django.contrib.admin',
+    'tinymce',
+    'mathfilters',
+    'newsletter',
+    'rest_framework',
+    'preguntales',
+    'votita',
+    # Uncomment the next line to enable admin documentation:
+    # 'django.contrib.admindocs',
+    'popular_proposal',
+    'backend_staff',
+    'backend_citizen',
+    'backend_candidate',
+    'organization_profiles',
+    'django_filters',
+    'django_ogp',
+    'debug_toolbar',
+    'agenda',
+    'medianaranja2',
+    # 'debug_panel',
+    'proposal_subscriptions',
+    'constance',
+    'custom_sites',
 )
+INSTALLED_APPS_AFTER_ALL = ('el_pagination',)
+
+
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = ''
+SOCIAL_AUTH_FACEBOOK_SECRET = ''
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id,name,email',
+}
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+LOGIN_ERROR_URL = '/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/'
+
+SASS_PROCESSOR_ENABLED = True
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+)
+
+## Funciona el de arriba??? no tengo callampa idea!!
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'custom_sites.middleware.VotaIcurrentSiteMiddleware',
+    # 'linaro_django_pagination.middleware.PaginationMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+]
+ALLOWED_HOSTS = ['*']
+INTERNAL_IPS = ["127.0.0.1", "localhost"]
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            # insert your TEMPLATE_DIRS here
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.template.context_processors.request',
+                'django.contrib.messages.context_processors.messages',
+                'constance.context_processors.config',
+                #'django.template.loaders.app_directories.Loader',
+            ],
+        },
+    },
+]
+
+
+# SITE_ID
+SITE_ID = 1
+NEWSLETTER_CONFIRM_EMAIL = False
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
+LANGUAGE_CODE = 'es-cl'
+
+TIME_ZONE = 'UTC'
+# Using django-tinymce
+# NEWSLETTER_RICHTEXT_WIDGET = "tinymce.widgets.TinyMCE"
+
+# Send YoQuieroSaber_Juego mails to Cuttlefish (see http://cuttlefish.io)
+EMAIL_HOST = 'cuttlefish.oaf.org.au'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
+
+
+THUMBNAIL_DEBUG = False
+TEMPLATE_DEBUG = False
+
+
+# CANDIDEITORG API THINGS
+
+# A sample logging configuration. The only tangible logging
+# performed by this configuration is to send an email to
+# the site admins on every HTTP 500 error when DEBUG=False.
+# See http://docs.djangoproject.com/en/dev/topics/logging for
+# more details on how to customize your logging configuration.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'critical.log',
+        },
+    },
+
+    'loggers': {
+        '': {
+            'handlers': ['file'],
+            'level': 'CRITICAL'
+       },
+
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'elasticsearch': {
+            'handlers': ['file'],
+            'level': 'CRITICAL',
+            'propagate': True,
+       },
+        'urllib3': {
+            'handlers': ['file'],
+            'level': 'CRITICAL',
+            'propagate': True,
+       },
+        'django.security.DisallowedHost': {
+            'handlers': ['mail_admins'],
+            'level': 'CRITICAL',
+            'propagate': False,
+        },
+    }
+}
+# CELERY STUFF
+BROKER_URL = 'amqp://guest:guest@localhost:5672/'
+CELERY_ALWAYS_EAGER = False
+
+CELERY_TIMEZONE = 'UTC'
+
+# Django nose
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+TEST_WITHOUT_MIGRATIONS_COMMAND = 'django_nose.management.commands.test.Command'
+
+# PROPOSALS_ENABLED = True
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
+NEW_ANSWER_ENDPOINT = 'NEW_ANSWER_ENDPOINT'
+
+REST_FRAMEWORK = {
+    # specifying the renderers
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework_csv.renderers.CSVRenderer',
+    ),
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 30,
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '10/day',
+        'user': '100/day'
+    }
+}
+
+# REGISTRATION
+ACCOUNT_ACTIVATION_DAYS = 7
+LOGIN_REDIRECT_URL = 'backend_citizen:index'
+
+# SOCIAL AUTH
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = LOGIN_REDIRECT_URL
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'votainteligente.authentication_backend.VotaIAuthenticationBackend',
+)
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+    'social_core.pipeline.social_auth.associate_by_email',
+)
+
 ROOT_URLCONF = 'votainteligente.urls'
 
 TEMPLATES = [
@@ -93,6 +348,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/cache/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'cache')
 
+# django tinyMCE
+TINYMCE_JS_URL = os.path.join(STATIC_URL, 'js/tiny_mce/tiny_mce.js')
+TINYMCE_JS_ROOT = os.path.join(STATIC_URL, 'js/tiny_mce')
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+}
 
 from votainteligente.votainteligente_settings import *
 if THEME:

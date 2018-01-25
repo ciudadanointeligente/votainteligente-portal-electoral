@@ -52,3 +52,6 @@ Script que imprime en pantalla las propuestas ciudadanas que venían por cada un
 
 * stats_propuestas_con_compromisos.py:
 Script que imprime en pantalla las propuestas ciudadanas y sus compromisos, la gracia era llenar un google spreadsheet con esta info.
+
+* importer.py
+Tiene muchas funcioncitas escritas para cargar datos que están arriba.

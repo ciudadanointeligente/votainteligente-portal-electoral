@@ -193,6 +193,8 @@ class CandidateDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CandidateDetailView, self).get_context_data(**kwargs)
+        if self.object is None:
+            raise Http404(u"Este candidato no existe")
         context['election'] = self.object.election
         return context
 

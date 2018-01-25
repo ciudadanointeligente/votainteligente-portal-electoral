@@ -1,6 +1,0 @@
-MySQL-python
-gunicorn
-django-ses
-boto
-django-storages
-supervisor

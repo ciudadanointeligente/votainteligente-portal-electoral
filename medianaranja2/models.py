@@ -90,4 +90,7 @@ class SharedResult(models.Model):
 
     @property
     def object(self):
-        return self.content_type.get_object_for_this_type(id=self.data["object_id"])
+        try:
+            return self.content_type.get_object_for_this_type(id=self.data["object_id"])
+        except:
+            pass

@@ -39,8 +39,11 @@ class SharedResult(models.Model):
         txt = Image.new('RGBA', (1200,630), (255,255,255,0))
 
         d = ImageDraw.Draw(txt)
-        
-        lines = textwrap.wrap(self.object.get_name(), width=29)
+        if self.object:
+            name = self.object.get_name()
+        else:
+            name = u""
+        lines = textwrap.wrap(name, width=29)
         max_lines = 2
         if len(lines) > max_lines:
             last_line = lines[max_lines - 1]

@@ -21,22 +21,18 @@ El desarrollo de la herramienta fue la base para crear http://levantalamano.cl/,
 
 ## Instalación
 ---
-VotaInteligente depende de 3 partes de candideit.org, popit y write-it. Puede optar por usar todos o simplemente parte. En el siguiente documento se describe cómo instalar.
-
-### Supuestos
-
-Esta guía se realizó utilizando un ubuntu 13.10 recién instalado.
-
 ### Requerimientos o dependencias
 
-Antes de que se inicie el proceso de instalación, se necesitan varios requisitos:
+Antes de que se inicie el proceso de instalación, se necesitan los siguientes requisitos:
 
 - [virtualenv](https://pypi.python.org/pypi/virtualenv)
 - [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/)
 - [Git](http://git-scm.com/)
 - Los requerimientos de [sorl-thumbnail has](http://sorl-thumbnail.readthedocs.org/en/latest/requirements.html)
-- Los requerimientos que [Pillow](http://pillow.readthedocs.org/en/3.1.x/installation.html#linux-installation) tiene para tu distribución.
-- PgMagick (Puedes instalar PgMagick en Ubuntu ejecutando `sudo apt-get install python-pgmagick`)
+     - redis (Puedes instalar ejecutando pip install redis, y una vez instalado se debe iniciar sudo service redis start)
+     - zlib, zlib-devel, libjpeg, libjpeg-devel para utilizar [Pillow](http://pillow.readthedocs.org/en/3.1.x/installation.html#linux-installation)
+     - [PgMagick](http://sorl-thumbnail.readthedocs.io/en/latest/requirements.html#pgmagick-installation) (Puedes instalar PgMagick en Ubuntu ejecutando sudo apt-get install python-pgmagick)
+- [ElasticSearch 2.4](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/setup-repositories.html)
 
 ### Proceso de instalación
 
@@ -52,7 +48,7 @@ Ingresa el directorio de instalación
 
 `mkvirtualenv votainteligente`
 
-Aquí puedes opcionalmente darle al comando la ruta completa al directorio de instalación agregando -a <full_path>.
+Aquí puedes opcionalmente darle al comando la ruta completa al directorio de instalación agregando -a <full_path>. Luego, para ir a este ambiente virtual (y directorio) debes ejecutar `workon votainteligente`
 * Si no usaste la opción -a, deberás ingresar al directorio.
 
 `cd votainteligente-portal-electoral`

@@ -1,9 +1,9 @@
-Django==1.10.7
+Django==1.11
 django-nose==1.4.4
 django-autoslug==1.9.3
 django-taggit==0.21.3
 loremipsum==1.0.5
-elasticsearch==2.4.1
+elasticsearch==2.4
 django-haystack==2.6.0
 -e git://github.com/lfalvarez/django-candidator.git#egg=django-candidator
 PyYAML==3.12
@@ -11,7 +11,7 @@ django-markdown-deux==1.0.4
 django-extensions==1.7.5
 sorl-thumbnail==12.4a1
 Pillow==4.1.1
-django-tinymce==2.4.0
+django-tinymce==2.7.0
 django-registration==2.0.4
 django-registration-defaults==0.4.4
 mimeparse==0.1.3

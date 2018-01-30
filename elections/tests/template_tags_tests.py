@@ -159,13 +159,13 @@ class TemplateTagsTestCase(TestCase):
                            })
         actual_rendered_template = template.render(context)
         template_str = get_template('elections/taken_position.html')
-        expected_template = template_str.render(Context({'taken_position': taken_position,
-                                                         'candidate': candidate,
-                                                         'only_text': False}))
+        expected_template = template_str.render({'taken_position': taken_position,
+                                                 'candidate': candidate,
+                                                 'only_text': False})
         self.assertTrue(expected_template)
         self.assertEqual(actual_rendered_template, expected_template)
         template_str = get_template('elections/taken_position.html')
-        expected_template = template_str.render(Context({'taken_position': taken_position, 'only_text': True}))
+        expected_template = template_str.render({'taken_position': taken_position, 'only_text': True})
         template = Template("{% load votainteligente_extras %}{% get_taken_position_for topic candidate only_text=True %}")
         actual_rendered_template = template.render(context)
         self.assertEqual(expected_template, actual_rendered_template)
@@ -196,8 +196,8 @@ class TemplateTagsTestCase(TestCase):
         fiera2_topic = Topic.objects.get(slug='fiera2')
         template_str = get_template('elections/soulmate_explanation.html')
 
-        rendered_template = template_str.render(Context({'explanation_container': explanation_from_html,
-                                                         'election': antofa}))
+        rendered_template = template_str.render({'explanation_container': explanation_from_html,
+                                                 'election': antofa})
         self.assertIn(education_cat.name, rendered_template)
         self.assertIn(perros_y_gatos_cat.name, rendered_template)
         self.assertIn(freedom2_topic.label, rendered_template)
@@ -219,7 +219,7 @@ class LoginFormsTemplateTags(TestCase):
         template_str = get_template('login/basic.html')
         url = reverse('backend_citizen:index')
         form = AuthenticationForm()
-        rendered_template = template_str.render(Context({'url': url, 'form': form}))
+        rendered_template = template_str.render({'url': url, 'form': form})
         template = Template("{% load votainteligente_extras %}{% basic_login url=url %}")
         self.assertEqual(template.render(Context({'url': url})),
                          rendered_template)
@@ -227,7 +227,7 @@ class LoginFormsTemplateTags(TestCase):
     def test_get_register_form(self):
         template_str = get_template('login/user_register.html')
         form = RegistrationForm()
-        rendered_template = template_str.render(Context({'form': form}))
+        rendered_template = template_str.render({'form': form})
         template = Template("{% load votainteligente_extras %}{% user_register %}")
         self.assertEqual(template.render(Context({})),
                          rendered_template)
@@ -235,7 +235,7 @@ class LoginFormsTemplateTags(TestCase):
     def test_get_group_register_form(self):
         template_str = get_template('login/group_register.html')
         form = GroupCreationForm()
-        rendered_template = template_str.render(Context({'form': form}))
+        rendered_template = template_str.render({'form': form})
         template = Template("{% load votainteligente_extras %}{% group_register %}")
         self.assertEqual(template.render(Context({})),
                          rendered_template)
@@ -256,10 +256,10 @@ class LoginFormsTemplateTags(TestCase):
     def test_user_image(self):
         u = User.objects.get(username='feli')
         template_str = get_template('_user_image.html')
-        rendered_template = template_str.render(Context({'user': u,
-                                                         'size': '100x120',
-                                                         'height': 120,
-                                                         'width': 100}))
+        rendered_template = template_str.render({'user': u,
+                                                 'size': '100x120',
+                                                 'height': 120,
+                                                 'width': 100})
         template = Template("{% load votainteligente_extras %}{% user_image user=user height=120 width=100 %}")
         self.assertEqual(template.render(Context({'user': u, 'height': 120, 'width': 100})),
                          rendered_template)
@@ -535,9 +535,10 @@ class LoginFormsTemplateTags(TestCase):
                                                           clasification=u'education'
                                                           )
         template = Template("{% load votainteligente_extras %}{% display_proposal_card popular_proposal %}")
-        context = Context({'popular_proposal': popular_proposal})
-
-        self.assertEquals(template.render(context), popular_proposal.display_card(context))
+        context = {'popular_proposal': popular_proposal}
+        expected = template.render(Context(context))
+        actual = popular_proposal.display_card(Context(context))
+        self.assertEquals(expected, actual)
 
         kids_proposal = KidsProposal.objects.create(proposer=u,
                                                     data=data,
@@ -563,8 +564,8 @@ class LoginFormsTemplateTags(TestCase):
                                                           )
         template = Template("{% load votainteligente_extras %}{% get_proposal_author popular_proposal %}")
         template_str = get_template('popular_proposal_author.html')
-        context = Context({'link': None,
-                           'text': 'feli'})
+        context = {'link': None,
+                   'text': 'feli'}
         expected_template = template_str.render(context)
         self.assertEquals(expected_template, template.render(Context({'popular_proposal': popular_proposal})))
         o = User.objects.create(username='organization')
@@ -574,8 +575,8 @@ class LoginFormsTemplateTags(TestCase):
         o.organization_template.save()
         popular_proposal.proposer = o
         popular_proposal.save()
-        context = Context({'link': o.organization_template.get_absolute_url(),
-                           'text': o.organization_template.title })
+        context = {'link': o.organization_template.get_absolute_url(),
+                   'text': o.organization_template.title }
         expected_template = template_str.render(context)
         self.assertEquals(expected_template, template.render(Context({'popular_proposal': popular_proposal})))
 

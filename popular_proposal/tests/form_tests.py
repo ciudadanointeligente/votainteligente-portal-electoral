@@ -234,8 +234,8 @@ class FormTestCase(ProposingCycleTestCaseBase):
                                                       area=self.arica,
                                                       data=self.data)
         template_str = get_template('popular_proposal/_extra_info.html')
-        rendered_template = template_str.render(Context({'texts': TEXTS,
-                                                         'data': self.data}))
+        rendered_template = template_str.render({'texts': TEXTS,
+                                                 'data': self.data})
         template = Template(
             self.load + "{% get_questions_and_descriptions popular_proposal %}")
         actual = template.render(Context({'popular_proposal': t_data}))

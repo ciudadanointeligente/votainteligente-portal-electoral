@@ -34,9 +34,14 @@ Antes de que se inicie el proceso de instalación, se necesitan los siguientes r
      - [PgMagick](http://sorl-thumbnail.readthedocs.io/en/latest/requirements.html#pgmagick-installation) (Puedes instalar PgMagick en Ubuntu ejecutando sudo apt-get install python-pgmagick)
 - [ElasticSearch 2.4](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/setup-repositories.html)
 
-## Para instalar los requerimientos en ubuntu puedes hacer lo siguiente:
+#### Para instalar estas dependencias en ubuntu puedes hacer lo siguiente:
 
 `sudo apt-get install virtualenvwrapper git redis-server zlib1g-dev libjpeg62-dev graphicsmagick libboost-python-dev`
+
+y seguir las instrucciones de [ElasticSearch 2.4](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/setup-repositories.html)
+
+#### Para instalar estas dependencias en fedora puedes hacer lo siguiente:
+`sudo dnf install redhat-rpm-config python-virtualenvwrapper git redis zlib-devel libjpeg-devel GraphicsMagick-c++-devel boost-devel`
 
 y seguir las instrucciones de [ElasticSearch 2.4](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/setup-repositories.html)
 

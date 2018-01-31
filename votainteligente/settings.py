@@ -143,7 +143,10 @@ CONSTANCE_ADDITIONAL_FIELDS = {
         'choices': (("getter", "por corazones"), ("reading_group", "grupos de lectura"))
     }],
 }
-
+NO_REPLY_MAIL = "no-reply@localhost"
+EMAIL_LOCALPART = 'municipales2016'
+EMAIL_DOMAIN = 'votainteligente.cl'
+FACEBOOK_ACCESS_TOKEN = 'FieraEsLaMejorAmigaDeTodos'
 CONSTANCE_CONFIG = {
     'SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES':(0,'Duracion cache media naranja'),
     'INFINITE_CACHE':(1440,'Tiempo Cache'),
@@ -226,6 +229,7 @@ else:
             'INDEX_NAME': 'votainteligente',
         },
     }
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # SITE_ID
 SITE_ID = 1
@@ -452,3 +456,11 @@ if THEME:
     INSTALLED_APPS += (THEME, )
 INSTALLED_APPS += ('votai_general_theme', )
 INSTALLED_APPS += INSTALLED_APPS_AFTER_ALL
+
+if TESTING:
+    from testing_settings import *
+else:
+    try:
+        from local_settings import *
+    except ImportError, e:
+        pass

@@ -27,35 +27,6 @@ class TemplateTagsTestCase(TestCase):
     def setUp(self):
         super(TemplateTagsTestCase, self).setUp()
         settings.NAV_BAR = ('profiles', )
-        settings.WEBSITE_METADATA = {
-            'author': u'Fundación Ciudadano Inteligente',
-            'description': u'Este 18 de Septiembre los chilenos elegiremos Presidente, Senadores, Diputados y Consejeros Regionales (CORE). Aqu&iacute; encontrar&aacute;s info para votar informado.',
-            'keywords': u'elecciones, presidencia, presidenciales, senatoriales, senadores, diputados, cores, core'
-        }
-        settings.WEBSITE_OGP = {
-            'title': 'Vota Inteligente',
-            'type': 'website',
-            'url': 'http://www.votainteligente.org/',
-            'image': '/static/img/votai-196.png'
-        }
-        settings.WEBSITE_DISQUS = {
-            'visible': True,
-            'shortname': 'votainteligente',
-            'dev': 1,
-        }
-        settings.WEBSITE_GA = {
-            'code': 'UA-XXXXX-X'
-        }
-        settings.WEBSITE_GENERAL_SETTINGS = {
-            'home_title': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
-        }
-        #imgur
-        settings.WEBSITE_IMGUR = {
-            'client_id': 'eb18642b5b220484864483b8e21386c3'
-        }
-        settings.WEBSITE_TWITTER = {
-            'hashtags': 'votainformado,eslaloslas'
-        }
 
     def test_bring_all_elections_with_their_tags_as_json(self):
         expected_elections = []

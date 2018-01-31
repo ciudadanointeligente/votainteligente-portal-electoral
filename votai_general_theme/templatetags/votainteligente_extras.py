@@ -103,14 +103,6 @@ register.inclusion_tag('elections/twitter/follow_the_conversation.html',
 
 @register.filter
 #website general settings
-def website_gs(value):
-    if value in config.WEBSITE_GENERAL_SETTINGS:
-        return config.WEBSITE_GENERAL_SETTINGS[value]
-    return ''
-
-
-@register.filter
-#website general settings
 def website_imgur(value):
     if config.WEBSITE_IMGUR_CLIENT_ID:
         return config.WEBSITE_IMGUR_CLIENT_ID

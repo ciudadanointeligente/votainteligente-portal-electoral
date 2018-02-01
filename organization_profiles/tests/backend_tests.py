@@ -195,6 +195,6 @@ class OrganizationsTemplateTagsTests(BackendCitizenTestCaseBase):
         context = Context({"templates": OrganizationTemplate.objects.only_with_logos()})
         actual_rendered_template = template.render(context)
         template_str = get_template('organizations_logos.html')
-        expected_template = template_str.render(context)
+        expected_template = template_str.render(context.flatten())
 
         self.assertEqual(actual_rendered_template, expected_template)

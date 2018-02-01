@@ -17,6 +17,7 @@ from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.template.loader import get_template
+from django.template import Context
 from PIL import Image, ImageDraw, ImageFont
 from model_utils.managers import InheritanceQuerySetMixin
 import textwrap
@@ -309,6 +310,8 @@ class PopularProposal(models.Model, OGPMixin):
             template = PopularProposal.card_template
         else:
             template = self.card_template
+        if isinstance(context, Context):
+            context = context.flatten()
         return get_template(template).render(context)
 
     @property

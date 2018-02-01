@@ -129,10 +129,10 @@ class MessageTestCase(TestCase):
         self.assertEquals(len(mail.outbox), 2)
         the_mail = mail.outbox[0]
         self.assertIn(the_mail.to[0], [self.candidate1.email, self.candidate2.email])
-        context = Context({'election': self.election,
+        context = {'election': self.election,
                            'candidate': self.candidate1,
                            'message': message
-                          })
+                          }
         template_body = get_template('mails/nueva_pregunta_candidato/body.txt')
         expected_content= template_body.render(context)
         self.assertEquals(the_mail.body, expected_content)
@@ -380,7 +380,7 @@ class ConfirmationTestCase(TestCase):
         self.message.create_confirmation()
         self.assertTrue(self.message.confirmation)
         self.assertEquals(len(mail.outbox), 1)
-        context = Context({'election': self.election, 'message': self.message})
+        context = {'election': self.election, 'message': self.message}
         template_subject = get_template('mails/confirmation/subject.txt')
         template_body = get_template('mails/confirmation/body.txt')
         expected_subject = template_subject.render(context)

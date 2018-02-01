@@ -18,6 +18,7 @@ from django.shortcuts import render
 from constance import config
 from django.db.models import Case, Value, When, PositiveSmallIntegerField
 from django.template.loader import get_template
+from django.template import Context
 from PIL import Image
 from votainteligente.shareable import ShareableMixin
 
@@ -338,6 +339,8 @@ class Election(ExtraInfoMixin, models.Model, OGPMixin):
     def card(self, context):
         template_str = get_template('elections/election_card.html')
         context['election'] = self
+        if isinstance(context, Context):
+            context = context.flatten()
         return template_str.render(context)
 
     class Meta:

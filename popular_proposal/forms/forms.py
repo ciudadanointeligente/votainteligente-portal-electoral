@@ -392,7 +392,7 @@ class ProposalTemporaryDataModelForm(forms.ModelForm, ProposalFormBase):
         return instance
 
 
-class CandidateCommitmentFormBase(forms.Form):
+class AuthorityCommitmentFormBase(forms.Form):
     detail = forms.CharField(required=False,
                              widget=forms.Textarea(),
                              label=_(u'Cuentanos los términos de tu compromiso:'),
@@ -403,32 +403,32 @@ class CandidateCommitmentFormBase(forms.Form):
 
     commited = True
 
-    def __init__(self, candidate, proposal, *args, **kwargs):
-        super(CandidateCommitmentFormBase, self).__init__(*args, **kwargs)
-        self.candidate = candidate
+    def __init__(self, authority, proposal, *args, **kwargs):
+        super(AuthorityCommitmentFormBase, self).__init__(*args, **kwargs)
+        self.authority = authority
         self.proposal = proposal
 
     def save(self):
         detail = self.cleaned_data['detail']
         commitment = Commitment.objects.create(proposal=self.proposal,
-                                               candidate=self.candidate,
+                                               authority=self.authority,
                                                detail=detail,
                                                commited=self.commited)
         return commitment
 
     def clean(self):
-        cleaned_data = super(CandidateCommitmentFormBase, self).clean()
-        if not self.candidate.election.candidates_can_commit_everywhere:
-            if self.candidate.election:
-                if self.candidate.election.area != self.proposal.area:
+        cleaned_data = super(AuthorityCommitmentFormBase, self).clean()
+        if not self.authority.election.candidates_can_commit_everywhere:
+            if self.authority.election:
+                if self.authority.election.area != self.proposal.area:
                     raise forms.ValidationError(_(u'El candidato no pertenece al area'))
             else:
                 raise forms.ValidationError(_(u'El candidato no pertenece al area'))
         return cleaned_data
 
 
-class CandidateCommitmentForm(CandidateCommitmentFormBase):
+class AuthorityCommitmentForm(AuthorityCommitmentFormBase):
     commited = True
 
-class CandidateNotCommitingForm(CandidateCommitmentFormBase):
+class AuthorityNotCommitingForm(AuthorityCommitmentFormBase):
     commited = False

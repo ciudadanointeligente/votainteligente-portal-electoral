@@ -1,4 +1,5 @@
 from rest_framework.serializers import (HyperlinkedModelSerializer,
+                                        HyperlinkedRelatedField,
                                         JSONField,
                                         StringRelatedField)
 from rest_framework.viewsets import ReadOnlyModelViewSet
@@ -33,11 +34,13 @@ class ProposalViewSet(ReadOnlyModelViewSet):
 
 
 class CommitmentsSerializer(HyperlinkedModelSerializer):
+    # authority = HyperlinkedRelatedField(
+    #     view_name='authority-detail',
+    #     lookup_field='id',
+    #     )
     class Meta:
         model = Commitment
-        fields = ('id','proposal',
-            # 'candidate',
-            'detail', 'commited', 'get_absolute_url')
+        fields = ('id','proposal','detail', 'commited', 'get_absolute_url')
 
 
 class CommitmentViewSet(ReadOnlyModelViewSet):

@@ -40,8 +40,8 @@ from django import forms
 from popular_proposal.filters import (ProposalWithoutAreaFilter,
                                       ProposalGeneratedAtFilter)
 
-from popular_proposal.forms import (CandidateCommitmentForm,
-                                    CandidateNotCommitingForm,
+from popular_proposal.forms import (AuthorityCommitmentForm,
+                                    AuthorityNotCommitingForm,
                                     ProposalForm,
                                     UpdateProposalForm,
                                     SubscriptionForm,
@@ -244,7 +244,7 @@ class ProposalsPerArea(EmbeddedViewBase, ProposalFilterMixin, ListView):
 
 class CommitView(FormView):
     template_name = 'popular_proposal/commitment/commit_yes.html'
-    form_class = CandidateCommitmentForm
+    form_class = AuthorityCommitmentForm
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -255,7 +255,7 @@ class CommitView(FormView):
         self.candidate = get_object_or_404(Candidate,
                                            id=self.kwargs['candidate_pk'])
         previous_commitment_exists = Commitment.objects.filter(proposal=self.proposal,
-                                                               candidate=self.candidate).exists()
+                                                               authority=self.candidate).exists()
         if previous_commitment_exists:
             return HttpResponseNotFound()
         get_object_or_404(Candidacy,
@@ -287,7 +287,7 @@ class CommitView(FormView):
     def get_form_kwargs(self):
         kwargs = super(CommitView, self).get_form_kwargs()
         kwargs['proposal'] = self.proposal
-        kwargs['candidate'] = self.candidate
+        kwargs['authority'] = self.candidate
         return kwargs
 
     def get_context_data(self, **kwargs):
@@ -297,14 +297,14 @@ class CommitView(FormView):
         return context
 
     def get_success_url(self):
-        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+        url = reverse('popular_proposals:commitment', kwargs={'authority_slug': self.candidate.id,
                                                               'proposal_slug': self.proposal.slug})
         return url
 
 
 class NotCommitView(CommitView):
     template_name = 'popular_proposal/commitment/commit_no.html'
-    form_class = CandidateNotCommitingForm
+    form_class = AuthorityNotCommitingForm
 
 
 class CommitmentDetailView(DetailView):
@@ -319,11 +319,11 @@ class CommitmentDetailView(DetailView):
 
     def dispatch(self, request, *args, **kwargs):
         self.proposal = get_object_or_404(PopularProposal, slug=self.kwargs['proposal_slug'])
-        self.candidate = get_object_or_404(Candidate, id=self.kwargs['candidate_slug'])
+        self.candidate = get_object_or_404(Candidate, id=self.kwargs['authority_slug'])
         return super(CommitmentDetailView, self).dispatch(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
-        return get_object_or_404(self.model, candidate=self.candidate, proposal=self.proposal)
+        return get_object_or_404(self.model, authority=self.candidate, proposal=self.proposal)
 
 
 class PopularProposalUpdateView(UpdateView):

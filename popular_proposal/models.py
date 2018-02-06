@@ -24,6 +24,10 @@ import textwrap
 from django.contrib.contenttypes.models import ContentType
 from votainteligente.send_mails import send_mails_to_staff
 from constance import config
+from popular_proposal import get_authority_model
+
+
+authority_model = get_authority_model()
 
 
 class NeedingModerationManager(models.Manager):
@@ -418,7 +422,7 @@ class CommitmentManager(models.Manager):
 class Commitment(models.Model):
     proposal = models.ForeignKey(PopularProposal,
                                  related_name='commitments')
-    candidate = models.ForeignKey(Candidate,
+    authority = models.ForeignKey(authority_model,
                                   related_name='commitments')
     detail = models.CharField(max_length=12288,
                               null=True,
@@ -438,8 +442,8 @@ class Commitment(models.Model):
         return instance
 
     def get_absolute_url(self):
-        if self.candidate.election is None:
+        if self.authority.election is None:
             return self.proposal.get_absolute_url()
-        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+        url = reverse('popular_proposals:commitment', kwargs={'authority_slug': self.authority.id,
                                                               'proposal_slug': self.proposal.slug})
         return url

@@ -28,7 +28,7 @@ class CommitmentNotifications(ProposingCycleTestCaseBase):
 
     def test_instanciate_a_model(self):
         u = User.objects.create_user(username="user")
-        commitment = Commitment.objects.create(candidate=self.candidate,
+        commitment = Commitment.objects.create(authority=self.candidate,
                                                proposal=self.popular_proposal,
                                                detail=u'Yo me comprometo',
                                                commited=True)
@@ -47,12 +47,12 @@ class CommitmentNotifications(ProposingCycleTestCaseBase):
         ProposalLike.objects.create(user=u2,
                                     proposal=self.popular_proposal)
 
-        commitment = Commitment.objects.create(candidate=self.candidate,
+        commitment = Commitment.objects.create(authority=self.candidate,
                                                proposal=self.popular_proposal)
 
         notifications = CommitmentNotification.objects.all()
         self.assertEquals(notifications.filter(commitment=commitment).count(), 2)
-        commitment2 = Commitment.objects.create(candidate=self.candidate,
+        commitment2 = Commitment.objects.create(authority=self.candidate,
                                                 proposal=self.popular_proposal2)
         notifications = CommitmentNotification.objects.all()
         self.assertEquals(notifications.filter(commitment=commitment2).count(), 1)
@@ -67,10 +67,10 @@ class CommitmentNotifications(ProposingCycleTestCaseBase):
         u2 = User.objects.create_user(username="user2", email="bono_u2@themail.com")
         ProposalLike.objects.create(user=u2,
                                     proposal=self.popular_proposal)
-        commitment = Commitment.objects.create(candidate=self.candidate,
+        commitment = Commitment.objects.create(authority=self.candidate,
                                                commited=True,
                                                proposal=self.popular_proposal)
-        commitment2 = Commitment.objects.create(candidate=self.candidate,
+        commitment2 = Commitment.objects.create(authority=self.candidate,
                                                 commited=True,
                                                 proposal=self.popular_proposal2)
         sender = CommitmentNotificationSender(user=u)
@@ -102,10 +102,10 @@ class CommitmentNotifications(ProposingCycleTestCaseBase):
         u2 = User.objects.create_user(username="user2", email="bono_u2@themail.com")
         ProposalLike.objects.create(user=u2,
                                     proposal=self.popular_proposal)
-        Commitment.objects.create(candidate=self.candidate,
+        Commitment.objects.create(authority=self.candidate,
                                   commited=True,
                                   proposal=self.popular_proposal)
-        Commitment.objects.create(candidate=self.candidate,
+        Commitment.objects.create(authority=self.candidate,
                                   commited=True,
                                   proposal=self.popular_proposal2)
         original_amount_of_mails = len(mail.outbox)
@@ -131,10 +131,10 @@ class CommitmentNotifications(ProposingCycleTestCaseBase):
         u2.profile.save()
         ProposalLike.objects.create(user=u2,
                                     proposal=self.popular_proposal)
-        Commitment.objects.create(candidate=self.candidate,
+        Commitment.objects.create(authority=self.candidate,
                                   commited=True,
                                   proposal=self.popular_proposal)
-        Commitment.objects.create(candidate=self.candidate,
+        Commitment.objects.create(authority=self.candidate,
                                   commited=True,
                                   proposal=self.popular_proposal2)
         original_amount_of_mails = len(mail.outbox)

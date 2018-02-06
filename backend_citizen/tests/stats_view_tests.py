@@ -46,16 +46,16 @@ class BackendCitizenStatsViewsTests(BackendCitizenTestCaseBase):
 
     def test_per_proposal_stats(self):
         # 2 Alcaldes
-        c1 = Commitment.objects.create(candidate=self.candidate1,
+        c1 = Commitment.objects.create(authority=self.candidate1,
                                        proposal=self.proposal,
                                        detail=u'Yo me comprometo',
                                        commited=True)
-        c2 = Commitment.objects.create(candidate=self.candidate2,
+        c2 = Commitment.objects.create(authority=self.candidate2,
                                        proposal=self.proposal,
                                        detail=u'Yo me comprometo',
                                        commited=False)
         # 1 concejal
-        c3 = Commitment.objects.create(candidate=self.candidate6,
+        c3 = Commitment.objects.create(authority=self.candidate6,
                                        proposal=self.proposal,
                                        detail=u'Yo me comprometo',
                                        commited=True)
@@ -84,11 +84,11 @@ class BackendCitizenStatsViewsTests(BackendCitizenTestCaseBase):
         self.assertEquals(stats.areas_present().count(), 2)
         self.assertIn(self.arica, stats.areas_present().all())
         self.assertIn(self.alhue, stats.areas_present().all())
-        c1 = Commitment.objects.create(candidate=self.candidate1,
+        c1 = Commitment.objects.create(authority=self.candidate1,
                                        proposal=self.proposal,
                                        detail=u'Yo me comprometo',
                                        commited=True)
-        c2 = Commitment.objects.create(candidate=self.candidate6,
+        c2 = Commitment.objects.create(authority=self.candidate6,
                                        proposal=self.proposal,
                                        detail=u'Yo me comprometo',
                                        commited=True)

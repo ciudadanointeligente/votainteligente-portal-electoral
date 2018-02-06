@@ -108,7 +108,7 @@ class MediaNaranjaAdaptersBase(TestCase):
             c = getattr(self, key)
             proposals = commitments[key]
             for proposal in proposals:
-                Commitment.objects.create(candidate=c, proposal=proposal, commited=True)
+                Commitment.objects.create(authority=c, proposal=proposal, commited=True)
 
 class AdaptersTest(MediaNaranjaAdaptersBase):
     def setUp(self):

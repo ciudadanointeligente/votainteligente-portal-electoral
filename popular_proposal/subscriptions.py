@@ -79,7 +79,7 @@ class ManyCitizensSupportingNotification(NumericNotificationBase):
         commitments = Commitment.objects.filter(proposal=self.proposal)
         candidates_pks = []
         for commitment in commitments:
-            candidates_pks.append(commitment.candidate.id)
+            candidates_pks.append(commitment.authority.id)
 
         candidates = Candidate.objects.filter(elections__area=self.proposal.area).exclude(id__in=candidates_pks)
         contacts = CandidacyContact.objects.filter(candidate__in=candidates)

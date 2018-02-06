@@ -51,7 +51,7 @@ urlpatterns = [
     url(r'^og_image/(?P<slug>[-\w]+).jpg$',
         PopularProposalOGImageView.as_view(),
         name='og_image'),
-    url(r'^commitment/(?P<candidate_slug>[-\w]+)/(?P<proposal_slug>[-\w]+)/?$',
+    url(r'^commitment/(?P<authority_slug>[-\w]+)/(?P<proposal_slug>[-\w]+)/?$',
         CommitmentDetailView.as_view(),
         name='commitment'),
     url(r'^commit/(?P<candidate_pk>[-\w]+)/(?P<proposal_pk>\d+)/?$',

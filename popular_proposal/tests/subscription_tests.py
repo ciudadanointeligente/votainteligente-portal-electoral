@@ -80,7 +80,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertIn(self.proposal.title, the_mail.body)
 
     def test_letting_the_proposer_know_of_his_commitment(self):
-        commitment = Commitment.objects.create(candidate=self.candidate,
+        commitment = Commitment.objects.create(authority=self.candidate,
                                                proposal=self.proposal,
                                                commited=True)
         previous_amount = len(mail.outbox)
@@ -95,7 +95,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertIn(self.candidate.name, the_mail.body)
 
     def test_letting_the_proposer_know_of_his_non_commitment(self):
-        commitment = Commitment.objects.create(candidate=self.candidate,
+        commitment = Commitment.objects.create(authority=self.candidate,
                                                proposal=self.proposal,
                                                commited=False)
         previous_amount = len(mail.outbox)
@@ -113,7 +113,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         original_amount_of_emails = len(mail.outbox)
         ProposalLike.objects.create(user=self.feli,
                                     proposal=self.proposal)
-        Commitment.objects.create(candidate=self.candidate,
+        Commitment.objects.create(authority=self.candidate,
                                   proposal=self.proposal,
                                   commited=True)
 
@@ -136,7 +136,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         original_amount_of_emails = len(mail.outbox)
         ProposalLike.objects.create(user=self.feli,
                                     proposal=self.proposal)
-        commitment = Commitment.objects.create(candidate=self.candidate,
+        commitment = Commitment.objects.create(authority=self.candidate,
                                                proposal=self.proposal,
                                                commited=True)
 
@@ -144,7 +144,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         the_mail = mail.outbox[original_amount_of_emails]
         commitment.delete()
 
-        commitment = Commitment.objects.create(candidate=self.candidate,
+        commitment = Commitment.objects.create(authority=self.candidate,
                                                proposal=self.proposal,
                                                detail=u'Yo No me comprometo',
                                                commited=False)
@@ -159,7 +159,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         # According to setUp there should be at least one notification to
         # self.candidate
 
-        Commitment.objects.create(candidate=self.candidate2,
+        Commitment.objects.create(authority=self.candidate2,
                                   proposal=self.proposal,
                                   commited=True)
         previous_amount = len(mail.outbox)

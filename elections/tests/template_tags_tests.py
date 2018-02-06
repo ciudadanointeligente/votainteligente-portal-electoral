@@ -292,7 +292,7 @@ class LoginFormsTemplateTags(TestCase):
         candidacy = Candidacy.objects.create(user=u,
                                              candidate=candidate
                                              )
-        commitment = Commitment.objects.create(candidate=candidate,
+        commitment = Commitment.objects.create(authority=candidate,
                                                proposal=popular_proposal,
                                                commited=True)
         template = Template("{% load votainteligente_extras %}{% if candidacy|has_commited_with:proposal %}si{% else %}no{% endif %}")
@@ -379,14 +379,14 @@ class LoginFormsTemplateTags(TestCase):
                                                                title=u'This is a title',
                                                                clasification=u'education'
                                                                )
-        Commitment.objects.create(candidate=candidate,
+        Commitment.objects.create(authority=candidate,
                                   proposal=proposal,
                                   commited=True)
 
-        Commitment.objects.create(candidate=candidate2,
+        Commitment.objects.create(authority=candidate2,
                                   proposal=proposal,
                                   commited=True)
-        Commitment.objects.create(candidate=candidate3,
+        Commitment.objects.create(authority=candidate3,
                                   proposal=proposal,
                                   commited=True)
 
@@ -398,7 +398,7 @@ class LoginFormsTemplateTags(TestCase):
         template = Template("{% load votainteligente_extras %}{% commiters_by_election_position proposal 'concejal' as commiters %}{{commiters.count}}")
         context = Context({'proposal': proposal})
         self.assertEquals(template.render(context), '2')
-        Commitment.objects.create(candidate=candidate3,
+        Commitment.objects.create(authority=candidate3,
                                   proposal=proposal_without_area,
                                   commited=True)
         template = Template("{% load votainteligente_extras %}{% commiters_by_election_position proposal 'concejal' as commiters %}{{commiters.count}}")

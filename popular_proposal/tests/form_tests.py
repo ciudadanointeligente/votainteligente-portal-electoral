@@ -7,7 +7,7 @@ from popular_proposal.forms import (ProposalForm,
                                     ProposalTemporaryDataModelForm,
                                     FIELDS_TO_BE_AVOIDED,
                                     UpdateProposalForm,
-                                    CandidateNotCommitingForm,
+                                    AuthorityNotCommitingForm,
                                     AreaForm)
 from popular_proposal.forms.form_texts import TOPIC_CHOICES_DICT
 from django.contrib.auth.models import User
@@ -18,10 +18,10 @@ from django.core import mail
 from django.template.loader import get_template
 from django.template import Context, Template
 from popular_proposal.forms import (WHEN_CHOICES,
-                                    CandidateCommitmentForm)
+                                    AuthorityCommitmentForm)
 from popular_proposal.forms.form_texts import TEXTS
 from django.core.urlresolvers import reverse
-from elections.models import Candidate, Area, Election
+from elections.models import Area, Election
 from django.test import override_settings
 from constance.test import override_config
 
@@ -63,7 +63,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
 
     @override_config(DEFAULT_AREA='whole_country')
     def test_area_form_default_value(self):
-        whole_country = Area.objects.create(id='whole_country', name='A country')
+        whole_country = Area.objects.create(id=u'whole_country', name=u'A country')
         form = AreaForm()
         self.assertEquals(form.initial['area'], whole_country.id)
 
@@ -373,9 +373,9 @@ class ModelFormTest(ProposingCycleTestCaseBase):
         self.assertEquals(temporary_data.data['title'], data['title'])
 
 
-class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
+class AuthorityCommitmentTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
-        super(CandidateCommitmentTestCase, self).setUp()
+        super(AuthorityCommitmentTestCase, self).setUp()
 
         self.election1= Election.objects.get(id=1)
         self.election1.candidates_can_commit_everywhere = True
@@ -400,26 +400,26 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
 
     def test_instanciating_form(self):
         data = {'terms_and_conditions': True, 'detail': 'Esto es un detalle'}
-        form = CandidateCommitmentForm(candidate=self.candidate,
+        form = AuthorityCommitmentForm(authority=self.candidate,
                                        proposal=self.proposal,
                                        data=data)
         self.assertTrue(form.is_valid(), form.errors)
         commitment = form.save()
         self.assertEquals(commitment.proposal, self.proposal)
-        self.assertEquals(commitment.candidate, self.candidate)
+        self.assertEquals(commitment.authority, self.candidate)
         self.assertEquals(commitment.detail, data['detail'])
         self.assertTrue(commitment.commited)
 
     def test_instanciating_form_with_no_commiting(self):
         data = {'detail': 'Yo me comprometo',
                 'terms_and_conditions': True}
-        form = CandidateNotCommitingForm(candidate=self.candidate,
+        form = AuthorityNotCommitingForm(authority=self.candidate,
                                          proposal=self.proposal,
                                          data=data)
         self.assertTrue(form.is_valid(), form.errors)
         commitment = form.save()
         self.assertEquals(commitment.proposal, self.proposal)
-        self.assertEquals(commitment.candidate, self.candidate)
+        self.assertEquals(commitment.authority, self.candidate)
         self.assertEquals(commitment.detail, data['detail'])
         self.assertFalse(commitment.commited)
 
@@ -437,7 +437,7 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
 
         data = {'detail': 'Yo me comprometo',
                 'terms_and_conditions': True}
-        form = CandidateCommitmentForm(candidate=self.candidate2,
+        form = AuthorityCommitmentForm(authority=self.candidate2,
                                        proposal=proposal,
                                        data=data)
 
@@ -454,7 +454,7 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
                                                   )
         data = {'detail': 'Yo me comprometo',
                 'terms_and_conditions': True}
-        form = CandidateCommitmentForm(candidate=self.candidate,
+        form = AuthorityCommitmentForm(authority=self.candidate,
                                        proposal=proposal,
                                        data=data)
 

@@ -30,7 +30,7 @@ class StatsPerProposal(object):
     def __getattribute__(self, name):
         if name.startswith('pronouncing__'):
             field_and_value = name.split('__')
-            filter_args = {'candidate__elections__position': field_and_value[1]}
+            filter_args = {'authority__elections__position': field_and_value[1]}
             self.commitment_qs = self.all_pronouncings.filter(**filter_args)
             return self.pronouncing
         return super(StatsPerProposal, self).__getattribute__(name)
@@ -55,7 +55,7 @@ class PerUserTotalStats(object):
     def __getattribute__(self, name):
         if name.startswith('pronouncing__'):
             field_and_value = name.split('__')
-            filter_args = {'candidate__elections__position': field_and_value[1]}
+            filter_args = {'authority__elections__position': field_and_value[1]}
             self.commitment_qs = self.all_pronouncings.filter(**filter_args)
             return self.pronouncing
         return super(PerUserTotalStats, self).__getattribute__(name)

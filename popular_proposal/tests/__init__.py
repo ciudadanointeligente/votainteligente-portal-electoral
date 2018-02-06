@@ -6,8 +6,8 @@ from popular_proposal.forms.forms import wizard_forms_fields
 from django import forms
 
 example_fields = {
-    'CharField': 'fieraFeroz',
-    'URLField': 'http://fieraFeroz.com',
+    'CharField': u'fieraFeroz',
+    'URLField': u'http://fieraFeroz.com',
     'BooleanField': True,
 }
 

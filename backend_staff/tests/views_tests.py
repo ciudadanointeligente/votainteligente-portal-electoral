@@ -237,7 +237,7 @@ class StaffHomeViewTest(TestCase):
                                                           title=u'This is a title',
                                                           clasification=u'education'
                                                           )
-        commitment = Commitment.objects.create(candidate=self.candidate1,
+        commitment = Commitment.objects.create(authority=self.candidate1,
                                                proposal=popular_proposal,
                                                detail=u'Yo me comprometo',
                                                commited=True)
@@ -468,18 +468,18 @@ class StaffHomeViewTest(TestCase):
                                        clasification=u'education',
                                        for_all_areas=True
                                        )
-        Commitment.objects.create(candidate=self.candidate1,
+        Commitment.objects.create(authority=self.candidate1,
                                   proposal=popular_proposal,
                                   detail=u'Yo me comprometo',
                                   commited=True)
-        Commitment.objects.create(candidate=self.candidate1,
+        Commitment.objects.create(authority=self.candidate1,
                                   proposal=popular_proposal2,
                                   detail=u'Yo me comprometo',
                                   commited=True)
         self.assertEquals(stats.proposals(), 2)
         self.assertEquals(stats.commitments(), 2)
         self.assertEquals(stats.candidates_that_have_commited(), 1)
-        Commitment.objects.create(candidate=self.candidate6,
+        Commitment.objects.create(authority=self.candidate6,
                                   proposal=popular_proposal2,
                                   detail=u'Yo me comprometo',
                                   commited=True)
@@ -545,15 +545,15 @@ class StaffHomeViewTest(TestCase):
                                                            clasification=u'education',
                                                            for_all_areas=True
                                                            )
-        c1 = Commitment.objects.create(candidate=self.candidate1,
+        c1 = Commitment.objects.create(authority=self.candidate1,
                                        proposal=popular_proposal,
                                        detail=u'Yo me comprometo',
                                        commited=True)
-        c2 = Commitment.objects.create(candidate=self.candidate1,
+        c2 = Commitment.objects.create(authority=self.candidate1,
                                        proposal=popular_proposal2,
                                        detail=u'Yo me comprometo',
                                        commited=True)
-        c3 = Commitment.objects.create(candidate=self.candidate6,
+        c3 = Commitment.objects.create(authority=self.candidate6,
                                        proposal=popular_proposal2,
                                        detail=u'Yo me comprometo',
                                        commited=True)

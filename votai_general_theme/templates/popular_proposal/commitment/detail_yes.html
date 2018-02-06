@@ -12,7 +12,7 @@
   {% render_ogp popular_proposal %}
   <meta property="og:title" content="En votainteligente.cl revisa el compromiso que he firmado!">
   <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
-  <meta property="og:url" content="https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}">
+  <meta property="og:url" content="https://{% url_domain %}{{ object.get_absolute_url }}">
   <meta property="og:image" content="{{commitment.proposal.ogp_image}}">
   <meta property="og:description" content="Yo, {{commitment.candidate.name}}, me he comprometido con la Propuesta Ciudadana: {{commitment.proposal.title}}">
 
@@ -62,7 +62,7 @@
   <p>Cuéntales a tus futuros electores el compromiso que acabas de firmar!</p>
   <ul class="list-inline">
     <li><a href="#" onclick="window.open('https://twitter.com/share?text=Me he comprometido con la propuesta ciudadana: {{commitment.proposal.title}}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
-    <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
+    <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{{ object.get_absolute_url }}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
   </ul>
 </div>
 {% else %}
@@ -71,7 +71,7 @@
   <p>Cuéntales a tus amigos sobre este compromiso!</p>
   <ul class="list-inline">
     <li><a href="#" onclick="window.open('https://twitter.com/share?text={{commitment.candidate.name}} se comprometió con la propuesta ciudadana: {{commitment.proposal.title}}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
-    <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
+    <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{{ object.get_absolute_url }}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
   </ul>
 </div>
 {% endif %}

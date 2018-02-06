@@ -59,4 +59,4 @@ class ProposalLikeAdmin(admin.ModelAdmin):
 
 @admin.register(Commitment)
 class CommitmentAdmin(admin.ModelAdmin):
-    list_display = ('id', "candidate", "proposal")
+    list_display = ('id', "authority", "proposal")

@@ -211,7 +211,7 @@ class MyCommitments(BackendCandidateBase, ListView):
 
     def get_queryset(self):
         qs = super(MyCommitments, self).get_queryset()
-        return qs.filter(candidate=self.candidate)
+        return qs.filter(authority=self.candidate)
 
     def get_context_data(self, **kwargs):
         context = (super(MyCommitments, self)

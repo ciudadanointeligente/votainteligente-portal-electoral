@@ -9,8 +9,8 @@ from popular_proposal.filters import (ProposalWithoutAreaFilter,
                                       ProposalWithAreaFilter)
 from elections.models import Area, Candidate, Election
 from backend_candidate.models import Candidacy
-from popular_proposal.forms import (CandidateCommitmentForm,
-                                    CandidateNotCommitingForm,
+from popular_proposal.forms import (AuthorityCommitmentForm,
+                                    AuthorityNotCommitingForm,
                                     )
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from constance.test import override_config
@@ -266,20 +266,20 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
                                                  user=self.fiera)
 
     def test_there_is_a_commit_page(self):
-        commitment = Commitment.objects.create(candidate=self.candidate,
+        commitment = Commitment.objects.create(authority=self.candidate,
                                                proposal=self.popular_proposal1,
                                                commited=True)
-        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+        url = reverse('popular_proposals:commitment', kwargs={'authority_slug': self.candidate.id,
                                                               'proposal_slug': self.popular_proposal1.slug})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'popular_proposal/commitment/detail_yes.html')
         self.assertEquals(response.context['commitment'], commitment)
         commitment.delete()
-        commitment_no = Commitment.objects.create(candidate=self.candidate,
+        commitment_no = Commitment.objects.create(authority=self.candidate,
                                                   proposal=self.popular_proposal1,
                                                   commited=False)
-        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+        url = reverse('popular_proposals:commitment', kwargs={'authority_slug': self.candidate.id,
                                                               'proposal_slug': self.popular_proposal1.slug})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
@@ -294,12 +294,12 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'popular_proposal/commitment/commit_yes.html')
-        self.assertIsInstance(response.context['form'], CandidateCommitmentForm)
+        self.assertIsInstance(response.context['form'], AuthorityCommitmentForm)
         self.assertEquals(response.context['proposal'], self.popular_proposal1)
         self.assertEquals(response.context['candidate'], self.candidate)
 
         response_post = self.client.post(url, {'terms_and_conditions': True})
-        detail_url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+        detail_url = reverse('popular_proposals:commitment', kwargs={'authority_slug': self.candidate.id,
                                                                      'proposal_slug': self.popular_proposal1.slug})
         self.assertRedirects(response_post, detail_url)
 
@@ -317,7 +317,7 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         self.assertEquals(response.status_code, 404)
 
     def test_not_commiting_twice(self):
-        Commitment.objects.create(candidate=self.candidate,
+        Commitment.objects.create(authority=self.candidate,
                                   proposal=self.popular_proposal1,
                                   commited=True)
         url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,
@@ -368,11 +368,11 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'popular_proposal/commitment/commit_no.html')
-        self.assertIsInstance(response.context['form'], CandidateNotCommitingForm)
+        self.assertIsInstance(response.context['form'], AuthorityNotCommitingForm)
 
         response_post = self.client.post(url, {'terms_and_conditions': True,
                                                'details': u'no me gustó pa na la propuesta'})
-        detail_url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+        detail_url = reverse('popular_proposals:commitment', kwargs={'authority_slug': self.candidate.id,
                                                                      'proposal_slug': self.popular_proposal1.slug})
         self.assertRedirects(response_post, detail_url)
 
@@ -385,7 +385,7 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
                                                           data=self.data,
                                                           title=u'This is a title'
                                                           )
-        Commitment.objects.create(candidate=self.candidate,
+        Commitment.objects.create(authority=self.candidate,
                                   proposal=popular_proposal,
                                   commited=True)
         # no need to be logged in

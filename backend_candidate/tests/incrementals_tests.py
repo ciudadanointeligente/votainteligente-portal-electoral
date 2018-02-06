@@ -155,7 +155,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
         self.assertIn(p2, context['proposals'].all())
 
         # Jefe comprometido y enamorado
-        Commitment.objects.create(candidate=damian_candidato,
+        Commitment.objects.create(authority=damian_candidato,
                                   proposal=p1,
                                   detail=u'Yo me comprometo',
                                   commited=True)
@@ -235,7 +235,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
         self.assertIn(p2, context['proposals'].all())
 
         # Jefe comprometido y enamorado
-        Commitment.objects.create(candidate=damian_candidato,
+        Commitment.objects.create(authority=damian_candidato,
                                   proposal=p1,
                                   detail=u'Yo me comprometo',
                                   commited=True)
@@ -324,7 +324,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
         self.assertIn(p2, context['proposals'].all())
 
         # Jefe comprometido y enamorado
-        Commitment.objects.create(candidate=damian_candidato,
+        Commitment.objects.create(authority=damian_candidato,
                                   proposal=p1,
                                   detail=u'Yo me comprometo',
                                   commited=True)
@@ -434,9 +434,9 @@ class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
                                                   suggestion=self.filter)
         url = reverse("backend_candidate:commit_to_suggestions", kwargs={"identifier": c_i.identifier})
         response = self.client.post(url, data)
-        c1 = Commitment.objects.get(candidate=self.fiera_candidata,
+        c1 = Commitment.objects.get(authority=self.fiera_candidata,
                                     proposal=self.p1)
-        self.assertFalse(Commitment.objects.filter(candidate=self.fiera_candidata,
+        self.assertFalse(Commitment.objects.filter(authority=self.fiera_candidata,
                                                    proposal=self.p2))
         self.assertIn(c1, response.context['commitments'])
         response = self.client.get(url)
@@ -469,7 +469,7 @@ class MultiCommitmentForm(ProposingCycleTestCaseBase):
         self.assertTrue(form.is_valid())
         commitment = form.save()
         self.assertTrue(commitment.commited)
-        self.assertEquals(commitment.candidate, fiera_candidata)
+        self.assertEquals(commitment.authority, fiera_candidata)
         self.assertEquals(commitment.proposal, proposal)
         #  DONT CREATE TWO COMMITMENTS
         form = SimpleCommitmentForm(data=data,

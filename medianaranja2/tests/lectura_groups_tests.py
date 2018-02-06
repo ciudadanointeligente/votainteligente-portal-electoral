@@ -55,6 +55,6 @@ class ReadingGroupTestCase(MediaNaranjaAdaptersBase):
         c = Candidate.objects.create(name="c")
         e.candidates.add(c)
         group.candidates.add(c)
-        Commitment.objects.create(candidate=c, proposal=self.p2, commited=True)
+        Commitment.objects.create(authority=c, proposal=self.p2, commited=True)
 
         self.assertNotIn(self.p2, group.get_proposals(elections=[self.election]))

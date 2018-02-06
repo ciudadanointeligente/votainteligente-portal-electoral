@@ -94,7 +94,7 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
                                                           title=u'This is a title',
                                                           clasification=u'education'
                                                       )
-        commitment = Commitment.objects.create(candidate=any_authority,
+        commitment = Commitment.objects.create(authority=any_authority,
                                                proposal=popular_proposal2,
                                                detail=u'Yo me comprometo',
                                                commited=True)

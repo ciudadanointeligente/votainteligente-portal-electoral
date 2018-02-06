@@ -7,7 +7,6 @@ from popular_proposal.models import (PopularProposal,
                                      ProposalLike,
                                      )
 from popular_proposal.forms import ProposalForm
-from popular_proposal.exporter import CommitmentsExporter
 from django.core.urlresolvers import reverse
 from django.core import mail
 from django.contrib.staticfiles.templatetags.staticfiles import static

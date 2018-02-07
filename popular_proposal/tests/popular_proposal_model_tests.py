@@ -227,7 +227,6 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         original_amount_of_mails = len(mail.outbox)
         popular_proposal = temporary_data.create_proposal(moderator=self.feli)
         self.assertEquals(popular_proposal.proposer, self.fiera)
-        self.assertTrue(popular_proposal.organization)
         popular_proposal = PopularProposal.objects.get(id=popular_proposal.id)
         self.assertEquals(popular_proposal.area, self.arica)
         self.assertEquals(popular_proposal.join_advocacy_url, u"http://whatsapp.com/somegroup")

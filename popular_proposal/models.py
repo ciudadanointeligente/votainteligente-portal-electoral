@@ -5,7 +5,7 @@ from django.db import models
 from picklefield.fields import PickledObjectField
 from django.contrib.auth.models import User
 from djchoices import DjangoChoices, ChoiceItem
-from votainteligente.send_mails import send_mail
+from votainteligente.send_mails import send_mail, send_mails_to_staff
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
@@ -20,7 +20,6 @@ from PIL import Image, ImageDraw, ImageFont
 from model_utils.managers import InheritanceQuerySetMixin
 import textwrap
 from django.contrib.contenttypes.models import ContentType
-from votainteligente.send_mails import send_mails_to_staff
 from constance import config
 from popular_proposal import get_authority_model, get_proposal_adapter_model
 
@@ -105,7 +104,6 @@ class ProposalTemporaryData(proposal_adapter_model, ProposalCreationMixin):
         self.save()
         title = self.get_title()
         clasification = self.data.get('clasification', '')
-        org_id = self.data.pop('organization', None)
 
         mail_context = super(ProposalTemporaryData, self).get_mail_context()
         initial_kwargs = {
@@ -117,9 +115,6 @@ class ProposalTemporaryData(proposal_adapter_model, ProposalCreationMixin):
         initial_kwargs.update(mail_context)
         creation_kwargs = self.determine_kwargs(**initial_kwargs)
         popular_proposal = PopularProposal(**creation_kwargs)
-        if org_id:
-            enrollment = self.proposer.enrollments.get(organization__id=org_id)
-            popular_proposal.organization = enrollment.organization
         popular_proposal.save()
         site = Site.objects.get_current()
         mail_context.update({

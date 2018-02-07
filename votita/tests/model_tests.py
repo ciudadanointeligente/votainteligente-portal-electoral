@@ -1,6 +1,5 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
-from backend_citizen.models import Organization, Enrollment
 from elections.models import Area
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData, PopularProposal, ProposalLike
@@ -23,10 +22,6 @@ USER_PASSWORD = 'secr3t'
 class PopularProposalTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(PopularProposalTestCase, self).setUp()
-        # Enrolling Fiera with the organization
-        self.org = Organization.objects.create(name=u'La Cosa Nostra')
-        self.enrollment = Enrollment.objects.create(organization=self.org,
-                                                    user=self.fiera)
 
     def test_instantiate_one(self):
         popular_proposal = KidsProposal.objects.create(proposer=self.fiera,

@@ -5,12 +5,11 @@ from django.db import models
 from picklefield.fields import PickledObjectField
 from django.contrib.auth.models import User
 from djchoices import DjangoChoices, ChoiceItem
-from votainteligente.send_mails import send_mail
+from votainteligente.send_mails import send_mail, send_mails_to_staff
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
-from backend_citizen.models import Organization
 from votainteligente.open_graph import OGPMixin
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
@@ -21,7 +20,6 @@ from PIL import Image, ImageDraw, ImageFont
 from model_utils.managers import InheritanceQuerySetMixin
 import textwrap
 from django.contrib.contenttypes.models import ContentType
-from votainteligente.send_mails import send_mails_to_staff
 from constance import config
 from popular_proposal import get_authority_model, get_proposal_adapter_model
 
@@ -60,11 +58,6 @@ class ProposalTemporaryData(proposal_adapter_model, ProposalCreationMixin):
     rejected = models.BooleanField(default=False)
     rejected_reason = models.TextField(null=True,
                                        blank=True)
-    organization = models.ForeignKey(Organization,
-                                     related_name='%(class)ss',
-                                     null=True,
-                                     blank=True,
-                                     default=None)
     comments = PickledObjectField()
     status = models.CharField(max_length=16,
                               choices=Statuses.choices,
@@ -111,7 +104,6 @@ class ProposalTemporaryData(proposal_adapter_model, ProposalCreationMixin):
         self.save()
         title = self.get_title()
         clasification = self.data.get('clasification', '')
-        org_id = self.data.pop('organization', None)
 
         mail_context = super(ProposalTemporaryData, self).get_mail_context()
         initial_kwargs = {
@@ -123,9 +115,6 @@ class ProposalTemporaryData(proposal_adapter_model, ProposalCreationMixin):
         initial_kwargs.update(mail_context)
         creation_kwargs = self.determine_kwargs(**initial_kwargs)
         popular_proposal = PopularProposal(**creation_kwargs)
-        if org_id:
-            enrollment = self.proposer.enrollments.get(organization__id=org_id)
-            popular_proposal.organization = enrollment.organization
         popular_proposal.save()
         site = Site.objects.get_current()
         mail_context.update({
@@ -194,9 +183,6 @@ class PopularProposal(proposal_adapter_model, OGPMixin):
                                      null=True,
                                      default=None)
     likers = models.ManyToManyField(User, through='ProposalLike')
-    organization = models.ForeignKey(Organization,
-                                     related_name='%(class)ss',
-                                     null=True)
     background = models.TextField(null=True, blank=True, help_text=_(u"Antecedentes sobre tu propuesta"))
     contact_details = models.TextField(null=True,
                                        blank=True,

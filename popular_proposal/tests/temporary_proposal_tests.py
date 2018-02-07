@@ -1,7 +1,6 @@
 
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
-from backend_citizen.models import Organization
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData
 from popular_proposal.forms import ProposalForm
@@ -47,15 +46,6 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         the_mail = mail.outbox[0]
         self.assertTrue(the_mail)
         self.assertIn(self.fiera.email, the_mail.to)
-
-    def test_proposing_with_an_organization(self):
-        local_org = Organization.objects.create(name="Local Organization")
-        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                              organization=local_org,
-                                                              area=self.arica,
-                                                              data=self.data)
-        self.assertTrue(temporary_data)
-        self.assertEquals(temporary_data.organization, local_org)
 
     def test_needing_moderation_proposals(self):
         td_waiting_for_moderation = ProposalTemporaryData.objects.create(proposer=self.fiera,

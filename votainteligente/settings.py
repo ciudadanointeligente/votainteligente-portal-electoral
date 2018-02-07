@@ -58,7 +58,9 @@ INSTALLED_APPS = (
     'votita',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    
     'popular_proposal',
+    'proposals_for_votainteligente',
     'backend_staff',
     'backend_citizen',
     'backend_candidate',

@@ -224,7 +224,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
                                                   data=self.data,
                                                   title=u'This is a title'
                                                   )
-        proposal.notify_candidates_of_new()
+        proposal.notify_authorities_of_new()
         self.assertEquals(len(mail.outbox), previous_amount + 2)
         first_mail = mail.outbox[previous_amount]
         self.assertEquals(len(first_mail.to), 1)
@@ -257,7 +257,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
                                                   data=self.data,
                                                   title=u'This is a title'
                                                   )
-        proposal.notify_candidates_of_new()
+        proposal.notify_authorities_of_new()
         first_mail = mail.outbox[previous_amount]
         contact = self.candidate.contacts.all().first()
         self.assertIn(self.feli.username, first_mail.body)
@@ -280,7 +280,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
                                                   data=self.data,
                                                   title=u'This is a title'
                                                   )
-        proposal.notify_candidates_of_new()
+        proposal.notify_authorities_of_new()
         first_mail = mail.outbox[previous_amount]
         self.candidate.contacts.all().first()
         self.assertNotIn(self.feli.username, first_mail.body)

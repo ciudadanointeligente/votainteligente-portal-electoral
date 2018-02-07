@@ -12,7 +12,6 @@ from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
 from backend_citizen.models import Organization
 from votainteligente.open_graph import OGPMixin
-from elections.models import Candidate, Area
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
@@ -29,6 +28,8 @@ from popular_proposal import get_authority_model, get_proposal_adapter_model
 
 authority_model = get_authority_model()
 proposal_adapter_model = get_proposal_adapter_model()
+
+
 
 class NeedingModerationManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
@@ -47,14 +48,13 @@ class ProposalCreationMixin(object):
 
 
 @python_2_unicode_compatible
-class ProposalTemporaryData(models.Model, ProposalCreationMixin):
+class ProposalTemporaryData(proposal_adapter_model, ProposalCreationMixin):
     class Statuses(DjangoChoices):
         InOurSide = ChoiceItem('in_our_side')
         InTheirSide = ChoiceItem('in_their_side')
         Rejected = ChoiceItem('rejected')
         Accepted = ChoiceItem('accepted')
     proposer = models.ForeignKey(User, related_name='%(class)ss')
-    area = models.ForeignKey(Area, related_name='%(class)ss', null=True, blank=True)
     join_advocacy_url = models.URLField(null=True, blank=True)
     data = PickledObjectField()
     rejected = models.BooleanField(default=False)
@@ -75,10 +75,7 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
                                         null=True,
                                         default="")
     is_local_meeting = models.BooleanField(default=False)
-    generated_at = models.ForeignKey(Area,
-                                     related_name='%(class)ss_generated_here',
-                                     null=True,
-                                     blank=True)
+    
     created = models.DateTimeField(auto_now_add=True,
                                    blank=True,
                                    null=True)
@@ -100,11 +97,11 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
 
     def notify_new(self):
         site = Site.objects.get_current()
-        mail_context = {
-            'area': self.area,
+        mail_context = super(ProposalTemporaryData, self).get_mail_context()
+        mail_context.update({
             'temporary_data': self,
             'site': site,
-        }
+        })
         if self.proposer.email:
             send_mail(mail_context, 'new_temporary_proposal',
                       to=[self.proposer.email])
@@ -116,24 +113,26 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
         clasification = self.data.get('clasification', '')
         org_id = self.data.pop('organization', None)
 
-        creation_kwargs = self.determine_kwargs(title=title,
-                                                clasification=clasification,
-                                                area=self.area,
-                                                proposer=self.proposer,
-                                                data=self.data,
-                                                temporary=self)
+        mail_context = super(ProposalTemporaryData, self).get_mail_context()
+        initial_kwargs = {
+                            "title": title,
+                            "clasification": clasification,
+                            "proposer": self.proposer,
+                            "data": self.data,
+                            "temporary": self}
+        initial_kwargs.update(mail_context)
+        creation_kwargs = self.determine_kwargs(**initial_kwargs)
         popular_proposal = PopularProposal(**creation_kwargs)
         if org_id:
             enrollment = self.proposer.enrollments.get(organization__id=org_id)
             popular_proposal.organization = enrollment.organization
         popular_proposal.save()
         site = Site.objects.get_current()
-        mail_context = {
-            'area': self.area,
+        mail_context.update({
             'temporary_data': self,
             'moderator': moderator,
             'site': site,
-        }
+        })
         send_mail(mail_context, 'popular_proposal_accepted', to=[self.proposer.email])
         return popular_proposal
 
@@ -142,12 +141,12 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
         self.status = ProposalTemporaryData.Statuses.Rejected
         self.save()
         site = Site.objects.get_current()
-        mail_context = {
-            'area': self.area,
+        mail_context = super(ProposalTemporaryData, self).get_mail_context()
+        mail_context.update({
             'temporary_data': self,
             'moderator': moderator,
             'site': site,
-        }
+        })
         send_mail(mail_context, 'popular_proposal_rejected',
                   to=[self.proposer.email])
 
@@ -181,11 +180,10 @@ class ProposalsOrderedManager(ProposalsManager):
 
 
 @python_2_unicode_compatible
-class PopularProposal(models.Model, OGPMixin):
+class PopularProposal(proposal_adapter_model, OGPMixin):
     title = models.CharField(max_length=255, default='')
     slug = AutoSlugField(populate_from='title', unique=True)
     proposer = models.ForeignKey(User, related_name='%(class)ss')
-    area = models.ForeignKey(Area, related_name='%(class)ss', null=True, blank=True)
     join_advocacy_url = models.URLField(null=True, blank=True)
     data = PickledObjectField()
     created = models.DateTimeField(auto_now_add=True)
@@ -213,10 +211,6 @@ class PopularProposal(models.Model, OGPMixin):
                               blank=True)
     clasification = models.CharField(blank=True, null=True, max_length=255)
     for_all_areas = models.BooleanField(default=False)
-    generated_at = models.ForeignKey(Area,
-                                     related_name='%(class)ss_generated_here',
-                                     null=True,
-                                     blank=True)
     is_local_meeting = models.BooleanField(default=False)
     is_reported = models.BooleanField(default=False)
 
@@ -349,21 +343,7 @@ class PopularProposal(models.Model, OGPMixin):
     @property
     def nro_supports(self):
       return self.likers.count()
-
-    def notify_candidates_of_new(self):
-        if not (settings.NOTIFY_CANDIDATES and settings.NOTIFY_CANDIDATES_OF_NEW_PROPOSAL):
-            return
-        template = 'notification_for_candidates_of_new_proposal'
-        context = {'proposal': self}
-        area = Area.objects.get(id=self.area.id)
-        for election in area.elections.all():
-            for candidate in election.candidates.all():
-                for contact in candidate.contacts.all():
-                    context.update({'candidate': candidate})
-                    send_mail(context,
-                              template,
-                              to=[contact.mail])
-
+        
     def get_one_liner(self):
         if self.one_liner:
             return self.one_liner

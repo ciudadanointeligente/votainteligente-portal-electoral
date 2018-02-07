@@ -196,7 +196,7 @@ class PopularProposal(models.Model, OGPMixin):
                                      default=None)
     likers = models.ManyToManyField(User, through='ProposalLike')
     organization = models.ForeignKey(Organization,
-                                     related_name='popular_proposals',
+                                     related_name='%(class)ss',
                                      null=True)
     background = models.TextField(null=True, blank=True, help_text=_(u"Antecedentes sobre tu propuesta"))
     contact_details = models.TextField(null=True,

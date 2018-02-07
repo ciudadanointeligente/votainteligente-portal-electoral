@@ -32,7 +32,7 @@ $(function(){
         </a>
     {% endfor %}
        <div class="row masonry-container">
-        {% for proposal in organization.popular_proposals.all %}
+        {% for proposal in organization.popularproposals.all %}
           {% include 'popular_proposal/popular_proposal_card.html' with proposal=proposal %}
           {% empty %}
           {% trans 'Aún no hay propuestas de esta organización' %}

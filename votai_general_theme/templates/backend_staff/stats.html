@@ -153,7 +153,7 @@
     </thead>
     <tbody>
       {% for org in stats.organizations %}
-      <tr {% if org.proposals.count or org.likes.count %}class="success"{% endif %}>
+      <tr {% if org.popularproposals.count or org.likes.count %}class="success"{% endif %}>
         <td>
           {% if org.organization_template.logo %}
             {% thumbnail org.organization_template.logo "25x25" as im %}
@@ -163,7 +163,7 @@
         </td>
         <td><a href="{{ org.organization_template.get_absolute_url }}">{{ org.get_full_name }}</a></td>
         <td>{{ org.profile.user.username }}</td>
-        <td>{{ org.proposals.count }}</td>
+        <td>{{ org.popularproposals.count }}</td>
         <td>{{ org.likes.count }}</td>
         <td>{{org.email}}</td>
       </tr>

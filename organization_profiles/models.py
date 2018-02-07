@@ -28,7 +28,7 @@ LOGO_SIZE = 154
 class OrganizationTemplateManager(models.Manager):
     def get_queryset(self):
         qs = super(OrganizationTemplateManager, self).get_queryset()
-        qs = qs.annotate(num_proposals=Count('organization__proposals')).annotate(num_likes=Count('organization__likes')).order_by("-num_proposals", "-num_likes")
+        qs = qs.annotate(num_proposals=Count('organization__popularproposals')).annotate(num_likes=Count('organization__likes')).order_by("-num_proposals", "-num_likes")
         return qs
 
     def only_with_logos(self, *args, **kwargs):

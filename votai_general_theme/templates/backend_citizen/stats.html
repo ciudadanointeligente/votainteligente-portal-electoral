@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for proposal in user.proposals.all %}
+    {% for proposal in user.popularproposals.all %}
       {% for commitment in proposal.commitments.all %}
       <tr>
         <td><a href="{{ proposal.area.get_absolute_url }}">{{ proposal.area }}</a></td>

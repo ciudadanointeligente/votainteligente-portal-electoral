@@ -183,7 +183,7 @@ class ProposalsOrderedManager(ProposalsManager):
 class PopularProposal(models.Model, OGPMixin):
     title = models.CharField(max_length=255, default='')
     slug = AutoSlugField(populate_from='title', unique=True)
-    proposer = models.ForeignKey(User, related_name='proposals')
+    proposer = models.ForeignKey(User, related_name='%(class)ss')
     area = models.ForeignKey(Area, related_name='%(class)ss', null=True, blank=True)
     join_advocacy_url = models.URLField(null=True, blank=True)
     data = PickledObjectField()

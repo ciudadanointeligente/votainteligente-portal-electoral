@@ -131,7 +131,7 @@ class RankingManager(models.Manager):
         qs = qs.annotate(num_proposals=
                          Case(
                              When(elections__isnull=True, then=1.0),
-                             When(elections__candidates_can_commit_everywhere=False, then=Count(F('elections__area__proposals'),distinct=True)),
+                             When(elections__candidates_can_commit_everywhere=False, then=Count(F('elections__area__popularproposals'),distinct=True)),
                              When(elections__candidates_can_commit_everywhere=True, then=1.0),
                              output_field=FloatField(),
                              distinct=True,

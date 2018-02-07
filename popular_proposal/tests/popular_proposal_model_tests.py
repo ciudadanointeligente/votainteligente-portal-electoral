@@ -34,7 +34,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(popular_proposal.slug)
         self.assertEquals(popular_proposal.title, u'This is a title')
         self.assertIn(popular_proposal, self.fiera.proposals.all())
-        self.assertIn(popular_proposal, self.arica.proposals.all())
+        self.assertIn(popular_proposal, self.arica.popularproposals.all())
         self.assertIsNone(popular_proposal.temporary)
         self.assertFalse(popular_proposal.background)
         self.assertFalse(popular_proposal.contact_details)

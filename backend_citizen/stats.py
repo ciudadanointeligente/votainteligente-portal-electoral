@@ -44,10 +44,10 @@ class PerUserTotalStats(object):
         super(PerUserTotalStats, self).__init__()
 
     def areas_present(self):
-        return Area.objects.filter(proposals__proposer=self.user).distinct()
+        return Area.objects.filter(popularproposals__proposer=self.user).distinct()
 
     def areas_with_commitments(self):
-        return self.areas_present().filter(proposals__commitments__isnull=False).distinct()
+        return self.areas_present().filter(popularproposals__commitments__isnull=False).distinct()
 
     def pronouncing(self):
         return self.commitment_qs

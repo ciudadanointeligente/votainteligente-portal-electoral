@@ -24,11 +24,11 @@ import textwrap
 from django.contrib.contenttypes.models import ContentType
 from votainteligente.send_mails import send_mails_to_staff
 from constance import config
-from popular_proposal import get_authority_model
+from popular_proposal import get_authority_model, get_proposal_adapter_model
 
 
 authority_model = get_authority_model()
-
+proposal_adapter_model = get_proposal_adapter_model()
 
 class NeedingModerationManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
@@ -184,7 +184,7 @@ class PopularProposal(models.Model, OGPMixin):
     title = models.CharField(max_length=255, default='')
     slug = AutoSlugField(populate_from='title', unique=True)
     proposer = models.ForeignKey(User, related_name='proposals')
-    area = models.ForeignKey(Area, related_name='proposals', null=True, blank=True)
+    area = models.ForeignKey(Area, related_name='%(class)ss', null=True, blank=True)
     join_advocacy_url = models.URLField(null=True, blank=True)
     data = PickledObjectField()
     created = models.DateTimeField(auto_now_add=True)

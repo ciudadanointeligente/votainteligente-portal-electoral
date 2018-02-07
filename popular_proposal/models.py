@@ -213,7 +213,7 @@ class PopularProposal(models.Model, OGPMixin):
     clasification = models.CharField(blank=True, null=True, max_length=255)
     for_all_areas = models.BooleanField(default=False)
     generated_at = models.ForeignKey(Area,
-                                     related_name='proposals_generated_here',
+                                     related_name='%(class)ss_generated_here',
                                      null=True,
                                      blank=True)
     is_local_meeting = models.BooleanField(default=False)

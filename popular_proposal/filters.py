@@ -13,7 +13,7 @@ from haystack.query import SearchQuerySet
 
 
 def filterable_areas(request):
-    areas = Area.public.all().exclude(proposals_generated_here__isnull=True)
+    areas = Area.public.all().exclude(popularproposals_generated_here__isnull=True)
     if settings.FILTERABLE_AREAS_TYPE:
         return areas.filter(classification__in=settings.FILTERABLE_AREAS_TYPE)
     return areas

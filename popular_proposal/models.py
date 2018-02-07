@@ -53,15 +53,15 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
         InTheirSide = ChoiceItem('in_their_side')
         Rejected = ChoiceItem('rejected')
         Accepted = ChoiceItem('accepted')
-    proposer = models.ForeignKey(User, related_name='temporary_proposals')
-    area = models.ForeignKey(Area, related_name='temporary_proposals', null=True, blank=True)
+    proposer = models.ForeignKey(User, related_name='%(class)ss')
+    area = models.ForeignKey(Area, related_name='%(class)ss', null=True, blank=True)
     join_advocacy_url = models.URLField(null=True, blank=True)
     data = PickledObjectField()
     rejected = models.BooleanField(default=False)
     rejected_reason = models.TextField(null=True,
                                        blank=True)
     organization = models.ForeignKey(Organization,
-                                     related_name='temporary_proposals',
+                                     related_name='%(class)ss',
                                      null=True,
                                      blank=True,
                                      default=None)
@@ -76,6 +76,7 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
                                         default="")
     is_local_meeting = models.BooleanField(default=False)
     generated_at = models.ForeignKey(Area,
+                                     related_name='%(class)ss_generated_here',
                                      null=True,
                                      blank=True)
     created = models.DateTimeField(auto_now_add=True,

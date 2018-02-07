@@ -106,7 +106,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
 
     def test_send_mail_per_candidate(self):
         e = Election.objects.first()
-        damian_candidato = Candidate.objects.create(name='Jefe!')
+        damian_candidato = Candidate.objects.create(name=u'Jefe!')
         damian_candidato.elections.add(e)
         d_1 = User.objects.create(username='d1', email='damian1@perrito.cl')
         d_2 = User.objects.create(username='d2', email='damian2@perrito.cl')
@@ -185,7 +185,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
 
     def test_command_line(self):
         e = Election.objects.first()
-        damian_candidato = Candidate.objects.create(name='Jefe!')
+        damian_candidato = Candidate.objects.create(name=u'Jefe!')
         damian_candidato.elections.add(e)
         d_1 = User.objects.create(username='d1', email='damian1@perrito.cl')
         d_2 = User.objects.create(username='d2', email='damian2@perrito.cl')
@@ -266,7 +266,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
 
     def test_command_line_for_selected_filters(self):
         e = Election.objects.first()
-        damian_candidato = Candidate.objects.create(name='Jefe!', id="jefe")
+        damian_candidato = Candidate.objects.create(name=u'Jefe!', id=u"jefe")
         damian_candidato.elections.add(e)
         d_1 = User.objects.create(username='d1', email='damian1@perrito.cl')
         d_2 = User.objects.create(username='d2', email='damian2@perrito.cl')
@@ -282,11 +282,11 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
         Candidacy.objects.create(candidate=fiera_candidata, user=f_1)
         Candidacy.objects.create(candidate=fiera_candidata, user=f_2)
 
-        benito_candidato = Candidate.objects.create(name='Beni el mejor del mundo!', id="beni")
-        beni_1 = User.objects.create(username='beni', email='beni@perrito.cl')
+        benito_candidato = Candidate.objects.create(name=u'Beni el mejor del mundo!', id=u"beni")
+        beni_1 = User.objects.create(username=u'beni', email='beni@perrito.cl')
         Candidacy.objects.create(candidate=benito_candidato, user=beni_1)
         PersonalData.objects.create(candidate=benito_candidato, label='Pacto', value="Otro Pacto")
-        filter_qs2 = {'id':'beni'}
+        filter_qs2 = {'id':u'beni'}
         exclude_qs2 = {}
         f2 = IncrementalsCandidateFilter.objects.create(filter_qs=filter_qs2,
                                                        exclude_qs=exclude_qs2,

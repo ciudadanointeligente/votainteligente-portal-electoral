@@ -1,6 +1,5 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
-from backend_citizen.models import Organization, Enrollment
 from elections.models import Area
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData, PopularProposal, ProposalLike
@@ -17,10 +16,6 @@ from django.core.urlresolvers import reverse
 class PopularProposalTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(PopularProposalTestCase, self).setUp()
-        # Enrolling Fiera with the organization
-        self.org = Organization.objects.create(name=u'La Cosa Nostra')
-        self.enrollment = Enrollment.objects.create(organization=self.org,
-                                                    user=self.fiera)
 
     def test_instantiate_one(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
@@ -221,18 +216,9 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
                                                           )
         self.assertTrue(popular_proposal.generate_og_image())
 
-    def test_can_have_an_organization(self):
-        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                          area=self.arica,
-                                                          data=self.data,
-                                                          organization=self.org,
-                                                          title=u'This is a title'
-                                                          )
-
     def test_create_popular_proposal_from_temporary_data(self):
 
         data = self.data
-        data['organization'] = self.org.id
         data["join_advocacy_url"] = u"http://whatsapp.com/somegroup"
         # Testing
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
@@ -242,9 +228,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         popular_proposal = temporary_data.create_proposal(moderator=self.feli)
         self.assertEquals(popular_proposal.proposer, self.fiera)
         self.assertTrue(popular_proposal.organization)
-        self.assertEqual(self.enrollment.user, self.fiera)
         popular_proposal = PopularProposal.objects.get(id=popular_proposal.id)
-        self.assertEquals(popular_proposal.organization.name, self.org.name)
         self.assertEquals(popular_proposal.area, self.arica)
         self.assertEquals(popular_proposal.join_advocacy_url, u"http://whatsapp.com/somegroup")
         self.assertEquals(popular_proposal.clasification, data['clasification'])

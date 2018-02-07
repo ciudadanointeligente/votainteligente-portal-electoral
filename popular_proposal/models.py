@@ -10,7 +10,6 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
-from backend_citizen.models import Organization
 from votainteligente.open_graph import OGPMixin
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
@@ -60,11 +59,6 @@ class ProposalTemporaryData(proposal_adapter_model, ProposalCreationMixin):
     rejected = models.BooleanField(default=False)
     rejected_reason = models.TextField(null=True,
                                        blank=True)
-    organization = models.ForeignKey(Organization,
-                                     related_name='%(class)ss',
-                                     null=True,
-                                     blank=True,
-                                     default=None)
     comments = PickledObjectField()
     status = models.CharField(max_length=16,
                               choices=Statuses.choices,
@@ -194,9 +188,6 @@ class PopularProposal(proposal_adapter_model, OGPMixin):
                                      null=True,
                                      default=None)
     likers = models.ManyToManyField(User, through='ProposalLike')
-    organization = models.ForeignKey(Organization,
-                                     related_name='%(class)ss',
-                                     null=True)
     background = models.TextField(null=True, blank=True, help_text=_(u"Antecedentes sobre tu propuesta"))
     contact_details = models.TextField(null=True,
                                        blank=True,

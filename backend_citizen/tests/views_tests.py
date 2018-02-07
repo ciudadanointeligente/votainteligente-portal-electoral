@@ -9,7 +9,6 @@ from popular_proposal.forms import ProposalTemporaryDataUpdateForm
 from popular_proposal.tests import get_example_data_for_testing
 from backend_citizen.forms import UserChangeForm
 from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
-from backend_citizen.models import Organization
 from django.core import mail
 
 
@@ -153,19 +152,6 @@ class GroupUserCreateView(TestCase):
         self.assertEquals(tha_group.last_name, data['name'])
         self.assertTrue(tha_group.profile.is_organization)
 
-
-class OrganizationDetailViewTests(TestCase):
-    def setUp(self):
-        super(OrganizationDetailViewTests, self).setUp()
-        self.organization = Organization.objects.create(name=u'La cossa nostra')
-
-    def test_there_is_a_url(self):
-        url = reverse('backend_citizen:organization',
-                      kwargs={'slug': self.organization.id})
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'backend_citizen/organization.html')
-        self.assertEquals(response.context['organization'], self.organization)
 
 
 class UnsuscribeViewTestCase(BackendCitizenTestCaseBase):

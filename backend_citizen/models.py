@@ -43,20 +43,3 @@ def create_user_profile(sender, instance, created, raw, **kwargs):
     except Profile.DoesNotExist:
         Profile.objects.create(user=instance)
         unite_with_candidate_if_corresponds(instance)
-
-
-
-class Organization(PopoloOrganization, HasImageMixin):
-    _id = models.AutoField(primary_key=True)
-    images = GenericRelation(Image)
-
-    def get_absolute_url(self):
-        return reverse('backend_citizen:organization',
-                       kwargs={'slug': self.id})
-
-
-class Enrollment(models.Model):
-    user = models.ForeignKey(User, related_name="enrollments")
-    organization = models.ForeignKey(Organization, related_name="enrollments")
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now_add=True)

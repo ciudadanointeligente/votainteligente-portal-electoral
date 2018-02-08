@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.core.urlresolvers import reverse
 
-from django.http import HttpResponseNotFound, JsonResponse, HttpResponse
+from django.http import HttpResponseNotFound, JsonResponse, HttpResponse, Http404
 
 from django.shortcuts import get_object_or_404
 
@@ -56,6 +56,8 @@ from votainteligente.view_mixins import EmbeddedViewBase
 import random
 from django.conf import settings
 from popular_proposal.views.proposal_views import (ThanksForProposingViewBase,
+                                                   CommitViewBase,
+                                                   NotCommitViewBase,
                                                    ProposalFilterMixin)
 
 
@@ -87,6 +89,34 @@ class WithinAreaProposalCreationView(FormView):
         return reverse('popular_proposals:thanks',
                        kwargs={'pk': self.proposal.id})
 
+class CommitView(CommitViewBase):
+
+    def determine_if_authority_can_commit(self):
+        self.candidate = get_object_or_404(Candidate,
+                                           id=self.kwargs['candidate_pk'])
+        previous_commitment_exists = Commitment.objects.filter(proposal=self.proposal,
+                                                               authority=self.candidate).exists()
+        if previous_commitment_exists:
+            raise Http404
+        c = get_object_or_404(Candidacy,
+                          candidate=self.candidate,
+                          user=self.request.user)
+        elections_where_the_candidate_cannot_commit = self.candidate.elections.filter(candidates_can_commit_everywhere=False)
+        if elections_where_the_candidate_cannot_commit:
+            areas = []
+            for election in self.candidate.elections.all():
+                if election.area:
+                    areas.append(election.area)
+            if self.proposal.area not in areas:
+                raise Http404
+            # The former can be refactored
+
+    def get_authority(self):
+        return self.candidate
+
+
+class NotCommitView(CommitView, NotCommitViewBase):
+    pass
 
 class ThanksForProposingView(ThanksForProposingViewBase):
 

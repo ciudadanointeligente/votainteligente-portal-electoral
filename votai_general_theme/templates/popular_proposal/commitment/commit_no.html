@@ -24,7 +24,7 @@
 	<div class="fondo-blanco text-width">
 
 
-		Yo <strong>{{candidate.name}}</strong> candidata/o a {{candidate.election.position}} de {{proposal.area}} <strong>NO</strong> me comprometo con la propuesta ciudadana <strong>{{proposal.title}}</strong>.
+		Yo <strong>{{authority.name}}</strong> candidata/o a {{authority.election.position}} de {{proposal.area}} <strong>NO</strong> me comprometo con la propuesta ciudadana <strong>{{proposal.title}}</strong>.
 
 		<p>Por las razones que explicaré a continuación:</p>
 
@@ -33,7 +33,7 @@
 
 
 
-	<form enctype="multipart/form-data" action="{% url 'popular_proposals:commit_no' proposal_pk=proposal.id candidate_pk=candidate.id %}" method="POST" role="form">{% csrf_token %}
+	<form enctype="multipart/form-data" action="{% url 'popular_proposals:commit_no' proposal_pk=proposal.id candidate_pk=authority.id %}" method="POST" role="form">{% csrf_token %}
 
 		{% bootstrap_field form.detail show_label=false %}
 	    <div class="tips">
@@ -43,13 +43,7 @@
 		{% bootstrap_field form.terms_and_conditions show_label=false %}
 		<button type="submit" class="btn btn-dark">
 
-			{% if candidate.election.position == 'concejal' %}
-				{% trans 'No apoyaré esta propuesta'%}
-			{% elif candidate.election.position == 'alcalde' %}
-				{% trans 'No incluiré esta propuesta en mi programa'%}
-			{% else %}
 			{% trans 'No incluiré esta propuesta en mi programa'%}
-			{% endif %}
 			</button>
 	</form>
 	</div>

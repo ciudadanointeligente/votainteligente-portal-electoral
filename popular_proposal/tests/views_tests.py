@@ -277,7 +277,7 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         self.assertTemplateUsed(response, 'popular_proposal/commitment/commit_yes.html')
         self.assertIsInstance(response.context['form'], AuthorityCommitmentForm)
         self.assertEquals(response.context['proposal'], self.popular_proposal1)
-        self.assertEquals(response.context['candidate'], self.candidate)
+        self.assertEquals(response.context['authority'], self.candidate)
 
         response_post = self.client.post(url, {'terms_and_conditions': True})
         detail_url = reverse('popular_proposals:commitment', kwargs={'authority_slug': self.candidate.id,

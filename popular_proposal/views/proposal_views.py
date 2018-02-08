@@ -196,9 +196,15 @@ class HomeView(EmbeddedViewBase, ProposalFilterMixin, FilterView):
         return context
 
 
-class CommitView(FormView):
+class CommitViewBase(FormView):
     template_name = 'popular_proposal/commitment/commit_yes.html'
     form_class = AuthorityCommitmentForm
+
+    def determine_if_authority_can_commit(self):
+        pass
+
+    def get_authority(self):
+        pass
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -206,25 +212,8 @@ class CommitView(FormView):
             return HttpResponseNotFound()
         self.proposal = get_object_or_404(PopularProposal,
                                           id=self.kwargs['proposal_pk'])
-        self.candidate = get_object_or_404(Candidate,
-                                           id=self.kwargs['candidate_pk'])
-        previous_commitment_exists = Commitment.objects.filter(proposal=self.proposal,
-                                                               authority=self.candidate).exists()
-        if previous_commitment_exists:
-            return HttpResponseNotFound()
-        get_object_or_404(Candidacy,
-                          candidate=self.candidate,
-                          user=self.request.user)
-        elections_where_the_candidate_cannot_commit = self.candidate.elections.filter(candidates_can_commit_everywhere=False)
-        if elections_where_the_candidate_cannot_commit:
-            areas = []
-            for election in self.candidate.elections.all():
-                if election.area:
-                    areas.append(election.area)
-            if self.proposal.area not in areas:
-                return HttpResponseNotFound()
-            # The former can be refactored
-        return super(CommitView, self).dispatch(request, *args, **kwargs)
+        self.determine_if_authority_can_commit()
+        return super(CommitViewBase, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         self.commitment = form.save()
@@ -236,27 +225,28 @@ class CommitView(FormView):
             messages.add_message(self.request,
                                  messages.WARNING,
                                  _(u'Muchas gracias por tu sinceridad. Le hemos enviado un mail a los ciudadanos que apoyan y además a aquel que la realizó.'))
-        return super(CommitView, self).form_valid(form)
+        return super(CommitViewBase, self).form_valid(form)
 
     def get_form_kwargs(self):
-        kwargs = super(CommitView, self).get_form_kwargs()
+        kwargs = super(CommitViewBase, self).get_form_kwargs()
         kwargs['proposal'] = self.proposal
-        kwargs['authority'] = self.candidate
+        kwargs['authority'] = self.get_authority()
         return kwargs
 
     def get_context_data(self, **kwargs):
-        context = super(CommitView, self).get_context_data(**kwargs)
+        context = super(CommitViewBase, self).get_context_data(**kwargs)
         context['proposal'] = self.proposal
-        context['candidate'] = self.candidate
+        context['authority'] = self.get_authority()
         return context
 
     def get_success_url(self):
+        authority = self.get_authority()
         url = reverse('popular_proposals:commitment', kwargs={'authority_slug': self.candidate.id,
                                                               'proposal_slug': self.proposal.slug})
         return url
 
 
-class NotCommitView(CommitView):
+class NotCommitViewBase(CommitViewBase):
     template_name = 'popular_proposal/commitment/commit_no.html'
     form_class = AuthorityNotCommitingForm
 

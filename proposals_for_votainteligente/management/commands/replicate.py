@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from popular_proposal.models import PopularProposal
-from popular_proposal.replicator import Replicator
+from proposals_for_votainteligente.replicator import Replicator
 
 class Command(BaseCommand):
     help = 'Replicates a proposal in all areas except in the excluded ids'

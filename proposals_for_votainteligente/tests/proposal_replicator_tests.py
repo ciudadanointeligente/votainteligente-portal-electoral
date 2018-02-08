@@ -13,7 +13,7 @@ from django.contrib.sites.models import Site
 from elections.models import Candidate
 from django.core.urlresolvers import reverse
 from elections.models import Area
-from popular_proposal.replicator import Replicator
+from proposals_for_votainteligente.replicator import Replicator
 from django.core.management import call_command
 
 

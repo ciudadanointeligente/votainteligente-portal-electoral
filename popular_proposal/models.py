@@ -10,7 +10,6 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
-from votainteligente.open_graph import OGPMixin
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
@@ -169,7 +168,7 @@ class ProposalsOrderedManager(ProposalsManager):
 
 
 @python_2_unicode_compatible
-class PopularProposal(proposal_adapter_model, OGPMixin):
+class PopularProposal(proposal_adapter_model):
     title = models.CharField(max_length=255, default='')
     slug = AutoSlugField(populate_from='title', unique=True)
     proposer = models.ForeignKey(User, related_name='%(class)ss')
@@ -206,8 +205,6 @@ class PopularProposal(proposal_adapter_model, OGPMixin):
     important_within_organization = models.BooleanField(default=False)
     one_liner = models.CharField(blank=True, max_length=140, default="")
 
-    ogp_enabled = True
-
     ordered = ProposalsOrderedManager.from_queryset(ProposalQuerySet)()
     objects = ProposalsManager()
     all_objects = models.Manager()
@@ -227,9 +224,6 @@ class PopularProposal(proposal_adapter_model, OGPMixin):
     def get_topic_choices_dict(cls):
         from popular_proposal.forms.form_texts import TOPIC_CHOICES_DICT
         return TOPIC_CHOICES_DICT
-
-    def ogp_title(self):
-        return u'¡Ingresa a votainteligente.cl y apoya esta propuesta!'
 
     def save(self, *args, **kwargs):
         created = self.pk is not None
@@ -277,8 +271,6 @@ class PopularProposal(proposal_adapter_model, OGPMixin):
         out = Image.alpha_composite(base, txt)
 
         return out
-    def get_classification(self):
-        return self.__class__.get_topic_choices_dict().get(self.clasification, u"")
 
     def ogp_image(self):
         site = Site.objects.get_current()
@@ -287,6 +279,10 @@ class PopularProposal(proposal_adapter_model, OGPMixin):
         url = "http://%s%s" % (site.domain,
                                image_url)
         return url
+
+    def get_classification(self):
+        return self.__class__.get_topic_choices_dict().get(self.clasification, u"")
+
 
     def display_card(self, context={}):
         context['proposal'] = self

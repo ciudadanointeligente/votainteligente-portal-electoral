@@ -24,3 +24,8 @@ EXCLUDED_PROPOSALS_APPS = []
 AREAS_THAT_SHOULD_BE_REDIRECTING_TO_THEIR_PARENTS = ['comuna']
 SECOND_ROUND_ELECTION = None
 PRIORITY_CANDIDATES = []
+
+AUTHORITY_MODEL = "elections.models.Candidate"
+PROPOSALS_ADAPTER = "proposals_for_votainteligente.models.ProposalsAdapter"
+MAIL_SENDER_FUNCTION = 'votainteligente.send_mails.send_mail'
+MAIL_TO_STAFF_SENDER_FUNCTION = 'votainteligente.send_mails.send_mails_to_staff'

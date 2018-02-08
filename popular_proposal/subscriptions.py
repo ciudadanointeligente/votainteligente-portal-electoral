@@ -1,5 +1,5 @@
 from collections import OrderedDict
-from votainteligente.send_mails import send_mail
+from popular_proposal import send_mail
 from elections.models import Candidate, Area
 from backend_candidate.models import CandidacyContact
 from popular_proposal.models import Commitment, ProposalLike, PopularProposal

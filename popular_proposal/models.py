@@ -5,7 +5,7 @@ from django.db import models
 from picklefield.fields import PickledObjectField
 from django.contrib.auth.models import User
 from djchoices import DjangoChoices, ChoiceItem
-from votainteligente.send_mails import send_mail, send_mails_to_staff
+from popular_proposal import send_mail, send_mails_to_staff
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.sites.models import Site
 from autoslug import AutoSlugField

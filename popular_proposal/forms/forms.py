@@ -5,13 +5,12 @@ from popular_proposal.models import (ProposalTemporaryData,
                                      PopularProposal,
                                      ProposalCreationMixin,
                                      Commitment)
-from votainteligente.send_mails import send_mail
+from popular_proposal import send_mail, send_mails_to_staff
 from django.utils.translation import ugettext as _
 from django.contrib.sites.models import Site
 from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
 from elections.models import Area
 from collections import OrderedDict
-from votainteligente.send_mails import send_mails_to_staff
 from constance import config
 from django.conf import settings
 

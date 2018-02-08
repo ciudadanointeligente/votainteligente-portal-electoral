@@ -56,46 +56,14 @@ from votainteligente.view_mixins import EmbeddedViewBase
 import random
 from django.conf import settings
 
-
-class ProposalCreationView(FormView):
-    template_name = 'popular_proposal/create.html'
-    form_class = ProposalForm
-
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        self.area = get_object_or_404(Area, id=self.kwargs['slug'])
-        return super(ProposalCreationView, self).dispatch(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        kwargs = super(ProposalCreationView, self).get_context_data(**kwargs)
-        kwargs['area'] = self.area
-        return kwargs
-
-    def get_form_kwargs(self):
-        kwargs = super(ProposalCreationView, self).get_form_kwargs()
-        kwargs['proposer'] = self.request.user
-        kwargs['area'] = self.area
-        return kwargs
-
-    def form_valid(self, form):
-        self.proposal = form.save()
-        return super(ProposalCreationView, self).form_valid(form)
-
-    def get_success_url(self):
-        return reverse('popular_proposals:thanks',
-                       kwargs={'pk': self.proposal.id})
-
-
-class ThanksForProposingView(DetailView):
+class ThanksForProposingViewBase(DetailView):
     model = ProposalTemporaryData
     template_name = 'popular_proposal/thanks.html'
     context_object_name = 'proposal'
 
     def get_context_data(self, **kwargs):
-        kwargs = super(ThanksForProposingView, self).get_context_data(**kwargs)
-        kwargs['area'] = self.object.area
+        kwargs = super(ThanksForProposingViewBase, self).get_context_data(**kwargs)
         return kwargs
-
 
 class SubscriptionView(FormView):
     template_name = 'popular_proposal/new_subscription.html'
@@ -186,8 +154,7 @@ class UnlikeProposalView(View):
         self.like.delete()
         return JsonResponse({'deleted_item': self.pk})
 
-
-class ProposalFilterMixin(object):
+class ProposalFilterMixinBase(object):
     model = PopularProposal
     filterset_class = ProposalGeneratedAtFilter
     order_by = None
@@ -210,9 +177,12 @@ class ProposalFilterMixin(object):
         return self._get_filterset().qs
 
     def get_context_data(self, **kwargs):
-        context = super(ProposalFilterMixin, self).get_context_data(**kwargs)
+        context = super(ProposalFilterMixinBase, self).get_context_data(**kwargs)
         context['form'] = self.get_form()
         return context
+
+class ProposalFilterMixin(ProposalFilterMixinBase):
+    filterset_class = ProposalGeneratedAtFilter
 
 
 class HomeView(EmbeddedViewBase, ProposalFilterMixin, FilterView):
@@ -224,19 +194,6 @@ class HomeView(EmbeddedViewBase, ProposalFilterMixin, FilterView):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['form_type'] = random.randint(0,1)
         return context
-
-
-class ProposalsPerArea(EmbeddedViewBase, ProposalFilterMixin, ListView):
-    template_name = 'popular_proposal/area.html'
-    context_object_name = 'popular_proposals'
-    filterset_class = ProposalWithoutAreaFilter
-
-    def _get_filterset_kwargs(self):
-        return {'area': self.area}
-
-    def dispatch(self, request, *args, **kwargs):
-        self.area = get_object_or_404(Area, id=self.kwargs['slug'])
-        return super(ProposalsPerArea, self).dispatch(request, *args, **kwargs)
 
 
 class CommitView(FormView):

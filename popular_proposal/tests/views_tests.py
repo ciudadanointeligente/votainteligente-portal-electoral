@@ -107,16 +107,6 @@ class ProposalViewTestCase(TestCase):
                                 'embedded_base.html')
         self.assertTrue(response.context['is_embedded'])
 
-    def test_thanks_page(self):
-        temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                              join_advocacy_url=u"http://whatsapp.com/mygroup",
-                                                              area=self.arica,
-                                                              data=self.data)
-        url = reverse('popular_proposals:thanks', kwargs={'pk': temporary_data.id})
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.context['proposal'], temporary_data)
-
 
 class ProposalHomeTestCase(PopularProposalTestCaseBase):
     def setUp(self):
@@ -219,15 +209,6 @@ class ProposalFilterTestsCase(PopularProposalTestCaseBase):
 class EmbeddedViewsTests(PopularProposalTestCaseBase):
     def setUp(self):
         super(EmbeddedViewsTests, self).setUp()
-
-    def test_get_home_view(self):
-        url = reverse('popular_proposals:embedded_home')
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'popular_proposal/home.html')
-        self.assertTemplateUsed(response, 'embedded_base.html')
-        self.assertIsInstance(response.context['form'], Form)
-        self.assertTrue(response.context['is_embedded'])
 
     def test_get_popular_proposals_per_area_embedded(self):
         url = reverse('popular_proposals:area_embedded',

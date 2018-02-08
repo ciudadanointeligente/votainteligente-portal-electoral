@@ -1,5 +1,4 @@
 from django.core.management.base import BaseCommand, CommandError
-from elections.models import Election
 from popular_proposal.models import PopularProposal
 from popular_proposal.replicator import Replicator
 

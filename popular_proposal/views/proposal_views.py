@@ -213,9 +213,6 @@ class ProposalFilterMixin(object):
         context = super(ProposalFilterMixin, self).get_context_data(**kwargs)
         context['form'] = self.get_form()
         return context
-#    def get_queryset(self):
-#        qs = self.model.ordered.by_likers().exclude(area__id=config.HIDDEN_AREAS)
-#        return qs
 
 
 class HomeView(EmbeddedViewBase, ProposalFilterMixin, FilterView):

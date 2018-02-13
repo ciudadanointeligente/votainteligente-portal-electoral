@@ -8,7 +8,7 @@ from django.http import JsonResponse
 from django import forms
 import json
 from django.urls import reverse_lazy
-from popular_proposal.filters import ProposalGeneratedAtFilter
+from popular_proposal import default_filterset_class
 from django.views.generic.list import ListView
 from django.utils.translation import ugettext_lazy as _
 
@@ -40,11 +40,12 @@ class SubscriptionCreateForm(ModelForm):
         model = SearchSubscription
         fields = ['oftenity', ]
 
+filterset_class = default_filterset_class()
 
 class SearchSubscriptionCreateView(LoginRequiredMixin, CreateView):
     form_class = SubscriptionCreateForm
     template_name = 'proposal_subscriptions/subscribe_to_search.html'
-    filter_class = ProposalGeneratedAtFilter
+    filter_class = filterset_class
 
     def get_form_kwargs(self):
 

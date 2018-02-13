@@ -20,7 +20,7 @@ class SearchSubscriptionModel(ProposingCycleTestCaseBase):
                                                          keyword_args={'perrito': "gatito"},
                                                          search_params={'text': "bicicletas"},
                                                          filter_class_module="popular_proposal.filters",
-                                                         filter_class_name="ProposalWithoutAreaFilter",
+                                                         filter_class_name="ProposalFilterBase",
                                                          oftenity=timedelta(weeks=1))
 
         self.assertTrue(subscription.created)
@@ -33,7 +33,7 @@ class SearchSubscriptionModel(ProposingCycleTestCaseBase):
                                                          keyword_args={'perrito': "gatito"},
                                                          search_params={'text': "bicicletas"},
                                                          filter_class_module="popular_proposal.filters",
-                                                         filter_class_name="ProposalWithoutAreaFilter",
+                                                         filter_class_name="ProposalFilterBase",
                                                          oftenity=timedelta(weeks=1))
         expected_url = reverse('proposal_subscriptions:unsubscribe', kwargs={'token': subscription.token})
         self.assertEquals(subscription.unsubscribe_url(), expected_url)
@@ -55,7 +55,7 @@ class SearchSubscriptionModel(ProposingCycleTestCaseBase):
                                                          keyword_args={},
                                                          search_params={'text': "bicicletas"},
                                                          filter_class_module="popular_proposal.filters",
-                                                         filter_class_name="ProposalWithoutAreaFilter",
+                                                         filter_class_name="ProposalFilterBase",
                                                          oftenity=timedelta(seconds=1))
         hit_one = PopularProposal.objects.create(proposer=self.fiera,
                                                  area=self.arica,
@@ -119,7 +119,7 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
                                                keyword_args={},
                                                search_params={'text': "bicicletas"},
                                                filter_class_module="popular_proposal.filters",
-                                               filter_class_name="ProposalWithoutAreaFilter",
+                                               filter_class_name="ProposalFilterBase",
                                                oftenity=timedelta(seconds=1))
         s1.created = two_days_ago
         s1.save()
@@ -128,7 +128,7 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
                                                search_params={'text': "bicicletas",
                                                               'clasification': TOPIC_CHOICES[2][0]},
                                                filter_class_module="popular_proposal.filters",
-                                               filter_class_name="ProposalWithoutAreaFilter",
+                                               filter_class_name="ProposalFilterBase",
                                                oftenity=timedelta(seconds=1))
         s2.created = two_days_ago
         s2.save()
@@ -146,7 +146,7 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
                                                keyword_args={},
                                                search_params={'text': "bicicletas"},
                                                filter_class_module="popular_proposal.filters",
-                                               filter_class_name="ProposalWithoutAreaFilter",
+                                               filter_class_name="ProposalFilterBase",
                                                last_run=a_day_ago,
                                                oftenity=timedelta(seconds=1))
         s1.created = two_days_ago
@@ -157,7 +157,7 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
                                                search_params={'text': "bicicletas",
                                                               'clasification': TOPIC_CHOICES[2][0]},
                                                filter_class_module="popular_proposal.filters",
-                                               filter_class_name="ProposalWithoutAreaFilter",
+                                               filter_class_name="ProposalFilterBase",
                                                last_run=a_day_ago,
                                                oftenity=timedelta(days=2))
         s2.created = two_days_ago
@@ -168,7 +168,7 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
                                                search_params={'text': "bicicletas",
                                                               'clasification': TOPIC_CHOICES[2][0]},
                                                filter_class_module="popular_proposal.filters",
-                                               filter_class_name="ProposalWithoutAreaFilter",
+                                               filter_class_name="ProposalFilterBase",
                                                oftenity=timedelta(hours=1))
         s3.created = two_days_ago
         s3.save()
@@ -178,7 +178,7 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
                                                search_params={'text': "bicicletas",
                                                               'clasification': TOPIC_CHOICES[2][0]},
                                                filter_class_module="popular_proposal.filters",
-                                               filter_class_name="ProposalWithoutAreaFilter",
+                                               filter_class_name="ProposalFilterBase",
                                                oftenity=timedelta(days=2))
         s4.created = a_day_ago
         s4.save()
@@ -202,7 +202,7 @@ class SearchSubscriptionRunner(ProposingCycleTestCaseBase):
                                               search_params={'text': "bicicletas",
                                                              'clasification': TOPIC_CHOICES[2][0]},
                                               filter_class_module="popular_proposal.filters",
-                                              filter_class_name="ProposalWithoutAreaFilter",
+                                              filter_class_name="ProposalFilterBase",
                                               oftenity=timedelta(days=1))
         s.created = a_week_ago
         s.save()
@@ -236,7 +236,7 @@ class SearchSubscriptionTaskRunner(ProposingCycleTestCaseBase):
                                           keyword_args={},
                                           search_params={'text': "bicicletas"},
                                           filter_class_module="popular_proposal.filters",
-                                          filter_class_name="ProposalWithoutAreaFilter",
+                                          filter_class_name="ProposalFilterBase",
                                           oftenity=timedelta(seconds=1))
         tr = TaskRunner()
         self.assertIn(self.feli, tr.users())
@@ -255,7 +255,7 @@ class SearchSubscriptionTaskRunner(ProposingCycleTestCaseBase):
                                               search_params={'text': "bicicletas",
                                                              'clasification': TOPIC_CHOICES[2][0]},
                                               filter_class_module="popular_proposal.filters",
-                                              filter_class_name="ProposalWithoutAreaFilter",
+                                              filter_class_name="ProposalFilterBase",
                                               oftenity=timedelta(days=1))
         s.created = a_week_ago
         s.save()

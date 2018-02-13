@@ -54,7 +54,7 @@ class DeleteSubscriptionViewsTestCase(ProposingCycleTestCaseBase):
                                                               keyword_args={'perrito': "gatito"},
                                                               search_params={'text': "bicicletas"},
                                                               filter_class_module="popular_proposal.filters",
-                                                              filter_class_name="ProposalWithoutAreaFilter",
+                                                              filter_class_name="ProposalFilterBase",
                                                               oftenity=timedelta(weeks=1))
 
     def test_get_view(self):
@@ -81,7 +81,7 @@ class SubscriptionListViewsTestCase(ProposingCycleTestCaseBase):
                                                               keyword_args={'perrito': "gatito"},
                                                               search_params={'text': "bicicletas"},
                                                               filter_class_module="popular_proposal.filters",
-                                                              filter_class_name="ProposalWithoutAreaFilter",
+                                                              filter_class_name="ProposalFilterBase",
                                                               oftenity=timedelta(weeks=1))
 
     def test_get_list_view(self):
@@ -89,7 +89,7 @@ class SubscriptionListViewsTestCase(ProposingCycleTestCaseBase):
                                                           keyword_args={'perrito': "gatito"},
                                                           search_params={'text': "bicicletas"},
                                                           filter_class_module="popular_proposal.filters",
-                                                          filter_class_name="ProposalWithoutAreaFilter",
+                                                          filter_class_name="ProposalFilterBase",
                                                           oftenity=timedelta(weeks=1))
         url = reverse('proposal_subscriptions:list')
         response = self.client.get(url)

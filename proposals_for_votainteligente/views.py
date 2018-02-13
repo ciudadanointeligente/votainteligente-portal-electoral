@@ -37,8 +37,7 @@ from elections.models import Area, Candidate
 
 from django import forms
 
-from popular_proposal.filters import (ProposalWithoutAreaFilter,
-                                      ProposalGeneratedAtFilter)
+from proposals_for_votainteligente.filters import (ProposalGeneratedAtFilter)
 
 from popular_proposal.forms import (AuthorityCommitmentForm,
                                     AuthorityNotCommitingForm,
@@ -129,7 +128,7 @@ class ThanksForProposingView(ThanksForProposingViewBase):
 class ProposalsPerArea(EmbeddedViewBase, ProposalFilterMixin, ListView):
     template_name = 'popular_proposal/area.html'
     context_object_name = 'popular_proposals'
-    filterset_class = ProposalWithoutAreaFilter
+    filterset_class = ProposalGeneratedAtFilter
 
     def _get_filterset_kwargs(self):
         return {'area': self.area}

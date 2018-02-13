@@ -25,9 +25,11 @@ urlpatterns = [
     url(r'^create_wizard/(?P<slug>[-\w]+)/?$',
         ProposalWizard.as_view(),
         name='propose_wizard'),
+    ## This depends on area
     url(r'^create_wizard_full/?$',
         ProposalWizardFull.as_view(),
         name='propose_wizard_full'),
+    ## this depends on area
     url(r'^crear/?$',
         ProposalWizardFullWithoutArea.as_view(),
         name='propose_wizard_full_without_area'),

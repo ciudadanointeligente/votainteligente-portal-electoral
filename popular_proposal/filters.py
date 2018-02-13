@@ -12,12 +12,6 @@ from django.forms import CharField, Form, ChoiceField, HiddenInput
 from haystack.query import SearchQuerySet
 
 
-def filterable_areas(request):
-    areas = Area.public.all().exclude(popularproposals_generated_here__isnull=True)
-    if settings.FILTERABLE_AREAS_TYPE:
-        return areas.filter(classification__in=settings.FILTERABLE_AREAS_TYPE)
-    return areas
-
 
 class TextSearchForm(Form):
     text = CharField(label=u'Qué buscas?', required=False)
@@ -40,7 +34,7 @@ class TextSearchForm(Form):
         self.cleaned_data.update(cleaned_data)
 
 
-class ProposalWithoutAreaFilter(FilterSet):
+class ProposalFilterBase(FilterSet):
     clasification = ChoiceFilter(choices=TOPIC_CHOICES,
                                  empty_label=u"Selecciona",
                                  widget=HiddenInput(),
@@ -52,26 +46,26 @@ class ProposalWithoutAreaFilter(FilterSet):
                  prefix=None,
                  strict=None,
                  **kwargs):
-        self.area = kwargs.pop('area', None)
-        if self.area is None and data is not None:
-            self.area = data.get('area', None)
-            if self.area:
-                try:
-                    self.area = Area.objects.get(id=self.area)
-                except Area.DoesNotExist as e:
-                    self.area = None
         if queryset is None:
             queryset = PopularProposal.ordered.all()
-        if self.area is not None:
-            queryset = queryset.filter(area=self.area)
-        super(ProposalWithoutAreaFilter, self).__init__(data=data,
+
+        queryset = self.filter_original_queryset(data, queryset, prefix, strict, **kwargs)
+        super(ProposalFilterBase, self).__init__(data=data,
                                                         queryset=queryset,
                                                         prefix=prefix,
                                                         strict=strict)
 
+    def filter_original_queryset(self,
+                 data=None,
+                 queryset=None,
+                 prefix=None,
+                 strict=None,
+                 **kwargs):
+        return queryset
+
     @property
     def form(self):
-        super(ProposalWithoutAreaFilter, self).form
+        super(ProposalFilterBase, self).form
         is_filled_search = False
         for k in self.data:
             i = self.data[k]
@@ -84,7 +78,7 @@ class ProposalWithoutAreaFilter(FilterSet):
     @property
     def qs(self):
 
-        super(ProposalWithoutAreaFilter, self).qs
+        super(ProposalFilterBase, self).qs
         self._qs = self._qs.exclude(area__id=config.HIDDEN_AREAS)
         if not self.form.is_valid():
             return self._qs
@@ -107,18 +101,3 @@ class ProposalWithoutAreaFilter(FilterSet):
         model = PopularProposal
         fields = ['clasification', ]
         form = TextSearchForm
-
-
-def possible_areas(request):
-    as_ = Area.public.all()
-    return as_
-
-
-class ProposalWithAreaFilter(ProposalWithoutAreaFilter):
-    area = ModelChoiceFilter(queryset=possible_areas, label="Comuna donde fue generada")
-
-
-class ProposalGeneratedAtFilter(ProposalWithoutAreaFilter):
-    generated_at = ModelChoiceFilter(queryset=filterable_areas,
-                                     empty_label=u"Selecciona",
-                                     label="Comuna donde fue generada")

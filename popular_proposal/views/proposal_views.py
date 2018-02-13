@@ -37,9 +37,6 @@ from elections.models import Area, Candidate
 
 from django import forms
 
-from popular_proposal.filters import (ProposalWithoutAreaFilter,
-                                      ProposalGeneratedAtFilter)
-
 from popular_proposal.forms import (AuthorityCommitmentForm,
                                     AuthorityNotCommitingForm,
                                     ProposalForm,
@@ -55,6 +52,7 @@ from popular_proposal.models import (Commitment,
 from votainteligente.view_mixins import EmbeddedViewBase
 import random
 from django.conf import settings
+from popular_proposal import default_filterset_class
 
 class ThanksForProposingViewBase(DetailView):
     model = ProposalTemporaryData
@@ -154,9 +152,13 @@ class UnlikeProposalView(View):
         self.like.delete()
         return JsonResponse({'deleted_item': self.pk})
 
+
+filterset_class = default_filterset_class()
+
+
 class ProposalFilterMixinBase(object):
     model = PopularProposal
-    filterset_class = ProposalGeneratedAtFilter
+    filterset_class = filterset_class
     order_by = None
 
     def _get_filterset(self):
@@ -182,12 +184,12 @@ class ProposalFilterMixinBase(object):
         return context
 
 class ProposalFilterMixin(ProposalFilterMixinBase):
-    filterset_class = ProposalGeneratedAtFilter
+    filterset_class = filterset_class
 
 
 class HomeView(EmbeddedViewBase, ProposalFilterMixin, FilterView):
     template_name = 'popular_proposal/home.html'
-    filterset_class = ProposalGeneratedAtFilter
+    filterset_class = filterset_class
     context_object_name = 'popular_proposals'
 
     def get_context_data(self, **kwargs):
@@ -241,7 +243,7 @@ class CommitViewBase(FormView):
 
     def get_success_url(self):
         authority = self.get_authority()
-        url = reverse('popular_proposals:commitment', kwargs={'authority_slug': self.candidate.id,
+        url = reverse('popular_proposals:commitment', kwargs={'authority_slug': authority.id,
                                                               'proposal_slug': self.proposal.slug})
         return url
 

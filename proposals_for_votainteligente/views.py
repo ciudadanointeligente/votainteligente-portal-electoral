@@ -41,7 +41,6 @@ from proposals_for_votainteligente.filters import (ProposalGeneratedAtFilter)
 
 from popular_proposal.forms import (AuthorityCommitmentForm,
                                     AuthorityNotCommitingForm,
-                                    ProposalForm,
                                     UpdateProposalForm,
                                     SubscriptionForm,
                                     )
@@ -58,11 +57,11 @@ from popular_proposal.views.proposal_views import (ThanksForProposingViewBase,
                                                    CommitViewBase,
                                                    NotCommitViewBase,
                                                    ProposalFilterMixin)
-
+from proposals_for_votainteligente.forms import ProposalWithAreaForm
 
 class WithinAreaProposalCreationView(FormView):
     template_name = 'popular_proposal/create.html'
-    form_class = ProposalForm
+    form_class = ProposalWithAreaForm
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):

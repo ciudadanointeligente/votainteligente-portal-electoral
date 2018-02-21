@@ -1,7 +1,6 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
 from popular_proposal.forms import (get_form_list,
-                                    AreaForm,
                                     wizard_forms_fields,)
 from django.test import RequestFactory
 from django.contrib.auth.models import User
@@ -101,7 +100,7 @@ class WizardTestCase(TestCase, WizardDataMixin):
         super(WizardTestCase, self).setUp()
         self.factory = RequestFactory()
         self.fiera = User.objects.get(username='fiera')
-        self.arica = Area.objects.get(id='arica-15101')
+        # self.arica = Area.objects.get(id='arica-15101')
         self.feli = User.objects.get(username='feli')
         self.feli.set_password(USER_PASSWORD)
         self.feli.save()
@@ -122,6 +121,7 @@ class WizardTestCase(TestCase, WizardDataMixin):
             for field in f.fields:
                 self.assertTrue(f.explanation_template)
 
+    @override_settings(WIZARD_FORM_MODIFIER=None)
     def test_get_form_list_depending_on_user(self):
         def return_none(user=None):
             return None
@@ -146,83 +146,6 @@ class WizardTestCase(TestCase, WizardDataMixin):
                               forms.BooleanField)
         self.assertEquals(len(all_fields), 1)
 
-    def test_instanciating_view(self):
-        url = reverse('popular_proposals:propose_wizard',
-                      kwargs={'slug': self.arica.id})
-        self.client.login(username=self.feli,
-                          password=USER_PASSWORD)
-
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-
-    @override_config(PROPOSALS_ENABLED=False)
-    def test_proposals_not_enabled(self):
-        url = reverse('popular_proposals:propose_wizard',
-                      kwargs={'slug': self.arica.id})
-        self.client.login(username=self.feli,
-                          password=USER_PASSWORD)
-
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)
-
-        url = reverse('popular_proposals:propose_wizard_full')
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)
-
-    def test_get_as_candidate_returns_404(self):
-        url = reverse('popular_proposals:propose_wizard',
-                      kwargs={'slug': self.arica.id})
-        candidate = Candidate.objects.create(name='name')
-        Candidacy.objects.create(candidate=candidate, user=self.feli)
-        self.client.login(username=self.feli,
-                          password=USER_PASSWORD)
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)
-
-        url = reverse('popular_proposals:propose_wizard_full')
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)
-
-    def test_post_data_to_the_wizard(self):
-        original_amount = len(mail.outbox)
-        url = reverse('popular_proposals:propose_wizard',
-                      kwargs={'slug': self.arica.id})
-        self.client.login(username=self.feli,
-                          password=USER_PASSWORD)
-        test_response = self.get_example_data_for_post()
-        response = self.client.get(url)
-        steps = response.context['wizard']['steps']
-        for i in range(steps.count):
-            self.assertEquals(steps.current, unicode(i))
-            data = test_response[i]
-            data.update({'proposal_wizard-current_step': unicode(i)})
-            response = self.client.post(url, data=data)
-            self.assertEquals(response.context['area'], self.arica)
-            is_done = False
-            for template in response.templates:
-                if template.name.endswith('done.html'):
-                    is_done = True
-            if not is_done:
-                self.assertTrue(response.context['preview_data'])
-            if 'form' in response.context and response.context['form'] is not None:
-                self.assertFalse(response.context['form'].errors)
-                steps = response.context['wizard']['steps']
-        self.assertTemplateUsed(response, 'popular_proposal/wizard/done.html')
-        # Probar que se creó la promesa
-        self.assertEquals(ProposalTemporaryData.objects.count(), 1)
-        temporary_data = response.context['popular_proposal']
-        self.assertEquals(response.context['area'], self.arica)
-        self.assertEquals(temporary_data.proposer, self.feli)
-        self.assertEquals(temporary_data.area, self.arica)
-        self.assertEquals(len(mail.outbox), original_amount + 2)
-
-        the_mail = mail.outbox[original_amount + 1]
-        self.assertIn(self.fiera.email, the_mail.to)
-        self.assertIn(self.feli.email, the_mail.to)
-        self.assertIn(str(temporary_data.id), the_mail.body)
-        self.assertIn(temporary_data.get_title(), the_mail.body)
-        self.assertIn(temporary_data.area.name, the_mail.subject)
-
     def test_user_should_accept_terms_and_conditions(self):
         list_ = get_form_list()
         form_class = list_[-1]
@@ -240,111 +163,13 @@ class WizardTestCase(TestCase, WizardDataMixin):
         form = form_class(data=data)
         self.assertTrue(form.is_valid())
 
-    def test_full_wizard(self):
-        original_amount = len(mail.outbox)
-        url = reverse('popular_proposals:propose_wizard_full')
-        self.client.login(username=self.feli,
-                          password=USER_PASSWORD)
-        test_response = {0: {'0-area': self.arica.id}}
-        test_response = self.get_example_data_for_post(test_response=test_response)
-        response = self.client.get(url)
-        steps = response.context['wizard']['steps']
-        for i in range(steps.count):
-            self.assertEquals(steps.current, unicode(i))
-            data = test_response[i]
-            data.update({'proposal_wizard_full-current_step': unicode(i)})
-            response = self.client.post(url, data=data)
-            self.assertEquals(response.context['area'], self.arica)
 
-            if 'form' in response.context and response.context['form'] is not None:
-                self.assertTrue(response.context['preview_data'])
-                self.assertFalse(response.context['form'].errors)
-                steps = response.context['wizard']['steps']
-        self.assertTemplateUsed(response, 'popular_proposal/wizard/done.html')
-        # Probar que se creó la promesa
-        self.assertEquals(ProposalTemporaryData.objects.count(), 1)
-        temporary_data = response.context['popular_proposal']
-        self.assertEquals(response.context['area'], self.arica)
-        self.assertEquals(temporary_data.proposer, self.feli)
-        self.assertEquals(temporary_data.area, self.arica)
-        self.assertEquals(len(mail.outbox), original_amount + 2)
-
-        the_mail = mail.outbox[original_amount + 1]
-        self.assertIn(self.fiera.email, the_mail.to)
-        self.assertIn(self.feli.email, the_mail.to)
-        self.assertIn(str(temporary_data.id), the_mail.body)
-        self.assertIn(temporary_data.get_title(), the_mail.body)
-        self.assertIn(temporary_data.area.name, the_mail.subject)
-
-    @override_config(HIDDEN_AREAS='argentina')
-    def test_full_wizard_get_area_form_kwargs(self):
-        argentina = Area.objects.create(name=u'Argentina')
-        url = reverse('popular_proposals:propose_wizard_full')
-        self.feli.is_staff = True
-        self.feli.save()
-        self.client.login(username=self.feli,
-                          password=USER_PASSWORD)
-        test_response = {0: {'0-area': argentina}}
-        test_response = self.get_example_data_for_post(test_response=test_response)
-        response = self.client.get(url)
-        area_form = response.context['form']
-        area_field = area_form.fields['area']
-        argentina_tuple = (argentina.id, argentina.name)
-        self.assertIn(argentina_tuple, area_field.choices)
-
-
-@override_config(DEFAULT_AREA='argentina')
-class WizardTestCase2(TestCase, WizardDataMixin):
-    def setUp(self):
-        super(WizardTestCase2, self).setUp()
-        self.fiera = User.objects.get(username='fiera')
-        self.arica = Area.objects.get(id='arica-15101')
-        self.feli = User.objects.get(username='feli')
-        self.feli.set_password(USER_PASSWORD)
-        self.feli.save()
-        ProposalTemporaryData.objects.all().delete()
-
-    def test_full_wizard_without_areas(self):
-        argentina = Area.objects.create(name=u'Argentina', id='argentina')
-        original_amount = len(mail.outbox)
-        url = reverse('popular_proposals:propose_wizard_full_without_area')
-        self.client.login(username=self.feli,
-                          password=USER_PASSWORD)
-        test_response = self.get_example_data_for_post()
-        response = self.client.get(url)
-        self.assertNotIsInstance(response.context['form'], AreaForm)
-        steps = response.context['wizard']['steps']
-        for i in range(steps.count):
-            self.assertEquals(steps.current, unicode(i))
-            data = test_response[i]
-            data.update({'proposal_wizard_full_without_area-current_step': unicode(i)})
-            response = self.client.post(url, data=data)
-            if 'form' in response.context:
-                if response.context['form'] is not None:
-                    self.assertFalse(response.context['form'].errors,
-                                     u"Error en el paso" + unicode(i) + unicode(response.context['form'].errors))
-                    self.assertTrue(response.context['preview_data'])
-                    steps = response.context['wizard']['steps']
-        self.assertTemplateUsed(response, 'popular_proposal/wizard/done.html')
-        # Probar que se creó la promesa
-        self.assertEquals(ProposalTemporaryData.objects.count(), 1)
-        temporary_data = response.context['popular_proposal']
-        self.assertEquals(temporary_data.proposer, self.feli)
-        self.assertEquals(len(mail.outbox), original_amount + 2)
-
-        the_mail = mail.outbox[original_amount + 1]
-        self.assertIn(self.fiera.email, the_mail.to)
-        self.assertIn(self.feli.email, the_mail.to)
-        self.assertIn(str(temporary_data.id), the_mail.body)
-        self.assertIn(temporary_data.get_title(), the_mail.body)
-
-
-@override_config(DEFAULT_AREA='argentina')
+# @override_config(DEFAULT_AREA='argentina')
 class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
     def setUp(self):
         super(AutomaticallyCreateProposalTestCase, self).setUp()
         self.fiera = User.objects.get(username='fiera')
-        self.argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        # self.argentina = Area.objects.create(name=u'Argentina', id='argentina')
         self.feli = User.objects.get(username='feli')
         self.feli.set_password(USER_PASSWORD)
         self.feli.save()
@@ -376,7 +201,6 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
         proposal = temporary_data.created_proposal
         # Attributes of the proposal
         self.assertTrue(proposal.is_local_meeting)
-        self.assertTrue(proposal.generated_at)
 
     def test_done_brings_update_proposal_form(self):
         response = self.fill_the_whole_wizard()

@@ -56,3 +56,11 @@ class UpdateProposalForm(UpdateProposalForm):
     def __init__(self, *args, **kwargs):
         super(UpdateProposalForm, self).__init__(*args, **kwargs)
         self.fields['generated_at'].choices = get_possible_generating_areas_choices()
+
+
+def wizard_forms_field_modifier(wizard_forms_fields):
+    generated_at = {'generated_at': forms.ModelChoiceField(required=False,
+                                                     queryset=get_possible_generating_areas(),
+                                                     empty_label="No aplica")}
+    wizard_forms_fields[-1]['fields'].update(generated_at)
+    return wizard_forms_fields

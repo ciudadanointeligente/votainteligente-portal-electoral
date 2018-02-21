@@ -1,7 +1,7 @@
 # coding=utf-8
 from django import forms
 from collections import OrderedDict
-from popular_proposal.forms.forms import get_possible_generating_areas
+from proposals_for_votainteligente.forms import get_possible_generating_areas
 from django.utils.translation import ugettext as _
 from votita.models import KidsGathering, KidsProposal
 from django.forms import ModelForm

@@ -13,6 +13,7 @@ from elections.models import Area
 from collections import OrderedDict
 from constance import config
 from django.conf import settings
+from popular_proposal import wizard_forms_field_modifier
 
 
 class TextsFormMixin():
@@ -34,19 +35,6 @@ class TextsFormMixin():
                 if 'step' in texts.keys() and texts['step']:
                     self.fields[field].widget.attrs['tab_text'] = texts['step']
 
-
-def get_possible_generating_areas():
-    area_qs = Area.public.all()
-    if settings.POSSIBLE_GENERATING_AREAS_FILTER:
-        area_qs = area_qs.filter(classification=settings.POSSIBLE_GENERATING_AREAS_FILTER)
-    return area_qs
-
-
-def get_possible_generating_areas_choices():
-    area_qs = get_possible_generating_areas()
-    choices = [('', _(u'No aplica'))]
-    choices += [(a.id, a.name) for a in area_qs]
-    return choices
 
 wizard_forms_fields = [
     {
@@ -95,10 +83,6 @@ wizard_forms_fields = [
             ('title', forms.CharField(max_length=256,
                                       widget=forms.TextInput())),
             ('is_local_meeting', forms.BooleanField(required=False)),
-            ('generated_at', forms.ModelChoiceField(required=False,
-                                                    queryset=get_possible_generating_areas(),
-                                                    empty_label="No aplica")
-                                                    ),
             ('terms_and_conditions', forms.BooleanField(
                 error_messages={'required':
                                 _(u'Debes aceptar nuestros Términos y Condiciones')}
@@ -113,6 +97,7 @@ wizard_forms_fields = [
 def get_form_list(wizard_forms_fields=wizard_forms_fields, **kwargs):
     form_list = []
     counter = 0
+    wizard_forms_fields = wizard_forms_field_modifier(wizard_forms_fields)
     for step in wizard_forms_fields:
         counter += 1
         fields_dict = OrderedDict()
@@ -163,11 +148,14 @@ class ProposalFormBase(forms.Form, TextsFormMixin):
 
 
 class CreateProposalMixin(ProposalCreationMixin):
+    original_kwargs = {
+        'proposer': "proposer",
+        'data': "cleaned_data",
+        'model_class': "model_class"
+    }
     def save(self):
-        kwargs = self.determine_kwargs(proposer=self.proposer,
-                                       area=self.area,
-                                       data=self.cleaned_data,
-                                       model_class=self.model_class)
+        original_kwargs = {k: getattr(self, v) for k, v in self.original_kwargs.items()}
+        kwargs = self.determine_kwargs(**original_kwargs)
         t_data = self.model_class.objects.create(**kwargs)
         t_data.notify_new()
         return t_data
@@ -177,15 +165,10 @@ class ProposalForm(ProposalFormBase, CreateProposalMixin):
     model_class = ProposalTemporaryData
 
     def __init__(self, *args, **kwargs):
-        self.area = kwargs.pop('area')
         super(ProposalForm, self).__init__(*args, **kwargs)
 
 
 class UpdateProposalForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(UpdateProposalForm, self).__init__(*args, **kwargs)
-        self.fields['generated_at'].choices = get_possible_generating_areas_choices()
-
     class Meta:
         model = PopularProposal
         fields = ['join_advocacy_url', 'background', 'contact_details', 'image', 'document', 'generated_at', 'is_local_meeting']
@@ -233,7 +216,6 @@ class CommentsForm(forms.Form):
 
         site = Site.objects.get_current()
         mail_context = {
-            'area': self.temporary_data.area,
             'temporary_data': self.temporary_data,
             'moderator': self.moderator,
             'comments': comments,
@@ -331,29 +313,6 @@ class SubscriptionForm(forms.Form):
         like, created = ProposalLike.objects.get_or_create(**kwargs)
         return like
 
-
-class AreaForm(forms.Form):
-    area = forms.ChoiceField()
-    explanation_template = "popular_proposal/steps/select_area.html"
-    template = 'popular_proposal/wizard/select_area.html'
-
-    def __init__(self, *args, **kwargs):
-        is_staff = kwargs.pop('is_staff', False)
-        super(AreaForm, self).__init__(*args, **kwargs)
-        area_qs = Area.public.all()
-        if is_staff:
-            area_qs = Area.objects.all()
-        self.fields['area'].choices = [(a.id, a.name) for a in area_qs]
-        if config.DEFAULT_AREA:
-            self.initial['area'] = config.DEFAULT_AREA
-
-    def clean(self):
-        cleaned_data = super(AreaForm, self).clean()
-        if 'area' not in cleaned_data:
-            return cleaned_data
-        area = Area.objects.get(id=cleaned_data['area'])
-        cleaned_data['area'] = area
-        return cleaned_data
 
 
 class ProposalTemporaryDataModelForm(forms.ModelForm, ProposalFormBase):

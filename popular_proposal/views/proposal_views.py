@@ -40,7 +40,6 @@ from django import forms
 from popular_proposal.forms import (AuthorityCommitmentForm,
                                     AuthorityNotCommitingForm,
                                     ProposalForm,
-                                    UpdateProposalForm,
                                     SubscriptionForm,
                                     )
 
@@ -52,7 +51,7 @@ from popular_proposal.models import (Commitment,
 from votainteligente.view_mixins import EmbeddedViewBase
 import random
 from django.conf import settings
-from popular_proposal import default_filterset_class
+from popular_proposal import default_filterset_class, get_proposal_update_form_class
 
 class ThanksForProposingViewBase(DetailView):
     model = ProposalTemporaryData
@@ -272,8 +271,9 @@ class CommitmentDetailView(DetailView):
         return get_object_or_404(self.model, authority=self.candidate, proposal=self.proposal)
 
 
+proposal_update_form_class = get_proposal_update_form_class()
 class PopularProposalUpdateView(UpdateView):
-    form_class = UpdateProposalForm
+    form_class = proposal_update_form_class
     template_name = 'popular_proposal/update.html'
     model = PopularProposal
     context_object_name = 'popular_proposal'

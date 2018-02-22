@@ -16,7 +16,6 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
 
     def test_get_proposal(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                          area=self.arica,
                                                           data=self.data,
                                                           title=u'This is a title',
                                                           clasification=u'education'
@@ -38,13 +37,11 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
 
     def test_get_filtered_proposal(self):
         PopularProposal.objects.create(proposer=self.fiera,
-                                       area=self.arica,
                                        data=self.data,
                                        title=u'This is a title',
                                        clasification=u'education'
                                        )
         popular_proposal2 = PopularProposal.objects.create(proposer=self.feli,
-                                                          area=self.arica,
                                                           data=self.data,
                                                           title=u'This is a title',
                                                           clasification=u'education'
@@ -58,13 +55,11 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
 
     def test_get_filtered_proposal_2(self):
         p1 = PopularProposal.objects.create(proposer=self.fiera,
-                                            area=self.arica,
                                             data=self.data,
                                             title=u'This is a title',
                                             clasification=u'typos'
                                             )
         popular_proposal2 = PopularProposal.objects.create(proposer=self.feli,
-                                                          area=self.arica,
                                                           data=self.data,
                                                           title=u'This is a title',
                                                           clasification=u'education'
@@ -89,7 +84,6 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
     def test_get_commitments(self):
         any_authority = authority_model.objects.first()
         popular_proposal2 = PopularProposal.objects.create(proposer=self.feli,
-                                                          area=self.arica,
                                                           data=self.data,
                                                           title=u'This is a title',
                                                           clasification=u'education'

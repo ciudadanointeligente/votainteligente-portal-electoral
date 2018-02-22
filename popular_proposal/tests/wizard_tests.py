@@ -4,8 +4,6 @@ from popular_proposal.forms import (get_form_list,
                                     wizard_forms_fields,)
 from django.test import RequestFactory
 from django.contrib.auth.models import User
-from elections.models import Area, Candidate
-from backend_candidate.models import Candidacy
 from django import forms
 from django.core.urlresolvers import reverse
 from popular_proposal.forms import UpdateProposalForm
@@ -22,7 +20,7 @@ USER_PASSWORD = 'secr3t'
 
 
 class WizardDataMixin(object):
-    url = reverse('popular_proposals:propose_wizard_full_without_area')
+    url = reverse('popular_proposals:create')
     wizard_forms_fields =  wizard_forms_fields
     def get_example_data_for_post(self, **kwargs):
         test_response = kwargs.pop('test_response', {})
@@ -172,7 +170,6 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
         self.feli.set_password(USER_PASSWORD)
         self.feli.save()
         ProposalTemporaryData.objects.all().delete()
-        self.url = reverse('popular_proposals:create')
         self.example_data = self.get_example_data_for_post()
 
     def test_create_a_proposal(self):

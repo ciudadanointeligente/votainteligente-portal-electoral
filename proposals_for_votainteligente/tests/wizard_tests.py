@@ -23,6 +23,7 @@ from proposals_for_votainteligente.forms import (AreaForm)
 USER_PASSWORD = 'secr3t'
 
 class WithAreaProposalCreation(TestCase, WizardDataMixin):
+    url = reverse('popular_proposals:propose_wizard_full_without_area')
     def setUp(self):
         super(WithAreaProposalCreation, self).setUp()
         self.fiera = User.objects.get(username='fiera')
@@ -167,6 +168,7 @@ class WithAreaProposalCreation(TestCase, WizardDataMixin):
 
 @override_config(DEFAULT_AREA=u'argentina')
 class WizardTestCase2(TestCase, WizardDataMixin):
+    url = reverse('popular_proposals:propose_wizard_full_without_area')
     def setUp(self):
         super(WizardTestCase2, self).setUp()
         self.fiera = User.objects.get(username='fiera')

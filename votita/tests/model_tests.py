@@ -161,7 +161,7 @@ class VotitaWizardTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
     def test_create_a_proposal(self):
         argentina = Area.objects.create(name=u'Argentina', id='argentina')
         original_amount = len(mail.outbox)
-        response = self.fill_the_whole_wizard(default_view_slug='votita_wizard',)
+        response = self.fill_the_whole_wizard()
         temporary_data = response.context['popular_proposal']
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
         self.assertTrue(temporary_data.created_proposal)
@@ -189,6 +189,6 @@ class VotitaWizardInsideAGathering(ProposingCycleTestCaseBase, WizardDataMixin):
                            kwargs={'pk':self.gathering.id})
 
     def test_create_a_proposal_with_a_gathering(self):
-        response = self.fill_the_whole_wizard(default_view_slug='votita_wizard',)
+        response = self.fill_the_whole_wizard()
         temporary_data = response.context['popular_proposal']
         self.assertTrue(temporary_data.created_proposal)

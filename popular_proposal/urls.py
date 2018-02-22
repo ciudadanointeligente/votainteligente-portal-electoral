@@ -9,9 +9,7 @@ from popular_proposal.views.proposal_views import (SubscriptionView,
                                                    PopularProposalDetailRedirectView,
                                                    PopularProposalAyuranosView,
                                                    )
-from popular_proposal.views.wizard import (ProposalWizard,
-                                           ProposalWizardFull,
-                                           ProposalWizardFullWithoutArea,)
+from popular_proposal.views.wizard import ProposalWizard
 from django.views.decorators.clickjacking import xframe_options_exempt
 
 
@@ -22,17 +20,6 @@ urlpatterns = [
     url(r'^embedded/?$',
         xframe_options_exempt(HomeView.as_view(is_embedded=True)),
         name='embedded_home'),
-    url(r'^create_wizard/(?P<slug>[-\w]+)/?$',
-        ProposalWizard.as_view(),
-        name='propose_wizard'),
-    ## This depends on area
-    url(r'^create_wizard_full/?$',
-        ProposalWizardFull.as_view(),
-        name='propose_wizard_full'),
-    ## this depends on area
-    url(r'^crear/?$',
-        ProposalWizardFullWithoutArea.as_view(),
-        name='propose_wizard_full_without_area'),
     url(r'^detail/(?P<slug>[-\w]+)/?$',
         xframe_options_exempt(PopularProposalDetailView.as_view()),
         name='detail'),
@@ -60,4 +47,7 @@ urlpatterns = [
     url(r'^(?P<pk>[-\w]+)/subscribe/?$',
         SubscriptionView.as_view(),
         name='like_a_proposal'),
+    url(r'^crea/?$',
+        ProposalWizard.as_view(),
+        name='create'),
 ]

@@ -1,5 +1,5 @@
 # coding=utf-8
-
+from collections import OrderedDict
 from backend_candidate.models import Candidacy
 
 from constance import config
@@ -56,8 +56,11 @@ from django.conf import settings
 from popular_proposal.views.proposal_views import (ThanksForProposingViewBase,
                                                    CommitViewBase,
                                                    NotCommitViewBase,
-                                                   ProposalFilterMixin)
+                                                   ProposalFilterMixin,)
+from popular_proposal.views.wizard import (ProposalWizardBase)
 from proposals_for_votainteligente.forms import ProposalWithAreaForm
+from popular_proposal import wizard_previous_form_classes
+from popular_proposal.forms import (get_form_list,)
 
 class WithinAreaProposalCreationView(FormView):
     template_name = 'popular_proposal/create.html'
@@ -135,3 +138,68 @@ class ProposalsPerArea(EmbeddedViewBase, ProposalFilterMixin, ListView):
     def dispatch(self, request, *args, **kwargs):
         self.area = get_object_or_404(Area, id=self.kwargs['slug'])
         return super(ProposalsPerArea, self).dispatch(request, *args, **kwargs)
+
+
+class WizardWithAreaMixin(object):
+    def determine_area(self, data):
+        is_testing = data.pop("is_testing", False)
+        if 'area' in data.keys():
+            return data['area']
+        elif hasattr(self, 'area'):
+            return self.area
+        else:
+            return Area.objects.get(id=config.DEFAULT_AREA)
+
+    def apply_extra_kwargs_from_data(self, data):
+        return {'area': self.determine_area(data)}
+
+wizard_form_list = get_form_list()
+
+class ProposalWizardDependingOnArea(WizardWithAreaMixin, ProposalWizardBase):
+    '''
+    Esta es la clase del wizard a la que se llega por hacer
+    /propuestas/crear/villarrica
+    '''
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        self.area = get_object_or_404(Area, id=self.kwargs['slug'])
+        return super(ProposalWizardDependingOnArea, self).dispatch(request, *args, **kwargs)
+
+    def get_form_list(self):
+        form_list = OrderedDict()
+        previous_forms = self.get_previous_forms()
+        my_list = previous_forms + get_form_list(user=self.request.user)
+        counter = 0
+        for form_class in my_list:
+            form_list[str(counter)] = form_class
+            counter += 1
+        self.form_list = form_list
+        return form_list
+
+wizard_initial_form_classes = wizard_previous_form_classes()
+
+class ProposalWizardFull(WizardWithAreaMixin, ProposalWizardBase):
+    '''
+    Esta es la clase del wizard a la que se llega por hacer
+    /propuestas/create_full_wizard
+    Acá lo primero que te preguntamos es para qué comuna quieres crear
+    la propuesta
+    '''
+    form_list = wizard_initial_form_classes + wizard_form_list
+
+    def get_previous_forms(self):
+        return wizard_initial_form_classes
+
+
+class ProposalWizardFullWithoutArea(WizardWithAreaMixin, ProposalWizardBase):
+    '''
+    Esta es la clase del wizard a la que se llega por hacer
+    /propuestas/crear
+    '''
+    form_list = wizard_form_list
+
+    def get_previous_forms(self):
+        return []
+
+
+

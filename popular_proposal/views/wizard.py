@@ -29,26 +29,13 @@ from popular_proposal import send_mails_to_staff, wizard_previous_form_classes
 wizard_form_list = get_form_list()
 
 
-class WizardWithAreaMixin(object):
-    def determine_area(self, data):
-        is_testing = data.pop("is_testing", False)
-        if 'area' in data.keys():
-            return data['area']
-        elif hasattr(self, 'area'):
-            return self.area
-        else:
-            return Area.objects.get(id=config.DEFAULT_AREA)
-
-    def apply_extra_kwargs_from_data(self, data):
-        return {'area': self.determine_area(data)}
-
 
 class DeterminingKwargsMixin(object):
     def apply_extra_kwargs_from_data(self, data):
         return {}
     
 
-class ProposalWizardBase(SessionWizardView, WizardWithAreaMixin, DeterminingKwargsMixin):
+class ProposalWizardBase(SessionWizardView, DeterminingKwargsMixin):
     form_list = wizard_form_list
     model = ProposalTemporaryData
     template_name = 'popular_proposal/wizard/form_step.html'
@@ -111,11 +98,10 @@ class ProposalWizardBase(SessionWizardView, WizardWithAreaMixin, DeterminingKwar
 class ProposalWizard(ProposalWizardBase):
     '''
     Esta es la clase del wizard a la que se llega por hacer
-    /propuestas/crear/villarrica
+    /propuestas/crea/
     '''
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        self.area = get_object_or_404(Area, id=self.kwargs['slug'])
         return super(ProposalWizard, self).dispatch(request, *args, **kwargs)
 
     def get_form_list(self):
@@ -128,29 +114,3 @@ class ProposalWizard(ProposalWizardBase):
             counter += 1
         self.form_list = form_list
         return form_list
-
-
-wizard_initial_form_classes = wizard_previous_form_classes()
-
-class ProposalWizardFull(ProposalWizardBase):
-    '''
-    Esta es la clase del wizard a la que se llega por hacer
-    /propuestas/create_full_wizard
-    Acá lo primero que te preguntamos es para qué comuna quieres crear
-    la propuesta
-    '''
-    form_list = wizard_initial_form_classes + wizard_form_list
-
-    def get_previous_forms(self):
-        return wizard_initial_form_classes
-
-
-class ProposalWizardFullWithoutArea(ProposalWizardBase):
-    '''
-    Esta es la clase del wizard a la que se llega por hacer
-    /propuestas/crear
-    '''
-    form_list = wizard_form_list
-
-    def get_previous_forms(self):
-        return []

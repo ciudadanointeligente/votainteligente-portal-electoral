@@ -55,7 +55,6 @@ class WizardDataMixin(object):
 
     def fill_the_whole_wizard(self,
                               override_example_data={},
-                              default_view_slug='proposal_wizard_full_without_area',
                               **kwargs):
         '''
         en:
@@ -74,11 +73,13 @@ class WizardDataMixin(object):
         self.client.login(username=user,
                           password=password)
         response = self.client.get(url)
+        prefix = response.context['wizard']['management_form'].prefix
+        self.assertEquals(response.status_code, 200)
         steps = response.context['wizard']['steps']
         for i in range(steps.count):
             self.assertEquals(steps.current, unicode(i))
             data = example_data[i]
-            data.update({default_view_slug + '-current_step': unicode(i)})
+            data.update({prefix + '-current_step': unicode(i)})
             response = self.client.post(url, data=data)
             if 'form' in response.context:
                 if response.context['form'] is not None:
@@ -100,7 +101,6 @@ class WizardTestCase(TestCase, WizardDataMixin):
         super(WizardTestCase, self).setUp()
         self.factory = RequestFactory()
         self.fiera = User.objects.get(username='fiera')
-        # self.arica = Area.objects.get(id='arica-15101')
         self.feli = User.objects.get(username='feli')
         self.feli.set_password(USER_PASSWORD)
         self.feli.save()
@@ -164,16 +164,15 @@ class WizardTestCase(TestCase, WizardDataMixin):
         self.assertTrue(form.is_valid())
 
 
-# @override_config(DEFAULT_AREA='argentina')
 class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
     def setUp(self):
         super(AutomaticallyCreateProposalTestCase, self).setUp()
         self.fiera = User.objects.get(username='fiera')
-        # self.argentina = Area.objects.create(name=u'Argentina', id='argentina')
         self.feli = User.objects.get(username='feli')
         self.feli.set_password(USER_PASSWORD)
         self.feli.save()
         ProposalTemporaryData.objects.all().delete()
+        self.url = reverse('popular_proposals:create')
         self.example_data = self.get_example_data_for_post()
 
     def test_create_a_proposal(self):

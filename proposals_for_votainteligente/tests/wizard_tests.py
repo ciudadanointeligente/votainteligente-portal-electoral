@@ -22,9 +22,15 @@ from proposals_for_votainteligente.forms import (AreaForm)
 
 USER_PASSWORD = 'secr3t'
 
-class WithAreaProposalCreation(WizardDataMixin):
+class WithAreaProposalCreation(TestCase, WizardDataMixin):
     def setUp(self):
         super(WithAreaProposalCreation, self).setUp()
+        self.fiera = User.objects.get(username='fiera')
+        self.arica = Area.objects.get(id='arica-15101')
+        self.feli = User.objects.get(username='feli')
+        self.feli.set_password(USER_PASSWORD)
+        self.feli.save()
+        ProposalTemporaryData.objects.all().delete()
 
     def test_instanciating_view(self):
         url = reverse('popular_proposals:propose_wizard',
@@ -71,11 +77,13 @@ class WithAreaProposalCreation(WizardDataMixin):
                           password=USER_PASSWORD)
         test_response = self.get_example_data_for_post()
         response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        prefix = response.context['wizard']['management_form'].prefix
         steps = response.context['wizard']['steps']
         for i in range(steps.count):
             self.assertEquals(steps.current, unicode(i))
             data = test_response[i]
-            data.update({'proposal_wizard-current_step': unicode(i)})
+            data.update({prefix + '-current_step': unicode(i)})
             response = self.client.post(url, data=data)
             self.assertEquals(response.context['area'], self.arica)
             is_done = False
@@ -111,11 +119,13 @@ class WithAreaProposalCreation(WizardDataMixin):
         test_response = {0: {'0-area': self.arica.id}}
         test_response = self.get_example_data_for_post(test_response=test_response)
         response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        prefix = response.context['wizard']['management_form'].prefix
         steps = response.context['wizard']['steps']
         for i in range(steps.count):
             self.assertEquals(steps.current, unicode(i))
             data = test_response[i]
-            data.update({'proposal_wizard_full-current_step': unicode(i)})
+            data.update({prefix + '-current_step': unicode(i)})
             response = self.client.post(url, data=data)
             self.assertEquals(response.context['area'], self.arica)
 
@@ -183,12 +193,14 @@ class WizardTestCase2(TestCase, WizardDataMixin):
                           password=USER_PASSWORD)
         test_response = self.get_example_data_for_post()
         response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        prefix = response.context['wizard']['management_form'].prefix
         self.assertNotIsInstance(response.context['form'], AreaForm)
         steps = response.context['wizard']['steps']
         for i in range(steps.count):
             self.assertEquals(steps.current, unicode(i))
             data = test_response[i]
-            data.update({'proposal_wizard_full_without_area-current_step': unicode(i)})
+            data.update({prefix + '-current_step': unicode(i)})
             response = self.client.post(url, data=data)
             if 'form' in response.context:
                 if response.context['form'] is not None:

@@ -29,7 +29,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(FormTestCase, self).setUp()
         self.fiera = User.objects.get(username='fiera')
-        self.arica = Area.objects.get(id='arica-15101')
         self.feli = User.objects.get(username='feli')
         self.load = '{% load votainteligente_extras %}'
 
@@ -265,7 +264,6 @@ class ModelFormTest(ProposingCycleTestCaseBase):
 
     def test_form_has_all_fields(self):
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                      area=self.arica,
                                                       data=self.data)
         form = ProposalTemporaryDataModelForm(instance=t_data)
         for key in self.data.keys():
@@ -274,11 +272,9 @@ class ModelFormTest(ProposingCycleTestCaseBase):
 
     def test_form_saving_data(self):
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                      area=self.arica,
                                                       data=self.data)
         data = self.data
         data['title'] = u'Título título'
-        data['area'] = self.arica.id
         data['proposer'] = self.fiera.id
         data['status'] = t_data.status
         form = ProposalTemporaryDataModelForm(instance=t_data, data=data)

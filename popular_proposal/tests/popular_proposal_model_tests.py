@@ -187,7 +187,6 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         data["join_advocacy_url"] = u"http://whatsapp.com/somegroup"
         # Testing
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                              area=self.arica,
                                                               data=self.data)
         original_amount_of_mails = len(mail.outbox)
         popular_proposal = temporary_data.create_proposal(moderator=self.feli)

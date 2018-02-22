@@ -34,3 +34,6 @@ DEFAULT_FITERSET_CLASS = 'proposals_for_votainteligente.filters.ProposalGenerate
 WIZARD_PREVIOUS_CLASSES = ['proposals_for_votainteligente.forms.AreaForm',]
 PROPOSAL_UPDATE_FORM  = 'proposals_for_votainteligente.forms.UpdateProposalForm'
 WIZARD_FORM_MODIFIER = 'proposals_for_votainteligente.forms.wizard_forms_field_modifier'
+NUMERICAL_NOTIFICATION_CLASSES = ['popular_proposal.subscriptions.YouAreAHeroNotification',
+                                  # 'proposals_for_votainteligente.subscriptions.ManyCitizensSupportingNotification'
+                                  ]

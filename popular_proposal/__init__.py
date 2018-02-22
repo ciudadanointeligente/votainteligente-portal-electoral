@@ -40,6 +40,13 @@ def wizard_previous_form_classes():
 
     return klasses
 
+def get_numerical_notification_classes():
+    klasses = []
+    for class_name in settings.NUMERICAL_NOTIFICATION_CLASSES:
+        klasses.append(_import(class_name))
+
+    return klasses
+
 def get_proposal_update_form_class():
     class_name = settings.PROPOSAL_UPDATE_FORM
     try:

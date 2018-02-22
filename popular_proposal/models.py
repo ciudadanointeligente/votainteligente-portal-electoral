@@ -20,7 +20,9 @@ from model_utils.managers import InheritanceQuerySetMixin
 import textwrap
 from django.contrib.contenttypes.models import ContentType
 from constance import config
-from popular_proposal import get_authority_model, get_proposal_adapter_model
+from popular_proposal import (get_authority_model,
+                              get_proposal_adapter_model,
+                              get_numerical_notification_classes)
 
 
 authority_model = get_authority_model()
@@ -359,13 +361,10 @@ class ProposalLike(models.Model):
     def numerical_notification(self):
         the_number = ProposalLike.objects.filter(proposal=self.proposal).count()
         if the_number in settings.WHEN_TO_NOTIFY:
-            from popular_proposal.subscriptions import YouAreAHeroNotification, ManyCitizensSupportingNotification
-            notifier = YouAreAHeroNotification(proposal=self.proposal,
-                                               number=the_number)
-            notifier.notify()
-            notifier = ManyCitizensSupportingNotification(proposal=self.proposal,
-                                                          number=the_number)
-            notifier.notify()
+            klasses = get_numerical_notification_classes()
+            for notifier_klass in klasses :
+                notifier = notifier_klass(proposal=self.proposal, number=the_number)
+                notifier.notify()
 
     def __str__(self):
         return u'{} apoya {}'.format(self.user.username, self.proposal.id)

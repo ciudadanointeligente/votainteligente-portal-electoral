@@ -1,5 +1,5 @@
 # coding=utf-8
-from popular_proposal.tests import ProposingCycleTestCaseBase as TestCase
+from proposals_for_votainteligente.tests import VIProposingCycleTestCaseBase as TestCase
 from django.core.urlresolvers import reverse
 from django.forms import Form
 from popular_proposal.models import (PopularProposal,
@@ -9,9 +9,8 @@ from proposals_for_votainteligente.filters import (ProposalFilterBase,
                                                    ProposalWithAreaFilter)
 from elections.models import Area, Candidate, Election
 from backend_candidate.models import Candidacy
-from popular_proposal.forms import (AuthorityCommitmentForm,
-                                    AuthorityNotCommitingForm,
-                                    )
+from proposals_for_votainteligente.forms import (VotaInteligenteAuthorityCommitmentForm,
+                                                 VotaInteligenteAuthorityNotCommitingForm)
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from constance.test import override_config
 from django.test import override_settings
@@ -128,7 +127,7 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'popular_proposal/commitment/commit_yes.html')
-        self.assertIsInstance(response.context['form'], AuthorityCommitmentForm)
+        self.assertIsInstance(response.context['form'], VotaInteligenteAuthorityCommitmentForm)
         self.assertEquals(response.context['proposal'], self.popular_proposal1)
         self.assertEquals(response.context['authority'], self.candidate)
 
@@ -202,7 +201,7 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'popular_proposal/commitment/commit_no.html')
-        self.assertIsInstance(response.context['form'], AuthorityNotCommitingForm)
+        self.assertIsInstance(response.context['form'], VotaInteligenteAuthorityNotCommitingForm)
 
         response_post = self.client.post(url, {'terms_and_conditions': True,
                                                'details': u'no me gustó pa na la propuesta'})

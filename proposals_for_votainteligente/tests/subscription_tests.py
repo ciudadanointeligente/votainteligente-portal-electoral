@@ -1,5 +1,5 @@
 # coding=utf-8
-from popular_proposal.tests import ProposingCycleTestCaseBase as TestCase
+from proposals_for_votainteligente.tests import VIProposingCycleTestCaseBase as TestCase
 from popular_proposal.models import (ProposalLike,
                                      Commitment,
                                      PopularProposal,

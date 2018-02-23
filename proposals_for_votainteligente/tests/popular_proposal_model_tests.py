@@ -1,5 +1,5 @@
 # coding=utf-8
-from popular_proposal.tests import ProposingCycleTestCaseBase
+from proposals_for_votainteligente.tests import VIProposingCycleTestCaseBase
 from elections.models import Area
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData, PopularProposal, ProposalLike
@@ -13,7 +13,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
 
 
-class PopularProposalTestCase(ProposingCycleTestCaseBase):
+class PopularProposalTestCase(VIProposingCycleTestCaseBase):
     def setUp(self):
         super(PopularProposalTestCase, self).setUp()
 

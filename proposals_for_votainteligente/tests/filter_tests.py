@@ -3,7 +3,7 @@ from popular_proposal.filters import ProposalFilterBase
 from proposals_for_votainteligente.filters import (filterable_areas,
                                                    ProposalWithAreaFilter,
                                                    ProposalGeneratedAtFilter)
-from popular_proposal.tests import ProposingCycleTestCaseBase
+from proposals_for_votainteligente.tests import VIProposingCycleTestCaseBase
 from popular_proposal.models import PopularProposal
 from elections.models import Area
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
@@ -22,7 +22,7 @@ three_days_ago = timezone.now() - timedelta(days=3)
 
 
 @override_settings(FILTERABLE_AREAS_TYPE=['Comuna'])
-class PopularProposalFilterTestCase(ProposingCycleTestCaseBase):
+class PopularProposalFilterTestCase(VIProposingCycleTestCaseBase):
     def setUp(self):
         super(PopularProposalFilterTestCase, self).setUp()
         self.algarrobo = Area.objects.get(id='algarrobo-5602')
@@ -99,7 +99,7 @@ class PopularProposalFilterTestCase(ProposingCycleTestCaseBase):
 
 
 @override_settings(FILTERABLE_AREAS_TYPE=['Comuna'])
-class OrderingFormTestCase(ProposingCycleTestCaseBase):
+class OrderingFormTestCase(VIProposingCycleTestCaseBase):
     def setUp(self):
         super(OrderingFormTestCase, self).setUp()
         self.algarrobo = Area.objects.get(id='algarrobo-5602')

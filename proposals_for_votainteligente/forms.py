@@ -1,7 +1,7 @@
 # coding=utf-8
 from django import forms
 from elections.models import Area
-from popular_proposal.forms.forms import ProposalForm, UpdateProposalForm
+from popular_proposal.forms.forms import ProposalForm, UpdateProposalForm, AuthorityCommitmentForm
 from constance import config
 from django.conf import settings
 from django.utils.translation import ugettext as _
@@ -64,3 +64,20 @@ def wizard_forms_field_modifier(wizard_forms_fields):
                                                      empty_label="No aplica")}
     wizard_forms_fields[-1]['fields'].update(generated_at)
     return wizard_forms_fields
+
+class VotaInteligenteAuthorityCommitmentFormBase(AuthorityCommitmentForm):
+    def clean(self):
+        cleaned_data = super(VotaInteligenteAuthorityCommitmentFormBase, self).clean()
+        if not self.authority.election.candidates_can_commit_everywhere:
+            if self.authority.election:
+                if self.authority.election.area != self.proposal.area:
+                    raise forms.ValidationError(_(u'El candidato no pertenece al area'))
+            else:
+                raise forms.ValidationError(_(u'El candidato no pertenece al area'))
+        return cleaned_data
+
+class VotaInteligenteAuthorityCommitmentForm(VotaInteligenteAuthorityCommitmentFormBase):
+    commited = True
+
+class VotaInteligenteAuthorityNotCommitingForm(VotaInteligenteAuthorityCommitmentFormBase):
+    commited = False

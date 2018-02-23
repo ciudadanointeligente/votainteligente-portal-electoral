@@ -1,5 +1,5 @@
 # coding=utf-8
-from popular_proposal.tests import ProposingCycleTestCaseBase
+from proposals_for_votainteligente.tests import VIProposingCycleTestCaseBase
 from django.contrib.auth.models import User
 from popular_proposal.models import (PopularProposal,
                                      Commitment,
@@ -17,7 +17,7 @@ from proposals_for_votainteligente.replicator import Replicator
 from django.core.management import call_command
 
 
-class ProposalReplicatorTestCase(ProposingCycleTestCaseBase):
+class ProposalReplicatorTestCase(VIProposingCycleTestCaseBase):
     def setUp(self):
         super(ProposalReplicatorTestCase, self).setUp()
         self.popular_proposal = PopularProposal.objects.create(proposer=self.fiera,

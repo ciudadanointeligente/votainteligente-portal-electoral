@@ -39,9 +39,7 @@ from django import forms
 
 from proposals_for_votainteligente.filters import (ProposalGeneratedAtFilter)
 
-from popular_proposal.forms import (AuthorityCommitmentForm,
-                                    AuthorityNotCommitingForm,
-                                    UpdateProposalForm,
+from popular_proposal.forms import (UpdateProposalForm,
                                     SubscriptionForm,
                                     )
 
@@ -58,7 +56,9 @@ from popular_proposal.views.proposal_views import (ThanksForProposingViewBase,
                                                    NotCommitViewBase,
                                                    ProposalFilterMixin,)
 from popular_proposal.views.wizard import (ProposalWizardBase)
-from proposals_for_votainteligente.forms import ProposalWithAreaForm
+from proposals_for_votainteligente.forms import (ProposalWithAreaForm,
+                                                 VotaInteligenteAuthorityCommitmentForm,
+                                                 VotaInteligenteAuthorityNotCommitingForm)
 from popular_proposal import wizard_previous_form_classes
 from popular_proposal.forms import (get_form_list,)
 
@@ -91,7 +91,7 @@ class WithinAreaProposalCreationView(FormView):
                        kwargs={'pk': self.proposal.id})
 
 class CommitView(CommitViewBase):
-
+    form_class = VotaInteligenteAuthorityCommitmentForm
     def determine_if_authority_can_commit(self):
         self.candidate = get_object_or_404(Candidate,
                                            id=self.kwargs['candidate_pk'])
@@ -117,7 +117,7 @@ class CommitView(CommitViewBase):
 
 
 class NotCommitView(CommitView, NotCommitViewBase):
-    pass
+    form_class = VotaInteligenteAuthorityNotCommitingForm
 
 class ThanksForProposingView(ThanksForProposingViewBase):
 

@@ -9,7 +9,6 @@ from popular_proposal import send_mail, send_mails_to_staff
 from django.utils.translation import ugettext as _
 from django.contrib.sites.models import Site
 from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
-from elections.models import Area
 from collections import OrderedDict
 from constance import config
 from django.conf import settings
@@ -357,17 +356,6 @@ class AuthorityCommitmentFormBase(forms.Form):
                                                detail=detail,
                                                commited=self.commited)
         return commitment
-
-    def clean(self):
-        cleaned_data = super(AuthorityCommitmentFormBase, self).clean()
-        if not self.authority.election.candidates_can_commit_everywhere:
-            if self.authority.election:
-                if self.authority.election.area != self.proposal.area:
-                    raise forms.ValidationError(_(u'El candidato no pertenece al area'))
-            else:
-                raise forms.ValidationError(_(u'El candidato no pertenece al area'))
-        return cleaned_data
-
 
 class AuthorityCommitmentForm(AuthorityCommitmentFormBase):
     commited = True

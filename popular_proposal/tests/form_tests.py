@@ -20,9 +20,12 @@ from popular_proposal.forms import (WHEN_CHOICES,
                                     AuthorityCommitmentForm)
 from popular_proposal.forms.form_texts import TEXTS
 from django.core.urlresolvers import reverse
-from elections.models import Area, Election
 from django.test import override_settings
 from constance.test import override_config
+from popular_proposal import get_authority_model
+
+
+authority_model = get_authority_model()
 
 
 class FormTestCase(ProposingCycleTestCaseBase):
@@ -287,20 +290,8 @@ class ModelFormTest(ProposingCycleTestCaseBase):
 class AuthorityCommitmentTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(AuthorityCommitmentTestCase, self).setUp()
-
-        self.election1= Election.objects.get(id=1)
-        self.election1.candidates_can_commit_everywhere = True
-        self.election1.save()
-        self.candidate = self.election1.candidates.first()
-        self.election2 = Election.objects.get(id=2)
-        self.election2.candidates_can_commit_everywhere = False
-        self.election2.save()
-        self.candidate2 = self.election2.candidates.first()
-
-        self.candidate2.election.candidates_can_commit_everywhere = False
-        self.candidate2.election.save()
+        self.authority = authority_model.objects.first()
         self.proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                       area=self.candidate.election.area,
                                                        data=self.data,
                                                        title=u'This is a title'
                                                        )
@@ -311,62 +302,26 @@ class AuthorityCommitmentTestCase(ProposingCycleTestCaseBase):
 
     def test_instanciating_form(self):
         data = {'terms_and_conditions': True, 'detail': 'Esto es un detalle'}
-        form = AuthorityCommitmentForm(authority=self.candidate,
+        form = AuthorityCommitmentForm(authority=self.authority,
                                        proposal=self.proposal,
                                        data=data)
         self.assertTrue(form.is_valid(), form.errors)
         commitment = form.save()
         self.assertEquals(commitment.proposal, self.proposal)
-        self.assertEquals(commitment.authority, self.candidate)
+        self.assertEquals(commitment.authority, self.authority)
         self.assertEquals(commitment.detail, data['detail'])
         self.assertTrue(commitment.commited)
 
     def test_instanciating_form_with_no_commiting(self):
         data = {'detail': 'Yo me comprometo',
                 'terms_and_conditions': True}
-        form = AuthorityNotCommitingForm(authority=self.candidate,
+        form = AuthorityNotCommitingForm(authority=self.authority,
                                          proposal=self.proposal,
                                          data=data)
         self.assertTrue(form.is_valid(), form.errors)
         commitment = form.save()
         self.assertEquals(commitment.proposal, self.proposal)
-        self.assertEquals(commitment.authority, self.candidate)
+        self.assertEquals(commitment.authority, self.authority)
         self.assertEquals(commitment.detail, data['detail'])
         self.assertFalse(commitment.commited)
 
-    def test_validating_form(self):
-        '''
-        Un candidato no se puede comprometer a una propuesta de una
-        comuna en la que no está compitiendo
-        '''
-        other_area = Area.objects.create(name='other area')
-        proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                  area=other_area,
-                                                  data=self.data,
-                                                  title=u'This is a title'
-                                                  )
-
-        data = {'detail': 'Yo me comprometo',
-                'terms_and_conditions': True}
-        form = AuthorityCommitmentForm(authority=self.candidate2,
-                                       proposal=proposal,
-                                       data=data)
-
-        self.assertFalse(form.is_valid())
-
-    def test_validating_form_when_proposals_are_for_all_areas(self):
-        '''
-        Un candidato si se puede comprometer a una propuesta de una
-        comuna en la que no está compitiendo
-        '''
-        proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                  data=self.data,
-                                                  title=u'This is a title'
-                                                  )
-        data = {'detail': 'Yo me comprometo',
-                'terms_and_conditions': True}
-        form = AuthorityCommitmentForm(authority=self.candidate,
-                                       proposal=proposal,
-                                       data=data)
-
-        self.assertTrue(form.is_valid())

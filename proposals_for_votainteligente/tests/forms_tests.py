@@ -1,5 +1,5 @@
 # coding=utf-8
-from popular_proposal.tests import ProposingCycleTestCaseBase
+from proposals_for_votainteligente.tests import VIProposingCycleTestCaseBase
 from popular_proposal.forms import (CommentsForm,
                                     RejectionForm,
                                     ProposalTemporaryDataUpdateForm,
@@ -15,7 +15,7 @@ from django.core import mail
 from django.template.loader import get_template
 from django.template import Context, Template
 from popular_proposal.forms import (WHEN_CHOICES,
-                                    AuthorityCommitmentForm)
+                                    )
 from popular_proposal.forms.form_texts import TEXTS
 from django.core.urlresolvers import reverse
 from elections.models import Area, Election
@@ -23,11 +23,12 @@ from django.test import override_settings
 from constance.test import override_config
 from proposals_for_votainteligente.forms import (ProposalWithAreaForm,
                                                  UpdateProposalForm,
-                                                 AreaForm)
+                                                 AreaForm,
+                                                 VotaInteligenteAuthorityCommitmentForm)
 
 
 
-class FormsWithAreaTestCase(ProposingCycleTestCaseBase):
+class FormsWithAreaTestCase(VIProposingCycleTestCaseBase):
     def setUp(self):
         super(FormsWithAreaTestCase, self).setUp()
 
@@ -43,7 +44,7 @@ class FormsWithAreaTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(temporary_data.area, self.arica)
 
 
-class AreaFormTestCase(ProposingCycleTestCaseBase):
+class AreaFormTestCase(VIProposingCycleTestCaseBase):
     def setUp(self):
         super(AreaFormTestCase, self).setUp()
 
@@ -69,7 +70,7 @@ class AreaFormTestCase(ProposingCycleTestCaseBase):
         cleaned_data = form.cleaned_data
         self.assertEquals(cleaned_data['area'], argentina)
 
-class UpdateProposalWithAreaFormTestCase(ProposingCycleTestCaseBase):
+class UpdateProposalWithAreaFormTestCase(VIProposingCycleTestCaseBase):
     def setUp(self):
         super(UpdateProposalWithAreaFormTestCase, self).setUp()
         self.image = self.get_image()
@@ -134,3 +135,66 @@ class UpdateProposalWithAreaFormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(response.context['popular_proposal'], self.popular_proposal)
         self.assertTemplateUsed(response, 'popular_proposal/update.html')
         self.assertIsInstance(response.context['form'], UpdateProposalForm)
+
+
+class AuthorityCommitmentOnlyWhereTheyCanTestCase(VIProposingCycleTestCaseBase):
+    def setUp(self):
+        super(AuthorityCommitmentOnlyWhereTheyCanTestCase, self).setUp()
+
+        self.election1= Election.objects.get(id=1)
+        self.election1.candidates_can_commit_everywhere = True
+        self.election1.save()
+        self.candidate = self.election1.candidates.first()
+        self.election2 = Election.objects.get(id=2)
+        self.election2.candidates_can_commit_everywhere = False
+        self.election2.save()
+        self.candidate2 = self.election2.candidates.first()
+
+        self.candidate2.election.candidates_can_commit_everywhere = False
+        self.candidate2.election.save()
+        self.proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                       area=self.candidate.election.area,
+                                                       data=self.data,
+                                                       title=u'This is a title'
+                                                       )
+        self.feli.set_password('alvarez')
+        self.feli.save()
+        self.fiera.set_password('feroz')
+        self.fiera.save()
+
+    def test_validating_form(self):
+        '''
+        Un candidato no se puede comprometer a una propuesta de una
+        comuna en la que no está compitiendo
+        '''
+        other_area = Area.objects.create(name='other area')
+        proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                  area=other_area,
+                                                  data=self.data,
+                                                  title=u'This is a title'
+                                                  )
+
+        data = {'detail': 'Yo me comprometo',
+                'terms_and_conditions': True}
+        form = VotaInteligenteAuthorityCommitmentForm(authority=self.candidate2,
+                                                      proposal=proposal,
+                                                      data=data)
+
+        self.assertFalse(form.is_valid())
+
+    def test_validating_form_when_proposals_are_for_all_areas(self):
+        '''
+        Un candidato si se puede comprometer a una propuesta de una
+        comuna en la que no está compitiendo
+        '''
+        proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                  data=self.data,
+                                                  title=u'This is a title'
+                                                  )
+        data = {'detail': 'Yo me comprometo',
+                'terms_and_conditions': True}
+        form = VotaInteligenteAuthorityCommitmentForm(authority=self.candidate,
+                                                      proposal=proposal,
+                                                      data=data)
+
+        self.assertTrue(form.is_valid())

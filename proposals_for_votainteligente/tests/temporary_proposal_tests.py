@@ -1,5 +1,5 @@
 # coding=utf-8
-from popular_proposal.tests import ProposingCycleTestCaseBase
+from proposals_for_votainteligente.tests import VIProposingCycleTestCaseBase
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData
 from popular_proposal.forms import ProposalForm
@@ -10,7 +10,7 @@ from django.template.loader import get_template
 from django.contrib.sites.models import Site
 
 
-class ProposingViewTestCase(ProposingCycleTestCaseBase):
+class ProposingViewTestCase(VIProposingCycleTestCaseBase):
     def setUp(self):
         super(ProposingViewTestCase, self).setUp()
         self.feli = User.objects.get(username='feli')

@@ -1,5 +1,5 @@
 # coding=utf-8
-from popular_proposal.tests import ProposingCycleTestCaseBase
+from proposals_for_votainteligente.tests import VIProposingCycleTestCaseBase as ProposingCycleTestCaseBase
 from proposal_subscriptions.models import SearchSubscription
 from datetime import timedelta
 from django.core.urlresolvers import reverse

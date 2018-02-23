@@ -1,5 +1,5 @@
 # coding=utf-8
-from popular_proposal.tests import ProposingCycleTestCaseBase
+from proposals_for_votainteligente.tests import VIProposingCycleTestCaseBase as ProposingCycleTestCaseBase
 from votita.models import KidsGathering, KidsProposal
 from rest_framework.test import APIClient
 from rest_framework.reverse import reverse

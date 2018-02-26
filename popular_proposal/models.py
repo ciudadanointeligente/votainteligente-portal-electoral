@@ -197,7 +197,6 @@ class PopularProposal(proposal_adapter_model):
                               null=True,
                               blank=True)
     clasification = models.CharField(blank=True, null=True, max_length=255)
-    for_all_areas = models.BooleanField(default=False)
     is_local_meeting = models.BooleanField(default=False)
     is_reported = models.BooleanField(default=False)
 
@@ -215,7 +214,7 @@ class PopularProposal(proposal_adapter_model):
     detail_template_html = "popular_proposal/plantillas/detalle_propuesta.html"
 
     class Meta:
-        ordering = ['-featured' ,'for_all_areas', '-created']
+        ordering = ['-featured' , '-created']
         verbose_name = _(u'Propuesta Ciudadana')
         verbose_name_plural = _(u'Propuestas Ciudadanas')
 

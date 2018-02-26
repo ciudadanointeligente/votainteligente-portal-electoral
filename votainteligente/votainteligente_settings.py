@@ -38,3 +38,4 @@ NUMERICAL_NOTIFICATION_CLASSES = ['popular_proposal.subscriptions.YouAreAHeroNot
                                   # 'proposals_for_votainteligente.subscriptions.ManyCitizensSupportingNotification'
                                   ]
 IS_AUTHORITY_DETERMINER = "backend_candidate.models.is_candidate"
+DEFAULT_EXCLUDED_PROPOSALS_FILTER = {"area__id":"fundacion-ciudadano-inteligente"}

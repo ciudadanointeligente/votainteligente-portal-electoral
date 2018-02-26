@@ -78,7 +78,7 @@ class ProposalFilterBase(FilterSet):
     def qs(self):
 
         super(ProposalFilterBase, self).qs
-        self._qs = self._qs.exclude(area__id=config.HIDDEN_AREAS)
+        self._qs = self._qs.exclude(**settings.DEFAULT_EXCLUDED_PROPOSALS_FILTER)
         if not self.form.is_valid():
             return self._qs
         order_by = self.form.cleaned_data.get('order_by', None)

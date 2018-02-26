@@ -24,6 +24,8 @@ class PopularProposalTestCase(VIProposingCycleTestCaseBase):
                                                           title=u'This is a title',
                                                           clasification=u'education'
                                                           )
+        
+        self.assertFalse(popular_proposal.for_all_areas)
         self.assertIn(popular_proposal, self.arica.popularproposals.all())
 
     def test_proposal_ogp(self):

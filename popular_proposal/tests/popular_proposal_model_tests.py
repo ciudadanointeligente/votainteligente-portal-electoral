@@ -33,7 +33,6 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertFalse(popular_proposal.document)
         self.assertFalse(popular_proposal.image)
         self.assertEquals(popular_proposal.clasification, u'education')
-        self.assertFalse(popular_proposal.for_all_areas)
         self.assertFalse(popular_proposal.is_local_meeting)
         self.assertFalse(popular_proposal.is_reported)
         self.assertFalse(popular_proposal.featured)

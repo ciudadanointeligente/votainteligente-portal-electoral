@@ -252,7 +252,7 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
         super(ProposalHomeTestCase, self).setUp()
         self.url = reverse('popular_proposals:home')
 
-    @override_config(HIDDEN_AREAS="argentina")
+    @override_settings(DEFAULT_EXCLUDED_PROPOSALS_FILTER = {"area__id":"argentina"})
     def test_not_showing_proposals_for_hidden_areas(self):
         argentina = Area.objects.create(name=u'Argentina')
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,

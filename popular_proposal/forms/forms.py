@@ -153,7 +153,7 @@ class CreateProposalMixin(ProposalCreationMixin):
         'model_class': "model_class"
     }
     def save(self):
-        original_kwargs = {k: getattr(self, v) for k, v in self.original_kwargs.items()}
+        original_kwargs = {k: getattr(self, v, None) for k, v in self.original_kwargs.items()}
         kwargs = self.determine_kwargs(**original_kwargs)
         t_data = self.model_class.objects.create(**kwargs)
         t_data.notify_new()
@@ -176,7 +176,7 @@ class UpdateProposalForm(forms.ModelForm):
                   'image': _(u'¿Tienes alguna imagen para compartir?'),
                   'document': _(u'¿Tienes algún documento para complementar tu propuesta?'),
                   'generated_at': _(u'¿En qué comuna se generó esta propuesta?'),
-                  'contact_details': _(u'¿Cómo te puede contactar un candidato?'),
+                  'contact_details': _(u'¿Cómo te puede contactar una autoridad?'),
                   'is_local_meeting': _(u'¿Esta propuesta se generó en un encuentro local?')
                   }
         help_texts = {'join_advocacy_url': _(u'URL de un grupo de facebook, o un grupo en whatsapp. Por ejemplo: https://facebook.com/migrupo'),

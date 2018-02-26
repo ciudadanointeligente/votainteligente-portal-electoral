@@ -6,7 +6,6 @@ from popular_proposal.models import (PopularProposal,
                                      Commitment,
                                      ProposalTemporaryData)
 from popular_proposal.filters import (ProposalFilterBase)
-from backend_candidate.models import Candidacy
 from popular_proposal.forms import (AuthorityCommitmentForm,
                                     AuthorityNotCommitingForm,
                                     )

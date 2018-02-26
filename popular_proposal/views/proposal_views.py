@@ -1,7 +1,5 @@
 # coding=utf-8
 
-from backend_candidate.models import Candidacy
-
 from constance import config
 
 import copy
@@ -33,8 +31,6 @@ from django.views.generic.list import ListView
 
 from django_filters.views import FilterView
 
-from elections.models import Area, Candidate
-
 from django import forms
 
 from popular_proposal.forms import (AuthorityCommitmentForm,
@@ -51,7 +47,11 @@ from popular_proposal.models import (Commitment,
 from votainteligente.view_mixins import EmbeddedViewBase
 import random
 from django.conf import settings
-from popular_proposal import default_filterset_class, get_proposal_update_form_class
+from popular_proposal import default_filterset_class, get_proposal_update_form_class, get_authority_model
+
+
+authority_model = get_authority_model()
+
 
 class ThanksForProposingViewBase(DetailView):
     model = ProposalTemporaryData
@@ -112,10 +112,6 @@ class PopularProposalAyuranosView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PopularProposalAyuranosView, self).get_context_data(**kwargs)
-        candidates_qs = Candidate.objects.exclude(commitments__proposal__id=self.object.id).order_by('created_at')
-        if settings.PRIORITY_CANDIDATES:
-            candidates_qs = candidates_qs.filter(id__in=settings.PRIORITY_CANDIDATES)
-        context['candidates'] = candidates_qs
         return context
 
 
@@ -264,11 +260,11 @@ class CommitmentDetailView(DetailView):
 
     def dispatch(self, request, *args, **kwargs):
         self.proposal = get_object_or_404(PopularProposal, slug=self.kwargs['proposal_slug'])
-        self.candidate = get_object_or_404(Candidate, id=self.kwargs['authority_slug'])
+        self.authority = get_object_or_404(authority_model, id=self.kwargs['authority_slug'])
         return super(CommitmentDetailView, self).dispatch(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
-        return get_object_or_404(self.model, authority=self.candidate, proposal=self.proposal)
+        return get_object_or_404(self.model, authority=self.authority, proposal=self.proposal)
 
 
 proposal_update_form_class = get_proposal_update_form_class()

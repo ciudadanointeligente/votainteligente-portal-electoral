@@ -1,5 +1,4 @@
 # coding=utf-8
-from elections.tests import VotaInteligenteTestCase as TestCase
 from popular_proposal.forms import (get_form_list,
                                     wizard_forms_fields,)
 from django.test import RequestFactory
@@ -14,7 +13,7 @@ from collections import OrderedDict
 from constance.test import override_config
 from django.test import override_settings
 from constance import config
-from popular_proposal.tests import example_fields
+from popular_proposal.tests import example_fields, ProposalsTestCase as TestCase
 
 USER_PASSWORD = 'secr3t'
 

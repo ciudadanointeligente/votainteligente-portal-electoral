@@ -1,8 +1,6 @@
 # coding=utf-8
 from collections import OrderedDict
 
-from backend_candidate.models import is_candidate
-
 from constance import config
 
 from django.conf import settings
@@ -15,8 +13,6 @@ from django.shortcuts import get_object_or_404, render
 
 from django.utils.decorators import method_decorator
 
-from elections.models import Area
-
 from formtools.wizard.views import SessionWizardView
 
 from popular_proposal.forms import (UpdateProposalForm,
@@ -24,7 +20,7 @@ from popular_proposal.forms import (UpdateProposalForm,
 
 from popular_proposal.models import (ProposalTemporaryData)
 
-from popular_proposal import send_mails_to_staff, wizard_previous_form_classes
+from popular_proposal import send_mails_to_staff, wizard_previous_form_classes, is_authority
 
 wizard_form_list = get_form_list()
 
@@ -85,7 +81,7 @@ class ProposalWizardBase(SessionWizardView, DeterminingKwargsMixin):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        if is_candidate(request.user):
+        if is_authority(request.user):
             return HttpResponseNotFound()
         if config.PROPOSALS_ENABLED:
             return super(ProposalWizardBase, self).dispatch(request,

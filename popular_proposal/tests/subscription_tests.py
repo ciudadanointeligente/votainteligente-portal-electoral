@@ -22,7 +22,7 @@ from popular_proposal import get_authority_model
 authority_model = get_authority_model()
 
 
-class TestNewCandidateCommitment(SubscriptionEventBase):
+class TestNewAuthorityCommitment(SubscriptionEventBase):
     mail_template = 'new_commitment'
 
     def get_who(self):
@@ -60,7 +60,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
 
     def test_triggering_an_event(self):
         dispatcher = EventDispatcher()
-        dispatcher.register('test-event', [TestNewCandidateCommitment, ])
+        dispatcher.register('test-event', [TestNewAuthorityCommitment, ])
 
         dispatcher.trigger('test-event', proposal=self.proposal)
 
@@ -100,7 +100,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertIn(self.proposal.title, the_mail.body)
         self.assertIn(self.authority.name, the_mail.body)
 
-    def test_notification_trigger_candidate_commit(self):
+    def test_notification_trigger_commit(self):
         original_amount_of_emails = len(mail.outbox)
         ProposalLike.objects.create(user=self.feli,
                                     proposal=self.proposal)
@@ -110,7 +110,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
 
         self.assertEquals(len(mail.outbox), original_amount_of_emails + 2)
         the_mail = mail.outbox[0]
-        # Citizens are not notified if a candidate commits to a proposal
+        # Citizens are not notified if an authority commits to a proposal
         # until further notice
         # self.assertIn(self.feli.email, the_mail.to)
         # self.assertEquals(len(the_mail.to), 1)
@@ -123,7 +123,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertIn(self.proposal.title, the_mail.body)
         self.assertIn(self.authority.name, the_mail.body)
 
-    def test_there_are_two_different_emails_sent_if_a_candidate_has_not_commited(self):
+    def test_there_are_two_different_emails_sent_if_an_authority_has_not_commited(self):
         original_amount_of_emails = len(mail.outbox)
         ProposalLike.objects.create(user=self.feli,
                                     proposal=self.proposal)

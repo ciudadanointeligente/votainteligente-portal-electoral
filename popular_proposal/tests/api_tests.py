@@ -71,7 +71,7 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
         self.assertEquals(len(content), 1)
         self.assertEquals(content[0]['id'], p1.id)
 
-    def test_get_candidates(self):
+    def test_get_authorities(self):
         url = reverse('authority-list')
         response = self.client.get(url, format='json')
         self.assertEquals(response.status_code, 200)
@@ -98,6 +98,5 @@ class PopularProposalRestAPITestCase(ProposingCycleTestCaseBase):
         content = json.loads(response.content)["results"]
         self.assertEquals(len(content), 1)
         self.assertTrue(content[0]['proposal'])
-        # self.assertTrue(content[0]['candidate'])
         self.assertEquals(content[0]['detail'], commitment.detail)
         self.assertEquals(content[0]['commited'], commitment.commited)

@@ -6,7 +6,7 @@
 {% load bootstrap3 %}
 {% load ogp_tags %}
 
-{% block title %} - Compromiso final - {{commitment.candidate.name}} - {{commitment.proposal.title}}{% endblock title%}
+{% block title %} - Compromiso final - {{commitment.authority.name}} - {{commitment.proposal.title}}{% endblock title%}
 
 {% block ogp %}
   {% render_ogp popular_proposal %}
@@ -14,13 +14,13 @@
   <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
   <meta property="og:url" content="https://{% url_domain %}{{ object.get_absolute_url }}">
   <meta property="og:image" content="{{commitment.proposal.ogp_image}}">
-  <meta property="og:description" content="Yo, {{commitment.candidate.name}}, me he comprometido con la Propuesta Ciudadana: {{commitment.proposal.title}}">
+  <meta property="og:description" content="Yo, {{commitment.authority.name}}, me he comprometido con la Propuesta Ciudadana: {{commitment.proposal.title}}">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ciudadanoi">
   <meta name="twitter:creator" content="@ciudadanoi">
   <meta name="twitter:title" content="En votainteligente.cl revisa el compromiso que he firmado!">
-  <meta name="twitter:description" content="Yo, {{commitment.candidate.name}}, me he comprometido con la Propuesta Ciudadana: {{commitment.proposal.title}}">
+  <meta name="twitter:description" content="Yo, {{commitment.authority.name}}, me he comprometido con la Propuesta Ciudadana: {{commitment.proposal.title}}">
   <meta name="twitter:image" content="{{commitment.proposal.ogp_image}}">
 {% endblock ogp %}
 
@@ -47,16 +47,16 @@
       {% endfor %}
     {% endif %}
     <h1 class="page-header">Compromiso</h1>
-    Yo <b>{{commitment.candidate.name}}</b> me comprometo con la propuesta ciudadana:
+    Yo <b>{{commitment.authority.name}}</b> me comprometo con la propuesta ciudadana:
 
     {% include 'popular_proposal/plantillas/candidate_commitment.html' with proposal=commitment.proposal detail=commitment.detail %}
 
     <div class="pull-right">
-      <p><b>{{commitment.candidate.name}}</b></p>
-      <p>Candidata/o {% if commitment.candidate.election.position %}a {{commitment.candidate.election.position|title }}{% endif %} por {{commitment.candidate.election.area}}.</p>
+      <p><b>{{commitment.authority.name}}</b></p>
+      <p>Candidata/o {% if commitment.authority.election.position %}a {{commitment.authority.election.position|title }}{% endif %} por {{commitment.authority.election.area}}.</p>
     </div>
 </div>
-{% if user|manages_this:commitment.candidate %}
+{% if user|manages_this:commitment.authority %}
 <div class="container text-center">
   <h3>Hazlo público!</h3>
   <p>Cuéntales a tus futuros electores el compromiso que acabas de firmar!</p>
@@ -70,7 +70,7 @@
   <h3>Comunícalo!</h3>
   <p>Cuéntales a tus amigos sobre este compromiso!</p>
   <ul class="list-inline">
-    <li><a href="#" onclick="window.open('https://twitter.com/share?text={{commitment.candidate.name}} se comprometió con la propuesta ciudadana: {{commitment.proposal.title}}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
+    <li><a href="#" onclick="window.open('https://twitter.com/share?text={{commitment.authority.name}} se comprometió con la propuesta ciudadana: {{commitment.proposal.title}}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
     <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{{ object.get_absolute_url }}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
   </ul>
 </div>

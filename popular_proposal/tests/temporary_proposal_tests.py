@@ -69,13 +69,5 @@ class TemporaryDataForPromise(ProposingCycleTestCaseBase):
         the_mail = mail.outbox[0]
         self.assertIn(self.fiera.email, the_mail.to)
         self.assertEquals(len(the_mail.to), 1)
-        # context = Context({'area': self.arica,
-        #                    'temporary_data': temporary_data,
-        #                    'moderator': self.feli
-        #                    })
-        # template_body = get_template('mails/popular_proposal_rejected_body.html')
-        # template_subject = get_template('mails/popular_proposal_rejected_subject.html')
-        # template_body.render(context)
-        # template_subject.render(context)
         self.assertTrue(the_mail.body)
         self.assertTrue(the_mail.subject)

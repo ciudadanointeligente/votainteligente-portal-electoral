@@ -37,3 +37,4 @@ WIZARD_FORM_MODIFIER = 'proposals_for_votainteligente.forms.wizard_forms_field_m
 NUMERICAL_NOTIFICATION_CLASSES = ['popular_proposal.subscriptions.YouAreAHeroNotification',
                                   # 'proposals_for_votainteligente.subscriptions.ManyCitizensSupportingNotification'
                                   ]
+IS_AUTHORITY_DETERMINER = "backend_candidate.models.is_candidate"

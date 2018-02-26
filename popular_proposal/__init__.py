@@ -53,3 +53,8 @@ def get_proposal_update_form_class():
         return _import(settings.PROPOSAL_UPDATE_FORM)
     except Exception as e:
         return _import('popular_proposal.forms.forms.UpdateProposalForm')
+
+
+def is_authority(user):
+    func = _import(settings.IS_AUTHORITY_DETERMINER)
+    return func(user)

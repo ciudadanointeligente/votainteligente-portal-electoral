@@ -7,7 +7,6 @@ from popular_proposal.views.proposal_views import (SubscriptionView,
                                                    CommitmentDetailView,
                                                    PopularProposalOGImageView,
                                                    PopularProposalDetailRedirectView,
-                                                   PopularProposalAyuranosView,
                                                    )
 from popular_proposal.views.wizard import ProposalWizard
 from django.views.decorators.clickjacking import xframe_options_exempt
@@ -23,9 +22,6 @@ urlpatterns = [
     url(r'^detail/(?P<slug>[-\w]+)/?$',
         xframe_options_exempt(PopularProposalDetailView.as_view()),
         name='detail'),
-    url(r'^ayudanos/(?P<slug>[-\w]+)/?$',
-        PopularProposalAyuranosView.as_view(),
-        name='ayuranos'),
     url(r'^d/(?P<pk>\d+)/?$',
         PopularProposalDetailRedirectView.as_view(),
         name='short_detail'),

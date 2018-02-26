@@ -5,7 +5,6 @@ from django_filters import (FilterSet,
                             )
 from popular_proposal.models import PopularProposal
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
-from elections.models import Area
 from django.conf import settings
 from constance import config
 from django.forms import CharField, Form, ChoiceField, HiddenInput

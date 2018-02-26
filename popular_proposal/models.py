@@ -404,8 +404,6 @@ class Commitment(models.Model):
         return instance
 
     def get_absolute_url(self):
-        if self.authority.election is None:
-            return self.proposal.get_absolute_url()
         url = reverse('popular_proposals:commitment', kwargs={'authority_slug': self.authority.id,
                                                               'proposal_slug': self.proposal.slug})
         return url

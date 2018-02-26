@@ -7,7 +7,8 @@ from proposals_for_votainteligente.views import (WithinAreaProposalCreationView,
                                                  ThanksForProposingView,
                                                  ProposalWizardDependingOnArea,
                                                  ProposalWizardFull,
-                                                 ProposalWizardFullWithoutArea,)
+                                                 ProposalWizardFullWithoutArea,
+                                                 PopularProposalAyuranosWithCandidatesView,)
 from django.views.decorators.clickjacking import xframe_options_exempt
 
 
@@ -36,6 +37,9 @@ urlpatterns += [
     url(r'^area_embedded/(?P<slug>[-\w]+)/?$',
         xframe_options_exempt(ProposalsPerArea.as_view(is_embedded=True)),
         name='area_embedded'),
+    url(r'^ayudanos/(?P<slug>[-\w]+)/?$',
+        PopularProposalAyuranosWithCandidatesView.as_view(),
+        name='ayuranos'),
 
 ]
 

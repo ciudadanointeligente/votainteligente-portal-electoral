@@ -54,7 +54,8 @@ from django.conf import settings
 from popular_proposal.views.proposal_views import (ThanksForProposingViewBase,
                                                    CommitViewBase,
                                                    NotCommitViewBase,
-                                                   ProposalFilterMixin,)
+                                                   ProposalFilterMixin,
+                                                   PopularProposalAyuranosView,)
 from popular_proposal.views.wizard import (ProposalWizardBase)
 from proposals_for_votainteligente.forms import (ProposalWithAreaForm,
                                                  VotaInteligenteAuthorityCommitmentForm,
@@ -201,5 +202,15 @@ class ProposalWizardFullWithoutArea(WizardWithAreaMixin, ProposalWizardBase):
     def get_previous_forms(self):
         return []
 
+
+class PopularProposalAyuranosWithCandidatesView(PopularProposalAyuranosView):
+    def get_context_data(self, **kwargs):
+        context = super(PopularProposalAyuranosWithCandidatesView, self).get_context_data(**kwargs)
+        candidates_qs = Candidate.objects.exclude(commitments__proposal__id=self.object.id).order_by('created_at')
+        if settings.PRIORITY_CANDIDATES:
+            candidates_qs = candidates_qs.filter(id__in=settings.PRIORITY_CANDIDATES)
+        context['candidates'] = candidates_qs
+
+        return context
 
 

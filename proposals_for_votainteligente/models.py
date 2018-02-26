@@ -8,7 +8,7 @@ from django.conf import settings
 from votainteligente.open_graph import OGPMixin
 
 
-class ProposalsAdapter(models.Model, OGPMixin):
+class CitizenProposal(models.Model, OGPMixin):
     area = models.ForeignKey(Area, related_name="popularproposals", null=True, blank=True)
     generated_at = models.ForeignKey(Area,
                                      related_name='popularproposals_generated_here',

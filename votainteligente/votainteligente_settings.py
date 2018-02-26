@@ -27,7 +27,7 @@ PRIORITY_CANDIDATES = []
 
 # Popular Proposals adaptation
 AUTHORITY_MODEL = "elections.models.Candidate"
-PROPOSALS_ADAPTER = "proposals_for_votainteligente.models.ProposalsAdapter"
+PROPOSALS_ADAPTER = "proposals_for_votainteligente.models.CitizenProposal"
 MAIL_SENDER_FUNCTION = 'votainteligente.send_mails.send_mail'
 MAIL_TO_STAFF_SENDER_FUNCTION = 'votainteligente.send_mails.send_mails_to_staff'
 DEFAULT_FITERSET_CLASS = 'proposals_for_votainteligente.filters.ProposalGeneratedAtFilter'

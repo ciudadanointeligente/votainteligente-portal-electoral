@@ -53,11 +53,11 @@ INSTALLED_APPS = (
     'newsletter',
     'rest_framework',
     'preguntales',
-    'votita',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'proposals_for_votainteligente',
     'popular_proposal',
+    'proposals_for_votainteligente',
+    'votita',
     'backend_staff',
     'backend_citizen',
     'backend_candidate',

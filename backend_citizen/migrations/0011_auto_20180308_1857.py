@@ -9,7 +9,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('popular_proposal', '0032_auto_20180308_1857'),
-        ('popolo', '0004_auto_20180308_1857'),
         ('backend_citizen', '0010_auto_20171005_1822'),
     ]
 

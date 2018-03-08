@@ -1,9 +1,7 @@
 # coding=utf-8
 from django import forms
 from django.utils.translation import ugettext as _
-from backend_citizen.models import (Profile,
-                                    Organization,
-                                    Enrollment)
+from backend_citizen.models import Profile
 from django.contrib.auth.models import User
 from registration.forms import RegistrationForm as UserCreationForm
 try:
@@ -87,27 +85,3 @@ class GroupCreationForm(UserCreationForm):
         group.profile.is_organization = True
         group.profile.save()
         return group
-
-
-class OrganizationCreationForm(forms.ModelForm):
-    class Meta:
-        model = Organization
-        fields = ('name', 'description')
-        labels = {
-            'name': _(u'¿Cuál es el nombre de tu grupo?'),
-            'description': _(u'¿Podrías describirlo?'),
-        }
-        help_texts = {
-            'name': _(u'Grupo de artistas callejeros.'),
-            'description': _(u'Somos muy buena gente y nos gusta el arte.'),
-        }
-
-    def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user')
-        super(OrganizationCreationForm, self).__init__(*args, **kwargs)
-
-    def save(self, commit=True):
-        organization = super(OrganizationCreationForm, self).save(commit=commit)
-        Enrollment.objects.create(user=self.user,
-                                  organization=organization)
-        return organization

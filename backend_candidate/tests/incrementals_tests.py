@@ -1,5 +1,5 @@
 # coding=utf-8
-from popular_proposal.tests import ProposingCycleTestCaseBase
+from proposals_for_votainteligente.tests import VIProposingCycleTestCaseBase as ProposingCycleTestCaseBase
 from elections.models import Candidate
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
@@ -106,7 +106,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
 
     def test_send_mail_per_candidate(self):
         e = Election.objects.first()
-        damian_candidato = Candidate.objects.create(name='Jefe!')
+        damian_candidato = Candidate.objects.create(name=u'Jefe!')
         damian_candidato.elections.add(e)
         d_1 = User.objects.create(username='d1', email='damian1@perrito.cl')
         d_2 = User.objects.create(username='d2', email='damian2@perrito.cl')
@@ -155,7 +155,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
         self.assertIn(p2, context['proposals'].all())
 
         # Jefe comprometido y enamorado
-        Commitment.objects.create(candidate=damian_candidato,
+        Commitment.objects.create(authority=damian_candidato,
                                   proposal=p1,
                                   detail=u'Yo me comprometo',
                                   commited=True)
@@ -185,7 +185,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
 
     def test_command_line(self):
         e = Election.objects.first()
-        damian_candidato = Candidate.objects.create(name='Jefe!')
+        damian_candidato = Candidate.objects.create(name=u'Jefe!')
         damian_candidato.elections.add(e)
         d_1 = User.objects.create(username='d1', email='damian1@perrito.cl')
         d_2 = User.objects.create(username='d2', email='damian2@perrito.cl')
@@ -235,7 +235,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
         self.assertIn(p2, context['proposals'].all())
 
         # Jefe comprometido y enamorado
-        Commitment.objects.create(candidate=damian_candidato,
+        Commitment.objects.create(authority=damian_candidato,
                                   proposal=p1,
                                   detail=u'Yo me comprometo',
                                   commited=True)
@@ -266,7 +266,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
 
     def test_command_line_for_selected_filters(self):
         e = Election.objects.first()
-        damian_candidato = Candidate.objects.create(name='Jefe!', id="jefe")
+        damian_candidato = Candidate.objects.create(name=u'Jefe!', id=u"jefe")
         damian_candidato.elections.add(e)
         d_1 = User.objects.create(username='d1', email='damian1@perrito.cl')
         d_2 = User.objects.create(username='d2', email='damian2@perrito.cl')
@@ -282,11 +282,11 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
         Candidacy.objects.create(candidate=fiera_candidata, user=f_1)
         Candidacy.objects.create(candidate=fiera_candidata, user=f_2)
 
-        benito_candidato = Candidate.objects.create(name='Beni el mejor del mundo!', id="beni")
-        beni_1 = User.objects.create(username='beni', email='beni@perrito.cl')
+        benito_candidato = Candidate.objects.create(name=u'Beni el mejor del mundo!', id=u"beni")
+        beni_1 = User.objects.create(username=u'beni', email='beni@perrito.cl')
         Candidacy.objects.create(candidate=benito_candidato, user=beni_1)
         PersonalData.objects.create(candidate=benito_candidato, label='Pacto', value="Otro Pacto")
-        filter_qs2 = {'id':'beni'}
+        filter_qs2 = {'id':u'beni'}
         exclude_qs2 = {}
         f2 = IncrementalsCandidateFilter.objects.create(filter_qs=filter_qs2,
                                                        exclude_qs=exclude_qs2,
@@ -324,7 +324,7 @@ class IncrementalsTestCase(ProposingCycleTestCaseBase):
         self.assertIn(p2, context['proposals'].all())
 
         # Jefe comprometido y enamorado
-        Commitment.objects.create(candidate=damian_candidato,
+        Commitment.objects.create(authority=damian_candidato,
                                   proposal=p1,
                                   detail=u'Yo me comprometo',
                                   commited=True)
@@ -434,9 +434,9 @@ class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
                                                   suggestion=self.filter)
         url = reverse("backend_candidate:commit_to_suggestions", kwargs={"identifier": c_i.identifier})
         response = self.client.post(url, data)
-        c1 = Commitment.objects.get(candidate=self.fiera_candidata,
+        c1 = Commitment.objects.get(authority=self.fiera_candidata,
                                     proposal=self.p1)
-        self.assertFalse(Commitment.objects.filter(candidate=self.fiera_candidata,
+        self.assertFalse(Commitment.objects.filter(authority=self.fiera_candidata,
                                                    proposal=self.p2))
         self.assertIn(c1, response.context['commitments'])
         response = self.client.get(url)
@@ -469,7 +469,7 @@ class MultiCommitmentForm(ProposingCycleTestCaseBase):
         self.assertTrue(form.is_valid())
         commitment = form.save()
         self.assertTrue(commitment.commited)
-        self.assertEquals(commitment.candidate, fiera_candidata)
+        self.assertEquals(commitment.authority, fiera_candidata)
         self.assertEquals(commitment.proposal, proposal)
         #  DONT CREATE TWO COMMITMENTS
         form = SimpleCommitmentForm(data=data,

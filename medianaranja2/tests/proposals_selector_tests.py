@@ -62,9 +62,9 @@ class ProposalsGetterTestCase(MediaNaranjaAdaptersBase):
                                             data={}
                                             )
 
-        Commitment.objects.create(candidate=c_1_1, proposal=pa, commited=True)
-        Commitment.objects.create(candidate=c_2_2, proposal=pb, commited=True)
-        Commitment.objects.create(candidate=c_2_2, proposal=pb, commited=True)
+        Commitment.objects.create(authority=c_1_1, proposal=pa, commited=True)
+        Commitment.objects.create(authority=c_2_2, proposal=pb, commited=True)
+        Commitment.objects.create(authority=c_2_2, proposal=pb, commited=True)
 
         getter = ProposalsGetter()
         proposed_proposals = getter.get_all_proposals(child)

@@ -1,5 +1,5 @@
 # coding=utf-8
-from popular_proposal.tests import ProposingCycleTestCaseBase
+from proposals_for_votainteligente.tests import VIProposingCycleTestCaseBase as ProposingCycleTestCaseBase
 from popular_proposal.tests.wizard_tests import WizardDataMixin
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse

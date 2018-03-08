@@ -14,7 +14,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from backend_citizen.forms import UserCreationForm as RegistrationForm
 from popular_proposal.models import PopularProposal
-from popular_proposal.filters import ProposalWithoutAreaFilter
+from popular_proposal.filters import ProposalFilterBase
 from django_filters.views import FilterMixin
 from django.core.cache import cache
 from django.conf import settings
@@ -218,7 +218,7 @@ class AreaDetailView(DetailView, FilterMixin):
         kwargs = {'data': initial or None,
                   'area': self.object
                   }
-        filterset = ProposalWithoutAreaFilter(**kwargs)
+        filterset = ProposalFilterBase(**kwargs)
         context['proposal_filter_form'] = filterset.form
 
         context['popular_proposals'] = filterset.qs

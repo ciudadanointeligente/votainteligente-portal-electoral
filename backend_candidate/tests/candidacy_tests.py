@@ -122,12 +122,12 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         Candidacy.objects.create(user=self.feli,
                                  candidate=self.candidate
                                  )
-        commitment = Commitment.objects.create(candidate=self.candidate,
+        commitment = Commitment.objects.create(authority=self.candidate,
                                                proposal=self.proposal,
                                                commited=True)
 
         candidate2 = Candidate.objects.get(id=2)
-        commitment2 = Commitment.objects.create(candidate=candidate2,
+        commitment2 = Commitment.objects.create(authority=candidate2,
                                                 proposal=self.proposal,
                                                 commited=True)
 
@@ -169,7 +169,7 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
                                                    data=self.data,
                                                    title=u'This is a title2'
                                                    )
-        Commitment.objects.create(candidate=self.candidate,
+        Commitment.objects.create(authority=self.candidate,
                                   proposal=self.proposal2,
                                   commited=True)
 
@@ -208,7 +208,7 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         # Proposal1 doesn't have a commitment so it should be in the lis
         # Proposal for another area
         another_area = Area.objects.create(name='another area')
-        Commitment.objects.create(candidate=self.candidate,
+        Commitment.objects.create(authority=self.candidate,
                                   proposal=self.proposal2,
                                   commited=True)
         proposal3 = PopularProposal.objects.create(proposer=self.fiera,

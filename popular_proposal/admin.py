@@ -11,7 +11,6 @@ from popular_proposal.forms.form_texts import TEXTS
 @admin.register(PopularProposal)
 class PopularProposalAdmin(admin.ModelAdmin):
     list_display = ('id',
-                    'area',
                     'title',
                     'data',
                     'proposer',
@@ -33,7 +32,7 @@ for key in TEXTS.keys():
 
 @admin.register(ProposalTemporaryData)
 class ProposalTemporaryDataAdmin(admin.ModelAdmin):
-    list_display = ('id', 'area', 'data', 'proposer', 'status')
+    list_display = ('id','data', 'proposer', 'status')
     form = ProposalTemporaryDataModelForm
     fieldsets = (
         (None, {
@@ -59,4 +58,4 @@ class ProposalLikeAdmin(admin.ModelAdmin):
 
 @admin.register(Commitment)
 class CommitmentAdmin(admin.ModelAdmin):
-    list_display = ('id', "candidate", "proposal")
+    list_display = ('id', "authority", "proposal")

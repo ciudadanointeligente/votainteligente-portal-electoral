@@ -268,14 +268,14 @@ def user_image(user, height, width):
 @register.filter(name='has_commited_with', takes_context=True)
 def has_commited_with(element, proposal):
     candidate = getattr(element, 'candidate', element)
-    if proposal.commitments.filter(candidate=candidate).exists():
+    if proposal.commitments.filter(authority=candidate).exists():
         return True
     return False
 
 
 @register.simple_tag
 def get_commitment(candidacy, proposal):
-    return proposal.commitments.filter(candidate=candidacy.candidate).first()
+    return proposal.commitments.filter(authority=candidacy.candidate).first()
 
 
 @register.simple_tag
@@ -318,7 +318,7 @@ def manages_this(user, candidate):
 
 @register.simple_tag(name='commiters_by_election_position')
 def commiters_by_election_position(proposal, position):
-    return proposal.commitments.filter(candidate__elections__position=position).distinct()
+    return proposal.commitments.filter(authority__elections__position=position).distinct()
 
 
 @register.filter

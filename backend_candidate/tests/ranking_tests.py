@@ -101,35 +101,34 @@ class RankingTests(TestCase):
 
     def test_ordering_according_to_commitment(self):
         # Candidate 4 has commited with all proposals
-        Commitment.objects.create(candidate=self.candidate4,
+        Commitment.objects.create(authority=self.candidate4,
                                   proposal=self.p1,
                                   detail=u'Yo me comprometo',
                                   commited=True)
-        Commitment.objects.create(candidate=self.candidate4,
+        Commitment.objects.create(authority=self.candidate4,
                                   proposal=self.p2,
                                   detail=u'Yo no me comprometo',
                                   commited=False)
-        Commitment.objects.create(candidate=self.candidate4,
+        Commitment.objects.create(authority=self.candidate4,
                                   proposal=self.p3,
                                   detail=u'Yo me comprometo',
                                   commited=True)
         # Candidate 3 has commited with 2/3 of the proposals
-        Commitment.objects.create(candidate=self.candidate3,
+        Commitment.objects.create(authority=self.candidate3,
                                   proposal=self.p2,
                                   detail=u'Yo no me comprometo',
                                   commited=False)
-        Commitment.objects.create(candidate=self.candidate3,
+        Commitment.objects.create(authority=self.candidate3,
                                   proposal=self.p3,
                                   detail=u'Yo me comprometo',
                                   commited=True)
         # Candidate 1 has commited with 1/3 of the proposals
-        Commitment.objects.create(candidate=self.candidate1,
+        Commitment.objects.create(authority=self.candidate1,
                                   proposal=self.p2,
                                   detail=u'Yo no me comprometo',
                                   commited=False)
         ordered_candidates = Candidate.ranking.all()
         self.assertEquals(ordered_candidates.count(), Candidate.objects.all().count())
-        print ordered_candidates[1].elections.first().area.proposals.count()
         self.assertEquals(ordered_candidates[1].num_proposals, 3)
         self.assertEquals(ordered_candidates[1].num_commitments, 2)
 
@@ -143,29 +142,29 @@ class RankingTests(TestCase):
 
     def test_get_position_in_ranking(self):
         # Candidate 4 has commited with all proposals
-        Commitment.objects.create(candidate=self.candidate4,
+        Commitment.objects.create(authority=self.candidate4,
                                   proposal=self.p1,
                                   detail=u'Yo me comprometo',
                                   commited=True)
-        Commitment.objects.create(candidate=self.candidate4,
+        Commitment.objects.create(authority=self.candidate4,
                                   proposal=self.p2,
                                   detail=u'Yo no me comprometo',
                                   commited=False)
-        Commitment.objects.create(candidate=self.candidate4,
+        Commitment.objects.create(authority=self.candidate4,
                                   proposal=self.p3,
                                   detail=u'Yo me comprometo',
                                   commited=True)
         # Candidate 3 has commited with 2/3 of the proposals
-        Commitment.objects.create(candidate=self.candidate3,
+        Commitment.objects.create(authority=self.candidate3,
                                   proposal=self.p2,
                                   detail=u'Yo no me comprometo',
                                   commited=False)
-        Commitment.objects.create(candidate=self.candidate3,
+        Commitment.objects.create(authority=self.candidate3,
                                   proposal=self.p3,
                                   detail=u'Yo me comprometo',
                                   commited=True)
         # Candidate 1 has commited with 1/3 of the proposals
-        Commitment.objects.create(candidate=self.candidate1,
+        Commitment.objects.create(authority=self.candidate1,
                                   proposal=self.p2,
                                   detail=u'Yo no me comprometo',
                                   commited=False)

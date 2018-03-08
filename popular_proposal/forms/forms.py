@@ -5,15 +5,14 @@ from popular_proposal.models import (ProposalTemporaryData,
                                      PopularProposal,
                                      ProposalCreationMixin,
                                      Commitment)
-from votainteligente.send_mails import send_mail
+from popular_proposal import send_mail, send_mails_to_staff
 from django.utils.translation import ugettext as _
 from django.contrib.sites.models import Site
 from .form_texts import TEXTS, TOPIC_CHOICES, WHEN_CHOICES
-from elections.models import Area
 from collections import OrderedDict
-from votainteligente.send_mails import send_mails_to_staff
 from constance import config
 from django.conf import settings
+from popular_proposal import wizard_forms_field_modifier
 
 
 class TextsFormMixin():
@@ -35,34 +34,6 @@ class TextsFormMixin():
                 if 'step' in texts.keys() and texts['step']:
                     self.fields[field].widget.attrs['tab_text'] = texts['step']
 
-
-def get_user_organizations_choicefield(user=None):
-    if user is None or not user.is_authenticated():
-        return None
-
-    if user.enrollments.all():
-        choices = [('', 'Lo haré a nombre personal')]
-        for enrollment in user.enrollments.all():
-            choice = (enrollment.organization.id, enrollment.organization.name)
-            choices.append(choice)
-        label = _(u'¿Esta promesa es a nombre de un grupo ciudadano?')
-        return forms.ChoiceField(choices=choices,
-                                 label=label)
-    return None
-
-
-def get_possible_generating_areas():
-    area_qs = Area.public.all()
-    if settings.POSSIBLE_GENERATING_AREAS_FILTER:
-        area_qs = area_qs.filter(classification=settings.POSSIBLE_GENERATING_AREAS_FILTER)
-    return area_qs
-
-
-def get_possible_generating_areas_choices():
-    area_qs = get_possible_generating_areas()
-    choices = [('', _(u'No aplica'))]
-    choices += [(a.id, a.name) for a in area_qs]
-    return choices
 
 wizard_forms_fields = [
     {
@@ -110,12 +81,7 @@ wizard_forms_fields = [
         'fields': OrderedDict([
             ('title', forms.CharField(max_length=256,
                                       widget=forms.TextInput())),
-            ('organization', get_user_organizations_choicefield),
             ('is_local_meeting', forms.BooleanField(required=False)),
-            ('generated_at', forms.ModelChoiceField(required=False,
-                                                    queryset=get_possible_generating_areas(),
-                                                    empty_label="No aplica")
-                                                    ),
             ('terms_and_conditions', forms.BooleanField(
                 error_messages={'required':
                                 _(u'Debes aceptar nuestros Términos y Condiciones')}
@@ -130,6 +96,7 @@ wizard_forms_fields = [
 def get_form_list(wizard_forms_fields=wizard_forms_fields, **kwargs):
     form_list = []
     counter = 0
+    wizard_forms_fields = wizard_forms_field_modifier(wizard_forms_fields)
     for step in wizard_forms_fields:
         counter += 1
         fields_dict = OrderedDict()
@@ -180,11 +147,14 @@ class ProposalFormBase(forms.Form, TextsFormMixin):
 
 
 class CreateProposalMixin(ProposalCreationMixin):
+    original_kwargs = {
+        'proposer': "proposer",
+        'data': "cleaned_data",
+        'model_class': "model_class"
+    }
     def save(self):
-        kwargs = self.determine_kwargs(proposer=self.proposer,
-                                       area=self.area,
-                                       data=self.cleaned_data,
-                                       model_class=self.model_class)
+        original_kwargs = {k: getattr(self, v, None) for k, v in self.original_kwargs.items()}
+        kwargs = self.determine_kwargs(**original_kwargs)
         t_data = self.model_class.objects.create(**kwargs)
         t_data.notify_new()
         return t_data
@@ -194,15 +164,10 @@ class ProposalForm(ProposalFormBase, CreateProposalMixin):
     model_class = ProposalTemporaryData
 
     def __init__(self, *args, **kwargs):
-        self.area = kwargs.pop('area')
         super(ProposalForm, self).__init__(*args, **kwargs)
 
 
 class UpdateProposalForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(UpdateProposalForm, self).__init__(*args, **kwargs)
-        self.fields['generated_at'].choices = get_possible_generating_areas_choices()
-
     class Meta:
         model = PopularProposal
         fields = ['join_advocacy_url', 'background', 'contact_details', 'image', 'document', 'generated_at', 'is_local_meeting']
@@ -211,7 +176,7 @@ class UpdateProposalForm(forms.ModelForm):
                   'image': _(u'¿Tienes alguna imagen para compartir?'),
                   'document': _(u'¿Tienes algún documento para complementar tu propuesta?'),
                   'generated_at': _(u'¿En qué comuna se generó esta propuesta?'),
-                  'contact_details': _(u'¿Cómo te puede contactar un candidato?'),
+                  'contact_details': _(u'¿Cómo te puede contactar una autoridad?'),
                   'is_local_meeting': _(u'¿Esta propuesta se generó en un encuentro local?')
                   }
         help_texts = {'join_advocacy_url': _(u'URL de un grupo de facebook, o un grupo en whatsapp. Por ejemplo: https://facebook.com/migrupo'),
@@ -250,7 +215,6 @@ class CommentsForm(forms.Form):
 
         site = Site.objects.get_current()
         mail_context = {
-            'area': self.temporary_data.area,
             'temporary_data': self.temporary_data,
             'moderator': self.moderator,
             'comments': comments,
@@ -349,34 +313,11 @@ class SubscriptionForm(forms.Form):
         return like
 
 
-class AreaForm(forms.Form):
-    area = forms.ChoiceField()
-    explanation_template = "popular_proposal/steps/select_area.html"
-    template = 'popular_proposal/wizard/select_area.html'
-
-    def __init__(self, *args, **kwargs):
-        is_staff = kwargs.pop('is_staff', False)
-        super(AreaForm, self).__init__(*args, **kwargs)
-        area_qs = Area.public.all()
-        if is_staff:
-            area_qs = Area.objects.all()
-        self.fields['area'].choices = [(a.id, a.name) for a in area_qs]
-        if config.DEFAULT_AREA:
-            self.initial['area'] = config.DEFAULT_AREA
-
-    def clean(self):
-        cleaned_data = super(AreaForm, self).clean()
-        if 'area' not in cleaned_data:
-            return cleaned_data
-        area = Area.objects.get(id=cleaned_data['area'])
-        cleaned_data['area'] = area
-        return cleaned_data
-
 
 class ProposalTemporaryDataModelForm(forms.ModelForm, ProposalFormBase):
     class Meta:
         model = ProposalTemporaryData
-        exclude = ['organization', 'data']
+        exclude = ['data']
 
     def __init__(self, *args, **kwargs):
         super(ProposalTemporaryDataModelForm, self).__init__(*args, **kwargs)
@@ -392,7 +333,7 @@ class ProposalTemporaryDataModelForm(forms.ModelForm, ProposalFormBase):
         return instance
 
 
-class CandidateCommitmentFormBase(forms.Form):
+class AuthorityCommitmentFormBase(forms.Form):
     detail = forms.CharField(required=False,
                              widget=forms.Textarea(),
                              label=_(u'Cuentanos los términos de tu compromiso:'),
@@ -403,32 +344,21 @@ class CandidateCommitmentFormBase(forms.Form):
 
     commited = True
 
-    def __init__(self, candidate, proposal, *args, **kwargs):
-        super(CandidateCommitmentFormBase, self).__init__(*args, **kwargs)
-        self.candidate = candidate
+    def __init__(self, authority, proposal, *args, **kwargs):
+        super(AuthorityCommitmentFormBase, self).__init__(*args, **kwargs)
+        self.authority = authority
         self.proposal = proposal
 
     def save(self):
         detail = self.cleaned_data['detail']
         commitment = Commitment.objects.create(proposal=self.proposal,
-                                               candidate=self.candidate,
+                                               authority=self.authority,
                                                detail=detail,
                                                commited=self.commited)
         return commitment
 
-    def clean(self):
-        cleaned_data = super(CandidateCommitmentFormBase, self).clean()
-        if not self.candidate.election.candidates_can_commit_everywhere:
-            if self.candidate.election:
-                if self.candidate.election.area != self.proposal.area:
-                    raise forms.ValidationError(_(u'El candidato no pertenece al area'))
-            else:
-                raise forms.ValidationError(_(u'El candidato no pertenece al area'))
-        return cleaned_data
-
-
-class CandidateCommitmentForm(CandidateCommitmentFormBase):
+class AuthorityCommitmentForm(AuthorityCommitmentFormBase):
     commited = True
 
-class CandidateNotCommitingForm(CandidateCommitmentFormBase):
+class AuthorityNotCommitingForm(AuthorityCommitmentFormBase):
     commited = False

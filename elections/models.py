@@ -131,7 +131,7 @@ class RankingManager(models.Manager):
         qs = qs.annotate(num_proposals=
                          Case(
                              When(elections__isnull=True, then=1.0),
-                             When(elections__candidates_can_commit_everywhere=False, then=Count(F('elections__area__proposals'),distinct=True)),
+                             When(elections__candidates_can_commit_everywhere=False, then=Count(F('elections__area__popularproposals'),distinct=True)),
                              When(elections__candidates_can_commit_everywhere=True, then=1.0),
                              output_field=FloatField(),
                              distinct=True,
@@ -173,6 +173,7 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin, ShareableMixin):
     objects = HaveAnsweredFirst()
     answered_first = HaveAnsweredFirst()
     ranking = RankingManager()
+    slug = models.CharField(max_length=254, null=True, blank=True)
 
     ogp_enabled = True
 

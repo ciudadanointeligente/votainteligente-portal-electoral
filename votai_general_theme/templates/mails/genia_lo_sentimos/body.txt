@@ -1,7 +1,7 @@
 ¡Hola {% include '_user_printable.html' with user=person %}!
-Escribimos para contarte que {{commitment.candidate.name}} {% if candidate.election.position == 'concejal' %}acaba de declarar que no apoyará{% elif candidate.election.position == 'alcalde' %}acaba de declarar que no se comprometerá con{% else %}acaba de declarar que no se comprometerá con{% endif %} la propuesta ciudadana {{proposal.title}}.
+Escribimos para contarte que {{commitment.authority.name}} {% if candidate.election.position == 'concejal' %}acaba de declarar que no apoyará{% elif candidate.election.position == 'alcalde' %}acaba de declarar que no se comprometerá con{% else %}acaba de declarar que no se comprometerá con{% endif %} la propuesta ciudadana {{proposal.title}}.
 
-{% if commitment.candidate.election %}
+{% if commitment.authority.election %}
 Puedes revisar sus razones para rechazar tu propuesta ciudadana acá:
 https://votainteligente.cl{{commitment.get_absolute_url}}
 {% endif %}

@@ -139,7 +139,7 @@ class MediaNaranjaWizardForm(SessionWizardView):
             calculator = Calculator(election, cleaned_data['positions'], cleaned_data['proposals'])
             results.append(calculator.get_result())
 
-        is_creator_of_this_proposals_filter = Q(organization__proposals__in=cleaned_data['proposals'])
+        is_creator_of_this_proposals_filter = Q(organization__popularproposals__in=cleaned_data['proposals'])
         is_liker_of_this_proposals = Q(organization__likes__proposal__in=cleaned_data['proposals'])
         organization_templates = OrganizationTemplate.objects.filter(is_creator_of_this_proposals_filter|is_liker_of_this_proposals).distinct()
         return render(self.request, 'medianaranja2/resultado.html', {

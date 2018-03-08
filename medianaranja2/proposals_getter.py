@@ -10,7 +10,7 @@ from elections.models import Election
 
 class ProposalsGetterBase(object):
     def proposals(self, election):
-        commitments = Commitment.objects.filter(commited=True, candidate__elections=election)
+        commitments = Commitment.objects.filter(commited=True, authority__elections=election)
         return list(PopularProposal.objects.filter(commitments__in=commitments).distinct())
 
     def get_elections(self, proposals_container_element):
@@ -40,7 +40,7 @@ class ProposalsGetterBase(object):
         return proposals
 
     def get_default_proposals_from_elections(self, elections):
-        return PopularProposal.ordered.filter(commitments__candidate__elections__in=elections).order_by('-num_likers')
+        return PopularProposal.ordered.filter(commitments__authority__elections__in=elections).order_by('-num_likers')
 
 class ProposalsGetter(ProposalsGetterBase):
     cache_key = 'proposals_for_'

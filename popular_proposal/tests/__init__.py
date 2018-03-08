@@ -1,13 +1,19 @@
 # coding=utf-8
-from elections.tests import VotaInteligenteTestCase as TestCase
+from django.test import TestCase, override_settings
 from django.contrib.auth.models import User
-from elections.models import Area
+
 from popular_proposal.forms.forms import wizard_forms_fields
 from django import forms
+from PIL import Image
+from StringIO import StringIO
+from django.core.files.base import ContentFile
+import random
+import os
+__dir__ = os.path.dirname(os.path.realpath(__file__))
 
 example_fields = {
-    'CharField': 'fieraFeroz',
-    'URLField': 'http://fieraFeroz.com',
+    'CharField': u'fieraFeroz',
+    'URLField': u'http://fieraFeroz.com',
     'BooleanField': True,
 }
 
@@ -27,14 +33,35 @@ def get_example_data_for_testing():
                 data[f] = field.choices[-1][0]
     return data
 
-class ProposingCycleTestCaseBase(TestCase):
+
+@override_settings(THEME=None)
+class ProposalsTestCase(TestCase):
+    fixtures = ['mini_2.yaml']
+
+    def setUp(self):
+        super(ProposalsTestCase, self).setUp()
+
+    def get_image(self):
+        image_file = StringIO()
+        color1 = random.randint(0, 255)
+        color2 = random.randint(0, 255)
+        color3 = random.randint(0, 255)
+        image = Image.new('RGBA', size=(50, 50), color=(color1, color2, color3))
+        image.save(image_file, 'png')
+        image_file.seek(0)
+        return ContentFile(image_file.read(), 'test.png')
+
+    def get_document(self):
+        pdf_file = open(__dir__ + '/fixtures/example.pdf')
+        return ContentFile(pdf_file.read(), 'example.pdf')
+
+
+class ProposingCycleTestCaseBase(ProposalsTestCase):
 
     def setUp(self):
         super(ProposingCycleTestCaseBase, self).setUp()
         self.fiera = User.objects.get(username='fiera')
         self.feli = User.objects.get(username='feli')
-        self.arica = Area.objects.get(id='arica-15101')
-        self.alhue = Area.objects.get(id='alhue-13502')
         self.data = get_example_data_for_testing()
         self.comments = {
             'title': '',
@@ -42,3 +69,5 @@ class ProposingCycleTestCaseBase(TestCase):
             'when': u'El plazo no está tan bueno',
             'causes': ''
         }
+
+

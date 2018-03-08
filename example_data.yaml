@@ -506,24 +506,6 @@
   pk: 166
   fields: {name: Can delete proposal like, content_type: 60, codename: delete_proposallike}
 - model: auth.permission
-  pk: 167
-  fields: {name: Can add enrollment, content_type: 61, codename: add_enrollment}
-- model: auth.permission
-  pk: 168
-  fields: {name: Can change enrollment, content_type: 61, codename: change_enrollment}
-- model: auth.permission
-  pk: 169
-  fields: {name: Can delete enrollment, content_type: 61, codename: delete_enrollment}
-- model: auth.permission
-  pk: 170
-  fields: {name: Can add organization, content_type: 62, codename: add_organization}
-- model: auth.permission
-  pk: 171
-  fields: {name: Can change organization, content_type: 62, codename: change_organization}
-- model: auth.permission
-  pk: 172
-  fields: {name: Can delete organization, content_type: 62, codename: delete_organization}
-- model: auth.permission
   pk: 173
   fields: {name: Can add profile, content_type: 63, codename: add_profile}
 - model: auth.permission

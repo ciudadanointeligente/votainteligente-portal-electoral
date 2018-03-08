@@ -1,5 +1,5 @@
 # coding=utf-8
-from popular_proposal.tests import ProposingCycleTestCaseBase as TestCase
+from proposals_for_votainteligente.tests import VIProposingCycleTestCaseBase as TestCase
 from votainteligente.send_mails import send_mails_to_staff
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData, PopularProposal

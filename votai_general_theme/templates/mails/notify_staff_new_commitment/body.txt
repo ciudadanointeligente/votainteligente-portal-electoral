@@ -1,7 +1,7 @@
 {% load votainteligente_extras %}Hermana o hermano!
 Este mail es para contarte que hay un nuevo compromiso:
 
-Candidato: {{commitment.candidate.name}} candidata/o a {{commitment.candidate.election.position}} por {{commitment.candidate.election.area.name}} {% get_personal_data candidate=commitment.candidate personal_data='Partido' as partido %} {% if partido %}{{partido.value}}{% endif %} - {% get_personal_data candidate=commitment.candidate personal_data='Pacto' as pacto %}{% if pacto %}{{pacto.value}}{% endif %}
+Candidato: {{commitment.authority.name}}
 
 URL del Candidato: https://{{site.domain}}{{commitment.candidate.get_absolute_url}}
 

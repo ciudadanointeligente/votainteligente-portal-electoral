@@ -21,7 +21,7 @@ class ReadingGroup(models.Model):
         candidates = self.candidates
         if elections is not None:
             candidates = candidates.filter(elections__in=elections)
-        qs = qs.filter(commitments__candidate__in=candidates.all())
+        qs = qs.filter(commitments__authority__in=candidates.all())
         qs = qs.order_by('-num_likers')
         return qs
 

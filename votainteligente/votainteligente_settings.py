@@ -24,3 +24,18 @@ EXCLUDED_PROPOSALS_APPS = []
 AREAS_THAT_SHOULD_BE_REDIRECTING_TO_THEIR_PARENTS = ['comuna']
 SECOND_ROUND_ELECTION = None
 PRIORITY_CANDIDATES = []
+
+# Popular Proposals adaptation
+AUTHORITY_MODEL = "elections.models.Candidate"
+PROPOSALS_ADAPTER = "proposals_for_votainteligente.models.CitizenProposal"
+MAIL_SENDER_FUNCTION = 'votainteligente.send_mails.send_mail'
+MAIL_TO_STAFF_SENDER_FUNCTION = 'votainteligente.send_mails.send_mails_to_staff'
+DEFAULT_FITERSET_CLASS = 'proposals_for_votainteligente.filters.ProposalGeneratedAtFilter'
+WIZARD_PREVIOUS_CLASSES = ['proposals_for_votainteligente.forms.AreaForm',]
+PROPOSAL_UPDATE_FORM  = 'proposals_for_votainteligente.forms.UpdateProposalForm'
+WIZARD_FORM_MODIFIER = 'proposals_for_votainteligente.forms.wizard_forms_field_modifier'
+NUMERICAL_NOTIFICATION_CLASSES = ['popular_proposal.subscriptions.YouAreAHeroNotification',
+                                  # 'proposals_for_votainteligente.subscriptions.ManyCitizensSupportingNotification'
+                                  ]
+IS_AUTHORITY_DETERMINER = "backend_candidate.models.is_candidate"
+DEFAULT_EXCLUDED_PROPOSALS_FILTER = {"area__id":"fundacion-ciudadano-inteligente"}

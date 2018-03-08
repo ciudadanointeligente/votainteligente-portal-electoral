@@ -72,7 +72,7 @@ class OrganizationDetailView(DetailView):
                                            "slug": extra_page.slug,
                                            "content": extra_page.content_markdown})
         context['proposals'] = []
-        for proposal in self.object.proposals.order_by('-important_within_organization', 'updated'):
+        for proposal in self.object.popularproposals.order_by('-important_within_organization', 'updated'):
             context['proposals'].append(proposal)
 
         context['sponsorships'] = []

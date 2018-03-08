@@ -15,5 +15,5 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         ids = [int(id) for id in options['filter_ids']]
         for f in IncrementalsCandidateFilter.objects.filter(id__in=ids):
-            self.stdout.write('Enviando recomendaciones a ' + f.name)
+            self.stdout.write(u'Enviando recomendaciones a ' + f.name)
             f.send_mails(sleep=1)

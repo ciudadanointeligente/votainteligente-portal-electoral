@@ -1,8 +1,6 @@
 # coding=utf-8
 from collections import OrderedDict
 
-from backend_candidate.models import is_candidate
-
 from constance import config
 
 from django.conf import settings
@@ -15,22 +13,25 @@ from django.shortcuts import get_object_or_404, render
 
 from django.utils.decorators import method_decorator
 
-from elections.models import Area
-
 from formtools.wizard.views import SessionWizardView
 
-from popular_proposal.forms import (AreaForm,
-                                    UpdateProposalForm,
+from popular_proposal.forms import (UpdateProposalForm,
                                     get_form_list,)
 
 from popular_proposal.models import (ProposalTemporaryData)
 
-from votainteligente.send_mails import send_mails_to_staff
+from popular_proposal import send_mails_to_staff, wizard_previous_form_classes, is_authority
 
 wizard_form_list = get_form_list()
 
 
-class ProposalWizardBase(SessionWizardView):
+
+class DeterminingKwargsMixin(object):
+    def apply_extra_kwargs_from_data(self, data):
+        return {}
+    
+
+class ProposalWizardBase(SessionWizardView, DeterminingKwargsMixin):
     form_list = wizard_form_list
     model = ProposalTemporaryData
     template_name = 'popular_proposal/wizard/form_step.html'
@@ -43,15 +44,6 @@ class ProposalWizardBase(SessionWizardView):
     def get_previous_forms(self):
         return []
 
-    def determine_area(self, data):
-        is_testing = data.pop("is_testing", False)
-        if 'area' in data.keys():
-            return data['area']
-        elif hasattr(self, 'area'):
-            return self.area
-        else:
-            return Area.objects.get(id=config.DEFAULT_AREA)
-
     def done(self, form_list, **kwargs):
         data = {}
         [data.update(form.cleaned_data) for form in form_list]
@@ -59,13 +51,11 @@ class ProposalWizardBase(SessionWizardView):
             'proposer': self.request.user,
             'data': data
         }
-
-        kwargs['area'] = self.determine_area(data)
+        kwargs.update(self.apply_extra_kwargs_from_data(data))
         temporary_data = self.model.objects.create(**kwargs)
         context = self.get_context_data(form=None)
-        context.update({'popular_proposal': temporary_data,
-                        'area': kwargs['area']
-                        })
+        context.update({'popular_proposal': temporary_data})
+        context.update(kwargs)
         if not settings.MODERATION_ENABLED:
             temporary_data.create_proposal()
             context['form_update'] = UpdateProposalForm(instance=temporary_data.created_proposal)
@@ -80,7 +70,7 @@ class ProposalWizardBase(SessionWizardView):
                                                                    **kwargs)
         data = self.get_all_cleaned_data()
         if data:
-            context['area'] = self.determine_area(data)
+            context.update(self.apply_extra_kwargs_from_data(data))
         context['preview_data'] = data
         return context
 
@@ -91,7 +81,7 @@ class ProposalWizardBase(SessionWizardView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        if is_candidate(request.user):
+        if is_authority(request.user):
             return HttpResponseNotFound()
         if config.PROPOSALS_ENABLED:
             return super(ProposalWizardBase, self).dispatch(request,
@@ -104,11 +94,10 @@ class ProposalWizardBase(SessionWizardView):
 class ProposalWizard(ProposalWizardBase):
     '''
     Esta es la clase del wizard a la que se llega por hacer
-    /propuestas/crear/villarrica
+    /propuestas/crea/
     '''
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        self.area = get_object_or_404(Area, id=self.kwargs['slug'])
         return super(ProposalWizard, self).dispatch(request, *args, **kwargs)
 
     def get_form_list(self):
@@ -121,29 +110,3 @@ class ProposalWizard(ProposalWizardBase):
             counter += 1
         self.form_list = form_list
         return form_list
-
-
-class ProposalWizardFull(ProposalWizardBase):
-    '''
-    Esta es la clase del wizard a la que se llega por hacer
-    /propuestas/create_full_wizard
-    Acá lo primero que te preguntamos es para qué comuna quieres crear
-    la propuesta
-    '''
-    form_list = [AreaForm, ] + wizard_form_list
-
-    def get_previous_forms(self):
-        return [AreaForm, ]
-
-
-class ProposalWizardFullWithoutArea(ProposalWizardBase):
-    '''
-    Esta es la clase del wizard a la que se llega por hacer
-    /propuestas/crear
-    Acá no te preguntamos por el area por que sabemos que es la que viene por
-    defecto.
-    '''
-    form_list = wizard_form_list
-
-    def get_previous_forms(self):
-        return []

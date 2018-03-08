@@ -19,7 +19,7 @@ ALLOWED_HOSTS = []
 SITE_ID = 1
 
 # Application definition
-
+TESTING = 'test' in sys.argv
 INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.auth',
@@ -44,9 +44,7 @@ INSTALLED_APPS = (
     'haystack',
     'popolo',
     'elections',
-
     'markdown_deux',
-    'django_extensions',
     'social_django',
     'sorl.thumbnail',
     'django.contrib.admin',
@@ -55,17 +53,18 @@ INSTALLED_APPS = (
     'newsletter',
     'rest_framework',
     'preguntales',
-    'votita',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'popular_proposal',
+    'proposals_for_votainteligente',
+    'votita',
     'backend_staff',
     'backend_citizen',
     'backend_candidate',
     'organization_profiles',
     'django_filters',
     'django_ogp',
-    'debug_toolbar',
+    
     'agenda',
     'medianaranja2',
     # 'debug_panel',
@@ -73,6 +72,8 @@ INSTALLED_APPS = (
     'constance',
     'custom_sites',
 )
+if not TESTING:
+    INSTALLED_APPS += ('django_extensions','debug_toolbar',)
 INSTALLED_APPS_AFTER_ALL = ('el_pagination',)
 
 
@@ -211,7 +212,7 @@ CONSTANCE_CONFIG = {
     'PRUEBAS_DE_CARGA_MEDIA_NARANJA': (False, u'Esto baja el csrf para las pruebas de la medianaranja2'),
     'ESTRATEGIA_SELECCION_PROPUESTAS': ("getter", u'Qué estrategia usamos para mostrar propuestas en la 1/2 naranja', 'proposals_getter_for_12_n'),
 }
-TESTING = 'test' in sys.argv
+
 if TESTING:
 
     HAYSTACK_CONNECTIONS = {

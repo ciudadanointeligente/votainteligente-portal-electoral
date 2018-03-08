@@ -1,6 +1,5 @@
 # coding=utf-8
-from popular_proposal.tests import ProposingCycleTestCaseBase
-from backend_citizen.models import Organization, Enrollment
+from proposals_for_votainteligente.tests import VIProposingCycleTestCaseBase as ProposingCycleTestCaseBase
 from elections.models import Area
 from django.contrib.auth.models import User
 from popular_proposal.models import ProposalTemporaryData, PopularProposal, ProposalLike
@@ -23,10 +22,6 @@ USER_PASSWORD = 'secr3t'
 class PopularProposalTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(PopularProposalTestCase, self).setUp()
-        # Enrolling Fiera with the organization
-        self.org = Organization.objects.create(name=u'La Cosa Nostra')
-        self.enrollment = Enrollment.objects.create(organization=self.org,
-                                                    user=self.fiera)
 
     def test_instantiate_one(self):
         popular_proposal = KidsProposal.objects.create(proposer=self.fiera,
@@ -166,7 +161,7 @@ class VotitaWizardTestCase(ProposingCycleTestCaseBase, WizardDataMixin):
     def test_create_a_proposal(self):
         argentina = Area.objects.create(name=u'Argentina', id='argentina')
         original_amount = len(mail.outbox)
-        response = self.fill_the_whole_wizard(default_view_slug='votita_wizard',)
+        response = self.fill_the_whole_wizard()
         temporary_data = response.context['popular_proposal']
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
         self.assertTrue(temporary_data.created_proposal)
@@ -194,6 +189,6 @@ class VotitaWizardInsideAGathering(ProposingCycleTestCaseBase, WizardDataMixin):
                            kwargs={'pk':self.gathering.id})
 
     def test_create_a_proposal_with_a_gathering(self):
-        response = self.fill_the_whole_wizard(default_view_slug='votita_wizard',)
+        response = self.fill_the_whole_wizard()
         temporary_data = response.context['popular_proposal']
         self.assertTrue(temporary_data.created_proposal)

@@ -1,10 +1,5 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from popular_proposal.tests import ProposingCycleTestCaseBase
-from popular_proposal.forms import (ProposalForm,
-                                    CommentsForm,
-                                    RejectionForm,
-                                    ProposalTemporaryDataUpdateForm)
 from votainteligente.facebook_page_getter import facebook_getter
 import vcr
 import os 

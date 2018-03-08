@@ -20,7 +20,6 @@ class OrganizationSupportingSomeOneElsesProposalTestCase(TestCase):
     def setUp(self):
         super(OrganizationSupportingSomeOneElsesProposalTestCase, self).setUp()
         self.proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                       area=self.arica,
                                                        data=self.data,
                                                        title=u'This is a title'
                                                        )

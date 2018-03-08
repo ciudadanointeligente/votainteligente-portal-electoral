@@ -1,7 +1,5 @@
 # coding=utf-8
 
-from backend_candidate.models import Candidacy
-
 from constance import config
 
 import copy
@@ -33,17 +31,11 @@ from django.views.generic.list import ListView
 
 from django_filters.views import FilterView
 
-from elections.models import Area, Candidate
-
 from django import forms
 
-from popular_proposal.filters import (ProposalWithoutAreaFilter,
-                                      ProposalGeneratedAtFilter)
-
-from popular_proposal.forms import (CandidateCommitmentForm,
-                                    CandidateNotCommitingForm,
+from popular_proposal.forms import (AuthorityCommitmentForm,
+                                    AuthorityNotCommitingForm,
                                     ProposalForm,
-                                    UpdateProposalForm,
                                     SubscriptionForm,
                                     )
 
@@ -55,47 +47,20 @@ from popular_proposal.models import (Commitment,
 from votainteligente.view_mixins import EmbeddedViewBase
 import random
 from django.conf import settings
+from popular_proposal import default_filterset_class, get_proposal_update_form_class, get_authority_model
 
 
-class ProposalCreationView(FormView):
-    template_name = 'popular_proposal/create.html'
-    form_class = ProposalForm
-
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        self.area = get_object_or_404(Area, id=self.kwargs['slug'])
-        return super(ProposalCreationView, self).dispatch(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        kwargs = super(ProposalCreationView, self).get_context_data(**kwargs)
-        kwargs['area'] = self.area
-        return kwargs
-
-    def get_form_kwargs(self):
-        kwargs = super(ProposalCreationView, self).get_form_kwargs()
-        kwargs['proposer'] = self.request.user
-        kwargs['area'] = self.area
-        return kwargs
-
-    def form_valid(self, form):
-        self.proposal = form.save()
-        return super(ProposalCreationView, self).form_valid(form)
-
-    def get_success_url(self):
-        return reverse('popular_proposals:thanks',
-                       kwargs={'pk': self.proposal.id})
+authority_model = get_authority_model()
 
 
-class ThanksForProposingView(DetailView):
+class ThanksForProposingViewBase(DetailView):
     model = ProposalTemporaryData
     template_name = 'popular_proposal/thanks.html'
     context_object_name = 'proposal'
 
     def get_context_data(self, **kwargs):
-        kwargs = super(ThanksForProposingView, self).get_context_data(**kwargs)
-        kwargs['area'] = self.object.area
+        kwargs = super(ThanksForProposingViewBase, self).get_context_data(**kwargs)
         return kwargs
-
 
 class SubscriptionView(FormView):
     template_name = 'popular_proposal/new_subscription.html'
@@ -147,10 +112,6 @@ class PopularProposalAyuranosView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PopularProposalAyuranosView, self).get_context_data(**kwargs)
-        candidates_qs = Candidate.objects.exclude(commitments__proposal__id=self.object.id).order_by('created_at')
-        if settings.PRIORITY_CANDIDATES:
-            candidates_qs = candidates_qs.filter(id__in=settings.PRIORITY_CANDIDATES)
-        context['candidates'] = candidates_qs
         return context
 
 
@@ -187,9 +148,12 @@ class UnlikeProposalView(View):
         return JsonResponse({'deleted_item': self.pk})
 
 
-class ProposalFilterMixin(object):
+filterset_class = default_filterset_class()
+
+
+class ProposalFilterMixinBase(object):
     model = PopularProposal
-    filterset_class = ProposalGeneratedAtFilter
+    filterset_class = filterset_class
     order_by = None
 
     def _get_filterset(self):
@@ -210,17 +174,17 @@ class ProposalFilterMixin(object):
         return self._get_filterset().qs
 
     def get_context_data(self, **kwargs):
-        context = super(ProposalFilterMixin, self).get_context_data(**kwargs)
+        context = super(ProposalFilterMixinBase, self).get_context_data(**kwargs)
         context['form'] = self.get_form()
         return context
-#    def get_queryset(self):
-#        qs = self.model.ordered.by_likers().exclude(area__id=config.HIDDEN_AREAS)
-#        return qs
+
+class ProposalFilterMixin(ProposalFilterMixinBase):
+    filterset_class = filterset_class
 
 
 class HomeView(EmbeddedViewBase, ProposalFilterMixin, FilterView):
     template_name = 'popular_proposal/home.html'
-    filterset_class = ProposalGeneratedAtFilter
+    filterset_class = filterset_class
     context_object_name = 'popular_proposals'
 
     def get_context_data(self, **kwargs):
@@ -229,22 +193,15 @@ class HomeView(EmbeddedViewBase, ProposalFilterMixin, FilterView):
         return context
 
 
-class ProposalsPerArea(EmbeddedViewBase, ProposalFilterMixin, ListView):
-    template_name = 'popular_proposal/area.html'
-    context_object_name = 'popular_proposals'
-    filterset_class = ProposalWithoutAreaFilter
-
-    def _get_filterset_kwargs(self):
-        return {'area': self.area}
-
-    def dispatch(self, request, *args, **kwargs):
-        self.area = get_object_or_404(Area, id=self.kwargs['slug'])
-        return super(ProposalsPerArea, self).dispatch(request, *args, **kwargs)
-
-
-class CommitView(FormView):
+class CommitViewBase(FormView):
     template_name = 'popular_proposal/commitment/commit_yes.html'
-    form_class = CandidateCommitmentForm
+    form_class = AuthorityCommitmentForm
+
+    def determine_if_authority_can_commit(self):
+        pass
+
+    def get_authority(self):
+        pass
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -252,25 +209,8 @@ class CommitView(FormView):
             return HttpResponseNotFound()
         self.proposal = get_object_or_404(PopularProposal,
                                           id=self.kwargs['proposal_pk'])
-        self.candidate = get_object_or_404(Candidate,
-                                           id=self.kwargs['candidate_pk'])
-        previous_commitment_exists = Commitment.objects.filter(proposal=self.proposal,
-                                                               candidate=self.candidate).exists()
-        if previous_commitment_exists:
-            return HttpResponseNotFound()
-        get_object_or_404(Candidacy,
-                          candidate=self.candidate,
-                          user=self.request.user)
-        elections_where_the_candidate_cannot_commit = self.candidate.elections.filter(candidates_can_commit_everywhere=False)
-        if elections_where_the_candidate_cannot_commit:
-            areas = []
-            for election in self.candidate.elections.all():
-                if election.area:
-                    areas.append(election.area)
-            if self.proposal.area not in areas:
-                return HttpResponseNotFound()
-            # The former can be refactored
-        return super(CommitView, self).dispatch(request, *args, **kwargs)
+        self.determine_if_authority_can_commit()
+        return super(CommitViewBase, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         self.commitment = form.save()
@@ -282,29 +222,30 @@ class CommitView(FormView):
             messages.add_message(self.request,
                                  messages.WARNING,
                                  _(u'Muchas gracias por tu sinceridad. Le hemos enviado un mail a los ciudadanos que apoyan y además a aquel que la realizó.'))
-        return super(CommitView, self).form_valid(form)
+        return super(CommitViewBase, self).form_valid(form)
 
     def get_form_kwargs(self):
-        kwargs = super(CommitView, self).get_form_kwargs()
+        kwargs = super(CommitViewBase, self).get_form_kwargs()
         kwargs['proposal'] = self.proposal
-        kwargs['candidate'] = self.candidate
+        kwargs['authority'] = self.get_authority()
         return kwargs
 
     def get_context_data(self, **kwargs):
-        context = super(CommitView, self).get_context_data(**kwargs)
+        context = super(CommitViewBase, self).get_context_data(**kwargs)
         context['proposal'] = self.proposal
-        context['candidate'] = self.candidate
+        context['authority'] = self.get_authority()
         return context
 
     def get_success_url(self):
-        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+        authority = self.get_authority()
+        url = reverse('popular_proposals:commitment', kwargs={'authority_slug': authority.id,
                                                               'proposal_slug': self.proposal.slug})
         return url
 
 
-class NotCommitView(CommitView):
+class NotCommitViewBase(CommitViewBase):
     template_name = 'popular_proposal/commitment/commit_no.html'
-    form_class = CandidateNotCommitingForm
+    form_class = AuthorityNotCommitingForm
 
 
 class CommitmentDetailView(DetailView):
@@ -319,15 +260,16 @@ class CommitmentDetailView(DetailView):
 
     def dispatch(self, request, *args, **kwargs):
         self.proposal = get_object_or_404(PopularProposal, slug=self.kwargs['proposal_slug'])
-        self.candidate = get_object_or_404(Candidate, id=self.kwargs['candidate_slug'])
+        self.authority = get_object_or_404(authority_model, id=self.kwargs['authority_slug'])
         return super(CommitmentDetailView, self).dispatch(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
-        return get_object_or_404(self.model, candidate=self.candidate, proposal=self.proposal)
+        return get_object_or_404(self.model, authority=self.authority, proposal=self.proposal)
 
 
+proposal_update_form_class = get_proposal_update_form_class()
 class PopularProposalUpdateView(UpdateView):
-    form_class = UpdateProposalForm
+    form_class = proposal_update_form_class
     template_name = 'popular_proposal/update.html'
     model = PopularProposal
     context_object_name = 'popular_proposal'

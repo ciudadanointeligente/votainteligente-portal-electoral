@@ -17,7 +17,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import ugettext as _
 from agenda.models import Activity
-from popular_proposal.filters import ProposalWithoutAreaFilter
+from popular_proposal.filters import ProposalFilterBase
 from django.views.generic.detail import DetailView
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -211,7 +211,7 @@ class MyCommitments(BackendCandidateBase, ListView):
 
     def get_queryset(self):
         qs = super(MyCommitments, self).get_queryset()
-        return qs.filter(candidate=self.candidate)
+        return qs.filter(authority=self.candidate)
 
     def get_context_data(self, **kwargs):
         context = (super(MyCommitments, self)
@@ -238,7 +238,7 @@ class ProposalsForMe(BackendCandidateBase, ListView):
         return super(ProposalsForMe, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        qs = ProposalWithoutAreaFilter().qs.by_likers()
+        qs = ProposalFilterBase().qs.by_likers()
         proposals_ids = []
         for commitment in self.candidate.commitments.all():
             proposals_ids.append(commitment.proposal.id)

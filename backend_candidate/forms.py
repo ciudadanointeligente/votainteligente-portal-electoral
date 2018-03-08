@@ -240,7 +240,7 @@ class SimpleCommitmentForm(forms.Form):
         return super(SimpleCommitmentForm, self).__init__(*args, **kwargs)
 
     def save(self):
-        initial_commitment_kwargs = {"proposal": self.proposal, "candidate": self.candidate}
+        initial_commitment_kwargs = {"proposal": self.proposal, "authority": self.candidate}
         if self.cleaned_data['commited'] and not Commitment.objects.filter(**initial_commitment_kwargs):
             initial_commitment_kwargs.update(**self.cleaned_data)
             return Commitment.objects.create(**initial_commitment_kwargs)

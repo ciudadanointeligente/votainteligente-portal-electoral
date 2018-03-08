@@ -7,8 +7,7 @@ from popular_proposal.forms import (ProposalForm,
                                     ProposalTemporaryDataModelForm,
                                     FIELDS_TO_BE_AVOIDED,
                                     UpdateProposalForm,
-                                    CandidateNotCommitingForm,
-                                    AreaForm)
+                                    AuthorityNotCommitingForm)
 from popular_proposal.forms.form_texts import TOPIC_CHOICES_DICT
 from django.contrib.auth.models import User
 from django.forms import CharField
@@ -18,27 +17,28 @@ from django.core import mail
 from django.template.loader import get_template
 from django.template import Context, Template
 from popular_proposal.forms import (WHEN_CHOICES,
-                                    CandidateCommitmentForm)
+                                    AuthorityCommitmentForm)
 from popular_proposal.forms.form_texts import TEXTS
 from django.core.urlresolvers import reverse
-from elections.models import Candidate, Area, Election
 from django.test import override_settings
 from constance.test import override_config
+from popular_proposal import get_authority_model
+
+
+authority_model = get_authority_model()
 
 
 class FormTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(FormTestCase, self).setUp()
         self.fiera = User.objects.get(username='fiera')
-        self.arica = Area.objects.get(id='arica-15101')
         self.feli = User.objects.get(username='feli')
         self.load = '{% load votainteligente_extras %}'
 
     def test_instanciate_form(self):
         original_amount = len(mail.outbox)
         form = ProposalForm(data=self.data,
-                            proposer=self.fiera,
-                            area=self.arica)
+                            proposer=self.fiera)
         self.assertTrue(form.is_valid(), form.errors)
         cleaned_data = form.cleaned_data
         self.assertEquals(cleaned_data['title'], self.data['title'])
@@ -47,38 +47,14 @@ class FormTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(cleaned_data['causes'], self.data['causes'])
         temporary_data = form.save()
         self.assertEquals(len(mail.outbox), original_amount + 1)
-        self.assertEquals(temporary_data.proposer, self.fiera)
-        self.assertEquals(temporary_data.area, self.arica)
+        self.assertEquals(temporary_data.proposer, self.fiera) 
         t_data = temporary_data.data
         self.assertEquals(t_data['problem'], self.data['problem'])
         self.assertEquals(t_data['when'], self.data['when'])
         self.assertEquals(t_data['causes'], self.data['causes'])
 
-    def test_area_form(self):
-        data = {'area': self.arica.id}
-        form = AreaForm(data)
-        self.assertTrue(form.is_valid(), form.errors)
-        cleaned_data = form.cleaned_data
-        self.assertEquals(cleaned_data['area'], self.arica)
-
-    @override_config(DEFAULT_AREA='whole_country')
-    def test_area_form_default_value(self):
-        whole_country = Area.objects.create(id='whole_country', name='A country')
-        form = AreaForm()
-        self.assertEquals(form.initial['area'], whole_country.id)
-
-    @override_config(HIDDEN_AREAS='argentina')
-    def test_area_form_is_staff_and_hidden_area(self):
-        argentina = Area.objects.create(name=u'Argentina')
-        data = {'area': argentina.id}
-        form = AreaForm(data, is_staff=True)
-        self.assertTrue(form.is_valid(), form.errors)
-        cleaned_data = form.cleaned_data
-        self.assertEquals(cleaned_data['area'], argentina)
-
     def test_comments_form(self):
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                      area=self.arica,
                                                       data=self.data)
         form = CommentsForm(temporary_data=t_data,
                             moderator=self.feli)
@@ -88,7 +64,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
 
     def test_comments_form_saving(self):
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                      area=self.arica,
                                                       data=self.data)
         data = {'problem': u'',
                 'clasification': '',
@@ -109,22 +84,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
         # sends an email
         self.assertEquals(len(mail.outbox), 1)
         the_mail = mail.outbox[0]
-        # expected_context = {'when': {'original': t_data.data['when'],
-        #                            'comments': u'el plazo no está tan weno'},
-        #                     'causes': {'original': t_data.data['causes'],
-        #                                'comments': u'mejora esto'}}
-        #
-        # context = Context({'area': self.arica,
-        #                    'temporary_data': t_data,
-        #                    'moderator': self.feli,
-        #                    'comments': expected_context})
-        #
-        # template_body = get_template('mails/popular_prop\
-        #     osal_moderation_body.html')
-        # template_subject = get_template('mails/popular_pr\
-        #     oposal_moderation_subject.html')
-        # expected_content = template_body.render(context)
-        # expected_subject = template_subject.render(context)
         self.assertTrue(the_mail.body)
         self.assertTrue(the_mail.subject)
         self.assertEquals(len(the_mail.to), 1)
@@ -138,7 +97,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
         }
         in_their_side = ProposalTemporaryData.Statuses.InTheirSide
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                      area=self.arica,
                                                       data=self.data,
                                                       comments=comments,
                                                       status=in_their_side)
@@ -149,7 +107,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
 
     def test_rejection_form(self):
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                      area=self.arica,
                                                       data=self.data)
         data = {'reason': u'No es un buen ejemplo'}
         form = RejectionForm(data=data,
@@ -165,7 +122,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
     def test_update_temporary_popular_proposal(self):
         theirside_status = ProposalTemporaryData.Statuses.InTheirSide
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                      area=self.arica,
                                                       data=self.data,
                                                       comments=self.comments,
                                                       status=theirside_status)
@@ -194,7 +150,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
     def test_form_fields(self):
         theirside_status = ProposalTemporaryData.Statuses.InTheirSide
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                      area=self.arica,
                                                       data=self.data,
                                                       comments=self.comments,
                                                       status=theirside_status)
@@ -231,7 +186,6 @@ class FormTestCase(ProposingCycleTestCaseBase):
 
     def test_get_all_types_of_questions(self):
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                      area=self.arica,
                                                       data=self.data)
         template_str = get_template('popular_proposal/_extra_info.html')
         rendered_template = template_str.render({'texts': TEXTS,
@@ -255,7 +209,6 @@ class UpdateFormTestCase(ProposingCycleTestCaseBase):
         super(UpdateFormTestCase, self).setUp()
         self.image = self.get_image()
         self.popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                               area=self.arica,
                                                                data=self.data,
                                                                title=u'This is a title'
                                                                )
@@ -281,43 +234,7 @@ class UpdateFormTestCase(ProposingCycleTestCaseBase):
         self.assertTrue(proposal.document)
         self.assertEquals(proposal.contact_details, update_data['contact_details'])
 
-    @override_settings(POSSIBLE_GENERATING_AREAS_FILTER='Comuna')
-    def test_form_with_generated_at_form_valid(self):
-        comuna = Area.objects.filter(classification='Comuna').first()
-        update_data = {'background': u'Esto es un antecedente',
-                       'contact_details': u'Me puedes contactar en el teléfono 123456',
-                       'generated_at': comuna.id,
-                       }
-        file_data = {'image': self.image,
-                     'document': self.get_document()}
-        form = UpdateProposalForm(data=update_data,
-                                  files=file_data,
-                                  instance=self.popular_proposal)
-        self.assertTrue(form.is_valid())
-        proposal = form.save()
-        self.assertEquals(proposal.generated_at, comuna)
-        not_a_comuna = Area.objects.create(name='Not a Comuna')
-        update_data['generated_at'] = not_a_comuna.id
-        form = UpdateProposalForm(data=update_data,
-                                  files=file_data,
-                                  instance=self.popular_proposal)
-        self.assertFalse(form.is_valid())
-
-    @override_settings(POSSIBLE_GENERATING_AREAS_FILTER='Comuna')
-    def test_form_with_generated_at_form_invalid(self):
-        not_a_comuna = Area.objects.create(name='Not a Comuna')
-        update_data = {'background': u'Esto es un antecedente',
-                       'contact_details': u'Me puedes contactar en el teléfono 123456',
-                       'generated_at': not_a_comuna,
-                       }
-        file_data = {'image': self.image,
-                     'document': self.get_document()}
-        form = UpdateProposalForm(data=update_data,
-                                  files=file_data,
-                                  instance=self.popular_proposal)
-        self.assertFalse(form.is_valid())
-        self.assertTrue(form.errors['generated_at'])
-
+    @override_settings(PROPOSAL_UPDATE_FORM=None)
     def test_get_update_view(self):
         url = reverse('popular_proposals:citizen_update', kwargs={'slug': self.popular_proposal.slug})
         response = self.client.get(url)
@@ -350,7 +267,6 @@ class ModelFormTest(ProposingCycleTestCaseBase):
 
     def test_form_has_all_fields(self):
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                      area=self.arica,
                                                       data=self.data)
         form = ProposalTemporaryDataModelForm(instance=t_data)
         for key in self.data.keys():
@@ -359,11 +275,9 @@ class ModelFormTest(ProposingCycleTestCaseBase):
 
     def test_form_saving_data(self):
         t_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
-                                                      area=self.arica,
                                                       data=self.data)
         data = self.data
         data['title'] = u'Título título'
-        data['area'] = self.arica.id
         data['proposer'] = self.fiera.id
         data['status'] = t_data.status
         form = ProposalTemporaryDataModelForm(instance=t_data, data=data)
@@ -373,23 +287,11 @@ class ModelFormTest(ProposingCycleTestCaseBase):
         self.assertEquals(temporary_data.data['title'], data['title'])
 
 
-class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
+class AuthorityCommitmentTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
-        super(CandidateCommitmentTestCase, self).setUp()
-
-        self.election1= Election.objects.get(id=1)
-        self.election1.candidates_can_commit_everywhere = True
-        self.election1.save()
-        self.candidate = self.election1.candidates.first()
-        self.election2 = Election.objects.get(id=2)
-        self.election2.candidates_can_commit_everywhere = False
-        self.election2.save()
-        self.candidate2 = self.election2.candidates.first()
-
-        self.candidate2.election.candidates_can_commit_everywhere = False
-        self.candidate2.election.save()
+        super(AuthorityCommitmentTestCase, self).setUp()
+        self.authority = authority_model.objects.first()
         self.proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                       area=self.candidate.election.area,
                                                        data=self.data,
                                                        title=u'This is a title'
                                                        )
@@ -400,62 +302,26 @@ class CandidateCommitmentTestCase(ProposingCycleTestCaseBase):
 
     def test_instanciating_form(self):
         data = {'terms_and_conditions': True, 'detail': 'Esto es un detalle'}
-        form = CandidateCommitmentForm(candidate=self.candidate,
+        form = AuthorityCommitmentForm(authority=self.authority,
                                        proposal=self.proposal,
                                        data=data)
         self.assertTrue(form.is_valid(), form.errors)
         commitment = form.save()
         self.assertEquals(commitment.proposal, self.proposal)
-        self.assertEquals(commitment.candidate, self.candidate)
+        self.assertEquals(commitment.authority, self.authority)
         self.assertEquals(commitment.detail, data['detail'])
         self.assertTrue(commitment.commited)
 
     def test_instanciating_form_with_no_commiting(self):
         data = {'detail': 'Yo me comprometo',
                 'terms_and_conditions': True}
-        form = CandidateNotCommitingForm(candidate=self.candidate,
+        form = AuthorityNotCommitingForm(authority=self.authority,
                                          proposal=self.proposal,
                                          data=data)
         self.assertTrue(form.is_valid(), form.errors)
         commitment = form.save()
         self.assertEquals(commitment.proposal, self.proposal)
-        self.assertEquals(commitment.candidate, self.candidate)
+        self.assertEquals(commitment.authority, self.authority)
         self.assertEquals(commitment.detail, data['detail'])
         self.assertFalse(commitment.commited)
 
-    def test_validating_form(self):
-        '''
-        Un candidato no se puede comprometer a una propuesta de una
-        comuna en la que no está compitiendo
-        '''
-        other_area = Area.objects.create(name='other area')
-        proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                  area=other_area,
-                                                  data=self.data,
-                                                  title=u'This is a title'
-                                                  )
-
-        data = {'detail': 'Yo me comprometo',
-                'terms_and_conditions': True}
-        form = CandidateCommitmentForm(candidate=self.candidate2,
-                                       proposal=proposal,
-                                       data=data)
-
-        self.assertFalse(form.is_valid())
-
-    def test_validating_form_when_proposals_are_for_all_areas(self):
-        '''
-        Un candidato si se puede comprometer a una propuesta de una
-        comuna en la que no está compitiendo
-        '''
-        proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                  data=self.data,
-                                                  title=u'This is a title'
-                                                  )
-        data = {'detail': 'Yo me comprometo',
-                'terms_and_conditions': True}
-        form = CandidateCommitmentForm(candidate=self.candidate,
-                                       proposal=proposal,
-                                       data=data)
-
-        self.assertTrue(form.is_valid())

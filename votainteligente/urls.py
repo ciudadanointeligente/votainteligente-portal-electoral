@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('elections.urls')),
     url(r'^preguntales/', include('preguntales.urls')),
-    url(r'^propuestas/', include('popular_proposal.urls', namespace='popular_proposals')),
+    url(r'^propuestas/', include('proposals_for_votainteligente.urls', namespace='popular_proposals')),
     url('^pages/', include('django.contrib.flatpages.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^newsletter/', include('newsletter.urls')),

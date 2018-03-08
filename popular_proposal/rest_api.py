@@ -1,9 +1,14 @@
 from rest_framework.serializers import (HyperlinkedModelSerializer,
+                                        HyperlinkedRelatedField,
                                         JSONField,
                                         StringRelatedField)
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from popular_proposal.models import PopularProposal, Commitment
-from elections.models import Candidate
+from popular_proposal import get_authority_model
+
+
+authority_model = get_authority_model()
+
 
 class ProposalSerializer(HyperlinkedModelSerializer):
     data = JSONField()
@@ -29,9 +34,13 @@ class ProposalViewSet(ReadOnlyModelViewSet):
 
 
 class CommitmentsSerializer(HyperlinkedModelSerializer):
+    # authority = HyperlinkedRelatedField(
+    #     view_name='authority-detail',
+    #     lookup_field='id',
+    #     )
     class Meta:
         model = Commitment
-        fields = ('id','proposal','candidate', 'detail', 'commited', 'get_absolute_url')
+        fields = ('id','proposal','detail', 'commited', 'get_absolute_url')
 
 
 class CommitmentViewSet(ReadOnlyModelViewSet):
@@ -39,13 +48,13 @@ class CommitmentViewSet(ReadOnlyModelViewSet):
     serializer_class = CommitmentsSerializer
 
 
-class CandidateSerializer(HyperlinkedModelSerializer):
+class AuthoritySerializer(HyperlinkedModelSerializer):
     class Meta:
-        model = Candidate
+        model = authority_model
         fields = ('id','name', 'get_absolute_url', 'commitments')
 
 
-class CandidateViewSet(ReadOnlyModelViewSet):
-    queryset = Candidate.objects.all()
-    serializer_class = CandidateSerializer
+class AuthorityViewSet(ReadOnlyModelViewSet):
+    queryset = authority_model.objects.all()
+    serializer_class = AuthoritySerializer
     pagination_class = None

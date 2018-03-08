@@ -127,7 +127,7 @@ class MediaNaranjaWizardFormTestsBase(MediaNaranjaAdaptersBase):
         self.candidate_2_2 = Candidate.objects.create(name="candidate_2_2")
         self.election2.candidates.add(self.candidate_2_1)
         self.election2.candidates.add(self.candidate_2_2)
-        Commitment.objects.create(commited=True, candidate=self.candidate_2_2, proposal=self.p5)
+        Commitment.objects.create(commited=True, authority=self.candidate_2_2, proposal=self.p5)
         mother.children.add(self.child)
         # Distrito
         grand_mother = Area.objects.create(name="grand_mother")
@@ -139,7 +139,7 @@ class MediaNaranjaWizardFormTestsBase(MediaNaranjaAdaptersBase):
         self.candidate_3_2 = Candidate.objects.create(name="candidate_3_2")
         self.election3.candidates.add(self.candidate_3_1)
         self.election3.candidates.add(self.candidate_3_2)
-        Commitment.objects.create(commited=True, candidate=self.candidate_3_2, proposal=self.p6)
+        Commitment.objects.create(commited=True, authority=self.candidate_3_2, proposal=self.p6)
 
         grand_mother.children.add(mother)
 

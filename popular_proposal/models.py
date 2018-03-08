@@ -5,14 +5,11 @@ from django.db import models
 from picklefield.fields import PickledObjectField
 from django.contrib.auth.models import User
 from djchoices import DjangoChoices, ChoiceItem
-from votainteligente.send_mails import send_mail
+from popular_proposal import send_mail, send_mails_to_staff
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
-from backend_citizen.models import Organization
-from votainteligente.open_graph import OGPMixin
-from elections.models import Candidate, Area
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
@@ -22,8 +19,15 @@ from PIL import Image, ImageDraw, ImageFont
 from model_utils.managers import InheritanceQuerySetMixin
 import textwrap
 from django.contrib.contenttypes.models import ContentType
-from votainteligente.send_mails import send_mails_to_staff
 from constance import config
+from popular_proposal import (get_authority_model,
+                              get_proposal_adapter_model,
+                              get_numerical_notification_classes)
+
+
+authority_model = get_authority_model()
+proposal_adapter_model = get_proposal_adapter_model()
+
 
 
 class NeedingModerationManager(models.Manager):
@@ -43,24 +47,18 @@ class ProposalCreationMixin(object):
 
 
 @python_2_unicode_compatible
-class ProposalTemporaryData(models.Model, ProposalCreationMixin):
+class ProposalTemporaryData(proposal_adapter_model, ProposalCreationMixin):
     class Statuses(DjangoChoices):
         InOurSide = ChoiceItem('in_our_side')
         InTheirSide = ChoiceItem('in_their_side')
         Rejected = ChoiceItem('rejected')
         Accepted = ChoiceItem('accepted')
-    proposer = models.ForeignKey(User, related_name='temporary_proposals')
-    area = models.ForeignKey(Area, related_name='temporary_proposals', null=True, blank=True)
+    proposer = models.ForeignKey(User, related_name='%(class)ss')
     join_advocacy_url = models.URLField(null=True, blank=True)
     data = PickledObjectField()
     rejected = models.BooleanField(default=False)
     rejected_reason = models.TextField(null=True,
                                        blank=True)
-    organization = models.ForeignKey(Organization,
-                                     related_name='temporary_proposals',
-                                     null=True,
-                                     blank=True,
-                                     default=None)
     comments = PickledObjectField()
     status = models.CharField(max_length=16,
                               choices=Statuses.choices,
@@ -71,9 +69,7 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
                                         null=True,
                                         default="")
     is_local_meeting = models.BooleanField(default=False)
-    generated_at = models.ForeignKey(Area,
-                                     null=True,
-                                     blank=True)
+    
     created = models.DateTimeField(auto_now_add=True,
                                    blank=True,
                                    null=True)
@@ -95,11 +91,11 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
 
     def notify_new(self):
         site = Site.objects.get_current()
-        mail_context = {
-            'area': self.area,
+        mail_context = super(ProposalTemporaryData, self).get_mail_context()
+        mail_context.update({
             'temporary_data': self,
             'site': site,
-        }
+        })
         if self.proposer.email:
             send_mail(mail_context, 'new_temporary_proposal',
                       to=[self.proposer.email])
@@ -109,26 +105,24 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
         self.save()
         title = self.get_title()
         clasification = self.data.get('clasification', '')
-        org_id = self.data.pop('organization', None)
 
-        creation_kwargs = self.determine_kwargs(title=title,
-                                                clasification=clasification,
-                                                area=self.area,
-                                                proposer=self.proposer,
-                                                data=self.data,
-                                                temporary=self)
+        mail_context = super(ProposalTemporaryData, self).get_mail_context()
+        initial_kwargs = {
+                            "title": title,
+                            "clasification": clasification,
+                            "proposer": self.proposer,
+                            "data": self.data,
+                            "temporary": self}
+        initial_kwargs.update(mail_context)
+        creation_kwargs = self.determine_kwargs(**initial_kwargs)
         popular_proposal = PopularProposal(**creation_kwargs)
-        if org_id:
-            enrollment = self.proposer.enrollments.get(organization__id=org_id)
-            popular_proposal.organization = enrollment.organization
         popular_proposal.save()
         site = Site.objects.get_current()
-        mail_context = {
-            'area': self.area,
+        mail_context.update({
             'temporary_data': self,
             'moderator': moderator,
             'site': site,
-        }
+        })
         send_mail(mail_context, 'popular_proposal_accepted', to=[self.proposer.email])
         return popular_proposal
 
@@ -137,12 +131,12 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
         self.status = ProposalTemporaryData.Statuses.Rejected
         self.save()
         site = Site.objects.get_current()
-        mail_context = {
-            'area': self.area,
+        mail_context = super(ProposalTemporaryData, self).get_mail_context()
+        mail_context.update({
             'temporary_data': self,
             'moderator': moderator,
             'site': site,
-        }
+        })
         send_mail(mail_context, 'popular_proposal_rejected',
                   to=[self.proposer.email])
 
@@ -176,11 +170,10 @@ class ProposalsOrderedManager(ProposalsManager):
 
 
 @python_2_unicode_compatible
-class PopularProposal(models.Model, OGPMixin):
+class PopularProposal(proposal_adapter_model):
     title = models.CharField(max_length=255, default='')
     slug = AutoSlugField(populate_from='title', unique=True)
-    proposer = models.ForeignKey(User, related_name='proposals')
-    area = models.ForeignKey(Area, related_name='proposals', null=True, blank=True)
+    proposer = models.ForeignKey(User, related_name='%(class)ss')
     join_advocacy_url = models.URLField(null=True, blank=True)
     data = PickledObjectField()
     created = models.DateTimeField(auto_now_add=True)
@@ -191,9 +184,6 @@ class PopularProposal(models.Model, OGPMixin):
                                      null=True,
                                      default=None)
     likers = models.ManyToManyField(User, through='ProposalLike')
-    organization = models.ForeignKey(Organization,
-                                     related_name='popular_proposals',
-                                     null=True)
     background = models.TextField(null=True, blank=True, help_text=_(u"Antecedentes sobre tu propuesta"))
     contact_details = models.TextField(null=True,
                                        blank=True,
@@ -207,11 +197,6 @@ class PopularProposal(models.Model, OGPMixin):
                               null=True,
                               blank=True)
     clasification = models.CharField(blank=True, null=True, max_length=255)
-    for_all_areas = models.BooleanField(default=False)
-    generated_at = models.ForeignKey(Area,
-                                     related_name='proposals_generated_here',
-                                     null=True,
-                                     blank=True)
     is_local_meeting = models.BooleanField(default=False)
     is_reported = models.BooleanField(default=False)
 
@@ -221,8 +206,6 @@ class PopularProposal(models.Model, OGPMixin):
     important_within_organization = models.BooleanField(default=False)
     one_liner = models.CharField(blank=True, max_length=140, default="")
 
-    ogp_enabled = True
-
     ordered = ProposalsOrderedManager.from_queryset(ProposalQuerySet)()
     objects = ProposalsManager()
     all_objects = models.Manager()
@@ -231,7 +214,7 @@ class PopularProposal(models.Model, OGPMixin):
     detail_template_html = "popular_proposal/plantillas/detalle_propuesta.html"
 
     class Meta:
-        ordering = ['-featured' ,'for_all_areas', '-created']
+        ordering = ['-featured' , '-created']
         verbose_name = _(u'Propuesta Ciudadana')
         verbose_name_plural = _(u'Propuestas Ciudadanas')
 
@@ -242,9 +225,6 @@ class PopularProposal(models.Model, OGPMixin):
     def get_topic_choices_dict(cls):
         from popular_proposal.forms.form_texts import TOPIC_CHOICES_DICT
         return TOPIC_CHOICES_DICT
-
-    def ogp_title(self):
-        return u'¡Ingresa a votainteligente.cl y apoya esta propuesta!'
 
     def save(self, *args, **kwargs):
         created = self.pk is not None
@@ -292,8 +272,6 @@ class PopularProposal(models.Model, OGPMixin):
         out = Image.alpha_composite(base, txt)
 
         return out
-    def get_classification(self):
-        return self.__class__.get_topic_choices_dict().get(self.clasification, u"")
 
     def ogp_image(self):
         site = Site.objects.get_current()
@@ -302,6 +280,10 @@ class PopularProposal(models.Model, OGPMixin):
         url = "http://%s%s" % (site.domain,
                                image_url)
         return url
+
+    def get_classification(self):
+        return self.__class__.get_topic_choices_dict().get(self.clasification, u"")
+
 
     def display_card(self, context={}):
         context['proposal'] = self
@@ -344,21 +326,7 @@ class PopularProposal(models.Model, OGPMixin):
     @property
     def nro_supports(self):
       return self.likers.count()
-
-    def notify_candidates_of_new(self):
-        if not (settings.NOTIFY_CANDIDATES and settings.NOTIFY_CANDIDATES_OF_NEW_PROPOSAL):
-            return
-        template = 'notification_for_candidates_of_new_proposal'
-        context = {'proposal': self}
-        area = Area.objects.get(id=self.area.id)
-        for election in area.elections.all():
-            for candidate in election.candidates.all():
-                for contact in candidate.contacts.all():
-                    context.update({'candidate': candidate})
-                    send_mail(context,
-                              template,
-                              to=[contact.mail])
-
+        
     def get_one_liner(self):
         if self.one_liner:
             return self.one_liner
@@ -392,13 +360,10 @@ class ProposalLike(models.Model):
     def numerical_notification(self):
         the_number = ProposalLike.objects.filter(proposal=self.proposal).count()
         if the_number in settings.WHEN_TO_NOTIFY:
-            from popular_proposal.subscriptions import YouAreAHeroNotification, ManyCitizensSupportingNotification
-            notifier = YouAreAHeroNotification(proposal=self.proposal,
-                                               number=the_number)
-            notifier.notify()
-            notifier = ManyCitizensSupportingNotification(proposal=self.proposal,
-                                                          number=the_number)
-            notifier.notify()
+            klasses = get_numerical_notification_classes()
+            for notifier_klass in klasses :
+                notifier = notifier_klass(proposal=self.proposal, number=the_number)
+                notifier.notify()
 
     def __str__(self):
         return u'{} apoya {}'.format(self.user.username, self.proposal.id)
@@ -418,7 +383,7 @@ class CommitmentManager(models.Manager):
 class Commitment(models.Model):
     proposal = models.ForeignKey(PopularProposal,
                                  related_name='commitments')
-    candidate = models.ForeignKey(Candidate,
+    authority = models.ForeignKey(authority_model,
                                   related_name='commitments')
     detail = models.CharField(max_length=12288,
                               null=True,
@@ -438,8 +403,6 @@ class Commitment(models.Model):
         return instance
 
     def get_absolute_url(self):
-        if self.candidate.election is None:
-            return self.proposal.get_absolute_url()
-        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+        url = reverse('popular_proposals:commitment', kwargs={'authority_slug': self.authority.id,
                                                               'proposal_slug': self.proposal.slug})
         return url

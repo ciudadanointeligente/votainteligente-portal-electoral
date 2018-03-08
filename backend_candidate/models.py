@@ -4,13 +4,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from elections.models import Candidate
 import uuid
-from votainteligente.send_mails import send_mail
+from votai_utils.send_mails import send_mail
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from django.conf import settings
 from picklefield.fields import PickledObjectField
 from django.utils.translation import ugettext_lazy as _
-from votainteligente.send_mails import send_mail
+from votai_utils.send_mails import send_mail
 import time
 
 

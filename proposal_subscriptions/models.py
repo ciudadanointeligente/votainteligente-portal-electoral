@@ -10,7 +10,7 @@ import uuid
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from votainteligente.send_mails import send_mail
+from votai_utils.send_mails import send_mail
 
 
 class SearchSubscription(models.Model):

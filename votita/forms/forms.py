@@ -6,7 +6,7 @@ from django.utils.translation import ugettext as _
 from votita.models import KidsGathering, KidsProposal
 from django.forms import ModelForm
 from elections.models import Area
-from votainteligente.send_mails import send_mails_to_staff
+from votai_utils.send_mails import send_mails_to_staff
 from django.conf import settings
 from taggit.forms import TagWidget
 

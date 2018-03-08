@@ -3,7 +3,7 @@ from .models import SearchSubscription
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models import DateTimeField, ExpressionWrapper, F
-from votainteligente.send_mails import send_mail
+from votai_utils.send_mails import send_mail
 
 
 class SubscriptionRunner(object):

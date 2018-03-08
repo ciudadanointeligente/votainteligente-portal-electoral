@@ -5,12 +5,12 @@ from django.db import models
 from picklefield.fields import PickledObjectField
 from django.contrib.auth.models import User
 from djchoices import DjangoChoices, ChoiceItem
-from votainteligente.send_mails import send_mail
+from votai_utils.send_mails import send_mail
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
-from votainteligente.open_graph import OGPMixin
+from votai_utils.open_graph import OGPMixin
 from elections.models import Candidate, Area
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
@@ -21,7 +21,7 @@ from PIL import Image, ImageDraw, ImageFont
 from model_utils.managers import InheritanceQuerySetMixin
 import textwrap
 from django.contrib.contenttypes.models import ContentType
-from votainteligente.send_mails import send_mails_to_staff
+from votai_utils.send_mails import send_mails_to_staff
 from constance import config
 
 

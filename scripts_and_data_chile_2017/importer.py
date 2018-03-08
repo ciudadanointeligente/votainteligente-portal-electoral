@@ -12,7 +12,7 @@ from django.utils.text import slugify
 from backend_candidate.models import send_candidate_username_and_password
 from popular_proposal.models import PopularProposal
 from popular_proposal.exporter import CommitmentsExporter
-from votainteligente.send_mails import validateEmail
+from votai_utils.send_mails import validateEmail
 from elections.models import QuestionCategory, Topic
 from candidator.models import Position, TakenPosition
 

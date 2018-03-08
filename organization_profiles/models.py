@@ -20,7 +20,7 @@ import sys
 from PIL import Image, ImageDraw, ImageFont
 from django.contrib.sites.models import Site
 import textwrap
-from votainteligente.shareable import ShareableMixin
+from votai_utils.shareable import ShareableMixin
 
 
 LOGO_SIZE = 154

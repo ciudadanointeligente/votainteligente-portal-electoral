@@ -44,7 +44,7 @@ INSTALLED_APPS = (
     'haystack',
     'popolo',
     'elections',
-
+    'votai_utils',
     'markdown_deux',
     'django_extensions',
     'social_django',

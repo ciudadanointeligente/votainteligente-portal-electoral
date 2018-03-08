@@ -9,9 +9,9 @@ from votainteligente.open_graph import OGPMixin
 
 
 class CitizenProposal(models.Model, OGPMixin):
-    area = models.ForeignKey(Area, related_name="popularproposals", null=True, blank=True)
+    area = models.ForeignKey(Area, related_name="%(class)ss", null=True, blank=True)
     generated_at = models.ForeignKey(Area,
-                                     related_name='popularproposals_generated_here',
+                                     related_name='%(class)ss_generated_here',
                                      null=True,
                                      blank=True)
     for_all_areas = models.BooleanField(default=False)

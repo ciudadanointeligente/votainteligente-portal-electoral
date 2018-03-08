@@ -173,6 +173,7 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin, ShareableMixin):
     objects = HaveAnsweredFirst()
     answered_first = HaveAnsweredFirst()
     ranking = RankingManager()
+    slug = models.CharField(max_length=254, null=True, blank=True)
 
     ogp_enabled = True
 

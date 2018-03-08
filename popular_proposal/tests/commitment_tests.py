@@ -1,6 +1,5 @@
 # coding=utf-8
 from popular_proposal.tests import ProposingCycleTestCaseBase
-from backend_citizen.models import Organization, Enrollment
 from django.contrib.auth.models import User
 from popular_proposal.models import (PopularProposal,
                                      Commitment,

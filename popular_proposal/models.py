@@ -10,7 +10,6 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.sites.models import Site
 from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
-from backend_citizen.models import Organization
 from votainteligente.open_graph import OGPMixin
 from elections.models import Candidate, Area
 from django.db.models import Count
@@ -56,11 +55,6 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
     rejected = models.BooleanField(default=False)
     rejected_reason = models.TextField(null=True,
                                        blank=True)
-    organization = models.ForeignKey(Organization,
-                                     related_name='temporary_proposals',
-                                     null=True,
-                                     blank=True,
-                                     default=None)
     comments = PickledObjectField()
     status = models.CharField(max_length=16,
                               choices=Statuses.choices,
@@ -109,7 +103,6 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
         self.save()
         title = self.get_title()
         clasification = self.data.get('clasification', '')
-        org_id = self.data.pop('organization', None)
 
         creation_kwargs = self.determine_kwargs(title=title,
                                                 clasification=clasification,
@@ -118,9 +111,6 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
                                                 data=self.data,
                                                 temporary=self)
         popular_proposal = PopularProposal(**creation_kwargs)
-        if org_id:
-            enrollment = self.proposer.enrollments.get(organization__id=org_id)
-            popular_proposal.organization = enrollment.organization
         popular_proposal.save()
         site = Site.objects.get_current()
         mail_context = {
@@ -191,9 +181,6 @@ class PopularProposal(models.Model, OGPMixin):
                                      null=True,
                                      default=None)
     likers = models.ManyToManyField(User, through='ProposalLike')
-    organization = models.ForeignKey(Organization,
-                                     related_name='popular_proposals',
-                                     null=True)
     background = models.TextField(null=True, blank=True, help_text=_(u"Antecedentes sobre tu propuesta"))
     contact_details = models.TextField(null=True,
                                        blank=True,

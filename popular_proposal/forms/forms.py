@@ -35,22 +35,6 @@ class TextsFormMixin():
                 if 'step' in texts.keys() and texts['step']:
                     self.fields[field].widget.attrs['tab_text'] = texts['step']
 
-
-def get_user_organizations_choicefield(user=None):
-    if user is None or not user.is_authenticated():
-        return None
-
-    if user.enrollments.all():
-        choices = [('', 'Lo haré a nombre personal')]
-        for enrollment in user.enrollments.all():
-            choice = (enrollment.organization.id, enrollment.organization.name)
-            choices.append(choice)
-        label = _(u'¿Esta promesa es a nombre de un grupo ciudadano?')
-        return forms.ChoiceField(choices=choices,
-                                 label=label)
-    return None
-
-
 def get_possible_generating_areas():
     area_qs = Area.public.all()
     if settings.POSSIBLE_GENERATING_AREAS_FILTER:
@@ -110,7 +94,6 @@ wizard_forms_fields = [
         'fields': OrderedDict([
             ('title', forms.CharField(max_length=256,
                                       widget=forms.TextInput())),
-            ('organization', get_user_organizations_choicefield),
             ('is_local_meeting', forms.BooleanField(required=False)),
             ('generated_at', forms.ModelChoiceField(required=False,
                                                     queryset=get_possible_generating_areas(),

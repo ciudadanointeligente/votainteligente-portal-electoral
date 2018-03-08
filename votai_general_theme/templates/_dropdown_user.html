@@ -37,27 +37,7 @@
         </a>
     </li>
     {% endif %}
-    {% if user.enrollments.all %}
-    <li role="separator" class="divider"></li>
-    {% endif %}
-    {% for enrollment in user.enrollments.all %}
 
-    <li>
-        <a target="_blank" href="{{enrollment.organization.get_absolute_url}}">
-            {% if enrollment.organization.primary_image %}
-
-            {% thumbnail enrollment.organization.primary_image "x16" as im %}
-            <img src={% static im.url %}>
-            {% endthumbnail %}
-            {% else %}
-            <i class="fa fa-home" aria-hidden="true"></i>
-            {% endif %}
-
-            {{enrollment.organization}}
-            <i class="fa fa-external-link" aria-hidden="true"></i>
-        </a>
-    </li>
-    {% endfor %}
     <li role="separator" class="divider"></li>
     <li>
         <a href="{% url 'auth_logout' %}">

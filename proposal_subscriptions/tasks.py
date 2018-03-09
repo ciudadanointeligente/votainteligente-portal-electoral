@@ -1,4 +1,4 @@
-from votainteligente.celery import app
+from votai_utils.celery import app
 from proposal_subscriptions.runner import TaskRunner
 from proposal_subscriptions.models import CommitmentNotificationSender
 # import the logging library

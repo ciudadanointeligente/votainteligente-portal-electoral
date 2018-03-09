@@ -6,7 +6,7 @@ from django.views.generic import DetailView
 from django.views.generic.base import TemplateView
 from elections.models import Election, Area
 from elections.models import Candidate, QuestionCategory, CandidateFlatPage
-from votainteligente.views import HomeViewBase
+from votai_utils.views import HomeViewBase
 import logging
 from backend_citizen.forms import GroupCreationForm
 from candidator.models import Topic, TakenPosition

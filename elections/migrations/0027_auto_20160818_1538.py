@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.db.models.deletion
-import votainteligente.open_graph
+import votai_utils.open_graph
 
 
 class Migration(migrations.Migration):
@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('popolo.area', votainteligente.open_graph.OGPMixin),
+            bases=('popolo.area', votai_utils.open_graph.OGPMixin),
         ),
         migrations.AlterField(
             model_name='election',

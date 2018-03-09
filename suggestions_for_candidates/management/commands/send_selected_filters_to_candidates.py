@@ -1,8 +1,6 @@
 # coding=utf-8
 from django.core.management.base import BaseCommand
-from elections.models import Candidate
-from backend_candidate.models import add_contact_and_send_mail
-from backend_candidate.models import IncrementalsCandidateFilter
+from suggestions_for_candidates.models import IncrementalsCandidateFilter
 
 
 class Command(BaseCommand):

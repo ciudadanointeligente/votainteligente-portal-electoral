@@ -44,7 +44,7 @@ INSTALLED_APPS = (
     'haystack',
     'popolo',
     'elections',
-
+    'votai_utils',
     'markdown_deux',
     'django_extensions',
     'social_django',
@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'preguntales',
     'votita',
+    'suggestions_for_candidates',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'popular_proposal',

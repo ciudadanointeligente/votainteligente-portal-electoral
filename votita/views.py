@@ -15,7 +15,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.conf import settings
-from votainteligente.views import HomeViewBase
+from votai_utils.views import HomeViewBase
 from django.db.models import Count
 
 

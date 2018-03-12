@@ -8,13 +8,13 @@ from backend_candidate.models import (Candidacy,
                                       CandidacyContact,
                                       send_candidate_a_candidacy_link,
                                       add_contact_and_send_mail,
-                                      IncrementalsCandidateFilter,
-                                      ProposalSuggestionForIncremental,
-                                      CandidateIncremental,
                                       send_candidate_username_and_password)
-from backend_candidate.forms import (get_form_for_election,
-                                     SimpleCommitmentForm,
-                                     get_multi_commitment_forms)
+from suggestions_for_candidates.models import (IncrementalsCandidateFilter,
+                                               ProposalSuggestionForIncremental,
+                                               CandidateIncremental)
+from backend_candidate.forms import (get_form_for_election,)
+from suggestions_for_candidates.forms import (SimpleCommitmentForm,
+                                              get_multi_commitment_forms)
 from backend_candidate.tasks import (let_candidate_now_about_us,
                                      send_candidate_username_and_pasword_task,
                                      send_candidates_their_username_and_password)
@@ -406,7 +406,7 @@ class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
     def test_reverse_self(self):
         c_i = CandidateIncremental.objects.create(candidate=self.fiera_candidata,
                                                   suggestion=self.filter)
-        url = reverse("backend_candidate:commit_to_suggestions", kwargs={"identifier": c_i.identifier})
+        url = reverse("suggestions_for_candidates:commit_to_suggestions", kwargs={"identifier": c_i.identifier})
         self.assertEquals(c_i.get_absolute_url(), url)
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
@@ -432,7 +432,7 @@ class CandidateIncrementalIdentifier(ProposingCycleTestCaseBase):
 
         c_i = CandidateIncremental.objects.create(candidate=self.fiera_candidata,
                                                   suggestion=self.filter)
-        url = reverse("backend_candidate:commit_to_suggestions", kwargs={"identifier": c_i.identifier})
+        url = reverse("suggestions_for_candidates:commit_to_suggestions", kwargs={"identifier": c_i.identifier})
         response = self.client.post(url, data)
         c1 = Commitment.objects.get(candidate=self.fiera_candidata,
                                     proposal=self.p1)

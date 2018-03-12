@@ -10,10 +10,9 @@ from popular_proposal.models import (ProposalTemporaryData,
 from django.core.urlresolvers import reverse
 from django.views.generic.edit import UpdateView
 from backend_citizen.forms import (UserChangeForm,
-                                   OrganizationCreationForm,
                                    GroupCreationForm)
 from django.contrib.auth.models import User
-from backend_citizen.models import Organization, Profile
+from backend_citizen.models import Profile
 from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -99,26 +98,6 @@ class AlreadyUnsubscribed(DetailView):
     slug_url_kwarg = 'token'
     slug_field = 'unsubscribe_token'
 
-
-class OrganizationDetailView(DetailView):
-    model = Organization
-    template_name = 'backend_citizen/organization.html'
-    context_object_name = 'organization'
-    slug_field = 'id'
-
-
-class OrganizationCreateView(LoginRequiredMixin, CreateView):
-    model = Organization
-    template_name = 'backend_citizen/create_organization.html'
-    form_class = OrganizationCreationForm
-
-    def get_form_kwargs(self):
-        kwargs = super(OrganizationCreateView, self).get_form_kwargs()
-        kwargs['user'] = self.request.user
-        return kwargs
-
-    def get_success_url(self):
-        return reverse('backend_citizen:my_proposals')
 
 
 class DoYouBelongToAnOrgView(LoginRequiredMixin, TemplateView):

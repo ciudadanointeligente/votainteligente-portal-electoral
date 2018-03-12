@@ -52,7 +52,7 @@ from popular_proposal.models import (Commitment,
                                      ProposalLike,
                                      ProposalTemporaryData,)
 
-from votainteligente.view_mixins import EmbeddedViewBase
+from votai_utils.view_mixins import EmbeddedViewBase
 import random
 from django.conf import settings
 

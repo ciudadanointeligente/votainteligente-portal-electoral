@@ -1,4 +1,4 @@
-from votainteligente.celery import app
+from votai_utils.celery import app
 from elections.models import Candidate
 from backend_candidate.models import send_candidate_a_candidacy_link
 from backend_candidate.send_mails_to_candidates import send_user_to_candidates, send_candidate_username_and_password

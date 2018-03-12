@@ -25,7 +25,7 @@ from popular_proposal.forms import (AreaForm,
 
 from popular_proposal.models import (ProposalTemporaryData)
 
-from votainteligente.send_mails import send_mails_to_staff
+from votai_utils.send_mails import send_mails_to_staff
 
 wizard_form_list = get_form_list()
 

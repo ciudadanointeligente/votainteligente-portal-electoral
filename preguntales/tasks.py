@@ -1,4 +1,4 @@
-from votainteligente.celery import app
+from votai_utils.celery import app
 from preguntales.models import Message
 
 # import the logging library

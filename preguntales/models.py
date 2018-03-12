@@ -11,7 +11,7 @@ from django.conf import settings
 from uuid import uuid4
 from django.utils import timezone
 from popolo.models import Person
-from votainteligente.send_mails import send_mail
+from votai_utils.send_mails import send_mail
 from django.db.models import Case, Value, When, PositiveSmallIntegerField
 
 

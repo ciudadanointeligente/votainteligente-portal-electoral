@@ -2,8 +2,7 @@
 from elections.tests import VotaInteligenteTestCase as TestCase
 from popular_proposal.forms import (get_form_list,
                                     AreaForm,
-                                    wizard_forms_fields,
-                                    get_user_organizations_choicefield)
+                                    wizard_forms_fields)
 from django.test import RequestFactory
 from django.contrib.auth.models import User
 from elections.models import Area, Candidate
@@ -14,7 +13,6 @@ from popular_proposal.forms import UpdateProposalForm
 from popular_proposal.forms.form_texts import TEXTS
 from popular_proposal.models import ProposalTemporaryData
 from django.core import mail
-from backend_citizen.models import Organization, Enrollment
 from collections import OrderedDict
 from constance.test import override_config
 from django.test import override_settings
@@ -108,7 +106,6 @@ class WizardTestCase(TestCase, WizardDataMixin):
         self.feli.set_password(USER_PASSWORD)
         self.feli.save()
         ProposalTemporaryData.objects.all().delete()
-        self.org = Organization.objects.create(name="Local Organization")
 
     def test_get_form_list(self):
         list_ = get_form_list()
@@ -148,21 +145,6 @@ class WizardTestCase(TestCase, WizardDataMixin):
         self.assertIsInstance(test_field,
                               forms.BooleanField)
         self.assertEquals(len(all_fields), 1)
-
-    def test_return_user_organizations_field(self):
-        field = get_user_organizations_choicefield(self.feli)
-        self.assertIsNone(field)
-
-        Enrollment.objects.create(user=self.feli,
-                                  organization=self.org)
-        field = get_user_organizations_choicefield(self.feli)
-        self.assertIsInstance(field, forms.ChoiceField)
-        self.assertEquals(len(field.choices), 2)
-        empty_choice = field.choices[0]
-        self.assertFalse(empty_choice[0])
-        org_choice = field.choices[1]
-        self.assertEquals(org_choice[0], self.org.id)
-        self.assertEquals(org_choice[1], self.org.name)
 
     def test_instanciating_view(self):
         url = reverse('popular_proposals:propose_wizard',
@@ -321,7 +303,6 @@ class WizardTestCase2(TestCase, WizardDataMixin):
         self.feli.set_password(USER_PASSWORD)
         self.feli.save()
         ProposalTemporaryData.objects.all().delete()
-        self.org = Organization.objects.create(name="Local Organization")
 
     def test_full_wizard_without_areas(self):
         argentina = Area.objects.create(name=u'Argentina', id='argentina')

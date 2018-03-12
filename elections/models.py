@@ -12,7 +12,7 @@ from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.flatpages.models import FlatPage
 import copy
-from votainteligente.open_graph import OGPMixin
+from votai_utils.open_graph import OGPMixin
 from django.db.models import Count, F, FloatField, IntegerField, ExpressionWrapper, Case, Value, When
 from django.shortcuts import render
 from constance import config
@@ -20,7 +20,7 @@ from django.db.models import Case, Value, When, PositiveSmallIntegerField
 from django.template.loader import get_template
 from django.template import Context
 from PIL import Image
-from votainteligente.shareable import ShareableMixin
+from votai_utils.shareable import ShareableMixin
 
 
 class AreaManager(models.Manager):

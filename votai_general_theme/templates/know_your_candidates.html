@@ -5,11 +5,10 @@
 {% load votainteligente_extras %}
 {% load bootstrap3 %}
 {% block title %}- Candidatos Chile 2017{% endblock title %}
-{% block description %}Conoce los candidatos a Senador, Diputado y Presidente para las elecciones de Chile 2017{% endblock description %}
+{% block description %}Conoce tus congresistas y sus compromisos{% endblock description %}
 {% block everything %}
-{% if config.CANDIDATE_SEARCH_ENABLED %}
 <div class="container">
-	<h1 class="text-center">{% trans "CANDIDATURAS ELECTAS" %}</h1>
+	<h1 class="text-center">{% trans "Congresistas comprometidos" %}</h1>
   <p class="bajada text-center">Encuentra aquí los nuevos/as diputados/as y senadores/as y sus compromisos con propuestas ciudadanas de votainteligente.cl</p>
 
 	<div class="container">
@@ -17,10 +16,6 @@
 	</div>
 
 </div>
-<div class="container">
-	<p class="bajada-cores text-center"><b>CORES?</b> <a href="{% url 'cores' %}">acá</a> tenemos un listado que te permitirá conocer quienes van por tu distrito.</p>
-</div>
-{% endif %}
 {% display_election_card default_election %}
 
 {% endblock everything %}

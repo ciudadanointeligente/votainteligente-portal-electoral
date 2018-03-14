@@ -7,8 +7,8 @@
 {% load votainteligente_extras %}
 {% load cache %}
 
-{% block title %}- Candidatos para el {{area}}{% endblock title %}
-{% block description %}Conoce los candidatos a Senador, Diputado y Presidente para el {{area}}{% endblock description %}
+{% block title %}- Congresistas para el {{area}}{% endblock title %}
+{% block description %}Conoce tus congrsistas para el {{area}}{% endblock description %}
 {% block extrajs %}
 $(function(){
     $('.loadFromUrl').on('show.bs.modal', function (event) {
@@ -34,7 +34,7 @@ $(function(){
   <meta name="twitter:image" content="https://{% url_domain %}{% static 'img/logo_vi_og.jpg' %}">
 {% endblock ogp %}
 
-{% block keywords %},{{area.name}},candidatos para {{area.name}},diputados {{area.name}},senadores {{area.name}},{% endblock keywords %}
+{% block keywords %},{{area.name}},parlamentarios de {{area.name}},diputados {{area.name}},senadores {{area.name}},{% endblock keywords %}
 
 {% block content %}
 <!-- <div id="buscador-area" class="container-fluid navbar-fixed-top" style="top: 55px; padding: 15px 0px; background-color: #233346; display: none;">
@@ -57,9 +57,9 @@ $(function(){
 <div class="container">
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}" onclick="ga('send','event','breadcrumb-home-area','click')"><i class="fa fa-home"></i></a></li>
-    <li><a href="{% url 'know_your_candidates' %}" onclick="ga('send','event','breadcrumb-candidaturas-area','click')">Candidaturas</a></li>
-    <li class="active">Candidatos {{area.name}}</li>
-  <h1>Candidatos {{area}}</h1>
+    <li><a href="{% url 'know_your_candidates' %}" onclick="ga('send','event','breadcrumb-candidaturas-area','click')">Congresistas</a></li>
+    <li class="active">{{area.name}}</li>
+  <h1>Congresistas {{area}}</h1>
   </ol>
   {% for p in area.parents %}
   {% with p.elections.first as election %}

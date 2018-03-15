@@ -15,7 +15,7 @@ class RankingTests(TestCase):
         super(RankingTests, self).setUp()
         TakenPosition.objects.all().delete()
         self.fiera = User.objects.get(username='fiera')
-        self.algarrobo = Area.objects.get(id="algarrobo-5602")
+        self.algarrobo = Area.objects.get(id=1)
         self.data = {
             'clasification': 'educacion',
             'title': u'Fiera a Santiago',

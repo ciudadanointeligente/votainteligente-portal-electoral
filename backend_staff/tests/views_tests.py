@@ -28,8 +28,8 @@ class StaffHomeViewTest(TestCase):
         self.fiera.set_password(STAFF_PASSWORD)
         self.fiera.save()
         self.feli = User.objects.get(username='feli')
-        self.arica = Area.objects.get(id='arica-15101')
-        self.algarrobo = Area.objects.get(id='algarrobo-5602')
+        self.arica = Area.objects.get(id=2)
+        self.algarrobo = Area.objects.get(id=1)
         self.data = {
             'problem': u'A mi me gusta la contaminación de Santiago y los autos y sus estresantes ruedas',
             'solution': u'Viajar a ver al Feli una vez al mes',

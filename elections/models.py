@@ -25,7 +25,11 @@ from votai_utils.shareable import ShareableMixin
 
 class AreaManager(models.Manager):
     def get_queryset(self):
-        return super(AreaManager, self).get_queryset().exclude(id=config.HIDDEN_AREAS)
+
+        qs = super(AreaManager, self).get_queryset()
+        if config.HIDDEN_AREAS:
+            qs = qs.exclude(id=config.HIDDEN_AREAS)
+        return qs
 
 
 def get_position_in_(qs, el):

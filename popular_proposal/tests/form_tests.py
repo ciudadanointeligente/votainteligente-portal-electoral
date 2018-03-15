@@ -30,7 +30,7 @@ class FormTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(FormTestCase, self).setUp()
         self.fiera = User.objects.get(username='fiera')
-        self.arica = Area.objects.get(id='arica-15101')
+        self.arica = Area.objects.get(id=3)
         self.feli = User.objects.get(username='feli')
         self.load = '{% load votainteligente_extras %}'
 

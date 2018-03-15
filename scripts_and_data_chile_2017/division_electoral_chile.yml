@@ -1,2430 +1,2430 @@
 - model: popolo.area
   pk: algarrobo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.417076+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.417340+00:00', name: Algarrobo, identifier: '', classification: Comuna,
     parent: distrito-7-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: alhue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.230767+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.230993+00:00', name: "Alhu\xE9", identifier: '', classification: Comuna,
     parent: distrito-14-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: alto-biobio-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.074071+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.074395+00:00', name: "Alto Biob\xEDo", identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: alto-del-carmen-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.575037+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.575284+00:00', name: Alto del Carmen, identifier: '', classification: Comuna,
     parent: distrito-4-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: alto-hospicio-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.241500+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.241788+00:00', name: Alto Hospicio, identifier: '', classification: Comuna,
     parent: distrito-2-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: ancud-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.257262+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.257506+00:00', name: Ancud, identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: andacollo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.689449+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.689707+00:00', name: Andacollo, identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: angol-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.276353+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.276831+00:00', name: Angol, identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: antartica-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.673632+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.673926+00:00', name: "Ant\xE1rtica", identifier: '', classification: Comuna,
     parent: distrito-28-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: antofagasta-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.441374+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.441613+00:00', name: Antofagasta, identifier: '', classification: Comuna,
     parent: distrito-3-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: antofagasta-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.340730+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.340990+00:00', name: Antofagasta, identifier: '', classification: "Regi\xF3\
       n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: antuco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.089504+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.089784+00:00', name: Antuco, identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: araucania-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.245002+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.245302+00:00', name: "Araucan\xEDa", identifier: '', classification: "Regi\xF3\
       n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: arauco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.957780+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.958003+00:00', name: Arauco, identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: arica-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.152478+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.152726+00:00', name: Arica, identifier: '', classification: Comuna,
     parent: distrito-1-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: arica-y-parinacota-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.122069+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.122303+00:00', name: Arica y Parinacota, identifier: '', classification: "Regi\xF3\
       n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: atacama-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.494965+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.495240+00:00', name: Atacama, identifier: '', classification: "Regi\xF3\
       n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: aysen-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.495602+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.496080+00:00', name: "Ays\xE9n", identifier: '', classification: Comuna,
     parent: distrito-27-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: aysen-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.463883+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.464171+00:00', name: "Ays\xE9n", identifier: '', classification: "Regi\xF3\
       n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: biobio-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.397496+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.397878+00:00', name: "Biob\xEDo", identifier: '', classification: "Regi\xF3\
       n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: buin-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.164600+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.164830+00:00', name: Buin, identifier: '', classification: Comuna,
     parent: distrito-14-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: bulnes-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.426269+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.426520+00:00', name: Bulnes, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: cabildo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.929030+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.929275+00:00', name: Cabildo, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: cabo-de-hornos-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.687529+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.687762+00:00', name: Cabo de Hornos, identifier: '', classification: Comuna,
     parent: distrito-28-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: cabrero-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.446227+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.446739+00:00', name: Cabrero, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: calama-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.371339+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.371591+00:00', name: Calama, identifier: '', classification: Comuna,
     parent: distrito-3-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: calbuco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.185153+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.185650+00:00', name: Calbuco, identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: caldera-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.588983+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.589219+00:00', name: Caldera, identifier: '', classification: Comuna,
     parent: distrito-4-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: calera-de-tango-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.183060+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.183591+00:00', name: Calera de Tango, identifier: '', classification: Comuna,
     parent: distrito-14-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: calle-larga-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.127884+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.128109+00:00', name: Calle Larga, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: camarones-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.165807+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.166037+00:00', name: Camarones, identifier: '', classification: Comuna,
     parent: distrito-1-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: camina-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.254505+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.254746+00:00', name: "Cami\xF1a", identifier: '', classification: Comuna,
     parent: distrito-2-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: canela-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.803895+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.804119+00:00', name: Canela, identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: canete-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.975285+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.975612+00:00', name: "Ca\xF1ete", identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: carahue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.549846+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.550150+00:00', name: Carahue, identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: cartagena-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.431758+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.431988+00:00', name: Cartagena, identifier: '', classification: Comuna,
     parent: distrito-7-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: casablanca-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.444699+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.444926+00:00', name: Casablanca, identifier: '', classification: Comuna,
     parent: distrito-7-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: castro-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.271012+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.271255+00:00', name: Castro, identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: catemu-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.140982+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.141271+00:00', name: Catemu, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: cauquenes-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.313407+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.313718+00:00', name: Cauquenes, identifier: '', classification: Comuna,
     parent: distrito-18-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: cerrillos-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.620636+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.620965+00:00', name: Cerrillos, identifier: '', classification: Comuna,
     parent: distrito-8-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: cerro-navia-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.716442+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.716736+00:00', name: Cerro Navia, identifier: '', classification: Comuna,
     parent: distrito-9-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: chaiten-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.286543+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.286970+00:00', name: "Chait\xE9n", identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: chanaral-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.527669+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.528307+00:00', name: "Cha\xF1aral", identifier: '', classification: Comuna,
     parent: distrito-4-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: chanco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.329205+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.329612+00:00', name: Chanco, identifier: '', classification: Comuna,
     parent: distrito-18-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: chepica-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.714081+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.714435+00:00', name: "Ch\xE9pica", identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: chiguayante-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.818189+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.818419+00:00', name: Chiguayante, identifier: '', classification: Comuna,
     parent: distrito-20-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: chile-chico-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.523764+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.524110+00:00', name: Chile Chico, identifier: '', classification: Comuna,
     parent: distrito-27-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: chile-pais
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.111260+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.111689+00:00', name: Chile, identifier: '', classification: "Pa\xED\
       s", parent: null, geom: null, inhabitants: null}
 - model: popolo.area
   pk: chillan-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.652291+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.652642+00:00', name: "Chill\xE1n", identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: chillan-viejo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.669935+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.670156+00:00', name: "Chill\xE1n Viejo", identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: chimbarongo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.623909+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.624159+00:00', name: Chimbarongo, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: cholchol-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.563435+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.563665+00:00', name: Cholchol, identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: chonchi-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.300774+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.301018+00:00', name: Chonchi, identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: cisnes-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.508929+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.509184+00:00', name: Cisnes, identifier: '', classification: Comuna,
     parent: distrito-27-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: cobquecura-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.464169+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.464648+00:00', name: Cobquecura, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: cochamo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.203061+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.203491+00:00', name: "Cocham\xF3", identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: cochrane-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.551939+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.552646+00:00', name: Cochrane, identifier: '', classification: Comuna,
     parent: distrito-27-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: codegua-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.429145+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.429515+00:00', name: Codegua, identifier: '', classification: Comuna,
     parent: distrito-15-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: coelemu-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.478586+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.478831+00:00', name: Coelemu, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: coihueco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.684797+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.685081+00:00', name: Coihueco, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: coinco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.444842+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.445081+00:00', name: "Co\xEDnco", identifier: '', classification: Comuna,
     parent: distrito-15-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: colbun-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.238527+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.238828+00:00', name: "Colb\xFAn", identifier: '', classification: Comuna,
     parent: distrito-18-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: colchane-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.269234+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.269458+00:00', name: Colchane, identifier: '', classification: Comuna,
     parent: distrito-2-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: colina-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.543089+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.543360+00:00', name: Colina, identifier: '', classification: Comuna,
     parent: distrito-8-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: collipulli-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.291271+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.291512+00:00', name: Collipulli, identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: coltauco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.460974+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.461208+00:00', name: Coltauco, identifier: '', classification: Comuna,
     parent: distrito-15-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: combarbala-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.818434+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.818725+00:00', name: "Combarbal\xE1", identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: concepcion-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.831133+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.831352+00:00', name: "Concepci\xF3n", identifier: '', classification: Comuna,
     parent: distrito-20-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: conchali-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.675790+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.676030+00:00', name: "Conchal\xED", identifier: '', classification: Comuna,
     parent: distrito-9-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: concon-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.390534+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.390791+00:00', name: "Conc\xF3n", identifier: '', classification: Comuna,
     parent: distrito-7-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: constitucion-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.097336+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.097906+00:00', name: "Constituci\xF3n", identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: contulmo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.989613+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.989859+00:00', name: Contulmo, identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: copiapo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.544536+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.544766+00:00', name: "Copiap\xF3", identifier: '', classification: Comuna,
     parent: distrito-4-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: coquimbo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.761267+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.761484+00:00', name: Coquimbo, identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: coquimbo-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.658187+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.658552+00:00', name: Coquimbo, identifier: '', classification: "Regi\xF3\
       n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: coronel-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.859225+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.859450+00:00', name: Coronel, identifier: '', classification: Comuna,
     parent: distrito-20-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: corral-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.788237+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.788565+00:00', name: Corral, identifier: '', classification: Comuna,
     parent: distrito-24-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: coyhaique-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.537197+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.537411+00:00', name: Coyhaique, identifier: '', classification: Comuna,
     parent: distrito-27-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: cunco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.655244+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.655472+00:00', name: Cunco, identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: curacautin-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.393344+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.393729+00:00', name: "Curacaut\xEDn", identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: curacavi-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.244821+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.245110+00:00', name: "Curacav\xED", identifier: '', classification: Comuna,
     parent: distrito-14-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: curaco-de-velez-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.315286+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.315813+00:00', name: "Curaco de V\xE9lez", identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: curanilahue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.004848+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.005226+00:00', name: Curanilahue, identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: curarrehue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.667942+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.668164+00:00', name: Curarrehue, identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: curepto-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.112416+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.112700+00:00', name: Curepto, identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: curico-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.953692+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.953957+00:00', name: "Curic\xF3", identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: dalcahue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.334388+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.334893+00:00', name: Dalcahue, identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: diego-de-almagro-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.558749+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.558989+00:00', name: Diego de Almagro, identifier: '', classification: Comuna,
     parent: distrito-4-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-1-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.142767+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.143038+00:00', name: Distrito 1, identifier: '', classification: Distrito,
     parent: i-arica-y-parinacota-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-10-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.793654+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.794099+00:00', name: Distrito 10, identifier: '', classification: Distrito,
     parent: vii-metropolitana-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-11-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.894083+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.894429+00:00', name: Distrito 11, identifier: '', classification: Distrito,
     parent: vii-metropolitana-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-12-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.970408+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.970851+00:00', name: Distrito 12, identifier: '', classification: Distrito,
     parent: vii-metropolitana-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-13-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.058711+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.059021+00:00', name: Distrito 13, identifier: '', classification: Distrito,
     parent: vii-metropolitana-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-14-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.154892+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.155187+00:00', name: Distrito 14, identifier: '', classification: Distrito,
     parent: vii-metropolitana-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-15-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.404206+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.404460+00:00', name: Distrito 15, identifier: '', classification: Distrito,
     parent: viii-ohiggins-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-16-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.612429+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.612816+00:00', name: Distrito 16, identifier: '', classification: Distrito,
     parent: viii-ohiggins-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-17-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.943164+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.943428+00:00', name: Distrito 17, identifier: '', classification: Distrito,
     parent: ix-maule-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-18-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.228450+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.228747+00:00', name: Distrito 18, identifier: '', classification: Distrito,
     parent: ix-maule-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-19-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.416819+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.417063+00:00', name: Distrito 19, identifier: '', classification: Distrito,
     parent: x-biobio-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-2-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.230450+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.230899+00:00', name: Distrito 2, identifier: '', classification: Distrito,
     parent: ii-tarapaca-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-20-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.778575+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.778819+00:00', name: Distrito 20, identifier: '', classification: Distrito,
     parent: x-biobio-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-21-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.948060+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.948292+00:00', name: Distrito 21, identifier: '', classification: Distrito,
     parent: x-biobio-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-22-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.265040+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.265346+00:00', name: Distrito 22, identifier: '', classification: Distrito,
     parent: xi-araucania-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-23-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.512017+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.512384+00:00', name: Distrito 23, identifier: '', classification: Distrito,
     parent: xi-araucania-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-24-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.777196+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.777576+00:00', name: Distrito 24, identifier: '', classification: Distrito,
     parent: xii-los-rios-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-25-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.987508+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.987835+00:00', name: Distrito 25, identifier: '', classification: Distrito,
     parent: xiii-los-lagos-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-26-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.173887+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.174121+00:00', name: Distrito 26, identifier: '', classification: Distrito,
     parent: xiii-los-lagos-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-27-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.484859+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.485188+00:00', name: Distrito 27, identifier: '', classification: Distrito,
     parent: xiv-aysen-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-28-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.663015+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.663460+00:00', name: Distrito 28, identifier: '', classification: Distrito,
     parent: xv-magallanes-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-3-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.359987+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.360242+00:00', name: Distrito 3, identifier: '', classification: Distrito,
     parent: iii-antofagasta-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-4-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.516199+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.516440+00:00', name: Distrito 4, identifier: '', classification: Distrito,
     parent: iv-atacama-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-5-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.678784+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.679069+00:00', name: Distrito 5, identifier: '', classification: Distrito,
     parent: v-coquimbo-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-6-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.919348+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.919596+00:00', name: Distrito 6, identifier: '', classification: Distrito,
     parent: vi-valparaiso-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-7-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.334331+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.335298+00:00', name: Distrito 7, identifier: '', classification: Distrito,
     parent: vi-valparaiso-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-8-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.533395+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.533653+00:00', name: Distrito 8, identifier: '', classification: Distrito,
     parent: vii-metropolitana-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: distrito-9-distrito
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.665020+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.665654+00:00', name: Distrito 9, identifier: '', classification: Distrito,
     parent: vii-metropolitana-circunscripcion, geom: null, inhabitants: null}
 - model: popolo.area
   pk: donihue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.473878+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.474123+00:00', name: "Do\xF1ihue", identifier: '', classification: Comuna,
     parent: distrito-15-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: el-bosque-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.069495+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.070052+00:00', name: El Bosque, identifier: '', classification: Comuna,
     parent: distrito-13-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: el-carmen-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.702168+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.702415+00:00', name: El Carmen, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: el-monte-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.259072+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.259307+00:00', name: El Monte, identifier: '', classification: Comuna,
     parent: distrito-14-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: el-quisco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.459259+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.459560+00:00', name: El Quisco, identifier: '', classification: Comuna,
     parent: distrito-7-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: el-tabo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.474000+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.474244+00:00', name: El Tabo, identifier: '', classification: Comuna,
     parent: distrito-7-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: empedrado-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.127768+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.128164+00:00', name: Empedrado, identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: ercilla-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.307848+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.308123+00:00', name: Ercilla, identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: estacion-central-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.636647+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.637090+00:00', name: "Estaci\xF3n Central", identifier: '', classification: Comuna,
     parent: distrito-8-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: florida-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.875010+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.875317+00:00', name: Florida, identifier: '', classification: Comuna,
     parent: distrito-20-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: freire-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.576875+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.577122+00:00', name: Freire, identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: freirina-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.616820+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.617128+00:00', name: Freirina, identifier: '', classification: Comuna,
     parent: distrito-4-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: fresia-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.042304+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.042557+00:00', name: Fresia, identifier: '', classification: Comuna,
     parent: distrito-25-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: frutillar-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.057783+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.058082+00:00', name: Frutillar, identifier: '', classification: Comuna,
     parent: distrito-25-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: futaleufu-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.352941+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.353204+00:00', name: "Futaleuf\xFA", identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: futrono-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.865098+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.865328+00:00', name: Futrono, identifier: '', classification: Comuna,
     parent: distrito-24-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: galvarino-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.411318+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.411664+00:00', name: Galvarino, identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: general-lagos-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.180341+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.180619+00:00', name: General Lagos, identifier: '', classification: Comuna,
     parent: distrito-1-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: gorbea-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.682295+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.682525+00:00', name: Gorbea, identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: graneros-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.488795+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.489089+00:00', name: Graneros, identifier: '', classification: Comuna,
     parent: distrito-15-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: guaitecas-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.566870+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.567254+00:00', name: Guaitecas, identifier: '', classification: Comuna,
     parent: distrito-27-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: hijuelas-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.964396+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.964748+00:00', name: Hijuelas, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: hualaihue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.365935+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.366155+00:00', name: "Hualaihu\xE9", identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: hualane-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.967628+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.967883+00:00', name: "Huala\xF1\xE9", identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: hualpen-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.788387+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.788632+00:00', name: "Hualp\xE9n", identifier: '', classification: Comuna,
     parent: distrito-20-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: hualqui-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.889712+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.889956+00:00', name: Hualqui, identifier: '', classification: Comuna,
     parent: distrito-20-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: huara-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.282684+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.283009+00:00', name: Huara, identifier: '', classification: Comuna,
     parent: distrito-2-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: huasco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.602971+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.603331+00:00', name: Huasco, identifier: '', classification: Comuna,
     parent: distrito-4-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: huechuraba-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.689313+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.689789+00:00', name: Huechuraba, identifier: '', classification: Comuna,
     parent: distrito-9-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: i-arica-y-parinacota-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.132226+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.132828+00:00', name: I Arica y Parinacota, identifier: '', classification: "circunscripci\xF3\
       n", parent: arica-y-parinacota-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: ii-tarapaca-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.216971+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.217401+00:00', name: "II Tarapac\xE1", identifier: '', classification: "circunscripci\xF3\
       n", parent: tarapaca-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: iii-antofagasta-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.350459+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.350700+00:00', name: III Antofagasta, identifier: '', classification: "circunscripci\xF3\
       n", parent: antofagasta-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: illapel-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.831779+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.832064+00:00', name: Illapel, identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: independencia-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.759365+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.759743+00:00', name: Independencia, identifier: '', classification: Comuna,
     parent: distrito-9-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: iquique-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.297849+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.298136+00:00', name: Iquique, identifier: '', classification: Comuna,
     parent: distrito-2-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: isla-de-maipo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.274115+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.274536+00:00', name: Isla de Maipo, identifier: '', classification: Comuna,
     parent: distrito-14-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: isla-de-pascua-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.345469+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.345703+00:00', name: Isla de Pascua, identifier: '', classification: Comuna,
     parent: distrito-7-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: iv-atacama-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.505184+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.505761+00:00', name: IV Atacama, identifier: '', classification: "circunscripci\xF3\
       n", parent: atacama-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: ix-maule-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.932283+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.932587+00:00', name: IX Maule, identifier: '', classification: "circunscripci\xF3\
       n", parent: maule-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: juan-fernandez-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.361163+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.361428+00:00', name: "Juan Fern\xE1ndez", identifier: '', classification: Comuna,
     parent: distrito-7-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: la-calera-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.947047+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.947546+00:00', name: La Calera, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: la-cisterna-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.084651+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.084898+00:00', name: La Cisterna, identifier: '', classification: Comuna,
     parent: distrito-13-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: la-cruz-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.983057+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.983449+00:00', name: La Cruz, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: la-estrella-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.732197+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.732423+00:00', name: La Estrella, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: la-florida-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.981290+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.981537+00:00', name: La Florida, identifier: '', classification: Comuna,
     parent: distrito-12-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: la-granja-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.851032+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.851247+00:00', name: La Granja, identifier: '', classification: Comuna,
     parent: distrito-10-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: la-higuera-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.702579+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.702876+00:00', name: La Higuera, identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: la-ligua-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.996878+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.997123+00:00', name: La Ligua, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: la-pintana-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.015649+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.015884+00:00', name: La Pintana, identifier: '', classification: Comuna,
     parent: distrito-12-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: la-reina-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.944212+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.944423+00:00', name: La Reina, identifier: '', classification: Comuna,
     parent: distrito-11-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: la-serena-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.716496+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.716824+00:00', name: La Serena, identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: la-union-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.879983+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.880301+00:00', name: "La Uni\xF3n", identifier: '', classification: Comuna,
     parent: distrito-24-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: lago-ranco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.893381+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.893592+00:00', name: Lago Ranco, identifier: '', classification: Comuna,
     parent: distrito-24-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: lago-verde-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.581926+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.582163+00:00', name: Lago Verde, identifier: '', classification: Comuna,
     parent: distrito-27-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: laguna-blanca-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.702797+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.703035+00:00', name: Laguna Blanca, identifier: '', classification: Comuna,
     parent: distrito-28-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: laja-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.105582+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.105941+00:00', name: Laja, identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: lampa-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.558017+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.558382+00:00', name: Lampa, identifier: '', classification: Comuna,
     parent: distrito-8-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: lanco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.803795+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.804142+00:00', name: Lanco, identifier: '', classification: Comuna,
     parent: distrito-24-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: las-cabras-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.638165+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.638403+00:00', name: Las Cabras, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: las-condes-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.904121+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.904346+00:00', name: Las Condes, identifier: '', classification: Comuna,
     parent: distrito-11-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: lautaro-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.425527+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.425844+00:00', name: Lautaro, identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: lebu-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.032135+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.032370+00:00', name: Lebu, identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: licanten-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.981888+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.982125+00:00', name: "Licant\xE9n", identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: limache-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.277203+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.277673+00:00', name: Limache, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: linares-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.253588+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.253844+00:00', name: Linares, identifier: '', classification: Comuna,
     parent: distrito-18-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: litueche-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.746883+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.747105+00:00', name: Litueche, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: llaillay-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.155067+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.155364+00:00', name: Llaillay, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: llanquihue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.072358+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.072600+00:00', name: Llanquihue, identifier: '', classification: Comuna,
     parent: distrito-25-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: lo-barnechea-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.917484+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.917703+00:00', name: Lo Barnechea, identifier: '', classification: Comuna,
     parent: distrito-11-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: lo-espejo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.112679+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.112900+00:00', name: Lo Espejo, identifier: '', classification: Comuna,
     parent: distrito-13-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: lo-prado-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.731427+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.731849+00:00', name: Lo Prado, identifier: '', classification: Comuna,
     parent: distrito-9-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: lolol-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.763865+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.764347+00:00', name: Lolol, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: loncoche-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.695782+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.696064+00:00', name: Loncoche, identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: longavi-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.343911+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.344125+00:00', name: "Longav\xED", identifier: '', classification: Comuna,
     parent: distrito-18-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: lonquimay-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.439878+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.440150+00:00', name: Lonquimay, identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: los-alamos-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.018780+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.019017+00:00', name: "Los \xC1lamos", identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: los-andes-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.169559+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.169898+00:00', name: Los Andes, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: los-angeles-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.119862+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.120101+00:00', name: "Los \xC1ngeles", identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: los-lagos-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.909816+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.910223+00:00', name: Los Lagos, identifier: '', classification: Comuna,
     parent: distrito-24-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: los-lagos-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.967405+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.967687+00:00', name: Los Lagos, identifier: '', classification: "Regi\xF3\
       n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: los-muermos-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.087772+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.088018+00:00', name: Los Muermos, identifier: '', classification: Comuna,
     parent: distrito-25-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: los-rios-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.755060+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.755367+00:00', name: "Los R\xEDos", identifier: '', classification: "Regi\xF3\
       n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: los-sauces-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.322081+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.322309+00:00', name: Los Sauces, identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: los-vilos-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.846619+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.846999+00:00', name: Los Vilos, identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: lota-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.045609+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.045832+00:00', name: Lota, identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: lumaco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.334882+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.335167+00:00', name: Lumaco, identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: machali-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.507305+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.507699+00:00', name: "Machal\xED", identifier: '', classification: Comuna,
     parent: distrito-15-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: macul-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.864841+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.865134+00:00', name: Macul, identifier: '', classification: Comuna,
     parent: distrito-10-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: mafil-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.822373+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.822790+00:00', name: "M\xE1fil", identifier: '', classification: Comuna,
     parent: distrito-24-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: magallanes-y-la-antartica-chilena-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.638715+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.639275+00:00', name: "Magallanes y la Ant\xE1rtica Chilena", identifier: '',
     classification: "Regi\xF3n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: maipu-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.650556+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.650852+00:00', name: "Maip\xFA", identifier: '', classification: Comuna,
     parent: distrito-8-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: malloa-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.522085+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.522342+00:00', name: Malloa, identifier: '', classification: Comuna,
     parent: distrito-15-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: marchihue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.778101+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.778316+00:00', name: Marchihue, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: maria-elena-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.384474+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.384698+00:00', name: "Mar\xEDa Elena", identifier: '', classification: Comuna,
     parent: distrito-3-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: maria-pinto-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.287937+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.288161+00:00', name: "Mar\xEDa Pinto", identifier: '', classification: Comuna,
     parent: distrito-14-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: mariquina-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.837448+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.837752+00:00', name: Mariquina, identifier: '', classification: Comuna,
     parent: distrito-24-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: maule-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.142584+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.142822+00:00', name: Maule, identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: maule-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.919485+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.919869+00:00', name: Maule, identifier: '', classification: "Regi\xF3\
       n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: maullin-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.224141+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.224811+00:00', name: "Maull\xEDn", identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: mejillones-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.454642+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.454878+00:00', name: Mejillones, identifier: '', classification: Comuna,
     parent: distrito-3-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: melipeuco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.453434+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.453647+00:00', name: Melipeuco, identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: melipilla-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.302266+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.302525+00:00', name: Melipilla, identifier: '', classification: Comuna,
     parent: distrito-14-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: metropolitanade-santiago-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.512133+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.512378+00:00', name: Metropolitanade Santiago, identifier: '', classification: "Regi\xF3\
       n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: molina-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.995865+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.996132+00:00', name: Molina, identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: monte-patria-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.860140+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.860421+00:00', name: Monte Patria, identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: mostazal-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.537267+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.537883+00:00', name: Mostazal, identifier: '', classification: Comuna,
     parent: distrito-15-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: mulchen-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.133264+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.133523+00:00', name: "Mulch\xE9n", identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: nacimiento-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.147716+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.147949+00:00', name: Nacimiento, identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: nancagua-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.791511+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.791837+00:00', name: Nancagua, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: natales-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.715257+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.715470+00:00', name: Natales, identifier: '', classification: Comuna,
     parent: distrito-28-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: navidad-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.804555+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.804927+00:00', name: Navidad, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: negrete-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.161397+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.161621+00:00', name: Negrete, identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: ninhue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.549123+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.549497+00:00', name: Ninhue, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: niquen-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.491826+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.492044+00:00', name: "\xD1iqu\xE9n", identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: nogales-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.010253+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.010501+00:00', name: Nogales, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: nueva-imperial-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.594226+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.594620+00:00', name: Nueva Imperial, identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: nunoa-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.820362+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.820655+00:00', name: "\xD1u\xF1oa", identifier: '', classification: Comuna,
     parent: distrito-10-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: ohiggins-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.612611+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.612862+00:00', name: O'Higgins, identifier: '', classification: Comuna,
     parent: distrito-27-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: ohiggins-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.375790+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.376039+00:00', name: O'Higgins, identifier: '', classification: "Regi\xF3\
       n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: olivar-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.553815+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.555085+00:00', name: Olivar, identifier: '', classification: Comuna,
     parent: distrito-15-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: ollague-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.398807+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.399138+00:00', name: "Ollag\xFCe", identifier: '', classification: Comuna,
     parent: distrito-3-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: olmue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.293230+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.293547+00:00', name: "Olmu\xE9", identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: osorno-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.998117+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.998402+00:00', name: Osorno, identifier: '', classification: Comuna,
     parent: distrito-25-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: ovalle-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.776876+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.777354+00:00', name: Ovalle, identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: padre-hurtado-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.319179+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.319524+00:00', name: Padre Hurtado, identifier: '', classification: Comuna,
     parent: distrito-14-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: padre-las-casas-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.522870+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.523097+00:00', name: Padre Las Casas, identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: paihuano-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.730342+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.730824+00:00', name: Paihuano, identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: paillaco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.928562+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.928893+00:00', name: Paillaco, identifier: '', classification: Comuna,
     parent: distrito-24-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: paine-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.201768+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.202087+00:00', name: Paine, identifier: '', classification: Comuna,
     parent: distrito-14-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: palena-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.379282+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.379550+00:00', name: Palena, identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: palmilla-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.818235+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.818454+00:00', name: Palmilla, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: panguipulli-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.943952+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.944321+00:00', name: Panguipulli, identifier: '', classification: Comuna,
     parent: distrito-24-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: panquehue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.185023+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.185372+00:00', name: Panquehue, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: papudo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.027850+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.028294+00:00', name: Papudo, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: paredones-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.834149+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.834558+00:00', name: Paredones, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: parral-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.358335+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.358928+00:00', name: Parral, identifier: '', classification: Comuna,
     parent: distrito-18-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pedro-aguirre-cerda-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.125648+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.125874+00:00', name: Pedro Aguirre Cerda, identifier: '', classification: Comuna,
     parent: distrito-13-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pelarco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.158388+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.158795+00:00', name: Pelarco, identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pelluhue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.374459+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.374710+00:00', name: Pelluhue, identifier: '', classification: Comuna,
     parent: distrito-18-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pemuco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.716121+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.716415+00:00', name: Pemuco, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: penaflor-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.333256+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.333471+00:00', name: "Pe\xF1aflor", identifier: '', classification: Comuna,
     parent: distrito-14-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: penalolen-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.957412+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.957623+00:00', name: "Pe\xF1alol\xE9n", identifier: '', classification: Comuna,
     parent: distrito-11-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pencahue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.172505+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.172744+00:00', name: Pencahue, identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: penco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.905907+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.906283+00:00', name: Penco, identifier: '', classification: Comuna,
     parent: distrito-20-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: peralillo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.849195+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.849429+00:00', name: Peralillo, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: perquenco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.467049+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.467301+00:00', name: Perquenco, identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: petorca-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.047343+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.047816+00:00', name: Petorca, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: peumo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.652346+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.652599+00:00', name: Peumo, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pica-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.312787+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.313152+00:00', name: Pica, identifier: '', classification: Comuna,
     parent: distrito-2-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pichidegua-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.667031+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.667268+00:00', name: Pichidegua, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pichilemu-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.864269+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.864536+00:00', name: Pichilemu, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pinto-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.732690+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.733080+00:00', name: Pinto, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pirque-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.030271+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.030693+00:00', name: Pirque, identifier: '', classification: Comuna,
     parent: distrito-12-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pitrufquen-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.611105+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.611460+00:00', name: "Pitrufqu\xE9n", identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: placilla-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.879620+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.879939+00:00', name: Placilla, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: portezuelo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.505601+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.505870+00:00', name: Portezuelo, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: porvenir-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.730755+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.731060+00:00', name: Porvenir, identifier: '', classification: Comuna,
     parent: distrito-28-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pozo-almonte-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.330577+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.330892+00:00', name: Pozo Almonte, identifier: '', classification: Comuna,
     parent: distrito-2-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: primavera-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.745863+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.746198+00:00', name: Primavera, identifier: '', classification: Comuna,
     parent: distrito-28-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: providencia-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.837823+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.838084+00:00', name: Providencia, identifier: '', classification: Comuna,
     parent: distrito-10-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: puchuncavi-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.071341+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.071617+00:00', name: "Puchuncav\xED", identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pucon-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.713103+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.713356+00:00', name: "Puc\xF3n", identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pudahuel-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.592255+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.592584+00:00', name: Pudahuel, identifier: '', classification: Comuna,
     parent: distrito-8-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: puente-alto-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.001566+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.001931+00:00', name: Puente Alto, identifier: '', classification: Comuna,
     parent: distrito-12-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: puerto-montt-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.241790+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.242225+00:00', name: Puerto Montt, identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: puerto-octay-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.102276+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.102507+00:00', name: Puerto Octay, identifier: '', classification: Comuna,
     parent: distrito-25-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: puerto-varas-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.118494+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.119224+00:00', name: Puerto Varas, identifier: '', classification: Comuna,
     parent: distrito-25-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: pumanque-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.895022+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.895436+00:00', name: Pumanque, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: punitaqui-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.873589+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.873826+00:00', name: Punitaqui, identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: punta-arenas-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.765637+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.766064+00:00', name: Punta Arenas, identifier: '', classification: Comuna,
     parent: distrito-28-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: puqueldon-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.393405+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.393621+00:00', name: "Puqueld\xF3n", identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: puren-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.349778+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.349997+00:00', name: "Pur\xE9n", identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: purranque-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.145882+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.146240+00:00', name: Purranque, identifier: '', classification: Comuna,
     parent: distrito-25-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: putaendo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.199075+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.199370+00:00', name: Putaendo, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: putre-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.195220+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.195503+00:00', name: Putre, identifier: '', classification: Comuna,
     parent: distrito-1-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: puyehue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.132586+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.132828+00:00', name: Puyehue, identifier: '', classification: Comuna,
     parent: distrito-25-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: queilen-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.407245+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.407520+00:00', name: "Queil\xE9n", identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: quellon-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.422568+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.422955+00:00', name: "Quell\xF3n", identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: quemchi-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.436554+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.436784+00:00', name: Quemchi, identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: quilaco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.176773+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.177310+00:00', name: Quilaco, identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: quilicura-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.572948+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.573679+00:00', name: Quilicura, identifier: '', classification: Comuna,
     parent: distrito-8-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: quilleco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.192552+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.192908+00:00', name: Quilleco, identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: quillon-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.518650+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.518871+00:00', name: "Quill\xF3n", identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: quillota-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.086320+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.086558+00:00', name: Quillota, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: quilpue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.306694+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.306961+00:00', name: "Quilpu\xE9", identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: quinchao-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.452046+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.452312+00:00', name: Quinchao, identifier: '', classification: Comuna,
     parent: distrito-26-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: quinta-de-tilcoco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.569206+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.569489+00:00', name: Quinta de Tilcoco, identifier: '', classification: Comuna,
     parent: distrito-15-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: quinta-normal-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.745245+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.745473+00:00', name: Quinta Normal, identifier: '', classification: Comuna,
     parent: distrito-9-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: quintero-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.099287+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.099519+00:00', name: Quintero, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: quirihue-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.534117+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.534399+00:00', name: Quirihue, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: rancagua-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.413787+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.414032+00:00', name: Rancagua, identifier: '', classification: Comuna,
     parent: distrito-15-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: ranquil-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.567384+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.567943+00:00', name: "R\xE1nquil", identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: rauco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.009942+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.010175+00:00', name: Rauco, identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: recoleta-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.778185+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.778725+00:00', name: Recoleta, identifier: '', classification: Comuna,
     parent: distrito-9-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: renaico-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.363055+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.363352+00:00', name: Renaico, identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: renca-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.703079+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.703300+00:00', name: Renca, identifier: '', classification: Comuna,
     parent: distrito-9-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: rengo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.582821+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.583035+00:00', name: Rengo, identifier: '', classification: Comuna,
     parent: distrito-15-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: requinoa-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.597991+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.598219+00:00', name: "Requ\xEDnoa", identifier: '', classification: Comuna,
     parent: distrito-15-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: retiro-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.387867+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.388103+00:00', name: Retiro, identifier: '', classification: Comuna,
     parent: distrito-18-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: rinconada-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.213957+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.214214+00:00', name: Rinconada, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: rio-bueno-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.957593+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.957887+00:00', name: "R\xEDo Bueno", identifier: '', classification: Comuna,
     parent: distrito-24-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: rio-claro-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.185914+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.186156+00:00', name: "R\xEDo Claro", identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: rio-hurtado-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.791283+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.791511+00:00', name: "R\xEDo Hurtado", identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: rio-ibanez-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.597932+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.598530+00:00', name: "R\xEDo Ib\xE1\xF1ez", identifier: '', classification: Comuna,
     parent: distrito-27-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: rio-negro-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.161483+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.161773+00:00', name: "R\xEDo Negro", identifier: '', classification: Comuna,
     parent: distrito-25-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: rio-verde-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.782883+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.783293+00:00', name: "R\xEDo Verde", identifier: '', classification: Comuna,
     parent: distrito-28-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: romeral-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.024480+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.024803+00:00', name: Romeral, identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: saavedra-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.625545+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.625840+00:00', name: Saavedra, identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: sagrada-familia-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.040074+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.040331+00:00', name: Sagrada Familia, identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: salamanca-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.888143+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.888476+00:00', name: Salamanca, identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-antonio-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.489081+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.489346+00:00', name: San Antonio, identifier: '', classification: Comuna,
     parent: distrito-7-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-bernardo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.217637+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.217985+00:00', name: San Bernardo, identifier: '', classification: Comuna,
     parent: distrito-14-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-carlos-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.582442+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.582666+00:00', name: San Carlos, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-clemente-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.200437+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.200678+00:00', name: San Clemente, identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-esteban-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.231214+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.231519+00:00', name: San Esteban, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-fabian-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.596236+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.596564+00:00', name: "San Fabi\xE1n", identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-felipe-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.245917+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.246256+00:00', name: San Felipe, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-fernando-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.682442+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.682811+00:00', name: San Fernando, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-gregorio-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.798225+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.798711+00:00', name: San Gregorio, identifier: '', classification: Comuna,
     parent: distrito-28-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-ignacio-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.746557+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.746780+00:00', name: San Ignacio, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-javier-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.269072+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.269473+00:00', name: San Javier, identifier: '', classification: Comuna,
     parent: distrito-18-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-joaquin-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.878293+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.878546+00:00', name: "San Joaqu\xEDn", identifier: '', classification: Comuna,
     parent: distrito-10-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-jose-de-maipo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.046531+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.046866+00:00', name: "San Jos\xE9 de Maipo", identifier: '', classification: Comuna,
     parent: distrito-12-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-juan-de-la-costa-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.013933+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.014232+00:00', name: San Juan de la Costa, identifier: '', classification: Comuna,
     parent: distrito-25-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-miguel-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.141081+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.141490+00:00', name: San Miguel, identifier: '', classification: Comuna,
     parent: distrito-13-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-nicolas-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.611524+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.611837+00:00', name: "San Nicol\xE1s", identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-pablo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.027271+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.027530+00:00', name: San Pablo, identifier: '', classification: Comuna,
     parent: distrito-25-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-pedro-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.350950+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.351408+00:00', name: San Pedro, identifier: '', classification: Comuna,
     parent: distrito-14-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-pedro-de-atacama-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.413024+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.413246+00:00', name: San Pedro de Atacama, identifier: '', classification: Comuna,
     parent: distrito-3-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-pedro-de-la-paz-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.845597+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.845934+00:00', name: San Pedro de la Paz, identifier: '', classification: Comuna,
     parent: distrito-20-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-rafael-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.214528+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.214880+00:00', name: San Rafael, identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-ramon-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.097535+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.097759+00:00', name: "San Ram\xF3n", identifier: '', classification: Comuna,
     parent: distrito-13-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-rosendo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.208280+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.208520+00:00', name: San Rosendo, identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-vicente-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.699853+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.700115+00:00', name: San Vicente, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: santa-barbara-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.221336+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.221554+00:00', name: "Santa B\xE1rbara", identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: santa-cruz-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.909461+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.909699+00:00', name: Santa Cruz, identifier: '', classification: Comuna,
     parent: distrito-16-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: santa-juana-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.919809+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.920037+00:00', name: Santa Juana, identifier: '', classification: Comuna,
     parent: distrito-20-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: santa-maria-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.261445+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.261677+00:00', name: "Santa Mar\xEDa", identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: santiago-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.805040+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.805311+00:00', name: Santiago, identifier: '', classification: Comuna,
     parent: distrito-10-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: santo-domingo-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.502194+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.502420+00:00', name: Santo Domingo, identifier: '', classification: Comuna,
     parent: distrito-7-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: sierra-gorda-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.471021+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.471423+00:00', name: Sierra Gorda, identifier: '', classification: Comuna,
     parent: distrito-3-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: talagante-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.365638+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.365881+00:00', name: Talagante, identifier: '', classification: Comuna,
     parent: distrito-14-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: talca-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.081881+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.082198+00:00', name: Talca, identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: talcahuano-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.803724+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.804110+00:00', name: Talcahuano, identifier: '', classification: Comuna,
     parent: distrito-20-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: taltal-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.485094+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.485326+00:00', name: Taltal, identifier: '', classification: Comuna,
     parent: distrito-3-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: tarapaca-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.206235+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.206497+00:00', name: "Tarapac\xE1", identifier: '', classification: "Regi\xF3\
       n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: temuco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.535383+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.535604+00:00', name: Temuco, identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: teno-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.053144+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.053397+00:00', name: Teno, identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: teodoro-schmidt-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.641169+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.641545+00:00', name: Teodoro Schmidt, identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: tierra-amarilla-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.630819+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.631104+00:00', name: Tierra Amarilla, identifier: '', classification: Comuna,
     parent: distrito-4-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: tiltil-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.606515+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.606770+00:00', name: Tiltil, identifier: '', classification: Comuna,
     parent: distrito-8-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: timaukel-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.812079+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.812386+00:00', name: Timaukel, identifier: '', classification: Comuna,
     parent: distrito-28-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: tirua-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.058567+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.058827+00:00', name: "Tir\xFAa", identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: tocopilla-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.426480+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.426715+00:00', name: Tocopilla, identifier: '', classification: Comuna,
     parent: distrito-3-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: tolten-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.726689+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.726965+00:00', name: "Tolt\xE9n", identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: tome-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.934269+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.934580+00:00', name: "Tom\xE9", identifier: '', classification: Comuna,
     parent: distrito-20-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: torres-del-paine-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.825767+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.826021+00:00', name: Torres del Paine, identifier: '', classification: Comuna,
     parent: distrito-28-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: tortel-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.627981+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.628346+00:00', name: Tortel, identifier: '', classification: Comuna,
     parent: distrito-27-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: traiguen-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.376602+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.376873+00:00', name: "Traigu\xE9n", identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: treguaco-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.625229+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.625455+00:00', name: Treguaco, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: tucapel-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.234005+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.234216+00:00', name: Tucapel, identifier: '', classification: Comuna,
     parent: distrito-21-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: v-coquimbo-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.668609+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.668959+00:00', name: V Coquimbo, identifier: '', classification: "circunscripci\xF3\
       n", parent: coquimbo-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: valdivia-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.850860+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.851313+00:00', name: Valdivia, identifier: '', classification: Comuna,
     parent: distrito-24-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: vallenar-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.645730+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.646997+00:00', name: Vallenar, identifier: '', classification: Comuna,
     parent: distrito-4-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: valparaiso-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.375281+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.375536+00:00', name: "Valpara\xEDso", identifier: '', classification: Comuna,
     parent: distrito-7-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: valparaiso-region
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.898138+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.898398+00:00', name: "Valpara\xEDso", identifier: '', classification: "Regi\xF3\
       n", parent: chile-pais, geom: null, inhabitants: null}
 - model: popolo.area
   pk: vi-valparaiso-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.908357+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.908795+00:00', name: "VI Valpara\xEDso", identifier: '', classification: "circunscripci\xF3\
       n", parent: valparaiso-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: vichuquen-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.066621+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.066862+00:00', name: "Vichuqu\xE9n", identifier: '', classification: Comuna,
     parent: distrito-17-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: victoria-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.483622+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.483956+00:00', name: Victoria, identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: vicuna-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.746539+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.746921+00:00', name: "Vicu\xF1a", identifier: '', classification: Comuna,
     parent: distrito-5-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: vii-metropolitana-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.522644+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.523080+00:00', name: VII Metropolitana, identifier: '', classification: "circunscripci\xF3\
       n", parent: metropolitanade-santiago-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: viii-ohiggins-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:56.387462+00:00', updated_at: !!timestamp '2017-04-24
       16:13:56.387699+00:00', name: VIII O'Higgins, identifier: '', classification: "circunscripci\xF3\
       n", parent: ohiggins-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: vilcun-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.497698+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.497925+00:00', name: "Vilc\xFAn", identifier: '', classification: Comuna,
     parent: distrito-22-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: villa-alegre-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.282571+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.282813+00:00', name: Villa Alegre, identifier: '', classification: Comuna,
     parent: distrito-18-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: villa-alemana-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.321099+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.321382+00:00', name: Villa Alemana, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: villarrica-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.744201+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.744595+00:00', name: Villarrica, identifier: '', classification: Comuna,
     parent: distrito-23-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: vina-del-mar-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.403708+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.403939+00:00', name: "Vi\xF1a del Mar", identifier: '', classification: Comuna,
     parent: distrito-7-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: vitacura-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.931100+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.931358+00:00', name: Vitacura, identifier: '', classification: Comuna,
     parent: distrito-11-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: x-biobio-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.407411+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.407680+00:00', name: "X Biob\xEDo", identifier: '', classification: "circunscripci\xF3\
       n", parent: biobio-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: xi-araucania-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.255156+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.255392+00:00', name: "XI Araucan\xEDa", identifier: '', classification: "circunscripci\xF3\
       n", parent: araucania-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: xii-los-rios-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.765591+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.766061+00:00', name: "XII Los R\xEDos", identifier: '', classification: "circunscripci\xF3\
       n", parent: los-rios-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: xiii-los-lagos-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.977479+00:00', updated_at: !!timestamp '2017-04-24
       16:13:58.977759+00:00', name: XIII Los Lagos, identifier: '', classification: "circunscripci\xF3\
       n", parent: los-lagos-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: xiv-aysen-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.474497+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.474827+00:00', name: "XIV Ays\xE9n", identifier: '', classification: "circunscripci\xF3\
       n", parent: aysen-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: xv-magallanes-circunscripcion
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:59.649574+00:00', updated_at: !!timestamp '2017-04-24
       16:13:59.649973+00:00', name: XV Magallanes, identifier: '', classification: "circunscripci\xF3\
       n", parent: magallanes-y-la-antartica-chilena-region, geom: null, inhabitants: null}
 - model: popolo.area
   pk: yerbas-buenas-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.298972+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.299392+00:00', name: Yerbas Buenas, identifier: '', classification: Comuna,
     parent: distrito-18-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: yumbel-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.638829+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.639044+00:00', name: Yumbel, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: yungay-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:57.762455+00:00', updated_at: !!timestamp '2017-04-24
       16:13:57.762946+00:00', name: Yungay, identifier: '', classification: Comuna,
     parent: distrito-19-distrito, geom: null, inhabitants: null}
 - model: popolo.area
   pk: zapallar-comuna
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:55.113763+00:00', updated_at: !!timestamp '2017-04-24
       16:13:55.114257+00:00', name: Zapallar, identifier: '', classification: Comuna,
     parent: distrito-6-distrito, geom: null, inhabitants: null}

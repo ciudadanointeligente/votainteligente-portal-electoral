@@ -26,7 +26,7 @@ three_days_ago = timezone.now() - timedelta(days=3)
 class PopularProposalFilterTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(PopularProposalFilterTestCase, self).setUp()
-        self.algarrobo = Area.objects.get(id='algarrobo-5602')
+        self.algarrobo = Area.objects.get(id=1)
         self.p1 = PopularProposal.objects.create(proposer=self.fiera,
                                                  area=self.algarrobo,
                                                  data=self.data,
@@ -120,7 +120,7 @@ class PopularProposalFilterTestCase(ProposingCycleTestCaseBase):
 class OrderingFormTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(OrderingFormTestCase, self).setUp()
-        self.algarrobo = Area.objects.get(id='algarrobo-5602')
+        self.algarrobo = Area.objects.get(id=1)
 
     def test_order_by_in_form(self):
         url = reverse('popular_proposals:home')

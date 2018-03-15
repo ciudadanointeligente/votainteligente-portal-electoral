@@ -25,7 +25,11 @@ from votai_utils.shareable import ShareableMixin
 
 class AreaManager(models.Manager):
     def get_queryset(self):
-        return super(AreaManager, self).get_queryset().exclude(id=config.HIDDEN_AREAS)
+
+        qs = super(AreaManager, self).get_queryset()
+        if config.HIDDEN_AREAS:
+            qs = qs.exclude(id=config.HIDDEN_AREAS)
+        return qs
 
 
 def get_position_in_(qs, el):
@@ -222,7 +226,7 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin, ShareableMixin):
         if config.CANDIDATE_ABSOLUTE_URL_USING_AREA and self.election is not None:
             return reverse('candidate_detail_view_area', kwargs={
                 'area_slug': self.election.area.slug,
-                'slug': self.id
+                'slug': self.slug
             })
         election_slug = ''
         if self.election:
@@ -230,7 +234,7 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin, ShareableMixin):
 
             return reverse('candidate_detail_view', kwargs={
                 'election_slug': election_slug,
-                'slug': self.id
+                'slug': self.slug
             })
         return None
 
@@ -248,7 +252,7 @@ class CandidateFlatPage(FlatPage):
 
     def get_absolute_url(self):
         return reverse('candidate_flatpage', kwargs={'election_slug': self.candidate.election.slug,
-                                                     'slug': self.candidate.id,
+                                                     'slug': self.candidate.slug,
                                                      'url': self.url
                                                      }
                        )

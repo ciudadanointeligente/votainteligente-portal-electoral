@@ -93,7 +93,7 @@ class CandidacyContact(models.Model):
             return
         self.times_email_has_been_sent += 1
         if self.candidacy is None:
-            username = self.candidate.id[:20] + unicode(uuid.uuid4())[:4]
+            username = self.candidate.slug[:20] + unicode(uuid.uuid4())[:4]
 
             password = uuid.uuid4().hex[:12]
             self.initial_password = password

@@ -69,7 +69,7 @@ class SecondRoundCreationTestCase(TestCase):
                                          author_email='author@email.com',
                                          subject='subject',
                                          content='content',
-                                         slug='subject-slugified',
+                                         slug=u'subject-slugified',
                                          accepted=True
                                          )
         message.people.add(self.adela)

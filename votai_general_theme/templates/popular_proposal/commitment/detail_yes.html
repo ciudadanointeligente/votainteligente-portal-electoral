@@ -53,7 +53,7 @@
 
     <div class="pull-right">
       <p><b>{{commitment.candidate.name}}</b></p>
-      <p>Candidata/o {% if commitment.candidate.election.position %}a {{commitment.candidate.election.position|title }}{% endif %} por {{commitment.candidate.election.area}}.</p>
+      <p>{{commitment.candidate.election.position|title }} por {{commitment.candidate.election.area}}.</p>
     </div>
 </div>
 {% if user|manages_this:commitment.candidate %}

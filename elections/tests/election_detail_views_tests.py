@@ -20,7 +20,7 @@ class CandidateInElectionsViewsTestCase(TestCase):
     def test_url_is_reachable(self):
         url = reverse('candidate_detail_view', kwargs={
             'election_slug': self.tarapaca.slug,
-            'slug': self.tarapaca.candidates.all()[0].id
+            'slug': self.tarapaca.candidates.all()[0].slug
             })
         self.assertTrue(url)
         response = self.client.get(url)

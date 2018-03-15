@@ -29,7 +29,7 @@ class IndexView(LoginRequiredMixin, RedirectView):
             candidacy = self.request.user.candidacies.first()
             return reverse('backend_candidate:complete_profile',
                                          kwargs={'slug': candidacy.candidate.election.slug,
-                                                 'candidate_id': candidacy.candidate.id})
+                                                 'candidate_slug': candidacy.candidate.slug})
         if self.request.user.profile.is_organization:
             return reverse('organization_profiles:update')
 

@@ -25,7 +25,7 @@ class AgendaViewTestCase(TestCase):
                                                   candidate=self.candidate)
 
     def test_get_create_an_activity_from_view(self):
-        url = reverse('backend_candidate:add_activity', kwargs={'slug': self.candidate.pk})
+        url = reverse('backend_candidate:add_activity', kwargs={'slug': self.candidate.slug})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 302)
         
@@ -33,7 +33,7 @@ class AgendaViewTestCase(TestCase):
         self.client.login(username=self.feli,
                           password='alvarez')
         not_the_right_url = reverse('backend_candidate:add_activity',
-                                    kwargs={'slug': not_the_right_candidate.pk})
+                                    kwargs={'slug': not_the_right_candidate.slug})
         response = self.client.get(not_the_right_url)
         self.assertEquals(response.status_code, 404)
         
@@ -43,7 +43,7 @@ class AgendaViewTestCase(TestCase):
         self.assertEquals(response.context['object'], self.candidate)
         
     def test_posting_to_create_an_activity(self):
-        url = reverse('backend_candidate:add_activity', kwargs={'slug': self.candidate.pk})
+        url = reverse('backend_candidate:add_activity', kwargs={'slug': self.candidate.slug})
         self.client.login(username=self.feli,
                           password='alvarez')
         tomorrow = timezone.now() + datetime.timedelta(days=1)
@@ -55,13 +55,14 @@ class AgendaViewTestCase(TestCase):
             'location': 'secret location'
         }
         response = self.client.post(url, data=data)
+        print self.candidate.slug, url
         url_complete_profile = reverse('backend_candidate:all_my_activities',
-                                       kwargs={'slug':self.candidate.id})
+                                       kwargs={'slug':self.candidate.slug})
         self.assertRedirects(response, url_complete_profile)
         self.assertTrue(self.candidate.agenda.all())
     
     def test_see_my_agenda(self):
-        url = reverse('backend_candidate:all_my_activities', kwargs={'slug': self.candidate.pk})
+        url = reverse('backend_candidate:all_my_activities', kwargs={'slug': self.candidate.slug})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 302)
         
@@ -69,7 +70,7 @@ class AgendaViewTestCase(TestCase):
         self.client.login(username=self.feli,
                           password='alvarez')
         not_the_right_url = reverse('backend_candidate:all_my_activities',
-                                    kwargs={'slug': not_the_right_candidate.pk})
+                                    kwargs={'slug': not_the_right_candidate.slug})
         response = self.client.get(not_the_right_url)
         self.assertEquals(response.status_code, 404)
         tomorrow = timezone.now() + datetime.timedelta(days=1)

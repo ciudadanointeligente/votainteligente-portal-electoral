@@ -82,7 +82,7 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         election = Election.objects.get(id=2)
         url = reverse('backend_candidate:complete_profile',
                       kwargs={'slug': election.slug,
-                              'candidate_id': self.candidate.id})
+                              'candidate_slug': self.candidate.slug})
         self.client.login(username=self.feli,
                           password='alvarez')
         response = self.client.get(url)
@@ -111,7 +111,7 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
                                  user=fiera_user)
         url = reverse('backend_candidate:complete_profile',
                       kwargs={'slug': election.slug,
-                              'candidate_id': fiera_candidata.id})
+                              'candidate_slug': fiera_candidata.slug})
         # Feli is not member of the candidacy of fiera
         self.client.login(username=self.feli,
                           password='alvarez')
@@ -126,7 +126,7 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
                           password='alvarez')
         url = reverse('backend_candidate:complete_profile',
                       kwargs={'slug': election.slug,
-                              'candidate_id': self.candidate.id})
+                              'candidate_slug': self.candidate.slug})
         data = self.data
         response = self.client.post(url,
                                     data=data)

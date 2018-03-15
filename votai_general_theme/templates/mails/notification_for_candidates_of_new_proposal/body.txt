@@ -22,7 +22,7 @@ Queríamos recordarte que para ingresar a VotaInteligente debes respondernos a e
 
 Una vez adentro podrás pronunciarte sobre esta y otras propuestas ciudadanas, también podrás responder a las preguntas que hemos confeccionado para ti y así podrás ser la 1/2 naranja política de tus ciudadanos.
 
-{% elif not candidate.has_answered %}{% if candidate.election %}{% url 'backend_candidate:complete_12_naranja' slug=candidate.election.slug candidate_id=candidate.id  as backend_candidate %}
+{% elif not candidate.has_answered %}{% if candidate.election %}{% url 'backend_candidate:complete_12_naranja' slug=candidate.election.slug candidate_slug=candidate.slug  as backend_candidate %}
 Además queríamos recordarte que aún no has contestado el cuestionario de la 1/2 naranja, para hacerlo puedes seguir el siguiente link:
 https://votainteligente.cl{{backend_candidate}}
 {% endif %}{% endif %}

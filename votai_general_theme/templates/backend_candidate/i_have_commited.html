@@ -42,7 +42,7 @@
 	    </table>
 	{% else %}
   {% with user.candidacies.first as candidacy %}
-  {% url 'backend_candidate:proposals_for_me' slug=election.slug candidate_id=candidacy.candidate.id  as url %}
+  {% url 'backend_candidate:proposals_for_me' slug=election.slug candidate_slug=candidacy.candidate.slug  as url %}
 	{% blocktrans with url=url area_name=election.area.name %}
 
 	Aún no tienes compromisos, sin embargo puedes revisar <a href="{{url}}">La sección de propuestas para mi</a> para aceptar aquellas que quieres.

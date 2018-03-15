@@ -13,4 +13,4 @@ class BackendCitizenTestCaseBase(ProposingCycleTestCaseBase):
         self.fiera = User.objects.get(username='fiera')
         self.fiera.set_password(PASSWORD)
         self.fiera.save()
-        self.arica = Area.objects.get(id='arica-15101')
+        self.arica = Area.objects.get(id=3)

@@ -19,7 +19,7 @@ from elections.models import Area, Election
 class CommitmentTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(CommitmentTestCase, self).setUp()
-        self.algarrobo = Area.objects.get(id='algarrobo-5602')
+        self.algarrobo = Area.objects.get(id=1)
         self.popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
                                                                area=self.algarrobo,
                                                                data=self.data,
@@ -44,7 +44,7 @@ class CommitmentTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(commitment.proposal, self.popular_proposal)
         self.assertTrue(commitment.detail)
         # testing get_absolute_url
-        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.slug,
                                                               'proposal_slug': self.popular_proposal.slug})
         self.assertEquals(commitment.get_absolute_url(), url)
         self.assertIn(commitment, self.candidate.commitments.all())

@@ -297,7 +297,7 @@ class CommitView(FormView):
         return context
 
     def get_success_url(self):
-        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.slug,
                                                               'proposal_slug': self.proposal.slug})
         return url
 
@@ -319,7 +319,7 @@ class CommitmentDetailView(DetailView):
 
     def dispatch(self, request, *args, **kwargs):
         self.proposal = get_object_or_404(PopularProposal, slug=self.kwargs['proposal_slug'])
-        self.candidate = get_object_or_404(Candidate, id=self.kwargs['candidate_slug'])
+        self.candidate = get_object_or_404(Candidate, slug=self.kwargs['candidate_slug'])
         return super(CommitmentDetailView, self).dispatch(request, *args, **kwargs)
 
     def get_object(self, queryset=None):

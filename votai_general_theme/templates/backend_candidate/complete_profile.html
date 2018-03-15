@@ -9,7 +9,7 @@
 
 {% block main_content %}
 
-  <form method="post"  enctype="multipart/form-data" action="{% url 'backend_candidate:complete_profile' slug=election.slug candidate_id=candidate.id %}">{% csrf_token %}
+  <form method="post"  enctype="multipart/form-data" action="{% url 'backend_candidate:complete_profile' slug=election.slug candidate_slug=candidate.slug %}">{% csrf_token %}
   {% with user.candidacies.first as candidacy %}
   <h2>Información para el perfil de {{candidacy.candidate.name}}</h2>
 

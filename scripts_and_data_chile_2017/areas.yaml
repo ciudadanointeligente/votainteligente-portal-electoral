@@ -1,2076 +1,2076 @@
 - model: popolo.area
   pk: algarrobo-5602
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.328226+00:00', updated_at: ! '2016-03-21 20:19:29.328991+00:00',
     name: Algarrobo, identifier: '5602', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: alhue-13502
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.718837+00:00', updated_at: ! '2016-03-21 20:19:30.719553+00:00',
     name: "Alhu\xE9", identifier: '13502', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: alto-biobio-8314
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.882708+00:00', updated_at: ! '2016-03-21 20:19:29.883464+00:00',
     name: "Alto Biob\xEDo", identifier: '8314', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: alto-del-carmen-3302
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.109770+00:00', updated_at: ! '2016-03-21 20:19:29.110754+00:00',
     name: Alto del Carmen, identifier: '3302', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: alto-hospicio-1107
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:28.992329+00:00', updated_at: ! '2016-03-21 20:19:28.993588+00:00',
     name: Alto Hospicio, identifier: '1107', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: ancud-10202
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.286345+00:00', updated_at: ! '2016-03-21 20:19:30.286984+00:00',
     name: Ancud, identifier: '10202', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: andacollo-4103
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.134396+00:00', updated_at: ! '2016-03-21 20:19:29.134985+00:00',
     name: Andacollo, identifier: '4103', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: angol-9201
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.119340+00:00', updated_at: ! '2016-03-21 20:19:30.120230+00:00',
     name: Angol, identifier: '9201', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: antartica-12202
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.483809+00:00', updated_at: ! '2016-03-21 20:19:30.484506+00:00',
     name: "Ant\xE1rtica", identifier: '12202', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: antofagasta-2101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.030185+00:00', updated_at: ! '2016-03-21 20:19:29.030845+00:00',
     name: Antofagasta, identifier: '2101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: antuco-8302
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.810599+00:00', updated_at: ! '2016-03-21 20:19:29.811357+00:00',
     name: Antuco, identifier: '8302', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: arauco-8202
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.779522+00:00', updated_at: ! '2016-03-21 20:19:29.780239+00:00',
     name: Arauco, identifier: '8202', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: arica-15101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:28.948101+00:00', updated_at: ! '2016-03-21 20:19:28.949161+00:00',
     name: Arica, identifier: '15101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: aysen-11201
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.401176+00:00', updated_at: ! '2016-03-21 20:19:30.402005+00:00',
     name: "Ays\xE9n", identifier: '11201', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: buin-13402
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.698189+00:00', updated_at: ! '2016-03-21 20:19:30.698772+00:00',
     name: Buin, identifier: '13402', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: bulnes-8402
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.896832+00:00', updated_at: ! '2016-03-21 20:19:29.897757+00:00',
     name: Bulnes, identifier: '8402', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: cabildo-5402
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.279525+00:00', updated_at: ! '2016-03-21 20:19:29.280545+00:00',
     name: Cabildo, identifier: '5402', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: cabo-de-hornos-12201
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.477467+00:00', updated_at: ! '2016-03-21 20:19:30.478107+00:00',
     name: Cabo de Hornos, identifier: '12201', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: cabrero-8303
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.815357+00:00', updated_at: ! '2016-03-21 20:19:29.816522+00:00',
     name: Cabrero, identifier: '8303', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: calama-2201
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.054519+00:00', updated_at: ! '2016-03-21 20:19:29.059520+00:00',
     name: Calama, identifier: '2201', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: calbuco-10102
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.230243+00:00', updated_at: ! '2016-03-21 20:19:30.230828+00:00',
     name: Calbuco, identifier: '10102', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: caldera-3102
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.086209+00:00', updated_at: ! '2016-03-21 20:19:29.086852+00:00',
     name: Caldera, identifier: '3102', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: calera-de-tango-13403
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.703420+00:00', updated_at: ! '2016-03-21 20:19:30.704103+00:00',
     name: Calera de Tango, identifier: '13403', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: calle-larga-5302
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.261430+00:00', updated_at: ! '2016-03-21 20:19:29.262246+00:00',
     name: Calle Larga, identifier: '5302', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: camarones-15102
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:28.958345+00:00', updated_at: ! '2016-03-21 20:19:28.959229+00:00',
     name: Camarones, identifier: '15102', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: camina-1402
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.006483+00:00', updated_at: ! '2016-03-21 20:19:29.007173+00:00',
     name: "Cami\xF1a", identifier: '1402', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: canela-4202
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.161823+00:00', updated_at: ! '2016-03-21 20:19:29.163618+00:00',
     name: Canela, identifier: '4202', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: canete-8203
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.783744+00:00', updated_at: ! '2016-03-21 20:19:29.784348+00:00',
     name: "Ca\xF1ete", identifier: '8203', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: carahue-9102
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.009756+00:00', updated_at: ! '2016-03-21 20:19:30.010466+00:00',
     name: Carahue, identifier: '9102', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: cartagena-5603
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.334152+00:00', updated_at: ! '2016-03-21 20:19:29.334846+00:00',
     name: Cartagena, identifier: '5603', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: casablanca-5102
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.205881+00:00', updated_at: ! '2016-03-21 20:19:29.206495+00:00',
     name: Casablanca, identifier: '5102', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: castro-10201
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.281987+00:00', updated_at: ! '2016-03-21 20:19:30.282683+00:00',
     name: Castro, identifier: '10201', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: catemu-5702
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.360423+00:00', updated_at: ! '2016-03-21 20:19:29.361242+00:00',
     name: Catemu, identifier: '5702', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: cauquenes-7201
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.621162+00:00', updated_at: ! '2016-03-21 20:19:29.621819+00:00',
     name: Cauquenes, identifier: '7201', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: cerrillos-13102
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.514299+00:00', updated_at: ! '2016-03-21 20:19:30.514961+00:00',
     name: Cerrillos, identifier: '13102', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: cerro-navia-13103
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.518830+00:00', updated_at: ! '2016-03-21 20:19:30.519417+00:00',
     name: Cerro Navia, identifier: '13103', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: chaiten-10401
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.373811+00:00', updated_at: ! '2016-03-21 20:19:30.374843+00:00',
     name: "Chait\xE9n", identifier: '10401', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: chanaral-3201
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.096804+00:00', updated_at: ! '2016-03-21 20:19:29.097367+00:00',
     name: "Cha\xF1aral", identifier: '3201', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: chanco-7202
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.625077+00:00', updated_at: ! '2016-03-21 20:19:29.625661+00:00',
     name: Chanco, identifier: '7202', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: chepica-6302
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.523473+00:00', updated_at: ! '2016-03-21 20:19:29.524042+00:00',
     name: "Ch\xE9pica", identifier: '6302', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: chiguayante-8103
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.725470+00:00', updated_at: ! '2016-03-21 20:19:29.726219+00:00',
     name: Chiguayante, identifier: '8103', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: chile-chico-11401
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.434419+00:00', updated_at: ! '2016-03-21 20:19:30.435020+00:00',
     name: Chile Chico, identifier: '11401', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: chillan-8401
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.887443+00:00', updated_at: ! '2016-03-21 20:19:29.888115+00:00',
     name: "Chill\xE1n", identifier: '8401', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: chillan-viejo-8406
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.919501+00:00', updated_at: ! '2016-03-21 20:19:29.921992+00:00',
     name: "Chill\xE1n Viejo", identifier: '8406', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: chimbarongo-6303
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.529458+00:00', updated_at: ! '2016-03-21 20:19:29.530154+00:00',
     name: Chimbarongo, identifier: '6303', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: cholchol-9121
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.114469+00:00', updated_at: ! '2016-03-21 20:19:30.115729+00:00',
     name: Cholchol, identifier: '9121', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: chonchi-10203
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.290426+00:00', updated_at: ! '2016-03-21 20:19:30.291115+00:00',
     name: Chonchi, identifier: '10203', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: cisnes-11202
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.408189+00:00', updated_at: ! '2016-03-21 20:19:30.409166+00:00',
     name: Cisnes, identifier: '11202', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: cobquecura-8403
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.905353+00:00', updated_at: ! '2016-03-21 20:19:29.905987+00:00',
     name: Cobquecura, identifier: '8403', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: cochamo-10103
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.234293+00:00', updated_at: ! '2016-03-21 20:19:30.235134+00:00',
     name: "Cocham\xF3", identifier: '10103', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: cochrane-11301
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.418093+00:00', updated_at: ! '2016-03-21 20:19:30.418752+00:00',
     name: Cochrane, identifier: '11301', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: codegua-6102
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.404603+00:00', updated_at: ! '2016-03-21 20:19:29.405161+00:00',
     name: Codegua, identifier: '6102', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: coelemu-8404
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.910114+00:00', updated_at: ! '2016-03-21 20:19:29.910995+00:00',
     name: Coelemu, identifier: '8404', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: coihueco-8405
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.914977+00:00', updated_at: ! '2016-03-21 20:19:29.915760+00:00',
     name: Coihueco, identifier: '8405', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: coinco-6103
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.408791+00:00', updated_at: ! '2016-03-21 20:19:29.409540+00:00',
     name: Coinco, identifier: '6103', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: colbun-7402
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.682654+00:00', updated_at: ! '2016-03-21 20:19:29.683393+00:00',
     name: "Colb\xFAn", identifier: '7402', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: colchane-1403
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.011798+00:00', updated_at: ! '2016-03-21 20:19:29.012467+00:00',
     name: Colchane, identifier: '1403', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: colina-13301
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.681708+00:00', updated_at: ! '2016-03-21 20:19:30.682341+00:00',
     name: Colina, identifier: '13301', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: collipulli-9202
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.125101+00:00', updated_at: ! '2016-03-21 20:19:30.125985+00:00',
     name: Collipulli, identifier: '9202', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: coltauco-6104
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.416884+00:00', updated_at: ! '2016-03-21 20:19:29.417620+00:00',
     name: Coltauco, identifier: '6104', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: combarbala-4302
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.183911+00:00', updated_at: ! '2016-03-21 20:19:29.184519+00:00',
     name: "Combarbal\xE1", identifier: '4302', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: concepcion-8101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.714942+00:00', updated_at: ! '2016-03-21 20:19:29.715837+00:00',
     name: "Concepci\xF3n", identifier: '8101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: conchali-13104
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.523804+00:00', updated_at: ! '2016-03-21 20:19:30.524450+00:00',
     name: "Conchal\xED", identifier: '13104', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: concon-5103
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.210862+00:00', updated_at: ! '2016-03-21 20:19:29.211905+00:00',
     name: "Conc\xF3n", identifier: '5103', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: constitucion-7102
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.578418+00:00', updated_at: ! '2016-03-21 20:19:29.579119+00:00',
     name: "Constituci\xF3n", identifier: '7102', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: contulmo-8204
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.787694+00:00', updated_at: ! '2016-03-21 20:19:29.788262+00:00',
     name: Contulmo, identifier: '8204', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: copiapo-3101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.082169+00:00', updated_at: ! '2016-03-21 20:19:29.082842+00:00',
     name: "Copiap\xF3", identifier: '3101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: coquimbo-4102
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.129654+00:00', updated_at: ! '2016-03-21 20:19:29.130221+00:00',
     name: Coquimbo, identifier: '4102', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: coronel-8102
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.720340+00:00', updated_at: ! '2016-03-21 20:19:29.721210+00:00',
     name: Coronel, identifier: '8102', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: corral-14102
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.178862+00:00', updated_at: ! '2016-03-21 20:19:30.179670+00:00',
     name: Corral, identifier: '14102', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: coyhaique-11101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.391571+00:00', updated_at: ! '2016-03-21 20:19:30.392346+00:00',
     name: Coyhaique, identifier: '11101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: cunco-9103
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.014339+00:00', updated_at: ! '2016-03-21 20:19:30.015082+00:00',
     name: Cunco, identifier: '9103', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: curacautin-9203
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.130259+00:00', updated_at: ! '2016-03-21 20:19:30.130939+00:00',
     name: "Curacaut\xEDn", identifier: '9203', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: curacavi-13503
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.723131+00:00', updated_at: ! '2016-03-21 20:19:30.723777+00:00',
     name: "Curacav\xED", identifier: '13503', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: curaco-de-velez-10204
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.295937+00:00', updated_at: ! '2016-03-21 20:19:30.296715+00:00',
     name: "Curaco de V\xE9lez", identifier: '10204', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: curanilahue-8205
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.792563+00:00', updated_at: ! '2016-03-21 20:19:29.793303+00:00',
     name: Curanilahue, identifier: '8205', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: curarrehue-9104
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.018588+00:00', updated_at: ! '2016-03-21 20:19:30.019202+00:00',
     name: Curarrehue, identifier: '9104', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: curepto-7103
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.582839+00:00', updated_at: ! '2016-03-21 20:19:29.583551+00:00',
     name: Curepto, identifier: '7103', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: curico-7301
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.632625+00:00', updated_at: ! '2016-03-21 20:19:29.633236+00:00',
     name: "Curic\xF3", identifier: '7301', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: dalcahue-10205
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.301297+00:00', updated_at: ! '2016-03-21 20:19:30.302080+00:00',
     name: Dalcahue, identifier: '10205', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: diego-de-almagro-3202
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.100698+00:00', updated_at: ! '2016-03-21 20:19:29.101301+00:00',
     name: Diego de Almagro, identifier: '3202', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: donihue-6105
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.421620+00:00', updated_at: ! '2016-03-21 20:19:29.422248+00:00',
     name: "Do\xF1ihue", identifier: '6105', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: el-bosque-13105
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.527887+00:00', updated_at: ! '2016-03-21 20:19:30.528673+00:00',
     name: El Bosque, identifier: '13105', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: el-carmen-8407
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.926913+00:00', updated_at: ! '2016-03-21 20:19:29.927836+00:00',
     name: El Carmen, identifier: '8407', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: el-monte-13602
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.740537+00:00', updated_at: ! '2016-03-21 20:19:30.741426+00:00',
     name: El Monte, identifier: '13602', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: el-quisco-5604
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.338598+00:00', updated_at: ! '2016-03-21 20:19:29.342146+00:00',
     name: El Quisco, identifier: '5604', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: el-tabo-5605
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.346244+00:00', updated_at: ! '2016-03-21 20:19:29.346952+00:00',
     name: El Tabo, identifier: '5605', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: empedrado-7104
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.587566+00:00', updated_at: ! '2016-03-21 20:19:29.588183+00:00',
     name: Empedrado, identifier: '7104', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: ercilla-9204
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.134903+00:00', updated_at: ! '2016-03-21 20:19:30.135568+00:00',
     name: Ercilla, identifier: '9204', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: estacion-central-13106
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.539118+00:00', updated_at: ! '2016-03-21 20:19:30.539950+00:00',
     name: "Estaci\xF3n Central", identifier: '13106', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: florida-8104
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.730558+00:00', updated_at: ! '2016-03-21 20:19:29.731142+00:00',
     name: Florida, identifier: '8104', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: freire-9105
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.022718+00:00', updated_at: ! '2016-03-21 20:19:30.023414+00:00',
     name: Freire, identifier: '9105', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: freirina-3303
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.115005+00:00', updated_at: ! '2016-03-21 20:19:29.115603+00:00',
     name: Freirina, identifier: '3303', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: fresia-10104
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.239432+00:00', updated_at: ! '2016-03-21 20:19:30.240206+00:00',
     name: Fresia, identifier: '10104', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: frutillar-10105
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.246308+00:00', updated_at: ! '2016-03-21 20:19:30.248013+00:00',
     name: Frutillar, identifier: '10105', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: futaleufu-10402
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.378925+00:00', updated_at: ! '2016-03-21 20:19:30.379638+00:00',
     name: "Futaleuf\xFA", identifier: '10402', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: futrono-14202
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.213735+00:00', updated_at: ! '2016-03-21 20:19:30.214403+00:00',
     name: Futrono, identifier: '14202', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: galvarino-9106
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.027609+00:00', updated_at: ! '2016-03-21 20:19:30.028406+00:00',
     name: Galvarino, identifier: '9106', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: general-lagos-15202
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:28.970164+00:00', updated_at: ! '2016-03-21 20:19:28.970990+00:00',
     name: General Lagos, identifier: '15202', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: gorbea-9107
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.032192+00:00', updated_at: ! '2016-03-21 20:19:30.032884+00:00',
     name: Gorbea, identifier: '9107', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: graneros-6106
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.425892+00:00', updated_at: ! '2016-03-21 20:19:29.426679+00:00',
     name: Graneros, identifier: '6106', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: guaitecas-11203
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.413651+00:00', updated_at: ! '2016-03-21 20:19:30.414497+00:00',
     name: Guaitecas, identifier: '11203', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: hijuelas-5503
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.308990+00:00', updated_at: ! '2016-03-21 20:19:29.310406+00:00',
     name: Hijuelas, identifier: '5503', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: hualaihue-10403
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.383498+00:00', updated_at: ! '2016-03-21 20:19:30.384093+00:00',
     name: "Hualaihu\xE9", identifier: '10403', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: hualane-7302
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.637527+00:00', updated_at: ! '2016-03-21 20:19:29.638197+00:00',
     name: "Huala\xF1\xE9", identifier: '7302', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: hualpen-8112
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.769697+00:00', updated_at: ! '2016-03-21 20:19:29.770399+00:00',
     name: "Hualp\xE9n", identifier: '8112', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: hualqui-8105
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.735691+00:00', updated_at: ! '2016-03-21 20:19:29.736781+00:00',
     name: Hualqui, identifier: '8105', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: huara-1404
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.018366+00:00', updated_at: ! '2016-03-21 20:19:29.019064+00:00',
     name: Huara, identifier: '1404', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: huasco-3304
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.119293+00:00', updated_at: ! '2016-03-21 20:19:29.119924+00:00',
     name: Huasco, identifier: '3304', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: huechuraba-13107
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.543748+00:00', updated_at: ! '2016-03-21 20:19:30.544439+00:00',
     name: Huechuraba, identifier: '13107', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: illapel-4201
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.153500+00:00', updated_at: ! '2016-03-21 20:19:29.154122+00:00',
     name: Illapel, identifier: '4201', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: independencia-13108
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.549853+00:00', updated_at: ! '2016-03-21 20:19:30.550503+00:00',
     name: Independencia, identifier: '13108', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: iquique-1101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:28.986544+00:00', updated_at: ! '2016-03-21 20:19:28.987314+00:00',
     name: Iquique, identifier: '1101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: isla-de-maipo-13603
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.745565+00:00', updated_at: ! '2016-03-21 20:19:30.746244+00:00',
     name: Isla de Maipo, identifier: '13603', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: isla-de-pascua-5201
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.245760+00:00', updated_at: ! '2016-03-21 20:19:29.246661+00:00',
     name: Isla de Pascua, identifier: '5201', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: juan-fernandez-5104
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.219694+00:00', updated_at: ! '2016-03-21 20:19:29.220334+00:00',
     name: "Juan Fern\xE1ndez", identifier: '5104', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: la-calera-5502
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.303758+00:00', updated_at: ! '2016-03-21 20:19:29.304324+00:00',
     name: La Calera, identifier: '5502', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: la-cisterna-13109
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.557242+00:00', updated_at: ! '2016-03-21 20:19:30.557960+00:00',
     name: La Cisterna, identifier: '13109', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: la-cruz-5504
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.314409+00:00', updated_at: ! '2016-03-21 20:19:29.315110+00:00',
     name: La Cruz, identifier: '5504', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: la-estrella-6202
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.493844+00:00', updated_at: ! '2016-03-21 20:19:29.496674+00:00',
     name: La Estrella, identifier: '6202', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: la-florida-13110
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.562047+00:00', updated_at: ! '2016-03-21 20:19:30.562721+00:00',
     name: La Florida, identifier: '13110', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: la-granja-13111
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.566389+00:00', updated_at: ! '2016-03-21 20:19:30.567062+00:00',
     name: La Granja, identifier: '13111', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: la-higuera-4104
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.138217+00:00', updated_at: ! '2016-03-21 20:19:29.138804+00:00',
     name: La Higuera, identifier: '4104', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: la-ligua-5401
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.274111+00:00', updated_at: ! '2016-03-21 20:19:29.274824+00:00',
     name: La Ligua, identifier: '5401', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: la-pintana-13112
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.570553+00:00', updated_at: ! '2016-03-21 20:19:30.571241+00:00',
     name: La Pintana, identifier: '13112', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: la-reina-13113
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.575482+00:00', updated_at: ! '2016-03-21 20:19:30.576230+00:00',
     name: La Reina, identifier: '13113', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: la-serena-4101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.125496+00:00', updated_at: ! '2016-03-21 20:19:29.126214+00:00',
     name: La Serena, identifier: '4101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: la-union-14201
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.209051+00:00', updated_at: ! '2016-03-21 20:19:30.209837+00:00',
     name: "La Uni\xF3n", identifier: '14201', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: lago-ranco-14203
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.218450+00:00', updated_at: ! '2016-03-21 20:19:30.219121+00:00',
     name: Lago Ranco, identifier: '14203', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: lago-verde-11102
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.396459+00:00', updated_at: ! '2016-03-21 20:19:30.397202+00:00',
     name: Lago Verde, identifier: '11102', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: laguna-blanca-12102
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.457581+00:00', updated_at: ! '2016-03-21 20:19:30.458226+00:00',
     name: Laguna Blanca, identifier: '12102', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: laja-8304
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.820091+00:00', updated_at: ! '2016-03-21 20:19:29.820692+00:00',
     name: Laja, identifier: '8304', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: lampa-13302
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.686485+00:00', updated_at: ! '2016-03-21 20:19:30.687098+00:00',
     name: Lampa, identifier: '13302', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: lanco-14103
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.183358+00:00', updated_at: ! '2016-03-21 20:19:30.184044+00:00',
     name: Lanco, identifier: '14103', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: las-cabras-6107
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.435182+00:00', updated_at: ! '2016-03-21 20:19:29.435842+00:00',
     name: Las Cabras, identifier: '6107', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: las-condes-13114
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.580039+00:00', updated_at: ! '2016-03-21 20:19:30.580738+00:00',
     name: Las Condes, identifier: '13114', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: lautaro-9108
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.036387+00:00', updated_at: ! '2016-03-21 20:19:30.037020+00:00',
     name: Lautaro, identifier: '9108', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: lebu-8201
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.774691+00:00', updated_at: ! '2016-03-21 20:19:29.775547+00:00',
     name: Lebu, identifier: '8201', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: licanten-7303
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.642197+00:00', updated_at: ! '2016-03-21 20:19:29.643159+00:00',
     name: "Licant\xE9n", identifier: '7303', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: limache-5802
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.387284+00:00', updated_at: ! '2016-03-21 20:19:29.387921+00:00',
     name: Limache, identifier: '5802', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: linares-7401
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.678249+00:00', updated_at: ! '2016-03-21 20:19:29.678953+00:00',
     name: Linares, identifier: '7401', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: litueche-6203
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.502165+00:00', updated_at: ! '2016-03-21 20:19:29.502828+00:00',
     name: Litueche, identifier: '6203', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: llaillay-5703
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.365180+00:00', updated_at: ! '2016-03-21 20:19:29.365937+00:00',
     name: Llaillay, identifier: '5703', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: llanquihue-10107
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.261515+00:00', updated_at: ! '2016-03-21 20:19:30.262236+00:00',
     name: Llanquihue, identifier: '10107', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: lo-barnechea-13115
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.584247+00:00', updated_at: ! '2016-03-21 20:19:30.584909+00:00',
     name: Lo Barnechea, identifier: '13115', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: lo-espejo-13116
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.588470+00:00', updated_at: ! '2016-03-21 20:19:30.589039+00:00',
     name: Lo Espejo, identifier: '13116', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: lo-prado-13117
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.592335+00:00', updated_at: ! '2016-03-21 20:19:30.592911+00:00',
     name: Lo Prado, identifier: '13117', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: lolol-6304
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.535574+00:00', updated_at: ! '2016-03-21 20:19:29.536878+00:00',
     name: Lolol, identifier: '6304', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: loncoche-9109
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.041049+00:00', updated_at: ! '2016-03-21 20:19:30.041912+00:00',
     name: Loncoche, identifier: '9109', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: longavi-7403
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.686960+00:00', updated_at: ! '2016-03-21 20:19:29.687572+00:00',
     name: "Longav\xED", identifier: '7403', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: lonquimay-9205
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.139840+00:00', updated_at: ! '2016-03-21 20:19:30.140825+00:00',
     name: Lonquimay, identifier: '9205', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: los-alamos-8206
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.797012+00:00', updated_at: ! '2016-03-21 20:19:29.797673+00:00',
     name: "Los \xC1lamos", identifier: '8206', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: los-andes-5301
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.251112+00:00', updated_at: ! '2016-03-21 20:19:29.251795+00:00',
     name: Los Andes, identifier: '5301', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: los-angeles-8301
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.805571+00:00', updated_at: ! '2016-03-21 20:19:29.806212+00:00',
     name: "Los \xC1ngeles", identifier: '8301', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: los-lagos-14104
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.187680+00:00', updated_at: ! '2016-03-21 20:19:30.188258+00:00',
     name: Los Lagos, identifier: '14104', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: los-muermos-10106
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.255824+00:00', updated_at: ! '2016-03-21 20:19:30.256899+00:00',
     name: Los Muermos, identifier: '10106', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: los-sauces-9206
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.144946+00:00', updated_at: ! '2016-03-21 20:19:30.145816+00:00',
     name: Los Sauces, identifier: '9206', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: los-vilos-4203
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.168327+00:00', updated_at: ! '2016-03-21 20:19:29.170023+00:00',
     name: Los Vilos, identifier: '4203', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: lota-8106
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.742309+00:00', updated_at: ! '2016-03-21 20:19:29.743164+00:00',
     name: Lota, identifier: '8106', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: lumaco-9207
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.150027+00:00', updated_at: ! '2016-03-21 20:19:30.150676+00:00',
     name: Lumaco, identifier: '9207', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: machali-6108
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.439348+00:00', updated_at: ! '2016-03-21 20:19:29.440027+00:00',
     name: "Machal\xED", identifier: '6108', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: macul-13118
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.596126+00:00', updated_at: ! '2016-03-21 20:19:30.596709+00:00',
     name: Macul, identifier: '13118', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: mafil-14105
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.191589+00:00', updated_at: ! '2016-03-21 20:19:30.192165+00:00',
     name: "M\xE1fil", identifier: '14105', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: maipu-13119
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.600392+00:00', updated_at: ! '2016-03-21 20:19:30.601021+00:00',
     name: "Maip\xFA", identifier: '13119', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: malloa-6109
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.444234+00:00', updated_at: ! '2016-03-21 20:19:29.444914+00:00',
     name: Malloa, identifier: '6109', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: marchihue-6204
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.506150+00:00', updated_at: ! '2016-03-21 20:19:29.506799+00:00',
     name: Marchihue, identifier: '6204', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: maria-elena-2302
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.076417+00:00', updated_at: ! '2016-03-21 20:19:29.077554+00:00',
     name: "Mar\xEDa Elena", identifier: '2302', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: maria-pinto-13504
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.727107+00:00', updated_at: ! '2016-03-21 20:19:30.727698+00:00',
     name: "Mar\xEDa Pinto", identifier: '13504', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: mariquina-14106
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.195520+00:00', updated_at: ! '2016-03-21 20:19:30.196089+00:00',
     name: Mariquina, identifier: '14106', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: maule-7105
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.591706+00:00', updated_at: ! '2016-03-21 20:19:29.592275+00:00',
     name: Maule, identifier: '7105', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: maullin-10108
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.266343+00:00', updated_at: ! '2016-03-21 20:19:30.267011+00:00',
     name: "Maull\xEDn", identifier: '10108', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: mejillones-2102
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.034174+00:00', updated_at: ! '2016-03-21 20:19:29.034932+00:00',
     name: Mejillones, identifier: '2102', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: melipeuco-9110
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.045810+00:00', updated_at: ! '2016-03-21 20:19:30.046537+00:00',
     name: Melipeuco, identifier: '9110', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: melipilla-13501
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.712802+00:00', updated_at: ! '2016-03-21 20:19:30.713496+00:00',
     name: Melipilla, identifier: '13501', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: molina-7304
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.647078+00:00', updated_at: ! '2016-03-21 20:19:29.647751+00:00',
     name: Molina, identifier: '7304', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: monte-patria-4303
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.190226+00:00', updated_at: ! '2016-03-21 20:19:29.191261+00:00',
     name: Monte Patria, identifier: '4303', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: mostazal-6110
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.448544+00:00', updated_at: ! '2016-03-21 20:19:29.449192+00:00',
     name: Mostazal, identifier: '6110', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: mulchen-8305
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.824043+00:00', updated_at: ! '2016-03-21 20:19:29.824865+00:00',
     name: "Mulch\xE9n", identifier: '8305', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: nacimiento-8306
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.828773+00:00', updated_at: ! '2016-03-21 20:19:29.829464+00:00',
     name: Nacimiento, identifier: '8306', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: nancagua-6305
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.541916+00:00', updated_at: ! '2016-03-21 20:19:29.543315+00:00',
     name: Nancagua, identifier: '6305', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: natales-12401
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.500832+00:00', updated_at: ! '2016-03-21 20:19:30.501468+00:00',
     name: Natales, identifier: '12401', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: navidad-6205
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.510959+00:00', updated_at: ! '2016-03-21 20:19:29.511651+00:00',
     name: Navidad, identifier: '6205', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: negrete-8307
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.838539+00:00', updated_at: ! '2016-03-21 20:19:29.839180+00:00',
     name: Negrete, identifier: '8307', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: ninhue-8408
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.932983+00:00', updated_at: ! '2016-03-21 20:19:29.933750+00:00',
     name: Ninhue, identifier: '8408', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: niquen-8409
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.938228+00:00', updated_at: ! '2016-03-21 20:19:29.939162+00:00',
     name: "\xD1iqu\xE9n", identifier: '8409', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: nogales-5506
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.318874+00:00', updated_at: ! '2016-03-21 20:19:29.319472+00:00',
     name: Nogales, identifier: '5506', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: nueva-imperial-9111
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.050316+00:00', updated_at: ! '2016-03-21 20:19:30.052794+00:00',
     name: Nueva Imperial, identifier: '9111', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: nunoa-13120
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.605711+00:00', updated_at: ! '2016-03-21 20:19:30.606515+00:00',
     name: "\xD1u\xF1oa", identifier: '13120', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: ohiggins-11302
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.422192+00:00', updated_at: ! '2016-03-21 20:19:30.425644+00:00',
     name: O'Higgins, identifier: '11302', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: olivar-6111
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.453821+00:00', updated_at: ! '2016-03-21 20:19:29.454417+00:00',
     name: Olivar, identifier: '6111', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: ollague-2202
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.063200+00:00', updated_at: ! '2016-03-21 20:19:29.063834+00:00',
     name: "Ollag\xFCe", identifier: '2202', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: olmue-5803
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.391122+00:00', updated_at: ! '2016-03-21 20:19:29.391781+00:00',
     name: "Olmu\xE9", identifier: '5803', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: osorno-10301
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.335900+00:00', updated_at: ! '2016-03-21 20:19:30.336597+00:00',
     name: Osorno, identifier: '10301', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: ovalle-4301
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.178628+00:00', updated_at: ! '2016-03-21 20:19:29.179768+00:00',
     name: Ovalle, identifier: '4301', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: padre-hurtado-13604
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.750352+00:00', updated_at: ! '2016-03-21 20:19:30.751052+00:00',
     name: Padre Hurtado, identifier: '13604', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: padre-las-casas-9112
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.063022+00:00', updated_at: ! '2016-03-21 20:19:30.063860+00:00',
     name: Padre Las Casas, identifier: '9112', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: paihuano-4105
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.143243+00:00', updated_at: ! '2016-03-21 20:19:29.144119+00:00',
     name: Paihuano, identifier: '4105', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: paillaco-14107
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.199321+00:00', updated_at: ! '2016-03-21 20:19:30.199927+00:00',
     name: Paillaco, identifier: '14107', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: paine-13404
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.708067+00:00', updated_at: ! '2016-03-21 20:19:30.708812+00:00',
     name: Paine, identifier: '13404', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: palena-10404
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.387557+00:00', updated_at: ! '2016-03-21 20:19:30.388122+00:00',
     name: Palena, identifier: '10404', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: palmilla-6306
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.547684+00:00', updated_at: ! '2016-03-21 20:19:29.548274+00:00',
     name: Palmilla, identifier: '6306', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: panguipulli-14108
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.204085+00:00', updated_at: ! '2016-03-21 20:19:30.204948+00:00',
     name: Panguipulli, identifier: '14108', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: panquehue-5704
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.369859+00:00', updated_at: ! '2016-03-21 20:19:29.370478+00:00',
     name: Panquehue, identifier: '5704', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: papudo-5403
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.284724+00:00', updated_at: ! '2016-03-21 20:19:29.285316+00:00',
     name: Papudo, identifier: '5403', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: paredones-6206
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.515230+00:00', updated_at: ! '2016-03-21 20:19:29.515906+00:00',
     name: Paredones, identifier: '6206', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: parral-7404
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.690823+00:00', updated_at: ! '2016-03-21 20:19:29.691410+00:00',
     name: Parral, identifier: '7404', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: pedro-aguirre-cerda-13121
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.610729+00:00', updated_at: ! '2016-03-21 20:19:30.611532+00:00',
     name: Pedro Aguirre Cerda, identifier: '13121', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: pelarco-7106
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.595543+00:00', updated_at: ! '2016-03-21 20:19:29.596106+00:00',
     name: Pelarco, identifier: '7106', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: pelluhue-7203
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.628865+00:00', updated_at: ! '2016-03-21 20:19:29.629448+00:00',
     name: Pelluhue, identifier: '7203', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: pemuco-8410
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.944354+00:00', updated_at: ! '2016-03-21 20:19:29.945678+00:00',
     name: Pemuco, identifier: '8410', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: penaflor-13605
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.755422+00:00', updated_at: ! '2016-03-21 20:19:30.756010+00:00',
     name: "Pe\xF1aflor", identifier: '13605', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: penalolen-13122
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.615287+00:00', updated_at: ! '2016-03-21 20:19:30.615963+00:00',
     name: "Pe\xF1alol\xE9n", identifier: '13122', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: pencahue-7107
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.599474+00:00', updated_at: ! '2016-03-21 20:19:29.600064+00:00',
     name: Pencahue, identifier: '7107', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: penco-8107
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.746936+00:00', updated_at: ! '2016-03-21 20:19:29.747586+00:00',
     name: Penco, identifier: '8107', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: peralillo-6307
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.553481+00:00', updated_at: ! '2016-03-21 20:19:29.554059+00:00',
     name: Peralillo, identifier: '6307', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: perquenco-9113
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.068690+00:00', updated_at: ! '2016-03-21 20:19:30.069358+00:00',
     name: Perquenco, identifier: '9113', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: petorca-5404
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.288920+00:00', updated_at: ! '2016-03-21 20:19:29.289527+00:00',
     name: Petorca, identifier: '5404', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: peumo-6112
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.457768+00:00', updated_at: ! '2016-03-21 20:19:29.458427+00:00',
     name: Peumo, identifier: '6112', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: pica-1405
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.025798+00:00', updated_at: ! '2016-03-21 20:19:29.026508+00:00',
     name: Pica, identifier: '1405', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: pichidegua-6113
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.462320+00:00', updated_at: ! '2016-03-21 20:19:29.463142+00:00',
     name: Pichidegua, identifier: '6113', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: pichilemu-6201
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.485294+00:00', updated_at: ! '2016-03-21 20:19:29.488775+00:00',
     name: Pichilemu, identifier: '6201', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: pinto-8411
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.953685+00:00', updated_at: ! '2016-03-21 20:19:29.954293+00:00',
     name: Pinto, identifier: '8411', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: pirque-13202
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.671992+00:00', updated_at: ! '2016-03-21 20:19:30.672678+00:00',
     name: Pirque, identifier: '13202', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: pitrufquen-9114
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.075623+00:00', updated_at: ! '2016-03-21 20:19:30.076355+00:00',
     name: "Pitrufqu\xE9n", identifier: '9114', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: placilla-6308
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.557572+00:00', updated_at: ! '2016-03-21 20:19:29.558901+00:00',
     name: Placilla, identifier: '6308', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: portezuelo-8412
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.957697+00:00', updated_at: ! '2016-03-21 20:19:29.958477+00:00',
     name: Portezuelo, identifier: '8412', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: porvenir-12301
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.488052+00:00', updated_at: ! '2016-03-21 20:19:30.488639+00:00',
     name: Porvenir, identifier: '12301', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: pozo-almonte-1401
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.000979+00:00', updated_at: ! '2016-03-21 20:19:29.001651+00:00',
     name: Pozo Almonte, identifier: '1401', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: primavera-12302
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.492016+00:00', updated_at: ! '2016-03-21 20:19:30.492798+00:00',
     name: Primavera, identifier: '12302', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: providencia-13123
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.620220+00:00', updated_at: ! '2016-03-21 20:19:30.620907+00:00',
     name: Providencia, identifier: '13123', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: puchuncavi-5105
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.230352+00:00', updated_at: ! '2016-03-21 20:19:29.231023+00:00',
     name: "Puchuncav\xED", identifier: '5105', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: pucon-9115
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.081613+00:00', updated_at: ! '2016-03-21 20:19:30.082224+00:00',
     name: "Puc\xF3n", identifier: '9115', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: pudahuel-13124
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.624163+00:00', updated_at: ! '2016-03-21 20:19:30.624757+00:00',
     name: Pudahuel, identifier: '13124', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: puente-alto-13201
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.666837+00:00', updated_at: ! '2016-03-21 20:19:30.667631+00:00',
     name: Puente Alto, identifier: '13201', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: puerto-montt-10101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.226452+00:00', updated_at: ! '2016-03-21 20:19:30.227013+00:00',
     name: Puerto Montt, identifier: '10101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: puerto-octay-10302
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.342235+00:00', updated_at: ! '2016-03-21 20:19:30.342935+00:00',
     name: Puerto Octay, identifier: '10302', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: puerto-varas-10109
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.273063+00:00', updated_at: ! '2016-03-21 20:19:30.274143+00:00',
     name: Puerto Varas, identifier: '10109', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: pumanque-6309
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.562869+00:00', updated_at: ! '2016-03-21 20:19:29.563557+00:00',
     name: Pumanque, identifier: '6309', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: punitaqui-4304
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.194594+00:00', updated_at: ! '2016-03-21 20:19:29.195154+00:00',
     name: Punitaqui, identifier: '4304', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: punta-arenas-12101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.445779+00:00', updated_at: ! '2016-03-21 20:19:30.447106+00:00',
     name: Punta Arenas, identifier: '12101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: puqueldon-10206
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.309876+00:00', updated_at: ! '2016-03-21 20:19:30.310642+00:00',
     name: "Puqueld\xF3n", identifier: '10206', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: puren-9208
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.154796+00:00', updated_at: ! '2016-03-21 20:19:30.155547+00:00',
     name: "Pur\xE9n", identifier: '9208', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: purranque-10303
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.347012+00:00', updated_at: ! '2016-03-21 20:19:30.347636+00:00',
     name: Purranque, identifier: '10303', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: putaendo-5705
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.373802+00:00', updated_at: ! '2016-03-21 20:19:29.374512+00:00',
     name: Putaendo, identifier: '5705', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: putre-15201
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:28.964786+00:00', updated_at: ! '2016-03-21 20:19:28.965701+00:00',
     name: Putre, identifier: '15201', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: puyehue-10304
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.352996+00:00', updated_at: ! '2016-03-21 20:19:30.353616+00:00',
     name: Puyehue, identifier: '10304', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: queilen-10207
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.317210+00:00', updated_at: ! '2016-03-21 20:19:30.317973+00:00',
     name: "Queil\xE9n", identifier: '10207', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: quellon-10208
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.321995+00:00', updated_at: ! '2016-03-21 20:19:30.322694+00:00',
     name: "Quell\xF3n", identifier: '10208', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: quemchi-10209
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.326228+00:00', updated_at: ! '2016-03-21 20:19:30.326936+00:00',
     name: Quemchi, identifier: '10209', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: quilaco-8308
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.844287+00:00', updated_at: ! '2016-03-21 20:19:29.845287+00:00',
     name: Quilaco, identifier: '8308', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: quilicura-13125
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.628055+00:00', updated_at: ! '2016-03-21 20:19:30.628643+00:00',
     name: Quilicura, identifier: '13125', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: quilleco-8309
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.853850+00:00', updated_at: ! '2016-03-21 20:19:29.854559+00:00',
     name: Quilleco, identifier: '8309', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: quillon-8413
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.962990+00:00', updated_at: ! '2016-03-21 20:19:29.963682+00:00',
     name: "Quill\xF3n", identifier: '8413', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: quillota-5501
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.299794+00:00', updated_at: ! '2016-03-21 20:19:29.300399+00:00',
     name: Quillota, identifier: '5501', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: quilpue-5801
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.383195+00:00', updated_at: ! '2016-03-21 20:19:29.383895+00:00',
     name: "Quilpu\xE9", identifier: '5801', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: quinchao-10210
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.331554+00:00', updated_at: ! '2016-03-21 20:19:30.332249+00:00',
     name: Quinchao, identifier: '10210', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: quinta-de-tilcoco-6114
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.467148+00:00', updated_at: ! '2016-03-21 20:19:29.467959+00:00',
     name: Quinta de Tilcoco, identifier: '6114', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: quinta-normal-13126
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.631932+00:00', updated_at: ! '2016-03-21 20:19:30.632863+00:00',
     name: Quinta Normal, identifier: '13126', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: quintero-5107
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.235539+00:00', updated_at: ! '2016-03-21 20:19:29.236160+00:00',
     name: Quintero, identifier: '5107', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: quirihue-8414
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.968127+00:00', updated_at: ! '2016-03-21 20:19:29.969069+00:00',
     name: Quirihue, identifier: '8414', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: rancagua-6101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.400646+00:00', updated_at: ! '2016-03-21 20:19:29.401243+00:00',
     name: Rancagua, identifier: '6101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: ranquil-8415
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.972947+00:00', updated_at: ! '2016-03-21 20:19:29.973570+00:00',
     name: "R\xE1nquil", identifier: '8415', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: rauco-7305
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.654569+00:00', updated_at: ! '2016-03-21 20:19:29.655171+00:00',
     name: Rauco, identifier: '7305', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: recoleta-13127
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.637108+00:00', updated_at: ! '2016-03-21 20:19:30.637934+00:00',
     name: Recoleta, identifier: '13127', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: renaico-9209
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.159521+00:00', updated_at: ! '2016-03-21 20:19:30.160197+00:00',
     name: Renaico, identifier: '9209', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: renca-13128
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.642159+00:00', updated_at: ! '2016-03-21 20:19:30.642999+00:00',
     name: Renca, identifier: '13128', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: rengo-6115
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.471741+00:00', updated_at: ! '2016-03-21 20:19:29.472331+00:00',
     name: Rengo, identifier: '6115', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: requinoa-6116
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.476162+00:00', updated_at: ! '2016-03-21 20:19:29.476898+00:00',
     name: "Requ\xEDnoa", identifier: '6116', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: retiro-7405
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.694741+00:00', updated_at: ! '2016-03-21 20:19:29.695301+00:00',
     name: Retiro, identifier: '7405', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: rinconada-5303
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.265896+00:00', updated_at: ! '2016-03-21 20:19:29.266907+00:00',
     name: Rinconada, identifier: '5303', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: rio-bueno-14204
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.222640+00:00', updated_at: ! '2016-03-21 20:19:30.223208+00:00',
     name: "R\xEDo Bueno", identifier: '14204', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: rio-claro-7108
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.604612+00:00', updated_at: ! '2016-03-21 20:19:29.605303+00:00',
     name: "R\xEDo Claro", identifier: '7108', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: rio-hurtado-4305
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.198339+00:00', updated_at: ! '2016-03-21 20:19:29.198917+00:00',
     name: "R\xEDo Hurtado", identifier: '4305', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: rio-ibanez-11402
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.441033+00:00', updated_at: ! '2016-03-21 20:19:30.441807+00:00',
     name: "R\xEDo Ib\xE1\xF1ez", identifier: '11402', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: rio-negro-10305
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.356920+00:00', updated_at: ! '2016-03-21 20:19:30.357614+00:00',
     name: "R\xEDo Negro", identifier: '10305', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: rio-verde-12103
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.463768+00:00', updated_at: ! '2016-03-21 20:19:30.464425+00:00',
     name: "R\xEDo Verde", identifier: '12103', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: romeral-7306
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.658527+00:00', updated_at: ! '2016-03-21 20:19:29.659090+00:00',
     name: Romeral, identifier: '7306', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: saavedra-9116
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.085649+00:00', updated_at: ! '2016-03-21 20:19:30.086267+00:00',
     name: Saavedra, identifier: '9116', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: sagrada-familia-7307
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.662457+00:00', updated_at: ! '2016-03-21 20:19:29.663073+00:00',
     name: Sagrada Familia, identifier: '7307', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: salamanca-4204
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.173434+00:00', updated_at: ! '2016-03-21 20:19:29.174100+00:00',
     name: Salamanca, identifier: '4204', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-antonio-5601
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.322810+00:00', updated_at: ! '2016-03-21 20:19:29.323400+00:00',
     name: San Antonio, identifier: '5601', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-bernardo-13401
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.694343+00:00', updated_at: ! '2016-03-21 20:19:30.694952+00:00',
     name: San Bernardo, identifier: '13401', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-carlos-8416
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.978100+00:00', updated_at: ! '2016-03-21 20:19:29.978841+00:00',
     name: San Carlos, identifier: '8416', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-clemente-7109
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.612548+00:00', updated_at: ! '2016-03-21 20:19:29.613243+00:00',
     name: San Clemente, identifier: '7109', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-esteban-5304
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.270192+00:00', updated_at: ! '2016-03-21 20:19:29.270776+00:00',
     name: San Esteban, identifier: '5304', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-fabian-8417
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.982954+00:00', updated_at: ! '2016-03-21 20:19:29.983593+00:00',
     name: "San Fabi\xE1n", identifier: '8417', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-felipe-5701
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.355707+00:00', updated_at: ! '2016-03-21 20:19:29.356328+00:00',
     name: San Felipe, identifier: '5701', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-fernando-6301
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.519449+00:00', updated_at: ! '2016-03-21 20:19:29.520067+00:00',
     name: San Fernando, identifier: '6301', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-gregorio-12104
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.470665+00:00', updated_at: ! '2016-03-21 20:19:30.471477+00:00',
     name: San Gregorio, identifier: '12104', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-ignacio-8418
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.987058+00:00', updated_at: ! '2016-03-21 20:19:29.987753+00:00',
     name: San Ignacio, identifier: '8418', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-javier-7406
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.698489+00:00', updated_at: ! '2016-03-21 20:19:29.699057+00:00',
     name: San Javier, identifier: '7406', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-joaquin-13129
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.646926+00:00', updated_at: ! '2016-03-21 20:19:30.647624+00:00',
     name: "San Joaqu\xEDn", identifier: '13129', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-jose-de-maipo-13203
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.677207+00:00', updated_at: ! '2016-03-21 20:19:30.677965+00:00',
     name: "San Jos\xE9 de Maipo", identifier: '13203', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-juan-de-la-costa-10306
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.362949+00:00', updated_at: ! '2016-03-21 20:19:30.363609+00:00',
     name: San Juan de la Costa, identifier: '10306', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-miguel-13130
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.654770+00:00', updated_at: ! '2016-03-21 20:19:30.655413+00:00',
     name: San Miguel, identifier: '13130', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-nicolas-8419
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.992134+00:00', updated_at: ! '2016-03-21 20:19:29.992896+00:00',
     name: "San Nicol\xE1s", identifier: '8419', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-pablo-10307
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.367163+00:00', updated_at: ! '2016-03-21 20:19:30.370231+00:00',
     name: San Pablo, identifier: '10307', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-pedro-13505
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.731216+00:00', updated_at: ! '2016-03-21 20:19:30.731842+00:00',
     name: San Pedro, identifier: '13505', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-pedro-de-atacama-2203
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.067160+00:00', updated_at: ! '2016-03-21 20:19:29.067788+00:00',
     name: San Pedro de Atacama, identifier: '2203', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-pedro-de-la-paz-8108
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.750935+00:00', updated_at: ! '2016-03-21 20:19:29.751572+00:00',
     name: San Pedro de La Paz, identifier: '8108', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: san-rafael-7110
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.616901+00:00', updated_at: ! '2016-03-21 20:19:29.617598+00:00',
     name: San Rafael, identifier: '7110', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-ramon-13131
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.658857+00:00', updated_at: ! '2016-03-21 20:19:30.659451+00:00',
     name: "San Ram\xF3n", identifier: '13131', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-rosendo-8310
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.859459+00:00', updated_at: ! '2016-03-21 20:19:29.860700+00:00',
     name: San Rosendo, identifier: '8310', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: san-vicente-6117
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.480645+00:00', updated_at: ! '2016-03-21 20:19:29.481289+00:00',
     name: San Vicente, identifier: '6117', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: santa-barbara-8311
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.866842+00:00', updated_at: ! '2016-03-21 20:19:29.867584+00:00',
     name: "Santa B\xE1rbara", identifier: '8311', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: santa-cruz-6310
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.567055+00:00', updated_at: ! '2016-03-21 20:19:29.567744+00:00',
     name: Santa Cruz, identifier: '6310', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: santa-juana-8109
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.755694+00:00', updated_at: ! '2016-03-21 20:19:29.756306+00:00',
     name: Santa Juana, identifier: '8109', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: santa-maria-5706
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.378501+00:00', updated_at: ! '2016-03-21 20:19:29.379170+00:00',
     name: "Santa Mar\xEDa", identifier: '5706', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: santiago-13101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.509457+00:00', updated_at: ! '2016-03-21 20:19:30.510076+00:00',
     name: Santiago, identifier: '13101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: santo-domingo-5606
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.350867+00:00', updated_at: ! '2016-03-21 20:19:29.351482+00:00',
     name: Santo Domingo, identifier: '5606', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: sierra-gorda-2103
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.040736+00:00', updated_at: ! '2016-03-21 20:19:29.042122+00:00',
     name: Sierra Gorda, identifier: '2103', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: talagante-13601
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.735952+00:00', updated_at: ! '2016-03-21 20:19:30.736771+00:00',
     name: Talagante, identifier: '13601', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: talca-7101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.572723+00:00', updated_at: ! '2016-03-21 20:19:29.573550+00:00',
     name: Talca, identifier: '7101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: talcahuano-8110
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.760341+00:00', updated_at: ! '2016-03-21 20:19:29.761034+00:00',
     name: Talcahuano, identifier: '8110', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: taltal-2104
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.046577+00:00', updated_at: ! '2016-03-21 20:19:29.047514+00:00',
     name: Taltal, identifier: '2104', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: temuco-9101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.005045+00:00', updated_at: ! '2016-03-21 20:19:30.005649+00:00',
     name: Temuco, identifier: '9101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: teno-7308
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.668049+00:00', updated_at: ! '2016-03-21 20:19:29.668923+00:00',
     name: Teno, identifier: '7308', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: teodoro-schmidt-9117
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.090047+00:00', updated_at: ! '2016-03-21 20:19:30.090857+00:00',
     name: Teodoro Schmidt, identifier: '9117', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: tierra-amarilla-3103
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.092842+00:00', updated_at: ! '2016-03-21 20:19:29.093497+00:00',
     name: Tierra Amarilla, identifier: '3103', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: til-til-13303
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.690453+00:00', updated_at: ! '2016-03-21 20:19:30.691023+00:00',
     name: Til Til, identifier: '13303', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: timaukel-12303
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.496329+00:00', updated_at: ! '2016-03-21 20:19:30.496958+00:00',
     name: Timaukel, identifier: '12303', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: tirua-8207
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.801744+00:00', updated_at: ! '2016-03-21 20:19:29.802324+00:00',
     name: "Tir\xFAa", identifier: '8207', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: tocopilla-2301
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.071190+00:00', updated_at: ! '2016-03-21 20:19:29.071846+00:00',
     name: Tocopilla, identifier: '2301', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: tolten-9118
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.095438+00:00', updated_at: ! '2016-03-21 20:19:30.096469+00:00',
     name: "Tolt\xE9n", identifier: '9118', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: tome-8111
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.765190+00:00', updated_at: ! '2016-03-21 20:19:29.765932+00:00',
     name: "Tom\xE9", identifier: '8111', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: torres-del-paine-12402
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.504813+00:00', updated_at: ! '2016-03-21 20:19:30.505467+00:00',
     name: Torres del Paine, identifier: '12402', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: tortel-11303
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.429635+00:00', updated_at: ! '2016-03-21 20:19:30.430487+00:00',
     name: Tortel, identifier: '11303', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: traiguen-9210
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.163879+00:00', updated_at: ! '2016-03-21 20:19:30.164538+00:00',
     name: "Traigu\xE9n", identifier: '9210', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: treguaco-8420
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.996698+00:00', updated_at: ! '2016-03-21 20:19:29.997326+00:00',
     name: Treguaco, identifier: '8420', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: tucapel-8312
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.871620+00:00', updated_at: ! '2016-03-21 20:19:29.872274+00:00',
     name: Tucapel, identifier: '8312', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: valdivia-14101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.173668+00:00', updated_at: ! '2016-03-21 20:19:30.174521+00:00',
     name: Valdivia, identifier: '14101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: vallenar-3301
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.104583+00:00', updated_at: ! '2016-03-21 20:19:29.105148+00:00',
     name: Vallenar, identifier: '3301', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: valparaiso-5101
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.202162+00:00', updated_at: ! '2016-03-21 20:19:29.202744+00:00',
     name: "Valpara\xEDso", identifier: '5101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: vichuquen-7309
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.673089+00:00', updated_at: ! '2016-03-21 20:19:29.674021+00:00',
     name: "Vichuqu\xE9n", identifier: '7309', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: victoria-9211
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.167930+00:00', updated_at: ! '2016-03-21 20:19:30.168530+00:00',
     name: Victoria, identifier: '9211', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: vicuna-4106
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.148280+00:00', updated_at: ! '2016-03-21 20:19:29.148874+00:00',
     name: "Vicu\xF1a", identifier: '4106', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: vilcun-9119
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.103100+00:00', updated_at: ! '2016-03-21 20:19:30.103978+00:00',
     name: "Vilc\xFAn", identifier: '9119', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: villa-alegre-7407
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.702323+00:00', updated_at: ! '2016-03-21 20:19:29.702958+00:00',
     name: Villa Alegre, identifier: '7407', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: villa-alemana-5804
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.396103+00:00', updated_at: ! '2016-03-21 20:19:29.396777+00:00',
     name: Villa Alemana, identifier: '5804', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: villarrica-9120
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.108878+00:00', updated_at: ! '2016-03-21 20:19:30.109709+00:00',
     name: Villarrica, identifier: '9120', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: vina-del-mar-5109
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.239558+00:00', updated_at: ! '2016-03-21 20:19:29.240211+00:00',
     name: "Vi\xF1a del Mar", identifier: '5109', classification: '', parent: null,
     geom: null, inhabitants: null}
 - model: popolo.area
   pk: vitacura-13132
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.662711+00:00', updated_at: ! '2016-03-21 20:19:30.663270+00:00',
     name: Vitacura, identifier: '13132', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: yerbas-buenas-7408
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.707449+00:00', updated_at: ! '2016-03-21 20:19:29.708268+00:00',
     name: Yerbas Buenas, identifier: '7408', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: yumbel-8313
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.877898+00:00', updated_at: ! '2016-03-21 20:19:29.878642+00:00',
     name: Yumbel, identifier: '8313', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: yungay-8421
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:30.001020+00:00', updated_at: ! '2016-03-21 20:19:30.001656+00:00',
     name: Yungay, identifier: '8421', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: zapallar-5405
-  fields: {content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     created_at: ! '2016-03-21 20:19:29.294674+00:00', updated_at: ! '2016-03-21 20:19:29.295642+00:00',
     name: Zapallar, identifier: '5405', classification: '', parent: null, geom: null,
     inhabitants: null}

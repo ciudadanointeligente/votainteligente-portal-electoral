@@ -9,10 +9,10 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('mail', type=str)
-        parser.add_argument('candidate_id', type=str)
+        parser.add_argument('candidate_slug', type=str)
 
     def handle(self, *args, **options):
         mail = options['mail']
-        candidate = Candidate.objects.get(id=options['candidate_id'])
+        candidate = Candidate.objects.get(slug=options['candidate_slug'])
         self.stdout.write(u'Enviando mail a ' + candidate.name + u' la dirección es: ' + mail)
         add_contact_and_send_mail(mail, candidate)

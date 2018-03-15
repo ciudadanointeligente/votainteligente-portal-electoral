@@ -20,7 +20,7 @@ from django.test import override_settings
 class PopularProposalTestCaseBase(TestCase):
     def setUp(self):
         super(PopularProposalTestCaseBase, self).setUp()
-        self.algarrobo = Area.objects.get(id='algarrobo-5602')
+        self.algarrobo = Area.objects.get(id=1)
         self.popular_proposal1 = PopularProposal.objects.create(proposer=self.fiera,
                                                                 area=self.algarrobo,
                                                                 generated_at=self.algarrobo,
@@ -48,7 +48,7 @@ class PopularProposalTestCaseBase(TestCase):
 class ProposalViewTestCase(TestCase):
     def setUp(self):
         super(ProposalViewTestCase, self).setUp()
-        self.algarrobo = Area.objects.get(id='algarrobo-5602')
+        self.algarrobo = Area.objects.get(id=1)
 
     def test_there_is_a_page_for_popular_proposal(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
@@ -269,7 +269,7 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         commitment = Commitment.objects.create(candidate=self.candidate,
                                                proposal=self.popular_proposal1,
                                                commited=True)
-        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.slug,
                                                               'proposal_slug': self.popular_proposal1.slug})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
@@ -279,7 +279,7 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         commitment_no = Commitment.objects.create(candidate=self.candidate,
                                                   proposal=self.popular_proposal1,
                                                   commited=False)
-        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+        url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.slug,
                                                               'proposal_slug': self.popular_proposal1.slug})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
@@ -288,7 +288,7 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
 
     def test_candidate_commiting_to_a_proposal_view(self):
         url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,
-                                                              'candidate_pk': self.candidate.id})
+                                                              'candidate_pk': self.candidate.pk})
         logged_in = self.client.login(username=self.fiera.username, password='feroz')
         self.assertTrue(logged_in)
         response = self.client.get(url)
@@ -299,20 +299,20 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         self.assertEquals(response.context['candidate'], self.candidate)
 
         response_post = self.client.post(url, {'terms_and_conditions': True})
-        detail_url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+        detail_url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.slug,
                                                                      'proposal_slug': self.popular_proposal1.slug})
         self.assertRedirects(response_post, detail_url)
 
     @override_config(PROPOSALS_ENABLED=False)
     def test_candidates_not_commiting(self):
         url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,
-                                                              'candidate_pk': self.candidate.id})
+                                                              'candidate_pk': self.candidate.pk})
         logged_in = self.client.login(username=self.fiera.username, password='feroz')
         self.assertTrue(logged_in)
         response = self.client.get(url)
         self.assertEquals(response.status_code, 404)
         url = reverse('popular_proposals:commit_no', kwargs={'proposal_pk': self.popular_proposal1.id,
-                                                             'candidate_pk': self.candidate.id})
+                                                             'candidate_pk': self.candidate.pk})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 404)
 
@@ -321,7 +321,7 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
                                   proposal=self.popular_proposal1,
                                   commited=True)
         url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal1.id,
-                                                              'candidate_pk': self.candidate.id})
+                                                              'candidate_pk': self.candidate.pk})
         logged_in = self.client.login(username=self.fiera.username, password='feroz')
         self.assertTrue(logged_in)
         response = self.client.get(url)
@@ -345,7 +345,7 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
 
         # Fiera cannot commit to a promise for another area
         url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal3.id,
-                                                              'candidate_pk': self.candidate.id})
+                                                              'candidate_pk': self.candidate.pk})
         logged_in = self.client.login(username=self.fiera.username, password='feroz')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 404)
@@ -355,14 +355,14 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
         election.candidates_can_commit_everywhere = True
         election.save()
         url = reverse('popular_proposals:commit_yes', kwargs={'proposal_pk': self.popular_proposal3.id,
-                                                              'candidate_pk': self.candidate.id})
+                                                              'candidate_pk': self.candidate.pk})
         logged_in = self.client.login(username=self.fiera.username, password='feroz')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
     def test_not_commiting_as_candidate(self):
         url = reverse('popular_proposals:commit_no', kwargs={'proposal_pk': self.popular_proposal1.id,
-                                                             'candidate_pk': self.candidate.id})
+                                                             'candidate_pk': self.candidate.pk})
         logged_in = self.client.login(username=self.fiera.username, password='feroz')
         self.assertTrue(logged_in)
         response = self.client.get(url)
@@ -372,7 +372,7 @@ class CandidateCommitmentViewTestCase(PopularProposalTestCaseBase):
 
         response_post = self.client.post(url, {'terms_and_conditions': True,
                                                'details': u'no me gustó pa na la propuesta'})
-        detail_url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.id,
+        detail_url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.slug,
                                                                      'proposal_slug': self.popular_proposal1.slug})
         self.assertRedirects(response_post, detail_url)
 

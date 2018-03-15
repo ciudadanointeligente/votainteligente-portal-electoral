@@ -118,7 +118,7 @@ class MessageTestCase(TestCase):
                                          author_email='author@email.com',
                                          subject='subject',
                                          content='content',
-                                         slug='subject-slugified',
+                                         slug=u'subject-slugified',
                                          accepted=True
                                          )
         message.people.add(self.candidate1)
@@ -161,7 +161,7 @@ class MessageTestCase(TestCase):
                                          author_email='author@email.com',
                                          subject='subject',
                                          content='content',
-                                         slug='subject-slugified',
+                                         slug=u'subject-slugified',
                                          accepted=True
                                          )
         message.people.add(self.candidate1)
@@ -172,7 +172,7 @@ class MessageTestCase(TestCase):
                                           author_email='author@email.com',
                                           subject='subject',
                                           content='content',
-                                          slug='subject-slugified',
+                                          slug=u'subject-slugified',
                                           accepted=True
                                           )
         message2.people.add(self.candidate1)
@@ -202,7 +202,7 @@ class MessageTestCase(TestCase):
                                          author_email='author@email.com',
                                          subject='subject',
                                          content='content',
-                                         slug='subject-slugified',
+                                         slug=u'subject-slugified',
                                          accepted=True
                                          )
         message.people.add(self.candidate1)
@@ -213,7 +213,7 @@ class MessageTestCase(TestCase):
                                           author_email='author@email.com',
                                           subject='subject',
                                           content='content',
-                                          slug='subject-slugified',
+                                          slug=u'subject-slugified',
                                           accepted=True
                                           )
         message2.people.add(self.candidate1)
@@ -364,7 +364,7 @@ class ConfirmationTestCase(TestCase):
                                               author_email='author@email.com',
                                               subject='subject',
                                               content='content',
-                                              slug='subject-slugified',
+                                              slug=u'subject-slugified',
                                               )
         self.message.people.add(self.candidate1)
         self.message.people.add(self.candidate2)
@@ -429,7 +429,7 @@ class AnswerTestCase(TestCase):
                                               author_email='author@email.com',
                                               subject='subject',
                                               content='content',
-                                              slug='subject-slugified',
+                                              slug=u'subject-slugified',
                                               accepted=True
                                               )
         self.message.people.add(self.candidate1)
@@ -466,7 +466,7 @@ class MessagesOrderedList(TestCase):
                                                               author_email='author email',
                                                               subject=u'I\'m moderated',
                                                               content=u'Qué opina usted sobre el test_accept_message',
-                                                              slug='subject-slugified',
+                                                              slug=u'subject-slugified',
                                                               accepted=True
                                                               )
         self.message2 = Message.objects.create(election=self.election,
@@ -474,7 +474,7 @@ class MessagesOrderedList(TestCase):
                                                               author_email='author email',
                                                               subject=u'message 3',
                                                               content=u'Qué opina usted sobre el test_accept_message',
-                                                              slug='subject-slugified',
+                                                              slug=u'subject-slugified',
                                                               accepted=True
                                                               )
         self.message3 = Message.objects.create(election=self.election,
@@ -489,7 +489,7 @@ class MessagesOrderedList(TestCase):
                                                               author_email='author email',
                                                               subject=u'message 4',
                                                               content=u'Que opina usted sobre el test_accept_message',
-                                                              slug='subject-slugified',
+                                                              slug=u'subject-slugified',
                                                               accepted=True
                                                               )
         self.message4.people.add(self.candidate1)
@@ -503,7 +503,7 @@ class MessagesOrderedList(TestCase):
                                                author_email='author email',
                                                subject=u'message 5',
                                                content=u'Que opina usted sobre el test_accept_message',
-                                               slug='subject-slugified',
+                                               slug=u'subject-slugified',
                                                accepted=True
                                                )
 
@@ -615,7 +615,7 @@ class MessageSenderTestCase(TestCase):
                                          author_email='author@email.com',
                                          subject='subject',
                                          content='content',
-                                         slug='subject-slugified',
+                                         slug=u'subject-slugified',
                                          )
         message.people.add(self.candidate1)
         message.people.add(self.candidate2)
@@ -627,7 +627,7 @@ class MessageSenderTestCase(TestCase):
                                           author_email='author@email.com',
                                           subject='subject',
                                           content='content',
-                                          slug='subject-slugified',
+                                          slug=u'subject-slugified',
                                           )
         message2.status.accepted = True
         message2.status.save()

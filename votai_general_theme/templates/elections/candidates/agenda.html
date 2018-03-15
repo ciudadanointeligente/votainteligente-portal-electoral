@@ -14,7 +14,7 @@
   <p id="agenda-candidato">Este candidato no cuenta con una agenda de actividades en VotaInteligente</p>
 {% endif %}
 {% if user|manages_this:candidate %}
-  <a href="{% url 'backend_candidate:add_activity' slug=candidate.id %}" class="btn btn-white"><i class="fa fa-plus"></i> Agrega tus actividades</a>
+  <a href="{% url 'backend_candidate:add_activity' slug=candidate.slug %}" class="btn btn-white"><i class="fa fa-plus"></i> Agrega tus actividades</a>
 {% endif %}
 {% endcache %}
 </div>

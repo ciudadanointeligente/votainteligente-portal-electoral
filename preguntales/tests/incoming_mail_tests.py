@@ -50,7 +50,7 @@ class IncomingEmailBase(TestCase):
                                               author_email='author@email.com',
                                               subject='subject',
                                               content='content',
-                                              slug='subject-slugified',
+                                              slug=u'subject-slugified',
                                               accepted=True
                                               )
         self.message.people.add(self.candidate1)

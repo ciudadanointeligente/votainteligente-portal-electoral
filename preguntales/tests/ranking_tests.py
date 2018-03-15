@@ -20,7 +20,7 @@ class RankingTestCaseBase(TestCase):
                    author_email='author@email.com',
                    subject='subject',
                    content='content',
-                   slug='subject-slugified',
+                   slug=u'subject-slugified',
                    accepted=True
                    )
 
@@ -39,7 +39,7 @@ class RankingTestCaseBase(TestCase):
                     author_email='author@email.com',
                     subject='subject',
                     content='content',
-                    slug='subject-slugified',
+                    slug=u'subject-slugified',
                     accepted=True
                     )
         self.message2.people.add(self.candidate1)
@@ -259,7 +259,7 @@ class QuestionsPerCandidateViewTestCase(RankingTestCaseBase):
     def test_it_is_reachable(self):
         reverse_url = reverse('questions_per_candidate',
                               kwargs={'election_slug': self.election.slug,
-                                      'slug': self.candidate1.id})
+                                      'slug': self.candidate1.slug})
         response = self.client.get(reverse_url)
         self.assertEquals(response.status_code, 200)
         self.assertIn('candidate', response.context)

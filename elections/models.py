@@ -222,7 +222,7 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin, ShareableMixin):
         if config.CANDIDATE_ABSOLUTE_URL_USING_AREA and self.election is not None:
             return reverse('candidate_detail_view_area', kwargs={
                 'area_slug': self.election.area.slug,
-                'slug': self.id
+                'slug': self.slug
             })
         election_slug = ''
         if self.election:
@@ -230,7 +230,7 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin, ShareableMixin):
 
             return reverse('candidate_detail_view', kwargs={
                 'election_slug': election_slug,
-                'slug': self.id
+                'slug': self.slug
             })
         return None
 

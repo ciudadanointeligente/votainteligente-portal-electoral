@@ -146,7 +146,7 @@ class FaceToFaceView(ElectionDetailView):
 
 class CandidateDetailView(DetailView):
     model = Candidate
-    slug_field = 'id'
+    slug_field = 'slug'
 
     def get_queryset(self):
         queryset = super(CandidateDetailView, self).get_queryset()

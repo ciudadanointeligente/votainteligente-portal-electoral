@@ -31,7 +31,7 @@ class CandidateInElectionsViewsTestCase(TestCase):
 
         url_2 = reverse('candidate_detail_view', kwargs={
             'election_slug': self.coquimbo.slug,
-            'slug': candidate.id
+            'slug': candidate.slug
             })
 
         response = self.client.get(url_2)
@@ -42,12 +42,12 @@ class CandidateInElectionsViewsTestCase(TestCase):
     @override_config(CANDIDATE_ABSOLUTE_URL_USING_AREA=False)
     def test_candidate_get_absolute_url(self):
         candidate = self.coquimbo.candidates.get(id=1)
-        candidate.slug = self.tarapaca.candidates.all()[0].id
+        candidate.slug = self.tarapaca.candidates.all()[0].slug
         candidate.save()
 
         url_2 = reverse('candidate_detail_view', kwargs={
             'election_slug': self.coquimbo.slug,
-            'slug': candidate.id
+            'slug': candidate.slug
         })
         self.assertEquals(candidate.get_absolute_url(), url_2)
 
@@ -55,12 +55,12 @@ class CandidateInElectionsViewsTestCase(TestCase):
         candidate = self.coquimbo.candidates.get(id=1)
         url = reverse('candidate_detail_view_area', kwargs={
             'area_slug': self.tarapaca.area.slug,
-            'slug': candidate.id
+            'slug': candidate.slug
         })
         self.assertEquals(candidate.get_absolute_url(), url)
         url_2 = reverse('candidate_detail_view', kwargs={
             'election_slug': self.coquimbo.slug,
-            'slug': candidate.id
+            'slug': candidate.slug
         })
 
         response = self.client.get(candidate.get_absolute_url())
@@ -71,7 +71,7 @@ class CandidateInElectionsViewsTestCase(TestCase):
     def test_url_is_reachable(self):
         url = reverse('candidate_detail_view', kwargs={
             'election_slug': self.tarapaca.slug,
-            'slug': self.tarapaca.candidates.all()[0].id
+            'slug': self.tarapaca.candidates.all()[0].slug
             })
         self.assertTrue(url)
         response = self.client.get(url)

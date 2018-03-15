@@ -50,10 +50,10 @@ class ProposalReplicatorTestCase(ProposingCycleTestCaseBase):
 
     def test_replicate_excluding_areas(self):
         replicator = Replicator(self.popular_proposal)
-        replicator.replicate(exclude=['algarrobo-5602'])
-        algarrobo = Area.objects.get(id='algarrobo-5602')
+        replicator.replicate(exclude=['1'])
+        algarrobo = Area.objects.get(id=1)
         self.assertFalse(PopularProposal.objects.filter(area=algarrobo, title=self.popular_proposal.title))
-        alhue = Area.objects.get(id='alhue-13502')
+        alhue = Area.objects.get(id='2')
         qs = PopularProposal.objects.filter(area=alhue,
                                             proposer=self.fiera,
                                             title=self.popular_proposal.title,
@@ -76,10 +76,10 @@ class ProposalReplicatorTestCase(ProposingCycleTestCaseBase):
             self.assertEquals(len(qs), 1)
 
     def test_call_command_excluding(self):
-        algarrobo = Area.objects.get(id='algarrobo-5602')
+        algarrobo = Area.objects.get(id=1)
         call_command('replicate', self.popular_proposal.slug, algarrobo.id)
         self.assertFalse(PopularProposal.objects.filter(area=algarrobo, title=self.popular_proposal.title))
-        alhue = Area.objects.get(id='alhue-13502')
+        alhue = Area.objects.get(id=2)
         qs = PopularProposal.objects.filter(area=alhue,
                                             proposer=self.fiera,
                                             title=self.popular_proposal.title,

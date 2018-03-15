@@ -101,7 +101,7 @@ class WizardTestCase(TestCase, WizardDataMixin):
         super(WizardTestCase, self).setUp()
         self.factory = RequestFactory()
         self.fiera = User.objects.get(username='fiera')
-        self.arica = Area.objects.get(id='arica-15101')
+        self.arica = Area.objects.get(id=3)
         self.feli = User.objects.get(username='feli')
         self.feli.set_password(USER_PASSWORD)
         self.feli.save()
@@ -298,7 +298,7 @@ class WizardTestCase2(TestCase, WizardDataMixin):
     def setUp(self):
         super(WizardTestCase2, self).setUp()
         self.fiera = User.objects.get(username='fiera')
-        self.arica = Area.objects.get(id='arica-15101')
+        self.arica = Area.objects.get(id=3)
         self.feli = User.objects.get(username='feli')
         self.feli.set_password(USER_PASSWORD)
         self.feli.save()

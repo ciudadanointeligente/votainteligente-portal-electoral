@@ -20,7 +20,7 @@ from django.test import override_settings
 class PopularProposalTestCaseBase(TestCase):
     def setUp(self):
         super(PopularProposalTestCaseBase, self).setUp()
-        self.algarrobo = Area.objects.get(id='algarrobo-5602')
+        self.algarrobo = Area.objects.get(id=1)
         self.popular_proposal1 = PopularProposal.objects.create(proposer=self.fiera,
                                                                 area=self.algarrobo,
                                                                 generated_at=self.algarrobo,
@@ -48,7 +48,7 @@ class PopularProposalTestCaseBase(TestCase):
 class ProposalViewTestCase(TestCase):
     def setUp(self):
         super(ProposalViewTestCase, self).setUp()
-        self.algarrobo = Area.objects.get(id='algarrobo-5602')
+        self.algarrobo = Area.objects.get(id=1)
 
     def test_there_is_a_page_for_popular_proposal(self):
         popular_proposal = PopularProposal.objects.create(proposer=self.fiera,

@@ -19,7 +19,7 @@ from elections.models import Area, Election
 class CommitmentTestCase(ProposingCycleTestCaseBase):
     def setUp(self):
         super(CommitmentTestCase, self).setUp()
-        self.algarrobo = Area.objects.get(id='algarrobo-5602')
+        self.algarrobo = Area.objects.get(id=1)
         self.popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
                                                                area=self.algarrobo,
                                                                data=self.data,

@@ -719,156 +719,156 @@
     groups: []
     user_permissions: []
 - model: popolo.person
-  pk: candidato-1
-  fields: {start_date: null, end_date: null, created_at: !!timestamp '2017-08-25 20:57:18.831955+00:00',
+  pk: 1
+  fields: {slug: candidato-1, start_date: null, end_date: null, created_at: !!timestamp '2017-08-25 20:57:18.831955+00:00',
     updated_at: !!timestamp '2017-08-25 20:57:18.835111+00:00', name: Candidato 1,
     family_name: '', given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
     patronymic_name: '', sort_name: '', email: null, gender: '', birth_date: '', death_date: '',
     image: null, summary: '', biography: '', national_identity: null}
 - model: popolo.person
-  pk: candidato-2
-  fields: {start_date: null, end_date: null, created_at: !!timestamp '2017-08-25 20:57:18.862753+00:00',
+  pk: 2
+  fields: {slug: candidato-2, start_date: null, end_date: null, created_at: !!timestamp '2017-08-25 20:57:18.862753+00:00',
     updated_at: !!timestamp '2017-08-25 20:57:18.864168+00:00', name: Candidato 2,
     family_name: '', given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
     patronymic_name: '', sort_name: '', email: null, gender: '', birth_date: '', death_date: '',
     image: null, summary: '', biography: '', national_identity: null}
 - model: popolo.person
-  pk: candidato-3
-  fields: {start_date: null, end_date: null, created_at: !!timestamp '2017-08-25 20:57:18.883360+00:00',
+  pk: 3
+  fields: {slug: candidato-3, start_date: null, end_date: null, created_at: !!timestamp '2017-08-25 20:57:18.883360+00:00',
     updated_at: !!timestamp '2017-08-25 20:57:18.884569+00:00', name: Candidato 3,
     family_name: '', given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
     patronymic_name: '', sort_name: '', email: null, gender: '', birth_date: '', death_date: '',
     image: null, summary: '', biography: '', national_identity: null}
 - model: popolo.person
-  pk: candidato-4
-  fields: {start_date: null, end_date: null, created_at: !!timestamp '2017-08-25 20:57:18.902212+00:00',
+  pk: 4
+  fields: {slug: candidato-4, start_date: null, end_date: null, created_at: !!timestamp '2017-08-25 20:57:18.902212+00:00',
     updated_at: !!timestamp '2017-08-25 20:57:18.904043+00:00', name: Candidato 4,
     family_name: '', given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
     patronymic_name: '', sort_name: '', email: null, gender: '', birth_date: '', death_date: '',
     image: null, summary: '', biography: '', national_identity: null}
 - model: popolo.person
-  pk: elisabeth-taylor
-  fields: {start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 20:34:07.382775+00:00',
+  pk: 5
+  fields: {slug: elisabeth-taylor, start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 20:34:07.382775+00:00',
     updated_at: !!timestamp '2017-08-25 20:34:07.438820+00:00', name: Elisabeth Taylor,
     family_name: '', given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
     patronymic_name: '', sort_name: '', email: '', gender: '', birth_date: '', death_date: '',
     image: '', summary: '', biography: '', national_identity: ''}
 - model: popolo.person
-  pk: fiera
-  fields: {start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 21:01:57.787172+00:00',
+  pk: 6
+  fields: {slug: fiera, start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 21:01:57.787172+00:00',
     updated_at: !!timestamp '2017-08-25 21:01:57.844307+00:00', name: Fiera, family_name: '',
     given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
     patronymic_name: '', sort_name: '', email: '', gender: '', birth_date: '', death_date: '',
     image: '', summary: '', biography: '', national_identity: ''}
 - model: popolo.person
-  pk: jefe
-  fields: {start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 20:33:36.477330+00:00',
+  pk: 7
+  fields: {slug: jefe, start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 20:33:36.477330+00:00',
     updated_at: !!timestamp '2017-08-25 20:33:36.539234+00:00', name: Jefe, family_name: '',
     given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
     patronymic_name: '', sort_name: '', email: '', gender: '', birth_date: '', death_date: '',
     image: '', summary: '', biography: '', national_identity: ''}
 - model: popolo.person
-  pk: leon
-  fields: {start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 21:15:44.543208+00:00',
+  pk: 8
+  fields: {slug: leon, start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 21:15:44.543208+00:00',
     updated_at: !!timestamp '2017-08-25 21:15:44.598293+00:00', name: "Le\xF3n", family_name: '',
     given_name: '', additional_name: '', honorific_prefix: '', honorific_suffix: '',
     patronymic_name: '', sort_name: '', email: '', gender: '', birth_date: '', death_date: '',
     image: '', summary: '', biography: '', national_identity: ''}
 - model: popolo.person
-  pk: presidenciable-2
-  fields: {start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 21:16:02.265443+00:00',
+  pk: 9
+  fields: {slug: presidenciable-2, start_date: '', end_date: '', created_at: !!timestamp '2017-08-25 21:16:02.265443+00:00',
     updated_at: !!timestamp '2017-08-25 21:16:02.321933+00:00', name: presidenciable
       2, family_name: '', given_name: '', additional_name: '', honorific_prefix: '',
     honorific_suffix: '', patronymic_name: '', sort_name: '', email: '', gender: '',
     birth_date: '', death_date: '', image: '', summary: '', biography: '', national_identity: ''}
 - model: popolo.area
-  pk: chile-pais
-  fields: {slug: chile-pais, content_type: null, object_id: null, start_date: null, end_date: null,
+  pk: 1
+  fields: {slug: chile-pais, start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:54.111260+00:00', updated_at: !!timestamp '2017-04-24
       16:13:54.111689+00:00', name: Chile, identifier: '', classification: "Pa\xED\
       s", parent: null, geom: null, inhabitants: null}
 - model: popolo.area
-  pk: distrito-23-distrito
-  fields: {slug: distrito-23-distrito, content_type: null, object_id: null, start_date: null, end_date: null,
+  pk: 2
+  fields: {slug: distrito-23-distrito, start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.512017+00:00', updated_at: !!timestamp '2017-08-25
       20:52:51.943945+00:00', name: Distrito 23, identifier: '', classification: Distrito,
-    parent: xi-circunscripcion-senatorial-circunscripcion, geom: null, inhabitants: null}
+    parent: 5, geom: null, inhabitants: null}
 - model: popolo.area
-  pk: araucania-region
-  fields: {slug: araucania-region, content_type: null, object_id: null, start_date: null, end_date: null,
+  pk: 3
+  fields: {slug: araucania-region, start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.245002+00:00', updated_at: !!timestamp '2017-08-25
       20:52:51.960387+00:00', name: "Araucan\xEDa", identifier: '', classification: "Regi\xF3\
-      n", parent: chile-pais, geom: null, inhabitants: null}
+      n", parent: 1, geom: null, inhabitants: null}
 - model: popolo.area
-  pk: villarrica-comuna
-  fields: {slug: villarrica-comuna, content_type: null, object_id: null, start_date: null, end_date: null,
+  pk: 4
+  fields: {slug: villarrica-comuna, start_date: null, end_date: null,
     created_at: !!timestamp '2017-04-24 16:13:58.744201+00:00', updated_at: !!timestamp '2017-08-25
       20:52:51.935999+00:00', name: Villarrica, identifier: '', classification: Comuna,
-    parent: distrito-23-distrito, geom: null, inhabitants: null}
+    parent: 2, geom: null, inhabitants: null}
 - model: popolo.area
-  pk: xi-circunscripcion-senatorial-circunscripcion
-  fields: {slug: xi-circunscripcion-senatorial-circunscripcion, content_type: null, object_id: null, start_date: null, end_date: null,
+  pk: 5
+  fields: {slug: xi-circunscripcion-senatorial-circunscripcion, start_date: null, end_date: null,
     created_at: !!timestamp '2017-08-25 19:53:03.928824+00:00', updated_at: !!timestamp '2017-08-25
       20:52:51.952199+00:00', name: "XI Circunscripci\xF3n Senatorial", identifier: '',
-    classification: "Circunscripci\xF3n", parent: araucania-region, geom: null, inhabitants: null}
+    classification: "Circunscripci\xF3n", parent: 3, geom: null, inhabitants: null}
 - model: elections.candidate
-  pk: candidato-1
+  pk: "1"
   fields:
     extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRVIS9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
     force_has_answer: false
     has_won: false
     elections: [17]
 - model: elections.candidate
-  pk: candidato-2
+  pk: "2"
   fields:
     extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRVIS9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
     force_has_answer: false
     has_won: false
     elections: [17]
 - model: elections.candidate
-  pk: candidato-3
+  pk: "3"
   fields:
     extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRVIS9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
     force_has_answer: false
     has_won: false
     elections: [17]
 - model: elections.candidate
-  pk: candidato-4
+  pk: "4"
   fields:
     extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJVC3JpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRVIS9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
     force_has_answer: false
     has_won: false
     elections: [17]
 - model: elections.candidate
-  pk: elisabeth-taylor
-  fields:
-    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJYCwAAAHJpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRYIQAAAC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
-    force_has_answer: false
-    has_won: false
-    elections: [35]
-- model: elections.candidate
-  pk: fiera
-  fields:
-    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJYCwAAAHJpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRYIQAAAC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
-    force_has_answer: false
-    has_won: false
-    elections: [17]
-- model: elections.candidate
-  pk: jefe
-  fields:
-    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJYCwAAAHJpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRYIQAAAC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
-    force_has_answer: false
-    has_won: false
-    elections: [35]
-- model: elections.candidate
-  pk: leon
+  pk: "5"
   fields:
     extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJYCwAAAHJpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRYIQAAAC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
     force_has_answer: false
     has_won: false
     elections: [37]
 - model: elections.candidate
-  pk: presidenciable-2
+  pk: "6"
+  fields:
+    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJYCwAAAHJpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRYIQAAAC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
+    force_has_answer: false
+    has_won: false
+    elections: [17]
+- model: elections.candidate
+  pk: "7"
+  fields:
+    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJYCwAAAHJpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRYIQAAAC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
+    force_has_answer: false
+    has_won: false
+    elections: [37]
+- model: elections.candidate
+  pk: "8"
+  fields:
+    extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJYCwAAAHJpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRYIQAAAC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
+    force_has_answer: false
+    has_won: false
+    elections: [37]
+- model: elections.candidate
+  pk: "9"
   fields:
     extra_info: gAJ9cQEoVQ1jdXN0b21fcmliYm9ucQJYCwAAAHJpYmJvbiB0ZXh0cQNVDnBvcnRyYWl0X3Bob3RvcQRYIQAAAC9zdGF0aWMvaW1nL2NhbmRpZGF0ZS1kZWZhdWx0LmpwZ3EFdS4=
     force_has_answer: false
@@ -880,39 +880,39 @@
       por el Distrito 23, slug: diputados-por-el-distrito-23, description: '', searchable: true,
     highlighted: false, extra_info_title: null, extra_info_content: null, uses_preguntales: false,
     uses_ranking: false, uses_face_to_face: true, uses_soul_mate: true, uses_questionary: true,
-    candidates_can_commit_everywhere: true, position: Diputada o Diputado, area: distrito-23-distrito}
+    candidates_can_commit_everywhere: true, position: Diputada o Diputado, area: 2}
 - model: elections.election
   pk: 37
   fields: {extra_info: gAJ9cQFVBWV4dHJhcQJYEQAAAEV4dHJhIGV4dHJhIGV4dHJhcQNzLg==, name: "Presidente\
       \ de la Rep\xFAblica", slug: presidente-de-la-republica, description: '', searchable: true,
     highlighted: false, extra_info_title: '', extra_info_content: '', uses_preguntales: false,
     uses_ranking: false, uses_face_to_face: true, uses_soul_mate: true, uses_questionary: true,
-    candidates_can_commit_everywhere: true, position: Presidenta o Presidente, area: chile-pais}
+    candidates_can_commit_everywhere: true, position: Presidenta o Presidente, area: 1}
 - model: backend_candidate.candidacy
   pk: 5
-  fields: {user: 6, candidate: jefe, created: !!timestamp '2017-08-25 21:16:44.548672+00:00',
+  fields: {user: 6, candidate: 7, created: !!timestamp '2017-08-25 21:16:44.548672+00:00',
     updated: !!timestamp '2017-08-25 21:17:36.929165+00:00'}
 - model: backend_candidate.candidacy
   pk: 6
-  fields: {user: 5, candidate: fiera, created: !!timestamp '2017-08-25 21:18:05.620921+00:00',
+  fields: {user: 5, candidate: 6, created: !!timestamp '2017-08-25 21:18:05.620921+00:00',
     updated: !!timestamp '2017-08-25 21:18:05.620986+00:00'}
 - model: backend_candidate.candidacy
   pk: 7
-  fields: {user: 7, candidate: leon, created: !!timestamp '2017-08-25 21:18:21.395976+00:00',
+  fields: {user: 7, candidate: 8, created: !!timestamp '2017-08-25 21:18:21.395976+00:00',
     updated: !!timestamp '2017-08-25 21:18:21.396013+00:00'}
 - model: backend_candidate.candidacycontact
   pk: 1
-  fields: {candidate: jefe, mail: contacto@jefe.cl, times_email_has_been_sent: 0,
+  fields: {candidate: 7, mail: contacto@jefe.cl, times_email_has_been_sent: 0,
     used_by_candidate: false, identifier: 0b36ba81-38df-4474-a835-a4879a1084ce, candidacy: 5,
     initial_password: ''}
 - model: backend_candidate.candidacycontact
   pk: 2
-  fields: {candidate: fiera, mail: contacto@fiera.cl, times_email_has_been_sent: 0,
+  fields: {candidate: 6, mail: contacto@fiera.cl, times_email_has_been_sent: 0,
     used_by_candidate: false, identifier: e0f3242b-d3e5-4f5e-bde8-4c89b6381f5a, candidacy: 6,
     initial_password: ''}
 - model: backend_candidate.candidacycontact
   pk: 3
-  fields: {candidate: leon, mail: contacto@leon.cl, times_email_has_been_sent: 0,
+  fields: {candidate: 8, mail: contacto@leon.cl, times_email_has_been_sent: 0,
     used_by_candidate: false, identifier: b65991dd-31e1-44cb-8be7-045d2c2b9591, candidacy: 7,
     initial_password: ''}
 - model: backend_citizen.profile
@@ -947,9 +947,9 @@
 - model: popular_proposal.popularproposal
   pk: 8
   fields: {title: Acceso a la cultura y el conocimiento, slug: acceso-a-la-cultura-y-el-conocimiento,
-    proposer: 4, area: chile-pais, join_advocacy_url: '', data: gAJ9cQEoVQV0aXRsZXECWCUAAABBY2Nlc28gYSBsYSBjdWx0dXJhIHkgZWwgY29ub2NpbWllbnRvcQNVFHRlcm1zX2FuZF9jb25kaXRpb25zcQSIVRNzb2x1dGlvbl9hdF90aGVfZW5kcQVY0AEAAEVzIG5lY2VzYXJpbyBhdmFuemFyIGVuIHVuYSByZXZpc2nDs24gYWwgcsOpZ2ltZW4gZGUgZGVyZWNobyBkZSBhdXRvciBxdWUgZm9ydGFsZXpjYSBzdXMgZXhjZXBjaW9uZXMsIHBlcm1pdGllbmRvIGFzw60gcXVlIHRvZGFzIHkgdG9kb3MgcHVlZGFuIHBhcnRpY2lwYXIgZGUgbGEgdmlkYSBjdWx0dXJhbCBkZWwgcGHDrXMsIGFwcm92ZWNoYW5kbyBsYXMgaGVycmFtaWVudGFzIHF1ZSBub3MgcHJvdmVlbiBsYXMgdGVjbm9sb2fDrWFzIGRpZ2l0YWxlcyBzaW4gaW5jdXJyaXIgZW4gdW4gcmllc2dvIGRlIGNyaW1pbmFsaXphY2nDs24uIEVzIGltcG9ydGFudGUgdGFtYmnDqW4gdW4gZm9ydGFsZWNpbWllbnRvIGRlbCBkb21pbmlvIHDDumJsaWNvIHkgdW4gcsOpZ2ltZW4gbcOhcyBmbGV4aWJsZSByZXNwZWN0byBhbCB1c28geSByZS11c28gZGUgbGFzIG9icmFzIGNyZWFkYXMgY29uIGZvbmRvcyBww7pibGljb3MucQZVBHdoZW5xB1gGAAAAM195ZWFycQhVB3Byb2JsZW1xCViQAAAARWwgc2lzdGVtYSBkZSBkZXJlY2hvcyBkZSBhdXRvciBzZSBlbmN1ZW50cmEgZGVzYmFsYW5jZWFkbyBlbiBmYXZvciBkZSBsb3MgaW50ZXJlc2VzIGRlIGxvcyB0aXR1bGFyZXMgZW4gZGV0cmltZW50byBkZSBsb3MgZGVyZWNob3MgZGVsIHDDumJsaWNvcQpVDWNsYXNpZmljYXRpb25xC1gHAAAAY3VsdHVyYXEMVQZjYXVzZXNxDVjDAAAARWwgc2lzdGVtYSBpbnRlcm5hY2lvbmFsIGRlIGNvcHlyaWdodCBzZSBoYSBlbmZvY2FkbyBlbiBsYSBwcm90ZWNjacOzbiBkZSBsb3MgZGVyZWNob3MgZGUgbG9zIHRpdHVsYXJlcyBzaW4gY29uc2lkZXJhciBlbCBlZmVjdG8gYWR2ZXJzbyBxdWUgZXN0byBwcm9kdWNlIGVuIGVsIGFjY2VzbyBhbCBjb25vY2ltaWVudG8geSBsYSBjdWx0dXJhcQ51Lg==,
+    proposer: 4, area: 1, join_advocacy_url: '', data: gAJ9cQEoVQV0aXRsZXECWCUAAABBY2Nlc28gYSBsYSBjdWx0dXJhIHkgZWwgY29ub2NpbWllbnRvcQNVFHRlcm1zX2FuZF9jb25kaXRpb25zcQSIVRNzb2x1dGlvbl9hdF90aGVfZW5kcQVY0AEAAEVzIG5lY2VzYXJpbyBhdmFuemFyIGVuIHVuYSByZXZpc2nDs24gYWwgcsOpZ2ltZW4gZGUgZGVyZWNobyBkZSBhdXRvciBxdWUgZm9ydGFsZXpjYSBzdXMgZXhjZXBjaW9uZXMsIHBlcm1pdGllbmRvIGFzw60gcXVlIHRvZGFzIHkgdG9kb3MgcHVlZGFuIHBhcnRpY2lwYXIgZGUgbGEgdmlkYSBjdWx0dXJhbCBkZWwgcGHDrXMsIGFwcm92ZWNoYW5kbyBsYXMgaGVycmFtaWVudGFzIHF1ZSBub3MgcHJvdmVlbiBsYXMgdGVjbm9sb2fDrWFzIGRpZ2l0YWxlcyBzaW4gaW5jdXJyaXIgZW4gdW4gcmllc2dvIGRlIGNyaW1pbmFsaXphY2nDs24uIEVzIGltcG9ydGFudGUgdGFtYmnDqW4gdW4gZm9ydGFsZWNpbWllbnRvIGRlbCBkb21pbmlvIHDDumJsaWNvIHkgdW4gcsOpZ2ltZW4gbcOhcyBmbGV4aWJsZSByZXNwZWN0byBhbCB1c28geSByZS11c28gZGUgbGFzIG9icmFzIGNyZWFkYXMgY29uIGZvbmRvcyBww7pibGljb3MucQZVBHdoZW5xB1gGAAAAM195ZWFycQhVB3Byb2JsZW1xCViQAAAARWwgc2lzdGVtYSBkZSBkZXJlY2hvcyBkZSBhdXRvciBzZSBlbmN1ZW50cmEgZGVzYmFsYW5jZWFkbyBlbiBmYXZvciBkZSBsb3MgaW50ZXJlc2VzIGRlIGxvcyB0aXR1bGFyZXMgZW4gZGV0cmltZW50byBkZSBsb3MgZGVyZWNob3MgZGVsIHDDumJsaWNvcQpVDWNsYXNpZmljYXRpb25xC1gHAAAAY3VsdHVyYXEMVQZjYXVzZXNxDVjDAAAARWwgc2lzdGVtYSBpbnRlcm5hY2lvbmFsIGRlIGNvcHlyaWdodCBzZSBoYSBlbmZvY2FkbyBlbiBsYSBwcm90ZWNjacOzbiBkZSBsb3MgZGVyZWNob3MgZGUgbG9zIHRpdHVsYXJlcyBzaW4gY29uc2lkZXJhciBlbCBlZmVjdG8gYWR2ZXJzbyBxdWUgZXN0byBwcm9kdWNlIGVuIGVsIGFjY2VzbyBhbCBjb25vY2ltaWVudG8geSBsYSBjdWx0dXJhcQ51Lg==,
     created: !!timestamp '2017-08-25 21:31:01.601451+00:00', updated: !!timestamp '2017-08-25
-      21:31:01.601527+00:00', temporary: null, organization: null, background: '',
+      21:31:01.601527+00:00', temporary: null, background: '',
     contact_details: '', document: '', image: '', clasification: cultura, for_all_areas: false,
     generated_at: null, is_local_meeting: false, is_reported: false,
     featured: false}
@@ -971,16 +971,16 @@
   fields: {template: 2, content: '', title: Documentos, slug: documentos}
 - model: popular_proposal.commitment
   pk: 1
-  fields: {proposal: 8, candidate: fiera, detail: '', commited: true}
+  fields: {proposal: 8, candidate: 6, detail: '', commited: true}
 - model: popular_proposal.proposallike
   pk: 1
   fields: {user: 9, proposal: 8, message: null, created: !!timestamp '2017-11-28 21:08:48.211750+00:00',
     updated: !!timestamp '2017-11-28 21:08:48.211791+00:00'}
-- model: backend_candidate.incrementalscandidatefilter
+- model: suggestions_for_candidates.incrementalscandidatefilter
   pk: 1
   fields: {name: "Recomendaci\xF3n para Le\xF3n candidato a la presidencia", subject: '',
     text: '', filter_qs: gAJ9cQFVAmlkcQJVBGxlb25xA3Mu, exclude_qs: gAJ9Lg==}
-- model: backend_candidate.proposalsuggestionforincremental
+- model: suggestions_for_candidates.proposalsuggestionforincremental
   pk: 1
   fields: {incremental: 1, proposal: 8, summary: La cultura es muy importante ...,
     sent: false}
@@ -999,10 +999,10 @@
   fields: {label: manzana, topic: 1, description: ''}
 - model: candidator.takenposition
   pk: 1
-  fields: {topic: 1, position: 1, person: presidenciable-2, description: ''}
+  fields: {topic: 1, position: 1, person: 9, description: ''}
 - model: candidator.takenposition
   pk: 2
-  fields: {topic: 1, position: 2, person: leon, description: ''}
+  fields: {topic: 1, position: 2, person: 8, description: ''}
 - model: elections.questioncategory
   pk: 1
   fields: {election: 37}

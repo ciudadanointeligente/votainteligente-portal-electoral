@@ -20,7 +20,7 @@
 <div class="container">
   <div class="fondo-blanco text-width">
     <h1>Firmar Compromiso</h1>
-    <p>Yo <strong>{{candidate.name}}</strong> candidata/o a <strong>{{candidate.election.position}} de {{proposal.area}}</strong> me comprometo con la propuesta ciudadana:</p>
+    <p>Yo <strong>{{candidate.name}}</strong> <strong>{{candidate.election.position}}</strong> me comprometo con la propuesta ciudadana:</p>
 
     {% include 'popular_proposal/plantillas/candidate_commitment.html' with proposal=proposal %}
 

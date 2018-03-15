@@ -6,7 +6,7 @@
   {% with user.candidacies.first as candidacy %}
     {% if not candidacy.candidate.has_answered %}
       <p>{% trans 'Aún no has respondido la 1/2 naranja' %}</p>
-      {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id as complete_12_naranja %}
+      {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_slug=candidacy.candidate.slug as complete_12_naranja %}
       <a href="{{ complete_12_naranja }}" class="btn btn-success login" role="button"> {% blocktrans %}<i class="fa fa-heart"></i>¡Completa tu 1/2 Naranja!{% endblocktrans %}</a>
     {% else %}
       <p>{% trans 'Ya respondiste la 1/2 naranja. Muchas gracias' %} <i class="fa fa-smile-o" aria-hidden="true"></i></p>
@@ -70,7 +70,7 @@
             {% with user.candidacies.first as candidacy %}
               {% if not candidacy.candidate.has_answered %}
                 <p>{% trans 'Aún no has respondido la 1/2 naranja' %}</p>
-                {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id as complete_12_naranja %}
+                {% url 'backend_candidate:complete_12_naranja' slug=candidacy.candidate.election.slug candidate_slug=candidacy.candidate.slug as complete_12_naranja %}
                 <a href="{{ complete_12_naranja }}" class="btn btn-success login" role="button"> {% blocktrans %}<i class="fa fa-heart"></i>¡Completa tu 1/2 Naranja!{% endblocktrans %}</a>
               {% else %}
                 <p>{% trans 'Ya respondiste la 1/2 naranja. Muchas gracias' %}</p>

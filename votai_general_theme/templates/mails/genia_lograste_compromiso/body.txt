@@ -10,7 +10,7 @@ Para revisar el compromiso con la propuesta ciudadana puedes acceder a la siguie
 https://{{site}}{{commitment.get_absolute_url}}
 
 Te queremos mucho, esperamos que entiendas que este es un gran paso para cambiar Chile.
-Aún queda un gran trecho que recorrer y queremos que estés atenta/o a que este candidato cumpla su compromiso en caso de salir electa/o.
+Aún queda un gran trecho que recorrer y queremos que estés atenta/o para hacerle seguimiento del cumplimiento de esta propuesta.
 
 Este es un mail automático pero si respondes le llegará a todo el equipo de VotaInteligente.cl
 

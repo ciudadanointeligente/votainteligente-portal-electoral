@@ -114,7 +114,7 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         response = self.client.get(url)
         profile_url = reverse('backend_candidate:complete_profile',
                               kwargs={'slug': self.candidate.election.slug,
-                                      'candidate_id': self.candidate.id})
+                                      'candidate_slug': self.candidate.slug})
         self.assertRedirects(response, profile_url)
 
     def test_proposals_with_a_resolution(self):
@@ -134,7 +134,7 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         election = self.candidate.election
         url = reverse('backend_candidate:my_proposals_with_a_resolution',
                       kwargs={'slug': election.slug,
-                              'candidate_id': self.candidate.id})
+                              'candidate_slug': self.candidate.slug})
         login_url = reverse('auth_login') + "?next=" + url
         response = self.client.get(url)
         self.assertRedirects(response, login_url)
@@ -175,7 +175,7 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
 
         url = reverse('backend_candidate:proposals_for_me',
                       kwargs={'slug': self.candidate.election.slug,
-                              'candidate_id': self.candidate.id})
+                              'candidate_slug': self.candidate.slug})
 
         login_url = reverse('auth_login') + "?next=" + url
         response = self.client.get(url)
@@ -218,7 +218,7 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
                                                    )
         url = reverse('backend_candidate:proposals_for_me',
                       kwargs={'slug': self.candidate.election.slug,
-                              'candidate_id': self.candidate.id})
+                              'candidate_slug': self.candidate.slug})
         self.client.login(username=self.feli,
                           password='alvarez')
         response = self.client.get(url)
@@ -232,7 +232,7 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         election = Election.objects.get(id=2)
         url = reverse('backend_candidate:complete_12_naranja',
                       kwargs={'slug': election.slug,
-                              'candidate_id': self.candidate.id})
+                              'candidate_slug': self.candidate.slug})
         self.client.login(username=self.feli,
                           password='alvarez')
         response = self.client.get(url)
@@ -256,7 +256,7 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         election = Election.objects.get(id=2)
         url = reverse('backend_candidate:complete_12_naranja',
                       kwargs={'slug': election.slug,
-                              'candidate_id': self.candidate.id})
+                              'candidate_slug': self.candidate.slug})
         self.client.login(username=self.feli,
                           password='alvarez')
         Candidacy.objects.create(user=self.feli,
@@ -299,7 +299,7 @@ class CandidacyContacts(CandidacyTestCaseBase):
                                           user=self.feli)
         profile_url = reverse('backend_candidate:complete_profile',
                               kwargs={'slug': candidacy.candidate.election.slug,
-                                      'candidate_id': candidacy.candidate.id})
+                                      'candidate_slug': candidacy.candidate.slug})
         self.assertRedirects(response, profile_url)
         self.assertTrue(Candidacy.objects.filter(candidate=self.candidate,
                                                  user=self.feli))
@@ -451,7 +451,7 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
         self.assertEquals(contact.times_email_has_been_sent, 1)
         initial_password = contact.initial_password
         self.assertTrue(initial_password)
-        user = User.objects.get(username__contains=self.candidate.id)
+        user = User.objects.get(username__contains=self.candidate.slug)
         self.assertEquals(user.email, contact.mail)
         contact = CandidacyContact.objects.get(id=contact.id)
         candidacy = contact.candidacy
@@ -469,7 +469,7 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
         self.assertIn(full_login_url, the_mail.body)
         # It doesn't create user again
         contact.send_mail_with_user_and_password()
-        self.assertEquals(len(User.objects.filter(username__contains=self.candidate.id)), 1)
+        self.assertEquals(len(User.objects.filter(username__contains=self.candidate.slug)), 1)
         self.assertEquals(len(mail.outbox), 2)
 
     def test_login_candidate_marks_her_him_as_contacted(self):
@@ -477,7 +477,7 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
         contact = CandidacyContact.objects.create(candidate=self.candidate,
                                                   mail='mail@perrito.cl')
         contact.send_mail_with_user_and_password()
-        user = User.objects.get(username__contains=self.candidate.id)
+        user = User.objects.get(username__contains=self.candidate.slug)
         logged_in = self.client.login(username=user.username,
                                       password=contact.initial_password)
         self.assertTrue(logged_in)
@@ -488,7 +488,7 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
         response = self.client.get(home_url)
         profile_url = reverse('backend_candidate:complete_profile',
                               kwargs={'slug': contact.candidacy.candidate.election.slug,
-                                      'candidate_id': contact.candidacy.candidate.id})
+                                      'candidate_slug': contact.candidacy.candidate.slug})
         self.assertRedirects(response, profile_url)
 
     @override_settings(MAX_AMOUNT_OF_MAILS_TO_CANDIDATE=3)
@@ -531,7 +531,7 @@ class SendNewUserToCandidate(CandidacyTestCaseBase):
         self.assertIn(contact.initial_password, the_mail.body)
 
     def test_add_contact_and_send_mail_command(self):
-        call_command('add_contact_and_send_mail', 'mail.perrito@fiera.cl', self.candidate.id)
+        call_command('add_contact_and_send_mail', 'mail.perrito@fiera.cl', self.candidate.slug)
         contact = CandidacyContact.objects.get(mail='mail.perrito@fiera.cl', candidate=self.candidate)
         self.assertTrue(contact)
         contact = CandidacyContact.objects.get(id=contact.id)

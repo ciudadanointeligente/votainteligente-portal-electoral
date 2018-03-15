@@ -24,7 +24,7 @@ class CandidateFlatpagesTestCase(TestCase):
         self.assertEquals(page.candidate, candidate)
         self.assertTrue(page.get_absolute_url())
         url = reverse('candidate_flatpage', kwargs={'election_slug': self.election.slug,
-                                                    'slug': candidate.id,
+                                                    'slug': candidate.slug,
                                                     'url': page.url
                                                     }
                       )

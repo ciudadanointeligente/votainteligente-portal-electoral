@@ -40,12 +40,12 @@ class IndexViewsTests(BackendCitizenTestCaseBase):
     def test_index_redirect_if_user_is_not_logged_in(self):
         index_url = reverse('backend_citizen:index')
         election = Election.objects.get(id=2)
-        fiera_candidata = Candidate.objects.create(name='Fiera Feroz la mejor candidata del mundo!')
+        fiera_candidata = Candidate.objects.create(name='Fiera Feroz la mejor candidata del mundo!', slug="fiera")
         Candidacy.objects.create(candidate=fiera_candidata, user=self.fiera)
         election.candidates.add(fiera_candidata)
         update_my_profile_url = reverse('backend_candidate:complete_profile',
                                          kwargs={'slug': election.slug,
-                                                 'candidate_id': fiera_candidata.id})
+                                                 'candidate_slug': fiera_candidata.slug})
         self.client.login(username=self.fiera.username, password=PASSWORD)
         response = self.client.get(index_url)
         self.assertRedirects(response, update_my_profile_url)

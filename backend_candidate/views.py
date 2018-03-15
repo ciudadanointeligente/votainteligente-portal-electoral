@@ -69,7 +69,7 @@ class HomeView(BackendCandidateBase, RedirectView):
         candidacy = self.user.candidacies.first()
         profile_url = reverse('backend_candidate:complete_profile',
                               kwargs={'slug': candidacy.candidate.election.slug,
-                                      'candidate_id': candidacy.candidate.id})
+                                      'candidate_slug': candidacy.candidate.slug})
         return profile_url
 
 
@@ -83,7 +83,7 @@ class CompleteMediaNaranjaView(FormView):
         self.user = request.user
         self.election = get_object_or_404(Election, slug=self.kwargs['slug'])
         self.candidate = get_object_or_404(Candidate,
-                                           id=self.kwargs['candidate_id'])
+                                           slug=self.kwargs['candidate_slug'])
         return super(CompleteMediaNaranjaView, self).dispatch(request,
                                                               *args,
                                                               **kwargs)
@@ -111,7 +111,7 @@ class CompleteMediaNaranjaView(FormView):
     def get_success_url(self):
         url = reverse('backend_candidate:complete_12_naranja',
                       kwargs={'slug': self.election.slug,
-                              'candidate_id': self.candidate.id})
+                              'candidate_slug': self.candidate.slug})
         return url
 
 
@@ -135,7 +135,7 @@ class CandidacyJoinView(RedirectView):
         candidacy = self.request.user.candidacies.first()
         profile_url = reverse('backend_candidate:complete_profile',
                               kwargs={'slug': candidacy.candidate.election.slug,
-                                      'candidate_id': candidacy.candidate.id})
+                                      'candidate_slug': candidacy.candidate.slug})
         return profile_url
 
 
@@ -152,7 +152,7 @@ class ProfileView(FormView):
         self.user = request.user
         self.election = get_object_or_404(Election, slug=self.kwargs['slug'])
         self.candidate = get_object_or_404(Candidate,
-                                           id=self.kwargs['candidate_id'])
+                                           slug=self.kwargs['candidate_slug'])
         if not Candidacy.objects.filter(user=self.request.user, candidate=self.candidate).exists():
             raise Http404
         return super(ProfileView, self).dispatch(request, *args, **kwargs)
@@ -170,7 +170,7 @@ class ProfileView(FormView):
     def get_success_url(self):
         url = reverse('backend_candidate:complete_profile',
                       kwargs={'slug': self.election.slug,
-                              'candidate_id': self.candidate.id}
+                              'candidate_slug': self.candidate.slug}
                       )
         return url
 
@@ -205,7 +205,7 @@ class MyCommitments(BackendCandidateBase, ListView):
         self.user = request.user
         self.election = get_object_or_404(Election, slug=self.kwargs['slug'])
         self.candidate = get_object_or_404(Candidate,
-                                           id=self.kwargs['candidate_id'])
+                                           slug=self.kwargs['candidate_slug'])
         return super(MyCommitments, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
@@ -233,7 +233,7 @@ class ProposalsForMe(BackendCandidateBase, ListView):
         self.user = request.user
         self.election = get_object_or_404(Election, slug=self.kwargs['slug'])
         self.candidate = get_object_or_404(Candidate,
-                                           id=self.kwargs['candidate_id'])
+                                           slug=self.kwargs['candidate_slug'])
         return super(ProposalsForMe, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
@@ -263,7 +263,7 @@ class AddActivityToCandidateView(LoginRequiredMixin, CreateView):
 
     def get_content_object(self):
         self.candidate = get_object_or_404(Candidate,
-                                           id=self.kwargs['slug'])
+                                           slug=self.kwargs['slug'])
         get_object_or_404(Candidacy,
                           candidate=self.candidate,
                           user=self.request.user)
@@ -276,7 +276,7 @@ class AddActivityToCandidateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('backend_candidate:all_my_activities',
-                        kwargs={'slug': self.candidate.id})
+                        kwargs={'slug': self.candidate.slug})
 
     def get_context_data(self, **kwargs):
         context = super(AddActivityToCandidateView, self).get_context_data(**kwargs)
@@ -292,7 +292,7 @@ class MyActivitiesListView(LoginRequiredMixin, ListView):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.object = get_object_or_404(Candidate,
-                                           id=self.kwargs['slug'])
+                                           slug=self.kwargs['slug'])
         get_object_or_404(Candidacy,
                           candidate=self.object,
                           user=self.request.user)

@@ -248,7 +248,7 @@ class CandidateFlatPage(FlatPage):
 
     def get_absolute_url(self):
         return reverse('candidate_flatpage', kwargs={'election_slug': self.candidate.election.slug,
-                                                     'slug': self.candidate.id,
+                                                     'slug': self.candidate.slug,
                                                      'url': self.url
                                                      }
                        )

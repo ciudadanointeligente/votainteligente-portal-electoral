@@ -28,22 +28,22 @@
     user_permissions: []
 - model: popolo.area
   pk: algarrobo-5602
-  fields: {slug: algarrobo, content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {slug: algarrobo, start_date: null, end_date: null,
     name: Algarrobo, identifier: '5602', classification: 'Comuna', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: alhue-13502
-  fields: {slug: alhue, content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {slug: alhue, start_date: null, end_date: null,
     name: "Alhu\xE9", identifier: '13502', classification: 'Comuna', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: arica-15101
-  fields: {slug: alhue, content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {slug: alhue, start_date: null, end_date: null,
     name: Arica, identifier: '15101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: fundacion-ciudadano-inteligente
-  fields: {slug: ciudadanoi, content_type: null, object_id: null, start_date: null, end_date: null,
+  fields: {slug: ciudadanoi, start_date: null, end_date: null,
     name: CiudadanoI, identifier: '15101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: backend_citizen.profile
@@ -64,40 +64,40 @@
     searchable: true, slug: 4a-circunscripcion-coquimbo, area: algarrobo-5602}
   model: elections.election
   pk: 2
-- fields: { name: Manuel Rojas }
+- fields: { slug: candidato-1, name: Manuel Rojas }
   model: popolo.person
   pk: 1
-- fields: { name: Alejandro Guillier}
+- fields: { slug: candidato-2, name: Alejandro Guillier}
   model: popolo.person
   pk: 2
-- fields: { name: Pedro Araya}
+- fields: { slug: candidato-3, name: Pedro Araya}
   model: popolo.person
   pk: 3
-- fields: { name: Gisela Contreras, email: gcontreras@votai.cl}
+- fields: { slug: candidato-4, name: Gisela Contreras, email: gcontreras@votai.cl}
   model: popolo.person
   pk: 4
-- fields: { name: Carlos Cantero, email: ccantero@votai.com}
+- fields: { slug: candidato-5, name: Carlos Cantero, email: ccantero@votai.com}
   model: popolo.person
   pk: 5
-- fields: { name: Daniel Guevara, email: dguevara@votai.io}
+- fields: { slug: candidato-6, name: Daniel Guevara, email: dguevara@votai.io}
   model: popolo.person
   pk: 6
-- fields: { name: Jimena Orrego}
+- fields: { slug: candidato-7, name: Jimena Orrego}
   model: popolo.person
   pk: 7
-- fields: { name: Gonzalo Uriarte}
+- fields: { slug: candidato-8, name: Gonzalo Uriarte}
   model: popolo.person
   pk: 8
-- fields: { name: Mario Bertolino}
+- fields: { slug: candidato-9, name: Mario Bertolino}
   model: popolo.person
   pk: 9
-- fields: { name: Jorge Pizarro}
+- fields: { slug: candidato-10, name: Jorge Pizarro}
   model: popolo.person
   pk: 10
-- fields: { name: "Adriana Munoz"}
+- fields: { slug: candidato-11, name: "Adriana Munoz"}
   model: popolo.person
   pk: 11
-- fields: { name: Luis Vega}
+- fields: { slug: candidato-12, name: Luis Vega}
   model: popolo.person
   pk: 12
 - fields: {name: Perros y gatos, slug: perros-y-gatos}

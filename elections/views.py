@@ -234,7 +234,7 @@ class CandidateFlatPageDetailView(DetailView):
     template_name = 'flatpages/candidate_flatpages.html'
 
     def get_queryset(self):
-        qs = CandidateFlatPage.objects.filter(candidate__id=self.kwargs['slug'])
+        qs = CandidateFlatPage.objects.filter(candidate__slug=self.kwargs['slug'])
         return qs
 
     def get_object(self, queryset=None):

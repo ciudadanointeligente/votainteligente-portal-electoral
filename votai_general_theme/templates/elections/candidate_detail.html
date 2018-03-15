@@ -8,7 +8,7 @@
 {% load ogp_tags %}
 {% load cache %}
 
-{% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.id %}{% endblock url_face_to_face %}
+{% block url_face_to_face %}{% url 'face_to_face_one_candidate_detail_view' slug=election.slug slug_candidate_one=candidate.slug %}{% endblock url_face_to_face %}
 
 {% block title %} - {{election}} - {{candidate.name}}{% endblock title%}
 {% block navbar_background %}yellow{% endblock navbar_background %}
@@ -31,7 +31,7 @@
   {% if user|is_candidate %}
   {% with user.candidacies.first as candidacy %}
     {% if candidacy.candidate == candidate %}
-    {% url 'backend_candidate:complete_profile' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as complete_profile %}
+    {% url 'backend_candidate:complete_profile' slug=candidacy.candidate.election.slug candidate_slug=candidacy.candidate.slug  as complete_profile %}
       <a href="{{complete_profile}}" class="btn btn-dark">Modificar mi perfil</a>
     {% endif %}
   {% endwith%}
@@ -156,7 +156,7 @@
   {% if user|is_candidate %}
     {% with user.candidacies.first as candidacy %}
       {% if candidacy.candidate == candidate and not candidate.commitments.count %}
-        {% url 'backend_candidate:proposals_for_me' slug=candidacy.candidate.election.slug candidate_id=candidacy.candidate.id  as proposals_for_me %}
+        {% url 'backend_candidate:proposals_for_me' slug=candidacy.candidate.election.slug candidate_slug=candidacy.candidate.slug  as proposals_for_me %}
         <a href="{{proposals_for_me}}" class="btn btn-dark">Revisar propuestas ciudadanas</a>
       {% endif %}
     {% endwith%}

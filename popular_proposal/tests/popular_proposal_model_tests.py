@@ -2,7 +2,10 @@
 from popular_proposal.tests import ProposingCycleTestCaseBase
 from elections.models import Area
 from django.contrib.auth.models import User
-from popular_proposal.models import ProposalTemporaryData, PopularProposal, ProposalLike
+from popular_proposal.models import (ProposalTemporaryData,
+                                     PopularProposal,
+                                     ProposalLike,
+                                     PopularProposalSite)
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from django.core import mail
 from django.contrib.staticfiles.templatetags.staticfiles import static
@@ -320,3 +323,22 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(popular_proposal.get_one_liner(), popular_proposal.title)
         popular_proposal.one_liner = "one_liner"
         self.assertEquals(popular_proposal.get_one_liner(), popular_proposal.one_liner)
+
+
+class PopularProposalSiteTestCase(ProposingCycleTestCaseBase):
+    def setUp(self):
+        super(PopularProposalSiteTestCase, self).setUp()
+
+    def test_union_between_the_two(self):
+        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                          area=self.arica,
+                                                          data=self.data,
+                                                          title=u'This is a title'
+                                                          )
+        site = Site.objects.get_current()
+        pps = PopularProposalSite.objects.create(popular_proposal=popular_proposal, site=site)
+        self.assertTrue(pps)
+        self.assertIn(site, popular_proposal.sites.all())
+        self.assertEquals(popular_proposal.sites.count(), 1)
+        self.assertIn(popular_proposal, site.proposals.all())
+        self.assertEquals(site.proposals.count(), 1)

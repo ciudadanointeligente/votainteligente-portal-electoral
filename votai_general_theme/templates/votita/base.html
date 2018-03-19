@@ -61,9 +61,7 @@
   {% endblock extrascripts %}
 </head>
 <body>
-  {% if user.is_staff or config.NAV_BAR_VOTITA_DISPLAYED %}
-    {% include 'votita/_navbar.html' %}
-  {% endif %}
+  {% include 'votita/_navbar.html' %}
   <!-- content -->
   {% block content %}{% endblock content %}
   <!-- eocontent -->

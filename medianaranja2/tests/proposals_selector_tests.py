@@ -171,6 +171,7 @@ class ByOnlySiteProposalGetterTestCase(MediaNaranjaAdaptersBase):
         ProposalLike.objects.create(proposal=self.p1, user=liker)
         ProposalLike.objects.create(proposal=self.p3, user=liker)
         ProposalLike.objects.create(proposal=self.p1, user=liker2)
+        self.child = Area.objects.create(name="children")
 
     @override_config(MEDIA_NARANJA_MAX_NUM_PR=200)
     def test_get_proposals(self):
@@ -180,7 +181,7 @@ class ByOnlySiteProposalGetterTestCase(MediaNaranjaAdaptersBase):
         PopularProposalSite.objects.create(popular_proposal=self.p1, site=site)
         PopularProposalSite.objects.create(popular_proposal=self.p3, site=site)
         # p2 does not have anything related
-        proposals = getter.get_all_proposals()
+        proposals = getter.get_all_proposals(self.child)
         self.assertIn(self.p1, proposals)
         self.assertIn(self.p3, proposals)
         self.assertNotIn(self.p2, proposals)

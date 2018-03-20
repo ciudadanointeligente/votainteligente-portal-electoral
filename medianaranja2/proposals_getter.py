@@ -105,6 +105,8 @@ class ProposalsGetterByReadingGroup(ProposalsGetterBase):
 class ByOnlySiteProposalGetter(ProposalsGetterBase):
     cache_key = 'proposals_per_site_for_'
 
-    def _get_all_proposals(self, site):
-        return PopularProposal.objects.filter(sites=site)
-        # PopularProposal.objects.filter(commitments__in=commitments).distinct()
+    def __init__(self, site):
+        self.site = site
+
+    def _get_all_proposals(self, area):
+        return PopularProposal.objects.filter(sites=self.site)

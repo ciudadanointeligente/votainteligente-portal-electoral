@@ -9,6 +9,13 @@ from elections.models import Election
 
 
 class ProposalsGetterBase(object):
+    '''
+    They way to use this class and their derivatives is:
+    Getme all the proposals for a given area:
+    getter = ProposalsGetter()
+    proposals = getter.get_all_proposals(area)
+    
+    '''
     def proposals(self, election):
         commitments = Commitment.objects.filter(commited=True, candidate__elections=election)
         return list(PopularProposal.objects.filter(commitments__in=commitments).distinct())
@@ -30,12 +37,16 @@ class ProposalsGetterBase(object):
     def get_proposals_from_election(self, elections):
         raise NotImplementedError
 
+    def _get_all_proposals(self, area):
+        elections = self.get_elections(area)
+        proposals = self.get_proposals_from_election(elections)
+        return proposals
+
     def get_all_proposals(self, area):
         cache_key =  self.cache_key + str(area.id)
         if cache.get(cache_key) is not None:
             return cache.get(cache_key)
-        elections = self.get_elections(area)
-        proposals = self.get_proposals_from_election(elections)
+        proposals = self._get_all_proposals(area)
         cache.set(cache_key, proposals)
         return proposals
 
@@ -89,3 +100,11 @@ class ProposalsGetterByReadingGroup(ProposalsGetterBase):
             index += 1
         
         return PopularProposal.objects.filter(id__in=ids)
+
+
+class ByOnlySiteProposalGetter(ProposalsGetterBase):
+    cache_key = 'proposals_per_site_for_'
+
+    def _get_all_proposals(self, site):
+        return PopularProposal.objects.filter(sites=site)
+        # PopularProposal.objects.filter(commitments__in=commitments).distinct()

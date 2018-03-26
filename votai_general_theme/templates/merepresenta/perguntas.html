@@ -19,21 +19,19 @@
   </div>
   <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  <div class="question">
-    {{ wizard.management_form }}
-      {% for x, y in form.fields.proposals.choices %}
-      <div class="question">
-            <div class="answer">
-                <input type="checkbox" name="0-proposals" value="{{x}}" class="proposal_option" id="id_0-proposals_{{x}}" />
-                <label for="id_0-proposals_{{x}}">Sim</label>
-            </div>
-            <span class="question-title">
-                {{y}}
-            </span>            
-        </div>
-      {% endfor %}
-      {{form.area}}
-  </div>
+  {{ wizard.management_form }}
+    {% for x, y in form.fields.proposals.choices %}
+    <div class="question">
+          <div class="answer">
+              <input type="checkbox" name="0-proposals" value="{{x}}" class="proposal_option" id="id_0-proposals_{{x}}" />
+              <label for="id_0-proposals_{{x}}">Sim</label>
+          </div>
+          <span class="question-title">
+              {{y}}
+          </span>            
+      </div>
+    {% endfor %}
+    {{form.area}}
 
   {% if wizard.steps.prev %}
   <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}" class="btn btn-default" onclick="ga('send','event','primer-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "first step" %}</button>
@@ -41,8 +39,5 @@
   {% endif %}
   <input type="submit" name="submit" value="{% trans "Encontrar candidaturas" %}" class="btn btn-1-inv" onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')" />
   </form>
-<script type="text/javascript">
-</script>
-</div>
 {% endblock content %}
 

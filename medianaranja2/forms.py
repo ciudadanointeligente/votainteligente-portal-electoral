@@ -123,6 +123,7 @@ class MediaNaranjaException(Exception):
 class MediaNaranjaWizardForm(SessionWizardView):
     form_list = FORMS
     template_name = 'medianaranja2/paso_default.html'
+    done_template_name = 'medianaranja2/resultado.html'
     steps_and_functions = {
         1: 'get_categories_form_kwargs',
         2: 'get_proposals_form_kwargs'
@@ -149,7 +150,7 @@ class MediaNaranjaWizardForm(SessionWizardView):
         cleaned_data = self.get_all_cleaned_data()
         results = []
         has_parent = True
-        element_selector = cleaned_data['element_selector']
+        element_selector = self.get_element_selector_from_cleaned_data(cleaned_data)
         elections = self.get_proposal_getter().get_elections(element_selector)
         proposals = cleaned_data.get('proposals', [])
         positions = cleaned_data.get('positions', [])
@@ -158,7 +159,7 @@ class MediaNaranjaWizardForm(SessionWizardView):
             results.append(calculator.get_result())
 
         organization_templates = self.get_organization_templates(proposals)
-        return render(self.request, 'medianaranja2/resultado.html', {
+        return render(self.request, self.done_template_name, {
             'results': results,
             'organizations': organization_templates
         })
@@ -177,11 +178,15 @@ class MediaNaranjaWizardForm(SessionWizardView):
     def get_categories_form_kwargs(self, cleaned_data):
         return {'categories': list(cleaned_data['categories'])}
 
+    def get_element_selector_from_cleaned_data(self, cleaned_data):
+        return cleaned_data['element_selector']
+
     def get_proposals_form_kwargs(self, cleaned_data):
         proposal_getter_kwargs = self.get_proposal_getter_kwargs()
-        getter = self.get_proposal_class(**proposal_getter_kwargs)()
-        proposals = getter.get_all_proposals(cleaned_data['element_selector'])
-        return {'proposals': proposals, 'element_selector': cleaned_data['element_selector']}
+        getter = self.get_proposal_class()(**proposal_getter_kwargs)
+        element_selector = self.get_element_selector_from_cleaned_data(cleaned_data)
+        proposals = getter.get_all_proposals(element_selector)
+        return {'proposals': proposals, 'element_selector': element_selector}
 
 
     def get_kwargs_from_step_number(self, number, cleaned_data):

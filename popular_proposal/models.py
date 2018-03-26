@@ -420,9 +420,12 @@ class Commitment(models.Model):
     commited = models.NullBooleanField(default=None)
     objects = CommitmentManager()
 
+    def _save(self, *args, **kwargs):
+        return super(Commitment, self).save(*args, **kwargs)
+
     def save(self, *args, **kwargs):
         creating = self.pk is None
-        instance = super(Commitment, self).save(*args, **kwargs)
+        instance = self._save(*args, **kwargs)
         from popular_proposal.subscriptions import notification_trigger
         notification_trigger('new-commitment',
                              proposal=self.proposal,

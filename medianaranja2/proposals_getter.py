@@ -5,10 +5,16 @@ from popular_proposal.models import (PopularProposal,
 from constance import config
 from django.core.cache import cache
 from medianaranja2.models import ReadingGroup
-from elections.models import Election
+from elections.models import Election, Area
+from django.conf import settings
 
 
-class ProposalsGetterBase(object):
+class AreaDeterminerMixin(object):
+    def get_default_area(self):
+        return Area.objects.get(id=settings.DEFAULT_AREA)
+
+
+class ProposalsGetterBase(AreaDeterminerMixin):
     '''
     They way to use this class and their derivatives is:
     Getme all the proposals for a given area:
@@ -16,11 +22,17 @@ class ProposalsGetterBase(object):
     proposals = getter.get_all_proposals(area)
     
     '''
+    def __init__(self, *args, **kwargs):
+        self.proposal_model_class = kwargs.pop('proposal_class', PopularProposal)
+        super(ProposalsGetterBase, self).__init__(*args, **kwargs)
+
     def proposals(self, election):
         commitments = Commitment.objects.filter(commited=True, candidate__elections=election)
-        return list(PopularProposal.objects.filter(commitments__in=commitments).distinct())
+        return list(self.proposal_model_class.objects.filter(commitments__in=commitments).distinct())
 
     def get_elections(self, proposals_container_element):
+        if proposals_container_element is None:
+            proposals_container_element = self.get_default_area()
         if isinstance(proposals_container_element, Election):
             return [proposals_container_element]
         has_parent = True
@@ -42,8 +54,13 @@ class ProposalsGetterBase(object):
         proposals = self.get_proposals_from_election(elections)
         return proposals
 
+    def get_cache_key(self, area):
+        if area and hasattr(area, 'id'):
+            return self.cache_key + str(area.id)
+        return self.cache_key
+
     def get_all_proposals(self, area):
-        cache_key =  self.cache_key + str(area.id)
+        cache_key =  self.get_cache_key(area)
         if cache.get(cache_key) is not None:
             return cache.get(cache_key)
         proposals = self._get_all_proposals(area)
@@ -51,7 +68,7 @@ class ProposalsGetterBase(object):
         return proposals
 
     def get_default_proposals_from_elections(self, elections):
-        return PopularProposal.ordered.filter(commitments__candidate__elections__in=elections).order_by('-num_likers')
+        return self.proposal_model_class.ordered.filter(commitments__candidate__elections__in=elections).order_by('-num_likers')
 
 class ProposalsGetter(ProposalsGetterBase):
     cache_key = 'proposals_for_'
@@ -99,14 +116,15 @@ class ProposalsGetterByReadingGroup(ProposalsGetterBase):
                             are_there_still_more_proposals = False
             index += 1
         
-        return PopularProposal.objects.filter(id__in=ids)
+        return self.proposal_model_class.objects.filter(id__in=ids)
 
 
 class ByOnlySiteProposalGetter(ProposalsGetterBase):
     cache_key = 'proposals_per_site_for_'
 
-    def __init__(self, site):
-        self.site = site
+    def __init__(self, *args, **kwargs):
+        self.site = kwargs.pop('site')
+        super(ByOnlySiteProposalGetter, self).__init__(*args, **kwargs)
 
     def _get_all_proposals(self, area):
-        return PopularProposal.objects.filter(sites=self.site)
+        return self.proposal_model_class.objects.filter(sites=self.site)

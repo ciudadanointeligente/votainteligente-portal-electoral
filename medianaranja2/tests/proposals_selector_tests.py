@@ -176,7 +176,7 @@ class ByOnlySiteProposalGetterTestCase(MediaNaranjaAdaptersBase):
     @override_config(MEDIA_NARANJA_MAX_NUM_PR=200)
     def test_get_proposals(self):
         site = Site.objects.get_current()
-        getter = ByOnlySiteProposalGetter(site=site)
+        getter = ByOnlySiteProposalGetter(site=site, proposal_class=PopularProposal)
         # p1 and p3 have site related
         PopularProposalSite.objects.create(popular_proposal=self.p1, site=site)
         PopularProposalSite.objects.create(popular_proposal=self.p3, site=site)

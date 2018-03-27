@@ -44,7 +44,7 @@ for e in estados:
         i = 0
         while i < 3:
             i += 1
-            n = u"Candidato número " + unicode(i) + u" pelo " + election.name + u" em " + election.area.name
+            n = u"C n" + unicode(i) + u"p" + election.name
             cand, created = Candidate.objects.get_or_create(name=n)
             election.candidates.add(cand)
 

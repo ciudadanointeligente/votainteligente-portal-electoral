@@ -31,7 +31,14 @@
           </span>            
       </div>
     {% endfor %}
-    {{form.area}}
+    <div class="question">
+          <span class="question-title">
+              {{form.area.label}}
+          </span>        
+          <div class="answer">
+          {{form.area}}
+          </div>
+        </div>
 
   {% if wizard.steps.prev %}
   <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}" class="btn btn-default" onclick="ga('send','event','primer-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "first step" %}</button>

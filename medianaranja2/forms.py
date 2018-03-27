@@ -123,26 +123,43 @@ class MediaNaranjaException(Exception):
 class MediaNaranjaWizardForm(SessionWizardView):
     form_list = FORMS
     template_name = 'medianaranja2/paso_default.html'
+    done_template_name = 'medianaranja2/resultado.html'
+    steps_and_functions = {
+        1: 'get_categories_form_kwargs',
+        2: 'get_proposals_form_kwargs'
+    }
 
     def get_proposal_class(self):
         if config.ESTRATEGIA_SELECCION_PROPUESTAS == 'reading_group':
             return ProposalsGetterByReadingGroup
         return ProposalsGetter
 
+    def get_proposal_getter_kwargs(self):
+        return {}
+
+    def get_proposal_getter(self):
+        return self.get_proposal_class()(**self.get_proposal_getter_kwargs())
+
+    def get_organization_templates(self, proposals):
+        is_creator_of_this_proposals_filter = Q(organization__proposals__in=proposals)
+        is_liker_of_this_proposals = Q(organization__likes__proposal__in=proposals)
+        organization_templates = OrganizationTemplate.objects.filter(is_creator_of_this_proposals_filter|is_liker_of_this_proposals).distinct()
+        return organization_templates
+        
     def done(self, form_list, **kwargs):
         cleaned_data = self.get_all_cleaned_data()
         results = []
         has_parent = True
-        element_selector = cleaned_data['element_selector']
-        elections = self.get_proposal_class()().get_elections(element_selector)
+        element_selector = self.get_element_selector_from_cleaned_data(cleaned_data)
+        elections = self.get_proposal_getter().get_elections(element_selector)
+        proposals = cleaned_data.get('proposals', [])
+        positions = cleaned_data.get('positions', [])
         for election in elections:
-            calculator = Calculator(election, cleaned_data['positions'], cleaned_data['proposals'])
+            calculator = Calculator(election, positions, proposals)
             results.append(calculator.get_result())
 
-        is_creator_of_this_proposals_filter = Q(organization__proposals__in=cleaned_data['proposals'])
-        is_liker_of_this_proposals = Q(organization__likes__proposal__in=cleaned_data['proposals'])
-        organization_templates = OrganizationTemplate.objects.filter(is_creator_of_this_proposals_filter|is_liker_of_this_proposals).distinct()
-        return render(self.request, 'medianaranja2/resultado.html', {
+        organization_templates = self.get_organization_templates(proposals)
+        return render(self.request, self.done_template_name, {
             'results': results,
             'organizations': organization_templates
         })
@@ -158,6 +175,27 @@ class MediaNaranjaWizardForm(SessionWizardView):
             self.storage.current_step = self.steps.first
             return self.render(self.get_form())
 
+    def get_categories_form_kwargs(self, cleaned_data):
+        return {'categories': list(cleaned_data['categories'])}
+
+    def get_element_selector_from_cleaned_data(self, cleaned_data):
+        return cleaned_data['element_selector']
+
+    def get_proposals_form_kwargs(self, cleaned_data):
+        proposal_getter_kwargs = self.get_proposal_getter_kwargs()
+        getter = self.get_proposal_class()(**proposal_getter_kwargs)
+        element_selector = self.get_element_selector_from_cleaned_data(cleaned_data)
+        proposals = getter.get_all_proposals(element_selector)
+        return {'proposals': proposals, 'element_selector': element_selector}
+
+
+    def get_kwargs_from_step_number(self, number, cleaned_data):
+        func_name = self.steps_and_functions.get(number, None)
+        if func_name is None:
+            return {}
+        func = getattr(self, func_name, None)
+        return func(cleaned_data)
+
     def get_form_kwargs(self, step):
         step = int(step)
         cleaned_data = {}
@@ -165,14 +203,7 @@ class MediaNaranjaWizardForm(SessionWizardView):
             cleaned_data = self.get_cleaned_data_for_step(str(0))
             if cleaned_data is None:
                 raise MediaNaranjaException()
-        if step == 1:
-            return {'categories': list(cleaned_data['categories'])}
-        if step == 2:
-            getter = self.get_proposal_class()()
-            proposals = getter.get_all_proposals(cleaned_data['element_selector'])
-            return {'proposals': proposals, 'element_selector': cleaned_data['element_selector']}
-
-        return {}
+        return self.get_kwargs_from_step_number(step, cleaned_data)
 
 
 class MediaNaranjaResultONLYFORDEBUG(TemplateView):# pragma: no cover

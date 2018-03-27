@@ -82,7 +82,21 @@ Puede tomar algo de tiempo el tener todo instalado
 y entra a  http://localhost:8000/.
 
 ## Temas
----
+### #MeRepresenta
+Se você quiser trabalhar em #MeRepresenta, você deve, além do acima, fazer o upload dos dados de amostra para o projeto.
+```
+./manage.py loaddata merepresenta_example.yaml
+```
+
+E também adicione ao arquivo `votainteligente/local_settings.py` (e crie o arquivo se você não tiver criado) o seguinte:
+```
+## SPECIFIC CONFIGS for #MEREPRESENTA
+MEREPRESENTA_SITE_ID=2
+DEFAULT_AREA=u'brasil-country-br'
+FILTERABLE_AREAS_TYPE=['state', ]
+```
+
+
 
 ### Temas creados anteriormente
 

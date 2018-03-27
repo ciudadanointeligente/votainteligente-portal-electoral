@@ -1,0 +1,445 @@
+.btn-1 {
+    background-color: #582985;
+    color: #097e74;
+    font-weight: bolder;
+}
+.btn-1-inv {
+    background-color: #00a99d;
+    color: #582985;
+    font-weight: bolder;
+}
+.btn-2 {
+    background-color: #d8b212;
+    color: #582985;
+    font-weight: bolder;
+}
+.btn-2-inv {
+    background-color: #582985;
+    color: #d8b212;
+    font-weight: bolder;
+}
+.btn-3 {
+    background-color: #097e74;
+    color: #582985;
+    font-weight: bolder;
+}
+.invisivel {
+    display: none;
+}
+body {
+    font-family: ProximaNovaSoft-Regular;
+}
+.btn-amarelo-roxo,.btn-amarelo-roxo:hover {
+    background-color: #d8b212;
+    color: #582985;
+    font-weight: bolder;
+}
+.btn-roxo-amarelo,.btn-roxo-amarelo:hover {
+    background-color: #582985;
+    color: #d8b212;
+    font-weight: bolder;
+}
+.btn-verdeescuro-roxo,.btn-verdeescuro-roxo:hover {
+    background-color: #097e74;
+    color: #582985;
+    font-weight: bolder;
+}
+.btn-verdeclaro-roxo,.btn-verdeclaro-roxo:hover {
+    background-color: #00a99d;
+    color: #582985;
+    font-weight: bolder;
+}
+.main-menu-item {
+    background-color: transparent;
+    border: none;
+}
+.main-menu-item:hover {
+    border-left: 1px dotted lightgray;
+    box-shadow: inset 1 -1 0px lightgray;
+}
+.user-image {
+    display: none;
+}
+.user {
+    color: #fff;
+    font-weight: bolder;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: #fff;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #fff;
+    font-weight: bolder;
+}
+.navbar-light .navbar-nav .disabled.nav-link, .navbar-light .navbar-nav .disabled.nav-link:hover {
+    color: lightgray;
+    border: none;
+    color: #582985;
+}
+.navbar-light .navbar-nav .nav-link.dropdown-toggle:hover {
+    border-bottom: none;
+}
+.dropdown-menu {
+    left: inherit;
+    right: 0;
+}
+@media screen and (min-width: 768px){
+    .user-image {
+        display: initial;
+        border-radius: 1.5em;
+        width: 3em;
+        position: absolute;
+        left: -4em;
+        top: -.4em;
+    }
+    .navbar-light .navbar-nav .nav-link:hover {
+        border-bottom: 1px solid #fff;
+    }
+}
+body {
+    font-size: 13px;
+    background-color: #552e76;
+    color: #fff;
+    background-image: url('/static/img/merepresenta/FE1.png');
+    background-size: cover;
+}
+.container {
+    display: relative;
+}
+img.logo {
+    max-width: 100%;
+}
+header {
+    padding: 1em;
+    border-bottom: 1px solid #7e5c9e;
+}
+.content>h2 {
+    display: block;
+    font-size: 1.2em;
+    font-weight: bolder;
+    padding: .5em 0 .5em 0;
+}
+.content {
+    color: #fff;
+    padding: 0 2em 0 1em;
+}
+.botao {
+    display: block;
+    width: 38ch;
+    max-width: 100%;
+    margin: 1.5em auto;
+}
+.botao span {
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+.btn  {
+    color: #000;
+    text-transform: uppercase;
+    width: 38ch;
+    max-width: 100%;
+    white-space: normal;
+}
+header {
+    border: none;
+}
+.link, .link:hover {
+    color: transparent;
+    position: relative;
+    margin-right: .5em;
+}
+.link.about:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.link.about {
+    color: #fff;
+    background-size: 2em;
+    background-color: rgba(211, 211, 211, 0.35);
+    background-repeat: no-repeat;
+    height: 4em;
+    display: inline-block;
+    background-position: 1em;
+    padding: 1.3em 1em .7em 1em;
+    text-transform: uppercase;
+}
+.link.facebook:before, .link.contact:before {
+    content: "";
+    background-size: 2em;
+    background-color: rgba(211, 211, 211, 0.35);
+    background-repeat: no-repeat;
+    height: 4em;
+    width: 4em;
+    display: inline-block;
+    position: absolute;
+    background-position: 1em;
+}
+.link.contact:before {
+    background-image: url('/static/img/merepresenta/envelope.svg');
+}
+.link.facebook:before {
+    background-image: url('/static/img/merepresenta/face.svg');
+}
+.links {
+    position: absolute;
+    top: 0;
+}
+.aviso {
+    top: 6em;
+    left: 10%;
+    width: 100%;
+    padding: 1.5em;
+    background-color: rgba(200,200,200,0.8);
+    border-radius: .5em;
+    border: 1px solid white;
+    font-weight: bolder;
+    letter-spacing: .1em;
+    margin-bottom: 2em;
+}
+.aviso input, .aviso label {
+    display: none;
+}
+.aviso span {
+    color: red;
+}
+@media screen and (min-width: 360px) {
+    body {
+        font-size: 1rem;
+    }
+}
+@media screen and (min-width: 600px) {
+    .link, .link:hover {
+        color: transparent;
+        position: relative;
+        margin-right: 1.5em;
+    }
+    .link.facebook {
+        margin-right: .665em;
+    }
+    .link.about {
+        padding: 5.3em 1em 2.7em 1em;
+        margin-right: 0;
+    }
+    .link.contact:before, .link.facebook:before {
+        background-size: 3em;
+        height: 8em;
+        width: 5em;
+        border-radius: 0;
+    }
+    .link.contact:before {
+        background-position: 1em 5em;
+    }
+    .link.facebook:before {
+        background-position: 1em 4.5em;
+    }
+}
+@media screen and (min-width: 991px) {
+    body {
+        background-repeat: no-repeat;
+    }
+    main {
+    }
+    img.logo {
+        display: none;
+    }
+    .content {
+        float: right;
+        width: 51%;
+        margin: 15% 0;
+    }
+    .container {
+        background-image: url("/static/img/merepresenta/01.png");
+        background-size: 60%;
+        background-repeat: no-repeat;
+        background-position: -24% 60%;
+    }
+    .links {
+        left: 10%;
+    }
+    nav a {
+        margin-right: 2em;
+    }
+    .aviso {
+        background-color: rgba(141, 114, 164,.8);
+        position: absolute;
+        left: 50%;
+        width: 43%;
+        top: 4%;
+        padding: 1em;
+        max-width: 519px;
+    }
+    .aviso span {
+        color: #d8b212;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .sistema {
+        display: flex;
+        justify-content: space-between;
+    }
+    .botao, .voluntario {
+        width: 100%;
+    }
+    .sistema .botao {
+        width: 26ch;
+        margin: 0;
+    }
+}
+
+body {
+    background-color: #582985;
+    background-image: url('/static/img/merepresenta/FE3.png');
+}
+h2 {
+    font-family: ProximaNovaSoft-Bold;
+    text-transform: uppercase;
+    color: #097e74;
+    font-size: 1.2em;
+    text-align: center;
+}
+.conteudo {
+    margin: 2em 0;
+    font-family: ProximaNovaSoft-Bold;
+}
+h1 {
+    color: #d8b212;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    font-weight: bolder;
+    text-align: center;
+}
+p {
+    color: #fff;
+    margin: 2em 0;
+}
+.btn-2 {
+    border: 2px solid #d8b212;
+    padding: 1em;
+    margin: auto;
+    display: block;
+    width: 36ch;
+    max-width: 100%;
+    text-transform: uppercase;
+    font-weight: bolder;
+    margin-top: 4em;
+    font-size: 1.2em;
+}
+.btn.invisivel {
+    display: none;
+}
+.conteudo a, .conteudo a:hover {
+    color: white;
+    border-bottom: 1px solid #fff;
+    text-decoration: none;
+}
+@media screen and (min-width: 768px) {
+    h2 {
+        font-size: 1.5em;
+    }
+}
+@media screen and (min-width: 1200px) {
+    th {
+        background-color: #097e74;
+        border: 1em solid #582985;
+        padding: 1em;
+    }
+    h2 {
+        font-size: 2em;
+    }
+    label {
+        display: block;
+        font-size: .8em;
+    }
+}
+
+.candidatos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.candidato {
+    background-color: #097e74;
+    display: inline-block;
+    width: 300px;
+    margin: 1em;
+    padding: 1.5em;
+}
+.can-pic {
+    display: block;
+    margin: 0 auto 1em auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.info-text {
+    text-transform: uppercase;
+    color: #fff;
+    display: block;
+    text-align: center;
+}
+.info-text.name {
+    font-weight: bolder;
+}
+.candidate-number {
+    font-size: 3em;
+}
+.info-text.party, .info-text.contagem {
+    color: #d8b212;
+}
+.info-text.nota {
+    padding-top: .2em;
+    background-color: #d8b212;
+    color: #532985;
+    border-radius: .3em;
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}

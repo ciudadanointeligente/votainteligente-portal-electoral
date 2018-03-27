@@ -1,0 +1,55 @@
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+{% load cache %}
+{% load bootstrap3 %}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="og:title" content="Encontre candidaturas a vereador/a comprometidas com Direitos Humanos!">
+    <meta name="og:description" content="Responda ao questionário e encontre candidaturas que respeitam e promovem Direitos Humanos na sua cidade.">
+    <meta name="og:image" content="https://s3.amazonaws.com/hub-central/uploads/1473183975_thumb_Meme_Minha_Sampa_1024.jpg">
+    <link rel="icon" href="http://2016.merepresenta.org.br/assets/4ico.png">
+
+    <link rel="stylesheet" href="{% static 'css/merepresenta/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/merepresenta/jquery-ui.structure.css' %}">
+    <link rel="stylesheet" href="{% static 'css/merepresenta/jquery-ui.theme.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/merepresenta/MyFontsWebfontsKit.css' %}">
+    <link rel="stylesheet" href="{% static 'css/merepresenta/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/merepresenta/merepresenta.css' %}">
+    <link rel="stylesheet" href="{% static 'css/merepresenta/merepresentalogged.css' %}">
+    <link rel="stylesheet" href="{% static 'css/merepresenta/candidates-match.css' %}">
+
+</head>
+<body>
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+    <footer>
+        {% block extra_footer %}
+        {% endblock extra_footer %}
+    </footer>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{% static 'js/merepresenta.js' %}"></script>
+    {% block scripts %}
+    {% endblock scripts %}
+    <script>
+         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+         ga('create', 'UA-26278513-33', 'auto');
+         ga('send', 'pageview');
+    </script>
+</body>
+</html>

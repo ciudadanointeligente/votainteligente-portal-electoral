@@ -16,17 +16,19 @@ from constance.test import override_config
 
 
 class MediaNaranjaAdaptersBase(TestCase):
+    popular_proposal_class = PopularProposal
+    commitment_class = Commitment
     def setUp(self):
         a = Area.objects.create(name="Territory")
         self.election = Election.objects.create(
-            name='the name', slug="the-election", area=a)
+            name='the name', slug=u"the-election", area=a)
 
         TakenPosition.objects.all().delete()
-        self.c1 = Candidate.objects.create(name='C1')
+        self.c1 = Candidate.objects.create(name=u'C1')
         self.election.candidates.add(self.c1)
-        self.c2 = Candidate.objects.create(name='C2')
+        self.c2 = Candidate.objects.create(name=u'C2')
         self.election.candidates.add(self.c2)
-        self.c3 = Candidate.objects.create(name='C3')
+        self.c3 = Candidate.objects.create(name=u'C3')
         self.election.candidates.add(self.c3)
 
     def setUpQuestions(self):
@@ -82,17 +84,17 @@ class MediaNaranjaAdaptersBase(TestCase):
 
     def setUpProposals(self):
         proposer = User.objects.create_user(username="proposer")
-        self.p1 = PopularProposal.objects.create(proposer=proposer,
+        self.p1 = self.popular_proposal_class.objects.create(proposer=proposer,
                                                  title=u'p1',
                                                  clasification='educ',
                                                  data={}
                                                  )
-        self.p2 = PopularProposal.objects.create(proposer=proposer,
+        self.p2 = self.popular_proposal_class.objects.create(proposer=proposer,
                                                  title=u'P2',
                                                  clasification='educ',
                                                  data={}
                                                  )
-        self.p3 = PopularProposal.objects.create(proposer=proposer,
+        self.p3 = self.popular_proposal_class.objects.create(proposer=proposer,
                                                  clasification='educ',
                                                  title=u'P3',
                                                  data={}
@@ -108,7 +110,7 @@ class MediaNaranjaAdaptersBase(TestCase):
             c = getattr(self, key)
             proposals = commitments[key]
             for proposal in proposals:
-                Commitment.objects.create(candidate=c, proposal=proposal, commited=True)
+                self.commitment_class.objects.create(candidate=c, proposal=proposal, commited=True)
 
 class AdaptersTest(MediaNaranjaAdaptersBase):
     def setUp(self):

@@ -165,6 +165,12 @@ class ProposalsOrderedManager(ProposalsManager):
         return qs
 
 
+# @python_2_unicode_compatible
+class PopularProposalSite(models.Model):
+    popular_proposal = models.ForeignKey('PopularProposal')
+    site = models.ForeignKey(Site)
+
+
 @python_2_unicode_compatible
 class PopularProposal(models.Model, OGPMixin):
     title = models.CharField(max_length=255, default='')
@@ -172,6 +178,7 @@ class PopularProposal(models.Model, OGPMixin):
     proposer = models.ForeignKey(User, related_name='proposals')
     area = models.ForeignKey(Area, related_name='proposals', null=True, blank=True)
     join_advocacy_url = models.URLField(null=True, blank=True)
+    sites = models.ManyToManyField(Site, related_name='proposals', through=PopularProposalSite)
     data = PickledObjectField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
@@ -413,9 +420,12 @@ class Commitment(models.Model):
     commited = models.NullBooleanField(default=None)
     objects = CommitmentManager()
 
+    def _save(self, *args, **kwargs):
+        return super(Commitment, self).save(*args, **kwargs)
+
     def save(self, *args, **kwargs):
         creating = self.pk is None
-        instance = super(Commitment, self).save(*args, **kwargs)
+        instance = self._save(*args, **kwargs)
         from popular_proposal.subscriptions import notification_trigger
         notification_trigger('new-commitment',
                              proposal=self.proposal,

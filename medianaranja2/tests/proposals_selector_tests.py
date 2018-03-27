@@ -1,13 +1,17 @@
 # coding=utf-8
 from .adapter_tests import MediaNaranjaAdaptersBase
-from medianaranja2.proposals_getter import ProposalsGetter, ProposalsGetterByReadingGroup
+from medianaranja2.proposals_getter import (ProposalsGetter,
+                                            ProposalsGetterByReadingGroup,
+                                            ByOnlySiteProposalGetter)
 from elections.models import Area, Election, Candidate
 from django.contrib.auth.models import User
 from popular_proposal.models import (PopularProposal,
                                      Commitment,
                                      ProposalLike,
+                                     PopularProposalSite,
                                      )
 from constance.test import override_config
+from django.contrib.sites.models import Site
 from medianaranja2.models import ReadingGroup
 
 
@@ -156,3 +160,28 @@ class ByLectureGroupAdapterTest(MediaNaranjaAdaptersBase):
         self.assertIn(self.p1, proposals)
         self.assertIn(self.p2, proposals)
         self.assertIn(self.p3, proposals)
+
+
+class ByOnlySiteProposalGetterTestCase(MediaNaranjaAdaptersBase):
+    def setUp(self):
+        super(ByOnlySiteProposalGetterTestCase, self).setUp()
+        self.setUpProposals()
+        liker = User.objects.create_user(username="lovable_user")
+        liker2 = User.objects.create_user(username="lovable_user2")
+        ProposalLike.objects.create(proposal=self.p1, user=liker)
+        ProposalLike.objects.create(proposal=self.p3, user=liker)
+        ProposalLike.objects.create(proposal=self.p1, user=liker2)
+        self.child = Area.objects.create(name="children")
+
+    @override_config(MEDIA_NARANJA_MAX_NUM_PR=200)
+    def test_get_proposals(self):
+        site = Site.objects.get_current()
+        getter = ByOnlySiteProposalGetter(site=site, proposal_class=PopularProposal)
+        # p1 and p3 have site related
+        PopularProposalSite.objects.create(popular_proposal=self.p1, site=site)
+        PopularProposalSite.objects.create(popular_proposal=self.p3, site=site)
+        # p2 does not have anything related
+        proposals = getter.get_all_proposals(self.child)
+        self.assertIn(self.p1, proposals)
+        self.assertIn(self.p3, proposals)
+        self.assertNotIn(self.p2, proposals)

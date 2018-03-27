@@ -3,10 +3,15 @@ from django.contrib import admin
 from popular_proposal.models import (PopularProposal,
                                      ProposalTemporaryData,
                                      Commitment,
+                                     PopularProposalSite,
                                      ProposalLike)
 from popular_proposal.forms import ProposalTemporaryDataModelForm
 from popular_proposal.forms.form_texts import TEXTS
 
+
+@admin.register(PopularProposalSite)
+class PopularProposalSiteAdmin(admin.ModelAdmin):
+    pass
 
 @admin.register(PopularProposal)
 class PopularProposalAdmin(admin.ModelAdmin):

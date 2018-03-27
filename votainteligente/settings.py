@@ -71,6 +71,7 @@ INSTALLED_APPS = (
     'medianaranja2',
     # 'debug_panel',
     'proposal_subscriptions',
+    'merepresenta',
     'constance',
     'custom_sites',
 )

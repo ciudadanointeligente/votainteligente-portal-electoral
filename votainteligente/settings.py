@@ -72,7 +72,6 @@ INSTALLED_APPS = (
     # 'debug_panel',
     'proposal_subscriptions',
     'merepresenta',
-    'constance',
     'constance.backends.database',
     'custom_sites',
 )

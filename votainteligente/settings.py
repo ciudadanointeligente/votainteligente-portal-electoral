@@ -29,6 +29,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
     'test_without_migrations',
+    'constance.backends.database',
     'django_nose',
     'django.contrib.sitemaps',
     'linaro_django_pagination',
@@ -72,7 +73,6 @@ INSTALLED_APPS = (
     # 'debug_panel',
     'proposal_subscriptions',
     'merepresenta',
-    'constance.backends.database',
     'custom_sites',
 )
 INSTALLED_APPS_AFTER_ALL = ('el_pagination',)

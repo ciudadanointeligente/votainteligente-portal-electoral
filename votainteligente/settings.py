@@ -457,7 +457,6 @@ from votainteligente.votainteligente_settings import *
 if THEME:
     INSTALLED_APPS += (THEME, )
 INSTALLED_APPS += ('votai_general_theme', )
-INSTALLED_APPS += INSTALLED_APPS_AFTER_ALL
 
 if TESTING:
     from testing_settings import *
@@ -466,3 +465,4 @@ else:
         from local_settings import *
     except ImportError, e:
         pass
+INSTALLED_APPS += INSTALLED_APPS_AFTER_ALL

@@ -7,8 +7,11 @@ from medianaranja2.views import ShareYourResult, ShareMyResultPlz,ShareMyResultO
 
 media_naranja2_view = MediaNaranjaWizardForm.as_view()
 
-if config.PRUEBAS_DE_CARGA_MEDIA_NARANJA:
-    media_naranja2_view = csrf_exempt(media_naranja2_view)
+try:
+    if config.PRUEBAS_DE_CARGA_MEDIA_NARANJA:
+        media_naranja2_view = csrf_exempt(media_naranja2_view)
+except:
+    pass
 
 urlpatterns = [
     url(r'^$',

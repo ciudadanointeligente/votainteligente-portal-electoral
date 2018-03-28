@@ -27,8 +27,11 @@ class AreaManager(models.Manager):
     def get_queryset(self):
 
         qs = super(AreaManager, self).get_queryset()
-        if config.HIDDEN_AREAS:
-            qs = qs.exclude(id=config.HIDDEN_AREAS)
+        try:
+            if config.HIDDEN_AREAS:
+                qs = qs.exclude(id=config.HIDDEN_AREAS)
+        except:
+            pass
         return qs
 
 

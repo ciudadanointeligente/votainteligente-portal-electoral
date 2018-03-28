@@ -73,6 +73,7 @@ INSTALLED_APPS = (
     'proposal_subscriptions',
     'merepresenta',
     'constance',
+    'constance.backends.database',
     'custom_sites',
 )
 INSTALLED_APPS_AFTER_ALL = ('el_pagination',)
@@ -149,6 +150,7 @@ NO_REPLY_MAIL = "no-reply@localhost"
 EMAIL_LOCALPART = 'municipales2016'
 EMAIL_DOMAIN = 'votainteligente.cl'
 FACEBOOK_ACCESS_TOKEN = 'FieraEsLaMejorAmigaDeTodos'
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 CONSTANCE_CONFIG = {
     'SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES':(0,'Duracion cache media naranja'),
     'INFINITE_CACHE':(1440,'Tiempo Cache'),

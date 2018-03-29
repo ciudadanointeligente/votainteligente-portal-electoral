@@ -61,14 +61,14 @@ h2 {
 }
 .answer>input+label:after {
     content: "";
-    background-image: url("/assets/cb0.svg");
+    background-image: url("/static/img/merepresenta/cb0.svg");
     background-size: cover;
     width: 1.5rem;
     height: 1.5rem;
     display: inline-block;
 }
 .answer>input:checked+label:after {
-    background-image: url("/assets/cb1.svg");
+    background-image: url("/static/img/merepresenta/cb1.svg");
 }
 @media screen and (min-width: 500px) {
     h1 {

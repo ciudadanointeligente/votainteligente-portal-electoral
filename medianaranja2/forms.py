@@ -124,6 +124,8 @@ class MediaNaranjaWizardForm(SessionWizardView):
     form_list = FORMS
     template_name = 'medianaranja2/paso_default.html'
     done_template_name = 'medianaranja2/resultado.html'
+    calculator_class = Calculator
+    calculator_extra_kwargs = {}
     steps_and_functions = {
         1: 'get_categories_form_kwargs',
         2: 'get_proposals_form_kwargs'
@@ -155,7 +157,7 @@ class MediaNaranjaWizardForm(SessionWizardView):
         proposals = cleaned_data.get('proposals', [])
         positions = cleaned_data.get('positions', [])
         for election in elections:
-            calculator = Calculator(election, positions, proposals)
+            calculator = self.calculator_class(election, positions, proposals, **self.calculator_extra_kwargs)
             results.append(calculator.get_result())
 
         organization_templates = self.get_organization_templates(proposals)

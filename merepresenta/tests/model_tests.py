@@ -2,8 +2,10 @@
 from django.test import TestCase
 from popular_proposal.models import PopularProposal, Commitment
 from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment
+from merepresenta.models import MeRepresentaCandidate
 from django.contrib.auth.models import User
-from elections.models import Candidate
+from elections.models import Candidate, Election
+from django.core.urlresolvers import reverse
 
 
 class MeRepresentaPopularProposalTestCase(TestCase):
@@ -30,3 +32,11 @@ class MeRepresentaPopularProposalTestCase(TestCase):
                                                            commited=True)
 
         self.assertIsInstance(commitment, Commitment)
+
+    def test_candidate_proxy(self):
+        election = Election.objects.create(name=u'election for children')
+        candidate = MeRepresentaCandidate.objects.create(name=u"name")
+        election.candidates.add(candidate)
+        self.assertIsInstance(candidate, MeRepresentaCandidate)
+        expected_url = reverse('candidate_detail_view', kwargs={'slug': candidate.slug, 'election_slug': election.slug})
+        self.assertEquals(expected_url, candidate.get_absolute_url())

@@ -2,10 +2,10 @@
 from medianaranja2.tests.adapter_tests import MediaNaranjaAdaptersBase
 from django.test import TestCase, override_settings
 from django.core.urlresolvers import reverse
-from merepresenta.forms import MeRepresentaProposalsForm
+from merepresenta.forms import MeRepresentaProposalsForm, MeRepresentaAdapter
 from django.contrib.sites.models import Site
 from popular_proposal.models import (PopularProposalSite)
-from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment
+from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment, MeRepresentaCandidate
 from elections.models import Area
 from django.conf import settings
 from elections.models import Candidate, Election
@@ -15,6 +15,49 @@ class StandAloneSite(TestCase):
     def test_get_index(self):
         response = self.client.get(reverse('index'))
         self.assertEquals(response.status_code, 200)
+
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
+class CandidateDetailView(MediaNaranjaAdaptersBase):
+    def setUp(self):
+        super(CandidateDetailView, self).setUp()
+        self.area = Area.objects.create(name=u"children",
+                                        id=u'20',
+                                        classification=settings.FILTERABLE_AREAS_TYPE[0])
+        self.election = Election.objects.create(name=u'election for children', area=self.area)
+        self.candidate = Candidate.objects.create(name=u"name")
+        self.election.candidates.add(self.candidate)
+
+    def test_get_candidate_detail(self):
+        url = reverse('candidate_detail_view', kwargs={'slug': self.candidate.slug, 'election_slug': self.election.slug})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'merepresenta/base.html')
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls', DEFAULT_AREA='21')
+class MeiaLaranjaAdapterTestCase(MediaNaranjaAdaptersBase):
+    popular_proposal_class = MeRepresentaPopularProposal
+    commitment_class = MeRepresentaCommitment
+    def setUp(self):
+        super(MeiaLaranjaAdapterTestCase, self).setUp()
+        self.site = Site.objects.create(domain='merepresenta.127.0.0.1.xip.io', name='merepresenta')
+        self.setUpProposals()
+        self.area = Area.objects.create(name=u"children",
+                                        id=u'20',
+                                        classification=settings.FILTERABLE_AREAS_TYPE[0])
+        self.mother_of_all_areas = Area.objects.create(name=u"mother",
+                                                       id=u'21',
+                                                       classification='country')
+        self.area.parent = self.mother_of_all_areas
+        self.area.save()
+
+    def test_adapter_returns_merepresenta_candidates(self):
+        election = Election.objects.create(name=u'election for children', area=self.area)
+        candidate = Candidate.objects.create(name=u"name")
+        election.candidates.add(candidate)
+
+        candidate = MeRepresentaAdapter.get_candidates_from_election(election)[0] # there is only one candidate
+        self.assertIsInstance(candidate, MeRepresentaCandidate)
 
 @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls', DEFAULT_AREA='21')
 class MeiaLaranjaTestCase(MediaNaranjaAdaptersBase):

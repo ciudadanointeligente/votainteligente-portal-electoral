@@ -63,7 +63,7 @@
           {% for candidate_result in election_result.candidates %}
 
           <div class="candidato">
-              <a href="#">
+              <a href="{{ candidate_result.candidate.get_absolute_url }}">
                 {% if candidate_result.candidate.image %}
                   {% thumbnail candidate_result.candidate.image "100x100" crop="center" as im %}
                   <img src="{{ im.url }}" alt="{{candidate_result.candidate.name}}" class="can-pic">
@@ -72,9 +72,11 @@
                   <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate_result.candidate.name}}" class="can-pic">
                 {% endif %}
               </a>
-              <span class="info-text name">
-                  {{candidate_result.candidate.name}}
-              </span>
+              <a href="{{ candidate_result.candidate.get_absolute_url }}">
+                <span class="info-text name">
+                    {{candidate_result.candidate.name}}
+                </span>
+              </a>
               <span class="info-text number">
                   nº <span class="candidate-number">{{ forloop.counter }}</span>
               </span>

@@ -5,12 +5,16 @@ from django.core.cache import cache
 
 class CandidateGetterFromElectionMixin(object):
     @classmethod
+    def get_candidates_from_election(cls, election):
+        return election.candidates.order_by('id')
+
+    @classmethod
     def get_candidates_from_election_as_list(cls, election):
         cache_key = 'candidates_for_' + str(election.id)
         if cache.get(cache_key) is not None:
             candidates = cache.get(cache_key)
         else:
-            candidates = list(election.candidates.order_by('id'))
+            candidates = list(cls.get_candidates_from_election(election))
             cache.set(cache_key, candidates)
         return candidates
 
@@ -21,7 +25,7 @@ class Adapter(CandidateGetterFromElectionMixin):
         for position in self.user_positions:
             if position.topic not in self.user_questions:
                 self.user_questions.append(position.topic)
-        self.candidates = Adapter.get_candidates_from_election_as_list(election)
+        self.candidates = self.__class__.get_candidates_from_election_as_list(election)
         self.topics, self.positions = self.get_topics_and_positions(election)
         
 

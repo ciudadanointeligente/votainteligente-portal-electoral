@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/vota
+permissions:
+  - object: /home/ubuntu/vota
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+hooks:
+  AfterInstall:
+    - location: deploy_scripts/install_python_dependencies.sh
+      timeout: 6000
+      runas: ubuntu
+    - location: deploy_scripts/migrate_and_collectstatics.sh
+      timeout: 6000
+      runas: ubuntu
+    - location: deploy_scripts/css.sh
+      timeout: 6000
+      runas: ubuntu

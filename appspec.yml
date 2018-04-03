@@ -11,11 +11,11 @@ permissions:
 hooks:
   AfterInstall:
     - location: deploy_scripts/install_python_dependencies.sh
-      timeout: 6000
+      timeout: 60
       runas: ubuntu
     - location: deploy_scripts/migrate_and_collectstatics.sh
-      timeout: 6000
+      timeout: 60
       runas: ubuntu
     - location: deploy_scripts/css.sh
-      timeout: 6000
+      timeout: 60
       runas: ubuntu

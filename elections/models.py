@@ -243,7 +243,7 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin, ShareableMixin):
     def get_absolute_url(self):
         if config.CANDIDATE_ABSOLUTE_URL_USING_AREA and self.election is not None:
             try:
-                self.get_url_based_on_area()
+                return self.get_url_based_on_area()
             except NoReverseMatch as e:
                 pass
         if self.election:

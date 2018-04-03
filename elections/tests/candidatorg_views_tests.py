@@ -51,6 +51,7 @@ class CandidateInElectionsViewsTestCase(TestCase):
         })
         self.assertEquals(candidate.get_absolute_url(), url_2)
 
+    @override_config(CANDIDATE_ABSOLUTE_URL_USING_AREA=True)
     def test_candidate_get_absolute_url_with_area(self):
         candidate = self.coquimbo.candidates.get(id=1)
         url = reverse('candidate_detail_view_area', kwargs={

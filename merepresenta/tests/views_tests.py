@@ -2,7 +2,7 @@
 from medianaranja2.tests.adapter_tests import MediaNaranjaAdaptersBase
 from django.test import TestCase, override_settings
 from django.core.urlresolvers import reverse
-from merepresenta.forms import MeRepresentaProposalsForm, MeRepresentaAdapter
+from merepresenta.forms import MeRepresentaProposalsForm
 from django.contrib.sites.models import Site
 from popular_proposal.models import (PopularProposalSite)
 from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment
@@ -32,7 +32,7 @@ class CandidateDetailView(MediaNaranjaAdaptersBase):
         url = reverse('candidate_detail_view', kwargs={'slug': self.candidate.slug, 'election_slug': self.election.slug})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'merepresenta/base.html')
+        self.assertTemplateUsed(response, 'base.html')
 
 @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls', DEFAULT_AREA='21')
 class MeiaLaranjaAdapterTestCase(MediaNaranjaAdaptersBase):

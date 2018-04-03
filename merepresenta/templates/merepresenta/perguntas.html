@@ -1,4 +1,4 @@
-{% extends "merepresenta/base2.html" %}
+{% extends "base2.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load thumbnail %}
@@ -28,13 +28,13 @@
           </div>
           <span class="question-title">
               {{y}}
-          </span>            
+          </span>
       </div>
     {% endfor %}
     <div class="question">
           <span class="question-title">
               {{form.area.label}}
-          </span>        
+          </span>
           <div class="answer">
           {{form.area}}
           </div>
@@ -47,4 +47,3 @@
   <input type="submit" name="submit" value="{% trans "Encontrar candidaturas" %}" class="btn btn-1-inv" onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')" />
   </form>
 {% endblock content %}
-

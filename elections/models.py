@@ -3,6 +3,7 @@ from django.db import models
 from autoslug import AutoSlugField
 from taggit.managers import TaggableManager
 from django.core.urlresolvers import reverse
+from django.urls.exceptions import NoReverseMatch
 from popolo.models import Person, Area as PopoloArea
 from django.utils.translation import ugettext_lazy as _
 from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
@@ -225,20 +226,28 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin, ShareableMixin):
         if self.election:
             return self.election.position_in_ranking(self)
 
+    def get_url_based_on_area(self):
+        url = reverse('candidate_detail_view_area', kwargs={
+            'area_slug': self.election.area.slug,
+            'slug': self.slug
+        })
+        return url
+
+    def get_url_based_on_election(self):
+        election_slug = self.election.slug
+        return reverse('candidate_detail_view', kwargs={
+            'election_slug': election_slug,
+            'slug': self.slug
+        })
+
     def get_absolute_url(self):
         if config.CANDIDATE_ABSOLUTE_URL_USING_AREA and self.election is not None:
-            return reverse('candidate_detail_view_area', kwargs={
-                'area_slug': self.election.area.slug,
-                'slug': self.slug
-            })
-        election_slug = ''
+            try:
+                self.get_url_based_on_area()
+            except NoReverseMatch as e:
+                pass
         if self.election:
-            election_slug = self.election.slug
-
-            return reverse('candidate_detail_view', kwargs={
-                'election_slug': election_slug,
-                'slug': self.slug
-            })
+            return self.get_url_based_on_election()
         return None
 
     class Meta:

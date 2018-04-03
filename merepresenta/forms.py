@@ -7,7 +7,7 @@ from django.conf import settings
 from elections.models import Area
 from django.contrib.sites.models import Site
 from medianaranja2.proposals_getter import ByOnlySiteProposalGetter
-from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCandidate
+from merepresenta.models import MeRepresentaPopularProposal
 from django.utils.safestring import mark_safe
 from medianaranja2.adapters import Adapter as OriginalAdapter
 
@@ -39,16 +39,11 @@ class MeRepresentaProposalsForm(forms.Form):
         cache.set(proposals_qs_cache_key, qs)
         self.fields['proposals'].queryset = qs
 
-class MeRepresentaAdapter(OriginalAdapter):
-    @classmethod
-    def get_candidates_from_election(cls, election):
-        return MeRepresentaCandidate.objects.filter(elections=election).order_by('id')
 
 class MeRepresentaMeiaLaranjaWizardForm(MediaNaranjaWizardForm):
     template_name = 'merepresenta/perguntas.html'
     done_template_name = 'merepresenta/resultado.html'
     form_list = [MeRepresentaProposalsForm]
-    calculator_extra_kwargs = {'questions_adapter_class':MeRepresentaAdapter}
     steps_and_functions = {
         0: 'get_proposals_form_kwargs'
     }

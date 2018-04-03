@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from merepresenta.forms import MeRepresentaProposalsForm, MeRepresentaAdapter
 from django.contrib.sites.models import Site
 from popular_proposal.models import (PopularProposalSite)
-from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment, MeRepresentaCandidate
+from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment
 from elections.models import Area
 from django.conf import settings
 from elections.models import Candidate, Election
@@ -50,14 +50,6 @@ class MeiaLaranjaAdapterTestCase(MediaNaranjaAdaptersBase):
                                                        classification='country')
         self.area.parent = self.mother_of_all_areas
         self.area.save()
-
-    def test_adapter_returns_merepresenta_candidates(self):
-        election = Election.objects.create(name=u'election for children', area=self.area)
-        candidate = Candidate.objects.create(name=u"name")
-        election.candidates.add(candidate)
-
-        candidate = MeRepresentaAdapter.get_candidates_from_election(election)[0] # there is only one candidate
-        self.assertIsInstance(candidate, MeRepresentaCandidate)
 
 @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls', DEFAULT_AREA='21')
 class MeiaLaranjaTestCase(MediaNaranjaAdaptersBase):

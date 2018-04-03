@@ -72,8 +72,9 @@ INSTALLED_APPS = (
     'medianaranja2',
     # 'debug_panel',
     'proposal_subscriptions',
-    'merepresenta',
     'custom_sites',
+    'merepresenta',
+    'votai_general_theme',
 )
 INSTALLED_APPS_AFTER_ALL = ('el_pagination',)
 
@@ -118,7 +119,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            # insert your TEMPLATE_DIRS here
+            'votai_general_theme/templates'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -454,9 +455,6 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 from votainteligente.votainteligente_settings import *
-if THEME:
-    INSTALLED_APPS += (THEME, )
-INSTALLED_APPS += ('votai_general_theme', )
 
 if TESTING:
     from testing_settings import *
@@ -465,4 +463,8 @@ else:
         from local_settings import *
     except ImportError, e:
         pass
+
+if THEME:
+    ROOT_URLCONF = '%s.stand_alone_urls' % THEME
+    TEMPLATES[0]['DIRS'] = ['%s/templates' % THEME, 'votai_general_theme/templates']
 INSTALLED_APPS += INSTALLED_APPS_AFTER_ALL

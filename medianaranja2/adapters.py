@@ -27,12 +27,8 @@ class Adapter(CandidateGetterFromElectionMixin):
                 self.user_questions.append(position.topic)
         self.candidates = self.__class__.get_candidates_from_election_as_list(election)
         self.topics, self.positions = self.get_topics_and_positions(election)
-        
 
-    def get_topics_and_positions(self, election):
-        cache_key = 'topics_and_positions_' + str(election.id)
-        if cache.get(cache_key) is not None:
-            return cache.get(cache_key)
+    def _get_topics_and_positions(self, election):
         topics = []
         positions = []
         for category in election.categories.all().order_by('id'):
@@ -40,6 +36,13 @@ class Adapter(CandidateGetterFromElectionMixin):
                 topics.append(topic)
                 for position in topic.positions.all().order_by('id'):
                     positions.append(position)
+        return (topics, positions)
+
+    def get_topics_and_positions(self, election):
+        cache_key = 'topics_and_positions_' + str(election.id)
+        if cache.get(cache_key) is not None:
+            return cache.get(cache_key)
+        topics, positions = self._get_topics_and_positions(election)
         cache.set(cache_key, (topics, positions))
         return (topics, positions)
 

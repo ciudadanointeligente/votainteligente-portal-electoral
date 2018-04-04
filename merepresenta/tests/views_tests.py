@@ -137,6 +137,7 @@ class AnotherQuestionaryTestCase(MediaNaranjaAdaptersBase):
                                                        classification='country')
         self.area.parent = self.mother_of_all_areas
         self.area.save()
+        QuestionCategory.objects.all().update(election=None)
 
 
     def test_get_questionary(self):

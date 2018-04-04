@@ -79,9 +79,21 @@ class MeRepresentaQuestionsForm(QuestionsForm, WithAreaMixin):
         kwargs['categories'] = QuestionCategory.objects.all()
         super(MeRepresentaQuestionsForm, self).__init__(*args, **kwargs)
 
+class MeRepresentaAdapter(OriginalAdapter):
+    def _get_topics_and_positions(self, election):
+        topics = []
+        positions = []
+        for category in QuestionCategory.objects.order_by('id'):
+            for topic in category.topics.order_by('id'):
+                topics.append(topic)
+                for position in topic.positions.all().order_by('id'):
+                    positions.append(position)
+        return (topics, positions)
+
 class MeRepresentaMeiaLaranjaQuestionsWizardForm(MediaNaranjaWizardForm):
     template_name = 'merepresenta/questions.html'
     done_template_name = 'merepresenta/resultado.html'
+    calculator_extra_kwargs = {'questions_adapter_class':MeRepresentaAdapter}
 
     form_list = [MeRepresentaQuestionsForm]
 

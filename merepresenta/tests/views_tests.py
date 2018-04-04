@@ -2,13 +2,13 @@
 from medianaranja2.tests.adapter_tests import MediaNaranjaAdaptersBase
 from django.test import TestCase, override_settings
 from django.core.urlresolvers import reverse
-from merepresenta.forms import MeRepresentaProposalsForm
+from merepresenta.forms import MeRepresentaProposalsForm, MeRepresentaQuestionsForm
 from django.contrib.sites.models import Site
 from popular_proposal.models import (PopularProposalSite)
 from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment
 from elections.models import Area
 from django.conf import settings
-from elections.models import Candidate, Election
+from elections.models import Candidate, Election, QuestionCategory
 
 @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
 class StandAloneSite(TestCase):
@@ -120,3 +120,47 @@ class MeiaLaranjaTestCase(MediaNaranjaAdaptersBase):
             self.assertEquals(response.status_code, 200)
             self.assertNotIn('form', response.context.keys())
             self.assertTrue(response.context['results'][0]['candidates'][0]['value'])
+
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls', DEFAULT_AREA='21')
+class AnotherQuestionaryTestCase(MediaNaranjaAdaptersBase):
+    def setUp(self):
+        QuestionCategory.objects.all().delete()
+        super(AnotherQuestionaryTestCase, self).setUp()
+        self.site = Site.objects.create(domain='merepresenta.127.0.0.1.xip.io', name='merepresenta')
+        self.setUpQuestions()
+        self.area = Area.objects.create(name=u"children",
+                                        id=u'20',
+                                        classification=settings.FILTERABLE_AREAS_TYPE[0])
+        self.mother_of_all_areas = Area.objects.create(name=u"mother",
+                                                       id=u'21',
+                                                       classification='country')
+        self.area.parent = self.mother_of_all_areas
+        self.area.save()
+
+
+    def test_get_questionary(self):
+        response = self.client.get(reverse('questions'))
+        self.assertEquals(response.status_code, 200)
+        form = response.context['form']
+        self.assertIsInstance(form, MeRepresentaQuestionsForm)
+
+    def test_post_questionary(self):
+        url = reverse('questions')
+        response = self.client.get(url)
+        management_form_current_step_slug = response.context['wizard']['management_form'].prefix + '-current_step'
+        a = Area.objects.get(name=u"Territory")
+        a.classification=settings.FILTERABLE_AREAS_TYPE[0]
+        a.save()
+        data = {
+            management_form_current_step_slug: 0,
+            u"0-" + self.topic1.slug: self.position1.id,
+            u"0-" + self.topic2.slug: self.position3.id,
+            u"0-" + self.topic3.slug: self.position5.id,
+            u"0-area": a.id
+        }
+
+        response = self.client.post(url, data=data)
+        self.assertEquals(response.status_code, 200)
+        self.assertNotIn('form', response.context.keys())
+        self.assertTrue(response.context['results'][0]['candidates'][0]['value'])

@@ -27,6 +27,7 @@ class WithAreaMixin(forms.Form):
                                     required=False,
                                     queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE).order_by('name'))
 
+
 class MeRepresentaProposalsForm(WithAreaMixin):
     proposals = MeRepresentaProposalModelMultipleChoiceField(queryset=MeRepresentaPopularProposal.objects.none(),
                                                  widget=forms.CheckboxSelectMultiple(attrs={'class': 'proposal_option'}))
@@ -72,8 +73,20 @@ class MeRepresentaMeiaLaranjaWizardForm(MediaNaranjaWizardForm):
         return {'proposals': proposals}
 
 
-class MeRepresentaQuestionsForm(WithAreaMixin, QuestionsForm):
+class MeRepresentaQuestionsForm(QuestionsForm, WithAreaMixin):
 
     def __init__(self, *args, **kwargs):
         kwargs['categories'] = QuestionCategory.objects.all()
         super(MeRepresentaQuestionsForm, self).__init__(*args, **kwargs)
+
+class MeRepresentaMeiaLaranjaQuestionsWizardForm(MediaNaranjaWizardForm):
+    template_name = 'merepresenta/questions.html'
+    done_template_name = 'merepresenta/resultado.html'
+
+    form_list = [MeRepresentaQuestionsForm]
+
+    def get_template_names(self):
+        return self.template_name
+
+    def get_element_selector_from_cleaned_data(self, cleaned_data):
+        return cleaned_data.get('area', None)

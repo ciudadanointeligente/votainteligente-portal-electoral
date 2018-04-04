@@ -27,19 +27,19 @@ estados = [{"name": u"Acre", 'identifier': u"AC"},
 {"name": u"Tocantins", 'identifier': u"TO"}]
 
 
-
+from elections.models import Topic, QuestionCategory
 
 from elections.models import Area, Election
 brasil = Area.objects.create(name="Brasil", identifier="BR", classification="country")
-c, created = Election.objects.get_or_create(name="Presidente do Brasil", area=brasil, position=u"Presidente")
+# c, created = Election.objects.get_or_create(name="Presidente do Brasil", area=brasil, position=u"Presidente")
 for e in estados:
 
     a, created = Area.objects.get_or_create(name=e['name'], identifier=e['identifier'], classification=u'state', parent=brasil)
-    g, created = Election.objects.get_or_create(name="Gobernador de " + e['name'], area=a, position=u"Gobernador/a")
+    # g, created = Election.objects.get_or_create(name="Gobernador de " + e['name'], area=a, position=u"Gobernador/a")
     d_e, created = Election.objects.get_or_create(name="Deputado Estadual", area=a, position=u'Diputada/o Estadual')
     d_f, created = Election.objects.get_or_create(name="Deputado Federal", area=a, position=u'Diputada/o Federal')
     s_f, created = Election.objects.get_or_create(name="Senado Federal", area=a, position=u'Senador/a Federal')
-    elections = [c, g, d_e, d_f, s_f]
+    elections = [ d_e, d_f, s_f]
     for election in elections:
         i = 0
         while i < 3:
@@ -70,30 +70,48 @@ from merepresenta.models import MeRepresentaPopularProposal
 
 site, created = Site.objects.get_or_create(name="#MeRepresenta", domain="merepresenta.127.0.0.1.xip.io:8000")
 CustomSite.objects.get_or_create(site=site, urlconf="merepresenta.stand_alone_urls")
-proposer, created = User.objects.get_or_create(username="merepresenta", email="merepresenta@merepresenta.org")
+# proposer, created = User.objects.get_or_create(username="merepresenta", email="merepresenta@merepresenta.org")
+cat, created = QuestionCategory.objects.get_or_create(name=u"#Merepresenta")
+topics = []
 for p in ps:
-    p = MeRepresentaPopularProposal.objects.create(proposer=proposer,
-                                                   clasification='ddhh',
-                                                   title=p['name'],
-                                                   one_liner=p['name'],
-                                                   data={}
-                                                   )
-    PopularProposalSite.objects.create(site=site, popular_proposal=p)
+    t = Topic.objects.create(
+        label=p['name'],
+        category=cat)
+    sim = Position.objects.create(
+        topic=t,
+        label=u"Sim"
+    )
+    non = Position.objects.create(
+        topic=t,
+        label=u"Non"
+    )
+    topics.append(t)
+    # p = MeRepresentaPopularProposal.objects.create(proposer=proposer,
+    #                                                clasification='ddhh',
+    #                                                title=p['name'],
+    #                                                one_liner=p['name'],
+    #                                                data={}
+    #                                                )
+    # PopularProposalSite.objects.create(site=site, popular_proposal=p)
 
 
 
 cs = Candidate.objects.filter(elections__area__name__in=[u"São Paulo", u"Río de Janeiro", u"Brasil"]).order_by("?")
-ps = MeRepresentaPopularProposal.objects.order_by('?')
+# ps = MeRepresentaPopularProposal.objects.order_by('?')
 
 from random import random
 for c in cs:
-    for p in ps:
+    for t in topics:
         r = random()
         if r > 0.5:
-            MeRepresentaCommitment.objects.create(candidate=c,
-                                                   proposal=p,
-                                                   commited=True)
+            position=t.positions.first()
+        else:
+            position=t.positions.last()
+        TakenPosition.objects.create(topic=t,
+                                      position=position,
+                                      person=c
+                                      )
 
 
 
-# ./manage.py dumpdata --format=yaml sites auth backend_citizen organization_profiles custom_sites popolo elections popular_proposal > merepresenta_example.yaml
+# ./manage.py dumpdata --format=yaml sites auth backend_citizen organization_profiles custom_sites popolo candidator elections > merepresenta_example.yaml

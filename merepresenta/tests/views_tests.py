@@ -102,25 +102,6 @@ class MeiaLaranjaTestCase(MediaNaranjaAdaptersBase):
             self.assertNotIn('form', response.context.keys())
             self.assertTrue(response.context['results'][0]['candidates'][0]['value'])
 
-    def test_post_questionary_without_area(self):
-        # MeRepresentaCommitment.objects.create
-        election = Election.objects.create(name=u'election for mother', area=self.mother_of_all_areas)
-        candidate = Candidate.objects.create(name=u"name")
-        election.candidates.add(candidate)
-        MeRepresentaCommitment.objects.create(proposal=self.p1, candidate=candidate, commited=True)
-        with override_settings(MEREPRESENTA_SITE_ID=self.site.id):
-            response = self.client.get(reverse('questionary'))
-            management_form_current_step_slug = response.context['wizard']['management_form'].prefix + '-current_step'
-            data = {
-                management_form_current_step_slug: 0,
-                '0-proposals': [self.p1.id, self.p3.id],
-                # '0-area': self.area.id
-            }
-            response = self.client.post(reverse('questionary'), data=data)
-            self.assertEquals(response.status_code, 200)
-            self.assertNotIn('form', response.context.keys())
-            self.assertTrue(response.context['results'][0]['candidates'][0]['value'])
-
 
 @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls', DEFAULT_AREA='21')
 class AnotherQuestionaryTestCase(MediaNaranjaAdaptersBase):

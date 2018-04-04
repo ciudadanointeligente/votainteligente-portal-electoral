@@ -59,7 +59,7 @@
 
         {% for election_result in results %}
         <div class="col-md-12">
-          <h2>Tu media naranja política para {{election_result.election}} es</h2>
+          <h2>No {{election_result.election}} seus candidatos são</h2>
           {% for candidate_result in election_result.candidates %}
 
           <div class="candidato">
@@ -105,5 +105,5 @@
 
 
 
-<a href="{% url 'index' %}" class="btn btn-success pull-right" role="button" onclick="ga('send','event','juega-de-nuevo','click')">Juega de nuevo</a>
+<a href="{% url 'questions' %}" class="btn btn-success pull-right" role="button" onclick="ga('send','event','juega-de-nuevo','click')">Jogar de novo</a>
 {% endblock content %}

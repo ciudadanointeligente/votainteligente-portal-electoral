@@ -22,9 +22,9 @@ class MeRepresentaProposalModelMultipleChoiceField(forms.ModelMultipleChoiceFiel
 
 class WithAreaMixin(forms.Form):
     area = forms.ModelChoiceField(label=u"Em que estado você vota?",
-                                    help_text=u"Se você quiser saber com que candidatura ao Congresso você é mais compatível, escolha o estado em que você vota. Se você está interessado apenas em sua mídia presidencial, escolha 'não se aplica'.",
-                                    empty_label=u"Não se aplica",
-                                    required=False,
+                                    help_text=u"Se você quiser saber com que candidatura ao Congresso você é mais compatível, escolha o estado em que você vota.",
+                                    empty_label=u"Selecione seu estado",
+                                    required=True,
                                     queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE).order_by('name'))
 
 

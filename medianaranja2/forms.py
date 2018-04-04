@@ -63,7 +63,7 @@ class SetupForm(forms.Form):
         else:
             if cleaned_data['area'] is None:
                 cleaned_data['area'] = Area.objects.get(id=config.DEFAULT_AREA)
-        
+
         if 'area' in cleaned_data.keys():
             cleaned_data['element_selector'] = cleaned_data['area']
 
@@ -71,10 +71,15 @@ class SetupForm(forms.Form):
 
 
 class QuestionsForm(forms.Form):
-
+    topic_fields = []
     def __init__(self, *args, **kwargs):
-        self.categories = kwargs.pop('categories')
+        categories = kwargs.pop('categories')
         super(QuestionsForm, self).__init__(*args, **kwargs)
+        self.set_fields(categories)
+
+
+    def set_fields(self, categories):
+        self.categories = categories
         for category in self.categories:
             for topic in category.topics.order_by('id'):
                 field = PositionChoiceField(label=topic.label,
@@ -83,12 +88,16 @@ class QuestionsForm(forms.Form):
                                             widget=forms.RadioSelect
                                             )
                 self.fields[topic.slug] = field
+                self.topic_fields.append(topic.slug)
 
     def clean(self):
         cleaned_data = super(QuestionsForm, self).clean()
         r = {"positions": []}
         for topic in cleaned_data:
-            r['positions'].append(cleaned_data[topic])
+            if topic in self.topic_fields:
+                r['positions'].append(cleaned_data[topic])
+            else:
+                r[topic] = cleaned_data[topic]
 
         return r
 
@@ -147,7 +156,7 @@ class MediaNaranjaWizardForm(SessionWizardView):
         is_liker_of_this_proposals = Q(organization__likes__proposal__in=proposals)
         organization_templates = OrganizationTemplate.objects.filter(is_creator_of_this_proposals_filter|is_liker_of_this_proposals).distinct()
         return organization_templates
-        
+
     def done(self, form_list, **kwargs):
         cleaned_data = self.get_all_cleaned_data()
         results = []

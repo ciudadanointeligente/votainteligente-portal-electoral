@@ -1,10 +1,10 @@
 # coding=utf-8
 from django import forms
-from medianaranja2.forms import ProposalModelMultipleChoiceField, MediaNaranjaWizardForm
+from medianaranja2.forms import ProposalModelMultipleChoiceField, MediaNaranjaWizardForm, QuestionsForm
 from popular_proposal.models import PopularProposal
 from django.core.cache import cache
 from django.conf import settings
-from elections.models import Area
+from elections.models import Area, QuestionCategory
 from django.contrib.sites.models import Site
 from medianaranja2.proposals_getter import ByOnlySiteProposalGetter
 from merepresenta.models import MeRepresentaPopularProposal
@@ -19,14 +19,17 @@ class MeRepresentaProposalModelMultipleChoiceField(forms.ModelMultipleChoiceFiel
     def label_from_instance(self, obj):
         return mark_safe( obj.get_one_liner() )
 
-class MeRepresentaProposalsForm(forms.Form):
-    proposals = MeRepresentaProposalModelMultipleChoiceField(queryset=MeRepresentaPopularProposal.objects.none(),
-                                                 widget=forms.CheckboxSelectMultiple(attrs={'class': 'proposal_option'}))
+
+class WithAreaMixin(forms.Form):
     area = forms.ModelChoiceField(label=u"Em que estado você vota?",
                                     help_text=u"Se você quiser saber com que candidatura ao Congresso você é mais compatível, escolha o estado em que você vota. Se você está interessado apenas em sua mídia presidencial, escolha 'não se aplica'.",
                                     empty_label=u"Não se aplica",
                                     required=False,
                                     queryset=Area.objects.filter(classification__in=settings.FILTERABLE_AREAS_TYPE).order_by('name'))
+
+class MeRepresentaProposalsForm(WithAreaMixin):
+    proposals = MeRepresentaProposalModelMultipleChoiceField(queryset=MeRepresentaPopularProposal.objects.none(),
+                                                 widget=forms.CheckboxSelectMultiple(attrs={'class': 'proposal_option'}))
 
     def __init__(self, *args, **kwargs):
         self.proposals = kwargs.pop('proposals')
@@ -67,3 +70,10 @@ class MeRepresentaMeiaLaranjaWizardForm(MediaNaranjaWizardForm):
 
         proposals = getter.get_all_proposals(self.get_element_selector_from_cleaned_data(cleaned_data))
         return {'proposals': proposals}
+
+
+class MeRepresentaQuestionsForm(WithAreaMixin, QuestionsForm):
+
+    def __init__(self, *args, **kwargs):
+        kwargs['categories'] = QuestionCategory.objects.all()
+        super(MeRepresentaQuestionsForm, self).__init__(*args, **kwargs)

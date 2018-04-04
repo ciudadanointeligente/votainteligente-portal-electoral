@@ -22,7 +22,11 @@ class Position(CanPosition):
         return topic.election
 
     def __str__(self):
-        return u'<%s> a <%s> en <%s>' % (self.label, self.topic.label, self.election.name)
+        text =  u'<%s> a <%s>' % (self.label, self.topic.label)
+        if self.election is not None:
+            text += ' en <%s>' % (self.election.name)
+
+        return text
 
     class Meta:
         proxy = True
@@ -38,17 +42,30 @@ class TakenPosition(CanTakenPosition):
         return topic.election
 
     def __str__(self):
-        template_str = u'<%s> dice <%s> a <%s> en <%s>'
+        template_str = u'<%s> dice <%s> a <%s>'
         topic = self.topic.label
         election = self.election
         if self.position is None:
-            template_str = u"<%s> doesn't have an opinion in <%s> en <%s>"
-            return template_str % (self.person, topic, election.name)
+            template_str = u"<%s> doesn't have an opinion in <%s>"
+            template_data = (self.person, topic)
+            if election is not None:
+                template_str += " en <%s>" % election.name
+            return template_str % template_data
         label = self.position.label
+        context = (self.person, label, topic)
+        if election is not None:
+            template_str += u" en <%s>"
+            context += (election.name, )
         try:
-            return template_str % (self.person, label, topic, election.name)
+
+
+            return template_str % context
         except Person.DoesNotExist:
-            return template_str % ('Unknown', self.position.label, self.topic.label, election.name)
+            c = ('Unknown', self.position.label, self.topic.label, election.name)
+            if election is not None:
+
+                c += (election.name, )
+            return template_str % c
 
     class Meta:
         proxy = True
@@ -284,5 +301,3 @@ class AreaAdmin(admin.ModelAdmin):
         return qs
 
 admin.site.register(Area, AreaAdmin)
-
-

@@ -289,7 +289,10 @@ class Topic(CanTopic):
         return category.election
 
     def __str__(self):
-        return u'<%s> en <%s>' % (self.label, self.election.name)
+        text = u"<%s>" % self.label
+        if self.election is not None:
+            text += u" en <%s>" % (self.election.name)
+        return text
 
 
 @python_2_unicode_compatible
@@ -297,7 +300,10 @@ class QuestionCategory(Category):
     election = models.ForeignKey('Election', related_name='categories', null=True)
 
     def __str__(self):
-        return u'<%s> in <%s>' % (self.name, self.election.name)
+        text = u"<%s>" % (self.name, )
+        if self.election is not None:
+            text += u" in <%s>" % (self.election.name)
+        return text
 
     class Meta:
         verbose_name = _(u"Categoría de pregunta")

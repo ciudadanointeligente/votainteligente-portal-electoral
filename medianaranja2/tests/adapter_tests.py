@@ -19,9 +19,9 @@ class MediaNaranjaAdaptersBase(TestCase):
     popular_proposal_class = PopularProposal
     commitment_class = Commitment
     def setUp(self):
-        a = Area.objects.create(name="Territory")
+        a = Area.objects.create(name=u"Territory")
         self.election = Election.objects.create(
-            name='the name', slug=u"the-election", area=a)
+            name=u'the name', slug=u"the-election", area=a)
 
         TakenPosition.objects.all().delete()
         self.c1 = Candidate.objects.create(name=u'C1')
@@ -32,7 +32,7 @@ class MediaNaranjaAdaptersBase(TestCase):
         self.election.candidates.add(self.c3)
 
     def setUpQuestions(self):
-        self.category1 = QuestionCategory.objects.create(name="marijuana", election=self.election)
+        self.category1 = QuestionCategory.objects.create(name=u"marijuana", election=self.election)
         self.topic1 = Topic.objects.create(
             label=u"Should marijuana be legalized?",
             category=self.category1,
@@ -49,7 +49,7 @@ class MediaNaranjaAdaptersBase(TestCase):
                                                       person=self.c1,
                                                       position=self.position2)
 
-        self.category2 = QuestionCategory.objects.create(name="education", election=self.election)
+        self.category2 = QuestionCategory.objects.create(name=u"education", election=self.election)
         self.topic2 = Topic.objects.create(
             label=u"Should education be bla bla bla?",
             category=self.category2,
@@ -65,7 +65,7 @@ class MediaNaranjaAdaptersBase(TestCase):
         taken_position2 = TakenPosition.objects.create(topic=self.topic2,
                                                        person=self.c1,
                                                        position=self.position4)
-        self.category3 = QuestionCategory.objects.create(name="health", election=self.election)
+        self.category3 = QuestionCategory.objects.create(name=u"health", election=self.election)
         self.topic3 = Topic.objects.create(
             label=u"Should health be bla bla bla?",
             category=self.category3,
@@ -83,19 +83,19 @@ class MediaNaranjaAdaptersBase(TestCase):
                                                        position=self.position5)
 
     def setUpProposals(self):
-        proposer = User.objects.create_user(username="proposer")
+        proposer = User.objects.create_user(username=u"proposer")
         self.p1 = self.popular_proposal_class.objects.create(proposer=proposer,
                                                  title=u'p1',
-                                                 clasification='educ',
+                                                 clasification=u'educ',
                                                  data={}
                                                  )
         self.p2 = self.popular_proposal_class.objects.create(proposer=proposer,
                                                  title=u'P2',
-                                                 clasification='educ',
+                                                 clasification=u'educ',
                                                  data={}
                                                  )
         self.p3 = self.popular_proposal_class.objects.create(proposer=proposer,
-                                                 clasification='educ',
+                                                 clasification=u'educ',
                                                  title=u'P3',
                                                  data={}
                                                  )
@@ -206,7 +206,7 @@ class CommitmentsAdaptersTest(MediaNaranjaAdaptersBase):
 class CalculatorTests(MediaNaranjaAdaptersBase):
     def setUp(self):
         super(CalculatorTests, self).setUp()
-        
+
         self.setUpProposals()
 
     def test_instanciate(self):
@@ -228,10 +228,10 @@ class CalculatorTests(MediaNaranjaAdaptersBase):
         selected_proposals = [self.p1, self.p3]
         calculator = Calculator(self.election, selected_positions, selected_proposals)
         self.assertEquals(calculator.hundred_percent, 2.0)
-        
-        a = Area.objects.create(name="Valdivia")
+
+        a = Area.objects.create(name=u"Valdivia")
         election2 = Election.objects.create(
-            name='the name', area=a)
+            name=u'the name', area=a)
         calculator = Calculator(election2, selected_positions, selected_proposals)
         self.assertEquals(calculator.hundred_percent, 2)
         calculator = Calculator(election2, [], [])

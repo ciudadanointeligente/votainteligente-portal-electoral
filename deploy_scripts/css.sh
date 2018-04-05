@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source ~/.virtualenvs/merepresenta/bin/activate
+source ~/.virtualenvs/vota/bin/activate
 cd ~/vota/
 python manage.py  migrate
 sudo supervisorctl restart merepresenta

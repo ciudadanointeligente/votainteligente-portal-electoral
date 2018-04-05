@@ -2,20 +2,20 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/vota
+    destination: /home/ec2-user/vota
 permissions:
-  - object: /home/ubuntu/vota
+  - object: /home/ec2-user/vota
     pattern: "**"
-    owner: ubuntu
-    group: ubuntu
+    owner: ec2-user
+    group: ec2-user
 hooks:
   AfterInstall:
     - location: deploy_scripts/install_python_dependencies.sh
       timeout: 60
-      runas: ubuntu
+      runas: ec2-user
     - location: deploy_scripts/migrate_and_collectstatics.sh
       timeout: 60
-      runas: ubuntu
+      runas: ec2-user
     - location: deploy_scripts/css.sh
       timeout: 60
-      runas: ubuntu
+      runas: ec2-user

@@ -34,6 +34,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'linaro_django_pagination',
     'bootstrap3',
+    'bootstrap4',
     'formtools',
     'robots',
     # "registration_defaults",

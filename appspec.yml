@@ -11,18 +11,18 @@ permissions:
 hooks:
   BeforeInstall:
     - location: deploy_scripts/before_install_system.sh
-      timeout: 60
+      timeout: 600
       runas: root
     - location: deploy_scripts/before_install_pip_user.sh
-      timeout: 60
+      timeout: 600
       runas: ec2-user
   AfterInstall:
     - location: deploy_scripts/install_python_dependencies.sh
-      timeout: 60
+      timeout: 600
       runas: ec2-user
     - location: deploy_scripts/migrate_and_collectstatics.sh
-      timeout: 60
+      timeout: 600
       runas: ec2-user
     - location: deploy_scripts/css.sh
-      timeout: 60
+      timeout: 600
       runas: ec2-user

@@ -20,3 +20,5 @@ node_modules/
 preguntales/tests/testing_mails/attachments/fiera_parque_*.jpg
 preguntales/tests/testing_mails/attachments/hello.pd_*.pdf
 .ropeproject
+.idea/
+glenv/

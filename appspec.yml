@@ -20,7 +20,7 @@ hooks:
     - location: deploy_scripts/install_python_dependencies.sh
       timeout: 600
       runas: ec2-user
-    - location: deploy_scripts/migrate_and_collectstatics.sh
+    - location: deploy_scripts/migrate_and_restart.sh
       timeout: 600
       runas: ec2-user
     - location: deploy_scripts/css.sh

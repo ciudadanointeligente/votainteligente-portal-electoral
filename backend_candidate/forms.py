@@ -69,54 +69,60 @@ def get_fields_dict_from_topic(topic, taken_position=None):
         dict_['description_for_' + topic_id].initial = taken_position.description
     return dict_
 
+class MediaNaranjaElectionForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.candidate = kwargs.pop('candidate')
+        super(MediaNaranjaElectionForm, self).__init__(*args, **kwargs)
+        for category in self.categories.all():
+            for topic in category.topics.all():
+                taken_positions = (TakenPosition.
+                                   objects.filter(topic=topic,
+                                                  person=self.candidate)
+                                   ).exists()
+                fields_kwargs = {}
+                if taken_positions:
+                    taken_position = (TakenPosition.
+                                      objects.get(topic=topic,
+                                                  person=self.candidate)
+                                      )
+                    fields_kwargs.update({'taken_position':
+                                          taken_position})
+                field_dict = get_fields_dict_from_topic(topic,
+                                                        **fields_kwargs)
+                self.fields.update(field_dict)
+
+    def save(self):
+        for category in self.categories.all():
+            for topic in category.topics.all():
+                topic_key = 'answer_for_' + str(topic.id)
+                try:
+                    topic_id = int(self.cleaned_data[topic_key])
+                    position = Position.objects.get(id=topic_id)
+                except ValueError:
+                    topic_id = None
+                    position = None
+                description_key = 'description_for_' + str(topic.id)
+                description = self.cleaned_data[description_key]
+                taken_position, created = (TakenPosition.
+                                           objects.
+                                           get_or_create(topic=topic,
+                                                         person=self.candidate))
+
+                taken_position.position = position
+                taken_position.description = description
+
+                taken_position.save()
+
+
 
 def get_form_for_election(election):
-    class MediaNaranjaElectionForm(forms.Form):
+    class OnDemandMediaNaranjaElectionForm(MediaNaranjaElectionForm):
         def __init__(self, *args, **kwargs):
-            self.candidate = kwargs.pop('candidate')
+            self.categories = election.categories
             self.election = election
-            super(MediaNaranjaElectionForm, self).__init__(*args, **kwargs)
-            for category in election.categories.all():
-                for topic in category.topics.all():
-                    taken_positions = (TakenPosition.
-                                       objects.filter(topic=topic,
-                                                      person=self.candidate)
-                                       ).exists()
-                    fields_kwargs = {}
-                    if taken_positions:
-                        taken_position = (TakenPosition.
-                                          objects.get(topic=topic,
-                                                      person=self.candidate)
-                                          )
-                        fields_kwargs.update({'taken_position':
-                                              taken_position})
-                    field_dict = get_fields_dict_from_topic(topic,
-                                                            **fields_kwargs)
-                    self.fields.update(field_dict)
+            super(OnDemandMediaNaranjaElectionForm, self).__init__(*args, **kwargs)
 
-        def save(self):
-            for category in self.election.categories.all():
-                for topic in category.topics.all():
-                    topic_key = 'answer_for_' + str(topic.id)
-                    try:
-                        topic_id = int(self.cleaned_data[topic_key])
-                        position = Position.objects.get(id=topic_id)
-                    except ValueError:
-                        topic_id = None
-                        position = None
-                    description_key = 'description_for_' + str(topic.id)
-                    description = self.cleaned_data[description_key]
-                    taken_position, created = (TakenPosition.
-                                               objects.
-                                               get_or_create(topic=topic,
-                                                             person=self.candidate))
-
-                    taken_position.position = position
-                    taken_position.description = description
-
-                    taken_position.save()
-
-    return MediaNaranjaElectionForm
+    return OnDemandMediaNaranjaElectionForm
 
 
 def _import(name):
@@ -203,7 +209,7 @@ def get_candidate_profile_form_class():
     if settings.THEME:
         try:
             PARENT_FORM_CLASS = _import(settings.THEME + ".forms.PersonalDataForm")
-            
+
         except ImportError:
             from votai_general_theme.forms import PersonalDataForm
             PARENT_FORM_CLASS = PersonalDataForm

@@ -75,7 +75,9 @@ INSTALLED_APPS = (
     'proposal_subscriptions',
     'custom_sites',
     'merepresenta',
+    'rioxinteiro',
     'votai_general_theme',
+
 )
 INSTALLED_APPS_AFTER_ALL = ('el_pagination',)
 

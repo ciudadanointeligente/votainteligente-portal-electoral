@@ -1,4 +1,4 @@
-Hola {% include '_user_printable.html' with user=proposal.proposer %}!
+{% load votainteligente_extras %}Hola {% include '_user_printable.html' with user=proposal.proposer %}!
 
 Estamos muy felices por que tu propuesta con título {{proposal.title}}
 ha alcanzado un total de {{number}} adherentes.

@@ -1,4 +1,4 @@
-¡Hola {% include '_user_printable.html' with user=person %}!
+{% load votainteligente_extras %}¡Hola {% include '_user_printable.html' with user=person %}!
 Escribimos para contarte que {{commitment.candidate.name}} {% if candidate.election.position == 'concejal' %}acaba de declarar que no apoyará{% elif candidate.election.position == 'alcalde' %}acaba de declarar que no se comprometerá con{% else %}acaba de declarar que no se comprometerá con{% endif %} la propuesta ciudadana {{proposal.title}}.
 
 {% if commitment.candidate.election %}

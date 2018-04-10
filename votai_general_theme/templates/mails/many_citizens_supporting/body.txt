@@ -1,4 +1,4 @@
-Hola {{contact.candidate.name}},
+{% load votainteligente_extras %}Hola {{contact.candidate.name}},
 
 Te queremos contar que en {{proposal.area}} la propuesta “{{proposal.title}}” ya cuenta con {{number}} ciudadanos apoyándola y creemos que puede ser de tu interés para incorporarla en tu programa.
 

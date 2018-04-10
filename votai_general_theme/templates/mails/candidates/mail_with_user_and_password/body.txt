@@ -1,3 +1,4 @@
+{% load votainteligente_extras %}
 Hola
 
 Te escribimos en tu calidad de jefe de campaña de {{contact.candidate.name}}, para invitarlos a participar de http://Votainteligente.cl, plataforma de la Fundación Ciudadano Inteligente que busca acercar a candidatas/os con la ciudadanía en estas próximas elecciones.

@@ -1,4 +1,4 @@
-Hola {% include '_user_printable.html' with user=person %}!
+{% load votainteligente_extras %}Hola {% include '_user_printable.html' with user=person %}!
 Escribimos para contarte que {{candidate.name}} se pronunció de manera negativa
 con la propuesta ciudadana {{proposal.title}} que tu apoyabas.
 

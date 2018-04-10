@@ -1,4 +1,4 @@
-Hola {{message.author_name}}:
+{% load votainteligente_extras %}Hola {{message.author_name}}:
 Te estamos escribiendo desde VotaInteligente.cl porque para que tu mensaje sea procesado
 debemos confirmar que seas una persona.
 

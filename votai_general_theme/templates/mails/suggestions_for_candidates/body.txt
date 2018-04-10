@@ -1,4 +1,4 @@
-Hola {{candidate.name}}:
+{% load votainteligente_extras %}Hola {{candidate.name}}:
 
 http://Votainteligente.cl es una plataforma, SIN COSTO ASOCIADO, de la Fundación Ciudadano Inteligente que recibe propuestas ciudadanas y de la sociedad civil en el marco de las elecciones presidenciales y parlamentarias de este año.
 

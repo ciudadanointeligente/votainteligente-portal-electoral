@@ -1,4 +1,4 @@
-Genias/os {{like.user}}!
+{% load votainteligente_extras %}Genias/os {{like.user}}!
 
 Les recordamos que acaban de apoyar la propuesta "{{like.proposal.title}}" y que les enviaste el
 siguiente mensaje:

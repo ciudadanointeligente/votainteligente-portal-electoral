@@ -1,4 +1,4 @@
-Querida Liss, (el resto no importa):
+{% load votainteligente_extras %}Querida Liss, (el resto no importa):
 Hay un nuevo encuentro de votita acá te van las propuestas que traen:
 Nombre del encuentro: {{gathering.name}}.
 Propuestas:

@@ -1,3 +1,4 @@
+{% load votainteligente_extras %}
 Hola {{contact.candidate.name}}:
 Somos el equipo de VotaInteligente.cl y te escribimos para que
 puedas subir tus datos a nuestra plataforma.

@@ -1,4 +1,4 @@
-¡Genia o genio {% if person.get_short_name %}{{ person.get_short_name}}{% else %}{{ person.get_username}}{% endif %}!
+{% load votainteligente_extras %}¡Genia o genio {% if person.get_short_name %}{{ person.get_short_name}}{% else %}{{ person.get_username}}{% endif %}!
 Escribimos para contarte que {{commitment.candidate.name}} se acaba de comprometer con la propuesta ciudadana {{proposal.title}}.
 {% if commitment.detail %}
 Te queríamos contar que {{ commitment.candidate.name }} se compromete en los siguientes términos:

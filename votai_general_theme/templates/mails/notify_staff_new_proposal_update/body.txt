@@ -1,4 +1,4 @@
-Oe!!
+{% load votainteligente_extras %}Oe!!
 Cacha que alguien modificó su propuesta ciudadana.
 
 Los datos son:

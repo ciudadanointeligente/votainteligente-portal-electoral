@@ -1,4 +1,4 @@
-Hola {{user}}:
+{% load votainteligente_extras %}Hola {{user}}:
 Este mail es para contarte que hay novedades con algunas propuestas ciudadanas
 que apoyaste:
 {% for commitment in commitments %}{%if commitment.commited %}

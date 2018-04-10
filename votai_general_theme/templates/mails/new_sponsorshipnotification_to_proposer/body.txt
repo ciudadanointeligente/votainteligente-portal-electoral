@@ -1,4 +1,4 @@
-
+{% load votainteligente_extras %}
 Estimada/o {{like.proposal.proposer}}:
 
 Te queremos contar que {{like.user}} acaba de apoyar de manera pública tu

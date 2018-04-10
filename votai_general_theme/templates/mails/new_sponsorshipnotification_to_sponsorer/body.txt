@@ -15,5 +15,4 @@ la propuesta (https://{{site.domain}}{{like.proposal.get_absolute_url}}).
 
 Te queremos mucho.
 
---
-El equipo de VotaInteligente.cl
+{% mail_signature_txt %}

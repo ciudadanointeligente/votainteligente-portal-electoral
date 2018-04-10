@@ -420,3 +420,11 @@ def get_classification_from_str(classification):
     d.update(TOPIC_CHOICES_DICT)
 
     return d.get(classification, "")
+
+@register.inclusion_tag('mails/signature.html')
+def mail_signature_html():
+    pass
+
+@register.inclusion_tag('mails/signature.txt')
+def mail_signature_txt():
+    pass

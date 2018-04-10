@@ -38,5 +38,4 @@ vecinos y te hagas notar.
 
 
 Muchas gracias.
---
-Atentamente el equipo de VotaInteligente.cl
+{% mail_signature_txt %}

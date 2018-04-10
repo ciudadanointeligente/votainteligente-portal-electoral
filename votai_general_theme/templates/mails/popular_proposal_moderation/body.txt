@@ -9,9 +9,8 @@ Hemos leido y revisado tu propuesta ciudadana y tenemos los siguientes comentari
 
 {% endif %}
 {% endfor %}
-Puedes actualizar tu propuesta en el siguiente link: 
+Puedes actualizar tu propuesta en el siguiente link:
 https://{{site.domain}}{% url 'backend_citizen:temporary_data_update' pk=temporary_data.id %}
 Gracias por querer hacer de {{area}} un lugar mejor.
 
---
-El equipo de VotaInteligente.
+{% mail_signature_txt %}

@@ -7,5 +7,4 @@ Puedes revisar {% if candidate.election.position == 'concejal' %}el apoyo a{% el
 https://votainteligente.cl{{commitment.get_absolute_url}}
 {% endif %}
 
---
-El equipo de VotaInteligente.cl
+{% mail_signature_txt %}

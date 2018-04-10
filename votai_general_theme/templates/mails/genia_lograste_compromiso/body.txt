@@ -14,5 +14,4 @@ Aún queda un gran trecho que recorrer y queremos que estés atenta/o para hacer
 
 Este es un mail automático pero si respondes le llegará a todo el equipo de VotaInteligente.cl
 
---
-El equipo de VotaInteligente.cl
+{% mail_signature_txt %}

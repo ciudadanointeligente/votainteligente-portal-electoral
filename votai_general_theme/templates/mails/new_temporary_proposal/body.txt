@@ -8,5 +8,4 @@ Tu propuesta tiene el siguiente detalle:
 
 Gracias por querer hacer de {{area}} un lugar mejor.
 
---
-El equipo de VotaInteligente.
+{% mail_signature_txt %}

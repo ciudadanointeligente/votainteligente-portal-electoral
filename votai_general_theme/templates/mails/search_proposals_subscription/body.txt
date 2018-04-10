@@ -8,5 +8,4 @@ Puedes revisar tus suscripciones a búsquedas en el siguiente link:
 https://votainteligente.cl{% url 'proposal_subscriptions:list' %}
 
 Saludos
---
-El equipo de VotaInteligente
+{% mail_signature_txt %}

@@ -8,5 +8,4 @@ objetivo final del proyecto que es mejorar la articulación ciudadana.
 
 Muchas gracias por todo.
 
---
-El equipo de VotaInteligente.cl
+{% mail_signature_txt %}

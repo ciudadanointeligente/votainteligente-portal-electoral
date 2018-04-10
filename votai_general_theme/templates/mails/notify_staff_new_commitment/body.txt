@@ -19,5 +19,4 @@ Términos en los que se comprometió: {{commitment.detail}}
 Estamos más felices que la chucha de contarte esto!
 Arriba los corazones y abajo los pantalones.
 
---
-El equipo de Votainteligente
+{% mail_signature_txt %}

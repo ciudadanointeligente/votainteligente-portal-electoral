@@ -11,5 +11,4 @@ Para ver la propuesta ciudadana puedes acceder a la siguiente url:
 
 https://votainteligente.cl{{commitment.get_absolute_url}}
 
---
-El equipo de VotaInteligente.cl
+{% mail_signature_txt %}

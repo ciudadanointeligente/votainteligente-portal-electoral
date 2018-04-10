@@ -8,5 +8,4 @@ Para hacer eso, sólo debes seguir el siguiente link y responder a las preguntas
 
 Desde ya muchas gracias.
 
---
-El equipo de VotaInteligente
+{% mail_signature_txt %}

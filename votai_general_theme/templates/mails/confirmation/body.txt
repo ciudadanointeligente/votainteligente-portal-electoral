@@ -7,5 +7,4 @@ Por favor haz click en el siguiente link
 https://{{site.domain}}{{ message.confirmation.get_absolute_url }}
 
 Muchas gracias.
---
-El equipo de VotaInteligente.
+{% mail_signature_txt %}

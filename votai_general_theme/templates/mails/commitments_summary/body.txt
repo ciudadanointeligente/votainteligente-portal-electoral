@@ -13,5 +13,4 @@ Esto no habría sido posible sin tu apoyo. Te queremos mucho y te queremos invit
 colectiva.
 PS:
 Si ya no quieres recibir estos mails haz click acá https://{{site.domain}}{{user.profile.get_unsubscribe_url}}.
---
-El equipo de VotaInteligente.cl
+{% mail_signature_txt %}

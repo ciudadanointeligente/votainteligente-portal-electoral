@@ -22,5 +22,4 @@ Recuerda que tanto esta pregunta como tu respuesta será pública y
 cualquier ciudadano las podrá ver.
 
 Saludos.
---
-El equipo de VotaInteligente
+{% mail_signature_txt %}

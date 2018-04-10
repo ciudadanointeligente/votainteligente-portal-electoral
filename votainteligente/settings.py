@@ -2,6 +2,7 @@
 import os
 import sys
 from datetime import timedelta
+import imp
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -468,6 +469,12 @@ else:
         pass
 
 if THEME:
-    ROOT_URLCONF = '%s.stand_alone_urls' % THEME
+    try:
+        stand_alone_urls = '%s.stand_alone_urls' % THEME
+        imp.find_module(stand_alone_urls)
+        ROOT_URLCONF = stand_alone_urls
+    except ImportError:
+        pass
+
     TEMPLATES[0]['DIRS'] = ['%s/templates' % THEME, 'votai_general_theme/templates']
 INSTALLED_APPS += INSTALLED_APPS_AFTER_ALL

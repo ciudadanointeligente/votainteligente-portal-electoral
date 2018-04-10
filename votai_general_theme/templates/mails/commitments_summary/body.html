@@ -1,3 +1,4 @@
+{% load votainteligente_extras %}
 <p>Hola <b>{{user}}</b>:</p>
 <p>Este mail es para contarte que hay novedades con algunas propuestas ciudadanas que apoyaste:</p>
 
@@ -27,5 +28,4 @@
 	Si ya no quieres recibir estos mails haz click <a href="https://{{site.domain}}{{user.profile.get_unsubscribe_url}}">acá</a>.
 </p>
 
---
-El equipo de VotaInteligente.cl
+{% mail_signature_html %}

@@ -30,6 +30,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
     'test_without_migrations',
+    'constance',
     'constance.backends.database',
     'django_nose',
     'django.contrib.sitemaps',

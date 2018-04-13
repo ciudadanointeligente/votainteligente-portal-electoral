@@ -10,6 +10,7 @@ from django.conf import settings
 from constance import config
 from django.forms import CharField, Form, ChoiceField, HiddenInput
 from haystack.query import SearchQuerySet
+from django.utils.translation import ugettext_lazy as _
 
 
 def filterable_areas(request):
@@ -22,11 +23,11 @@ def filterable_areas(request):
 class TextSearchForm(Form):
     text = CharField(label=u'Qué buscas?', required=False)
     order_by = ChoiceField(required=False,
-                           label=u"Ordenar por",
-                           choices=[('', u'Por apoyos'),
-                                    ('-created', u'Últimas primero'),
-                                    ('-proposer__profile__is_organization', u'De organizaciones primero'),
-                                    ('-is_local_meeting', u'Encuentros locales primero'),
+                           label=_(u"Ordenar por"),
+                           choices=[('', _(u'Por apoyos')),
+                                    ('-created', _(u'Últimas primero')),
+                                    ('-proposer__profile__is_organization', _(u'De organizaciones primero')),
+                                    ('-is_local_meeting', _(u'Encuentros locales primero')),
                                     ])
 
     def full_clean(self):
@@ -42,9 +43,9 @@ class TextSearchForm(Form):
 
 class ProposalWithoutAreaFilter(FilterSet):
     clasification = ChoiceFilter(choices=TOPIC_CHOICES,
-                                 empty_label=u"Selecciona",
+                                 empty_label=_(u"Selecciona"),
                                  widget=HiddenInput(),
-                                 label=u"Clasificación")
+                                 label=_(u"Clasificación"))
 
     def __init__(self,
                  data=None,
@@ -115,10 +116,10 @@ def possible_areas(request):
 
 
 class ProposalWithAreaFilter(ProposalWithoutAreaFilter):
-    area = ModelChoiceFilter(queryset=possible_areas, label="Comuna donde fue generada")
+    area = ModelChoiceFilter(queryset=possible_areas, label=_(u"Comuna donde fue generada"))
 
 
 class ProposalGeneratedAtFilter(ProposalWithoutAreaFilter):
     generated_at = ModelChoiceFilter(queryset=filterable_areas,
-                                     empty_label=u"Selecciona",
-                                     label="Comuna donde fue generada")
+                                     empty_label=_(u"Selecciona"),
+                                     label=_(u"Comuna donde fue generada"))

@@ -57,7 +57,7 @@
           {% if proposal.status == 'accepted' %}
             {% if proposal.created_proposal %}
             <span>
-              <a href="{% url 'popular_proposals:citizen_update' slug=proposal.created_proposal.slug %}"><i class="fa fa-plus" aria-hidden="true"></i> Agregar{% blocktrans %}{% endblocktrans %}</a>
+              <a href="{% url 'popular_proposals:citizen_update' slug=proposal.created_proposal.slug %}"><i class="fa fa-plus" aria-hidden="true"></i> {% blocktrans %}Agregar{% endblocktrans %}</a>
             </span>
             {% endif %}
           {% endif %}

@@ -66,11 +66,9 @@ $('[data-toggle="tooltip"]').tooltip();
         {% display_proposal_card proposal %}
       {% empty %}
       {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
-      {% blocktrans %}
         <p class="bg-info text-center">
           {% trans "Aún no se han generado propuestas para esta búsqueda." %}
         </p>
-      {% endblocktrans %}
     {% endfor %}
 
     </div>

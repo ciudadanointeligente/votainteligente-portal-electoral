@@ -1,4 +1,6 @@
+{% load i18n %}
 {% if comments %} <i class="fa fa-comments-o"
     data-toggle="tooltip" data-placement="bottom"
-    title="Comentarios: {{comments}}"></i>
+    title="{% blocktrans with comments=comments %}Comentarios: {{comments}}{% endblocktrans %}"></i>
+
 {% endif %}

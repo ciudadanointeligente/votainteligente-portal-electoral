@@ -6,9 +6,9 @@
 {% load bootstrap3 %}
 
 {% block content %}
-<h2>Estadisticas</h2>
+<h2>{% trans "Estadisticas" %}</h2>
 
-<h4 class="page-header">Otras estadísticas</h4>
+<h4 class="page-header">{% trans "Otras estadísticas" %}</h4>
 <p>Un total de {{stats.total_candidates}} candidatos.</p>
 <p>Hay un total de: <b>{{stats.likes}}</b> apoyos hechos por <b>{{stats.likers}}</b> ciudadanos.</p>
 

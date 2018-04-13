@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-<h5>Hermana/o al apretar submit se le enviará un mail al candidato con su nuevo usuario y password</h5>
+<h5>{% trans "Hermana/o al apretar submit se le enviará un mail al candidato con su nuevo usuario y password" %}</h5>
 <form role="form" action="{% url 'backend_staff:add_contact_and_send_mail' pk=candidate.pk %}" method="post">
 	{% csrf_token %}
     {% bootstrap_form form%}

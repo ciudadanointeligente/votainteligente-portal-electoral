@@ -6,7 +6,7 @@
 {% load bootstrap3 %}
 
 {% block content %}
-<h1>{% blocktrans %}¡Hola {{object.user}}! Si te quieres desuscribir marca lo que está abajo.{% endblocktrans %}</h1>
+<h1>{% blocktrans with username=object.user %}¡Hola {{username}}! Si te quieres desuscribir marca lo que está abajo.{% endblocktrans %}</h1>
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
 		<div class="contenedorDestacado fondo-blanco">

@@ -1,12 +1,13 @@
 {% load thumbnail %}
 {% load static %}
+{% load i18n %}
 
 <div id="election-area-{{election.area.id}}" class="container" itemscope>
   {% if election %}
   <div class="text-center">
   <h2>{{election.name}}</h2>
   {% if election.area.get_containing_filterable_areas %}
-    <h4>Comunas</h4>
+    <h4>{% trans "Comunas" %}</h4>
       {% for comuna in election.area.get_containing_filterable_areas %}
         {{comuna}}
         {% if not forloop.last %}
@@ -23,7 +24,7 @@
         <div class="ribbon-wrapper-candidate">
           <div class="ribbon-candidate text-center">
             <a href="{{candidate.get_absolute_url}}">
-              <span class="no-commitments text-center">Sin compromisos en votainteligente.cl</span>
+              <span class="no-commitments text-center">{% trans "Sin compromisos en votainteligente.cl" %}</span>
             </a>
           </div>
         </div>
@@ -42,12 +43,14 @@
         <div class="panel-body text-center">
           {% if candidate.has_won %}
           <div class="text-center">
-            <span class="candidate-elected-card">Electa/o</span>
+            <span class="candidate-elected-card">{% trans "Electa/o" %}</span>
           </div>
           {% endif %}
           <a href="{{candidate.get_absolute_url}}" itemprop="name"><h3 class="candidate-name-card">{{ candidate.name }}</h3>
           {% if candidate.commitments.exists %}
-            <span class="candidate-commitment-card">{{ candidate.commitments.count }} compromisos</span></a>
+            <span class="candidate-commitment-card">{% blocktrans with commitments_count=candidate.commitments.count %}
+              {{ commitments_count }} compromisos
+            {% endblocktrans %}</span></a>
           {% endif %}
         </div>
       </div>
@@ -57,7 +60,7 @@
     {% endif %}
     {% endfor %}
     {% if user.is_staff %}
-    <a href="{% url 'help_election' slug=election.slug %}">Ayudanos!</a>
+    <a href="{% url 'help_election' slug=election.slug %}">{% trans "Ayudanos!" %}</a>
     {% endif %}
   </div>
   {% else %}

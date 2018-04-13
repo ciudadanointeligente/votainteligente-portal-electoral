@@ -18,7 +18,7 @@
   </div>
 
   <div class="elections-results" data-ng-show="searchElection">
-    <h4>Resultado para "[[searchElection]]"</h4>
+    <h4>{% trans "Resultado para " %}"[[searchElection]]"</h4>
     <ul class="list-inline">
       <li class="label label-default" data-ng-repeat="election in (filteredItems = (elections | filter:searchElection:comperator))">
         <a href="[[election.detaillink]]">[[election.name]]</a>

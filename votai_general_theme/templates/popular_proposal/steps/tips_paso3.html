@@ -1,10 +1,12 @@
 {% extends 'popular_proposal/steps/base_steps.html' %}
-{% block step_title %}¿Qué propuesta puede solucionar este problema?{% endblock step_title %}
+{% load i18n %}
+
+{% block step_title %}{% trans "¿Qué propuesta puede solucionar este problema?" %}{% endblock step_title %}
 
 {% block tips %}
-<p class="step-title">Desarrollando nuestra propuesta</p>
+<p class="step-title">{% trans "Desarrollando nuestra propuesta" %}</p>
 <ul class="list-unstyled">
-  <li><span class="number">a</span> Ahora llegó el momento de proponer cómo podemos solucionar el problema. <li>
-  <li><span class="number">b</span> Mientras más detallada sea tu propuesta, más apoyo podrá generar de parte de la ciudadanía, organizaciones, y candidaturas.<li>
-  <li><span class="number">c</span> No olvides establecer un plazo de tiempo para que el candidato o la candidata cumplan con la propuesta si se comprometen.  <li>
+  <li><span class="number">a</span> {% trans "Ahora llegó el momento de proponer cómo podemos solucionar el problema." %} <li>
+  <li><span class="number">b</span> {% trans "Mientras más detallada sea tu propuesta, más apoyo podrá generar de parte de la ciudadanía, organizaciones, y candidaturas." %}<li>
+  <li><span class="number">c</span> {% trans "No olvides establecer un plazo de tiempo para que el candidato o la candidata cumplan con la propuesta si se comprometen." %}  <li>
 {% endblock tips %}

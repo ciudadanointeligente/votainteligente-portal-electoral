@@ -9,7 +9,7 @@
 {% load static %}
 
 {% block title %}
-- Creación de Propuesta - Propuesta publicada
+- {% trans "Creación de Propuesta" %} - {% trans "Propuesta publicada" %}
 {% endblock title %}
 
 {% block content %}
@@ -22,11 +22,14 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div>
-          <h2 class="text-center">Publicamos tu propuesta con título "<i>{{popular_proposal}}</i>" ¡muchas gracias!</h2>
+          <h2 class="text-center">{% blocktrans with popular_proposal=popular_proposal.title %}
+            Publicamos tu propuesta con título "<i>{{popular_proposal}}</i>" ¡muchas gracias!
+          {% endblocktrans %}
+          </h2>
           <div>
             {% if popular_proposal.created_proposal %}
               <a href="{% static 'material-ciudadano/manual-herramientas-activismo.pdf' %}" target="_blank" class="btn btn-blue btn-block" onclick="ga('send', 'event', 'proposal-done-descargar-kit', 'click')">Descarga el Manual de herramientas de activismo</a>
-              <p class="text-center"><b>Difunde tu propuesta para conseguir más apoyos</b></p>
+              <p class="text-center"><b>{% trans "Difunde tu propuesta para conseguir más apoyos" %}</b></p>
               {% include 'popular_proposal/_share.html' with popular_proposal=popular_proposal.created_proposal btn_extra_class="btn btn-info btn-block" show_texts=True %}
 
             {% else %}
@@ -34,10 +37,10 @@
               {% endif %}
               {% if form_update %}
                 <br>
-                <p class="text-center"><b>Puedes agregar información a tu propuesta, revisarla o crear otra</b></p>
-                <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.created_proposal.slug %}" class="btn btn-success btn-block" onclick="ga('send', 'event', 'proposal-done-mas-info', 'click')">Agregar más información a tu propuesta</a>
-                <a href="{{popular_proposal.created_proposal.get_absolute_url}}" class="btn btn-default btn-block" onclick="ga('send', 'event', 'proposal-done-revisar-propuesta', 'click')">Revisa tu propuesta</a>
-                <a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" class="btn btn-default btn-block" onclick="ga('send', 'event', 'proposal-done-crear-otra', 'click')">Crea otra propuesta</a>
+                <p class="text-center"><b>{% trans "Puedes agregar información a tu propuesta, revisarla o crear otra" %}</b></p>
+                <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.created_proposal.slug %}" class="btn btn-success btn-block" onclick="ga('send', 'event', 'proposal-done-mas-info', 'click')">{% trans "Agregar más información a tu propuesta" %}</a>
+                <a href="{{popular_proposal.created_proposal.get_absolute_url}}" class="btn btn-default btn-block" onclick="ga('send', 'event', 'proposal-done-revisar-propuesta', 'click')">{% trans "Revisa tu propuesta" %}</a>
+                <a href="{% url 'popular_proposals:propose_wizard_full_without_area' %}" class="btn btn-default btn-block" onclick="ga('send', 'event', 'proposal-done-crear-otra', 'click')">{% trans "Crea otra propuesta" %}</a>
 
               {% endif %}
             {% get_proposals_enabled as proposals_enabled %}

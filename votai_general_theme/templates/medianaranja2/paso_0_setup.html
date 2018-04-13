@@ -7,8 +7,8 @@
 {% load bootstrap3 %}
 
 {% block questions %}
-    <p>Para poder decirte con qué candidatura eres más compatible, necesitamos conocer un poco de ti.</p>
-    <p>Los temas elegidos en este paso corresponden a los que los candidatos muestran posiciones claras en sus programas presidenciales o en declaraciones públicas por parte de ellos.</p>
+    <p>{% trans "Para poder decirte con qué candidatura eres más compatible, necesitamos conocer un poco de ti." %}</p>
+    <p>{% trans "Los temas elegidos en este paso corresponden a los que los candidatos muestran posiciones claras en sus programas presidenciales o en declaraciones públicas por parte de ellos." %}</p>
   <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ wizard.form.media }}

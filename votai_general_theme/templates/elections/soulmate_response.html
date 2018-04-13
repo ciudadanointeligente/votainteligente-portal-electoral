@@ -21,7 +21,7 @@
 				</svg>
 		</div>
 		<div class="col-md-9">
-			<p class="small">Tu 1/2 naranja política es</p>
+			<p class="small">{% trans "Tu 1/2 naranja política es" %}</p>
 			<h2><a href="{{ candidate.get_absolute_url}}">{{winner.candidate.name}} ({% get_personal_data candidate=winner.candidate personal_data='Partido' as partido %}{{partido.value}})<br> con un {{winner.percentage|mul:100|floatformat}}% {% trans "de afinidad" %}</a><i class="icon-heart"></i></h2>
 			<ul class="list-inline">
 				<li>

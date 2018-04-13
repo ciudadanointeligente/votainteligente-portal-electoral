@@ -17,8 +17,8 @@
     {% bootstrap_field form.image %}
     {% bootstrap_field form.document %}
 
-    <h3 class="page-header">Información extra</h3>
-    <p><i>Esta información nos permitirá tener un mejor entendimiento de cómo y dónde se formulan las propuestas.</i></p>
+    <h3 class="page-header">{% trans "Información extra" %}</h3>
+    <p><i>{% trans "Esta información nos permitirá tener un mejor entendimiento de cómo y dónde se formulan las propuestas." %}</i></p>
 
     {% bootstrap_field form.is_local_meeting %}
     {% bootstrap_field form.generated_at %}

@@ -16,7 +16,9 @@
   <a class="small" href="{{org_profile}}" data-toggle="dropdown" data-target="submenu">
   {% blocktrans %}Actualizar mi organización{% endblocktrans %} <span class="caret"></span></a>
   <ul class="dropdown-menu" id="submenu">
-    <li><a href="{% url 'organization_profiles:update' %}">Pagina Organizacion</a></li>
+    <li><a href="{% url 'organization_profiles:update' %}">{% blocktrans %}
+      Pagina Organizacion
+    {% endblocktrans %}</a></li>
     {% for extra_page in user.organization_template.extra_pages.all %}
     <li><a href="{% url 'organization_profiles:update_extrapage' extra_page.id %}">{{extra_page.title}}</a></li>
     {% endfor %}

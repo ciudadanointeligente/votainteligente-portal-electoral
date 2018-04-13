@@ -19,7 +19,7 @@ $(function(){
 });
 {% endblock extrajs %}
 
-{% block title %}- Propuesta - {{popular_proposal.title}}{% endblock title%}
+{% block title %}- {% trans "Propuesta" %} - {{popular_proposal.title}}{% endblock title%}
 
 {% block ogp %}
   {% render_ogp popular_proposal %}
@@ -34,10 +34,10 @@ $(function(){
     @ciudadanoi
   {% endif %}
   {% endspaceless %}">
-  <meta name="twitter:title" content="¡Ingresa a votainteligente.cl y apoya esta propuesta!">
+  <meta name="twitter:title" content="{% trans "¡Ingresa a votainteligente.cl y apoya esta propuesta!" %}">
   <meta name="twitter:description" content="{% spaceless %}
   {% if popular_proposal.proposer.profile.is_organization and popular_proposal.proposer.organization_template.twitter %}
-  {{popular_proposal.proposer.organization_template.twitter|extract_twitter_username}} propone {{ popular_proposal.title }}
+  {% blocktrans with proposer_twitter=popular_proposal.proposer.organization_template.twitter|extract_twitter_username proposal=popular_proposal.title %}{{proposer_twitter}} propone {{ proposal }}{% endblocktrans %}
   {% else %}
   {{ popular_proposal.title }}
   {% endif %}
@@ -51,8 +51,8 @@ $(function(){
 
 <div class="container print_hidden">
   <ol class="breadcrumb">
-    <li><a href="{% url 'home' %}"><i class="fa fa-home" aria-label="Inicio"></i></a></li>
-    <li><a href="{% url 'popular_proposals:home' %}">Propuestas</a></li>
+    <li><a href="{% url 'home' %}"><i class="fa fa-home" aria-label="{% trans "Inicio" %}"></i></a></li>
+    <li><a href="{% url 'popular_proposals:home' %}">{% trans "Propuestas" %}</a></li>
     <li class="active">{{popular_proposal.title|truncatechars:60}}</li>
   </ol>
 </div>
@@ -63,7 +63,8 @@ $(function(){
   <div class="row">
     <div class="col-md-12">
       <div class="alert alert-success text-center">
-        <p>Esta es tu propuesta {{user}}, ¿quieres <a href="{% url 'popular_proposals:citizen_update' slug=popular_proposal.slug %}">{% blocktrans %}añadir antecedentes{% endblocktrans %}</a> a esta propuesta?</p>
+        {% url 'popular_proposals:citizen_update' slug=popular_proposal.slug as update_proposal_url %}
+        <p>{% blocktrans with user=user %}Esta es tu propuesta {{user}}, ¿quieres <a href="{{update_proposal_url}}">añadir antecedentes</a> a esta propuesta?{% endblocktrans %}</p>
       </div>
     </div>
   </div>
@@ -75,17 +76,23 @@ $(function(){
     <div class="row">
       <div class="col-md-9 detalle-propuesta detail{% if proposal.for_all_areas %} transversal{% endif %}">
         <span class="label label-default">{{popular_proposal.get_classification}}</span>
-        <p class="text-light small">Propuesta nº{{popular_proposal.id}}</p>
+        <p class="text-light small">{% blocktrans with proposal_id=popular_proposal.id %}
+          Propuesta nº{{proposal_id}}
+        {% endblocktrans %}</p>
 
         {% if popular_proposal.is_local_meeting %}
-        <img src="{% static 'img/local-meeting.svg' %}" alt="Generada desde un encuentro ciudadano">
+        <img src="{% static 'img/local-meeting.svg' %}" alt="{% trans "Generada desde un encuentro ciudadano" %}">
         {% endif %}
 
         <h1>{{popular_proposal.title}}</h1>
         <p class="text-light small">
-            Esta es una propuesta de
 
-            {% get_proposal_author popular_proposal %}
+          {% blocktrans %}
+            Esta es una propuesta de
+          {% endblocktrans %}
+          {% get_proposal_author popular_proposal %}
+
+
         </p>
       </div><!-- col-md-9 -->
     </div><!-- row -->
@@ -137,9 +144,9 @@ $(function(){
             <p>{{popular_proposal.background|linebreaksbr}}</p>
 
             {% if popular_proposal.document|length %}
-            <h3>Documentos</h3>
+            <h3>{% trans "Documentos" %}</h3>
             <ul class="list-unstyled">
-              <li><a href="{{popular_proposal.document.url}}" target="_blank"><i class="fa fa-file"></i> Documento</a></li>
+              <li><a href="{{popular_proposal.document.url}}" target="_blank"><i class="fa fa-file"></i> {% trans "Documento" %}</a></li>
             </ul>
             {% endif %}
 
@@ -152,14 +159,17 @@ $(function(){
         {% endif %}
 
         <p class="llamado">
-          Si te gustó ¡apóyala y compártela! Así todos/as tendremos voz en las elecciones de este año.
+          {% trans "Si te gustó ¡apóyala y compártela! Así todos/as tendremos voz en las elecciones de este año." %}
           <br>
+          {% blocktrans %}
           Si por el contrario, encuentras que esta propuesta viola los "<a href="#" data-toggle="modal" data-target="#terms_and_conditions">Términos y Condiciones</a>" para la creación de una propuesta, ayúdanos <a class="reportar_propuesta">reportando</a> esta propuesta.
+          {% endblocktrans %}
+
         </p>
 
         <div class="share-detail visible-xs">
           {% if config.MOSTRAR_AYUDANOS_PROPUESTA %}
-          <div id="btn-difunde" class="text-center"><a href="{% url 'popular_proposals:ayuranos' slug=popular_proposal.slug%}" class="btn btn-blue" onclick="ga('send','event','ayudanos-proposal-{{popular_proposal.id}}','click')">Ayúdanos a difundir esta propuesta entre las candidaturas</a>
+          <div id="btn-difunde" class="text-center"><a href="{% url 'popular_proposals:ayuranos' slug=popular_proposal.slug%}" class="btn btn-blue" onclick="ga('send','event','ayudanos-proposal-{{popular_proposal.id}}','click')">{% trans "Ayúdanos a difundir esta propuesta entre las candidaturas" %}</a>
           </div>
           {% endif %}
         </div>
@@ -169,13 +179,13 @@ $(function(){
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Términos y Condiciones</h4>
+                <h4 class="modal-title">{% trans "Términos y Condiciones" %}</h4>
               </div>
               <div class="modal-body">
                 {% include 'popular_proposal/terms_and_conditions.html' %}
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Cerrar" %}</button>
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
@@ -190,25 +200,32 @@ $(function(){
 
       <div class="col-md-3 hidden-sm hidden-xs text-center print_hidden">
         <label>Esta propuesta tiene</label>
-        <p class="apoyo-ciudadano"><span id='likers_count_{{popular_proposal.id}}' class="conteo">{{popular_proposal.likers.count}} <i class="fa fa-heart blue-light-txt" aria-hidden="true"></i></span>apoyo(s) ciudadano(s)
-        <br><span id='likers_count_{{popular_proposal.id}}' class="conteo">{{popular_proposal.commitments.count}} <i class="fa fa-heart blue-light-txt" aria-hidden="true"></i></span>candidatura(s) comprometida(s)</p>
+        <p class="apoyo-ciudadano">
+          {% blocktrans with proposal_id=proposal.id likers_count=proposal.likers.count %}
+            <span id='likers_count_{{proposal_id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s) ciudadano(s)</p>
+          {% endblocktrans %}
+        <br>
+        {% blocktrans with proposal_id=proposal.id commitments_count=proposal.commitments.count %}
+        <span id='likers_count_{{proposal_id}}' class="conteo">{{commitments_count}}</span> candidatura(s) comprometida(s)
+      {% endblocktrans %}
+      </p>
         <hr>
-        <label>Apoya esta propuesta</label>
+        <label>{% trans "Apoya esta propuesta" %}</label>
         <div class="share-detail">
           {% include 'popular_proposal/_likers.html' with proposal=popular_proposal next_url=request.path  avoid_counter=True %}
         </div>
         <hr>
-        <label>Comparte esta propuesta</label>
+        <label>{% trans "Comparte esta propuesta" %}</label>
         <div class="share-detail">
           {% include 'popular_proposal/_share.html' with proposal=popular_proposal next_url=request.path %}
           {% if config.MOSTRAR_AYUDANOS_PROPUESTA %}
-          <div id="btn-difunde" class="text-center"><a href="{% url 'popular_proposals:ayuranos' slug=popular_proposal.slug%}" class="btn btn-blue" onclick="ga('send','event','ayudanos-proposal-{{popular_proposal.id}}','click')">Ayúdanos a difundir esta propuesta entre las candidaturas</a>
+          <div id="btn-difunde" class="text-center"><a href="{% url 'popular_proposals:ayuranos' slug=popular_proposal.slug%}" class="btn btn-blue" onclick="ga('send','event','ayudanos-proposal-{{popular_proposal.id}}','click')">{% trans "Ayúdanos a difundir esta propuesta entre las candidaturas" %}</a>
           </div>
           {% endif %}
         </div>
         {% if popular_proposal.sponsoring_orgs.all %}
         <hr>
-          <label>Organizaciones que apoyan esta propuesta</label>
+          <label>{% trans "Organizaciones que apoyan esta propuesta" %}</label>
           <ul class="list-inline">
             {% for org in popular_proposal.sponsoring_orgs %}
             <li>
@@ -241,11 +258,7 @@ $(function(){
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-2">
-        <div class="apoyo-contador">
-          <p class="apoyo-ciudadano">
-            <span id='likers_count_{{popular_proposal.id}}' class="conteo">{{popular_proposal.likers.count}}</span> apoyo(s) ciudadano(s)<br>
-            <span id='likers_count_{{popular_proposal.id}}' class="conteo">{{popular_proposal.commitments.count}}</span> candidatura(s) comprometida(s)</p>
-        </div>
+        {% include 'popular_proposal/_apoyo_contador.html' with proposal=popular_proposal %}
       </div>
       <div class="col-md-4">
         <div class="share-detail mobile-fix">

@@ -19,7 +19,7 @@ $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
 {% if not hidden_search %}
-<p class="bajada text-center">Te invitamos a filtrar y encontrar propuestas ciudadanas en las siguientes áreas</p>
+<p class="bajada text-center">{% trans "Te invitamos a filtrar y encontrar propuestas ciudadanas en las siguientes áreas" %}</p>
 <div class="blue-light">
     {% include 'popular_proposal/_filter_tag_form.html' %}
     {% include 'popular_proposal/_filter_form.html' %}
@@ -30,15 +30,19 @@ $('[data-toggle="tooltip"]').tooltip();
 <div id="grid">
   {% if not hide_proposal_list_header %}
       {% if form.is_filled_search %}
-      <h3 class="text-center">Hay {{popular_proposals|length}}
-        {% if not tipo_propuestas %}propuestas ciudadanas{% else %}{{tipo_propuestas}}{% endif %}
-         con tus criterios de búsqueda seleccionados</h3>
+      <h3 class="text-center">{% blocktrans with proposals_count=popular_proposals|length %}
+        Hay {{proposals_count}}
+      {% endblocktrans %}
+        {% if not tipo_propuestas %}{% trans "propuestas ciudadanas" %}{% else %}{{tipo_propuestas}}{% endif %}
+         {% trans "con tus criterios de búsqueda seleccionados" %}</h3>
       {% else %}
-      <h3 class="text-center">Hay {{popular_proposals|length}} {% if not tipo_propuestas %}propuestas ciudadanas{% else %}{{tipo_propuestas}}{% endif %}</h3>
+      <h3 class="text-center">{% blocktrans with proposals_count=popular_proposals|length %}
+        Hay {{proposals_count}}
+      {% endblocktrans %} {% if not tipo_propuestas %}{% trans "propuestas ciudadanas" %}{% else %}{{tipo_propuestas}}{% endif %}</h3>
       {% endif %}
       {% if not user|is_candidate and not hidden_create_proposal_button %}
         {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
-        <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark">Crear nueva propuesta</a></div>
+        <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark">{% trans "Crear nueva propuesta" %}</a></div>
       {% endif %}
       {% if user.is_authenticated and form.is_filled_search and config.SEARCH_SUBSCRIPTION_ENABLED %}
       <!--
@@ -64,7 +68,7 @@ $('[data-toggle="tooltip"]').tooltip();
       {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
       {% blocktrans %}
         <p class="bg-info text-center">
-          Aún no se han generado propuestas para esta búsqueda.
+          {% trans "Aún no se han generado propuestas para esta búsqueda." %}
         </p>
       {% endblocktrans %}
     {% endfor %}

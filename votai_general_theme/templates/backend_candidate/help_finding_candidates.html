@@ -5,7 +5,7 @@
 {% load votainteligente_extras %}
 {% load cache %}
 
-{% block title %}- Ayúdanos{% endblock title %}
+{% block title %}- {% trans "Ayúdanos" %}{% endblock title %}
 
 {% block navbar %}
 {% endblock navbar %}
@@ -13,7 +13,7 @@
 {% block content %}
 {% cache 60 ayudanos %}
 <div class="container">
-  <h2>Elije uno de estos tuits y ayúdanos!</h2>
+  <h2>{% trans "Elije uno de estos tuits y ayúdanos!" %}</h2>
 
   <div class="table-responsive">
     <table class="table table-striped">
@@ -25,23 +25,23 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{ 'text'|website_twitter }} #{{ 'hashtags'|website_twitter }} https://votainteligente.cl</td>
+          <td>{{ 'text'|website_twitter }} #{{ 'hashtags'|website_twitter }} {%trans "https://votainteligente.cl" %}</td>
           <td>{% include 'twitter_poking_button.html' %}</td>
         </tr>
         <tr>
-          <td>{{config.AYUDANOS_TEXTO1}} #{{ config.WEBSITE_TWITTER_HASHTAG }} https://votainteligente.cl</td>
+          <td>{{config.AYUDANOS_TEXTO1}} #{{ config.WEBSITE_TWITTER_HASHTAG }} {%trans "https://votainteligente.cl" %}</td>
           <td>{% include 'twitter_poking_button.html' with texto=config.AYUDANOS_TEXTO1 button_text='Tuitea' hashtag="PorQuiénVotar" %}</td>
         </tr>
         <tr>
-          <td>{{config.AYUDANOS_TEXTO2}} #{{ config.WEBSITE_TWITTER_HASHTAG }} https://votainteligente.cl</td>
+          <td>{{config.AYUDANOS_TEXTO2}} #{{ config.WEBSITE_TWITTER_HASHTAG }} {%trans "https://votainteligente.cl" %}</td>
           <td>{% include 'twitter_poking_button.html' with texto=config.AYUDANOS_TEXTO2 button_text='Tuitea'  %}</td>
         </tr>
         <tr>
-          <td>{{config.AYUDANOS_TEXTO3}} #{{ config.WEBSITE_TWITTER_HASHTAG }} https://votainteligente.cl</td>
+          <td>{{config.AYUDANOS_TEXTO3}} #{{ config.WEBSITE_TWITTER_HASHTAG }} {%trans "https://votainteligente.cl" %}</td>
           <td>{% include 'twitter_poking_button.html' with texto=config.AYUDANOS_TEXTO3 button_text='Tuitea'  %}</td>
         </tr>
         <tr>
-          <td>{{config.AYUDANOS_TEXTO4}} #{{ config.WEBSITE_TWITTER_HASHTAG }} https://votainteligente.cl</td>
+          <td>{{config.AYUDANOS_TEXTO4}} #{{ config.WEBSITE_TWITTER_HASHTAG }} {%trans "https://votainteligente.cl" %}</td>
           <td>{% include 'twitter_poking_button.html' with texto=config.AYUDANOS_TEXTO4 button_text='Tuitea' %}</td>
         </tr>
       </tbody>
@@ -85,4 +85,3 @@
 </div>
 {% endcache %}
 {% endblock content %}
-

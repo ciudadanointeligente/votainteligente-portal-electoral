@@ -2,17 +2,19 @@
 
 <h2 class="page-header">Estadísticas</h2>
 
-<p>Tus propuestas están presentes en un total de {{total_stats.areas_present.count}} comunas, de las cuales has logrado compromisos en {{total_stats.areas_with_commitments.count}}, de ellos {{total_stats.pronouncing__alcalde.count}} son de alcalde y {{total_stats.pronouncing__concejal.count}}
+<p>{% blocktrans with area_count=total_stats.areas_present.count areas_with_commitments=total_stats.areas_with_commitments.count %}
+  Tus propuestas están presentes en un total de {{area_count}} comunas, de las cuales has logrado compromisos en {{areas_with_commitments}}.
+{% endblocktrans %}
   son de concejal</p>
 
 <div class="table-responsive">
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Comuna</th>
-      <th>Nombre</th>
-      <th>Posición</th>
-      <th>Mail de contacto</th>
+      <th>{% trans "Comuna" %}</th>
+      <th>{% trans "Nombre" %}</th>
+      <th>{% trans "Posición" %}</th>
+      <th>{% trans "Mail de contacto" %}</th>
     </tr>
   </thead>
   <tbody>
@@ -30,7 +32,7 @@
 </table>
 </div>
 
-<h3>Las estadísticas sobre tus propuestas</h3>
+<h3>{% trans "Las estadísticas sobre tus propuestas" %}</h3>
 <div class="table-responsive">
 <table class="table table-striped">
   <thead>
@@ -54,15 +56,17 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Concejales que se han pronunciado sobre {{stat.proposal.title}} en {{stat.proposal.area}}</h4>
+                <h4 class="modal-title">{% blocktrans with title=stat.proposal.title area=stat.proposal.area %}
+Concejales que se han pronunciado sobre {{title}} en {{area}}
+                {% endblocktrans %}</h4>
               </div>
               <div class="modal-body">
                 <ul>
                   {% for commitment in stat.pronouncing__concejal.all %}
                   <li><a href="{{commitment.candidate.get_absolute_url}}">{{commitment.candidate}}</a>
                     {% if commitment.commited %}
-                    <span class="label label-success">Te apoyará desde el concejo</span>{% else %}<span class="label label-danger">Dijo que NO</span>
-                    {% endif %}(<a href="{{commitment.get_absolute_url}}">ver el compromiso</a>)</li>
+                    <span class="label label-success">{% trans "Te apoyará desde el concejo" %}</span>{% else %}<span class="label label-danger">{% trans "Dijo que NO" %}</span>
+                    {% endif %}(<a href="{{commitment.get_absolute_url}}">{% trans "ver el compromiso" %}</a>)</li>
                   {% endfor %}
                 </ul>
               </div>
@@ -78,17 +82,21 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Alcaldes que se han pronunciado sobre {{stat.proposal.title}} en {{stat.proposal.area}}</h4>
+                <h4 class="modal-title">
+                  {% blocktrans with proposal=stat.proposal.title area=stat.proposal.area %}
+                    Alcaldes que se han pronunciado sobre {{proposal}} en {{area}}
+                  {% endblocktrans %}
+                  </h4>
               </div>
               <div class="modal-body">
                 <ul>
                   {% for commitment in stat.pronouncing__alcalde.all %}
                   <li><a href="{{commitment.candidate.get_absolute_url}}">{{commitment.candidate}}</a>
                     {% if commitment.commited %}
-                      <span class="label label-warning">Se comprometió</span>
+                      <span class="label label-warning">{% trans "Se comprometió" %}</span>
                     {% else %}
-                      <span class="label label-danger">Dijo que NO</span>
-                    {% endif %}(<a href="{{commitment.get_absolute_url}}">ver el compromiso</a>)</li>
+                      <span class="label label-danger">{% trans "Dijo que NO" %}</span>
+                    {% endif %}(<a href="{{commitment.get_absolute_url}}">{% trans "ver el compromiso" %}</a>)</li>
                   {% endfor %}
                 </ul>
               </div>

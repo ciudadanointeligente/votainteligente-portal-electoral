@@ -15,7 +15,12 @@
 		{% include 'elections/extra_info_per_election.html' %}
 	{% endif %}
 {% endif %}
-<h1 class="text-center"><div class="small">Candidatos a</div><a href="{% url 'election_view' slug=election.slug %}">{{ election.position }} por {{ election.area }}</a></h1>
+<h1 class="text-center"><div class="small">
+	{% url 'election_view' slug=election.slug as election_detail_url %}
+	{% blocktrans with election_detail_url=election_detail_url position=election.position area=election.area %}
+			Candidatos a</div><a href="{{election_detail_url}}">{{ position }} por {{ area }}
+	{% endblocktrans %}
+	</a></h1>
 <div class="row">
 	<div class="nav-candidator btn-bajada">
 		<nav class="col-md-12">
@@ -54,14 +59,14 @@
 			<p class="text-center">
 				{% if config.SHOW_RIBBON_IN_CANDIDATE and not candidate.commitments.count%}
 
-				<div class="ribbon label label-danger {% if position == 'concejal' %}ribbon-noimg{% endif %}">No ha respondido</div>
+				<div class="ribbon label label-danger {% if position == 'concejal' %}ribbon-noimg{% endif %}">{% trans "No ha respondido" %}</div>
 				{% endif %}
 				<a href="{{ candidate.get_absolute_url}}"><h3 class="text-center">{{candidate.name}}</h3></a>
 				<p class="small text-light text-center small-bajada">{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{{partido.value}}</p>
                 {% if candidate.has_won %}
                 <div class="small label-info ranking text-white row text-center">
                   <div class="ranking-content">
-                    <div class="col-md-2 num col-md-offset-2">Electo</div>
+                    <div class="col-md-2 num col-md-offset-2">{% trans "Electo" %}</div>
                   </div>
                 </div>
                 {% endif %}

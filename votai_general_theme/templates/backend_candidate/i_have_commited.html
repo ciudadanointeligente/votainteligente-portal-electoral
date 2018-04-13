@@ -11,7 +11,7 @@
 <div class="contenedorDestacado fondo-blanco">
 
   	{% if commitments %}
-  		<h2>Tus compromisos</h2>
+  		<h2>{% trans "Tus compromisos" %}</h2>
       	<table class="table">
         <tr>
             <td>{% trans 'Propuesta' %}</td>
@@ -27,11 +27,11 @@
             	<a href="{{commitment.get_absolute_url}}">
             		{% if commitment.commited %}
             			<span class="label label-warning">
-            				Te comprometiste
+            				{% trans "Te comprometiste" %}
             			</span>
             		{% else %}
             			<span class="label label-danger">
-            				No te comprometiste
+            				{% trans "No te comprometiste" %}
             			</span>
             		{% endif %}
             	</a>

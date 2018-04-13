@@ -5,10 +5,14 @@
 {% load bootstrap3 %}
 
 {% block content %}
-  <h1>Gracias por comprometerte!</h1>
+  <h1>{% trans "Gracias por comprometerte!" %}</h1>
   <ul>
   {% for commitment in commitments %}
-    <li><a href="{{commitment.get_absolute_url}}">Revisa y publicita tu compromiso con {{commitment.proposal.title}}</a></li>
+    <li><a href="{{commitment.get_absolute_url}}">
+      {% blocktrans with proposal=commitment.proposal.title %}
+        Revisa y publicita tu compromiso con {{proposal}}
+      {% endblocktrans %}
+      </a></li>
   {% endfor %}
   </ul>
 {% endblock content %}

@@ -3,9 +3,10 @@
 {% load bootstrap3 %}
 {% block title %}{% trans "Activation complete" %}{% endblock %}
 {% block content %}
-<h1>Bienvenida/o! Ahora ya activamos tu cuenta!</h1>
-<p>Estamos redirigiendote para que edites tu perfil.</p>
-<p>Si no funciona, puedes hacer click en <a href="{% url 'username_and_password' %}">En este link.</a>.</p>
+<h1>{% trans "Bienvenida/o! Ahora ya activamos tu cuenta!" %}</h1>
+<p>{% trans "Estamos redirigiendote para que edites tu perfil" %}.</p>
+{% url 'username_and_password' as url %}
+<p>{% blocktrans with url=url %}Si no funciona, puedes hacer click en <a href="{{url}}">En este link.</a>.{% endblocktrans %}</p>
 
   <script>
 window.setTimeout(function() {
@@ -13,5 +14,3 @@ window.setTimeout(function() {
 }, 5000);
   </script>
 {% endblock %}
-
-

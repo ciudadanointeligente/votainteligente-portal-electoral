@@ -6,21 +6,21 @@
 {% load bootstrap3 %}
 {% load ogp_tags %}
 
-{% block title %} - Compromiso final - {{commitment.candidate.name}} - {{commitment.proposal.title}}{% endblock title%}
+{% block title %} - {% trans "Compromiso final" %} - {{commitment.candidate.name}} - {{commitment.proposal.title}}{% endblock title%}
 
 {% block ogp %}
   {% render_ogp popular_proposal %}
-  <meta property="og:title" content="En votainteligente.cl revisa el compromiso que he firmado!">
+  <meta property="og:title" content="{% trans 'En votainteligente.cl revisa el compromiso que he firmado' %}">
   <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
   <meta property="og:url" content="https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}">
   <meta property="og:image" content="{{commitment.proposal.ogp_image}}">
-  <meta property="og:description" content="Yo, {{commitment.candidate.name}}, me he comprometido con la Propuesta Ciudadana: {{commitment.proposal.title}}">
+  <meta property="og:description" content="{% blocktrans with candidate_name=commitment.candidate.name proposal=commitment.proposal.title %}Yo, {{candidate_name}}, me he comprometido con la Propuesta Ciudadana: {{proposal}}{% endblocktrans %}">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ciudadanoi">
   <meta name="twitter:creator" content="@ciudadanoi">
-  <meta name="twitter:title" content="En votainteligente.cl revisa el compromiso que he firmado!">
-  <meta name="twitter:description" content="Yo, {{commitment.candidate.name}}, me he comprometido con la Propuesta Ciudadana: {{commitment.proposal.title}}">
+  <meta name="twitter:title" content="{% trans 'En votainteligente.cl revisa el compromiso que he firmado!' %}">
+  <meta name="twitter:description" content="{% blocktrans with candidate_name=commitment.candidate.name proposal=commitment.proposal.title %}Yo, {{candidate_name}}, me he comprometido con la Propuesta Ciudadana: {{proposal}}{% endblocktrans %}">
   <meta name="twitter:image" content="{{commitment.proposal.ogp_image}}">
 {% endblock ogp %}
 
@@ -31,10 +31,10 @@
 {% block content %}
   <div class="container">
     <ul class="breadcrumb">
-      <li><a href="{% url 'home' %}"><i class="fa fa-home" aria-label="Inicio"></i></a></li>
-      <li><a href="{% url 'popular_proposals:home' %}">Propuestas</a></li>
+      <li><a href="{% url 'home' %}"><i class="fa fa-home" aria-label="{% trans 'Inicio' %}"></i></a></li>
+      <li><a href="{% url 'popular_proposals:home' %}">{% trans "Propuestas" %}</a></li>
       <li><a href="{{commitment.proposal.get_absolute_url}}">{{commitment.proposal.title}}</a></li>
-      <li class="active">Compromiso</li>
+      <li class="active">{% trans "Compromiso" %}</li>
     </ul>
   </div>
   <div class="container">
@@ -46,8 +46,10 @@
         </div>
       {% endfor %}
     {% endif %}
-    <h1 class="page-header">Compromiso</h1>
-    Yo <b>{{commitment.candidate.name}}</b> me comprometo con la propuesta ciudadana:
+    <h1 class="page-header">{% trans "Compromiso" %}</h1>
+    {% blocktrans with candidate_name=commitment.candidate.name %}
+    Yo <b>{{candidate_name}}</b> me comprometo con la propuesta ciudadana:
+    {% endblocktrans %}
 
     {% include 'popular_proposal/plantillas/candidate_commitment.html' with proposal=commitment.proposal detail=commitment.detail %}
 
@@ -58,19 +60,19 @@
 </div>
 {% if user|manages_this:commitment.candidate %}
 <div class="container text-center">
-  <h3>Hazlo público!</h3>
-  <p>Cuéntales a tus futuros electores el compromiso que acabas de firmar!</p>
+  <h3>{% trans "Hazlo público!" %}</h3>
+  <p>{% trans "Cuéntales a tus futuros electores el compromiso que acabas de firmar!" %}</p>
   <ul class="list-inline">
-    <li><a href="#" onclick="window.open('https://twitter.com/share?text=Me he comprometido con la propuesta ciudadana: {{commitment.proposal.title}}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
+    <li><a href="#" onclick="window.open('https://twitter.com/share?text={% blocktrans with proposal=commitment.proposal.title %}Me he comprometido con la propuesta ciudadana: {{proposal}}{% endblocktrans %}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
     <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
   </ul>
 </div>
 {% else %}
 <div class="container text-center">
-  <h3>Comunícalo!</h3>
-  <p>Cuéntales a tus amigos sobre este compromiso!</p>
+  <h3>{% trans "Comunícalo!" %}</h3>
+  <p>{% trans "Cuéntales a tus amigos sobre este compromiso!" %}</p>
   <ul class="list-inline">
-    <li><a href="#" onclick="window.open('https://twitter.com/share?text={{commitment.candidate.name}} se comprometió con la propuesta ciudadana: {{commitment.proposal.title}}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
+    <li><a href="#" onclick="window.open('https://twitter.com/share?text={% blocktrans with candidate_name=commitment.candidate.name proposal=commitment.proposal.title %}{{candidate_name}} se comprometió con la propuesta ciudadana: {{proposal}}{% endblocktrans %}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
     <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
   </ul>
 </div>

@@ -7,18 +7,20 @@
 {% load bootstrap3 %}
 
 {% block questions %}
-  <p>Estas medidas son propuestas que organizaciones, ciudadanos y ciudadanas han hecho en Vota Inteligente. Acá te mostramos una selección con la que se han comprometido ambas candidaturas para ver con cuáles eres más compatible.</p>
+  <p>{% trans "Estas medidas son propuestas que organizaciones, ciudadanos y ciudadanas han hecho en Vota Inteligente. Acá te mostramos una selección con la que se han comprometido ambas candidaturas para ver con cuáles eres más compatible." %}</p>
 
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ wizard.form.media }}
     {{ wizard.management_form }}
-    <label>Si fueras presidenta, presidente o congresista, ¿Cuáles serían tus primeras {{config.MEDIA_NARANJA_MAX_SELECT_PROPOSALS}} medidas o prioridades?</label>
+    <label>{% blocktrans with max_proposals_in_12_naranja=config.MEDIA_NARANJA_MAX_SELECT_PROPOSALS %}
+      Si fueras presidenta, presidente o congresista, ¿Cuáles serían tus primeras {{max_proposals_in_12_naranja}} medidas o prioridades?
+    {% endblocktrans %}</label>
 
     {% for choice_id, choice_label in wizard.form.proposals.field.choices %}
     <div class="pregunta naranja-medida">
       <span class="label-default">{{choice_id|get_classification_from_str}}</span>
-        
+
         {% for k,v in choice_label %}
         <br />
           <label for="id_{{wizard.steps.current}}-proposals_{{k}}">

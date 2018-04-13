@@ -11,17 +11,20 @@
 
       <div class="panel panel-success">
           <div class="panel-heading">
-      <h3>Propuestas Ciudadanas</h3>
+      <h3>{% trans "Propuestas Ciudadanas" %}</h3>
           </div>
           <div class="panel-body">
       <span>
 {% markdown %}
-Queremos que las personas y organizaciones sociales sean escuchadas. 
+{% blocktrans with var1 as var2 %}
+Queremos que las personas y organizaciones sociales sean escuchadas.
 Envíanos tu propuesta para solucionar un problema en tu comuna y nosotros te ayudaremos a que esta sea escuchada por los candidatos a alcaldes y concejales de las Elecciones Municipales 2016.
 
 Los vecinos y vecinas son quienes conocen mejor sus necesidades. Es por eso que estamos abiertos a todas sus propuestas. Solo ingresa tu comuna, rellena el formulario, y nosotros te acompañaremos en la elaboración de tu propuesta.
 
-#### Nota: Para hacer tu propuesta ciudadana, deberás registrarte en el sitio.
+#### Nota: Para hacer tu propuesta ciudadana, deberás registrarte en el sitio.  
+{% endblocktrans %}
+
 {% endmarkdown %}
       </span>
       </div>

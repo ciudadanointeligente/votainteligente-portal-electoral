@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block title %}
 - Realiza un encuentro
 {% endblock title %}
@@ -8,7 +9,7 @@
 
 <div class="container">
 	<div>
-	  <h1 class="text-center">Realiza un encuentro</h1>
+	  <h1 class="text-center">{% trans "Realiza un encuentro" %}</h1>
 	  	<div>
 	  	</div>
 	</div>
@@ -27,13 +28,13 @@
 <section id="manual-encuentro">
   <div class="container">
     <div class="col-md-4 col-md-offset-2">
-      <p>En un Encuentro Ciudadano podemos juntarnos con nuestra comunidad, amigos/as o familia y elaborar propuestas en conjunto para que los/as candidatos/as nos escuchen. En este manual encontrarás todo lo necesario para preparar tu Encuentro Ciudadano, el paso a paso para elaborar una propuesta y, por último, formas para que esta sea escuchada. Anímate, descarga la guía que hicimos para ti y ¡a crear propuestas!</p>
+      <p>{% trans "En un Encuentro Ciudadano podemos juntarnos con nuestra comunidad, amigos/as o familia y elaborar propuestas en conjunto para que los/as candidatos/as nos escuchen. En este manual encontrarás todo lo necesario para preparar tu Encuentro Ciudadano, el paso a paso para elaborar una propuesta y, por último, formas para que esta sea escuchada. Anímate, descarga la guía que hicimos para ti y ¡a crear propuestas!" %}</p>
     </div>
     <div class="col-md-4">
       <a href="{% static 'material-ciudadano/guia-elaboracion-propuestas.pdf' %}" target="_blank" class="" onclick="ga('send', 'event', 'encuentro-ciudadano-download-guia', 'click')">
       <div class="set-guide text-center">
         <img src="{% static 'img/1-metodologia.svg' %}" class="img-responsive">
-        <p>Descarga la guía</p>
+        <p>{% trans "Descarga la guía" %}</p>
       </div>
       </a>
     </div>

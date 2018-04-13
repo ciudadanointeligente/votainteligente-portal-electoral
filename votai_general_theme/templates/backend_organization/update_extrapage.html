@@ -8,7 +8,12 @@
 
 	<h2 class="page-header">{{object.title}}</h2>
 
-	<p class="alert alert-warning button-org">Revisa tu página de perfil <a href="{% url 'organization_profiles:home' slug=user.username %}" target="_blank">acá</a></p>
+	<p class="alert alert-warning button-org">
+		{% url 'organization_profiles:home' slug=user.username as org_profile_url %}
+		{% blocktrans with org_profile_url=org_profile_url %}
+		Revisa tu página de perfil <a href="{{org_profile_url}}" target="_blank">acá</a>	
+		{% endblocktrans %}
+		</p>
 
 	<form enctype="multipart/form-data" action="{% url 'organization_profiles:update_extrapage' pk=object.pk %}" method="POST" role="form">
 	    {% csrf_token %}

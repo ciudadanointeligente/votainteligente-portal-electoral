@@ -1,8 +1,9 @@
 {% load cache %}
 {% load votainteligente_extras %}
+{% load i18n %}
 {% cache 500 political_positions candidate.id %}
 
-<h3 class="text-center">Posiciones políticas</h3>
+<h3 class="text-center">{% trans "Posiciones políticas" %}</h3>
 
 {% if 'questionary'|val_navbars and election.uses_questionary  %}
 <div class="questionary">

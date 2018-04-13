@@ -4,30 +4,32 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load bootstrap3 %}
-{% block title %} - Firma Compromiso - {{candidate.name}} - {{proposal.title}}{% endblock title%}
+{% block title %} - {% trans "Firma Compromiso" %} - {{candidate.name}} - {{proposal.title}}{% endblock title%}
 {% block extrajs %}
 {% load ogp_tags %}
 {% endblock extrajs %}
 {% block content %}
 <div class="container">
   <ul class="breadcrumb">
-    <li><a href="{% url 'home' %}">VotaInteligente</a></li>
-    <li><a href="{% url 'popular_proposals:home' %}">Propuestas</a></li>
+    <li><a href="{% url 'home' %}">{% trans "VotaInteligente" %}</a></li>
+    <li><a href="{% url 'popular_proposals:home' %}">{% trans "Propuestas" %}</a></li>
     <li><a href="{{proposal.get_absolute_url}}">{{proposal.title}}</a></li>
-    <li class="active">Firmar compromiso</li>
+    <li class="active">{% trans "Firmar compromiso" %}</li>
   </ul>
 </div>
 <div class="container">
   <div class="fondo-blanco text-width">
-    <h1>Firmar Compromiso</h1>
-    <p>Yo <strong>{{candidate.name}}</strong>, <strong>{{candidate.election.position}}</strong> me comprometo con la propuesta ciudadana:</p>
+    <h1>{% trans "Firmar Compromiso" %}</h1>
+    <p>{% blocktrans with candidate_name=candidate.name position=candidate.election.position %}
+      Yo <strong>{{candidate_name}}</strong>, <strong>{{position}}</strong> me comprometo con la propuesta ciudadana:
+    {% endblocktrans %}</p>
 
     {% include 'popular_proposal/plantillas/candidate_commitment.html' with proposal=proposal %}
 
     <form enctype="multipart/form-data" action="{% url 'popular_proposals:commit_yes' proposal_pk=proposal.id candidate_pk=candidate.id %}" method="POST" role="form">{% csrf_token %}
       {% bootstrap_field form.detail %}
       <div class="tips">
-        <b class="main-title">Terminos y Condiciones</b>
+        <b class="main-title">{% trans "Terminos y Condicione" %}</b>
         {% include 'popular_proposal/commitment/terms_and_conditions.html' %}
       </div>
       {% bootstrap_field form.terms_and_conditions show_label=false %}

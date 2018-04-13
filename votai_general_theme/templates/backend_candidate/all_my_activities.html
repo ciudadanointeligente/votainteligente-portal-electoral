@@ -7,10 +7,10 @@
 {% block main_content %}
   <a  class="pull-right btn btn-default"
                     href="{% url 'backend_candidate:add_activity' slug=object.id %}">
-                    Agrega una actividad a tu agenda.
+                    {% trans "Agrega una actividad a tu agenda." %}
                 </a>
 	<h2 class="page-header">Tu agenda de actividades</h2>
-    
+
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>

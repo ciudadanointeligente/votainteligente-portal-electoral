@@ -7,8 +7,10 @@
 {% load votainteligente_extras %}
 {% load cache %}
 
-{% block title %}- Congresistas para el {{area}}{% endblock title %}
-{% block description %}Conoce tus congrsistas para el {{area}}{% endblock description %}
+{% block title %}- {% blocktrans with area=area.name %}
+  Congresistas para el {{area}}
+{% endblocktrans %}{% endblock title %}
+{% block description %}{% blocktrans with area=area.name %}Conoce tus congrsistas para el {{area}}{% endblocktrans %}{% endblock description %}
 {% block extrajs %}
 $(function(){
     $('.loadFromUrl').on('show.bs.modal', function (event) {
@@ -29,12 +31,12 @@ $(function(){
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ciudadanoi">
   <meta name="twitter:creator" content="@ciudadanoi">
-  <meta name="twitter:title" content="¡Ingresa a votainteligente.cl para conocer los candidatos de {{area}}!">
-  <meta name="twitter:description" content="Conoce a los candidatos a Senador y Diputado por {{area}}">
+  <meta name="twitter:title" content="{% blocktrans with area=area.name %}¡Ingresa a votainteligente.cl para conocer los candidatos de {{area}}!{% endblocktrans %}">
+  <meta name="twitter:description" content="{% blocktrans with area=area.name %}Conoce a los candidatos a Senador y Diputado por {{area}}{% endblocktrans %}">
   <meta name="twitter:image" content="https://{% url_domain %}{% static 'img/logo_vi_og.jpg' %}">
 {% endblock ogp %}
 
-{% block keywords %},{{area.name}},parlamentarios de {{area.name}},diputados {{area.name}},senadores {{area.name}},{% endblock keywords %}
+{% block keywords %}{% blocktrans with area=area.name %},{{area}},parlamentarios de {{area}},diputados {{area}},senadores {{area}},{% endblocktrans %}{% endblock keywords %}
 
 {% block content %}
 <!-- <div id="buscador-area" class="container-fluid navbar-fixed-top" style="top: 55px; padding: 15px 0px; background-color: #233346; display: none;">
@@ -57,9 +59,9 @@ $(function(){
 <div class="container">
   <ol class="breadcrumb">
     <li><a href="{% url 'home' %}" onclick="ga('send','event','breadcrumb-home-area','click')"><i class="fa fa-home"></i></a></li>
-    <li><a href="{% url 'know_your_candidates' %}" onclick="ga('send','event','breadcrumb-candidaturas-area','click')">Congresistas</a></li>
+    <li><a href="{% url 'know_your_candidates' %}" onclick="ga('send','event','breadcrumb-candidaturas-area','click')">{% trans "Congresistas" %}</a></li>
     <li class="active">{{area.name}}</li>
-  <h1>Congresistas {{area}}</h1>
+  <h1>{% blocktrans with area=area.name %}Congresistas {{area}}{% endblocktrans %}</h1>
   </ol>
   {% for p in area.parents %}
   {% with p.elections.first as election %}

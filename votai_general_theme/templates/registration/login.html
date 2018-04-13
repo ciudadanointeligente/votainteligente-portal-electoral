@@ -19,11 +19,11 @@
 </script>
 
 
-<h1 class="text-center">Ingresa</h1>
+<h1 class="text-center">{% trans "Ingresa" %}</h1>
 {% url 'popular_proposals:home' as proposals_home %}
 {% if proposals_home in request.META.HTTP_REFERER %}
 <div class="alert alert-warning" role="alert">
-  Para apoyar una propuesta debes estar registrado.
+  {% trans "Para apoyar una propuesta debes estar registrado." %}
 </div>
 {% endif %}
 {% block login_tabs %}

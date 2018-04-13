@@ -1,9 +1,10 @@
 {% load cache %}
 {% load votainteligente_extras %}
+{% load i18n %}
 {% cache 500 political_positions candidate.id %}
 
 <div class="candidate-diary">
-<p class="small-basic text-center">Agenda</h5>
+<p class="small-basic text-center">{% trans "Agenda" %}</h5>
 {% if candidate.agenda.count %}
 <ul id="agenda-candidato" class="list-unstyled">
     {% for activity in candidate.agenda.all|slice:":3" %}
@@ -11,10 +12,10 @@
     {% endfor %}
 </ul>
 {% else %}
-  <p id="agenda-candidato">Este candidato no cuenta con una agenda de actividades en VotaInteligente</p>
+  <p id="agenda-candidato">{% trans "Este candidato no cuenta con una agenda de actividades en VotaInteligente" %}</p>
 {% endif %}
 {% if user|manages_this:candidate %}
-  <a href="{% url 'backend_candidate:add_activity' slug=candidate.slug %}" class="btn btn-white"><i class="fa fa-plus"></i> Agrega tus actividades</a>
+  <a href="{% url 'backend_candidate:add_activity' slug=candidate.slug %}" class="btn btn-white"><i class="fa fa-plus"></i> {% trans "Agrega tus actividades" %}</a>
 {% endif %}
 {% endcache %}
 </div>

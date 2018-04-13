@@ -6,7 +6,7 @@
 {% load bootstrap3 %}
 
 {% block title %}
-- Backend Ciudadano - Alertas de búsqueda
+- {% trans "Backend Ciudadano" %} - {% trans "Alertas de búsqueda" %}
 {% endblock title %}
 
 {% block main_content %}
@@ -41,7 +41,7 @@ $(function(){
               data-target="#unsubscribeToSearch"
                data-toggle="modal"
                data-url="{{subscription.unsubscribe_url}}"
-                >Desuscribirse</a></td>
+                >{% trans "Desuscribirse" %}</a></td>
         </tr>
     {% empty %}
     {% endfor %}

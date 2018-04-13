@@ -12,12 +12,16 @@
 <div class="wizard">
   <div class="text-width">
     {% if area %}
-    <p class="text-light">Creando una propuesta para {{ area }}</p>
+    <p class="text-light">{% blocktrans with area=area.name %}
+      Creando una propuesta para {{ area }}
+    {% endblocktrans %}</p>
     {% endif %}
     <div class="row">
     {% for i in wizard.steps.count|times %}
     <div class="col-md-3 col-sm-3 col-xs-3">
-        <div class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}">Paso {{i|add:1}} de {{wizard.steps.count}}</div>
+        <div class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}">{% blocktrans with current_step=i|add:1 total_steps=wizard.steps.count %}
+          Paso {{current_step}} de {{total_steps}}
+        {% endblocktrans %}</div>
     </div>
     {% endfor %}
     </div>

@@ -1,1 +1,1 @@
-Activación de tu cuenta en VotaInteligente.cl
+{% load i18n %}{% trans "Activación de tu cuenta en VotaInteligente.cl" %}

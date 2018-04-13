@@ -17,13 +17,13 @@
 <form method="post" action="{% url 'backend_candidate:add_activity' slug=object.id %}">
 	{% csrf_token %}
 	<div class="form-group">
-		<label class="control-label" for="id_date">Fecha</label>
+		<label class="control-label" for="id_date">{% trans 'Fecha' %}</label>
 		<div class="input-append date" id="datetimepicker" data-date="12-02-2012" data-date-format="yyyy-mm-dd hh:ii">
         <input class="form-control" id="id_date" name="date" placeholder="Date" title="" type="text" required />
         <span class="add-on"><i class="icon-th"></i></span>
-    </div>     
+    </div>
 	</div>
- 
+
 	{% bootstrap_field form.description %}
 
 	{% bootstrap_field form.url %}

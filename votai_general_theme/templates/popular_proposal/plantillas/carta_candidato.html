@@ -1,24 +1,25 @@
 {% load markdown_deux_tags %}
+{% load i18n %}
 {% load votainteligente_extras %}
 <p>
 {% if user.get_full_name %}{{user.get_full_name}}{% else %}{{user}}{% endif %} ha creado una propuesta para mejorar {{ area }} en Vota Inteligente 2017.
 </p>
 <div>
-<h3>El problema que se quiere solucionar es:</h3>
+<h3>{% trans "El problema que se quiere solucionar es:" %}</h3>
 {{preview_data.problem|popular_proposal_when|linebreaksbr}}
 </div>
 <div>
-<h3>La causa de este problema es:</h3>
+<h3>{% trans "La causa de este problema es:" %}</h3>
 {{preview_data.causes}}
 </div>
 <div>
-<h3>La propuesta para solucionar este problema es:</h3>
+<h3>{% trans "La propuesta para solucionar este problema es:" %}</h3>
 {{preview_data.solution_at_the_end|popular_proposal_when|linebreaksbr}}
 </div>
 <div>
-<h3>El plazo de implementación de esta propuesta es de</h3>
+<h3>{% trans "El plazo de implementación de esta propuesta es de" %}</h3>
 {{preview_data.when|popular_proposal_when}}
 </div>
 <div>
-<p class="llamado text-center">Revísala, si te gustó ¡compártela y apóyala!<br>Así todos/as tendremos voz en las elecciones de este año!</p>
+<p class="llamado text-center">{% trans "Revísala, si te gustó ¡compártela y apóyala!<br>Así todos/as tendremos voz en las elecciones de este año!" %}</p>
 </div>

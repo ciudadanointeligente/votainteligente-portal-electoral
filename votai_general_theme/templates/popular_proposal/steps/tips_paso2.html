@@ -1,11 +1,12 @@
 {% extends 'popular_proposal/steps/base_steps.html' %}
-{% block step_title %}¿Cuál es la causa de este problema?{% endblock step_title %}
+{% load i18n %}
+{% block step_title %}{% trans "¿Cuál es la causa de este problema?" %}{% endblock step_title %}
 {% block tips %}
-<p class="step-title">¿Cómo se define una causa?</p>
+<p class="step-title">{% trans "¿Cómo se define una causa?" %}</p>
   <ul class="list-unstyled">
-    <li><span class="number">a</span> Una causa es la razón por la que existe el problema que queremos combatir.</li>
-    <li><span class="number">b</span> Aunque tu problema pueda tener más de una causa, elige sólo una (la que se pueda abordar a través de tu propuesta). </li>
-    <li><span class="number">c</span> Si quieres enfrentar otra causa del mismo problema, puedes añadir otra propuesta.  </li>
+    <li><span class="number">a</span> {% trans "Una causa es la razón por la que existe el problema que queremos combatir." %}</li>
+    <li><span class="number">b</span> {% trans "Aunque tu problema pueda tener más de una causa, elige sólo una (la que se pueda abordar a través de tu propuesta)." %} </li>
+    <li><span class="number">c</span> {% trans "Si quieres enfrentar otra causa del mismo problema, puedes añadir otra propuesta." %}  </li>
   </p>
 
 {% endblock tips %}

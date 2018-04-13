@@ -15,10 +15,10 @@
                         <thead>
                           <tr>
                             <th>
-                              Mi opinión
+                              {% trans "Mi opinión" %}
                             </th>
                             <th>
-                              La opinión del candidato
+                              {% trans "La opinión del candidato" %}
                             </th>
                           </tr>
                         </thead>
@@ -33,18 +33,18 @@
                               {% if topic_match.my_position %}
                               {{topic_match.my_position.label}}
                             {% else %}
-                              No tuviste opinión
+                              {% trans "No tuviste opinión" %}
                             {% endif %}
                             </td>
                             <td>
                               {% if topic_match.their_position %}
                                 {{topic_match.their_position.label}}
                               {% else %}
-                                El candidato no tiene posición.
-                              {% endif %}  
+                                {% trans "El candidato no tiene posición." %}
+                              {% endif %}
                             </td>
                           </tr>
-                      
+
                     {% endfor %}
                         </tbody>
                       </table>

@@ -5,20 +5,22 @@
 {% load votainteligente_extras %}
 {% load cache %}
 {% load bootstrap3 %}
-{% block title %}- 1/2 Naranja - Paso {{wizard.steps.step1}}{% endblock title %}
+{% block title %}- {% blocktrans with step_number=wizard.steps.step1 %}
+1/2 Naranja - Paso {{step_number}}
+{% endblocktrans %}{% endblock title %}
 
 {% block ogp %}
-  <meta property="og:title" content="Media Naranja Política en VotaInteligente">
+  <meta property="og:title" content="{% trans 'Media Naranja Política en VotaInteligente' %}">
   <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
   <meta property="og:url" content="https://{% url_domain %}{% url 'medianaranja2:index' %}">
   <meta property="og:image" content="https://{% url_domain %}{% static 'img/logo_media_naranja_og.jpg' %}">
-  <meta property="og:description" content="¿Con quién será tu cita en la segunda vuelta?">
+  <meta property="og:description" content="{% trans '¿Con quién será tu cita en la segunda vuelta?' %}">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ciudadanoi">
   <meta name="twitter:creator" content="@ciudadanoi">
-  <meta name="twitter:title" content="Media Naranja Política en VotaInteligente">
-  <meta name="twitter:description" content="¿Con quién será tu cita en la segunda vuelta?">
+  <meta name="twitter:title" content="{% trans 'Media Naranja Política en VotaInteligente' %}">
+  <meta name="twitter:description" content="{% trans '¿Con quién será tu cita en la segunda vuelta?' %}">
   <meta name="twitter:image" content="https://{% url_domain %}{% static 'img/logo_media_naranja_og.jpg' %}">
 
   {% endblock ogp %}
@@ -32,8 +34,8 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-1">
       <img src="{% static 'img/logo-media-naranja.svg' %}" class="img-responsive" alt="Media Naranja Política">
-      <h2>¿Con quién será tu cita en la segunda vuelta?</h2>
-      <p>La Media Naranja es un juego de preguntas para ver tu afinidad con las candidaturas que llegaron a la segunda vuelta presidencial de Chile. El contenido se basa en la información de los programas de gobierno de la candidaturas presidenciales, en los compromisos de las candidaturas con propuestas ciudadanas hechos en Vota Inteligente y en declaraciones hechas por los candidatos en medios de comunicación. Como cualquier juego, su resultado podría no coincidir con lo que crees.</p>
+      <h2>{% trans "¿Con quién será tu cita en la segunda vuelta?" %}</h2>
+      <p>{% trans "La Media Naranja es un juego de preguntas para ver tu afinidad con las candidaturas que llegaron a la segunda vuelta presidencial de Chile. El contenido se basa en la información de los programas de gobierno de la candidaturas presidenciales, en los compromisos de las candidaturas con propuestas ciudadanas hechos en Vota Inteligente y en declaraciones hechas por los candidatos en medios de comunicación. Como cualquier juego, su resultado podría no coincidir con lo que crees." %}</p>
     </div>
     <div class="col-md-4 mano">
     </div>

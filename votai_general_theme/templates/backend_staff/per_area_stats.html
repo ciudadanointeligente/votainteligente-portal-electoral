@@ -7,18 +7,18 @@
 {% load bootstrap3 %}
 
 {% block content %}
-<h1>Las instituciones van a intentar preservar el problema para el cual ellas son la solución</h1>
-<h2>Los números por comuna:</h2>
+<h1>{% trans "Las instituciones van a intentar preservar el problema para el cual ellas son la solución" %}</h1>
+<h2>{% trans "Los números por comuna:" %}</h2>
 
 <div class="table-responsive">
   <table class="table table-striped">
   	<thead>
       <tr>
-        <th>Comuna</th>
-        <th>Promesas Ciudadanas locales</th>
-        <th>Promesas Ciudadanas totales</th>
-        <th>Compromisos</th>
-        <th>Candidatos</th>
+        <th>{% trans "Comuna" %}</th>
+        <th>{% trans "Promesas Ciudadanas locales" %}</th>
+        <th>{% trans "Promesas Ciudadanas totales" %}</th>
+        <th>{% trans "Compromisos" %}</th>
+        <th>{% trans "Candidatos" %}</th>
       </tr>
     </thead>
     <tbody>

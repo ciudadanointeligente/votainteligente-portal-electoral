@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block title %}
-- Creación de Propuesta - Paso {{wizard.steps.step1}}
+- {% trans "Creación de Propuesta" %} - {% blocktrans with step_number=wizard.steps.step1 %}Paso {{step_number}}{% endblocktrans %}
 {% endblock title %}
 
 {% block content %}
@@ -18,7 +18,7 @@
     <div class="row">
     {% for i in wizard.steps.count|times %}
     <div class="col-md-3 col-sm-3 col-xs-3 text-center wizard">
-        Paso
+        {% trans "Paso" %}
         <p class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}"><span class="badge">{{i|add:1}}</span></p>
     </div>
     {% endfor %}
@@ -35,7 +35,7 @@
 {% endblock messages %}
 
 <div class="text-center proposal-step">
-<p class="small">Creando una propuesta</p>
+<p class="small">{% trans "Creando una propuesta" %}</p>
 <h2>{% if form.step_title %}{{form.step_title}}{% endif %}</h2>
 </div>
 
@@ -54,7 +54,7 @@
 
               {% long_text_tag field %}
               {% if field.help_text %}
-                <p><b>Ejemplo: </b>{{field.help_text}}</p>
+                <p><b>{% trans "Ejemplo" %}: </b>{{field.help_text}}</p>
               {% endif %}
                 {% bootstrap_field field show_label=False show_help=False%}
             </section>

@@ -10,17 +10,24 @@
         </div>
         <div class="modal-body">
           {% if user.profile.is_organization %}
-            <p>Graaaaandeee <b>{{user}}</b>:</p>
-            <p>Estás apoyando a <b>{{proposal.proposer}}</b> en su propuesta {{proposal}}<b></b>, esto tiene algunas implicancias:</p>
+          {% blocktrans with organization=user proposer=proposal.proposer proposal=proposal.title %}
+            <p>Graaaaandeee <b>{{organization}}</b>:</p>
+            <p>Estás apoyando a <b>{{proposer}}</b> en su propuesta {{proposal}}<b></b>, esto tiene algunas implicancias:</p>
             <ul>
-              <li>Al momento de apretar el botón que está abajo se le enviará un mail a <b>{{proposal.proposer}}</b>, quién creó esta propuesta. En el se compartirán sus datos para que se sigan coordinando.</li>
+              <li>Al momento de apretar el botón que está abajo se le enviará un mail a <b>{{proposer}}</b>, quién creó esta propuesta. En el se compartirán sus datos para que se sigan coordinando.</li>
               <li>En tu perfil de organización aparecerá que estás apoyando a esta propuesta.</li>
-              <li>Cuando cualquier ciudadano revise esta propuesta podrá ver que {{user}} la está apoyando.</li>
+              <li>Cuando cualquier ciudadano revise esta propuesta podrá ver que {{organization}} la está apoyando.</li>
               <li>Tu NO podrás quitarle el apoyo a esta propuesta a menos que hables con el equipo de VotaInteligente.</li>
             </ul>
+          {% endblocktrans %}
+
           {% else %}
-            <p>¿Deseas apoyar la propuesta <b>{{proposal}}</b>?</p>
-            <p>Al apoyar esta propuesta aceptas que VotaInteligente te notifique vía correo electrónico cuando un candidato decida apoyar esta propuesta.</p>
+            <p>
+              {% blocktrans with proposal=proposal.title %}
+                ¿Deseas apoyar la propuesta <b>{{proposal}}</b>?
+              {% endblocktrans %}
+            </p>
+            <p>{% trans "Al apoyar esta propuesta aceptas que VotaInteligente te notifique vía correo electrónico cuando un candidato decida apoyar esta propuesta." %}</p>
           {% endif %}
 
           {% csrf_token %}
@@ -29,8 +36,11 @@
           {% endif %}
           {% if user.profile.is_organization %}
             <div class="form-group">
-              <label for="message_input_{{modalId}}" class="col-2 col-form-label">¿Quieres enviarle algún mensaje a {{proposal.proposer}}?</label>
-              <textarea class="form-control" name="message" type="text" id="message_input_{{modalId}}" placeholder="Nos encanta lo que hacen ..."> </textarea>
+              <label for="message_input_{{modalId}}" class="col-2 col-form-label">{% blocktrans with proposer=proposal.proposer %}
+                ¿Quieres enviarle algún mensaje a {{proposer}}?
+              {% endblocktrans %}</label>
+
+              <textarea class="form-control" name="message" type="text" id="message_input_{{modalId}}" placeholder="{% trans "Nos encanta lo que hacen ..." %}"> </textarea>
             </div>
           {% endif %}
         </div>

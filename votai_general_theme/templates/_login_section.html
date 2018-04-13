@@ -2,10 +2,10 @@
 {% load i18n %}
 {% load bootstrap3 %}
 <section id="login-form">
-  <div class="container">  
+  <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h2 class="text-center">Para enviar una propuesta debes crearte un usuario primero</h2>
+        <h2 class="text-center">{% trans "Para enviar una propuesta debes crearte un usuario primero" %}</h2>
       </div>
     </div>
     <div class="row">
@@ -22,7 +22,7 @@
     </div>
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
-        <h4 class="text-center">Ingresa con Facebook o Gmail</h4>
+        <h4 class="text-center">{% trans "Ingresa con Facebook o Gmail" %}</h4>
         {% include '_social_login_buttons.html' %}
       </div>
     </div>
@@ -30,7 +30,7 @@
     <div class="row">
       <div class="col-md-4 col-md-offset-2">
       <!-- formulario de loggeo -->
-        <h4 class="text-center">Regístrate</h4>
+        <h4 class="text-center">{% trans "Regístrate" %}</h4>
         <div class="panel panel-default">
           <div class="panel-body">
             {% user_register %}
@@ -41,9 +41,9 @@
 
       <div class="col-md-4">
       <!-- formulario de loggeo -->
-        <h4 class="text-center">¿Ya tienes un usuario? Ingrésalo</h4>
+        <h4 class="text-center">{% trans "¿Ya tienes un usuario? Ingrésalo" %}</h4>
         <div class="panel panel-default">
-          <div class="panel-body">  
+          <div class="panel-body">
             {% basic_login url=next %}
             </form>
           </div>

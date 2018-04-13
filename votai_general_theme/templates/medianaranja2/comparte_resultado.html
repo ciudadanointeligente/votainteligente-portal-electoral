@@ -5,20 +5,22 @@
 {% load votainteligente_extras %}
 {% load cache %}
 {% load bootstrap3 %}
-{% block title %}- 1/2 Naranja - Paso {{wizard.steps.step1}}{% endblock title %}
+{% block title %}- {% blocktrans with step_number=wizard.steps.step1 %}
+1/2 Naranja - Paso {{step_number}}
+{% endblocktrans %}{% endblock title %}
 
 {% block ogp %}
-  <meta property="og:title" content="Media Naranja Política en VotaInteligente">
+  <meta property="og:title" content="{% blocktrans %}Media Naranja Política en VotaInteligente{% endblocktrans %}">
   <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
   <meta property="og:url" content="https://{% url_domain %}{{object.get_absolute_url}}">
   <meta property="og:image" content="https:{{object.ogp_image }}">
-  <meta property="og:description" content="Mi Media Naranja Política es {{object.object.get_name}}">
+  <meta property="og:description" content="{% blocktrans %}Mi Media Naranja Política es {{object.object.get_name}}{% endblocktrans %}">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ciudadanoi">
   <meta name="twitter:creator" content="{{object.object.twitter }}">
-  <meta name="twitter:title" content="Media Naranja Política en VotaInteligente">
-  <meta name="twitter:description" content="Mi Media Naranja Política es {{object.object.get_name}}">
+  <meta name="twitter:title" content="{% blocktrans %}Media Naranja Política en VotaInteligente{% endblocktrans %}">
+  <meta name="twitter:description" content="{% blocktrans with name=object.object.get_name %}Mi Media Naranja Política es {{name}}{% endblocktrans %}">
   <meta name="twitter:image" content="https:{{object.ogp_image }}">
 
   {% endblock ogp %}
@@ -26,8 +28,13 @@
 
 {% block content %}
 <div class="container">
-  <h2>Declaración pública</h2>
-  <p>Tu también puedes tener tu <a href="{% url 'medianaranja2:index' %}">Media Naranja Política.</a></p>
+  <h2>{% trans "Declaración pública" %}</h2>
+  <p>
+    {% url 'medianaranja2:index' as medianaranja_index %}
+    {% blocktrans with medianaranja_index=medianaranja_index %}
+      Tu también puedes tener tu <a href="{{medianaranja_index}}">Media Naranja Política.</a>
+    {% endblocktrans %}
+    </p>
   <div class="row">
     <div class="col-xs-12 col-md-4 col-md-offset-4">
 

@@ -12,21 +12,23 @@
 {% block content %}
 <div class="container">
   <ol class="breadcrumb">
-    <li><a href="{% url 'home' %}">VotaInteligente</a></li>
+    <li><a href="{% url 'home' %}">{% trans "VotaInteligente" %}</a></li>
     {% if proposal.area %}
       <li><a href="{{proposal.area.get_absolute_url}}">{{proposal.area}}</a></li>
     {% endif %}
     <li><a href="{{proposal.get_absolute_url}}">{{proposal.title}}</a></li>
-    <li class="active">No lo incluiré</li>
+    <li class="active">{% trans "No lo incluiré" %}</li>
   </ol>
 </div>
 <div class="container">
 	<div class="fondo-blanco text-width">
 
+    {% blocktrans with candidate_name=candidate.name position=candidate.election.position area=proposal.area proposal=proposal.title %}
+    Yo <strong>{{candidate_name}}</strong> candidata/o a {{position}} de {{area}} <strong>NO</strong> me comprometo con la propuesta ciudadana <strong>{{proposal}}</strong>.
+    {% endblocktrans %}
 
-		Yo <strong>{{candidate.name}}</strong> candidata/o a {{candidate.election.position}} de {{proposal.area}} <strong>NO</strong> me comprometo con la propuesta ciudadana <strong>{{proposal.title}}</strong>.
 
-		<p>Por las razones que explicaré a continuación:</p>
+		<p>{% trans "Por las razones que explicaré a continuación:" %}</p>
 
 
 
@@ -37,7 +39,7 @@
 
 		{% bootstrap_field form.detail show_label=false %}
 	    <div class="tips">
-		  <b class="main-title">Terminos y Condiciones</b>
+		  <b class="main-title">{% trans "Terminos y Condiciones" %}</b>
 		  {% include 'popular_proposal/commitment/terms_and_conditions.html' %}
 		</div>
 		{% bootstrap_field form.terms_and_conditions show_label=false %}

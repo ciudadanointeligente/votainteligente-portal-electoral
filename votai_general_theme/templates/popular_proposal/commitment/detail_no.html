@@ -12,12 +12,12 @@
 {% block content %}
 <div class="container">
   <ol class="breadcrumb">
-    <li><a href="{% url 'home' %}">VotaInteligente</a></li>
+    <li><a href="{% url 'home' %}">{% trans "VotaInteligente" %}</a></li>
     {% if commitment.proposal.area %}
       <li><a href="{{commitment.proposal.area.get_absolute_url}}">{{commitment.proposal.area}}</a></li>
     {% endif %}
     <li><a href="{{commitment.proposal.get_absolute_url}}">{{commitment.proposal.title}}</a></li>
-    <li class="active">Resultado</li>
+    <li class="active">{% trans "Resultado" %}</li>
   </ol>
 </div>
 <div class="container">
@@ -35,34 +35,48 @@
         {% endif %}
 
 
-		<p>Lamentablemente <strong>{{commitment.candidate.name}}</strong> candidata/o a {{commitment.candidate.election.position}} de {{commitment.proposal.area}} <strong>NO</strong> incluirá <strong>{{commitment.proposal.title}}</strong> en su programa.</p>
+		<p>
+      {% blocktrans with candidate_name=commitment.candidate.name position=commitment.candidate.election.position area=commitment.proposal.area proposal=commitment.proposal.title %}
+      Lamentablemente <strong>{{candidate_name}}</strong> candidata/o a {{position}} de {{area}} <strong>NO</strong> incluirá <strong>{{proposal}}</strong> en su programa.</p>
+      {% endblocktrans %}
 
-		<p>Sus razones fueron las siguientes:</p>
+		<p>{% trans "Sus razones fueron las siguientes:" %}</p>
 		<p>{{commitment.detail|linebreaksbr}}</p>
 
 		<div class="pull-right">
 			<p><strong>{{commitment.candidate.name}}</strong></p>
 
-			<p>Candidata/o {% if commitment.candidate.election.position %}a {{commitment.candidate.election.position|title }}{% endif %} por {{commitment.proposal.area}}.</p>
+			<p>
+        {% if commitment.candidate.election.position %}
+        {% blocktrans with candidate_name=commitment.candidate.name position=commitment.candidate.election.position area=commitment.proposal.area proposal=commitment.proposal.title %}
+        Candidata/o a {{position }} por {{area}}.
+        {% endblocktrans %}
+        {% else %}
+        {% blocktrans with candidate_name=commitment.candidate.name area=commitment.proposal.area proposal=commitment.proposal.title %}
+        Candidata/o por {{area}}.
+        {% endblocktrans %}
+        {% endif %}
+
+      </p>
 
 		</div>
   </div>
 
     {% if user|manages_this:commitment.candidate %}
     <div class="container text-center">
-      <h3>Hazlo público!</h3>
-      <p>Cuéntales a tus futuros electores el porqué rechazaste esta propuesta! Te queremos honesto y directo frente a los ciudadanos.</p>
+      <h3>{% trans "Hazlo público!" %}</h3>
+      <p>{% trans "Cuéntales a tus futuros electores el porqué rechazaste esta propuesta! Te queremos honesto y directo frente a los ciudadanos." %}</p>
       <ul class="list-inline">
-        <li><a href="#" onclick="window.open('https://twitter.com/share?text=He rechazado la propuesta ciudadana: {{commitment.proposal.title}}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
+        <li><a href="#" onclick="window.open('https://twitter.com/share?text={% blocktrans with proposal=commitment.proposal.title %}He rechazado la propuesta ciudadana: {{proposal}}{% endblocktrans %}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
         <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
       </ul>
     </div>
     {% else %}
     <div class="container text-center">
-      <h3>Comunícalo!</h3>
-      <p>Pregúntale el porqué de su determinación a rechazar esta propuesta ciudadana!</p>
+      <h3>{% trans "Comunícalo!" %}</h3>
+      <p>{% trans "Pregúntale el porqué de su determinación a rechazar esta propuesta ciudadana!" %}</p>
       <ul class="list-inline">
-        <li><a href="#" onclick="window.open('https://twitter.com/share?text=Hey {{commitment.candidate.name}} porqué rechazaste la propuesta ciudadana: {{commitment.proposal.title}}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
+        <li><a href="#" onclick="window.open('https://twitter.com/share?text={% blocktrans with candidate_name=commitment.candidate.name proposal=commitment.proposal.title %}Hey {{candidate_name}} porqué rechazaste la propuesta ciudadana: {{proposal}}{% endblocktrans %}','twitter','width=450, height=250'); ga('send','event','compartir-compromiso-tw','click')"><i class="fa fa-twitter fa-2x"></i></a></li>
         <li><a href="#" onclick="window.open('https://facebook.com/sharer/sharer.php?u=https://{% url_domain %}{% url 'popular_proposals:commitment' commitment.candidate.id commitment.proposal.slug %}','facebook','width=450, height=250'); ga('send','event','compartir-compromiso-fb','click')"><i class="fa fa-facebook fa-2x"></i></a></li>
       </ul>
     </div>

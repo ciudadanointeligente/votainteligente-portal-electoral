@@ -1,12 +1,13 @@
 {% load i18n %}
 {% load bootstrap3 %}
+{% load votainteligente_extras %}
 {% comment %}
 This template is used for the html alternative of the activation email
 if you use a django-registration backend that looks for it. e.g.
 https://github.com/huseyinyilmaz/django-registration-extended-backend
 {% endcomment %}
 {% url 'registration_activate' activation_key as activation_key_url %}
-{% blocktrans with sitename=site.name sitedomain=site.domain%}<body>
+<body>{% blocktrans with sitename=site.name sitedomain=site.domain%}
 <h3>Registro para VotaInteligente.cl</h3>
 <p>
 Hola, tú (o alguien que pretende ser tu) ha tratado de registrar una cuenta en
@@ -17,9 +18,7 @@ Si no fuiste tú, por favor ignora este mail y tu dirección será removida de n
 <b>{{ expiration_days }}</b> días:<br/>
 <a href="https://{{ sitedomain }}{{ activation_key_url }}">https://{{ sitedomain }}{{  activation_key_url }}</a>
 </p>
-<p>
---
-Muchas gracias el equipo de VotaInteligente.cl<br/>
-</p>
-</body>
+
 {% endblocktrans %}
+{% mail_signature_html %}
+</body>

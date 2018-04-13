@@ -43,7 +43,7 @@
 							<td>
 								<p><strong>{{bueno.name}} </strong>de {{bueno.candidate.api_instance.election}}</p>
 								<p><span>{% trans "Ha respondido" %} <strong>{{bueno.actual_answers}} de {{bueno.possible_answers}}</strong> {% trans "preguntas" %} </span><!-- con {{bueno.points }}--></p>
-								
+
 							</td>
 							<td>
 								{% with candidate=bueno.candidate %}
@@ -80,7 +80,7 @@
 							<td>
 								<p><strong>{{malo.name}} </strong>de {{malo.candidate.api_instance.election}}</p>
 								<p><span>{% trans "Ha respondido" %} <strong>{{malo.actual_answers}} de {{malo.possible_answers}}</strong> {% trans "preguntas" %} </span><!-- con {{malo.points }}--></p>
-								
+
 							</td>
 							<td>
 								{% with candidate=malo.candidate %}
@@ -101,7 +101,7 @@
 			</div>
 		</div>
 	{% endif %}
-	
+
 </div>
 <div class="row">
 	<div class="col-md-12 right">

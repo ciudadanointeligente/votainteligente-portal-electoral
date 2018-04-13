@@ -8,7 +8,7 @@
 
   <li role="presentation" class="{% if not mobile %}hidden-xs{% endif %} mi-perfil {% ifequal request.path complete_profile%} active{% endifequal %}">
     <a class="small" href="{{complete_profile}}">
-      Completa tu perfil
+      {% trans "Completa tu perfil" %}
     </a>
   </li>
 {% comment %}
@@ -23,7 +23,7 @@
   {% url 'backend_candidate:all_my_activities' slug=candidacy.candidate.slug as all_my_activities %}
   <li role="presentation" class="{% if not mobile %}hidden-xs{% endif %} all_my_activities {% ifequal request.path all_my_activities%} active{% endifequal %}">
     <a class="small" href="{{all_my_activities}}">
-      Mi agenda
+      {% trans "Mi agenda" %}
     </a>
   </li>
 
@@ -31,13 +31,13 @@
   {% url 'backend_candidate:my_proposals_with_a_resolution' slug=candidacy.candidate.election.slug candidate_slug=candidacy.candidate.slug  as my_proposals %}
   <li role="presentation" class="{% if not mobile %}hidden-xs{% endif %} my_proposals {% ifequal request.path my_proposals%} active{% endifequal %}">
     <a class="small" href="{{my_proposals}}">
-      Mis compromisos
+      {% trans "Mis compromisos" %}
     </a>
   </li>
   {% url 'backend_candidate:proposals_for_me' slug=candidacy.candidate.election.slug candidate_slug=candidacy.candidate.slug  as proposals_for_me %}
   <li role="presentation" class="{% if not mobile %}hidden-xs{% endif %} proposals_for_me destacado {% ifequal request.path proposals_for_me%} active{% endifequal %}">
     <a class="small" href="{{proposals_for_me}}">
-      Propuestas para mi
+      {% trans "Propuestas para mi" %}
     </a>
   </li>
 {% endfor %}

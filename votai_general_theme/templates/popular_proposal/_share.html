@@ -10,7 +10,7 @@
         <a class="{{btn_extra_class}}" href="#" onclick="ga('send', 'event', 'twitter-share', 'click'); window.open(&quot;//twitter.com/share?hashtags={{ config.WEBSITE_TWITTER_HASHTAG }}&text={{ popular_proposal }}&quot;,&quot;twitter&quot;,&quot;width=450, height=250&quot;)">
           {% if show_texts %}
             <i class="fa fa-twitter"></i>
-            Compartir en Twitter
+          {% trans "  Compartir en Twitter" %}
             {% else %}
             <span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x"></i>
@@ -23,7 +23,7 @@
         <a class="share-btn share-btn-branded share-btn-facebook {{btn_extra_class}}" onclick="ga('send', 'event', 'facebook-share', 'click');" href="//www.facebook.com/sharer/sharer.php?u={{encoded_full_detail_url}}" title="{{popular_proposal.title}}" target="_blank">
           {% if show_texts %}
             <i class="fa fa-facebook"></i>
-            Compartir en Facebook
+            {% trans "Compartir en Facebook" %}
             {% else %}
             <span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x"></i>
@@ -34,7 +34,7 @@
       </li>
     {%if popular_proposal.join_advocacy_url%}
       <li>
-        <a class="share-btn share-btn-branded share-btn-facebook {{btn_extra_class}}" onclick="ga('send', 'event', 'whatsapp-share', 'click');" href="{{popular_proposal.join_advocacy_url}}" title="Esta propuesta cuenta con un grupo en Whatsapp para seguir debatiendo." target="_blank">
+        <a class="share-btn share-btn-branded share-btn-facebook {{btn_extra_class}}" onclick="ga('send', 'event', 'whatsapp-share', 'click');" href="{{popular_proposal.join_advocacy_url}}" title="{% trans "Esta propuesta cuenta con un grupo en Whatsapp para seguir debatiendo." %}" target="_blank">
           <span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
@@ -43,7 +43,7 @@
       </li>
     {%endif%}
       <li>
-        <a class="share-btn share-btn-branded share-btn-facebook {{btn_extra_class}}" target="_blank" onclick="ga('send', 'event', 'image-download', 'click');"  href="{{popular_proposal.ogp_image}}" title="Descarga la imagen de esta propuesta">
+        <a class="share-btn share-btn-branded share-btn-facebook {{btn_extra_class}}" target="_blank" onclick="ga('send', 'event', 'image-download', 'click');"  href="{{popular_proposal.ogp_image}}" title="{% trans "Descarga la imagen de esta propuesta" %}">
           {% if show_texts %}
             <i class="fa fa-instagram"></i> Instagram
           {% else %}
@@ -57,7 +57,7 @@
       {% with proposal.get_absolute_url as detail_url %}
         {% if request.path == detail_url %}
         <li>
-          <a class="share-btn share-btn-branded share-btn-facebook {{btn_extra_class}}" onclick="print();ga('send', 'event', 'print', 'click');"title="Imprime esta propuesta">
+          <a class="share-btn share-btn-branded share-btn-facebook {{btn_extra_class}}" onclick="print();ga('send', 'event', 'print', 'click');"title="{% trans "Imprime esta propuesta" %}">
             <span class="fa-stack fa-lg">
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-print fa-stack-1x fa-inverse"></i>
@@ -70,6 +70,6 @@
     {% endwith %}
   {% endwith %}
 {% else %}<!-- Aquí estamos agradeciendo que le pusieron corazon pero no le dibujamos las redesh shoshialesh -->
-<p class="bg-success">Gracias por apoyar<i class="fa fa-star" aria-hidden="true"></i></p>
+<p class="bg-success">{% trans "Gracias por apoyar" %}<i class="fa fa-star" aria-hidden="true"></i></p>
 {% endif %}
 {% endspaceless %}

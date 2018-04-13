@@ -1,11 +1,16 @@
 {% load i18n %}
 
 {% if user.profile.is_organization %}
-<p>Graaaaandeee <b>{{user}}</b>:</p>
-<p>Estás apadrinando una propuesta, esto tiene algunas implicancias</p>
+<p>{% blocktrans with organization=user %}
+  Graaaaandeee <b>{{organization}}</b>:
+{% endblocktrans %}</p>
+<p>{% trans "Estás apadrinando una propuesta, esto tiene algunas implicancias" %}</p>
 {% else %}
+{% blocktrans with proposal=proposal.title %}
 ¿Deseas apoyar la propuesta <b>{{proposal}}</b>?
 <p>Al apoyar esta propuesta aceptas que VotaInteligente te notifique vía correo electrónico cuando un candidato decida apoyar esta propuesta.</p>
+{% endblocktrans %}
+
 <form method="POST" action="{% url 'popular_proposals:like_a_proposal' pk=proposal.id %}" role="form">
     {% csrf_token %}
     {% if next %}

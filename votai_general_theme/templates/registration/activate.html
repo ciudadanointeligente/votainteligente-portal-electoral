@@ -5,7 +5,7 @@
 {% block content %}
 {% url 'auth_login' as auth_login_url %}
 {% if account %}
-{% blocktrans %}
+{% blocktrans with acoount=account %}
 Gracias {{ account }}, tu activación está completa!
 Ahora puedes <a href='{{ auth_login_url }}'>entrar</a> usando tu usuario y password.
 {% endblocktrans %}

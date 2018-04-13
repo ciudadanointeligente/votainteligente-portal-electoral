@@ -1,21 +1,27 @@
 {% load markdown_deux_tags %}
 {% load votainteligente_extras %}
+{% load i18n %}
 <p>
 <strong>{{proposal.title }}</strong>
 </p>
 <p>
-A incluirla en mi programa y cumplirla antes de <strong>{{proposal.data.when|popular_proposal_when}}</strong>.</p>
+  {% blocktrans with when=proposal.data.when|popular_proposal_when %}
+      A incluirla en mi programa y cumplirla antes de <strong>{{when}}</strong>.
+  {% endblocktrans %}
+</p>
 <p>
   {{proposal.data.problem}}
-Entiendo que esta propuesta ciudadana surge como respuesta a la siguiente problemática:
+{% trans "Entiendo que esta propuesta ciudadana surge como respuesta a la siguiente problemática:" %}
 <strong>{{proposal.data.problem|popular_proposal_when|safe|linebreaks}}</strong>
 </p>
 <p>
-Además, entiendo que el problema estará solucionado cuando:
+{% trans "Además, entiendo que el problema estará solucionado cuando:" %}
 
 <strong>{{proposal.data.solution_at_the_end|linebreaks}}</strong>
 </p>
 
 {% if detail %}
-<p>Los términos en los que me comprometo son: {{detail|linebreaksbr}}</p>
+<p>{% blocktrans with terminos=detail|linebreaksbr %}
+  Los términos en los que me comprometo son: {{terminos}}
+{% endblocktrans %}</p>
 {% endif %}

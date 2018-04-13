@@ -10,7 +10,7 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<h3>{% trans 'Bienvenid@ Candidat@:' %}</h3>
-                Si no sabes como ingresar:
+                {% trans "Si no sabes como ingresar:" %}
                 {% include 'backend_candidate/_info_for_candidates.html' %}
 				<form method="post" action="{% url 'auth_login' %}">{% csrf_token %}
 				{% bootstrap_form form %}
@@ -18,7 +18,7 @@
 				<input type="hidden" name="next" value="{% url 'backend_candidate:home' %}" />
 				<input type="submit" value="{% trans "login" %}"  class="btn btn-default btn-lg btn-block" />
 				</form>
-				<a href="{{auth_pwd_reset_url}}">¿Olvidaste tu contraseña?</a>
+				<a href="{{auth_pwd_reset_url}}">{% trans "¿Olvidaste tu contraseña?" %}</a>
 			</div>
 		</div>
 	</div>

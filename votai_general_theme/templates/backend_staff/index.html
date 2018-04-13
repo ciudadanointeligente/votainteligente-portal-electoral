@@ -17,20 +17,20 @@
   <div class="contenedorDestacado fondo-blanco">
     <h1>{% blocktrans %}¡Terrible de bienvenid@!{% endblocktrans %}</h1>
     <h2>{% blocktrans %}¡Eres parte de nuestro equipo!{% endblocktrans %}</h2>
-    <p>Aquí podrás ver y moderar los elementos de VotaInteligente </p>
+    <p>{% trans "Aquí podrás ver y moderar los elementos de VotaInteligente " %}</p>
 
     <table class="table table-striped">
       <thead>
         <tr>
-            <th>ID</th>
-            <th>Area</th>
-            <th>Fecha</th>
+            <th>{% trans "ID" %}</th>
+            <th>{% trans "Area" %}</th>
+            <th>{% trans "Area" %}</th>
             <th>Problema</th>
-            <th>+Info</th>
-            <th>Organización</th>
-            <th>Usuario</th>
-            <th>Comentarios del usuario</th>
-            <th>Acciones</th>
+            <th>{% trans "+Info" %}</th>
+            <th>{% trans "Organización" %}</th>
+            <th>{% trans "Usuario" %}</th>
+            <th>{% trans "Comentarios del usuario" %}</th>
+            <th>{% trans "Acciones" %}</th>
         </tr>
       </thead>
     {% for proposal in proposals.all %}
@@ -64,7 +64,7 @@
                 </a>
                 <a data-toggle="modal" data-target="#moderateProposal"
                     data-url="{% url 'backend_staff:moderate_proposal' pk=proposal.id %}">
-                    <i class="fa fa-gavel" title="Moderame!"></i>
+                    <i class="fa fa-gavel" title='{% trans "Moderame!" %}'></i>
                 </a>
                 {% elif proposal.status == 'in_their_side' %}
                 <span class="label label-default">{% trans 'Esperando al usuario' %}</span>
@@ -100,4 +100,3 @@ function accept_moderation(url){
 
 {% block extrafooter %}
 {% endblock extrafooter %}
-

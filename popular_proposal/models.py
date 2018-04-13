@@ -238,7 +238,7 @@ class PopularProposal(models.Model, OGPMixin):
         return TOPIC_CHOICES_DICT
 
     def ogp_title(self):
-        return u'¡Ingresa a votainteligente.cl y apoya esta propuesta!'
+        return _(u'¡Ingresa a votainteligente.cl y apoya esta propuesta!')
 
     def save(self, *args, **kwargs):
         created = self.pk is not None
@@ -280,7 +280,7 @@ class PopularProposal(models.Model, OGPMixin):
         d.multiline_text((81,133), title, font=arvo_titulo, fill=(255,255,255,255))
 
         proposer_name = self.proposer.get_full_name() or self.proposer.username
-        propuesta_de = u"Una propuesta de " + proposer_name
+        propuesta_de = _(u'Una propuesta de %(proposer_name)s') % {'proposer_name': proposer_name}
         propuesta_de = propuesta_de.upper()
         d.multiline_text((81,471), propuesta_de, font=montserrat_autor, fill=(255,255,255,255))
         out = Image.alpha_composite(base, txt)
@@ -311,7 +311,7 @@ class PopularProposal(models.Model, OGPMixin):
     @property
     def ribbon_text(self):
         if self.is_local_meeting:
-            return u"Generada desde un encuentro ciudadano"
+            return _(u"Generada desde un encuentro ciudadano")
 
     @property
     def card(self):

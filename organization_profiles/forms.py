@@ -5,29 +5,29 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class OrganizationTemplateForm(forms.ModelForm):
-    title = forms.CharField(label=u"Nombre de tu organización",
+    title = forms.CharField(label=_(u"Nombre de tu organización"),
                             required=False,
                             widget=forms.TextInput(attrs={'placeholder': _(u'Organización Organizada')}))
-    sub_title = forms.CharField(label=u"Descripción de la organización",
+    sub_title = forms.CharField(label=_(u"Descripción de la organización"),
                                 required=False,
                                 widget=forms.Textarea(attrs={'placeholder': _(u'Ayúdanos a que te conozcan! En esta sección podrás contarnos sobre tu organización para informar a otros sobre tu labor social.')}))
-    org_url = forms.URLField(label="Web de la organización",
+    org_url = forms.URLField(label=_(u"Web de la organización"),
                              required=False,
                             widget=forms.TextInput(attrs={'placeholder': _(u'https://miorganizacion.org')}))
-    facebook = forms.URLField(label="FanPage de la organización",
+    facebook = forms.URLField(label=_(u"FanPage de la organización"),
                               required=False,
                             widget=forms.TextInput(attrs={'placeholder': _(u'https://www.facebook.com/miorganizacion/')}))
-    twitter = forms.URLField(label="Twitter de la organización",
+    twitter = forms.URLField(label=_(u"Twitter de la organización"),
                              required=False,
                             widget=forms.TextInput(attrs={'placeholder': _(u'https://www.twitter.com/miorganizacion/')}))
-    instagram = forms.URLField(label="Instagram de la organización",
+    instagram = forms.URLField(label=_(u"Instagram de la organización"),
                                required=False,
                             widget=forms.TextInput(attrs={'placeholder': _(u'https://www.instagram.com/miorganizacion/')}))
 
-    primary_color = forms.CharField(label="Color primario",
+    primary_color = forms.CharField(label=_(u"Color primario"),
                                     widget=forms.TextInput(attrs={'placeholder': '#CCDDCC',
                                                            'type': 'color'}))
-    secondary_color = forms.CharField(label="Color del texto",
+    secondary_color = forms.CharField(label=_(u"Color del texto"),
                                       widget=forms.TextInput(attrs={'placeholder': '#2DDC22',
                                                                     'type': 'color'}))
     class Meta:

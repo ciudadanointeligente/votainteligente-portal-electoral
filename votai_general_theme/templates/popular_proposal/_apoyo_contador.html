@@ -7,7 +7,7 @@
 </p>
   <p class="nota">
     {% blocktrans with proposal_id=proposal.id likers_count=proposal.likers.count %}
-      <span id='likers_count_{{proposal_id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s) ciudadano(s)</p>
+      <span id='likers_count_{{proposal_id}}' class="conteo">{{likers_count}}</span> apoyo(s) ciudadano(s)</p>
     {% endblocktrans %}
 
 </div>

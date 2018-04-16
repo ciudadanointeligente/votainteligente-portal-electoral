@@ -67,7 +67,8 @@
             </a>
           </span>
           {% if not avoid_counter %}
-            {% include 'modal_like_proposal.html' with modalId=modalid title='Apoya una propuesta' url=like_this_proposal_url next_url=request.path %}
+            {% trans "Apoya una propuesta" as support_a_proposal_modal_title %}
+            {% include 'modal_like_proposal.html' with modalId=modalid title=support_a_proposal_modal_title url=like_this_proposal_url next_url=request.path %}
           {% endif %}
           <!-- end of "logueado sin support" -->
         {% endwith %}
@@ -76,18 +77,18 @@
         <!-- apoyando -->
           {% if not avoid_counter %}
             {% include 'popular_proposal/_apoyo_contador.html' with proposal=proposal %}
-          {% endif %}
-          {% if not support_button_extra_class %}
-          <span class="corazon-{{proposal.id}} btn btn-no-apoyo text-center {{support_button_extra_class}}" style="cursor:auto;">
-             {% trans "Estoy apoyando" %} <i class="fa fa-heart" aria-hidden="true"></i>
-          </span>
-          {% endif %}
-          {% if support_button_extra_class %}
-          <div class="col-md-6">
-            <div class="share pull-left">
-              {% include 'popular_proposal/_apoyo_contador.html' with proposal=proposal %}
+          {% else %}
+            {% if not support_button_extra_class %}
+            <span class="corazon-{{proposal.id}} btn btn-no-apoyo text-center {{support_button_extra_class}}" style="cursor:auto;">
+               {% trans "Estoy apoyando" %} <i class="fa fa-heart" aria-hidden="true"></i>
+            </span>
+            {% else %}
+            <div class="col-md-6">
+              <div class="share pull-left">
+                {% include 'popular_proposal/_apoyo_contador.html' with proposal=proposal %}
+              </div>
             </div>
-          </div>
+            {% endif %}
           {% endif %}
         <!-- eoapoyando -->
         {% endwith %}

@@ -4,7 +4,7 @@
 {% url 'registration_register' as register_url%}
 <form method="post" action="{% url 'auth_login' %}">
   {% csrf_token %}
-  {% bootstrap_form form show_label=false %}
+  {% bootstrap_form form %}
   <input type="hidden" name="next" value="{{ url }}" />
   <button type="submit" class="btn btn-success btn-block">{% trans "Entrar" %}</button>
 </form>

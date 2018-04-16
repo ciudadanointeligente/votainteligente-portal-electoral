@@ -3,7 +3,7 @@
 
 <form  role="form" action="{% url 'registration_register' %}" method="post" class="landing-form">
     {% csrf_token %}
-    {% bootstrap_form form show_label=false %}
+    {% bootstrap_form form %}
     <div class="form-actions">
       <input type="submit" class="btn btn-success btn-block" id="" value="{% trans 'Regístrame' %}"/>
     </div>

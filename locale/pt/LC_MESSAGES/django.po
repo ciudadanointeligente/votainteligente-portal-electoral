@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-16 21:35+0000\n"
-"PO-Revision-Date: 2018-04-16 18:46-0300\n"
+"PO-Revision-Date: 2018-04-16 18:48-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -2166,6 +2166,8 @@ msgid ""
 "Para brindar una mejor respuesta es necesario que respondas todas las "
 "preguntas."
 msgstr ""
+"Para fornecer uma resposta melhor, é necessário que você responda a todas as "
+"perguntas."
 
 #: votai_general_theme/templates/elections/soulmate_candidate.html:96
 msgid "Encontrar mi 1/2 naranja"
@@ -3813,7 +3815,7 @@ msgstr "Entra"
 
 #: votai_general_theme/templates/registration/login.html:26
 msgid "Para apoyar una propuesta debes estar registrado."
-msgstr ""
+msgstr "Para apoiar uma proposta, você deve estar registrado."
 
 #: votai_general_theme/templates/registration/logout.html:4
 msgid "Logged out"

@@ -102,7 +102,7 @@
       {% endif %}
       <span class="corazon-{{proposal.id}}">
         <a href="{% url 'auth_login' %}?next={{proposal.get_absolute_url}}" class="btn btn-apoyo text-center {{support_button_extra_class}}" onclick="ga('send','event','apoyo-propuesta-no-usuario','click')">
-          Apoyar <i class="fa fa-heart" aria-hidden="true"></i>
+          {% trans "Apoyar" %} <i class="fa fa-heart" aria-hidden="true"></i>
         </a>
       </span>
   {% endif %}

@@ -10,7 +10,7 @@ from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from votainteligente.sitemaps  import ElectionsSitemap, CandidatesSitemap, ProposalSitemap
 from votainteligente.rest_api_router import router
-
+from django.utils.translation import ugettext_lazy as _
 admin.autodiscover()
 admin.site.site_header = getattr(settings, 'ADMIN_HEADER', 'Vota Inteligente')
 
@@ -32,30 +32,30 @@ urlpatterns = [
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('elections.urls')),
-    url(r'^preguntales/', include('preguntales.urls')),
-    url(r'^propuestas/', include('popular_proposal.urls', namespace='popular_proposals')),
-    url('^pages/', include('django.contrib.flatpages.urls')),
+    url(_(r'^preguntales/'), include('preguntales.urls')),
+    url(_(r'^propuestas/'), include('popular_proposal.urls', namespace='popular_proposals')),
+    url(_('^pages/'), include('django.contrib.flatpages.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^newsletter/', include('newsletter.urls')),
     url(r'^backend_staff/', include('backend_staff.urls', namespace='backend_staff')),
-    url(r'^perfil_ciudadano/', include('backend_citizen.urls', namespace='backend_citizen')),
+    url(_(r'^perfil_ciudadano/'), include('backend_citizen.urls', namespace='backend_citizen')),
     url(r'^suggestions/', include('suggestions_for_candidates.urls', namespace='suggestions_for_candidates')),
-    url(r'^media_naranja/', include('medianaranja2.urls', namespace='medianaranja2')),
-    url(r'^organizacion/', include('organization_profiles.urls', namespace='organization_profiles')),
-    url(r'^candidatos/', include('backend_candidate.urls', namespace='backend_candidate')),
+    url(_(r'^media_naranja/'), include('medianaranja2.urls', namespace='medianaranja2')),
+    url(_(r'^organizacion/'), include('organization_profiles.urls', namespace='organization_profiles')),
+    url(_(r'^candidatos/'), include('backend_candidate.urls', namespace='backend_candidate')),
     url(r'^proposal_subscriptions/', include('proposal_subscriptions.urls', namespace='proposal_subscriptions')),
     url(r'^levantalamano/', include('votita.urls', namespace='votita')),
     url(r'^cuentas/', include('votita.urls.auth_urls', namespace="votita_auth")),
-    url(r'^ayudanos/$',
+    url(_(r'^ayudanos/$'),
         HelpFindingCandidates.as_view(),
         name='help'),
-    url(r'^encuentro_ciudadano/$',
+    url(_(r'^encuentro_ciudadano/$'),
         TemplateView.as_view(template_name='encuentro_ciudadano.html'),
         name='encuentro_ciudadano'),
-    url(r'^que_es/$',
+    url(_(r'^que_es/$'),
         TemplateView.as_view(template_name='que_es.html'),
         name='que_es'),
-    url(r'^material_ciudadano/$',
+    url(_(r'^material_ciudadano/$'),
         TemplateView.as_view(template_name='material_ciudadano.html'),
         name='material_ciudadano'),
     url(r'^cores/$',

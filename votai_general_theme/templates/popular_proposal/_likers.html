@@ -63,7 +63,7 @@
           {% endif %}
           <span class="corazon-{{proposal.id}}">
             <a class="btn btn-apoyo text-center {{support_button_extra_class}}" data-toggle="modal" data-target="#{{modalid}}" onclick="ga('send','event','apoyo-propuesta-usuario','click')">
-              Apoyar <i class="fa fa-heart" aria-hidden="true"></i>
+              {% trans "Apoyar" %} <i class="fa fa-heart" aria-hidden="true"></i>
             </a>
           </span>
           {% if not avoid_counter %}

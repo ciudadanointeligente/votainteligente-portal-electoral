@@ -201,11 +201,11 @@ $(function(){
       <div class="col-md-3 hidden-sm hidden-xs text-center print_hidden">
         <label>{% trans "Esta propuesta tiene" %}</label>
         <p class="apoyo-ciudadano">
-          {% blocktrans with proposal_id=proposal.id likers_count=proposal.likers.count %}
-            <span id='likers_count_{{proposal_id}}' class="conteo">{{proposal.likers.count}}</span> apoyo(s) ciudadano(s)</p>
+          {% blocktrans with proposal_id=popular_proposal.id likers_count=popular_proposal.likers.count %}
+            <span id='likers_count_{{proposal_id}}' class="conteo">{{likers_count}}</span> apoyo(s) ciudadano(s)</p>
           {% endblocktrans %}
         <br>
-        {% blocktrans with proposal_id=proposal.id commitments_count=proposal.commitments.count %}
+        {% blocktrans with proposal_id=popular_proposal.id commitments_count=popular_proposal.commitments.count %}
         <span id='likers_count_{{proposal_id}}' class="conteo">{{commitments_count}}</span> candidatura(s) comprometida(s)
       {% endblocktrans %}
       </p>
@@ -271,7 +271,8 @@ $(function(){
 </div>
 
 {% with "supportProposal"|add:popular_proposal.slug as modalid %}
-  {% include 'modal_like_proposal.html' with modalId=modalid title='Apoya una propuesta' url=like_this_proposal_url next_url=request.path proposal=popular_proposal %}
+  {% trans "Apoya una propuesta" as support_proposal_modal_title %}
+  {% include 'modal_like_proposal.html' with modalId=modalid title=support_proposal_modal_title url=like_this_proposal_url next_url=request.path proposal=popular_proposal %}
 {% endwith %}
 
 {% endblock everything %}

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-16 19:10+0000\n"
-"PO-Revision-Date: 2018-04-16 16:12-0300\n"
+"POT-Creation-Date: 2018-04-16 20:18+0000\n"
+"PO-Revision-Date: 2018-04-16 17:38-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: backend_candidate/forms.py:141 backend_citizen/forms.py:17
 msgid "Imagen de perfil"
-msgstr ""
+msgstr "Imagem do perfil"
 
 #: backend_candidate/forms.py:143
 msgid "Link del programa"
@@ -187,7 +187,7 @@ msgstr ""
 #: votai_general_theme/templates/backend_base.html:63
 #: votai_general_theme/templates/registration/password_change.html:11
 msgid "Cambia tu contraseña"
-msgstr ""
+msgstr "Mude sua senha"
 
 #: merepresenta/templates/backend_candidate/complete_profile.html:43
 msgid "Guardar"
@@ -358,7 +358,7 @@ msgstr "Selecione uma categoria"
 
 #: popular_proposal/forms/form_texts.py:14
 msgid "Asistencia y protección social"
-msgstr ""
+msgstr "Assistência e proteção social"
 
 #: popular_proposal/forms/form_texts.py:15
 msgid "Ciencias"
@@ -418,15 +418,15 @@ msgstr "Equidade e gênero"
 
 #: popular_proposal/forms/form_texts.py:29
 msgid "Inclusión"
-msgstr ""
+msgstr "Inclusão"
 
 #: popular_proposal/forms/form_texts.py:30
 msgid "Instituciones Públicas"
-msgstr ""
+msgstr "Instituições Públicas"
 
 #: popular_proposal/forms/form_texts.py:31
 msgid "Infancia y juventud"
-msgstr ""
+msgstr "Infância e juventude"
 
 #: popular_proposal/forms/form_texts.py:32
 msgid "Justicia"
@@ -443,11 +443,11 @@ msgstr "Meios de comunicação"
 
 #: popular_proposal/forms/form_texts.py:35
 msgid "Migración"
-msgstr ""
+msgstr "Migração"
 
 #: popular_proposal/forms/form_texts.py:36
 msgid "Minería"
-msgstr ""
+msgstr "Mineração"
 
 #: popular_proposal/forms/form_texts.py:37
 msgid "Ocio"
@@ -455,31 +455,31 @@ msgstr "Lazer"
 
 #: popular_proposal/forms/form_texts.py:38
 msgid "Pensiones"
-msgstr ""
+msgstr "Pensões"
 
 #: popular_proposal/forms/form_texts.py:39
 msgid "Participación"
-msgstr ""
+msgstr "Participação"
 
 #: popular_proposal/forms/form_texts.py:40
 msgid "Previsión"
-msgstr ""
+msgstr "Previsão"
 
 #: popular_proposal/forms/form_texts.py:41
 msgid "Probidad"
-msgstr ""
+msgstr "Probidade"
 
 #: popular_proposal/forms/form_texts.py:42
 msgid "Protección social"
-msgstr ""
+msgstr "Proteção social"
 
 #: popular_proposal/forms/form_texts.py:43
 msgid "Pueblos originarios"
-msgstr ""
+msgstr "Povos nativos"
 
 #: popular_proposal/forms/form_texts.py:44
 msgid "Recursos naturales"
-msgstr ""
+msgstr "Recursos naturais"
 
 #: popular_proposal/forms/form_texts.py:45
 msgid "Salud"
@@ -491,7 +491,7 @@ msgstr "Segurança"
 
 #: popular_proposal/forms/form_texts.py:47
 msgid "Sustentabilidad"
-msgstr ""
+msgstr "Sustentabilidade"
 
 #: popular_proposal/forms/form_texts.py:48
 msgid "Adulto mayor"
@@ -499,7 +499,7 @@ msgstr "Adulto mais velho"
 
 #: popular_proposal/forms/form_texts.py:49
 msgid "Protección animal"
-msgstr ""
+msgstr "Proteção animal"
 
 #: popular_proposal/forms/form_texts.py:50
 msgid "Trabajo"
@@ -674,7 +674,7 @@ msgstr ""
 
 #: popular_proposal/forms/forms.py:193
 msgid "Más antecedentes sobre tu propuesta."
-msgstr ""
+msgstr "Mais informações sobre sua proposta."
 
 #: popular_proposal/forms/forms.py:194
 msgid "¿Tienes alguna imagen para compartir?"
@@ -754,7 +754,7 @@ msgstr "O candidato não pertence ao território"
 
 #: popular_proposal/models.py:191
 msgid "Antecedentes sobre tu propuesta"
-msgstr ""
+msgstr "Antecedentes da sua proposta"
 
 #: popular_proposal/models.py:194
 msgid "¿Cómo te pueden contactar? Esta información es pública."
@@ -1315,7 +1315,7 @@ msgstr ""
 #: votai_general_theme/templates/backend_citizen/_proposals-table.html:29
 #: votai_general_theme/templates/popular_proposal/detail.html:142
 msgid "Antecedentes"
-msgstr ""
+msgstr "Plano de fundo"
 
 #: votai_general_theme/templates/backend_citizen/_proposals-table.html:41
 msgid ""
@@ -1329,7 +1329,7 @@ msgstr ""
 
 #: votai_general_theme/templates/backend_citizen/_proposals-table.html:49
 msgid "Aceptada"
-msgstr ""
+msgstr "Aceito"
 
 #: votai_general_theme/templates/backend_citizen/_proposals-table.html:52
 msgid "Rechazada"
@@ -2491,12 +2491,17 @@ msgid ""
 "                ¿Deseas apoyar la propuesta <b>%(proposal)s</b>?\n"
 "              "
 msgstr ""
+"\n"
+"                Você quer apoiar a proposta <b>%(proposal)s</b>?\n"
+"              "
 
 #: votai_general_theme/templates/modal_like_proposal.html:30
 msgid ""
 "Al apoyar esta propuesta aceptas que VotaInteligente te notifique vía correo "
 "electrónico cuando un candidato decida apoyar esta propuesta."
 msgstr ""
+"Ao apoiar esta proposta, você concorda que a RioXInteiro notifique você por "
+"e-mail quando um candidato decidir apoiar esta proposta."
 
 #: votai_general_theme/templates/modal_like_proposal.html:39
 #, python-format
@@ -2512,7 +2517,7 @@ msgstr ""
 
 #: votai_general_theme/templates/modal_like_proposal.html:48
 msgid "Apoyar"
-msgstr ""
+msgstr "Suporte\t"
 
 #: votai_general_theme/templates/organization_profiles/ayuranos.html:16
 msgid ""
@@ -2563,6 +2568,10 @@ msgid ""
 "%(proposal.likers.count)s</span> apoyo(s) ciudadano(s)</p>\n"
 "    "
 msgstr ""
+"\n"
+"      <span id='likers_count_%(proposal_id)s' class=\"conteo\">"
+"%(proposal.likers.count)s</span> apoio(s) cidadão(s)</p>\n"
+"    "
 
 #: votai_general_theme/templates/popular_proposal/_btn_candidate_commitment.html:8
 msgid " ciudadanos apoyan esta propuesta"
@@ -3042,6 +3051,8 @@ msgid ""
 "Si te gustó ¡apóyala y compártela! Así todos/as tendremos voz en las "
 "elecciones de este año."
 msgstr ""
+"Se você gostou, apoie e compartilhe! Então, todos nós vamos ter voz nas "
+"eleições deste ano."
 
 #: votai_general_theme/templates/popular_proposal/detail.html:164
 msgid ""
@@ -3052,6 +3063,12 @@ msgid ""
 "<a class=\"reportar_propuesta\">reportando</a> esta propuesta.\n"
 "          "
 msgstr ""
+"\n"
+"          Se, pelo contrário, você achar que esta proposta viola os \"<a "
+"href=\"#\" data-toggle=\"modal\" data-target=\"#terms_and_conditions"
+"\">Termos e condições</a>\"  para a criação de uma proposta, ajude-nos, <a "
+"class=\"reportar_propuesta\">informando</a> esta proposta.\n"
+"          "
 
 #: votai_general_theme/templates/popular_proposal/detail.html:172
 #: votai_general_theme/templates/popular_proposal/detail.html:222
@@ -3063,19 +3080,21 @@ msgid "Cerrar"
 msgstr ""
 
 #: votai_general_theme/templates/popular_proposal/detail.html:202
-#, fuzzy
-#| msgid "Enviar propuesta"
 msgid "Esta propuesta tiene"
-msgstr "Apresentar proposta"
+msgstr "Esta proposta tem"
 
 #: votai_general_theme/templates/popular_proposal/detail.html:204
 #, python-format
 msgid ""
 "\n"
 "            <span id='likers_count_%(proposal_id)s' class=\"conteo\">"
-"%(proposal.likers.count)s</span> apoyo(s) ciudadano(s)</p>\n"
+"%(likers_count)s</span> apoyo(s) ciudadano(s)</p>\n"
 "          "
 msgstr ""
+"\n"
+"            <span id='likers_count_%(proposal_id)s' class=\"conteo\">"
+"%(likers_count)s</span>  apoio(s) cidadão(s)</p>\n"
+"          "
 
 #: votai_general_theme/templates/popular_proposal/detail.html:208
 #, python-format
@@ -3085,10 +3104,14 @@ msgid ""
 "%(commitments_count)s</span> candidatura(s) comprometida(s)\n"
 "      "
 msgstr ""
+"\n"
+"        <span id='likers_count_%(proposal_id)s' class=\"conteo\">"
+"%(commitments_count)s</span> candidaturas(s) cometida(s)\n"
+"      "
 
 #: votai_general_theme/templates/popular_proposal/detail.html:213
 msgid "Apoya esta propuesta"
-msgstr ""
+msgstr "Apoie esta proposta"
 
 #: votai_general_theme/templates/popular_proposal/detail.html:218
 msgid "Comparte esta propuesta"
@@ -3097,6 +3120,10 @@ msgstr "Compartilhe esta proposta"
 #: votai_general_theme/templates/popular_proposal/detail.html:228
 msgid "Organizaciones que apoyan esta propuesta"
 msgstr ""
+
+#: votai_general_theme/templates/popular_proposal/detail.html:274
+msgid "Apoya una propuesta"
+msgstr "Apoie uma proposta"
 
 #: votai_general_theme/templates/popular_proposal/home.html:6
 msgid ""
@@ -3123,6 +3150,10 @@ msgid ""
 "<p>Al apoyar esta propuesta aceptas que VotaInteligente te notifique vía "
 "correo electrónico cuando un candidato decida apoyar esta propuesta.</p>\n"
 msgstr ""
+"\n"
+"Você quer apoiar a proposta <b>%(proposal)s</b>?\n"
+"<p>Ao apoiar esta proposta, você concorda que a RioXInteiro notifique você "
+"por e-mail quando um candidato decidir apoiar esta proposta.</p>\n"
 
 #: votai_general_theme/templates/popular_proposal/new_subscription.html:19
 msgid "Sí, quiero apoyar"
@@ -3757,7 +3788,7 @@ msgstr ""
 
 #: votai_general_theme/templates/registration/password_change.html:16
 msgid "Cambia mi contraseña"
-msgstr ""
+msgstr "Alterar minha senha"
 
 #: votai_general_theme/templates/registration/password_change_done.html:4
 #: votai_general_theme/templates/registration/password_change_done_.html:4

@@ -74,6 +74,7 @@ INSTALLED_APPS = (
     'agenda',
     'medianaranja2',
     # 'debug_panel',
+    'el_pagination',
     'proposal_subscriptions',
     'custom_sites',
     'merepresenta',
@@ -81,7 +82,7 @@ INSTALLED_APPS = (
     'votai_general_theme',
 
 )
-INSTALLED_APPS_AFTER_ALL = ('el_pagination',)
+INSTALLED_APPS_AFTER_ALL = ()
 
 
 

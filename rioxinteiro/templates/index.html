@@ -24,20 +24,6 @@
   <h2 class="text-center">Escreva sua proposta para as candidaturas</h2><p class="text-center">
     <a href="{% url 'popular_proposals:home' %}" class="btn btn-dark">Aqui</a></p>
 </section>
-{% if config.CANDIDATE_SEARCH_ENABLED %}
-<section id="home-search-candidate" class="blue">
-  <div class="container">
-    <h2 class="text-center">CANDIDATURAS ELECTAS</h2>
-    <h3 class="text-center">Conoce las candidaturas y sus compromisos con propuestas ciudadanas de votainteligente.cl</h3>
-    <p class="bajada text-center">Encuentra aquí los nuevos/as diputados/as y senadores/as</p>
-    <div class="row">
-      <div class="col-md-12">
-        {% include "_election_search_form.html" %}
-      </div>
-    </div>
-  </div>
-</section>
-{% endif %}
 
 {% cache 600 organization_logos %}
 {% organization_logos %}

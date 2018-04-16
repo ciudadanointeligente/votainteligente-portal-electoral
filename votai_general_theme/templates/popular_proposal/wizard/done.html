@@ -22,13 +22,13 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div>
-          <h2 class="text-center">{% blocktrans with popular_proposal=popular_proposal.title %}
+          <h2 class="text-center">{% blocktrans with popular_proposal=popular_proposal %}
             Publicamos tu propuesta con título "<i>{{popular_proposal}}</i>" ¡muchas gracias!
           {% endblocktrans %}
           </h2>
           <div>
             {% if popular_proposal.created_proposal %}
-              <a href="{% static 'material-ciudadano/manual-herramientas-activismo.pdf' %}" target="_blank" class="btn btn-blue btn-block" onclick="ga('send', 'event', 'proposal-done-descargar-kit', 'click')">Descarga el Manual de herramientas de activismo</a>
+              <a href="{% static 'material-ciudadano/manual-herramientas-activismo.pdf' %}" target="_blank" class="btn btn-blue btn-block" onclick="ga('send', 'event', 'proposal-done-descargar-kit', 'click')">{% trans "Descarga el Manual de herramientas de activismo" %}</a>
               <p class="text-center"><b>{% trans "Difunde tu propuesta para conseguir más apoyos" %}</b></p>
               {% include 'popular_proposal/_share.html' with popular_proposal=popular_proposal.created_proposal btn_extra_class="btn btn-info btn-block" show_texts=True %}
 

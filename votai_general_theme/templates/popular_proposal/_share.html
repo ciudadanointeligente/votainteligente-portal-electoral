@@ -1,4 +1,4 @@
-{% load votainteligente_extras %}{% spaceless %}
+{% load votainteligente_extras %}{% load i18n %}{% spaceless %}
 {% if not say_thanks %}
   {% url 'popular_proposals:detail' slug=popular_proposal.slug as detail_url%}
   {% url_domain as url_d %}

@@ -2,7 +2,16 @@
 {% load i18n %}
 {% load votainteligente_extras %}
 <p>
-{% if user.get_full_name %}{{user.get_full_name}}{% else %}{{user}}{% endif %} ha creado una propuesta para mejorar {{ area }} en Vota Inteligente 2017.
+{% if user.get_full_name %}
+
+  {% blocktrans with user=user.get_full_name area=area %}
+    {{user}} ha creado una propuesta para mejorar {{ area }} en Vota Inteligente 2017.
+  {% endblocktrans %}
+{% else %}
+  {% blocktrans with user=user area=area %}
+    {{user}} ha creado una propuesta para mejorar {{ area }} en Vota Inteligente 2017.
+  {% endblocktrans %}
+{% endif %}
 </p>
 <div>
 <h3>{% trans "El problema que se quiere solucionar es:" %}</h3>

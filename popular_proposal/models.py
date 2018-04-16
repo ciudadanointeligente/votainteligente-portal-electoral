@@ -264,7 +264,7 @@ class PopularProposal(models.Model, OGPMixin):
         txt = Image.new('RGBA', base.size, (122,183,255,0))
 
         d = ImageDraw.Draw(txt)
-        n_propuesta = u"Propuesta N º"+ unicode(self.id)
+        n_propuesta =  _(u'Propuesta N º %(proposal_id)s') % {'proposal_id': self.id}
         n_propuesta = n_propuesta.upper()
         d.multiline_text((81,95), n_propuesta, font=montserrat_n_propuesta, fill=(122,183,255,255))
 

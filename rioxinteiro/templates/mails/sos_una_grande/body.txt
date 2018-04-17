@@ -1,0 +1,11 @@
+{% load votainteligente_extras %}Hola {% include '_user_printable.html' with user=proposal.proposer %}!
+
+Estamos muy felices por que tu propuesta con título {{proposal.title}}
+ha alcanzado un total de {{number}} adherentes.
+
+Para nosotros lo que tu haces es increíble y creemos que cumples el
+objetivo final del proyecto que es mejorar la articulación ciudadana.
+
+Muchas gracias por todo.
+
+{% mail_signature_txt %}

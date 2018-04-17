@@ -1,0 +1,16 @@
+{% load votainteligente_extras %}Hola {{user}}:
+Este mail es para contarte que hay novedades con algunas propuestas ciudadanas
+que apoyaste:
+{% for commitment in commitments %}{%if commitment.commited %}
+- {{commitment.candidate}} se ha comprometido con {{commitment.proposal}} y
+puedes revisar el compromiso en el siguiente link: https://{{site.domain}}{{commitment.get_absolute_url}}
+{% else %}
+- {{commitment.candidate}} rechazó la propuesta {{commitment.proposal}} y
+puedes revisar el compromiso en el siguiente link: https://{{site.domain}}{{commitment.get_absolute_url}}
+{% endif %}{% endfor %}
+
+Esto no habría sido posible sin tu apoyo. Te queremos mucho y te queremos invitar a ser parte de la acción
+colectiva.
+PS:
+Si ya no quieres recibir estos mails haz click acá https://{{site.domain}}{{user.profile.get_unsubscribe_url}}.
+{% mail_signature_txt %}

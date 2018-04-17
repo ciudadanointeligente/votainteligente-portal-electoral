@@ -1,0 +1,41 @@
+{% load votainteligente_extras %}
+¡Felicitaciones {% if user.get_short_name %}{{ temporary_data.proposer.get_short_name}}{% else %}{{ temporary_data.proposer.get_username}}{% endif %}!:
+
+Tu propuesta para {{area}} fue recibida satisfactoriamente{% if moderator %} por {{moderator}} y nosotros la haremos llegar a las y los candidatas/os de {{area}}{% endif %}.
+
+Ahora, te invitamos a trabajar para que tu propuesta tenga la mayor cantidad de adherentes posible y que candidatas y candidatos tengan más presión para comprometerse.
+
+Para ello podrás consultar las herramientas de activismo que tenemos para ti. En ellas encontrarás una guía para posicionar tu propuesta, difundirla entre tus vecinos/as y consejos útiles para fortalecer el trabajo de tu organización. Éstas también estarán disponibles en tu perfil en el sitio.
+
+Este material lo puedes descargar desde el siguiente link:
+https://votainteligente.cl/static/material-ciudadano/manual-herramientas-activismo.pdf
+
+Por último, te recomendamos agregarle más antecedentes a tu propuesta acá:
+
+https://{{site.domain}}{% url 'popular_proposals:citizen_update' slug=temporary_data.created_proposal.slug %}
+
+Te queremos recordar que tu propuesta tiene la siguiente información:
+
+Tu propuesta:
+{{temporary_data.created_proposal.data.solution|popular_proposal_when}}
+
+Esta propuesta debe ser cumplida antes de {{temporary_data.created_proposal.data.when|popular_proposal_when}}, y surge como respuesta a la siguiente inquietud de la comunidad: {{temporary_data.created_proposal.data.problem|popular_proposal_when}}.
+
+Además entendemos que la solución final estará dada por:
+
+{{temporary_data.created_proposal.data.solution_at_the_end|popular_proposal_when}}
+
+Puedes ver tu propuesta en el siguiente link:
+https://{{site.domain}}{{ temporary_data.created_proposal.get_absolute_url }}
+
+Y acá puedes ver la lista de todas las propuestas de {{area}}:
+https://{{site.domain}}{{area.get_absolute_url}}
+
+
+Para hacer que tu propuesta llegue a ser parte de los programas
+de los candidatos, te recomendamos que te organices con tus
+vecinos y te hagas notar.
+
+
+Muchas gracias.
+{% mail_signature_txt %}

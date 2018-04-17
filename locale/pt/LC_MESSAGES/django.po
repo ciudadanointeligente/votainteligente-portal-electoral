@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-16 21:35+0000\n"
-"PO-Revision-Date: 2018-04-16 18:48-0300\n"
+"POT-Creation-Date: 2018-04-17 15:22+0000\n"
+"PO-Revision-Date: 2018-04-17 12:58-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -256,6 +256,8 @@ msgid ""
 "Ayúdanos a que te conozcan! En esta sección podrás contarnos sobre tu "
 "organización para informar a otros sobre tu labor social."
 msgstr ""
+"Ajude-nos a conhecer você! Nesta seção, você pode nos informar sobre sua "
+"organização para informar outras pessoas sobre seu trabalho social."
 
 #: organization_profiles/forms.py:14
 msgid "Web de la organización"
@@ -263,7 +265,7 @@ msgstr "Website da organização"
 
 #: organization_profiles/forms.py:16
 msgid "https://miorganizacion.org"
-msgstr ""
+msgstr "https://minhaorganizacao.org"
 
 #: organization_profiles/forms.py:17
 msgid "FanPage de la organización"
@@ -271,7 +273,7 @@ msgstr "FANPAGE DA ORGANIZAÇÃO"
 
 #: organization_profiles/forms.py:19
 msgid "https://www.facebook.com/miorganizacion/"
-msgstr ""
+msgstr "https://www.facebook.com/minhaorganizacao"
 
 #: organization_profiles/forms.py:20
 msgid "Twitter de la organización"
@@ -279,7 +281,7 @@ msgstr "Twitter da organização"
 
 #: organization_profiles/forms.py:22
 msgid "https://www.twitter.com/miorganizacion/"
-msgstr ""
+msgstr "https://www.twitter.com/minhaorganizacao/"
 
 #: organization_profiles/forms.py:23
 msgid "Instagram de la organización"
@@ -287,7 +289,7 @@ msgstr "Instagram da organização"
 
 #: organization_profiles/forms.py:25
 msgid "https://www.instagram.com/miorganizacion/"
-msgstr ""
+msgstr "https://www.instagram.com/minhaorganizacao"
 
 #: organization_profiles/forms.py:27 organization_profiles/models.py:71
 msgid "Color primario"
@@ -982,7 +984,7 @@ msgstr "Saída"
 #: votai_general_theme/templates/_dropdown_user.html:51
 #: votai_general_theme/templates/registration/password_reset_complete.html:10
 msgid "Ingresar"
-msgstr ""
+msgstr "Entrar"
 
 #: votai_general_theme/templates/_election_search_form.html:14
 msgid "Ingresa aquí tu Comuna"
@@ -1205,7 +1207,7 @@ msgstr "Escolha um desses tweets e nos ajude!"
 #: votai_general_theme/templates/backend_candidate/help_finding_candidates.html:40
 #: votai_general_theme/templates/backend_candidate/help_finding_candidates.html:44
 msgid "https://votainteligente.cl"
-msgstr ""
+msgstr "https://rioxinteiro.cidadaniainteligente.org"
 
 #: votai_general_theme/templates/backend_candidate/home.html:18
 msgid "¡Bienvenid@ a la sección de candidaturas!"
@@ -2551,6 +2553,7 @@ msgstr ""
 
 #: votai_general_theme/templates/modal_like_proposal.html:48
 #: votai_general_theme/templates/popular_proposal/_likers.html:66
+#: votai_general_theme/templates/popular_proposal/_likers.html:105
 msgid "Apoyar"
 msgstr "Suporte\t"
 
@@ -2686,7 +2689,7 @@ msgstr "Apoie uma proposta"
 
 #: votai_general_theme/templates/popular_proposal/_likers.html:83
 msgid "Estoy apoyando"
-msgstr ""
+msgstr "Estou apoiando"
 
 #: votai_general_theme/templates/popular_proposal/_likers_candidatos.html:11
 #, python-format
@@ -3757,7 +3760,7 @@ msgstr "Bem-vindo! Agora ativamos sua conta!"
 
 #: votai_general_theme/templates/registration/activation_complete.html:7
 msgid "Estamos redirigiendote para que edites tu perfil"
-msgstr ""
+msgstr "Estamos redirecionando você para editar seu perfil"
 
 #: votai_general_theme/templates/registration/activation_complete.html:9
 #, python-format
@@ -3853,7 +3856,7 @@ msgstr ""
 
 #: votai_general_theme/templates/registration/password_reset_complete.html:8
 msgid "¡Listo! Ya cambiamos tu password ahora puedes entrar a tu cuenta."
-msgstr ""
+msgstr "Pronto! Nós já mudamos sua senha agora você pode entrar em sua conta."
 
 #: votai_general_theme/templates/registration/password_reset_confirm.html:4
 msgid "Confirm password reset"
@@ -3861,11 +3864,11 @@ msgstr ""
 
 #: votai_general_theme/templates/registration/password_reset_confirm.html:8
 msgid "Ingresa tu nuevo password para continuar:"
-msgstr ""
+msgstr "Digite sua nova senha para continuar:"
 
 #: votai_general_theme/templates/registration/password_reset_confirm.html:13
 msgid "Cambiar password"
-msgstr ""
+msgstr "Mudar senha"
 
 #: votai_general_theme/templates/registration/password_reset_confirm.html:17
 msgid "Ya cambiaste tu password, solicita uno nuevo si necesitas."
@@ -3874,6 +3877,14 @@ msgstr ""
 #: votai_general_theme/templates/registration/password_reset_done.html:4
 msgid "Password reset"
 msgstr ""
+
+#: votai_general_theme/templates/registration/password_reset_done.html:7
+msgid ""
+"Te enviamos un mail con un link para que puedas reiniciar tu password.\n"
+"Por favor, revisa tu email y haz click en el link para continuar."
+msgstr ""
+"Enviamos um email com um link para que você possa redefinir sua senha.\n"
+"Por favor, verifique seu e-mail e clique no link para continuar."
 
 #: votai_general_theme/templates/registration/password_reset_email.html:2
 msgid "Greetings"
@@ -3929,6 +3940,8 @@ msgid ""
 "¿Se te olvidó el password? completa el formulario de abajo y reinicia tu "
 "clave."
 msgstr ""
+"Você esqueceu a senha? Preencha o formulário abaixo e reinicie sua senha."
+"Ingresa tu nuevo password para continuar:"
 
 #: votai_general_theme/templates/registration/password_reset_form.html:9
 msgid "Envíame un mail para reiniciar mi clave"

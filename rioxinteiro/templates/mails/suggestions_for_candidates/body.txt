@@ -1,0 +1,28 @@
+{% load votainteligente_extras %}Hola {{candidate.name}}:
+
+http://Votainteligente.cl es una plataforma, SIN COSTO ASOCIADO, de la Fundación Ciudadano Inteligente que recibe propuestas ciudadanas y de la sociedad civil en el marco de las elecciones presidenciales y parlamentarias de este año.
+
+Cada candidatura cuenta con un perfil básico, al que puedes acceder para difundir información sobre tu campaña y comprometerse con aquellas propuestas ciudadanas que te sean afines.
+
+Hemos seleccionado algunas propuestas que consideramos podrían ser de tu interés:
+
+{% for proposal in proposals %}
+https://{{site.domain}}{{proposal.get_absolute_url}}
+{% endfor %}
+Te queríamos recordar que para ingresar puedes hacerlo en https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}.
+{% with candidate.contacts.last as contact %}
+{% if not candidate.has_joined %}
+
+Para comprometerte con éstas y otras propuestas debes ingresar a https://votainteligente.cl/candidatos/login tu usuario y password son:
+**Usuario: {{contact.candidacy.user.username}}
+**Password(que podrás cambiar una vez dentro de la página): {{contact.initial_password}}
+{% else %}
+Para comprometerte con éstas y otras propuestas debes ingresar a https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %} con tu usuario:
+{{contact.candidacy.user.username}}.
+{% endif %}
+
+{% endwith %}
+Si quieres que utilicemos otra dirección de correo electrónico para comunicarnos contigo, o si tienes alguna duda, puedes responder a este mismo mail.
+
+¡Súmate a VotaInteligente!
+{% mail_signature_txt %}

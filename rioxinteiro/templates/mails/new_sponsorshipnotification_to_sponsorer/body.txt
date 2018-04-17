@@ -1,0 +1,18 @@
+{% load votainteligente_extras %}Genias/os {{like.user}}!
+
+Les recordamos que acaban de apoyar la propuesta "{{like.proposal.title}}" y que les enviaste el
+siguiente mensaje:
+
+{{like.message}}
+
+{% if like.proposal.contact_details %}Te queríamos contar que {{like.proposal.user}} dejó los siguientes datos públicos de contacto:
+
+Acá en la casa del jefe @damian-garrido.
+{% endif %}
+Ahora no te queda más que esperar que {{like.proposal.user}} se contacte contigo, mientras tanto puedes ver tu
+apoyo a esta propuesta reflejado en tu perfil (https://{{site.domain}}{{like.user.organization_template.get_absolute_url}}) y en
+la propuesta (https://{{site.domain}}{{like.proposal.get_absolute_url}}).
+
+Te queremos mucho.
+
+{% mail_signature_txt %}

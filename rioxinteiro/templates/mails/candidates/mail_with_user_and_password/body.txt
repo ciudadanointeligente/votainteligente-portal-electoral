@@ -1,0 +1,22 @@
+{% load votainteligente_extras %}
+Hola
+
+Te escribimos en tu calidad de jefe de campaña de {{contact.candidate.name}}, para invitarlos a participar de http://Votainteligente.cl, plataforma de la Fundación Ciudadano Inteligente que busca acercar a candidatas/os con la ciudadanía en estas próximas elecciones.
+
+http://Votainteligente.cl es una plataforma, SIN COSTO ASOCIADO, que recibe propuestas ciudadanas y de la sociedad civil en el marco de las elecciones presidenciales y parlamentarias de este año.
+
+Cada candidatura cuenta con un perfil básico, al que puede acceder para difundir información sobre su campaña y comprometerse con aquellas propuestas ciudadanas que le sean afines.
+
+Con fecha 3 de octubre enviamos a los correos de todos los candidatos y candidatas la información para acceder a la plataforma y completar su perfil, pero hemos querido facilitar su participación entregandote acceso a ti al perfil de tu candidatura. Si ya están participando de la plataforma, desde acá podrn seguir actualizando la información y comprometiéndose con propuestas.
+
+¿Cómo entrar al perfil?
+Solo debes ingresar a {{login_url}} con el siguiente usuario y contraseña (puedes modificarla ingresando en el sitio).
+
+**Tu usuario es: {{contact.candidacy.user.username}}
+**Tu contraseña es: {{contact.initial_password}}
+
+Si quieres que utilicemos otra dirección de correo electrónico para comunicarnos contigo o con otra persona de tu comando encargada de estos temas, puedes responder a este mismo mail con su contacto y cualquier otra duda que tengas.
+
+¡Súmate a VotaInteligente!
+
+{% mail_signature_txt %}

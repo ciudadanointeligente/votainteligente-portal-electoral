@@ -1,0 +1,12 @@
+{% load votainteligente_extras %}Hola {{contact.candidate.name}},
+
+Te queremos contar que en {{proposal.area}} la propuesta “{{proposal.title}}” ya cuenta con {{number}} ciudadanos apoyándola y creemos que puede ser de tu interés para incorporarla en tu programa.
+
+Para hacerlo debes hacer click en el siguiente link y podrás además hacer comentarios sobre
+cómo te comprometerás.
+
+https://votainteligente.cl{{proposal.get_absolute_url}}
+
+Saludos
+
+{% mail_signature_txt %}

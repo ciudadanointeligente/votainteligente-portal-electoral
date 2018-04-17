@@ -1,0 +1,16 @@
+Yiujuuuu!!
+Cacha que {{temporary_data.proposer}} creó una propuesta ciudadana.
+
+Los datos son:
+
+el id de la propuesta es: {{temporary_data.id}}
+el título de la propuesta es: {{temporary_data.get_title}}
+{% if temporary_data.created_proposal %}
+Y la podís verla en el siguiente link:
+https://votainteligente.cl{{temporary_data.created_proposal.get_absolute_url}}
+{% endif %}
+
+Recuerda que te queremos más que la chucha por eso tienes un <3 ahí donde dice Perfil del Staff.
+--
+"Es malo que un señor tenga muchos esclavos. Pero no es mejor que un esclavo tenga muchos señores"
+VotaInteligente.cl

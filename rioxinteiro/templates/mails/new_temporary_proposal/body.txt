@@ -1,0 +1,11 @@
+{% load votainteligente_extras %}Hola {{temporary_data.proposer}}!
+Recibimos tu propuesta ciudadana y pronto tendremos noticias.
+
+Tu propuesta tiene el siguiente detalle:
+
+{% include 'popular_proposal/plantillas/preview.txt' with preview_data=temporary_data.data %}
+
+
+Gracias por querer hacer de {{area}} un lugar mejor.
+
+{% mail_signature_txt %}

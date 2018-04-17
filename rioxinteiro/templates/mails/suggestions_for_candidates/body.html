@@ -1,0 +1,34 @@
+{% load votainteligente_extras %}
+<div style="font-family: 'Arial', sans-serif;">
+
+
+{% if text %}
+<p>{{text|linebreaksbr}}</p>
+{% else %}
+
+<p>Hola <b>{{candidate.name}}</b>:</p>
+<p><a href="https://Votainteligente.cl">Vota Inteligente</a> es una plataforma, SIN COSTO ASOCIADO, de la Fundación Ciudadano Inteligente que recibe propuestas ciudadanas y de la sociedad civil en el marco de las elecciones de este año.</p>
+<p>Te invitamos a participar como candidatura a conocer y comprometerte con las propuestas ciudadanas de Vota Inteligente. Para ello, hemos seleccionado algunas propuestas que creemos te pueden interesar. Para comprometerte basta que marques en el casillero de bajo de la propuesta y luego envíes tu respuesta presionando “enviar compromisos”. Tus respuestas se verán reflejados en tu perfil en la página web.
+</p>
+<p>Además, los compromisos que adoptes serán parte de la <a href="https://votainteligente.cl/media_naranja">Media Naranja Política</a>, herramienta que permite que electores encuentren a la candidatura que le es más afín en base a los mismos compromisos adoptados por éstas en la plataforma. En sólo una semana de funcionamiento la herramienta ya tiene <b>más de 130.000 visitas</b> las que alcanzarán su máximo en la medida que nos acerquemos a las elecciones.</p>
+
+{% endif %}
+
+{% include 'backend_candidate/_suggestions_formset.html' with formset=formset object=candidate_incremental site=site candidate=candidate %}
+
+{% with candidate.contacts.last as contact %}
+{% if not candidate.has_joined %}
+
+<p>En cualquier momento puedes ingresar y editar la información que consta en tu perfil o comprometerte con otras propuestas. Para ello debes ingresar a <a href="https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}">{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}</a> con tu usuario ({{contact.candidacy.user.username}}) y contraseña ({{contact.initial_password}}).</p>
+{% else %}
+<p>En cualquier momento puedes ingresar y editar la información que consta en tu perfil o comprometerte con otras propuestas. Para ello debes ingresar a <a href="https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}">{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}</a> con tu usuario: <b>{{contact.candidacy.user.username}}</b>.</p>
+{% endif %}
+
+{% endwith %}
+
+<p>Si quieres que utilicemos otra dirección de correo electrónico para comunicarnos contigo, o si tienes alguna duda, puedes responder a este mismo mail.</p>
+
+<p>¡Súmate a VotaInteligente!</p>
+
+--<br>
+{% mail_signature_html %}

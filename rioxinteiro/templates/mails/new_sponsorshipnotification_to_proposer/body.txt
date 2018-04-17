@@ -1,0 +1,18 @@
+{% load votainteligente_extras %}
+Estimada/o {{like.proposal.proposer}}:
+
+Te queremos contar que {{like.user}} acaba de apoyar de manera pública tu
+propuesta *{{like.proposal.title}}*. Puedes contactarlos enviandoles un mail a
+{{like.user.email}}, nosotros no le hemos dado tu mail a ellos y están esperando
+que los contactes.
+Además, {{like.user}} te envió el siguiente mensaje al momento de
+apoyar tu propuesta:
+
+{{like.message}}
+
+Además, puedes ver este apoyo en el perfil de {{like.user}} (https://{{site.domain}}{{like.user.organization_template.get_absolute_url}}) y en tu
+propuesta (https://{{site.domain}}{{like.proposal.get_absolute_url}}).
+
+Te queremos mucho.
+
+{% mail_signature_txt %}

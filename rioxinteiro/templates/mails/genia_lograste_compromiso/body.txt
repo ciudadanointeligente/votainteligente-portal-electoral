@@ -1,0 +1,17 @@
+{% load votainteligente_extras %}¡Genia o genio {% if person.get_short_name %}{{ person.get_short_name}}{% else %}{{ person.get_username}}{% endif %}!
+Escribimos para contarte que {{commitment.candidate.name}} se acaba de comprometer con la propuesta ciudadana {{proposal.title}}.
+{% if commitment.detail %}
+Te queríamos contar que {{ commitment.candidate.name }} se compromete en los siguientes términos:
+
+{{commitment.detail}}
+{% endif %}
+
+Para revisar el compromiso con la propuesta ciudadana puedes acceder a la siguiente url:
+https://{{site}}{{commitment.get_absolute_url}}
+
+Te queremos mucho, esperamos que entiendas que este es un gran paso para cambiar Chile.
+Aún queda un gran trecho que recorrer y queremos que estés atenta/o para hacerle seguimiento del cumplimiento de esta propuesta.
+
+Este es un mail automático pero si respondes le llegará a todo el equipo de VotaInteligente.cl
+
+{% mail_signature_txt %}

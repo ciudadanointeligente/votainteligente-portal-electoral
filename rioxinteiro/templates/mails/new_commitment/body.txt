@@ -1,0 +1,10 @@
+{% load votainteligente_extras %}Hola {% include '_user_printable.html' with user=person %}!
+Escribimos para contarte que {{commitment.candidate.name}} {% if candidate.election.position == 'concejal' %}acaba de apoyar{% elif candidate.election.position == 'alcalde' %}se acaba de comprometer con{% else %}se acaba de comprometer  con{% endif %} la propuesta ciudadana {{proposal.title}}.
+
+
+Puedes revisar {% if candidate.election.position == 'concejal' %}el apoyo a{% elif candidate.election.position == 'alcalde' %}el compromiso con{% else %}el compromiso con{% endif %} la propuesta ciudadana puedes acceder al siguiente link:
+{% if commitment.candidate.election %}
+https://votainteligente.cl{{commitment.get_absolute_url}}
+{% endif %}
+
+{% mail_signature_txt %}

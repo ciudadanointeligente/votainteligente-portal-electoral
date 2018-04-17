@@ -1,0 +1,14 @@
+{% load votainteligente_extras %}Hola {% include '_user_printable.html' with user=person %}!
+Escribimos para contarte que {{candidate.name}} se pronunció de manera negativa
+con la propuesta ciudadana {{proposal.title}} que tu apoyabas.
+
+Te queríamos comentar que {{commitment.candidate.name}} ha hecho los siguientes comentarios
+junto con comprometerse con tu causa:
+
+{{commitment.detail|linebreaks}}
+
+Para ver la propuesta ciudadana puedes acceder a la siguiente url:
+
+https://votainteligente.cl{{commitment.get_absolute_url}}
+
+{% mail_signature_txt %}

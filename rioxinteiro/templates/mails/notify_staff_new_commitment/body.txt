@@ -1,0 +1,22 @@
+{% load votainteligente_extras %}Hermana o hermano!
+Este mail es para contarte que hay un nuevo compromiso:
+
+Candidato: {{commitment.candidate.name}} candidata/o a {{commitment.candidate.election.position}} por {{commitment.candidate.election.area.name}} {% get_personal_data candidate=commitment.candidate personal_data='Partido' as partido %} {% if partido %}{{partido.value}}{% endif %} - {% get_personal_data candidate=commitment.candidate personal_data='Pacto' as pacto %}{% if pacto %}{{pacto.value}}{% endif %}
+
+URL del Candidato: https://{{site.domain}}{{commitment.candidate.get_absolute_url}}
+
+Propuesta: {{commitment.proposal.title}} de {{commitment.proposal.proposer}}
+
+URL de la propuesta: https://{{site.domain}}{{commitment.proposal.get_absolute_url}}
+{% if commitment.candidate.election %}
+URL del compromiso: https://{{site}}{{commitment.get_absolute_url}}
+{% endif %}
+
+{% if commitment.detail %}
+Términos en los que se comprometió: {{commitment.detail}}
+{% endif %}
+
+Estamos más felices que la chucha de contarte esto!
+Arriba los corazones y abajo los pantalones.
+
+{% mail_signature_txt %}

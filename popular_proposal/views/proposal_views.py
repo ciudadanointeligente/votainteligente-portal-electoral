@@ -55,6 +55,7 @@ from popular_proposal.models import (Commitment,
 from votai_utils.view_mixins import EmbeddedViewBase
 import random
 from django.conf import settings
+from hitcount.views import HitCountDetailView
 
 
 class ProposalCreationView(FormView):
@@ -133,11 +134,12 @@ class SubscriptionView(FormView):
                                 context)
 
 
-class PopularProposalDetailView(EmbeddedViewBase, DetailView):
+class PopularProposalDetailView(EmbeddedViewBase, HitCountDetailView):
     model = PopularProposal
     template_name = 'popular_proposal/detail.html'
     context_object_name = 'popular_proposal'
     layout = "basewithnofixed_navbar.html"
+    count_hit = True
 
 
 class PopularProposalAyuranosView(DetailView):

@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     'merepresenta',
     'rioxinteiro',
     'votai_general_theme',
+    'hitcount',
 
 )
 INSTALLED_APPS_AFTER_ALL = ()

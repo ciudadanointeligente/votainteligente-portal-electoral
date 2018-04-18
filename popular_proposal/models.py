@@ -418,6 +418,12 @@ class Commitment(models.Model):
                               null=True,
                               blank=True)
     commited = models.NullBooleanField(default=None)
+    created = models.DateTimeField(auto_now_add=True,
+                                   blank=True,
+                                   null=True)
+    updated = models.DateTimeField(auto_now=True,
+                                   blank=True,
+                                   null=True)
     objects = CommitmentManager()
 
     def _save(self, *args, **kwargs):

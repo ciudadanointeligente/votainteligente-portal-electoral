@@ -43,6 +43,8 @@ class CommitmentTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(commitment.candidate, self.candidate)
         self.assertEquals(commitment.proposal, self.popular_proposal)
         self.assertTrue(commitment.detail)
+        self.assertTrue(commitment.created)
+        self.assertTrue(commitment.updated)
         # testing get_absolute_url
         url = reverse('popular_proposals:commitment', kwargs={'candidate_slug': self.candidate.slug,
                                                               'proposal_slug': self.popular_proposal.slug})

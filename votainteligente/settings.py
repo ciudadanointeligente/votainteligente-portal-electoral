@@ -186,6 +186,7 @@ CONSTANCE_CONFIG = {
     'CAN_CREATE_TEST_PROPOSAL': (False, u'Se pueden crear propuestas de prueba?'),
     'SEARCH_SUBSCRIPTION_ENABLED': (True, u'Suscribirse a una búsqueda está habilitado? esto sólo esconde los links.'),
     'WEBSITE_METADATA_AUTHOR': ('', 'Nombre del autor'),
+    'PERIODIC_REPORTS_ENABLED': (False, u'Están habilitadas los envíos de reportes periódicos sobre las propuestas?'),
     'WEBSITE_METADATA_DESCRIPTION': ('', 'Descripcion del sitio'),
     'WEBSITE_METADATA_KEYWORD': ('', 'Palabras claves del sitio'),
     'WEBSITE_OGP_TITLE': ('VotaInteligente', 'Titulo OpenGraph Protocol'),
@@ -321,6 +322,10 @@ LOGGING = {
         },
     }
 }
+# Proposals Periodic
+# how often proposal reports are sent in days
+HOW_OFTEN_PROPOSAL_REPORTS_ARE_SENT = 7
+
 # CELERY STUFF
 BROKER_URL = 'amqp://guest:guest@localhost:5672/'
 CELERY_ALWAYS_EAGER = False
@@ -332,6 +337,8 @@ CELERYBEAT_SCHEDULE = {'sending-new-proposals-once-a-day': {'task': 'proposal_su
                        'new-commitments-notifications': {'task': 'proposal_subscriptions.tasks.send_commitment_notifications',
                                                                                 'schedule': timedelta(days=7),
                                                                                 },
+                       'proposal_periodic_reports': {'task': 'popular_proposal.tasks.report_sender_task',
+                                                     'schedule': timedelta(days=HOW_OFTEN_PROPOSAL_REPORTS_ARE_SENT)}
                        # 'letting-candidates-know-about-us-every-two-days':
                        # {'task': 'backend_candidate.tasks.send_candidates_their_username_and_password',
                        #                                                     'schedule': timedelta(days=2),

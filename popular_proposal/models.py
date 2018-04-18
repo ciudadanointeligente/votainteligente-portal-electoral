@@ -23,6 +23,9 @@ import textwrap
 from django.contrib.contenttypes.models import ContentType
 from votai_utils.send_mails import send_mails_to_staff
 from constance import config
+from hitcount.models import HitCount
+import datetime
+from django.utils import timezone
 
 
 class NeedingModerationManager(models.Manager):
@@ -247,6 +250,31 @@ class PopularProposal(models.Model, OGPMixin):
             self.content_type = content_type
         super(PopularProposal, self).save(*args, **kwargs)
 
+    @property
+    def visitors(self):
+        hit_count = HitCount.objects.get_for_object(self)
+        return hit_count.hits
+
+    @property
+    def commitments_count(self):
+        return self.commitments.count()
+
+    @property
+    def likers_count(self):
+        return self.likers.count()
+
+    def get_analytics(self, days=7):
+        since_when = timezone.now() - datetime.timedelta(days=days)
+        commitments_count = self.commitments.filter(created__gte=since_when).count()
+        likers_count = ProposalLike.objects.filter(proposal=self, created__gte=since_when).count()
+        hit_count = HitCount.objects.get_for_object(self)
+        visitors = hit_count.hits_in_last(days=days)
+        analytics = {
+            'commitments': commitments_count,
+            'likers': likers_count,
+            'visits': visitors
+        }
+        return analytics
 
     def get_absolute_url(self):
         return reverse('popular_proposals:detail', kwargs={'slug': self.slug})

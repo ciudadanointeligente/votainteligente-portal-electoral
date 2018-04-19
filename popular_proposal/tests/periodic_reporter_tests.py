@@ -139,5 +139,3 @@ class PeriodicReporterTasksTestCase(ProposingCycleTestCaseBase, PeriodicProposal
         self.fiera.save()
         report_sender_task.delay()
         self.assertEquals(len(mail.outbox), initial_amount_of_mails + 1)
-        print mail.outbox[initial_amount_of_mails].alternatives
-        self.fail()

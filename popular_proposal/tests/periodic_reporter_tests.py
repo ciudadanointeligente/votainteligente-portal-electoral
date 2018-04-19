@@ -126,7 +126,7 @@ class PeriodicReporterTasksTestCase(ProposingCycleTestCaseBase, PeriodicProposal
         self.assertEquals(amount_of_mails, initial_amount_of_mails + 1)
 
     @override_config(PERIODIC_REPORTS_ENABLED=False)
-    def test_task(self):
+    def test_task_with_periodic_reports_disabled(self):
         self.fiera.is_staff = False
         self.fiera.save()
         User.objects.create_user(username="newuser", email="user@github.com")

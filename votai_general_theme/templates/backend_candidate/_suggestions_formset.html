@@ -8,7 +8,7 @@
         {% if not candidate|has_commited_with:form.proposal %}
         <div style="border: 2px solid black; padding: 20px 15px; margin-bottom: 20px; border-radius: 10px;">
             <p style="text-transform: uppercase; font-size: 12px;">
-              {% blocktrans with form.proposal.id=id form.proposal.proposer=proposer%}
+              {% blocktrans with id=form.proposal.id proposer=form.proposal.proposer%}
                 <b>Propuesta Nº{{id}}</b> - Una propuesta de <strong>{{proposer}}</strong>
               {% endblocktrans %}
               </p>

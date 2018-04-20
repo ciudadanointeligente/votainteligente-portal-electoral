@@ -1,0 +1,7 @@
+Hermana, las sugerencias para  {{filter_.name}} están en su destino.
+Te recuerdo que se las envié a:
+{% for candidate in candidates %}
+- {{candidate.name}}
+{% endfor %}
+--
+La máquina

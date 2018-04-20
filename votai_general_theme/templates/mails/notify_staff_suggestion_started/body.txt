@@ -1,0 +1,7 @@
+Hermana,estoy a punto de enviar las sugerencias para {{filter_.name}}:
+Te recuerdo que se las enviaré a:
+{% for candidate in candidates %}
+- {{candidate.name}}
+{% endfor %}
+--
+La máquina

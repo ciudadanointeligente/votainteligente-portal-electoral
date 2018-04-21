@@ -18,7 +18,7 @@ def let_candidate_now_about_us():
 
 @app.task
 def send_candidates_their_username_and_password():
-	send_user_to_candidates()
+    send_user_to_candidates()
 
 @app.task
 def send_candidate_username_and_pasword_task(candidate):

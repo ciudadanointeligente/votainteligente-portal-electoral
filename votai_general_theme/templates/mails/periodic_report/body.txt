@@ -1,0 +1,11 @@
+{%load votainteligente_extras%}
+Hola {{user}}:
+Escribimos para contarte lo que ha ocurrido con tus propuestas en el último
+tiempo:{% for proposal in proposals %}
+Con {{proposal.proposal}}:
+- Obtuvo {{proposal.analytics.visits}} visitas.
+- Obtuvo {{proposal.analytics.commitments}} compromisos.
+- Obtuvo {{proposal.analytics.likers}} apoyos ciudadanos.
+{% endfor %}
+
+{% mail_signature_txt %}

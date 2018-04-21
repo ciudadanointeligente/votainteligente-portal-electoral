@@ -318,3 +318,19 @@ class ExtraPagesPerOrganization(BackendCitizenTestCaseBase):
         self.assertTemplateUsed(response, 'organization_profiles/ayuranos.html')
         self.assertIn(first_candidate, response.context['candidates'])
         self.assertEquals(len(response.context['candidates']), 1)
+
+
+class OrganizationListView(BackendCitizenTestCaseBase):
+    def setUp(self):
+        super(OrganizationListView, self).setUp()
+        self.user = User.objects.create(username='ciudadanoi',
+                                        password=PASSWORD,
+                                        email='mail@mail.com')
+        self.user.profile.is_organization = True
+        self.user.profile.save()
+
+    def test_get_list(self):
+        url = reverse('organization_profiles:index')
+        response = self.client.get(url)
+        self.assertTemplateUsed(response, 'organization_profiles/index.html')
+

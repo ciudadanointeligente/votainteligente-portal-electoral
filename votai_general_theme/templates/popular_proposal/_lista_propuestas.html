@@ -18,7 +18,7 @@ body.load(anchor.data('url'));
 $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
-{% if config.PROPOSALS_ENABLED %}
+{% if not hidden_search %}
 <p class="bajada text-center">{% trans "Te invitamos a filtrar y encontrar propuestas ciudadanas en las siguientes áreas" %}</p>
 <div class="blue-light">
     {% include 'popular_proposal/_filter_tag_form.html' %}
@@ -40,7 +40,7 @@ $('[data-toggle="tooltip"]').tooltip();
         Hay {{proposals_count}}
       {% endblocktrans %} {% if not tipo_propuestas %}{% trans "propuestas ciudadanas" %}{% else %}{{tipo_propuestas}}{% endif %}</h3>
       {% endif %}
-      {% if not user|is_candidate and config.PROPOSALS_ENABLED %}
+      {% if not user|is_candidate and not hidden_create_proposal_button %}
         {% url 'popular_proposals:propose_wizard_full_without_area' as create_proposal_url %}
         <div class="text-center"><a href="{{create_proposal_url}}" class="btn btn-dark">{% trans "Crear nueva propuesta" %}</a></div>
       {% endif %}

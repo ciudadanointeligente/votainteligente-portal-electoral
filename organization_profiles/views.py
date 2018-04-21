@@ -12,6 +12,7 @@ from django.views.generic.edit import UpdateView
 from organization_profiles.forms import OrganizationTemplateForm
 from django.core.urlresolvers import reverse
 from django.views.generic.edit import UpdateView
+from django.views.generic.base import TemplateView
 from organization_profiles.models import ExtraPage
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -156,3 +157,7 @@ class OrganizationTemplateOGPImage(DetailView):
         response = HttpResponse( content_type="image/png")
         im.save(response, "PNG")
         return response
+
+
+class OrganizationListView(TemplateView):
+    template_name = "organization_profiles/index.html"

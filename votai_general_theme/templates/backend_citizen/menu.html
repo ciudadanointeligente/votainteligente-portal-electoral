@@ -10,6 +10,14 @@
  <li role="presentation" class="{% ifequal request.path my_supports_url %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
   <a class="small" href="{{my_supports_url}}">
   {% blocktrans %}Las propuestas que apoyo{% endblocktrans %}</a></li>
+  <!-- Mi agenda de actividades-->
+  {% url 'backend_citizen:all_my_activities' as all_my_activities %}
+ <li role="presentation" class="{% ifequal request.path all_my_activities %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
+  <a class="small" href="{{all_my_activities}}">
+  {% blocktrans %}Mi agenda de actividades{% endblocktrans %}</a></li>
+  <!-- Mi agenda de actividades-->
+
+
 {% if user.profile.is_organization %}
   {% url 'organization_profiles:update' as org_profile %}
  <li role="presentation" class="{% ifequal request.path org_profile %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">

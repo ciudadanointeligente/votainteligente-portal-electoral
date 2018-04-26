@@ -22,6 +22,7 @@ from django.views.generic.detail import DetailView
 from django.conf import settings
 from django.shortcuts import render
 from constance import config
+from agenda.forms import ActivityForm
 
 
 class BackendCandidateBase(View):
@@ -252,9 +253,6 @@ class ProposalsForMe(BackendCandidateBase, ListView):
         context['candidate'] = self.candidate
         context['election'] = self.election
         return context
-
-
-from agenda.forms import ActivityForm
 
 
 class AddActivityToCandidateView(LoginRequiredMixin, CreateView):

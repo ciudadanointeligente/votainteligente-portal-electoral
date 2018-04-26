@@ -1,0 +1,33 @@
+{% load i18n %}
+
+<h2 class="page-header">Tu agenda de actividades</h2>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+          <th>{% trans 'Fecha' %}</th>
+          <th>{% trans 'Descripción' %}</th>
+          <th>{% trans 'Lugar' %}</th>
+          <th>{% trans 'Link' %}</th>
+      </tr>
+    </thead>
+    <tbody>
+{% for activity in activities %}
+    <tr class="proposal_{{activity.id}}">
+        <td>{{activity.date}}</td>
+        <td>{{activity.description|truncatechars:50}}</td>
+        <td>{{activity.location}}</td>
+        <td>
+          <a title="{% trans 'Link de tu evento' %}" href="{{activity.url}}" target="_blank">
+            <span class="fa-stack">
+              <i class="fa fa-globe fa-stack-2x"></i>
+            </span>
+          </a>
+        </td>
+    </tr>
+{% empty %}
+{% endfor %}
+    </tbody>
+  </table>
+</div>

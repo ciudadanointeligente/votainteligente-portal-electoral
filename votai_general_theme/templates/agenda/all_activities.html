@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block content %}
+	{% include 'agenda/_activity_list.html' with activities=activities %}
+{% endblock content %}

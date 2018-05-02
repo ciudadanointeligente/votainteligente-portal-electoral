@@ -2,7 +2,7 @@
 from elections.tests import VotaInteligenteTestCase as TestCase
 from django.test import override_settings
 from elections.models import Candidate
-from backend_candidate.forms import get_candidate_profile_form_class
+from backend_candidate.forms import get_candidate_profile_form_class, CandidateActivityForm
 from backend_candidate.models import Candidacy
 from django.contrib.auth.models import User
 from elections.models import PersonalData, Election
@@ -41,6 +41,7 @@ class AgendaViewTestCase(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'backend_candidate/add_activity.html')
         self.assertEquals(response.context['object'], self.candidate)
+        self.assertIsInstance(response.context['form'], CandidateActivityForm)
 
     def test_posting_to_create_an_activity(self):
         url = reverse('backend_candidate:add_activity', kwargs={'slug': self.candidate.slug})
@@ -59,6 +60,8 @@ class AgendaViewTestCase(TestCase):
                                        kwargs={'slug':self.candidate.slug})
         self.assertRedirects(response, url_complete_profile)
         self.assertTrue(self.candidate.agenda.all())
+        activity = self.candidate.agenda.last()
+        self.assertFalse(activity.background_image)
 
     def test_see_my_agenda(self):
         url = reverse('backend_candidate:all_my_activities', kwargs={'slug': self.candidate.slug})

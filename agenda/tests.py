@@ -1,4 +1,4 @@
-from django.test import TestCase
+from elections.tests import VotaInteligenteTestCase as TestCase
 from agenda.models import Activity
 import datetime
 from django.utils import timezone
@@ -24,6 +24,17 @@ class ActivityTestCase(TestCase):
         self.assertIsNone(activity.content_type)
         self.assertIsNone(activity.object_id)
         self.assertIsNone(activity.content_object)
+        self.assertFalse(activity.background_image)
+
+    def test_activity_model_has_image(self):
+        image = self.get_image()
+        activity = Activity.objects.create(date=tomorrow,
+                                           url='https://perrito.cl/actividad_secreta',
+                                           description='This is a description',
+                                           background_image=image,
+                                           location='secret location')
+        self.assertTrue(activity.background_image)
+
 
 
 class ActivityFormTestCase(TestCase):

@@ -6,6 +6,8 @@ from django.utils.translation import ugettext as _
 from django.conf import settings
 from elections.models import PersonalData
 import os
+from agenda.forms import ActivityForm
+from agenda.models import Activity
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 
@@ -226,3 +228,14 @@ def get_candidate_profile_form_class():
                               object),
                              cls_attrs)
     return PARENT_FORM_CLASS
+
+
+class CandidateActivityForm(ActivityForm):
+    class Meta:
+        model = Activity
+        fields = ['date', 'url', 'description', 'location']
+        labels = {'date': _(u"Fecha"),
+                  'url': _(u"Link a tu actividad, puede ser al evento en Facebook"),
+                  'description': _(u"Descripción de tu actividad"),
+                  'location': _(u"El lugar donde se realizará esta actividad")
+                 }

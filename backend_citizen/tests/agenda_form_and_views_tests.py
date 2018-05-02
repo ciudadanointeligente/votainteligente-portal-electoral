@@ -21,6 +21,7 @@ class AgendaCitizenViewTestCase(TestCase):
         self.feli = User.objects.get(username=u'feli')
         self.feli.set_password(PASSWORD)
         self.feli.save()
+        self.image = self.get_image()
 
     def test_get_create_an_activity_from_view(self):
         url = reverse('backend_citizen:add_activity')
@@ -40,7 +41,8 @@ class AgendaCitizenViewTestCase(TestCase):
             'date': TOMORROW.strftime('%Y-%m-%d %H:%M:%S'),
             'url': 'https://perrito.cl/actividad_secreta',
             'description': 'This is a description',
-            'location': 'secret location'
+            'location': 'secret location',
+            'background_image': self.image
         }
         self.client.login(username=self.feli,
                           password=PASSWORD)
@@ -48,8 +50,8 @@ class AgendaCitizenViewTestCase(TestCase):
         all_my_activities_url = reverse('backend_citizen:all_my_activities')
         self.assertRedirects(response, all_my_activities_url)
         content_type = ContentType.objects.get_for_model(self.feli)
-        self.assertTrue(Activity.objects.filter(object_id=self.feli.id,
-                                                content_type=content_type))
+        activity = Activity.objects.get(object_id=self.feli.id,
+                                        content_type=content_type)
 
     def test_list_all_my_activities(self):
         other_user = User.objects.create_user(username='other')

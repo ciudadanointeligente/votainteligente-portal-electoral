@@ -1,7 +1,9 @@
+# coding=utf-8
 from __future__ import unicode_literals
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class Activity(models.Model):
@@ -9,6 +11,11 @@ class Activity(models.Model):
     url = models.URLField(blank=True, null=True)
     location = models.CharField(max_length=1024)
     description = models.CharField(blank=True,max_length=1024)
+    background_image = models.ImageField(upload_to="agenda/activities/",
+                                        null=True,
+                                        blank=True,
+                                        verbose_name=_(u'Una imagen para el evento'),
+                                        help_text=_(u'será la imagen que utilicemos en la lista de eventos'))
     updated = models.DateTimeField(auto_now_add=True)
     created = models.DateTimeField(auto_now=True)
 

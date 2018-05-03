@@ -102,16 +102,6 @@ class AlreadyUnsubscribed(DetailView):
     slug_field = 'unsubscribe_token'
 
 
-
-class DoYouBelongToAnOrgView(LoginRequiredMixin, TemplateView):
-    template_name = "backend_citizen/do_you_belong_to_an_org.html"
-
-    def get(self, *args, **kwargs):
-        self.request.user.profile.first_time_in_backend_citizen = True
-        self.request.user.profile.save()
-        return super(DoYouBelongToAnOrgView, self).get(*args, **kwargs)
-
-
 class GroupRegistrationView(RegistrationView):
     form_class = GroupCreationForm
 

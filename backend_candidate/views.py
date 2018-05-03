@@ -11,7 +11,7 @@ from backend_candidate.forms import get_form_for_election
 from elections.models import Candidate, Election, PersonalData
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-from backend_candidate.forms import get_candidate_profile_form_class
+from backend_candidate.forms import get_candidate_profile_form_class, CandidateActivityForm
 from popular_proposal.models import Commitment, PopularProposal
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -254,11 +254,8 @@ class ProposalsForMe(BackendCandidateBase, ListView):
         return context
 
 
-from agenda.forms import ActivityForm
-
-
 class AddActivityToCandidateView(LoginRequiredMixin, CreateView):
-    form_class = ActivityForm
+    form_class = CandidateActivityForm
     template_name = 'backend_candidate/add_activity.html'
 
     def get_content_object(self):

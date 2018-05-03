@@ -1,0 +1,49 @@
+{% load i18n %}
+{% load markdown_deux_tags %}
+<div class="col-md-4 activity">
+    <div class="body"
+    {%if activity.background_image %}
+    style="background-image:url('{{activity.background_image.url}}');"
+    {% endif %}
+    >
+        <div class="text-center title-and-location">
+            <div class="title" data-toggle="modal" data-target="#activity-modal-{{activity.id}}">
+                <p>{{activity.description}}</p>
+            </div>
+            <div class='location'>
+                {% if activity.url %}<a href="{{activity.url}}" target="_blank">{% endif %}
+              	 <p><i class="fa fa-crosshairs"></i> {{activity.location}}</p>
+                {% if activity.url %}</a>{% endif %}
+
+            </div>
+        </div>
+        <div class="text-left date">
+        <p><i class="fa fa-calendar"></i> {{activity.date}}</p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="activity-modal-{{activity.id}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{activity.description}}</h4>
+      </div>
+      <div class="modal-body">
+          <img src="{{activity.background_image.url}}" class='img-responsive'>
+        <p>{{ activity.long_description|markdown }}</p>
+        {% if activity.url %}<a href="{{activity.url}}" target="_blank">{% endif %}
+         <p><i class="fa fa-crosshairs"></i> {{activity.location}}</p>
+        {% if activity.url %}</a>{% endif %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Cerrar" %}</button>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,40 @@
+{% extends "backend_base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block main_content %}
+<form method="post" action="{% url 'backend_citizen:add_activity' %}" enctype="multipart/form-data">
+	{% csrf_token %}
+	{% bootstrap_field form.description %}
+	<div class="form-group">
+		<label class="control-label" for="id_date">{% trans 'Fecha' %}</label>
+		<div class="input-append date" id="datetimepicker" data-date="12-02-2012" data-date-format="yyyy-mm-dd hh:ii">
+        <input class="form-control" id="id_date" name="date" placeholder="Date" title="" type="text" required />
+        <span class="add-on"><i class="icon-th"></i></span>
+    </div>
+	</div>
+
+
+	{% bootstrap_field form.long_description %}
+
+	{% bootstrap_field form.url %}
+	{% bootstrap_field form.location %}
+	{% bootstrap_field form.background_image %}
+
+<input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
+</form>
+
+<script type="text/javascript">
+	var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+	console.log(currentDate);
+    $("#datetimepicker").datetimepicker({
+        format: "yyyy-mm-dd hh:ii",
+        autoclose: true,
+        startDate: currentDate
+    });
+</script>
+
+
+{% endblock main_content %}

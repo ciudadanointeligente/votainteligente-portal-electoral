@@ -21,6 +21,9 @@ from django.views.generic.list import ListView
 from backend_citizen.stats import StatsPerProposal, PerUserTotalStats
 from django.views.generic.base import RedirectView
 from backend_candidate.models import is_candidate
+from agenda.forms import ActivityForm
+from agenda.models import Activity
+from django.contrib.contenttypes.models import ContentType
 
 
 class IndexView(LoginRequiredMixin, RedirectView):
@@ -99,16 +102,6 @@ class AlreadyUnsubscribed(DetailView):
     slug_field = 'unsubscribe_token'
 
 
-
-class DoYouBelongToAnOrgView(LoginRequiredMixin, TemplateView):
-    template_name = "backend_citizen/do_you_belong_to_an_org.html"
-
-    def get(self, *args, **kwargs):
-        self.request.user.profile.first_time_in_backend_citizen = True
-        self.request.user.profile.save()
-        return super(DoYouBelongToAnOrgView, self).get(*args, **kwargs)
-
-
 class GroupRegistrationView(RegistrationView):
     form_class = GroupCreationForm
 
@@ -148,3 +141,47 @@ class MyStats(LoginRequiredMixin, TemplateView):
         context['stats'] = stats
         context['total_stats'] = PerUserTotalStats(self.request.user)
         return context
+
+
+class AddActivityToUserView(LoginRequiredMixin, CreateView):
+    form_class = ActivityForm
+    template_name = 'backend_citizen/add_activity.html'
+
+    def get_success_url(self):
+        return reverse('backend_citizen:all_my_activities')
+
+    def get_form_kwargs(self):
+        kwargs = super(AddActivityToUserView, self).get_form_kwargs()
+        kwargs['content_object'] = self.request.user
+        return kwargs
+
+
+class MyActivitiesListView(LoginRequiredMixin, ListView):
+    model = Activity
+    template_name = 'backend_citizen/all_my_activities.html'
+    context_object_name = 'activities'
+
+    def get_queryset(self):
+        content_type = ContentType.objects.get_for_model(self.request.user)
+        return Activity.objects.filter(object_id=self.request.user.id,
+                                       content_type=content_type)
+
+class MyActivitiesListView(LoginRequiredMixin, ListView):
+    model = Activity
+    template_name = 'backend_citizen/all_my_activities.html'
+    context_object_name = 'activities'
+
+    def get_queryset(self):
+        content_type = ContentType.objects.get_for_model(self.request.user)
+        return Activity.objects.filter(object_id=self.request.user.id,
+                                       content_type=content_type)
+
+
+class AllActivitiesListView(ListView):
+    model = Activity
+    template_name = 'agenda/all_activities.html'
+    context_object_name = 'activities'
+
+    def get_queryset(self):
+        content_type = ContentType.objects.get_for_model(User)
+        return Activity.objects.filter(content_type=content_type)

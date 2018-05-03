@@ -6,7 +6,7 @@
 
 {% block main_content %}
   <a  class="pull-right btn btn-default"
-                    href="{% url 'backend_candidate:add_activity' slug=object.id %}">
+                    href="{% url 'backend_citizen:add_activity' %}">
                     {% trans "Agrega una actividad a tu agenda." %}
                 </a>
 	{% include 'agenda/_activity_list.html' with activities=activities %}

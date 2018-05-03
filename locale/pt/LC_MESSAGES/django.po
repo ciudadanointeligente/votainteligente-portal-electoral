@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-17 15:22+0000\n"
-"PO-Revision-Date: 2018-04-20 17:11-0300\n"
+"POT-Creation-Date: 2018-05-03 16:13+0000\n"
+"PO-Revision-Date: 2018-05-03 13:28-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -18,25 +18,63 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: backend_candidate/forms.py:63
+#: agenda/forms.py:23 backend_candidate/forms.py:237
+#: votai_general_theme/templates/backend_candidate/add_activity.html:20
+#: votai_general_theme/templates/backend_citizen/add_activity.html:12
+msgid "Fecha"
+msgstr "Data"
+
+#: agenda/forms.py:24 backend_candidate/forms.py:238
+msgid "Link a tu actividad, puede ser al evento en Facebook"
+msgstr "Link para o seu evento no Facebook (pode ser de outro link)"
+
+#: agenda/forms.py:25
+msgid "Título de tu actividad"
+msgstr "Título da sua atividade"
+
+#: agenda/forms.py:26
+msgid "Cuentanos lo que quieras sobre tu actividad"
+msgstr "Longa descrição"
+
+#: agenda/forms.py:27 backend_candidate/forms.py:240
+msgid "El lugar donde se realizará esta actividad"
+msgstr "O lugar onde esta atividade acontecerá"
+
+#: agenda/forms.py:28
+msgid "Imagen para promocionar tu actividad"
+msgstr "Imagem para promover sua atividade"
+
+#: agenda/models.py:18
+msgid "Una imagen para el evento"
+msgstr ""
+
+#: agenda/models.py:19
+msgid "será la imagen que utilicemos en la lista de eventos"
+msgstr "será a imagem que usamos na lista de eventos"
+
+#: backend_candidate/forms.py:65
 msgid "Tus comentarios sobre esta pregunta"
 msgstr "Seus comentários sobre essa pergunta"
 
-#: backend_candidate/forms.py:141 backend_citizen/forms.py:17
+#: backend_candidate/forms.py:143 backend_citizen/forms.py:17
 msgid "Imagen de perfil"
 msgstr "Imagem do perfil"
 
-#: backend_candidate/forms.py:143
+#: backend_candidate/forms.py:145
 msgid "Link del programa"
 msgstr "Link do programa"
 
-#: backend_candidate/forms.py:144
+#: backend_candidate/forms.py:146
 msgid ""
 "Link a tus ideas y/o planteamientos que quieras que la ciudadanía conozca. "
 "Ej: http://micandidatura.cl/mis-ideas/"
 msgstr ""
 "Compartilhe suas idéias e/ou argumentos que queira que cidadania conheça. Ex:"
 "http://micandidatura.cl/mis-ideas/"
+
+#: backend_candidate/forms.py:239
+msgid "Descripción de tu actividad"
+msgstr "Descrição de sua atividade"
 
 #: backend_candidate/views.py:108
 msgid "Hemos guardado tus respuestas"
@@ -47,7 +85,6 @@ msgid "Hemos actualizado tu perfil"
 msgstr "Atualizamos seu perfil"
 
 #: backend_citizen/forms.py:20
-#: votai_general_theme/templates/backend_candidate/all_my_activities.html:19
 msgid "Descripción"
 msgstr "Descrição"
 
@@ -94,7 +131,7 @@ msgstr "Sua descrição"
 
 #: backend_citizen/models.py:28
 msgid "No quiero recibir noticias sobre las propuestas que me gustan"
-msgstr "Não quero receber notícias sobre as propostas que gostei. "
+msgstr "Não quero receber notícias sobre as propostas que gostei"
 
 #: elections/forms.py:13 elections/tests/election_tags_based_search_tests.py:56
 msgid "Busca tu comuna"
@@ -105,7 +142,7 @@ msgid ""
 "Marca esto si quieres que el candidato aparezca como que no ha respondido"
 msgstr ""
 "Marque aqui se você quer que a/o candidata/o apareça como não tendo "
-"respondido. "
+"respondido"
 
 #: elections/models.py:254
 #: votai_general_theme/templates/organization_profiles/ayuranos.html:23
@@ -147,7 +184,7 @@ msgstr "Categorias de pergunta"
 
 #: elections/models.py:321
 msgid "Puedes usar Markdown. <br/> "
-msgstr "Você pode usar Markdown. <br/>"
+msgstr "Você pode usar Markdown. <br/> "
 
 #: elections/models.py:323
 msgid "Esta elección debe usar preguntales?"
@@ -278,7 +315,7 @@ msgstr "PÁGINA DA ORGANIZAÇÃO"
 
 #: organization_profiles/forms.py:19
 msgid "https://www.facebook.com/miorganizacion/"
-msgstr "https://www.facebook.com/minhaorganizacao"
+msgstr "https://www.facebook.com/minhaorganizacao/"
 
 #: organization_profiles/forms.py:20
 msgid "Twitter de la organización"
@@ -294,7 +331,7 @@ msgstr "Instagram da organização"
 
 #: organization_profiles/forms.py:25
 msgid "https://www.instagram.com/miorganizacion/"
-msgstr "https://www.instagram.com/minhaorganizacao"
+msgstr "https://www.instagram.com/minhaorganizacao/"
 
 #: organization_profiles/forms.py:27 organization_profiles/models.py:71
 msgid "Color primario"
@@ -590,7 +627,7 @@ msgid ""
 "situación ideal?"
 msgstr ""
 "Quais as possíveis soluções que acreditamos existir para passar do problema "
-"para a situação ideal? "
+"para a situação ideal?"
 
 #: popular_proposal/forms/form_texts.py:67
 msgid "¿Cual sería la situación ideal?"
@@ -717,7 +754,7 @@ msgstr "Mais informações sobre sua proposta."
 msgid "¿Tienes alguna imagen para compartir?"
 msgstr ""
 
-#: popular_proposal/forms/forms.py:195 popular_proposal/models.py:196
+#: popular_proposal/forms/forms.py:195 popular_proposal/models.py:199
 msgid "¿Tienes algún documento para complementar tu propuesta?"
 msgstr ""
 
@@ -777,7 +814,7 @@ msgstr "Conte-nos os termos do seu compromisso:"
 
 #: popular_proposal/forms/forms.py:382
 msgid "¿Cómo te imaginas que esta propuesta puede ser concreatada?."
-msgstr "Como você imagina que esta proposta pode ser finalizada?"
+msgstr "Como você imagina que esta proposta pode ser finalizada?."
 
 #: popular_proposal/forms/forms.py:385
 #: votai_general_theme/templates/popular_proposal/detail.html:182
@@ -789,54 +826,54 @@ msgstr "Termos e Condições"
 msgid "El candidato no pertenece al area"
 msgstr "O candidato não pertence ao território"
 
-#: popular_proposal/models.py:191
+#: popular_proposal/models.py:194
 msgid "Antecedentes sobre tu propuesta"
 msgstr "Antecedentes da sua proposta"
 
-#: popular_proposal/models.py:194
+#: popular_proposal/models.py:197
 msgid "¿Cómo te pueden contactar? Esta información es pública."
 msgstr "Como eles podem entrar em contato com você? Esta informação é pública."
 
-#: popular_proposal/models.py:229
+#: popular_proposal/models.py:232
 msgid "Propuesta Ciudadana"
 msgstr ""
 
-#: popular_proposal/models.py:230
+#: popular_proposal/models.py:233
 #: votai_general_theme/templates/popular_proposal/_popular_proposal_explanation.html:14
 #: votai_general_theme/templates/popular_proposal/home.html:7
 #: votai_general_theme/templates/popular_proposal/home.html:11
 msgid "Propuestas Ciudadanas"
 msgstr "Propostas de cidadãos"
 
-#: popular_proposal/models.py:241
+#: popular_proposal/models.py:244
 #: votai_general_theme/templates/popular_proposal/detail.html:37
 msgid "¡Ingresa a votainteligente.cl y apoya esta propuesta!"
 msgstr ""
 
-#: popular_proposal/models.py:267
+#: popular_proposal/models.py:295
 #, python-format
 msgid "Propuesta N º %(proposal_id)s"
 msgstr "Proposta N º %(proposal_id)s"
 
-#: popular_proposal/models.py:283
+#: popular_proposal/models.py:311
 #, python-format
 msgid "Una propuesta de %(proposer_name)s"
 msgstr "Uma proposta de %(proposer_name)s"
 
-#: popular_proposal/models.py:314
+#: popular_proposal/models.py:342
 #: votai_general_theme/templates/popular_proposal/detail.html:84
 msgid "Generada desde un encuentro ciudadano"
 msgstr "Gerado a partir de uma reunião de cidadãos"
 
-#: popular_proposal/models.py:365
+#: popular_proposal/models.py:393
 msgid "Quieres decirle algo?"
 msgstr ""
 
-#: popular_proposal/models.py:401
+#: popular_proposal/models.py:429
 msgid "Apoyo"
 msgstr ""
 
-#: popular_proposal/models.py:402
+#: popular_proposal/models.py:430
 msgid "Apoyos"
 msgstr ""
 
@@ -876,13 +913,13 @@ msgstr ""
 msgid "^(?P<pk>[-\\w]+)/subscribe/?$"
 msgstr ""
 
-#: popular_proposal/views/proposal_views.py:280
+#: popular_proposal/views/proposal_views.py:282
 msgid ""
 "Muchas gracias por tu compromiso, le hemos enviado un mail a los ciudadanos "
 "que apoyan esta propuesta así como a aquel que la realizó."
 msgstr ""
 
-#: popular_proposal/views/proposal_views.py:284
+#: popular_proposal/views/proposal_views.py:286
 msgid ""
 "Muchas gracias por tu sinceridad. Le hemos enviado un mail a los ciudadanos "
 "que apoyan y además a aquel que la realizó."
@@ -938,6 +975,24 @@ msgstr ""
 
 #: proposal_subscriptions/views.py:22
 msgid "Cada cuanto quieres que te notifiquemos?"
+msgstr ""
+
+#: rioxinteiro/templates/_footer.html:10
+#: votai_general_theme/templates/_footer.html:10
+msgid "Un proyecto de"
+msgstr "Um projeto de"
+
+#: rioxinteiro/templates/_footer.html:18
+#: votai_general_theme/templates/_footer.html:18
+msgid "Dedicatoria y Agradecimientos"
+msgstr ""
+
+#: rioxinteiro/templates/_navbar.html:26
+msgid "Mobilize"
+msgstr ""
+
+#: suggestions_for_candidates/admin.py:17
+msgid "Enviarle los filtros a los candidatos"
 msgstr ""
 
 #: suggestions_for_candidates/models.py:79
@@ -1001,14 +1056,6 @@ msgstr ""
 msgid "Resultado para "
 msgstr ""
 
-#: votai_general_theme/templates/_footer.html:10
-msgid "Un proyecto de"
-msgstr "Um projeto de"
-
-#: votai_general_theme/templates/_footer.html:18
-msgid "Dedicatoria y Agradecimientos"
-msgstr ""
-
 #: votai_general_theme/templates/_login_section.html:8
 msgid "Para enviar una propuesta debes crearte un usuario primero"
 msgstr ""
@@ -1051,15 +1098,24 @@ msgid "¿Qué es?"
 msgstr ""
 
 #: votai_general_theme/templates/_navbar.html:25
+#: votai_general_theme/templates/medianaranja2/resultado.html:21
+msgid "Organizaciones"
+msgstr "Organizações"
+
+#: votai_general_theme/templates/_navbar.html:26
 msgid "Propuestas ciudadanas"
 msgstr "Propostas de cidadãos"
 
-#: votai_general_theme/templates/_navbar.html:26
+#: votai_general_theme/templates/_navbar.html:27
 #: votai_general_theme/templates/elections/area.html:62
 msgid "Congresistas"
 msgstr ""
 
-#: votai_general_theme/templates/_navbar.html:27
+#: votai_general_theme/templates/_navbar.html:28
+msgid "Actividades"
+msgstr "Atividades"
+
+#: votai_general_theme/templates/_navbar.html:29
 msgid "Material ciudadano"
 msgstr ""
 
@@ -1088,6 +1144,15 @@ msgstr "Entre com o Google"
 #: votai_general_theme/templates/_user_printable.html:1
 msgid "Hola"
 msgstr ""
+
+#: votai_general_theme/templates/agenda/_activity_card.html:44
+#: votai_general_theme/templates/popular_proposal/detail.html:188
+msgid "Cerrar"
+msgstr "Fechar"
+
+#: votai_general_theme/templates/agenda/_activity_list.html:3
+msgid "Tu agenda de actividades"
+msgstr "Minha agenda de atividades"
 
 #: votai_general_theme/templates/backend_base.html:53
 msgid "Menú"
@@ -1134,14 +1199,10 @@ msgstr ""
 msgid "Agregar actividad"
 msgstr "Adicionar atividade"
 
-#: votai_general_theme/templates/backend_candidate/add_activity.html:20
-#: votai_general_theme/templates/backend_candidate/all_my_activities.html:18
-msgid "Fecha"
-msgstr ""
-
 #: votai_general_theme/templates/backend_candidate/add_activity.html:32
 #: votai_general_theme/templates/backend_candidate/complete_12_naranja.html:20
 #: votai_general_theme/templates/backend_candidate/complete_profile.html:49
+#: votai_general_theme/templates/backend_citizen/add_activity.html:26
 #: votai_general_theme/templates/backend_citizen/update_subscription.html:17
 #: votai_general_theme/templates/popular_proposal/create.html:37
 #: votai_general_theme/templates/votita/agregar_propuestas_a_encuentro.html:29
@@ -1149,20 +1210,9 @@ msgid "Enviar"
 msgstr "Enviar"
 
 #: votai_general_theme/templates/backend_candidate/all_my_activities.html:10
+#: votai_general_theme/templates/backend_citizen/all_my_activities.html:10
 msgid "Agrega una actividad a tu agenda."
-msgstr ""
-
-#: votai_general_theme/templates/backend_candidate/all_my_activities.html:20
-msgid "Lugar"
-msgstr ""
-
-#: votai_general_theme/templates/backend_candidate/all_my_activities.html:21
-msgid "Link"
-msgstr ""
-
-#: votai_general_theme/templates/backend_candidate/all_my_activities.html:31
-msgid "Link de tu evento"
-msgstr ""
+msgstr "Adicione uma atividade ao seu calendário."
 
 #: votai_general_theme/templates/backend_candidate/auth_login.html:6
 msgid "Login"
@@ -1200,6 +1250,7 @@ msgstr ""
 #: votai_general_theme/templates/backend_candidate/help_finding_candidates.html:8
 #: votai_general_theme/templates/medianaranja2/resultado.html:104
 #: votai_general_theme/templates/organization_profiles/ayuranos.html:8
+#: votai_general_theme/templates/organization_profiles/index.html:8
 #: votai_general_theme/templates/popular_proposal/ayuranos.html:8
 msgid "Ayúdanos"
 msgstr ""
@@ -1406,29 +1457,33 @@ msgid "No"
 msgstr ""
 
 #: votai_general_theme/templates/backend_citizen/menu.html:8
-msgid "Las propuestas que he hecho"
-msgstr "As propostas que fiz"
+msgid "Mis propuestas"
+msgstr "Minhas propostas"
 
 #: votai_general_theme/templates/backend_citizen/menu.html:12
-msgid "Las propuestas que apoyo"
-msgstr "As propostas que eu apoio"
+msgid "Mis apoyos"
+msgstr "Meus suportes"
 
 #: votai_general_theme/templates/backend_citizen/menu.html:17
+msgid "Mis eventos"
+msgstr "Meus eventos"
+
+#: votai_general_theme/templates/backend_citizen/menu.html:25
 msgid "Actualizar mi organización"
 msgstr "Atualizar minha organização"
 
-#: votai_general_theme/templates/backend_citizen/menu.html:19
+#: votai_general_theme/templates/backend_citizen/menu.html:27
 msgid ""
 "\n"
 "      Pagina Organizacion\n"
 "    "
 msgstr ""
 
-#: votai_general_theme/templates/backend_citizen/menu.html:31
-msgid "Actualizar mi perfil"
-msgstr "Atualizar meu perfil"
+#: votai_general_theme/templates/backend_citizen/menu.html:39
+msgid "Mi perfil"
+msgstr "Meu perfil"
 
-#: votai_general_theme/templates/backend_citizen/menu.html:43
+#: votai_general_theme/templates/backend_citizen/menu.html:51
 msgid "Búsquedas"
 msgstr "Pesquisas"
 
@@ -1576,7 +1631,7 @@ msgstr "Limpo"
 #: votai_general_theme/templates/backend_organization/update_my_profile.html:26
 #: votai_general_theme/templates/backend_organization/update_my_profile.html:42
 msgid "Modificar:"
-msgstr "Modificar"
+msgstr "Modificar:"
 
 #: votai_general_theme/templates/backend_organization/update_my_profile.html:32
 msgid "Imagen de fondo en tu perfil"
@@ -2374,10 +2429,19 @@ msgid "¿Con quién será tu cita en la segunda vuelta?"
 msgstr ""
 
 #: votai_general_theme/templates/medianaranja2/base.html:38
+#, fuzzy
+#| msgid ""
+#| "La Media Naranja es un juego de preguntas para ver tu afinidad con las "
+#| "candidaturas que llegaron a la segunda vuelta presidencial de Chile. El "
+#| "contenido se basa en la información de los programas de gobierno de la "
+#| "candidaturas presidenciales, en los compromisos de las candidaturas con "
+#| "propuestas ciudadanas hechos en Vota Inteligente y en declaraciones "
+#| "hechas por los candidatos en medios de comunicación. Como cualquier "
+#| "juego, su resultado podría no coincidir con lo que crees."
 msgid ""
 "La Media Naranja es un juego de preguntas para ver tu afinidad con las "
 "candidaturas que llegaron a la segunda vuelta presidencial de Chile. El "
-"contenido se basa en la información de los programas de gobierno de la "
+"contenido se basa en la información de los programas de gobierno de la "
 "candidaturas presidenciales, en los compromisos de las candidaturas con "
 "propuestas ciudadanas hechos en Vota Inteligente y en declaraciones hechas "
 "por los candidatos en medios de comunicación. Como cualquier juego, su "
@@ -2482,10 +2546,6 @@ msgstr ""
 "Suas posturas da meia laranja são empurradas a cada dia por essas "
 "organizações. Nós convidamos você a conhecê-los e juntar-se às causas que "
 "lhe interessam."
-
-#: votai_general_theme/templates/medianaranja2/resultado.html:21
-msgid "Organizaciones"
-msgstr "Organizações"
 
 #: votai_general_theme/templates/medianaranja2/resultado.html:49
 #: votai_general_theme/templates/medianaranja2/resultado.html:94
@@ -2603,7 +2663,7 @@ msgstr ""
 #: votai_general_theme/templates/popular_proposal/_likers.html:66
 #: votai_general_theme/templates/popular_proposal/_likers.html:105
 msgid "Apoyar"
-msgstr "Suporte\t"
+msgstr "Suporte"
 
 #: votai_general_theme/templates/organization_profiles/ayuranos.html:16
 msgid ""
@@ -2618,7 +2678,7 @@ msgstr "Utilize Ctrl+f (Cmd+f) para buscar seu município ou candidata/o."
 
 #: votai_general_theme/templates/organization_profiles/ayuranos.html:22
 msgid "Twiteale!"
-msgstr "Tweet"
+msgstr "Tweet!"
 
 #: votai_general_theme/templates/organization_profiles/ayuranos.html:24
 #: votai_general_theme/templates/popular_proposal/ayuranos.html:35
@@ -2648,7 +2708,8 @@ msgid ""
 msgstr ""
 "\n"
 "    <span id='likers_count_%(proposal_id)s' class=\"conteo\">"
-"%(commitments_count)s</span> candidatura(s) cometida(s)"
+"%(commitments_count)s</span> candidatura(s) cometida(s)\n"
+" "
 
 #: votai_general_theme/templates/popular_proposal/_apoyo_contador.html:9
 #, python-format
@@ -2808,6 +2869,21 @@ msgstr ""
 "comunidade!"
 
 #: votai_general_theme/templates/popular_proposal/_popular_proposal_explanation.html:19
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "Queremos que las personas y organizaciones sociales sean escuchadas.\n"
+#| "Envíanos tu propuesta para solucionar un problema en tu comuna y nosotros "
+#| "te ayudaremos a que esta sea escuchada por los candidatos a alcaldes y "
+#| "concejales de las Elecciones Municipales 2016.\n"
+#| "\n"
+#| "Los vecinos y vecinas son quienes conocen mejor sus necesidades. Es por "
+#| "eso que estamos abiertos a todas sus propuestas. Solo ingresa tu comuna, "
+#| "rellena el formulario, y nosotros te acompañaremos en la elaboración de "
+#| "tu propuesta.\n"
+#| "\n"
+#| "#### Nota: Para hacer tu propuesta ciudadana, deberás registrarte en el "
+#| "sitio.  \n"
 msgid ""
 "\n"
 "Queremos que las personas y organizaciones sociales sean escuchadas.\n"
@@ -2821,7 +2897,7 @@ msgid ""
 "propuesta.\n"
 "\n"
 "#### Nota: Para hacer tu propuesta ciudadana, deberás registrarte en el "
-"sitio.  \n"
+"sitio.\n"
 msgstr ""
 "\n"
 "Queremos que pessoas e organizações sociais sejam ouvidas.\n"
@@ -2918,7 +2994,7 @@ msgid ""
 msgstr ""
 "\n"
 "    Eu <strong>%(candidate_name)s</strong> candidata/o a %(position)s de "
-"%(área)s <strong>NÃO</strong> me comprometo com a proposta cidadã <strong>"
+"%(area)s <strong>NÃO</strong> me comprometo com a proposta cidadã <strong>"
 "%(proposal)s</strong>.\n"
 "    "
 
@@ -2991,7 +3067,7 @@ msgid ""
 msgstr ""
 "\n"
 "      Lamentavelmente <strong>%(candidate_name)s</strong> candidata/o a "
-"%(position)s de %(área)s <strong>NÃO</strong> incluirá <strong>%(proposal)s</"
+"%(position)s de %(area)s <strong>NÃO</strong> incluirá <strong>%(proposal)s</"
 "strong> no seu programa.</p>\n"
 "      "
 
@@ -3007,7 +3083,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"        Candidata/o a %(position)s por %(área)s.\n"
+"        Candidata/o a %(position)s por %(area)s.\n"
 "        "
 
 #: votai_general_theme/templates/popular_proposal/commitment/detail_no.html:55
@@ -3018,7 +3094,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"        Candidata/o por %(área)s.\n"
+"        Candidata/o por %(area)s.\n"
 "        "
 
 #: votai_general_theme/templates/popular_proposal/commitment/detail_no.html:67
@@ -3186,7 +3262,8 @@ msgid ""
 "          "
 msgstr ""
 "\n"
-"            Esta é uma proposta de"
+"            Esta é uma proposta de\n"
+"\t"
 
 #: votai_general_theme/templates/popular_proposal/detail.html:147
 msgid "Documentos"
@@ -3224,10 +3301,6 @@ msgstr ""
 #: votai_general_theme/templates/popular_proposal/detail.html:222
 msgid "Ayúdanos a difundir esta propuesta entre las candidaturas"
 msgstr "Ajude-nos a espalhar esta proposta entre as candidaturas"
-
-#: votai_general_theme/templates/popular_proposal/detail.html:188
-msgid "Cerrar"
-msgstr "Fechar"
 
 #: votai_general_theme/templates/popular_proposal/detail.html:202
 msgid "Esta propuesta tiene"
@@ -3622,7 +3695,7 @@ msgstr "Ir para meu perfil cidadão"
 #: votai_general_theme/templates/popular_proposal/thanks.html:36
 #, python-format
 msgid "Revisa otras propuestas en %(area)s"
-msgstr "Confira outras propostas em %(área)s"
+msgstr "Confira outras propostas em %(area)s"
 
 #: votai_general_theme/templates/popular_proposal/update.html:9
 #, python-format
@@ -3670,7 +3743,7 @@ msgstr "Proposta publicada"
 #: votai_general_theme/templates/popular_proposal/wizard/done.html:20
 #, python-format
 msgid "Propuesta para %(area)s"
-msgstr "Proposta para %(área)s"
+msgstr "Proposta para %(area)s"
 
 #: votai_general_theme/templates/popular_proposal/wizard/done.html:25
 #, python-format
@@ -3699,7 +3772,7 @@ msgid ""
 "sea enviada a los candidatos."
 msgstr ""
 "Por favor, aguarde que a equipe da Cidadania Inteligente a avalie para ser "
-"enviada a candidatas e candidatos. "
+"enviada a candidatas e candidatos."
 
 #: votai_general_theme/templates/popular_proposal/wizard/done.html:40
 msgid "Puedes agregar información a tu propuesta, revisarla o crear otra"
@@ -3741,7 +3814,7 @@ msgstr "Exemplo"
 #: votai_general_theme/templates/popular_proposal/wizard/form_step.html:65
 #: votai_general_theme/templates/popular_proposal/wizard/paso5.html:79
 msgid "Ir al paso "
-msgstr "Ir para o passo"
+msgstr "Ir para o passo "
 
 #: votai_general_theme/templates/popular_proposal/wizard/paso5.html:54
 msgid "Información adicional sobre tu propuesta"
@@ -3881,6 +3954,7 @@ msgid ""
 "<b>#LaElecciónEsNuestra</b>\n"
 "\t\t"
 msgstr ""
+"\n"
 "\t\t\tVota Inteligente é uma plataforma desenvolvida por <b><a href=“//www."
 "ciudadanointeligente.org/“ target=“_blank” onclick=“ga(‘send’,’event’,’que-"
 "es-ciudadanoi’,’click’)”>Cidadania Inteligente</a></b> que busca mudar a "
@@ -3910,7 +3984,8 @@ msgstr ""
 "longe criando sua proposta, compartilhando com sua rede e apoiando as "
 "proposta de que mais gosta, para que juntos façamos sentir, mais forte do "
 "que nunca, a voz da cidadania nas eleições que são nossas."
-"<b>#LaElecciónEsNuestra</b>"
+"<b>#LaElecciónEsNuestra</b> \n"
+"\t\t"
 
 #: votai_general_theme/templates/registration/activate.html:4
 #: votai_general_theme/templates/registration/activation_complete.html:4
@@ -3929,7 +4004,8 @@ msgid ""
 "Ahora puedes <a href='%(auth_login_url)s'>entrar</a> usando tu usuario y "
 "password.\n"
 msgstr ""
-"Obrigado% (conta) s, sua ativação está completa!\n"
+"\n"
+"Obrigado %(account)s, sua ativação está completa!\n"
 "Agora você pode <a href=‘%(auth_login_url)s’> digitar </a> usando seu nome "
 "de usuário e senha.\n"
 
@@ -3977,18 +4053,19 @@ msgid ""
 "</p>\n"
 "\n"
 msgstr ""
+"\n"
 "<h3> Inscrições para VotaInteligente.cl </ h3>\n"
 "<p>\n"
 "Olá, você (ou alguém que diz ser você) tentou registrar uma conta em\n"
-"<b>% (nome do site) s </ b> <br/>\n"
+"<b>%(sitename)s </ b> <br/>\n"
 "Se não foi você, por favor, ignore este e-mail e seu endereço será removido "
 "de nossos registros.\n"
 "</ p>\n"
 "<p> Para ativar sua conta em votainteligente.cl, por favor clique no "
 "seguinte link antes\n"
-"<b>% (expiration_days) s </ b> dias: <br/>\n"
-"<a href=“https://%(sitedomain)s%(activation_key_url)s”> https: //% "
-"(sitedomain) s% (activation_key_url) s </a>\n"
+"<b>%(expiration_days)s </ b> dias: <br/>\n"
+"<a href=“https://%(sitedomain)s%(activation_key_url)s”>https://%(sitedomain)s"
+"%(activation_key_url)s</a>\n"
 "</ p>\n"
 
 #: votai_general_theme/templates/registration/activation_email.txt:5
@@ -4007,16 +4084,17 @@ msgid ""
 "%(expiration_days)s días:\n"
 "https://%(sitename)s%(activation_key_url)s\n"
 msgstr ""
+"\n"
 "Olá, você (ou alguém que diz ser você) tentou registrar uma conta em\n"
-"% (sitename) s.\n"
+"%(sitename)s.\n"
 "Se não foi você, por favor, ignore este e-mail e seu endereço será removido "
 "de nossos registros.\n"
 "\n"
 "\n"
 "Para ativar sua conta em votainteligente.cl, por favor clique no seguinte "
 "link antes\n"
-"% (expiration_days) s dias:\n"
-"https: //% (sitename) s% (activation_key_url)s\n"
+"%(expiration_days)s dias:\n"
+"https://%(sitename)s%(activation_key_url)s\n"
 
 #: votai_general_theme/templates/registration/activation_email_subject.txt:1
 msgid "Activación de tu cuenta en VotaInteligente.cl"
@@ -4113,7 +4191,7 @@ msgid ""
 "into your web browser:"
 msgstr ""
 "Você está recebendo este e-mail porque você (ou alguém fingindo ser você)\n"
-"solicitou que sua senha fosse redefinida no site% (domain) s. Se você não\n"
+"solicitou que sua senha fosse redefinida no site %(domain)s. Se você não\n"
 "deseja redefinir sua senha, ignore esta mensagem.\n"
 "\n"
 "Para redefinir sua senha, clique no link a seguir ou copie e cole\n"
@@ -4287,6 +4365,15 @@ msgstr "Medida"
 #: votita/models.py:167
 msgid "Medidas"
 msgstr "Medidas"
+
+#~ msgid "Las propuestas que he hecho"
+#~ msgstr "As propostas que fiz"
+
+#~ msgid "Las propuestas que apoyo"
+#~ msgstr "As propostas que eu apoio"
+
+#~ msgid "Actualizar mi perfil"
+#~ msgstr "Atualizar meu perfil"
 
 #, fuzzy
 #~| msgid "Medio ambiente"

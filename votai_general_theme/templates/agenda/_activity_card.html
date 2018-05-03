@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load markdown_deux_tags %}
 <div class="col-md-4 activity">
     <div class="body"
     {%if activity.background_image %}
@@ -34,7 +35,7 @@
       </div>
       <div class="modal-body">
           <img src="{{activity.background_image.url}}" class='img-responsive'>
-        <p>{{activity.long_description}}</p>
+        <p>{{ activity.long_description|markdown }}</p>
         {% if activity.url %}<a href="{{activity.url}}" target="_blank">{% endif %}
          <p><i class="fa fa-crosshairs"></i> {{activity.location}}</p>
         {% if activity.url %}</a>{% endif %}

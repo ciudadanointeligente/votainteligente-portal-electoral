@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<h2 class="page-header">Tu agenda de actividades</h2>
+<h2 class="page-header">{% trans "Tu agenda de actividades" %}</h2>
 <div class="row">
 {% for activity in activities %}
 {% include 'agenda/_activity_card.html' with activity=activity %}

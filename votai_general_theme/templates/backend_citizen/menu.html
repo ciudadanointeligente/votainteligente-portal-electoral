@@ -5,16 +5,16 @@
 
 {% url 'backend_citizen:my_proposals' as backend_index %}
  <li role="presentation" class="{% ifequal request.path backend_index%} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
-<a class="small" href="{{backend_index}}">{% trans 'Las propuestas que he hecho' %}</a></li>
+<a class="small" href="{{backend_index}}">{% trans 'Mis propuestas' %}</a></li>
   {% url 'backend_citizen:my_supports' as my_supports_url %}
  <li role="presentation" class="{% ifequal request.path my_supports_url %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
   <a class="small" href="{{my_supports_url}}">
-  {% blocktrans %}Las propuestas que apoyo{% endblocktrans %}</a></li>
+  {% blocktrans %}Mis apoyos{% endblocktrans %}</a></li>
   <!-- Mi agenda de actividades-->
   {% url 'backend_citizen:all_my_activities' as all_my_activities %}
  <li role="presentation" class="{% ifequal request.path all_my_activities %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
   <a class="small" href="{{all_my_activities}}">
-  {% blocktrans %}Mi agenda de actividades{% endblocktrans %}</a></li>
+  {% blocktrans %}Mis eventos{% endblocktrans %}</a></li>
   <!-- Mi agenda de actividades-->
 
 
@@ -36,7 +36,7 @@
 {% url 'backend_citizen:update_my_profile' as my_profile_url %}
  <li role="presentation" class="{% ifequal request.path my_profile_url %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
   <a class="small" href="{{my_profile_url}}">
-  {% blocktrans %}Actualizar mi perfil{% endblocktrans %}</a></li>
+  {% blocktrans %}Mi perfil{% endblocktrans %}</a></li>
 {% endif %}
 {% comment %}
 {% url 'backend_citizen:stats' as stats_url %}

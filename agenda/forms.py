@@ -19,10 +19,11 @@ class ActivityForm(ModelForm):
 
     class Meta:
         model = Activity
-        fields = ['date', 'url', 'description', 'location', 'background_image']
+        fields = ['date', 'url', 'description', 'long_description', 'location', 'background_image']
         labels = {'date': _(u"Fecha"),
                   'url': _(u"Link a tu actividad, puede ser al evento en Facebook"),
-                  'description': _(u"Descripción de tu actividad"),
+                  'description': _(u"Título de tu actividad"),
+                  'long_description': _(u"Cuentanos lo que quieras sobre tu actividad"),
                   'location': _(u"El lugar donde se realizará esta actividad"),
                   "background_image": _(u"Imagen para promocionar tu actividad")
                  }

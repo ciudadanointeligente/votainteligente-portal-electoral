@@ -25,6 +25,7 @@ class ActivityTestCase(TestCase):
         self.assertIsNone(activity.object_id)
         self.assertIsNone(activity.content_object)
         self.assertFalse(activity.background_image)
+        self.assertFalse(activity.long_description)
 
     def test_activity_model_has_image(self):
         image = self.get_image()

@@ -11,6 +11,7 @@ class Activity(models.Model):
     url = models.URLField(blank=True, null=True)
     location = models.CharField(max_length=1024)
     description = models.CharField(blank=True,max_length=1024)
+    long_description = models.TextField(blank=True)
     background_image = models.ImageField(upload_to="agenda/activities/",
                                         null=True,
                                         blank=True,

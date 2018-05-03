@@ -5,8 +5,9 @@
 {% load bootstrap3 %}
 
 {% block main_content %}
-<form method="post" action="{% url 'backend_citizen:add_activity' %}">
+<form method="post" action="{% url 'backend_citizen:add_activity' %}" enctype="multipart/form-data">
 	{% csrf_token %}
+	{% bootstrap_field form.description %}
 	<div class="form-group">
 		<label class="control-label" for="id_date">{% trans 'Fecha' %}</label>
 		<div class="input-append date" id="datetimepicker" data-date="12-02-2012" data-date-format="yyyy-mm-dd hh:ii">
@@ -15,10 +16,12 @@
     </div>
 	</div>
 
-	{% bootstrap_field form.description %}
+
+	{% bootstrap_field form.long_description %}
 
 	{% bootstrap_field form.url %}
 	{% bootstrap_field form.location %}
+	{% bootstrap_field form.background_image %}
 
 <input type="submit" value="{% trans "Enviar" %}"  class="btn btn-default" />
 </form>

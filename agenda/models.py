@@ -4,8 +4,10 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class Activity(models.Model):
     date = models.DateTimeField()
     url = models.URLField(blank=True, null=True)
@@ -27,6 +29,9 @@ class Activity(models.Model):
     object_id = models.CharField(max_length=1024,blank=True,
                                             null=True)
     content_object = GenericForeignKey('content_type', 'object_id')
+
+    def __str__(self):
+        return self.description
 
     class Meta:
         # sort by "the date" in descending order unless

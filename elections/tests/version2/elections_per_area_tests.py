@@ -152,6 +152,30 @@ class ElectionsPerAreaTestCase(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertIsNone(response.context['default_election'])
 
+    @override_config(SHOW_ALL_CANDIDATES_IN_THIS_ORDER='senador, diputado', DEFAULT_AREA='argentina')
+    def test_get_all_candidates_if_show_all_candidates_is_true(self):
+        first_e = Election.objects.get(id=1)
+        first_e.position = 'diputado'
+        first_e.save()
+        second_e = Election.objects.get(id=2)
+        second_e.position = 'senador'
+        second_e.save()
+        argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        election = Election.objects.create(
+            name='the name',
+            area=argentina)
+        url = reverse('know_your_candidates')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['default_election'], election)
+        self.assertIn('positions', response.context)
+        self.assertEquals(response.context['positions'][0]['name'], 'senador')
+        for c in second_e.candidates.all():
+            self.assertIn(c, response.context['positions'][0]['candidates'])
+        self.assertEquals(response.context['positions'][1]['name'], 'diputado')
+        for c in first_e.candidates.all():
+            self.assertIn(c, response.context['positions'][1]['candidates'])
+
     def test_get_area_parents(self):
         child = Area.objects.create(name="children")
         mother = Area.objects.create(name="mother")

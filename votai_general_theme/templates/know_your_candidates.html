@@ -11,11 +11,21 @@
 	<h1 class="text-center">{% trans "Congresistas comprometidos" %}</h1>
   <p class="bajada text-center">{% trans "Encuentra aquí los nuevos/as diputados/as y senadores/as y sus compromisos con propuestas ciudadanas de votainteligente.cl" %}</p>
 
-	<div class="container">
-		{% include "_election_search_form.html" %}
-	</div>
-
 </div>
 {% display_election_card default_election %}
 
+<div class="container">
+{% for pos in positions %}
+	<h2>{{pos.name}}</h2>
+	<div class="row">
+		{% for candidate in pos.candidates %}
+      	{% include "_candidate_small.html" with candidate=candidate%}
+		{% if forloop.counter|divisibleby:6 %}
+	    </div><div class="row">
+	    {% endif %}
+		{% endfor %}
+	</div>
+
+{% endfor %}
+</div>
 {% endblock everything %}

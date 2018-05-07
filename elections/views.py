@@ -254,10 +254,22 @@ class CandidateFlatPageDetailView(DetailView):
 class KnowYourCandidatesView(TemplateView):
     template_name = "know_your_candidates.html"
 
+    def append_all_other_candidates(self, context):
+        candidate_positions = config.SHOW_ALL_CANDIDATES_IN_THIS_ORDER.split(",")
+        context['positions'] = []
+        for position in candidate_positions:
+            position = position.strip()
+
+            candidates = Candidate.objects.filter(elections__position=position)
+            context['positions'].append({'name': position, 'candidates': candidates})
+        return context
+
     def get_context_data(self, **kwargs):
         context = super(KnowYourCandidatesView, self).get_context_data(**kwargs)
         election = Election.objects.filter(area__id=config.DEFAULT_AREA).first()
         if election and election.second_round:
             election = election.second_round
         context['default_election'] = election
+        if config.SHOW_ALL_CANDIDATES_IN_THIS_ORDER:
+            context = self.append_all_other_candidates(context)
         return context

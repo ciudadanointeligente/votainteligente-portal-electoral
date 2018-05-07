@@ -183,6 +183,7 @@ CONSTANCE_CONFIG = {
     'NAV_BAR': ('profiles, questionary, soulmate, facetoface, ask, ranking', 'Menu de navegacion'),
     'NAV_BAR_VOTITA_DISPLAYED': (False, 'Desplegamos el navbar del votita??????'),
     'SHOW_RIBBON_IN_CANDIDATE': (False, u"Debería aparecerles la franja roja que dice 'No se ha compormetido?'"),
+    'SHOW_ALL_CANDIDATES_IN_THIS_ORDER': ("", u"Mostrar todos los candidatos en la parte de /candidatos? "),
     'CAN_CREATE_TEST_PROPOSAL': (False, u'Se pueden crear propuestas de prueba?'),
     'SEARCH_SUBSCRIPTION_ENABLED': (True, u'Suscribirse a una búsqueda está habilitado? esto sólo esconde los links.'),
     'WEBSITE_METADATA_AUTHOR': ('', 'Nombre del autor'),

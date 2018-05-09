@@ -1,13 +1,13 @@
-{% load votainteligente_extras %}¡Hola {% include '_user_printable.html' with user=person %}!
-Escribimos para contarte que {{commitment.candidate.name}} acaba de declarar que no se comprometerá con la propuesta ciudadana {{proposal.title}}.
+{% load votainteligente_extras %}Olá {% include '_user_printable.html' with user=person %}!
+Estamos escrevendo para te contar que {{commitment.candidate.name}} acaba de declarar que não se comprometerá com a proposta cidadã {{proposal.title}}.
 
 {% if commitment.candidate.election %}
-Puedes revisar sus razones para rechazar tu propuesta ciudadana acá:
+Você pode ver seus motivos para rejeitar sua proposta aqui:
 https://votainteligente.cl{{commitment.get_absolute_url}}
 {% endif %}
 
-Te estimamos mucho y por lo mismo te queremos pedir que no te desanimes y que nos ayudes a seguir cambiando Chile.
-Puedes seguir impulsando tu propuesta, para lo cual te puedes apoyar en las Herramientas de Activismo:
+Nós valorizamos muito sua iniciativa e, por essa razão, queremos pedir que você não desanime e nos ajude a continuar mudando o Rio de Janeiro
+Você pode continuar promovendo sua proposta, utilizando das nossas Ferramentas de Ativismo:
 
 https://votainteligente.cl/static/material-ciudadano/manual-herramientas-activismo.pdf
 {% mail_signature_txt %}

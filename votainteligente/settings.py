@@ -485,6 +485,7 @@ if THEME:
         stand_alone_urls = '%s.stand_alone_urls' % THEME
         imp.find_module(stand_alone_urls)
         ROOT_URLCONF = stand_alone_urls
+        STATIC_ROOT = os.path.join(BASE_DIR, THEME ,'static')
     except ImportError:
         pass
 

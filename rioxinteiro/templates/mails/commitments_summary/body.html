@@ -1,11 +1,11 @@
 {% load votainteligente_extras %}
-<p>Hola <b>{{user}}</b>:</p>
-<p>Este mail es para contarte que hay novedades con algunas propuestas ciudadanas que apoyaste:</p>
+<p>Olá <b>{{user}}</b>:</p>
+<p>Este e-mail é para te contar que temos notícias de algumas propostas que você apoiou:</p>
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 	<tr style="background-color:#BBBBBB;">
-		<td><b>Candidato</b></td>
-		<td><b>Propuesta</b></td>
+		<td><b>Candidata/o</b></td>
+		<td><b>Proposta</b></td>
 	</tr>
 	{% for commitment in commitments %}
 	<tr style="background-color:{% cycle '#FFFFFF' '#EEEEEE' %}">
@@ -20,12 +20,12 @@
 	{% endfor %}
 </table>
 
-<p>Esto no habría sido posible sin tu apoyo. Te queremos mucho y te queremos invitar a ser parte de la acción colectiva.</p>
+<p>Isso não teria sido possível sem o seu apoio, por isso, queremos convidá-la/lo para fazer parte da ação coletiva.</p>
 
 <p>
 	<b>PS:</b>
 	<br>
-	Si ya no quieres recibir estos mails haz click <a href="https://{{site.domain}}{{user.profile.get_unsubscribe_url}}">acá</a>.
+	Se você não quiser mais receber esses e-mails, clique <a href="https://{{site.domain}}{{user.profile.get_unsubscribe_url}}">aqui</a>.
 </p>
 
 {% mail_signature_html %}

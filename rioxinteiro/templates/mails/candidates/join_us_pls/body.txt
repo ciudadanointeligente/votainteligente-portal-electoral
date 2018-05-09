@@ -1,12 +1,12 @@
 {% load votainteligente_extras %}
-Hola {{contact.candidate.name}}:
-Somos el equipo de VotaInteligente.cl y te escribimos para que
-puedas subir tus datos a nuestra plataforma.
+Olá! {{contact.candidate.name}}:
+Somos da equipe Rio por Inteiro e estamos te escrevendo para
+informar que você já pode subir seus dados na nossa plataforma!
 
-Para hacer eso, sólo debes seguir el siguiente link y responder a las preguntas
+Para fazer isso, você só precisa entrar no link e responder as perguntas:
 
 {{contact.get_absolute_url}}
 
-Desde ya muchas gracias.
+Muito obrigado desde já ;)
 
 {% mail_signature_txt %}

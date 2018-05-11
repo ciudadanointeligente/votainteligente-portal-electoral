@@ -1,1 +1,1 @@
-Felicitaciones! {{like.user}} acaba de apoyar tu propuesta {{like.proposal.title}}
+Parabéns! {{like.user}} acaba de apoiar sua proposta {{like.proposal.title}}

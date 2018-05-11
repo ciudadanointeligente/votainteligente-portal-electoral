@@ -1,1 +1,1 @@
-Existem {{number}} cidadãs/ãos por trás de uma causa
+Existem {{number}} cidadãs/ãos apoiando uma causa

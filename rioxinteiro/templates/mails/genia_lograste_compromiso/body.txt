@@ -1,17 +1,17 @@
-{% load votainteligente_extras %}¡Genia o genio {% if person.get_short_name %}{{ person.get_short_name}}{% else %}{{ person.get_username}}{% endif %}!
-Escribimos para contarte que {{commitment.candidate.name}} se acaba de comprometer con la propuesta ciudadana {{proposal.title}}.
+{% load votainteligente_extras %}Temos uma boa notícia {% if person.get_short_name %}{{ person.get_short_name}}{% else %}{{ person.get_username}}{% endif %}!
+Estamos escrevendo para contar que {{commitment.candidate.name}} acaba de se comprometer com a proposta {{proposal.title}}.
 {% if commitment.detail %}
-Te queríamos contar que {{ commitment.candidate.name }} se compromete en los siguientes términos:
+{{ commitment.candidate.name }} se compromete nos seguintes termos:
 
 {{commitment.detail}}
 {% endif %}
 
-Para revisar el compromiso con la propuesta ciudadana puedes acceder a la siguiente url:
+Para revisar o compromisso com a proposta, você pode acessar:
 https://{{site}}{{commitment.get_absolute_url}}
 
-Te queremos mucho, esperamos que entiendas que este es un gran paso para cambiar Chile.
-Aún queda un gran trecho que recorrer y queremos que estés atenta/o para hacerle seguimiento del cumplimiento de esta propuesta.
+Obrigado pelo seu apoio, esperamos que você entenda que este é um grande passo para mudar o Estado do Rio de Janeiro.
+Ainda temos muito pela frente e queremos que você esteja por perto para acompanhar essa proposta.
 
-Este es un mail automático pero si respondes le llegará a todo el equipo de VotaInteligente.cl
+Este é um e-mail automático, mas se você respondê-lo, chegará a toda a equipe Rio por Inteiro ;)
 
 {% mail_signature_txt %}

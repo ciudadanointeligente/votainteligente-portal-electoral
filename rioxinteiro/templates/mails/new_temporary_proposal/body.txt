@@ -1,11 +1,11 @@
-{% load votainteligente_extras %}Hola {{temporary_data.proposer}}!
-Recibimos tu propuesta ciudadana y pronto tendremos noticias.
+{% load votainteligente_extras %}Olá {{temporary_data.proposer}}!
+Recebemos sua proposta cidadã e em breve teremos novidades.
 
-Tu propuesta tiene el siguiente detalle:
+Sua proposta tem o seguinte detalhe:
 
 {% include 'popular_proposal/plantillas/preview.txt' with preview_data=temporary_data.data %}
 
 
-Gracias por querer hacer de {{area}} un lugar mejor.
+Muito obrigada por querer fazer de {{area}} um lugar melhor.
 
 {% mail_signature_txt %}

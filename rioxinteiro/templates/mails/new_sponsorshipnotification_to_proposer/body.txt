@@ -1,18 +1,17 @@
 {% load votainteligente_extras %}
-Estimada/o {{like.proposal.proposer}}:
+Prezada/o {{like.proposal.proposer}}:
 
-Te queremos contar que {{like.user}} acaba de apoyar de manera pública tu
-propuesta *{{like.proposal.title}}*. Puedes contactarlos enviandoles un mail a
-{{like.user.email}}, nosotros no le hemos dado tu mail a ellos y están esperando
-que los contactes.
-Además, {{like.user}} te envió el siguiente mensaje al momento de
-apoyar tu propuesta:
+Queremos te contar que {{like.user}} acabam de apoiar publicamente sua
+proposta *{{like.proposal.title}}*. Você pode contatar-lhes através do e-mail
+{{like.user.email}}, nós não lhes demos seu e-mail, mas estão esperando que você as/os contate!
 
+Além disso, {{like.user}} te enviou a seguinte mensagem na hora de 
+apoiar sua proposta:
 {{like.message}}
 
-Además, puedes ver este apoyo en el perfil de {{like.user}} (https://{{site.domain}}{{like.user.organization_template.get_absolute_url}}) y en tu
-propuesta (https://{{site.domain}}{{like.proposal.get_absolute_url}}).
+Você também pode ver esse apoio no perfil de {{like.user}} (https://{{site.domain}}{{like.user.organization_template.get_absolute_url}}) e na sua
+proposta (https://{{site.domain}}{{like.proposal.get_absolute_url}}).
 
-Te queremos mucho.
+Agradecemos muito sua participação!
 
 {% mail_signature_txt %}

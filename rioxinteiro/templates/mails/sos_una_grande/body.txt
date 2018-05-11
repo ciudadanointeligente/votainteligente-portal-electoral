@@ -1,11 +1,11 @@
-{% load votainteligente_extras %}Hola {% include '_user_printable.html' with user=proposal.proposer %}!
+{% load votainteligente_extras %}Olá {% include '_user_printable.html' with user=proposal.proposer %}!
 
-Estamos muy felices por que tu propuesta con título {{proposal.title}}
-ha alcanzado un total de {{number}} adherentes.
+Estamos muito feliz que a sua proposta {{proposal.title}}
+alcançou um total de {{number}} apoios!
 
-Para nosotros lo que tu haces es increíble y creemos que cumples el
-objetivo final del proyecto que es mejorar la articulación ciudadana.
+O que você está fazendo é incrível e acreditamos que contribui para
+o objetivo final do projeto: melhorar a mobilização cidadã.
 
-Muchas gracias por todo.
+Muito obrigada por tudo.
 
 {% mail_signature_txt %}

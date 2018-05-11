@@ -1,13 +1,13 @@
-{% load votainteligente_extras %}Hola {% include '_user_printable.html' with user=person %}!
-Escribimos para contarte que {{candidate.name}} se pronunció de manera negativa
-con la propuesta ciudadana {{proposal.title}} que tu apoyabas.
+{% load votainteligente_extras %}Olá {% include '_user_printable.html' with user=person %}!
+Estavamos escrevendo para te contar que {{candidate.name}} se pronunciou de maneira negativa
+sobre a proposta cidadã {{proposal.title}} que você apoia.
 
-Te queríamos comentar que {{commitment.candidate.name}} ha hecho los siguientes comentarios
-junto con comprometerse con tu causa:
+{{commitment.candidate.name}} fez o seguintes comentários
+ao se comprometer com a sua causa:
 
 {{commitment.detail|linebreaks}}
 
-Para ver la propuesta ciudadana puedes acceder a la siguiente url:
+Para ver a proposta, você pode entrar no link:
 
 https://votainteligente.cl{{commitment.get_absolute_url}}
 

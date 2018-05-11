@@ -1,1 +1,1 @@
-Existem {{number}} cidadãs/ãos apoiando uma causa
+{{number}} cidadãs/ãos estão apoiando uma causa!

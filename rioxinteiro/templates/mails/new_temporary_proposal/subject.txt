@@ -1,1 +1,1 @@
-Recibimos tu Propuesta Ciudadana para {{area}}.
+Recebemos sua Proposta Cidadã para {{area}}.

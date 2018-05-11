@@ -1,1 +1,1 @@
-Hay {{number}} ciudadanos detrás de una causa.
+Existem {{number}} cidadãs/ãos por trás de uma causa

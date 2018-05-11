@@ -1,5 +1,5 @@
 {% load votainteligente_extras %}Olá {% include '_user_printable.html' with user=person %}!
-Estavamos escrevendo para te contar que {{candidate.name}} se pronunciou de maneira negativa
+Estamos escrevendo para te contar que {{candidate.name}} se pronunciou de maneira negativa
 sobre a proposta cidadã {{proposal.title}} que você apoia.
 
 {{commitment.candidate.name}} fez o seguintes comentários

@@ -1,11 +1,11 @@
-{% load votainteligente_extras %}Hola {{user.get_full_name}}:
+{% load votainteligente_extras %}Olá {{user.get_full_name}}:
 
-Este mail es para contarte que hay nuevas propuestas en VotaInteligente:
+Esse e-mail é para te contar que temos novas propostas na Rio por Inteiro:
 {% for proposal in proposals %}
-* {{proposal.title}} hecha por {{proposal.proposer.get_full_name}} (https://votainteligente.cl{{proposal.get_absolute_url}}){% endfor %}
+* {{proposal.title}} feita por {{proposal.proposer.get_full_name}} (https://votainteligente.cl{{proposal.get_absolute_url}}){% endfor %}
 
-Puedes revisar tus suscripciones a búsquedas en el siguiente link:
+Você pode verificar suas assinaturas para busca no seguinte link:
 https://votainteligente.cl{% url 'proposal_subscriptions:list' %}
 
-Saludos
+Um abraço
 {% mail_signature_txt %}

@@ -26,7 +26,7 @@ msgstr "Data"
 
 #: agenda/forms.py:24 backend_candidate/forms.py:238
 msgid "Link a tu actividad, puede ser al evento en Facebook"
-msgstr "Link para o seu evento no Facebook (pode ser de outro link)"
+msgstr "Link para o seu evento (pode ser um evento no Facebook)"
 
 #: agenda/forms.py:25
 msgid "Título de tu actividad"
@@ -34,11 +34,11 @@ msgstr "Título da sua atividade"
 
 #: agenda/forms.py:26
 msgid "Cuentanos lo que quieras sobre tu actividad"
-msgstr "Longa descrição"
+msgstr "Conta pra gente tudo sobre sua atividade"
 
 #: agenda/forms.py:27 backend_candidate/forms.py:240
 msgid "El lugar donde se realizará esta actividad"
-msgstr "O lugar onde esta atividade acontecerá"
+msgstr "Lugar onde a atividade será realizada"
 
 #: agenda/forms.py:28
 msgid "Imagen para promocionar tu actividad"
@@ -46,11 +46,11 @@ msgstr "Imagem para promover sua atividade"
 
 #: agenda/models.py:18
 msgid "Una imagen para el evento"
-msgstr ""
+msgstr "Uma imagem para o evento"
 
 #: agenda/models.py:19
 msgid "será la imagen que utilicemos en la lista de eventos"
-msgstr "será a imagem que usamos na lista de eventos"
+msgstr "será a imagem que usaremos na lista de eventos"
 
 #: backend_candidate/forms.py:65
 msgid "Tus comentarios sobre esta pregunta"
@@ -74,7 +74,7 @@ msgstr ""
 
 #: backend_candidate/forms.py:239
 msgid "Descripción de tu actividad"
-msgstr "Descrição de sua atividade"
+msgstr "Descrição da sua atividade"
 
 #: backend_candidate/views.py:108
 msgid "Hemos guardado tus respuestas"
@@ -103,7 +103,7 @@ msgstr ""
 
 #: backend_citizen/forms.py:51
 msgid "Email"
-msgstr "Email"
+msgstr "E-mail"
 
 #: backend_citizen/forms.py:53
 msgid "El nombre de usuario no tiene espacios ni acentos."
@@ -123,7 +123,7 @@ msgstr "E-mail da organização"
 
 #: backend_citizen/models.py:20
 msgid "Tu imagen de perfil"
-msgstr "Sua foto do perfil"
+msgstr "Sua foto de perfil"
 
 #: backend_citizen/models.py:21
 msgid "Tu descripción"
@@ -298,7 +298,7 @@ msgid ""
 "Ayúdanos a que te conozcan! En esta sección podrás contarnos sobre tu "
 "organización para informar a otros sobre tu labor social."
 msgstr ""
-"Ajude-nos a conhecer você! Nesta seção, você pode nos informar sobre sua "
+"Ajude-nos a conhecer você! Nesta seção, você pode nos contar sobre sua "
 "organização para que outras pessoas saibam sobre seu trabalho social."
 
 #: organization_profiles/forms.py:14
@@ -1117,7 +1117,7 @@ msgstr "Atividades"
 
 #: votai_general_theme/templates/_navbar.html:29
 msgid "Material ciudadano"
-msgstr ""
+msgstr "Material Cidadão"
 
 #: votai_general_theme/templates/_slide_propuestas.html:4
 msgid "Propuestas con más apoyo de los ciudadanos"
@@ -1143,7 +1143,7 @@ msgstr "Entre com o Google"
 
 #: votai_general_theme/templates/_user_printable.html:1
 msgid "Hola"
-msgstr ""
+msgstr "Olá"
 
 #: votai_general_theme/templates/agenda/_activity_card.html:44
 #: votai_general_theme/templates/popular_proposal/detail.html:188
@@ -1156,7 +1156,7 @@ msgstr "Minha agenda de atividades"
 
 #: votai_general_theme/templates/backend_base.html:53
 msgid "Menú"
-msgstr ""
+msgstr "Menu"
 
 #: votai_general_theme/templates/backend_candidate/_suggestions_formset.html:11
 #, python-format
@@ -1193,7 +1193,7 @@ msgstr "Envie compromissos"
 #: votai_general_theme/templates/backend_candidate/add_activity.html:11
 #: votai_general_theme/templates/backend_candidate/menu.html:26
 msgid "Mi agenda"
-msgstr ""
+msgstr "Minha agenda"
 
 #: votai_general_theme/templates/backend_candidate/add_activity.html:12
 msgid "Agregar actividad"
@@ -1216,11 +1216,11 @@ msgstr "Adicione uma atividade ao seu calendário."
 
 #: votai_general_theme/templates/backend_candidate/auth_login.html:6
 msgid "Login"
-msgstr ""
+msgstr "Entrar"
 
 #: votai_general_theme/templates/backend_candidate/auth_login.html:12
 msgid "Bienvenid@ Candidat@:"
-msgstr ""
+msgstr "Bem-vinda/o Candidata/o"
 
 #: votai_general_theme/templates/backend_candidate/auth_login.html:13
 msgid "Si no sabes como ingresar:"
@@ -1228,7 +1228,7 @@ msgstr "Se você não sabe como entrar:"
 
 #: votai_general_theme/templates/backend_candidate/auth_login.html:19
 msgid "login"
-msgstr ""
+msgstr "entrar"
 
 #: votai_general_theme/templates/backend_candidate/auth_login.html:21
 #: votai_general_theme/templates/login/basic.html:11
@@ -1269,7 +1269,7 @@ msgstr "https://rioxinteiro.cidadaniainteligente.org"
 
 #: votai_general_theme/templates/backend_candidate/home.html:18
 msgid "¡Bienvenid@ a la sección de candidaturas!"
-msgstr ""
+msgstr "Bem-vinda/o à seção das candidaturas!"
 
 #: votai_general_theme/templates/backend_candidate/i_have_commited.html:14
 msgid "Tus compromisos"
@@ -1288,11 +1288,11 @@ msgstr "Seu compromisso"
 #: votai_general_theme/templates/backend_candidate/i_have_commited.html:30
 #: votai_general_theme/templates/popular_proposal/_estado_para_candidato.html:15
 msgid "Te comprometiste"
-msgstr ""
+msgstr "Você se comprometeu"
 
 #: votai_general_theme/templates/backend_candidate/i_have_commited.html:34
 msgid "No te comprometiste"
-msgstr ""
+msgstr "Você não se comprometeu"
 
 #: votai_general_theme/templates/backend_candidate/i_have_commited.html:46
 #, python-format
@@ -1307,15 +1307,15 @@ msgstr ""
 
 #: votai_general_theme/templates/backend_candidate/menu.html:11
 msgid "Completa tu perfil"
-msgstr ""
+msgstr "Complete seu perfil"
 
 #: votai_general_theme/templates/backend_candidate/menu.html:34
 msgid "Mis compromisos"
-msgstr ""
+msgstr "Meus compromissos"
 
 #: votai_general_theme/templates/backend_candidate/menu.html:40
 msgid "Propuestas para mi"
-msgstr ""
+msgstr "Propostas para mim"
 
 #: votai_general_theme/templates/backend_candidate/suggestions_for_candidate.html:15
 #, python-format
@@ -1345,7 +1345,7 @@ msgstr ""
 
 #: votai_general_theme/templates/backend_candidate/thanks_for_commiting.html:8
 msgid "Gracias por comprometerte!"
-msgstr ""
+msgstr "Obrigada por se comprometer!"
 
 #: votai_general_theme/templates/backend_candidate/thanks_for_commiting.html:12
 #, python-format
@@ -1466,7 +1466,7 @@ msgstr "Meus suportes"
 
 #: votai_general_theme/templates/backend_citizen/menu.html:17
 msgid "Mis eventos"
-msgstr "Movilize"
+msgstr "Mobilização"
 
 #: votai_general_theme/templates/backend_citizen/menu.html:25
 msgid "Actualizar mi organización"
@@ -1485,7 +1485,7 @@ msgstr "Meu perfil"
 
 #: votai_general_theme/templates/backend_citizen/menu.html:51
 msgid "Búsquedas"
-msgstr "Pesquisas"
+msgstr "Buscas"
 
 #: votai_general_theme/templates/backend_citizen/my_proposals.html:9
 msgid "Backend Ciudadano - Propuestas"
@@ -1497,11 +1497,11 @@ msgstr ""
 
 #: votai_general_theme/templates/backend_citizen/my_supports.html:28
 msgid "Tus apoyos"
-msgstr "Seus suportes"
+msgstr "Seus apoios"
 
 #: votai_general_theme/templates/backend_citizen/my_supports.html:35
 msgid "Autor"
-msgstr ""
+msgstr "Autoria"
 
 #: votai_general_theme/templates/backend_citizen/my_supports.html:36
 #: votai_general_theme/templates/backend_staff/index.html:33
@@ -1511,7 +1511,7 @@ msgstr "Ações"
 
 #: votai_general_theme/templates/backend_citizen/my_supports.html:46
 msgid "Quitar apoyo"
-msgstr ""
+msgstr "Tirar apoio"
 
 #: votai_general_theme/templates/backend_citizen/stats.html:5
 #, python-format
@@ -1523,11 +1523,11 @@ msgstr ""
 
 #: votai_general_theme/templates/backend_citizen/stats.html:16
 msgid "Posición"
-msgstr ""
+msgstr "Posição"
 
 #: votai_general_theme/templates/backend_citizen/stats.html:17
 msgid "Mail de contacto"
-msgstr ""
+msgstr "E-mail de contato"
 
 #: votai_general_theme/templates/backend_citizen/stats.html:35
 msgid "Las estadísticas sobre tus propuestas"
@@ -1779,31 +1779,31 @@ msgstr "Eleito"
 #: votai_general_theme/templates/elections/_election_with_position.html:40
 #: votai_general_theme/templates/elections/_election_with_position.html:101
 msgid "Staff: ya se conectó."
-msgstr ""
+msgstr "Staff: Já se conectou"
 
 #: votai_general_theme/templates/elections/_election_with_position.html:42
 #: votai_general_theme/templates/elections/_election_with_position.html:103
 msgid "Staff: NO se ha conectado."
-msgstr ""
+msgstr "Staff: Não se conectou"
 
 #: votai_general_theme/templates/elections/_election_with_position.html:117
 msgid "Ver todos"
-msgstr ""
+msgstr "Ver todes"
 
 #: votai_general_theme/templates/elections/_election_with_position.html:125
 #: votai_general_theme/templates/search.html:31
 msgid "Anterior"
-msgstr ""
+msgstr "Anterior"
 
 #: votai_general_theme/templates/elections/_election_with_position.html:133
 #: votai_general_theme/templates/popular_proposal/wizard/select_area.html:45
 #: votai_general_theme/templates/search.html:33
 msgid "Siguiente"
-msgstr ""
+msgstr "Próximo"
 
 #: votai_general_theme/templates/elections/_is_staff_candidate_detail.html:8
 msgid "Este candidato se ha conectado."
-msgstr ""
+msgstr "Esse candidato não se conectou"
 
 #: votai_general_theme/templates/elections/_is_staff_candidate_detail.html:10
 #, python-format
@@ -1822,7 +1822,7 @@ msgstr ""
 #: votai_general_theme/templates/elections/_is_staff_candidate_detail.html:18
 #: votai_general_theme/templates/elections/_is_staff_candidate_detail.html:22
 msgid "Agrégale mail a esta/e hermana/o"
-msgstr ""
+msgstr "Adicione um e-mail"
 
 #: votai_general_theme/templates/elections/admin_app_name.html:1
 msgid "Tus Elecciones"
@@ -1830,7 +1830,7 @@ msgstr "Eleições"
 
 #: votai_general_theme/templates/elections/admin_model_election_change_form.html:3
 msgid "Aquí puedes editar todo el contenido de una elección."
-msgstr ""
+msgstr "Aqui você pode editar todo o conteúdo de uma eleição"
 
 #: votai_general_theme/templates/elections/area.html:10
 #, python-format
@@ -1886,7 +1886,7 @@ msgstr "Se você quiser que nós o notifiquemos da resposta do candidato"
 
 #: votai_general_theme/templates/elections/ask_candidate.html:28
 msgid "Ponle un título"
-msgstr ""
+msgstr "Coloque um título"
 
 #: votai_general_theme/templates/elections/ask_candidate.html:29
 msgid "Cómo pretenden superar la pobreza?"
@@ -1894,7 +1894,7 @@ msgstr "Como eles visam superar a pobreza?"
 
 #: votai_general_theme/templates/elections/ask_candidate.html:32
 msgid "Escribe tu pregunta"
-msgstr ""
+msgstr "Escreva sua pergunta"
 
 #: votai_general_theme/templates/elections/ask_candidate.html:33
 msgid ""

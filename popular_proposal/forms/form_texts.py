@@ -1,6 +1,8 @@
 # coding=utf-8
 from collections import OrderedDict
 from django.utils.translation import ugettext as _
+from django.conf import settings
+import importlib
 
 WHEN_CHOICES = [
     ('', _(u'Selecciona cuándo')),
@@ -10,7 +12,7 @@ WHEN_CHOICES = [
     ('4_year', _(u'4 años')),
 ]
 
-TOPIC_CHOICES = (('', _(u'Selecciona una categoría')),
+_TOPIC_CHOICES = (('', _(u'Selecciona una categoría')),
                  ('asistencia', _(u'Asistencia y protección social')),
                  ('ciencias', _(u'Ciencias')),
                  ('cultura', _(u'Cultura')),
@@ -52,6 +54,20 @@ TOPIC_CHOICES = (('', _(u'Selecciona una categoría')),
                  ('transporte', _(u'Transporte')),
                  ('espaciospublicos', _(u'Urbanismo y Espacios públicos')),
                  )
+def get_topic_choices():
+    if settings.THEME:
+        proposals_mod = '%s.proposals_categories' % settings.THEME
+        try:
+            m = importlib.import_module(proposals_mod)
+            topics_from_theme = getattr(m, '_TOPIC_CHOICES')
+            return topics_from_theme
+        except Exception as e:
+            print e
+
+    return _TOPIC_CHOICES
+
+TOPIC_CHOICES = get_topic_choices()
+
 TOPIC_CHOICES_DICT = dict(TOPIC_CHOICES)
 TEXTS = OrderedDict({
     'problem': {'label': _(u'El problema que se quiere solucionar es'),

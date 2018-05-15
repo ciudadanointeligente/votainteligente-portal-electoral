@@ -976,14 +976,6 @@
   pk: 1
   fields: {user: 9, proposal: 8, message: null, created: !!timestamp '2017-11-28 21:08:48.211750+00:00',
     updated: !!timestamp '2017-11-28 21:08:48.211791+00:00'}
-- model: suggestions_for_candidates.incrementalscandidatefilter
-  pk: 1
-  fields: {name: "Recomendaci\xF3n para Le\xF3n candidato a la presidencia", subject: '',
-    text: '', filter_qs: gAJ9cQFVAmlkcQJVBGxlb25xA3Mu, exclude_qs: gAJ9Lg==}
-- model: suggestions_for_candidates.proposalsuggestionforincremental
-  pk: 1
-  fields: {incremental: 1, proposal: 8, summary: La cultura es muy importante ...,
-    sent: false}
 - model: candidator.category
   pk: 1
   fields: {name: Postres, slug: postres}
@@ -1006,3 +998,10 @@
 - model: elections.questioncategory
   pk: 1
   fields: {election: 37}
+- model: agenda.activity
+  pk: 1
+  fields: {date: !!timestamp '2022-08-18 16:20:00+00:00', url: 'https://cidadaniainteligente.org',
+    location: Lapa perto dos arcos da Lapa, description: Atividade da teste, long_description: asdfasdfasdf,
+    background_image: agenda/activities/oque-e.jpg, updated: !!timestamp '2018-05-15
+      19:40:16.614666+00:00', created: !!timestamp '2018-05-15 19:40:16.642202+00:00',
+    content_type: 5, object_id: '8'}

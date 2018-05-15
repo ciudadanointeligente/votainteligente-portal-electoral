@@ -98,6 +98,25 @@ ROOT_URLCONF = 'merepresenta.stand_alone_urls'
 THEME = 'merepresenta'
 ```
 
+### Rio Por Inteiro
+Se você quiser trabalhar em #RioPorInteiro, você deve, além do acima, fazer o upload dos dados de amostra para o projeto.
+```
+./manage.py loaddata example_data.yaml
+./manage.py loaddata areas_cariocas_elecao_2018.yaml
+./manage.py constance set DEFAULT_AREA "rj"
+```
+
+E, finalmente, adicione ao arquivo `votainteligente/local_settings.py` (e crie o arquivo se você não tiver criado) o seguinte:
+```
+FILTERABLE_AREAS_TYPE=['município', ]
+THEME = "rioxinteiro"
+LANGUAGE_CODE = 'pt'
+```
+
+Cuidado: Se você está criando o arquivo, você precisará escrever isto na primeira linha:
+```
+# coding=utf-8
+```
 
 
 ### Temas creados anteriormente

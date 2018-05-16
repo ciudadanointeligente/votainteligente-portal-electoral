@@ -21,7 +21,7 @@ def filterable_areas(request):
 
 
 class TextSearchForm(Form):
-    text = CharField(label=u'Qué buscas?', required=False)
+    text = CharField(label=_(u'Qué buscas?'), required=False)
     order_by = ChoiceField(required=False,
                            label=_(u"Ordenar por"),
                            choices=[('', _(u'Por apoyos')),

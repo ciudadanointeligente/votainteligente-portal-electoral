@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-03 16:13+0000\n"
-"PO-Revision-Date: 2018-05-14 11:58-0300\n"
+"PO-Revision-Date: 2018-05-16 15:16-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: agenda/forms.py:23 backend_candidate/forms.py:237
 #: votai_general_theme/templates/backend_candidate/add_activity.html:20
@@ -107,7 +107,7 @@ msgstr "E-mail"
 
 #: backend_citizen/forms.py:53
 msgid "El nombre de usuario no tiene espacios ni acentos."
-msgstr "O nome de usuário não possui espaços ou acentos."
+msgstr "O nome de usuário não pode conter espaços ou acentos."
 
 #: backend_citizen/forms.py:65 backend_citizen/forms.py:70
 msgid "El nombre de tu organización"
@@ -376,19 +376,19 @@ msgstr "Organizar por"
 
 #: popular_proposal/filters.py:27
 msgid "Por apoyos"
-msgstr "Com mais apoio no começo"
+msgstr "Quantidade de apoios"
 
 #: popular_proposal/filters.py:28
 msgid "Últimas primero"
-msgstr "Último para o começo"
+msgstr "Últimas primeiro"
 
 #: popular_proposal/filters.py:29
 msgid "De organizaciones primero"
-msgstr "De organizações no começo"
+msgstr "Criada por organização no início"
 
 #: popular_proposal/filters.py:30
 msgid "Encuentros locales primero"
-msgstr "Encontros locais no começo"
+msgstr "Criada em encontro no início"
 
 #: popular_proposal/filters.py:46 popular_proposal/filters.py:124
 msgid "Selecciona"
@@ -400,7 +400,7 @@ msgstr "Classificação"
 
 #: popular_proposal/filters.py:119 popular_proposal/filters.py:125
 msgid "Comuna donde fue generada"
-msgstr "Comunidade onde foi gerada"
+msgstr "Local onde foi criada"
 
 #: popular_proposal/forms/form_texts.py:6
 msgid "Selecciona cuándo"
@@ -701,7 +701,7 @@ msgstr "Esta proposta é de prova"
 
 #: popular_proposal/forms/form_texts.py:106
 msgid "Sólo la podrás ver tu y nosotros podremos borrarlas periodicamente."
-msgstr ""
+msgstr "Só você pode vê-la e nós poderemos apagá-la eventualmente."
 
 #: popular_proposal/forms/forms.py:47 popular_proposal/forms/forms.py:100
 msgid "No aplica"
@@ -730,7 +730,7 @@ msgstr "Qual é a causa deste problema?"
 #: popular_proposal/forms/forms.py:80
 #: votai_general_theme/templates/popular_proposal/steps/tips_paso3.html:4
 msgid "¿Qué propuesta puede solucionar este problema?"
-msgstr ""
+msgstr "Qual proposta pode solucionar esse problema?"
 
 #: popular_proposal/forms/forms.py:93
 msgid "Resumen y título"
@@ -843,7 +843,7 @@ msgstr ""
 #: votai_general_theme/templates/popular_proposal/home.html:7
 #: votai_general_theme/templates/popular_proposal/home.html:11
 msgid "Propuestas Ciudadanas"
-msgstr "Propostas de cidadãos"
+msgstr "Propostas Cidadãs"
 
 #: popular_proposal/models.py:244
 #: votai_general_theme/templates/popular_proposal/detail.html:37
@@ -1087,7 +1087,7 @@ msgstr "Organização"
 
 #: votai_general_theme/templates/_login_tabs.html:16
 msgid "¿Tienes cuenta?"
-msgstr "Você tem uma conta?"
+msgstr "Você já tem uma conta?"
 
 #: votai_general_theme/templates/_login_tabs.html:30
 msgid "Registrate como organización"
@@ -2441,7 +2441,7 @@ msgstr ""
 msgid ""
 "La Media Naranja es un juego de preguntas para ver tu afinidad con las "
 "candidaturas que llegaron a la segunda vuelta presidencial de Chile. El "
-"contenido se basa en la información de los programas de gobierno de la "
+"contenido se basa en la información de los programas de gobierno de la "
 "candidaturas presidenciales, en los compromisos de las candidaturas con "
 "propuestas ciudadanas hechos en Vota Inteligente y en declaraciones hechas "
 "por los candidatos en medios de comunicación. Como cualquier juego, su "
@@ -2824,8 +2824,7 @@ msgstr "Leia o compromisso"
 msgid ""
 "Te invitamos a filtrar y encontrar propuestas ciudadanas en las siguientes "
 "áreas"
-msgstr ""
-"Convidamos você a filtrar e encontrar propostas cidadãs nas seguintes áreas"
+msgstr "Busque e encontre propostas nas seguintes áreas:"
 
 #: votai_general_theme/templates/popular_proposal/_lista_propuestas.html:33
 #: votai_general_theme/templates/popular_proposal/_lista_propuestas.html:39
@@ -4106,7 +4105,7 @@ msgstr "Entre"
 
 #: votai_general_theme/templates/registration/login.html:26
 msgid "Para apoyar una propuesta debes estar registrado."
-msgstr "Para apoiar uma proposta, você deve estar registrado."
+msgstr "Para apoiar uma proposta, você deve estar registrada/o."
 
 #: votai_general_theme/templates/registration/logout.html:4
 msgid "Logged out"
@@ -4114,7 +4113,7 @@ msgstr "Desconectado"
 
 #: votai_general_theme/templates/registration/password_change.html:6
 msgid "- Backend Ciudadano - Contraseña"
-msgstr ""
+msgstr "- Backend Ciudadão - Senha"
 
 #: votai_general_theme/templates/registration/password_change.html:16
 msgid "Cambia mi contraseña"

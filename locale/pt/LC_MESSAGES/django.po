@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-03 16:13+0000\n"
+"POT-Creation-Date: 2018-05-16 18:30+0000\n"
 "PO-Revision-Date: 2018-05-16 15:16-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -44,11 +44,11 @@ msgstr "Lugar onde a atividade será realizada"
 msgid "Imagen para promocionar tu actividad"
 msgstr "Imagem para promover sua atividade"
 
-#: agenda/models.py:18
+#: agenda/models.py:20
 msgid "Una imagen para el evento"
 msgstr "Uma imagem para o evento"
 
-#: agenda/models.py:19
+#: agenda/models.py:21
 msgid "será la imagen que utilicemos en la lista de eventos"
 msgstr "será a imagem que usaremos na lista de eventos"
 
@@ -225,8 +225,9 @@ msgid "Mis Elecciones"
 msgstr "Minhas eleições"
 
 #: merepresenta/templates/backend_base.html:23
-#: votai_general_theme/templates/backend_base.html:45
-#: votai_general_theme/templates/backend_base.html:63
+#: votai_general_theme/templates/backend_base.html:62
+#: votai_general_theme/templates/backend_candidate/menu.html:47
+#: votai_general_theme/templates/backend_citizen/menu.html:58
 #: votai_general_theme/templates/registration/password_change.html:11
 msgid "Cambia tu contraseña"
 msgstr "Mude sua senha"
@@ -366,9 +367,15 @@ msgstr "Baixada"
 msgid "Color secundario"
 msgstr "Cor secundária"
 
-#: organization_profiles/models.py:181 popular_proposal/forms/form_texts.py:80
+#: organization_profiles/models.py:181 popular_proposal/forms/form_texts.py:96
 msgid "Título"
 msgstr "Título"
+
+#: popular_proposal/filters.py:24
+#, fuzzy
+#| msgid "Qué buscaste"
+msgid "Qué buscas?"
+msgstr "O que você está buscava?"
 
 #: popular_proposal/filters.py:26
 msgid "Ordenar por"
@@ -394,7 +401,7 @@ msgstr "Criada em encontro no início"
 msgid "Selecciona"
 msgstr "Selecione"
 
-#: popular_proposal/filters.py:48 popular_proposal/forms/form_texts.py:85
+#: popular_proposal/filters.py:48 popular_proposal/forms/form_texts.py:101
 msgid "Clasificación"
 msgstr "Classificação"
 
@@ -402,218 +409,219 @@ msgstr "Classificação"
 msgid "Comuna donde fue generada"
 msgstr "Local onde foi criada"
 
-#: popular_proposal/forms/form_texts.py:6
+#: popular_proposal/forms/form_texts.py:8
 msgid "Selecciona cuándo"
 msgstr "Selecione quando"
 
-#: popular_proposal/forms/form_texts.py:7
-#: popular_proposal/forms/form_texts.py:77
+#: popular_proposal/forms/form_texts.py:9
+#: popular_proposal/forms/form_texts.py:93
 msgid "1 año"
 msgstr "1 ano"
 
-#: popular_proposal/forms/form_texts.py:8
+#: popular_proposal/forms/form_texts.py:10
 msgid "2 años"
 msgstr "2 anos"
 
-#: popular_proposal/forms/form_texts.py:9
+#: popular_proposal/forms/form_texts.py:11
 msgid "3 años"
 msgstr "3 anos"
 
-#: popular_proposal/forms/form_texts.py:10
+#: popular_proposal/forms/form_texts.py:12
 msgid "4 años"
 msgstr "4 anos"
 
-#: popular_proposal/forms/form_texts.py:13
-#: popular_proposal/forms/form_texts.py:84
+#: popular_proposal/forms/form_texts.py:15
+#: popular_proposal/forms/form_texts.py:100
+#: rioxinteiro/proposals_categories.py:4
 msgid "Selecciona una categoría"
 msgstr "Selecione uma categoria"
 
-#: popular_proposal/forms/form_texts.py:14
+#: popular_proposal/forms/form_texts.py:16
 msgid "Asistencia y protección social"
 msgstr "Assistência e proteção social"
 
-#: popular_proposal/forms/form_texts.py:15
+#: popular_proposal/forms/form_texts.py:17
 msgid "Ciencias"
 msgstr "Ciências"
 
-#: popular_proposal/forms/form_texts.py:16
+#: popular_proposal/forms/form_texts.py:18
 msgid "Cultura"
 msgstr "Cultura"
 
-#: popular_proposal/forms/form_texts.py:17
+#: popular_proposal/forms/form_texts.py:19
 msgid "Democracia"
 msgstr "Democracia"
 
-#: popular_proposal/forms/form_texts.py:18
+#: popular_proposal/forms/form_texts.py:20
 msgid "Deporte"
 msgstr "Esporte"
 
-#: popular_proposal/forms/form_texts.py:19
+#: popular_proposal/forms/form_texts.py:21
 msgid "Derechos Humanos"
 msgstr "Direitos humanos"
 
-#: popular_proposal/forms/form_texts.py:20
+#: popular_proposal/forms/form_texts.py:22
 msgid "Derechos Sociales"
 msgstr "Direitos Sociais"
 
-#: popular_proposal/forms/form_texts.py:21
+#: popular_proposal/forms/form_texts.py:23
 msgid "Descentralización"
 msgstr "Descentralização"
 
-#: popular_proposal/forms/form_texts.py:22
+#: popular_proposal/forms/form_texts.py:24
 msgid "Desastres Naturales"
 msgstr "Desastres naturais"
 
-#: popular_proposal/forms/form_texts.py:23
+#: popular_proposal/forms/form_texts.py:25
 msgid "Economía"
 msgstr "Economia"
 
-#: popular_proposal/forms/form_texts.py:24
+#: popular_proposal/forms/form_texts.py:26
 msgid "Educación"
 msgstr "Educação"
 
-#: popular_proposal/forms/form_texts.py:25
+#: popular_proposal/forms/form_texts.py:27
 msgid "Empleo"
 msgstr "Emprego"
 
-#: popular_proposal/forms/form_texts.py:26
+#: popular_proposal/forms/form_texts.py:28
 msgid "Emprendimiento"
 msgstr "Empreendedorismo"
 
-#: popular_proposal/forms/form_texts.py:27
+#: popular_proposal/forms/form_texts.py:29
 msgid "Energía"
 msgstr "Energia"
 
-#: popular_proposal/forms/form_texts.py:28
+#: popular_proposal/forms/form_texts.py:30
 msgid "Equidad y género"
 msgstr "Equidade e gênero"
 
-#: popular_proposal/forms/form_texts.py:29
+#: popular_proposal/forms/form_texts.py:31
 msgid "Inclusión"
 msgstr "Inclusão"
 
-#: popular_proposal/forms/form_texts.py:30
+#: popular_proposal/forms/form_texts.py:32
 msgid "Instituciones Públicas"
 msgstr "Instituições Públicas"
 
-#: popular_proposal/forms/form_texts.py:31
+#: popular_proposal/forms/form_texts.py:33
 msgid "Infancia y juventud"
 msgstr "Infância e juventude"
 
-#: popular_proposal/forms/form_texts.py:32
+#: popular_proposal/forms/form_texts.py:34
 msgid "Justicia"
 msgstr "Justiça"
 
-#: popular_proposal/forms/form_texts.py:33
-#: popular_proposal/forms/form_texts.py:86
+#: popular_proposal/forms/form_texts.py:35
+#: popular_proposal/forms/form_texts.py:102
 msgid "Medio ambiente"
 msgstr "Meio ambiente"
 
-#: popular_proposal/forms/form_texts.py:34
+#: popular_proposal/forms/form_texts.py:36
 msgid "Medios de comunicación"
 msgstr "Meios de comunicação"
 
-#: popular_proposal/forms/form_texts.py:35
+#: popular_proposal/forms/form_texts.py:37
 msgid "Migración"
 msgstr "Migração"
 
-#: popular_proposal/forms/form_texts.py:36
+#: popular_proposal/forms/form_texts.py:38
 msgid "Minería"
 msgstr "Mineração"
 
-#: popular_proposal/forms/form_texts.py:37
+#: popular_proposal/forms/form_texts.py:39
 msgid "Ocio"
 msgstr "Lazer"
 
-#: popular_proposal/forms/form_texts.py:38
+#: popular_proposal/forms/form_texts.py:40
 msgid "Pensiones"
 msgstr "Pensões"
 
-#: popular_proposal/forms/form_texts.py:39
+#: popular_proposal/forms/form_texts.py:41
 msgid "Participación"
 msgstr "Participação"
 
-#: popular_proposal/forms/form_texts.py:40
+#: popular_proposal/forms/form_texts.py:42
 msgid "Previsión"
 msgstr "Previsão"
 
-#: popular_proposal/forms/form_texts.py:41
+#: popular_proposal/forms/form_texts.py:43
 msgid "Probidad"
 msgstr "Probidade"
 
-#: popular_proposal/forms/form_texts.py:42
+#: popular_proposal/forms/form_texts.py:44
 msgid "Protección social"
 msgstr "Proteção social"
 
-#: popular_proposal/forms/form_texts.py:43
+#: popular_proposal/forms/form_texts.py:45
 msgid "Pueblos originarios"
 msgstr "Povos nativos"
 
-#: popular_proposal/forms/form_texts.py:44
+#: popular_proposal/forms/form_texts.py:46
 msgid "Recursos naturales"
 msgstr "Recursos naturais"
 
-#: popular_proposal/forms/form_texts.py:45
+#: popular_proposal/forms/form_texts.py:47
 msgid "Salud"
 msgstr "Saúde"
 
-#: popular_proposal/forms/form_texts.py:46
+#: popular_proposal/forms/form_texts.py:48
 msgid "Seguridad"
 msgstr "Segurança"
 
-#: popular_proposal/forms/form_texts.py:47
+#: popular_proposal/forms/form_texts.py:49
 msgid "Sustentabilidad"
 msgstr "Sustentabilidade"
 
-#: popular_proposal/forms/form_texts.py:48
+#: popular_proposal/forms/form_texts.py:50
 msgid "Adulto mayor"
 msgstr "Adulto mais velho"
 
-#: popular_proposal/forms/form_texts.py:49
+#: popular_proposal/forms/form_texts.py:51
 msgid "Protección animal"
 msgstr "Proteção animal"
 
-#: popular_proposal/forms/form_texts.py:50
+#: popular_proposal/forms/form_texts.py:52
 msgid "Trabajo"
 msgstr "Trabalho"
 
-#: popular_proposal/forms/form_texts.py:51
+#: popular_proposal/forms/form_texts.py:53
 msgid "Transparencia"
 msgstr "Transparência"
 
-#: popular_proposal/forms/form_texts.py:52
+#: popular_proposal/forms/form_texts.py:54
 msgid "Transporte"
 msgstr "Transporte"
 
-#: popular_proposal/forms/form_texts.py:53
+#: popular_proposal/forms/form_texts.py:55
 msgid "Urbanismo y Espacios públicos"
 msgstr "Planejamento Urbano e Espaços Públicos"
 
-#: popular_proposal/forms/form_texts.py:57
+#: popular_proposal/forms/form_texts.py:73
 msgid "El problema que se quiere solucionar es"
 msgstr "O problema que você quer resolver é"
 
-#: popular_proposal/forms/form_texts.py:58 popular_proposal/forms/forms.py:55
+#: popular_proposal/forms/form_texts.py:74 popular_proposal/forms/forms.py:55
 msgid "¿Cuál es el problema que quieres solucionar?"
 msgstr "Qual é o problema que você quer resolver?"
 
-#: popular_proposal/forms/form_texts.py:59
+#: popular_proposal/forms/form_texts.py:75
 msgid "Contaminación en la ciudad"
 msgstr "Poluição na cidade"
 
-#: popular_proposal/forms/form_texts.py:60
+#: popular_proposal/forms/form_texts.py:76
 msgid "Escribe el problema que quieres solucionar con tu propuesta."
 msgstr "Escreva o problema que deseja resolver com sua proposta."
 
-#: popular_proposal/forms/form_texts.py:62
+#: popular_proposal/forms/form_texts.py:78
 msgid "La causa de este problema es"
 msgstr "A causa deste problema é"
 
-#: popular_proposal/forms/form_texts.py:63
+#: popular_proposal/forms/form_texts.py:79
 msgid "Cuáles son las causas de este problema?"
 msgstr "Quais são as causas deste problema?"
 
-#: popular_proposal/forms/form_texts.py:64
+#: popular_proposal/forms/form_texts.py:80
 msgid ""
 "Escribe aquí la causa de tu problema que quieres abordar. Recuerda solo "
 "escribir una."
@@ -621,7 +629,7 @@ msgstr ""
 "Escreva aqui a causa do seu problema que você deseja resolver. Lembre-se de "
 "apenas escrever um."
 
-#: popular_proposal/forms/form_texts.py:66
+#: popular_proposal/forms/form_texts.py:82
 msgid ""
 "¿Cuáles posibles soluciones creemos que existen para pasar del problema a la "
 "situación ideal?"
@@ -629,23 +637,23 @@ msgstr ""
 "Quais as possíveis soluções que acreditamos existir para passar do problema "
 "para a situação ideal?"
 
-#: popular_proposal/forms/form_texts.py:67
+#: popular_proposal/forms/form_texts.py:83
 msgid "¿Cual sería la situación ideal?"
 msgstr "Qual seria a situação ideal?"
 
-#: popular_proposal/forms/form_texts.py:69
+#: popular_proposal/forms/form_texts.py:85
 msgid "Escribe aquí la situación ideal a la que quieres llegar."
 msgstr "Escreva aqui a situação ideal que você deseja alcançar."
 
-#: popular_proposal/forms/form_texts.py:71
+#: popular_proposal/forms/form_texts.py:87
 msgid "La propuesta para solucionar este problema es"
 msgstr "A proposta para resolver este problema é"
 
-#: popular_proposal/forms/form_texts.py:72
+#: popular_proposal/forms/form_texts.py:88
 msgid "¿Cuál sería la solución?"
 msgstr "Qual seria a solução?"
 
-#: popular_proposal/forms/form_texts.py:73
+#: popular_proposal/forms/form_texts.py:89
 msgid ""
 "Se puede regular el uso de bolsas plásticas en los supermercados a solo tres "
 "por persona, las otras bolsas que se usen deben ser reutilizables."
@@ -653,53 +661,53 @@ msgstr ""
 "Você pode regular o uso de sacolas plásticas nos supermercados para apenas "
 "três por pessoa, as outras sacolas usadas devem ser reutilizáveis."
 
-#: popular_proposal/forms/form_texts.py:74
+#: popular_proposal/forms/form_texts.py:90
 msgid "Escribe aquí la solucion para el problema que definiste."
 msgstr "Escreva aqui a solução para o problema que você definiu."
 
-#: popular_proposal/forms/form_texts.py:75
+#: popular_proposal/forms/form_texts.py:91
 msgid "Tiempo en el cual se puede llevar a cabo la propuesta"
 msgstr "Tempo em que a proposta pode ser realizada"
 
-#: popular_proposal/forms/form_texts.py:76
+#: popular_proposal/forms/form_texts.py:92
 msgid "¿Cuándo debería estar esto listo?"
 msgstr "Quando deveria ficar pronto?"
 
-#: popular_proposal/forms/form_texts.py:79
+#: popular_proposal/forms/form_texts.py:95
 msgid "Colócale título"
 msgstr "Coloque o título"
 
-#: popular_proposal/forms/form_texts.py:82
+#: popular_proposal/forms/form_texts.py:98
 msgid "Título de la propuesta"
 msgstr "Título da proposta"
 
-#: popular_proposal/forms/form_texts.py:89
+#: popular_proposal/forms/form_texts.py:105
 msgid "¿Esta propuesta es producto de un encuentro local?"
 msgstr "Esta proposta é o produto de uma encontro local?"
 
-#: popular_proposal/forms/form_texts.py:90
-#: popular_proposal/forms/form_texts.py:95
+#: popular_proposal/forms/form_texts.py:106
+#: popular_proposal/forms/form_texts.py:111
 msgid "¿Es un encuentro local?"
 msgstr "É um encontro local?"
 
-#: popular_proposal/forms/form_texts.py:94 popular_proposal/forms/forms.py:196
+#: popular_proposal/forms/form_texts.py:110 popular_proposal/forms/forms.py:196
 msgid "¿En qué comuna se generó esta propuesta?"
 msgstr "Em que município essa proposta foi gerada?"
 
-#: popular_proposal/forms/form_texts.py:96 popular_proposal/forms/forms.py:203
+#: popular_proposal/forms/form_texts.py:112 popular_proposal/forms/forms.py:203
 msgid "Si eres una ONG de vocación nacional, esta opción no aplica"
 msgstr "Se você é uma ONG com vocação nacional, esta opção não se aplica"
 
-#: popular_proposal/forms/form_texts.py:99
+#: popular_proposal/forms/form_texts.py:115
 #: votai_general_theme/templates/popular_proposal/wizard/paso5.html:64
 msgid "Términos y condiciones"
 msgstr "Termos e Condições"
 
-#: popular_proposal/forms/form_texts.py:104
+#: popular_proposal/forms/form_texts.py:120
 msgid "Esta propuesta es de prueba"
 msgstr "Esta proposta é de prova"
 
-#: popular_proposal/forms/form_texts.py:106
+#: popular_proposal/forms/form_texts.py:122
 msgid "Sólo la podrás ver tu y nosotros podremos borrarlas periodicamente."
 msgstr "Só você pode vê-la e nós poderemos apagá-la eventualmente."
 
@@ -982,14 +990,81 @@ msgstr ""
 msgid "Un proyecto de"
 msgstr "Um projeto de"
 
-#: rioxinteiro/templates/_footer.html:18
-#: votai_general_theme/templates/_footer.html:18
-msgid "Dedicatoria y Agradecimientos"
-msgstr ""
-
 #: rioxinteiro/templates/_navbar.html:26
 msgid "Mobilize"
 msgstr ""
+
+#: rioxinteiro/templates/que_es.html:17
+#: votai_general_theme/templates/que_es.html:17
+#, python-format
+msgid ""
+"\n"
+"\t\t\tVota Inteligente es un plataforma desarrollada por <b><a href=\"//www."
+"ciudadanointeligente.org/\" target=\"_blank\" onclick="
+"\"ga('send','event','que-es-ciudadanoi','click')\">Ciudadano Inteligente</"
+"a></b> que busca cambiar la forma en que se viven las elecciones en Chile "
+"para que esta vez sean los ciudadanos y ciudadanas los que hagan sus "
+"propuestas a las candidaturas.</p><p>En la plataforma cualquier persona, "
+"organización, colectivo o grupo de personas pueden generar sus propias "
+"propuestas que aborden los temas que más les preocupan o inquietan. Desde "
+"Ciudadano Inteligente le haremos llegar las propuestas que se levanten a "
+"todas las candidaturas presidenciales y parlamentarias y éstas se podrán "
+"comprometer en la misma plataforma a llevarlas a cabo y cumplirlas en caso "
+"de resultar electas.</p><p>Una vez subidas en la página, cualquier persona "
+"puede conocer y apoyar las propuestas a través de un “APOYAR <i class=\"fa "
+"fa-heart\" aria-hidden=\"true\"></i>”. Además, las organizaciones no "
+"gubernamentales que participen de la plataforma pueden patrocinar propuestas "
+"de otras personas u organizaciones.</p><p>Desde Vota Inteligente promovemos "
+"que las propuestas sean construidas colectivamente. Para eso hemos creado "
+"una Metodología de Encuentro para que la creación de nuestras propuestas sea "
+"un espacio de convivencia y diálogo entre personas, amigos, vecinos y "
+"comunidades. Juntas de vecinos, clubes deportivos, sindicatos, gremios, "
+"colectivos y organizaciones de todo tipo están invitados a hacer sus "
+"propuestas y a organizar encuentros para debatir en conjunto acerca del país "
+"que la ciudadanía sueña. (<b><a href=\"%(encuentro_ciudadano_url)s\" onclick="
+"\"ga('send','event','que-es-encuentro','click')\">Acá</a></b> puedes "
+"encontrar información de cómo hacer tu propio encuentro).</p><p>Las "
+"elecciones son el momento en que se define el futuro de nuestro país y es "
+"fundamental que toda la ciudadanía tenga un voz y opinión en este proceso. "
+"El voto no es la única forma de participar, desde Vota Inteligente puedes ir "
+"más allá creando tu propuesta, compartirla con tus amistades y apoyar las "
+"que más te gusten para que juntos hagamos sentir, más fuerte que nunca, la "
+"voz de la ciudadanía en estas elecciones que son nuestras. "
+"<b>#LaElecciónEsNuestra</b>\n"
+"\t\t"
+msgstr ""
+"\n"
+"\t\t\tVota Inteligente é uma plataforma desenvolvida por <b><a href=“//www."
+"ciudadanointeligente.org/“ target=“_blank” onclick=“ga(‘send’,’event’,’que-"
+"es-ciudadanoi’,’click’)”>Cidadania Inteligente</a></b> que busca mudar a "
+"forma como as eleições são vividas no Estado do Rio de Janeiro, para que "
+"dessa vez sejam cidadãs e cidadãos que façam suas propostas para as "
+"candidaturas.</p><p>Na plataforma qualquer pessoa, organização, coletivo ou "
+"grupo de pessoas podem gerar suas próprias propostas, abordando temas que "
+"mais lhes preocupam ou inquietam. A partir da Cidadania Inteligente, faremos "
+"com que as propostas cheguem à candidatas e candidatos, estas podem ser "
+"comprometidas na mesma plataforma para realizá-las e cumpri-las no caso de "
+"serem eleitos/as.</p><p> Uma vez carregadas na página, qualquer pessoa pode "
+"conhecer e apoiar as propostas através de um “APOIO” <i class=“fa fa-heart” "
+"aria-hidden=“true”></i>”. Além disso, organizações que participam da "
+"plataforma podem patrocinar propostas de outras pessoas ou organizações.</"
+"p><p>Da Vota Inteligente promovemos que as propostas sejam construídas "
+"coletivamente. Para isso criamos uma Metodologia do Encontro para que a "
+"criação de nossas propostas seja um espaço de convivência e diálogo entre "
+"pessoas, amigos, vizinhos e comunidades. Junto da vizinhança, sindicatos, "
+"grêmios, coletivos e organizações de todo tipo, estão convidados a fazer "
+"suas propostas e organizar encontros para debater em conjunto acerca do país "
+"que a cidadania sonha. (<b><a href=“%(encuentro_ciudadano_url)s” "
+"onclick=“ga(‘send’,’event’,’que-es-encuentro’,’click’)”>Aqui</a></b> você "
+"pode encontrar informação de como fazer seu próprio encontro).</p><p>As "
+"eleições são o momento em que se define o futuro o país e é fundamental que "
+"toda a cidadania tenha uma voz e opinião nesse processo. O voto não é a "
+"única forma de participar, a partir de Vota Inteligente podemos ir mais "
+"longe criando sua proposta, compartilhando com sua rede e apoiando as "
+"proposta de que mais gosta, para que juntos façamos sentir, mais forte do "
+"que nunca, a voz da cidadania nas eleições que são nossas."
+"<b>#LaElecciónEsNuestra</b> \n"
+"\t\t"
 
 #: suggestions_for_candidates/admin.py:17
 msgid "Enviarle los filtros a los candidatos"
@@ -1010,6 +1085,21 @@ msgid ""
 "desde el <a href=\"/\">home.</a></p></h2>\n"
 "              "
 msgstr ""
+
+#: votai_general_theme/templates/_candidate_small.html:18
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "        Hay %(proposals_count)s\n"
+#| "      "
+msgid ""
+"\n"
+"          %(commitments_count)s compromisos\n"
+"        "
+msgstr ""
+"\n"
+"        Existem %(proposals_count)s\n"
+"      "
 
 #: votai_general_theme/templates/_dropdown_user.html:15
 msgid "Sección de administración"
@@ -1039,11 +1129,11 @@ msgstr "Editar meu perfil"
 msgid "Todos los compromisos"
 msgstr "Todos os compromissos"
 
-#: votai_general_theme/templates/_dropdown_user.html:45
+#: votai_general_theme/templates/_dropdown_user.html:47
 msgid "Salir"
 msgstr "Saída"
 
-#: votai_general_theme/templates/_dropdown_user.html:51
+#: votai_general_theme/templates/_dropdown_user.html:53
 #: votai_general_theme/templates/registration/password_reset_complete.html:10
 msgid "Ingresar"
 msgstr "Entrar"
@@ -1054,6 +1144,10 @@ msgstr ""
 
 #: votai_general_theme/templates/_election_search_form.html:21
 msgid "Resultado para "
+msgstr ""
+
+#: votai_general_theme/templates/_footer.html:18
+msgid "Dedicatoria y Agradecimientos"
 msgstr ""
 
 #: votai_general_theme/templates/_login_section.html:8
@@ -1154,7 +1248,19 @@ msgstr "Fechar"
 msgid "Tu agenda de actividades"
 msgstr "Minha agenda de atividades"
 
-#: votai_general_theme/templates/backend_base.html:53
+#: votai_general_theme/templates/agenda/all_activities.html:12
+#, fuzzy
+#| msgid "Agrega una actividad a tu agenda."
+msgid "Agrega una actividad a la agenda."
+msgstr "Adicione uma atividade ao seu calendário."
+
+#: votai_general_theme/templates/agenda/all_activities.html:14
+msgid ""
+"Para adicionar um evento você precisa ter um perfil na plataforma. clique "
+"aqui!"
+msgstr ""
+
+#: votai_general_theme/templates/backend_base.html:50
 msgid "Menú"
 msgstr "Menu"
 
@@ -1456,34 +1562,34 @@ msgstr "Sim"
 msgid "No"
 msgstr ""
 
-#: votai_general_theme/templates/backend_citizen/menu.html:8
+#: votai_general_theme/templates/backend_citizen/menu.html:9
 msgid "Mis propuestas"
 msgstr "Minhas propostas"
 
-#: votai_general_theme/templates/backend_citizen/menu.html:12
+#: votai_general_theme/templates/backend_citizen/menu.html:13
 msgid "Mis apoyos"
 msgstr "Meus suportes"
 
-#: votai_general_theme/templates/backend_citizen/menu.html:17
+#: votai_general_theme/templates/backend_citizen/menu.html:18
 msgid "Mis eventos"
 msgstr "Mobilização"
 
-#: votai_general_theme/templates/backend_citizen/menu.html:25
+#: votai_general_theme/templates/backend_citizen/menu.html:26
 msgid "Actualizar mi organización"
 msgstr "Atualizar minha organização"
 
-#: votai_general_theme/templates/backend_citizen/menu.html:27
+#: votai_general_theme/templates/backend_citizen/menu.html:28
 msgid ""
 "\n"
 "      Pagina Organizacion\n"
 "    "
 msgstr ""
 
-#: votai_general_theme/templates/backend_citizen/menu.html:39
+#: votai_general_theme/templates/backend_citizen/menu.html:41
 msgid "Mi perfil"
 msgstr "Meu perfil"
 
-#: votai_general_theme/templates/backend_citizen/menu.html:51
+#: votai_general_theme/templates/backend_citizen/menu.html:53
 msgid "Búsquedas"
 msgstr "Buscas"
 
@@ -2441,7 +2547,7 @@ msgstr ""
 msgid ""
 "La Media Naranja es un juego de preguntas para ver tu afinidad con las "
 "candidaturas que llegaron a la segunda vuelta presidencial de Chile. El "
-"contenido se basa en la información de los programas de gobierno de la "
+"contenido se basa en la información de los programas de gobierno de la "
 "candidaturas presidenciales, en los compromisos de las candidaturas con "
 "propuestas ciudadanas hechos en Vota Inteligente y en declaraciones hechas "
 "por los candidatos en medios de comunicación. Como cualquier juego, su "
@@ -3914,77 +4020,6 @@ msgstr "Obrigado, você foi inscrita/o com sucesso."
 #: votai_general_theme/templates/que_es.html:9
 msgid "¿Qué es Vota Inteligente?"
 msgstr "O que é Vota Inteligente?"
-
-#: votai_general_theme/templates/que_es.html:17
-#, python-format
-msgid ""
-"\n"
-"\t\t\tVota Inteligente es un plataforma desarrollada por <b><a href=\"//www."
-"ciudadanointeligente.org/\" target=\"_blank\" onclick="
-"\"ga('send','event','que-es-ciudadanoi','click')\">Ciudadano Inteligente</"
-"a></b> que busca cambiar la forma en que se viven las elecciones en Chile "
-"para que esta vez sean los ciudadanos y ciudadanas los que hagan sus "
-"propuestas a las candidaturas.</p><p>En la plataforma cualquier persona, "
-"organización, colectivo o grupo de personas pueden generar sus propias "
-"propuestas que aborden los temas que más les preocupan o inquietan. Desde "
-"Ciudadano Inteligente le haremos llegar las propuestas que se levanten a "
-"todas las candidaturas presidenciales y parlamentarias y éstas se podrán "
-"comprometer en la misma plataforma a llevarlas a cabo y cumplirlas en caso "
-"de resultar electas.</p><p>Una vez subidas en la página, cualquier persona "
-"puede conocer y apoyar las propuestas a través de un “APOYAR <i class=\"fa "
-"fa-heart\" aria-hidden=\"true\"></i>”. Además, las organizaciones no "
-"gubernamentales que participen de la plataforma pueden patrocinar propuestas "
-"de otras personas u organizaciones.</p><p>Desde Vota Inteligente promovemos "
-"que las propuestas sean construidas colectivamente. Para eso hemos creado "
-"una Metodología de Encuentro para que la creación de nuestras propuestas sea "
-"un espacio de convivencia y diálogo entre personas, amigos, vecinos y "
-"comunidades. Juntas de vecinos, clubes deportivos, sindicatos, gremios, "
-"colectivos y organizaciones de todo tipo están invitados a hacer sus "
-"propuestas y a organizar encuentros para debatir en conjunto acerca del país "
-"que la ciudadanía sueña. (<b><a href=\"%(encuentro_ciudadano_url)s\" onclick="
-"\"ga('send','event','que-es-encuentro','click')\">Acá</a></b> puedes "
-"encontrar información de cómo hacer tu propio encuentro).</p><p>Las "
-"elecciones son el momento en que se define el futuro de nuestro país y es "
-"fundamental que toda la ciudadanía tenga un voz y opinión en este proceso. "
-"El voto no es la única forma de participar, desde Vota Inteligente puedes ir "
-"más allá creando tu propuesta, compartirla con tus amistades y apoyar las "
-"que más te gusten para que juntos hagamos sentir, más fuerte que nunca, la "
-"voz de la ciudadanía en estas elecciones que son nuestras. "
-"<b>#LaElecciónEsNuestra</b>\n"
-"\t\t"
-msgstr ""
-"\n"
-"\t\t\tVota Inteligente é uma plataforma desenvolvida por <b><a href=“//www."
-"ciudadanointeligente.org/“ target=“_blank” onclick=“ga(‘send’,’event’,’que-"
-"es-ciudadanoi’,’click’)”>Cidadania Inteligente</a></b> que busca mudar a "
-"forma como as eleições são vividas no Estado do Rio de Janeiro, para que "
-"dessa vez sejam cidadãs e cidadãos que façam suas propostas para as "
-"candidaturas.</p><p>Na plataforma qualquer pessoa, organização, coletivo ou "
-"grupo de pessoas podem gerar suas próprias propostas, abordando temas que "
-"mais lhes preocupam ou inquietam. A partir da Cidadania Inteligente, faremos "
-"com que as propostas cheguem à candidatas e candidatos, estas podem ser "
-"comprometidas na mesma plataforma para realizá-las e cumpri-las no caso de "
-"serem eleitos/as.</p><p> Uma vez carregadas na página, qualquer pessoa pode "
-"conhecer e apoiar as propostas através de um “APOIO” <i class=“fa fa-heart” "
-"aria-hidden=“true”></i>”. Além disso, organizações que participam da "
-"plataforma podem patrocinar propostas de outras pessoas ou organizações.</"
-"p><p>Da Vota Inteligente promovemos que as propostas sejam construídas "
-"coletivamente. Para isso criamos uma Metodologia do Encontro para que a "
-"criação de nossas propostas seja um espaço de convivência e diálogo entre "
-"pessoas, amigos, vizinhos e comunidades. Junto da vizinhança, sindicatos, "
-"grêmios, coletivos e organizações de todo tipo, estão convidados a fazer "
-"suas propostas e organizar encontros para debater em conjunto acerca do país "
-"que a cidadania sonha. (<b><a href=“%(encuentro_ciudadano_url)s” "
-"onclick=“ga(‘send’,’event’,’que-es-encuentro’,’click’)”>Aqui</a></b> você "
-"pode encontrar informação de como fazer seu próprio encontro).</p><p>As "
-"eleições são o momento em que se define o futuro o país e é fundamental que "
-"toda a cidadania tenha uma voz e opinião nesse processo. O voto não é a "
-"única forma de participar, a partir de Vota Inteligente podemos ir mais "
-"longe criando sua proposta, compartilhando com sua rede e apoiando as "
-"proposta de que mais gosta, para que juntos façamos sentir, mais forte do "
-"que nunca, a voz da cidadania nas eleições que são nossas."
-"<b>#LaElecciónEsNuestra</b> \n"
-"\t\t"
 
 #: votai_general_theme/templates/registration/activate.html:4
 #: votai_general_theme/templates/registration/activation_complete.html:4

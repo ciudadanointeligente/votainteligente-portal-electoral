@@ -1,0 +1,31 @@
+{%load votainteligente_extras%}
+Hola {{user}}:<br/ >
+Escribimos para contarte lo que ha ocurrido con tus propuestas en el último
+tiempo:<br/ >{% for proposal in proposals %}
+Con <strong>{{proposal.proposal}}</strong>:<br/ >
+<ul>
+<li>Obtuvo {{proposal.analytics.visits}} visitas.</li>
+<li>Obtuvo {{proposal.analytics.commitments}} compromisos.</li>
+<li>Obtuvo {{proposal.analytics.likers}} apoyos ciudadanos.</li>
+</ul><br />
+{% endfor %}
+{% if new_proposals %}
+Además, te queríamos contar que durante el último tiempo recibimos algunas
+propuestas ciudadanas que podrían ser de tu interés.<br />
+<ul>
+{% for proposal in new_proposals %}
+<li><a href="https://{{site.domain}}{{proposal.get_absolute_url}}">{{proposal.title}}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if not config.PERIODIC_REPORTS_ENABLED %}
+<hr>
+Querido miembro del staff:<br>
+El envío periódico de reportes como este está deshabilitado!!!!!!!!! y te llega a ti por que eres un privilegiado. <br>
+Recuerda tu consciencia de clase.<br>
+Besos el que programó esta wea.<br>
+
+<hr>
+{% endif %}
+{% mail_signature_txt %}

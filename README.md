@@ -81,6 +81,28 @@ Puede tomar algo de tiempo el tener todo instalado
 
 y entra a  http://localhost:8000/.
 
+## Datos de ejemplo:
+Se pueden utilizar algunos datos de ejemplo previamente creados:
+Usuarios de ejemplo:
+
+```
+./manage.py loaddata example_data.yaml
+```
+#### Usuarios normales, comunes y corrientes que no hacen nada especial
+user: proponedor
+pass: p
+#### Organizaciones
+user: organizacion
+pass: o
+#### Candidatos
+--------------
+user: senador
+pass: s
+--------------
+user: presidente
+pass: p
+
+
 ## Temas
 ### #MeRepresenta
 Se você quiser trabalhar em #MeRepresenta, você deve, além do acima, fazer o upload dos dados de amostra para o projeto.
@@ -118,25 +140,15 @@ Cuidado: Se você está criando o arquivo, você precisará escrever isto na pri
 # coding=utf-8
 ```
 
+### Correr la aplicación
 
-### Temas creados anteriormente
-
-* [votainteligente-venezuela-theme](https://github.com/ciudadanointeligente/votainteligente-venezuela-theme) es el tema para [eligetucandidato.org](http://eligetucandidato.org/)
-
-### Creando tu propio tema personalizado
-
-Si desea crear un nuevo tema, debe crear un directorio que contenga dos subdirectorios, plantillas y elementos estáticos, y copia las plantillas que desea reemplazar.
-
-Y en su proyecto en tu archivo local_settings.py, tienes que agregar lo siguiente
+Podemos correr la aplicación con el siguiente comando:
 
 ```
- STATICFILES_DIRS = (
-     '/full/path/to/your/theme/static/',
- )
- TEMPLATE_DIRS = (
-     '/full/path/to/your/theme/templates/',
- )
+./manage.py runserver
 ```
+y accedemos a [Localhost:8000](http://localhost:8000)
+
 ## Testeo
 ---
 

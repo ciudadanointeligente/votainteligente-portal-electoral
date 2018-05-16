@@ -41,3 +41,7 @@
     </a>
   </li>
 {% endfor %}
+{% url 'password_reset' as password_reset %}
+ <li role="presentation" class="{% ifequal request.path password_reset %} active{% endifequal %} hidden-xs">
+  <a class="small" href="{{password_reset}}">
+  {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>

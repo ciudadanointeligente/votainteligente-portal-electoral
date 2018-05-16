@@ -7,7 +7,7 @@
 
 {% block content %}
   <script type="text/javascript" src="{% static 'js/jquery.gridAccordion.min.js' %}"></script>
-  
+
 <script src="{% static 'js/bootstrap-datetimepicker.js' %}"></script>
 <link href="{% static 'css/bootstrap-datetimepicker.css' %}" rel='stylesheet' type='text/css'>
   <!-- Featured Elections  -->
@@ -36,13 +36,10 @@
       {% if user|is_candidate %}
         {% include 'backend_candidate/menu.html' with candidacy=candidacy %}
       {% else %}
-        {% include 'backend_citizen/menu.html' with user=user %}
+        {% if not config.MENU_CIUDADANO_EN_DROPDOWN %}
+            {% include 'backend_citizen/menu.html' with user=user %}
+        {% endif %}
       {% endif %}
-
-        {% url 'password_reset' as password_reset %}
-         <li role="presentation" class="{% ifequal request.path password_reset %} active{% endifequal %} hidden-xs">
-          <a class="small" href="{{password_reset}}">
-          {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>
 
       {% block extra_sidebar_bottom %}
       {% endblock extra_sidebar_bottom %}
@@ -55,7 +52,9 @@
                     {% if user|is_candidate %}
                       {% include 'backend_candidate/menu.html' with candidacy=candidacy mobile=True %}
                     {% else %}
-                      {% include 'backend_citizen/menu.html' with user=user mobile=True %}
+                      {% if not config.MENU_CIUDADANO_EN_DROPDOWN %}
+                        {% include 'backend_citizen/menu.html' with user=user mobile=True %}
+                      {% endif %}
                     {% endif %}
                       {% url 'password_reset' as password_reset %}
                        <li class="{% ifequal request.path password_reset %} active{% endifequal %}">

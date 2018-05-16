@@ -177,6 +177,7 @@ CONSTANCE_CONFIG = {
     'MARKED_AREAS': ("", u'Areas que tienen alguna marca'),
     'CANDIDATE_ABSOLUTE_URL_USING_AREA': (True, u'para ver el perfil de los candidatos utilziamos el territorio o utilizamos la elección a la que pertenece?'),
     'TWITTER_TOKEN_KEY': ('', 'Twitter token key'),
+    'MENU_CIUDADANO_EN_DROPDOWN': (False, u'El menú ciudadano va en el dropdown menu que está arriba en la derecha?'),
     'TWITTER_CON_KEY': ('', 'Twitter connection key'),
     'TWITTER_CON_SECRET_KEY': ('', 'Twitter connection secret key'),
     'HIDDEN_AREAS': ('', 'Seccion oculta'),

@@ -7,7 +7,7 @@
 {% load votainteligente_extras %}
 <head>
     <meta charset="utf-8">
-    <title>Rio Por Inteiro {% block title %}- {{ config.WEBSITE_GENERAL_SETTINGS_HOME_TITLE }}{% endblock title %}</title>
+    <title>Rio Por Inteiro{% block title %}: {{ config.WEBSITE_GENERAL_SETTINGS_HOME_TITLE }}{% endblock title %}</title>
     <meta name="author" content="{{ config.WEBSITE_METADATA_AUTHOR }}">
     <meta name="description" content="{% block description %}{{ config.WEBSITE_METADATA_DESCRIPTION }}{% endblock description %}">
     <meta name="keywords" content="{% block extrakeywords %}{% endblock extrakeywords %}{{ config.WEBSITE_METADATA_KEYWORD }}{% block keywords %}{% endblock keywords %}">

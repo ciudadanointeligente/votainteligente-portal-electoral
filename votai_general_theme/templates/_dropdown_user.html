@@ -37,7 +37,9 @@
         </a>
     </li>
     {% endif %}
-
+    {% if config.MENU_CIUDADANO_EN_DROPDOWN %}
+        {% include 'backend_citizen/menu.html' with user=user in_drop_down_menu=True %}
+    {% endif %}
     <li role="separator" class="divider"></li>
     <li>
         <a href="{% url 'auth_logout' %}">

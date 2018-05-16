@@ -19,5 +19,4 @@ _TOPIC_CHOICES = (('', _(u'Selecciona una categoría')),
                  (u"transparencia-participacao-e-sistema-politico", u"Transparência, Participação e Sistema Político "),
                  (u"juventude", u"Juventude"),
                  (u"infancia", u"Infância"),
-
-                 )
+)

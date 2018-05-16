@@ -9,6 +9,15 @@ Con <strong>{{proposal.proposal}}</strong>:<br/ >
 <li>Obtuvo {{proposal.analytics.likers}} apoyos ciudadanos.</li>
 </ul><br />
 {% endfor %}
+{% if new_proposals %}
+Además, te queríamos contar que durante el último tiempo recibimos algunas
+propuestas ciudadanas que podrían ser de tu interés.<br />
+<ul>
+{% for proposal in new_proposals %}
+<li><a href="https://{{site.domain}}{{proposal.get_absolute_url}}">{{proposal.title}}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
 
 {% if not config.PERIODIC_REPORTS_ENABLED %}
 <hr>

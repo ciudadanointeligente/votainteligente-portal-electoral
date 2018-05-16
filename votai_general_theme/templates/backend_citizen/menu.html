@@ -52,3 +52,7 @@
     <a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{search_proposal_subscriptions_url}}">
     {%if in_drop_down_menu %}<i class="fa fa-search" aria-hidden="true"></i>{% endif %} {% blocktrans %}Búsquedas{% endblocktrans %}</a></li>
 {% endif %}
+{% url 'password_reset' as password_reset %}
+ <li role="presentation" class="{% ifequal request.path password_reset %} active{% endifequal %} hidden-xs">
+  <a class="small" href="{{password_reset}}">
+  {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>

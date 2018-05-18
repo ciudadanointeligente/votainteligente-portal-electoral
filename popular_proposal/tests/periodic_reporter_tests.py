@@ -139,3 +139,70 @@ class PeriodicReporterTasksTestCase(ProposingCycleTestCaseBase, PeriodicProposal
         self.fiera.save()
         report_sender_task.delay()
         self.assertEquals(len(mail.outbox), initial_amount_of_mails + 1)
+
+
+class PopularProposalPeriodicReporterForOrganizationsTestCase(ProposingCycleTestCaseBase, PeriodicProposalTestCaseMixin):
+    def setUp(self):
+        super(PopularProposalPeriodicReporterForOrganizationsTestCase, self).setUp()
+        self.set_proposals_and_data()
+        self.fiera.profile.is_organization = True
+        self.fiera.profile.save()
+        self.popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
+                                                               area=self.arica,
+                                                               data=self.data,
+                                                               title=u'This is a title',
+                                                               clasification=u'education'
+                                                              )
+        # This proposal has been liked by fiera (organization)
+        # So it shouldn't be in the email
+        self.should_not_be_in_recomendation = PopularProposal.objects.create(proposer=self.feli,
+                                                                             area=self.arica,
+                                                                             data=self.data,
+                                                                             title=u'This is a title',
+                                                                             clasification=u'education'
+                                                                            )
+        self.like = ProposalLike.objects.create(user=self.fiera,
+                                                proposal=self.should_not_be_in_recomendation)
+        # This proposal has the same classification as the one created by Fiera
+        # 'educaion'
+        # but has not been liked by Fiera, so it should be in the email
+        self.should_be_1 = PopularProposal.objects.create(proposer=self.feli,
+                                                                     area=self.arica,
+                                                                     data=self.data,
+                                                                     title=u'This is a title',
+                                                                     clasification=u'education'
+                                                                    )
+        # This proposal does not have the same classification as the one created by Fiera
+        # 'not_the_right_clasification'
+        # and has not been liked by Fiera, so it should NOT be in the email
+        self.should_not_be_in_recomendation2 = PopularProposal.objects.create(proposer=self.feli,
+                                                                     area=self.arica,
+                                                                     data=self.data,
+                                                                     title=u'This is a title',
+                                                                     clasification=u'not_the_right_clasification'
+                                                                    )
+
+    def test_recomendation_comes_with_new_proposals(self):
+        should_not_be_1 = PopularProposal.objects.create(proposer=self.feli,
+                                                         area=self.arica,
+                                                         data=self.data,
+                                                         title=u'old proposal',
+                                                         clasification=u'education',
+                                                        )
+        should_not_be_1.created = TWO_DAYS_AGO
+        should_not_be_1.save()
+
+        r = PeriodicReporter(self.fiera, days=1)
+        context = r.get_mail_context()
+        new_proposals = context['new_proposals']
+        self.assertIn(self.should_be_1, new_proposals)
+        self.assertNotIn(self.should_not_be_in_recomendation, new_proposals)
+        self.assertNotIn(self.should_not_be_in_recomendation2, new_proposals)
+        self.assertNotIn(should_not_be_1, new_proposals)
+
+    def test_sending_mail_with_recomendation_comes_with_new_proposals(self):
+        initial_amount_of_mails = len(mail.outbox)
+        r = PeriodicReporter(self.fiera)
+        r.send_mail()
+        amount_of_mails = len(mail.outbox)
+        self.assertEquals(amount_of_mails, initial_amount_of_mails + 1)

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-16 18:30+0000\n"
-"PO-Revision-Date: 2018-05-16 15:16-0300\n"
+"PO-Revision-Date: 2018-05-16 16:49-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -372,10 +372,8 @@ msgid "Título"
 msgstr "Título"
 
 #: popular_proposal/filters.py:24
-#, fuzzy
-#| msgid "Qué buscaste"
 msgid "Qué buscas?"
-msgstr "O que você está buscava?"
+msgstr "O que você está buscando?"
 
 #: popular_proposal/filters.py:26
 msgid "Ordenar por"
@@ -626,8 +624,8 @@ msgid ""
 "Escribe aquí la causa de tu problema que quieres abordar. Recuerda solo "
 "escribir una."
 msgstr ""
-"Escreva aqui a causa do seu problema que você deseja resolver. Lembre-se de "
-"apenas escrever um."
+"Escreva aqui a causa do problema que você deseja resolver. Lembre-se de "
+"escrever apenas uma."
 
 #: popular_proposal/forms/form_texts.py:82
 msgid ""
@@ -667,7 +665,7 @@ msgstr "Escreva aqui a solução para o problema que você definiu."
 
 #: popular_proposal/forms/form_texts.py:91
 msgid "Tiempo en el cual se puede llevar a cabo la propuesta"
-msgstr "Tempo em que a proposta pode ser realizada"
+msgstr "Tempo em que a proposta deve ou pode ser realizada"
 
 #: popular_proposal/forms/form_texts.py:92
 msgid "¿Cuándo debería estar esto listo?"
@@ -683,7 +681,7 @@ msgstr "Título da proposta"
 
 #: popular_proposal/forms/form_texts.py:105
 msgid "¿Esta propuesta es producto de un encuentro local?"
-msgstr "Esta proposta é o produto de uma encontro local?"
+msgstr "Esta proposta surgiu de uma encontro local?"
 
 #: popular_proposal/forms/form_texts.py:106
 #: popular_proposal/forms/form_texts.py:111
@@ -696,7 +694,8 @@ msgstr "Em que município essa proposta foi gerada?"
 
 #: popular_proposal/forms/form_texts.py:112 popular_proposal/forms/forms.py:203
 msgid "Si eres una ONG de vocación nacional, esta opción no aplica"
-msgstr "Se você é uma ONG com vocação nacional, esta opção não se aplica"
+msgstr ""
+"Se você é uma organização de alcance nacional, esta opção não se aplica"
 
 #: popular_proposal/forms/form_texts.py:115
 #: votai_general_theme/templates/popular_proposal/wizard/paso5.html:64
@@ -713,7 +712,7 @@ msgstr "Só você pode vê-la e nós poderemos apagá-la eventualmente."
 
 #: popular_proposal/forms/forms.py:47 popular_proposal/forms/forms.py:100
 msgid "No aplica"
-msgstr ""
+msgstr "Sem local definido"
 
 #: popular_proposal/forms/forms.py:56
 msgid ""
@@ -726,9 +725,9 @@ msgid ""
 msgstr ""
 "Sua proposta pode ser individual (em seu nome) ou coletiva (representando um "
 "grupo de pessoas que fizeram um Encontro Cidadão ou uma organização). É mais "
-"provável que uma proposta receba apoio se for apoiada por várias pessoas. Se "
-"você quer saber como fazer um Encontro Cidadão, recomendamos que você revise "
-"nosso Guia de Desenvolvimento de Propostas Cidadãs"
+"provável que uma proposta seja comprometida se for apoiada por várias "
+"pessoas. Se você quer saber como fazer um Encontro Cidadão, recomendamos que "
+"você revise nosso Manual Cidadão ;)"
 
 #: popular_proposal/forms/forms.py:69
 #: votai_general_theme/templates/popular_proposal/steps/tips_paso2.html:3
@@ -988,7 +987,7 @@ msgstr ""
 #: rioxinteiro/templates/_footer.html:10
 #: votai_general_theme/templates/_footer.html:10
 msgid "Un proyecto de"
-msgstr "Um projeto de"
+msgstr "Um projeto"
 
 #: rioxinteiro/templates/_navbar.html:26
 msgid "Mobilize"
@@ -2444,23 +2443,23 @@ msgstr "Cadastrar"
 
 #: votai_general_theme/templates/material_ciudadano.html:7
 msgid "Infografías"
-msgstr ""
+msgstr "Informações úteis"
 
 #: votai_general_theme/templates/material_ciudadano.html:8
 msgid "Revisa datos clave para el día de votación."
-msgstr ""
+msgstr "Se informe de dados chave para o dia da votação!"
 
 #: votai_general_theme/templates/material_ciudadano.html:88
 msgid "Material Ciudadano"
-msgstr ""
+msgstr "Material cidadão"
 
 #: votai_general_theme/templates/material_ciudadano.html:89
 msgid ""
 "Descarga e imprime los materiales que necesites para generar propuestas, "
 "hacer incidencia y/o saber todo lo necesario de esta elección."
 msgstr ""
-"Faça o download e imprima os materiais necessários para gerar propostas, "
-"causar impacto e / ou saber tudo o que é necessário sobre essa eleição."
+"Faça o download e imprima os materiais necessários para criar propostas, "
+"causar impacto e saber tudo o que é necessário sobre essa eleição."
 
 #: votai_general_theme/templates/material_ciudadano.html:99
 msgid "Guía para la creación de propuestas"
@@ -2547,7 +2546,7 @@ msgstr ""
 msgid ""
 "La Media Naranja es un juego de preguntas para ver tu afinidad con las "
 "candidaturas que llegaron a la segunda vuelta presidencial de Chile. El "
-"contenido se basa en la información de los programas de gobierno de la "
+"contenido se basa en la información de los programas de gobierno de la "
 "candidaturas presidenciales, en los compromisos de las candidaturas con "
 "propuestas ciudadanas hechos en Vota Inteligente y en declaraciones hechas "
 "por los candidatos en medios de comunicación. Como cualquier juego, su "
@@ -3558,8 +3557,8 @@ msgid ""
 "Revísala, si te gustó ¡compártela y apóyala!<br>Así todos/as tendremos voz "
 "en las elecciones de este año!"
 msgstr ""
-"Verificá-lo, se você gostou de compartilhá-lo, e apoio!<br>Dessa forma, "
-"todos nós teremos voz nas eleições deste ano!"
+"Veja se gostou para compartilhar e buscar apoio!<br>Dessa forma, todos nós "
+"teremos voz nas eleições deste ano!"
 
 #: votai_general_theme/templates/popular_proposal/plantillas/detalle_propuesta.html:16
 msgid "En un plazo de"
@@ -3598,7 +3597,7 @@ msgstr "Ver Compromisso"
 
 #: votai_general_theme/templates/popular_proposal/steps/base_steps.html:4
 msgid "Para tener en cuenta"
-msgstr "Para ter em conta"
+msgstr "Preste atenção!"
 
 #: votai_general_theme/templates/popular_proposal/steps/causes_help.html:3
 msgid "Ejemplo:"
@@ -3614,7 +3613,7 @@ msgstr "1. Uso excessivo de carros"
 
 #: votai_general_theme/templates/popular_proposal/steps/causes_help.html:4
 msgid "2. El uso de estufas a leña"
-msgstr "2. O uso de fogões a lenha"
+msgstr "2. Descarte impróprio de resíduos"
 
 #: votai_general_theme/templates/popular_proposal/steps/causes_help.html:4
 msgid "3. Poca educación ambiental"
@@ -3672,16 +3671,13 @@ msgstr "Como uma causa é definida?"
 #: votai_general_theme/templates/popular_proposal/steps/tips_paso2.html:7
 msgid ""
 "Una causa es la razón por la que existe el problema que queremos combatir."
-msgstr ""
-"Uma causa é a razão pela qual há um problema com o qual queremos lutar."
+msgstr "A causa é a razão pela qual o problema que queremos resolver existe."
 
 #: votai_general_theme/templates/popular_proposal/steps/tips_paso2.html:8
 msgid ""
 "Aunque tu problema pueda tener más de una causa, elige sólo una (la que se "
 "pueda abordar a través de tu propuesta)."
-msgstr ""
-"Embora seu problema possa ter mais de uma causa, escolha apenas uma (que "
-"pode ser abordada por meio de sua proposta)."
+msgstr "Embora seu problema possa ter mais de uma causa, escolha apenas uma."
 
 #: votai_general_theme/templates/popular_proposal/steps/tips_paso2.html:9
 msgid ""
@@ -3697,23 +3693,22 @@ msgstr "Desenvolvendo nossa proposta"
 
 #: votai_general_theme/templates/popular_proposal/steps/tips_paso3.html:9
 msgid "Ahora llegó el momento de proponer cómo podemos solucionar el problema."
-msgstr "Agora chegou a hora de propor como podemos resolver o problema."
+msgstr "Hora de resolver o problema!"
 
 #: votai_general_theme/templates/popular_proposal/steps/tips_paso3.html:10
 msgid ""
 "Mientras más detallada sea tu propuesta, más apoyo podrá generar de parte de "
 "la ciudadanía, organizaciones, y candidaturas."
 msgstr ""
-"Quanto mais detalhada for sua proposta, mais apoio ela poderá gerar de "
-"cidadãos, organizações e candidaturas."
+"Quanto mais detalhada for sua proposta, mais apoios e comprometimentos ela é "
+"capaz de ter."
 
 #: votai_general_theme/templates/popular_proposal/steps/tips_paso3.html:11
 msgid ""
 "No olvides establecer un plazo de tiempo para que el candidato o la "
 "candidata cumplan con la propuesta si se comprometen."
 msgstr ""
-"Não se esqueça de definir um prazo para o candidato cumprir a proposta se "
-"ela se comprometer."
+"Defina um prazo para que a/o candidata/o comprometida/o cumpra essa proposta."
 
 #: votai_general_theme/templates/popular_proposal/steps/tips_paso4.html:4
 msgid ""
@@ -3723,10 +3718,8 @@ msgid ""
 "mostrársela a tus vecinos/as y exigirle a los/as candidatos/as que te "
 "escuchen!"
 msgstr ""
-"Parabéns! Você está quase pronto com sua proposta cidadã. A única coisa que "
-"resta a fazer é colocar um título e aceitar os Termos e Condições. Depois "
-"disso, você pode compartilhá-lo através de redes sociais, mostrá-lo aos seus "
-"vizinhos e exigir que os candidatos te escutem!"
+"Parabéns! Sua proposta está quase pronta. Agora só falta colocar um título e "
+"aceitar os Termos e Condições. Depois disso, você pode compartilhá-la ;)"
 
 #: votai_general_theme/templates/popular_proposal/terms_and_conditions.html:4
 msgid ""
@@ -3833,7 +3826,7 @@ msgstr "Voltar ao início"
 
 #: votai_general_theme/templates/popular_proposal/wizard/_previous_buttons.html:10
 msgid "Volver al paso "
-msgstr "Volver ao passo "
+msgstr "Voltar para o passo "
 
 #: votai_general_theme/templates/popular_proposal/wizard/done.html:12
 #: votai_general_theme/templates/popular_proposal/wizard/form_step.html:12
@@ -4048,8 +4041,8 @@ msgid ""
 "Uhh!!Ohhh!! &ndash; parece que tu clave de activación es inválida. Por favor "
 "revisa la url nuevamente."
 msgstr ""
-"Uhh!!Ohhh!! &ndash; Parece que sua chave de ativação é inválida. Por favor, "
-"verifique o URL novamente."
+"Ohhh!! &ndash; Parece que sua chave de ativação é inválida. Por favor, "
+"verifique a URL novamente."
 
 #: votai_general_theme/templates/registration/activation_complete.html:6
 msgid "Bienvenida/o! Ahora ya activamos tu cuenta!"

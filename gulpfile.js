@@ -10,10 +10,10 @@ gulp.task('compilescss', function(){
 
 gulp.task('watch_compilescss', function () {
     
-    watch('votai_general_theme/static/sass/**/*.scss', function (vynil) {
-                                               gulp.src('votai_general_theme/static/sass/**/*.scss')
-                                               	   .pipe(plumber())
-                                                   .pipe(shell(['python manage.py compilescss',]));
+    watch('*/static/sass/**/*.scss', function (vynil) {
+                                     gulp.src('*/static/sass/**/*.scss')
+                                         .pipe(plumber())
+                                         .pipe(shell(['python manage.py compilescss',]));
     });
 });
 

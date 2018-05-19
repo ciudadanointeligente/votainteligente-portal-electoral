@@ -78,7 +78,6 @@ INSTALLED_APPS = (
     'proposal_subscriptions',
     'custom_sites',
     'merepresenta',
-    'rioxinteiro',
     'votai_general_theme',
     'hitcount',
 
@@ -486,9 +485,13 @@ if THEME:
         stand_alone_urls = '%s.stand_alone_urls' % THEME
         imp.find_module(stand_alone_urls)
         ROOT_URLCONF = stand_alone_urls
-        STATIC_ROOT = os.path.join(BASE_DIR, THEME ,'static')
+
     except ImportError:
         pass
-
+    try:
+        STATIC_ROOT = os.path.join(BASE_DIR, THEME ,'static')
+    except:
+        pass
     TEMPLATES[0]['DIRS'] = ['%s/templates' % THEME, 'votai_general_theme/templates']
+    INSTALLED_APPS_AFTER_ALL += (THEME, )
 INSTALLED_APPS += INSTALLED_APPS_AFTER_ALL

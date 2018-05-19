@@ -1,0 +1,25 @@
+.activity{
+    .title-and-location {
+        position: absolute;
+        bottom: 33%;
+        .title{
+            font-weight: bold;
+            font-size: large;
+            cursor: pointer;
+        }
+        .location{
+
+        }
+    }
+    .body{
+        background-size: cover;
+        min-height:300px;
+    }
+    .date{
+    }
+    p {
+        color: #FFF;
+        background-color: hsla(0, 0, 0, 0.3);
+        padding-left: 10px;
+    }
+}

@@ -14,7 +14,7 @@ src/
 *.sqlite3
 *.swp
 /static
-votai_general_theme/static/sass/*.css
+*/static/sass/*.css
 celerybeat-schedule
 node_modules/
 preguntales/tests/testing_mails/attachments/fiera_parque_*.jpg

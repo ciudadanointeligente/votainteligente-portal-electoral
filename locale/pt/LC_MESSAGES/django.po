@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-16 18:30+0000\n"
-"PO-Revision-Date: 2018-05-18 23:33-0300\n"
+"PO-Revision-Date: 2018-05-21 14:01-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -1325,7 +1325,7 @@ msgstr "Entrar"
 
 #: votai_general_theme/templates/backend_candidate/auth_login.html:12
 msgid "Bienvenid@ Candidat@:"
-msgstr "Bem-vinda/o Candidata/o"
+msgstr "Bem-vinda/o Candidata/o:"
 
 #: votai_general_theme/templates/backend_candidate/auth_login.html:13
 msgid "Si no sabes como ingresar:"
@@ -1567,7 +1567,7 @@ msgstr "Minhas propostas"
 
 #: votai_general_theme/templates/backend_citizen/menu.html:13
 msgid "Mis apoyos"
-msgstr "Meus suportes"
+msgstr "Meus apoios"
 
 #: votai_general_theme/templates/backend_citizen/menu.html:18
 msgid "Mis eventos"
@@ -1884,12 +1884,12 @@ msgstr "Eleito"
 #: votai_general_theme/templates/elections/_election_with_position.html:40
 #: votai_general_theme/templates/elections/_election_with_position.html:101
 msgid "Staff: ya se conectó."
-msgstr "Staff: Já se conectou"
+msgstr "Staff: Já se conectou."
 
 #: votai_general_theme/templates/elections/_election_with_position.html:42
 #: votai_general_theme/templates/elections/_election_with_position.html:103
 msgid "Staff: NO se ha conectado."
-msgstr "Staff: Não se conectou"
+msgstr "Staff: Não se conectou."
 
 #: votai_general_theme/templates/elections/_election_with_position.html:117
 msgid "Ver todos"
@@ -1908,7 +1908,7 @@ msgstr "Próximo"
 
 #: votai_general_theme/templates/elections/_is_staff_candidate_detail.html:8
 msgid "Este candidato se ha conectado."
-msgstr "Esse candidato não se conectou"
+msgstr "Esse candidato não se conectou."
 
 #: votai_general_theme/templates/elections/_is_staff_candidate_detail.html:10
 #, python-format
@@ -1935,7 +1935,7 @@ msgstr "Eleições"
 
 #: votai_general_theme/templates/elections/admin_model_election_change_form.html:3
 msgid "Aquí puedes editar todo el contenido de una elección."
-msgstr "Aqui você pode editar todo o conteúdo de uma eleição"
+msgstr "Aqui você pode editar todo o conteúdo de uma eleição."
 
 #: votai_general_theme/templates/elections/area.html:10
 #, python-format
@@ -2447,7 +2447,7 @@ msgstr "Informações úteis"
 
 #: votai_general_theme/templates/material_ciudadano.html:8
 msgid "Revisa datos clave para el día de votación."
-msgstr "Se informe de dados chave para o dia da votação!"
+msgstr "Veja dados chave para o dia da votação."
 
 #: votai_general_theme/templates/material_ciudadano.html:88
 msgid "Material Ciudadano"
@@ -2929,7 +2929,7 @@ msgstr "Leia o compromisso"
 msgid ""
 "Te invitamos a filtrar y encontrar propuestas ciudadanas en las siguientes "
 "áreas"
-msgstr "Busque e encontre propostas nas seguintes áreas:"
+msgstr "Busque e encontre propostas nas seguintes áreas"
 
 #: votai_general_theme/templates/popular_proposal/_lista_propuestas.html:33
 #: votai_general_theme/templates/popular_proposal/_lista_propuestas.html:39
@@ -3984,7 +3984,7 @@ msgstr "Alertas de busca"
 
 #: votai_general_theme/templates/proposal_subscriptions/list.html:30
 msgid "Qué buscaste"
-msgstr "O que você está buscava?"
+msgstr "O que você buscava?"
 
 #: votai_general_theme/templates/proposal_subscriptions/list.html:31
 msgid "Frecuencia"

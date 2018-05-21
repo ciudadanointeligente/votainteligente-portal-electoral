@@ -15,6 +15,7 @@ src/
 *.swp
 /static
 */static/sass/*.css
+*/static/sass/*.css.map
 celerybeat-schedule
 node_modules/
 preguntales/tests/testing_mails/attachments/fiera_parque_*.jpg

@@ -1,0 +1,19 @@
+{% load votainteligente_extras %}
+{% load i18n %}
+
+{% if not user|is_candidate %}
+<div class="alert alert-info">
+  <strong>{% trans "Información:" %}</strong>
+    {% if user.profile.is_organization %}
+            {% blocktrans with user.username as username %}
+                Tu nombre de usuario es <strong>{{username}}</strong> y tienes cuenta de organización, es decir puedes tener un perfil público y si cambias el logo, tu organización estará listada en la portada del sitio.
+            {% endblocktrans %}
+    {% else %}
+        {% blocktrans with user.username as username %}
+            Tu nombre de usuario es <strong>{{username}}</strong> y tienes cuenta de ciudadano, con el puedes crear y apoyar propuestas.
+        {% endblocktrans %}
+
+    {% endif %}
+
+    </div>
+{% endif %}

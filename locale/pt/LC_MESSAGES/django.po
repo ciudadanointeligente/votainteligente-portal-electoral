@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-22 19:57+0000\n"
-"PO-Revision-Date: 2018-05-22 17:20-0300\n"
+"POT-Creation-Date: 2018-05-22 21:39+0000\n"
+"PO-Revision-Date: 2018-05-22 18:40-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -225,8 +225,7 @@ msgid "Mis Elecciones"
 msgstr "Minhas eleições"
 
 #: merepresenta/templates/backend_base.html:23
-#: votai_general_theme/templates/backend_base.html:62
-#: votai_general_theme/templates/backend_candidate/menu.html:47
+#: votai_general_theme/templates/backend_candidate/menu.html:23
 #: votai_general_theme/templates/backend_citizen/menu.html:24
 #: votai_general_theme/templates/backend_citizen/menu.html:48
 #: votai_general_theme/templates/registration/password_change.html:11
@@ -1215,6 +1214,37 @@ msgstr "Atividades"
 msgid "Material ciudadano"
 msgstr "Material Cidadão"
 
+#: votai_general_theme/templates/_profile_info.html:6
+msgid "Información:"
+msgstr "Informação:"
+
+#: votai_general_theme/templates/_profile_info.html:8
+#, python-format
+msgid ""
+"\n"
+"                Tu nombre de usuario es <strong>%(username)s</strong> y "
+"tienes cuenta de organización, es decir puedes tener un perfil público y si "
+"cambias el logo, tu organización estará listada en la portada del sitio.\n"
+"            "
+msgstr ""
+"\n"
+"Olá! Seu nome de usuário é <strong>%(username)s</strong> e você tem um "
+"perfil de conta para organizações. Isso quer dizer que você pode ter um "
+"perfil público e, se você alterar seu logotipo, sua organização será listada "
+"na primeira página do site."
+
+#: votai_general_theme/templates/_profile_info.html:12
+#, python-format
+msgid ""
+"\n"
+"            Tu nombre de usuario es <strong>%(username)s</strong> y tienes "
+"cuenta de ciudadano, con el puedes crear y apoyar propuestas.\n"
+"        "
+msgstr ""
+"\n"
+"Olá! Seu nome de usuário é <strong>%(username)s</strong> e você tem um tipo "
+"de conta para cidadão, com ele você pode inserir ou apoiar propostas."
+
 #: votai_general_theme/templates/_slide_propuestas.html:4
 msgid "Propuestas con más apoyo de los ciudadanos"
 msgstr "Propostas dos cidadãos com mais apoio"
@@ -1297,7 +1327,7 @@ msgid "Enviar compromisos"
 msgstr "Envie compromissos"
 
 #: votai_general_theme/templates/backend_candidate/add_activity.html:11
-#: votai_general_theme/templates/backend_candidate/menu.html:26
+#: votai_general_theme/templates/backend_candidate/menu.html:28
 msgid "Mi agenda"
 msgstr "Minha agenda"
 
@@ -1414,15 +1444,19 @@ msgid ""
 "\t"
 msgstr ""
 
-#: votai_general_theme/templates/backend_candidate/menu.html:11
+#: votai_general_theme/templates/backend_candidate/menu.html:13
+msgid "Perfil de candidatura"
+msgstr "Seção da candidatura"
+
+#: votai_general_theme/templates/backend_candidate/menu.html:18
 msgid "Completa tu perfil"
 msgstr "Complete seu perfil"
 
-#: votai_general_theme/templates/backend_candidate/menu.html:34
+#: votai_general_theme/templates/backend_candidate/menu.html:48
 msgid "Mis compromisos"
 msgstr "Meus compromissos"
 
-#: votai_general_theme/templates/backend_candidate/menu.html:40
+#: votai_general_theme/templates/backend_candidate/menu.html:54
 msgid "Propuestas para mi"
 msgstr "Propostas para mim"
 
@@ -1564,19 +1598,18 @@ msgid "No"
 msgstr ""
 
 #: votai_general_theme/templates/backend_citizen/menu.html:16
-#, fuzzy
-#| msgid "Perfil Organización"
 msgid "Perfil de organización"
 msgstr "Perfil da organização"
 
 #: votai_general_theme/templates/backend_citizen/menu.html:18
-#, fuzzy
-#| msgid "Actualizar mi organización"
 msgid ""
 "\n"
 "      Actualizar perfil de Organizacion\n"
 "    "
-msgstr "Atualizar minha organização"
+msgstr ""
+"\n"
+"      Atualizar perfil da organização\n"
+"    "
 
 #: votai_general_theme/templates/backend_citizen/menu.html:27
 #: votai_general_theme/templates/backend_citizen/menu.html:51
@@ -3543,7 +3576,7 @@ msgstr "Ver Compromisso"
 
 #: votai_general_theme/templates/popular_proposal/steps/base_steps.html:4
 msgid "Para tener en cuenta"
-msgstr "Preste atenção!"
+msgstr "Para ter em conta"
 
 #: votai_general_theme/templates/popular_proposal/steps/causes_help.html:3
 msgid "Ejemplo:"

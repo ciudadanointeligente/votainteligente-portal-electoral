@@ -15,7 +15,7 @@
   {% blocktrans with candidate_name=candidacy.candidate.name %}
   Información para el perfil de {{candidate_name}}
   {% endblocktrans %}
-  </h2>
+  </h2> {% include '_profile_info.html' with user=user %}
 
 
     <p><a href="{{candidacy.candidate.get_absolute_url}}" class="btn btn-dark">

@@ -9,7 +9,7 @@
 {% endblock title %}
 
 {% block main_content %}
-	<h2 class="page-header">{% trans "Tu perfil" %}</h2>
+	<h2 class="page-header">{% trans "Tu perfil" %}</h2> {% include '_profile_info.html' with user=user %}
 	<form enctype="multipart/form-data" action="{% url 'backend_citizen:update_my_profile' %}" method="POST" role="form">
 	    {% csrf_token %}
         {% bootstrap_form form %}

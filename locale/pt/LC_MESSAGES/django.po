@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 18:30+0000\n"
-"PO-Revision-Date: 2018-05-22 11:05-0300\n"
+"POT-Creation-Date: 2018-05-22 19:57+0000\n"
+"PO-Revision-Date: 2018-05-22 17:20-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -227,7 +227,8 @@ msgstr "Minhas eleições"
 #: merepresenta/templates/backend_base.html:23
 #: votai_general_theme/templates/backend_base.html:62
 #: votai_general_theme/templates/backend_candidate/menu.html:47
-#: votai_general_theme/templates/backend_citizen/menu.html:58
+#: votai_general_theme/templates/backend_citizen/menu.html:24
+#: votai_general_theme/templates/backend_citizen/menu.html:48
 #: votai_general_theme/templates/registration/password_change.html:11
 msgid "Cambia tu contraseña"
 msgstr "Mude sua senha"
@@ -245,7 +246,6 @@ msgstr "Ver meu perfil"
 #: votai_general_theme/templates/_head.html:7
 #: votai_general_theme/templates/_head_organizations.html:7
 #: votai_general_theme/templates/base.html:10
-#: votai_general_theme/templates/basewithnofixed_navbar.html:11
 #: votai_general_theme/templates/embedded_base.html:11
 msgid "Vota Inteligente"
 msgstr "Vota Inteligente"
@@ -881,8 +881,9 @@ msgid "Apoyo"
 msgstr ""
 
 #: popular_proposal/models.py:430
+#: votai_general_theme/templates/backend_citizen/stats.html:11
 msgid "Apoyos"
-msgstr ""
+msgstr "Apoios"
 
 #: popular_proposal/urls.py:40
 msgid "^crear/?$"
@@ -925,6 +926,8 @@ msgid ""
 "Muchas gracias por tu compromiso, le hemos enviado un mail a los ciudadanos "
 "que apoyan esta propuesta así como a aquel que la realizó."
 msgstr ""
+"Muito obrigado pelo seu compromisso, enviamos um e-mail para os cidadãos que "
+"apoiam esta proposta, bem como para quem a fez."
 
 #: popular_proposal/views/proposal_views.py:286
 msgid ""
@@ -933,7 +936,6 @@ msgid ""
 msgstr ""
 
 #: preguntales/forms.py:20
-#: votai_general_theme/templates/backend_citizen/stats.html:15
 msgid "Nombre"
 msgstr "Nome"
 
@@ -1109,8 +1111,9 @@ msgid "Sección del Staff"
 msgstr ""
 
 #: votai_general_theme/templates/_dropdown_user.html:19
+#: votai_general_theme/templates/backend_citizen/menu.html:78
 msgid "Estadísticas"
-msgstr ""
+msgstr "Estatísticas"
 
 #: votai_general_theme/templates/_dropdown_user.html:20
 msgid "Estadísticas por area"
@@ -1349,6 +1352,9 @@ msgid ""
 "  Información para el perfil de %(candidate_name)s\n"
 "  "
 msgstr ""
+"\n"
+"  Informação para o perfil de %(candidate_name)s\n"
+"  "
 
 #: votai_general_theme/templates/backend_candidate/help_finding_candidates.html:8
 #: votai_general_theme/templates/medianaranja2/resultado.html:104
@@ -1491,7 +1497,7 @@ msgstr ""
 
 #: votai_general_theme/templates/backend_citizen/_proposals-table.html:26
 #: votai_general_theme/templates/backend_citizen/my_supports.html:34
-#: votai_general_theme/templates/backend_citizen/stats.html:41
+#: votai_general_theme/templates/backend_citizen/stats.html:9
 msgid "Título propuesta"
 msgstr "Título proposta"
 
@@ -1501,8 +1507,6 @@ msgstr ""
 
 #: votai_general_theme/templates/backend_citizen/_proposals-table.html:28
 #: votai_general_theme/templates/backend_citizen/my_supports.html:33
-#: votai_general_theme/templates/backend_citizen/stats.html:14
-#: votai_general_theme/templates/backend_citizen/stats.html:40
 #: votai_general_theme/templates/backend_staff/per_area_stats.html:17
 msgid "Comuna"
 msgstr ""
@@ -1559,36 +1563,45 @@ msgstr "Sim"
 msgid "No"
 msgstr ""
 
-#: votai_general_theme/templates/backend_citizen/menu.html:9
-msgid "Mis propuestas"
-msgstr "Minhas propostas"
+#: votai_general_theme/templates/backend_citizen/menu.html:16
+#, fuzzy
+#| msgid "Perfil Organización"
+msgid "Perfil de organización"
+msgstr "Perfil da organização"
 
-#: votai_general_theme/templates/backend_citizen/menu.html:13
+#: votai_general_theme/templates/backend_citizen/menu.html:18
+#, fuzzy
+#| msgid "Actualizar mi organización"
+msgid ""
+"\n"
+"      Actualizar perfil de Organizacion\n"
+"    "
+msgstr "Atualizar minha organização"
+
+#: votai_general_theme/templates/backend_citizen/menu.html:27
+#: votai_general_theme/templates/backend_citizen/menu.html:51
 msgid "Mis apoyos"
 msgstr "Meus apoios"
 
-#: votai_general_theme/templates/backend_citizen/menu.html:18
-msgid "Mis eventos"
-msgstr "Mobilização"
-
-#: votai_general_theme/templates/backend_citizen/menu.html:26
-msgid "Actualizar mi organización"
-msgstr "Atualizar minha organização"
-
-#: votai_general_theme/templates/backend_citizen/menu.html:28
-msgid ""
-"\n"
-"      Pagina Organizacion\n"
-"    "
-msgstr ""
-
-#: votai_general_theme/templates/backend_citizen/menu.html:41
+#: votai_general_theme/templates/backend_citizen/menu.html:39
 msgid "Mi perfil"
 msgstr "Meu perfil"
 
-#: votai_general_theme/templates/backend_citizen/menu.html:53
+#: votai_general_theme/templates/backend_citizen/menu.html:43
+msgid "Actualizar perfil"
+msgstr "Atualizar meu perfil"
+
+#: votai_general_theme/templates/backend_citizen/menu.html:56
 msgid "Búsquedas"
 msgstr "Buscas"
+
+#: votai_general_theme/templates/backend_citizen/menu.html:66
+msgid "Mis propuestas"
+msgstr "Minhas propostas"
+
+#: votai_general_theme/templates/backend_citizen/menu.html:72
+msgid "Mis eventos"
+msgstr "Mobilização"
 
 #: votai_general_theme/templates/backend_citizen/my_proposals.html:9
 msgid "Backend Ciudadano - Propuestas"
@@ -1616,68 +1629,17 @@ msgstr "Ações"
 msgid "Quitar apoyo"
 msgstr "Tirar apoio"
 
-#: votai_general_theme/templates/backend_citizen/stats.html:5
-#, python-format
-msgid ""
-"\n"
-"  Tus propuestas están presentes en un total de %(area_count)s comunas, de "
-"las cuales has logrado compromisos en %(areas_with_commitments)s.\n"
-msgstr ""
-
-#: votai_general_theme/templates/backend_citizen/stats.html:16
-msgid "Posición"
-msgstr "Posição"
-
-#: votai_general_theme/templates/backend_citizen/stats.html:17
-msgid "Mail de contacto"
-msgstr "E-mail de contato"
-
-#: votai_general_theme/templates/backend_citizen/stats.html:35
+#: votai_general_theme/templates/backend_citizen/stats.html:3
 msgid "Las estadísticas sobre tus propuestas"
 msgstr "As estatísticas sobre suas propostas"
 
-#: votai_general_theme/templates/backend_citizen/stats.html:42
-msgid "Concejales que se han pronunciado"
-msgstr ""
+#: votai_general_theme/templates/backend_citizen/stats.html:10
+msgid "Candidatos comprometidos"
+msgstr "Candidatos comprometidos"
 
-#: votai_general_theme/templates/backend_citizen/stats.html:43
-msgid "Alcaldes que se han pronunciado"
-msgstr ""
-
-#: votai_general_theme/templates/backend_citizen/stats.html:59
-#, python-format
-msgid ""
-"\n"
-"Concejales que se han pronunciado sobre %(title)s en %(area)s\n"
-"                "
-msgstr ""
-
-#: votai_general_theme/templates/backend_citizen/stats.html:68
-msgid "Te apoyará desde el concejo"
-msgstr ""
-
-#: votai_general_theme/templates/backend_citizen/stats.html:68
-#: votai_general_theme/templates/backend_citizen/stats.html:98
-msgid "Dijo que NO"
-msgstr "Digo que não"
-
-#: votai_general_theme/templates/backend_citizen/stats.html:69
-#: votai_general_theme/templates/backend_citizen/stats.html:99
-msgid "ver el compromiso"
-msgstr ""
-
-#: votai_general_theme/templates/backend_citizen/stats.html:86
-#, python-format
-msgid ""
-"\n"
-"                    Alcaldes que se han pronunciado sobre %(proposal)s en "
-"%(area)s\n"
-"                  "
-msgstr ""
-
-#: votai_general_theme/templates/backend_citizen/stats.html:96
-msgid "Se comprometió"
-msgstr ""
+#: votai_general_theme/templates/backend_citizen/stats.html:12
+msgid "Visitas totales"
+msgstr "Total de visitas"
 
 #: votai_general_theme/templates/backend_citizen/temporary_data_update.html:15
 #: votai_general_theme/templates/backend_citizen/temporary_data_update.html:21
@@ -1859,7 +1821,7 @@ msgstr ""
 
 #: votai_general_theme/templates/backend_staff/stats.html:9
 msgid "Estadisticas"
-msgstr ""
+msgstr "Estatísticas"
 
 #: votai_general_theme/templates/backend_staff/stats.html:11
 msgid "Otras estadísticas"
@@ -2544,7 +2506,7 @@ msgstr ""
 msgid ""
 "La Media Naranja es un juego de preguntas para ver tu afinidad con las "
 "candidaturas que llegaron a la segunda vuelta presidencial de Chile. El "
-"contenido se basa en la información de los programas de gobierno de la "
+"contenido se basa en la información de los programas de gobierno de la "
 "candidaturas presidenciales, en los compromisos de las candidaturas con "
 "propuestas ciudadanas hechos en Vota Inteligente y en declaraciones hechas "
 "por los candidatos en medios de comunicación. Como cualquier juego, su "
@@ -3966,6 +3928,10 @@ msgstr ""
 msgid "Alertas de búsqueda"
 msgstr "Alertas de busca"
 
+#: votai_general_theme/templates/proposal_subscriptions/list.html:25
+msgid "Tus suscripciones a búsquedas"
+msgstr "Suas inscrições de busca"
+
 #: votai_general_theme/templates/proposal_subscriptions/list.html:30
 msgid "Qué buscaste"
 msgstr "O que você buscava?"
@@ -4377,14 +4343,20 @@ msgstr "Medida"
 msgid "Medidas"
 msgstr "Medidas"
 
+#~ msgid "Posición"
+#~ msgstr "Posição"
+
+#~ msgid "Mail de contacto"
+#~ msgstr "E-mail de contato"
+
+#~ msgid "Dijo que NO"
+#~ msgstr "Digo que não"
+
 #~ msgid "Las propuestas que he hecho"
 #~ msgstr "As propostas que fiz"
 
 #~ msgid "Las propuestas que apoyo"
 #~ msgstr "As propostas que eu apoio"
-
-#~ msgid "Actualizar mi perfil"
-#~ msgstr "Atualizar meu perfil"
 
 #, fuzzy
 #~| msgid "Medio ambiente"

@@ -1,108 +1,25 @@
 {% extends "backend_citizen/base.html" %} {% load staticfiles %} {% load votainteligente_extras %} {% load i18n %} {% load thumbnail %} {% load bootstrap3 %} {% block main_content %}
 
-<h2 class="page-header">Estadísticas</h2>
-
-<p>{% blocktrans with area_count=total_stats.areas_present.count areas_with_commitments=total_stats.areas_with_commitments.count %}
-  Tus propuestas están presentes en un total de {{area_count}} comunas, de las cuales has logrado compromisos en {{areas_with_commitments}}.
-{% endblocktrans %}
-  son de concejal</p>
+<h2 class="page-header"><i class="fas fa-chart-bar"></i> {% trans "Las estadísticas sobre tus propuestas" %}</h2>
 
 <div class="table-responsive">
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>{% trans "Comuna" %}</th>
-      <th>{% trans "Nombre" %}</th>
-      <th>{% trans "Posición" %}</th>
-      <th>{% trans "Mail de contacto" %}</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for proposal in user.proposals.all %}
-      {% for commitment in proposal.commitments.all %}
-      <tr>
-        <td><a href="{{ proposal.area.get_absolute_url }}">{{ proposal.area }}</a></td>
-        <td><a href="{{ commitment.candidate.get_absolute_url }}">{{ commitment.candidate }}</a>
-          <td>{{ commitment.candidate.election.position }}</td>
-          <td>{% for contact in commitment.candidate.contacts.all %}{{contact.mail}}{% if not forloop.last %},{% endif %}{% endfor %}</td>
-      </tr>
-      {% endfor%}
-    {% endfor %}
-  </tbody>
-</table>
-</div>
-
-<h3>{% trans "Las estadísticas sobre tus propuestas" %}</h3>
-<div class="table-responsive">
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>{% trans 'Comuna' %}</th>
       <th>{% trans 'Título propuesta' %}</th>
-      <th>{% trans 'Concejales que se han pronunciado' %}</th>
-      <th>{% trans 'Alcaldes que se han pronunciado' %}</th>
+      <th>{% trans 'Candidatos comprometidos' %}</th>
+      <th>{% trans 'Apoyos' %}</th>
+      <th>{% trans 'Visitas totales' %}</th>
     </tr>
   </thead>
   <tbody>
     {% for id, stat in stats.items %}
     <tr class="proposal_{{support.id}}">
-      <td><a href="{{stat.proposal.area.get_absolute_url}}">{{stat.proposal.area}}</a></td>
       <td><a href="{{ stat.proposal.get_absolute_url }}">{{stat.proposal.title}}</a></td>
-      <td><a data-toggle="modal" data-target="#citizens_stats_concejal_{{id}}">{{stat.pronouncing__concejal.count}}</a>
+      <td>{{stat.pronouncing.count}}</td>
+      <td>{{stat.proposal.likers.count}}</td>
+      <td>{{stat.proposal.visitors}}
         <!-- Modal -->
-        <div id="citizens_stats_concejal_{{id}}" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">{% blocktrans with title=stat.proposal.title area=stat.proposal.area %}
-Concejales que se han pronunciado sobre {{title}} en {{area}}
-                {% endblocktrans %}</h4>
-              </div>
-              <div class="modal-body">
-                <ul>
-                  {% for commitment in stat.pronouncing__concejal.all %}
-                  <li><a href="{{commitment.candidate.get_absolute_url}}">{{commitment.candidate}}</a>
-                    {% if commitment.commited %}
-                    <span class="label label-success">{% trans "Te apoyará desde el concejo" %}</span>{% else %}<span class="label label-danger">{% trans "Dijo que NO" %}</span>
-                    {% endif %}(<a href="{{commitment.get_absolute_url}}">{% trans "ver el compromiso" %}</a>)</li>
-                  {% endfor %}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </td>
-      <td><a data-toggle="modal" data-target="#citizens_stats_alcalde_{{id}}">{{stat.pronouncing__alcalde.count}}</a>
-        <!-- Modal -->
-        <div id="citizens_stats_alcalde_{{id}}" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">
-                  {% blocktrans with proposal=stat.proposal.title area=stat.proposal.area %}
-                    Alcaldes que se han pronunciado sobre {{proposal}} en {{area}}
-                  {% endblocktrans %}
-                  </h4>
-              </div>
-              <div class="modal-body">
-                <ul>
-                  {% for commitment in stat.pronouncing__alcalde.all %}
-                  <li><a href="{{commitment.candidate.get_absolute_url}}">{{commitment.candidate}}</a>
-                    {% if commitment.commited %}
-                      <span class="label label-warning">{% trans "Se comprometió" %}</span>
-                    {% else %}
-                      <span class="label label-danger">{% trans "Dijo que NO" %}</span>
-                    {% endif %}(<a href="{{commitment.get_absolute_url}}">{% trans "ver el compromiso" %}</a>)</li>
-                  {% endfor %}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
       </td>
     </tr>
     {% empty %} {% endfor %}

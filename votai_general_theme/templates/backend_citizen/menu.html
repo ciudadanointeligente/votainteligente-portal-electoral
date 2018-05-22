@@ -3,72 +3,76 @@
 {% load bootstrap3 %}
 {% load votainteligente_extras %}
 
-{% url 'backend_citizen:my_proposals' as backend_index %}
- <li role="presentation" class="{% ifequal request.path backend_index%} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
-<a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{backend_index}}">
-    {%if in_drop_down_menu %}<i class="fa fa-lightbulb-o" aria-hidden="true"></i>{% endif %}  {% trans 'Mis propuestas' %}</a></li>
-  {% url 'backend_citizen:my_supports' as my_supports_url %}
-  <!-- Mi agenda de actividades-->
-  {% url 'backend_citizen:all_my_activities' as all_my_activities %}
- <li role="presentation" class="{% ifequal request.path all_my_activities %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
-  <a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{all_my_activities}}">
-  {%if in_drop_down_menu %}<i class="fa fa-hand-paper-o" aria-hidden="true"></i>{% endif %} {% blocktrans %}Mis eventos{% endblocktrans %}</a></li>
-  <!-- Mi agenda de actividades-->
 
+
+{% url 'backend_citizen:my_supports' as my_supports_url %}
 
 {% if user.profile.is_organization %}
-  {% url 'organization_profiles:update' as org_profile %}
- <li role="presentation" class="{% ifequal request.path org_profile %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
-  <a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{org_profile}}" data-toggle="dropdown" data-target="submenu_org">
-  {%if in_drop_down_menu %}<i class="fa fa-id-card" aria-hidden="true"></i>{% endif %} {% blocktrans %}Actualizar mi organización{% endblocktrans %} <span class="caret"></span></a>
+  {% url 'organization_profiles:update' as org_update %}
+  {% url 'password_reset' as password_reset %}
+
+ <li role="presentation" class="{% if request.path  == org_update or request.path  == my_supports_url or  request.path  == password_reset %} active{% endif %}{% if not mobile %} hidden-xs{% endif %}">
+  <a {%if not in_drop_down_menu %}class="small"{% endif %} data-toggle="dropdown" data-target="submenu_org">
+  <i class="fas fa-users"></i> {% blocktrans %}Perfil de organización{% endblocktrans %} <span class="caret"></span></a>
   <ul class="dropdown-menu" id="submenu_org">
-    <li><a href="{% url 'organization_profiles:update' %}">{% blocktrans %}
-      Pagina Organizacion
+    <li><a href="{{org_update}}"><i class="fas fa-users"></i>{% blocktrans %}
+      Actualizar perfil de Organizacion
     {% endblocktrans %}</a></li>
-    {% for extra_page in user.organization_template.extra_pages.all %}
-    <li><a href="{% url 'organization_profiles:update_extrapage' extra_page.id %}">{{extra_page.title}}</a></li>
-    {% endfor %}
-    {% url 'password_reset' as password_reset %}
+
     <li class="{% ifequal request.path password_reset %} active{% endifequal %}">
      <a href="{{password_reset}}">
-     {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>
+     <i class="fas fa-key"></i>  {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>
      <li class="{% ifequal request.path my_supports_url %} active{% endifequal %}">
       <a href="{{my_supports_url}}">
-      {% blocktrans %}Mis apoyos{% endblocktrans %}</a></li>
+      <i class="fas fa-heart"></i>  {% blocktrans %}Mis apoyos{% endblocktrans %}</a></li>
   </ul>
  </li>
 {% else %}
+{% url 'backend_citizen:update_my_profile' as my_profile_url %}
+{% url 'password_reset' as password_reset %}
+{% url 'proposal_subscriptions:list' as search_proposal_subscriptions_url %}
 
- <li role="presentation" class="{% ifequal request.path my_profile_url %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
-  <a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{my_profile_url}}" data-toggle="dropdown" data-target="submenu_user">
-  {%if in_drop_down_menu %}<i class="fa fa-user-circle" aria-hidden="true"></i>
-{% endif %} {% blocktrans %}Mi perfil{% endblocktrans %}<span class="caret"></span></a>
+
+ <li role="presentation" class="{% if request.path ==  my_profile_url or request.path == password_reset or request.path == search_proposal_subscriptions_url or request.path == my_supports_url %} active{% endif %}{% if not mobile %} hidden-xs{% endif %}">
+  <a {%if not in_drop_down_menu %}class="small"{% endif %} href="#" data-toggle="dropdown" data-target="submenu_user">
+  {%if in_drop_down_menu %}
+{% endif %}<i class="fas fa-users-cog"></i> {% blocktrans %}Mi perfil{% endblocktrans %}<span class="caret"></span></a>
 <ul class="dropdown-menu" id="submenu_user">
-    {% url 'backend_citizen:update_my_profile' as my_profile_url %}
-    <li>
-        <a  href="{{my_profile_url}}" ></a>
+
+    <li class="{% ifequal request.path my_profile_url %} active{% endifequal %}">
+        <a  href="{{my_profile_url}}" ><i class="fas fa-users-cog"></i> {% blocktrans %}Actualizar perfil{% endblocktrans %}</a>
     </li>
 
-    {% url 'password_reset' as password_reset %}
     <li class="{% ifequal request.path password_reset %} active{% endifequal %}">
      <a href="{{password_reset}}">
-     {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>
+     <i class="fas fa-key"></i> {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>
      <li class="{% ifequal request.path my_supports_url %} active{% endifequal %}">
       <a href="{{my_supports_url}}">
-      {% blocktrans %}Mis apoyos{% endblocktrans %}</a></li>
+      <i class="fas fa-heart"></i> {% blocktrans %}Mis apoyos{% endblocktrans %}</a></li>
       {% if config.SEARCH_SUBSCRIPTION_ENABLED %}
-        {% url 'proposal_subscriptions:list' as search_proposal_subscriptions_url %}
+
          <li class="{% ifequal request.path search_proposal_subscriptions_url%} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
           <a  href="{{search_proposal_subscriptions_url}}">
-          {%if in_drop_down_menu %}<i class="fa fa-search" aria-hidden="true"></i>{% endif %} {% blocktrans %}Búsquedas{% endblocktrans %}</a></li>
+          <i class="fas fa-search"></i>  {% blocktrans %}Búsquedas{% endblocktrans %}</a></li>
       {% endif %}
+
 </ul>
 
 </li>
 {% endif %}
-{% comment %}
+{% url 'backend_citizen:my_proposals' as backend_index %}
+ <li role="presentation" class="{% ifequal request.path backend_index%} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
+<a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{backend_index}}">
+    <i class="far fa-lightbulb"></i>  {% trans 'Mis propuestas' %}</a></li>
+
+  <!-- Mi agenda de actividades-->
+  {% url 'backend_citizen:all_my_activities' as all_my_activities %}
+ <li role="presentation" class="{% ifequal request.path all_my_activities %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
+  <a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{all_my_activities}}">
+  <i class="far fa-calendar-alt"></i> {% blocktrans %}Mis eventos{% endblocktrans %}</a></li>
+  <!-- Mi agenda de actividades-->
+
 {% url 'backend_citizen:stats' as stats_url %}
  <li role="presentation" class="{% ifequal request.path stats_url %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
   <a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{stats_url}}">
-  {%if in_drop_down_menu %}imagen{% endif %} {% blocktrans %}Estadísticas{% endblocktrans %}</a></li>
-{% endcomment %}
+  <i class="fas fa-chart-bar"></i> {% blocktrans %}Estadísticas{% endblocktrans %}</a></li>

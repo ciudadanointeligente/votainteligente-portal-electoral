@@ -56,10 +56,6 @@
                         {% include 'backend_citizen/menu.html' with user=user mobile=True %}
                       {% endif %}
                     {% endif %}
-                      {% url 'password_reset' as password_reset %}
-                       <li class="{% ifequal request.path password_reset %} active{% endifequal %}">
-                           <a class="small" href="{{password_reset}}">
-                        {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>
               </ul>
           </li>
       <!-- END Versión moviles -->

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-16 18:30+0000\n"
-"PO-Revision-Date: 2018-05-21 14:01-0300\n"
+"PO-Revision-Date: 2018-05-22 10:51-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.0.7\n"
 
 #: agenda/forms.py:23 backend_candidate/forms.py:237
 #: votai_general_theme/templates/backend_candidate/add_activity.html:20
@@ -1084,20 +1084,20 @@ msgid ""
 "desde el <a href=\"/\">home.</a></p></h2>\n"
 "              "
 msgstr ""
+"\n"
+"              Desculpe, esta página não existe mais.<p>Comece de novo em. <a "
+"href=\"/\">home.</a></p></h2>\n"
+"              "
 
 #: votai_general_theme/templates/_candidate_small.html:18
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "        Hay %(proposals_count)s\n"
-#| "      "
+#, python-format
 msgid ""
 "\n"
 "          %(commitments_count)s compromisos\n"
 "        "
 msgstr ""
 "\n"
-"        Existem %(proposals_count)s\n"
+"        %(commitments_count)s compromissos\n"
 "      "
 
 #: votai_general_theme/templates/_dropdown_user.html:15

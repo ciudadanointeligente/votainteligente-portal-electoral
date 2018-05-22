@@ -2,7 +2,9 @@
 
 .yellow .navbar-brand {
   background: url(../img/logo-blanco_rpi.svg) center center no-repeat;
-  width: 294px;
+  max-width: 294px;
+  min-width: 200px;
+  background-size: contain;
 }
 
 .yellow .navbar-brand img {

@@ -8,9 +8,6 @@
 <a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{backend_index}}">
     {%if in_drop_down_menu %}<i class="fa fa-lightbulb-o" aria-hidden="true"></i>{% endif %}  {% trans 'Mis propuestas' %}</a></li>
   {% url 'backend_citizen:my_supports' as my_supports_url %}
- <li role="presentation" class="{% ifequal request.path my_supports_url %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
-  <a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{my_supports_url}}">
-  {%if in_drop_down_menu %}<i class="fa fa-thumbs-up" aria-hidden="true"></i>{% endif %} {% blocktrans %}Mis apoyos{% endblocktrans %}</a></li>
   <!-- Mi agenda de actividades-->
   {% url 'backend_citizen:all_my_activities' as all_my_activities %}
  <li role="presentation" class="{% ifequal request.path all_my_activities %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
@@ -22,23 +19,52 @@
 {% if user.profile.is_organization %}
   {% url 'organization_profiles:update' as org_profile %}
  <li role="presentation" class="{% ifequal request.path org_profile %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
-  <a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{org_profile}}" data-toggle="dropdown" data-target="submenu">
+  <a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{org_profile}}" data-toggle="dropdown" data-target="submenu_org">
   {%if in_drop_down_menu %}<i class="fa fa-id-card" aria-hidden="true"></i>{% endif %} {% blocktrans %}Actualizar mi organización{% endblocktrans %} <span class="caret"></span></a>
-  <ul class="dropdown-menu" id="submenu">
+  <ul class="dropdown-menu" id="submenu_org">
     <li><a href="{% url 'organization_profiles:update' %}">{% blocktrans %}
       Pagina Organizacion
     {% endblocktrans %}</a></li>
     {% for extra_page in user.organization_template.extra_pages.all %}
     <li><a href="{% url 'organization_profiles:update_extrapage' extra_page.id %}">{{extra_page.title}}</a></li>
     {% endfor %}
+    {% url 'password_reset' as password_reset %}
+    <li class="{% ifequal request.path password_reset %} active{% endifequal %}">
+     <a href="{{password_reset}}">
+     {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>
+     <li class="{% ifequal request.path my_supports_url %} active{% endifequal %}">
+      <a href="{{my_supports_url}}">
+      {% blocktrans %}Mis apoyos{% endblocktrans %}</a></li>
   </ul>
  </li>
 {% else %}
-{% url 'backend_citizen:update_my_profile' as my_profile_url %}
+
  <li role="presentation" class="{% ifequal request.path my_profile_url %} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
-  <a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{my_profile_url}}">
+  <a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{my_profile_url}}" data-toggle="dropdown" data-target="submenu_user">
   {%if in_drop_down_menu %}<i class="fa fa-user-circle" aria-hidden="true"></i>
-{% endif %} {% blocktrans %}Mi perfil{% endblocktrans %}</a></li>
+{% endif %} {% blocktrans %}Mi perfil{% endblocktrans %}<span class="caret"></span></a>
+<ul class="dropdown-menu" id="submenu_user">
+    {% url 'backend_citizen:update_my_profile' as my_profile_url %}
+    <li>
+        <a  href="{{my_profile_url}}" ></a>
+    </li>
+
+    {% url 'password_reset' as password_reset %}
+    <li class="{% ifequal request.path password_reset %} active{% endifequal %}">
+     <a href="{{password_reset}}">
+     {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>
+     <li class="{% ifequal request.path my_supports_url %} active{% endifequal %}">
+      <a href="{{my_supports_url}}">
+      {% blocktrans %}Mis apoyos{% endblocktrans %}</a></li>
+      {% if config.SEARCH_SUBSCRIPTION_ENABLED %}
+        {% url 'proposal_subscriptions:list' as search_proposal_subscriptions_url %}
+         <li class="{% ifequal request.path search_proposal_subscriptions_url%} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
+          <a  href="{{search_proposal_subscriptions_url}}">
+          {%if in_drop_down_menu %}<i class="fa fa-search" aria-hidden="true"></i>{% endif %} {% blocktrans %}Búsquedas{% endblocktrans %}</a></li>
+      {% endif %}
+</ul>
+
+</li>
 {% endif %}
 {% comment %}
 {% url 'backend_citizen:stats' as stats_url %}
@@ -46,13 +72,3 @@
   <a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{stats_url}}">
   {%if in_drop_down_menu %}imagen{% endif %} {% blocktrans %}Estadísticas{% endblocktrans %}</a></li>
 {% endcomment %}
-{% if config.SEARCH_SUBSCRIPTION_ENABLED %}
-  {% url 'proposal_subscriptions:list' as search_proposal_subscriptions_url %}
-   <li role="presentation" class="{% ifequal request.path search_proposal_subscriptions_url%} active{% endifequal %}{% if not mobile %} hidden-xs{% endif %}">
-    <a {%if not in_drop_down_menu %}class="small"{% endif %} href="{{search_proposal_subscriptions_url}}">
-    {%if in_drop_down_menu %}<i class="fa fa-search" aria-hidden="true"></i>{% endif %} {% blocktrans %}Búsquedas{% endblocktrans %}</a></li>
-{% endif %}
-{% url 'password_reset' as password_reset %}
- <li role="presentation" class="{% ifequal request.path password_reset %} active{% endifequal %} hidden-xs">
-  <a class="small" href="{{password_reset}}">
-  {% blocktrans %}Cambia tu contraseña{% endblocktrans %}</a></li>

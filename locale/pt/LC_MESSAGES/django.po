@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-16 18:30+0000\n"
-"PO-Revision-Date: 2018-05-22 10:51-0300\n"
+"PO-Revision-Date: 2018-05-22 11:05-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -1248,8 +1248,6 @@ msgid "Tu agenda de actividades"
 msgstr "Minha agenda de atividades"
 
 #: votai_general_theme/templates/agenda/all_activities.html:12
-#, fuzzy
-#| msgid "Agrega una actividad a tu agenda."
 msgid "Agrega una actividad a la agenda."
 msgstr "Adicione uma atividade ao seu calendário."
 
@@ -2973,21 +2971,6 @@ msgstr ""
 "comunidade!"
 
 #: votai_general_theme/templates/popular_proposal/_popular_proposal_explanation.html:19
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "Queremos que las personas y organizaciones sociales sean escuchadas.\n"
-#| "Envíanos tu propuesta para solucionar un problema en tu comuna y nosotros "
-#| "te ayudaremos a que esta sea escuchada por los candidatos a alcaldes y "
-#| "concejales de las Elecciones Municipales 2016.\n"
-#| "\n"
-#| "Los vecinos y vecinas son quienes conocen mejor sus necesidades. Es por "
-#| "eso que estamos abiertos a todas sus propuestas. Solo ingresa tu comuna, "
-#| "rellena el formulario, y nosotros te acompañaremos en la elaboración de "
-#| "tu propuesta.\n"
-#| "\n"
-#| "#### Nota: Para hacer tu propuesta ciudadana, deberás registrarte en el "
-#| "sitio.  \n"
 msgid ""
 "\n"
 "Queremos que las personas y organizaciones sociales sean escuchadas.\n"
@@ -3015,6 +2998,7 @@ msgstr ""
 "\n"
 "#### Nota: Para fazer sua proposta cidadã, você deve se cadastrar no "
 "site.  \n"
+"\n"
 
 #: votai_general_theme/templates/popular_proposal/_popular_proposal_stages_a.html:24
 #: votai_general_theme/templates/popular_proposal/_popular_proposal_stages_b.html:24

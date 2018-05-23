@@ -156,32 +156,20 @@ class AddActivityToUserView(LoginRequiredMixin, CreateView):
         return kwargs
 
 
-class MyActivitiesListView(LoginRequiredMixin, ListView):
+class ActivityListView(ListView):
     model = Activity
-    template_name = 'backend_citizen/all_my_activities.html'
     context_object_name = 'activities'
-
-    def get_queryset(self):
-        content_type = ContentType.objects.get_for_model(self.request.user)
-        return Activity.objects.filter(object_id=self.request.user.id,
-                                       content_type=content_type)
-
-class MyActivitiesListView(LoginRequiredMixin, ListView):
-    model = Activity
-    template_name = 'backend_citizen/all_my_activities.html'
-    context_object_name = 'activities'
-
-    def get_queryset(self):
-        content_type = ContentType.objects.get_for_model(self.request.user)
-        return Activity.objects.filter(object_id=self.request.user.id,
-                                       content_type=content_type)
-
-
-class AllActivitiesListView(ListView):
-    model = Activity
-    template_name = 'agenda/all_activities.html'
-    context_object_name = 'activities'
-
     def get_queryset(self):
         content_type = ContentType.objects.get_for_model(User)
-        return Activity.objects.filter(content_type=content_type)
+        return Activity.futures.filter(content_type=content_type)
+
+
+class MyActivitiesListView(LoginRequiredMixin, ActivityListView):
+    template_name = 'backend_citizen/all_my_activities.html'
+    def get_queryset(self):
+        qs = super(MyActivitiesListView, self).get_queryset()
+        return qs.filter(object_id=self.request.user.id)
+
+
+class AllActivitiesListView(ActivityListView):
+    template_name = 'agenda/all_activities.html'

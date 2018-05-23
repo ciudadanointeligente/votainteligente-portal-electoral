@@ -41,20 +41,20 @@ class ActivityTestCase(TestCase):
     def test_future_activities_manager(self):
         activity1 = Activity.objects.create(date=yesterday,
                                             url='https://perrito.cl/actividad_secreta',
-                                            description='This is a description',
+                                            description='yesterdays activity',
                                             location='secret location')
         activity2 = Activity.objects.create(date=tomorrow,
                                             url='https://perrito.cl/actividad_secreta',
-                                            description='This is a description',
+                                            description='tomorrows activity',
                                             location='secret location')
         activity3 = Activity.objects.create(date=two_days_from_now,
                                             url='https://perrito.cl/actividad_secreta',
-                                            description='This is a description',
+                                            description='this activity is in two days',
                                             location='secret location')
         future_activities = Activity.futures.all()
         self.assertNotIn(activity1, future_activities)
-        self.assertIn(activity1, future_activities)
-        self.assertIn(activity1, future_activities)
+        self.assertIn(activity2, future_activities)
+        self.assertIn(activity3, future_activities)
 
 
 class ActivityFormTestCase(TestCase):

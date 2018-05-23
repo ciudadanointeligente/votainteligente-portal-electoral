@@ -11,8 +11,8 @@ from django.utils import timezone
 class FutureActivities(models.Manager):
     def get_queryset(self):
         qs = super(FutureActivities, self).get_queryset()
-        today = timezone.now()
-        qs = qs.filter(date__gte=today)
+        now = timezone.now()
+        qs = qs.filter(date__gte=now)
         return qs
 
 @python_2_unicode_compatible

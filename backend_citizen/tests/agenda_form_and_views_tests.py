@@ -14,6 +14,7 @@ PASSWORD = u'PASSWORD'
 TOMORROW = timezone.now() + datetime.timedelta(days=1)
 IN_TWO_DAYS = timezone.now() + datetime.timedelta(days=2)
 IN_THREE_DAYS = timezone.now() + datetime.timedelta(days=3)
+YESTERDAY = timezone.now() - datetime.timedelta(days=1)
 
 
 class AgendaCitizenViewTestCase(TestCase):
@@ -71,6 +72,11 @@ class AgendaCitizenViewTestCase(TestCase):
                                             description='This is a description',
                                             content_object=self.feli,
                                             location='secret location')
+        activity4 = Activity.objects.create(date=YESTERDAY,
+                                            url='https://perrito.cl/actividad_secreta',
+                                            description='This is a description',
+                                            content_object=self.feli,
+                                            location='secret location')
         url = reverse('backend_citizen:all_my_activities')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 302)
@@ -84,6 +90,7 @@ class AgendaCitizenViewTestCase(TestCase):
         self.assertIn(activity2, activities)
         self.assertIn(activity3, activities)
         self.assertNotIn(activity1, activities)
+        self.assertNotIn(activity4, activities)
 
     def test_list_public_events(self):
         other_user = User.objects.create_user(username='other')

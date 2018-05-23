@@ -6,7 +6,7 @@
       <ul class="list-inline">
         {% proposals_topic_choices as classifications %}
         {% for k,v in classifications %}
-            <li><a href="/propuestas/?clasification={{k}}" onclick="ga('send','event','filterby-{{k}}','click')" class="badge">{{v}}</a></li>
+            <li><a href="{% url 'popular_proposals:home' %}?clasification={{k}}" onclick="ga('send','event','filterby-{{k}}','click')" class="badge">{{v}}</a></li>
         {% endfor %}
       </ul>
     </div>

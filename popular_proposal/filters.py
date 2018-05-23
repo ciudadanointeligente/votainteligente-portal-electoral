@@ -4,7 +4,6 @@ from django_filters import (FilterSet,
                             ModelChoiceFilter,
                             )
 from popular_proposal.models import PopularProposal
-from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from elections.models import Area
 from django.conf import settings
 from constance import config
@@ -42,7 +41,7 @@ class TextSearchForm(Form):
 
 
 class ProposalWithoutAreaFilter(FilterSet):
-    clasification = ChoiceFilter(choices=TOPIC_CHOICES,
+    clasification = ChoiceFilter(choices=[],
                                  empty_label=_(u"Selecciona"),
                                  widget=HiddenInput(),
                                  label=_(u"Clasificación"))
@@ -69,6 +68,8 @@ class ProposalWithoutAreaFilter(FilterSet):
                                                         queryset=queryset,
                                                         prefix=prefix,
                                                         strict=strict)
+        from popular_proposal.forms.form_texts import TOPIC_CHOICES
+        self.form.fields['clasification'].choices = TOPIC_CHOICES
 
     @property
     def form(self):

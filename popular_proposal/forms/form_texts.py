@@ -62,7 +62,7 @@ def get_topic_choices():
             topics_from_theme = getattr(m, '_TOPIC_CHOICES')
             return topics_from_theme
         except Exception as e:
-            print e
+            pass
 
     return _TOPIC_CHOICES
 

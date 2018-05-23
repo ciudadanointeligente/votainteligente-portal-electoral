@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-22 21:39+0000\n"
-"PO-Revision-Date: 2018-05-22 18:40-0300\n"
+"PO-Revision-Date: 2018-05-23 16:44-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -4326,7 +4326,7 @@ msgstr "^propostas/"
 
 #: votainteligente/urls.py:37
 msgid "^pages/"
-msgstr "^páginas/"
+msgstr "^paginas/"
 
 #: votainteligente/urls.py:41
 msgid "^perfil_ciudadano/"

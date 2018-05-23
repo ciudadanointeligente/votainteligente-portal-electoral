@@ -11,7 +11,7 @@
       <div class="ribbon">{{proposal.ribbon_text}}</div>
     </div>
     {% endif %}
-    <a href="/propuestas/?clasification={{proposal.clasification}}" onclick="ga('send','event','card-filterby-clasification','click')"><span class="label label-default">{{proposal.get_classification}}</span></a>
+    <a href="{% url 'popular_proposals:home' %}?clasification={{proposal.clasification}}" onclick="ga('send','event','card-filterby-clasification','click')"><span class="label label-default">{{proposal.get_classification}}</span></a>
     {% if proposal.generated_at is not None %}<span class="label label-success">{{proposal.generated_at}}</span>{% endif %}
 
 

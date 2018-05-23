@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-
+{% load markdown_deux_tags %}
 {% block everything %}
 {% load staticfiles %}
 
@@ -12,11 +12,31 @@
 <section id="que-es">
   <div class="container">
 		<div class="col-md-6">
-			{% url 'encuentro_ciudadano' as encuentro_ciudadano_url %}
 
-		<p>{% blocktrans %}
-			Vota Inteligente es un plataforma desarrollada por <b><a href="//www.ciudadanointeligente.org/" target="_blank" onclick="ga('send','event','que-es-ciudadanoi','click')">Ciudadano Inteligente</a></b> que busca cambiar la forma en que se viven las elecciones en Chile para que esta vez sean los ciudadanos y ciudadanas los que hagan sus propuestas a las candidaturas.</p><p>En la plataforma cualquier persona, organización, colectivo o grupo de personas pueden generar sus propias propuestas que aborden los temas que más les preocupan o inquietan. Desde Ciudadano Inteligente le haremos llegar las propuestas que se levanten a todas las candidaturas presidenciales y parlamentarias y éstas se podrán comprometer en la misma plataforma a llevarlas a cabo y cumplirlas en caso de resultar electas.</p><p>Una vez subidas en la página, cualquier persona puede conocer y apoyar las propuestas a través de un “APOYAR <i class="fa fa-heart" aria-hidden="true"></i>”. Además, las organizaciones no gubernamentales que participen de la plataforma pueden patrocinar propuestas de otras personas u organizaciones.</p><p>Desde Vota Inteligente promovemos que las propuestas sean construidas colectivamente. Para eso hemos creado una Metodología de Encuentro para que la creación de nuestras propuestas sea un espacio de convivencia y diálogo entre personas, amigos, vecinos y comunidades. Juntas de vecinos, clubes deportivos, sindicatos, gremios, colectivos y organizaciones de todo tipo están invitados a hacer sus propuestas y a organizar encuentros para debatir en conjunto acerca del país que la ciudadanía sueña. (<b><a href="{{encuentro_ciudadano_url}}" onclick="ga('send','event','que-es-encuentro','click')">Acá</a></b> puedes encontrar información de cómo hacer tu propio encuentro).</p><p>Las elecciones son el momento en que se define el futuro de nuestro país y es fundamental que toda la ciudadanía tenga un voz y opinión en este proceso. El voto no es la única forma de participar, desde Vota Inteligente puedes ir más allá creando tu propuesta, compartirla con tus amistades y apoyar las que más te gusten para que juntos hagamos sentir, más fuerte que nunca, la voz de la ciudadanía en estas elecciones que son nuestras. <b>#LaElecciónEsNuestra</b>
-		{% endblocktrans %}</p>
+{% markdown %}
+Vota Inteligente é uma plataforma desenvolvida por [Cidadania Inteligente](https://cidadaniainteligente.org) que busca mudar a forma como as eleições são vividas no Estado do Rio de Janeiro, para que dessa vez sejam cidadãs e cidadãos que façam suas propostas para as candidaturas.
+
+Na plataforma qualquer pessoa, organização, coletivo ou grupo de pessoas podem gerar suas próprias propostas, abordando temas que mais lhes preocupam ou inquietam. A partir da Cidadania Inteligente, faremos com que as propostas cheguem à candidatas e candidatos, estas podem ser comprometidas na mesma plataforma para realizá-las e cumpri-las no caso de serem eleitos/as.
+
+Uma vez carregadas na página, qualquer pessoa pode conhecer e apoiar as propostas através de um “APOIO” ”. Além disso, organizações que participam da plataforma podem patrocinar propostas de outras pessoas ou organizações.
+
+
+Da Vota Inteligente promovemos que as propostas sejam construídas coletivamente. Para isso criamos uma Metodologia do Encontro para que a criação de nossas propostas seja um espaço de convivência e diálogo entre pessoas, amigos, vizinhos e comunidades. Junto da vizinhança, sindicatos, grêmios, coletivos e organizações de todo tipo, estão convidados a fazer suas propostas e organizar encontros para debater em conjunto acerca do país que a cidadania sonha. ([Aqui](https://rioporinteiro.org.br/encontro_cidadao/) você pode encontrar informação de como fazer seu próprio encontro).
+
+
+As eleições são o momento em que se define o futuro o país e é fundamental que toda a cidadania tenha uma voz e opinião nesse processo. O voto não é a única forma de participar, a partir de Vota Inteligente podemos ir mais longe criando sua proposta, compartilhando com sua rede e apoiando as proposta de que mais gosta, para que juntos façamos sentir, mais forte do que nunca, a voz da cidadania nas eleições que são nossas.**#LaElecciónEsNuestra**
+
+{% endmarkdown %}
+
+
+
+
+
+
+
+
+
+
 		</div>
 		<div class="col-md-6">
 				<div class="line-space"></div>

@@ -7,6 +7,8 @@ from agenda.forms import ActivityForm
 from django.contrib.auth.models import User
 
 tomorrow = timezone.now() + datetime.timedelta(days=1)
+two_days_from_now = timezone.now() + datetime.timedelta(days=2)
+yesterday = timezone.now() - datetime.timedelta(days=1)
 
 
 class ActivityTestCase(TestCase):
@@ -36,6 +38,23 @@ class ActivityTestCase(TestCase):
                                            location='secret location')
         self.assertTrue(activity.background_image)
 
+    def test_future_activities_manager(self):
+        activity1 = Activity.objects.create(date=yesterday,
+                                            url='https://perrito.cl/actividad_secreta',
+                                            description='This is a description',
+                                            location='secret location')
+        activity2 = Activity.objects.create(date=tomorrow,
+                                            url='https://perrito.cl/actividad_secreta',
+                                            description='This is a description',
+                                            location='secret location')
+        activity3 = Activity.objects.create(date=two_days_from_now,
+                                            url='https://perrito.cl/actividad_secreta',
+                                            description='This is a description',
+                                            location='secret location')
+        future_activities = Activity.futures.all()
+        self.assertNotIn(activity1, future_activities)
+        self.assertIn(activity1, future_activities)
+        self.assertIn(activity1, future_activities)
 
 
 class ActivityFormTestCase(TestCase):

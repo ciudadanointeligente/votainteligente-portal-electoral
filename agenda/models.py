@@ -5,7 +5,15 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
+from django.utils import timezone
 
+
+class FutureActivities(models.Manager):
+    def get_queryset(self):
+        qs = super(FutureActivities, self).get_queryset()
+        today = timezone.now()
+        qs = qs.filter(date__gte=today)
+        return qs
 
 @python_2_unicode_compatible
 class Activity(models.Model):
@@ -29,6 +37,9 @@ class Activity(models.Model):
     object_id = models.CharField(max_length=1024,blank=True,
                                             null=True)
     content_object = GenericForeignKey('content_type', 'object_id')
+
+    futures = FutureActivities()
+    objects = models.Manager()
 
     def __str__(self):
         return self.description

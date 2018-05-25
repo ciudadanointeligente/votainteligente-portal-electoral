@@ -19,9 +19,12 @@ class FutureActivities(models.Manager):
 class Activity(models.Model):
     date = models.DateTimeField()
     url = models.URLField(blank=True, null=True)
-    location = models.CharField(max_length=1024)
+    location = models.TextField(blank=True)
     description = models.CharField(blank=True,max_length=1024)
     long_description = models.TextField(blank=True)
+    contact_info = models.TextField(verbose_name=_(u'Cómo te pueden contactar las personas interesadas?'),
+                                    help_text=_(u'Aquí puedes escribir un número telefónico, un email o un whatsapp.'))
+    important = models.BooleanField(default=False, verbose_name=_(u'Es este evento importante?'))
     background_image = models.ImageField(upload_to="agenda/activities/",
                                         null=True,
                                         blank=True,

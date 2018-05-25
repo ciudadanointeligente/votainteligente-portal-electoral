@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-25 16:18+0000\n"
-"PO-Revision-Date: 2018-05-25 15:32-0300\n"
+"POT-Creation-Date: 2018-05-25 19:35+0000\n"
+"PO-Revision-Date: 2018-05-25 16:36-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -18,36 +18,36 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.7\n"
 
-#: agenda/forms.py:23 backend_candidate/forms.py:237
+#: agenda/forms.py:24 backend_candidate/forms.py:237
 #: votai_general_theme/templates/backend_candidate/add_activity.html:20
 #: votai_general_theme/templates/backend_citizen/add_activity.html:12
 msgid "Fecha"
 msgstr "Data"
 
-#: agenda/forms.py:24 backend_candidate/forms.py:238
+#: agenda/forms.py:25 backend_candidate/forms.py:238
 msgid "Link a tu actividad, puede ser al evento en Facebook"
 msgstr "Link para o seu evento (pode ser um evento no Facebook)"
 
-#: agenda/forms.py:25
+#: agenda/forms.py:26
 msgid "Título de tu actividad"
 msgstr "Título da sua atividade"
 
-#: agenda/forms.py:26
+#: agenda/forms.py:27
 msgid "Cuentanos lo que quieras sobre tu actividad"
 msgstr "Conta pra gente tudo sobre sua atividade"
 
-#: agenda/forms.py:27
+#: agenda/forms.py:28
 msgid "El lugar donde se realizará esta actividad (opcional)"
 msgstr ""
 "O lugar onde esta atividade acontecerá (coloque o local do evento somente se "
 "desejar que ele seja publico. isso significa que qualquer pessoa poderá "
 "fazer parte do seu encontro)"
 
-#: agenda/forms.py:28 agenda/models.py:25
+#: agenda/forms.py:29 agenda/models.py:25
 msgid "Cómo te pueden contactar las personas interesadas?"
 msgstr "Como podem as pessoas interessadas entrar em contato com você?"
 
-#: agenda/forms.py:29
+#: agenda/forms.py:30
 msgid "Imagen para promocionar tu actividad"
 msgstr "Imagem para promover sua atividade"
 
@@ -1218,7 +1218,11 @@ msgstr "Entre com o Google"
 msgid "Hola"
 msgstr "Olá"
 
-#: votai_general_theme/templates/agenda/_activity_card.html:44
+#: votai_general_theme/templates/agenda/_activity_card.html:46
+msgid "Más información"
+msgstr "Mais informação"
+
+#: votai_general_theme/templates/agenda/_activity_card.html:54
 #: votai_general_theme/templates/popular_proposal/detail.html:188
 msgid "Cerrar"
 msgstr "Fechar"

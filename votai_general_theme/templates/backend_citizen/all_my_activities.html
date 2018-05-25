@@ -9,5 +9,6 @@
                     href="{% url 'backend_citizen:add_activity' %}">
                     {% trans "Agrega una actividad a tu agenda." %}
                 </a>
+    <h2 class="page-header">{% trans "Tu agenda de actividades" %}</h2>
 	{% include 'agenda/_activity_list.html' with activities=activities %}
 {% endblock main_content %}

@@ -43,7 +43,8 @@ class AgendaCitizenViewTestCase(TestCase):
             'url': 'https://perrito.cl/actividad_secreta',
             'description': 'This is a description',
             'location': 'secret location',
-            'background_image': self.image
+            'background_image': self.image,
+            'contact_info': 'contact',
         }
         self.client.login(username=self.feli,
                           password=PASSWORD)

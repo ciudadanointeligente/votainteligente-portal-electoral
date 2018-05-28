@@ -19,6 +19,7 @@ class ActivityTestCase(TestCase):
         activity = Activity.objects.create(date=tomorrow,
                                            url='https://perrito.cl/actividad_secreta',
                                            description='This is a description',
+                                           contact_info='the_contact_info',
                                            location='secret location')
         self.assertTrue(activity)
         self.assertTrue(activity.created)
@@ -28,6 +29,15 @@ class ActivityTestCase(TestCase):
         self.assertIsNone(activity.content_object)
         self.assertFalse(activity.background_image)
         self.assertFalse(activity.long_description)
+        self.assertFalse(activity.important)
+
+    def test_location_is_optional(self):
+        activity = Activity.objects.create(date=tomorrow,
+                                           url='https://perrito.cl/actividad_secreta',
+                                           description='This is a description',
+                                           contact_info='the_contact_info')
+        self.assertTrue(activity)
+        self.assertFalse(activity.location)
 
     def test_activity_model_has_image(self):
         image = self.get_image()
@@ -66,7 +76,8 @@ class ActivityFormTestCase(TestCase):
             'date': tomorrow,
             'url': 'https://perrito.cl/actividad_secreta',
             'description': 'This is a description',
-            'location': 'secret location'
+            'location': 'secret location',
+            'contact_info': 'telefono y email',
         }
         user = User.objects.create_user(username="perrito")
         form = ActivityForm(data=data, content_object=user)
@@ -76,4 +87,5 @@ class ActivityFormTestCase(TestCase):
         self.assertEquals(instance.url, data['url'])
         self.assertEquals(instance.description, data['description'])
         self.assertEquals(instance.location, data['location'])
+        self.assertEquals(instance.contact_info, data['contact_info'])
         self.assertEquals(instance.content_object, user)

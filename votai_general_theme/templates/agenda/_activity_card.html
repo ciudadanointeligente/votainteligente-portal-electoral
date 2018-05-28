@@ -4,6 +4,8 @@
     <div class="body"
     {%if activity.background_image %}
     style="background-image:url('{{activity.background_image.url}}');"
+    {% else %}
+    style="background-color: #0FF;"
     {% endif %}
     >
         <div class="text-center title-and-location">
@@ -11,9 +13,11 @@
                 <p>{{activity.description}}</p>
             </div>
             <div class='location'>
-                {% if activity.url %}<a href="{{activity.url}}" target="_blank">{% endif %}
+                {% if activity.location %}
               	 <p><i class="fa fa-crosshairs"></i> {{activity.location}}</p>
-                {% if activity.url %}</a>{% endif %}
+                 {% else %}
+                 <p><i class="fas fa-phone-volume"></i> {{activity.contact_info}}</p>
+                {% endif %}
 
             </div>
         </div>
@@ -34,11 +38,18 @@
         <h4 class="modal-title">{{activity.description}}</h4>
       </div>
       <div class="modal-body">
+          {% if activity.background %}
           <img src="{{activity.background_image.url}}" class='img-responsive'>
+          {% endif %}
+
+        {% if activity.url %}<a href="{{activity.url}}" target="_blank">
+            <p><i class="fa fa-link"></i> {% trans 'Más información' %}</p>
+        </a>{% endif %}
+        {% if activity.location %}
+        <p><i class="fa fa-crosshairs"></i> {{activity.location}}</p>
+        {% endif %}
+        <p><i class="fas fa-phone-volume"></i> {{activity.contact_info}}</p>
         <p>{{ activity.long_description|markdown }}</p>
-        {% if activity.url %}<a href="{{activity.url}}" target="_blank">{% endif %}
-         <p><i class="fa fa-crosshairs"></i> {{activity.location}}</p>
-        {% if activity.url %}</a>{% endif %}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Cerrar" %}</button>

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-22 21:39+0000\n"
-"PO-Revision-Date: 2018-05-23 16:44-0300\n"
+"POT-Creation-Date: 2018-05-25 19:35+0000\n"
+"PO-Revision-Date: 2018-05-25 16:36-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -18,37 +18,52 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.7\n"
 
-#: agenda/forms.py:23 backend_candidate/forms.py:237
+#: agenda/forms.py:24 backend_candidate/forms.py:237
 #: votai_general_theme/templates/backend_candidate/add_activity.html:20
 #: votai_general_theme/templates/backend_citizen/add_activity.html:12
 msgid "Fecha"
 msgstr "Data"
 
-#: agenda/forms.py:24 backend_candidate/forms.py:238
+#: agenda/forms.py:25 backend_candidate/forms.py:238
 msgid "Link a tu actividad, puede ser al evento en Facebook"
 msgstr "Link para o seu evento (pode ser um evento no Facebook)"
 
-#: agenda/forms.py:25
+#: agenda/forms.py:26
 msgid "Título de tu actividad"
 msgstr "Título da sua atividade"
 
-#: agenda/forms.py:26
+#: agenda/forms.py:27
 msgid "Cuentanos lo que quieras sobre tu actividad"
 msgstr "Conta pra gente tudo sobre sua atividade"
 
-#: agenda/forms.py:27 backend_candidate/forms.py:240
-msgid "El lugar donde se realizará esta actividad"
-msgstr "Lugar onde a atividade será realizada"
-
 #: agenda/forms.py:28
+msgid "El lugar donde se realizará esta actividad (opcional)"
+msgstr ""
+"O lugar onde esta atividade acontecerá (coloque o local do evento somente se "
+"desejar que ele seja publico. isso significa que qualquer pessoa poderá "
+"fazer parte do seu encontro)"
+
+#: agenda/forms.py:29 agenda/models.py:25
+msgid "Cómo te pueden contactar las personas interesadas?"
+msgstr "Como podem as pessoas interessadas entrar em contato com você?"
+
+#: agenda/forms.py:30
 msgid "Imagen para promocionar tu actividad"
 msgstr "Imagem para promover sua atividade"
 
-#: agenda/models.py:20
+#: agenda/models.py:26
+msgid "Aquí puedes escribir un número telefónico, un email o un whatsapp."
+msgstr "Pode ser um telefone, um email ou um whatsapp."
+
+#: agenda/models.py:27
+msgid "Es este evento importante?"
+msgstr ""
+
+#: agenda/models.py:31
 msgid "Una imagen para el evento"
 msgstr "Uma imagem para o evento"
 
-#: agenda/models.py:21
+#: agenda/models.py:32
 msgid "será la imagen que utilicemos en la lista de eventos"
 msgstr "será a imagem que usaremos na lista de eventos"
 
@@ -75,6 +90,10 @@ msgstr ""
 #: backend_candidate/forms.py:239
 msgid "Descripción de tu actividad"
 msgstr "Descrição da sua atividade"
+
+#: backend_candidate/forms.py:240
+msgid "El lugar donde se realizará esta actividad"
+msgstr "Lugar onde a atividade será realizada"
 
 #: backend_candidate/views.py:108
 msgid "Hemos guardado tus respuestas"
@@ -370,39 +389,39 @@ msgstr "Cor secundária"
 msgid "Título"
 msgstr "Título"
 
-#: popular_proposal/filters.py:24
+#: popular_proposal/filters.py:23
 msgid "Qué buscas?"
 msgstr "O que você está buscando?"
 
-#: popular_proposal/filters.py:26
+#: popular_proposal/filters.py:25
 msgid "Ordenar por"
 msgstr "Organizar por"
 
-#: popular_proposal/filters.py:27
+#: popular_proposal/filters.py:26
 msgid "Por apoyos"
 msgstr "Quantidade de apoios"
 
-#: popular_proposal/filters.py:28
+#: popular_proposal/filters.py:27
 msgid "Últimas primero"
 msgstr "Últimas primeiro"
 
-#: popular_proposal/filters.py:29
+#: popular_proposal/filters.py:28
 msgid "De organizaciones primero"
 msgstr "Criada por organização no início"
 
-#: popular_proposal/filters.py:30
+#: popular_proposal/filters.py:29
 msgid "Encuentros locales primero"
 msgstr "Criada em encontro no início"
 
-#: popular_proposal/filters.py:46 popular_proposal/filters.py:124
+#: popular_proposal/filters.py:45 popular_proposal/filters.py:125
 msgid "Selecciona"
 msgstr "Selecione"
 
-#: popular_proposal/filters.py:48 popular_proposal/forms/form_texts.py:101
+#: popular_proposal/filters.py:47 popular_proposal/forms/form_texts.py:101
 msgid "Clasificación"
 msgstr "Classificação"
 
-#: popular_proposal/filters.py:119 popular_proposal/filters.py:125
+#: popular_proposal/filters.py:120 popular_proposal/filters.py:126
 msgid "Comuna donde fue generada"
 msgstr "Local onde foi criada"
 
@@ -994,78 +1013,6 @@ msgstr "Um projeto"
 msgid "Mobilize"
 msgstr ""
 
-#: rioxinteiro/templates/que_es.html:17
-#: votai_general_theme/templates/que_es.html:17
-#, python-format
-msgid ""
-"\n"
-"\t\t\tVota Inteligente es un plataforma desarrollada por <b><a href=\"//www."
-"ciudadanointeligente.org/\" target=\"_blank\" onclick="
-"\"ga('send','event','que-es-ciudadanoi','click')\">Ciudadano Inteligente</"
-"a></b> que busca cambiar la forma en que se viven las elecciones en Chile "
-"para que esta vez sean los ciudadanos y ciudadanas los que hagan sus "
-"propuestas a las candidaturas.</p><p>En la plataforma cualquier persona, "
-"organización, colectivo o grupo de personas pueden generar sus propias "
-"propuestas que aborden los temas que más les preocupan o inquietan. Desde "
-"Ciudadano Inteligente le haremos llegar las propuestas que se levanten a "
-"todas las candidaturas presidenciales y parlamentarias y éstas se podrán "
-"comprometer en la misma plataforma a llevarlas a cabo y cumplirlas en caso "
-"de resultar electas.</p><p>Una vez subidas en la página, cualquier persona "
-"puede conocer y apoyar las propuestas a través de un “APOYAR <i class=\"fa "
-"fa-heart\" aria-hidden=\"true\"></i>”. Además, las organizaciones no "
-"gubernamentales que participen de la plataforma pueden patrocinar propuestas "
-"de otras personas u organizaciones.</p><p>Desde Vota Inteligente promovemos "
-"que las propuestas sean construidas colectivamente. Para eso hemos creado "
-"una Metodología de Encuentro para que la creación de nuestras propuestas sea "
-"un espacio de convivencia y diálogo entre personas, amigos, vecinos y "
-"comunidades. Juntas de vecinos, clubes deportivos, sindicatos, gremios, "
-"colectivos y organizaciones de todo tipo están invitados a hacer sus "
-"propuestas y a organizar encuentros para debatir en conjunto acerca del país "
-"que la ciudadanía sueña. (<b><a href=\"%(encuentro_ciudadano_url)s\" onclick="
-"\"ga('send','event','que-es-encuentro','click')\">Acá</a></b> puedes "
-"encontrar información de cómo hacer tu propio encuentro).</p><p>Las "
-"elecciones son el momento en que se define el futuro de nuestro país y es "
-"fundamental que toda la ciudadanía tenga un voz y opinión en este proceso. "
-"El voto no es la única forma de participar, desde Vota Inteligente puedes ir "
-"más allá creando tu propuesta, compartirla con tus amistades y apoyar las "
-"que más te gusten para que juntos hagamos sentir, más fuerte que nunca, la "
-"voz de la ciudadanía en estas elecciones que son nuestras. "
-"<b>#LaElecciónEsNuestra</b>\n"
-"\t\t"
-msgstr ""
-"\n"
-"\t\t\tVota Inteligente é uma plataforma desenvolvida por <b><a href=“//www."
-"ciudadanointeligente.org/“ target=“_blank” onclick=“ga(‘send’,’event’,’que-"
-"es-ciudadanoi’,’click’)”>Cidadania Inteligente</a></b> que busca mudar a "
-"forma como as eleições são vividas no Estado do Rio de Janeiro, para que "
-"dessa vez sejam cidadãs e cidadãos que façam suas propostas para as "
-"candidaturas.</p><p>Na plataforma qualquer pessoa, organização, coletivo ou "
-"grupo de pessoas podem gerar suas próprias propostas, abordando temas que "
-"mais lhes preocupam ou inquietam. A partir da Cidadania Inteligente, faremos "
-"com que as propostas cheguem à candidatas e candidatos, estas podem ser "
-"comprometidas na mesma plataforma para realizá-las e cumpri-las no caso de "
-"serem eleitos/as.</p><p> Uma vez carregadas na página, qualquer pessoa pode "
-"conhecer e apoiar as propostas através de um “APOIO” <i class=“fa fa-heart” "
-"aria-hidden=“true”></i>”. Além disso, organizações que participam da "
-"plataforma podem patrocinar propostas de outras pessoas ou organizações.</"
-"p><p>Da Vota Inteligente promovemos que as propostas sejam construídas "
-"coletivamente. Para isso criamos uma Metodologia do Encontro para que a "
-"criação de nossas propostas seja um espaço de convivência e diálogo entre "
-"pessoas, amigos, vizinhos e comunidades. Junto da vizinhança, sindicatos, "
-"grêmios, coletivos e organizações de todo tipo, estão convidados a fazer "
-"suas propostas e organizar encontros para debater em conjunto acerca do país "
-"que a cidadania sonha. (<b><a href=“%(encuentro_ciudadano_url)s” "
-"onclick=“ga(‘send’,’event’,’que-es-encuentro’,’click’)”>Aqui</a></b> você "
-"pode encontrar informação de como fazer seu próprio encontro).</p><p>As "
-"eleições são o momento em que se define o futuro o país e é fundamental que "
-"toda a cidadania tenha uma voz e opinião nesse processo. O voto não é a "
-"única forma de participar, a partir de Vota Inteligente podemos ir mais "
-"longe criando sua proposta, compartilhando com sua rede e apoiando as "
-"proposta de que mais gosta, para que juntos façamos sentir, mais forte do "
-"que nunca, a voz da cidadania nas eleições que são nossas."
-"<b>#LaElecciónEsNuestra</b> \n"
-"\t\t"
-
 #: suggestions_for_candidates/admin.py:17
 msgid "Enviarle los filtros a los candidatos"
 msgstr ""
@@ -1271,7 +1218,11 @@ msgstr "Entre com o Google"
 msgid "Hola"
 msgstr "Olá"
 
-#: votai_general_theme/templates/agenda/_activity_card.html:44
+#: votai_general_theme/templates/agenda/_activity_card.html:46
+msgid "Más información"
+msgstr "Mais informação"
+
+#: votai_general_theme/templates/agenda/_activity_card.html:54
 #: votai_general_theme/templates/popular_proposal/detail.html:188
 msgid "Cerrar"
 msgstr "Fechar"
@@ -1338,7 +1289,7 @@ msgstr "Adicionar atividade"
 #: votai_general_theme/templates/backend_candidate/add_activity.html:32
 #: votai_general_theme/templates/backend_candidate/complete_12_naranja.html:20
 #: votai_general_theme/templates/backend_candidate/complete_profile.html:49
-#: votai_general_theme/templates/backend_citizen/add_activity.html:26
+#: votai_general_theme/templates/backend_citizen/add_activity.html:27
 #: votai_general_theme/templates/backend_citizen/update_subscription.html:17
 #: votai_general_theme/templates/popular_proposal/create.html:37
 #: votai_general_theme/templates/votita/agregar_propuestas_a_encuentro.html:29
@@ -3996,6 +3947,77 @@ msgstr "Obrigado, você foi inscrita/o com sucesso."
 #: votai_general_theme/templates/que_es.html:9
 msgid "¿Qué es Vota Inteligente?"
 msgstr "O que é Vota Inteligente?"
+
+#: votai_general_theme/templates/que_es.html:17
+#, python-format
+msgid ""
+"\n"
+"\t\t\tVota Inteligente es un plataforma desarrollada por <b><a href=\"//www."
+"ciudadanointeligente.org/\" target=\"_blank\" onclick="
+"\"ga('send','event','que-es-ciudadanoi','click')\">Ciudadano Inteligente</"
+"a></b> que busca cambiar la forma en que se viven las elecciones en Chile "
+"para que esta vez sean los ciudadanos y ciudadanas los que hagan sus "
+"propuestas a las candidaturas.</p><p>En la plataforma cualquier persona, "
+"organización, colectivo o grupo de personas pueden generar sus propias "
+"propuestas que aborden los temas que más les preocupan o inquietan. Desde "
+"Ciudadano Inteligente le haremos llegar las propuestas que se levanten a "
+"todas las candidaturas presidenciales y parlamentarias y éstas se podrán "
+"comprometer en la misma plataforma a llevarlas a cabo y cumplirlas en caso "
+"de resultar electas.</p><p>Una vez subidas en la página, cualquier persona "
+"puede conocer y apoyar las propuestas a través de un “APOYAR <i class=\"fa "
+"fa-heart\" aria-hidden=\"true\"></i>”. Además, las organizaciones no "
+"gubernamentales que participen de la plataforma pueden patrocinar propuestas "
+"de otras personas u organizaciones.</p><p>Desde Vota Inteligente promovemos "
+"que las propuestas sean construidas colectivamente. Para eso hemos creado "
+"una Metodología de Encuentro para que la creación de nuestras propuestas sea "
+"un espacio de convivencia y diálogo entre personas, amigos, vecinos y "
+"comunidades. Juntas de vecinos, clubes deportivos, sindicatos, gremios, "
+"colectivos y organizaciones de todo tipo están invitados a hacer sus "
+"propuestas y a organizar encuentros para debatir en conjunto acerca del país "
+"que la ciudadanía sueña. (<b><a href=\"%(encuentro_ciudadano_url)s\" onclick="
+"\"ga('send','event','que-es-encuentro','click')\">Acá</a></b> puedes "
+"encontrar información de cómo hacer tu propio encuentro).</p><p>Las "
+"elecciones son el momento en que se define el futuro de nuestro país y es "
+"fundamental que toda la ciudadanía tenga un voz y opinión en este proceso. "
+"El voto no es la única forma de participar, desde Vota Inteligente puedes ir "
+"más allá creando tu propuesta, compartirla con tus amistades y apoyar las "
+"que más te gusten para que juntos hagamos sentir, más fuerte que nunca, la "
+"voz de la ciudadanía en estas elecciones que son nuestras. "
+"<b>#LaElecciónEsNuestra</b>\n"
+"\t\t"
+msgstr ""
+"\n"
+"\t\t\tVota Inteligente é uma plataforma desenvolvida por <b><a href=“//www."
+"ciudadanointeligente.org/“ target=“_blank” onclick=“ga(‘send’,’event’,’que-"
+"es-ciudadanoi’,’click’)”>Cidadania Inteligente</a></b> que busca mudar a "
+"forma como as eleições são vividas no Estado do Rio de Janeiro, para que "
+"dessa vez sejam cidadãs e cidadãos que façam suas propostas para as "
+"candidaturas.</p><p>Na plataforma qualquer pessoa, organização, coletivo ou "
+"grupo de pessoas podem gerar suas próprias propostas, abordando temas que "
+"mais lhes preocupam ou inquietam. A partir da Cidadania Inteligente, faremos "
+"com que as propostas cheguem à candidatas e candidatos, estas podem ser "
+"comprometidas na mesma plataforma para realizá-las e cumpri-las no caso de "
+"serem eleitos/as.</p><p> Uma vez carregadas na página, qualquer pessoa pode "
+"conhecer e apoiar as propostas através de um “APOIO” <i class=“fa fa-heart” "
+"aria-hidden=“true”></i>”. Além disso, organizações que participam da "
+"plataforma podem patrocinar propostas de outras pessoas ou organizações.</"
+"p><p>Da Vota Inteligente promovemos que as propostas sejam construídas "
+"coletivamente. Para isso criamos uma Metodologia do Encontro para que a "
+"criação de nossas propostas seja um espaço de convivência e diálogo entre "
+"pessoas, amigos, vizinhos e comunidades. Junto da vizinhança, sindicatos, "
+"grêmios, coletivos e organizações de todo tipo, estão convidados a fazer "
+"suas propostas e organizar encontros para debater em conjunto acerca do país "
+"que a cidadania sonha. (<b><a href=“%(encuentro_ciudadano_url)s” "
+"onclick=“ga(‘send’,’event’,’que-es-encuentro’,’click’)”>Aqui</a></b> você "
+"pode encontrar informação de como fazer seu próprio encontro).</p><p>As "
+"eleições são o momento em que se define o futuro o país e é fundamental que "
+"toda a cidadania tenha uma voz e opinião nesse processo. O voto não é a "
+"única forma de participar, a partir de Vota Inteligente podemos ir mais "
+"longe criando sua proposta, compartilhando com sua rede e apoiando as "
+"proposta de que mais gosta, para que juntos façamos sentir, mais forte do "
+"que nunca, a voz da cidadania nas eleições que são nossas."
+"<b>#LaElecciónEsNuestra</b> \n"
+"\t\t"
 
 #: votai_general_theme/templates/registration/activate.html:4
 #: votai_general_theme/templates/registration/activation_complete.html:4

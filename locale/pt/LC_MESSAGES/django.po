@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-25 19:35+0000\n"
-"PO-Revision-Date: 2018-05-25 16:36-0300\n"
+"POT-Creation-Date: 2018-05-28 17:33+0000\n"
+"PO-Revision-Date: 2018-05-28 14:34-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -385,7 +385,7 @@ msgstr "Baixada"
 msgid "Color secundario"
 msgstr "Cor secundária"
 
-#: organization_profiles/models.py:181 popular_proposal/forms/form_texts.py:96
+#: organization_profiles/models.py:181 popular_proposal/forms/form_texts.py:101
 msgid "Título"
 msgstr "Título"
 
@@ -417,7 +417,7 @@ msgstr "Criada em encontro no início"
 msgid "Selecciona"
 msgstr "Selecione"
 
-#: popular_proposal/filters.py:47 popular_proposal/forms/form_texts.py:101
+#: popular_proposal/filters.py:47 popular_proposal/forms/form_texts.py:106
 msgid "Clasificación"
 msgstr "Classificação"
 
@@ -430,7 +430,7 @@ msgid "Selecciona cuándo"
 msgstr "Selecione quando"
 
 #: popular_proposal/forms/form_texts.py:9
-#: popular_proposal/forms/form_texts.py:93
+#: popular_proposal/forms/form_texts.py:98
 msgid "1 año"
 msgstr "1 ano"
 
@@ -447,7 +447,7 @@ msgid "4 años"
 msgstr "4 anos"
 
 #: popular_proposal/forms/form_texts.py:15
-#: popular_proposal/forms/form_texts.py:100
+#: popular_proposal/forms/form_texts.py:105
 #: rioxinteiro/proposals_categories.py:4
 msgid "Selecciona una categoría"
 msgstr "Selecione uma categoria"
@@ -529,7 +529,7 @@ msgid "Justicia"
 msgstr "Justiça"
 
 #: popular_proposal/forms/form_texts.py:35
-#: popular_proposal/forms/form_texts.py:102
+#: popular_proposal/forms/form_texts.py:107
 msgid "Medio ambiente"
 msgstr "Meio ambiente"
 
@@ -634,6 +634,7 @@ msgid "La causa de este problema es"
 msgstr "A causa deste problema é"
 
 #: popular_proposal/forms/form_texts.py:79
+#: popular_proposal/forms/form_texts.py:83
 msgid "Cuáles son las causas de este problema?"
 msgstr "Quais são as causas deste problema?"
 
@@ -646,6 +647,23 @@ msgstr ""
 "escrever apenas uma."
 
 #: popular_proposal/forms/form_texts.py:82
+msgid "Si yo fuera un candidato electo, mi primera medida sería..."
+msgstr ""
+"Se você fosse um candidato eleito ou uma candidata eleita, sua primeira "
+"medida seria..."
+
+#: popular_proposal/forms/form_texts.py:84
+msgid "Crear una ley para regular el uso de bolsas plásticas"
+msgstr "Criar uma lei para regular o uso de sacolas plásticas"
+
+#: popular_proposal/forms/form_texts.py:85
+msgid ""
+"Escribe la propuesta como si fuera tu primera medida como presidenta o "
+"presidente. "
+msgstr ""
+"Escreva a proposta como se fosse seu primeiro passo como candidato eleito. "
+
+#: popular_proposal/forms/form_texts.py:87
 msgid ""
 "¿Cuáles posibles soluciones creemos que existen para pasar del problema a la "
 "situación ideal?"
@@ -653,23 +671,23 @@ msgstr ""
 "Quais as possíveis soluções que acreditamos existir para passar do problema "
 "para a situação ideal?"
 
-#: popular_proposal/forms/form_texts.py:83
+#: popular_proposal/forms/form_texts.py:88
 msgid "¿Cual sería la situación ideal?"
 msgstr "Qual seria a situação ideal?"
 
-#: popular_proposal/forms/form_texts.py:85
+#: popular_proposal/forms/form_texts.py:90
 msgid "Escribe aquí la situación ideal a la que quieres llegar."
 msgstr "Escreva aqui a situação ideal que você deseja alcançar."
 
-#: popular_proposal/forms/form_texts.py:87
+#: popular_proposal/forms/form_texts.py:92
 msgid "La propuesta para solucionar este problema es"
 msgstr "A proposta para resolver este problema é"
 
-#: popular_proposal/forms/form_texts.py:88
+#: popular_proposal/forms/form_texts.py:93
 msgid "¿Cuál sería la solución?"
 msgstr "Qual seria a solução?"
 
-#: popular_proposal/forms/form_texts.py:89
+#: popular_proposal/forms/form_texts.py:94
 msgid ""
 "Se puede regular el uso de bolsas plásticas en los supermercados a solo tres "
 "por persona, las otras bolsas que se usen deben ser reutilizables."
@@ -677,58 +695,58 @@ msgstr ""
 "Você pode regular o uso de sacolas plásticas nos supermercados para apenas "
 "três por pessoa, as outras sacolas usadas devem ser reutilizáveis."
 
-#: popular_proposal/forms/form_texts.py:90
+#: popular_proposal/forms/form_texts.py:95
 msgid "Escribe aquí la solucion para el problema que definiste."
 msgstr "Escreva aqui a solução para o problema que você definiu."
 
-#: popular_proposal/forms/form_texts.py:91
+#: popular_proposal/forms/form_texts.py:96
 msgid "Tiempo en el cual se puede llevar a cabo la propuesta"
 msgstr "Tempo em que a proposta deve ou pode ser realizada"
 
-#: popular_proposal/forms/form_texts.py:92
+#: popular_proposal/forms/form_texts.py:97
 msgid "¿Cuándo debería estar esto listo?"
 msgstr "Quando deveria ficar pronto?"
 
-#: popular_proposal/forms/form_texts.py:95
+#: popular_proposal/forms/form_texts.py:100
 msgid "Colócale título"
 msgstr "Coloque o título"
 
-#: popular_proposal/forms/form_texts.py:98
+#: popular_proposal/forms/form_texts.py:103
 msgid "Título de la propuesta"
 msgstr "Título da proposta"
 
-#: popular_proposal/forms/form_texts.py:105
+#: popular_proposal/forms/form_texts.py:110
 msgid "¿Esta propuesta es producto de un encuentro local?"
 msgstr "Esta proposta surgiu de uma encontro local?"
 
-#: popular_proposal/forms/form_texts.py:106
 #: popular_proposal/forms/form_texts.py:111
+#: popular_proposal/forms/form_texts.py:116
 msgid "¿Es un encuentro local?"
 msgstr "É um encontro local?"
 
-#: popular_proposal/forms/form_texts.py:110 popular_proposal/forms/forms.py:196
+#: popular_proposal/forms/form_texts.py:115 popular_proposal/forms/forms.py:202
 msgid "¿En qué comuna se generó esta propuesta?"
 msgstr "Em que município essa proposta foi gerada?"
 
-#: popular_proposal/forms/form_texts.py:112 popular_proposal/forms/forms.py:203
+#: popular_proposal/forms/form_texts.py:117 popular_proposal/forms/forms.py:209
 msgid "Si eres una ONG de vocación nacional, esta opción no aplica"
 msgstr ""
 "Se você é uma organização de alcance nacional, esta opção não se aplica"
 
-#: popular_proposal/forms/form_texts.py:115
+#: popular_proposal/forms/form_texts.py:120
 #: votai_general_theme/templates/popular_proposal/wizard/paso5.html:64
 msgid "Términos y condiciones"
 msgstr "Termos e Condições"
 
-#: popular_proposal/forms/form_texts.py:120
+#: popular_proposal/forms/form_texts.py:125
 msgid "Esta propuesta es de prueba"
 msgstr "Esta proposta é de prova"
 
-#: popular_proposal/forms/form_texts.py:122
+#: popular_proposal/forms/form_texts.py:127
 msgid "Sólo la podrás ver tu y nosotros podremos borrarlas periodicamente."
 msgstr "Só você pode vê-la e nós poderemos apagá-la eventualmente."
 
-#: popular_proposal/forms/forms.py:47 popular_proposal/forms/forms.py:100
+#: popular_proposal/forms/forms.py:47 popular_proposal/forms/forms.py:106
 msgid "No aplica"
 msgstr "Sem local definido"
 
@@ -757,47 +775,47 @@ msgstr "Qual é a causa deste problema?"
 msgid "¿Qué propuesta puede solucionar este problema?"
 msgstr "Qual proposta pode solucionar esse problema?"
 
-#: popular_proposal/forms/forms.py:93
+#: popular_proposal/forms/forms.py:99
 msgid "Resumen y título"
 msgstr "Resumo e título"
 
-#: popular_proposal/forms/forms.py:104 votita/forms/forms.py:130
+#: popular_proposal/forms/forms.py:110 votita/forms/forms.py:130
 msgid "Debes aceptar nuestros Términos y Condiciones"
 msgstr "Você deve aceitar nossos Termos e Condições"
 
-#: popular_proposal/forms/forms.py:192
+#: popular_proposal/forms/forms.py:198
 msgid ""
 "Dónde se pueden reunir las personas que están interesadas en esta propuesta?"
 msgstr ""
 "Onde as pessoas que estão interessadas nesta proposta podem se encontrar?"
 
-#: popular_proposal/forms/forms.py:193
+#: popular_proposal/forms/forms.py:199
 msgid "Más antecedentes sobre tu propuesta."
 msgstr "Mais informações sobre sua proposta."
 
-#: popular_proposal/forms/forms.py:194
+#: popular_proposal/forms/forms.py:200
 msgid "¿Tienes alguna imagen para compartir?"
 msgstr ""
 
-#: popular_proposal/forms/forms.py:195 popular_proposal/models.py:199
+#: popular_proposal/forms/forms.py:201 popular_proposal/models.py:201
 msgid "¿Tienes algún documento para complementar tu propuesta?"
 msgstr ""
 
-#: popular_proposal/forms/forms.py:197
+#: popular_proposal/forms/forms.py:203
 msgid "¿Cómo te puede contactar un candidato?"
 msgstr "Como um candidato pode entrar em contato com você?"
 
-#: popular_proposal/forms/forms.py:198
+#: popular_proposal/forms/forms.py:204
 msgid "¿Esta propuesta se generó en un encuentro local?"
 msgstr "Esta proposta é o produto de uma encontro local?"
 
-#: popular_proposal/forms/forms.py:200
+#: popular_proposal/forms/forms.py:206
 msgid ""
 "URL de un grupo de facebook, o un grupo en whatsapp. Por ejemplo: https://"
 "facebook.com/migrupo"
 msgstr ""
 
-#: popular_proposal/forms/forms.py:201
+#: popular_proposal/forms/forms.py:207
 msgid ""
 "Ejemplo: Durante el año 2011, existió una iniciativa de otra comunidad que "
 "no llegó a buen puerto."
@@ -805,100 +823,100 @@ msgstr ""
 "Exemplo: Durante o ano de 2011, houve uma iniciativa de outra comunidade que "
 "não chegou a um bom porto."
 
-#: popular_proposal/forms/forms.py:202
+#: popular_proposal/forms/forms.py:208
 msgid "Ejemplo: Tu teléfono o el lugar donde eres ubicable y en qué horario."
 msgstr ""
 "Exemplo: seu telefone ou o local onde você está localizado e a que horas."
 
-#: popular_proposal/forms/forms.py:213
+#: popular_proposal/forms/forms.py:219
 #, python-format
 msgid "La ciudadana dijo: %s"
 msgstr ""
 
-#: popular_proposal/forms/forms.py:215
+#: popular_proposal/forms/forms.py:221
 msgid "Ocurrió un problema sacando los datos"
 msgstr "Houve um problema ao obter os dados"
 
-#: popular_proposal/forms/forms.py:218
+#: popular_proposal/forms/forms.py:224
 #, python-format
 msgid " <b>Y tus comentarios fueron: %s </b>"
 msgstr ""
 
-#: popular_proposal/forms/forms.py:265
+#: popular_proposal/forms/forms.py:271
 msgid "Comentarios sobre tu revisón"
 msgstr ""
 
-#: popular_proposal/forms/forms.py:282
+#: popular_proposal/forms/forms.py:288
 #, python-format
 msgid " <b>Creemos que: %s </b>"
 msgstr ""
 
-#: popular_proposal/forms/forms.py:381
+#: popular_proposal/forms/forms.py:387
 msgid "Cuentanos los términos de tu compromiso:"
 msgstr "Conte-nos os termos do seu compromisso:"
 
-#: popular_proposal/forms/forms.py:382
+#: popular_proposal/forms/forms.py:388
 msgid "¿Cómo te imaginas que esta propuesta puede ser concreatada?."
 msgstr "Como você imagina que esta proposta pode ser finalizada?."
 
-#: popular_proposal/forms/forms.py:385
+#: popular_proposal/forms/forms.py:391
 #: votai_general_theme/templates/popular_proposal/detail.html:182
 #: votai_general_theme/templates/popular_proposal/terms_and_conditions.html:2
 msgid "Términos y Condiciones"
 msgstr "Termos e Condições"
 
-#: popular_proposal/forms/forms.py:407 popular_proposal/forms/forms.py:409
+#: popular_proposal/forms/forms.py:413 popular_proposal/forms/forms.py:415
 msgid "El candidato no pertenece al area"
 msgstr "O candidato não pertence ao território"
 
-#: popular_proposal/models.py:194
+#: popular_proposal/models.py:196
 msgid "Antecedentes sobre tu propuesta"
 msgstr "Antecedentes da sua proposta"
 
-#: popular_proposal/models.py:197
+#: popular_proposal/models.py:199
 msgid "¿Cómo te pueden contactar? Esta información es pública."
 msgstr "Como eles podem entrar em contato com você? Esta informação é pública."
 
-#: popular_proposal/models.py:232
+#: popular_proposal/models.py:234
 msgid "Propuesta Ciudadana"
 msgstr ""
 
-#: popular_proposal/models.py:233
+#: popular_proposal/models.py:235
 #: votai_general_theme/templates/popular_proposal/_popular_proposal_explanation.html:14
 #: votai_general_theme/templates/popular_proposal/home.html:7
 #: votai_general_theme/templates/popular_proposal/home.html:11
 msgid "Propuestas Ciudadanas"
 msgstr "Propostas Cidadãs"
 
-#: popular_proposal/models.py:244
+#: popular_proposal/models.py:246
 #: votai_general_theme/templates/popular_proposal/detail.html:37
 msgid "¡Ingresa a votainteligente.cl y apoya esta propuesta!"
 msgstr ""
 
-#: popular_proposal/models.py:295
+#: popular_proposal/models.py:297
 #, python-format
 msgid "Propuesta N º %(proposal_id)s"
 msgstr "Proposta N º %(proposal_id)s"
 
-#: popular_proposal/models.py:311
+#: popular_proposal/models.py:313
 #, python-format
 msgid "Una propuesta de %(proposer_name)s"
 msgstr "Uma proposta de %(proposer_name)s"
 
-#: popular_proposal/models.py:342
+#: popular_proposal/models.py:344
 #: votai_general_theme/templates/popular_proposal/detail.html:84
 msgid "Generada desde un encuentro ciudadano"
 msgstr "Gerado a partir de uma reunião de cidadãos"
 
-#: popular_proposal/models.py:393
+#: popular_proposal/models.py:395
 msgid "Quieres decirle algo?"
 msgstr ""
 
-#: popular_proposal/models.py:429
+#: popular_proposal/models.py:431
 msgid "Apoyo"
 msgstr ""
 
-#: popular_proposal/models.py:430
+#: popular_proposal/models.py:432
 #: votai_general_theme/templates/backend_citizen/stats.html:11
 msgid "Apoyos"
 msgstr "Apoios"
@@ -1154,6 +1172,7 @@ msgid "Congresistas"
 msgstr ""
 
 #: votai_general_theme/templates/_navbar.html:28
+#: votai_general_theme/templates/agenda/all_activities.html:18
 msgid "Actividades"
 msgstr "Atividades"
 
@@ -1222,14 +1241,10 @@ msgstr "Olá"
 msgid "Más información"
 msgstr "Mais informação"
 
-#: votai_general_theme/templates/agenda/_activity_card.html:54
+#: votai_general_theme/templates/agenda/_activity_card.html:55
 #: votai_general_theme/templates/popular_proposal/detail.html:188
 msgid "Cerrar"
 msgstr "Fechar"
-
-#: votai_general_theme/templates/agenda/_activity_list.html:3
-msgid "Tu agenda de actividades"
-msgstr "Minha agenda de atividades"
 
 #: votai_general_theme/templates/agenda/all_activities.html:12
 msgid "Agrega una actividad a la agenda."
@@ -1531,6 +1546,10 @@ msgstr "Você ainda não tem propostas fazer o primeiro"
 msgid "¡Sube tu propuesta!"
 msgstr "Envie sua proposta!"
 
+#: votai_general_theme/templates/backend_citizen/all_my_activities.html:12
+msgid "Tu agenda de actividades"
+msgstr "Minha agenda de atividades"
+
 #: votai_general_theme/templates/backend_citizen/already_unsuscribed.html:9
 msgid "¡Listo ya no recibirás nuestras noticias!"
 msgstr ""
@@ -1698,6 +1717,7 @@ msgstr ""
 
 #: votai_general_theme/templates/backend_staff/add_contact_and_send_mail.html:9
 #: votai_general_theme/templates/popular_proposal/wizard/form_step.html:65
+#: votai_general_theme/templates/popular_proposal/wizard/paso4.html:89
 #: votai_general_theme/templates/popular_proposal/wizard/paso5.html:79
 #: votai_general_theme/templates/popular_proposal/wizard/select_area.html:45
 msgid "Submit"
@@ -3760,6 +3780,7 @@ msgstr "Voltar para o passo "
 
 #: votai_general_theme/templates/popular_proposal/wizard/done.html:12
 #: votai_general_theme/templates/popular_proposal/wizard/form_step.html:12
+#: votai_general_theme/templates/popular_proposal/wizard/paso4.html:12
 #: votai_general_theme/templates/popular_proposal/wizard/paso5.html:12
 msgid "Creación de Propuesta"
 msgstr "Criação de proposta"
@@ -3820,29 +3841,40 @@ msgid "Crea otra propuesta"
 msgstr "Crie outra proposta"
 
 #: votai_general_theme/templates/popular_proposal/wizard/form_step.html:12
+#: votai_general_theme/templates/popular_proposal/wizard/paso4.html:12
 #: votai_general_theme/templates/popular_proposal/wizard/paso5.html:12
 #, python-format
 msgid "Paso %(step_number)s"
 msgstr "Passo %(step_number)s"
 
 #: votai_general_theme/templates/popular_proposal/wizard/form_step.html:21
+#: votai_general_theme/templates/popular_proposal/wizard/paso4.html:21
 #: votai_general_theme/templates/popular_proposal/wizard/paso5.html:21
 msgid "Paso"
 msgstr "Passo"
 
 #: votai_general_theme/templates/popular_proposal/wizard/form_step.html:38
+#: votai_general_theme/templates/popular_proposal/wizard/paso4.html:38
 #: votai_general_theme/templates/popular_proposal/wizard/paso5.html:28
 msgid "Creando una propuesta"
 msgstr "Criando uma proposta"
 
 #: votai_general_theme/templates/popular_proposal/wizard/form_step.html:57
+#: votai_general_theme/templates/popular_proposal/wizard/paso4.html:56
+#: votai_general_theme/templates/popular_proposal/wizard/paso4.html:65
+#: votai_general_theme/templates/popular_proposal/wizard/paso4.html:79
 msgid "Ejemplo"
 msgstr "Exemplo"
 
 #: votai_general_theme/templates/popular_proposal/wizard/form_step.html:65
+#: votai_general_theme/templates/popular_proposal/wizard/paso4.html:89
 #: votai_general_theme/templates/popular_proposal/wizard/paso5.html:79
 msgid "Ir al paso "
 msgstr "Ir para o passo "
+
+#: votai_general_theme/templates/popular_proposal/wizard/paso4.html:72
+msgid "Resumen cortísimo"
+msgstr "Resumo da proposta"
 
 #: votai_general_theme/templates/popular_proposal/wizard/paso5.html:54
 msgid "Información adicional sobre tu propuesta"

@@ -90,7 +90,9 @@
          }(document, 'script', 'facebook-jssdk'));
       </script>
       <div>
-        {% include '_navbar.html' %}
+          {% block navbar %}
+          {% include '_navbar.html' %}
+          {% endblock navbar %}
         {% block everything %}
         <div class="{% block content_container %}container content_padding{% endblock content_container %}">
             {% block content %}

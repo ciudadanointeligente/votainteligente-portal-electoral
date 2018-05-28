@@ -106,12 +106,14 @@ class ProposalTemporaryData(models.Model, ProposalCreationMixin):
         self.save()
         title = self.get_title()
         clasification = self.data.get('clasification', '')
+        one_liner = self.data.get('one_liner', '')
 
         creation_kwargs = self.determine_kwargs(title=title,
                                                 clasification=clasification,
                                                 area=self.area,
                                                 proposer=self.proposer,
                                                 data=self.data,
+                                                one_liner=one_liner,
                                                 temporary=self)
         popular_proposal = PopularProposal(**creation_kwargs)
         popular_proposal.save()

@@ -222,11 +222,12 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
     def test_create_popular_proposal_from_temporary_data(self):
 
         data = self.data
+        data['one_liner'] = u'one_liner'
         data["join_advocacy_url"] = "http://whatsapp.com/somegroup"
         # Testing
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.fiera,
                                                               area=self.arica,
-                                                              data=self.data)
+                                                              data=data)
         original_amount_of_mails = len(mail.outbox)
         popular_proposal = temporary_data.create_proposal(moderator=self.feli)
         self.assertEquals(popular_proposal.proposer, self.fiera)
@@ -236,6 +237,7 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         self.assertEquals(popular_proposal.clasification, data['clasification'])
         self.assertEquals(popular_proposal.data, self.data)
         self.assertEquals(popular_proposal.title, self.data['title'])
+        self.assertEquals(popular_proposal.one_liner, self.data['one_liner'])
         temporary_data = ProposalTemporaryData.objects.get(id=temporary_data.id)
         self.assertEquals(temporary_data.created_proposal, popular_proposal)
         self.assertEquals(temporary_data.status, ProposalTemporaryData.Statuses.Accepted)

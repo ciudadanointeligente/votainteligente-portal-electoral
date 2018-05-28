@@ -75,13 +75,19 @@ wizard_forms_fields = [
         )])
     },
     {
-        'template': 'popular_proposal/wizard/form_step.html',
+        'template': 'popular_proposal/wizard/paso4.html',
         'explation_template': "popular_proposal/steps/tips_paso3.html",
         'step_title': _(u"¿Qué propuesta puede solucionar este problema?"),
         'fields': OrderedDict([(
             'solution_at_the_end', forms.CharField(widget=forms.Textarea(),
-                                                   required=False)
+                                                   required=False),
 
+
+        ),(
+        'one_liner', forms.CharField(max_length=256,
+                                     required=False,
+                                     widget=forms.TextInput()
+                                     )
         ),
             ('when', forms.ChoiceField(widget=forms.Select(),
                                        choices=WHEN_CHOICES))

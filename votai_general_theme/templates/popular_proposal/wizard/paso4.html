@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap3 %}
+{% load votainteligente_extras%}
+
+{% block head %}
+{{ wizard.form.media }}
+{% endblock %}
+
+{% block title %}
+- {% trans "Creación de Propuesta" %} - {% blocktrans with step_number=wizard.steps.step1 %}Paso {{step_number}}{% endblocktrans %}
+{% endblock title %}
+
+{% block content %}
+<div>
+  <div class="text-width">
+    <div class="row">
+    {% for i in wizard.steps.count|times %}
+    <div class="col-md-3 col-sm-3 col-xs-3 text-center wizard">
+        {% trans "Paso" %}
+        <p class="paso {% if i < wizard.steps.step1 %}paso_completado{% endif %}"><span class="badge">{{i|add:1}}</span></p>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+{% block messages %}
+{% if form.message %}
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  {{form.message}}
+</div>
+{% endif %}
+
+{% endblock messages %}
+
+<div class="text-center proposal-step">
+<p class="small">{% trans "Creando una propuesta" %}</p>
+<h2>{% if form.step_title %}{{form.step_title}}{% endif %}</h2>
+</div>
+
+{% if form.explanation_template %}
+<div class="col-md-4 tips">
+    {% include form.explanation_template %}
+</div>
+{% endif %}
+<div class="col-md-8">
+<form role="form" action="" method="post">
+            {% csrf_token %}
+        {{ wizard.management_form }}
+            <section>
+              {% bootstrap_label form.solution_at_the_end.label %}
+
+              {% long_text_tag form.solution_at_the_end %}
+              {% if form.solution_at_the_end.help_text %}
+                <p><b>{% trans "Ejemplo" %}: </b>{{form.solution_at_the_end.help_text}}</p>
+              {% endif %}
+                {% bootstrap_field form.solution_at_the_end show_label=False show_help=False%}
+            </section>
+            <section>
+              {% bootstrap_label form.when.label %}
+
+              {% long_text_tag form.when %}
+              {% if form.when.help_text %}
+                <p><b>{% trans "Ejemplo" %}: </b>{{form.when.help_text}}</p>
+              {% endif %}
+                {% bootstrap_field form.when show_label=False show_help=False%}
+            </section>
+
+            <div class="panel panel-default extra-info">
+              <div class="panel-heading extra-info">
+                <p class="small text-center">{% trans "Resumen cortísimo" %}</p>
+              </div>
+              <div class="panel-body">
+                    {% bootstrap_label form.one_liner.label %}
+
+                    {% long_text_tag form.one_liner %}
+                    {% if form.one_liner.help_text %}
+                      <p><b>{% trans "Ejemplo" %}: </b>{{form.one_liner.help_text}}</p>
+                    {% endif %}
+                      {% bootstrap_field form.one_liner show_label=False show_help=False%}
+              </div>
+            </div>
+
+
+    <div class="row">
+      {% include 'popular_proposal/wizard/_previous_buttons.html' with wizard=wizard %}
+      <div class="col-xs-12 col-sm-4 col-md-4">
+        <button class="btn btn-success btn-block" type="submit" value="{% trans "Submit" %}" onclick="ga('send', 'event', 'proposal-ir-paso-{{wizard.steps.next|add:1}}', 'click')">{% trans "Ir al paso " %}{{wizard.steps.next|add:1}}<img src="{% static 'img/arrow.svg' %}"></button>
+      </div>
+    </div>
+    <div class="line-space"></div>
+    <div class="line-space"></div>
+
+
+</form>
+</div>
+</div>
+
+{% endblock content %}

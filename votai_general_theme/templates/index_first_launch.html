@@ -1,3 +1,41 @@
 {% load staticfiles %}
 {% load votainteligente_extras %}
 {% load i18n %}
+{% load thumbnail %}
+{% load cache %}
+<section id="home-elected-candidate">
+  <div class="container text-center">
+    <h2>#QuePiñeraHableDe</h2>
+    <h1>Compromisos de Sebastián Piñera<br> en Vota Inteligente</h1>
+    <div class="col-md-10 col-md-offset-1">
+      <div class="col-md-6 text-center">
+        <div class="panel-heading text-center">
+          <a href="/candidaturas/chile/sebastian-pinera" onclick="ga('send','event','pic-piñera-main-electo')">
+            <img src="{% static 'img/pinera.jpg' %}" alt="Sebastián Piñera" border="0" class="img-responsive img-circle" itemprop="image" />
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6 text-center">
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <a href="/candidaturas/chile/sebastian-pinera" onclick="ga('send','event','nombre-pinera-main-electo')" itemprop="name">
+              <p class="commitments-home">Sebastián Piñera hizo</p>
+              <h3 class="candidate-name-card">15</h3>
+              <p class="commitments-home">compromisos con<br>propuestas ciudadanas<br>en votainteligente.cl</p>
+              <span class="candidate-commitment-card">Revisa sus compromisos</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if candidate.commitments.count %}
+<div id="grid">
+	<div id="posts">
+	{% for commitment in candidate.commitments.committed.all %}
+		{% include 'popular_proposal/popular_proposal_card.html' with proposal=commitment.proposal is_embedded=is_embedded commitment=commitment %}
+	{% endfor %}
+	</div>
+</div>
+{% endif %}

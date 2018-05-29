@@ -1,0 +1,18 @@
+.pull-bottom
+{
+    float: none;
+    display: table-cell;
+    vertical-align: bottom;
+}
+#call-to-action{
+  @extend .small-basic;
+  background-color: $light-green;
+  min-height: 60px;
+  color: white;
+  font-size: 10px;
+  padding-top: 12px;
+  line-height: 12px;
+  .btn{
+    font-size: 10px;
+  }
+}

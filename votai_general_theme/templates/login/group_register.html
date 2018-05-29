@@ -3,7 +3,29 @@
 
 <form  role="form" action="{% url 'backend_citizen:create_group' %}" method="post" class="landing-form">
     {% csrf_token %}
-    {% bootstrap_form form show_help=false %}
+
+    {% bootstrap_field form.username show_help=False %}
+    {% bootstrap_field form.email show_help=False %}
+    {% bootstrap_field form.name show_help=False %}
+    {% bootstrap_field form.password1 show_help=False %}
+    {% bootstrap_field form.password2 show_help=False %}
+
+    {% if form.terms_and_conditions %}
+
+
+        <section class="terms">
+            {{ form.terms_and_conditions }}
+            <a role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              {% trans "Términos y condiciones" as tyc %}
+              {% bootstrap_label tyc labform.terms_and_conditions.name %}</a>
+        <div class="collapse" id="collapseExample">
+          <div>
+            {% include 'terms_and_conditions/organizations_register.html' %}
+          </div>
+        </div>
+        </section>
+    {% endif %}
+
     <div class="form-actions">
       <input type="submit" class="btn btn-success btn-block" id="" value="{% trans 'Regístrame' %}"/>
     </div>

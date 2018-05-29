@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load markdown_deux_tags %}
 {% url 'popular_proposals:like_a_proposal' pk=proposal.id as like_this_proposal_url %}
 <div class="modal fade modal-proposal" id="{{modalId}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -10,17 +11,9 @@
         </div>
         <div class="modal-body">
           {% if user.profile.is_organization %}
-          {% blocktrans with organization=user proposer=proposal.proposer proposal=proposal.title %}
-            <p>Graaaaandeee <b>{{organization}}</b>:</p>
-            <p>Estás apoyando a <b>{{proposer}}</b> en su propuesta {{proposal}}<b></b>, esto tiene algunas implicancias:</p>
-            <ul>
-              <li>Al momento de apretar el botón que está abajo se le enviará un mail a <b>{{proposer}}</b>, quién creó esta propuesta. En el se compartirán sus datos para que se sigan coordinando.</li>
-              <li>En tu perfil de organización aparecerá que estás apoyando a esta propuesta.</li>
-              <li>Cuando cualquier ciudadano revise esta propuesta podrá ver que {{organization}} la está apoyando.</li>
-              <li>Tu NO podrás quitarle el apoyo a esta propuesta a menos que hables con el equipo de VotaInteligente.</li>
-            </ul>
-          {% endblocktrans %}
-
+{% markdown %}
+{% include 'terms_and_conditions/org_supporting_a_proposal.md' with organization=user proposer=proposal.proposer proposal=proposal.title %}
+{% endmarkdown %}
           {% else %}
             <p>
               {% blocktrans with proposal=proposal.title %}

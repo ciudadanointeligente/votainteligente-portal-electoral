@@ -3,6 +3,7 @@ from backend_citizen.tests import BackendCitizenTestCaseBase
 from backend_citizen.forms import (UserChangeForm,
                                    UserCreationForm,
                                    GroupCreationForm)
+from constance.test import override_config
 
 
 class UpdateMyProfileClass(BackendCitizenTestCaseBase):
@@ -45,6 +46,24 @@ class UpdateMyProfileClass(BackendCitizenTestCaseBase):
                 'password1': 'pass',
                 'password2': 'pass',
                 }
+        form = GroupCreationForm(data=data)
+        self.assertTrue(form.is_valid())
+        group = form.save()
+        self.assertEquals(group.last_name, data['name'])
+        self.assertTrue(group.profile.is_organization)
+
+    @override_config(ORGANIZATIONS_MUST_AGREE_TAC_ON_REGISTER=True)
+    def test_organization_form_with_terms_and_conditions(self):
+        data = {'username': 'group',
+                'name': 'This Is a Great Group',
+                'email': 'group@mail.com',
+                'password1': 'pass',
+                'password2': 'pass',
+                'terms_and_conditions': False
+                }
+        form = GroupCreationForm(data=data)
+        self.assertFalse(form.is_valid())
+        data['terms_and_conditions'] = True
         form = GroupCreationForm(data=data)
         self.assertTrue(form.is_valid())
         group = form.save()

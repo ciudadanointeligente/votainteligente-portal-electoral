@@ -4,6 +4,7 @@ from django.utils.translation import ugettext as _
 from backend_citizen.models import (Profile,)
 from django.contrib.auth.models import User
 from registration.forms import RegistrationForm as UserCreationForm
+from constance import config
 try:
     import urlparse
     from urllib import urlencode
@@ -71,6 +72,12 @@ class GroupCreationForm(UserCreationForm):
                   'username': _(u'Nombre de usuario, ej: amigosdelparque'),
                   'email': _(u'Email de la organización')
                   }
+
+    def __init__(self, *args, **kwargs):
+        super(GroupCreationForm, self).__init__(*args, **kwargs)
+        if config.ORGANIZATIONS_MUST_AGREE_TAC_ON_REGISTER:
+            toc = forms.BooleanField(required=True, label=_(u'Términos y Condiciones'))
+            self.fields['terms_and_conditions'] = toc
 
     def save(self, commit=True):
         group = super(GroupCreationForm, self).save(commit)

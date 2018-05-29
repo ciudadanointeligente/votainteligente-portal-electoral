@@ -159,6 +159,7 @@ FACEBOOK_ACCESS_TOKEN = 'FieraEsLaMejorAmigaDeTodos'
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 CONSTANCE_CONFIG = {
     'SOUL_MATE_INFO_ABOUT_CANDIDATES_MINUTES':(0,'Duracion cache media naranja'),
+    'ORGANIZATIONS_MUST_AGREE_TAC_ON_REGISTER':(False,'Organizaciones deben tener terminos y condiciones al registrarse?'),
     'INFINITE_CACHE':(1440,'Tiempo Cache'),
     'DEFAULT_AREA': ('chile-pais', u'El territorio que mostramos por defecto'),
     'AREAS_ARE_FORCED_IN_PROPOSALS' : (False, u'No te preguntamos por el territorio de la propuesta y asumimos que es el que viene por defecto'),

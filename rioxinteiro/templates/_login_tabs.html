@@ -16,15 +16,15 @@
 						{% endif %}
 						<li role="presentation" {% if username_and_password %}class="active"{% endif %}><a class="small" href="#login" aria-controls="login" role="tab" data-toggle="tab">{% trans '¿Tienes cuenta?' %}<i class="fa fa-users" aria-hidden="true"></i></a></li>
 					</ul>
-					<div class="alert alert-info">
-					  <strong>{% trans "Términos y Condiciones" %}</strong>:
-					  {% markdown %}
-					  {% include 'terms_and_conditions/for_all_users.md' %}
-					  {% endmarkdown %}
-					    </div>
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane{% if not organizacion and not username_and_password %} active{% endif %}" id="userRegister">
+							<div class="alert alert-info">
+							  <strong>{% trans "Términos y Condiciones" %}</strong>:
+							  {% markdown %}
+							  {% include 'terms_and_conditions/for_all_users.md' %}
+							  {% endmarkdown %}
+							    </div>
 							<div class="form-group">
 								{% include '_social_login_buttons.html' with url=next %}
 							</div>

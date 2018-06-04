@@ -1,6 +1,6 @@
 {% load votainteligente_extras %}Olá {{candidate.name}}:
 
-http://Votainteligente.cl é uma plataforma, sem fins lucrativos, que recebe propostas cidadãs e da sociedade civil para as eleições deste ano.
+https://{{site.domain}} é uma plataforma, sem fins lucrativos, que recebe propostas cidadãs e da sociedade civil para as eleições deste ano.
 
 Cada candidatura conta com um perfil básico, que você pode acessar para divulgar informações sobre sua campanha e comprometer-se com as propostas de cidadãos relacionadas a você.
 
@@ -13,7 +13,7 @@ Gostaríamos de lembrar que para acessar é só entrar em https://{{site.domain}
 {% with candidate.contacts.last as contact %}
 {% if not candidate.has_joined %}
 
-Para se comprometer com essa e outras propostas você deve acessar https://votainteligente.cl/candidatos/login tu usuario y password son:
+Para se comprometer com essa e outras propostas você deve acessar https://{{site.domain}}/candidatos/login tu usuario y password son:
 **Usuário: {{contact.candidacy.user.username}}
 **Senha(que você pode mudar uma vez dentro da página): {{contact.initial_password}}
 {% else %}

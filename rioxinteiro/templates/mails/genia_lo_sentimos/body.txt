@@ -3,11 +3,11 @@ Estamos escrevendo para te contar que {{commitment.candidate.name}} acaba de dec
 
 {% if commitment.candidate.election %}
 Você pode ver seus motivos para rejeitar sua proposta aqui:
-https://votainteligente.cl{{commitment.get_absolute_url}}
+https://{{site.domain}}{{commitment.get_absolute_url}}
 {% endif %}
 
 Nós valorizamos muito sua iniciativa e, por essa razão, queremos pedir que você não desanime e nos ajude a continuar mudando o Rio de Janeiro
 Você pode continuar promovendo sua proposta, utilizando das nossas Ferramentas de Ativismo:
 
-https://votainteligente.cl/static/material-ciudadano/manual-herramientas-activismo.pdf
+https://{{site.domain}}/static/material-ciudadano/manual-herramientas-activismo.pdf
 {% mail_signature_txt %}

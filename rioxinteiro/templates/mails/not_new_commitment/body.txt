@@ -9,6 +9,6 @@ ao se comprometer com a sua causa:
 
 Para ver a proposta, você pode entrar no link:
 
-https://votainteligente.cl{{commitment.get_absolute_url}}
+https://{{site.domain}}{{commitment.get_absolute_url}}
 
 {% mail_signature_txt %}

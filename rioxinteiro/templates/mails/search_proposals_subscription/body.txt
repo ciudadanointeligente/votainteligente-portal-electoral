@@ -2,10 +2,10 @@
 
 Esse e-mail é para te contar que temos novas propostas na Rio por Inteiro:
 {% for proposal in proposals %}
-* {{proposal.title}} feita por {{proposal.proposer.get_full_name}} (https://votainteligente.cl{{proposal.get_absolute_url}}){% endfor %}
+* {{proposal.title}} feita por {{proposal.proposer.get_full_name}} (https://{{site.domain}}{{proposal.get_absolute_url}}){% endfor %}
 
 Você pode verificar suas assinaturas para busca no seguinte link:
-https://votainteligente.cl{% url 'proposal_subscriptions:list' %}
+https://{{site.domain}}{% url 'proposal_subscriptions:list' %}
 
 Um abraço
 {% mail_signature_txt %}

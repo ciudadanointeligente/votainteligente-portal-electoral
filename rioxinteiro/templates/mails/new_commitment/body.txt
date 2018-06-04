@@ -4,7 +4,7 @@ Estavamos escrevendo para te contar que {{commitment.candidate.name}} {% if cand
 
 Você pode ver {% if candidate.election.position == 'concejal' %}o apoio à{% elif candidate.election.position == 'alcalde' %}o compromisso com{% else %}o compromisso com{% endif %} a proposta cidadã Você pode entrar no seguinte link:
 {% if commitment.candidate.election %}
-https://votainteligente.cl{{commitment.get_absolute_url}}
+https://{{site.domain}}{{commitment.get_absolute_url}}
 {% endif %}
 
 {% mail_signature_txt %}

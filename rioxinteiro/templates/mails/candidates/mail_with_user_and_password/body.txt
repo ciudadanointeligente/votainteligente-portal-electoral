@@ -1,9 +1,9 @@
 {% load votainteligente_extras %}
 Olá
 
-Estamos te escrevendo na qualidade de coordenador(a) da campanha de {{contact.candidate.name}}, para convida-lxs a participar da plataforma Rio por Inteiro: http://Votainteligente.cl, que busca aproximar as candidaturas da cidadania nas próximas eleições.
+Estamos te escrevendo na qualidade de coordenador(a) da campanha de {{contact.candidate.name}}, para convida-lxs a participar da plataforma Rio por Inteiro: https://rioporinteiro.org.br, que busca aproximar as candidaturas da cidadania nas próximas eleições.
 
-http://Votainteligente.cl é uma plataforma, sem fins lucrativos, que recebe propostas cidadãs e da sociedade civil para as eleições estaduais do Rio de Janeiro de 2018. 
+https://rioporinteiro.org.br é uma plataforma, sem fins lucrativos, que recebe propostas cidadãs e da sociedade civil para as eleições estaduais do Rio de Janeiro de 2018. 
 
 Cada candidatura conta com um perfil básico, que pode ser acessado para divulgar informações sobre sua campanha e comprometer-se com as propostas cidadãs na plataforma.
 

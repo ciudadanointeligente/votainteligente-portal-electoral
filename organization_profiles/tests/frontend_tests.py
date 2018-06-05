@@ -56,6 +56,13 @@ class OrganizationFrontEndTestCase(BackendCitizenTestCaseBase):
         content = response.content.decode('utf-8')
         self.assertTrue(content, "Si está vacio entonces dibuja el contenido de organization_detail_view.hbs")
 
+
+    @override_settings(ORGANIZATION_TEMPLATES_USING_HBS=False)
+    def test_return_basic_data_as_html(self):
+        url = reverse('organization_profiles:home', kwargs={'slug': self.user.username})
+        response = self.client.get(url)
+        self.assertTemplateUsed(response, 'organization_profiles/detail.html')
+
     def test_display_basic_data(self):
         self.user.organization_template.logo = self.get_image()
         self.user.organization_template.facebook = u'https://www.facebook.com/ciudadanointeligente'
@@ -333,4 +340,3 @@ class OrganizationListView(BackendCitizenTestCaseBase):
         url = reverse('organization_profiles:index')
         response = self.client.get(url)
         self.assertTemplateUsed(response, 'organization_profiles/index.html')
-

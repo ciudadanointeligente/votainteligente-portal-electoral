@@ -34,6 +34,17 @@ def read_template_as_string(path, file_source_path=__file__):
 class HandleBarsResponse(HttpResponse):
     def __init__(self, source, obj, **kwargs):
         self.user = obj['user']
+        if not settings.ORGANIZATION_TEMPLATES_USING_HBS:
+            everything = self.get_html(obj)
+        else:
+            everything = self.get_hbs(source, obj)
+        super(HandleBarsResponse, self).__init__(content=everything, **kwargs)
+
+    def get_html(self, obj):
+        everything = get_template("organization_profiles/detail.html").render(obj)
+        return everything
+
+    def get_hbs(self, source, obj):
         compiler = Compiler()
         base_template = compiler.compile(u'<!DOCTYPE html><html lang="es">{{> head}}<body><div>{{> nav}}<div>{{> content}}</div></div>{{> footer}}</body></html>')
         head = compiler.compile(get_template("_head_organizations.html").render(obj))
@@ -50,7 +61,7 @@ class HandleBarsResponse(HttpResponse):
                                                   "nav": nav,
                                                   "footer": footer},
                                        helpers={"proposal_card_renderer": _proposal_card_renderer})
-        super(HandleBarsResponse, self).__init__(content=everything, **kwargs)
+        return everything
 
 
 class OrganizationDetailView(DetailView):

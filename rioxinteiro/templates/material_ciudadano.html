@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block everything %}
+  {% load staticfiles %}
+  <div class="container">
+    <div>
+      <h1 class="text-center">Logo você encontrará informações sobre o cidadão</h1>
+      <div>
+      </div>
+    </div>
+  </div>
+
+  <!--section id="manual-encuentro">
+    <div class="container">
+      <div>
+        <h1 class="text-center">{% trans "Material Ciudadano" %}</h1>
+        <p class="text-center">{% trans "Descarga e imprime los materiales que necesites para generar propuestas, hacer incidencia y/o saber todo lo necesario de esta elección." %}</p>
+        <div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-4">
+          <div class="set-guide-rep">
+            <div class="content">
+              <h2 class="text-center">{% trans "Guía para la creación de propuestas" %}</h2>
+              <img src="{% static 'img/1-metodologia.svg' %}" class="img-responsive">
+              <p>{% trans "Júntate con tu comunidad, amigos/as o familia a elaborar propuestas en conjunto para que las candidaturas nos escuchen. En este manual encontrarás todo lo necesario para preparar tu Encuentro Ciudadano y el paso a paso para elaborar una propuesta." %}</p>
+            </div>
+            <div class="btn-space">
+              <a class="btn btn-white center-block btn-lg btn-block" href="{% static 'material-ciudadano/guia-elaboracion-propuestas.pdf' %}" target="_blank" onclick="ga('send', 'event', 'guia-elaboracion-propuestas.pdf', 'click')">
+                {% trans "Descargar" %}
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="set-guide-rep">
+            <div class="content">
+              <h2 class="text-center">{% trans "Manual de formación ciudadana" %}</h2>
+              <img src="{% static 'img/2-formacion.svg' %}" class="img-responsive">
+              <p>{% trans "¿Cuál es la diferencia entre el Senado y la Cámara? ¿Qué hace el Gobierno Central? Aquí encontrarás distintos contenidos para crear y enfocar de la mejor manera lo que sueñas para Chile." %}</p>
+            </div>
+            <div class="btn-space">
+              <a class="btn btn-white center-block btn-lg btn-block" href="{% static 'material-ciudadano/manual-formacion-ciudadana.pdf' %}" target="_blank" onclick="ga('send', 'event', 'manual-formacion-ciudadana.pdf', 'click')">
+              {% trans "Descargar" %}
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="set-guide-rep">
+            <div class="content">
+              <h2 class="text-center">{% trans "Manual de herramientas de activismo" %}</h2>
+              <img src="{% static 'img/3-activismo.svg' %}" class="img-responsive">
+              <p>{% trans "Entre más apoyos, tu propuesta es más visible para las candidaturas. Conoce y aprende distintos métodos para darle más difusión a tu propuesta." %}</p>
+            </div>
+            <div class="btn-space">
+              <a class="btn btn-white center-block btn-lg btn-block" href="{% static 'material-ciudadano/manual-herramientas-activismo.pdf' %}" target="_blank" onclick="ga('send', 'event', 'manual-herramientas-activismo.pdf', 'click')">
+              {% trans "Descargar" %}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section-->
+{% endblock everything %}

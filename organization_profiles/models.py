@@ -115,7 +115,12 @@ class OrganizationTemplate(models.Model, ShareableMixin):
         return reverse('organization_profiles:home', kwargs={'slug': self.organization.username})
 
     def get_shared_image(self):
-        plantilla = Image.open('votai_general_theme/static/img/plantilla_org.png')
+        f_name = '/static/img/plantilla_org.png'
+        root_name = 'votai_general_theme'
+        if settings.THEME:
+            root_name = settings.THEME
+        f_name = root_name + f_name
+        plantilla = Image.open(f_name)
 
         montserrat_n_propuesta = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 16)
         arvo_titulo = ImageFont.truetype("votai_general_theme/static/fonts/Arvo-Bold.ttf", 60)
@@ -156,7 +161,7 @@ class OrganizationTemplate(models.Model, ShareableMixin):
             d.multiline_text((81,133), title, font=arvo_titulo, fill=rgb_color)
 
             base = Image.alpha_composite(base, txt)
-            
+
         base.paste(plantilla, (0,0), plantilla)
         return base
 

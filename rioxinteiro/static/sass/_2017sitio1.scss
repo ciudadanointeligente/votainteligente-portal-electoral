@@ -373,6 +373,7 @@ td.cal-date{
     &:hover{
       -webkit-filter: opacity(1);
       filter: opacity(1);
+      mix-blend-mode: normal;
     }
   }
 }
@@ -775,8 +776,9 @@ p.intro{
     -webkit-filter: grayscale(1) contrast(100%) opacity(1);
     filter: grayscale(1) contrast(100%) opacity(1);
     &:hover{
-      -webkit-filter: opacity(1);
-      filter: opacity(1);
+      -webkit-filter: grayscale(0%) contrast(100%) opacity(100%);
+      filter: grayscale(0) contrast(100%) opacity(100%);
+      mix-blend-mode: normal;
     }
   }
 }

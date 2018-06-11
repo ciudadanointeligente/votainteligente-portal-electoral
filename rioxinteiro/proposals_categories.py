@@ -2,7 +2,7 @@
 from django.utils.translation import ugettext as _
 
 _TOPIC_CHOICES = (('', _(u'Selecciona una categoría')),
-                 (u"acesibilidade", u"Acesibilidade"),
+                 (u"acessibilidade", u"Acessibilidade"),
                  (u"cultura", u"Cultura"),
                  (u"direitos-humanos", u"Direitos Humanos"),
                  (u"direitos-lgbt", u"Direitos LGBTQI+"),

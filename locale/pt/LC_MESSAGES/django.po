@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-05 19:00-0300\n"
-"PO-Revision-Date: 2018-06-06 16:15-0300\n"
+"PO-Revision-Date: 2018-06-11 16:09-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -2806,7 +2806,7 @@ msgstr ""
 #: votai_general_theme/templates/popular_proposal/_likers.html:66
 #: votai_general_theme/templates/popular_proposal/_likers.html:105
 msgid "Apoyar"
-msgstr "Suporte"
+msgstr "Apoiar"
 
 #: votai_general_theme/templates/organization_profiles/ayuranos.html:16
 msgid ""

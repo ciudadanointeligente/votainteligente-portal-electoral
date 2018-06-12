@@ -285,18 +285,26 @@ class PopularProposal(models.Model, OGPMixin):
         return reverse('popular_proposals:short_detail', kwargs={'pk': self.pk})
 
     def generate_og_image(self):
-        base = Image.open('votai_general_theme/static/img/plantilla.png').convert('RGBA')
+        file_name = '/static/img/plantilla.png'
+
+        if settings.THEME:
+            file_name = settings.THEME + file_name
+        else:
+            file_name =  "votai_general_theme" + file_name
+        base = Image.open(file_name).convert('RGBA')
 
         montserrat_n_propuesta = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 16)
         arvo_titulo = ImageFont.truetype("votai_general_theme/static/fonts/Arvo-Bold.ttf", 60)
         montserrat_autor = ImageFont.truetype("votai_general_theme/static/fonts/Montserrat-Bold.ttf", 22)
 
-        txt = Image.new('RGBA', base.size, (122,183,255,0))
+
+        txt = Image.new('RGBA', base.size, (176, 129, 107, 0))
 
         d = ImageDraw.Draw(txt)
         n_propuesta =  _(u'Propuesta N º %(proposal_id)s') % {'proposal_id': self.id}
         n_propuesta = n_propuesta.upper()
-        d.multiline_text((81,95), n_propuesta, font=montserrat_n_propuesta, fill=(122,183,255,255))
+        _color_shared_proposal_id = settings.SHARED_PROPOSAL_IMAGE_ID_COLOR
+        d.multiline_text((81,95), n_propuesta, font=montserrat_n_propuesta, fill=_color_shared_proposal_id)
 
         lines = textwrap.wrap(self.title, width=30)
         max_lines = 5

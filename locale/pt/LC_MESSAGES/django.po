@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-05 19:00-0300\n"
-"PO-Revision-Date: 2018-06-11 16:09-0300\n"
+"PO-Revision-Date: 2018-06-13 10:41-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -1052,7 +1052,7 @@ msgstr "Você já tem uma conta?"
 #: rioxinteiro/templates/_login_tabs.html:36
 #: votai_general_theme/templates/_login_tabs.html:30
 msgid "Registrate como organización"
-msgstr "Registrate como organización"
+msgstr "Cadastrar-se como uma organização"
 
 #: rioxinteiro/templates/_navbar.html:26
 msgid "Mobilize"
@@ -3508,7 +3508,7 @@ msgid ""
 msgstr ""
 "\n"
 "        <span id='likers_count_%(proposal_id)s' class=\"conteo\">"
-"%(commitments_count)s</span> candidaturas(s) cometida(s)\n"
+"%(commitments_count)s</span> candidaturas(s) comprometida(s)\n"
 "      "
 
 #: votai_general_theme/templates/popular_proposal/detail.html:213

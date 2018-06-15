@@ -1,0 +1,53 @@
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load thumbnail %}
+{% load cache %}
+<section id="home-elected-candidate">
+  <div class="container text-center">
+    <h2>#QuePiñeraHableDe</h2>
+    <h1>Compromisos de {{important_candidate}}<br> en Vota Inteligente</h1>
+    <div class="col-md-10 col-md-offset-1">
+      <div class="col-md-6 text-center">
+        <div class="panel-heading text-center">
+          <a href="{{important_candidate.get_absolute_url}}" onclick="ga('send','event','pic-piñera-main-electo')">
+
+              {% if important_candidate.image %}
+                {% thumbnail important_candidate.image "300x300" crop="center" as im %}
+                <img src="{{ im.url }}" alt="{{important_candidate.name}}" alt="{{important_candidate.name}}" border="0" class="img-responsive img-circle" itemprop="image" >
+                {% endthumbnail %}
+              {% else %}
+                <img src="{% static 'img/candidate-default.jpg' %}" alt="{{important_candidate.name}}" border="0" class="img-responsive img-circle" itemprop="image" >
+              {% endif %}
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6 text-center">
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <a href="{{important_candidate.get_absolute_url}}" onclick="ga('send','event','nombre-pinera-main-electo')" itemprop="name">
+              <p class="commitments-home">{{important_candidate}} hizo</p>
+              <h3 class="candidate-name-card">{{important_candidate.commitments.count}}</h3>
+              <p class="commitments-home">compromisos con<br>propuestas ciudadanas<br>en votainteligente.cl</p>
+              <span class="candidate-commitment-card">Revisa sus compromisos</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--section>
+    <div class="container text-center">
+    {% if important_candidate.commitments.count %}
+    <div id="grid">
+    	<div id="posts">
+    	{% for commitment in important_candidate.commitments.committed.all %}
+    		{{commitment.proposal.card}}
+    	{% endfor %}
+    	</div>
+    </div>
+
+    {% endif %}
+    </div>
+</section-->

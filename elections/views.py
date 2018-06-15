@@ -93,6 +93,8 @@ class HomeView(HomeViewBase):
             featured_candidates = Candidate.objects.filter(commitments__isnull=False).filter(elections__name="Presidencia")
             cache.set('featured_candidates', featured_candidates)
         context['candidates'] = featured_candidates
+        if settings.IMPORTANT_CANDIDATE_IN_LANDING:
+            context['important_candidate'] = Candidate.objects.get(id=settings.IMPORTANT_CANDIDATE_IN_LANDING)
         return context
 
 

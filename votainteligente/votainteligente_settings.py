@@ -16,7 +16,8 @@ FILTERABLE_AREAS_TYPE = ['Comuna']
 DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS=[{'title':u'Agenda', 'content':'''* **19 DE NOVIEMBRE**\r\nPrimera vuelta de Elecciones Presidenciales y Parlamentarias
 * **17 DE DICIEMBRE**   *Segunda vuelta de Elecciones Presidenciales'''},
                                                            {'title':u'Documentos', 'content':''}]
-
+#Este es el candidato que aparece enel landing
+IMPORTANT_CANDIDATE_IN_LANDING = None
 MODERATION_ENABLED = False
 MARKED_AREAS = []
 POSSIBLE_GENERATING_AREAS_FILTER = []

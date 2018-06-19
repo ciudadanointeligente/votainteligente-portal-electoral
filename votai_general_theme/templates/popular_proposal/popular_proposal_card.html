@@ -6,15 +6,10 @@
 <div class="propuesta {{proposal.content_type.app_label}}">
 <!-- Cata compañera puedes saber si la propuesta es para todas las comunas mediante esto {% comment %}{% if proposal.for_all_areas %}{% else %}{% endif %}{% endcomment %}-->
   <div class="propuesta-content">
-    {% if proposal.ribbon_text %}
-    <div class="ribbon-wrapper">
-      <div class="ribbon">{{proposal.ribbon_text}}</div>
-    </div>
-    {% endif %}
-    <a href="{% url 'popular_proposals:home' %}?clasification={{proposal.clasification}}" onclick="ga('send','event','card-filterby-clasification','click')"><span class="label label-default">{{proposal.get_classification}}</span></a>
-    {% if proposal.generated_at is not None %}<span class="label label-success">{{proposal.generated_at}}</span>{% endif %}
+      {% include 'popular_proposal/extra_card.html' with proposal=proposal %}
 
-
+      <a href="{% url 'popular_proposals:home' %}?clasification={{proposal.clasification}}" onclick="ga('send','event','card-filterby-clasification','click')"><span class="label label-default">{{proposal.get_classification}}</span></a>
+      {% if proposal.generated_at is not None %}<span class="label label-success">{{proposal.generated_at}}</span>{% endif %}
 
     <!-- Estado de una propuesta para el alcalde de esa comuna -->
     <div class="pull-right">

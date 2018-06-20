@@ -1,6 +1,15 @@
+
+{% if proposal.proposer.username == 'CasaFluminense' %}
+<div class="ribbon-wrapper">
+  <div class="agenda-rio-ribbon ribbon">
+      Agenda Rio 2030
+  </div>
+ </div>
+{% else %}
 {% if proposal.ribbon_text %}
 <div class="ribbon-wrapper">
   <div class="ribbon">
-{% if proposal.proposer.username == 'CasaFluminense' %}AgendaRio{% else %}{{proposal.ribbon_text}}{% endif %}{% endif %}
+{{proposal.ribbon_text}}
 </div>
 </div>
+{% endif %}{% endif %}

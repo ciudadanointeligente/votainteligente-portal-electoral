@@ -643,7 +643,6 @@ a.candidate-commit-name {
 
 .propuesta{
   border: 3px solid $grey-one;
-  background-color: $proposal-card-background-color;
   min-height: 550px;
   padding: 0;
   position: relative;
@@ -928,7 +927,7 @@ p.intro{
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 0;
+  z-index: -1;
   .ribbon {
     font-weight: 700;
     line-height: 1;

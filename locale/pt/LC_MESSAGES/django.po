@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-05 19:00-0300\n"
-"PO-Revision-Date: 2018-06-21 10:31-0300\n"
+"PO-Revision-Date: 2018-06-21 12:45-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -3039,7 +3039,7 @@ msgstr "propostas de cidadãos"
 
 #: votai_general_theme/templates/popular_proposal/_lista_propuestas.html:37
 msgid "con tus criterios de búsqueda seleccionados"
-msgstr "propostas de cidadão com seus critérios de pesquisa"
+msgstr "com seus critérios de pesquisa"
 
 #: votai_general_theme/templates/popular_proposal/_lista_propuestas.html:45
 msgid "Crear nueva propuesta"

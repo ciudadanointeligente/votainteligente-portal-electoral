@@ -8,7 +8,7 @@ Agora, convidamos você a agir para que sua proposta tenha o maior número poss�
 Para isso, você pode consultar as ferramentas de ativismo que temos para você. Nelas você encontrará um guia para posicionar e divulgar sua proposta, além de dicas úteis para fortalecer o trabalho de sua organização. Elas também estarão disponíveis no seu perfil da plataforma.
 
 Você pode baixar esse material no seguinte link:
-https://{{site.domain}}/static/material-ciudadano/manual-herramientas-activismo.pdf
+https://{{site.domain}}/static/material-ciudadao/ativismo.pdf
 
 Por fim, te recomendamos adicionar mais informações à sua proposta aqui:
 
@@ -33,7 +33,7 @@ https://{{site.domain}}{{area.get_absolute_url}}
 
 
 Para fazer com que sua proposta seja parte dos programas
-de candidatas e candidatos, te recomendamos que você se una 
+de candidatas e candidatos, te recomendamos que você se una
 à sua rede para dar visibilidade à ela!
 
 

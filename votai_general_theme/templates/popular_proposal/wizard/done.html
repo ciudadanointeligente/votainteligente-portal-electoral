@@ -28,7 +28,7 @@
           </h2>
           <div>
             {% if popular_proposal.created_proposal %}
-              <a href="{% static 'material-ciudadano/manual-herramientas-activismo.pdf' %}" target="_blank" class="btn btn-blue btn-block" onclick="ga('send', 'event', 'proposal-done-descargar-kit', 'click')">{% trans "Descarga el Manual de herramientas de activismo" %}</a>
+                {% include 'popular_proposal/wizard/manual-herramientas-activismo_link.html' %}
               <p class="text-center"><b>{% trans "Difunde tu propuesta para conseguir más apoyos" %}</b></p>
               {% include 'popular_proposal/_share.html' with popular_proposal=popular_proposal.created_proposal btn_extra_class="btn btn-info btn-block" show_texts=True %}
 

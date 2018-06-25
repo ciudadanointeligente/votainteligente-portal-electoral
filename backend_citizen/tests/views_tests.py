@@ -10,6 +10,7 @@ from popular_proposal.tests import get_example_data_for_testing
 from backend_citizen.forms import UserChangeForm
 from backend_citizen.tests import BackendCitizenTestCaseBase, PASSWORD
 from django.core import mail
+from django.conf import settings
 
 
 class BackendCitizenViewsTests(BackendCitizenTestCaseBase):
@@ -151,6 +152,11 @@ class GroupUserCreateView(TestCase):
         tha_group = User.objects.get(username="group")
         self.assertEquals(tha_group.last_name, data['name'])
         self.assertTrue(tha_group.profile.is_organization)
+        self.assertEquals(len(mail.outbox), 1)
+        the_mail = mail.outbox[0]
+        self.assertEquals(the_mail.to, [data['email']])
+        self.assertEquals(the_mail.from_email, settings.DEFAULT_FROM_EMAIL)
+        self.assertEquals(the_mail.alternatives[0][1], 'text/html')
 
 
 class UnsuscribeViewTestCase(BackendCitizenTestCaseBase):

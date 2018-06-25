@@ -24,6 +24,7 @@ from backend_candidate.models import is_candidate
 from agenda.forms import ActivityForm
 from agenda.models import Activity
 from django.contrib.contenttypes.models import ContentType
+from votai_utils.send_mails import send_mail
 
 
 class IndexView(LoginRequiredMixin, RedirectView):
@@ -116,6 +117,18 @@ class GroupRegistrationView(RegistrationView):
         group = super(GroupRegistrationView, self).create_inactive_user(form)
         form.set_group_profile(group)
         return group
+
+    def send_activation_email(self, user):
+        """
+        Send the activation email. The activation key is the username,
+        signed using TimestampSigner.
+        """
+        activation_key = self.get_activation_key(user)
+        context = self.get_email_context(activation_key)
+        context.update({
+            'user': user,
+        })
+        send_mail(context, 'organization_activation', to=[user.email],)
 
 
 class MySupportsView(LoginRequiredMixin, ListView):

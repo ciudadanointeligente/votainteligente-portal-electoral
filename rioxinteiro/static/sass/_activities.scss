@@ -13,6 +13,8 @@
     }
     .body{
         background-size: cover;
+        background-blend-mode: screen;
+        background-color: gray;
         min-height:300px;
     }
     .date{

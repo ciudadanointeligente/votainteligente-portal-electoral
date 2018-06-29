@@ -6,7 +6,7 @@
     {%if activity.background_image %}
     style="background-image:url('{{activity.background_image.url}}');"
     {% else %}
-    style="background-image: url({% static 'img/e-1.svg' %});"
+    style="background-image: url({% static 'img/logo_rpi_og.png' %});"
     {% endif %}
     >
         <div class="text-center title-and-location">
@@ -39,8 +39,8 @@
         <h4 class="modal-title">{{activity.description}}</h4>
       </div>
       <div class="modal-body">
-          {% if activity.background %}
-          <img src="{{activity.background_image.url}}" class='img-responsive'>
+          {% if activity.background_image %}
+          <img src="{{activity.background_image.url}}" class='img-responsive inner-activity-image'>
           {% endif %}
 
         {% if activity.url %}<a href="{{activity.url}}" target="_blank">

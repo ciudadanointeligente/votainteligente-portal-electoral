@@ -15,7 +15,7 @@
     .body{
         background-size: cover;
         background-blend-mode: screen;
-        background-color: gray;
+        background-color: currentColor;
         min-height:300px;
         cursor: pointer;
     }
@@ -26,4 +26,7 @@
         background-color: hsla(0, 0, 0, 0.6);
         padding-left: 10px;
     }
+}
+.inner-activity-image {
+    max-height: 300px;
 }

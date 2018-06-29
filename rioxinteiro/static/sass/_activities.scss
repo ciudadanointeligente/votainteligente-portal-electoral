@@ -1,11 +1,12 @@
 .activity{
+    margin-bottom: 10px;
     .title-and-location {
         position: absolute;
         bottom: 33%;
         .title{
             font-weight: bold;
             font-size: large;
-            cursor: pointer;
+
         }
         .location{
 
@@ -16,12 +17,13 @@
         background-blend-mode: screen;
         background-color: gray;
         min-height:300px;
+        cursor: pointer;
     }
     .date{
     }
     p {
         color: #FFF;
-        background-color: hsla(0, 0, 0, 0.3);
+        background-color: hsla(0, 0, 0, 0.6);
         padding-left: 10px;
     }
 }

@@ -50,4 +50,4 @@ class Activity(models.Model):
     class Meta:
         # sort by "the date" in descending order unless
         # overridden in the query with order_by()
-        ordering = ['-date']
+        ordering = ['date']

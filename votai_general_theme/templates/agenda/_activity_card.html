@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load markdown_deux_tags %}
 {% load staticfiles %}
-<div class="col-md-4 activity">
+<div class="col-md-4 activity"  data-toggle="modal" data-target="#activity-modal-{{activity.id}}">
     <div class="body"
     {%if activity.background_image %}
     style="background-image:url('{{activity.background_image.url}}');"
@@ -10,7 +10,7 @@
     {% endif %}
     >
         <div class="text-center title-and-location">
-            <div class="title" data-toggle="modal" data-target="#activity-modal-{{activity.id}}">
+            <div class="title">
                 <p>{{activity.description}}</p>
             </div>
             <div class='location'>

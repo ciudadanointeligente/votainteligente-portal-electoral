@@ -86,6 +86,7 @@
            fjs.parentNode.insertBefore(js, fjs);
          }(document, 'script', 'facebook-jssdk'));
       </script>
+      {% block _everything %}
       <div>
           {% block navbar %}
           {% include '_navbar.html' %}
@@ -97,6 +98,7 @@
         </div>
         {% endblock everything %}
       </div>
+      {% endblock _everything %}
         {% include '_footer.html' %}
         <script src="{% static 'js/removeDiacritics.js' %}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-expander/1.7.0/jquery.expander.min.js"></script>

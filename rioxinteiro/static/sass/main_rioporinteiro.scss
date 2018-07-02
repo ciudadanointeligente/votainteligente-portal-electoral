@@ -2062,6 +2062,24 @@ input#id_4-title {
     background-color: $laranja;
 }
 
+.fixed_recomendations {
+    float: right;
+    width: 40px; /* Set the width of the sidebar */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    // z-index: -1; /* Stay on top */
+    top: 33%; /* Stay at the top */
+    right: 0;
+    background-color: $laranja;
+    font-size: 15px;
+    overflow-x: hidden;
+    display: block;
+    writing-mode: tb-rl;
+    transform: rotate(-180deg);
+
+}
+
 .material_ciudadano_information {
     cursor: pointer;
 }

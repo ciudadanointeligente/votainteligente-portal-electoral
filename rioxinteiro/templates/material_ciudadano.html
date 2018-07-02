@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block everything %}
-  {% load staticfiles %}
+{% load staticfiles %}
+{% load thumbnail %}
+
+
+<a href="https://drive.google.com/drive/u/0/folders/13Zex1apjvkpAkenGvzpDmvL8VCWXnLGO" class="fixed_recomendations">
+    <i class="icon-bell"></i> Compartilhe nas redes!
+</a>
   <div class="container">
     <div>
       <h1 class="text-center">Descomplica Política</h1>
@@ -14,32 +20,44 @@
       <div class="row">
         <div class="col-md-6 material_cidadao_container">
           <div>
-            <img src="{% static 'img/material_cidadao/1.jpg' %}" class="center-block img-responsive material_ciudadano_information">
+              <a href="{% static 'img/material_cidadao/1.jpg' %}" target="_blank">
+                <img src="{% static 'img/material_cidadao/1_thumb.jpg' %}" class="center-block img-responsive material_ciudadano_information">
+            </a>
           </div>
         </div>
         <div class="col-md-6 material_cidadao_container">
           <div>
-            <img src="{% static 'img/material_cidadao/2.jpg' %}" class="center-block img-responsive material_ciudadano_information">
+              <a href="{% static 'img/material_cidadao/2.jpg' %}" target="_blank">
+                <img src="{% static 'img/material_cidadao/2_thumb.jpg' %}" class="center-block img-responsive material_ciudadano_information">
+            </a>
           </div>
         </div>
         <div class="col-md-6 material_cidadao_container">
           <div>
-            <img src="{% static 'img/material_cidadao/3.jpg' %}" class="center-block img-responsive material_ciudadano_information">
+              <a href="{% static 'img/material_cidadao/3.jpg' %}" target="_blank">
+                <img src="{% static 'img/material_cidadao/3_thumb.jpg' %}" class="center-block img-responsive material_ciudadano_information">
+            </a>
           </div>
         </div>
         <div class="col-md-6 material_cidadao_container">
           <div>
-            <img src="{% static 'img/material_cidadao/4.jpg' %}" class="center-block img-responsive material_ciudadano_information">
+              <a href="{% static 'img/material_cidadao/4.jpg' %}" target="_blank">
+                <img src="{% static 'img/material_cidadao/4_thumb.jpg' %}" class="center-block img-responsive material_ciudadano_information">
+            </a>
           </div>
         </div>
         <div class="col-md-6 material_cidadao_container">
           <div>
-            <img src="{% static 'img/material_cidadao/5.png' %}" class="center-block img-responsive material_ciudadano_information">
+              <a href="{% static 'img/material_cidadao/5.png' %}" target="_blank">
+                <img src="{% static 'img/material_cidadao/5_thumb.png' %}" class="center-block img-responsive material_ciudadano_information">
+            </a>
           </div>
         </div>
         <div class="col-md-6 material_cidadao_container">
           <div>
-            <img src="{% static 'img/material_cidadao/6.png' %}" class="center-block img-responsive material_ciudadano_information">
+              <a href="{% static 'img/material_cidadao/6.png' %}" target="_blank">
+                <img src="{% static 'img/material_cidadao/6_thumb.png' %}" class="center-block img-responsive material_ciudadano_information">
+            </a>
           </div>
         </div>
       </div>
@@ -102,11 +120,4 @@
       </div>
     </div>
   </section>
-  <script>
-      $('.material_ciudadano_information').on('click', function(){
-          var url_img = $(this).attr('src');
-          window.open(url_img, '_blank');
-
-      });
-  </script>
 {% endblock everything %}

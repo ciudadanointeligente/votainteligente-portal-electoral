@@ -2,8 +2,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.db.models import Case, Value, When, PositiveSmallIntegerField
 from popular_proposal.models import PopularProposal, Commitment
-from elections.models import Candidate
+from elections.models import Candidate as OriginalCandidate
 from django.core.urlresolvers import reverse
 
 
@@ -18,3 +19,20 @@ class MeRepresentaCommitment(Commitment):
 
     def save(self, *args, **kwargs):
         return self._save(*args, **kwargs)
+
+
+class ForVolunteersManager(models.Manager):
+    def get_queryset(self):
+        qs = super(ForVolunteersManager, self).get_queryset()
+        qs = qs.annotate(
+                        is_women=Case(When(gender='F', then=Value(1)),
+                                              default=Value(0),
+                                              output_field=PositiveSmallIntegerField())
+                    )
+        return qs
+
+
+class Candidate(OriginalCandidate):
+    objects = ForVolunteersManager()
+    class Meta:
+        proxy = True

@@ -8,6 +8,7 @@ from elections.models import QuestionCategory
 from django.contrib import admin
 from backend_candidate.views import CompleteMediaNaranjaView
 from backend_candidate.forms import MediaNaranjaElectionForm
+from merepresenta.voluntarios.views import VolunteerIndexView
 
 class MeRepresentaMeiaLaranjaForm(MediaNaranjaElectionForm):
     def __init__(self, *args, **kwargs):
@@ -39,5 +40,8 @@ urlpatterns = [
         name='complete_12_naranja'),
     url(r'^candidatos/', include('backend_candidate.urls', namespace='backend_candidate')),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
+    url(r'^voluntarios/',
+        VolunteerIndexView.as_view(),
+        name='volunteer_index'),
     url('', include('social_django.urls', namespace='social'))
 ]

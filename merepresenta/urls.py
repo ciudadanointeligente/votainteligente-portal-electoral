@@ -8,7 +8,9 @@ from elections.models import QuestionCategory
 from django.contrib import admin
 from backend_candidate.views import CompleteMediaNaranjaView
 from backend_candidate.forms import MediaNaranjaElectionForm
-from merepresenta.voluntarios.views import VolunteerIndexView
+from merepresenta.voluntarios.views import (VolunteerIndexView,
+                                            VolunteerLoginView,
+                                            complete)
 
 class MeRepresentaMeiaLaranjaForm(MediaNaranjaElectionForm):
     def __init__(self, *args, **kwargs):
@@ -38,10 +40,18 @@ urlpatterns = [
     url(r'^candidatos/media_naranja/(?P<slug>[-\w]+)/(?P<candidate_slug>[-\w]+)/?$',
         MeRepresentaMeiaLaranja.as_view(),
         name='complete_12_naranja'),
-    url(r'^candidatos/', include('backend_candidate.urls', namespace='backend_candidate')),
-    url(r'^accounts/', include('registration.backends.hmac.urls')),
-    url(r'^voluntarios/',
+    url(r'^candidatos/?$', include('backend_candidate.urls', namespace='backend_candidate')),
+    url(r'^accounts/?$', include('registration.backends.hmac.urls')),
+    url(r'^voluntarios/?$',
         VolunteerIndexView.as_view(),
         name='volunteer_index'),
-    url('', include('social_django.urls', namespace='social'))
+    url(r'^voluntarios/login/?$',
+        VolunteerLoginView.as_view(),
+        name='volunteer_login'),
+    url(r'^voluntarios/complete/(?P<backend>[^/]+)$',
+        complete,
+        name='volunteer_social_complete'
+        ),
+
+    # url('', include('social_django.urls', namespace='social'))
 ]

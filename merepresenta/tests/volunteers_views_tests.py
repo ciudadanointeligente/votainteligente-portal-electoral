@@ -5,6 +5,8 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import PersonalData
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+import mock
+
 
 @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
 class VolunteersViewsTests(TestCase):
@@ -38,4 +40,33 @@ class VolunteersViewsTests(TestCase):
         self.assertEquals(response.status_code, 200)
         candidates = response.context['candidates']
         self.assertEquals(int(candidates[0].id), 5)
+
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
+class LoginView(TestCase):
+    def setUp(self):
+        super(LoginView, self).setUp()
+        session = self.client.session
+        session['facebook_state'] = '1'
+        session.save()
+
+    def test_get_login(self):
+        url = reverse('volunteer_login')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+    @override_settings(SOCIAL_AUTH_FACEBOOK_KEY='1',
+                       SOCIAL_AUTH_FACEBOOK_SECRET='2')
+    @mock.patch('social_core.backends.base.BaseAuth.request')
+    def test_complete_with_facebook(self, mock_request):
+        volunteer_index_url = reverse('volunteer_login')
+        url = reverse('volunteer_social_complete', kwargs={'backend': 'facebook'})
+        url += '?code=2&state=1&next=' + volunteer_index_url
+        mock_request.return_value.json.return_value = {'access_token': '123'}
+        with mock.patch('django.contrib.sessions.backends.base.SessionBase.set_expiry', side_effect=[OverflowError, None]):
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(response.url, volunteer_index_url)
+
+
 

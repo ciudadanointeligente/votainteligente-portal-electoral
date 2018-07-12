@@ -8,7 +8,9 @@ from social_core.actions import do_complete
 from social_django.views import _do_login
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
-from social_django.utils import psa
+from social_django.utils import psa, STORAGE, get_strategy
+
+
 
 
 class VolunteerIndexView(StaffuserRequiredMixin, ListView):
@@ -29,10 +31,14 @@ class VolunteerLoginView(TemplateView):
     template_name = "voluntarios/login.html"
 
 
+
+def load_strategy(request=None):
+    return get_strategy('merepresenta.voluntarios.strategy.VolunteerStrategy', STORAGE, request)
+
 @never_cache
 @csrf_exempt
-@psa('volunteer_social_complete')
+@psa(load_strategy=load_strategy)
 def complete(request, backend, *args, **kwargs):
     return do_complete(request.backend, _do_login, request.user,
-                       request=request,
+                       redirect_value='volunteer_login', request=request,
                        *args, **kwargs)

@@ -5,6 +5,7 @@ from elections.tests import VotaInteligenteTestCase as TestCase
 from elections.models import PersonalData
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from social_django.models import UserSocialAuth
 import mock
 
 
@@ -61,12 +62,13 @@ class LoginView(TestCase):
     def test_complete_with_facebook(self, mock_request):
         volunteer_index_url = reverse('volunteer_login')
         url = reverse('volunteer_social_complete', kwargs={'backend': 'facebook'})
-        url += '?code=2&state=1&next=' + volunteer_index_url
+        url += '?code=2&state=1'
         mock_request.return_value.json.return_value = {'access_token': '123'}
         with mock.patch('django.contrib.sessions.backends.base.SessionBase.set_expiry', side_effect=[OverflowError, None]):
             response = self.client.get(url)
+            
             self.assertEqual(response.status_code, 302)
             self.assertEqual(response.url, volunteer_index_url)
-
-
-
+            social_user = UserSocialAuth.objects.get()
+            created_user = social_user.user
+            self.assertTrue(created_user.is_staff)

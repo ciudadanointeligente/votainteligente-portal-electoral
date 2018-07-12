@@ -406,6 +406,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
     'social_core.pipeline.social_auth.associate_by_email',
+    'backend_citizen.image_getter_from_social.get_image_from_social',
 )
 
 ROOT_URLCONF = 'votainteligente.urls'

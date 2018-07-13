@@ -1,7 +1,8 @@
 # coding=utf-8
 from django.test import TestCase, override_settings
 from merepresenta.models import Candidate, NON_WHITE_KEY, NON_MALE_KEY
-from elections.tests import VotaInteligenteTestCase as TestCase
+from merepresenta.tests.volunteers import VolunteersTestCaseBase
+from backend_candidate.models import CandidacyContact
 from elections.models import PersonalData
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
@@ -10,7 +11,7 @@ import mock
 
 
 @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
-class VolunteersViewsTests(TestCase):
+class VolunteersViewsTests(VolunteersTestCaseBase):
     def setUp(self):
         super(VolunteersViewsTests, self).setUp()
 
@@ -42,9 +43,22 @@ class VolunteersViewsTests(TestCase):
         candidates = response.context['candidates']
         self.assertEquals(int(candidates[0].id), 5)
 
+    def test_if_candidate_has_contact_is_not_shown(self):
+        self.set_desprivilegios_on_candidates()
+        c = Candidate.objects.get(id=5)
+        c.contacts.create(mail="perrito@gatito.cl")
+
+        url = reverse('volunteer_index')
+        u = User.objects.create_user(username="new_user", password="abc", is_staff=True)
+        self.client.login(username=u.username, password="abc")
+        response = self.client.get(url)
+        candidates = response.context['candidates']
+
+        self.assertNotIn(c, candidates)
+
 
 @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
-class LoginView(TestCase):
+class LoginView(VolunteersTestCaseBase):
     def setUp(self):
         super(LoginView, self).setUp()
         session = self.client.session

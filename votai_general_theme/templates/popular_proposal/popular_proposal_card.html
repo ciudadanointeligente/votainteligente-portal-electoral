@@ -8,8 +8,8 @@
   <div class="propuesta-content">
       {% include 'popular_proposal/extra_card.html' with proposal=proposal %}
 
-      <a href="{% url 'popular_proposals:home' %}?clasification={{proposal.clasification}}" onclick="ga('send','event','card-filterby-clasification','click')"><span class="label label-default">{{proposal.get_classification}}</span></a>
-      {% if proposal.generated_at is not None %}<span class="label label-success">{{proposal.generated_at}}</span>{% endif %}
+      <a href="{% url 'popular_proposals:home' %}?clasification={{proposal.clasification}}" class="pill-clasification" onclick="ga('send','event','card-filterby-clasification','click')"><span class="label label-default">{{proposal.get_classification}}</span></a>
+      {% if proposal.generated_at is not None %}<span class="label label-success pill-clasification">{{proposal.generated_at}}</span>{% endif %}
 
     <!-- Estado de una propuesta para el alcalde de esa comuna -->
     <div class="pull-right">

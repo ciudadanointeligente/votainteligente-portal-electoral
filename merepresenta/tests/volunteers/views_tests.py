@@ -8,6 +8,11 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from social_django.models import UserSocialAuth
 import mock
+from django.views.generic.edit import FormView
+from merepresenta.models import VolunteerInCandidate
+
+
+PASSWORD="admin123"
 
 
 @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
@@ -86,3 +91,60 @@ class LoginView(VolunteersTestCaseBase):
             social_user = UserSocialAuth.objects.get()
             created_user = social_user.user
             self.assertTrue(created_user.is_staff)
+
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
+class CandidateAddMailView(VolunteersTestCaseBase):
+    def setUp(self):
+        super(CandidateAddMailView, self).setUp()
+        self.volunteer = User.objects.create_user(username="voluntario",
+                                                  password=PASSWORD,
+                                                  is_staff=True)
+        self.candidate = Candidate.objects.get(id=5)
+        self.url = reverse('add_mail_to_candidate', kwargs={'slug': self.candidate.slug})
+
+    def test_get_the_obrigado_view(self):
+        url = reverse('obrigado')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 302)
+        
+        user = User.objects.create_user(username="non_volunteer", password=PASSWORD)
+        self.client.login(username=user.username, password=PASSWORD)        
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 302)
+
+        self.client.logout()
+        self.client.login(username=self.volunteer.username, password=PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+
+    def test_get_the_view(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 302)
+        self.assertIn(reverse('volunteer_login'), response.url)
+
+        user = User.objects.create_user(username="non_volunteer", password=PASSWORD)
+        self.client.login(username=user.username, password=PASSWORD)
+        response2 = self.client.get(self.url)
+        self.assertEqual(response.status_code, 302)
+        self.assertIn(reverse('volunteer_login'), response.url)
+
+        self.client.logout()
+        self.client.login(username=self.volunteer.username, password=PASSWORD)
+        response = self.client.get(self.url)
+        self.assertEquals(response.status_code, 200)
+        form = response.context['form']
+        self.assertEquals(form.candidate, self.candidate)
+        self.assertEquals(form.volunteer, self.volunteer)
+
+        volunteer_in_candidate_record = VolunteerInCandidate.objects.get(volunteer=self.volunteer)
+        self.assertEquals(volunteer_in_candidate_record.candidate, self.candidate)
+
+    def test_post_to_the_view(self):
+        self.client.login(username=self.volunteer.username, password=PASSWORD)
+        data = {
+            'mail': 'perrito@gatito.com'
+        }
+        response = self.client.post(self.url, data=data)
+        self.assertRedirects(response, reverse('obrigado'))

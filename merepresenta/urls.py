@@ -10,6 +10,8 @@ from backend_candidate.views import CompleteMediaNaranjaView
 from backend_candidate.forms import MediaNaranjaElectionForm
 from merepresenta.voluntarios.views import (VolunteerIndexView,
                                             VolunteerLoginView,
+                                            AddMailToCandidateView,
+                                            ObrigadoView,
                                             complete)
 
 class MeRepresentaMeiaLaranjaForm(MediaNaranjaElectionForm):
@@ -52,6 +54,14 @@ urlpatterns = [
         complete,
         name='volunteer_social_complete'
         ),
+    url(r'^voluntarios/adicionar_mail/(?P<slug>[^/]+)$',
+        AddMailToCandidateView.as_view(),
+        name='add_mail_to_candidate'
+        ),
+    url(r'^voluntarios/obrigado/?$',
+        ObrigadoView.as_view(),
+        name='obrigado'
+        ),
 
-    # url('', include('social_django.urls', namespace='social'))
+    # url('', include('social_django.urls', namespace='social'))add_mail_to_candidate
 ]

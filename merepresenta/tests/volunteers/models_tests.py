@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from social_django.models import UserSocialAuth
 from merepresenta.models import VolunteerInCandidate, VolunteerGetsCandidateEmailLog
+from django.core import mail
 
 
 PASSWORD="admin123"
@@ -36,8 +37,12 @@ class VolunteerGetsEmailLog(VolunteersTestCaseBase):
         self.candidate = Candidate.objects.get(id=5)
 
     def test_instanciate(self):
-        candidacy_contact = CandidacyContact.objects.create(mail="perrito@gatito", candidate=self.candidate)
+        candidacy_contact = CandidacyContact.objects.create(mail="perrito@gatito.com", candidate=self.candidate)
         log = VolunteerGetsCandidateEmailLog.objects.create(volunteer=self.volunteer,
                                                             contact=candidacy_contact,
                                                             candidate=self.candidate)
         self.assertTrue(log.created)
+
+        self.assertTrue(len(mail.outbox))
+        mail_to_candidate = mail.outbox[0]
+        self.assertIn(candidacy_contact.mail, mail_to_candidate.to)

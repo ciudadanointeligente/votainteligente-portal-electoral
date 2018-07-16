@@ -8,6 +8,7 @@ from elections.models import Candidate as OriginalCandidate
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from backend_candidate.models import CandidacyContact
+from votai_utils.send_mails import send_mail
 
 
 class MeRepresentaPopularProposal(PopularProposal):
@@ -63,3 +64,13 @@ class VolunteerGetsCandidateEmailLog(models.Model):
     contact = models.ForeignKey(CandidacyContact)
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
+
+
+    def save(self, *args, **kwargs):
+        creating = self.pk is None
+        if creating:
+            context = {
+                'candidate': self.candidate.name
+            }
+            send_mail(context, 'contato_novo_com_candidato', to=[self.contact.mail],)
+        return super(VolunteerGetsCandidateEmailLog, self).save(*args, **kwargs)

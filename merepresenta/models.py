@@ -6,6 +6,8 @@ from django.db.models import Case, Value, When, PositiveSmallIntegerField, Sum, 
 from popular_proposal.models import PopularProposal, Commitment
 from elections.models import Candidate as OriginalCandidate
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
+from backend_candidate.models import CandidacyContact
 
 
 class MeRepresentaPopularProposal(PopularProposal):
@@ -46,3 +48,18 @@ class Candidate(OriginalCandidate):
     objects = ForVolunteersManager()
     class Meta:
         proxy = True
+
+
+class VolunteerInCandidate(models.Model):
+    volunteer = models.ForeignKey(User)
+    candidate = models.ForeignKey(Candidate)
+    created = models.DateTimeField(auto_now=True)
+    updated = models.DateTimeField(auto_now_add=True)
+
+
+class VolunteerGetsCandidateEmailLog(models.Model):
+    volunteer = models.ForeignKey(User)
+    candidate = models.ForeignKey(Candidate)
+    contact = models.ForeignKey(CandidacyContact)
+    created = models.DateTimeField(auto_now=True)
+    updated = models.DateTimeField(auto_now_add=True)

@@ -174,7 +174,7 @@ class ActivityListView(ListView):
     context_object_name = 'activities'
     def get_queryset(self):
         content_type = ContentType.objects.get_for_model(User)
-        return Activity.futures.filter(content_type=content_type)
+        return Activity.objects.filter(content_type=content_type)
 
 
 class MyActivitiesListView(LoginRequiredMixin, ActivityListView):

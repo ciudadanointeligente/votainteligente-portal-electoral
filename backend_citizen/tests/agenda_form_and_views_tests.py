@@ -91,7 +91,7 @@ class AgendaCitizenViewTestCase(TestCase):
         self.assertIn(activity2, activities)
         self.assertIn(activity3, activities)
         self.assertNotIn(activity1, activities)
-        self.assertNotIn(activity4, activities)
+        self.assertIn(activity4, activities)
 
     def test_list_public_events(self):
         other_user = User.objects.create_user(username='other')

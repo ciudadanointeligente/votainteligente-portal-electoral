@@ -4,7 +4,7 @@ from merepresenta.models import Candidate, VolunteerInCandidate
 from braces.views import StaffuserRequiredMixin
 from django.views.generic.base import TemplateView
 from django.views import View
-from social_core.actions import do_complete
+from social_core.actions import do_complete, do_auth
 from social_django.views import _do_login
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
@@ -43,6 +43,10 @@ def complete(request, backend, *args, **kwargs):
                        redirect_value='volunteer_login', request=request,
                        *args, **kwargs)
 
+@never_cache
+@psa('volunteer_social_complete')
+def auth(request, backend):
+    return do_auth(request.backend)
 
 class AddMailToCandidateView(StaffuserRequiredMixin, FormView):
     form_class = AddCandidacyContactForm

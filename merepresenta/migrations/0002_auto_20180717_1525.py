@@ -12,7 +12,6 @@ class Migration(migrations.Migration):
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('backend_candidate', '0014_remove_suggesting_models'),
-        ('elections', '0033_auto_20180717_1525'),
         ('merepresenta', '0001_initial'),
     ]
 

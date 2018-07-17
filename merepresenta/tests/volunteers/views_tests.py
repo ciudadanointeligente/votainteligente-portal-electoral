@@ -148,3 +148,6 @@ class CandidateAddMailView(VolunteersTestCaseBase):
         }
         response = self.client.post(self.url, data=data)
         self.assertRedirects(response, reverse('obrigado'))
+
+    def test_social_begin_facebook(self):
+        url = reverse('voluntarios_social_begin', kwargs={"backend": 'facebook'})

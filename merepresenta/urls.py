@@ -12,6 +12,7 @@ from merepresenta.voluntarios.views import (VolunteerIndexView,
                                             VolunteerLoginView,
                                             AddMailToCandidateView,
                                             ObrigadoView,
+                                            auth,
                                             complete)
 
 class MeRepresentaMeiaLaranjaForm(MediaNaranjaElectionForm):
@@ -42,14 +43,16 @@ urlpatterns = [
     url(r'^candidatos/media_naranja/(?P<slug>[-\w]+)/(?P<candidate_slug>[-\w]+)/?$',
         MeRepresentaMeiaLaranja.as_view(),
         name='complete_12_naranja'),
-    url(r'^candidatos/?$', include('backend_candidate.urls', namespace='backend_candidate')),
-    url(r'^accounts/?$', include('registration.backends.hmac.urls')),
+    url(r'^candidatos/?', include('backend_candidate.urls', namespace='backend_candidate')),
+    url(r'^accounts/?', include('registration.backends.hmac.urls')),
     url(r'^voluntarios/?$',
         VolunteerIndexView.as_view(),
         name='volunteer_index'),
     url(r'^voluntarios/login/?$',
         VolunteerLoginView.as_view(),
         name='volunteer_login'),
+    url(r'^login/(?P<backend>[^/]+)/?$', auth,
+            name='voluntarios_social_begin'),
     url(r'^voluntarios/complete/(?P<backend>[^/]+)$',
         complete,
         name='volunteer_social_complete'

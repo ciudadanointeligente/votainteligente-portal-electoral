@@ -1,7 +1,7 @@
 # coding=utf-8
 from django.test import TestCase
 from popular_proposal.models import PopularProposal, Commitment
-from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment, Candidate
+from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment, Candidate, Coaligacao, Partido
 from django.contrib.auth.models import User
 from elections.models import Election
 from django.core.urlresolvers import reverse
@@ -36,3 +36,15 @@ class CandidateTestCase(TestCase):
     def test_instanciate(self):
         candidate = Candidate.objects.create(name="Candidate 1", cpf='1230', nome_completo=u'Candidato uno', numero='190000000560')
         self.assertTrue(candidate)
+
+class CoaligacaoTestCase(TestCase):
+    def test_instanciate(self):
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234', mark=3)
+        self.assertTrue(coaligacao)
+
+
+class PartidoTestCase(TestCase):
+    def test_instanciate(self):
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234', mark=3)
+        partido = Partido.objects.create(name=u"Partido de los trabalhadores", initials='PT', number='12345', mark=3, coaligacao=coaligacao)
+        self.assertTrue(partido)

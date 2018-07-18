@@ -77,3 +77,17 @@ class VolunteerGetsCandidateEmailLog(models.Model):
             }
             send_mail(context, 'contato_novo_com_candidato', to=[self.contact.mail],)
         return super(VolunteerGetsCandidateEmailLog, self).save(*args, **kwargs)
+
+
+class Coaligacao(models.Model):
+    name = models.CharField(max_length=1024, null=True)
+    initials = models.CharField(max_length=1024, null=True)
+    number = models.CharField(max_length=1024, null=True)
+    mark = models.IntegerField()
+
+class Partido(models.Model):
+    name = models.CharField(max_length=1024, null=True)
+    initials = models.CharField(max_length=1024, null=True)
+    number = models.CharField(max_length=1024, null=True)
+    mark = models.IntegerField()
+    coaligacao = models.ForeignKey(Coaligacao)

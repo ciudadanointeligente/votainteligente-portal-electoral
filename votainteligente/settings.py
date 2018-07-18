@@ -74,11 +74,11 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'agenda',
     'medianaranja2',
+    'merepresenta',
     # 'debug_panel',
     'el_pagination',
     'proposal_subscriptions',
     'custom_sites',
-    'merepresenta',
     'votai_general_theme',
     'hitcount',
 
@@ -406,6 +406,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
     'social_core.pipeline.social_auth.associate_by_email',
+    'backend_citizen.image_getter_from_social.get_image_from_social',
 )
 
 ROOT_URLCONF = 'votainteligente.urls'
@@ -495,5 +496,6 @@ if THEME:
     except:
         pass
     TEMPLATES[0]['DIRS'] = ['%s/templates' % THEME, 'votai_general_theme/templates']
-    INSTALLED_APPS_AFTER_ALL += (THEME, )
+    if THEME not in INSTALLED_APPS:
+        INSTALLED_APPS_AFTER_ALL += (THEME, )
 INSTALLED_APPS += INSTALLED_APPS_AFTER_ALL

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load votainteligente_extras %}
+
+{% block title %}- Voluntarios{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#ID</th>
+          <th scope="col">#Número</th>
+          <th scope="col">Candidato</th>
+          <th scope="col">Partido</th>
+          <th scope="col">Coaligacao</th>
+          <th scope="col">Pesquisar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for candidate in candidates.all %}
+        <tr>
+          <td>{{candidate.id}}</td>
+          <th scope="row">{% get_personal_data candidate=candidate personal_data='Número' as numero %}{% if numero.value %} {{numero.value}}, {% endif %}</th>
+          <td>{{candidate.name}}</td>
+          <td>{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{% if partido.value %} {{partido.value}}, {% endif %}</td>
+          <td>{% get_personal_data candidate=candidate personal_data='Coaligacao' as coag %}{% if coag.value %} {{coag.value}}, {% endif %}</td>
+          <td><a href="{% url 'add_mail_to_candidate' slug=candidate.slug %}">Pesquisar</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock content %}

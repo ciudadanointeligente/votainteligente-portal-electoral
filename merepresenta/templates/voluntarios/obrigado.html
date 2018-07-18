@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}- Portada{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1>Obrigado!</h1>
+    <iframe src="https://giphy.com/embed/GrB9uThYsoU3C" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/love-lord-wheres-GrB9uThYsoU3C">via GIPHY</a></p>
+    <a href="{% url 'volunteer_index' %}">Continuar</a>
+</div>
+{% endblock content %}

@@ -1,1 +1,33 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load votainteligente_extras %}
 
+{% block title %}- Voluntarios{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="alert alert-primary" role="alert">
+  Oi!
+    Que boa que você decidiu encontrar <b>{{form.candidate}}</b>, aqui nós lhes contamos tudo o que sabemos sobre essa pessoa.
+    </div>
+    
+    <ul>
+        <li><b>Número</b>numero</li>
+        <li><b>Partido</b>partido</li>
+        <li><b>Coligação</b>coaligacao</li>
+        <li><b>Nome Real</b>nome real</li>
+        <li><b>Estado</b>ES</li>
+    </ul>
+    <form method='POST' action="{% url 'add_mail_to_candidate' slug=form.candidate.slug %}">
+        {% csrf_token %}
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">{{form.mail.label}}</label>
+            <div class="col-sm-10">
+                {{form.mail}}
+            </div>
+          </div>
+        <button type="submit" class="btn btn-primary mb-2">Enviar!</button>
+    </form>
+</div>
+{% endblock content %}

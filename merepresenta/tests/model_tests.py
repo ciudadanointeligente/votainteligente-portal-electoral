@@ -1,9 +1,9 @@
 # coding=utf-8
 from django.test import TestCase
 from popular_proposal.models import PopularProposal, Commitment
-from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment
+from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment, Candidate
 from django.contrib.auth.models import User
-from elections.models import Candidate, Election
+from elections.models import Election
 from django.core.urlresolvers import reverse
 
 
@@ -31,3 +31,8 @@ class MeRepresentaPopularProposalTestCase(TestCase):
                                                            commited=True)
 
         self.assertIsInstance(commitment, Commitment)
+
+class CandidateTestCase(TestCase):
+    def test_instanciate(self):
+        candidate = Candidate.objects.create(name="Candidate 1", cpf='1230', nome_completo=u'Candidato uno', numero='190000000560')
+        self.assertTrue(candidate)

@@ -71,6 +71,10 @@ class AddMailToCandidateView(StaffuserRequiredMixin, FormView):
         kwargs['volunteer'] = self.request.user
         return kwargs
 
+    def form_valid(self, form):
+        form.save()
+        return super(AddMailToCandidateView, self).form_valid(form)
+
 
 
 class ObrigadoView(StaffuserRequiredMixin, TemplateView):

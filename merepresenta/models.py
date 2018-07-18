@@ -31,6 +31,7 @@ NON_WHITE_KEY = {"possible_values": ["preta", "parda"]}
 class ForVolunteersManager(models.Manager):
     def get_queryset(self):
         qs = super(ForVolunteersManager, self).get_queryset()
+        print qs
         qs = qs.annotate(
                         is_women=Case(When(gender='F', then=Value(1)),
                         default=Value(0),
@@ -46,9 +47,11 @@ class ForVolunteersManager(models.Manager):
 
 
 class Candidate(OriginalCandidate):
+    cpf = models.CharField(max_length=1024, null=True)
+    nome_completo = models.CharField(max_length=1024, null=True)
+    numero = models.CharField(max_length=1024, null=True)
+
     objects = ForVolunteersManager()
-    class Meta:
-        proxy = True
 
 
 class VolunteerInCandidate(models.Model):

@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from social_django.models import UserSocialAuth
 import mock
 from django.views.generic.edit import FormView
+from django.core import mail
 from merepresenta.models import VolunteerInCandidate
 
 
@@ -148,6 +149,12 @@ class CandidateAddMailView(VolunteersTestCaseBase):
         }
         response = self.client.post(self.url, data=data)
         self.assertRedirects(response, reverse('obrigado'))
+        self.assertEquals(self.candidate.contacts.count(), 1)
+        contact = self.candidate.contacts.last()
+        self.assertEquals(contact.mail, data['mail'])
+        self.assertTrue(len(mail.outbox))
+        mail_to_candidate = mail.outbox[0]
+        self.assertIn(contact.mail, mail_to_candidate.to)
 
     def test_social_begin_facebook(self):
         url = reverse('voluntarios_social_begin', kwargs={"backend": 'facebook'})

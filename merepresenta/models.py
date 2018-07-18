@@ -49,6 +49,9 @@ class Candidate(OriginalCandidate):
     cpf = models.CharField(max_length=1024, null=True)
     nome_completo = models.CharField(max_length=1024, null=True)
     numero = models.CharField(max_length=1024, null=True)
+    race = models.CharField(max_length=1024, null=True)
+    original_email = models.EmailField(max_length=1024, null=True)
+    email_repeated = models.NullBooleanField()
 
     objects = ForVolunteersManager()
 

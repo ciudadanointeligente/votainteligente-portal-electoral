@@ -1,8 +1,15 @@
+# coding=utf-8
 from elections.models import Area
 from merepresenta.models import Partido, Coaligacao, Candidate
+from tse_data_importer.csv_reader import CsvReader
+from tse_data_importer.importer import RowsReaderAdapter
 
+def output_logger(self, msg):
+    print msg
 
 class TSEProcessorMixin(object):
+    output_logger_func = output_logger
+
     def gender_definer(self, gender):
         if gender == 'FEMININO':
             return "F"
@@ -17,14 +24,18 @@ class TSEProcessorMixin(object):
                                                              nome_completo=candidate_dict['nome_completo'],
                                                              numero=candidate_dict['number'],
                                                              cpf=candidate_dict['cpf'],
+                                                             race=candidate_dict['race'],
+                                                             original_email=candidate_dict['mail'],
+                                                             email_repeated=candidate_dict['email_repeated'],
                                                              gender=gender)
         election.candidates.add(candidate)
         candidate.partido = partido
         candidate.save()
-        
+
         return candidate
 
     def do_something(self, row):
+        
         result = {}
         area, created = Area.objects.get_or_create(identifier=row['area']['slug'])
         result['area'] = area
@@ -38,8 +49,11 @@ class TSEProcessorMixin(object):
                                                          number=row['partido']['number'],
                                                          coaligacao=coaligacao)
         result['partido'] = partido
+        row['candidate']['email_repeated'] = row['email_repeated']
+
         result['candidate'] = self.process_candidate(row['candidate'], election, partido)
+        self.output_logger_func(result['candidate'].name)
         return result
 
-class TSEProcessor(TSEProcessorMixin):
+class TSEProcessor(TSEProcessorMixin, CsvReader):
     pass

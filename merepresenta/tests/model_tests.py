@@ -34,7 +34,13 @@ class MeRepresentaPopularProposalTestCase(TestCase):
 
 class CandidateTestCase(TestCase):
     def test_instanciate(self):
-        candidate = Candidate.objects.create(name="Candidate 1", cpf='1230', nome_completo=u'Candidato uno', numero='190000000560')
+        candidate = Candidate.objects.create(name="Candidate 1",
+                                             cpf='1230',
+                                             nome_completo=u'Candidato uno',
+                                             numero='190000000560',
+                                             race="preta",
+                                             original_email='perrito@gatito.com',
+                                             email_repeated=False)
         self.assertTrue(candidate)
 
 class CoaligacaoTestCase(TestCase):

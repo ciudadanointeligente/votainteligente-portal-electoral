@@ -1,8 +1,9 @@
 # coding=utf-8
 from merepresenta.tests.volunteers import VolunteersTestCaseBase
-from merepresenta.tse_processor import TSEProcessor
+from merepresenta.tse_processor import TSEProcessorMixin
 from elections.models import Area
 from merepresenta.models import Candidate, Partido, Coaligacao
+from django.core.management import call_command
 
 
 class ImporterTestCase(VolunteersTestCaseBase):
@@ -10,18 +11,20 @@ class ImporterTestCase(VolunteersTestCaseBase):
         super(ImporterTestCase, self).setUp()
         self.data = {'partido': {'number': 17, 'name': 'PARTIDO SOCIAL LIBERAL', 'initials': 'PSL'},
                      'coaligacao': {'number': '1', 'name': 'RIO SOLIDoRIO', 'partidos_coaligacao': 'SD / PSL'},
-                     'email_repeated': None,
+                     'email_repeated': False,
                      'candidate': {'race': 'PARDA', 'nome': 'PARA DO SANTO ALEIXO', 'gender': 'MASCULINO',
                                    'civil_status': 'CASADO(A)', 'number': 1723, 'cpf': 52243184753, 'job': 'APOSENTADO (EXCETO SERVIDOR PoBLICO)',
                                    'date_of_birth': '21/07/1958', 'nome_completo': 'CARLOS ALBERTO HERMoNIO DE MORAES',
-                                   'mail': None, 'education': 'ENSINO FUNDAMENTAL COMPLETO'},
+                                   'mail': 'candidato@partido.com', 'education': 'ENSINO FUNDAMENTAL COMPLETO'},
                      'area': {'election_name': 'DEPUTADO FEDERAL', 'slug': 'RJ'}
                     }
 
 
     def test_creates_elements(self):
         rj_area = Area.objects.get(identifier='RJ')
-        processor = TSEProcessor()
+        class JustForNowProcessor(TSEProcessorMixin):
+            pass
+        processor = JustForNowProcessor()
         result = processor.do_something(self.data)
         area = result['area']
         self.assertEquals(area, rj_area)
@@ -43,5 +46,15 @@ class ImporterTestCase(VolunteersTestCaseBase):
         self.assertEquals(candidato.nome_completo, 'CARLOS ALBERTO HERMoNIO DE MORAES')
         self.assertEquals(candidato.numero, 1723)
         self.assertEquals(candidato.gender, 'M')
+        self.assertEquals(candidato.race, 'PARDA')
+        self.assertEquals(candidato.original_email, 'candidato@partido.com')
+        self.assertFalse(candidato.email_repeated)
         self.assertEquals(candidato.partido, partido)
 
+
+    def test_calling_command(self):
+        call_command('import_from_tse', './tse_data_importer/fixtures/example_candidates.txt')
+        candidate = Candidate.objects.get(name=u'EDUARDO SALLES')
+        self.assertTrue(candidate)
+        self.assertTrue(candidate.cpf)
+        self.assertFalse(candidate.email_repeated)

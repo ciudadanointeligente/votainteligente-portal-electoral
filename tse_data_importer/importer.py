@@ -4,6 +4,43 @@ validators = {
     'mail': validate_email
 }
 
+area_settings = {
+    5:'slug',
+    9: 'election_name',
+}
+candidate_settings = {
+    
+    10: 'nome_completo',
+    12: 'number',
+    13: 'cpf',
+    14: 'nome',
+    25: 'job',
+    26: 'date_of_birth',
+    30: 'gender',
+    32: 'education',
+    34: 'civil_status',
+    36: 'race',
+    45: 'mail',
+
+}
+partido_settings = {
+    17: 'number',
+    19: 'name',
+    18: 'initials'
+}
+coaligacao_settings = {
+    23: "name",
+    22: "partidos_coaligacao",
+    21: "number"
+
+}
+settings = {
+    'area': area_settings,
+    'candidate': candidate_settings,
+    'partido': partido_settings,
+    'coaligacao': coaligacao_settings
+}
+
 class RowReader(object):
     def __init__(self, row, settings):
         self.row = row
@@ -29,7 +66,7 @@ class RowReader(object):
 
 
 class MultipleRowsReader(object):
-    def __init__(self, rows, settings):
+    def __init__(self, rows, settings=settings):
         self.rows = rows
         self.settings = settings
 
@@ -69,8 +106,7 @@ class MultipleRowsReader(object):
 class RowsReaderAdapter(MultipleRowsReader):
 
     def do_something(self, row):
-        # raise NotImplementedError
-        pass
+        raise NotImplementedError
 
     def process(self):
         results = super(RowsReaderAdapter, self).process()

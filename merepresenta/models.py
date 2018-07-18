@@ -31,7 +31,6 @@ NON_WHITE_KEY = {"possible_values": ["preta", "parda"]}
 class ForVolunteersManager(models.Manager):
     def get_queryset(self):
         qs = super(ForVolunteersManager, self).get_queryset()
-        print qs
         qs = qs.annotate(
                         is_women=Case(When(gender='F', then=Value(1)),
                         default=Value(0),
@@ -83,11 +82,11 @@ class Coaligacao(models.Model):
     name = models.CharField(max_length=1024, null=True)
     initials = models.CharField(max_length=1024, null=True)
     number = models.CharField(max_length=1024, null=True)
-    mark = models.IntegerField()
+    mark = models.IntegerField(null=True)
 
 class Partido(models.Model):
     name = models.CharField(max_length=1024, null=True)
     initials = models.CharField(max_length=1024, null=True)
     number = models.CharField(max_length=1024, null=True)
-    mark = models.IntegerField()
+    mark = models.IntegerField(null=True)
     coaligacao = models.ForeignKey(Coaligacao)

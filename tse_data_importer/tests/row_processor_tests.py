@@ -115,7 +115,6 @@ class ImporterTestCase(TestCase):
         self.assertTrue(first_['email_repeated'])
         self.assertFalse(fourth_['email_repeated'])
         self.assertFalse(fifth_['email_repeated'])
-        self.fail()
 
     def test_management_command_mixin(self):
         class DoSomethingWithEachRow(RowsReaderAdapter):

@@ -187,37 +187,37 @@
 - fields: {person_ptr: 1, name: Manuel Rojas, elections: [2], extra_info: {}}
   model: elections.candidate
   pk: 1
-- fields: {candidate_ptr: 1}
+- fields: {candidate_ptr: '1'}
   model: merepresenta.candidate
   pk: 1
 - fields: {person_ptr: 2, name: Alejandro Guillier, elections: [2], extra_info: {}}
   model: elections.candidate
   pk: 2
-- fields: {candidate_ptr: 2}
+- fields: {candidate_ptr: '2'}
   model: merepresenta.candidate
   pk: 2
 - fields: {person_ptr: 3, name: Pedro Araya, elections: [2], extra_info: {}}
   model: elections.candidate
   pk: 3
-- fields: {candidate_ptr: 3}
+- fields: {candidate_ptr: '3'}
   model: merepresenta.candidate
   pk: 3
 - fields: {person_ptr: 4, name: Gisela Contreras, elections: [1], extra_info: {}}
   model: elections.candidate
   pk: 4
-- fields: {candidate_ptr: 4}
+- fields: {candidate_ptr: '4'}
   model: merepresenta.candidate
   pk: 4
 - fields: {person_ptr: 5, name: Carlos Cantero, elections: [1], extra_info: {}}
   model: elections.candidate
   pk: 5
-- fields: {candidate_ptr: 5}
+- fields: {candidate_ptr: '5'}
   model: merepresenta.candidate
   pk: 5
 - fields: {person_ptr: 6, name: Daniel Guevara, elections: [1], extra_info: {}}
   model: elections.candidate
   pk: 6
-- fields: {candidate_ptr: 6}
+- fields: {candidate_ptr: '6'}
   model: merepresenta.candidate
   pk: 6
 - fields: {topic: 4, position: 8, person: 1}

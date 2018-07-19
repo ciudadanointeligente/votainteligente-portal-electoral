@@ -189,3 +189,6 @@ header {
         margin: 0;
     }
 }
+.no-background {
+    background-image: none;
+}

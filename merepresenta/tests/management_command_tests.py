@@ -16,7 +16,7 @@ class ImporterTestCase(VolunteersTestCaseBase):
                                    'civil_status': 'CASADO(A)', 'number': 1723, 'cpf': 52243184753, 'job': 'APOSENTADO (EXCETO SERVIDOR PoBLICO)',
                                    'date_of_birth': '21/07/1958', 'nome_completo': 'CARLOS ALBERTO HERMoNIO DE MORAES',
                                    'mail': 'candidato@partido.com', 'education': 'ENSINO FUNDAMENTAL COMPLETO'},
-                     'area': {'election_name': 'DEPUTADO FEDERAL', 'slug': 'RJ'}
+                     'area': {'election_name': 'DEPUTADO FEDERAL', 'slug': 'RJ', 'area_name': "Rio de Janeiro"}
                     }
 
 

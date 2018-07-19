@@ -54,3 +54,17 @@ class PartidoTestCase(TestCase):
         coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234', mark=3)
         partido = Partido.objects.create(name=u"Partido de los trabalhadores", initials='PT', number='12345', mark=3, coaligacao=coaligacao)
         self.assertTrue(partido)
+
+    def test_candidate_has_partido(self):
+        partido = Partido.objects.create(name=u"Partido de los trabalhadores", initials='PT', number='12345', mark=3)
+        candidate = Candidate.objects.create(name="Candidate 1",
+                                             cpf='1230',
+                                             nome_completo=u'Candidato uno',
+                                             numero='190000000560',
+                                             race="preta",
+                                             original_email='perrito@gatito.com',
+                                             partido=partido,
+                                             email_repeated=False)
+        
+        
+        self.assertEquals(candidate.partido, partido)

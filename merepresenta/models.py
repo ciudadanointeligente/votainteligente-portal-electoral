@@ -25,7 +25,7 @@ class MeRepresentaCommitment(Commitment):
 
 
 NON_MALE_KEY = "F"
-NON_WHITE_KEY = {"possible_values": ["preta", "parda"]}
+NON_WHITE_KEY = {"possible_values": ["PARDA", "PARDA"]}
 
 
 class ForVolunteersManager(models.Manager):
@@ -52,6 +52,7 @@ class Candidate(OriginalCandidate):
     race = models.CharField(max_length=1024, null=True)
     original_email = models.EmailField(max_length=1024, null=True)
     email_repeated = models.NullBooleanField()
+    partido = models.ForeignKey("Partido", null=True)
 
     objects = ForVolunteersManager()
 
@@ -92,4 +93,4 @@ class Partido(models.Model):
     initials = models.CharField(max_length=1024, null=True)
     number = models.CharField(max_length=1024, null=True)
     mark = models.IntegerField(null=True)
-    coaligacao = models.ForeignKey(Coaligacao)
+    coaligacao = models.ForeignKey(Coaligacao, null=True)

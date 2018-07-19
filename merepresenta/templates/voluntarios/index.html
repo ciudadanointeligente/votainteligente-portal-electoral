@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load votainteligente_extras %}
+{% load el_pagination_tags %}
 
 {% block title %}- Voluntarios{% endblock title %}
 
@@ -18,8 +19,10 @@
           <th scope="col">Pesquisar</th>
         </tr>
       </thead>
+      {% paginate 30 candidates %}
       <tbody>
-        {% for candidate in candidates.all %}
+        
+        {% for candidate in candidates %}
         <tr>
           <td>{{candidate.id}}</td>
           <th scope="row">{% get_personal_data candidate=candidate personal_data='Número' as numero %}{% if numero.value %} {{numero.value}}, {% endif %}</th>
@@ -31,5 +34,6 @@
         {% endfor %}
       </tbody>
     </table>
+    {% show_pages %}
 </div>
 {% endblock content %}

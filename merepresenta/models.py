@@ -36,7 +36,7 @@ class ForVolunteersManager(models.Manager):
                         default=Value(0),
                         output_field=PositiveSmallIntegerField())
                     )
-        qs = qs.annotate(is_non_white=Case(When(personal_datas__value__in=NON_WHITE_KEY['possible_values'], then=Value(1)),
+        qs = qs.annotate(is_non_white=Case(When(race__in=NON_WHITE_KEY['possible_values'], then=Value(1)),
                         default=Value(0),
                         output_field=PositiveSmallIntegerField())
 

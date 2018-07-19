@@ -37,10 +37,10 @@ def load_strategy(request=None):
 
 @never_cache
 @csrf_exempt
-@psa(load_strategy=load_strategy)
+@psa(load_strategy=load_strategy, redirect_uri='volunteer_social_complete')
 def complete(request, backend, *args, **kwargs):
     return do_complete(request.backend, _do_login, request.user,
-                       redirect_value='volunteer_login', request=request,
+                       redirect_value='next', request=request,
                        *args, **kwargs)
 
 @never_cache

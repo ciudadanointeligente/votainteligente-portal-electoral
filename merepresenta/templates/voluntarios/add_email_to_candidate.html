@@ -6,19 +6,32 @@
 {% block title %}- Voluntarios{% endblock title %}
 
 {% block content %}
-<div class="container">
+<div class="container no-background">
     <div class="alert alert-primary" role="alert">
   Oi!
     Que boa que você decidiu encontrar <b>{{form.candidate}}</b>, aqui nós lhes contamos tudo o que sabemos sobre essa pessoa.
     </div>
     
     <ul>
-        <li><b>Número</b>numero</li>
-        <li><b>Partido</b>partido</li>
-        <li><b>Coligação</b>coaligacao</li>
-        <li><b>Nome Real</b>nome real</li>
-        <li><b>Estado</b>ES</li>
+        <li><b>Número:   </b>{{form.candidate.numero}}</li>
+        <li><b>Partido   </b>{{form.candidate.partido.name}}</li>
+        <li><b>Coligação  </b>{{form.candidate.partido.coaligacao.name}}</li>
+        <li><b>Nome Real  </b>{{form.candidate.nome_completo}}</li>
+        <li><b>Estado  </b>{{form.candidate.election.area.name}}</li>
+        {% if form.candidate.original_email %}
+        <li><b>EMAIL entregado pelo TSE  </b>{{form.candidate.original_email}}{% if form.candidate.email_repeated %}mas o e-mail aparece para várias pessoas{% endif %}</li>
+        {% else %}
+        <li>O TSE não entregou email</li>
+        {%endif %}
     </ul>
+    <p>Ajude-nos a encontrar!</p>
+    <div>
+    <a target="_blank" href="https://www.google.com/search?q={{form.candidate.name}} {{form.candidate.partido.name}} {{form.candidate.election.area.name}}">Pesquise-la em Google</a>
+    </div>
+    <div>
+    <a target="_blank"  href="https://www.facebook.com/search/pages/?q={{form.candidate.name}}">Pesquise-la em Facebbook</a>
+    </div>
+
     <form method='POST' action="{% url 'add_mail_to_candidate' slug=form.candidate.slug %}">
         {% csrf_token %}
         <div class="form-group row">

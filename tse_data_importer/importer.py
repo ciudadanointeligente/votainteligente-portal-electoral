@@ -6,6 +6,7 @@ validators = {
 
 area_settings = {
     5:'slug',
+    7:'area_name',
     9: 'election_name',
 }
 candidate_settings = {

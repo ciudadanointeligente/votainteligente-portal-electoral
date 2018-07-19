@@ -37,7 +37,7 @@ class TSEProcessorMixin(object):
     def do_something(self, row):
         
         result = {}
-        area, created = Area.objects.get_or_create(identifier=row['area']['slug'])
+        area, created = Area.objects.get_or_create(identifier=row['area']['slug'], name=row['area']['area_name'])
         result['area'] = area
         election, created = area.elections.get_or_create(name=row['area']['election_name'])
         result['election'] = election
@@ -52,7 +52,7 @@ class TSEProcessorMixin(object):
         row['candidate']['email_repeated'] = row['email_repeated']
 
         result['candidate'] = self.process_candidate(row['candidate'], election, partido)
-        self.output_logger_func(result['candidate'].name)
+        self.output_logger_func("imported %s de %s" % (result['candidate'].name, area.name))
         return result
 
 class TSEProcessor(TSEProcessorMixin, CsvReader):

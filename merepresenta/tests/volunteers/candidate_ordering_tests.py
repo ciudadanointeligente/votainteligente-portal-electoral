@@ -18,9 +18,9 @@ class CandidateOrderingTests(VolunteersTestCaseBase):
 
 	def test_race_is_also_an_extra_value(self):
 		c = Candidate.objects.get(id=5)
-		personal_data = PersonalData.objects.create(label=u'Cor e raça',
-                                                    value=NON_WHITE_KEY["possible_values"][0],
-                                                    candidate=c)
+		c.race = NON_WHITE_KEY["possible_values"][0]
+		c.save()
+		
 		cs = Candidate.objects.filter(id__in=[c.id])
 		self.assertEquals(cs[0].is_non_white, 1)
 

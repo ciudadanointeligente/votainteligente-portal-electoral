@@ -27,9 +27,8 @@ class VolunteersViewsTests(VolunteersTestCaseBase):
         self.assertEquals(cs[0].is_women, 1)
         self.assertEquals(cs[1].is_women, 1)
         c = Candidate.objects.get(id=5)
-        personal_data = PersonalData.objects.create(label=u'Cor e raça',
-                                                    value=NON_WHITE_KEY["possible_values"][0],
-                                                    candidate=c)
+        c.race = NON_WHITE_KEY["possible_values"][0]
+        c.save()
 
     def test_get_index(self):
         url = reverse('volunteer_index')
@@ -80,7 +79,7 @@ class LoginView(VolunteersTestCaseBase):
                        SOCIAL_AUTH_FACEBOOK_SECRET='2')
     @mock.patch('social_core.backends.base.BaseAuth.request')
     def test_complete_with_facebook(self, mock_request):
-        volunteer_index_url = reverse('volunteer_login')
+        volunteer_index_url = reverse('volunteer_index')
         url = reverse('volunteer_social_complete', kwargs={'backend': 'facebook'})
         url += '?code=2&state=1'
         mock_request.return_value.json.return_value = {'access_token': '123'}

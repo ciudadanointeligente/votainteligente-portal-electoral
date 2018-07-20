@@ -18,13 +18,13 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://{% url_domain %}{{organization.organization_template.get_absolute_url}}">
     <meta property="og:image" content="{{organization.organization_template.ogp_image}}">
-    <meta property="og:description" content="Revisa las propuestas para los candidatos a estas elecciones de {% if title %}{{title}}{% else %}{{organization}}{% endif %} en VotaInteligente.cl">
+    <meta property="og:description" content="Saiba mais sobre as propostas de {% if title %}{{title}}{% else %}{{organization}}{% endif %} para os candidatos no RioPorInteiro.org.br">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@ciudadanoi">
     <meta name="twitter:creator" content="@ciudadanoi">
     <meta name="twitter:title" content="{% if title %}{{title}}{% else %}{{organization}}{% endif %}">
-    <meta name="twitter:description" content="Revisa las propuestas para los candidatos a estas elecciones de {% if title %}{{title}}{% else %}{{organization}}{% endif %} en VotaInteligente.cl">
+    <meta name="twitter:description" content="Saiba mais sobre as propostas de {% if title %}{{title}}{% else %}{{organization}}{% endif %} para os candidatos no RioPorInteiro.org.br">
     <meta name="twitter:image" content="{{organization.organization_template.ogp_image}}">
     {% endblock ogp %}
     <meta property="fb:app_id" content="{{ config.WEBSITE_OGP_APP_ID }}">

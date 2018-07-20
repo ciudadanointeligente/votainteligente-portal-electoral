@@ -84,7 +84,7 @@ wizard_forms_fields = [
 
 
         ),(
-        'one_liner', forms.CharField(max_length=256,
+        'one_liner', forms.CharField(max_length=140,
                                      required=False,
                                      widget=forms.TextInput()
                                      )

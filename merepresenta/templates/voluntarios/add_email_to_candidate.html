@@ -16,7 +16,6 @@
         <li><b>Número:   </b>{{form.candidate.numero}}</li>
         <li><b>Partido   </b>{{form.candidate.partido.name}}</li>
         <li><b>Coligação  </b>{{form.candidate.partido.coaligacao.name}}</li>
-        <li><b>Nome Real  </b>{{form.candidate.nome_completo}}</li>
         <li><b>Estado  </b>{{form.candidate.election.area.name}}</li>
         {% if form.candidate.original_email %}
         <li><b>EMAIL entregado pelo TSE  </b>{{form.candidate.original_email}}{% if form.candidate.email_repeated %}mas o e-mail aparece para várias pessoas{% endif %}</li>

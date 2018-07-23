@@ -15,7 +15,6 @@
           <th scope="col">Candidato</th>
           <th scope="col">Partido</th>
           <th scope="col">Estado</th>
-          <th scope="col">Cor e Raca</th>
           <th scope="col">Pesquisar</th>
 
         </tr>
@@ -30,7 +29,6 @@
             <td>{{candidate.name}}</td>
             <td>{{candidate.partido.initials}}</td>
             <td>{{candidate.election.area}}</td>
-            <td>{{candidate.race}}</td>
             <td><a href="{% url 'add_mail_to_candidate' slug=candidate.slug %}">Pesquisar</a></td>
           </tr>
           {% endif %}

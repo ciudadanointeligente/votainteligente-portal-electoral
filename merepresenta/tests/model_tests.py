@@ -42,6 +42,7 @@ class CandidateTestCase(TestCase):
                                              original_email='perrito@gatito.com',
                                              email_repeated=False)
         self.assertTrue(candidate)
+        self.assertFalse(candidate.is_ghost)
 
 class CoaligacaoTestCase(TestCase):
     def test_instanciate(self):

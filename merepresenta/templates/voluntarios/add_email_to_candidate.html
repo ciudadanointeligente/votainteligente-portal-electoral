@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_voluntarios.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load votainteligente_extras %}
@@ -18,28 +18,74 @@
         <li><b>Coligação  </b>{{form.candidate.partido.coaligacao.name}}</li>
         <li><b>Estado  </b>{{form.candidate.election.area.name}}</li>
         {% if form.candidate.original_email %}
-        <li><b>EMAIL entregado pelo TSE  </b>{{form.candidate.original_email}}{% if form.candidate.email_repeated %}mas o e-mail aparece para várias pessoas{% endif %}</li>
+        <li><b>EMAIL entregado pelo TSE  </b>{{form.candidate.original_email}}{% if form.candidate.email_repeated %}, mas o e-mail aparece para várias pessoas{% endif %}</li>
         {% else %}
         <li>O TSE não entregou email</li>
         {%endif %}
     </ul>
-    <p>Ajude-nos a encontrar!</p>
-    <div>
-    <a target="_blank" href="https://www.google.com/search?q={{form.candidate.name}} {{form.candidate.partido.name}} {{form.candidate.election.area.name}}">Pesquise-la em Google</a>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Ajude-nos a encontrar!</h5>
+            <div>
+            <a class="btn btn-primary card-link" target="_blank" href="https://www.google.com/search?q={{form.candidate.name}} {{form.candidate.partido.name}} {{form.candidate.election.area.name}}">Pesquise-la em Google <i class="fab fa-google"></i></a>
+            </div>
+            <div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary card-link" data-toggle="modal" data-target="#pesquiseLaNoFacebook">
+              Pesquise-la em Facebbook <i class="fab fa-facebook"></i>
+            </button>
+
+        </div>
     </div>
-    <div>
-    <a target="_blank"  href="https://www.facebook.com/search/pages/?q={{form.candidate.name}}">Pesquise-la em Facebbook</a>
+    
+
+
+
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="pesquiseLaNoFacebook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Pesquise-la em Facebbook</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Quando você encontrar essa pessoa, você pode se apresentar da seguinte maneira:
+<div id="wrap"><textarea>Oi! Eu sou {{user}} e queria falar sobre o MeRepresenta,
+A melhor plataforma
+Você pode me dar seu email, por favor?
+
+Beijos, nós te amamos</textarea></div>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary">Vamos ao Facebook <i class="fab fa-facebook"></i>! </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <form method='POST' action="{% url 'add_mail_to_candidate' slug=form.candidate.slug %}">
         {% csrf_token %}
-        <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">{{form.mail.label}}</label>
-            <div class="col-sm-10">
-                {{form.mail}}
-            </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="modal-title" id="exampleModalLabel">Eu procurei pelo céu, mar e terra e ...</pesqu>
+            
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">{{form.mail.label}}</label>
+                <div class="col-sm-10">
+                    {{form.mail}}
+                </div>
+              </div>
+            <button type="submit" class="btn btn-primary">Enviar!</button>
+            <a class="btn btn-danger" href="{% url 'could_not_find_candidate' slug=form.candidate.slug %}">Não encontrei nada <i class="fab fa-frown"></i></a>
           </div>
-        <button type="submit" class="btn btn-primary mb-2">Enviar!</button>
+        </div>
     </form>
 </div>
 {% endblock content %}

@@ -52,6 +52,7 @@ class Candidate(OriginalCandidate):
     race = models.CharField(max_length=1024, null=True)
     original_email = models.EmailField(max_length=1024, null=True)
     email_repeated = models.NullBooleanField()
+    is_ghost = models.BooleanField(default=False)
     partido = models.ForeignKey("Partido", null=True)
 
     objects = ForVolunteersManager()

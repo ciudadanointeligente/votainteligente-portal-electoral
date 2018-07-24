@@ -13,6 +13,7 @@ from merepresenta.voluntarios.views import (VolunteerIndexView,
                                             AddMailToCandidateView,
                                             ObrigadoView,
                                             auth,
+                                            CouldNotFindCandidate,
                                             complete)
 
 class MeRepresentaMeiaLaranjaForm(MediaNaranjaElectionForm):
@@ -64,6 +65,10 @@ urlpatterns = [
     url(r'^voluntarios/obrigado/?$',
         ObrigadoView.as_view(),
         name='obrigado'
+        ),
+    url(r'^voluntarios/could_not_find_candidate/(?P<slug>[^/]+)$',
+        CouldNotFindCandidate.as_view(),
+        name='could_not_find_candidate'
         ),
 
     # url('', include('social_django.urls', namespace='social'))add_mail_to_candidate

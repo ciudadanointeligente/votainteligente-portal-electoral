@@ -1,11 +1,16 @@
-{% extends "base.html" %}
+{% extends "base_voluntarios.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load votainteligente_extras %}
 {% load el_pagination_tags %}
 
 {% block title %}- Voluntarios{% endblock title %}
-
+{% block header %}
+<div class="container text-center">
+  <h1>Bemvinda!</h1>
+  <p class="lead">Issa é a lista dos candidatos para pesquizar</p>
+</div>
+{% endblock header %}
 {% block content %}
 <div class="container">
     <table class="table">

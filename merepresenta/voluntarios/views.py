@@ -24,6 +24,7 @@ class VolunteerIndexView(StaffuserRequiredMixin, ListView):
     def get_queryset(self):
         qs = super(VolunteerIndexView, self).get_queryset()
         qs = qs.exclude(contacts__isnull=False).order_by('-desprivilegio')
+        qs = qs.exclude(is_ghost=True)
         return qs
 
 
@@ -79,3 +80,15 @@ class AddMailToCandidateView(StaffuserRequiredMixin, FormView):
 
 class ObrigadoView(StaffuserRequiredMixin, TemplateView):
     template_name=u'voluntarios/obrigado.html'
+
+
+class CouldNotFindCandidate(StaffuserRequiredMixin, TemplateView):
+    template_name=u'voluntarios/sorry.html'
+    login_url = reverse_lazy(u"volunteer_login")
+
+    def dispatch(self, *args, **kwargs):
+        slug = kwargs['slug']
+        self.candidate = get_object_or_404(Candidate, slug=slug)
+        self.candidate.is_ghost = True
+        self.candidate.save()
+        return super(CouldNotFindCandidate, self).dispatch(*args, **kwargs)

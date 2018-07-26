@@ -1,17 +1,57 @@
 
 #first-part {
-    margin-bottom: 50px;
+    margin-top: 3em;
+    margin-bottom: 1em;
     .landing-explanation {
         color: $preto;
         font-weight: bolder;
     }
     .title {
-        font-size: 3rem;
+        font-size: 3em;
     }
     
 }
 #second-part {
+    margin-top: 3em;
+    .landing-explanation {
+        margin-bottom: 2em;
+    }
     .title-merepresenta {
         color: $verde;
+        margin-bottom: 1em;
+        font-weight: bolder;
+    }
+    .explanation {
+        background-color: $verde;
+        color: $branco;
+        padding: 1em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+}
+
+$colors_pautas: $roxo, $verde, $amarelo;
+
+#pautas-container {
+    margin-top: 5em;
+    h2 {
+        margin-bottom: 2em;
+        .title-pautas {
+            font-weight: bolder;
+            color: $roxo;
+        }
+    }
+    .pauta-landing {
+        min-height: 350px;
+        font-weight: bolder;
+    }
+
+
+    @for $i from 1 through length($colors_pautas) {
+        .pauta-landing:not(.pauta-com-imagem):nth-child(#{length($colors_pautas)}n+#{$i}) {
+            // background-color: nth($colors_pautas, random(length($colors_pautas))) this is just toooooo random and sometimes 
+            // we end up with the same color which is not nice
+            background-color: nth($colors_pautas, $i)
+        }
     }
 }

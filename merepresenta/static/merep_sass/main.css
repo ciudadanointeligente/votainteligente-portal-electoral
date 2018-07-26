@@ -6302,19 +6302,50 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 #first-part {
-  margin-bottom: 50px; }
+  margin-top: 3em;
+  margin-bottom: 1em; }
   #first-part .landing-explanation {
-    color: #000000;
+    color: #4F4F4F;
     font-weight: bolder; }
   #first-part .title {
-    font-size: 3rem; }
+    font-size: 3em; }
 
-#second-part .title-merepresenta {
-  color: #1B9AAA; }
+#second-part {
+  margin-top: 3em; }
+  #second-part .landing-explanation {
+    margin-bottom: 2em; }
+  #second-part .title-merepresenta {
+    color: #1B9AAA;
+    margin-bottom: 1em;
+    font-weight: bolder; }
+  #second-part .explanation {
+    background-color: #1B9AAA;
+    color: #FFFFFF;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em; }
+
+#pautas-container {
+  margin-top: 5em; }
+  #pautas-container h2 {
+    margin-bottom: 2em; }
+    #pautas-container h2 .title-pautas {
+      font-weight: bolder;
+      color: #EF476F; }
+  #pautas-container .pauta-landing {
+    min-height: 350px;
+    font-weight: bolder; }
+  #pautas-container .pauta-landing:not(.pauta-com-imagem):nth-child(3n+1) {
+    background-color: #EF476F; }
+  #pautas-container .pauta-landing:not(.pauta-com-imagem):nth-child(3n+2) {
+    background-color: #1B9AAA; }
+  #pautas-container .pauta-landing:not(.pauta-com-imagem):nth-child(3n+3) {
+    background-color: #FFC43D; }
 
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: #FCFCFC; }
+  background-color: #FCFCFC;
+  color: #4F4F4F; }
 
 .btn-roxo {
   color: #fff;

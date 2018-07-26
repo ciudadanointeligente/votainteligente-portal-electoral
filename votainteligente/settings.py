@@ -496,6 +496,7 @@ if THEME:
         # si funciona y todas las plataformas siguen funcionando 
         # estamos al otro litro
         # STATIC_ROOT = os.path.join(BASE_DIR, THEME ,'static')
+        STATICFILES_DIRS += [os.path.join(BASE_DIR, THEME ,'static'), ]
         pass
     except:
         pass

@@ -1,29 +1,20 @@
-<nav class="navbar navbar-expand-lg" id="mainNav">
-  <div class="container">
-    <div class="row">
-      <div class='col-2'>
-        
-        <a class="navbar-brand js-scroll-trigger" href="{% url 'volunteer_index' %}"><img src="/static/img/merepresenta/01.png" class="img-fluid" alt="#MeRepresentaLogo"></a>
+<nav  id="mainNav" class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'volunteer_index' %}"><img src="/static/img/merepresenta/logo_2018.svg" class="img-fluid" alt="#MeRepresentaLogo"></a>
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" href="#fat">@fat</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#mdo">@mdo</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#one">one</a>
+        <a class="dropdown-item" href="#two">two</a>
+        <div role="separator" class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#three">three</a>
       </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">Sobre</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">Como Funciona</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">Voluntarios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 </nav>

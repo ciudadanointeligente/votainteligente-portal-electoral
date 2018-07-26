@@ -6,8 +6,10 @@
 {% load votainteligente_extras %}
 
 <!DOCTYPE html>
-<html lang="br">
-<head>
+<html lang="en">
+
+  <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -15,57 +17,45 @@
     <meta name="og:description" content="Responda ao questionário e encontre candidaturas que respeitam e promovem Direitos Humanos na sua cidade.">
     <meta name="og:image" content="https://s3.amazonaws.com/hub-central/uploads/1473183975_thumb_Meme_Minha_Sampa_1024.jpg">
     <link rel="icon" href="http://2016.merepresenta.org.br/assets/4ico.png">
-    <link rel="stylesheet" href="{% static 'css/merepresenta/MyFontsWebfontsKit.css' %}">
-    <link rel="stylesheet" href="{% static 'css/merepresenta/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/merepresenta/merepresenta.css' %}">
-    <link rel="stylesheet" href="{% static 'css/merepresenta/index.css' %}">
-
-
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link href="{% sass_src 'merep_sass/main.sass' %}" rel="stylesheet" type="text/css" />
     {% block extra_head %}
     {% endblock extra_head %}
-</head>
-<body>
-     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </nav>
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    {% include 'navbar.html' with user=user %}
+
+    <header class="bg-primary text-white">
+      {% block header %}
+      {% endblock header %}
     </header>
-    <main>
+
+    <section id="main">
+      {% block everything %}
+        
+      <div class="container">
         {% block content %}
-        {% endblock content %}
-    </main>
-    <footer>
+        {% endblock content %}  
+      </div>
+      {% endblock everything %}
+    </section>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
         {% block extra_footer %}
         {% endblock extra_footer %}
     </footer>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+     <script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     {% block scripts %}
     {% endblock scripts %}
     <script>
@@ -77,5 +67,7 @@
          ga('create', 'UA-26278513-33', 'auto');
          ga('send', 'pageview');
     </script>
-</body>
+
+  </body>
+
 </html>

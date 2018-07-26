@@ -3,28 +3,122 @@
 
 {% block title %}- Portada{% endblock title %}
 
-{% block content %}
-    <div class="container">
-        <img src="/static/img/merepresenta/01.png" class="logo" alt="Logo">
-        <div class="content">
-            <h2>Responda ao questionário e encontre candidaturas que respeitam e promovem Direitos Humanos na sua cidade.</h2>
+{% block everything %}
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <h2>Ajude seus eleitores <span class="landing-explanation">chegarem até você!</span></h2>
+
+                    <p>#MeRepresenta é uma plataforma que vai te ajudar a decidir o seu voto para vereador!</p>
+                    <p>Candidatas e candidatos do Brasil inteiro estão se cadastrando aqui e declarando suas posições políticas sobre as igualdades de gênero, raça e orientação sexual. Saiba quais são as candidaturas da sua cidade e vamos mudar a política brasileira!</p>
+                    <p>Escolha abaixo como quer entrar no nosso site:</p>
+                    <div class="row">
+                        <div class="col-3">
+                            <a href="{% url 'questions' %}" class="btn btn-primary voluntario">Sou candidata</a>
+                        </div>
+                        <div class="col-3">
+                            <a href="{% url 'questions' %}" class="btn btn-primary voluntario">Sou eleitor</a>
+                        </div>
+                        <div class="col-3">
+                            <a href="{% url 'volunteer_index' %}" class="btn btn-warning voluntario">Quero ser voluntário/a</a>    
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                  <img src="/static/img/merepresenta/01.png" class="img-fluid" alt="#MeRepresentaLogo">
+                </div>
+              </div>
+          </div>
+
+<div class="container-fluid">
+    <div class="row landing-explanation">
+        <div class="col-12">
+            <h2 class="text-center">
+                Conheça o <span class="title-merepresenta">#MeRepresenta</span>
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            Youtube
+        </div>
+        <div class="col-sm-6">
+            Em 2016 o #MeRepresenta Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam placerat varius magna, sed ornare odio posuere vitae. Nunc eget lacus quam. Donec rutrum magna eu nibh placerat accumsan. Nam lacinia lorem bibendum, rhoncus erat a, mollis odio. Fusce eros neque, ullamcorper nec imperdiet id, efficitur elementum magna. Cras viverra justo quam, eget consectetur lectus dapibus in. Nulla luctus laoreet fermentum. Vestibulum egestas accumsan lectus, sed faucibus enim congue sed. Nulla in dignissim sem. Quisque rhoncus mattis arcu, vitae posuere massa posuere id. Nunc vitae imperdiet enim. In vulputate lorem viverra urna elementum rutrum. Praesent pellentesque, nisi ac eleifend iaculis, lacus ex consectetur dolor, ut congue eros justo in metus. In venenatis, mauris vel ultrices elementum, turpis mi finibus justo, et accumsan ante nisl eu nulla. In pharetra massa ut augue luctus, congue tempor dolor ultricies. 
+        </div>
+    </div>
+    
+</div>
+<div class="container-fluid">
+    <div class="row landing-explanation">
+        <div class="col-12">
+            <h2 class="text-center">
+                Entenda as <span  class="title-pautas">Pautas</span>
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 pauta-landing">
+            #Internet
+        </div>
+        <div class="col-sm-3 pauta-landing">
+            #LGBT
+        </div>
+        <div class="col-sm-3 pauta-landing pauta-com-imagem">
+            Youtube
+        </div>
+        <div class="col-sm-3 pauta-landing">
+            #Raça
+        </div>
+        <div class="col-sm-3 pauta-landing">
+            Gênero
+        </div>
+        <div class="col-sm-3 pauta-landing pauta-com-imagem">
+            Youtube
+        </div>
+        <div class="col-sm-3 pauta-landing">
+            #Infância
+        </div>
+        <div class="col-sm-3 pauta-landing">
+            #Corrupção
+        </div>
+        <div class="col-sm-3 pauta-landing">
+            #Tema
+        </div>
+        <div class="col-sm-3 pauta-landing">
+            #MeioAmbiente
+        </div>
+        <div class="col-sm-3 pauta-landing">
+            #Segurança
+        </div>
+        <div class="col-sm-3 pauta-landing pauta-com-imagem">
+            Youtube
+        </div>
+    </div>
+    
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+          <img src="/static/img/merepresenta/01.png" class="img-fluid" alt="#MeRepresentaLogo">
+        </div>
+        <div class="col-6">
+            <h2>Faça parte do <span class="faca-parte">#MeRepresenta</span></h2>
 
             <p>#MeRepresenta é uma plataforma que vai te ajudar a decidir o seu voto para vereador!</p>
             <p>Candidatas e candidatos do Brasil inteiro estão se cadastrando aqui e declarando suas posições políticas sobre as igualdades de gênero, raça e orientação sexual. Saiba quais são as candidaturas da sua cidade e vamos mudar a política brasileira!</p>
             <p>Escolha abaixo como quer entrar no nosso site:</p>
-
-            <div class="nav">
-                <div class="sistema">
-                    <div class="botao">
-                        <a href="{% url 'questions' %}" class="btn btn-amarelo-roxo voluntario">Perguntas</a>
-                    </div>
-                    <div class="botao">
-                    </div>
+            <div class="row">
+                <div class="col-3">
+                    <a href="{% url 'questions' %}" class="btn btn-primary voluntario">Perguntas</a>
                 </div>
-                <div class="botao">
-                    <a href="{% url 'volunteer_index' %}" class="btn btn-amarelo-roxo voluntario">Quero ser voluntário/a</a>
+                <div class="col-3">
+                    <a href="{% url 'volunteer_index' %}" class="btn btn-warning voluntario">Quero ser voluntário/a</a>    
                 </div>
             </div>
         </div>
-    </div>
-{% endblock content %}
+        
+      </div>
+  </div>
+
+            
+{% endblock everything %}

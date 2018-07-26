@@ -1,14 +1,16 @@
-<nav  id="mainNav" class="navbar navbar-light bg-light">
+<nav  id="mainNav" class="navbar navbar-light">
   <a class="navbar-brand" href="{% url 'volunteer_index' %}"><img src="/static/img/merepresenta/logo_2018.svg" class="img-fluid" alt="#MeRepresentaLogo"></a>
   <ul class="nav nav-pills">
+    {% if not user.is_authenticated %}
     <li class="nav-item">
-      <a class="nav-link" href="#fat">@fat</a>
+      <a class="nav-link btn btn-roxo voluntario" href="{% url 'volunteer_index' %}">Quero ser voluntário/a</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#mdo">@mdo</a>
-    </li>
+    
+    {% else %}
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        <i src="{{user.profile.image.url}}"></i>
+        {{user.username}}</a>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="#one">one</a>
         <a class="dropdown-item" href="#two">two</a>
@@ -16,5 +18,6 @@
         <a class="dropdown-item" href="#three">three</a>
       </div>
     </li>
+    {% endif %}
   </ul>
 </nav>

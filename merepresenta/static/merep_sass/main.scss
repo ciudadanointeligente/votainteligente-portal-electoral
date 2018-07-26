@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat');
+@import 'colors';
+@import 'bootstrap/bootstrap';
+@import 'partes/landing';
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: $cinza;
+    color: $preto;
+}
+.title {
+    
+}
+
+.btn-roxo {
+    @include button-variant($roxo, $roxo);
+  }
+.btn-gris {
+   @include button-variant($gris, $gris); 
+}

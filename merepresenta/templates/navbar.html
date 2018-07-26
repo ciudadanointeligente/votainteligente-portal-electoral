@@ -1,21 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark " id="mainNav">
-  <div class="container">
-    <a class="navbar-brand js-scroll-trigger" href="{% url 'volunteer_index' %}">MeRepresenta</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#about">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#services">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+<nav  id="mainNav" class="navbar navbar-light">
+  <a class="navbar-brand" href="{% url 'index' %}"><img src="/static/img/merepresenta/logo_2018.svg" class="img-fluid" alt="#MeRepresentaLogo"></a>
+  <ul class="nav nav-pills">
+    {% if not user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link btn btn-roxo voluntario" href="{% url 'volunteer_index' %}">Quero ser voluntário/a</a>
+    </li>
+    
+    {% else %}
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        <i src="{{user.profile.image.url}}"></i>
+        {{user.username}}</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#one">one</a>
+        <a class="dropdown-item" href="#two">two</a>
+        <div role="separator" class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#three">three</a>
+      </div>
+    </li>
+    {% endif %}
+  </ul>
 </nav>

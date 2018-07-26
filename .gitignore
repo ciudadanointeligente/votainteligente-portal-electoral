@@ -16,8 +16,8 @@ src/
 /static
 */static/sass/*.css
 */static/sass/*.css.map
-*sass/*.css
-*sass/*.css
+*/static/merep_sass/*.css
+*/static/merep_sass/*.css.map
 celerybeat-schedule
 node_modules/
 preguntales/tests/testing_mails/attachments/fiera_parque_*.jpg

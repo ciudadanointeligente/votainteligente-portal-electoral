@@ -492,7 +492,11 @@ if THEME:
     except ImportError:
         pass
     try:
-        STATIC_ROOT = os.path.join(BASE_DIR, THEME ,'static')
+        # Esto es un salto al vacio hermano
+        # si funciona y todas las plataformas siguen funcionando 
+        # estamos al otro litro
+        # STATIC_ROOT = os.path.join(BASE_DIR, THEME ,'static')
+        pass
     except:
         pass
     TEMPLATES[0]['DIRS'] = ['%s/templates' % THEME, 'votai_general_theme/templates']

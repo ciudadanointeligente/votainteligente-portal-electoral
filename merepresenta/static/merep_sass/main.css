@@ -6342,6 +6342,12 @@ a.text-dark:hover, a.text-dark:focus {
   #pautas-container .pauta-landing:not(.pauta-com-imagem):nth-child(3n+3) {
     background-color: #FFC43D; }
 
+.last-part {
+  margin-top: 5em; }
+  .last-part .faca-parte {
+    color: #1B9AAA;
+    font-weight: bolder; }
+
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #FCFCFC;

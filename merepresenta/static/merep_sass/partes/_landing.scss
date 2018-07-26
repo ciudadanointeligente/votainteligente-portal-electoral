@@ -55,3 +55,14 @@ $colors_pautas: $roxo, $verde, $amarelo;
         }
     }
 }
+
+.last-part {
+    margin-top: 5em;
+    .faca-parte {
+        color: $verde;
+        font-weight: bolder;
+    }
+    .explanation {
+
+    }
+}

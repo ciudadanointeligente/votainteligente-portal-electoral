@@ -92,7 +92,7 @@ class UpdateOnlyOneFieldMixin(StaffuserRequiredMixin, TemplateView):
 class CouldNotFindCandidate(UpdateOnlyOneFieldMixin):
     template_name=u'voluntarios/sorry.html'
     
-    field = 'ghost'
+    field = 'is_ghost'
     resulting_value = True
 
     

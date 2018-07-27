@@ -198,3 +198,32 @@ class CouldNotFindAnything(VolunteersTestCaseBase):
         response = self.client.get(url)
         candidates = response.context['candidates']
         self.assertNotIn(self.candidate, candidates)
+
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
+class ContactedThrouFacebook(VolunteersTestCaseBase):
+    def setUp(self):
+        super(ContactedThrouFacebook, self).setUp()
+        self.volunteer = User.objects.create_user(username="voluntario",
+                                                  password=PASSWORD,
+                                                  is_staff=True)
+        self.candidate = Candidate.objects.get(id=5)
+        self.url = reverse('facebook_contacted', kwargs={'slug': self.candidate.slug})
+
+    def test_get_the_view(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 302)
+        self.assertIn(reverse('volunteer_login'), response.url)
+
+        user = User.objects.create_user(username="non_volunteer", password=PASSWORD)
+        self.client.login(username=user.username, password=PASSWORD)
+        response2 = self.client.get(self.url)
+        self.assertEqual(response.status_code, 302)
+        self.assertIn(reverse('volunteer_login'), response.url)
+
+        self.client.logout()
+        self.client.login(username=self.volunteer.username, password=PASSWORD)
+        response = self.client.get(self.url)
+        self.assertEquals(response.status_code, 200)
+        self.candidate.refresh_from_db()
+        self.assertTrue(self.candidate.facebook_contacted)

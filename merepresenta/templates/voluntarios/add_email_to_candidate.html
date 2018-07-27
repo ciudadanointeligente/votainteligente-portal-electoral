@@ -14,7 +14,7 @@
     
     <ul>
         <li><b>Número:   </b>{{form.candidate.numero}}</li>
-        <li><b>Partido   </b>{{form.candidate.partido.name}}</li>
+        <li><b>Partido   </b>{{form.candidate.partido.initials}}</li>
         <li><b>Coligação  </b>{{form.candidate.partido.coaligacao.name}}</li>
         <li><b>Estado  </b>{{form.candidate.election.area.name}}</li>
         {% if form.candidate.original_email %}
@@ -28,7 +28,7 @@
         <div class="card-body">
             <h5 class="card-title">Ajude-nos a encontrar!</h5>
             <div>
-            <a class="btn btn-primary card-link" target="_blank" href="https://www.google.com/search?q={{form.candidate.name}} {{form.candidate.partido.name}} {{form.candidate.election.area.name}}">Pesquise-la em Google <i class="fab fa-google"></i></a>
+            <a class="btn btn-primary card-link" target="_blank" href="https://www.google.com/search?q={{form.candidate.name}} {{form.candidate.partido.initials}} {{form.candidate.election.area.name}}">Pesquise-la em Google <i class="fab fa-google"></i></a>
             </div>
             <div>
             <!-- Button trigger modal -->
@@ -55,16 +55,26 @@
           </div>
           <div class="modal-body">
             Quando você encontrar essa pessoa, você pode se apresentar da seguinte maneira:
-<div id="wrap"><textarea>Oi! Eu sou {{user}} e queria falar sobre o MeRepresenta,
+<div id="wrap"><textarea id="invitation-fb-{{form.candidate.id}}" rows="10 " cols="35"> Oi! Eu sou {{user}} e queria falar sobre o MeRepresenta,
 A melhor plataforma
-Você pode me dar seu email, por favor?
+Quer que sejamos amigos?
 
 Beijos, nós te amamos</textarea></div>
-            
+  <script type="text/javascript">
+  $(function(){
+    $("#copiar-invitation-fb-{{form.candidate.id}}").click(function(){
+          $("#invitation-fb-{{form.candidate.id}}").select();
+          document.execCommand('copy');
+      });
+  });
+      
+      </script>
+            <button type="button" id="copiar-invitation-fb-{{form.candidate.id}}" class="btn btn-secondary"><i class="fas fa-copy"></i> Copiar</button>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-primary">Vamos ao Facebook <i class="fab fa-facebook"></i>! </button>
+            <a class="btn btn-primary card-link" target="_blank" href="https://www.facebook.com/search/top/?q={{form.candidate.name}} {{form.candidate.partido.initials}} {{form.candidate.election.area.name}}">Vamos  <i class="fab fa-facebook"></i>!</a>
+            <a class="btn btn-danger card-link" target="_blank" href="{% url 'facebook_contacted' slug=form.candidate.slug %}">CONSEGUI <i class="fas fa-grin-stars"></i></a>
+            <a class="btn btn-danger" href="{% url 'could_not_find_candidate' slug=form.candidate.slug %}">Não encontrei <i class="fas fa-frown"></i></a>
           </div>
         </div>
       </div>
@@ -83,7 +93,7 @@ Beijos, nós te amamos</textarea></div>
                 </div>
               </div>
             <button type="submit" class="btn btn-primary">Enviar!</button>
-            <a class="btn btn-danger" href="{% url 'could_not_find_candidate' slug=form.candidate.slug %}">Não encontrei nada <i class="fab fa-frown"></i></a>
+            <a class="btn btn-danger" href="{% url 'could_not_find_candidate' slug=form.candidate.slug %}">Não encontrei nada <i class="fas fa-frown"></i></a>
           </div>
         </div>
     </form>

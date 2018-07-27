@@ -80,14 +80,24 @@ class AddMailToCandidateView(StaffuserRequiredMixin, FormView):
 class ObrigadoView(StaffuserRequiredMixin, TemplateView):
     template_name=u'voluntarios/obrigado.html'
 
-
-class CouldNotFindCandidate(StaffuserRequiredMixin, TemplateView):
-    template_name=u'voluntarios/sorry.html'
+class UpdateOnlyOneFieldMixin(StaffuserRequiredMixin, TemplateView):
     login_url = reverse_lazy(u"volunteer_login")
-
     def dispatch(self, *args, **kwargs):
         slug = kwargs['slug']
         self.candidate = get_object_or_404(Candidate, slug=slug)
-        self.candidate.is_ghost = True
+        setattr(self.candidate, self.field, self.resulting_value)
         self.candidate.save()
-        return super(CouldNotFindCandidate, self).dispatch(*args, **kwargs)
+        return super(UpdateOnlyOneFieldMixin, self).dispatch(*args, **kwargs)
+
+class CouldNotFindCandidate(UpdateOnlyOneFieldMixin):
+    template_name=u'voluntarios/sorry.html'
+    
+    field = 'ghost'
+    resulting_value = True
+
+    
+
+class FacebookContacted(UpdateOnlyOneFieldMixin):
+    template_name = u'voluntarios/obrigado.html'
+    field = 'facebook_contacted'
+    resulting_value = True

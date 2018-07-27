@@ -11,3 +11,7 @@ https://simpleisbetterthancomplex.com/tutorial/2017/08/01/how-to-setup-amazon-s3
 class MediaStorage(S3Boto3Storage):
     location = 'cache'
     file_overwrite = False
+
+    def _normalize_name(self, name):
+
+        return self.location + name

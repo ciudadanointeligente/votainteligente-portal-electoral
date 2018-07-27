@@ -70,17 +70,18 @@ Beijos, nós te amamos</textarea></div>
       
       </script>
             <button type="button" id="copiar-invitation-fb-{{form.candidate.id}}" class="btn btn-secondary"><i class="fas fa-copy"></i> Copiar</button>
+            <a class="btn btn-primary card-link" target="_blank" href="https://www.facebook.com/search/pages/?q={{form.candidate.name}} {{form.candidate.partido.initials}}">Vamos <i class="fab fa-facebook"></i>!!!!!</a>
           </div>
           <div class="modal-footer">
-            <a class="btn btn-primary card-link" target="_blank" href="https://www.facebook.com/search/top/?q={{form.candidate.name}} {{form.candidate.partido.initials}} {{form.candidate.election.area.name}}">Vamos  <i class="fab fa-facebook"></i>!</a>
-            <a class="btn btn-danger card-link" target="_blank" href="{% url 'facebook_contacted' slug=form.candidate.slug %}">CONSEGUI <i class="fas fa-grin-stars"></i></a>
-            <a class="btn btn-danger" href="{% url 'could_not_find_candidate' slug=form.candidate.slug %}">Não encontrei <i class="fas fa-frown"></i></a>
+            
+            <a class="btn btn-danger card-link" target="_blank" href="{% url 'facebook_contacted' id=form.candidate.id %}">CONSEGUI <i class="fas fa-grin-stars"></i></a>
+            <a class="btn btn-danger" href="{% url 'could_not_find_candidate' id=form.candidate.id %}">Não encontrei <i class="fas fa-frown"></i></a>
           </div>
         </div>
       </div>
     </div>
 
-    <form method='POST' action="{% url 'add_mail_to_candidate' slug=form.candidate.slug %}">
+    <form method='POST' action="{% url 'add_mail_to_candidate' id=form.candidate.id %}">
         {% csrf_token %}
         <div class="card">
           <div class="card-body">
@@ -93,7 +94,7 @@ Beijos, nós te amamos</textarea></div>
                 </div>
               </div>
             <button type="submit" class="btn btn-primary">Enviar!</button>
-            <a class="btn btn-danger" href="{% url 'could_not_find_candidate' slug=form.candidate.slug %}">Não encontrei nada <i class="fas fa-frown"></i></a>
+            <a class="btn btn-danger" href="{% url 'could_not_find_candidate' id=form.candidate.id %}">Não encontrei nada <i class="fas fa-frown"></i></a>
           </div>
         </div>
     </form>

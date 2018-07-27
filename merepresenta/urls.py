@@ -59,7 +59,7 @@ urlpatterns = [
         complete,
         name='volunteer_social_complete'
         ),
-    url(r'^voluntarios/adicionar_mail/(?P<slug>[^/]+)$',
+    url(r'^voluntarios/adicionar_mail/(?P<id>[^/]+)$',
         AddMailToCandidateView.as_view(),
         name='add_mail_to_candidate'
         ),
@@ -67,11 +67,11 @@ urlpatterns = [
         ObrigadoView.as_view(),
         name='obrigado'
         ),
-    url(r'^voluntarios/could_not_find_candidate/(?P<slug>[^/]+)$',
+    url(r'^voluntarios/could_not_find_candidate/(?P<id>[^/]+)$',
         CouldNotFindCandidate.as_view(),
         name='could_not_find_candidate'
         ),
-    url(r'^voluntarios/facebook_contacted/(?P<slug>[^/]+)$',
+    url(r'^voluntarios/facebook_contacted/(?P<id>[^/]+)$',
         FacebookContacted.as_view(),
         name='facebook_contacted'
         ),

@@ -34,7 +34,7 @@
             <td>{{candidate.name}}</td>
             <td>{{candidate.partido.initials}}</td>
             <td>{{candidate.election.area}}</td>
-            <td><a href="{% url 'add_mail_to_candidate' slug=candidate.slug %}">Pesquisar</a></td>
+            <td><a href="{% url 'add_mail_to_candidate' id=candidate.id %}">Pesquisar</a></td>
           </tr>
           {% endif %}
         {% endfor %}

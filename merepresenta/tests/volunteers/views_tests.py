@@ -101,7 +101,7 @@ class CandidateAddMailView(VolunteersTestCaseBase):
                                                   password=PASSWORD,
                                                   is_staff=True)
         self.candidate = Candidate.objects.get(id=5)
-        self.url = reverse('add_mail_to_candidate', kwargs={'slug': self.candidate.slug})
+        self.url = reverse('add_mail_to_candidate', kwargs={'id': self.candidate.id})
 
     def test_get_the_obrigado_view(self):
         url = reverse('obrigado')
@@ -167,7 +167,7 @@ class CouldNotFindAnything(VolunteersTestCaseBase):
                                                   password=PASSWORD,
                                                   is_staff=True)
         self.candidate = Candidate.objects.get(id=5)
-        self.url = reverse('could_not_find_candidate', kwargs={'slug': self.candidate.slug})
+        self.url = reverse('could_not_find_candidate', kwargs={'id': self.candidate.id})
 
     def test_get_the_view(self):
         response = self.client.get(self.url)
@@ -208,7 +208,7 @@ class ContactedThrouFacebook(VolunteersTestCaseBase):
                                                   password=PASSWORD,
                                                   is_staff=True)
         self.candidate = Candidate.objects.get(id=5)
-        self.url = reverse('facebook_contacted', kwargs={'slug': self.candidate.slug})
+        self.url = reverse('facebook_contacted', kwargs={'id': self.candidate.id})
 
     def test_get_the_view(self):
         response = self.client.get(self.url)

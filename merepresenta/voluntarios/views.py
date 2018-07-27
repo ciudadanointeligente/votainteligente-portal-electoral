@@ -57,8 +57,8 @@ class AddMailToCandidateView(StaffuserRequiredMixin, FormView):
         return reverse_lazy('obrigado')
 
     def dispatch(self, *args, **kwargs):
-        slug = kwargs['slug']
-        self.candidate = get_object_or_404(Candidate, slug=slug)
+        _id = kwargs['id']
+        self.candidate = get_object_or_404(Candidate, id=_id)
         if self.request.user.is_authenticated() and self.request.user.is_staff:
             self.record = VolunteerInCandidate.objects.get_or_create(candidate=self.candidate,
                                                                      volunteer=self.request.user)
@@ -83,8 +83,8 @@ class ObrigadoView(StaffuserRequiredMixin, TemplateView):
 class UpdateOnlyOneFieldMixin(StaffuserRequiredMixin, TemplateView):
     login_url = reverse_lazy(u"volunteer_login")
     def dispatch(self, *args, **kwargs):
-        slug = kwargs['slug']
-        self.candidate = get_object_or_404(Candidate, slug=slug)
+        _id = kwargs['id']
+        self.candidate = get_object_or_404(Candidate, id=_id)
         setattr(self.candidate, self.field, self.resulting_value)
         self.candidate.save()
         return super(UpdateOnlyOneFieldMixin, self).dispatch(*args, **kwargs)

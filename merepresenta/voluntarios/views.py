@@ -22,7 +22,7 @@ class VolunteerIndexView(StaffuserRequiredMixin, ListView):
     context_object_name = 'candidates'
 
     def get_queryset(self):
-        qs = super(VolunteerIndexView, self).get_queryset()
+        qs = self.model.for_volunteers.all()
         qs = qs.order_by('-desprivilegio')
         return qs
 

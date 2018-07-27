@@ -9,6 +9,8 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from backend_candidate.models import CandidacyContact
 from votai_utils.send_mails import send_mail
+from django.utils import timezone
+import datetime
 
 
 class MeRepresentaPopularProposal(PopularProposal):
@@ -44,6 +46,17 @@ class ForVolunteersManager(models.Manager):
         qs = qs.annotate(desprivilegio=F('is_women') + F('is_non_white'))
         return qs
 
+class LimitCandidatesForVolunteers(ForVolunteersManager):
+    def get_queryset(self):
+        qs = super(LimitCandidatesForVolunteers, self).get_queryset()
+        qs = qs.exclude(contacts__isnull=False)
+        qs = qs.exclude(is_ghost=True)
+        qs = qs.exclude(facebook_contacted=True)
+        minutes = 30
+        from_time = timezone.now() - datetime.timedelta(minutes=minutes)
+        qs = qs.exclude(volunteerincandidate__created__gte=from_time)
+        return qs
+
 
 class Candidate(OriginalCandidate):
     cpf = models.CharField(max_length=1024, null=True)
@@ -53,10 +66,13 @@ class Candidate(OriginalCandidate):
     original_email = models.EmailField(max_length=1024, null=True)
     email_repeated = models.NullBooleanField()
     is_ghost = models.BooleanField(default=False)
+    facebook_contacted = models.BooleanField(default=False)
+
     partido = models.ForeignKey("Partido", null=True)
 
     objects = ForVolunteersManager()
 
+    for_volunteers = LimitCandidatesForVolunteers()
 
 class VolunteerInCandidate(models.Model):
     volunteer = models.ForeignKey(User)

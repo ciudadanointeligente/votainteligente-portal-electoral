@@ -23,8 +23,7 @@ class VolunteerIndexView(StaffuserRequiredMixin, ListView):
 
     def get_queryset(self):
         qs = super(VolunteerIndexView, self).get_queryset()
-        qs = qs.exclude(contacts__isnull=False).order_by('-desprivilegio')
-        qs = qs.exclude(is_ghost=True)
+        qs = qs.order_by('-desprivilegio')
         return qs
 
 

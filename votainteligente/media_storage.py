@@ -13,5 +13,6 @@ class MediaStorage(S3Boto3Storage):
     file_overwrite = False
 
     def _normalize_name(self, name):
-
+        if not name.startswith('/'):
+            name = "/" + name
         return self.location + name

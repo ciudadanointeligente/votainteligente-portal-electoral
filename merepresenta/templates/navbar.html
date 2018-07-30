@@ -2,6 +2,10 @@
 <nav  id="mainNav" class="navbar navbar-light">
   <a class="navbar-brand" href="{% url 'index' %}">
     <img src="{% static "/img/merepresenta/logo_2018.svg" %}" class="img-fluid" alt="#MeRepresentaLogo"></a>
+    {% if user.is_authenticated and user.is_staff %}
+    <a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">Portal voluntario</a> 
+    {% endif %}
+
   <ul class="nav nav-pills">
     {% if not user.is_authenticated %}
     <li class="nav-item">
@@ -16,10 +20,9 @@
         {% endif %}
         {{user.username}}</a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#one">one</a>
-        <a class="dropdown-item" href="#two">two</a>
+        <a class="dropdown-item" href="{% url 'volunteer_index' %}">Portal voluntário</a>
         <div role="separator" class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#three">three</a>
+        <a class="dropdown-item" href="#">Sair</a>
       </div>
     </li>
     {% endif %}

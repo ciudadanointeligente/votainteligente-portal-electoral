@@ -18,7 +18,7 @@
                     <a href="{% url 'questions' %}" class="btn btn-gris voluntario">Sou eleitor</a>
                 </div>
                 <div class="col-3">
-                    <a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">Quero ser voluntário/a</a>    
+                    <a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">{% if user.is_authenticated and user.is_staff %}Portal Voluntario{% else %}>Quero ser voluntário/{% endif %}</a>    
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
     </div>
     
 </div>
-<div class="containe last-part">
+<div class="container last-part">
     <div class="row">
         <div class="col-sm-6">
           <img src="{% static '/img/merepresenta/merep_landing_image2.svg' %}" class="img-fluid" alt="#MeRepresentaLogo">
@@ -118,7 +118,7 @@
                     <a href="{% url 'questions' %}" class="btn btn-gris voluntario">Sou eleitor</a>
                 </div>
                 <div class="col-3">
-                    <a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">Quero ser voluntário/a</a>    
+                    <a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">{% if user.is_authenticated and user.is_staff %}Portal Voluntario{% else %}Quero ser voluntário/a{% endif %}</a>    
                 </div>
             </div>
         </div>

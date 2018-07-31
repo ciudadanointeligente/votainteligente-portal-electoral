@@ -4,6 +4,7 @@ from merepresenta.models import Partido, Coaligacao, Candidate
 from tse_data_importer.csv_reader import CsvReader
 from tse_data_importer.importer import RowsReaderAdapter
 from django.conf import settings
+from datetime import datetime
 
 def output_logger(self, msg):
     print msg
@@ -20,11 +21,15 @@ class TSEProcessorMixin(object):
 
     def process_candidate(self, candidate_dict, election, partido):
         gender = self.gender_definer(candidate_dict['gender'])
-
+        try:
+            data_de_nascimento = datetime.strptime(candidate_dict['date_of_birth'], "%d/%m/%Y").date()
+        except:
+            data_de_nascimento = None
         candidate, created = Candidate.objects.get_or_create(name=candidate_dict['nome'],
                                                              nome_completo=candidate_dict['nome_completo'],
                                                              numero=candidate_dict['number'],
                                                              cpf=candidate_dict['cpf'],
+                                                             data_de_nascimento=data_de_nascimento,
                                                              race=candidate_dict['race'],
                                                              original_email=candidate_dict['mail'],
                                                              email_repeated=candidate_dict['email_repeated'],

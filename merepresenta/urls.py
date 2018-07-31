@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^answers/?$',
         MeRepresentaMeiaLaranjaQuestionsWizardForm.as_view(),
         name='questions'),
+    url(r'^candidatos/', include('merepresenta.candidates_backend.urls')),
     url(r'^eleccion/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/?$',
         CandidateDetailView.as_view(template_name='merepresenta/candidate_detail.html'),
         name='candidate_detail_view'

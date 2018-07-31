@@ -13,13 +13,15 @@ from django.views.generic.edit import FormView
 from merepresenta.voluntarios.forms import AddCandidacyContactForm
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import get_object_or_404
+from django_filters.views import FilterView
+from merepresenta.voluntarios.filters import CandidateFilter
 
-
-class VolunteerIndexView(StaffuserRequiredMixin, ListView):
+class VolunteerIndexView(StaffuserRequiredMixin, FilterView):
     model = Candidate
     login_url = reverse_lazy(u"volunteer_login")
     template_name = "voluntarios/index.html"
     context_object_name = 'candidates'
+    filterset_class = CandidateFilter
 
     def get_queryset(self):
         qs = self.model.for_volunteers.all()

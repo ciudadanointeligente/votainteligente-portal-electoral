@@ -3,6 +3,7 @@ from elections.models import Area
 from merepresenta.models import Partido, Coaligacao, Candidate
 from tse_data_importer.csv_reader import CsvReader
 from tse_data_importer.importer import RowsReaderAdapter
+from django.conf import settings
 
 def output_logger(self, msg):
     print msg
@@ -37,7 +38,11 @@ class TSEProcessorMixin(object):
     def do_something(self, row):
         
         result = {}
-        area, created = Area.objects.get_or_create(identifier=row['area']['slug'], name=row['area']['area_name'])
+        if settings.FILTERABLE_AREAS_TYPE:
+            state_classification = settings.FILTERABLE_AREAS_TYPE[0]
+        else:
+            state_classification = 'state'
+        area, created = Area.objects.get_or_create(identifier=row['area']['slug'], name=row['area']['area_name'], classification=state_classification)
         result['area'] = area
         election, created = area.elections.get_or_create(name=row['area']['election_name'])
         result['election'] = election

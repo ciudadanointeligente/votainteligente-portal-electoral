@@ -9,9 +9,29 @@
 <div class="alert alert-success" role="alert">
   <h4 class="alert-heading">Bemvinda!</h4>
   <p>Issa é a lista dos candidatos para pesquizar.</p>
+  
+
+  <!--form method="GET" action="">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Escolha seu estado</label>
+    {{filter.form.elections__area}}
+  </div>
+  <button type="submit" class="btn btn-primary">Pesquisa</button>
+</form-->
+
+<form method="POST" action="{% url 'update_area_of_volunteer' %}">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Escolha seu estado</label>
+    {{update_area_form.area}}
+  </div>
+  <button type="submit" class="btn btn-primary">Pesquisa</button>
+</form>
 </div>
+
 {% endblock header %}
 {% block content %}
+
 <div class="container">
     <table class="table">
       <thead>

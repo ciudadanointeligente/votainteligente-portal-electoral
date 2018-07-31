@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.views.generic.list import ListView
-from merepresenta.models import Candidate, VolunteerInCandidate
+from merepresenta.models import Candidate, VolunteerInCandidate, VolunteerGetsCandidateEmailLog
 from braces.views import StaffuserRequiredMixin
 from django.views.generic.base import TemplateView
 from django.views import View
@@ -13,17 +13,35 @@ from django.views.generic.edit import FormView
 from merepresenta.voluntarios.forms import AddCandidacyContactForm
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import get_object_or_404
+from django_filters.views import FilterView
+from merepresenta.voluntarios.filters import CandidateFilter
+from django.views.generic.edit import UpdateView
+from .forms import UpdateAreaForm
+from .models import VolunteerProfile
 
 
-class VolunteerIndexView(StaffuserRequiredMixin, ListView):
+class VolunteerIndexView(StaffuserRequiredMixin, FilterView):
     model = Candidate
     login_url = reverse_lazy(u"volunteer_login")
     template_name = "voluntarios/index.html"
     context_object_name = 'candidates'
+    filterset_class = CandidateFilter
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(VolunteerIndexView, self).get_context_data(*args, **kwargs)
+        profile, created = VolunteerProfile.objects.get_or_create(user=self.request.user)
+        context['update_area_form'] = UpdateAreaForm(instance=profile)
+        return context
 
     def get_queryset(self):
         qs = self.model.for_volunteers.all()
+        try:
+            area = self.request.user.volunteer_profile.area
+            qs = qs.filter(elections__area=area)
+        except VolunteerProfile.DoesNotExist:
+            pass
         qs = qs.order_by('-desprivilegio')
+            
         return qs
 
 
@@ -80,6 +98,10 @@ class AddMailToCandidateView(StaffuserRequiredMixin, FormView):
 class ObrigadoView(StaffuserRequiredMixin, TemplateView):
     template_name=u'voluntarios/obrigado.html'
 
+
+## Mierda! esta clase no debería depender de StaffuserRequiredMixin ni de TemplateView
+## Los mixins dependen sólo de object!!!! Mierda Mierda.
+## lo cambio lego
 class UpdateOnlyOneFieldMixin(StaffuserRequiredMixin, TemplateView):
     login_url = reverse_lazy(u"volunteer_login")
     def dispatch(self, *args, **kwargs):
@@ -101,3 +123,23 @@ class FacebookContacted(UpdateOnlyOneFieldMixin):
     template_name = u'voluntarios/obrigado.html'
     field = 'facebook_contacted'
     resulting_value = True
+
+
+    def get(self, *args, **kwargs):
+        response = super(FacebookContacted, self).get(*args, **kwargs)
+        VolunteerGetsCandidateEmailLog.objects.create(candidate=self.candidate,
+                                                      volunteer=self.request.user)
+        return response
+
+
+class UpdateAreaOfVolunteerView(StaffuserRequiredMixin, UpdateView):
+    form_class = UpdateAreaForm
+    model = VolunteerProfile
+    login_url = reverse_lazy(u"volunteer_login")
+    template_name = 'voluntarios/update_area_of_volunteer.html'
+
+    def get_object(self):
+        return self.request.user.volunteer_profile
+
+    def get_success_url(self):
+        return reverse_lazy('volunteer_index')

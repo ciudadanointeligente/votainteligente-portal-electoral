@@ -47,33 +47,5 @@ urlpatterns = [
         name='complete_12_naranja'),
     url(r'^candidatos/?', include('backend_candidate.urls', namespace='backend_candidate')),
     url(r'^accounts/?', include('registration.backends.hmac.urls')),
-    url(r'^voluntarios/?$',
-        VolunteerIndexView.as_view(),
-        name='volunteer_index'),
-    url(r'^voluntarios/login/?$',
-        VolunteerLoginView.as_view(),
-        name='volunteer_login'),
-    url(r'^login/(?P<backend>[^/]+)/?$', auth,
-            name='voluntarios_social_begin'),
-    url(r'^voluntarios/complete/(?P<backend>[^/]+)$',
-        complete,
-        name='volunteer_social_complete'
-        ),
-    url(r'^voluntarios/adicionar_mail/(?P<id>[^/]+)$',
-        AddMailToCandidateView.as_view(),
-        name='add_mail_to_candidate'
-        ),
-    url(r'^voluntarios/obrigado/?$',
-        ObrigadoView.as_view(),
-        name='obrigado'
-        ),
-    url(r'^voluntarios/could_not_find_candidate/(?P<id>[^/]+)$',
-        CouldNotFindCandidate.as_view(),
-        name='could_not_find_candidate'
-        ),
-    url(r'^voluntarios/facebook_contacted/(?P<id>[^/]+)$',
-        FacebookContacted.as_view(),
-        name='facebook_contacted'
-        ),
-    # url('', include('social_django.urls', namespace='social'))add_mail_to_candidate
+    url(r'^voluntarios/', include('merepresenta.voluntarios.urls')),
 ]

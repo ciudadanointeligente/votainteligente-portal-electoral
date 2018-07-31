@@ -2,6 +2,7 @@
 from django.forms import ModelForm
 from backend_candidate.models import CandidacyContact
 from merepresenta.models import VolunteerGetsCandidateEmailLog
+from .models import VolunteerProfile
 
 
 class AddCandidacyContactForm(ModelForm):
@@ -25,3 +26,9 @@ class AddCandidacyContactForm(ModelForm):
 
 
         return contact
+
+
+class UpdateAreaForm(ModelForm):
+    class Meta:
+        model = VolunteerProfile
+        fields = ['area', ]

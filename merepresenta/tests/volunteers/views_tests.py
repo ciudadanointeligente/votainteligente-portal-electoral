@@ -3,32 +3,40 @@ from django.test import TestCase, override_settings
 from merepresenta.models import Candidate, NON_WHITE_KEY, NON_MALE_KEY
 from merepresenta.tests.volunteers import VolunteersTestCaseBase
 from backend_candidate.models import CandidacyContact
-from elections.models import PersonalData
+from elections.models import PersonalData, Area
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from social_django.models import UserSocialAuth
 import mock
 from django.views.generic.edit import FormView
 from django.core import mail
-from merepresenta.models import VolunteerInCandidate
+from merepresenta.models import VolunteerInCandidate, VolunteerGetsCandidateEmailLog
+from merepresenta.voluntarios.models import VolunteerProfile
+from elections.models import Election, Area
+from django.conf import settings
 
 
 PASSWORD="admin123"
 
-
-@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
-class VolunteersViewsTests(VolunteersTestCaseBase):
-    def setUp(self):
-        super(VolunteersViewsTests, self).setUp()
-
+class CandidatesOrderedMixin(object):
     def create_ordered_candidates(self):
         Candidate.objects.filter(id__in=[4, 5]).update(gender=NON_MALE_KEY)
         cs = Candidate.objects.filter(id__in=[4,5])
         self.assertEquals(cs[0].is_women, 1)
         self.assertEquals(cs[1].is_women, 1)
         c = Candidate.objects.get(id=5)
+        a = c.election.area
+        a.classification = settings.FILTERABLE_AREAS_TYPE[0]
+        a.save()
         c.race = NON_WHITE_KEY["possible_values"][0]
         c.save()
+
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
+class VolunteersViewsTests(VolunteersTestCaseBase, CandidatesOrderedMixin):
+    def setUp(self):
+        super(VolunteersViewsTests, self).setUp()
+
 
     def test_get_index(self):
         url = reverse('volunteer_index')
@@ -91,6 +99,8 @@ class LoginView(VolunteersTestCaseBase):
             social_user = UserSocialAuth.objects.get()
             created_user = social_user.user
             self.assertTrue(created_user.is_staff)
+            self.assertTrue(created_user.volunteer_profile)
+            self.assertIsNone(created_user.volunteer_profile.area)
 
 
 @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
@@ -227,3 +237,72 @@ class ContactedThrouFacebook(VolunteersTestCaseBase):
         self.assertEquals(response.status_code, 200)
         self.candidate.refresh_from_db()
         self.assertTrue(self.candidate.facebook_contacted)
+        log = VolunteerGetsCandidateEmailLog.objects.get(candidate=self.candidate, volunteer=self.volunteer)
+        self.assertTrue(log)
+        self.assertIsNone(log.contact)
+
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
+class UpdatingAreaOfAVolunteerView(VolunteersTestCaseBase, CandidatesOrderedMixin):
+    def setUp(self):
+        super(UpdatingAreaOfAVolunteerView, self).setUp()
+        self.volunteer = User.objects.create_user(username="voluntario",
+                                                  password=PASSWORD,
+                                                  is_staff=True)
+
+        self.url = reverse('update_area_of_volunteer')
+        self.profile = VolunteerProfile.objects.create(user=self.volunteer)
+
+    def test_get_the_view(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 302)
+        self.assertIn(reverse('volunteer_login'), response.url)
+
+        user = User.objects.create_user(username="non_volunteer", password=PASSWORD)
+        self.client.login(username=user.username, password=PASSWORD)
+        response2 = self.client.get(self.url)
+        self.assertEqual(response.status_code, 302)
+        self.assertIn(reverse('volunteer_login'), response.url)
+
+        self.client.logout()
+        self.client.login(username=self.volunteer.username, password=PASSWORD)
+        response = self.client.get(self.url)
+        self.assertEquals(response.status_code, 200)
+
+    def test_post_to_the_view(self):
+        area = Area.objects.create(name="area 51")
+        data = {
+            'area': area.id
+        }
+        self.client.login(username=self.volunteer.username, password=PASSWORD)
+        response = self.client.post(self.url, data=data, follow=True)
+        self.assertEquals(response.status_code, 200)
+
+    def test_get_index_brings_the_form(self):
+        url = reverse('volunteer_index')
+
+        self.create_ordered_candidates()
+        u = User.objects.create_user(username="new_user", password=PASSWORD, is_staff=True)
+        self.client.login(username=u.username, password=PASSWORD)
+        response = self.client.get(url)
+        candidates = response.context['candidates']
+        self.assertEquals(int(candidates[0].id), 5)
+
+        self.assertTrue(response.context['update_area_form'])
+        form = response.context['update_area_form']
+        self.assertEquals(form.instance, u.volunteer_profile)
+
+    def test_get_index_if_has_area_selected_then_filters(self):
+        url = reverse('volunteer_index')
+
+        self.create_ordered_candidates()
+        u = User.objects.create_user(username="new_user", password=PASSWORD, is_staff=True)
+        a = Area.objects.create(name='my-area', classification=settings.FILTERABLE_AREAS_TYPE[0])
+        VolunteerProfile.objects.create(user=u, area=a)
+
+        
+        self.client.login(username=u.username, password=PASSWORD)
+        response = self.client.get(url)
+        candidates = response.context['candidates']
+        candidate_5 = Candidate.objects.get(id=5)
+        self.assertNotIn(candidate_5, candidates)

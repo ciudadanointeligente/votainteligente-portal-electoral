@@ -4,6 +4,8 @@ from merepresenta.tse_processor import TSEProcessorMixin
 from elections.models import Area
 from merepresenta.models import Candidate, Partido, Coaligacao
 from django.core.management import call_command
+from django.conf import settings
+from django.test import override_settings
 
 
 class ImporterTestCase(VolunteersTestCaseBase):
@@ -19,15 +21,17 @@ class ImporterTestCase(VolunteersTestCaseBase):
                      'area': {'election_name': 'DEPUTADO FEDERAL', 'slug': 'RJ', 'area_name': u"Río de Janeiro"}
                     }
 
-
+    @override_settings(FILTERABLE_AREAS_TYPE=['state',])
     def test_creates_elements(self):
         rj_area = Area.objects.get(identifier='RJ')
+
         class JustForNowProcessor(TSEProcessorMixin):
             pass
         processor = JustForNowProcessor()
         result = processor.do_something(self.data)
         area = result['area']
-        self.assertEquals(area, rj_area)
+        print rj_area.id, area.id
+        self.assertEquals(area.id, rj_area.id)
         election = result['election']
         self.assertEquals(election.name, 'DEPUTADO FEDERAL')
         self.assertEquals(election.area, area)

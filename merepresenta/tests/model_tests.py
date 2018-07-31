@@ -12,6 +12,7 @@ from elections.models import Election
 from django.utils import timezone
 import datetime
 from django.core.urlresolvers import reverse
+from merepresenta.voluntarios.models import VolunteerProfile
 
 
 class MeRepresentaPopularProposalTestCase(TestCase):
@@ -118,3 +119,10 @@ class PartidoTestCase(TestCase):
         
         
         self.assertEquals(candidate.partido, partido)
+
+
+class VolunteerProfileTestCase(TestCase):
+    def test_instanciate(self):
+        u = User.objects.create_user(username='user', is_staff=True)
+        i = VolunteerProfile.objects.create(user=u)
+        self.assertIsNone(i.area)

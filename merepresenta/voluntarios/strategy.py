@@ -1,6 +1,7 @@
 from social_django.strategy import DjangoStrategy
 from django.shortcuts import resolve_url
 from django.contrib.auth import authenticate
+from .models import VolunteerProfile
 
 
 class VolunteerStrategy(DjangoStrategy):
@@ -12,6 +13,7 @@ class VolunteerStrategy(DjangoStrategy):
 
     def create_user(self, *args, **kwargs):
         user = super(VolunteerStrategy, self).create_user(*args, is_staff=True, **kwargs)
+        VolunteerProfile.objects.create(user=user)
         return user
 
     def authenticate(self, backend, *args, **kwargs):

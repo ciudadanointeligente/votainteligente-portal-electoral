@@ -13,6 +13,7 @@ from django.utils import timezone
 import datetime
 
 
+
 class MeRepresentaPopularProposal(PopularProposal):
     class Meta:
         proxy = True
@@ -84,17 +85,20 @@ class VolunteerInCandidate(models.Model):
 class VolunteerGetsCandidateEmailLog(models.Model):
     volunteer = models.ForeignKey(User)
     candidate = models.ForeignKey(Candidate)
-    contact = models.ForeignKey(CandidacyContact)
+    contact = models.ForeignKey(CandidacyContact, null=True)
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
 
 
     def save(self, *args, **kwargs):
         creating = self.pk is None
-        if creating:
+        ## Contact can be none, since a volunteer can
+        ## say that she/he contacted the candidate through other means
+        if creating and self.contact:
             context = {
                 'candidate': self.candidate.name
             }
+
             send_mail(context, 'contato_novo_com_candidato', to=[self.contact.mail],)
         return super(VolunteerGetsCandidateEmailLog, self).save(*args, **kwargs)
 
@@ -111,3 +115,14 @@ class Partido(models.Model):
     number = models.CharField(max_length=1024, null=True)
     mark = models.IntegerField(null=True)
     coaligacao = models.ForeignKey(Coaligacao, null=True)
+
+
+
+
+##### VOLUNTEERS PART!!!
+## I wrote this as part of #MeRepresenta, this means that we haven't needed volunteers doing research on candidates before
+## This is why I kept it here until now
+## But as I'm coding it I am becoming aware that this could be a good feature to have in the feature, this is why I'm keeping this in
+## an inner module, so when I have more time and the need from another NGO to have the volunteers backend
+## I can grab it and move it to another application
+from merepresenta.voluntarios.models import VolunteerProfile

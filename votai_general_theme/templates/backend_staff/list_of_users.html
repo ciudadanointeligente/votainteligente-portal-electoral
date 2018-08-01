@@ -16,6 +16,7 @@
           <th>Nome</th>
           <th>email</th>
           <th>é organizacao??????</th>
+	  <th>data de criacao</th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +26,7 @@
           <td>{{user.name}}</td>
           <td>{{user.email}}</td>
           <td>{{user.profile.is_organization}}</td>
+          <td>{{user.date_joined}}</td>
         </tr>
         {% endfor %}
       </tbody>

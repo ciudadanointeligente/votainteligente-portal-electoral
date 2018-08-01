@@ -15,6 +15,7 @@ from django.views.generic.detail import SingleObjectMixin
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 from elections.models import Candidate
 from django.views.generic.list import ListView
+from django.contrib.auth.models import User
 from backend_staff.stats import Stats, PerAreaStaffStats
 from elections.models import Area
 
@@ -182,3 +183,18 @@ class StatsPerAreaView(TemplateView):
             stats[area.id] = PerAreaStaffStats(area)
         context['stats'] = stats
         return context
+
+
+class ListOfUsers(ListView):
+    model = User
+    template_name = 'backend_staff/list_of_users.html'
+    context_object_name = 'users'
+
+    @method_decorator(staff_member_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ListOfUsers, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        qs = super(ListOfUsers, self).get_queryset()
+        qs = qs.filter(candidacies__isnull=True)
+        return qs

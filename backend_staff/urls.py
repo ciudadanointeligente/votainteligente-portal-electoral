@@ -9,6 +9,7 @@ from backend_staff.views import (
     AddContactAndSendMailView,
     AllCommitmentsView,
     StatsView,
+    ListOfUsers,
     StatsPerAreaView,
 )
 
@@ -40,4 +41,7 @@ urlpatterns = [
     url(r'^all_commitments/?$',
         AllCommitmentsView.as_view(),
         name='all_commitments'),
+    url(r'^list_of_users/?$',
+        ListOfUsers.as_view(),
+        name='list_of_users'),
 ]

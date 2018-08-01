@@ -1,0 +1,37 @@
+{% extends "backend_base.html" %}
+{% load staticfiles %}
+{% load votainteligente_extras %}
+{% load i18n %}
+{% load thumbnail %}
+{% load bootstrap3 %}
+
+{% block content %}
+<h4 class="page-header">Gente da Casa Fluminense</h4>
+<h5 class="page-header">Issos sao os usuarios</h5>
+<div class="table-responsive">
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Nome</th>
+          <th>email</th>
+          <th>é organizacao??????</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users.all %}
+        <tr>
+          <td>{{user.username}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.profile.is_organization}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+{% endblock content %}
+
+{% block extrafooter %}
+{% endblock extrafooter %}

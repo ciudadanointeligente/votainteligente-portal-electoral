@@ -273,6 +273,24 @@ class StaffHomeViewTest(TestCase):
         self.assertIsInstance(response.context['stats'], Stats)
         self.assertTemplateUsed(response, 'backend_staff/stats.html')
 
+    def test_get_list_of_users(self):
+
+        self.is_reachable_only_by_staff('backend_staff:list_of_users')
+        user = User.objects.create_user(username='user', password=NON_STAFF_PASSWORD)
+        candidato_user = User.objects.create_user(username='candidato_user', password=NON_STAFF_PASSWORD)
+
+        candidacy1 = Candidacy.objects.create(user=candidato_user, candidate=self.candidate1)
+
+        url = reverse('backend_staff:list_of_users')
+        self.client.login(username=self.fiera.username,
+                          password=STAFF_PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'backend_staff/list_of_users.html')
+        self.assertTrue(response.context['users'])
+        self.assertIn(user, response.context['users'])
+        self.assertNotIn(candidato_user, response.context['users'])
+
     def tests_get_local_meetings(self):
         stats = Stats()
         PopularProposal.objects.create(proposer=self.fiera,

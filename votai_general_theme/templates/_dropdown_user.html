@@ -37,6 +37,13 @@
         </a>
     </li>
     {% endif %}
+    {% if user.is_staff %}
+        <li><a href="{% url 'backend_staff:list_of_users' %}">
+            <i class="fa fa-heart" aria-hidden="true"></i>
+            {% blocktrans %}Lista de usuarios{% endblocktrans %}
+        </a>
+    </li>
+    {% endif %}
     {% if config.MENU_CIUDADANO_EN_DROPDOWN %}
         {% include 'backend_citizen/menu.html' with user=user in_drop_down_menu=True %}
     {% endif %}

@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="1686px" height="83px" viewBox="0 0 1686 83" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
-    <title>Fill 1 Copy 2</title>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1618px" height="100px" viewBox="0 0 1618 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.1 (55044) - http://www.bohemiancoding.com/sketch -->
+    <title>Fill-1-Copy-3 Copy</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M0.376764733,33.927815 C64,34.4878198 562.588286,-2.47974228 785.604453,0.351592656 C1084.21158,4.14280711 1386.91963,29.4689094 1685.52887,33.2613624 C1685.77995,54.6455734 1681.06673,82.5251146 1681.06673,82.5251146 C1681.06673,82.5251146 275.032806,82.8264681 64,82.8264681" id="Fill-1-Copy-2" fill="#7AB7FF"></path>
+        <g id="lm-yellowline-up-copy" transform="translate(0.129170, -607.061923)" fill="#7AB7FF" fill-rule="nonzero">
+            <path d="M0,614.474776 C220.673769,595.375031 498.588286,621.339204 721.604453,624.170539 C1020.21158,627.961754 1318.82082,631.752968 1617.43007,635.545421 C1617.68115,656.929632 1617.06673,706.344061 1617.06673,706.344061 C1617.06673,706.344061 211.032806,706.645415 0,706.645415" id="Fill-1-Copy-3-Copy"></path>
+        </g>
     </g>
 </svg>

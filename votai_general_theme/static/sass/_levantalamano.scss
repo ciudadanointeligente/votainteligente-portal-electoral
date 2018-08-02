@@ -296,6 +296,9 @@ h6{
 .red{
   background-color: $red;
 }
+.sky{
+  background-color: $sky;
+}
 .purpleline{
   background-image: url("../img/lm-purpleline.svg");
   background-repeat: no-repeat;
@@ -307,8 +310,34 @@ h6{
   min-height: 46px;
   margin-top: -48px;
 }
-.pinkline-up-banner{
+.pinkline-up{
   background-image: url("../img/lm-pinkline-up.svg");
+  background-repeat: no-repeat;
+  min-height: 28px;
+  margin-top: 60px;
+}
+.redline-up{
+  background-image: url("../img/lm-redline-up.svg");
+  background-repeat: no-repeat;
+  min-height: 28px;
+  margin-top: 60px;
+}
+.blueline-up{
+  background-image: url("../img/lm-blueline-up.svg");
+  background-repeat: no-repeat;
+  min-height: 28px;
+  margin-top: 60px;
+}
+.blueline-down{
+  background-image: url("../img/lm-blueline-down.svg");
+  background-repeat: no-repeat;
+  min-height: 175px;
+  margin-top: -13px;
+  position: relative;
+  z-index: 2000;
+}
+.skyline-up{
+  background-image: url("../img/lm-skyline-up.svg");
   background-repeat: no-repeat;
   min-height: 28px;
   margin-top: 60px;
@@ -330,20 +359,6 @@ h6{
   background-repeat: no-repeat;
   min-height: 38px;
   margin-top: -19px;
-}
-.blueline-up{
-  background-image: url("../img/lm-blueline-up.svg");
-  background-repeat: no-repeat;
-  min-height: 34px;
-  margin-top: 35px;
-}
-.blueline-down{
-  background-image: url("../img/lm-blueline-down.svg");
-  background-repeat: no-repeat;
-  min-height: 175px;
-  margin-top: -13px;
-  position: relative;
-  z-index: 2000;
 }
 .whiteline{
   background-image: url("../img/lm-whiteline.svg");
@@ -374,6 +389,16 @@ h6{
 .logo-title{
   position: relative;
   top: 100px;
+}
+#manifest{
+  padding: 50px 0 70px;
+  margin-bottom: -95px;
+}
+#results{
+  padding: 50px 0 100px;
+}
+#compromiso-presidencial{
+  padding: 40px 0 80px;
 }
 #about{
   padding: 50px 0 40px;
@@ -423,7 +448,6 @@ p.aviso{
   height: -webkit-fill-available;
 }
 #highlighted-proposals{
-  margin: -50px 0 0;
 }
 .post.propuesta{
   position: absolute;

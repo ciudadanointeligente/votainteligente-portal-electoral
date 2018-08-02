@@ -55,9 +55,9 @@ class CandidateTestCase(TestCase):
 
 class CandidateListForVolunteers(TestCase):
     def test_list_for_volunteers(self):
-        ghost = Candidate.objects.create(name="Candidate 1", is_ghost=True)
-        facebook = Candidate.objects.create(name="Candidate 2", facebook_contacted=True)
-        with_contact = Candidate.objects.create(name="Candidate with Contact")
+        ghost = Candidate.objects.create(name="Candidate 1", is_ghost=True, cpf='123')
+        facebook = Candidate.objects.create(name="Candidate 2", facebook_contacted=True, cpf='456')
+        with_contact = Candidate.objects.create(name="Candidate with Contact", cpf='789')
         with_contact.contacts.create(mail="perrito@gatito.cl")
 
         candidates = Candidate.for_volunteers.all()
@@ -69,8 +69,8 @@ class CandidateListForVolunteers(TestCase):
     def test_if_has_a_volunteer_looking_for_more_than_an_hour(self):
         volunteer = User.objects.create_user(username='volunteer', is_staff=True)
         always_in_list = Candidate.objects.create(name="Always")
-        checked_twenty_nine_minutes_ago = Candidate.objects.create(name="Checked 29 minutes ago")
-        checked_thirty_one_minutes_ago = Candidate.objects.create(name="Checked 31 minutes ago")
+        checked_twenty_nine_minutes_ago = Candidate.objects.create(name="Checked 29 minutes ago", cpf='29')
+        checked_thirty_one_minutes_ago = Candidate.objects.create(name="Checked 31 minutes ago", cpf='31')
 
         minutes = 30
 

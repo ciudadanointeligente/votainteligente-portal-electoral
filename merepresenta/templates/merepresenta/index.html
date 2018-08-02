@@ -12,13 +12,19 @@
             <p>Chegou a hora de contar um pouco mais sobre suas pautas e ajudar eleitores a encontrar candidatos que os representam.</p>
             <div class="row">
                 <div class="col-3">
-                    <a href="{% url 'questions' %}" class="btn btn-gris voluntario">Sou candidata</a>
+                    <a href="{% url 'candidate_login' %}" class="btn btn-gris voluntario">Sou candidata</a>
                 </div>
                 <div class="col-3">
                     <a href="{% url 'questions' %}" class="btn btn-gris voluntario">Sou eleitor</a>
                 </div>
                 <div class="col-3">
-                    <a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">{% if user.is_authenticated and user.is_staff %}Portal Voluntario{% else %}>Quero ser voluntário/{% endif %}</a>    
+                    <a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">{% if user.is_authenticated %}
+                            {% if user.is_staff %}
+                                Portal Voluntario
+                            {% endif %}
+                        {% else %}
+                            Quero ser voluntário
+                        {% endif %}</a>
                 </div>
             </div>
         </div>

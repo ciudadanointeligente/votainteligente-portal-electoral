@@ -60,7 +60,7 @@ class LimitCandidatesForVolunteers(ForVolunteersManager):
 
 
 class Candidate(OriginalCandidate):
-    cpf = models.CharField(max_length=1024, null=True)
+    cpf = models.CharField(max_length=1024, unique=True)
     nome_completo = models.CharField(max_length=1024, null=True)
     numero = models.CharField(max_length=1024, null=True)
     race = models.CharField(max_length=1024, null=True)

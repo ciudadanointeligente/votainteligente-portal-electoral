@@ -159,6 +159,108 @@ h6{
     box-shadow: none;
   }
 }
+.btn-lm-blue{
+  border: 3px solid $blue;
+  background-color: transparent;
+  color: $blue;
+  &:hover{
+    background-color: $blue;
+    color: white;
+    border: 3px solid $blue;
+  }
+  &:focus{
+    @extend .btn-blue:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue:hover;
+    box-shadow: none;
+  }
+}
+.btn-lm-pink{
+  border: 3px solid $pink;
+  background-color: transparent;
+  color: $pink;
+  &:hover{
+    background-color: $pink;
+    color: white;
+    border: 3px solid $pink;
+  }
+  &:focus{
+    @extend .btn-blue:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue:hover;
+    box-shadow: none;
+  }
+}
+.btn-lm-yellow{
+  border: 3px solid $yellow;
+  background-color: transparent;
+  color: $yellow;
+  &:hover{
+    background-color: $yellow;
+    color: white;
+    border: 3px solid $yellow;
+  }
+  &:focus{
+    @extend .btn-blue:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue:hover;
+    box-shadow: none;
+  }
+}
+.btn-lm-purple{
+  border: 3px solid $purple;
+  background-color: transparent;
+  color: $purple;
+  &:hover{
+    background-color: $purple;
+    color: white;
+    border: 3px solid $purple;
+  }
+  &:focus{
+    @extend .btn-blue:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue:hover;
+    box-shadow: none;
+  }
+}
+.btn-lm-red{
+  border: 3px solid $red;
+  background-color: transparent;
+  color: $red;
+  &:hover{
+    background-color: $red;
+    color: white;
+    border: 3px solid $red;
+  }
+  &:focus{
+    @extend .btn-blue:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue:hover;
+    box-shadow: none;
+  }
+}
+.btn-lm-green{
+  border: 3px solid $green;
+  background-color: transparent;
+  color: $green;
+  &:hover{
+    background-color: $green;
+    color: white;
+    border: 3px solid $green;
+  }
+  &:focus{
+    @extend .btn-blue:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue:hover;
+    box-shadow: none;
+  }
+}
 .btn-blue{
   border: 3px solid $blue;
   background-color: $blue;
@@ -392,14 +494,30 @@ h6{
 
 .high-lm-proposal{
   padding: 13px 3px 70px;
-  border: 3px solid;
   margin-bottom: 10px;
   border-radius: 10px;
 }
 .high-lm-commitment{
   padding: 3px 3px 0px;
-  border: 3px solid;
   margin-bottom: 10px;
+}
+.border-blue{
+  border:3px solid $blue;
+}
+.border-yellow{
+  border:3px solid $yellow;
+}
+.border-purple{
+  border:3px solid $purple;
+}
+.border-pink{
+  border:3px solid $pink;
+}
+.border-red{
+  border:3px solid $red;
+}
+.border-green{
+  border:3px solid $green;
 }
 .panel-group .panel{
   border-radius: 10px;
@@ -408,6 +526,9 @@ h6{
 .panel-default>.panel-heading{
   background-color: transparent;
   color: black;
+}
+.panel-default>.panel-heading+.panel-collapse>.panel-body{
+  border: transparent;
 }
 /*HOME 0*/
 #banner{
@@ -432,6 +553,9 @@ h6{
 }
 #compromisos-parlamentarios{
   padding: 70px 0 70px;
+}
+.commit-person{
+  margin-bottom: 25px;
 }
 #about{
   padding: 50px 0 40px;
@@ -466,7 +590,7 @@ p.aviso{
 #videoabout{
   min-height: 380px;
   padding: 100px 0 220px 0;
-  margin-bottom: -250px;
+  margin: 70px 0 -190px;
 }
 
 /*PROPOSALS REPOSITORY*/
@@ -1002,6 +1126,30 @@ hr{
 }
 .label-default{
   @extend .small;
+}
+.label-red{
+  @extend.label-default;
+  background-color: $red;
+}
+.label-blue{
+  @extend.label-default;
+  background-color: $blue;
+}
+.label-green{
+  @extend.label-default;
+  background-color: $green;
+}
+.label-yellow{
+  @extend.label-default;
+  background-color: $yellow;
+}
+.label-pink{
+  @extend.label-default;
+  background-color: $pink;
+}
+.label-purple{
+  @extend.label-default;
+  background-color: $purple;
 }
 .share-card{
   padding: 40px 0 0;

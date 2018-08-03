@@ -4,89 +4,698 @@
 {% block title %}- Portada{% endblock title %}
 
 {% block content %}
-<section id="banner" class="text-center">
-  <img src="{% static 'img/lm-banner.svg' %}" class="img-responsive">
-</section>
-<section class="yellowline-up-banner">
-</section>
-<section id="proposals" class="color yellow">
+<section id="videoabout">
   <div class="container">
     <div class="row">
-      <div class="col-md-8 col-md-offset-2 text-center">
-        <h3>Conoce las propuestas que niños, niñas y adolescentes tienen para Chile</h3>
+      <div class="col-md-12 text-center">
+        <img src="{% static 'img/lm-banner.svg' %}" class="img-responsive">
+      </div>
+      <div class="col-md-6 text-center hidden">
+        <div class="videoWrapper">
+          <iframe src="https://www.youtube.com/embed/W-jfqeUijbs" frameborder="0" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </div>
 </section>
-<section class="yellowline-down">
+
+<section class="purpleline-up">
 </section>
-{% if featured_proposals %}
+<section id="manifest" class="color purple">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center">
+        <p class="aviso"><b>La formación ciudadana debe iniciarse desde la infancia y consolidarse durante la adolescencia. Para ello, la Fundación Ciudadano Inteligente junto con el Fondo de las Naciones Unidas para la Infancia, UNICEF Chile, con ocasión de las Elecciones Parlamentarias y Presidenciales 2017, desarrollaron la iniciativa “Levanta la Mano”, una alternatuva para abrir el debate a niños, niñas y adolescentes quienes, pese a que no aún no tienen derecho a voto, sí tienen derecho a participar y a que sus opiniones sean tomadas en consideración en los temas que les afectan.</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="yellowline-up-banner">
+</section>
+<section id="results" class="color yellow">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center">
+        <h3>Durante el 2017 obtuvimos</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <h3>+200</h3>
+        <p class="bajada">propuestas de niños,<br> niñas y adolescentes</p>
+        <div><a class="btn btn-default" href="#propuestas" onclick="ga('send', 'event', 'home-formulario-inscripcion', 'click')">Ver propuestas</a></div>
+      </div>
+      <div class="col-md-4 text-center">
+        <h3>1</h3>
+        <p class="bajada">compromiso<br>presidencial</p>
+        <div><a class="btn btn-default" href="#compromiso-presidencial" onclick="ga('send', 'event', 'home-formulario-inscripcion', 'click')">Ver compromiso</a></div>
+      </div>
+      <div class="col-md-4 text-center">
+        <h3>19</h3>
+        <p class="bajada">compromisos<br>parlamentarios</p>
+        <div><a class="btn btn-default" href="#compromisos-parlamentarios" onclick="ga('send', 'event', 'home-formulario-inscripcion', 'click')">Ver compromisos</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="whiteline">
+</section>
+<section id="propuestas">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center">
+        <h3>Propuestas destacadas</h3>
+        <p class="bajada">Propuestas que recibieron más apoyo ciudadano</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="row">
+          <div class="high-lm-proposal border-blue">
+            <div class="col-md-9">
+              <span class="label label-blue">Salud y bienestar</span>
+              <h4>Más conversaciones de sexualidad, afectividad y género</h4>
+            </div>
+            <div class="col-md-3 text-center">
+              <a href="/propuestas/mas-conversaciones-de-sexualidad-afectividad-y-gen" class="btn btn-lm-blue">Ver propuesta</a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="high-lm-proposal border-yellow">
+            <div class="col-md-9">
+              <span class="label label-yellow">Protección y familia</span>
+              <h4>Menos trabajo, más tiempo en familia</h4>
+            </div>
+            <div class="col-md-3 text-center">
+              <a href="/propuestas/menos-trabajo-mas-tiempo-en-familia" class="btn btn-lm-yellow">Ver propuesta</a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="high-lm-proposal border-purple">
+            <div class="col-md-9">
+              <span class="label label-purple">Diversidad e integración</span>
+              <h4>Fin a la discriminación</h4>
+            </div>
+            <div class="col-md-3 text-center">
+              <a href="/propuestas/fin-a-la-discriminacion" class="btn btn-lm-purple">Ver propuesta</a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="high-lm-proposal border-purple">
+            <div class="col-md-9">
+              <span class="label label-purple">Diversidad e integración</span>
+              <h4>Matrimonio igualitario incluye adopción homoparental</h4>
+            </div>
+            <div class="col-md-3 text-center">
+              <a href="/propuestas/matrimonio-igualitario-incluye-adopcion-homoparent" class="btn btn-lm-purple">Ver propuesta</a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="high-lm-proposal border-blue">
+            <div class="col-md-9">
+              <span class="label label-blue">Salud y bienestar</span>
+              <h4>Mejor salud y hospitales</h4>
+            </div>
+            <div class="col-md-3 text-center">
+              <a href="/propuestas/mejor-salud-y-hospitales" class="btn btn-lm-blue">Ver propuesta</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="highlighted-proposals">
-  {% include 'popular_proposal/_lista_propuestas.html' with popular_proposals=featured_proposals form=Nil hide_proposal_list_header=True hidden_search=True %}
 </section>
-{% endif %}
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center"><a class="btn btn-black" href="{% url 'votita:list_proposals' %}" onclick="ga('send', 'event', 'home-ver-propuestas', 'click')">Ver todas las propuestas</a></div>
   </div>
 </div>
-<section class="blueline-up">
+
+<section class="redline-up">
 </section>
-<section id="about" class="color blue">
+<section id="compromiso-presidencial" class="color red">
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center">
-        <h3>¿Qué es?</h3>
-        <p class="bajada">Formarse como ciudadanos y ciudadanas tiene que partir desde la infancia y seguir avanzando en la adolescencia y la adultez. Por eso, nace “Levanta la mano” una herramienta para abrir la conversación entre niños, niñas y adolescentes para reflexionar, participar, discutir y proponer desde las vivencias propias, los problemas y desafíos que tenemos como país, y las posibles soluciones que se nos puedan ocurrir.</p>
-        <img src="{% static 'img/lm-yellow-nna.svg' %}" class="img-responsive">
+        <h3>Compromiso presidencial</h3>
+        <p class="bajada">Propuesta comprometida por el presidente Sebastián Piñera</p>
+        <div class="col-md-12 commit-person text-center">
+          <img src="{% static 'img/lm-pinera-commitment.png' %}"><br>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+      <div class="high-lm-presidencial">
+        <div class="col-md-9">
+          <span class="label label-red">Salud y bienestar</span>
+          <h4>Más conversaciones de sexualidad, afectividad y género</h4>
+        </div>
+        <div class="col-md-3 text-center">
+          <a href="/propuestas/mas-conversaciones-de-sexualidad-afectividad-y-gen" class="btn btn-lm-red">Ver propuesta</a>
+        </div>
       </div>
     </div>
   </div>
-</section>
-<section class="blueline-down">
-</section>
-<section id="join">
-  <div class="row" style="margin-right:0;">
-    <div class="col-md-6 text-center color purple">
-      <div class="control-width">
-        <h3>¿Eres docente?</h3>
-        <p class="aviso"><b>Si eres profesor o guía de un grupo de niños, niñas y adolescentes, te invitamos a descargar la metodología y generar un encuentro con tu curso o grupo.</b></p>
-        <div><a class="btn btn-default" href="{% static 'materiales/metodologia-levantalamano.pdf' %}" target="_blank" onclick="ga('send', 'event', 'home-metodologia.pdf', 'click')">Descarga la metodología</a></div>
-      </div>
-    </div>
-    <div class="col-md-6 text-center color red">
-      <div class="control-width">
-        <h3>¿Eres estudiante?</h3>
-        <p class="aviso"><b>Si eres estudiante, tienes entre 10 y 17 años y quieres que tu profe o guía de algún taller, grupo scout o actividad lleve esta iniciativa a tu grupo, déjanos su contacto.</b></p>
-        <div><a class="btn btn-default" href="https://docs.google.com/forms/d/e/1FAIpQLScIl3rwIJkQpihyAON-p38h7EakmsbP0I_FWuce_xkvJ7ArGg/viewform" target="_blank" onclick="ga('send', 'event', 'home-formulario-inscripcion', 'click')">Déjanos su contacto</a></div>
-      </div>
-    </div>
   </div>
 </section>
+
 <section class="whiteline">
 </section>
-<section id="enter">
+<section id="compromisos-parlamentarios">
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center">
-        <h3>Ingresa las propuestas de un encuentro</h3>
-        <p class="aviso"><b>¿Fuiste moderador o moderadora de un encuentro?</b></p>
-        <p class="bajada">Ingresa los resultados</p>
-        <div><a class="btn btn-blue-line" href="{% url 'votita:create_gathering' %}" target="_blank" onclick="ga('send', 'event', 'home-ingresar-propuestas', 'click')">Ingresar propuestas</a></div>
-        <img src="{% static 'img/lm-ingresar.svg' %}" class="img-responsive img-down">
+        <h3>Compromisos parlamentarios</h3>
+        <p class="bajada">Propuestas comprometidas por senadores, senadoras, diputados y diputadas</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default high-lm-commitment border-blue">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <div class="row">
+                <div class="col-md-9">
+                  <span class="label label-blue">Salud y bienestar</span>
+                  <h4>Más conversaciones de afectividad, sexualidad y género</h4>
+                </div>
+                <div class="col-md-3 text-center">
+                  <div class="row">
+                      <p class="commit">
+                        <span class="conteo">8</span> compromisos
+                      </p>
+                  </div>
+                  <div class="row">
+                  <a role="button" class="btn btn-lm-blue"data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Ver compromisos
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body text-center">
+                <div class="row">
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-provoste.png' %}"><br>
+                    Yasna Provoste
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-latorre.png' %}"><br>
+                    Juan Ignacio Latorre
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-gutierrez.png' %}"><br>
+                    Hugo Gutiérrez
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-hertz.png' %}"><br>
+                    Caarmen Hertz
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-castillo.png' %}"><br>
+                    Natalia Castillo
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-yeomans.png' %}"><br>
+                    Gael Yeomans
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-saavedra.png' %}"><br>
+                    Gastón Saavedra
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-monsalve.png' %}"><br>
+                    Manuel Monsalve
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default high-lm-commitment border-yellow">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <div class="row">
+                <div class="col-md-9">
+                  <span class="label label-yellow">Protección y familia</span>
+                  <h4>Menos trabajo, más tiempo en familia</h4>
+                </div>
+                <div class="col-md-3 text-center">
+                  <div class="row">
+                    <p class="commit">
+                        <span class="conteo">7</span> compromisos
+                      </p>
+                  </div>
+                  <div class="row">
+                  <a role="button" class="btn btn-lm-yellow"data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Ver compromisos
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body text-center">
+                <div class="row">
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-pinera.png' %}"><br>
+                    Sebastián Piñera
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-latorre.png' %}"><br>
+                    Juan Ignacio Latorre
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-gutierrez.png' %}"><br>
+                    Hugo Gutiérrez
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-perez.png' %}"><br>
+                    Catalina Pérez
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-brito.png' %}"><br>
+                    Jorge Brito
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-mix.png' %}"><br>
+                    Claudia Mix
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-sabat.png' %}"><br>
+                    Marcela Sabat
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default high-lm-commitment border-purple">
+            <div class="panel-heading" role="tab" id="headingThree">
+              <div class="row">
+                <div class="col-md-9">
+                  <span class="label label-purple">Diversidad e integración</span>
+                  <h4>Matrimonio igualitario incluye adopción homoparental</h4>
+                </div>
+                <div class="col-md-3 text-center">
+                  <div class="row">
+                    <p class="commit">
+                        <span class="conteo">6</span> compromisos
+                      </p>
+                  </div>
+                  <div class="row">
+                  <a role="button" class="btn btn-lm-purple"data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Ver compromisos
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+              <div class="panel-body text-center">
+                <div class="row">
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-latorre.png' %}"><br>
+                    Juan Ignacio Latorre
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-gutierrez.png' %}"><br>
+                    Hugo Gutiérrez
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-orsini.png' %}"><br>
+                    Maite Orsini
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-fernandez.png' %}"><br>
+                    Maya Fernández
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-castillo.png' %}"><br>
+                    Natalia Castillo
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-crispi.png' %}"><br>
+                    Miguel Crispi
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default high-lm-commitment border-purple">
+            <div class="panel-heading" role="tab" id="headingFour">
+              <div class="row">
+                <div class="col-md-9">
+                  <span class="label label-purple">Diversidad e integración</span>
+                  <h4>Fin a la discriminación</h4>
+                </div>
+                <div class="col-md-3 text-center">
+                  <div class="row">
+                    <p class="commit">
+                        <span class="conteo">5</span> compromisos
+                      </p>
+                  </div>
+                  <div class="row">
+                  <a role="button" class="btn btn-lm-purple"data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Ver compromisos
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+              <div class="panel-body text-center">
+                <div class="row">
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-provoste.png' %}"><br>
+                    Yasna Provoste
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-latorre.png' %}"><br>
+                    Juan Ignacio Latorre
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-gutierrez.png' %}"><br>
+                    Hugo Gutiérrez
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-orsini.png' %}"><br>
+                    Maite Orsini
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-yeomans.png' %}"><br>
+                    Gael Yeomans
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default high-lm-commitment border-green">
+            <div class="panel-heading" role="tab" id="headingFive">
+              <div class="row">
+                <div class="col-md-9">
+                  <span class="label label-green">Política y participación</span>
+                  <h4>Crear un consejo estudiantil regional de alumnos de enseñanza media</h4>
+                </div>
+                <div class="col-md-3 text-center">
+                  <div class="row">
+                    <p class="commit">
+                        <span class="conteo">2</span> compromisos
+                      </p>
+                  </div>
+                  <div class="row">
+                  <a role="button" class="btn btn-lm-green"data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    Ver compromisos
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+              <div class="panel-body text-center">
+                <div class="row">
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-castillo.png' %}"><br>
+                    Natalia Castillo
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-jackson.png' %}"><br>
+                    Giorgio Jackson
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default high-lm-commitment border-pink">
+            <div class="panel-heading" role="tab" id="headingSix">
+              <div class="row">
+                <div class="col-md-9">
+                  <span class="label label-pink">Educación y trabajo</span>
+                  <h4>Que los padres salgan del trabajo a la misma hora que nosotros del colegio</h4>
+                </div>
+                <div class="col-md-3 text-center">
+                  <div class="row">
+                    <p class="commit">
+                        <span class="conteo">2</span> compromisos
+                      </p>
+                  </div>
+                  <div class="row">
+                  <a role="button" class="btn btn-lm-pink"data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    Ver compromisos
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+              <div class="panel-body text-center">
+                <div class="row">
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-hertz.png' %}"><br>
+                    Carmen Hertz
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-vallejo.png' %}"><br>
+                    Camila Vallejo
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default high-lm-commitment border-blue">
+            <div class="panel-heading" role="tab" id="headingSeven">
+              <div class="row">
+                <div class="col-md-9">
+                  <span class="label label-blue">Salud y bienestar</span>
+                  <h4>Mejor salud y hospitales</h4>
+                </div>
+                <div class="col-md-3 text-center">
+                  <div class="row">
+                    <p class="commit">
+                        <span class="conteo">2</span> compromisos
+                      </p>
+                  </div>
+                  <div class="row">
+                  <a role="button" class="btn btn-lm-blue"data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    Ver compromisos
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+              <div class="panel-body text-center">
+                <div class="row">
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-delreal.png' %}"><br>
+                    Catalina Del Real
+                  </div>
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-yeomans.png' %}"><br>
+                    Gabriel Yeomans
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default high-lm-commitment border-red">
+            <div class="panel-heading" role="tab" id="headingEight">
+              <div class="row">
+                <div class="col-md-9">
+                  <span class="label label-red">Cultura y tiempo libre</span>
+                  <h4>Más espacios públicos y comunitarios para la práctica del deporte y la vida sana</h4>
+                </div>
+                <div class="col-md-3 text-center">
+                  <div class="row">
+                    <p class="commit">
+                        <span class="conteo">1</span> compromiso
+                      </p>
+                  </div>
+                  <div class="row">
+                  <a role="button" class="btn btn-lm-red"data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                    Ver compromiso
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+              <div class="panel-body text-center">
+                <div class="row">
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-yeomans.png' %}"><br>
+                    Gael Yeomans
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default high-lm-commitment border-purple">
+            <div class="panel-heading" role="tab" id="headingNine">
+              <div class="row">
+                <div class="col-md-9">
+                  <span class="label label-purple">Diversidad e integración</span>
+                  <h4>Inclusión a personas con discapacidad</h4>
+                </div>
+                <div class="col-md-3 text-center">
+                  <div class="row">
+                    <p class="commit">
+                        <span class="conteo">1</span> compromiso
+                      </p>
+                  </div>
+                  <div class="row">
+                  <a role="button" class="btn btn-lm-purple"data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                    Ver compromiso
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+              <div class="panel-body text-center">
+                <div class="row">
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-yeomans.png' %}"><br>
+                    Gael Yeomans
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default high-lm-commitment border-yellow">
+            <div class="panel-heading" role="tab" id="headingTen">
+              <div class="row">
+                <div class="col-md-9">
+                  <span class="label label-yellow">Protección y familia</span>
+                  <h4>Nuestro derecho es tener una familia</h4>
+                </div>
+                <div class="col-md-3 text-center">
+                  <div class="row">
+                    <p class="commit">
+                        <span class="conteo">1</span> compromiso
+                      </p>
+                  </div>
+                  <div class="row">
+                  <a role="button" class="btn btn-lm-yellow"data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                    Ver compromiso
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen">
+              <div class="panel-body text-center">
+                <div class="row">
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-sabat.png' %}"><br>
+                    Marcela Sabat
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default high-lm-commitment border-blue">
+            <div class="panel-heading" role="tab" id="headingEleven">
+              <div class="row">
+                <div class="col-md-9">
+                  <span class="label label-blue">Salud y bienestar</span>
+                  <h4>Mejorando la salud, disminuyendo la obesidad</h4>
+                </div>
+                <div class="col-md-3 text-center">
+                  <div class="row">
+                    <p class="commit">
+                        <span class="conteo">1</span> compromiso
+                      </p>
+                  </div>
+                  <div class="row">
+                  <a role="button" class="btn btn-lm-blue"data-toggle="collapse" data-parent="#accordion" href="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                    Ver compromiso
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
+              <div class="panel-body text-center">
+                <div class="row">
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-sabat.png' %}"><br>
+                    Marcela Sabat
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default high-lm-commitment border-red">
+            <div class="panel-heading" role="tab" id="headingTwelve">
+              <div class="row">
+                <div class="col-md-9">
+                  <span class="label label-red">Cultura y tiempo libre</span>
+                  <h4>Mejores ciudades para todos</h4>
+                </div>
+                <div class="col-md-3 text-center">
+                  <div class="row">
+                    <p class="commit">
+                        <span class="conteo">1</span> compromiso
+                      </p>
+                  </div>
+                  <div class="row">
+                  <a role="button" class="btn btn-lm-red"data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                    Ver compromiso
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div id="collapseTwelve" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwelve">
+              <div class="panel-body text-center">
+                <div class="row">
+                  <div class="col-md-3 commit-person">
+                    <img src="{% static 'img/lm-fernandez.png' %}"><br>
+                    Maya Fernández
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="blueline-up">
+</section>
+<section id="sistematizacion" class="color blue">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center">
+        <h3>Sistematización de resultados 2017</h3>
+        <p class="bajada">Revisa aquí la sistematización del proceso Levanta la Mano 2017 donde analizamos la agenda que construyeron niños, niñas y adolescentes</p>
+        <div><a class="btn btn-default" href="{% static 'materiales/sistematizacion-2017.pdf' %}" target="_blank" onclick="ga('send', 'event', 'home-2017.pdf', 'click')">Descargar sistematización</a></div>
       </div>
     </div>
   </div>
 </section>
-<section class="yellowline-up">
+<section class="skyline-up">
 </section>
-<section id="videoabout" class="yellow">
+<section id="folleto" class="color sky">
   <div class="container">
     <div class="row">
-      <div class="col-md-10 col-md-offset-1 text-center">
-        <div class="videoWrapper">
-          <iframe src="https://www.youtube.com/embed/W-jfqeUijbs" frameborder="0" allowfullscreen></iframe>
-        </div>
+      <div class="col-md-8 col-md-offset-2 text-center">
+        <h3>Folleto de resultados 2017</h3>
+        <p class="bajada">Revisa aquí el folleto con el resumen de resultados del proceso Levanta la Mano 2017 que le entregamos a todas las candidaturas electas comprometidas</p>
+        <div><a class="btn btn-default" href="{% static 'materiales/folleto-2017.pdf' %}" target="_blank" onclick="ga('send', 'event', 'home-folleto.pdf', 'click')">Descargar folleto</a></div>
       </div>
     </div>
   </div>

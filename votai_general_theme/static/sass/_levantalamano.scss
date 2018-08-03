@@ -63,7 +63,9 @@ h6{
 .h-header{
   margin-top: 120px;
 }
-
+.commit{
+  margin-bottom: 0;
+}
 /*NAV*/
 .navbar-default{
   background-color: black;
@@ -154,6 +156,108 @@ h6{
   }
   &:active:hover{
     @extend .btn-black:hover;
+    box-shadow: none;
+  }
+}
+.btn-lm-blue{
+  border: 3px solid $blue;
+  background-color: transparent;
+  color: $blue;
+  &:hover{
+    background-color: $blue;
+    color: white;
+    border: 3px solid $blue;
+  }
+  &:focus{
+    @extend .btn-blue:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue:hover;
+    box-shadow: none;
+  }
+}
+.btn-lm-pink{
+  border: 3px solid $pink;
+  background-color: transparent;
+  color: $pink;
+  &:hover{
+    background-color: $pink;
+    color: white;
+    border: 3px solid $pink;
+  }
+  &:focus{
+    @extend .btn-blue:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue:hover;
+    box-shadow: none;
+  }
+}
+.btn-lm-yellow{
+  border: 3px solid $yellow;
+  background-color: transparent;
+  color: $yellow;
+  &:hover{
+    background-color: $yellow;
+    color: white;
+    border: 3px solid $yellow;
+  }
+  &:focus{
+    @extend .btn-blue:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue:hover;
+    box-shadow: none;
+  }
+}
+.btn-lm-purple{
+  border: 3px solid $purple;
+  background-color: transparent;
+  color: $purple;
+  &:hover{
+    background-color: $purple;
+    color: white;
+    border: 3px solid $purple;
+  }
+  &:focus{
+    @extend .btn-blue:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue:hover;
+    box-shadow: none;
+  }
+}
+.btn-lm-red{
+  border: 3px solid $red;
+  background-color: transparent;
+  color: $red;
+  &:hover{
+    background-color: $red;
+    color: white;
+    border: 3px solid $red;
+  }
+  &:focus{
+    @extend .btn-blue:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue:hover;
+    box-shadow: none;
+  }
+}
+.btn-lm-green{
+  border: 3px solid $green;
+  background-color: transparent;
+  color: $green;
+  &:hover{
+    background-color: $green;
+    color: white;
+    border: 3px solid $green;
+  }
+  &:focus{
+    @extend .btn-blue:hover;
+  }
+  &:active:hover{
+    @extend .btn-blue:hover;
     box-shadow: none;
   }
 }
@@ -296,6 +400,9 @@ h6{
 .red{
   background-color: $red;
 }
+.sky{
+  background-color: $sky;
+}
 .purpleline{
   background-image: url("../img/lm-purpleline.svg");
   background-repeat: no-repeat;
@@ -306,6 +413,44 @@ h6{
   background-repeat: no-repeat;
   min-height: 46px;
   margin-top: -48px;
+}
+.purpleline-up{
+  background-image: url("../img/lm-purpleline-up.svg");
+  background-repeat: no-repeat;
+  min-height: 28px;
+  margin-top: 60px;
+}
+.pinkline-up{
+  background-image: url("../img/lm-pinkline-up.svg");
+  background-repeat: no-repeat;
+  min-height: 28px;
+  margin-top: 60px;
+}
+.redline-up{
+  background-image: url("../img/lm-redline-up.svg");
+  background-repeat: no-repeat;
+  min-height: 28px;
+  margin-top: 60px;
+}
+.blueline-up{
+  background-image: url("../img/lm-blueline-up.svg");
+  background-repeat: no-repeat;
+  min-height: 28px;
+  margin-top: 60px;
+}
+.blueline-down{
+  background-image: url("../img/lm-blueline-down.svg");
+  background-repeat: no-repeat;
+  min-height: 175px;
+  margin-top: -13px;
+  position: relative;
+  z-index: 2000;
+}
+.skyline-up{
+  background-image: url("../img/lm-skyline-up.svg");
+  background-repeat: no-repeat;
+  min-height: 28px;
+  margin-top: 60px;
 }
 .yellowline-up-banner{
   background-image: url("../img/lm-yellowline-up.svg");
@@ -324,20 +469,6 @@ h6{
   background-repeat: no-repeat;
   min-height: 38px;
   margin-top: -19px;
-}
-.blueline-up{
-  background-image: url("../img/lm-blueline-up.svg");
-  background-repeat: no-repeat;
-  min-height: 34px;
-  margin-top: 35px;
-}
-.blueline-down{
-  background-image: url("../img/lm-blueline-down.svg");
-  background-repeat: no-repeat;
-  min-height: 175px;
-  margin-top: -13px;
-  position: relative;
-  z-index: 2000;
 }
 .whiteline{
   background-image: url("../img/lm-whiteline.svg");
@@ -361,6 +492,51 @@ h6{
   z-index: -20;
 }
 
+.high-lm-proposal{
+  padding: 13px 3px 70px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.high-lm-presidencial{
+  background-color: white;
+  padding: 13px 3px 70px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 3px solid white;
+}
+.high-lm-commitment{
+  padding: 3px 3px 0px;
+  margin-bottom: 10px;
+}
+.border-blue{
+  border:3px solid $blue;
+}
+.border-yellow{
+  border:3px solid $yellow;
+}
+.border-purple{
+  border:3px solid $purple;
+}
+.border-pink{
+  border:3px solid $pink;
+}
+.border-red{
+  border:3px solid $red;
+}
+.border-green{
+  border:3px solid $green;
+}
+.panel-group .panel{
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.panel-default>.panel-heading{
+  background-color: transparent;
+  color: black;
+}
+.panel-default>.panel-heading+.panel-collapse>.panel-body{
+  border: transparent;
+}
 /*HOME 0*/
 #banner{
   padding: 170px 0 0;
@@ -369,8 +545,35 @@ h6{
   position: relative;
   top: 100px;
 }
+#manifest{
+  padding: 90px 0 90px;
+  margin-bottom: -95px;
+}
+#results{
+  padding: 80px 0 120px;
+}
+#propuestas{
+  padding: 80px 0 50px;
+}
+#compromiso-presidencial{
+  padding: 70px 0 100px;
+}
+#compromisos-parlamentarios{
+  padding: 70px 0 70px;
+}
+.commit-person{
+  margin-bottom: 25px;
+}
+#sistematizacion{
+  padding: 80px 0 120px;
+  margin-bottom: -100px;
+}
+#folleto{
+  padding: 70px 0 200px;
+  margin-bottom: -240px;
+}
 #about{
-  padding: 50px 0 40px;
+  padding: 70px 0 50px;
 }
 p.bajada{
   font-size: 18px;
@@ -402,7 +605,7 @@ p.aviso{
 #videoabout{
   min-height: 380px;
   padding: 100px 0 220px 0;
-  margin-bottom: -250px;
+  margin: 70px 0 -190px;
 }
 
 /*PROPOSALS REPOSITORY*/
@@ -417,12 +620,12 @@ p.aviso{
   height: -webkit-fill-available;
 }
 #highlighted-proposals{
-  margin: -50px 0 0;
 }
 .post.propuesta{
   position: absolute;
   left: 0px;
   top: 0px;
+  padding-bottom: 30px;
 }
 .post{
   margin: 0 0 50px;
@@ -938,6 +1141,30 @@ hr{
 }
 .label-default{
   @extend .small;
+}
+.label-red{
+  @extend.label-default;
+  background-color: $red;
+}
+.label-blue{
+  @extend.label-default;
+  background-color: $blue;
+}
+.label-green{
+  @extend.label-default;
+  background-color: $green;
+}
+.label-yellow{
+  @extend.label-default;
+  background-color: $yellow;
+}
+.label-pink{
+  @extend.label-default;
+  background-color: $pink;
+}
+.label-purple{
+  @extend.label-default;
+  background-color: $purple;
 }
 .share-card{
   padding: 40px 0 0;

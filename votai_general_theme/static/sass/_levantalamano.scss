@@ -388,6 +388,12 @@ h6{
   z-index: -20;
 }
 
+.high-lm-proposal{
+  padding: 13px 3px 70px;
+  border: 3px solid;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
 /*HOME 0*/
 #banner{
   padding: 170px 0 0;
@@ -459,6 +465,7 @@ p.aviso{
   position: absolute;
   left: 0px;
   top: 0px;
+  padding-bottom: 30px;
 }
 .post{
   margin: 0 0 50px;

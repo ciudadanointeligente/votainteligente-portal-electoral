@@ -63,7 +63,9 @@ h6{
 .h-header{
   margin-top: 120px;
 }
-
+.commit{
+  margin-bottom: 0;
+}
 /*NAV*/
 .navbar-default{
   background-color: black;
@@ -393,6 +395,19 @@ h6{
   border: 3px solid;
   margin-bottom: 10px;
   border-radius: 10px;
+}
+.high-lm-commitment{
+  padding: 3px 3px 0px;
+  border: 3px solid;
+  margin-bottom: 10px;
+}
+.panel-group .panel{
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.panel-default>.panel-heading{
+  background-color: transparent;
+  color: black;
 }
 /*HOME 0*/
 #banner{

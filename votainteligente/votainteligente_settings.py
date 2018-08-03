@@ -28,3 +28,4 @@ PRIORITY_CANDIDATES = []
 MEREPRESENTA_SITE_ID = 2
 # Colores para compartir imagen de una propuesta
 SHARED_PROPOSAL_IMAGE_ID_COLOR = (122,183,255,255)
+EAGER_USER_IMAGE = True

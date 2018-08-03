@@ -11,8 +11,12 @@ def image_getter(url):
     return File(img_temp)
 
 
+def _save_image_to_user(url, user):
+    f = image_getter(url)
+    name = "profile_%s.jpg" % user.username
+    user.profile.image = f
+    user.profile.image.save(name, f)
+
 @app.task
 def save_image_to_user(url, user):
-    f = image_getter(url)
-    user.profile.image = f
-    user.profile.image.save(user.username, f)
+    _save_image_to_user(url, user)

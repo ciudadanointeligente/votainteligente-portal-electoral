@@ -1,5 +1,6 @@
 # coding=utf-8
 from django.test import TestCase
+from elections.tests import VotaInteligenteTestCase
 from popular_proposal.models import PopularProposal, Commitment
 from merepresenta.models import (MeRepresentaPopularProposal,
                                  MeRepresentaCommitment,
@@ -13,6 +14,7 @@ from django.utils import timezone
 import datetime
 from django.core.urlresolvers import reverse
 from merepresenta.voluntarios.models import VolunteerProfile
+from backend_candidate.models import Candidacy
 
 
 class MeRepresentaPopularProposalTestCase(TestCase):
@@ -40,7 +42,7 @@ class MeRepresentaPopularProposalTestCase(TestCase):
 
         self.assertIsInstance(commitment, Commitment)
 
-class CandidateTestCase(TestCase):
+class CandidateTestCase(VotaInteligenteTestCase):
     def test_instanciate(self):
         candidate = Candidate.objects.create(name="Candidate 1",
                                              cpf='1230',
@@ -52,6 +54,21 @@ class CandidateTestCase(TestCase):
         self.assertTrue(candidate)
         self.assertFalse(candidate.is_ghost)
         self.assertFalse(candidate.facebook_contacted)
+
+    def test_get_image_from_user(self):
+        image = self.get_image()
+        user = User.objects.create_user(username='user', password="password")
+        user.profile.image = image
+        user.profile.save()
+        candidate = Candidate.objects.create(name="Candidate 1",
+                                             cpf='1230',
+                                             nome_completo=u'Candidato uno',
+                                             numero='190000000560',
+                                             race="preta",
+                                             original_email='perrito@gatito.com',
+                                             email_repeated=False)
+        candidacy = Candidacy.objects.create(user=user, candidate=candidate)
+        self.assertTrue(candidate.get_image())
 
 class CandidateListForVolunteers(TestCase):
     def test_list_for_volunteers(self):

@@ -267,6 +267,15 @@ class CandidacyModelTestCase(CandidacyTestCaseBase):
         self.assertTrue(TakenPosition.objects.filter(person=self.candidate))
         self.assertRedirects(response, url)
 
+    def test_candidacy_get_complete_profile_url(self):
+        candidacy = Candidacy.objects.create(user=self.feli,
+                                             candidate=self.candidate
+                                              )
+        url = reverse('backend_candidate:complete_profile',
+                              kwargs={'slug': self.candidate.election.slug,
+                              'candidate_slug': self.candidate.slug})
+        self.assertEquals(candidacy.get_complete_profile_url(), url)
+
 
 class CandidacyContacts(CandidacyTestCaseBase):
     def setUp(self):

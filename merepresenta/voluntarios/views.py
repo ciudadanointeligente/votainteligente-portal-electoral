@@ -18,7 +18,7 @@ from merepresenta.voluntarios.filters import CandidateFilter
 from django.views.generic.edit import UpdateView
 from .forms import UpdateAreaForm
 from .models import VolunteerProfile
-
+from django.http import HttpResponseNotFound, HttpResponseRedirect
 
 class VolunteerIndexView(StaffuserRequiredMixin, FilterView):
     model = Candidate
@@ -48,6 +48,12 @@ class VolunteerIndexView(StaffuserRequiredMixin, FilterView):
 class VolunteerLoginView(TemplateView):
     template_name = "voluntarios/login.html"
 
+    def dispatch(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            if not self.request.user.is_staff:
+                return HttpResponseNotFound()
+            return HttpResponseRedirect(reverse_lazy('volunteer_index'))
+        return super(VolunteerLoginView, self).dispatch(*args, **kwargs)
 
 
 def load_strategy(request=None):

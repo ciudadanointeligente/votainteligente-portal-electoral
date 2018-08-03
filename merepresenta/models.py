@@ -28,7 +28,7 @@ class MeRepresentaCommitment(Commitment):
 
 
 NON_MALE_KEY = "F"
-NON_WHITE_KEY = {"possible_values": ["PARDA", "PARDA"]}
+NON_WHITE_KEY = {"possible_values": ["PARDA", "PRETA"]}
 
 
 class ForVolunteersManager(models.Manager):
@@ -75,6 +75,21 @@ class Candidate(OriginalCandidate):
     objects = ForVolunteersManager()
 
     for_volunteers = LimitCandidatesForVolunteers()
+
+    def get_image(self):
+        print "oli"
+        if self.candidacy_set.exists():
+            user = self.candidacy_set.first().user
+            return user.profile.image
+        return self.image
+
+    # @property
+    # def image(self):
+    #     """I'm the 'x' property."""
+    #     if self.candidacies.exists():
+    #         user = self.candidacies.first().user
+    #         return user.profile.image
+    #     return self.image
 
 class VolunteerInCandidate(models.Model):
     volunteer = models.ForeignKey(User)

@@ -4,7 +4,7 @@
 {% load votainteligente_extras %}
 
 {% for candidacy in user.candidacies.all %}
-  {% url 'backend_candidate:complete_profile' slug=candidacy.candidate.election.slug candidate_slug=candidacy.candidate.slug  as complete_profile %}
+  {% url 'merepresenta_complete_profile' slug=candidacy.candidate.election.slug candidate_slug=candidacy.candidate.slug  as complete_profile %}
 
   <li role="presentation" class="nav-item {% if not mobile %}hidden-xs{% endif %} mi-perfil {% ifequal request.path complete_profile%} active{% endifequal %}">
     <a class="nav-link small" href="{{complete_profile}}">

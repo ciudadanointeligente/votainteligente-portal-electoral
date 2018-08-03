@@ -1,6 +1,8 @@
 from social_django.strategy import DjangoStrategy
 from django.shortcuts import resolve_url
 from django.contrib.auth import authenticate
+from backend_candidate.models import Candidacy
+from merepresenta.models import Candidate
 
 
 class CandidateStrategy(DjangoStrategy):
@@ -12,6 +14,9 @@ class CandidateStrategy(DjangoStrategy):
 
     def create_user(self, *args, **kwargs):
         user = super(CandidateStrategy, self).create_user(*args, **kwargs)
+        slug = self.session_get('facebook_slug')
+        c = Candidate.objects.get(slug=slug)
+        Candidacy.objects.create(user=user, candidate=c)
         return user
 
     def authenticate(self, backend, *args, **kwargs):

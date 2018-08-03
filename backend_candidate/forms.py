@@ -133,7 +133,7 @@ def _import(name):
     for comp in components[1:]:
         try:
             mod = getattr(mod, comp)
-        except AttributeError:
+        except AttributeError as e:
             raise ImportError
     return mod
 
@@ -211,8 +211,7 @@ def get_candidate_profile_form_class():
     if settings.THEME:
         try:
             PARENT_FORM_CLASS = _import(settings.THEME + ".forms.PersonalDataForm")
-
-        except ImportError:
+        except ImportError as e:
             from votai_general_theme.forms import PersonalDataForm
             PARENT_FORM_CLASS = PersonalDataForm
     else:

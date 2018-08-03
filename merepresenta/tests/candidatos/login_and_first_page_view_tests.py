@@ -14,9 +14,26 @@ from merepresenta.voluntarios.models import VolunteerProfile
 from elections.models import PersonalData, Area, Election
 from django.conf import settings
 import datetime
-from merepresenta.candidatos.forms import CPFAndDdnForm
+from merepresenta.candidatos.forms import CPFAndDdnForm, CPFAndDdnForm2
 
 PASSWORD = 'candidato123'
+
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
+class CandidateLoginView(VolunteersTestCaseBase):
+    def setUp(self):
+        super(CandidateLoginView, self).setUp()
+        session = self.client.session
+        session['facebook_state'] = '1'
+        session.save()
+
+    def atest_get_cpf_and_date_view(self):
+        url = reverse('cpf_and_date_2')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('form', response.context)
+
+
 
 @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
 class CandidateLoginView(VolunteersTestCaseBase):
@@ -39,12 +56,88 @@ class CandidateLoginView(VolunteersTestCaseBase):
         cpf_and_date_url = reverse('cpf_and_date')
         self.assertRedirects(response, cpf_and_date_url)
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            'merepresenta/templates'
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'constance.context_processors.config',
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.template.context_processors.request',
+                'django.contrib.messages.context_processors.messages',
+                #'django.template.loaders.app_directories.Loader',
+            ],
+        },
+    },
+]
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls',
+    THEME='merepresenta',
+    TEMPLATES=TEMPLATES)
+class CPFChoosingView2(VolunteersTestCaseBase):
+    def setUp(self):
+        super(CPFChoosingView2, self).setUp()
+        self.d = datetime.datetime(2009, 10, 5, 18, 00)
+        self.area = Area.objects.create(name="area")
+        self.election = Election.objects.create(name='ele', area=self.area)
+        self.candidate = Candidate.objects.create(name='THE candidate', cpf='1234', data_de_nascimento=self.d)
+        self.election.candidates.add(self.candidate)
+        session = self.client.session
+        session['facebook_state'] = '1'
+        session['facebook_slug'] = self.candidate.slug
+        session.save()
+
+    def test_form_for_joining_a_user_and_a_candidate(self):
+        user = User.objects.create(username='HolaSoyCandidato')
+        data = {
+            'nascimento': self.d,
+            'cpf': '1234',
+            }
+        form = CPFAndDdnForm2(data=data)
+        self.assertTrue(form.is_valid())
+        candidate = form.get_candidate()
+        self.assertEquals(candidate, self.candidate)
+
+    def test_get_the_view(self):
+        url = reverse('cpf_and_date2')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIsInstance(response.context['form'], CPFAndDdnForm2)
+
+    def test_trying_to_get_to_cpf_and_data_view_is_not_possible_for_volunteers(self):
+        user = User.objects.create_user(username="volunteer", password=PASSWORD, is_staff=True)
+
+        url = reverse('cpf_and_date2')
+        self.client.login(username=user.username, password=PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+
+    def test_post_to_the_view_returns_login_for_candidate(self):
+        url = reverse('cpf_and_date2')
+        data = {
+            'nascimento': self.d.strftime('%d/%m/%Y'),
+            'cpf': '1234',
+            }
+        response = self.client.post(url, data=data)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'candidatos/login_with_facebook.html')
+        self.assertEquals(response.context['candidate'], self.candidate)
 
     @override_settings(SOCIAL_AUTH_FACEBOOK_KEY='1',
                        SOCIAL_AUTH_FACEBOOK_SECRET='2')
     @mock.patch('social_core.backends.base.BaseAuth.request')
     def test_complete_with_facebook(self, mock_request):
-        cpf_and_date_url = reverse('cpf_and_date')
+        
         url = reverse('candidate_social_complete', kwargs={'backend': 'facebook'})
         url += '?code=2&state=1'
         mock_request.return_value.json.return_value = {'access_token': '123'}
@@ -52,13 +145,25 @@ class CandidateLoginView(VolunteersTestCaseBase):
             response = self.client.get(url)
             
             self.assertEqual(response.status_code, 302)
-            self.assertEqual(response.url, cpf_and_date_url)
             social_user = UserSocialAuth.objects.get()
             created_user = social_user.user
             self.assertFalse(created_user.is_staff)
 
+    def test_candidacy_created_redirects(self):
+        url_complete_profile = reverse('merepresenta_complete_profile', kwargs={'slug': self.election.slug,
+                                                                                     'candidate_slug': self.candidate.slug})
+        user = User.objects.create_user(username='HolaSoyCandidato', password=PASSWORD)
+        candidacy = Candidacy.objects.create(candidate=self.candidate, user=user)
+        url = reverse('cpf_and_date2')
+        self.client.login(username=user.username, password=PASSWORD)
+        response = self.client.get(url)
+        self.assertRedirects(response, url_complete_profile)
 
-@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
+
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls',
+    THEME='merepresenta',
+    TEMPLATES=TEMPLATES)
 class CPFChoosingView(VolunteersTestCaseBase):
     def setUp(self):
         super(CPFChoosingView, self).setUp()
@@ -120,7 +225,7 @@ class CPFChoosingView(VolunteersTestCaseBase):
         candidate = Candidate.objects.create(name="Candi")
         election.candidates.add(candidate)
         Candidacy.objects.create(candidate=candidate, user=possible_candidate)
-        url_complete_profile = reverse('backend_candidate:complete_profile', kwargs={'slug': election.slug, 'candidate_slug': candidate.slug})
+        url_complete_profile = reverse('merepresenta_complete_profile', kwargs={'slug': election.slug, 'candidate_slug': candidate.slug})
         response = self.client.get(url)
         self.assertRedirects(response, url_complete_profile)
 
@@ -142,22 +247,3 @@ class CPFChoosingView(VolunteersTestCaseBase):
         response = self.client.post(url, data=data)
         self.assertEquals(response.status_code, 302)
         candidacy = Candidacy.objects.get(user=possible_candidate)
-
-    # @override_settings(SOCIAL_AUTH_FACEBOOK_KEY='1',
-    #                    SOCIAL_AUTH_FACEBOOK_SECRET='2')
-    # @mock.patch('social_core.backends.base.BaseAuth.request')
-    # def test_complete_with_facebook(self, mock_request):
-    #     volunteer_index_url = reverse('volunteer_index')
-    #     url = reverse('candidate_social_complete', kwargs={'backend': 'facebook'})
-    #     url += '?code=2&state=1'
-    #     mock_request.return_value.json.return_value = {'access_token': '123'}
-    #     with mock.patch('django.contrib.sessions.backends.base.SessionBase.set_expiry', side_effect=[OverflowError, None]):
-    #         response = self.client.get(url)
-            
-    #         self.assertEqual(response.status_code, 302)
-    #         self.assertEqual(response.url, volunteer_index_url)
-    #         social_user = UserSocialAuth.objects.get()
-    #         created_user = social_user.user
-    #         self.assertTrue(created_user.is_staff)
-    #         self.assertTrue(created_user.volunteer_profile)
-    #         self.assertIsNone(created_user.volunteer_profile.area)

@@ -3,7 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseNotFound, HttpResponseRedirect
 from backend_candidate.models import Candidacy
-from .forms import CPFAndDdnForm
+from backend_candidate.views import ProfileView
+from .forms import CPFAndDdnForm, CPFAndDdnForm2
 from social_core.actions import do_complete, do_auth
 from social_django.views import _do_login
 from django.views.decorators.cache import never_cache
@@ -11,8 +12,13 @@ from django.views.decorators.csrf import csrf_exempt
 from social_django.utils import psa, STORAGE, get_strategy
 from django.views.generic.base import TemplateView
 from backend_candidate.models import is_candidate
-
-
+from django.template.response import TemplateResponse
+from django.shortcuts import get_object_or_404
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from merepresenta.models import Candidate
+from django.core.urlresolvers import reverse
+from merepresenta.forms import PersonalDataForm
 
 class LoginView(TemplateView):
     template_name="candidatos/login.html"
@@ -37,7 +43,7 @@ class CPFAndDDNSelectView(LoginRequiredMixin, FormView):
             c = Candidacy.objects.get(user=self.request.user)
             election = c.candidate.election
             candidate = c.candidate
-            url = reverse_lazy('backend_candidate:complete_profile', kwargs={'slug': election.slug, 'candidate_slug': candidate.slug})
+            url = reverse_lazy('merepresenta_complete_profile', kwargs={'slug': election.slug, 'candidate_slug': candidate.slug})
             return HttpResponseRedirect(url)
         except Candidacy.DoesNotExist:
             pass
@@ -56,12 +62,29 @@ class CPFAndDDNSelectView(LoginRequiredMixin, FormView):
 
     def get_success_url(self):
         c = Candidacy.objects.get(user=self.request.user)
-        election = c.candidate.election
-        candidate = c.candidate
-        url = reverse_lazy('backend_candidate:complete_profile', kwargs={'slug': election.slug, 'candidate_slug': candidate.slug})
-        return url
+        return c.get_complete_profile_url()
 
 
+class CPFAndDDNSelectView2(FormView):
+    form_class = CPFAndDdnForm2
+    template_name = 'candidatos/cpf_and_ddn2.html'
+
+    def dispatch(self, *args, **kwargs):
+        if self.request.user.is_staff:
+            return HttpResponseNotFound()
+
+        if is_candidate(self.request.user):
+            user = self.request.user
+            candidacy = user.candidacies.first()
+            url = reverse_lazy('merepresenta_complete_profile', kwargs={'slug': candidacy.candidate.election.slug,
+                                                                             'candidate_slug': candidacy.candidate.slug})
+            return HttpResponseRedirect(url)
+        return super(CPFAndDDNSelectView2, self).dispatch(*args, **kwargs)
+    
+    def form_valid(self, form):
+        self.candidate = form.get_candidate()
+        context = {'candidate': self.candidate}
+        return TemplateResponse(self.request, template='candidatos/login_with_facebook.html', context=context)
 
 def load_strategy(request=None):
     return get_strategy('merepresenta.candidatos.strategy.CandidateStrategy', STORAGE, request)
@@ -76,5 +99,21 @@ def complete(request, backend, *args, **kwargs):
 
 @never_cache
 @psa('candidate_social_complete')
-def auth(request, backend):
+def auth(request, backend, slug):
+    candidate = get_object_or_404(Candidate, slug=slug)
+    request.backend.strategy.session_set('facebook_slug', slug)
     return do_auth(request.backend)
+
+
+class CompleteProfileView(ProfileView):
+    candidate_model = Candidate
+
+    def get_form_class(self):
+        return PersonalDataForm
+
+    def get_success_url(self):
+        url = reverse('merepresenta_complete_profile',
+                      kwargs={'slug': self.election.slug,
+                              'candidate_slug': self.candidate.slug}
+                      )
+        return url

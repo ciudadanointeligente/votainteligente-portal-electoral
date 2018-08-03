@@ -139,19 +139,20 @@ class CandidacyJoinView(RedirectView):
         return profile_url
 
 
-class ProfileView(FormView):
+class ProfileView(LoginRequiredMixin, FormView):
     template_name = 'backend_candidate/complete_profile.html'
+    candidate_model = Candidate
+    election_model = Election
 
     def get_form_class(self):
         return get_candidate_profile_form_class()
 
-    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         if not is_candidate(request.user):
             raise Http404
         self.user = request.user
-        self.election = get_object_or_404(Election, slug=self.kwargs['slug'])
-        self.candidate = get_object_or_404(Candidate,
+        self.election = get_object_or_404(self.election_model, slug=self.kwargs['slug'])
+        self.candidate = get_object_or_404(self.candidate_model,
                                            slug=self.kwargs['candidate_slug'])
         if not Candidacy.objects.filter(user=self.request.user, candidate=self.candidate).exists():
             raise Http404

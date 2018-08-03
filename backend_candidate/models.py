@@ -23,6 +23,13 @@ class Candidacy(models.Model):
                                    null=True)
 
 
+    def get_complete_profile_url(self):
+        url = reverse('backend_candidate:complete_profile',
+                              kwargs={'slug': self.candidate.election.slug,
+                              'candidate_slug': self.candidate.slug})
+        return url
+
+
 def is_candidate(user):
     if not user.is_authenticated():
         return False

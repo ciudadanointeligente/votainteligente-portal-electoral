@@ -28,7 +28,7 @@ class MeRepresentaCommitment(Commitment):
 
 
 NON_MALE_KEY = "F"
-NON_WHITE_KEY = {"possible_values": ["PARDA", "PARDA"]}
+NON_WHITE_KEY = {"possible_values": ["PARDA", "PRETA"]}
 
 
 class ForVolunteersManager(models.Manager):
@@ -60,7 +60,7 @@ class LimitCandidatesForVolunteers(ForVolunteersManager):
 
 
 class Candidate(OriginalCandidate):
-    cpf = models.CharField(max_length=1024, null=True)
+    cpf = models.CharField(max_length=1024, unique=True)
     nome_completo = models.CharField(max_length=1024, null=True)
     numero = models.CharField(max_length=1024, null=True)
     race = models.CharField(max_length=1024, null=True)
@@ -68,12 +68,28 @@ class Candidate(OriginalCandidate):
     email_repeated = models.NullBooleanField()
     is_ghost = models.BooleanField(default=False)
     facebook_contacted = models.BooleanField(default=False)
+    data_de_nascimento = models.DateField(null=True)
 
     partido = models.ForeignKey("Partido", null=True)
 
     objects = ForVolunteersManager()
 
     for_volunteers = LimitCandidatesForVolunteers()
+
+    def get_image(self):
+        print "oli"
+        if self.candidacy_set.exists():
+            user = self.candidacy_set.first().user
+            return user.profile.image
+        return self.image
+
+    # @property
+    # def image(self):
+    #     """I'm the 'x' property."""
+    #     if self.candidacies.exists():
+    #         user = self.candidacies.first().user
+    #         return user.profile.image
+    #     return self.image
 
 class VolunteerInCandidate(models.Model):
     volunteer = models.ForeignKey(User)
@@ -125,4 +141,4 @@ class Partido(models.Model):
 ## But as I'm coding it I am becoming aware that this could be a good feature to have in the feature, this is why I'm keeping this in
 ## an inner module, so when I have more time and the need from another NGO to have the volunteers backend
 ## I can grab it and move it to another application
-from merepresenta.voluntarios.models import VolunteerProfile
+# from merepresenta.voluntarios.models import VolunteerProfile

@@ -1,5 +1,6 @@
 # coding=utf-8
 from django.test import TestCase
+from elections.tests import VotaInteligenteTestCase
 from popular_proposal.models import PopularProposal, Commitment
 from merepresenta.models import (MeRepresentaPopularProposal,
                                  MeRepresentaCommitment,
@@ -13,6 +14,7 @@ from django.utils import timezone
 import datetime
 from django.core.urlresolvers import reverse
 from merepresenta.voluntarios.models import VolunteerProfile
+from backend_candidate.models import Candidacy
 
 
 class MeRepresentaPopularProposalTestCase(TestCase):
@@ -40,7 +42,7 @@ class MeRepresentaPopularProposalTestCase(TestCase):
 
         self.assertIsInstance(commitment, Commitment)
 
-class CandidateTestCase(TestCase):
+class CandidateTestCase(VotaInteligenteTestCase):
     def test_instanciate(self):
         candidate = Candidate.objects.create(name="Candidate 1",
                                              cpf='1230',
@@ -53,11 +55,26 @@ class CandidateTestCase(TestCase):
         self.assertFalse(candidate.is_ghost)
         self.assertFalse(candidate.facebook_contacted)
 
+    def test_get_image_from_user(self):
+        image = self.get_image()
+        user = User.objects.create_user(username='user', password="password")
+        user.profile.image = image
+        user.profile.save()
+        candidate = Candidate.objects.create(name="Candidate 1",
+                                             cpf='1230',
+                                             nome_completo=u'Candidato uno',
+                                             numero='190000000560',
+                                             race="preta",
+                                             original_email='perrito@gatito.com',
+                                             email_repeated=False)
+        candidacy = Candidacy.objects.create(user=user, candidate=candidate)
+        self.assertTrue(candidate.get_image())
+
 class CandidateListForVolunteers(TestCase):
     def test_list_for_volunteers(self):
-        ghost = Candidate.objects.create(name="Candidate 1", is_ghost=True)
-        facebook = Candidate.objects.create(name="Candidate 2", facebook_contacted=True)
-        with_contact = Candidate.objects.create(name="Candidate with Contact")
+        ghost = Candidate.objects.create(name="Candidate 1", is_ghost=True, cpf='123')
+        facebook = Candidate.objects.create(name="Candidate 2", facebook_contacted=True, cpf='456')
+        with_contact = Candidate.objects.create(name="Candidate with Contact", cpf='789')
         with_contact.contacts.create(mail="perrito@gatito.cl")
 
         candidates = Candidate.for_volunteers.all()
@@ -69,8 +86,8 @@ class CandidateListForVolunteers(TestCase):
     def test_if_has_a_volunteer_looking_for_more_than_an_hour(self):
         volunteer = User.objects.create_user(username='volunteer', is_staff=True)
         always_in_list = Candidate.objects.create(name="Always")
-        checked_twenty_nine_minutes_ago = Candidate.objects.create(name="Checked 29 minutes ago")
-        checked_thirty_one_minutes_ago = Candidate.objects.create(name="Checked 31 minutes ago")
+        checked_twenty_nine_minutes_ago = Candidate.objects.create(name="Checked 29 minutes ago", cpf='29')
+        checked_thirty_one_minutes_ago = Candidate.objects.create(name="Checked 31 minutes ago", cpf='31')
 
         minutes = 30
 

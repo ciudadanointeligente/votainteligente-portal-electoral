@@ -83,6 +83,27 @@ class LoginView(VolunteersTestCaseBase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
+    def test_if_user_is_not_staff_then_get_404(self):
+        url = reverse('volunteer_login')
+        candidate = User.objects.create_user(username="candidato",
+                                             password=PASSWORD,
+                                             is_staff=False)
+        self.client.login(username=candidate.username, password=PASSWORD)
+        response = self.client.get(url)
+
+        self.assertEquals(response.status_code, 404)
+
+    def test_if_im_staff_get_redirected(self):
+        url = reverse('volunteer_login')
+        volunteer = User.objects.create_user(username="volunteer",
+                                             password=PASSWORD,
+                                             is_staff=True)
+        self.client.login(username=volunteer.username, password=PASSWORD)
+        response = self.client.get(url)
+        index_url = reverse('volunteer_index') 
+        self.assertRedirects(response, index_url)
+
+
     @override_settings(SOCIAL_AUTH_FACEBOOK_KEY='1',
                        SOCIAL_AUTH_FACEBOOK_SECRET='2')
     @mock.patch('social_core.backends.base.BaseAuth.request')

@@ -1,0 +1,11 @@
+{% include 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block content %}
+<div class="container">
+    <a class="btn btn-block btn-facebook" href="{% url 'candidato_social_begin' 'facebook' candidate.slug %}">
+        <i class="fa fa-facebook"></i> {% trans 'Entra con Facebook' %}
+    </a>
+</div>
+{% endblock content %}

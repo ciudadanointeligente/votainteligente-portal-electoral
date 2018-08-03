@@ -1,0 +1,162 @@
+# coding=utf-8
+from backend_candidate.tests import SoulMateCandidateAnswerTestsBase
+from django.test import override_settings, modify_settings
+from merepresenta.models import Candidate
+from merepresenta.forms import PersonalDataForm
+from backend_candidate.forms import get_candidate_profile_form_class
+from backend_candidate.models import Candidacy
+from django.contrib.auth.models import User
+from elections.models import PersonalData, Election, Area
+from django.template import Template, Context
+from django.core.urlresolvers import reverse
+from popolo.models import ContactDetail
+import datetime
+
+
+PASSWORD = 'pass'
+
+
+@override_settings(THEME='merepresenta')
+class FormTestCase(SoulMateCandidateAnswerTestsBase):
+
+    def setUp(self):
+        super(FormTestCase, self).setUp()
+        self.feli = User.objects.get(username='feli')
+        self.feli.set_password(PASSWORD)
+        self.feli.save()
+        self.d = datetime.datetime(2009, 10, 5, 18, 00)
+        self.area = Area.objects.create(name="area")
+        self.election = Election.objects.create(name='ele', area=self.area)
+        self.candidate = Candidate.objects.create(name='THE candidate', cpf='1234', data_de_nascimento=self.d)
+        self.candidacy = Candidacy.objects.create(user=self.feli,
+                                                  candidate=self.candidate)
+        self.data = {'email': 'perrito@chiquitito.cl',
+                     'gender': 'feminino',
+                     'lgbt': True,
+                     'race': 'PARDA',
+                     'bio': u'Ola sou uma pessoa boa em ruim ao mesmo tempo, complexo como os humanos somos, mas qué é bom e qué é ruim?',
+                     'candidatura_coletiva': True,
+                     'renovacao_politica': 'Novo Brasil'}
+
+    def test_candidate_form(self):
+        
+        form_class = PersonalDataForm
+        form = form_class(candidate=self.candidate,
+                          data=self.data)
+        self.assertTrue(form.is_valid())
+        self.assertIn('email', form.cleaned_data.keys())
+        self.assertIn('gender', form.cleaned_data.keys())
+        self.assertIn('lgbt', form.cleaned_data.keys())
+        self.assertEquals(form.cleaned_data['email'], self.data['email'])
+        self.assertEquals(form.cleaned_data['gender'], self.data['gender'])
+
+        form.save()
+        self.candidate.refresh_from_db()
+        self.assertEquals(self.candidate.gender, self.data['gender'])
+        self.assertEquals(self.candidate.race, self.data['race'])
+        self.assertEquals(self.candidate.email, self.data['email'])
+        personal_datas = PersonalData.objects.filter(candidate=self.candidate)
+        lgbt = personal_datas.get(label='lgbt')
+        self.assertEquals(bool(lgbt.value), self.data['lgbt'])
+
+        candidatura_coletiva = personal_datas.get(label='candidatura_coletiva')
+        self.assertEquals(bool(candidatura_coletiva.value), self.data['candidatura_coletiva'])
+
+        renovacao_politica = personal_datas.get(value=self.data['renovacao_politica'])
+        self.assertEquals(renovacao_politica.label, 'renovacao_politica')
+
+        self.assertEquals(len(personal_datas), 4)
+
+    def test_candidate_after(self):
+        form_class = PersonalDataForm
+        form = form_class(candidate=self.candidate,
+                          data=self.data)
+        form.is_valid()
+        form.save()
+        ## ONCE
+        form_class = PersonalDataForm
+        self.candidate.refresh_from_db()
+        form = form_class(candidate=self.candidate)
+        self.assertEquals(form.initial['gender'], self.candidate.gender)
+        self.assertEquals(form.initial['email'], self.candidate.email)
+        self.assertEquals(form.initial['race'], self.candidate.race)
+        self.assertEquals(form.initial['lgbt'], self.candidate.personal_datas.get(label='lgbt').value)
+        self.assertEquals(form.initial['bio'], self.candidate.personal_datas.get(label='bio').value)
+        self.assertEquals(form.initial['candidatura_coletiva'], self.candidate.personal_datas.get(label='candidatura_coletiva').value)
+        self.assertEquals(form.initial['renovacao_politica'], self.candidate.personal_datas.get(label='renovacao_politica').value)
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            'merepresenta/templates'
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'constance.context_processors.config',
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.template.context_processors.request',
+                'django.contrib.messages.context_processors.messages',
+                #'django.template.loaders.app_directories.Loader',
+            ],
+        },
+    },
+]
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls',
+    THEME='merepresenta',
+    TEMPLATES=TEMPLATES)
+class GetAndPostToTheUpdateProfileView(SoulMateCandidateAnswerTestsBase):
+    def setUp(self):
+        super(GetAndPostToTheUpdateProfileView, self).setUp()
+        self.feli = User.objects.get(username='feli')
+        self.feli.set_password(PASSWORD)
+        self.feli.save()
+        self.d = datetime.datetime(2009, 10, 5, 18, 00)
+        self.area = Area.objects.create(name="area")
+        self.election = Election.objects.create(name='ele', area=self.area)
+        self.candidate = Candidate.objects.create(name='THE candidate', cpf='1234', data_de_nascimento=self.d)
+        self.candidacy = Candidacy.objects.create(user=self.feli,
+                                                  candidate=self.candidate)
+        self.data = {'email': 'perrito@chiquitito.cl',
+                     'gender': 'feminino',
+                     'lgbt': True,
+                     'race': 'PARDA',
+                     'bio': u'Ola sou uma pessoa boa em ruim ao mesmo tempo, complexo como os humanos somos, mas qué é bom e qué é ruim?',
+                     'candidatura_coletiva': True,
+                     'renovacao_politica': 'Novo Brasil'}
+
+    def test_get_the_view(self):
+        kwargs = {'slug': self.election.slug, 'candidate_slug': self.candidate.slug}
+        url = reverse('merepresenta_complete_profile', kwargs=kwargs)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+        other_user = User.objects.create_user(username="other_user", password=PASSWORD)
+        self.client.login(username=other_user.username, password=PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+
+        self.client.login(username=self.feli.username, password=PASSWORD)
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertTrue(response.context['form'])
+        self.assertEquals(response.context['form'].candidate, self.candidate)
+
+
+    def test_post_to_the_view(self):
+        kwargs = {'slug': self.election.slug, 'candidate_slug': self.candidate.slug}
+        url = reverse('merepresenta_complete_profile', kwargs=kwargs)
+        self.client.login(username=self.feli.username, password=PASSWORD)
+        self.assertFalse(self.candidate.gender)
+        response = self.client.post(url, data=self.data)
+        self.assertRedirects(response, url)
+        self.candidate.refresh_from_db()
+        self.assertTrue(self.candidate.gender)

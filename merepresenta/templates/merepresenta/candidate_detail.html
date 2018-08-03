@@ -30,7 +30,7 @@
   {% if user|is_candidate %}
   {% with user.candidacies.first as candidacy %}
     {% if candidacy.candidate == candidate %}
-    {% url 'backend_candidate:complete_profile' slug=candidacy.candidate.election.slug candidate_slug=candidacy.candidate.slug  as complete_profile %}
+    {% url 'merepresenta_complete_profile' slug=candidacy.candidate.election.slug candidate_slug=candidacy.candidate.slug  as complete_profile %}
       <a href="{{complete_profile}}" class="btn btn-dark">Modificar mi perfil</a>
     {% endif %}
   {% endwith%}

@@ -4,6 +4,7 @@ from merepresenta.models import Partido, Coaligacao, Candidate
 from tse_data_importer.csv_reader import CsvReader
 from tse_data_importer.importer import RowsReaderAdapter
 from django.conf import settings
+from datetime import datetime
 
 def output_logger(self, msg):
     print msg
@@ -20,18 +21,35 @@ class TSEProcessorMixin(object):
 
     def process_candidate(self, candidate_dict, election, partido):
         gender = self.gender_definer(candidate_dict['gender'])
-
-        candidate, created = Candidate.objects.get_or_create(name=candidate_dict['nome'],
-                                                             nome_completo=candidate_dict['nome_completo'],
-                                                             numero=candidate_dict['number'],
-                                                             cpf=candidate_dict['cpf'],
-                                                             race=candidate_dict['race'],
-                                                             original_email=candidate_dict['mail'],
-                                                             email_repeated=candidate_dict['email_repeated'],
-                                                             gender=gender)
-        election.candidates.add(candidate)
+        try:
+            data_de_nascimento = datetime.strptime(candidate_dict['date_of_birth'], "%d/%m/%Y").date()
+        except:
+            data_de_nascimento = None
+        if Candidate.objects.filter(cpf=candidate_dict['cpf']).exists():
+            self.output_logger_func("CANDIDATE EXISTENTE DETECTADO CPF:" + candidate_dict['cpf'] + " =====================================>")
+            return Candidate.objects.get(cpf=candidate_dict['cpf'])
+        candidate, created = Candidate.objects.get_or_create(name=candidate_dict['nome'], cpf=candidate_dict['cpf'])
+        candidate.nome_completo = candidate_dict['nome_completo']
+        candidate.numero = candidate_dict['number']
+        candidate.cpf = candidate_dict['cpf']
+        candidate.data_de_nascimento = data_de_nascimento
+        candidate.race = candidate_dict['race']
+        candidate.original_email = candidate_dict['mail']
+        candidate.email_repeated = candidate_dict['email_repeated']
         candidate.partido = partido
+        candidate.gender = gender
         candidate.save()
+        # candidate, created = Candidate.objects.get_or_create(name=candidate_dict['nome'],
+        #                                                      nome_completo=candidate_dict['nome_completo'],
+        #                                                      numero=candidate_dict['number'],
+        #                                                      cpf=candidate_dict['cpf'],
+        #                                                      data_de_nascimento=data_de_nascimento,
+        #                                                      race=candidate_dict['race'],
+        #                                                      original_email=candidate_dict['mail'],
+        #                                                      email_repeated=candidate_dict['email_repeated'],
+        #                                                      partido = partido,
+        #                                                      gender=gender)
+        election.candidates.add(candidate)
 
         return candidate
 

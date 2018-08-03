@@ -4,12 +4,71 @@ from medianaranja2.forms import ProposalModelMultipleChoiceField, MediaNaranjaWi
 from popular_proposal.models import PopularProposal
 from django.core.cache import cache
 from django.conf import settings
-from elections.models import Area, QuestionCategory
+from elections.models import Area, QuestionCategory, PersonalData
 from django.contrib.sites.models import Site
 from medianaranja2.proposals_getter import ByOnlySiteProposalGetter
-from merepresenta.models import MeRepresentaPopularProposal
+from merepresenta.models import MeRepresentaPopularProposal, Candidate
 from django.utils.safestring import mark_safe
 from medianaranja2.adapters import Adapter as OriginalAdapter
+
+GENDERS  = [
+    ('feminino', u"Feminino"),
+    ('masculino', u"Masculino"),
+    ('outro', u"Outro gênero"),
+]
+RACES = [
+    ('BRANCA', u"Branca"),
+    ('PRETA', u"Preta"),
+    ('PARDA', u"Parda"),
+    ('AMARELA', u"Amarela"),
+    ('INDÍGENA', u"Indígena"),
+]
+
+class PersonalDataForm(forms.Form):
+    email = forms.EmailField(label=u"Para manter contato, quais desses e-mails você mais usa?")
+    gender = forms.ChoiceField(choices=GENDERS, label=u'Com qual desses gêneros você se identifica?')
+    lgbt = forms.BooleanField(label=u'Você se declara LGBT?')
+    race = forms.ChoiceField(label=u'Qual é a sua cor ou raça?', choices=RACES)
+    bio = forms.CharField(label=u"Escreva um pouco sobre você", widget=forms.TextInput)
+    candidatura_coletiva = forms.BooleanField(label=u'Você faz parte de uma Candidatura Coletiva?')
+    renovacao_politica = forms.CharField(label=u"Você faz parte de algum grupo de Renovação Política? Qual?")
+
+
+    def __init__(self, *args, **kwargs):
+        self.candidate = kwargs.pop('candidate')
+        initial = {}
+        if 'initial' in kwargs:
+            kwargs['initial'].update(initial)
+        else:
+            kwargs['initial'] = initial
+            personal_datas_as_dict = {}
+            for personal_data in self.candidate.personal_datas.all():
+                personal_datas_as_dict[personal_data.label] = personal_data.value
+
+            for field  in self.__class__.base_fields:
+                candidate_has_field = hasattr(self.candidate, field)
+                if candidate_has_field:
+                    value = getattr(self.candidate, field, None)
+                    kwargs['initial'][field] = value
+                else:
+                    kwargs['initial'][field] = personal_datas_as_dict.get(field, None)
+        super(PersonalDataForm, self).__init__(*args, **kwargs)
+            
+
+    def save(self):
+
+        for f_name in self.cleaned_data:
+            if hasattr(self.candidate, f_name):
+                setattr(self.candidate, f_name, self.cleaned_data[f_name])
+            else:
+                personal_data, created = PersonalData.objects.get_or_create(candidate=self.candidate,
+                                                                            label=f_name)
+                personal_data.value = self.cleaned_data[f_name]
+                if personal_data.value is None:
+                    personal_data.value = ''
+                personal_data.save()
+        self.candidate.save()
+        return self.candidate
 
 
 class MeRepresentaProposalModelMultipleChoiceField(forms.ModelMultipleChoiceField):

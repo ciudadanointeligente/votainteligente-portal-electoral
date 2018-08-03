@@ -1,4 +1,5 @@
-from backend_citizen.tasks import save_image_to_user
+from backend_citizen.tasks import _save_image_to_user, save_image_to_user
+from django.conf import settings
 
 def get_image_from_social(backend, strategy, details, response,
         user=None, *args, **kwargs):
@@ -11,6 +12,9 @@ def get_image_from_social(backend, strategy, details, response,
         ext = url.split('.')[-1]
     if url:
         try:
-            save_image_to_user.delay(url, user)
+            if settings.EAGER_USER_IMAGE:
+                _save_image_to_user(url, user)
+            else:
+                save_image_to_user.delay(url, user)
         except Exception as e:
             pass

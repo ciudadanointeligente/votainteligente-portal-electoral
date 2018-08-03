@@ -30,7 +30,6 @@ class ImporterTestCase(VolunteersTestCaseBase):
         processor = JustForNowProcessor()
         result = processor.do_something(self.data)
         area = result['area']
-        print rj_area.id, area.id
         self.assertEquals(area.id, rj_area.id)
         election = result['election']
         self.assertEquals(election.name, 'DEPUTADO FEDERAL')
@@ -54,6 +53,10 @@ class ImporterTestCase(VolunteersTestCaseBase):
         self.assertEquals(candidato.original_email, 'candidato@partido.com')
         self.assertFalse(candidato.email_repeated)
         self.assertEquals(candidato.partido, partido)
+        d = candidato.data_de_nascimento
+        self.assertEquals(d.year, 1958)
+        self.assertEquals(d.month, 7)
+        self.assertEquals(d.day, 21)
 
 
     def test_calling_command(self):

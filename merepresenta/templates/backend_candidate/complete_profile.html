@@ -17,9 +17,7 @@
   <form method="post"  enctype="multipart/form-data" action="{% url 'merepresenta_complete_profile' slug=election.slug candidate_slug=candidate.slug %}">{% csrf_token %}
   <!-- image -->
   {% if candidate.candidacy_set.first.user.profile.image %}
-    {% thumbnail candidate.candidacy_set.first.user.profile.image "300x300" crop="center" as im %}
-    <img src="{% static im.url %}" alt="{{candidate.name}}" height="96" width="96" border="0" class="img-responsive img-circle">
-    {% endthumbnail %}
+    <img src="{{candidate.candidacy_set.first.user.profile.image.url}}" alt="{{candidate.name}}" height="96" width="96" border="0" class="img-responsive img-circle">
   {% else %}
     <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle">
   {% endif %}

@@ -32,10 +32,10 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
                                                   candidate=self.candidate)
         self.data = {'email': 'perrito@chiquitito.cl',
                      'gender': 'feminino',
-                     'lgbt': True,
+                     'lgbt': "sim",
                      'race': 'PARDA',
                      'bio': u'Ola sou uma pessoa boa em ruim ao mesmo tempo, complexo como os humanos somos, mas qué é bom e qué é ruim?',
-                     'candidatura_coletiva': True,
+                     'candidatura_coletiva': 'sim',
                      'renovacao_politica': 'Novo Brasil'}
 
     def test_candidate_form(self):
@@ -57,10 +57,10 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         self.assertEquals(self.candidate.email, self.data['email'])
         personal_datas = PersonalData.objects.filter(candidate=self.candidate)
         lgbt = personal_datas.get(label='lgbt')
-        self.assertEquals(bool(lgbt.value), self.data['lgbt'])
+        self.assertEquals(lgbt.value, self.data['lgbt'])
 
         candidatura_coletiva = personal_datas.get(label='candidatura_coletiva')
-        self.assertEquals(bool(candidatura_coletiva.value), self.data['candidatura_coletiva'])
+        self.assertEquals(candidatura_coletiva.value, self.data['candidatura_coletiva'])
 
         renovacao_politica = personal_datas.get(value=self.data['renovacao_politica'])
         self.assertEquals(renovacao_politica.label, 'renovacao_politica')
@@ -128,10 +128,10 @@ class GetAndPostToTheUpdateProfileView(SoulMateCandidateAnswerTestsBase):
                                                   candidate=self.candidate)
         self.data = {'email': 'perrito@chiquitito.cl',
                      'gender': 'feminino',
-                     'lgbt': True,
+                     'lgbt': 'sim',
                      'race': 'PARDA',
                      'bio': u'Ola sou uma pessoa boa em ruim ao mesmo tempo, complexo como os humanos somos, mas qué é bom e qué é ruim?',
-                     'candidatura_coletiva': True,
+                     'candidatura_coletiva': 'nao',
                      'renovacao_politica': 'Novo Brasil'}
 
     def test_get_the_view(self):

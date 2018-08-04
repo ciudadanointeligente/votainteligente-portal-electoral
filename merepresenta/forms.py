@@ -23,14 +23,19 @@ RACES = [
     ('AMARELA', u"Amarela"),
     ('INDÍGENA', u"Indígena"),
 ]
-
+SIM_OU_NAO = [
+    ('sim', u"Sim"),
+    ('nao', u"Nao"),
+]
 class PersonalDataForm(forms.Form):
     email = forms.EmailField(label=u"Para manter contato, quais desses e-mails você mais usa?")
-    gender = forms.ChoiceField(choices=GENDERS, label=u'Com qual desses gêneros você se identifica?')
-    lgbt = forms.BooleanField(label=u'Você se declara LGBT?')
-    race = forms.ChoiceField(label=u'Qual é a sua cor ou raça?', choices=RACES)
+    gender = forms.ChoiceField(choices=GENDERS,
+                                widget=forms.RadioSelect,
+                                label=u'Com qual desses gêneros você se identifica?')
+    lgbt = forms.ChoiceField(label=u'Você se declara LGBT?', widget=forms.RadioSelect, choices=SIM_OU_NAO)
+    race = forms.ChoiceField(label=u'Qual é a sua cor ou raça?',widget=forms.RadioSelect,choices=RACES)
     bio = forms.CharField(label=u"Escreva um pouco sobre você", widget=forms.TextInput)
-    candidatura_coletiva = forms.BooleanField(label=u'Você faz parte de uma Candidatura Coletiva?')
+    candidatura_coletiva = forms.ChoiceField(label=u'Você faz parte de uma Candidatura Coletiva?', widget=forms.RadioSelect, choices=SIM_OU_NAO)
     renovacao_politica = forms.CharField(label=u"Você faz parte de algum grupo de Renovação Política? Qual?")
 
 

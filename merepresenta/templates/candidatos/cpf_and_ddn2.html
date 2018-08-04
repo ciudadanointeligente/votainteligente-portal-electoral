@@ -5,25 +5,51 @@
 {% block title %}- Portada{% endblock title %}
 
 {% block content %}
-<div class="content">
+
     {% if form.errors %}
     {{form.errors}}
     {% endif %}
-    <form method='POST' action="{% url 'cpf_and_date2' %}">
-        {% csrf_token %}
-      <div class="form-group">
-        <label for="cpf-id">Informe seu CPF</label>
-        <input id='cpf-id' class="form-control" name='cpf' aria-describedby="cpfhelp" placeholder="CPF" required="True">
-        <small id="cpfhelp" class="form-text text-muted"></small>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+
+        <h1>Olá, candidata</h1>
+        <h2>Antes de começar, precisamos de alguns dados seus:</h2>
+        <form method='POST' action="{% url 'cpf_and_date2' %}">
+          {% csrf_token %}
+        <div class="form-group">
+          <label for="cpf-id">Informe seu CPF</label>
+          <input id='cpf-id' class="form-control" name='cpf' aria-describedby="cpfhelp" placeholder="CPF" required="True">
+          <small id="cpfhelp" class="form-text text-muted"></small>
+        </div>
+        <div class="form-group">
+          <label for="nascimento-id">Sua data de nascimento</label>
+          <input id='nascimento-id' class="form-control" name='nascimento' required="True" aria-describedby="helpNascimento" placeholder="Data de nascimento">
+          <!-- <input type="date" id="nascimento-id" name="nascimento"
+               class="form-control"
+               value="dd/mm/YYYY"
+               required="True"/ > -->
+          <small id="helpNascimento" class="form-text text-muted"></small>
+        </div>
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Termos de uso</h4>
+          <p>
+            <ul>
+              <li>Ser uma boa pessoa</li>
+              <li>Ser uma pessoa que quera a outras pessoas</li>
+            </ul>
+          </p>
+          <hr>
+          <p class="mb-0">Uma notinha</p>
+        </div>
+        <button type="submit" class="btn btn-primary">Continuar e concordar com os termos</button>
+      </form>
       </div>
-      <div class="form-group">
-        <label for="nascimento-id">Sua data de nascimento</label>
-        <input id='nascimento-id' class="form-control" name='nascimento' required="True" aria-describedby="helpNascimento" placeholder="Data de nascimento">
-        <small id="helpNascimento" class="form-text text-muted"></small>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+    </div>
+    
+    
+
+
+
 <script type="text/javascript">
 $(function(){
     var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);

@@ -19,6 +19,8 @@ from django.contrib.auth.decorators import login_required
 from merepresenta.models import Candidate
 from django.core.urlresolvers import reverse
 from merepresenta.forms import PersonalDataForm
+from django.shortcuts import render
+
 
 class LoginView(TemplateView):
     template_name="candidatos/login.html"
@@ -84,7 +86,9 @@ class CPFAndDDNSelectView2(FormView):
     def form_valid(self, form):
         self.candidate = form.get_candidate()
         context = {'candidate': self.candidate}
-        return TemplateResponse(self.request, template='candidatos/login_with_facebook.html', context=context)
+        response = render(self.request, 'candidatos/login_with_facebook.html', context)
+        print response
+        return response
 
 def load_strategy(request=None):
     return get_strategy('merepresenta.candidatos.strategy.CandidateStrategy', STORAGE, request)

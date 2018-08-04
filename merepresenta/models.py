@@ -11,7 +11,7 @@ from backend_candidate.models import CandidacyContact
 from votai_utils.send_mails import send_mail
 from django.utils import timezone
 import datetime
-
+from elections.models import QuestionCategory as OriginalQuestionCategory
 
 
 class MeRepresentaPopularProposal(PopularProposal):
@@ -131,6 +131,11 @@ class Partido(models.Model):
     number = models.CharField(max_length=1024, null=True)
     mark = models.IntegerField(null=True)
     coaligacao = models.ForeignKey(Coaligacao, null=True)
+
+
+class QuestionCategory(OriginalQuestionCategory):
+    class Meta:
+        proxy = True
 
 
 

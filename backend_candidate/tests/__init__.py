@@ -5,13 +5,8 @@ from candidator.models import Topic
 from django import forms
 import theme
 
-class SoulMateCandidateAnswerTestsBase(TestCase):
-    def setUp(self):
-        super(SoulMateCandidateAnswerTestsBase, self).setUp()
-        self.tarapaca = Election.objects.get(id=1)
-        self.topic = Topic.objects.get(id=1)
-        self.candidate = Candidate.objects.get(id=1)
 
+class assertFieldsForTopicMixin(object):
     def assertFieldsForTopic(self, dict_, topic):
 
         topic = dict_['answer_for_' + str(self.topic.id)]
@@ -21,6 +16,13 @@ class SoulMateCandidateAnswerTestsBase(TestCase):
         comments = dict_['description_for_' + str(self.topic.id)]
         self.assertIsInstance(comments, forms.CharField)
         self.assertIsInstance(comments.widget, forms.TextInput)
+
+class SoulMateCandidateAnswerTestsBase(TestCase, assertFieldsForTopicMixin):
+    def setUp(self):
+        super(SoulMateCandidateAnswerTestsBase, self).setUp()
+        self.tarapaca = Election.objects.get(id=1)
+        self.topic = Topic.objects.get(id=1)
+        self.candidate = Candidate.objects.get(id=1)
 
     def get_data_for_topic(self, topic):
         answer_key = 'answer_for_' + str(topic.id)

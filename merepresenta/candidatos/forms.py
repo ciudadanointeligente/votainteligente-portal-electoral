@@ -1,7 +1,9 @@
 # coding=utf-8
 from django import forms
 from backend_candidate.models import Candidacy
-from merepresenta.models import Candidate
+from merepresenta.models import Candidate, QuestionCategory
+from backend_candidate.forms import MediaNaranjaSingleCandidateMixin, MediaNaranjaSingleCategoryMixin
+
 
 class CPFAndDdnFormBase(forms.Form):
     cpf = forms.CharField(required=True)
@@ -41,3 +43,31 @@ class CPFAndDdnForm2(CPFAndDdnFormBase):
 
     def get_candidate(self):
         return self.candidate
+
+
+class MeRepresentaCandidateAnsweringForm(MediaNaranjaSingleCandidateMixin, forms.Form, MediaNaranjaSingleCategoryMixin):
+    def __init__(self, *args, **kwargs):
+        super(MeRepresentaCandidateAnsweringForm, self).__init__(*args, **kwargs)
+        self.set_fields_for(self.category)
+
+    def save(self):
+        self.save_answer_for(self.category)
+
+
+def get_form_class_from_category(category, candidate):
+    class OnDemandMeRepresentaCandidateAnsweringForm(MeRepresentaCandidateAnsweringForm):
+        def __init__(self, *args, **kwargs):
+            self.category = category
+            kwargs['candidate'] = candidate
+            super(OnDemandMeRepresentaCandidateAnsweringForm, self).__init__(*args, **kwargs)
+
+    return OnDemandMeRepresentaCandidateAnsweringForm
+
+def get_form_classes_for_questions_for(candidate):
+    result = []
+    categories = QuestionCategory.objects.all()
+    for category in categories:
+        form_class = get_form_class_from_category(category, candidate)
+        result.append(form_class)
+
+    return result

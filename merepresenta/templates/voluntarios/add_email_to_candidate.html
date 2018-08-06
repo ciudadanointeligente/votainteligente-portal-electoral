@@ -7,9 +7,15 @@
 
 {% block content %}
 <div class="container no-background">
-  <div class="alert alert-success" role="alert">
-    <h4 class="alert-heading">Oi!</h4>
-    <p>Que boa que você decidiu encontrar <b>{{form.candidate}}</b>, aqui nós lhes contamos tudo o que sabemos sobre essa pessoa.</p>
+  <div class="row">
+    <div class="col">
+      <h1>Analisar candidatura - {{form.candidate}}</h1>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col">
+      <p>Obrigada por analisar as informações da candidatura de {{form.candidate}}, aqui nós lhes contamos tudo o que sabemos sobre essa pessoa.</p>
+    </div>
   </div>
     
     <ul>

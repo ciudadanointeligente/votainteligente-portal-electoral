@@ -6,8 +6,19 @@
 
 {% block content %}
 <div class="container">
-    <a class="btn btn-block btn-facebook" href="{% url 'voluntarios_social_begin' 'facebook' %}?next={% url 'volunteer_index' %}">
-        <i class="fa fa-facebook"></i> {% trans 'Entra con Facebook' %}
-    </a>
+    
+
+    <div class="card">
+      <div class="card-body">
+        <h2 class="text-center">Bem-vinda ao</h2>
+        <h1 class="text-center bemvinda">Portal de Voluntárias</h1>
+        <p  class="card-text text-center">
+            Seja uma voluntária e a ajude o <b>#MeRepresenta</b> a encontrar as candidaturas mais próximas da população
+        </p>
+        <a class="btn btn-primary btn-block" href="{% url 'voluntarios_social_begin' 'facebook' %}?next={% url 'volunteer_index' %}">
+            <i class="fab fa-facebook"></i> Conectar com o Facebook e continuar
+        </a>
+      </div>
+    </div>
 </div>
 {% endblock content %}

@@ -32,3 +32,4 @@ class UpdateAreaForm(ModelForm):
     class Meta:
         model = VolunteerProfile
         fields = ['area', ]
+        labels = {'area': u'Escolha o Estado:'}

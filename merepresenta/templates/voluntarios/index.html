@@ -3,41 +3,49 @@
 {% load i18n %}
 {% load votainteligente_extras %}
 {% load el_pagination_tags %}
+{% load bootstrap4 %}
 
 {% block title %}- Voluntarios{% endblock title %}
-{% block header %}
-<div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">Bemvinda!</h4>
-  <p>Issa é a lista dos candidatos para pesquizar.</p>
-  
 
-  <!--form method="GET" action="">
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Escolha seu estado</label>
-    {{filter.form.elections__area}}
-  </div>
-  <button type="submit" class="btn btn-primary">Pesquisa</button>
-</form-->
-
-<form method="POST" action="{% url 'update_area_of_volunteer' %}">
-  {% csrf_token %}
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Escolha seu estado</label>
-    {{update_area_form.area}}
-  </div>
-  <button type="submit" class="btn btn-primary">Pesquisa</button>
-</form>
-</div>
-
-{% endblock header %}
 {% block content %}
+<div class="card benvinda-voluntaria">
+  <div class="card-body">
+        <div class="col">
+          <h4 class="alert-heading">Bemvinda, {{user}}!</h4>
+          <p>Obrigada por fazer parte dos voluntários do <b>#MeRepresenta</b>! Aqui você vai encontrar a lista de candidatos que precisamos entrar em contato!</p>
+          
+
+          <!--form method="GET" action="">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Escolha seu estado</label>
+            {{filter.form.elections__area}}
+          </div>
+          <button type="submit" class="btn btn-primary">Pesquisa</button>
+        </form-->
+      <div class="row">
+        <div class="col-4 offset-md-8">
+          <form method="POST" action="{% url 'update_area_of_volunteer' %}">
+            {% csrf_token %}
+              {% bootstrap_form update_area_form %}
+            <button type="submit" class="btn btn-primary float-right">Pesquisa</button>
+          </form>
+        </div>
+      </div>
+
+
+
+          
+        </div>
+  </div>
+</div>
 
 <div class="container">
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#Número</th>
-          <th scope="col">Candidato</th>
+          <th scope="col">Nome Candidata</th>
+          <th scope="col">Nº de Urna</th>
+          <th scope="col">Candidatura</th>
           <th scope="col">Partido</th>
           <th scope="col">Estado</th>
           <th scope="col">Pesquisar</th>
@@ -50,11 +58,12 @@
         {% for candidate in candidates %}
           {% if not candidate.volunteerincandidate_set.exists %}
           <tr>
-            <td>{{candidate.numero}}</td>
             <td>{{candidate.name}}</td>
+            <td>{{candidate.numero}}</td>
+            <td>{{candidate.election}}</td>
             <td>{{candidate.partido.initials}}</td>
             <td>{{candidate.election.area}}</td>
-            <td><a href="{% url 'add_mail_to_candidate' id=candidate.id %}">Pesquisar</a></td>
+            <td><a class="btn btn-verde" href="{% url 'add_mail_to_candidate' id=candidate.id %}">Analisar</a></td>
           </tr>
           {% endif %}
         {% endfor %}

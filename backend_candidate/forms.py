@@ -10,15 +10,18 @@ from agenda.forms import ActivityForm
 from agenda.models import Activity
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
+from django.utils.safestring import mark_safe
 
 
 def get_field_from_topic(topic):
     field = forms.ChoiceField(widget=forms.RadioSelect,
                               required=False)
     field.label = topic.label
+    field.description = topic.description
+    field.help_text = topic.description
     choices = []
     for position in topic.positions.all():
-        choices.append((position.id, position.label))
+        choices.append((position.id, mark_safe(position.label)))
     field.choices = choices
     return field
 
@@ -71,50 +74,61 @@ def get_fields_dict_from_topic(topic, taken_position=None):
         dict_['description_for_' + topic_id].initial = taken_position.description
     return dict_
 
-class MediaNaranjaElectionForm(forms.Form):
+class MediaNaranjaSingleCategoryMixin(object):
+    def set_fields_for(self, category):
+        for topic in category.topics.all():
+            taken_positions = (TakenPosition.
+                               objects.filter(topic=topic,
+                                              person=self.candidate)
+                               ).exists()
+            fields_kwargs = {}
+            if taken_positions:
+                taken_position = (TakenPosition.
+                                  objects.get(topic=topic,
+                                              person=self.candidate)
+                                  )
+                fields_kwargs.update({'taken_position':
+                                      taken_position})
+            field_dict = get_fields_dict_from_topic(topic,
+                                                    **fields_kwargs)
+            self.fields.update(field_dict)
+
+    def save_answer_for(self, category):
+        for topic in category.topics.all():
+            topic_key = 'answer_for_' + str(topic.id)
+            try:
+                topic_id = int(self.cleaned_data[topic_key])
+                position = Position.objects.get(id=topic_id)
+            except ValueError:
+                topic_id = None
+                position = None
+            description_key = 'description_for_' + str(topic.id)
+            description = self.cleaned_data[description_key]
+            taken_position, created = (TakenPosition.
+                                       objects.
+                                       get_or_create(topic=topic,
+                                                     person=self.candidate))
+
+            taken_position.position = position
+            taken_position.description = description
+
+            taken_position.save()
+
+class MediaNaranjaSingleCandidateMixin(object):
     def __init__(self, *args, **kwargs):
+
         self.candidate = kwargs.pop('candidate')
+        super(MediaNaranjaSingleCandidateMixin, self).__init__(*args, **kwargs)
+
+class MediaNaranjaElectionForm(MediaNaranjaSingleCandidateMixin, forms.Form, MediaNaranjaSingleCategoryMixin):
+    def __init__(self, *args, **kwargs):
         super(MediaNaranjaElectionForm, self).__init__(*args, **kwargs)
         for category in self.categories.all():
-            for topic in category.topics.all():
-                taken_positions = (TakenPosition.
-                                   objects.filter(topic=topic,
-                                                  person=self.candidate)
-                                   ).exists()
-                fields_kwargs = {}
-                if taken_positions:
-                    taken_position = (TakenPosition.
-                                      objects.get(topic=topic,
-                                                  person=self.candidate)
-                                      )
-                    fields_kwargs.update({'taken_position':
-                                          taken_position})
-                field_dict = get_fields_dict_from_topic(topic,
-                                                        **fields_kwargs)
-                self.fields.update(field_dict)
+            self.set_fields_for(category)
 
     def save(self):
         for category in self.categories.all():
-            for topic in category.topics.all():
-                topic_key = 'answer_for_' + str(topic.id)
-                try:
-                    topic_id = int(self.cleaned_data[topic_key])
-                    position = Position.objects.get(id=topic_id)
-                except ValueError:
-                    topic_id = None
-                    position = None
-                description_key = 'description_for_' + str(topic.id)
-                description = self.cleaned_data[description_key]
-                taken_position, created = (TakenPosition.
-                                           objects.
-                                           get_or_create(topic=topic,
-                                                         person=self.candidate))
-
-                taken_position.position = position
-                taken_position.description = description
-
-                taken_position.save()
-
+            self.save_answer_for(category)
 
 
 def get_form_for_election(election):

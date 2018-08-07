@@ -11,7 +11,7 @@ from backend_candidate.models import CandidacyContact
 from votai_utils.send_mails import send_mail
 from django.utils import timezone
 import datetime
-
+from elections.models import QuestionCategory as OriginalQuestionCategory
 
 
 class MeRepresentaPopularProposal(PopularProposal):
@@ -77,7 +77,6 @@ class Candidate(OriginalCandidate):
     for_volunteers = LimitCandidatesForVolunteers()
 
     def get_image(self):
-        print "oli"
         if self.candidacy_set.exists():
             user = self.candidacy_set.first().user
             return user.profile.image
@@ -133,6 +132,16 @@ class Partido(models.Model):
     coaligacao = models.ForeignKey(Coaligacao, null=True)
 
 
+class QuestionCategory(OriginalQuestionCategory):
+    class Meta:
+        proxy = True
+
+
+class CandidateQuestionCategory(models.Model):
+    candidate = models.ForeignKey(Candidate)
+    category = models.ForeignKey(QuestionCategory)
+    created = models.DateTimeField(auto_now=True)
+    updated = models.DateTimeField(auto_now_add=True)
 
 
 ##### VOLUNTEERS PART!!!
@@ -141,4 +150,4 @@ class Partido(models.Model):
 ## But as I'm coding it I am becoming aware that this could be a good feature to have in the feature, this is why I'm keeping this in
 ## an inner module, so when I have more time and the need from another NGO to have the volunteers backend
 ## I can grab it and move it to another application
-# from merepresenta.voluntarios.models import VolunteerProfile
+from merepresenta.voluntarios.models import VolunteerProfile

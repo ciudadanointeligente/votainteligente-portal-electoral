@@ -34,9 +34,10 @@ class PersonalDataForm(forms.Form):
                                 label=u'Com qual desses gêneros você se identifica?')
     lgbt = forms.ChoiceField(label=u'Você se declara LGBT?', widget=forms.RadioSelect, choices=SIM_OU_NAO)
     race = forms.ChoiceField(label=u'Qual é a sua cor ou raça?',widget=forms.RadioSelect,choices=RACES)
-    bio = forms.CharField(label=u"Escreva um pouco sobre você", widget=forms.TextInput)
-    candidatura_coletiva = forms.ChoiceField(label=u'Você faz parte de uma Candidatura Coletiva?', widget=forms.RadioSelect, choices=SIM_OU_NAO)
-    renovacao_politica = forms.CharField(label=u"Você faz parte de algum grupo de Renovação Política? Qual?")
+    bio = forms.CharField(label=u"Escreva um pouco sobre você", widget=forms.Textarea, required=False)
+    candidatura_coletiva = forms.ChoiceField(label=u'Você faz parte de uma Candidatura Coletiva?',
+                        widget=forms.RadioSelect, choices=SIM_OU_NAO)
+    renovacao_politica = forms.CharField(label=u"Você faz parte de algum grupo de Renovação Política? Qual?", required=False)
 
 
     def __init__(self, *args, **kwargs):

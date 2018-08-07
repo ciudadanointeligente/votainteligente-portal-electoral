@@ -10,15 +10,18 @@ from agenda.forms import ActivityForm
 from agenda.models import Activity
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
+from django.utils.safestring import mark_safe
 
 
 def get_field_from_topic(topic):
     field = forms.ChoiceField(widget=forms.RadioSelect,
                               required=False)
     field.label = topic.label
+    field.description = topic.description
+    field.help_text = topic.description
     choices = []
     for position in topic.positions.all():
-        choices.append((position.id, position.label))
+        choices.append((position.id, mark_safe(position.label)))
     field.choices = choices
     return field
 
@@ -115,7 +118,6 @@ class MediaNaranjaSingleCandidateMixin(object):
     def __init__(self, *args, **kwargs):
 
         self.candidate = kwargs.pop('candidate')
-        print self.candidate
         super(MediaNaranjaSingleCandidateMixin, self).__init__(*args, **kwargs)
 
 class MediaNaranjaElectionForm(MediaNaranjaSingleCandidateMixin, forms.Form, MediaNaranjaSingleCategoryMixin):

@@ -19,6 +19,62 @@ body {
 .btn-gris {
    @include button-variant($gris, $gris); 
 }
-.btn-verde {
+
+section.profile-question {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.desc_candidato {
+    li {
+        padding: 0;
+        border: none;
+        margin-top: 0.5em;
+    }
+}
+.label_question{
+
+    label {
+        font-weight: bolder;
+        margin-bottom: 1.5em;
+    }
+}
+
+@mixin paso($background-color) {
+    min-height: 5px;
+    width: 100%;
+    display: block;
+    background-color: $background-color;
+}
+
+.paso_incompletado{
+    @include paso($gris);
+}
+.paso_completado {
+    @include paso($verde);
+}
+
+.question-pauta {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    .question-label {
+        font-weight: bolder;
+        font-size: x-large;
+    }
+    .enquiri {
+        font-weight: bolder;   
+    }
+    .description {
+        margin-bottom: 1em;
+        padding-left: 1em;
+    }
+    .radio {
+
+        label {
+            @include border-radius($radius: $border-radius)
+            background-color: $gris;
+            padding: 0.4em;
+        }
+    }
+}.btn-verde {
    @include button-variant($verde, $verde); 
 }

@@ -1,21 +1,45 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load bootstrap4 %}
+{% load votainteligente_extras%}
 
 {% block title %}- Portada{% endblock title %}
 
+
+
+
 {% block content %}
+
+ <div class="row">
+    <div class="col-1"></div>
+{% for i in wizard.steps.count|times %}
+<div class="col-1 text-center">
+    <span class="paso {% if i < wizard.steps.step1 %}paso_completado{% else %}paso_incompletado{% endif %}"></span>
+</div>
+{% endfor %}
+</div>
+
+
+
+<div class='row'>
+    <div class='col'>
+         <h1>Pautas sobre <span class="category-name">{{form.category.name}}</span></h1>
+    </div>
+</div>
 <div class="row">
         <div class="col-8 offset-md-2">
             <form method="post"  enctype="multipart/form-data" action="{% url 'complete_pautas' %}">{% csrf_token %}
       <!-- image -->
             {{wizard.management_form}}
             {% for field in form %}
-            <section>
-              {% bootstrap_label field.label %}
+            <section class="question-pauta">
                 {% if 'description_' not in field.name %}
-
-                    {% bootstrap_field field show_label=False show_help=False%}
+                    <span class="question-label">{% bootstrap_label field.label %}</span>
+                    <p class="description">{{field.help_text|safe}}</p>
+                    <p class="enquiri">Qual o seu posicionamento?</p>
+                    <div class="options">
+                        {% bootstrap_field field show_label=False show_help=False %}
+                    </div>
                 {% endif %}
             </section>
         {% endfor %}

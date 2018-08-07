@@ -17,22 +17,29 @@
         <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle">
       {% endif %}
       <div>
-        <h3>Dados do TSE</h3>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">{{candidate.name}}</li>
+        <h5>Dados do TSE</h5>
+        <ul class="list-group list-group-flush desc_candidato">
+          <li class="list-group-item">{{candidate.name|title}}</li>
           <li class="list-group-item">{{candidate.partido.initials}}</li>
-          <li class="list-group-item">{{candidate.election.name}}</li>
+          <li class="list-group-item">{{candidate.election.name|title}}</li>
           <li class="list-group-item">Número de urna {{candidate.numero}}</li>
           <li class="list-group-item">{{candidate.data_de_nascimento}}</li>
-          <li class="list-group-item">{{candidate.election.area.name}}</li>
+          <li class="list-group-item">{{candidate.election.area.name|title}}</li>
         </ul>
       </div>
     </div>
     <div class="col-8 ">
+      <h1>Olá, {{candidate.name}}:</h1>
+      <p>Obrigada por ingressar na nossa plataforma! Agora precisamos de algumas informações sobre quem você é. As questões identitárias poderão ser utilizadas pelos eleitores para filtrarem as candidaturas.</p>
+
       <form method="post"  enctype="multipart/form-data" action="{% url 'merepresenta_complete_profile' slug=election.slug candidate_slug=candidate.slug %}">{% csrf_token %}
       <!-- image -->
-      
-            {% bootstrap_form form %}
+          {% for field in form %}
+          <section class="profile-question">
+            <span class="label_question">{% bootstrap_label field.label %}</span>
+            {% bootstrap_field field  show_label=False show_help=False %}
+          </section>
+          {% endfor %}
 
         <input type="submit" value="{% trans "Guardar" %}"  class="btn btn-default" />
         </form>

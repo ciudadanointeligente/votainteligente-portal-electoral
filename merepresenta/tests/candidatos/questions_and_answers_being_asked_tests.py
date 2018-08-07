@@ -143,7 +143,6 @@ class CompletePautasTestCase(VolunteersTestCaseBase, assertFieldsForTopicMixin):
 
         response = self.client.get(url)
         steps = response.context['wizard']['steps']
-        # print response.context['wizard']['management_form'].as_ul()
         
         for i in range(steps.count):
             form = response.context['wizard']['form']

@@ -1,5 +1,6 @@
 # coding=utf-8
 from django import forms
+import re
 from backend_candidate.models import Candidacy
 from merepresenta.models import Candidate, QuestionCategory, CandidateQuestionCategory
 from backend_candidate.forms import MediaNaranjaSingleCandidateMixin, MediaNaranjaSingleCategoryMixin
@@ -14,8 +15,12 @@ class CPFAndDdnForm(CPFAndDdnFormBase):
         self.user = kwargs.pop('user')
         super(CPFAndDdnForm, self).__init__(*args, **kwargs)
 
+    def get_me_the_numbers_from_a_cpf(self, cpf):
+        return re.sub("\D", "", cpf)
+
     def clean(self):
         cpf = self.cleaned_data['cpf']
+        cpf = self.get_me_the_numbers_from_a_cpf(cpf)
         ddn = self.cleaned_data.get('nascimento', None)
         if ddn is None:
             raise forms.ValidationError(u'Não encontramos o candidato')

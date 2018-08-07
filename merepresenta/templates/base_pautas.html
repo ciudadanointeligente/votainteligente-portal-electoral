@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap4 %}
+
+{% block title %}- Portada{% endblock title %}
+
+{% block content %}
+<div class="row">
+        <div class="col-8 offset-md-2">
+            <form method="post"  enctype="multipart/form-data" action="{% url 'complete_pautas' %}">{% csrf_token %}
+      <!-- image -->
+            {{wizard.management_form}}
+            {% for field in form %}
+            <section>
+              {% bootstrap_label field.label %}
+                {% if 'description_' not in field.name %}
+
+                    {% bootstrap_field field show_label=False show_help=False%}
+                {% endif %}
+            </section>
+        {% endfor %}
+
+        <input type="submit" value="Enviar"  class="btn btn-default" />
+        </form>
+    </div>
+</div>
+{% endblock content %}

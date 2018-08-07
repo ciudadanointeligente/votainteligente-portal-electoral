@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseNotFound, HttpResponseRedirect
 from backend_candidate.models import Candidacy
 from backend_candidate.views import ProfileView
-from .forms import CPFAndDdnForm, CPFAndDdnForm2
+from .forms import CPFAndDdnForm, CPFAndDdnForm2, get_form_classes_for_questions_for
 from social_core.actions import do_complete, do_auth
 from social_django.views import _do_login
 from django.views.decorators.cache import never_cache
@@ -20,7 +20,8 @@ from merepresenta.models import Candidate
 from django.core.urlresolvers import reverse
 from merepresenta.forms import PersonalDataForm
 from django.shortcuts import render
-
+from django.utils.decorators import classonlymethod
+from formtools.wizard.views import SessionWizardView
 
 class LoginView(TemplateView):
     template_name="candidatos/login.html"
@@ -87,7 +88,6 @@ class CPFAndDDNSelectView2(FormView):
         self.candidate = form.get_candidate()
         context = {'candidate': self.candidate}
         response = render(self.request, 'candidatos/login_with_facebook.html', context)
-        print response
         return response
 
 def load_strategy(request=None):
@@ -116,8 +116,29 @@ class CompleteProfileView(ProfileView):
         return PersonalDataForm
 
     def get_success_url(self):
-        url = reverse('merepresenta_complete_profile',
-                      kwargs={'slug': self.election.slug,
-                              'candidate_slug': self.candidate.slug}
-                      )
+        url = reverse('complete_pautas')
         return url
+
+
+class CompletePautasWizardView(SessionWizardView):
+    template_name = 'base_pautas.html'
+    def process_step(self, form):
+        data = self.get_form_step_data(form)
+        form.save()
+        return data
+
+    def done(self, form_list, **kwargs):
+        return render(self.request, 'candidatos/obrigado_pela_suas_respostas.html', {
+            'form_data': [form.cleaned_data for form in form_list],
+        })
+
+
+def get_pautas_view(request, *args, **kwargs):
+    user = request.user
+    if not user.is_authenticated or not user.candidacies.count():
+        return HttpResponseRedirect(reverse('index'))
+    candidate = request.user.candidacies.first().candidate
+    forms = get_form_classes_for_questions_for(candidate)
+    class OnDemandCompletePautas(CompletePautasWizardView):
+        form_list = forms
+    return OnDemandCompletePautas.as_view()(request, *args, **kwargs)

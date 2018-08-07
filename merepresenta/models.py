@@ -77,7 +77,6 @@ class Candidate(OriginalCandidate):
     for_volunteers = LimitCandidatesForVolunteers()
 
     def get_image(self):
-        print "oli"
         if self.candidacy_set.exists():
             user = self.candidacy_set.first().user
             return user.profile.image
@@ -138,6 +137,11 @@ class QuestionCategory(OriginalQuestionCategory):
         proxy = True
 
 
+class CandidateQuestionCategory(models.Model):
+    candidate = models.ForeignKey(Candidate)
+    category = models.ForeignKey(QuestionCategory)
+    created = models.DateTimeField(auto_now=True)
+    updated = models.DateTimeField(auto_now_add=True)
 
 
 ##### VOLUNTEERS PART!!!

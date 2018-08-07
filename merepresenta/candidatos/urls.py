@@ -5,8 +5,10 @@ from .views import (LoginView,
                     CPFAndDDNSelectView2,
                     CompleteProfileView,
                     complete,
-                    auth
+                    auth,
+                    get_pautas_view,
                     )
+
 
 
 urlpatterns = [
@@ -29,5 +31,8 @@ urlpatterns = [
         ),
     url(r'^login/(?P<backend>[^/]+)/(?P<slug>[^/]+)?$', auth,
             name='candidato_social_begin'),
+    url(r'^complete_pautas/?$',
+        get_pautas_view,
+        name='complete_pautas')
     
 ]

@@ -113,7 +113,9 @@ class MediaNaranjaSingleCategoryMixin(object):
 
 class MediaNaranjaSingleCandidateMixin(object):
     def __init__(self, *args, **kwargs):
+
         self.candidate = kwargs.pop('candidate')
+        print self.candidate
         super(MediaNaranjaSingleCandidateMixin, self).__init__(*args, **kwargs)
 
 class MediaNaranjaElectionForm(MediaNaranjaSingleCandidateMixin, forms.Form, MediaNaranjaSingleCategoryMixin):

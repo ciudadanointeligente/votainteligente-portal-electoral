@@ -7,7 +7,9 @@ from merepresenta.models import (MeRepresentaPopularProposal,
                                  Candidate,
                                  Coaligacao,
                                  Partido,
-                                 VolunteerInCandidate)
+                                 VolunteerInCandidate,
+                                 CandidateQuestionCategory,
+                                 QuestionCategory)
 from django.contrib.auth.models import User
 from elections.models import Election
 from django.utils import timezone
@@ -109,7 +111,14 @@ class CandidateListForVolunteers(TestCase):
         self.assertIn(checked_thirty_one_minutes_ago, candidates)
         self.assertNotIn(checked_twenty_nine_minutes_ago, candidates)
 
-
+class CandidateCategoryLink(TestCase):
+    def test_instanciate(self):
+        holiday = Candidate.objects.create(name="holiday")
+        cat = QuestionCategory.objects.create(name="Pautas LGBT")
+        instance = CandidateQuestionCategory.objects.create(candidate=holiday, category=cat)
+        self.assertTrue(instance)
+        self.assertTrue(instance.created)
+        self.assertTrue(instance.updated)
 
 class CoaligacaoTestCase(TestCase):
     def test_instanciate(self):

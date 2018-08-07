@@ -157,6 +157,6 @@ class GetAndPostToTheUpdateProfileView(SoulMateCandidateAnswerTestsBase):
         self.client.login(username=self.feli.username, password=PASSWORD)
         self.assertFalse(self.candidate.gender)
         response = self.client.post(url, data=self.data)
-        self.assertRedirects(response, url)
+        self.assertRedirects(response, reverse('complete_pautas'))
         self.candidate.refresh_from_db()
         self.assertTrue(self.candidate.gender)

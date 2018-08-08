@@ -75,6 +75,29 @@ section.profile-question {
             padding: 0.4em;
         }
     }
-}.btn-verde {
+}
+
+div.categories-select {
+    @include make-row();
+    .cat-selected {
+        background-color: $roxo;
+    }
+    .cat-unselected {
+        background-color: $branco;
+    }
+    div.checkbox {
+        @include make-col(4);
+        label {
+            height: 100%;
+            width: 100%;
+        }
+        min-height: 4em;
+        input[type=checkbox] {
+            visibility: hidden;
+        }
+    }
+}
+
+.btn-verde {
    @include button-variant($verde, $verde); 
 }

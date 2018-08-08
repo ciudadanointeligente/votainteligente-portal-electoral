@@ -71,7 +71,8 @@ def get_form_class_from_category(category, candidate):
     return OnDemandMeRepresentaCandidateAnsweringForm
 
 class CategoryCandidateForm(MediaNaranjaSingleCandidateMixin, forms.Form):
-    categories = forms.ModelMultipleChoiceField(queryset=QuestionCategory.objects.all())
+    categories = forms.ModelMultipleChoiceField(queryset=QuestionCategory.objects.all(),
+                                                widget=forms.CheckboxSelectMultiple(attrs={'class':"categories-select"}))
 
     def save(self):
         for category in self.cleaned_data['categories']:

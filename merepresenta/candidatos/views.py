@@ -128,9 +128,14 @@ class CompletePautasWizardView(SessionWizardView):
         return data
 
     def done(self, form_list, **kwargs):
-        return render(self.request, 'candidatos/obrigado_pela_suas_respostas.html', {
+        candidate = None
+        context = {
             'form_data': [form.cleaned_data for form in form_list],
-        })
+        }
+        if form_list:
+            context['candidate'] = form_list[0].candidate
+
+        return render(self.request, 'candidatos/obrigado_pela_suas_respostas.html', context)
 
 
 def get_pautas_view(request, *args, **kwargs):

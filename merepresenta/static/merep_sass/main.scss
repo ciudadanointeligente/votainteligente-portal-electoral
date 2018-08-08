@@ -101,3 +101,10 @@ div.categories-select {
 .btn-verde {
    @include button-variant($verde, $verde); 
 }
+
+.obrigada-candidato {
+    color: $roxo;
+    font-weight: bolder;
+    text-transform: uppercase;
+
+}

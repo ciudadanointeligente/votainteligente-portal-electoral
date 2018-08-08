@@ -27,8 +27,10 @@ SIM_OU_NAO = [
     ('sim', u"Sim"),
     ('nao', u"Nao"),
 ]
+
+
 class PersonalDataForm(forms.Form):
-    email = forms.EmailField(label=u"Para manter contato, quais desses e-mails você mais usa?")
+    email = forms.EmailField(label=u"Para manter contato, quais desses e-mails você mais usa?", widget=forms.EmailInput(attrs={'placeholder': 'Outro'}))
     gender = forms.ChoiceField(choices=GENDERS,
                                 widget=forms.RadioSelect,
                                 label=u'Com qual desses gêneros você se identifica?')

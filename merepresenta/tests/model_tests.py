@@ -57,6 +57,19 @@ class CandidateTestCase(VotaInteligenteTestCase):
         self.assertFalse(candidate.is_ghost)
         self.assertFalse(candidate.facebook_contacted)
 
+    def test_get_emails(self):
+        user = User.objects.create_user(username='user', password="password", email='user@users.com')
+        candidate = Candidate.objects.create(name="Candidate 1",
+                                             cpf='1230',
+                                             nome_completo=u'Candidato uno',
+                                             numero='190000000560',
+                                             race="preta",
+                                             original_email='perrito@gatito.com',
+                                             email_repeated=False)
+        candidacy = Candidacy.objects.create(user=user, candidate=candidate)
+        self.assertEquals(candidate.emails['TSE'], candidate.original_email)
+        self.assertEquals(candidate.emails['facebook'], user.email)
+
     def test_get_image_from_user(self):
         image = self.get_image()
         user = User.objects.create_user(username='user', password="password")

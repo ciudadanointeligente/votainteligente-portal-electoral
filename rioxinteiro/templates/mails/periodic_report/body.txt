@@ -1,16 +1,15 @@
 {%load votainteligente_extras%}
-Hola {{user}}:
-Escribimos para contarte lo que ha ocurrido con tus propuestas en el último
-tiempo:{% for proposal in proposals %}
-Con {{proposal.proposal}}:
-- Obtuvo {{proposal.analytics.visits}} visitas.
-- Obtuvo {{proposal.analytics.commitments}} compromisos.
-- Obtuvo {{proposal.analytics.likers}} apoyos ciudadanos.
+Olá {{user}}:
+Queríamos que você soubesse tudo o que aconteceu com suas propostas na última semana:
+{% for proposal in proposals %}
+Com {{proposal.proposal}}:
+- Recebeu {{proposal.analytics.visits}} visitas.
+- Recebeu {{proposal.analytics.commitments}} compromissos.
+- Recebeu {{proposal.analytics.likers}} apoios.
 {% endfor %}
 
 {% if new_proposals %}
-Además, te queríamos contar que durante el último tiempo recibimos algunas
-propuestas ciudadanas que podrían ser de tu interés.
+Além disso, queremos informar que, durante a última semana, recebemos algumas propostas de cidadãos que podem ser de seu interesse.
 {% for proposal in new_proposals %}
 - {{proposal.title}} (https://{{site.domain}}{{proposal.get_absolute_url}})
 {% endfor %}

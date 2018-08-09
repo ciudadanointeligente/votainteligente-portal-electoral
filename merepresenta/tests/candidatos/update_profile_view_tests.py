@@ -43,7 +43,6 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         form_class = PersonalDataForm
         form = form_class(candidate=self.candidate,
                           data=self.data)
-        print form.errors
         self.assertTrue(form.is_valid())
         self.assertIn('email', form.cleaned_data.keys())
         self.assertIn('gender', form.cleaned_data.keys())

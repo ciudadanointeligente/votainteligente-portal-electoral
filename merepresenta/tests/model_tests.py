@@ -17,6 +17,7 @@ import datetime
 from django.core.urlresolvers import reverse
 from merepresenta.voluntarios.models import VolunteerProfile
 from backend_candidate.models import Candidacy
+from django.test import override_settings
 
 
 class MeRepresentaPopularProposalTestCase(TestCase):
@@ -73,6 +74,35 @@ class CandidateTestCase(VotaInteligenteTestCase):
         candidacy = Candidacy.objects.create(user=user, candidate=candidate)
         self.assertEquals(candidate.emails['TSE'], candidate.original_email)
         self.assertEquals(candidate.emails['facebook'], user.email)
+
+    def test_get_races(self):
+        candidate = Candidate.objects.create(name="Candidate 1",
+                                             cpf='1230',
+                                             nome_completo=u'Candidato uno',
+                                             numero='190000000560',
+                                             branca=True,
+                                             preta=True,
+                                             original_email='perrito@gatito.com',
+                                             bio='blablablabla', 
+                                             lgbt=True,
+                                             candidatura_coletiva=True,
+                                             renovacao_politica='Partido Perrito',
+                                             email_repeated=False)
+        races = candidate.get_races()
+        self.assertIn(u'Branca', races)
+        self.assertIn(u'Preta', races)
+
+    @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
+    def test_get_absolute_url(self):
+        candidate = Candidate.objects.create(name="Candidate 1",
+                                             cpf='1230',
+                                             nome_completo=u'Candidato uno',
+                                             numero='190000000560',
+                                             race="preta",
+                                             original_email='perrito@gatito.com',
+                                             email_repeated=False)
+        expected_url = reverse('candidate_profile', kwargs={'slug': candidate.slug})
+        self.assertEquals(candidate.get_absolute_url(), expected_url)
 
     def test_get_image_from_user(self):
         image = self.get_image()

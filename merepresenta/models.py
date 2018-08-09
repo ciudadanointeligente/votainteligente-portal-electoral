@@ -82,13 +82,18 @@ class Candidate(OriginalCandidate):
             return user.profile.image
         return self.image
 
-    # @property
-    # def image(self):
-    #     """I'm the 'x' property."""
-    #     if self.candidacies.exists():
-    #         user = self.candidacies.first().user
-    #         return user.profile.image
-    #     return self.image
+    @property
+    def emails(self):
+        emails = {}
+        if self.original_email:
+            emails['TSE'] = self.original_email
+        if self.email:
+            emails['email'] = self.email
+        for candidacy in self.candidacy_set.all():
+            email = candidacy.user.email
+            if email is not None and email not in emails:
+                emails['facebook'] = email
+        return emails
 
 class VolunteerInCandidate(models.Model):
     volunteer = models.ForeignKey(User)

@@ -178,12 +178,17 @@ class ProfileView(LoginRequiredMixin, FormView):
     def get_initial(self):
         initial = super(ProfileView, self).get_initial()
         labels = []
+
         for field in self.get_form_class().base_fields:
-            labels.append(field)
+            if hasattr(self.candidate, field):
+                initial[field] = getattr(self.candidate, field)
+            else:
+                labels.append(field)
         personal_datas = PersonalData.objects.filter(candidate=self.candidate,
                                                      label__in=labels)
         for personal_data in personal_datas:
             initial[str(personal_data.label)] = personal_data.value
+
         return initial
 
     def get_context_data(self, **kwargs):

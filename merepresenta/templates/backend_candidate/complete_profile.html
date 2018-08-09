@@ -32,12 +32,23 @@
       <h1>Olá, {{candidate.name}}:</h1>
       <p>Obrigada por ingressar na nossa plataforma! Agora precisamos de algumas informações sobre quem você é. As questões identitárias poderão ser utilizadas pelos eleitores para filtrarem as candidaturas.</p>
 
-      <form method="post"  enctype="multipart/form-data" action="{% url 'merepresenta_complete_profile' slug=election.slug candidate_slug=candidate.slug %}">{% csrf_token %}
+      <form id='form_candidate_profile' method="post"  enctype="multipart/form-data" action="{% url 'merepresenta_complete_profile' slug=election.slug candidate_slug=candidate.slug %}">{% csrf_token %}
       <!-- image -->
           {% for field in form %}
           <section class="profile-question">
             <span class="label_question">{% bootstrap_label field.label %}</span>
-            {% bootstrap_field field  show_label=False show_help=False %}
+            {% if field.name == 'email' %}
+              <ul>
+
+                {% for type, mail in candidate.emails.items %}
+                 <input type="radio" name="email_previous" value="{{mail}}" {% if type == 'email' %}checked{% endif %}> {{mail}} ({{type}})<br>
+                {% endfor %}
+                <input type="radio" name="email_previous" value="outro" required="False"> Outro<br>
+              </ul>
+              {% bootstrap_field field  show_label=False show_help=False placeholder="Outro" %}
+            {% else %}
+              {% bootstrap_field field  show_label=False show_help=False %}
+            {% endif %}
           </section>
           {% endfor %}
 
@@ -48,4 +59,15 @@
       </div>
 
   </div>
+  <script type="text/javascript">
+  $(function(){
+    $('#form_candidate_profile').submit(function(){
+      let checkbox = $('input[name=email_previous]:checked');
+      let val = checkbox.val()
+      if (val != 'outro'){
+        $('input[name=email]').val(val);
+      }
+    })
+  });
+  </script>
 {% endblock content %}

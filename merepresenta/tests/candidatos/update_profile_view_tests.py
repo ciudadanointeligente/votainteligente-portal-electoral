@@ -150,7 +150,6 @@ class GetAndPostToTheUpdateProfileView(SoulMateCandidateAnswerTestsBase):
         self.assertTrue(response.context['form'])
         self.assertEquals(response.context['form'].candidate, self.candidate)
 
-
     def test_post_to_the_view(self):
         kwargs = {'slug': self.election.slug, 'candidate_slug': self.candidate.slug}
         url = reverse('merepresenta_complete_profile', kwargs=kwargs)
@@ -160,3 +159,13 @@ class GetAndPostToTheUpdateProfileView(SoulMateCandidateAnswerTestsBase):
         self.assertRedirects(response, reverse('complete_pautas'))
         self.candidate.refresh_from_db()
         self.assertTrue(self.candidate.gender)
+
+    def test_post_to_the_view_and_then_get_it_again(self):
+        kwargs = {'slug': self.election.slug, 'candidate_slug': self.candidate.slug}
+        url = reverse('merepresenta_complete_profile', kwargs=kwargs)
+        self.client.login(username=self.feli.username, password=PASSWORD)
+        self.client.post(url, data=self.data)
+        response = self.client.get(url)
+        form = response.context['form']
+        self.assertIn('gender', form.initial)
+        self.assertIn('email', form.initial)

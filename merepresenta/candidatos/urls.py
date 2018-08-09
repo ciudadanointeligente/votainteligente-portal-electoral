@@ -7,6 +7,7 @@ from .views import (LoginView,
                     complete,
                     auth,
                     get_pautas_view,
+                    MeRepresentaCandidateDetailView,
                     )
 
 
@@ -33,6 +34,10 @@ urlpatterns = [
             name='candidato_social_begin'),
     url(r'^complete_pautas/?$',
         get_pautas_view,
-        name='complete_pautas')
+        name='complete_pautas'),
+    url(r'^(?P<slug>[^/]+)/?$',
+        MeRepresentaCandidateDetailView.as_view(),
+        name='candidate_profile'),
+
     
 ]

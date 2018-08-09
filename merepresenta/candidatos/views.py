@@ -22,6 +22,7 @@ from merepresenta.forms import PersonalDataForm
 from django.shortcuts import render
 from django.utils.decorators import classonlymethod
 from formtools.wizard.views import SessionWizardView
+from django.views.generic import DetailView
 
 class LoginView(TemplateView):
     template_name="candidatos/login.html"
@@ -133,7 +134,8 @@ class CompletePautasWizardView(SessionWizardView):
             'form_data': [form.cleaned_data for form in form_list],
         }
         if form_list:
-            context['candidate'] = form_list[0].candidate
+            candidate = Candidate.objects.get(candidate_ptr=form_list[0].candidate)
+            context['candidate'] = candidate
 
         return render(self.request, 'candidatos/obrigado_pela_suas_respostas.html', context)
 
@@ -147,3 +149,10 @@ def get_pautas_view(request, *args, **kwargs):
     class OnDemandCompletePautas(CompletePautasWizardView):
         form_list = forms
     return OnDemandCompletePautas.as_view()(request, *args, **kwargs)
+
+
+class MeRepresentaCandidateDetailView(DetailView):
+    model = Candidate
+    slug_field = 'slug'
+    context_object_name = 'candidate'
+    template_name='merepresenta/candidate_detail.html'

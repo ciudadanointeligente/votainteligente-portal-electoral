@@ -59,24 +59,34 @@ class LimitCandidatesForVolunteers(ForVolunteersManager):
         return qs
 
 
-RACES = [
-    ('BRANCA', u"Branca"),
-    ('PRETA', u"Preta"),
-    ('PARDA', u"Parda"),
-    ('AMARELA', u"Amarela"),
-    ('INDÍGENA', u"Indígena"),
-]
+RACES = {
+    'branca': u"Branca",
+    'preta': u"Preta",
+    'parda': u"Parda",
+    'amarela': u"Amarela",
+    'indigena': u"Indígena",
+}
 
 ## RACES
 ## Why I did it this way: after a while dealing with how to store races
 ## I realized that according to brasilian law
 ## this will not likely change in the future
 class RaceMixin(models.Model):
-    branca = models.BooleanField(default=False, verbose_name=u"Branca")
-    preta = models.BooleanField(default=False, verbose_name=u"Preta")
-    parda = models.BooleanField(default=False, verbose_name=u"Parda")
-    amarela = models.BooleanField(default=False, verbose_name=u"Amarela")
-    indigena = models.BooleanField(default=False, verbose_name=u"Indígena")
+    branca = models.BooleanField(default=False, verbose_name=RACES['branca'])
+    preta = models.BooleanField(default=False, verbose_name=RACES['preta'])
+    parda = models.BooleanField(default=False, verbose_name=RACES['parda'])
+    amarela = models.BooleanField(default=False, verbose_name=RACES['amarela'])
+    indigena = models.BooleanField(default=False, verbose_name=RACES['indigena'])
+
+
+    def get_races(self):
+        possibles = RACES.keys()
+        races_result = []
+        for r in possibles:
+            if getattr(self, r, False):
+                races_result.append(RACES[r])
+        return races_result
+
     class Meta:
         abstract = True
 
@@ -118,6 +128,9 @@ class Candidate(OriginalCandidate, RaceMixin):
             if email is not None and email not in emails:
                 emails['facebook'] = email
         return emails
+
+    def get_absolute_url(self):
+        return reverse('candidate_profile', kwargs={'slug': self.slug})
 
 class VolunteerInCandidate(models.Model):
     volunteer = models.ForeignKey(User)

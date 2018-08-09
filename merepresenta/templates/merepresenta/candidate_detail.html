@@ -29,91 +29,43 @@
 </div>
 
 <div class='row'>
-    <div class="col-2">
-      {% if candidate.candidacy_set.first.user.profile.image %}
+    <div class="col-4">
+        {% if candidate.candidacy_set.first.user.profile.image %}
         <img src="{{candidate.candidacy_set.first.user.profile.image.url}}" alt="{{candidate.name}}" height="96" width="96" border="0" class="img-responsive img-circle">
       {% else %}
         <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle">
       {% endif %}
-      <div>
-        <h5>Dados do TSE</h5>
-        <ul class="list-group list-group-flush desc_candidato">
-          <li class="list-group-item">{{candidate.name|title}}</li>
-          <li class="list-group-item">{{candidate.partido.initials}}</li>
-          <li class="list-group-item">{{candidate.election.name|title}}</li>
-          <li class="list-group-item">Número de urna {{candidate.numero}}</li>
-          <li class="list-group-item">{{candidate.data_de_nascimento}}</li>
-          <li class="list-group-item">{{candidate.election.area.name|title}}</li>
-        </ul>
-      </div>
+      
+      
     </div>
     <div class="col-8 ">
-        <table class="table">
-          <tr>
-            <td>
-            {% get_personal_data candidate=candidate personal_data='lgbt' as lgbt %}
-              {% if lgbt.value %}
-              <p class="small-basic"><b>LGBT?</b></p>
-              <p>{{lgbt.value}}</p>
+      <div class="row">
+        <div class="col">
+          <ul class="list-group list-group-flush desc_candidato">
+            <li class="list-group-item">
+              <small>Candidatura</small><br>
+              {{candidate.election.name|title}}
+            </li>
+            <li class="list-group-item"><small>Partido</small><br>{{candidate.partido.initials}}</li>
+            <li class="list-group-item"><small>Coaligacao</small><br>{{candidate.partido.coaligacao.name}}</li>
+            <li class="list-group-item"><small>Estado</small><br>{{candidate.election.area.name|title}}</li>
+            <li class="list-group-item"><small>Numero de urna</small><br>{{candidate.numero}}</li>
+            <li class="list-group-item"><small>Data de nascimento</small><br>{{candidate.data_de_nascimento}}</li>
+          </ul>
+        </div>
+        <div class="col">
+          <ul class="list-group list-group-flush desc_candidato">
+            <li class="list-group-item"><small>Cor e raça</small><br>{% for r in candidate.get_races %}<span class="badge badge-light">{{r}}</span>{% endfor %}</li>
+            <li class="list-group-item"><small>Se declara LGBT?</small><br>{% if candidate.lgbt %}Sim{% else %}Não{% endif%}</li>
+            <li class="list-group-item"><small>Faz parte de uma candidatura coletiva?</small><br>{% if candidate.candidatura_coletiva %}Sim{% else %}Não{% endif%}</li>
+            {% if candidate.renovacao_politica %}
+            <li class="list-group-item"><small>Faz parte de algum grupo de Renovação Política?</small><br>{{candidate.renovacao_politica}}
             {% endif %}
-            </td>
-
-              <td colspan="2">
-                <p class="small-basic"><b>Partido</b></p>
-                <p>{{candidate.partido.initials}}</p>
-              </td>
-
-          <tr>
-          </tr>
-            <td>
-              {% if candidate.elections.count %}
-              <p class="small-basic"><b>Cargo al que postula</b></p>
-              <ul class="list-inline">
-                {% for e in candidate.elections.all %}
-                <li>{{e.position}}</li>
-                {% endfor %}
-              </ul>
-              {% endif %}
-            </td>
-            {% get_personal_data candidate=candidate personal_data='lupa' as lupa %}
-            {% if lupa %}
-              <td colspan="2">
-                <p class="small-basic"><a target="_blank" href="{{lupa.value}}"><i class="fa fa-money" aria-hidden="true"></i> Aportes y gastos de campaña <i class="fa fa-external-link"></i></a></p>
-              </td>
-              {% endif %}
-
-          </tr>
-
-          {% get_personal_data candidate=candidate personal_data='bio' as bio %}
-          {% if bio.value %}
-          <tr>
-            <td colspan="2">
-              <p class="small-basic"><b>Bio</b></p>
-              {{ bio.value|markdown }}
-            </td>
-          </tr>
-          {% endif %}
-          <tr>
-            <td>
-              <p class="small-basic"><b>Compromisos Ciudadanos</b></p>
-              {% if candidate.commitments.committed.count %}
-              <p>Este candidato se ha comprometido en VotaInteligente con</p>
-              <p class="btn btn-info"><i class="fa fa-heart"></i>{{candidate.commitments.committed.count}} Propuestas ciudadanas</p>
-              {% else %}
-              <p>Este candidato aún no se ha comprometido en VotaInteligente</p>
-              {% endif %}
-            </td>
-            <td>
-              {% if candidate.contact_details.count %}
-              <p class="small-basic"><b>Contactos</b></p>
-              <ul class="list-inline">
-                {% include 'elections/candidates/social_media.html' with candidate=candidate %}
-              </ul>
-              {% endif %}
-            </td>
-          </tr>
-        </table>
-    </div>
+            
+          </ul>
+        </div>
+      </div>
+    
 
   </div>
 

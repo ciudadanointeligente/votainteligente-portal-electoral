@@ -7,7 +7,7 @@ from django.conf import settings
 from elections.models import Area, QuestionCategory, PersonalData
 from django.contrib.sites.models import Site
 from medianaranja2.proposals_getter import ByOnlySiteProposalGetter
-from merepresenta.models import MeRepresentaPopularProposal, Candidate
+from merepresenta.models import MeRepresentaPopularProposal, Candidate, RaceMixin
 from django.utils.safestring import mark_safe
 from medianaranja2.adapters import Adapter as OriginalAdapter
 
@@ -16,29 +16,33 @@ GENDERS  = [
     ('masculino', u"Masculino"),
     ('outro', u"Outro gênero"),
 ]
-RACES = [
-    ('BRANCA', u"Branca"),
-    ('PRETA', u"Preta"),
-    ('PARDA', u"Parda"),
-    ('AMARELA', u"Amarela"),
-    ('INDÍGENA', u"Indígena"),
-]
+
 SIM_OU_NAO = [
     ('sim', u"Sim"),
     ('nao', u"Nao"),
 ]
+<<<<<<< HEAD
 
+=======
+def get_races():
+    RACES = []
+    for f in RaceMixin._meta.fields:
+        RACES.append((f.name, f.verbose_name))
+    return RACES
+
+RACES = get_races()
+>>>>>>> Agregando unas cositas en merepresenta
 
 class PersonalDataForm(forms.Form):
     email = forms.EmailField(label=u"Para manter contato, quais desses e-mails você mais usa?", widget=forms.EmailInput(attrs={'placeholder': 'Outro'}))
     gender = forms.ChoiceField(choices=GENDERS,
                                 widget=forms.RadioSelect,
                                 label=u'Com qual desses gêneros você se identifica?')
-    lgbt = forms.ChoiceField(label=u'Você se declara LGBT?', widget=forms.RadioSelect, choices=SIM_OU_NAO)
-    race = forms.ChoiceField(label=u'Qual é a sua cor ou raça?',widget=forms.RadioSelect,choices=RACES)
+    lgbt = forms.BooleanField(label=u'Você se declara LGBT?')
+    races = forms.MultipleChoiceField(label=u'Qual é a sua cor ou raça?',widget=forms.CheckboxSelectMultiple, choices=RACES)
     bio = forms.CharField(label=u"Escreva um pouco sobre você", widget=forms.Textarea, required=False)
-    candidatura_coletiva = forms.ChoiceField(label=u'Você faz parte de uma Candidatura Coletiva?',
-                        widget=forms.RadioSelect, choices=SIM_OU_NAO)
+    candidatura_coletiva = forms.BooleanField(label=u'Você faz parte de uma Candidatura Coletiva?',
+                        )
     renovacao_politica = forms.CharField(label=u"Você faz parte de algum grupo de Renovação Política? Qual?", required=False)
 
 
@@ -64,7 +68,13 @@ class PersonalDataForm(forms.Form):
             
 
     def save(self):
-
+        selected_races = self.cleaned_data.pop('races')
+        for race in RACES:
+            race_key = race[0]
+            if race_key in selected_races:
+                setattr(self.candidate, race_key, True)
+            else:
+                setattr(self.candidate, race_key, False)
         for f_name in self.cleaned_data:
             if hasattr(self.candidate, f_name):
                 setattr(self.candidate, f_name, self.cleaned_data[f_name])

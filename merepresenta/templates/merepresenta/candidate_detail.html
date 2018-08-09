@@ -21,7 +21,8 @@
 
 {% block extrakeywords %}{{candidate.name}},{{candidate.election.position}} para {{candidate.election.area.name}},{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{% if partido.value %} {{partido.value}}, {% endif %}{% endblock extrakeywords %}
 
-{% block content %}
+{% block everything %}
+<div class="container candidate-profile">
 <div class='row'>
     <div class="col text-center">
 <h1 itemprop="name" class="candidate-name">{{ candidate.name }}</h1>
@@ -80,19 +81,21 @@
 </div>
 
 <div class='row bio'>
+  {% if candidate.candidatequestioncategory_set.exists %}
   <div class='col'>
-    <h3>Temas prioritarios</h3>
+    <h3 class='text-center'>Temas prioritarios</h3>
   </div>
   <div class="w-100"></div>
   {% for link in candidate.candidatequestioncategory_set.all %}
-  <div class='col'>
+  <div class='col-4 align-middle tema-prioritario text-center'>
     {{link.category.name}}
   </div>
   {% endfor %}
 </div>
+{% endif %}
 {% for category in categories %}
   <div class='row bio'>
-    <div class='col'>
+    <div class='col text-center'>
       <h3>Pautas {{category.name}}</h3>
     </div>
     {% for topic in category.topics.all %}
@@ -104,7 +107,8 @@
     {% endfor %}
   </div>
 {% endfor %}
+</div>
 
-{% endblock content %}
+{% endblock everything %}
 
 {% block extrajs %}{% endblock extrajs %}

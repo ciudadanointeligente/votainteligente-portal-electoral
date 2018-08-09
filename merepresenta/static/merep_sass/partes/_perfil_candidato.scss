@@ -1,0 +1,22 @@
+.candidate-profile {
+    margin-bottom: 3em;
+    .row {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+    .topic-candidato {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+    .resposta-candidato {
+        padding: 1em;
+        background-color: $gris;
+        @include border-radius($radius: $border-radius)
+
+    }
+    .tema-prioritario {
+        min-height: 3em;
+        border: 1px;
+        @include border-radius($radius: $border-radius)
+    }
+}

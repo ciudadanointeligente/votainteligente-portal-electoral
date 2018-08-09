@@ -52,6 +52,10 @@ class CandidateTestCase(VotaInteligenteTestCase):
                                              numero='190000000560',
                                              race="preta",
                                              original_email='perrito@gatito.com',
+                                             bio='blablablabla', 
+                                             lgbt=True,
+                                             candidatura_coletiva=True,
+                                             renovacao_politica='Partido Perrito',
                                              email_repeated=False)
         self.assertTrue(candidate)
         self.assertFalse(candidate.is_ghost)

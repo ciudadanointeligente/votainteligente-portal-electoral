@@ -22,54 +22,47 @@
 {% block extrakeywords %}{{candidate.name}},{{candidate.election.position}} para {{candidate.election.area.name}},{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{% if partido.value %} {{partido.value}}, {% endif %}{% endblock extrakeywords %}
 
 {% block content %}
-<div class="container text-center" itemscope itemtype="http://schema.org/Person">
-  <h1 itemprop="name" class="candidate-name">{{ candidate.name }}</h1>
-
-  <h3>{% get_personal_data candidate=candidate personal_data='lema' as lema %}{{lema.value}}</h3>
-    {% comment %}
-  {% if user|is_candidate %}
-  {% with user.candidacies.first as candidacy %}
-    {% if candidacy.candidate == candidate %}
-    {% url 'merepresenta_complete_profile' slug=candidacy.candidate.election.slug candidate_slug=candidacy.candidate.slug  as complete_profile %}
-      <a href="{{complete_profile}}" class="btn btn-dark">Modificar mi perfil</a>
-    {% endif %}
-  {% endwith%}
-{% endif %}
-    {% endcomment %}
+<div class='row'>
+    <div class="col text-center">
+<h1 itemprop="name" class="candidate-name">{{ candidate.name }}</h1>
+</div>
 </div>
 
-<div class="profile">
-  <div class="container">
-    <div class="row content_padding">
-      <div class="col-md-2 col-sm-2 col-xs-12">
-          <div id="candidate-img-profile">
-            {% if candidate.image %}
-              {% thumbnail candidate.image "300x300" crop="center" as im %}
-                  <img src="{{ im.url }}" alt="{{candidate.name}}" height="300" width="300" border="0" class="img-responsive img-circle img-candidato" itemprop="image">
-              {% endthumbnail %}
-              {% else %}
-              <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato img-candidato">
-            {% endif %}
-            {% if config.SHOW_RIBBON_IN_CANDIDATE and not candidate.commitments.count %}<div class="ribbon label label-danger">No se ha comprometido en VotaInteligente</div>{% endif %}
-          </div>
+<div class='row'>
+    <div class="col-2">
+      {% if candidate.candidacy_set.first.user.profile.image %}
+        <img src="{{candidate.candidacy_set.first.user.profile.image.url}}" alt="{{candidate.name}}" height="96" width="96" border="0" class="img-responsive img-circle">
+      {% else %}
+        <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle">
+      {% endif %}
+      <div>
+        <h5>Dados do TSE</h5>
+        <ul class="list-group list-group-flush desc_candidato">
+          <li class="list-group-item">{{candidate.name|title}}</li>
+          <li class="list-group-item">{{candidate.partido.initials}}</li>
+          <li class="list-group-item">{{candidate.election.name|title}}</li>
+          <li class="list-group-item">Número de urna {{candidate.numero}}</li>
+          <li class="list-group-item">{{candidate.data_de_nascimento}}</li>
+          <li class="list-group-item">{{candidate.election.area.name|title}}</li>
+        </ul>
       </div>
-      <div id="info-candidato" class="col-xs-12 col-sm-7 col-md-7">
+    </div>
+    <div class="col-8 ">
         <table class="table">
           <tr>
             <td>
-            {% get_personal_data candidate=candidate personal_data='Partido' as partido %}
-              {% if partido.value %}
-              <p class="small-basic"><b>Partido</b></p>
-              <p>{{partido.value}}</p>
+            {% get_personal_data candidate=candidate personal_data='lgbt' as lgbt %}
+              {% if lgbt.value %}
+              <p class="small-basic"><b>LGBT?</b></p>
+              <p>{{lgbt.value}}</p>
             {% endif %}
             </td>
-            {% get_personal_data candidate=candidate personal_data='Pacto' as pacto %}
-            {% if pacto.value %}
+
               <td colspan="2">
-                <p class="small-basic"><b>Pacto</b></p>
-                <p>{{pacto.value}}</p>
+                <p class="small-basic"><b>Partido</b></p>
+                <p>{{candidate.partido.initials}}</p>
               </td>
-              {% endif %}
+
           <tr>
           </tr>
             <td>
@@ -91,12 +84,12 @@
 
           </tr>
 
-          {% get_personal_data candidate=candidate personal_data='experiencia' as experiencia %}
-          {% if experiencia.value %}
+          {% get_personal_data candidate=candidate personal_data='bio' as bio %}
+          {% if bio.value %}
           <tr>
             <td colspan="2">
-              <p class="small-basic"><b>Reseña Biográfica</b></p>
-              {{ experiencia.value|markdown }}
+              <p class="small-basic"><b>Bio</b></p>
+              {{ bio.value|markdown }}
             </td>
           </tr>
           {% endif %}
@@ -120,24 +113,11 @@
             </td>
           </tr>
         </table>
-      </div>
-      <div class="col-xs-12 col-sm-3 col-md-3">
-        {% include 'elections/candidates/agenda.html' with candidate=candidate election=election %}
-      </div>
-    </div><!-- .row .content_padding -->
-  </div><!-- container -->
-</div><!-- profile -->
-{% get_personal_data candidate=candidate personal_data='program_link' as program_link %}
-{% if program_link.value %}
-<div id="candidato-programa" class="container-fluid">
+    </div>
 
-  <p class="text-center">{% ifequal candidate.election.position 'Presidenta o Presidente' %}
-      Revisa su programa
-    {% else %}
-      Revisa sus ideas y planteamientos
-    {% endifequal %}<a target="_blank" href="{{program_link.value}}" class="btn btn-white">aquí</a></p>
-</div>
-{% endif %}
+  </div>
+
+
 
 {% endblock content %}
 

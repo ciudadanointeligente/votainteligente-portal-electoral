@@ -59,7 +59,29 @@ class LimitCandidatesForVolunteers(ForVolunteersManager):
         return qs
 
 
-class Candidate(OriginalCandidate):
+RACES = [
+    ('BRANCA', u"Branca"),
+    ('PRETA', u"Preta"),
+    ('PARDA', u"Parda"),
+    ('AMARELA', u"Amarela"),
+    ('INDÍGENA', u"Indígena"),
+]
+
+## RACES
+## Why I did it this way: after a while dealing with how to store races
+## I realized that according to brasilian law
+## this will not likely change in the future
+class RaceMixin(models.Model):
+    branca = models.BooleanField(default=False, verbose_name=u"Branca")
+    preta = models.BooleanField(default=False, verbose_name=u"Preta")
+    parda = models.BooleanField(default=False, verbose_name=u"Parda")
+    amarela = models.BooleanField(default=False, verbose_name=u"Amarela")
+    indigena = models.BooleanField(default=False, verbose_name=u"Indígena")
+    class Meta:
+        abstract = True
+
+
+class Candidate(OriginalCandidate, RaceMixin):
     cpf = models.CharField(max_length=1024, unique=True)
     nome_completo = models.CharField(max_length=1024, null=True)
     numero = models.CharField(max_length=1024, null=True)
@@ -69,9 +91,11 @@ class Candidate(OriginalCandidate):
     is_ghost = models.BooleanField(default=False)
     facebook_contacted = models.BooleanField(default=False)
     data_de_nascimento = models.DateField(null=True)
-
     partido = models.ForeignKey("Partido", null=True)
-
+    bio = models.TextField(default='')
+    lgbt = models.BooleanField(default=False)
+    renovacao_politica = models.CharField(max_length=512, default='')
+    candidatura_coletiva = models.BooleanField(default=False)
     objects = ForVolunteersManager()
 
     for_volunteers = LimitCandidatesForVolunteers()

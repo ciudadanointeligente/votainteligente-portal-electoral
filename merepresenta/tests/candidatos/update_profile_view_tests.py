@@ -31,41 +31,41 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         self.candidacy = Candidacy.objects.create(user=self.feli,
                                                   candidate=self.candidate)
         self.data = {'email': 'perrito@chiquitito.cl',
-                     'gender': 'feminino',
-                     'lgbt': "sim",
-                     'race': 'PARDA',
+                     'gender': 'F',
+                     'lgbt': True,
                      'bio': u'Ola sou uma pessoa boa em ruim ao mesmo tempo, complexo como os humanos somos, mas qué é bom e qué é ruim?',
-                     'candidatura_coletiva': 'sim',
+                     'candidatura_coletiva': True,
+                     'races': ['preta', 'parda'],
                      'renovacao_politica': 'Novo Brasil'}
 
     def test_candidate_form(self):
-        
+
         form_class = PersonalDataForm
         form = form_class(candidate=self.candidate,
                           data=self.data)
+        print form.errors
         self.assertTrue(form.is_valid())
         self.assertIn('email', form.cleaned_data.keys())
         self.assertIn('gender', form.cleaned_data.keys())
         self.assertIn('lgbt', form.cleaned_data.keys())
         self.assertEquals(form.cleaned_data['email'], self.data['email'])
         self.assertEquals(form.cleaned_data['gender'], self.data['gender'])
-
+        self.assertIn(self.data['races'][0], form.cleaned_data['races'])
         form.save()
         self.candidate.refresh_from_db()
         self.assertEquals(self.candidate.gender, self.data['gender'])
-        self.assertEquals(self.candidate.race, self.data['race'])
+
         self.assertEquals(self.candidate.email, self.data['email'])
+        self.assertEquals(self.candidate.candidatura_coletiva, self.data['candidatura_coletiva'])
+        self.assertEquals(self.candidate.bio, self.data['bio'])
+        self.assertEquals(self.candidate.renovacao_politica, self.data['renovacao_politica'])
+
+
+        self.assertTrue(self.candidate.preta)
+        self.assertTrue(self.candidate.parda)
         personal_datas = PersonalData.objects.filter(candidate=self.candidate)
-        lgbt = personal_datas.get(label='lgbt')
-        self.assertEquals(lgbt.value, self.data['lgbt'])
 
-        candidatura_coletiva = personal_datas.get(label='candidatura_coletiva')
-        self.assertEquals(candidatura_coletiva.value, self.data['candidatura_coletiva'])
-
-        renovacao_politica = personal_datas.get(value=self.data['renovacao_politica'])
-        self.assertEquals(renovacao_politica.label, 'renovacao_politica')
-
-        self.assertEquals(len(personal_datas), 4)
+        self.assertEquals(len(personal_datas), 0)
 
     def test_candidate_after(self):
         form_class = PersonalDataForm
@@ -79,11 +79,10 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         form = form_class(candidate=self.candidate)
         self.assertEquals(form.initial['gender'], self.candidate.gender)
         self.assertEquals(form.initial['email'], self.candidate.email)
-        self.assertEquals(form.initial['race'], self.candidate.race)
-        self.assertEquals(form.initial['lgbt'], self.candidate.personal_datas.get(label='lgbt').value)
-        self.assertEquals(form.initial['bio'], self.candidate.personal_datas.get(label='bio').value)
-        self.assertEquals(form.initial['candidatura_coletiva'], self.candidate.personal_datas.get(label='candidatura_coletiva').value)
-        self.assertEquals(form.initial['renovacao_politica'], self.candidate.personal_datas.get(label='renovacao_politica').value)
+        self.assertEquals(form.initial['lgbt'], self.candidate.lgbt)
+        self.assertEquals(form.initial['bio'], self.candidate.bio)
+        self.assertEquals(form.initial['candidatura_coletiva'], self.candidate.candidatura_coletiva)
+        self.assertEquals(form.initial['renovacao_politica'], self.candidate.renovacao_politica)
 
 TEMPLATES = [
     {
@@ -127,11 +126,11 @@ class GetAndPostToTheUpdateProfileView(SoulMateCandidateAnswerTestsBase):
         self.candidacy = Candidacy.objects.create(user=self.feli,
                                                   candidate=self.candidate)
         self.data = {'email': 'perrito@chiquitito.cl',
-                     'gender': 'feminino',
-                     'lgbt': 'sim',
-                     'race': 'PARDA',
+                     'gender': 'F',
+                      'lgbt': True,
                      'bio': u'Ola sou uma pessoa boa em ruim ao mesmo tempo, complexo como os humanos somos, mas qué é bom e qué é ruim?',
-                     'candidatura_coletiva': 'nao',
+                     'candidatura_coletiva': True,
+                     'races': ['preta', 'parda'],
                      'renovacao_politica': 'Novo Brasil'}
 
     def test_get_the_view(self):

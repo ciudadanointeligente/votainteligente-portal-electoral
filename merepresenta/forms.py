@@ -12,8 +12,8 @@ from django.utils.safestring import mark_safe
 from medianaranja2.adapters import Adapter as OriginalAdapter
 
 GENDERS  = [
-    ('feminino', u"Feminino"),
-    ('masculino', u"Masculino"),
+    ('F', u"Feminino"),
+    ('M', u"Masculino"),
     ('outro', u"Outro gênero"),
 ]
 
@@ -21,9 +21,7 @@ SIM_OU_NAO = [
     ('sim', u"Sim"),
     ('nao', u"Nao"),
 ]
-<<<<<<< HEAD
 
-=======
 def get_races():
     RACES = []
     for f in RaceMixin._meta.fields:
@@ -31,17 +29,18 @@ def get_races():
     return RACES
 
 RACES = get_races()
->>>>>>> Agregando unas cositas en merepresenta
 
 class PersonalDataForm(forms.Form):
-    email = forms.EmailField(label=u"Para manter contato, quais desses e-mails você mais usa?", widget=forms.EmailInput(attrs={'placeholder': 'Outro'}))
+    email = forms.EmailField(label=u"Para manter contato, quais desses e-mails você mais usa?",
+                             widget=forms.EmailInput(attrs={'placeholder': 'Outro'}),
+                             required=False)
     gender = forms.ChoiceField(choices=GENDERS,
                                 widget=forms.RadioSelect,
                                 label=u'Com qual desses gêneros você se identifica?')
-    lgbt = forms.BooleanField(label=u'Você se declara LGBT?')
-    races = forms.MultipleChoiceField(label=u'Qual é a sua cor ou raça?',widget=forms.CheckboxSelectMultiple, choices=RACES)
+    lgbt = forms.BooleanField(label=u'Sim', required=False)
+    races = forms.MultipleChoiceField(label=u'Qual é a sua cor ou raça?',widget=forms.CheckboxSelectMultiple, choices=RACES, required=False)
     bio = forms.CharField(label=u"Escreva um pouco sobre você", widget=forms.Textarea, required=False)
-    candidatura_coletiva = forms.BooleanField(label=u'Você faz parte de uma Candidatura Coletiva?',
+    candidatura_coletiva = forms.BooleanField(label=u'Sim', required=False
                         )
     renovacao_politica = forms.CharField(label=u"Você faz parte de algum grupo de Renovação Política? Qual?", required=False)
 
@@ -64,6 +63,13 @@ class PersonalDataForm(forms.Form):
                     kwargs['initial'][field] = value
                 else:
                     kwargs['initial'][field] = personal_datas_as_dict.get(field, None)
+        ## special cases
+        races = []
+        for race in RACES:
+            race_candidate = getattr(self.candidate, race[0])
+            if race_candidate:
+                races.append(race[0])
+        kwargs['initial']['races'] = races
         super(PersonalDataForm, self).__init__(*args, **kwargs)
             
 

@@ -61,7 +61,6 @@ class CandidateTestCase(VotaInteligenteTestCase):
         self.assertFalse(candidate.is_ghost)
         self.assertFalse(candidate.facebook_contacted)
 
-<<<<<<< HEAD
     def test_get_emails(self):
         user = User.objects.create_user(username='user', password="password", email='user@users.com')
         candidate = Candidate.objects.create(name="Candidate 1",

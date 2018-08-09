@@ -31,7 +31,7 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         self.candidacy = Candidacy.objects.create(user=self.feli,
                                                   candidate=self.candidate)
         self.data = {'email': 'perrito@chiquitito.cl',
-                     'gender': 'feminino',
+                     'gender': 'F',
                      'lgbt': True,
                      'bio': u'Ola sou uma pessoa boa em ruim ao mesmo tempo, complexo como os humanos somos, mas qué é bom e qué é ruim?',
                      'candidatura_coletiva': True,
@@ -43,6 +43,7 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         form_class = PersonalDataForm
         form = form_class(candidate=self.candidate,
                           data=self.data)
+        print form.errors
         self.assertTrue(form.is_valid())
         self.assertIn('email', form.cleaned_data.keys())
         self.assertIn('gender', form.cleaned_data.keys())
@@ -125,7 +126,7 @@ class GetAndPostToTheUpdateProfileView(SoulMateCandidateAnswerTestsBase):
         self.candidacy = Candidacy.objects.create(user=self.feli,
                                                   candidate=self.candidate)
         self.data = {'email': 'perrito@chiquitito.cl',
-                     'gender': 'feminino',
+                     'gender': 'F',
                       'lgbt': True,
                      'bio': u'Ola sou uma pessoa boa em ruim ao mesmo tempo, complexo como os humanos somos, mas qué é bom e qué é ruim?',
                      'candidatura_coletiva': True,

@@ -36,7 +36,15 @@
       <!-- image -->
           {% for field in form %}
           <section class="profile-question">
+            {% if field.name == 'email' %}
             <span class="label_question">{% bootstrap_label field.label %}</span>
+            {% elif field.name == 'lgbt' %}
+            <span class="label_question">{% bootstrap_label 'Você se declara LGBT?' %}</span>
+            {% elif field.name == 'candidatura_coletiva' %}
+            <span class="label_question">{% bootstrap_label 'Você faz parte de uma Candidatura Coletiva?' %}</span>
+            {% else %}
+            <span class="label_question">{% bootstrap_label field.label %}</span>
+            {% endif %}
             {% if field.name == 'email' %}
               <ul>
 
@@ -45,8 +53,12 @@
                 {% endfor %}
                 <input type="radio" name="email_previous" value="outro" required="False"> Outro<br>
               </ul>
-              {% bootstrap_field field  show_label=False show_help=False placeholder="Outro" %}
+              <input type="email" name="email" title="" placeholder="Outro" class="form-control" id="id_email" />
+            {% elif field.name == 'lgbt' or field.name == 'candidatura_coletiva' %}
+              <br>
+              {% bootstrap_field field  show_label=False show_help=False  %}
             {% else %}
+
               {% bootstrap_field field  show_label=False show_help=False %}
             {% endif %}
           </section>
@@ -54,20 +66,19 @@
 
         <input type="submit" value="{% trans "Guardar" %}"  class="btn btn-default" />
         </form>
-      <p><a href="{{candidacy.candidate.get_absolute_url}}" class="btn btn-dark">
-            {% trans 'Ir a ver mi perfil' %}</a></p>
       </div>
 
   </div>
   <script type="text/javascript">
   $(function(){
-    $('#form_candidate_profile').submit(function(){
+    let pass_email = function(event){
       let checkbox = $('input[name=email_previous]:checked');
       let val = checkbox.val()
       if (val != 'outro'){
         $('input[name=email]').val(val);
       }
-    })
+    }
+    $('#form_candidate_profile').submit(pass_email);
   });
   </script>
 {% endblock content %}

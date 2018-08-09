@@ -9,6 +9,14 @@ from datetime import datetime
 def output_logger(self, msg):
     print msg
 
+RACE_MAPPING = {
+    u'INDÍGENA': u'indigena',
+    u'BRANCA': u'branca',
+    u'PRETA': u'preta',
+    u'PARDA': u'parda',
+    u'AMARELA': u'amarela'
+}
+
 class TSEProcessorMixin(object):
     output_logger_func = output_logger
 
@@ -34,6 +42,8 @@ class TSEProcessorMixin(object):
         candidate.cpf = candidate_dict['cpf']
         candidate.data_de_nascimento = data_de_nascimento
         candidate.race = candidate_dict['race']
+        if candidate.race in RACE_MAPPING.keys():
+            setattr(candidate, RACE_MAPPING[candidate.race], True)
         candidate.original_email = candidate_dict['mail']
         candidate.email_repeated = candidate_dict['email_repeated']
         candidate.partido = partido

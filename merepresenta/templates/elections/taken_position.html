@@ -1,0 +1,12 @@
+{% load i18n %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+
+{% if taken_position.position %}
+    {{taken_position.position.label|safe}}
+
+{% else %}
+    Essa pessoa ainda não responde
+
+{% endif %}

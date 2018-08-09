@@ -75,6 +75,7 @@ class CategoryCandidateForm(MediaNaranjaSingleCandidateMixin, forms.Form):
                                                 widget=forms.CheckboxSelectMultiple(attrs={'class':"categories-select"}))
 
     def save(self):
+        CandidateQuestionCategory.objects.filter(candidate=self.candidate).delete()
         for category in self.cleaned_data['categories']:
             if not isinstance(self.candidate, Candidate):
                 self.candidate = Candidate.objects.get(candidate_ptr_id=self.candidate.id)

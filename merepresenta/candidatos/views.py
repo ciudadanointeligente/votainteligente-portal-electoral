@@ -16,7 +16,7 @@ from django.template.response import TemplateResponse
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from merepresenta.models import Candidate
+from merepresenta.models import Candidate, QuestionCategory
 from django.core.urlresolvers import reverse
 from merepresenta.forms import PersonalDataForm
 from django.shortcuts import render
@@ -156,3 +156,9 @@ class MeRepresentaCandidateDetailView(DetailView):
     slug_field = 'slug'
     context_object_name = 'candidate'
     template_name='merepresenta/candidate_detail.html'
+
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(MeRepresentaCandidateDetailView, self).get_context_data(*args, **kwargs)
+        context['categories'] = QuestionCategory.objects.all()
+        return context

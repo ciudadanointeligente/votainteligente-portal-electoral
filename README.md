@@ -104,6 +104,15 @@ pass: p
 
 
 ## Temas
+### LevantaLaMano
+Puedes acceder a los datos de ejemplo de LLM después de cargarlos datos como está explicado arriba:
+
+```
+./manage.py loaddata example_data.yaml
+```
+
+Y puedes acceder a LLM en la siguiente url [http://votita.127.0.0.1.xip.io:8000](http://votita.127.0.0.1.xip.io:8000)
+
 ### #MeRepresenta
 Se você quiser trabalhar em #MeRepresenta, você deve, além do acima, fazer o upload dos dados de amostra para o projeto.
 ```

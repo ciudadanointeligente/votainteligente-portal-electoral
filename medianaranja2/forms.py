@@ -119,26 +119,16 @@ class ProposalsForm(forms.Form):
         cache.set(proposals_qs_cache_key, qs)
         self.fields['proposals'].queryset = qs
 
-FORMS = [SetupForm, QuestionsForm, ProposalsForm]
-TEMPLATES = {"0": "medianaranja2/paso_0_setup.html",
-             "1": "medianaranja2/paso_1_preguntas_y_respuestas.html",
-             "2": "medianaranja2/paso_2_proposals_list.html"}
-
 
 class MediaNaranjaException(Exception):
     pass
 
 
-class MediaNaranjaWizardForm(SessionWizardView):
-    form_list = FORMS
+class MediaNaranjaWizardFormBase(SessionWizardView):
     template_name = 'medianaranja2/paso_default.html'
     done_template_name = 'medianaranja2/resultado.html'
     calculator_class = Calculator
     calculator_extra_kwargs = {}
-    steps_and_functions = {
-        1: 'get_categories_form_kwargs',
-        2: 'get_proposals_form_kwargs'
-    }
 
     def get_proposal_class(self):
         if config.ESTRATEGIA_SELECCION_PROPUESTAS == 'reading_group':
@@ -176,11 +166,11 @@ class MediaNaranjaWizardForm(SessionWizardView):
         })
 
     def get_template_names(self):
-        return [TEMPLATES[self.steps.current]]
+        return [self.templates[self.steps.current]]
 
     def post(self, *args, **kwargs):
         try:
-            return super(MediaNaranjaWizardForm, self).post(*args, **kwargs)
+            return super(MediaNaranjaWizardFormBase, self).post(*args, **kwargs)
         except MediaNaranjaException:
             self.storage.reset()
             self.storage.current_step = self.steps.first
@@ -190,6 +180,8 @@ class MediaNaranjaWizardForm(SessionWizardView):
         return {'categories': list(cleaned_data['categories'])}
 
     def get_element_selector_from_cleaned_data(self, cleaned_data):
+        if 'element_selector' not in cleaned_data:
+            return Area.objects.get(id=config.DEFAULT_AREA)
         return cleaned_data['element_selector']
 
     def get_proposals_form_kwargs(self, cleaned_data):
@@ -215,6 +207,25 @@ class MediaNaranjaWizardForm(SessionWizardView):
             if cleaned_data is None:
                 raise MediaNaranjaException()
         return self.get_kwargs_from_step_number(step, cleaned_data)
+
+
+class MediaNaranjaWizardForm(MediaNaranjaWizardFormBase):
+    form_list = [SetupForm, QuestionsForm, ProposalsForm]
+    steps_and_functions = {
+        1: 'get_categories_form_kwargs',
+        2: 'get_proposals_form_kwargs'
+    }
+    templates = {"0": "medianaranja2/paso_0_setup.html",
+                 "1": "medianaranja2/paso_1_preguntas_y_respuestas.html",
+                 "2": "medianaranja2/paso_2_proposals_list.html"}
+
+
+class MediaNaranjaOnlyProposals(MediaNaranjaWizardFormBase):
+    form_list = [ProposalsForm, ]
+    steps_and_functions = {
+        0: 'get_proposals_form_kwargs'
+    }
+    templates = {"0": "medianaranja2/paso_2_proposals_list.html"}
 
 
 class MediaNaranjaResultONLYFORDEBUG(TemplateView):# pragma: no cover

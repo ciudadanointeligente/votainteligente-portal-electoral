@@ -223,6 +223,7 @@ CONSTANCE_CONFIG = {
     'MEDIA_NARANJA_MAX_NUM_PR': (20, u'Máximo número de propuestas listadas en la 1/2 Naranja'),
     'MEDIA_NARANJA_MAX_SELECT_PROPOSALS': (5, u'Máximo número de propuestas seleccionables en la 1/2 Naranja'),
     'PRUEBAS_DE_CARGA_MEDIA_NARANJA': (False, u'Esto baja el csrf para las pruebas de la medianaranja2'),
+    'MEDIA_NARANJA_QUESTIONS_ENABLED': (True, u'Si bajas esto la 1/2 n sólo usará propuestas ciudadanas'),
     'ESTRATEGIA_SELECCION_PROPUESTAS': ("getter", u'Qué estrategia usamos para mostrar propuestas en la 1/2 naranja', 'proposals_getter_for_12_n'),
 }
 TESTING = 'test' in sys.argv

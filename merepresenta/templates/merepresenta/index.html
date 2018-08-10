@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load votainteligente_extras %}
 
 {% block title %}- Portada{% endblock title %}
 
@@ -11,21 +12,29 @@
             
             <p>Chegou a hora de contar um pouco mais sobre suas pautas e ajudar eleitores a encontrar candidatos que os representam.</p>
             <div class="row">
-                <div class="col-3">
-                    <a href="{% url 'cpf_and_date2' %}" class="btn btn-gris voluntario">Sou candidata</a>
-                </div>
-                <div class="col-3">
-                    <a href="{% url 'questions' %}" class="btn btn-gris voluntario">Sou eleitor</a>
-                </div>
-                <div class="col-3">
-                    <a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">{% if user.is_authenticated %}
-                            {% if user.is_staff %}
-                                Portal Voluntario
-                            {% endif %}
-                        {% else %}
-                            Quero ser voluntário
-                        {% endif %}</a>
-                </div>
+
+                {% if user|is_candidate %}
+                  {% with user.candidacies.first as candidacy %}
+                    {% if candidacy.candidate.candidatequestioncategory_set.exists %}
+                    <div class="col-3"><a href="{{candidacy.candidate.get_absolute_url}}" class="btn btn-roxo voluntario">Meu perfil</a> </div>
+                    {% else %}
+                    <div class="col-3"><a href="{% url 'cpf_and_date2' %}" class="btn btn-gris voluntario">Preencher dados</a> </div>
+                    {% endif %}
+                    
+                  {% endwith %}
+                {% elif user.is_authenticated and user.is_staff %}
+                    <div class="col-3"><a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">Portal voluntario</a> </div>
+                {% else %}
+                    <div class="col-3">
+                        <a href="{% url 'cpf_and_date2' %}" class="btn btn-gris voluntario">Sou candidata</a>
+                    </div>
+                    <!--div class="col-3">
+                        <a href="{% url 'questions' %}" class="btn btn-gris voluntario">Sou eleitor</a>
+                    </div-->
+                    <div class="col-3">
+                        <a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">Quero ser voluntário</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="col-sm-6">

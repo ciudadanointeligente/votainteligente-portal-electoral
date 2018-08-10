@@ -16,6 +16,7 @@
     }
     .tema-prioritario {
         min-height: 3em;
+        font-weight: bold;
         border: 1px;
         @include border-radius($radius: $border-radius)
     }

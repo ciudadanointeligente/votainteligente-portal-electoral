@@ -19,4 +19,11 @@
         border: 1px;
         @include border-radius($radius: $border-radius)
     }
+    .profile-image {
+        margin-top: 1.6em;
+    }
+    .anuncio {
+        background-color: $amarelo;
+        padding: 5px;
+    }
 }

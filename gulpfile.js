@@ -15,6 +15,11 @@ gulp.task('watch_compilescss', function () {
                                          .pipe(plumber())
                                          .pipe(shell(['python manage.py compilescss',]));
     });
+    watch('*/static/merep_sass/**/*.scss', function (vynil) {
+                                     gulp.src('*/static/merep_sass/**/*.scss')
+                                         .pipe(plumber())
+                                         .pipe(shell(['python manage.py compilescss',]));
+    });
 });
 
 gulp.task('default', ['compilescss','watch_compilescss']);

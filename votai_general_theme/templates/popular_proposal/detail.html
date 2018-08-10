@@ -206,7 +206,7 @@ $(function(){
           {% endblocktrans %}
         <br>
         {% blocktrans with proposal_id=popular_proposal.id commitments_count=popular_proposal.commitments.count %}
-        <span id='likers_count_{{proposal_id}}' class="conteo">{{commitments_count}}</span> candidatura(s) comprometida(s)
+        <span id='commitments_candidates_{{proposal_id}}' class="conteo">{{commitments_count}}</span> candidatura(s) comprometida(s)
       {% endblocktrans %}
       </p>
         <hr>

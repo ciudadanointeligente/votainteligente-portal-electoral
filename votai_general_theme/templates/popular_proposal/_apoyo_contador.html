@@ -2,7 +2,7 @@
 <div class="apoyo-contador">
   <p class="nota">
     {% blocktrans with proposal_id=proposal.id commitments_count=proposal.commitments.count %}
-    <span id='likers_count_{{proposal_id}}' class="conteo">{{commitments_count}}</span> candidatura(s) comprometida(s)
+    <span id='commitments_candidates_{{proposal_id}}' class="conteo">{{commitments_count}}</span> candidatura(s) comprometida(s)
   {% endblocktrans %}
 </p>
   <p class="nota">

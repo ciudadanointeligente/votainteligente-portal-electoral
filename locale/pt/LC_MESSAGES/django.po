@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-10 21:44+0000\n"
-"PO-Revision-Date: 2018-06-21 12:45-0300\n"
+"POT-Creation-Date: 2018-08-13 22:06+0000\n"
+"PO-Revision-Date: 2018-08-13 19:23-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.1\n"
 
 #: agenda/forms.py:24 backend_candidate/forms.py:250
 #: votai_general_theme/templates/backend_candidate/add_activity.html:20
@@ -84,8 +84,12 @@ msgid ""
 "Link a tus ideas y/o planteamientos que quieras que la ciudadanía conozca. "
 "Ej: http://micandidatura.cl/mis-ideas/"
 msgstr ""
-"Compartilhe suas idéias e/ou argumentos que queira que cidadania conheça. Ex:"
-"http://micandidatura.cl/mis-ideas/"
+"Compartilhe suas idéias e/ou argumentos que queira que cidadania conheça. "
+"Ex: https://minhacandidatura.com.br/ideas/"
+
+#: backend_candidate/forms.py:171
+msgid "Sitio (debe comenzar con http://)"
+msgstr "Site (deve começar com http: // o https://)"
 
 #: backend_candidate/forms.py:252
 msgid "Descripción de tu actividad"
@@ -1046,6 +1050,34 @@ msgstr "Registrar uma organização"
 msgid "Mobilize"
 msgstr ""
 
+#: rioxinteiro/templates/backend_candidate/complete_profile.html:15
+#: votai_general_theme/templates/backend_candidate/complete_profile.html:15
+#, python-format
+msgid ""
+"\n"
+"  Información para el perfil de %(candidate_name)s\n"
+"  "
+msgstr ""
+"\n"
+"  Informação para o perfil de %(candidate_name)s\n"
+"  "
+
+#: rioxinteiro/templates/backend_candidate/complete_profile.html:22
+#: votai_general_theme/templates/backend_candidate/complete_profile.html:22
+msgid "Ir a ver mi perfil"
+msgstr "Ver meu perfil"
+
+#: rioxinteiro/templates/backend_candidate/complete_profile.html:45
+#: votai_general_theme/templates/backend_candidate/add_activity.html:32
+#: votai_general_theme/templates/backend_candidate/complete_12_naranja.html:20
+#: votai_general_theme/templates/backend_candidate/complete_profile.html:49
+#: votai_general_theme/templates/backend_citizen/add_activity.html:27
+#: votai_general_theme/templates/backend_citizen/update_subscription.html:17
+#: votai_general_theme/templates/popular_proposal/create.html:37
+#: votai_general_theme/templates/votita/agregar_propuestas_a_encuentro.html:29
+msgid "Enviar"
+msgstr "Enviar"
+
 #: rioxinteiro/templates/index.html:44
 #: votai_general_theme/templates/popular_proposal/_lista_propuestas.html:22
 msgid ""
@@ -1789,16 +1821,6 @@ msgstr "Minha agenda"
 msgid "Agregar actividad"
 msgstr "Adicionar atividade"
 
-#: votai_general_theme/templates/backend_candidate/add_activity.html:32
-#: votai_general_theme/templates/backend_candidate/complete_12_naranja.html:20
-#: votai_general_theme/templates/backend_candidate/complete_profile.html:49
-#: votai_general_theme/templates/backend_citizen/add_activity.html:27
-#: votai_general_theme/templates/backend_citizen/update_subscription.html:17
-#: votai_general_theme/templates/popular_proposal/create.html:37
-#: votai_general_theme/templates/votita/agregar_propuestas_a_encuentro.html:29
-msgid "Enviar"
-msgstr "Enviar"
-
 #: votai_general_theme/templates/backend_candidate/all_my_activities.html:10
 #: votai_general_theme/templates/backend_citizen/all_my_activities.html:10
 msgid "Agrega una actividad a tu agenda."
@@ -1828,21 +1850,6 @@ msgstr "Esqueceu sua senha?"
 #: votai_general_theme/templates/backend_candidate/complete_12_naranja.html:14
 msgid "Ya completaste la 1/2 naranja pero puedes modificar tus opiniones =)"
 msgstr ""
-
-#: votai_general_theme/templates/backend_candidate/complete_profile.html:15
-#, python-format
-msgid ""
-"\n"
-"  Información para el perfil de %(candidate_name)s\n"
-"  "
-msgstr ""
-"\n"
-"  Informação para o perfil de %(candidate_name)s\n"
-"  "
-
-#: votai_general_theme/templates/backend_candidate/complete_profile.html:22
-msgid "Ir a ver mi perfil"
-msgstr "Ver meu perfil"
 
 #: votai_general_theme/templates/backend_candidate/help_finding_candidates.html:16
 msgid "Elije uno de estos tuits y ayúdanos!"
@@ -1887,6 +1894,11 @@ msgid ""
 "\n"
 "\t"
 msgstr ""
+"\n"
+"\n"
+"Você ainda não está comprometido com nenhuma proposta. Confira <a href="
+"\"%(url)s\"> a seção de \"propostas para mim\" </a> e apoie aquelas que "
+"desejar.\n"
 
 #: votai_general_theme/templates/backend_candidate/menu.html:13
 msgid "Perfil de candidatura"
@@ -2487,12 +2499,12 @@ msgstr ""
 
 #: votai_general_theme/templates/elections/candidate_detail.html:98
 msgid "Reseña Biográfica"
-msgstr ""
+msgstr "Biografia"
 
 #: votai_general_theme/templates/elections/candidate_detail.html:105
 #: votai_general_theme/templates/elections/candidate_detail.html:145
 msgid "Compromisos Ciudadanos"
-msgstr ""
+msgstr "Compromissos Cidadãos"
 
 #: votai_general_theme/templates/elections/candidate_detail.html:107
 msgid "Este candidato se ha comprometido en VotaInteligente con"
@@ -2517,7 +2529,7 @@ msgstr ""
 
 #: votai_general_theme/templates/elections/candidate_detail.html:139
 msgid "Revisa sus ideas y planteamientos"
-msgstr ""
+msgstr "Confira as ideias"
 
 #: votai_general_theme/templates/elections/candidate_detail.html:140
 msgid "aquí"
@@ -2540,6 +2552,9 @@ msgid ""
 "          %(candidate_name)s aún no te haz comprometido en VotaInteligente!\n"
 "      "
 msgstr ""
+"\n"
+"          %(candidate_name)s: Você ainda não se compromete!\n"
+"      "
 
 #: votai_general_theme/templates/elections/candidate_detail.html:167
 msgid "Revisar propuestas ciudadana"
@@ -2552,7 +2567,7 @@ msgstr "Agenda"
 #: votai_general_theme/templates/elections/candidates/agenda.html:15
 msgid ""
 "Este candidato no cuenta con una agenda de actividades en VotaInteligente"
-msgstr ""
+msgstr "Esse candidato não tem atividades registradas."
 
 #: votai_general_theme/templates/elections/candidates/agenda.html:18
 msgid "Agrega tus actividades"

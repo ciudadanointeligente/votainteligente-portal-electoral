@@ -168,7 +168,7 @@ class CandidateProfileFormBase(forms.Form):
                     'label': 'Twitter'},
         'url': {'field': forms.URLField(required=False),
                 'contact_type': 'URL',
-                'label': 'Sitio (debe comenzar con http://)'},
+                'label': _('Sitio (debe comenzar con http://)')},
     }
 
     def __init__(self, *args, **kwargs):

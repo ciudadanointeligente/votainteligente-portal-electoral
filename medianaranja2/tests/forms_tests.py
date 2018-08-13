@@ -217,15 +217,16 @@ class MediaNaranjaWizardFormTests(MediaNaranjaWizardFormTestsBase):
 class MediaNaranjaSingleFormWizardFormTests(MediaNaranjaWizardFormTestsBase):
     def setUp(self):
         super(MediaNaranjaSingleFormWizardFormTests, self).setUp()
-        self.url = reverse('medianaranja2:index_simple')
+        self.url = reverse('medianaranja2:index')
         
     @override_settings(MEDIA_NARANJA_QUESTIONS_ENABLED=False)
     def test_get_one_and_only_one_form(self):        
         response = self.client.get(self.url)
         steps = response.context['wizard']['steps']
-        self.assertEquals(len(steps), 1)
         self.assertIsInstance(response.context['form'], ProposalsForm)
-
+        self.assertEquals(len(steps), 1)
+    
+    @override_settings(MEDIA_NARANJA_QUESTIONS_ENABLED=False)        
     def test_posting_to_the_view(self):
         data = {'media_naranja_only_proposals-current_step': 0,
                 '0-proposals': [self.p1.id, self.p3.id]}

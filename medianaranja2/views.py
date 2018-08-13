@@ -7,6 +7,8 @@ from medianaranja2.forms import ShareForm
 from django.views.generic.edit import CreateView
 from organization_profiles.models import OrganizationTemplate
 from django.http import HttpResponse
+from medianaranja2.forms import MediaNaranjaOnlyProposals, MediaNaranjaWizardForm
+
 
 
 class ShareYourResult(DetailView):
@@ -48,3 +50,18 @@ class SharedResultOGImageView(DetailView):
         response = HttpResponse( content_type="image/png")
         im.save(response, "PNG")
         return response
+
+def get_medianaranja_view(*args, **kwargs):
+    from django.conf import settings
+    from constance import config
+    if settings.MEDIA_NARANJA_QUESTIONS_ENABLED:
+        view = MediaNaranjaWizardForm.as_view()
+    else:
+        view = MediaNaranjaOnlyProposals.as_view()
+
+    try:
+        if config.PRUEBAS_DE_CARGA_MEDIA_NARANJA:
+            view = csrf_exempt(view)
+    except:
+        pass
+    return view(*args, **kwargs)

@@ -77,6 +77,7 @@ def unite_with_candidate_if_corresponds(user):
 
 class CandidacyContact(models.Model):
     candidate = models.ForeignKey(Candidate, related_name='contacts')
+    user = models.ForeignKey(User, related_name='candidacy_contact', null=True)
     mail = models.EmailField()
     times_email_has_been_sent = models.IntegerField(default=0)
     used_by_candidate = models.BooleanField(default=False)
@@ -95,27 +96,36 @@ class CandidacyContact(models.Model):
         self.times_email_has_been_sent += 1
         self.save()
 
+    def set_initial_password(self):
+        password = uuid.uuid4().hex[:12]
+        self.initial_password = password
+
+    def create_and_set_user(self):
+        username = self.candidate.slug[:20] + unicode(uuid.uuid4())[:4]
+        self.set_initial_password()
+        user = User.objects.create(username=username)
+        user.set_password(self.initial_password)
+        user.email = self.mail
+        user.save()
+        self.candidacy = Candidacy.objects.create(user=user, candidate=self.candidate)
+        self.user = user
+        self.save()
+        return user
+
+
     def send_mail_with_user_and_password(self):
         if self.times_email_has_been_sent >= settings.MAX_AMOUNT_OF_MAILS_TO_CANDIDATE:
             return
         self.times_email_has_been_sent += 1
         if self.candidacy is None:
-            username = self.candidate.slug[:20] + unicode(uuid.uuid4())[:4]
-
-            password = uuid.uuid4().hex[:12]
-            self.initial_password = password
-            user = User.objects.create(username=username)
-            user.set_password(self.initial_password)
-            user.email = self.mail
-            user.save()
-            self.candidacy = Candidacy.objects.create(user=user, candidate=self.candidate)
+            user = self.create_and_set_user()
 
         site = Site.objects.get_current()
         login_url = reverse('backend_candidate:candidate_auth_login')
         full_login_url = "http://%s%s" % (site.domain, login_url)
         send_mail({'contact': self, 'login_url': full_login_url},
                   'candidates/mail_with_user_and_password', to=[self.mail],)
-        self.save()
+        
 
     def get_absolute_url(self):
         site = Site.objects.get_current()

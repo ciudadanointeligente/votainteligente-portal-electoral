@@ -8,6 +8,7 @@ from picklefield.fields import PickledObjectField
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from votai_utils.send_mails import send_mail
+from backend_candidate.models import CandidacyContact
 import time
 
 
@@ -54,6 +55,12 @@ class CandidateIncremental(models.Model):
         context['candidate_incremental'] = self
         for candidacy in self.candidate.candidacy_set.all():
             context['candidacy'] = candidacy
+            if candidacy.user.last_login is None:
+                try:
+                    contact = candidacy.user.candidacy_contact
+                    context['contact'] = contact
+                except CandidacyContact.DoesNotExist:
+                    pass
             subject = None
             if self.suggestion and self.suggestion.subject:
                 subject = self.suggestion.subject

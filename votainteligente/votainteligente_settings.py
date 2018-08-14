@@ -8,6 +8,7 @@ DEFAULT_ELECTION_EXTRA_INFO = {
 }
 NAV_BAR = ('profiles', 'questionary', 'soulmate', 'facetoface', 'ask', 'ranking')
 THEME = None
+NOTIFY_CANDIDATES_WHEN_MANY_PROPOSALS_REACH_A_NUMBER = True
 WHEN_TO_NOTIFY = [25, 50, 100, 150, 200]
 NOTIFY_CANDIDATES = True
 NOTIFY_CANDIDATES_OF_NEW_PROPOSAL = True

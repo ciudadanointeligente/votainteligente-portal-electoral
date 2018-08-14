@@ -146,3 +146,11 @@ class AnotherQuestionaryTestCase(MediaNaranjaAdaptersBase):
         self.assertEquals(response.status_code, 200)
         self.assertNotIn('form', response.context.keys())
         self.assertTrue(response.context['results'][0]['candidates'][0]['value'])
+
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
+class TemplatesViews(MediaNaranjaAdaptersBase):
+    def test_get_sobre(self):
+        url = reverse('sobre')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)

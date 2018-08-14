@@ -82,17 +82,22 @@ div.categories-select {
     @include make-row();
     .cat-selected {
         background-color: $roxo;
+        color: $white;
     }
     .cat-unselected {
         background-color: $branco;
+        color: $preto;
     }
     div.checkbox {
         @include make-col(4);
         label {
+            padding-top: 3em;
+            padding-left: 27%;
             height: 100%;
             width: 100%;
+            font-weight: bolder;
         }
-        min-height: 4em;
+        min-height: 8em;
         input[type=checkbox] {
             visibility: hidden;
         }
@@ -108,4 +113,8 @@ div.categories-select {
     font-weight: bolder;
     text-transform: uppercase;
 
+}
+
+.nav-item {
+    color: $preto;
 }

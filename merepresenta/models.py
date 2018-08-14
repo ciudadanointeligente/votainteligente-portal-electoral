@@ -12,6 +12,8 @@ from votai_utils.send_mails import send_mail
 from django.utils import timezone
 import datetime
 from elections.models import QuestionCategory as OriginalQuestionCategory
+from django.utils.encoding import python_2_unicode_compatible
+
 
 
 class MeRepresentaPopularProposal(PopularProposal):
@@ -174,7 +176,11 @@ class Partido(models.Model):
     coaligacao = models.ForeignKey(Coaligacao, null=True)
 
 
+@python_2_unicode_compatible
 class QuestionCategory(OriginalQuestionCategory):
+    def __str__(self):
+        return self.name
+
     class Meta:
         proxy = True
 

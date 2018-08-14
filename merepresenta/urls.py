@@ -32,6 +32,13 @@ urlpatterns = [
     url(r'^$',
         TemplateView.as_view(template_name="merepresenta/index.html"),
         name='index'),
+
+    url(r'^sobre/?$',
+        TemplateView.as_view(template_name="merepresenta/sobre.html"),
+        name='sobre'),
+    url(r'^eleitor/?$',
+        TemplateView.as_view(template_name="merepresenta/eleitor.html"),
+        name='eleitor'),
     url(r'^perguntas/?$',
         MeRepresentaMeiaLaranjaWizardForm.as_view(),
         name='questionary'),

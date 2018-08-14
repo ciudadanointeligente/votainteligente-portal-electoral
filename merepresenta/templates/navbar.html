@@ -4,20 +4,9 @@
 <nav  id="mainNav" class="navbar navbar-light">
   <a class="navbar-brand" href="{% url 'index' %}">
     <img src="{% static "/img/merepresenta/logo_2018.svg" %}" class="img-fluid" alt="#MeRepresentaLogo"></a>
-    {% if user.is_authenticated and user.is_staff %}
-    <a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">Portal voluntario</a> 
-    {% endif %}
-    {% if user|is_candidate %}
-      {% with user.candidacies.first as candidacy %}
-        {% if candidacy.candidate.candidatequestioncategory_set.exists %}
-        <a href="{{candidacy.candidate.get_absolute_url}}" class="btn btn-roxo voluntario">Meu perfil</a> 
-        {% else %}
-        <a href="{% url 'cpf_and_date2' %}" class="btn btn-gris voluntario">Preencher dados</a>
-        {% endif %}
-      {% endwith %}
-    {% endif %}
-
+    
   <ul class="nav nav-pills">
+    <a class="nav-item nav-link" href="{% url 'sobre' %}">Sobre</a>
     {% if not user.is_authenticated %}
     <li class="nav-item">
       <a class="nav-link btn btn-roxo voluntario" href="{% url 'volunteer_index' %}">Quero ser voluntário/a</a>
@@ -31,7 +20,14 @@
         {% endif %}
         {{user.username}}</a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="{% url 'volunteer_index' %}">Portal voluntário</a>
+        {% if user.is_authenticated and user.is_staff %}
+        <a href="{% url 'volunteer_index' %}" class="dropdown-item">Portal voluntario</a> 
+        {% endif %}
+        {% if user|is_candidate %}
+          {% with user.candidacies.first as candidacy %}
+            <a href="{{candidacy.candidate.get_absolute_url}}" class="dropdown-item">Meu perfil</a> 
+          {% endwith %}
+        {% endif %}
         <div role="separator" class="dropdown-divider"></div>
         <a class="dropdown-item" href="/accounts/logout">Sair</a>
       </div>

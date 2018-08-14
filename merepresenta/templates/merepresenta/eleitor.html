@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load votainteligente_extras %}
+
+{% block title %}- Sobre{% endblock title %}
+
+{% block everything %}
+<div id="first-part" class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h1>Olá eleitora</h1>
+            <p>Nossa plataforma pra eleitores vai ser lançada no dia 31 de Agosto.</p>
+
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd5wPad4gLYFMdCaP9heMIAH8MmPk8CAPkwzbghLbNcis_1Uw/viewform?embedded=true" width="900" height="1520" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+        </div>
+        <div class="col-sm-6">
+          <img src="{% static '/img/merepresenta/merep_landing_image.svg' %}" class="img-fluid" alt="#MeRepresentaLogo">
+        </div>
+      </div>
+  </div>
+
+
+            
+{% endblock everything %}

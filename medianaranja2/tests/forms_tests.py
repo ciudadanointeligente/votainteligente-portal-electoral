@@ -12,6 +12,7 @@ from popular_proposal.models import (PopularProposal,
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from constance.test import override_config
+from django.test import override_settings
 
 class FormsTestCase(MediaNaranjaAdaptersBase):
     def setUp(self):
@@ -210,3 +211,24 @@ class MediaNaranjaWizardFormTests(MediaNaranjaWizardFormTestsBase):
         result_2 = response.context['results'][2]
         self.assertEquals(result_2, expected)
         self.assertIn(self.p1.proposer.organization_template, response.context['organizations'].all())
+
+
+@override_config(DEFAULT_AREA='grand_mother')
+class MediaNaranjaSingleFormWizardFormTests(MediaNaranjaWizardFormTestsBase):
+    def setUp(self):
+        super(MediaNaranjaSingleFormWizardFormTests, self).setUp()
+        self.url = reverse('medianaranja2:index')
+        
+    @override_settings(MEDIA_NARANJA_QUESTIONS_ENABLED=False)
+    def test_get_one_and_only_one_form(self):        
+        response = self.client.get(self.url)
+        steps = response.context['wizard']['steps']
+        self.assertIsInstance(response.context['form'], ProposalsForm)
+        self.assertEquals(len(steps), 1)
+    
+    @override_settings(MEDIA_NARANJA_QUESTIONS_ENABLED=False)        
+    def test_posting_to_the_view(self):
+        data = {'media_naranja_only_proposals-current_step': 0,
+                '0-proposals': [self.p1.id, self.p3.id]}
+        response = self.client.post(self.url, data=data)
+        self.assertTrue(response.context['results'])

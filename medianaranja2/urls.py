@@ -1,21 +1,17 @@
 from django.conf.urls import url
-from medianaranja2.forms import MediaNaranjaWizardForm
+from medianaranja2.forms import MediaNaranjaOnlyProposals
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-from constance import config
-from medianaranja2.views import ShareYourResult, ShareMyResultPlz,ShareMyResultOrgPlz, SharedResultOGImageView
+from medianaranja2.views import (ShareYourResult,
+                                 ShareMyResultPlz,
+                                 ShareMyResultOrgPlz,
+                                 SharedResultOGImageView,
+                                 get_medianaranja_view)
 
-media_naranja2_view = MediaNaranjaWizardForm.as_view()
-
-try:
-    if config.PRUEBAS_DE_CARGA_MEDIA_NARANJA:
-        media_naranja2_view = csrf_exempt(media_naranja2_view)
-except:
-    pass
 
 urlpatterns = [
     url(r'^$',
-        media_naranja2_view,
+        get_medianaranja_view,
         name='index'),
     url(r'^compartir/?$',
         ShareMyResultPlz.as_view(),

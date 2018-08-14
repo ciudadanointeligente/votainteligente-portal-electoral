@@ -70,6 +70,33 @@
                 <p>{{coag.value}}</p>
               </td>
               {% endif %}
+          </tr>
+          <tr>
+            <td>
+            {% get_personal_data candidate=candidate personal_data='ocupacion' as ocupacion %}
+              {% if ocupacion.value %}
+              <p class="small-basic"><b>Ocupação atual</b></p>
+              <p>{{ocupacion.value}}</p>
+            {% endif %}
+            </td>
+            {% get_personal_data candidate=candidate personal_data='raca' as raca %}
+            {% if raca.value %}
+              <td colspan="2">
+                <p class="small-basic"><b>Raça</b></p>
+                <p>{{raca.value}}</p>
+              </td>
+              {% endif %}
+          </tr>
+          <tr>
+            <td>
+            {% get_personal_data candidate=candidate personal_data='orietacion_sexual' as orietacion_sexual %}
+              {% if orietacion_sexual.value %}
+              <p class="small-basic"><b>Orientação sexual</b></p>
+              <p>{{orietacion_sexual.value}}</p>
+            {% endif %}
+            </td>
+          </tr>
+
           <tr>
           </tr>
             <td>
@@ -82,15 +109,16 @@
               </ul>
               {% endif %}
             </td>
-            {% get_personal_data candidate=candidate personal_data='lupa' as lupa %}
-            {% if lupa %}
+            {% get_personal_data candidate=candidate personal_data='territorio' as territorio %}
+            {% if territorio %}
               <td colspan="2">
-                <p class="small-basic"><a target="_blank" href="{{lupa.value}}"><i class="fa fa-money" aria-hidden="true"></i> Aportes y gastos de campaña <i class="fa fa-external-link"></i></a></p>
+                <p class="small-basic"><b>Território</b></p>
+                <p>{{territorio.value}}</p>
               </td>
               {% endif %}
 
           </tr>
-
+          
           {% get_personal_data candidate=candidate personal_data='experiencia' as experiencia %}
           {% if experiencia.value %}
           <tr>

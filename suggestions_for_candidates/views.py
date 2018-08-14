@@ -6,6 +6,7 @@ from suggestions_for_candidates.models import CandidateIncremental
 from django.views.generic.detail import DetailView
 from django.contrib.sites.models import Site
 from django.conf import settings
+from constance import config
 
 
 class CandidateIncrementalDetailView(DetailView):

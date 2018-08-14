@@ -293,6 +293,14 @@ class CandidacyContacts(CandidacyTestCaseBase):
         self.assertEquals(len(contact.identifier.hex), 32)
         self.assertFalse(contact.initial_password)
 
+    def test_create_and_set_user(self):
+        contact = CandidacyContact.objects.create(candidate=self.candidate,
+                                                  mail='mail@perrito.cl')
+        contact.create_and_set_user()
+        contact.refresh_from_db()
+        self.assertTrue(contact.candidacy)
+        self.assertTrue(contact.user)
+
     def test_candidacy_redirect_view(self):
         contact = CandidacyContact.objects.create(candidate=self.candidate,
                                                   mail='mail@perrito.cl')

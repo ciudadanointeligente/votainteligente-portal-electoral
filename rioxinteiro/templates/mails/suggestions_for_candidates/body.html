@@ -10,14 +10,13 @@
 <p><a href="https://{{site.domain}}">A Rio por Inteiro</a> é uma plataforma, sem fins lucrativos, que recebe propostas cidadãs e da sociedade civil para as eleições deste ano.</p>
 <p>Te convidamos a participar como candidata/o e conhecer e se comprometer com as propostas da plataforma. Para isso, selecionamos algumas propostas que acreditamos te interessar. Para se comprometer, basta marcar a caixa abaixo da proposta. Para enviar sua resposta, basta pressionar "enviar compromissos". Suas respostas estarão disponíveis no seu perfil da plataforma.
 </p>
-<p>Além disso, os compromissos que você fizer serão parte da <a href="https://{{site.domain}}/media_naranja">Metade da Laranja Política</a>, uma ferramente que permite que eleitoras/es encontrem a candidatura com que mais se conecta por conta dos compromissos assumidos na plataforma. Em somente uma semana de funcionamento a ferramenta já tem <b>mais de 130.000 visitas</b>, aumentando cada dia mais à medida que nos aproximamos das eleições.</p>
 
 {% endif %}
 
 {% include 'backend_candidate/_suggestions_formset.html' with formset=formset object=candidate_incremental site=site candidate=candidate %}
 
 {% with candidate.contacts.last as contact %}
-{% if not candidate.has_joined %}
+{% if contact %}
 
 <p>A qualquer momento você entrar e editar as informações que constam no seu perfil, ou se comprometer com outras propostas. Para isso, você deve entrar em: <a href="https://{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}">{{site.domain}}{% url 'backend_candidate:candidate_auth_login' %}</a> com seu usuário ({{contact.candidacy.user.username}}) e senha ({{contact.initial_password}}).</p>
 {% else %}

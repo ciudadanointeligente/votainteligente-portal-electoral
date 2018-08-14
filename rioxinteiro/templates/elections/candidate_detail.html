@@ -64,7 +64,7 @@
             {% endif %}
             </td>
             {% get_personal_data candidate=candidate personal_data='Coligação' as coag %}
-            {% if pacto.value %}
+            {% if coag.value %}
               <td colspan="2">
                 <p class="small-basic"><b>Coligação</b></p>
                 <p>{{coag.value}}</p>

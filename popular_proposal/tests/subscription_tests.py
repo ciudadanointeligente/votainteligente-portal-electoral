@@ -296,7 +296,7 @@ class SubscriptionEventsTestCase(SubscriptionTestCaseBase):
         self.assertEquals(len(mail.outbox), 0)
 
 
-@override_settings(NOTIFY_CANDIDATES=False)
+@override_settings(NOTIFY_CANDIDATES_WHEN_MANY_PROPOSALS_REACH_A_NUMBER=False)
 class NotNotifyCandidatesUnlessToldSo(SubscriptionTestCaseBase):
     def setUp(self):
         super(NotNotifyCandidatesUnlessToldSo, self).setUp()

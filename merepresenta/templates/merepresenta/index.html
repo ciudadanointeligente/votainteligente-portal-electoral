@@ -44,22 +44,31 @@ Cadastre-se e traga mais visibilidade para sua candidatura. </p>
       </div>
   </div>
 
+
 <div id="second-part" class="container-fluid">
     <div class="row landing-explanation">
         <div class="col-12">
-            <h2 class="text-center title">
-                Conheça o <span class="title-merepresenta">#MeRepresenta</span>
-            </h2>
+            
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-6" style="background-color: black;">
-            Youtube
+    <div class="row explanation">
+
+        <div class="col-sm-6" >
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/4K-YgNvHTq8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
         <div class="col-sm-6">
-            <div class="row explanation d-flex justify-content-center">
-                <p>Em 2016, o <b>#MeRepresenta</b> mapeou candidaturas pró direitos humanos em todo o Brasil. Foram 890 candidatas e candidatos cadastrados em 244 cidades, 24 estados e de todos os partidos se manifestando em relação às pautas de igualdades de gênero, racial e orientação sexual.</p>
-                <p>Agora, movimentos, coletivos e militantes podem utilizar esses dados para encontrar aliadas e aliados dessas pautas em vários lugares do país. Faça sua pesquisa, descubra aliadas e aliados, veja quem te representa!</p>    
+            <h2 class="text-center title">
+                Conheça o #MeRepresenta
+            </h2>
+            <div class="row">
+                <p class='d-flex justify-content-between'>O #MeRepresenta</span> é uma união de coletivos formados por mulheres, pessoas negras e LGBT+. Nosso objetivo é diminuir a distância entre eleitoras/es e candidatas/os comprometidas/os com os direitos sociais, civis e políticos da população.</p>
+                <p class='d-flex justify-content-between'>
+                    Em 2016 conectamos mais de 150 mil pessoas à candidaturas que valorizam os direitos humanos. E esse ano queremos mais!
+                </p>
+                <p class='d-flex justify-content-between'>
+                    A nova plataforma #MeRepresenta Eleições 2018 foi elaborada com a participação 19 organizações da sociedade civil. Veja abaixo quem está com a gente!
+                </p>
+                
             </div>
             
 
@@ -68,6 +77,8 @@ Cadastre-se e traga mais visibilidade para sua candidatura. </p>
     </div>
     
 </div>
+
+{% include "_apoian.html" %}
 <div id="pautas-container" class="container-fluid">
     <div class="row landing-explanation">
         <div class="col-12">
@@ -125,17 +136,17 @@ Cadastre-se e traga mais visibilidade para sua candidatura. </p>
         <div class="col-6 explanation">
             <h2>Faça parte do <div class="faca-parte">#MeRepresenta</div></h2>
             
-            <p>Gostou do nosso movimento? Venha fazer parte do #MeRepresenta e nos ajude a construir um Brasil melhor!</p>
+            <p>Gostou do nosso movimento? Venha fazer parte do <b>#MeRepresenta</b> e nos ajude a construir um Brasil melhor!</p>
             <div class="row">
-                <div class="col-3">
-                    <a href="{% url 'questions' %}" class="btn btn-gris voluntario">Sou candidata</a>
+                <div class="col-5">
+                        <a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">Quero ser voluntária/o</a>
                 </div>
-                <div class="col-3">
-                    <a href="{% url 'questions' %}" class="btn btn-gris voluntario">Sou eleitor</a>
+                <div class="col-4">
+                    <a href="{% url 'sobre' %}" class="btn btn-gris voluntario">Quero saber mais</a>
                 </div>
-                <div class="col-3">
-                    <a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">{% if user.is_authenticated and user.is_staff %}Portal Voluntario{% else %}Quero ser voluntário/a{% endif %}</a>    
-                </div>
+                <!--div class="col-3">
+                    <a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">Quero ser voluntário</a>
+                </div-->
             </div>
         </div>
         

@@ -19,15 +19,21 @@
     .landing-explanation {
         margin-bottom: 2em;
     }
+    p {
+
+    }
     .title-merepresenta {
         color: $verde;
         margin-bottom: 1em;
         font-weight: bolder;
     }
+    .title {
+        font-weight: bolder;
+    }
     .explanation {
         background-color: $verde;
         color: $branco;
-        padding: 1em;
+        padding: 3em 0em;
         margin-top: 1em;
         margin-bottom: 1em;
     }
@@ -50,6 +56,7 @@ $colors_pautas: $roxo, $verde, $amarelo;
     .pauta-landing {
         min-height: 350px;
         font-weight: bolder;
+        font-size: 2em;
         color: $white;
     }
 
@@ -68,8 +75,14 @@ $colors_pautas: $roxo, $verde, $amarelo;
     .faca-parte {
         color: $verde;
         font-weight: bolder;
+
+        padding-bottom: 2em;
     }
     .explanation {
 
     }
+}
+.logotipo {
+    padding: 1.6em;
+    
 }

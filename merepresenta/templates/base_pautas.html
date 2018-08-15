@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load bootstrap4 %}
+{% load markdown_deux_tags %}
 {% load votainteligente_extras%}
 
 {% block title %}- Portada{% endblock title %}
@@ -21,30 +22,47 @@
 
 
 
-<div class='row'>
-    <div class='col'>
+<div class='row title-pauta'>
+    <div class='col text-center'>
+        {% if form.category.name %}
          <h1>Pautas sobre <span class="category-name">{{form.category.name}}</span></h1>
+         {% else %}
+         <h1>Quais desses temas são prioritários na sua candidatura?</h1>
+         {% endif %}
     </div>
 </div>
 <div class="row">
         <div class="col-8 offset-md-2">
+            {% block formulario %}
             <form method="post"  enctype="multipart/form-data" action="{% url 'complete_pautas' %}">{% csrf_token %}
       <!-- image -->
             {{wizard.management_form}}
             {% for field in form %}
             <section class="question-pauta">
                 {% if 'description_' not in field.name %}
-                    <span class="question-label">{% bootstrap_label field.label %}</span>
-                    <p class="description">{{field.help_text|safe}}</p>
-                    <p class="enquiri">Qual o seu posicionamento?</p>
-                    <div class="options">
-                        {% bootstrap_field field show_label=False show_help=False %}
-                    </div>
+                    {% if field.name == 'categories' %}
+                        <span class="question-label">Agora escolha <bold>3</bold> temas que são prioridades na sua candidatura!</span>
+                        <p class="description">{{field.help_text|safe}}</p>
+                        <div class="options">
+                            {% bootstrap_field field show_label=False show_help=False %}
+                        </div>
+                    {% else %}
+                        <span class="question-label">{% bootstrap_label field.label %}</span>
+                        <p class="description">{{field.help_text|safe}}</p>
+                        <p class="enquiri">Qual o seu posicionamento?</p>
+                        <div class="options">
+                            {% bootstrap_field field show_label=False show_help=False %}
+                        </div>
+                    {% endif %}
                 {% endif %}
             </section>
         {% endfor %}
 
-        <input type="submit" value="Enviar"  class="btn btn-default" />
+        <div class="col-2 offset-md-10">
+
+          <input type="submit" value="Continuar"  class="btn btn-verde" />
+        </div>
+        {% endblock formulario %}
         </form>
     </div>
 </div>

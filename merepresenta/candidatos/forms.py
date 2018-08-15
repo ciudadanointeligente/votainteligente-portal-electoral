@@ -72,6 +72,7 @@ def get_form_class_from_category(category, candidate):
 
 class CategoryCandidateForm(MediaNaranjaSingleCandidateMixin, forms.Form):
     categories = forms.ModelMultipleChoiceField(queryset=QuestionCategory.objects.all(),
+                                                label=u'Agora escolha <strong>3</strong> temas que são prioridades na sua candidatura!',
                                                 widget=forms.CheckboxSelectMultiple(attrs={'class':"categories-select"}))
 
     def save(self):

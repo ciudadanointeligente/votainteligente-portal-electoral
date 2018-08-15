@@ -4,6 +4,7 @@
 @import 'partes/landing';
 @import 'partes/_voluntarios';
 @import 'partes/_perfil_candidato';
+@import 'partes/_cpf_e_ddn';
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -66,7 +67,6 @@ section.profile-question {
     }
     .description {
         margin-bottom: 1em;
-        padding-left: 1em;
     }
     .radio {
 
@@ -90,6 +90,7 @@ div.categories-select {
     }
     div.checkbox {
         @include make-col(4);
+        background-color: $cinza;
         label {
             padding-top: 3em;
             padding-left: 27%;
@@ -117,4 +118,8 @@ div.categories-select {
 
 .nav-item {
     color: $preto;
+}
+
+footer {
+    margin-top: 1em;
 }

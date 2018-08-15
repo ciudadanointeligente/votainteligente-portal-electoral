@@ -37,12 +37,16 @@ class PersonalDataForm(forms.Form):
     gender = forms.ChoiceField(choices=GENDERS,
                                 widget=forms.RadioSelect,
                                 label=u'Com qual desses gêneros você se identifica?')
-    lgbt = forms.BooleanField(label=u'Sim', required=False)
+    lgbt = forms.BooleanField(label=u'Sim, eu sou LGBT', required=False)
     lgbt_desc = forms.ModelMultipleChoiceField(label=u'Selecione com quais opções você se identifica:',
                                                widget=forms.CheckboxSelectMultiple(attrs={'id': 'lgbt_desc'}),
                                                queryset=LGBTQDescription.objects.all(),
                                                required=False)
-    races = forms.MultipleChoiceField(label=u'Qual é a sua cor ou raça?',widget=forms.CheckboxSelectMultiple, choices=RACES, required=False)
+    races = forms.MultipleChoiceField(label=u'Qual é a sua cor ou raça?',
+                                      widget=forms.CheckboxSelectMultiple,
+                                      choices=RACES,
+                                      required=False,
+                                      help_text=u"Você pode marcar mais de uma.")
     bio = forms.CharField(label=u"Escreva um pouco sobre você", widget=forms.Textarea, required=False)
     candidatura_coletiva = forms.BooleanField(label=u'Sim', required=False
                         )

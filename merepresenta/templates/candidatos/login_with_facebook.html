@@ -25,6 +25,7 @@
         src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
 
     {% block extra_head %}
     {% endblock extra_head %}
@@ -46,18 +47,26 @@
         
       <div class="container">
         {% block content %}
-        <div class="card">
-          <div class="card-body">
-            <h1>Olá {{candidate.name}}</h1>
-            <p>Para validar seu cadastro, é necessário a conexão com o Facebook. Recomendamos que você verifique se o perfil é seu, pois utilizaremos essas informações no cadastro.</p>
-            <p class="text-center"><b>Vamos começar?</b></p>
-            <a class="btn btn-block btn-facebook" href="{% url 'candidato_social_begin' 'facebook' candidate.slug %}">
-                <i class="fab fa-facebook-f"></i> Conectar com o Facebook e continuar
-            </a>
+        <div class="row">
+          <div class="card">
+            <div class="card-body cpf_e_ddn">
+              <h1 class="text-center">Olá {{candidate.name}} :)</h1>
+              <div class='col-8 offset-md-2'>
+                <p>Seu cadastro foi feito com base nos últimos dados oficiais do TSE. Se esse não for o seu nome,  entre o contato com o TSE pra verificar o que está acontecendo e depois fale com a gente.</p>
+                <p>Para fazer seu cadastro é necessário conexão com o Facebook. <b>Confirme que a conta é sua, pois a imagem do perfil do Facebook será visualizada pelos eleitores</b> na nossa plataforma.</p>
+                <p class="text-center"><b>Vamos começar?</b></p>
+                <a class="btn btn-block btn-facebook" href="{% url 'candidato_social_begin' 'facebook' candidate.slug %}">
+                    <i class="fab fa-facebook-f"></i> Conectar com o Facebook e continuar
+                </a>
+                <p class="text-center explicacion-facebook"><b>Por que Facebook?</b></p>
+                <p class="text-center">Nosso cadastro é conectado com seu perfil pessoal para evitar que outras pessoas respondam em seu nome.</p>
+                
 
+                
+              </div>
+            </div>
           </div>
         </div>
-            
         {% endblock content %}
       </div>
       {% endblock everything %}

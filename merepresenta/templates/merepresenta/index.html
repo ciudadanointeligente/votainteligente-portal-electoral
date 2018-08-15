@@ -7,10 +7,11 @@
 {% block everything %}
 <div id="first-part" class="container">
     <div class="row">
-        <div class="col-6">
+        <div class="col-5 title-container">
             <h2 class="title">Ajude seus eleitores <div class="landing-explanation">chegarem até você!</div></h2>
             
-            <p>Chegou a hora de contar um pouco mais sobre suas pautas e ajudar eleitores a encontrar candidatos que os representam.</p>
+            <p>Quer aparecer para as eleitoras e eleitores que se preocupam com as mesmas pautas que você?
+Cadastre-se e traga mais visibilidade para sua candidatura. </p>
             <div class="row">
 
                 {% if user|is_candidate %}
@@ -25,19 +26,19 @@
                 {% elif user.is_authenticated and user.is_staff %}
                     <div class="col-3"><a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">Portal voluntario</a> </div>
                 {% else %}
-                    <div class="col-3">
-                        <a href="{% url 'cpf_and_date2' %}" class="btn btn-gris voluntario">Sou candidata</a>
+                    <div class="col-4">
+                        <a href="{% url 'cpf_and_date2' %}" class="btn btn-roxo voluntario">Sou candidata/o</a>
                     </div>
-                    <div class="col-3">
-                        <a href="{% url 'eleitor' %}" class="btn btn-gris voluntario">Sou eleitor</a>
+                    <div class="col-4">
+                        <a href="{% url 'eleitor' %}" class="btn btn-gris voluntario">Sou eleitor/a</a>
                     </div>
-                    <div class="col-3">
+                    <!--div class="col-3">
                         <a href="{% url 'volunteer_index' %}" class="btn btn-roxo voluntario">Quero ser voluntário</a>
-                    </div>
+                    </div-->
                 {% endif %}
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-7">
           <img src="{% static '/img/merepresenta/merep_landing_image.svg' %}" class="img-fluid" alt="#MeRepresentaLogo">
         </div>
       </div>

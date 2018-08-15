@@ -7,7 +7,10 @@
         font-weight: bolder;
     }
     .title {
-        font-size: 3em;
+        font-size: 2.5em;
+    }
+    .title-container {
+        padding-top: 6em;
     }
     
 }
@@ -29,7 +32,10 @@
         margin-bottom: 1em;
     }
 }
-
+.nav-link {
+    font-weight: bold;
+    margin-right: 1em;
+}
 $colors_pautas: $roxo, $verde, $amarelo;
 
 #pautas-container {

@@ -7,7 +7,7 @@ from django.conf import settings
 from elections.models import Area, QuestionCategory, PersonalData
 from django.contrib.sites.models import Site
 from medianaranja2.proposals_getter import ByOnlySiteProposalGetter
-from merepresenta.models import MeRepresentaPopularProposal, Candidate, RaceMixin
+from merepresenta.models import MeRepresentaPopularProposal, Candidate, RaceMixin, LGBTQDescription
 from django.utils.safestring import mark_safe
 from medianaranja2.adapters import Adapter as OriginalAdapter
 
@@ -38,6 +38,10 @@ class PersonalDataForm(forms.Form):
                                 widget=forms.RadioSelect,
                                 label=u'Com qual desses gêneros você se identifica?')
     lgbt = forms.BooleanField(label=u'Sim', required=False)
+    lgbt_desc = forms.ModelMultipleChoiceField(label=u'Selecione com quais opções você se identifica:',
+                                               widget=forms.CheckboxSelectMultiple(attrs={'id': 'lgbt_desc'}),
+                                               queryset=LGBTQDescription.objects.all(),
+                                               required=False)
     races = forms.MultipleChoiceField(label=u'Qual é a sua cor ou raça?',widget=forms.CheckboxSelectMultiple, choices=RACES, required=False)
     bio = forms.CharField(label=u"Escreva um pouco sobre você", widget=forms.Textarea, required=False)
     candidatura_coletiva = forms.BooleanField(label=u'Sim', required=False
@@ -69,12 +73,18 @@ class PersonalDataForm(forms.Form):
             race_candidate = getattr(self.candidate, race[0])
             if race_candidate:
                 races.append(race[0])
+        lgbt_desc = []
+        if self.candidate.lgbt:
+            for desc in self.candidate.lgbt_desc.all():
+                lgbt_desc.append(desc.id)
         kwargs['initial']['races'] = races
+        kwargs['initial']['lgbt_desc'] = lgbt_desc
         super(PersonalDataForm, self).__init__(*args, **kwargs)
             
 
     def save(self):
         selected_races = self.cleaned_data.pop('races')
+        lgbt_descs = self.cleaned_data.pop('lgbt_desc', [])
         for race in RACES:
             race_key = race[0]
             if race_key in selected_races:
@@ -92,6 +102,7 @@ class PersonalDataForm(forms.Form):
                     personal_data.value = ''
                 personal_data.save()
         self.candidate.save()
+        self.candidate.lgbt_desc = lgbt_descs
         return self.candidate
 
 

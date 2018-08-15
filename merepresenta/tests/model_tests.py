@@ -9,6 +9,7 @@ from merepresenta.models import (MeRepresentaPopularProposal,
                                  Partido,
                                  VolunteerInCandidate,
                                  CandidateQuestionCategory,
+                                 LGBTQDescription,
                                  QuestionCategory)
 from django.contrib.auth.models import User
 from elections.models import Election
@@ -45,6 +46,11 @@ class MeRepresentaPopularProposalTestCase(TestCase):
 
         self.assertIsInstance(commitment, Commitment)
 
+class LGBTDescTestCase(VotaInteligenteTestCase):
+    def test_instanciate(self):
+        gay = LGBTQDescription.objects.create(name="Gay")
+        self.assertTrue(gay)
+
 class CandidateTestCase(VotaInteligenteTestCase):
     def test_instanciate(self):
         candidate = Candidate.objects.create(name="Candidate 1",
@@ -61,6 +67,23 @@ class CandidateTestCase(VotaInteligenteTestCase):
         self.assertTrue(candidate)
         self.assertFalse(candidate.is_ghost)
         self.assertFalse(candidate.facebook_contacted)
+
+    def test_candidate_can_have_lgbt_descritption(self):
+        gay = LGBTQDescription.objects.create(name="Gay")
+        candidate = Candidate.objects.create(name="Candidate 1",
+                                             cpf='1230',
+                                             nome_completo=u'Candidato uno',
+                                             numero='190000000560',
+                                             race="preta",
+                                             original_email='perrito@gatito.com',
+                                             bio='blablablabla', 
+                                             lgbt=True,
+                                             candidatura_coletiva=True,
+                                             renovacao_politica='Partido Perrito',
+                                             email_repeated=False)
+        candidate.lgbt_desc.add(gay)
+
+        self.assertTrue(candidate.lgbt_desc.all())
 
     def test_get_emails(self):
         user = User.objects.create_user(username='user', password="password", email='user@users.com')

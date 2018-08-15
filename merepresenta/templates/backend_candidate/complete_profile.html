@@ -35,7 +35,13 @@
       <form id='form_candidate_profile' method="post"  enctype="multipart/form-data" action="{% url 'merepresenta_complete_profile' slug=election.slug candidate_slug=candidate.slug %}">{% csrf_token %}
       <!-- image -->
           {% for field in form %}
-          <section class="profile-question">
+          <section class="profile-question"
+          {% if field.name == 'lgbt_desc' %}
+            id='lgbt_desc'
+            {% if not form.lgbt.value %}
+              style="display: none;"
+            {% endif %}
+          {% endif%} >
             {% if field.name == 'email' %}
             <span class="label_question">{% bootstrap_label field.label %}</span>
             {% elif field.name == 'lgbt' %}
@@ -79,6 +85,23 @@
       }
     }
     $('#form_candidate_profile').submit(pass_email);
+  });
+  $(function(){
+    let show_lgbt_desc = function(){
+      $("#lgbt_desc").show(600);
+    }
+    let hide_lgbt_desc = function(){
+      $("#lgbt_desc").hide(600);
+      $('#lgbt_desc input').removeAttr('checked');
+    }
+    $('#id_lgbt').change(function(evt){
+      if($(this).is(':checked')){
+        show_lgbt_desc();
+      }
+      else {
+        hide_lgbt_desc();
+      }
+    })
   });
   </script>
 {% endblock content %}

@@ -61,6 +61,15 @@ class LimitCandidatesForVolunteers(ForVolunteersManager):
         return qs
 
 
+@python_2_unicode_compatible
+class LGBTQDescription(models.Model):
+    name = models.CharField(max_length=256, verbose_name="Nome")
+
+    def __str__(self):
+        return self.name
+
+
+
 RACES = {
     'branca': u"Branca",
     'preta': u"Preta",
@@ -106,6 +115,7 @@ class Candidate(OriginalCandidate, RaceMixin):
     partido = models.ForeignKey("Partido", null=True)
     bio = models.TextField(default='')
     lgbt = models.BooleanField(default=False)
+    lgbt_desc = models.ManyToManyField(LGBTQDescription)
     renovacao_politica = models.CharField(max_length=512, default='')
     candidatura_coletiva = models.BooleanField(default=False)
     objects = ForVolunteersManager()

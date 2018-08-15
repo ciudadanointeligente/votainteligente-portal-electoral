@@ -61,7 +61,9 @@
         <div class="col">
           <ul class="list-group list-group-flush desc_candidato">
             <li class="list-group-item"><small>Cor e raça</small><br>{% for r in candidate.get_races %}{{r}}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
-            <li class="list-group-item"><small>Se declara LGBT?</small><br>{% if candidate.lgbt %}Sim{% else %}Não{% endif%}</li>
+            <li class="list-group-item"><small>Se declara LGBT?</small><br>{% if candidate.lgbt %}Sim
+              ({% for desc in candidate.lgbt_desc.all %}{{desc}}{% if not forloop.last %}, {% endif %}{% endfor %})
+              {% else %}Não{% endif%}</li>
             <li class="list-group-item"><small>Faz parte de uma candidatura coletiva?</small><br>{% if candidate.candidatura_coletiva %}Sim{% else %}Não{% endif%}</li>
             {% if candidate.renovacao_politica %}
             <li class="list-group-item"><small>Faz parte de algum grupo de Renovação Política?</small><br>{{candidate.renovacao_politica}}

@@ -1,7 +1,7 @@
 # coding=utf-8
 from backend_candidate.tests import SoulMateCandidateAnswerTestsBase
 from django.test import override_settings, modify_settings
-from merepresenta.models import Candidate
+from merepresenta.models import Candidate, LGBTQDescription
 from merepresenta.forms import PersonalDataForm
 from backend_candidate.forms import get_candidate_profile_form_class
 from backend_candidate.models import Candidacy
@@ -30,9 +30,12 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         self.candidate = Candidate.objects.create(name='THE candidate', cpf='1234', data_de_nascimento=self.d)
         self.candidacy = Candidacy.objects.create(user=self.feli,
                                                   candidate=self.candidate)
+        self.gay = LGBTQDescription.objects.create(name="Gay")
+        self.bi = LGBTQDescription.objects.create(name="Bi")
         self.data = {'email': 'perrito@chiquitito.cl',
                      'gender': 'F',
                      'lgbt': True,
+                     'lgbt_desc': [self.gay.id, self.bi.id],
                      'bio': u'Ola sou uma pessoa boa em ruim ao mesmo tempo, complexo como os humanos somos, mas qué é bom e qué é ruim?',
                      'candidatura_coletiva': True,
                      'races': ['preta', 'parda'],
@@ -82,6 +85,7 @@ class FormTestCase(SoulMateCandidateAnswerTestsBase):
         self.assertEquals(form.initial['bio'], self.candidate.bio)
         self.assertEquals(form.initial['candidatura_coletiva'], self.candidate.candidatura_coletiva)
         self.assertEquals(form.initial['renovacao_politica'], self.candidate.renovacao_politica)
+        self.assertTrue(self.candidate.lgbt_desc.all())
 
 TEMPLATES = [
     {
@@ -124,6 +128,8 @@ class GetAndPostToTheUpdateProfileView(SoulMateCandidateAnswerTestsBase):
         self.candidate = Candidate.objects.create(name='THE candidate', cpf='1234', data_de_nascimento=self.d)
         self.candidacy = Candidacy.objects.create(user=self.feli,
                                                   candidate=self.candidate)
+        self.gay = LGBTQDescription.objects.create(name="Gay")
+        self.bi = LGBTQDescription.objects.create(name="Bi")
         self.data = {'email': 'perrito@chiquitito.cl',
                      'gender': 'F',
                       'lgbt': True,

@@ -90,8 +90,10 @@ div.categories-select {
     }
     div.checkbox {
         @include make-col(4);
-        background-color: $cinza;
+        @include border-radius($radius: $border-radius)
+        border: 2px solid $gris;
         label {
+        
             padding-top: 3em;
             padding-left: 27%;
             height: 100%;

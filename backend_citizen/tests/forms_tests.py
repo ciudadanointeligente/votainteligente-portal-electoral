@@ -39,6 +39,18 @@ class UpdateMyProfileClass(BackendCitizenTestCaseBase):
         self.assertEquals(user.username, 'user')
         self.assertEquals(user.email, 'user@mail.com')
 
+    def test_create_user_form_validation(self):
+        data = {'username': 'user@usuario.com',
+                'email': 'user@mail.com',
+                'password1': 'pass',
+                'password2': 'pass',
+                }
+        form = UserCreationForm(data=data)
+
+        self.assertFalse(form.is_valid())
+        self.assertIn('username', form.errors)
+
+
     def test_create_organization_form(self):
         data = {'username': 'group',
                 'name': 'This Is a Great Group',

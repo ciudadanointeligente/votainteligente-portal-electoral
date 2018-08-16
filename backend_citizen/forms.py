@@ -5,6 +5,7 @@ from backend_citizen.models import (Profile,)
 from django.contrib.auth.models import User
 from registration.forms import RegistrationForm as UserCreationForm
 from constance import config
+from django.core.validators import validate_slug
 try:
     import urlparse
     from urllib import urlencode
@@ -44,7 +45,7 @@ class UserChangeForm(forms.ModelForm):
 
 
 class UserCreationForm(UserCreationForm):
-
+    username = forms.CharField(max_length=50, validators=[validate_slug])
     class Meta:
         model = User
         fields = ('username', 'email', )
@@ -53,7 +54,6 @@ class UserCreationForm(UserCreationForm):
                   }
         help_texts = {'username': _(u'El nombre de usuario no tiene espacios ni acentos.')
                   }
-
 
     def save(self, commit=True):
         user = super(UserCreationForm, self).save(commit=commit)

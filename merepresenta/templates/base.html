@@ -51,11 +51,72 @@
       {% endblock everything %}
     </section>
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
-        {% block extra_footer %}
-        {% endblock extra_footer %}
-    </footer>
+        <footer class="bg-dark font-small blue pt-4">
 
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+
+      <!-- Grid row -->
+      <div class="row">
+        <!-- Grid column -->
+        <div class="col-2">
+            <h5 class="text-uppercase">Sobre</h5>
+
+            <ul class="list-unstyled">
+              <li>
+                <a href="{% url 'sobre' %}#somos">Quem Somos</a>
+              </li>
+              <li>
+                <a href="{% url 'sobre' %}#impacto">Impacto</a>
+              </li>
+              <li>
+                <a href="{% url 'sobre' %}#comofunciona">Como funciona</a>
+              </li>
+              <li>
+                <a href="mailto:contato@merepresenta.org.br">Contato</a>
+              </li>
+              <li>
+                <a href="">Termos de uso</a>
+              </li>
+            </ul>
+
+          </div>
+          <div class="col-2">
+            <h5 class="text-uppercase">Participar</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="{% url 'cpf_and_date2' %}">Candidatas/os</a>
+              </li>
+              <li>
+                <a href="{% url "eleitor" %}">Eleitoras/es</a>
+              </li>
+              <li>
+                <a href="{% url 'volunteer_index' %}">Voluntaria/o</a>
+              </li>
+            </ul>
+
+          </div>
+          <hr class="clearfix w-100 d-md-none pb-3">
+          <!-- Grid column -->
+        <div class="col-md-6 mt-md-0 mt-3">
+
+          <!-- Content -->
+          <h5 class="text-uppercase">Apio</h5>
+          <ul class="list-unstyled">
+              <li>
+                <a href="http://www.saiba-mais.com/">Saiba+</a>
+              </li>
+              
+            </ul>
+
+        </div>
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+  </footer>
      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

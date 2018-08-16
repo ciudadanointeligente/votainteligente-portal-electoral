@@ -53,23 +53,12 @@ Depois dessa data, você não poderá mais modificar suas informações. <span><
               <small>Candidatura</small><br>
               {{candidate.election.name|title}}
             </li>
-            <li class="list-group-item"><small>Partido</small><br>{{candidate.partido.initials}}</li>
-            <li class="list-group-item"><small>Estado</small><br>{{candidate.election.area.name|title}}</li>
             <li class="list-group-item"><small>Numero de urna</small><br>{{candidate.numero}}</li>
-            <li class="list-group-item"><small>Data de nascimento</small><br>{{candidate.data_de_nascimento}}</li>
-          </ul>
-        </div>
-        <div class="col">
-          <ul class="list-group list-group-flush desc_candidato">
-            <li class="list-group-item"><small>Cor e raça</small><br>{% for r in candidate.get_races %}{{r}}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
-            <li class="list-group-item"><small>Se declara LGBT?</small><br>{% if candidate.lgbt %}Sim
-              ({% for desc in candidate.lgbt_desc.all %}{{desc}}{% if not forloop.last %}, {% endif %}{% endfor %})
-              {% else %}Não{% endif%}</li>
-            <li class="list-group-item"><small>Faz parte de uma candidatura coletiva?</small><br>{% if candidate.candidatura_coletiva %}Sim{% else %}Não{% endif%}</li>
-            {% if candidate.renovacao_politica %}
-            <li class="list-group-item"><small>Faz parte de algum grupo de Renovação Política?</small><br>{{candidate.renovacao_politica}}
-            {% endif %}
-            
+            <li class="list-group-item"><small>Partido</small><br>{{candidate.partido.initials}}</li>
+            <li class="list-group-item"><small>Coaligaçao</small><br>{{candidate.partido.coaligacao.initials}}</li>
+            <li class="list-group-item"><small>Nota de Coaligaçao</small><br>em análise</li>
+            <li class="list-group-item"><small>Estado</small><br>{{candidate.election.area.name|title}}</li>
+            <li class="list-group-item"><small>Grupo de Renovação Política</small><br>{{candidate.renovacao_politica}}</li>
           </ul>
         </div>
       </div>
@@ -88,7 +77,6 @@ Depois dessa data, você não poderá mais modificar suas informações. <span><
 </div>
 
 <div class='row bio'>
-  {% if candidate.candidatequestioncategory_set.exists %}
   <div class='col'>
     <h3 class=''>Temas prioritarios</h3>
   </div>
@@ -99,7 +87,6 @@ Depois dessa data, você não poderá mais modificar suas informações. <span><
   </div>
   {% endfor %}
 </div>
-{% endif %}
 {% for category in categories %}
   <div class='row bio'>
     <div class='col'>

@@ -7,12 +7,12 @@
 <section id="videoabout">
   <div class="container">
     <div class="row">
-      <div class="col-md-12 text-center">
+      <div class="col-md-6 text-center">
         <img src="{% static 'img/lm-banner.svg' %}" class="img-responsive">
       </div>
-      <div class="col-md-6 text-center hidden">
+      <div class="col-md-6 text-center">
         <div class="videoWrapper">
-          <iframe src="https://www.youtube.com/embed/W-jfqeUijbs" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/vUQLbMfTNP4" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center">
-        <p class="aviso"><b>La formación ciudadana debe iniciarse desde la infancia y consolidarse durante la adolescencia. Para ello, la Fundación Ciudadano Inteligente junto con el Fondo de las Naciones Unidas para la Infancia, UNICEF Chile, con ocasión de las Elecciones Parlamentarias y Presidenciales 2017, desarrollaron la iniciativa “Levanta la Mano”, una alternatuva para abrir el debate a niños, niñas y adolescentes quienes, pese a que no aún no tienen derecho a voto, sí tienen derecho a participar y a que sus opiniones sean tomadas en consideración en los temas que les afectan.</b></p>
+        <p class="aviso"><b>La formación ciudadana debe iniciarse desde la infancia y consolidarse durante la adolescencia. Para ello, la Fundación Ciudadano Inteligente junto con el Fondo de las Naciones Unidas para la Infancia, UNICEF Chile, con ocasión de las Elecciones Parlamentarias y Presidenciales 2017, desarrollaron la iniciativa “Levanta la Mano”, una alternativa para abrir el debate a niños, niñas y adolescentes quienes, pese a que no aún no tienen derecho a voto, sí tienen derecho a participar y a que sus opiniones sean tomadas en consideración en los temas que les afectan.</b></p>
       </div>
     </div>
   </div>
@@ -44,17 +44,17 @@
       <div class="col-md-4 text-center">
         <h2>+200</h2>
         <p class="bajada">propuestas de niños,<br> niñas y adolescentes</p>
-        <div><a class="btn btn-default" href="#propuestas" onclick="ga('send', 'event', 'home-formulario-inscripcion', 'click')">Ver propuestas</a></div>
+        <div><a class="btn btn-default" href="#propuestas" onclick="ga('send', 'event', 'home-cifras-propuestas', 'click')">Ver propuestas</a></div>
       </div>
       <div class="col-md-4 text-center">
         <h2>1</h2>
         <p class="bajada">compromiso<br>presidencial</p>
-        <div><a class="btn btn-default" href="#compromiso-presidencial" onclick="ga('send', 'event', 'home-formulario-inscripcion', 'click')">Ver compromiso</a></div>
+        <div><a class="btn btn-default" href="#compromiso-presidencial" onclick="ga('send', 'event', 'home-cifras-presidencial', 'click')">Ver compromiso</a></div>
       </div>
       <div class="col-md-4 text-center">
         <h2>18</h2>
         <p class="bajada">compromisos<br>parlamentarios</p>
-        <div><a class="btn btn-default" href="#compromisos-parlamentarios" onclick="ga('send', 'event', 'home-formulario-inscripcion', 'click')">Ver compromisos</a></div>
+        <div><a class="btn btn-default" href="#compromisos-parlamentarios" onclick="ga('send', 'event', 'home-cifras-parlamentarios', 'click')">Ver compromisos</a></div>
       </div>
     </div>
   </div>
@@ -79,7 +79,7 @@
               <h4>Más conversaciones de sexualidad, afectividad y género</h4>
             </div>
             <div class="col-md-3 text-center">
-              <a href="/propuestas/mas-conversaciones-de-sexualidad-afectividad-y-gen" class="btn btn-lm-blue">Ver propuesta</a>
+              <a href="/propuestas/mas-conversaciones-de-sexualidad-afectividad-y-gen" onclick="ga('send', 'event', 'proposal-1', 'click')" class="btn btn-lm-blue">Ver propuesta</a>
             </div>
           </div>
         </div>
@@ -90,7 +90,7 @@
               <h4>Menos trabajo, más tiempo en familia</h4>
             </div>
             <div class="col-md-3 text-center">
-              <a href="/propuestas/menos-trabajo-mas-tiempo-en-familia" class="btn btn-lm-yellow">Ver propuesta</a>
+              <a href="/propuestas/menos-trabajo-mas-tiempo-en-familia" onclick="ga('send', 'event', 'proposal-2', 'click')" class="btn btn-lm-yellow">Ver propuesta</a>
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@
               <h4>Fin a la discriminación</h4>
             </div>
             <div class="col-md-3 text-center">
-              <a href="/propuestas/fin-a-la-discriminacion" class="btn btn-lm-purple">Ver propuesta</a>
+              <a href="/propuestas/fin-a-la-discriminacion" onclick="ga('send', 'event', 'proposal-3', 'click')" class="btn btn-lm-purple">Ver propuesta</a>
             </div>
           </div>
         </div>
@@ -112,7 +112,7 @@
               <h4>Matrimonio igualitario incluye adopción homoparental</h4>
             </div>
             <div class="col-md-3 text-center">
-              <a href="/propuestas/matrimonio-igualitario-incluye-adopcion-homoparent" class="btn btn-lm-purple">Ver propuesta</a>
+              <a href="/propuestas/matrimonio-igualitario-incluye-adopcion-homoparent" onclick="ga('send', 'event', 'proposal-4', 'click')" class="btn btn-lm-purple">Ver propuesta</a>
             </div>
           </div>
         </div>
@@ -123,7 +123,7 @@
               <h4>Mejor salud y hospitales</h4>
             </div>
             <div class="col-md-3 text-center">
-              <a href="/propuestas/mejor-salud-y-hospitales" class="btn btn-lm-blue">Ver propuesta</a>
+              <a href="/propuestas/mejor-salud-y-hospitales" onclick="ga('send', 'event', 'proposal-5', 'click')" class="btn btn-lm-blue">Ver propuesta</a>
             </div>
           </div>
         </div>
@@ -195,7 +195,7 @@
                       </p>
                   </div>
                   <div class="row">
-                  <a role="button" class="btn btn-lm-blue"data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <a role="button" onclick="ga('send', 'event', 'commit-1', 'click')" class="btn btn-lm-blue"data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     Ver compromisos
                   </a>
                 </div>
@@ -219,7 +219,7 @@
                   </div>
                   <div class="col-md-3 commit-person">
                     <img src="{% static 'img/lm-hertz.png' %}"><br>
-                    Caarmen Hertz
+                    Carmen Hertz
                   </div>
                   <div class="col-md-3 commit-person">
                     <img src="{% static 'img/lm-castillo.png' %}"><br>
@@ -255,7 +255,7 @@
                       </p>
                   </div>
                   <div class="row">
-                  <a role="button" class="btn btn-lm-yellow"data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <a role="button" onclick="ga('send', 'event', 'commit-2', 'click')" class="btn btn-lm-yellow"data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                     Ver compromisos
                   </a>
                 </div>
@@ -311,7 +311,7 @@
                       </p>
                   </div>
                   <div class="row">
-                  <a role="button" class="btn btn-lm-purple"data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  <a role="button" onclick="ga('send', 'event', 'commit-3', 'click')" class="btn btn-lm-purple"data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                     Ver compromisos
                   </a>
                 </div>
@@ -363,7 +363,7 @@
                       </p>
                   </div>
                   <div class="row">
-                  <a role="button" class="btn btn-lm-purple"data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  <a role="button" onclick="ga('send', 'event', 'commit-4', 'click')" class="btn btn-lm-purple"data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                     Ver compromisos
                   </a>
                 </div>
@@ -411,7 +411,7 @@
                       </p>
                   </div>
                   <div class="row">
-                  <a role="button" class="btn btn-lm-green"data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                  <a role="button" onclick="ga('send', 'event', 'commit-5', 'click')" class="btn btn-lm-green"data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                     Ver compromisos
                   </a>
                 </div>
@@ -447,7 +447,7 @@
                       </p>
                   </div>
                   <div class="row">
-                  <a role="button" class="btn btn-lm-pink"data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                  <a role="button" onclick="ga('send', 'event', 'commit-6', 'click')" class="btn btn-lm-pink"data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                     Ver compromisos
                   </a>
                 </div>
@@ -483,7 +483,7 @@
                       </p>
                   </div>
                   <div class="row">
-                  <a role="button" class="btn btn-lm-blue"data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                  <a role="button" onclick="ga('send', 'event', 'commit-7', 'click')" class="btn btn-lm-blue"data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
                     Ver compromisos
                   </a>
                 </div>
@@ -519,7 +519,7 @@
                       </p>
                   </div>
                   <div class="row">
-                  <a role="button" class="btn btn-lm-red"data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                  <a role="button" onclick="ga('send', 'event', 'commit-8', 'click')" class="btn btn-lm-red"data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                     Ver compromiso
                   </a>
                 </div>
@@ -551,7 +551,7 @@
                       </p>
                   </div>
                   <div class="row">
-                  <a role="button" class="btn btn-lm-purple"data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                  <a role="button" onclick="ga('send', 'event', 'commit-9', 'click')" class="btn btn-lm-purple"data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
                     Ver compromiso
                   </a>
                 </div>
@@ -583,7 +583,7 @@
                       </p>
                   </div>
                   <div class="row">
-                  <a role="button" class="btn btn-lm-yellow"data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                  <a role="button" onclick="ga('send', 'event', 'commit-10', 'click')" class="btn btn-lm-yellow"data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
                     Ver compromiso
                   </a>
                 </div>
@@ -615,7 +615,7 @@
                       </p>
                   </div>
                   <div class="row">
-                  <a role="button" class="btn btn-lm-blue"data-toggle="collapse" data-parent="#accordion" href="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                  <a role="button" onclick="ga('send', 'event', 'commit-11', 'click')" class="btn btn-lm-blue"data-toggle="collapse" data-parent="#accordion" href="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
                     Ver compromiso
                   </a>
                 </div>
@@ -647,7 +647,7 @@
                       </p>
                   </div>
                   <div class="row">
-                  <a role="button" class="btn btn-lm-red"data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                  <a role="button" onclick="ga('send', 'event', 'commit-12', 'click')" class="btn btn-lm-red"data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
                     Ver compromiso
                   </a>
                 </div>
@@ -689,13 +689,13 @@
 </section>
 <section class="skyline-up">
 </section>
-<section id="folleto" class="color sky">
+<section id="resumen" class="color sky">
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center">
-        <h3>Folleto de resultados 2017</h3>
-        <p class="bajada">Revisa aquí el folleto con el resumen de resultados del proceso Levanta la Mano 2017 que le entregamos a todas las candidaturas electas comprometidas</p>
-        <div><a class="btn btn-default" href="{% static 'materiales/folleto-2017.pdf' %}" target="_blank" onclick="ga('send', 'event', 'home-folleto.pdf', 'click')">Descargar folleto</a></div>
+        <h3>Resumen de resultados 2017</h3>
+        <p class="bajada">Revisa aquí el resumen de resultados del proceso Levanta la Mano 2017 que le entregamos a todas las candidaturas electas comprometidas</p>
+        <div><a class="btn btn-default" href="{% static 'materiales/folleto-2017.pdf' %}" target="_blank" onclick="ga('send', 'event', 'home-folleto.pdf', 'click')">Descargar resumen</a></div>
       </div>
     </div>
   </div>

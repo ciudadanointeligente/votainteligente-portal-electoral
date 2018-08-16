@@ -1,21 +1,24 @@
 {% load votainteligente_extras %}
 Olá
 
-Estamos te escrevendo na qualidade de coordenador(a) da campanha de {{contact.candidate.name}}, para convida-lxs a participar da plataforma Rio por Inteiro: https://rioporinteiro.org.br, que busca aproximar as candidaturas da cidadania nas próximas eleições.
+Estamos te escrevendo para convida-lx a participar da plataforma Rio por Inteiro: https://rioporinteiro.org.br, que busca aproximar as candidaturas da sociedade nas eleições de 2018!
 
-https://rioporinteiro.org.br é uma plataforma, sem fins lucrativos, que recebe propostas cidadãs e da sociedade civil para as eleições estaduais do Rio de Janeiro de 2018. 
+A #RioporInteiro é uma iniciativa sem fins lucrativos, que recebe propostas cidadãs e da sociedade civil para as eleições estaduais do Rio de Janeiro de 2018. 
 
-Cada candidatura conta com um perfil básico, que pode ser acessado para divulgar informações sobre sua campanha e comprometer-se com as propostas cidadãs na plataforma.
+Cada candidatura conta com um perfil básico, que pode ser acessado para divulgar informações sobre sua campanha e comprometer-se com as propostas publicamente na plataforma.
 
-Enviamos aos e-mails de todas/os as/os candidatas/os as informações para acessar a plataforma e completar seu perfil, mas queríamos facilitar sua participação, dando-lhe acesso ao perfil de sua candidatura. Se você já está participando da plataforma, a partir daqui você pode continuar atualizando as informações e se comprometendo com as propostas.
+Enviamos aos e-mails de todas/os as/os candidatas/os as informações para acessar a plataforma e completar seu perfil, mas queríamos facilitar sua participação, já te conferindo os dados para isso!
+
+Se você já está participando da plataforma, a partir daqui você pode continuar atualizando as informações e se comprometendo com as propostas.
 
 Como acessar o perfil?
-Basta fazer login no {{login_url}} com o seguinte nome de usuário e senha (você pode modificá-la entrando no site).
+
+Basta fazer login no http://rioporinteiro.org.br/candidatos/login com o seguinte nome de usuário e senha (você pode modificá-la entrando no site).
 
 **Seu usuário é: {{contact.candidacy.user.username}}
 **Sua senha é: {{contact.initial_password}}
 
-Se você deseja que utilizamos outro  e-mail para nos comunicarmos com você ou com outra pessoa responsável por esses temas, você poderá responder a este mesmo e-mail com ocontato e quaisquer outras dúvidas que possa ter.
+obs: Se você deseja que utilizemos outro e-mail para nos comunicarmos com você ou com outra pessoa responsável por esses temas, você poderá responder a este mesmo e-mail com o contato para modificação, além de dúvidas que possa ter ;)
 
 Junte-se à Rio por Inteiro!
 

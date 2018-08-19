@@ -6,25 +6,18 @@
 {% load votainteligente_extras %}
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
   <head>
-
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <meta name="og:title" content="Encontre candidaturas a vereador/a comprometidas com Direitos Humanos!{% block title %}- Portada{% endblock title %}">
     <meta name="og:description" content="Responda ao questionário e encontre candidaturas que respeitam e promovem Direitos Humanos na sua cidade.">
     <meta name="og:image" content="https://s3.amazonaws.com/hub-central/uploads/1473183975_thumb_Meme_Minha_Sampa_1024.jpg">
-    <link rel="icon" href="http://2016.merepresenta.org.br/assets/4ico.png">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-    <link href="{% sass_src 'merep_sass/main.scss' %}" rel="stylesheet" type="text/css" />
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel='stylesheet' type='text/css'>
-    <script
-        src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-        crossorigin="anonymous"></script>
+    <meta name="og:title" content="Encontre candidaturas a vereador/a comprometidas com Direitos Humanos!{% block title %}- Portada{% endblock title %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/merepresenta/static/img/icon.png">
+    <link rel="stylesheet" href="{% sass_src 'merep_sass/main.scss' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'bootstrap-datepicker.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font_awesome.css' %}" type="text/css">
 
     {% block extra_head %}
     {% endblock extra_head %}
@@ -32,36 +25,27 @@
   </head>
 
   <body id="page-top">
-
-    <!-- Navigation -->
-    {% include 'navbar.html' with user=user %}
-
-    <header class="bg-primary text-white">
-      {% block header %}
-      {% endblock header %}
+    <header class="header">
+      <!-- Navigation -->
+      {% include 'navbar.html' with user=user %}
+      <!-- Navigation -->
     </header>
 
-    <section id="main">
+    <main>
       {% block everything %}
-        
-      <div class="container">
+      <section class="container">
         {% block content %}
         {% endblock content %}  
-      </div>
+      </section>
       {% endblock everything %}
-    </section>
-    <!-- Footer -->
-        <footer class="bg-dark font-small blue pt-4">
+    </main>
 
-    <!-- Footer Links -->
-    <div class="container text-center text-md-left">
+    <footer class="footer">
+      <div class="container mapa-container">
+        <div class="row">
 
-      <!-- Grid row -->
-      <div class="row">
-        <!-- Grid column -->
-        <div class="col-2">
-            <h5 class="text-uppercase">Sobre</h5>
-
+          <div class="col-lg-2">
+            <h4>Sobre</h4>
             <ul class="list-unstyled">
               <li>
                 <a href="{% url 'sobre' %}#somos">Quem Somos</a>
@@ -70,39 +54,30 @@
                 <a href="{% url 'sobre' %}#impacto">Impacto</a>
               </li>
               <li>
-                <a href="{% url 'sobre' %}#comofunciona">Como funciona</a>
-              </li>
-              <li>
-                <a href="mailto:contato@merepresenta.org.br">Contato</a>
-              </li>
-              <li>
-                <a href="">Termos de uso</a>
+                <a href="#">Transparência</a>
               </li>
             </ul>
-
           </div>
-          <div class="col-2">
-            <h5 class="text-uppercase">Participar</h5>
+
+          <div class="col-lg-2">
+            <h4>Participar</h4>
             <ul class="list-unstyled">
               <li>
                 <a href="{% url 'cpf_and_date2' %}">Candidatas/os</a>
               </li>
               <li>
-                <a href="{% url "eleitor" %}">Eleitoras/es</a>
+                <a href="{% url 'eleitor' %}">Eleitoras/es</a>
               </li>
               <li>
                 <a href="{% url 'volunteer_index' %}">Voluntaria/o</a>
               </li>
             </ul>
-
           </div>
-          <hr class="clearfix w-100 d-md-none pb-3">
-          <!-- Grid column -->
-        <div class="col-6">
-
-          <!-- Content -->
-          <h5 class="text-uppercase">Apoio</h5>
-          <ul class="list-unstyled">
+          
+          <div class="col-lg-8">
+            <!-- Content -->
+            <h4>Apoio</h4>
+            <ul class="list-unstyled">
               <li>
                 <a href="http://www.saiba-mais.com/" class="apioam" alt='Saiba+'>
                   <img src="{% static 'img/logos/apoiam/01.png' %}">
@@ -121,33 +96,43 @@
                   <img src="{% static 'img/logos/apoiam/05.png' %}">
                 </a>
               </li>
-              
             </ul>
+          </div>
+        </div>
 
+      </div>
+
+      <div class="links">
+        <div class="container links-container">
+          <div class="direitos-reservados">
+            <p>Todos os direitos reservados a #MeRepresenta 2018</p>
+          </div>
+
+          <nav class="nav-links">
+            <ul class="list-unstyled">
+              <li>
+                <a href="#">Contato</a>
+              </li>
+              <li>
+                <a href="#">Perguntas Frequentes</a>
+              </li>
+              <li>
+                <a href="#">Termos de Uso</a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
-      <!-- Grid row -->
+    </footer>
 
-    </div>
-    <!-- Footer Links -->
-
-  </footer>
-     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+    <script src="{% static 'js/analytics.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+    <script src="{% static 'js/merepresenta.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
     {% block scripts %}
     {% endblock scripts %}
-    <script>
-         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-         ga('create', 'UA-124086071-1', 'auto');
-         ga('send', 'pageview');
-    </script>
 
   </body>
-
 </html>

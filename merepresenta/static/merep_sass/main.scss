@@ -8,20 +8,36 @@
 @import 'partes/_footer';
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: $cinza;
-    color: $preto;
+  font-family: 'Montserrat', sans-serif;
+  background-color: $cinza;
+  color: $preto;
 }
-.title {
-    
+
+.header {
+  padding: 50px 0;
+}
+
+.btn {
+  font-weight: bold;
+  padding: 10px 30px;
+}
+
+.nav-link {
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+.btn-azul {
+  @include button-variant(#1B9AAA, #1B9AAA);
 }
 
 .btn-roxo {
-    @include button-variant($roxo, $roxo);
-  }
-.btn-gris {
-   @include button-variant($gris, $gris); 
+  @include button-variant($roxo, $roxo);
 }
+.btn-gris {
+  @include button-variant($gris, $gris); 
+}
+
 
 section.profile-question {
     margin-top: 2em;
@@ -72,7 +88,7 @@ section.profile-question {
     .radio {
 
         label {
-            @include border-radius($radius: $border-radius)
+            @include border-radius($radius: $border-radius);
             background-color: $gris;
             padding: 0.4em;
         }

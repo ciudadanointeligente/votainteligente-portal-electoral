@@ -13,7 +13,7 @@ Se você já está participando da plataforma, a partir daqui você pode continu
 
 Como acessar o perfil?
 
-Basta fazer login no http://rioporinteiro.org.br/candidatos/login com o seguinte nome de usuário e senha (você pode modificá-la entrando no site).
+Basta fazer login no https://rioporinteiro.org.br/candidatos/login com o seguinte nome de usuário e senha (você pode modificá-la entrando no site).
 
 **Seu usuário é: {{contact.candidacy.user.username}}
 **Sua senha é: {{contact.initial_password}}

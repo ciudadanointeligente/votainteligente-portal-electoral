@@ -4,6 +4,9 @@
 {% load thumbnail %}
 {% load votainteligente_extras %}
 {% load bootstrap3 %}
+{% load cache %}
+
+
 {% block title %}- {% trans "Candidatos Chile 2017" %}{% endblock title %}
 {% block description %}{% trans "Conoce tus congresistas y sus compromisos" %}{% endblock description %}
 {% block everything %}
@@ -20,9 +23,11 @@
 	<div class="row">
 		{% for candidate in pos.candidates %}
       	{% include "_candidate_small.html" with candidate=candidate%}
-		{% if forloop.counter|divisibleby:6 %}
+		{% if forloop.counter|divisibleby:12 %}
 	    </div><div class="row">
+
 	    {% endif %}
+	    
 		{% endfor %}
 	</div>
 

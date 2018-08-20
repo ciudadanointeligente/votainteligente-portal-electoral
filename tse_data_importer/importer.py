@@ -88,7 +88,6 @@ class MultipleRowsReader(object):
         existing_emails = {}
         counter = 0
         for row in results:
-            print existing_emails
             email = row['candidate']['mail']
             if email is None:
                 results[counter]['email_repeated'] = None

@@ -63,14 +63,6 @@ class TSEProcessorMixin(object):
             #     data_de_nascimento = None
             # if Candidate.objects.filter(cpf=candidate_dict['cpf']).exists():
             #     self.output_logger_func("CANDIDATE EXISTENTE DETECTADO CPF:" + candidate_dict['cpf'] + " =====================================>")
-            #     return Candidate.objects.get(cpf=candidate_dict['cpf'])
-            # candidate.nome_completo = candidate_dict['nome_completo']
-            # candidate.numero = candidate_dict['number']
-            # candidate.cpf = candidate_dict['cpf']
-            # candidate.data_de_nascimento = data_de_nascimento
-            # candidate.race = candidate_dict['race']
-            # if candidate.race in RACE_MAPPING.keys():
-            #     setattr(candidate, RACE_MAPPING[candidate.race], True)
 
             candidate, created = Candidate.objects.get_or_create(name=candidate_dict['nome'])
             candidate.identifiers.add(Identifier.objects.create(identifier=candidate_dict['identifier']))
@@ -82,19 +74,19 @@ class TSEProcessorMixin(object):
                                         value=partido_dict['initials'],
                                         candidate=candidate)
             candidate.save()
-            if not email_repeated:
+            if not email_repeated and candidate_dict['mail'] is not None:
                 CandidacyContact.objects.create(candidate=candidate,
                                                 mail= candidate_dict['mail'])
             else:
                 print u"EMAIL REPETIDO {email} para candidato {candidato} Contato no creado".format(email=candidate_dict['mail'],
-                                                                                                    candidato=candidate.email)
-            # election.candidates.add(candidate)
+                                                                                                    candidato=candidate.name)
+            election.candidates.add(candidate)
             return candidate
 
     def do_something(self, row):
         result = {}
         area = Area.objects.get(id=config.DEFAULT_AREA)
-        election, created = area.elections.get_or_create(name=row['area']['election_name'])
+        election, created = area.elections.get_or_create(name=row['area']['election_name'], position=row['area']['election_name'])
         self.process_candidate(row['candidate'], election, row['partido'], row['coaligacao'], row['email_repeated'])
         return result
 

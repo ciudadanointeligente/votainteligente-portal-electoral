@@ -16,8 +16,8 @@
 
     <link rel="icon" type="image/png" sizes="16x16" href="/merepresenta/static/img/icon.png">
     <link rel="stylesheet" href="{% sass_src 'merep_sass/main.scss' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'bootstrap-datepicker.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/font_awesome.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 
     {% block extra_head %}
     {% endblock extra_head %}
@@ -73,26 +73,37 @@
               </li>
             </ul>
           </div>
+
+          <div class="col-lg-2">
+              <h4>Financiadora</h4>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="https://altec.lat/es/inicio/" class="apioam" alt='Altec'>
+                    <img src="{% static 'img/logos/financiadora/01.png' %}">
+                  </a>
+                </li>
+              </ul>
+          </div>
           
-          <div class="col-lg-8">
+          <div class="col-lg-6">
             <!-- Content -->
             <h4>Apoio</h4>
             <ul class="list-unstyled">
               <li>
-                <a href="http://www.saiba-mais.com/" class="apioam" alt='Saiba+'>
+                <a href="http://www.saiba-mais.com/" alt='Saiba+'>
                   <img src="{% static 'img/logos/apoiam/01.png' %}">
                 </a>
-                <a href="https://medium.com/@casa1" class="apioam" alt='Casa 1'>
+                <a href="https://medium.com/@casa1" alt='Casa 1'>
                   <img src="{% static 'img/logos/apoiam/02.png' %}">
                 </a>
                 
-                <a href="https://www.mattosfilho.com.br" class="apioam" alt='Mattos Filho'>
+                <a href="https://www.mattosfilho.com.br" alt='Mattos Filho'>
                   <img src="{% static 'img/logos/apoiam/03.png' %}">
                 </a>
-                <a href="https://www.silveiraandrade.adv.br" class="apioam" alt='Silveira Andrade Advogados'>
+                <a href="https://www.silveiraandrade.adv.br" alt='Silveira Andrade Advogados'>
                   <img src="{% static 'img/logos/apoiam/04.png' %}">
                 </a>
-                <a href="http://www.tg.adv.br/" class="apioam" alt='Tini e Guimarães Advogados'>
+                <a href="http://www.tg.adv.br/" alt='Tini e Guimarães Advogados'>
                   <img src="{% static 'img/logos/apoiam/05.png' %}">
                 </a>
               </li>
@@ -106,6 +117,9 @@
         <div class="container links-container">
           <div class="direitos-reservados">
             <p>Todos os direitos reservados a #MeRepresenta 2018</p>
+            <a href="#">
+              <i class="fab fa-facebook-square"></i>
+            </a>
           </div>
 
           <nav class="nav-links">
@@ -130,7 +144,7 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
     <script src="{% static 'js/merepresenta.js' %}"></script>
-    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
     {% block scripts %}
     {% endblock scripts %}
 

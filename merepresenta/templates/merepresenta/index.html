@@ -81,7 +81,10 @@
           </div>
           <div class="col-lg-6">
             <h2 class="title">
-                Conheça o #MeRepresenta
+                Conheça o 
+                <span>
+                  #MeRepresenta
+                </span>
             </h2>
             <p class='d-flex justify-content-between'>
               O #MeRepresenta é uma união de coletivos formados 
@@ -102,15 +105,15 @@
 
 <section class="pautas">
   <div class="container-fluid">
-    <div class="pautas-title">
-        <div class="container">
-            <h2>
-                Entenda as Pautas
-            </h2>
-        </div>
-    </div>
-
     <div class="row">
+      <div class="col-lg-12 bottom">
+        <h2 class="text-center">Entenda as 
+          <span>
+            pautas
+          </span> 
+          em debate</h2>
+      </div>
+
       <div class="col-sm-3 pauta-landing d-flex align-items-center justify-content-center item-rosa">
         <div class="pauta">
           <span class="pauta-item">#Gênero</span>
@@ -257,6 +260,8 @@
   </div>
 </section>
 
+{% include "_apoiam.html" %}
+
 <section class="voluntaria">
   <div class="container">
     <div class="row">
@@ -290,7 +295,5 @@
     </div>
   </div>
 </section>
-
-{% include "_apoiam.html" %}
 
 {% endblock everything %}

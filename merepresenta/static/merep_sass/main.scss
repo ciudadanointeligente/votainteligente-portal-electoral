@@ -34,10 +34,39 @@ body {
 .btn-roxo {
   @include button-variant($roxo, $roxo);
 }
+
 .btn-gris {
   @include button-variant($gris, $gris); 
 }
 
+.sobre-container {
+  & h2 {
+    color: #39393A;
+    font-size: 44px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  & h3 {
+    color: #39393A;
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+
+  & p {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+  }
+
+  .col-lg-12 {
+    margin-top: 40px;
+  }
+
+  .flex {
+    align-items: center;
+    display: flex;
+  }
+}
 
 section.profile-question {
     margin-top: 2em;

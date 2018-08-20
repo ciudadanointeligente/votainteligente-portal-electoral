@@ -64,7 +64,6 @@ class TSEProcessorMixin(object):
         return candidate
 
     def do_something(self, row):
-        
         result = {}
         if settings.FILTERABLE_AREAS_TYPE:
             state_classification = settings.FILTERABLE_AREAS_TYPE[0]

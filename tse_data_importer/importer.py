@@ -43,6 +43,7 @@ settings = {
 }
 
 class RowReader(object):
+    
     def __init__(self, row, settings):
         self.row = row
         self.settings = settings
@@ -54,7 +55,10 @@ class RowReader(object):
             temporary_result = {}
             for number in entity_definition:
                 entity_key = entity_definition[number]
-                entity_value = self.row[number]
+                try:
+                    entity_value = self.row[number]
+                except IndexError:
+                    print u'Numero no encontrado ' + unicode(number)
                 if entity_key in validators:
                     validator = validators[entity_key]
                     try:
@@ -67,9 +71,10 @@ class RowReader(object):
 
 
 class MultipleRowsReader(object):
+    settings = settings
+
     def __init__(self, rows, settings=settings):
         self.rows = rows
-        self.settings = settings
 
     def _process(self):
         result = []
@@ -83,6 +88,7 @@ class MultipleRowsReader(object):
         existing_emails = {}
         counter = 0
         for row in results:
+            print existing_emails
             email = row['candidate']['mail']
             if email is None:
                 results[counter]['email_repeated'] = None

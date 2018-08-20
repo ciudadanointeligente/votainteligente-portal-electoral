@@ -8,19 +8,64 @@
 @import 'partes/_footer';
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: $cinza;
-    color: $preto;
+  font-family: 'Montserrat', sans-serif;
+  background-color: $cinza;
+  color: $preto;
 }
-.title {
-    
+
+.header {
+  padding: 50px 0;
+}
+
+.btn {
+  font-weight: bold;
+  padding: 10px 30px;
+}
+
+.nav-link {
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+.btn-azul {
+  @include button-variant(#1B9AAA, #1B9AAA);
 }
 
 .btn-roxo {
-    @include button-variant($roxo, $roxo);
-  }
+  @include button-variant($roxo, $roxo);
+}
+
 .btn-gris {
-   @include button-variant($gris, $gris); 
+  @include button-variant($gris, $gris); 
+}
+
+.sobre-container {
+  & h2 {
+    color: #39393A;
+    font-size: 44px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  & h3 {
+    color: #39393A;
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+
+  & p {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+  }
+
+  .col-lg-12 {
+    margin-top: 40px;
+  }
+
+  .flex {
+    align-items: center;
+    display: flex;
+  }
 }
 
 section.profile-question {
@@ -72,7 +117,7 @@ section.profile-question {
     .radio {
 
         label {
-            @include border-radius($radius: $border-radius)
+            @include border-radius($radius: $border-radius);
             background-color: $gris;
             padding: 0.4em;
         }

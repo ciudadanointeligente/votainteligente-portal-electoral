@@ -1,91 +1,90 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+
 {% load bootstrap4 %}
 {% load markdown_deux_tags %}
+{% load staticfiles %}
 {% load votainteligente_extras%}
 
 {% block title %}- Portada{% endblock title %}
-
-
-
-
 {% block content %}
 
- <div class="row">
-    <div class="col-1"></div>
-{% for i in wizard.steps.count|times %}
-<div class="col-1 text-center">
+<div class="row">
+  <div class="col-1"></div>
+  {% for i in wizard.steps.count|times %}
+  <div class="col-1 text-center">
     <span class="paso {% if i < wizard.steps.step1 %}paso_completado{% else %}paso_incompletado{% endif %}"></span>
-</div>
-{% endfor %}
-</div>
+  </div>
+  {% endfor %}
 
-
+</div>
 
 <div class='row title-pauta'>
     <div class='col text-center'>
         {% if form.category.name %}
-         <h1>Pautas sobre <span class="category-name">{{form.category.name}}</span></h1>
+         <h1>Pautas sobre 
+             <span class="category-name">
+                 {{form.category.name}}
+            </span>
+        </h1>
+        
          {% else %}
          <h1>Quais desses temas são prioritários na sua candidatura?</h1>
          {% endif %}
     </div>
 </div>
+
 <div class="row">
-        <div class="col-8 offset-md-2">
-            {% block formulario %}
-            <form method="post"  enctype="multipart/form-data" action="{% url 'complete_pautas' %}">{% csrf_token %}
-      <!-- image -->
-            {{wizard.management_form}}
-            {% for field in form %}
-            <section class="question-pauta">
-                {% if 'description_' not in field.name %}
-                    {% if field.name == 'categories' %}
-                        <span class="question-label">Agora escolha <bold>3</bold> temas que são prioridades na sua candidatura!</span>
-                        <p class="description">{{field.help_text|safe}}</p>
-                        <div class="options">
-                            {% bootstrap_field field show_label=False show_help=False %}
-                        </div>
-                    {% else %}
-                        <span class="question-label">{% bootstrap_label field.label %}</span>
-                        <p class="description">{{field.help_text|safe}}</p>
-                        <p class="enquiri">Qual o seu posicionamento?</p>
-                        <div class="options">
-                            {% bootstrap_field field show_label=False show_help=False %}
-                        </div>
-                    {% endif %}
-                {% endif %}
-            </section>
-        {% endfor %}
+  <div class="col-8 offset-md-2">
+    {% block formulario %}
+    <form method="post"  enctype="multipart/form-data" action="{% url 'complete_pautas' %}">
+      {% csrf_token %}
+      
+      <!-- Image -->
+      {{wizard.management_form}}
+      {% for field in form %}
+      <section class="question-pauta">
 
-        <div class="col-2 offset-md-10">
+      {% if 'description_' not in field.name %}
+        {% if field.name == 'categories' %}
 
-          <input type="submit" value="Continuar"  class="btn btn-verde" />
+        <!-- Title -->
+        <span class="question-label">Agora escolha 
+          <strong>3</strong> 
+          temas que são prioridades na sua candidatura!
+        </span>    
+        <!-- Title -->
+
+        <p class="description">{{field.help_text|safe}}</p>
+        <div class="options">
+          {% bootstrap_field field show_label=False show_help=False %}
         </div>
-        {% endblock formulario %}
-        </form>
-    </div>
-</div>
-<script type="text/javascript">
-    $(function(){
-        $('.options input[type="checkbox"]:checked').parent().parent().addClass('cat-selected');
-        $('.options input[type="checkbox"]').change(function(el){
 
-            let is_selected = $(this).prop("checked");
-            let amount_of_selected = $('.options input[type="checkbox"]:checked').length;
-            if((amount_of_selected > 3) && is_selected) {
-                $(this).prop("checked", false);
-                return;
-            }
-            $(this).parent().parent().removeClass('cat-selected cat-unselected');
-            if(is_selected){
-                $(this).parent().parent().addClass('cat-selected');
-            }
-            else{
-                $(this).parent().parent().addClass('cat-unselected');   
-            }
-            // console.log( );
-        });
-    });
-</script>
+        {% else %}
+        <span class="question-label">
+          {% bootstrap_label field.label %}
+        </span>
+
+        <p class="description">{{field.help_text|safe}}</p>
+        
+        <p class="enquiri">Qual o seu posicionamento?</p>
+        <div class="options">
+          {% bootstrap_field field show_label=False show_help=False %}
+        </div>
+        
+        {% endif %}
+      {% endif %}
+      </section>
+      {% endfor %}
+
+      <div class="col-2 offset-md-10">
+        <input type="submit" value="Continuar"  class="btn btn-verde" />
+      </div>
+
+      {% endblock formulario %}
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/pautas.js' %}"></script>
+
 {% endblock content %}

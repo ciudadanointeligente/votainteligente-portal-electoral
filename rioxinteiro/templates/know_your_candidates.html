@@ -21,6 +21,7 @@
 {% for pos in positions %}
 	<h2>{{pos.name}}</h2>
 	<div class="row">
+		{% cache 500 candidatos %}
 		{% for candidate in pos.candidates %}
       	{% include "_candidate_small.html" with candidate=candidate%}
 		{% if forloop.counter|divisibleby:12 %}
@@ -29,6 +30,7 @@
 	    {% endif %}
 	    
 		{% endfor %}
+		{% endcache %}
 	</div>
 
 {% endfor %}

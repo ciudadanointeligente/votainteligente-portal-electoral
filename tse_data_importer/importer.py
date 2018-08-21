@@ -1,5 +1,5 @@
 from django.core.validators import validate_email
-from django.conf import settings
+from django.conf import settings as django_settings
 
 validators = {
     'mail': validate_email
@@ -48,10 +48,11 @@ class RowReader(object):
     
     def __init__(self, row, settings):
         self.row = row
-        self.settings = settings.TSE_IMPORTER_CONF or _settings
+        self.settings = settings
 
     def process(self):
         result = {}
+        print self.settings
         for key in self.settings.keys():
             entity_definition = self.settings[key]
             temporary_result = {}
@@ -73,10 +74,11 @@ class RowReader(object):
 
 
 class MultipleRowsReader(object):
-    settings = settings
+    
 
-    def __init__(self, rows, settings=settings):
+    def __init__(self, rows, settings=None):
         self.rows = rows
+        self.settings = settings or django_settings.TSE_IMPORTER_CONF or _settings
 
     def _process(self):
         result = []

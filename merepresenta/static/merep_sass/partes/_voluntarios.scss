@@ -1,7 +1,38 @@
-.bemvinda {
-    color: $verde;
-    font-weight: bolder;
-}
-.benvinda-voluntaria {
-    margin-bottom: 1em;
+.voluntario-form {
+  margin-top: 80px;
+
+  h1 {
+    display: flex;
+    flex-direction: column;
+    font-size: 48px;
+    font-weight: lighter;
+    margin-bottom: 30px;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+
+  span {
+    color: #1B9AAA;
+    font-weight: bold;
+  }
+
+  .voluntario-continuar {
+    display: flex;
+    flex-direction: column;
+
+    .btn {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .link {
+      color: #1B9AAA;
+      font-size: 12px;
+      margin: 15px auto 100px auto;
+      max-width: 500px;
+    }
+  }
 }

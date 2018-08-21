@@ -1,16 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat');
-@import 'colors';
 @import 'bootstrap/bootstrap';
-@import 'partes/landing';
-@import 'partes/_voluntarios';
-@import 'partes/_perfil_candidato';
-@import 'partes/_cpf_e_ddn';
+@import 'colors';
+@import 'partes/_candidato-form';
 @import 'partes/_footer';
+@import 'partes/_perfil_candidato';
+@import 'partes/_voluntarios';
+@import 'partes/eleitores';
+@import 'partes/landing';
 
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: $cinza;
   color: $preto;
+}
+
+a:hover {
+    color: #1B9AAA;
 }
 
 .header {
@@ -27,6 +32,11 @@ body {
   margin-right: 1em;
 }
 
+.btn-uppercase {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
 .btn-azul {
   @include button-variant(#1B9AAA, #1B9AAA);
 }
@@ -40,17 +50,19 @@ body {
 }
 
 .sobre-container {
+    margin-top: 80px;
+    
   & h2 {
     color: #39393A;
-    font-size: 44px;
+    font-size: 40px;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
   }
 
   & h3 {
     color: #39393A;
     font-size: 36px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 
   & p {

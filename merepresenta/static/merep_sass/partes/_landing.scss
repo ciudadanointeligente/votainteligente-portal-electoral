@@ -289,6 +289,11 @@ $break-x-large: 1200px;
     & span {
       color: #1B9AAA;
     }
+
+    .col-lg-6:last-child{
+      display: flex;
+      justify-content: end;
+    }
   }
 }
 

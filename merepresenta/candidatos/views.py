@@ -71,7 +71,7 @@ class CPFAndDDNSelectView(LoginRequiredMixin, FormView):
 
 class CPFAndDDNSelectView2(FormView):
     form_class = CPFAndDdnForm2
-    template_name = 'candidatos/cpf_and_ddn2.html'
+    template_name = 'candidatos/candidato-form.html'
 
     def dispatch(self, *args, **kwargs):
         if self.request.user.is_staff:

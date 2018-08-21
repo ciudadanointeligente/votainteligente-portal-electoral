@@ -19,89 +19,119 @@
   {% render_ogp candidate %}
 {% endblock ogp %}
 
-{% block extrakeywords %}{{candidate.name}},{{candidate.election.position}} para {{candidate.election.area.name}},{% get_personal_data candidate=candidate personal_data='Partido' as partido %}{% if partido.value %} {{partido.value}}, {% endif %}{% endblock extrakeywords %}
+{% block extrakeywords %}
+  {{candidate.name}},
+  {{candidate.election.position}} para 
+  {{candidate.election.area.name}},
+  {% get_personal_data candidate=candidate personal_data='Partido' as partido %}
+  {% if partido.value %} 
+    {{partido.value}}, 
+  {% endif %}
+{% endblock extrakeywords %}
 
 {% block everything %}
-<div class="container candidate-profile">
-<div class='row'>
-    <div class="col text-center">
-<h1 itemprop="name" class="candidate-name">{{ candidate.name }}</h1></span>
-
-</div>
-<div class="w-100"></div>
-  <div class="col-6 offset-md-3 text-center">
-  {% if user|manages_this:candidate %}<div class='anuncio'>Você tem até o dia 12/09/2018 para fazer alterações no seu perfil. 
-Depois dessa data, você não poderá mais modificar suas informações. <span><small><a href="{% url 'merepresenta_complete_profile' slug=candidate.election.slug candidate_slug=candidate.slug %}">Mudar perfil</a></small></div>{% endif %}
-  </div>
-</div>
-
-<div class='row'>
-    <div class="col-3 text-center">
-        {% if candidate.candidacy_set.first.user.profile.image %}
-        <img src="{{candidate.candidacy_set.first.user.profile.image.url}}" alt="{{candidate.name}}" class="img-responsive img-circle profile-image">
-      {% else %}
-        <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle">
+<section class="container candidate-profile">
+  <div class='row'>
+    <!-- Alerta -->
+    <div class="col-lg-8 offset-md-2 alerta">
+      {% if user|manages_this:candidate %}
+        <div class="alert alert-warning text-center alerta-content" role="alert">
+          Você tem até o dia 12/09/2018 para fazer alterações no seu perfil. Depois dessa data, você não poderá mais modificar suas informações. 
+          <span>
+            <a href="{% url 'merepresenta_complete_profile' slug=candidate.election.slug candidate_slug=candidate.slug %}">
+              Mudar perfil
+            </a>
+          </span>
+        </div>
       {% endif %}
-      
-      
     </div>
-    <div class="col-9 ">
-      <div class="row">
-        <div class="col">
-          <ul class="list-group list-group-flush desc_candidato">
-            <li class="list-group-item">
-              <small>Candidatura</small><br>
-              {{candidate.election.name|title}}
-            </li>
-            <li class="list-group-item"><small>Numero de urna</small><br>{{candidate.numero}}</li>
-            <li class="list-group-item"><small>Partido</small><br>{{candidate.partido.initials}}</li>
-            <li class="list-group-item"><small>Coaligaçao</small><br>{{candidate.partido.coaligacao.initials}}</li>
-            <li class="list-group-item"><small>Nota de Coaligaçao</small><br>em análise</li>
-            <li class="list-group-item"><small>Estado</small><br>{{candidate.election.area.name|title}}</li>
-            <li class="list-group-item"><small>Grupo de Renovação Política</small><br>{{candidate.renovacao_politica}}</li>
-          </ul>
+
+    <!-- Foto Candidato/a -->
+    <div class="col-lg-5">
+      {% if candidate.candidacy_set.first.user.profile.image %}
+        <img src="{{candidate.candidacy_set.first.user.profile.image.url}}" 
+          alt="{{candidate.name}}" 
+          class="img-responsive img-circle profile-image">
+      {% else %}
+        <img src="{% static 'img/candidate-default.jpg' %}" 
+          alt="{{candidate.name}}" 
+          class="img-responsive img-circle">
+      {% endif %}
+    </div>
+  
+    <!-- Detalhes Candidato/a-->
+    <div class="col-lg-7">
+      <h1 itemprop="name">
+        {{candidate.name}}
+      </h1>
+      <h2>
+        {{candidate.numero}}&nbsp;
+        {{candidate.election.name|title}}
+      </h2>
+      <!-- Grid -->
+      <div class="list-group list-group-flush desc_candidato">
+        <div class="list-group-item">
+            <label>Partido</label>
+            <p>{{candidate.partido.initials}}</p>
+        </div>
+        <div class="list-group-item">
+            <label>Coligaçao</label>
+            <p>{{candidate.partido.coaligacao.initials}}</p>
+        </div>
+        <div class="list-group-item">
+            <label>Nota de Coligaçao</label>
+            <p>em análise</p>
+        </div>
+        <div class="list-group-item">
+            <label>Cidade/UF</label>
+            <p>{{candidate.election.area.name|title}}</p>
+        </div>
+        <div class="list-group-item">
+          <label>Grupo de Renovação Política</label>
+          <p>{{candidate.renovacao_politica}}</p>
         </div>
       </div>
-    
-
-  </div>
-</div>
-<div class='row bio'>
-  <div class='col'>
-    <h3>Um pouco mais sobre {{candidate.name}}</h3>
-  </div>
-    <div class="w-100"></div>
-  <div class='col offset-md-1'>
-    {{candidate.bio|markdown}}
-  </div>
-</div>
-
-<div class='row bio'>
-  <div class='col'>
-    <h3 class=''>Temas prioritarios</h3>
-  </div>
-  <div class="w-100"></div>
-  {% for link in candidate.candidatequestioncategory_set.all %}
-  <div class='col-4 align-middle tema-prioritario text-center'>
-    {{link.category.name}}
-  </div>
-  {% endfor %}
-</div>
-{% for category in categories %}
-  <div class='row bio'>
-    <div class='col'>
-      <h3>Pautas {{category.name}}</h3>
+      <!-- Grid -->
     </div>
-    {% for topic in category.topics.all %}
-    <div class="w-100"></div>
-    <div class='col offset-md-1'>
-      <h4 class='topic-candidato'>{{topic.label}}</h4>
-      <div class="resposta-candidato">{% get_taken_position_for topic candidate %}</div>
+  </div>
+</section>
+
+  <!-- Biografia -->
+<section class="container">
+  <div class="row">
+    <div class='col-lg-12'>
+      <h3>Bio</h3>
+      <div class='bio-text'>
+        {{candidate.bio|markdown}}
+      </div>
     </div>
+
+  <!-- Temas Prioritários -->
+  <div class='col-lg-12'>
+    <h3>Temas prioritarios</h3>
+    {% for link in candidate.candidatequestioncategory_set.all %}
+      <div class='col-4 align-middle tema-prioritario text-center'>
+        {{link.category.name}}
+      </div>
     {% endfor %}
   </div>
+
+  <!-- Pautas -->
+  {% for category in categories %}
+    <div class='col-lg-12'>
+      <h3>Seu posicionamento nas pautas do #MeRepresenta</h3>
+      {% for topic in category.topics.all %}
+        <h4 class='topic-candidato'>
+          {{topic.label}}
+        </h4>
+        <div class="resposta-candidato">
+          {% get_taken_position_for topic candidate %}
+        </div>
+    </div>
+  {% endfor %}
+  </div>
 {% endfor %}
-</div>
+</section>
 
 {% endblock everything %}
 

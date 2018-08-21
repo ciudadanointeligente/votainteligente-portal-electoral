@@ -1,38 +1,82 @@
 .candidate-profile {
-    margin-bottom: 3em;
-    .row {
-        margin-top: 1em;
-        margin-bottom: 1em;
-    }
-    .topic-candidato {
-        margin-top: 1em;
-        margin-bottom: 1em;
-    }
-    .resposta-candidato {
-        padding: 1em;
-        background-color: $gris;
-        @include border-radius($radius: $border-radius)
-
-    }
-    .tema-prioritario {
-        min-height: 3em;
-        font-weight: bold;
-        border: 1px;
-        @include border-radius($radius: $border-radius)
-    }
-    .profile-image {
-        margin-top: 1.6em;
-    }
-    .anuncio {
-        background-color: $amarelo;
-        padding: 5px;
-    }
-}
-
-.title-pauta {
-    margin-top: 1.5em;
-
-}
-.category-name {
+  h1 {
+    color: #39393A;
+    font-size: 44px;
     font-weight: bold;
+  }
+
+  h2 {
+    color: #393939;
+    font-family: 'Lato', sans-serif;
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  h3 {
+    color: #39393A;
+    font-family: 'Open-Sans', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  h4 {
+    font-family: 'Lato',sans-serif;
+    font-weight: bold;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .alerta {
+    margin-bottom: 90px;
+
+    .alerta-content {
+      background-color: #FFC43D;
+      color: #4F4F4F;
+      font-size: 18px;
+    }
+  }
+
+  .desc_candidato {
+    font-family: 'Lato', sans-serif;
+    font-size: 24px;
+    max-width: 500px;
+    text-align: left;
+
+    .item {
+      align-items: end;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 25px;
+
+      label {
+        color: #818181;
+        margin: 0;
+        max-width: 200px;
+      }
+
+      p {
+        color: #393939;
+        margin: 0;
+        min-width: 200px;
+      }
+    }
+  }
+
+  .col-lg-12 {
+    margin-bottom: 80px;
+  }
+
+  .tema-prioritario {
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .resposta-candidato {
+    font-size: 24px;
+  }
 }

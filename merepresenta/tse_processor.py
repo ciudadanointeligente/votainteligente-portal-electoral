@@ -17,29 +17,44 @@ RACE_MAPPING = {
     u'AMARELA': u'amarela'
 }
 
+def try_parsing_date(text):
+    ### Me lo traje de stackoverflow
+    ### https://stackoverflow.com/questions/23581128/how-to-format-date-string-via-multiple-formats-in-python
+    ### Me pareció hacky y ingenioso
+    ### Incluso el raise es lindo
+    for fmt in ( "%Y-%m-%d", "%Y/%m/%d", "%d/%m/%Y"):
+        try:
+            return datetime.strptime(text, fmt)
+        except ValueError:
+            pass
+    raise ValueError('no valid date format found')
+
 class TSEProcessorMixin(object):
     output_logger_func = output_logger
 
     def gender_definer(self, gender):
-        if gender == 'FEMININO':
+        if gender in ['FEMININO', 'FEM.']:
             return "F"
-        if gender == 'MASCULINO':
+        if gender in ['MASCULINO', 'MASC.']:
             return "M"
         return ""
 
     def process_candidate(self, candidate_dict, election, partido):
         gender = self.gender_definer(candidate_dict['gender'])
         try:
-            data_de_nascimento = datetime.strptime(candidate_dict['date_of_birth'], "%d/%m/%Y").date()
+            d = candidate_dict['date_of_birth']
+            data_de_nascimento = try_parsing_date(d)
+            data_de_nascimento = data_de_nascimento.date()
         except:
             data_de_nascimento = None
-        if Candidate.objects.filter(cpf=candidate_dict['cpf']).exists():
-            self.output_logger_func("CANDIDATE EXISTENTE DETECTADO CPF:" + candidate_dict['cpf'] + " =====================================>")
-            return Candidate.objects.get(cpf=candidate_dict['cpf'])
-        candidate, created = Candidate.objects.get_or_create(name=candidate_dict['nome'], cpf=candidate_dict['cpf'])
+        cpf = unicode(int(candidate_dict['cpf']))
+        if Candidate.objects.filter(cpf=cpf).exists():
+            self.output_logger_func("CANDIDATE EXISTENTE DETECTADO CPF:" + cpf + " =====================================>")
+            return Candidate.objects.get(cpf=cpf)
+        candidate, created = Candidate.objects.get_or_create(name=candidate_dict['nome'], cpf=cpf)
         candidate.nome_completo = candidate_dict['nome_completo']
         candidate.numero = candidate_dict['number']
-        candidate.cpf = candidate_dict['cpf']
+        candidate.cpf = cpf
         candidate.data_de_nascimento = data_de_nascimento
         candidate.race = candidate_dict['race']
         if candidate.race in RACE_MAPPING.keys():
@@ -73,8 +88,13 @@ class TSEProcessorMixin(object):
         result['area'] = area
         election, created = area.elections.get_or_create(name=row['area']['election_name'])
         result['election'] = election
-        coaligacao, created = Coaligacao.objects.get_or_create(name=row['coaligacao']['name'],
-                                                               number=row['coaligacao']['number'])
+        name = row['coaligacao'].get('name', '')
+        if not name:
+            name = row['coaligacao'].get('number', '')
+        number = row['coaligacao'].get('number', 0)
+
+        coaligacao, created = Coaligacao.objects.get_or_create(name=name,
+                                                               number=number)
         result['coaligacao'] = coaligacao
         partido, created = Partido.objects.get_or_create(name=row['partido']['name'],
                                                          initials=row['partido']['initials'],

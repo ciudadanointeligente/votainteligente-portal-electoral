@@ -1,4 +1,5 @@
 from django.core.validators import validate_email
+from django.conf import settings
 
 validators = {
     'mail': validate_email
@@ -35,18 +36,21 @@ coaligacao_settings = {
     21: "number"
 
 }
-settings = {
+_settings = {
     'area': area_settings,
     'candidate': candidate_settings,
     'partido': partido_settings,
     'coaligacao': coaligacao_settings
 }
 
+tse_settings = settings.TSE_IMPORTER_CONF or _settings
+
+
 class RowReader(object):
     
     def __init__(self, row, settings):
         self.row = row
-        self.settings = settings
+        self.settings = tse_settings
 
     def process(self):
         result = {}

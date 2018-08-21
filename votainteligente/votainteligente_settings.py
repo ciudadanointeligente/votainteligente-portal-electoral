@@ -31,3 +31,7 @@ MEREPRESENTA_SITE_ID = 2
 SHARED_PROPOSAL_IMAGE_ID_COLOR = (122,183,255,255)
 EAGER_USER_IMAGE = True
 MEDIA_NARANJA_QUESTIONS_ENABLED=True
+# Esto sólo funciona para Brasil y para cargar los datos
+#Desde El TSE
+TSE_IMPORTER_CONF = None
+# TSE_DATE_FORMAT = "%Y/%m/%d"

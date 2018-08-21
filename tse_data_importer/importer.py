@@ -43,14 +43,12 @@ _settings = {
     'coaligacao': coaligacao_settings
 }
 
-tse_settings = settings.TSE_IMPORTER_CONF or _settings
-
 
 class RowReader(object):
     
     def __init__(self, row, settings):
         self.row = row
-        self.settings = tse_settings
+        self.settings = settings.TSE_IMPORTER_CONF or _settings
 
     def process(self):
         result = {}

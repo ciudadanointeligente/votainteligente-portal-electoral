@@ -10,51 +10,6 @@ from popolo.models import Identifier
 from backend_candidate.models import CandidacyContact
 
 
-validators = {
-    'mail': validate_email
-}
-
-area_settings = {
-    18:'slug',
-    17:'area_name',
-    23: 'election_name',
-}
-candidate_settings = {
-    0: 'identifier',
-    3: 'nome_completo',
-    2: 'number',
-    6: 'cpf',
-    1: 'nome',
-    12: 'job',
-    5: 'date_of_birth',
-    4: 'gender',
-    11: 'education',
-    8: 'civil_status',
-    9: 'race',
-    28: 'mail',
-    21: 'img',
-
-}
-partido_settings = {
-    25: 'number',
-    27: 'name',
-    26: 'initials'
-}
-coaligacao_settings = {
-    22: "name",
-    22: "partidos_coaligacao",
-    22: "number"
-
-}
-settings = {
-    'area': area_settings,
-    'candidate': candidate_settings,
-    'partido': partido_settings,
-    'coaligacao': coaligacao_settings
-}
-
-
-
 class TSEProcessorMixin(object):
     def process_candidate(self, candidate_dict, election, partido_dict, coaligacao_dict, email_repeated):
             # try:
@@ -92,4 +47,4 @@ class TSEProcessorMixin(object):
 
 
 class TSEProcessor(TSEProcessorMixin, CsvReader):
-    settings = settings
+    pass

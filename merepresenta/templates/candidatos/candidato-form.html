@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}- Portada{% endblock title %}
+
+{% block content %}
+
+{% if form.errors %}
+  {{form.errors}}
+{% endif %}
+
+<section class="row candidato-form">
+  <div class="col-md-8 offset-md-2">
+    <h1 class="text-center">Olá, candidata/o!</h1>
+    <h2 class="text-center">
+      Antes de começar, precisamos de alguns dados seus:
+    </h2>
+      
+    <div class="form-container">
+      <form method='POST' action="{% url 'cpf_and_date2' %}">
+        {% csrf_token %}
+
+         <!-- Data de Nascimento -->
+          <div class="form-group">
+            <label class="text-center" 
+              for="nascimento-id">
+              Qual sua data de nascimento?
+            </label>
+            <input 
+              type="date" 
+              id="nascimento-id" 
+              name="nascimento"
+              class="form-control"
+              value="dd/mm/YYYY"
+              required="True" />
+            <small id="helpNascimento" class="form-text text-muted"></small>
+          </div>
+
+          <!-- CPF -->
+          <div class="form-group">
+              <label class="text-center"
+                for="cpf-id">
+                Qual seu CPF?
+              </label>
+              <input id='cpf-id' 
+                class="form-control" 
+                name='cpf' 
+                aria-describedby="cpfhelp" 
+                placeholder="000.000.000-00" 
+                required="True">
+              <small id="cpfhelp" class="form-text text-muted"></small>
+          </div>
+
+          <div class="termos">
+            <h3>Termos de uso</h3>
+              <ul class="list-unstyled">
+                <li>
+                  <i class="fas fa-check"></i>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </li>
+                <li>
+                  <i class="fas fa-check"></i>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </li>
+                <li>
+                  <i class="fas fa-check"></i>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </li>
+              </ul>
+          </div>
+
+          <div class="termos-continuar">
+            <button type="submit" class="btn btn-azul">
+              Continuar e concordar com os termos
+            </button>
+
+            <a href="#">ver termos de uso completo</a>
+          </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

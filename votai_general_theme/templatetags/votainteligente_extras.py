@@ -428,3 +428,9 @@ def mail_signature_html():
 @register.inclusion_tag('mails/signature.txt')
 def mail_signature_txt():
     pass
+
+
+
+@register.simple_tag
+def committed_canididates_from(election):
+    return election.candidates.filter(commitments__isnull=False)

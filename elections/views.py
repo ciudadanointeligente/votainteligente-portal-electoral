@@ -263,7 +263,10 @@ class KnowYourCandidatesView(TemplateView):
             position = position.strip()
 
             candidates = Candidate.objects.filter(elections__position=position)
-            context['positions'].append({'name': position, 'candidates': candidates})
+            if settings.LIST_ONLY_COMMITED_CANDIDATES:
+                candidates = candidates.exclude(commitments__isnull=True)
+            context['positions'].append({'name': position,
+                                         'candidates': candidates})
         return context
 
     def get_context_data(self, **kwargs):

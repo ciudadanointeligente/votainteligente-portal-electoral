@@ -5,20 +5,35 @@
 {% block title %}- Sobre{% endblock title %}
 
 {% block everything %}
-<div id="first-part" class="container">
-    <div class="row">
-        <div class="col text-center">
-            <h1>Olá eleitora</h1>
-            <p>Nossa plataforma pra eleitores vai ser lançada no dia 31 de Agosto.</p>
 
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd5wPad4gLYFMdCaP9heMIAH8MmPk8CAPkwzbghLbNcis_1Uw/viewform?embedded=true" width="900" height="1520" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
-        </div>
-        <div class="col-sm-6">
-          <img src="{% static '/img/merepresenta/merep_landing_image.svg' %}" class="img-fluid" alt="#MeRepresentaLogo">
-        </div>
-      </div>
+<section class="container eleitores">
+  <div class="row margin-bottom">
+    <div class="col-lg-7">
+      <h1>
+        Bem-vinda/o ao
+        <span>Portal de eleitoras/es</span>
+      </h1>
+
+      <p>
+        Nossa plataforma para eleitoras/es vai ser lançada em breve, 
+      <span>na metade de setembro!</span>
+      </p>
+
+      <p>
+        Deixe seu e-mail no <span>formulário abaixo</span> pra gente te avisar 
+        quando estiver tudo pronto você usar! Estamos muito animadas!
+      </p>
+
+      <a href="{% url 'volunteer_index' %}" 
+        class="btn btn-azul btn-uppercase">
+        Quero ser voluntária/o
+      </a>
+    </div>
+
+    <div class="col-lg-5">
+      <img src="{% static '/img/merepresenta/merep_landing_image.svg' %}" alt="MeRepresenta">
+    </div>
   </div>
+</section>
 
-
-            
 {% endblock everything %}

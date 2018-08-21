@@ -310,6 +310,29 @@ class LoginFormsTemplateTags(TestCase):
                                                   'proposal': popular_proposal})), 'no')
 
 
+    def test_get_commited_candidates_for_election(self):
+        chile = Area.objects.create(name="Chile")
+        u = User.objects.get(username='feli')
+        data = {'clasification': 'educacion',
+                'title': u'Mar para Bolivia',
+                'problem': u'Los bolivianos no tienen mar y son bacanes',
+                'solution': u'Que le den mar soberano a Bolivia',
+                'when': u'1_year',
+                'causes': u'El egoismo chileno.'
+                }
+        popular_proposal = PopularProposal.objects.create(proposer=u,
+                                                          area=chile,
+                                                          data=data,
+                                                          title=u'This is a title',
+                                                          clasification=u'education'
+                                                          )
+        candidate = Candidate.objects.get(pk=1)
+        election = candidate.election
+        commitment = Commitment.objects.create(candidate=candidate,
+                                               proposal=popular_proposal,
+                                               commited=True)
+        template = Template("{% load votainteligente_extras %}{% committed_canididates_from election as candidates %}{% for candidate in candidates %}{{candidate.name}}{% endfor %}")
+        self.assertEqual(template.render(Context({'election': election})), candidate.name)
 
     def test_is_candidate_for_this_area(self):
         candidate = Candidate.objects.get(pk=1)

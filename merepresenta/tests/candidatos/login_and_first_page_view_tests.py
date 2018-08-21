@@ -108,6 +108,17 @@ class CPFChoosingView2(VolunteersTestCaseBase):
         candidate = form.get_candidate()
         self.assertEquals(candidate, self.candidate)
 
+    def test_form_valid(self):
+        data = {
+            'nascimento': self.d,
+            'cpf': '12-34',
+            }
+        
+        form = CPFAndDdnForm2(data=data)
+        self.assertTrue(form.is_valid())
+        candidate = form.get_candidate()
+        self.assertEquals(candidate, self.candidate)
+
     def test_get_the_view(self):
         url = reverse('cpf_and_date2')
         response = self.client.get(url)

@@ -37,6 +37,7 @@ class CPFAndDdnForm(CPFAndDdnFormBase):
 
 class CPFAndDdnForm2(CPFAndDdnFormBase):
     def get_me_the_numbers_from_a_cpf(self, cpf):
+        cpf = re.sub('[^0-9]','', cpf)
         cpf = unicode(int(cpf))
         return cpf
         

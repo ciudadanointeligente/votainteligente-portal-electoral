@@ -52,7 +52,6 @@ class RowReader(object):
 
     def process(self):
         result = {}
-        print self.settings
         for key in self.settings.keys():
             entity_definition = self.settings[key]
             temporary_result = {}

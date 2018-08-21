@@ -8,7 +8,7 @@ from backend_candidate.forms import MediaNaranjaSingleCandidateMixin, MediaNaran
 
 class CPFAndDdnFormBase(forms.Form):
     cpf = forms.CharField(required=True)
-    nascimento = forms.DateField(required=True, input_formats=['%d/%m/%Y','%d/%m/%y', '%d-%m-%Y', '%d-%m-%y',])
+    nascimento = forms.DateField(required=True, input_formats=['%d/%m/%Y','%d/%m/%y', '%d-%m-%Y', '%d-%m-%y', '%m/%d/%Y', '%Y-%m-%d'])
 
 class CPFAndDdnForm(CPFAndDdnFormBase):
     def __init__(self, *args, **kwargs):

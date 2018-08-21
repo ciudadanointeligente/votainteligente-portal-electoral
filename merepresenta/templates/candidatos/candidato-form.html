@@ -7,8 +7,8 @@
 {% block content %}
 
 {% if form.errors %}
-  {% for error in form.errors %}
-    {{error}}
+  {% for t_key, type_of_error in form.errors.items %}
+    {{type_of_error}}
   {% endfor %}
 {% endif %}
 

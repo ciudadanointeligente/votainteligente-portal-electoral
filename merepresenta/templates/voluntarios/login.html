@@ -5,20 +5,29 @@
 {% block title %}- Portada{% endblock title %}
 
 {% block content %}
-<div class="container">
-    
 
-    <div class="card">
-      <div class="card-body">
-        <h2 class="text-center">Bem-vinda ao</h2>
-        <h1 class="text-center bemvinda">Portal de Voluntárias</h1>
-        <p  class="card-text text-center">
-            Seja uma voluntária e a ajude o <b>#MeRepresenta</b> a encontrar as candidaturas mais próximas da população
-        </p>
-        <a class="btn btn-primary btn-block" href="{% url 'voluntarios_social_begin' 'facebook' %}?next={% url 'volunteer_index' %}">
-            <i class="fab fa-facebook"></i> Conectar com o Facebook e continuar
-        </a>
-      </div>
+<section class="row voluntario-form">
+  <div class="col-md-8 offset-md-2">
+    <h1 class="text-center">
+      Bem vinda/o ao
+      <span>Portal de voluntárias</span>
+    </h1>
+    <h2 class="text-center">
+      #Ajudaluciano<br>
+      O #MeRepresenta quer encontrar as candidaturas 
+      mais parecidas com a você. Seja um/a voluntária/o!
+    </h2>
+    
+    <div class="voluntario-continuar">
+      <a class="btn btn-azul btn-block" 
+        href="{% url 'voluntarios_social_begin' 'facebook' %}?next={% url 'volunteer_index' %}">
+        <i class="fab fa-facebook"></i> 
+        Seja uma voluntária/o
+      </a>
+
+      <a class="link" href="#">Saiba como funciona</a>
     </div>
-</div>
+  </div>
+</section>
+
 {% endblock content %}

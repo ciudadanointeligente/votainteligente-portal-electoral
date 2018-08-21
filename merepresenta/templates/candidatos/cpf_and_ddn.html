@@ -24,6 +24,9 @@
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+{% endblock content %}
+
+{% block scripts %}
 <script type="text/javascript">
 $(function(){
     var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
@@ -33,4 +36,4 @@ $(function(){
 });
     
 </script>
-{% endblock content %}
+{% endblock scripts %}

@@ -45,7 +45,7 @@ class ImporterTestCase(VolunteersTestCaseBase):
         candidato = result['candidate']
         self.assertEquals(candidato.election, election)
         self.assertEquals(candidato.name, 'PARA DO SANTO ALEIXO')
-        self.assertEquals(candidato.cpf, 52243184753)
+        self.assertEquals(candidato.cpf, '52243184753')
         self.assertEquals(candidato.nome_completo, 'CARLOS ALBERTO HERMoNIO DE MORAES')
         self.assertEquals(candidato.numero, 1723)
         self.assertEquals(candidato.gender, 'M')

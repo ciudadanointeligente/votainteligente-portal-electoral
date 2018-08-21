@@ -16,7 +16,8 @@ class CPFAndDdnForm(CPFAndDdnFormBase):
         super(CPFAndDdnForm, self).__init__(*args, **kwargs)
 
     def get_me_the_numbers_from_a_cpf(self, cpf):
-        return re.sub("\D", "", cpf)
+        cpf = unicode(int(cpf))
+        return cpf
 
     def clean(self):
         cpf = self.cleaned_data['cpf']
@@ -35,8 +36,13 @@ class CPFAndDdnForm(CPFAndDdnFormBase):
 
 
 class CPFAndDdnForm2(CPFAndDdnFormBase):
+    def get_me_the_numbers_from_a_cpf(self, cpf):
+        cpf = unicode(int(cpf))
+        return cpf
+        
     def clean(self):
         cpf = self.cleaned_data['cpf']
+        cpf = self.get_me_the_numbers_from_a_cpf(cpf)
         ddn = self.cleaned_data.get('nascimento', None)
         if ddn is None:
             raise forms.ValidationError(u'Não encontramos o candidato')

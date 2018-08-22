@@ -9,7 +9,8 @@
     color: #4F4F4F;
     display: flex;
     flex-direction: column;
-    font-size: 48px;
+    font-size: 47px;
+    font-weight: bold;
     margin-bottom: 20px;
 
     span {
@@ -22,13 +23,12 @@
     font-family: 'Lato', sans-serif;
     font-size: 24px;
 
-    &:last-of-type {
-      font-weight: bold;
-    }
-
     span {
-      font-weight: bold;
       color: #EF476F;
     }
+  }
+
+  .mc-field-group {
+    margin-bottom: 20px;
   }
 }

@@ -46,7 +46,7 @@ class VolunteerIndexView(StaffuserRequiredMixin, FilterView):
 
 
 class VolunteerLoginView(TemplateView):
-    template_name = "voluntarios/login.html"
+    template_name = "voluntarios/voluntarios-inativo.html"
 
     def dispatch(self, *args, **kwargs):
         if self.request.user.is_authenticated:

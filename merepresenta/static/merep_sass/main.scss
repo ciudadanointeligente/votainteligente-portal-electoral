@@ -133,33 +133,53 @@ section.profile-question {
     }
 }
 
-@mixin paso($background-color) {
+@mixin passo($background-color) {
     min-height: 5px;
     width: 100%;
     display: block;
     background-color: $background-color;
 }
 
-.paso_incompletado{
-    @include paso($gris);
+.passos {
+  margin: 50px 0;
+
+  .passo-incompleto{
+      @include passo($gris);
+  }
+  .passo-completo {
+      @include passo($roxo);
+  }
 }
-.paso_completado {
-    @include paso($verde);
+
+.title-pauta {
+  margin-bottom: 60px;
+}
+
+.opcoes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .question-pauta {
     margin-top: 2em;
     margin-bottom: 2em;
+    font-size: 20px;
+
     .question-label {
-        font-weight: bolder;
-        font-size: x-large;
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: bolder;
     }
-    .enquiri {
-        font-weight: bolder;   
-    }
+
     .description {
-        margin-bottom: 1em;
+      margin-bottom: 30px;
     }
+
+    .posicionamento {
+      font-weight: bold;
+    }
+
     .radio {
 
         label {

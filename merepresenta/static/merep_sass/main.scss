@@ -52,10 +52,24 @@ a:hover {
 .sobre-container {
   margin-top: 80px;
 
+  span {
+      font-weight: bold;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .uniao {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    }
+
   h1 {
     font-weight: bold;
     font-size: 40px;
-    margin-bottom: 80px;
+    margin-bottom: 30px;
+    color: #000;
   }
     
   & h2 {
@@ -67,22 +81,36 @@ a:hover {
 
   & h3 {
     color: #39393A;
-    font-size: 36px;
+    font-size: 28px;
     margin-bottom: 20px;
   }
 
   & p {
     font-family: 'Lato', sans-serif;
-    font-size: 20px;
+    font-size: 22px;
   }
 
-  .col-lg-12 {
+  .col-lg-12:not(:first-of-type){
+    margin-top: 40px;
+  }
+
+  .col-lg-6 {
     margin-top: 40px;
   }
 
   .flex {
     align-items: center;
     display: flex;
+  }
+
+  .ilustracao {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+
+    img {
+    width: 50%;
+    }
   }
 }
 
@@ -175,22 +203,21 @@ div.categories-select {
 }
 
 .obrigada-candidato {
-    color: $roxo;
-    font-weight: bolder;
-    text-transform: uppercase;
-
+  color: $roxo;
+  font-weight: bolder;
+  text-transform: uppercase;
 }
 
 .nav-item {
-    color: $preto;
+  color: $preto;
 }
 
 footer {
-    margin-top: 1em;
+  margin-top: 1em;
 }
 
 #mc_embed_signup {
-    background:#fff; 
-    clear: left; 
-    font-size: 14px;
+   background:#fff; 
+  clear: left; 
+  font-size: 14px;
 }

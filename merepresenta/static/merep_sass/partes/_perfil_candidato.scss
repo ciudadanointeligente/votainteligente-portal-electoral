@@ -1,4 +1,6 @@
 .candidate-profile {
+  margin-bottom: 50px;
+
   h1 {
     color: #39393A;
     font-size: 44px;
@@ -26,8 +28,28 @@
   }
 
   img {
-    height: 100%;
     width: 100%;
+    max-height: 450px;
+  }
+
+  .grid {
+    font-size: 22px;
+    font-family: 'Lato', sans-serif;
+    max-width: 500px;
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    p{
+      font-weight: bold;
+    }
+
+    p,
+    label {
+      width: 200px;
+    }
   }
 
   .alerta {
@@ -79,6 +101,32 @@
   .resposta-candidato {
     font-size: 24px;
   }
+}
+
+.pautas-container {
+  .col-lg-12 {
+    margin: 30px 0;
+  }
+
+  h3, 
+  .topic-candidato {
+    font-weight: bold;
+    color: #39393A;
+  }
+
+  .temas {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    font-size: 24px;
+    color: #303030;
+  }
+
+  .bio-text {
+    font-size: 24px;
+    margin-top: 20px;
+  }
+
 }
 
 .complete-profile {

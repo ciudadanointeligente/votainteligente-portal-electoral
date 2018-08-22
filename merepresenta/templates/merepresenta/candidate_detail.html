@@ -69,24 +69,24 @@
         {{candidate.election.name|title}}
       </h2>
       <!-- Grid -->
-      <div class="list-group list-group-flush desc_candidato">
-        <div class="list-group-item">
+      <div class="grid">
+        <div class="item">
             <label>Partido</label>
             <p>{{candidate.partido.initials}}</p>
         </div>
-        <div class="list-group-item">
+        <div class="item">
             <label>Coligaçao</label>
             <p>{{candidate.partido.coaligacao.initials}}</p>
         </div>
-        <div class="list-group-item">
+        <div class="item">
             <label>Nota de Coligaçao</label>
             <p>em análise</p>
         </div>
-        <div class="list-group-item">
+        <div class="item">
             <label>Cidade/UF</label>
             <p>{{candidate.election.area.name|title}}</p>
         </div>
-        <div class="list-group-item">
+        <div class="item">
           <label>Grupo de Renovação Política</label>
           <p>{{candidate.renovacao_politica}}</p>
         </div>
@@ -96,8 +96,8 @@
   </div>
 </section>
 
-  <!-- Biografia -->
-<section class="container">
+  <!-- Pautas Detalhes -->
+<section class="container pautas-container">
   <div class="row">
     <div class='col-lg-12'>
       <h3>Bio</h3>
@@ -109,28 +109,31 @@
   <!-- Temas Prioritários -->
   <div class='col-lg-12'>
     <h3>Temas prioritarios</h3>
-    {% for link in candidate.candidatequestioncategory_set.all %}
-      <div class='col-4 align-middle tema-prioritario text-center'>
-        {{link.category.name}}
-      </div>
-    {% endfor %}
+    <div class="temas">
+      {% for link in candidate.candidatequestioncategory_set.all %}
+        <div class='col-4 align-middle tema-prioritario text-center'>
+          {{link.category.name}}
+        </div>
+      {% endfor %}
+    </div>
   </div>
 
   <!-- Pautas -->
-  {% for category in categories %}
-    <div class='col-lg-12'>
-      <h3>Seu posicionamento nas pautas do #MeRepresenta</h3>
+  <h3>Seu posicionamento nas pautas do #MeRepresenta</h3>
+      {% for category in categories %}
       {% for topic in category.topics.all %}
+        <div class='col-lg-12'>
         <h4 class='topic-candidato'>
           {{topic.label}}
         </h4>
         <div class="resposta-candidato">
           {% get_taken_position_for topic candidate %}
         </div>
-    </div>
-  {% endfor %}
+      </div>
+        {% endfor %}
+      {% endfor %}
+      
   </div>
-{% endfor %}
 </section>
 
 {% endblock everything %}

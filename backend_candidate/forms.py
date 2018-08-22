@@ -198,9 +198,12 @@ class CandidateProfileFormBase(forms.Form):
     def save(self):
         image = self.cleaned_data.pop('image', None)
         if image:
-            path = default_storage.save('tmp/' + image.name, ContentFile(image.read()))
-            tmp_file = os.path.join(settings.MEDIA_ROOT, path)
-            self.candidate.image = tmp_file
+            try:
+                path = default_storage.save('tmp/' + image.name, ContentFile(image.read()))
+                tmp_file = os.path.join(settings.MEDIA_ROOT, path)
+                self.candidate.image = tmp_file
+            except:
+                pass
             self.candidate.save()
         for link in self.social_networks:
             value = self.cleaned_data.pop(link, None)

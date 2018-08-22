@@ -263,12 +263,18 @@ class KnowYourCandidatesView(TemplateView):
             position = position.strip()
 
             candidates = Candidate.objects.filter(elections__position=position)
-            context['positions'].append({'name': position, 'candidates': candidates})
+            if settings.LIST_ONLY_COMMITED_CANDIDATES:
+                candidates = candidates.exclude(commitments__isnull=True)
+            context['positions'].append({'name': position,
+                                         'candidates': candidates})
         return context
 
     def get_context_data(self, **kwargs):
         context = super(KnowYourCandidatesView, self).get_context_data(**kwargs)
-        election = Election.objects.filter(area__id=config.DEFAULT_AREA).first()
+        try:
+            election = Election.objects.get(id=config.DEFAULT_ELECTION_ID)
+        except:
+            election = Election.objects.filter(area__id=config.DEFAULT_AREA).first()
         if election and election.second_round:
             election = election.second_round
         context['default_election'] = election

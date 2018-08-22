@@ -35,6 +35,10 @@ class TSEProcessorMixin(object):
             else:
                 print u"EMAIL REPETIDO {email} para candidato {candidato} Contato no creado".format(email=candidate_dict['mail'],
                                                                                                     candidato=candidate.name)
+            if candidate_dict['mail2'] is not None:
+
+                CandidacyContact.objects.get_or_create(candidate=candidate,
+                                                       mail=candidate_dict['mail2'])
             election.candidates.add(candidate)
             return candidate
 

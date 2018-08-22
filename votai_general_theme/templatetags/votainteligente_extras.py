@@ -59,7 +59,8 @@ def areas_json(url='area'):
 def get_personal_data(**kwargs):
     candidate = kwargs.pop('candidate')
     label = kwargs.pop('personal_data')
-    if candidate.personal_datas.filter(label=label).exists():
+    personal_datas = candidate.personal_datas.filter(label=label)
+    if personal_datas.exists() and len(personal_datas) == 1:
         return candidate.personal_datas.get(label=label)
     return None
 
@@ -428,3 +429,9 @@ def mail_signature_html():
 @register.inclusion_tag('mails/signature.txt')
 def mail_signature_txt():
     pass
+
+
+
+@register.simple_tag
+def committed_canididates_from(election):
+    return election.candidates.filter(commitments__isnull=False)

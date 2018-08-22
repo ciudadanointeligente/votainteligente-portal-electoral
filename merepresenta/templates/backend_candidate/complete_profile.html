@@ -9,15 +9,21 @@
 
 {% block content %}
 
-  <div class='row'>
-    <div class="col-2">
+  <div class='row complete-profile'>
+    <!-- Foto Candidato/a -->
+    <div class="col-lg-3 offset-md-1">
       {% if candidate.candidacy_set.first.user.profile.image %}
-        <img src="{{candidate.candidacy_set.first.user.profile.image.url}}" alt="{{candidate.name}}" height="96" width="96" border="0" class="img-responsive img-circle">
+        <img src="{{candidate.candidacy_set.first.user.profile.image.url}}" 
+          alt="{{candidate.name}}" 
+          class="img-responsive img-circle">
       {% else %}
-        <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle">
+        <img src="{% static 'img/candidate-default.jpg' %}" 
+          alt="{{candidate.name}}" 
+          class="img-responsive img-circle">
       {% endif %}
+
       <div>
-        <h5>Dados do TSE</h5>
+        <h4>Dados do TSE</h4>
         <ul class="list-group list-group-flush desc_candidato">
           <li class="list-group-item">{{candidate.name|title}}</li>
           <li class="list-group-item">{{candidate.partido.initials}}</li>
@@ -28,105 +34,107 @@
         </ul>
       </div>
     </div>
-    <div class="col-8 ">
-      <h1>Olá, {{candidate.name}}:</h1>
-      <p>Obrigada por ingressar na nossa plataforma! Agora precisamos de algumas informações sobre quem você é. Essas informações poderão ser usadas pelas/os eleitoras/es para filtrarem as pesquisas.</p>
+
+    <!-- Detalhes Candidato/a-->
+    <div class="col-lg-8">
+      <h1>Olá, {{candidate.name}}!</h1>
+      <h2>
+        Obrigada por ingressar na nossa plataforma! Agora precisamos de 
+        algumas informações sobre quem você é. Essas informações poderão ser 
+        usadas pelas/os eleitoras/es para filtrarem as pesquisas.
+      </h2>
       
-      <form id='form_candidate_profile' method="post"  enctype="multipart/form-data" action="{% url 'merepresenta_complete_profile' slug=election.slug candidate_slug=candidate.slug %}">{% csrf_token %}
-      <!-- image -->
-          <div class="card border-light">
-            <div class="card-body">
-              {% for field in form %}
-              <section class="profile-question"
-              {% if field.name == 'lgbt_desc' %}
-                id='lgbt_desc'
-                {% if not form.lgbt.value %}
-                  style="display: none;"
-                {% endif %}
-              {% endif%} >
-                {% if field.name == 'email' %}
-                <span class="label_question">{% bootstrap_label field.label %}</span>
-                {% elif field.name == 'lgbt' %}
-                <span class="label_question">{% bootstrap_label 'Você se declara LGBT?' %}</span>
-                {% elif field.name == 'candidatura_coletiva' %}
-                <span class="label_question">{% bootstrap_label 'Você faz parte de uma Candidatura Coletiva?' %}</span>
-                {% else %}
-                <span class="label_question">{% bootstrap_label field.label %}</span>
-                {% endif %}
-                {% if field.name == 'races' %}
-                <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="right" title="Aqui utilizamos as categorias oficiais selecionadas pelo governo para contar a população. É importante manter esse padrão para poder comparar com os dados oficiais."></i>
-</button>
-                {% endif %}
-                {% if field.name == 'email' %}
-                  <ul>
+      <form id='form_candidate_profile' 
+        method="post" 
+        enctype="multipart/form-data" 
+        action="{% url 'merepresenta_complete_profile' slug=election.slug candidate_slug=candidate.slug %}">
+        {% csrf_token %}
 
-                    {% for type, mail in candidate.emails.items %}
-                     <input type="radio" name="email_previous" value="{{mail}}" {% if type == 'email' %}checked{% endif %}> {{mail}} ({{type}})<br>
-                    {% endfor %}
-                    <input type="radio" name="email_previous" value="outro" required="False"> Outro<br>
-                  </ul>
-                  <input type="email" name="email" title="" placeholder="Outro" class="form-control" id="id_email" />
-                {% elif field.name == 'lgbt' or field.name == 'candidatura_coletiva' %}
-                  <br>
-                  {% bootstrap_field field  show_label=False  %}
-                {% else %}
-
-                  {% bootstrap_field field  show_label=False show_help=True %}
-                {% endif %}
-              </section>
-              {% endfor %}
-            </div>
-          </div>
-        <div class="col">
-
-        <h2>Pautas #MeRepresenta</h2>
-        <p>Para entendermos melhor quem você representa, próximo passo é definir sua posição em relação a algumas pautas que selecionamos.</p>
-          
-        </div>
-        <div class="col-2 offset-md-10">
-
-          <input type="submit" value="Continuar"  class="btn btn-verde" />
-        </div>
-        </form>
+      <!-- Manter contato -->
+      {% for field in form %}
+      <div class="profile-question"
+        {% if field.name == 'lgbt_desc' %}
+            id='lgbt_desc'
+          {% if not form.lgbt.value %}
+            style="display: none;"
+          {% endif %}
+        {% endif%} >
       </div>
 
+        {% if field.name == 'email' %}
+          <span class="question">
+            {% bootstrap_label field.label %}
+          </span>
+        {% elif field.name == 'lgbt' %}
+          <span class="question">
+            {% bootstrap_label 'Você se declara LGBT?' %}
+          </span>
+        {% elif field.name == 'candidatura_coletiva' %}
+          <span class="question">
+            {% bootstrap_label 'Você faz parte de uma Candidatura Coletiva?' %}
+          </span>
+        {% else %}
+          <span class="question">
+            {% bootstrap_label field.label %}
+          </span>
+        {% endif %}
+        
+        {% if field.name == 'races' %}
+          <i class="fas fa-info-circle" 
+          data-toggle="tooltip" 
+          data-placement="right" 
+          title="Aqui utilizamos as categorias oficiais selecionadas pelo governo
+          para contar a população. É importante manter esse padrão para poder 
+          comparar com os dados oficiais."></i>
+        {% endif %}
+
+        {% if field.name == 'email' %}
+        {% for type, mail in candidate.emails.items %}
+        <div class="input">
+          <input type="radio" 
+          name="email_previous" 
+          value="{{mail}}" 
+          {% if type == 'email' %}checked{% endif %}>
+          <label>{{mail}} ({{type}})</label><br>
+        </div>
+          {% endfor %}
+
+        <div class="input">
+          <input type="radio" 
+            name="email_previous" 
+            value="outro" 
+            required="False">
+          <label>Outro</label>
+        </div>
+        <div class="input">
+          <input type="email" 
+            name="email" 
+            title="" 
+            placeholder="Outro" 
+            class="form-control" 
+            id="id_email" />
+        </div>
+        {% elif field.name == 'lgbt' or field.name == 'candidatura_coletiva' %}
+          {% bootstrap_field field  show_label=False  %}
+        {% else %}
+          {% bootstrap_field field  show_label=False show_help=True %}
+        {% endif %}
+
+      {% endfor %}
+
+        <div class="pautas">
+          <h2>Pautas #MeRepresenta</h2>
+          <p>Para entendermos melhor quem você representa, próximo passo é 
+            definir sua posição em relação a algumas pautas que selecionamos.</p>
+        </div>
+
+        <div class="col-2 offset-md-10">
+          <input type="submit" value="Continuar"  class="btn btn-azul" />
+        </div>
+
+      </form>
+    </div>
   </div>
 {% endblock content %}
 
 
-
-{% block scripts %}
-  <script type="text/javascript">
-    $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
-    $(function(){
-      let pass_email = function(event){
-        let checkbox = $('input[name=email_previous]:checked');
-        let val = checkbox.val()
-        if (val != 'outro'){
-          $('input[name=email]').val(val);
-        }
-      }
-      $('#form_candidate_profile').submit(pass_email);
-    });
-    $(function(){
-      let show_lgbt_desc = function(){
-        $("#lgbt_desc").show(600);
-      }
-      let hide_lgbt_desc = function(){
-        $("#lgbt_desc").hide(600);
-        $('#lgbt_desc input').removeAttr('checked');
-      }
-      $('#id_lgbt').change(function(evt){
-        if($(this).is(':checked')){
-          show_lgbt_desc();
-        }
-        else {
-          hide_lgbt_desc();
-        }
-      })
-    });
-    </script>
-
-{% endblock scripts %}

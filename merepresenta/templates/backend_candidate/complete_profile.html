@@ -65,9 +65,11 @@
             {% bootstrap_label 'Você faz parte de uma Candidatura Coletiva?' %}
           </span>
         {% elif field.name == 'lgbt_desc' %}
-          <span class="question lgbt_desc">
+          
+          <span class="question lgbt_desc" {% if not form.lgbt.value %}style="display: none"{% endif %}>
             {% bootstrap_label 'Selecione com quais opções você se identifica:' %}
           </span>
+
         {% else %}
           <span class="question">
             {% bootstrap_label field.label %}
@@ -112,7 +114,11 @@
         {% elif field.name == 'lgbt' or field.name == 'candidatura_coletiva' %}
           {% bootstrap_field field  show_label=False  %}
         {% elif field.name == 'lgbt_desc' %}
+          {% if not form.lgbt.value %}
+            {% bootstrap_field field  show_label=False field_class='lgbt_desc invisible' %}
+          {% else %}
           {% bootstrap_field field  show_label=False field_class='lgbt_desc' %}
+          {% endif %}
         {% else %}
           {% bootstrap_field field  show_label=False show_help=True %}
         {% endif %}
@@ -153,9 +159,11 @@
     $(function(){
       let show_lgbt_desc = function(){
         $(".lgbt_desc").show(600);
+        $(".lgbt_desc").removeClass('invisible');
       }
       let hide_lgbt_desc = function(){
         $(".lgbt_desc").hide(600);
+        $(".lgbt_desc").addClass('invisible');
         $('.lgbt_desc input').removeAttr('checked');
       }
       $('#id_lgbt').change(function(evt){

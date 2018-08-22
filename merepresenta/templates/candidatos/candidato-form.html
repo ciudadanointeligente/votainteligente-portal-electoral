@@ -30,11 +30,10 @@
               Qual sua data de nascimento?
             </label>
             <input 
-              type="date" 
               id="nascimento-id" 
               name="nascimento"
+              placeholder="dd/mm/YYYY" 
               class="form-control"
-              value="dd/mm/YYYY"
               required="True" />
             <small id="helpNascimento" class="form-text text-muted"></small>
           </div>
@@ -49,7 +48,7 @@
                 class="form-control" 
                 name='cpf' 
                 aria-describedby="cpfhelp" 
-                placeholder="000.000.000-00" 
+                placeholder="00000000000" 
                 required="True">
               <small id="cpfhelp" class="form-text text-muted"></small>
           </div>
@@ -97,3 +96,17 @@
 </section>
 
 {% endblock content %}
+
+
+
+{% block scripts %}
+<script type="text/javascript">
+$(function(){
+    var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+    $("#nascimento-id").datepicker({
+        format: 'dd/mm/yyyy'
+    });
+});
+    
+</script>
+{% endblock scripts %}

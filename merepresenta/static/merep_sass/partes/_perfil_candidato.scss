@@ -80,3 +80,97 @@
     font-size: 24px;
   }
 }
+
+.complete-profile {
+  margin-top: 40px;
+
+  img {
+    border-radius: 20px;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 24px;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 40px;
+  }
+
+  h4 {
+    font-weight: bold;
+    font-size: 16px;
+    color: #39393A;
+    margin: 20px 0;
+  }
+
+  ul {
+    color: #646463;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+
+    li:first-of-type {
+      margin: 0;
+    }
+  }
+
+  .input {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    margin-bottom: 30px;
+
+    label {
+      font-size: 14px;
+      font-family: 'Lato', sans-serif;
+      margin: 0;
+    }
+
+    input {
+      margin-right: 10px;
+    }
+
+  }
+
+  #id_email {
+    max-width: 450px;
+  }
+
+  #id_gender {
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+  }
+
+  #lgbt_desc {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #id_races {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .question label {
+    font-family: 'Lato', sans-serif;
+    color: #000000;
+    font-size: 18px;
+    margin: 20px 0;
+  }
+
+  .pautas {
+    h2,
+    p {
+      font-size: 18px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+  }
+}

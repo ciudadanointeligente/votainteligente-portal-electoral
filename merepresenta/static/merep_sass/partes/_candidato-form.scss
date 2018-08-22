@@ -1,4 +1,5 @@
-.candidato-form {
+.candidato-form,
+.login-fb {
   margin-top: 80px;
 
   h1 {
@@ -8,7 +9,9 @@
   }
 
   h2 {
+    font-family: 'Lato', sans-serif;
     font-size: 24px;
+    font-weight: lighter;
     margin-bottom: 40px;
   }
 
@@ -36,7 +39,7 @@
     }
   }
 
-  .form-group{
+  .form-group {
   
     & :last-child {
       margin-bottom: 40px;
@@ -65,11 +68,42 @@
       margin: 0 auto;
     }
 
-    a {
+    .small-link {
       color: #1B9AAA;
       font-size: 12px;
       margin: 15px auto 100px auto;
       max-width: 500px;
     }
+  }
+  .small-link {
+    color: #1B9AAA;
+    font-size: 12px;
+    margin-bottom: 40px;
+    max-width: 500px;
+  }
+}
+
+.login-fb {
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  .small-link {
+    margin: 20px 0 40px 0;
+  }
+
+  h3 {
+    font-family: 'Lato', sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+
 {% load staticfiles %}
 {% load flatpages %}
 {% load sass_tags %}
@@ -5,94 +7,34 @@
 {% load thumbnail %}
 {% load votainteligente_extras %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <meta name="og:title" content="Encontre candidaturas a vereador/a comprometidas com Direitos Humanos!{% block title %}- Portada{% endblock title %}">
-    <meta name="og:description" content="Responda ao questionário e encontre candidaturas que respeitam e promovem Direitos Humanos na sua cidade.">
-    <meta name="og:image" content="https://s3.amazonaws.com/hub-central/uploads/1473183975_thumb_Meme_Minha_Sampa_1024.jpg">
-    <link rel="icon" href="http://2016.merepresenta.org.br/assets/4ico.png">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-    <link href="{% sass_src 'merep_sass/main.scss' %}" rel="stylesheet" type="text/css" />
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel='stylesheet' type='text/css'>
-    <script
-        src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'css/bootstrap-social.css' %}">
-
-    {% block extra_head %}
-    {% endblock extra_head %}
-
-  </head>
-
-  <body id="page-top">
-
-    <!-- Navigation -->
-    {% include 'navbar.html' with user=user %}
-
-    <header class="bg-primary text-white">
-      {% block header %}
-      {% endblock header %}
-    </header>
-
-    <section id="main">
-      {% block everything %}
-        
-      <div class="container">
-        {% block content %}
-        <div class="row">
-          <div class="card">
-            <div class="card-body cpf_e_ddn">
-              <h1 class="text-center">Olá {{candidate.name}} :)</h1>
-              <div class='col-8 offset-md-2'>
-                <p>Seu cadastro foi feito com base nos últimos dados oficiais do TSE. Se esse não for o seu nome,  entre o contato com o TSE pra verificar o que está acontecendo e depois fale com a gente.</p>
-                <p>Para fazer seu cadastro é necessário conexão com o Facebook. <b>Confirme que a conta é sua, pois a imagem do perfil do Facebook será visualizada pelos eleitores</b> na nossa plataforma.</p>
-                <p class="text-center"><b>Vamos começar?</b></p>
-                <a class="btn btn-block btn-facebook" href="{% url 'candidato_social_begin' 'facebook' candidate.slug %}">
-                    <i class="fab fa-facebook-f"></i> Conectar com o Facebook e continuar
-                </a>
-                <p class="text-center explicacion-facebook"><b>Por que Facebook?</b></p>
-                <p class="text-center">Nosso cadastro é conectado com seu perfil pessoal para evitar que outras pessoas respondam em seu nome.</p>
-                
-
-                
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endblock content %}
+{% block everything %}
+<section class="container login-fb">
+  {% block content %}
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="flex">
+        <h1 class="text-center">Olá {{candidate.name}} :)</h1>
+        <a class="small-link" href="#">
+          Esse não é meu nome
+          <i class="fas fa-question-circle"></i>
+        </a>
       </div>
-      {% endblock everything %}
-    </section>
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-        {% block extra_footer %}
-        {% endblock extra_footer %}
-    </footer>
-
-     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
-    {% block scripts %}
-    {% endblock scripts %}
-    <script>
-         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-         ga('create', 'UA-124086071-1', 'auto');
-         ga('send', 'pageview');
-    </script>
-
-  </body>
-
-</html>
+      <h2 class="text-center">
+        Para validar seu cadastro, é necessário a conexão com o Facebook. 
+        Recomendamos que você verifique se o perfil é seu, pois utilizaremos 
+        essas informações no cadastro.
+      </h2>
+        
+      <div class="form-container flex margin-bottom">
+        <h3>Vamos começar?</h3>
+        <a class="btn btn-azul btn-block" 
+          href="{% url 'candidato_social_begin' 'facebook' candidate.slug %}">
+            Conectar com o Facebook e continuar
+        </a>
+        <a class="small-link" href="#">Por que Facebook?</a>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}
+</section>
+{% endblock everything %}

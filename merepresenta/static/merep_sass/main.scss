@@ -50,13 +50,19 @@ a:hover {
 }
 
 .sobre-container {
-    margin-top: 80px;
+  margin-top: 80px;
+
+  h1 {
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 80px;
+  }
     
   & h2 {
     color: #39393A;
-    font-size: 40px;
-    font-weight: bold;
+    font-size: 36px;
     margin-bottom: 40px;
+    font-family: 'Lato', sans-serif;
   }
 
   & h3 {
@@ -181,4 +187,10 @@ div.categories-select {
 
 footer {
     margin-top: 1em;
+}
+
+#mc_embed_signup {
+    background:#fff; 
+    clear: left; 
+    font-size: 14px;
 }

@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from django.conf import settings
 from merepresenta.models import Candidate
+from django.contrib.auth.models import User
 
 # Register your models here.
 
@@ -11,7 +12,7 @@ from merepresenta.models import Candidate
 class MeRepresentaCandidateAdmin(admin.ModelAdmin):
     list_display = ('name',  'username_do_facebook', 'esta_logado')
 
-    actions = ['send_mail_candidate']
+    actions = ['apagar_datos']
 
     def esta_logado(self, candidate):
         return candidate.candidacy_set.exists()
@@ -26,10 +27,11 @@ class MeRepresentaCandidateAdmin(admin.ModelAdmin):
         for candidate in queryset.all():
             User.objects.filter(candidacies__candidate=candidate)
             candidate.candidacy_set.all().delete()
-            candidate.lgbt_desc.all().delete()
+            candidate.lgbt_desc.clear()
             candidate.taken_positions.all().delete()
             candidate.candidatequestioncategory_set.all().delete()
-        send_mail_candidate.short_description = u"Apagar dados de candidatas seleccionadas"
+
+    apagar_datos.short_description = u"Apagar dados de candidatas seleccionadas"
 
     esta_logado.boolean = True
     esta_logado.admin_order_field = 'candidacy__user__last_login'

@@ -241,3 +241,38 @@ footer {
   clear: left; 
   font-size: 14px;
 }
+
+.pautas {
+
+  h1 {
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #000000;
+  }
+
+  h3 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  h4 {
+    font-size: 28px;
+    color: #000000;
+    margin-bottom: 20px;
+  }
+
+  p {
+    color: #000000;
+    font-family: 'Lato', sans-serif;
+    font-size: 22px;
+  }
+
+  .voltar {
+    margin-bottom: 40px;
+  }
+
+  .pauta-container {
+    margin-bottom: 80px;
+  }
+}

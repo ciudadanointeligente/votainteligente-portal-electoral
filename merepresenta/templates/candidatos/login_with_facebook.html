@@ -37,4 +37,29 @@
   </div>
   {% endblock content %}
 </section>
+
+<div id="dialog-confirm" title="Cadastro com Facebook">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Para fazer seu cadastro é necessário conexão com o Facebook. Confirme que a conta é sua, pois a imagem do perfil do Facebook será visualizada pelos eleitores na nossa plataforma.</p>
+</div>
+
 {% endblock everything %}
+
+
+{% block scripts %}
+  <script type="text/javascript">
+    $( function() {
+      $( "#dialog-confirm" ).dialog({
+        resizable: false,
+        height: "auto",
+        width: 400,
+        modal: true,
+        buttons: {
+          Aceitar: function() {
+            $( this ).dialog( "close" );
+          }
+        }
+      });
+    });
+    </script>
+
+{% endblock scripts %}

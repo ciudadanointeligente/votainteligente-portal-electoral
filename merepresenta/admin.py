@@ -32,5 +32,6 @@ class MeRepresentaCandidateAdmin(admin.ModelAdmin):
         send_mail_candidate.short_description = u"Apagar dados de candidatas seleccionadas"
 
     esta_logado.boolean = True
+    esta_logado.admin_order_field = 'candidacy__user__last_login'
 
 admin.site.register(Candidate, MeRepresentaCandidateAdmin)

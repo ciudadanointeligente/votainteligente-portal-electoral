@@ -200,7 +200,7 @@ class CandidateProfileFormBase(forms.Form):
         if image:
             try:
                 path = default_storage.save('tmp/' + image.name, ContentFile(image.read()))
-                tmp_file = os.path.join(settings.MEDIA_ROOT, path)
+                tmp_file = path
                 self.candidate.image = tmp_file
             except:
                 pass

@@ -22,13 +22,13 @@
       {% trans 'Ir a ver mi perfil' %}</a></p>
   {% endwith %}
   <!-- image -->
+
   {% if candidate.image %}
-    {% thumbnail candidate.image "300x300" crop="center" as im %}
-    <img src="{{ im.url }}" alt="{{candidate.name}}" height="96" width="96" border="0" class="img-responsive img-circle">
-    {% endthumbnail %}
-  {% else %}
-    <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle">
-  {% endif %}
+      <img src="{% if 'http' in candidate.image %}{{ candidate.image }}{% else %}{% static candidate.image %}{% endif %}" alt="{{ candidate.name }}" height="96" width="96" border="0" class="img-responsive img-circle"/>    
+    {% else %}
+      <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle">
+    {% endif %}
+
   {% bootstrap_field form.image %}
   {% for field in form %}
     {% ifnotequal field.name 'image' %}

@@ -4,10 +4,13 @@
 <div class="col-md-2">
   <div class="panel-heading text-center">
     <a href="{{candidate.get_absolute_url}}">
-      {% if candidate.image %}
-    {% thumbnail candidate.image "200x200" crop="center" as im %}
-      <img src="{{ im.url }}" alt="{{ candidate.name }}" border="0" class="img-responsive img-circle" itemprop="image" />
-    {% endthumbnail %}
+    {% if candidate.image %}
+      {% if 'http' in candidate.image %}
+      <img src="{{ candidate.image }}" alt="{{ candidate.name }}" border="0" class="img-responsive img-circle" itemprop="image" />
+      {% else %}
+        <img src="{% static candidate.image %}" alt="{{ candidate.name }}" border="0" class="img-responsive img-circle" itemprop="image" />
+      {% endif %}
+    
     {% else %}
       <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle">
     {% endif %}

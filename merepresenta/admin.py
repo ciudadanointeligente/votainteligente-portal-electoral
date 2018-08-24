@@ -13,6 +13,7 @@ class MeRepresentaCandidateAdmin(admin.ModelAdmin):
     list_display = ('name',  'username_do_facebook', 'esta_logado')
 
     actions = ['apagar_datos']
+    search_fields = ['name',]
 
     def esta_logado(self, candidate):
         return candidate.candidacy_set.exists()

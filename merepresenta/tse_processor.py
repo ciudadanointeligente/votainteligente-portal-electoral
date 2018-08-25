@@ -20,7 +20,7 @@ RACE_MAPPING = {
 def try_parsing_date(text):
     ### Me lo traje de stackoverflow
     ### https://stackoverflow.com/questions/23581128/how-to-format-date-string-via-multiple-formats-in-python
-    ### Me pareció hacky y ingenioso
+    ### Me pareció hacky e ingenioso
     ### Incluso el raise es lindo
     for fmt in ( "%Y-%m-%d", "%Y/%m/%d", "%d/%m/%Y"):
         try:
@@ -63,6 +63,7 @@ class TSEProcessorMixin(object):
         candidate.email_repeated = candidate_dict['email_repeated']
         candidate.partido = partido
         candidate.gender = gender
+        candidate.slug = candidate.id
         candidate.save()
         # candidate, created = Candidate.objects.get_or_create(name=candidate_dict['nome'],
         #                                                      nome_completo=candidate_dict['nome_completo'],

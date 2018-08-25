@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-13 22:06+0000\n"
-"PO-Revision-Date: 2018-08-13 19:23-0300\n"
+"PO-Revision-Date: 2018-08-22 09:30-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.1\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #: agenda/forms.py:24 backend_candidate/forms.py:250
 #: votai_general_theme/templates/backend_candidate/add_activity.html:20
@@ -2544,6 +2544,10 @@ msgid ""
 "plan de gobierno.\n"
 "  "
 msgstr ""
+"\n"
+"    Aqui você pode encontrar um total de %(proposals_committed)s propostas "
+"que %(candidate_name)s se comprometeu a cumprir dentro do plano do governo.\n"
+" "
 
 #: votai_general_theme/templates/elections/candidate_detail.html:153
 #, python-format

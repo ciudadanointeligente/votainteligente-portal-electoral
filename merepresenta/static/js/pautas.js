@@ -17,3 +17,18 @@ $(function(){
         }
     });
 });
+
+
+$(function(){
+    $('form').submit(function(event){
+      let checkboxes = $('form input[type=checkbox]');
+      if (checkboxes.length > 0){
+        if (checkboxes.filter(":checked").length !== 3){
+          $('.numero_de_temas').effect('highlight',{'color': '#EF476F'},3000); 
+          return false;  
+        }
+        
+      }
+    });
+
+});

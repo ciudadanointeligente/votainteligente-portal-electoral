@@ -402,3 +402,37 @@ footer {
     }
   }  
 }
+
+.termos {
+  h1 {
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 28px;
+    font-family: 'Lato', sans-serif;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    margin: 40px 0;
+  }
+
+  p,
+  li {
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+}

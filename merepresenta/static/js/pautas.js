@@ -13,7 +13,18 @@ $(function(){
             $(this).parent().parent().addClass('cat-selected');
         }
         else{
-            $(this).parent().parent().addClass('cat-unselected');   
+            $(this).parent().parent().addClass('cat-unselected');
         }
     });
+});
+
+$(function(){
+
+    let $element = $('.radio input[type="radio"]')
+    let $checked = $('.radio input[type="radio"]:checked')
+    let $not_checked = $('.radio input[type="radio"]:not(:checked)')
+
+    $checked.parent().parent().addClass('option-selected');
+    $not_checked.parent().parent().addClass('option-unselected');
+
 });

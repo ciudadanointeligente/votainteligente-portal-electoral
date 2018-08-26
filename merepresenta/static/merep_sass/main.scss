@@ -373,7 +373,6 @@ footer {
 }
 
 .tabs-menu {
-  display: flex;
   list-style: none;
   padding: 0;
 
@@ -383,6 +382,8 @@ footer {
     cursor: pointer;
     padding: 15px;
     border-radius: 5px;
+    min-width: 123px;
+    min-height: 100px;
   
     a {
       width: 100%;

@@ -27,6 +27,11 @@ class VolunteerIndexView(StaffuserRequiredMixin, FilterView):
     context_object_name = 'candidates'
     filterset_class = CandidateFilter
 
+    def dispatch(self, *args, **kwargs):
+        if not settings.MEREPRESENTA_VOLUNTARIOS_ON:
+            return HttpResponseNotFound()
+        return super(VolunteerIndexView, self).dispatch(*args, **kwargs)
+
     def get_context_data(self, *args, **kwargs):
         context = super(VolunteerIndexView, self).get_context_data(*args, **kwargs)
         profile, created = VolunteerProfile.objects.get_or_create(user=self.request.user)
@@ -83,6 +88,8 @@ class AddMailToCandidateView(StaffuserRequiredMixin, FormView):
         return reverse_lazy('obrigado')
 
     def dispatch(self, *args, **kwargs):
+        if not settings.MEREPRESENTA_VOLUNTARIOS_ON:
+            return HttpResponseRedirect('/')
         _id = kwargs['id']
         self.candidate = get_object_or_404(Candidate, id=_id)
         if self.request.user.is_authenticated() and self.request.user.is_staff:

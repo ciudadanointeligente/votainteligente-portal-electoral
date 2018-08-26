@@ -22,9 +22,26 @@ $(function(){
 
     let $element = $('.radio input[type="radio"]')
     let $checked = $('.radio input[type="radio"]:checked')
-    let $not_checked = $('.radio input[type="radio"]:not(:checked)')
 
     $checked.parent().parent().addClass('option-selected');
-    $not_checked.parent().parent().addClass('option-unselected');
 
+    $element.click(function() {
+        $(this).parent().parent().addClass("option-selected");
+        $(this).parent().parent().siblings().removeClass("option-selected");
+    });
+
+});
+
+
+
+$(".tab :first").show();
+$(function() {
+    $(".tabs-menu a").click(function(event) {
+        event.preventDefault();
+        $(this).parent().addClass("current");
+        $(this).parent().siblings().removeClass("current");
+        var tab = $(this).attr("href");
+        $(".tab-content").not(tab).css("display", "none");
+        $(tab).fadeIn();
+    });
 });

@@ -61,6 +61,9 @@ class MeRepresentaCandidateAnsweringForm(MediaNaranjaSingleCandidateMixin, forms
     def __init__(self, *args, **kwargs):
         super(MeRepresentaCandidateAnsweringForm, self).__init__(*args, **kwargs)
         self.set_fields_for(self.category)
+        for field in self.fields:
+            if isinstance(self.fields[field], forms.fields.ChoiceField):
+                self.fields[field].required = True
 
     def save(self):
         self.save_answer_for(self.category)

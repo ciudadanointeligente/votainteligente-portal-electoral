@@ -52,15 +52,6 @@
 
       <!-- Manter contato -->
       {% for field in form %}
-      <div class="profile-question"
-        {% if field.name == 'lgbt_desc' %}
-            id='lgbt_desc'
-          {% if not form.lgbt.value %}
-            style="display: none;"
-          {% endif %}
-        {% endif%} >
-      </div>
-
         {% if field.name == 'email' %}
           <span class="question">
             {% bootstrap_label field.label %}
@@ -73,6 +64,12 @@
           <span class="question">
             {% bootstrap_label 'Você faz parte de uma Candidatura Coletiva?' %}
           </span>
+        {% elif field.name == 'lgbt_desc' %}
+          
+          <span class="question lgbt_desc" {% if not form.lgbt.value %}style="display: none"{% endif %}>
+            {% bootstrap_label 'Selecione com quais opções você se identifica:' %}
+          </span>
+
         {% else %}
           <span class="question">
             {% bootstrap_label field.label %}
@@ -116,6 +113,12 @@
         </div>
         {% elif field.name == 'lgbt' or field.name == 'candidatura_coletiva' %}
           {% bootstrap_field field  show_label=False  %}
+        {% elif field.name == 'lgbt_desc' %}
+          {% if not form.lgbt.value %}
+            {% bootstrap_field field  show_label=False field_class='lgbt_desc invisible' %}
+          {% else %}
+          {% bootstrap_field field  show_label=False field_class='lgbt_desc' %}
+          {% endif %}
         {% else %}
           {% bootstrap_field field  show_label=False show_help=True %}
         {% endif %}
@@ -138,3 +141,40 @@
 {% endblock content %}
 
 
+{% block scripts %}
+  <script type="text/javascript">
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+    $(function(){
+      let pass_email = function(event){
+        let checkbox = $('input[name=email_previous]:checked');
+        let val = checkbox.val()
+        if (val != 'outro'){
+          $('input[name=email]').val(val);
+        }
+      }
+      $('#form_candidate_profile').submit(pass_email);
+    });
+    $(function(){
+      let show_lgbt_desc = function(){
+        $(".lgbt_desc").show(600);
+        $(".lgbt_desc").removeClass('invisible');
+      }
+      let hide_lgbt_desc = function(){
+        $(".lgbt_desc").hide(600);
+        $(".lgbt_desc").addClass('invisible');
+        $('.lgbt_desc input').removeAttr('checked');
+      }
+      $('#id_lgbt').change(function(evt){
+        if($(this).is(':checked')){
+          show_lgbt_desc();
+        }
+        else {
+          hide_lgbt_desc();
+        }
+      })
+    });
+    </script>
+
+{% endblock scripts %}

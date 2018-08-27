@@ -1,0 +1,6 @@
+Hola querida/o staff:
+Este mail es para avisarte que se enviarán los periodic reports sobre propuestas.
+El valor de PERIODIC_REPORTS_ENABLED en la configuración es {{config.PERIODIC_REPORTS_ENABLED}}.
+
+--
+Saludos

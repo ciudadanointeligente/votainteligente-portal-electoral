@@ -19,7 +19,7 @@ $(function(){
 });
 
 $(function(){
-    $('form').submit(function(event){
+    $('form.pautas_candidatos').submit(function(event){
       let checkboxes = $('form input[type=checkbox]');
       if (checkboxes.length > 0){
         if (checkboxes.filter(":checked").length !== 3){

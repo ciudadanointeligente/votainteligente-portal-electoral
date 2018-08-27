@@ -460,3 +460,27 @@ footer {
     text-decoration: none;
   }
 }
+
+.modal {
+
+  textarea {
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .options {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 40px;
+  }
+}
+
+.continuar {
+  margin-top: 40px;
+}

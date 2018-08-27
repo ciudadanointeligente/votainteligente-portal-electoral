@@ -10,15 +10,15 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from social_django.utils import psa, STORAGE, get_strategy
 from django.views.generic.edit import FormView
-from merepresenta.voluntarios.forms import AddCandidacyContactForm
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django_filters.views import FilterView
 from merepresenta.voluntarios.filters import CandidateFilter
 from django.views.generic.edit import UpdateView
-from .forms import UpdateAreaForm
+from .forms import UpdateAreaForm, VoluntarioCandidateHuntForm, AddCandidacyContactForm
 from .models import VolunteerProfile
 from django.http import HttpResponseNotFound, HttpResponseRedirect
+from django.conf import settings
 
 class VolunteerIndexView(StaffuserRequiredMixin, FilterView):
     model = Candidate
@@ -26,6 +26,11 @@ class VolunteerIndexView(StaffuserRequiredMixin, FilterView):
     template_name = "voluntarios/index.html"
     context_object_name = 'candidates'
     filterset_class = CandidateFilter
+
+    def dispatch(self, *args, **kwargs):
+        if not settings.MEREPRESENTA_VOLUNTARIOS_ON:
+            return HttpResponseNotFound()
+        return super(VolunteerIndexView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         context = super(VolunteerIndexView, self).get_context_data(*args, **kwargs)
@@ -44,9 +49,11 @@ class VolunteerIndexView(StaffuserRequiredMixin, FilterView):
             
         return qs
 
-
+voluntarios_login_template_name = 'voluntarios/voluntarios-inativo.html'
+if settings.MEREPRESENTA_VOLUNTARIOS_ON:
+    voluntarios_login_template_name = 'voluntarios/login.html'
 class VolunteerLoginView(TemplateView):
-    template_name = "voluntarios/voluntarios-inativo.html"
+    template_name = voluntarios_login_template_name
 
     def dispatch(self, *args, **kwargs):
         if self.request.user.is_authenticated:
@@ -73,7 +80,7 @@ def auth(request, backend):
     return do_auth(request.backend)
 
 class AddMailToCandidateView(StaffuserRequiredMixin, FormView):
-    form_class = AddCandidacyContactForm
+    form_class = VoluntarioCandidateHuntForm
     login_url = reverse_lazy(u"volunteer_login")
     template_name = 'voluntarios/add_email_to_candidate.html'
     
@@ -81,6 +88,8 @@ class AddMailToCandidateView(StaffuserRequiredMixin, FormView):
         return reverse_lazy('obrigado')
 
     def dispatch(self, *args, **kwargs):
+        if not settings.MEREPRESENTA_VOLUNTARIOS_ON:
+            return HttpResponseRedirect('/')
         _id = kwargs['id']
         self.candidate = get_object_or_404(Candidate, id=_id)
         if self.request.user.is_authenticated() and self.request.user.is_staff:

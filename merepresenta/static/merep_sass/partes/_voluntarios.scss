@@ -80,3 +80,111 @@
     margin-bottom: 20px;
   }
 }
+
+.voluntario-login {
+  margin-top: 80px;
+
+  img {
+    width: 100%;
+  }
+
+  span {
+    font-weight: bold;
+  }
+
+  h1 {
+    color: #4F4F4F;
+    display: flex;
+    flex-direction: column;
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 40px;
+
+    span {
+      color: #1B9AAA;
+      font-weight: bold;
+    }
+  }
+
+  h2 {
+    font-size: 24px;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 20px;
+  }
+
+  .small-link {
+    color: #1B9AAA;
+    font-size: 12px;
+    margin-bottom: 40px;
+    max-width: 500px;
+  }
+
+  .preciso-fazer {
+    h2 {
+      color: $roxo;
+      font-size: 48px;
+      font-weight: bold;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+}
+
+.boas-vindas {
+  margin-top: 80px;
+
+  .text {
+    h1 {
+      color: #000000;
+      margin-bottom: 20px;
+    }
+    h2, p {
+      font-size: 24px;
+    }
+  }
+
+  h3 {
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+
+  .field {
+    button {
+      margin-left: 10px;
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+
+      .form-group {
+        display: flex;
+        margin: 0;
+        align-items: center;
+
+        label {
+          font-weight: bold;
+          min-width: 170px;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  table {
+    border: 1px solid #dddddd;
+  }
+
+  thead {
+    font-size: 18px;
+    color: #646463;
+    font-family: 'Lato', sans-serif;
+  }
+
+  tbody {
+    font-family: 'Lato', sans-serif;
+    color: #4F4F4F;
+    font-size: 20px;
+  }
+}

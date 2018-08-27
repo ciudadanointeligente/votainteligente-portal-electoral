@@ -7,174 +7,268 @@
 {% block title %}- Voluntarios{% endblock title %}
 
 {% block content %}
-<div class="container no-background">
-  <div class="row">
-    <div class="col">
-      <h1>Analisar candidatura - {{form.candidate}}</h1>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col">
-      <p>Obrigada por analisar as informações da candidatura de {{form.candidate}}, aqui nós lhes contamos tudo o que sabemos sobre essa pessoa.</p>
+
+<div class="row voluntarios-analise">
+  <div class="col-lg-12 bottom">
+    <a href="/" onclick="window.history.back()" />
+      < Voltar
+    </a>
+  </div>
+
+  <div class="col-lg-12">
+    <div class="text">
+      <h1>Análise de candidatura</h1>
+      <h2>
+        Obrigada. Aqui mostramos o que o TSE disse sobre a/o 
+        <span>{{form.candidate}}</span>!
+        Por favor, siga o passo a passo para completar as informações.
+      </h2>
     </div>
   </div>
-    
-    <ul>
-        <li><b>Número:   </b>{{form.candidate.numero}}</li>
-        <li><b>Partido   </b>{{form.candidate.partido.initials}}</li>
-        <li><b>Coligação  </b>{{form.candidate.partido.coaligacao.name}}</li>
-        <li><b>Estado  </b>{{form.candidate.election.area.name}}</li>
-    </ul>
-    <form  method='POST' action="{% url 'add_mail_to_candidate' id=form.candidate.id %}">
-      {% csrf_token %}
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            <div class="col">
-              <div>1. Primeiro, veja se a/o candidata/o tem página ou perfil de facebook:</div>
-              Encontrou página ou perfil no Facebook?
-            <a  target="_blank" href="https://www.facebook.com/search/pages/?q={{form.candidate.name|safe}} {{form.candidate.partido.initials}}" class="btn btn-primary card-link" >
-              Buscar no Facebook <i class="fab fa-facebook"></i>
-            </a>
-            <div>Encontrou página ou perfil no Facebook?</div>
-            <div class='botonera'>
-              <a type="button" class="btn btn-verde" data-toggle="collapse" data-target="#pesquiseLaNoFacebook">
-                Sim, encontrei! :)
-              </a>
-              <button type="button" class="btn btn-gris"  data-toggle="collapse" data-target="#pesquisaDeMails">
-                Não achei nada :|
-              </button>
-            </div>
-            <div class="collapse" id="pesquiseLaNoFacebook">
-                <div class="card card-body">
-                  <div class='row'>
-                    
-                    Booa! Então copie a mensagem abaixo e cole no inbox da página que você encontrou no Facebook ;)
-                  </div>
-                  <div class='row'>
-                    <script type="text/javascript">
-                          $(function(){
-                            $("#copiar-invitation-fb-{{form.candidate.id}}").click(function(){
-                                  $("#invitation-fb-{{form.candidate.id}}").select();
-                                  document.execCommand('copy');
-                              });
-                          });
-                    </script>
-            <button type="button" id="copiar-invitation-fb-{{form.candidate.id}}" class="btn btn-secondary"><i class="fas fa-copy"></i> Copiar</button>
-                  </div>
-                  <div class="row">
-                    <textarea id="invitation-fb-{{form.candidate.id}}" rows="10 " cols="35"> Olá candidata/o,
-Faço parte do time do #MeRepresenta, uma plataforma que conecta eleitoras/es às candidaturas que se posicionam sobre temas relevantes para a sociedade civil. Chegamos em você depois de uma super busca na internet, estamos de olho! Esse é um convite para que você conheça a plataforma e encontre mais eleitoras/es que se preocupam com as mesmas questões que você! Vamos? 
-www.merepresenta.org.br
-</textarea>
-                  </div>
-                  <div class="row text-center">
-                    
-                    <div id="facebook-checkbox"  style='display:none;'>{{form.facebook}}</div>
-                    <a id="encontrei" class="btn btn-verde">  Mandei! E agora?</a>
-                  </div>
-                </div>
-              </div>
-            </div>  
-            <div class="col">
-              Como saber se a página pertence mesmo ao candidato:
-              <ul>
-                <li>Fotos e vídeos com material de campanha</li>
-                <li>Imagem de capa com informações da eleição</li>
-                <li>Número da candidatura 123 ou 1234, ou 12345</li>
-                <li>Tem hashtag de campanha? </li>
-              </ul>
-            </div>  
-          </div>
-        </div>  
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            <div class="col">
-              <div>2. Encontramos esse email no TSE:</div>
-            </div>
-          </div>
-        </div>
-        <div class="card-body collapse" id='pesquisaDeMails'>
-          <div class="row">
-            <div class="col">
-              {% if form.candidate.original_email %}
-                <strong>{{form.candidate.original_email}}</strong>
-                {% if form.candidate.email_repeated %}, mas o e-mail aparece para várias pessoas
-              {% endif %}
-              {% else %}
-              <li>O TSE não entregou email</li>
-              {%endif %}
-              <div>
-              </div>
-              <div>Você acha que a/o candidata/o tem acesso a esse email?</div>
-              <div class='botonera'>
-              <div id='tse_mail_correct_input' style='display:none;'>{{form.tse_email}}</div>
-              <a id='tse_mail_correct' type="button" class="btn btn-verde" >
-                Sim, acho.
-              </a>
-              <button type="button" class="btn btn-gris"  data-toggle="collapse" data-target="#pesquisaNoGoogle">
-                Não, tá estranho. Google ativar! 
-              </button>
-            </div>
-            <div id='pesquisaNoGoogle' class="row collapse">
-              <div class='col'>
-                <a class="btn btn-primary card-link" target="_blank" href="https://www.google.com/search?q={{form.candidate.name}} {{form.candidate.partido.initials}} {{form.candidate.election.area.name}}">Pesquise-la em Google <i class="fab fa-google"></i></a>
-                <div>Você encontrou algum email bom na sua busca? De repente, no site da candidatura ou na página de Facebook...</div>
-                {% bootstrap_field form.other_email %}
 
-              </div>
-            </div>
-            <div id="sorry" class='row collapse'>
-              <div class='col'>
-                Eita! tá difícil! Mas acontece, não fica chati! 
-Muitas candidaturas, sobretudo de LGBTs e de mulheres negras, não tem nenhum apoio do partido e não conseguem fazer uma campanha competitiva. Estamos de olho, anotando tudo aqui. Bora procurar mais?
-              </div>
-            </div>
-            </div>
-            <div class='col'>
-              Exemplos de email duvidosos:
-                <ul>
-                <li> contato@partido.com.br</li>
-                <li> email@email.com.br</li>
-                <li> nomedocandidato.adv@gmail.com</li>
-                <li> eleicoes2018@advogadofulano.com </li>
-                <li> e-mail com nomes de outras pessoas</li>
-                <li> e-mail com nome ou domínio adv ou advogado</li>
-                <li> e-mail cheio de letras e números desconexos</li>
-                </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button class="btn btn-danger" type='submit'>Missão Completa!</button>
+  <div class="col-lg-12 grid">
+    <div class="item">
+      <label>Nome</label>
+        <p>{{form.candidate}}</p>
+    </div>
 
-    </form> 
-    
+    <div class="item">
+      <label>No de Urna</label>
+      <p>{{form.candidate.numero}}</p>
+    </div>
 
-    
+    <div class="item">
+      <label>Candidatura</label>
+      <p>{{form.candidate.election.name|title}}</p>
+    </div>
+
+    <div class="item">
+      <label>Partido</label>
+      <p>{{form.candidate.partido.initials}}</p>
+    </div>
+
+    <div class="item">
+      <label>Estado</label>
+      <p>{{form.candidate.election.area.name}}</p>
+    </div>
+  </div>
 </div>
-{% endblock content %}
 
+<!-- Passo 1 -->
+<div class="row voluntarios-analise-card bottom">
+  <div class="col-lg-6">
+    <div class="buscar">
+      <h3>1. Primeiro, veja se a/o candidata/o tem página ou perfil de facebook:</h3>
+      <a type="button" 
+        class="btn btn-primary card-link"
+        target="_blank"
+        href="https://www.facebook.com/search/pages/?q={{form.candidate.name}} {{form.candidate.partido.initials}}">
+          <i class="fab fa-facebook"></i> Buscar no Facebook
+      </a>
+    </div>
+    <div class="resultado resultado-1 bottom">
+      <h3>Encontrou página ou perfil no Facebook?</h3>
+      <div class="options">
+        <a class="btn btn-azul option-encontrei" 
+          href="#encontrei-1">
+          Sim, encontrei! :) 
+        </a>
+        <a class="btn btn-gris option-nao-encontrei" 
+          href="#nao-encontrei-1">
+          Não achei nada :|
+        </a>
+      </div>
+    </div>
+    <div id="encontrei-1" class="etapa-concluida encontrei-1 bottom">
+        <p>
+          <i class="fas fa-check-circle"></i>
+          Booa! Então copie a mensagem abaixo e cole no inbox da página que 
+          você encontrou no Facebook ;)
+        </p>
+        <textarea 
+        id="invitation-fb-{{form.candidate.id}}" 
+        class="bottom"
+        rows="10" 
+        cols="45">
+          Olá candidata/o,
+          Faço parte do time do #MeRepresenta, uma plataforma que conecta 
+          eleitoras/es às candidaturas que se posicionam sobre temas relevantes 
+          para a sociedade civil. Chegamos em você depois de uma super busca na 
+          internet, estamos de olho! Esse é um convite para que você conheça a 
+          plataforma e encontre mais eleitoras/es que se preocupam com as 
+          mesmas questões que você! Vamos? www.merepresenta.org.br
+        </textarea>
+        <a href="#mandei" class="btn btn-azul">Mandei! E agora?</a>
+    </div>
 
-{% block scripts %}
-<script type="text/javascript">
-  $(function(){
-    //acá se debe pensar en hacer click y que se cierra esta ventana, pero se abre la número 2
-    // también hay una parte importante que es marcar el checkbox como true
-    $('#encontrei').click(function(){
-      //checkbox checked
-      $('#facebook-checkbox input').prop('checked', true);
-      //fechar collapse 1
-      $('#pesquiseLaNoFacebook').collapse('hide');
-      $('#pesquisaDeMails').collapse('show');
-      return false;
-    });
-    $('#tse_mail_correct').click(function(){
-      $('#tse_mail_correct_input input').prop('checked', true);
-      $('#pesquisaDeMails').collapse('hide');
-    });
-  });
-  </script>
-{% endblock scripts %}
+    <div id="mandei" class="mandei etapa-concluida">
+      <p>
+        <i class="fas fa-check-circle"></i>
+        Boa, agora vamos pro próximo passo!
+      </p>
+    </div>
+
+    <div id="nao-encontrei-1" class="etapa-nao-concluida nao-encontrei-1 bottom">
+      <p>
+        <i class="fas fa-check-circle"></i>
+        Não achou? Sem problemas! Vamos pro próximo passo, vai que a gente 
+        acha alguma coisa!
+      </p>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <h3>Como saber se a página pertence mesmo ao candidato:</h3>
+    <ul>
+      <li>Fotos e vídeos com material de campanha</li>
+      <li>Imagem de capa com informações da eleição</li>
+      <li>Número da candidatura 123 ou 1234, ou 12345</li>
+      <li>Tem hashtag de campanha?</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Passo 2 -->
+<div class="row voluntarios-analise-card bottom">
+  <div class="col-lg-6">
+      <div class="buscar">
+        {% if form.candidate.original_email %}
+        <h3>2. Encontramos esse email no TSE:</h3>
+        <p>
+          {{form.candidate.original_email}}
+            {% if form.candidate.email_repeated %}
+              , mas o e-mail aparece para várias pessoas
+            {% endif %}
+          {% else %}
+            O TSE não entregou e-mail
+          {% endif %}
+        </p>
+      </div>
+      <div class="resultado resultado-1 bottom">
+        <h3>Você acha que a/o candidata/o tem acesso a esse email?</h3>
+        <div class="options">
+          <a class="btn btn-azul option-encontrei" 
+            href="mailto:{{form.candidate.original_email}}">
+            Sim, enviar um e-mail
+          </a>
+          <a class="btn btn-gris option-nao-encontrei" 
+            href="http://google.com/{{form.candidate.original_email}}">
+            Não, tá estranho. Google ativar! 
+          </a>
+        </div>
+
+      </div>
+      <div class="resultado resultado-2 bottom">
+        <h3>
+          Você encontrou algum email bom na sua busca? De repente, no site da 
+          candidatura ou na página de Facebook...
+        </h3>
+        <div class="options">
+          <a class="btn btn-azul option-encontrei" 
+            href="mailto:{{form.candidate.original_email}}">
+            Sim, encontrei!
+          </a>
+          <a class="btn btn-gris option-nao-encontrei" 
+            href="http://google.com/{{form.candidate.original_email}}">
+            Não achei nada mesmo :(
+          </a>
+        </div>
+      </div>
+      <div class="resultado resultado-3 bottom">
+        <h3>Cole aqui o email que você encontrou que a gente manda a mensagem!</h3>
+        <div class="options">
+          <input type="email
+          name="email" 
+          placeholder="E-mail" 
+          class="form-control" />
+          <input type="submit" value="Enviar e-mail" class="btn btn-azul" />
+        </div>
+      </div>
+      
+      <div class="etapa-concluida bottom">
+        <p>
+          <i class="fas fa-check-circle"></i>
+          Sucesso! Muito obrigada!
+        </p>
+      </div>
+  </div>
+  
+  <div class="col-lg-6">
+    <h3>Exemplos de email duvidosos:</h3>
+    <ul>
+      <li>contato@partido.com.br</li>
+      <li>email@email.com.br</li>
+      <li>nomedocandidato.adv@gmail.com</li>
+      <li>eleicoes2018@advogadofulano.com</li>
+      <li>e-mail com nomes de outras pessoas</li>
+      <li>e-mail com nome ou domínio adv ou advogado</li>
+      <li>e-mail cheio de letras e números desconexos</li>
+    </ul>
+  </div>
+</div>
+
+<div class="col-3 offset-md-9 margin-bottom continuar">
+    <input type="submit" value="Missão Completa!" class="btn btn-roxo" />
+</div>
+
+<!-- Modal -->
+{% comment %} <div class="modal fade" id="pesquiseLaNoFacebook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pesquise no Facebook</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <h3>
+          Quando você encontrar essa pessoa, você pode se apresentar da 
+          seguinte maneira:
+        </h3>
+        <div id="wrap">
+          <textarea 
+          id="invitation-fb-{{form.candidate.id}}" 
+          rows="10" 
+          cols="39">
+            Oi! Eu sou {{user}} e queria falar sobre o MeRepresenta, vamos ser amigos?
+          </textarea>
+        </div>
+        <script type="text/javascript">
+        $(function(){
+          $("#copiar-invitation-fb-{{form.candidate.id}}").click(function(){
+                $("#invitation-fb-{{form.candidate.id}}").select();
+                document.execCommand('copy');
+            });
+        });
+        </script>
+        <div class="options">
+          <button type="button" 
+            id="copiar-invitation-fb-{{form.candidate.id}}" 
+            class="btn btn-secondary">
+              <i class="fas fa-copy"></i> Copiar
+          </button>
+          <a class="btn btn-primary card-link" 
+            target="_blank" 
+            href="https://www.facebook.com/search/pages/?q={{form.candidate.name}} {{form.candidate.partido.initials}}">
+            <i class="fab fa-facebook"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <a class="btn btn-azul card-link" 
+          target="_blank" 
+          href="{% url 'facebook_contacted' id=form.candidate.id %}">
+          CONSEGUI!
+        </a>
+        <a class="btn btn-gris" 
+          href="{% url 'could_not_find_candidate' id=form.candidate.id %}">
+          Não encontrei
+        </a>
+      </div>
+    </div>
+  </div>
+</div> {% endcomment %}

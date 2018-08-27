@@ -18,7 +18,7 @@
 </div>
 
 <div class='row title-pauta'>
-    <div class='col text-center'>
+    <div class='col-lg-10 offset-md-1 text-center'>
         {% if form.category.name %}
          <h1>Pautas sobre 
              <span class="category-name">
@@ -33,7 +33,7 @@
 </div>
 
 <div class="row">
-  <div class="col-8 offset-md-2">
+  <div class="col-lg-10 offset-md-1">
     {% block formulario %}
     <form method="post"  enctype="multipart/form-data" action="{% url 'complete_pautas' %}">
       {% csrf_token %}
@@ -47,10 +47,19 @@
         {% if field.name == 'categories' %}
 
         <!-- Title -->
+<<<<<<< HEAD
+        <div class="col-lg-12 text-center">
+          <span class="question-label">Agora escolha 
+            <strong>3</strong> 
+            temas que são prioridades na sua candidatura!
+          </span>  
+        </div>  
+=======
         <span class="question-label">Agora escolha 
           <strong class='numero_de_temas'>3 temas</strong> 
            que são prioridades na sua candidatura!
         </span>    
+>>>>>>> 85f462e4e0b22fd3254a75191b63a7cfb5e0d218
         <!-- Title -->
 
         <p class="description">{{field.help_text|safe}}</p>
@@ -75,11 +84,11 @@
       </section>
       {% endfor %}
 
-      <div class="col-lg-12 opcoes">
+      <div class="row opcoes">
         <a href="/" onclick="window.history.back()" />
           < Voltar
         </a>
-        <input type="submit" value="Continuar" class="btn btn-verde" />
+        <input type="submit" value="Continuar" class="btn btn-azul" />
       </div>
 
       {% endblock formulario %}

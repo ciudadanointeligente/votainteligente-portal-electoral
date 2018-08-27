@@ -19,6 +19,8 @@ from .forms import UpdateAreaForm, VoluntarioCandidateHuntForm, AddCandidacyCont
 from .models import VolunteerProfile
 from django.http import HttpResponseNotFound, HttpResponseRedirect
 from django.conf import settings
+from django.shortcuts import render
+
 
 class VolunteerIndexView(StaffuserRequiredMixin, FilterView):
     model = Candidate
@@ -29,7 +31,7 @@ class VolunteerIndexView(StaffuserRequiredMixin, FilterView):
 
     def dispatch(self, *args, **kwargs):
         if not settings.MEREPRESENTA_VOLUNTARIOS_ON:
-            return HttpResponseNotFound()
+            return render(self.request, 'voluntarios/voluntarios-inativo.html', {})
         return super(VolunteerIndexView, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
@@ -49,13 +51,16 @@ class VolunteerIndexView(StaffuserRequiredMixin, FilterView):
             
         return qs
 
-voluntarios_login_template_name = 'voluntarios/voluntarios-inativo.html'
-if settings.MEREPRESENTA_VOLUNTARIOS_ON:
-    voluntarios_login_template_name = 'voluntarios/login.html'
+# voluntarios_login_template_name = 'voluntarios/voluntarios-inativo.html'
+# if settings.MEREPRESENTA_VOLUNTARIOS_ON:
+#     voluntarios_login_template_name = 'voluntarios/login.html'
 class VolunteerLoginView(TemplateView):
-    template_name = voluntarios_login_template_name
+    template_name = 'voluntarios/login.html'
 
     def dispatch(self, *args, **kwargs):
+        if not settings.MEREPRESENTA_VOLUNTARIOS_ON:
+            context = self.get_context_data()
+            return render(self.request, 'voluntarios/voluntarios-inativo.html', context)
         if self.request.user.is_authenticated:
             if not self.request.user.is_staff:
                 return HttpResponseNotFound()

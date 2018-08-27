@@ -436,3 +436,27 @@ footer {
   }
 
 }
+
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.25rem;
+  justify-content: right;
+
+  a {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}

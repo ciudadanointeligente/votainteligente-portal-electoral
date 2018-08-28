@@ -38,8 +38,9 @@ class ProposalsGetterBase(AreaDeterminerMixin):
         has_parent = True
         elections = []
         while has_parent:
-            if proposals_container_element.elections.all():
-                elections += list(proposals_container_element.elections.all())
+            print proposals_container_element.elections.filter(candidates__commitments__isnull=False).distinct()
+            if proposals_container_element.elections.filter(candidates__commitments__isnull=False).distinct():
+                elections += list(proposals_container_element.elections.filter(candidates__commitments__isnull=False).distinct())
             if not proposals_container_element.parent:
                 has_parent = False
             else:

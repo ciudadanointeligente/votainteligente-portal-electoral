@@ -134,29 +134,13 @@ mesmas questões que você! Vamos? www.merepresenta.org.br
       </p>
     </div>
       <div class="buscar">
-        {% if form.candidate.original_email %}
-        <h3>2. Encontramos esse email no TSE:</h3>
-        <p>
-          {{form.candidate.original_email}}
-            {% if form.candidate.email_repeated %}
-              , mas o e-mail aparece para várias pessoas
-            {% endif %}
-          {% else %}
-            O TSE não entregou e-mail
-          {% endif %}
-        </p>
+        <h3>2. Agora vamos procurar um email no google:</h3>
       </div>
       <div id='pesquisaDeMailsA'  class="resultado resultado-1 bottom collapse show">
-        <h3>Você acha que a/o candidata/o tem acesso a esse email?</h3>
         <div class="options">
-
-          
-          <btn  id='tse_mail_correct' class="btn btn-azul option-encontrei">
-            Sim, eu acho!
-          </btn>
           <a id='tse_mail_not_correct' class="btn btn-gris option-nao-encontrei" target="_blank"
             href="https://www.google.com/search?q={{form.candidate.name}} {{form.candidate.partido.initials}}">
-            Não, tá estranho. Google ativar! 
+            Bora Google!
           </a>
         </div>
 

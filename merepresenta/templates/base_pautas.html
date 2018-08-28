@@ -24,12 +24,19 @@
              <span class="category-name">
                  {{form.category.name}}
             </span>
+
         </h1>
         
          {% else %}
          <h1>Quais desses temas são prioritários na sua candidatura?</h1>
          {% endif %}
+
     </div>
+    <div class='col-lg-10 offset-md-1 text-center'>
+        <h3>{{wizard.steps.step1}} de {{wizard.steps.count}} passos</h3>
+
+    </div>
+  
 </div>
 
 <div class="row">

@@ -52,7 +52,15 @@
 
       <!-- Manter contato -->
       {% for field in form %}
-        {% if field.name == 'email' %}
+      {% if field.name == 'gender' %}
+          <span class="question">
+            {% bootstrap_label field.label %}
+            <i class="fas fa-info-circle" 
+          data-toggle="tooltip" 
+          data-placement="right" 
+          title="Nós respeitamos sua identidade de gênero aqui na plataforma, mesmo que o cadastro esteja errado no TSE."></i>
+          </span>
+        {% elif field.name == 'email' %}
           <span class="question">
             {% bootstrap_label field.label %}
           </span>

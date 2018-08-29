@@ -93,7 +93,7 @@ class AddMailToCandidateView(StaffuserRequiredMixin, FormView):
         return reverse_lazy('obrigado')
 
     def dispatch(self, *args, **kwargs):
-        if not settings.MEREPRESENTA_VOLUNTARIOS_ON:
+        if not settings.MEREPRESENTA_VOLUNTARIOS_ON  and not self.request.user.is_staff:
             return HttpResponseRedirect('/')
         _id = kwargs['id']
         self.candidate = get_object_or_404(Candidate, id=_id)

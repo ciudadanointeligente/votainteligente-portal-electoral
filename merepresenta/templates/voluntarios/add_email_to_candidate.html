@@ -22,11 +22,9 @@
         Obrigada. Aqui mostramos o que o TSE disse sobre a/o 
         <span>{{form.candidate}}</span>!
         Por favor, siga o passo a passo para completar as informações.
-        <a href="https://wa.me/+5511968431613">
-          Precisa de ajuda? Manda um zap! <i class="fab fa-whatsapp"></i> +55(11)96843-1613
-        </a>
       </h2>
     </div>
+        <img src="{% static 'img/whatsap.png' %}" class='img-fluid' style="max-height:80px;">
   </div>
 
   <div class="col-lg-12 grid">
@@ -125,26 +123,30 @@ mesmas questões que você! Vamos? www.merepresenta.org.br
     <div id="mandei" class="mandei collapse etapa-concluida">
       <p>
         <i class="fas fa-check-circle"></i>
-        Boa, agora vamos pro próximo passo!
+        O email cadastrado no TSE é genérico ou voltou.
+Precisamos encontrar outro jeito de falar com a/o candidata/o.
+
       </p>
     </div>
 
     <div id="nao-encontrei-1" class="etapa-nao-concluida collapse bottom">
       <p>
         <i class="fas fa-check-circle"></i>
-        Não achou? Sem problemas! Vamos pro próximo passo, vai que a gente 
-        acha alguma coisa!
+        O email cadastrado no TSE é genérico ou voltou.
+Precisamos encontrar outro jeito de falar com a/o candidata/o.
+
       </p>
     </div>
       <div class="buscar">
-        <h3>2. Agora vamos procurar um email no google:</h3>
-      </div>
-      <div id='pesquisaDeMailsA'  class="resultado resultado-1 bottom collapse show">
-        <div class="options">
+        <h3>
           <a id='tse_mail_not_correct' class="btn btn-gris option-nao-encontrei" target="_blank"
             href="https://www.google.com/search?q={{form.candidate.name}} {{form.candidate.partido.initials}}">
             Bora Google!
           </a>
+          </h3>
+      </div>
+      <div id='pesquisaDeMailsA'  class="resultado resultado-1 bottom collapse show">
+        <div class="options">
         </div>
 
       </div>
@@ -201,15 +203,11 @@ mesmas questões que você! Vamos? www.merepresenta.org.br
   </div>
   
   <div class="col-lg-6">
-    <h3>Exemplos de email duvidosos:</h3>
+    <h3>Exemplos de onde você pode achar esse email</h3>
     <ul>
-      <li>contato@partido.com.br</li>
+      <li>Site da campanha</li>
       <li>email@email.com.br</li>
-      <li>nomedocandidato.adv@gmail.com</li>
-      <li>eleicoes2018@advogadofulano.com</li>
-      <li>e-mail com nomes de outras pessoas</li>
-      <li>e-mail com nome ou domínio adv ou advogado</li>
-      <li>e-mail cheio de letras e números desconexos</li>
+      <li>Seja criativa/o. A internet tá aqui pra isso. ;)</li>
     </ul>
     <div class="etapa-concluida bottom collapse" id='etapa-concluida'>
           

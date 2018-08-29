@@ -46,7 +46,15 @@ class ForVolunteersManager(models.Manager):
                         output_field=PositiveSmallIntegerField())
 
                 )
-        qs = qs.annotate(desprivilegio=F('is_women') + F('is_non_white'))
+        qs = qs.annotate(bad_email=Case(
+                        When(email_repeated=True, then=Value(1)),
+                        When(original_email__isnull=True, then=Value(1)),
+                        When(original_email="", then=Value(1)),
+                        default=Value(0),
+                        output_field=PositiveSmallIntegerField())
+
+                )
+        qs = qs.annotate(desprivilegio=F('is_women') + F('is_non_white') + F('bad_email'))
         return qs
 
 class LimitCandidatesForVolunteers(ForVolunteersManager):

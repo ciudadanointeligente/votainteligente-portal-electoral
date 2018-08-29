@@ -25,7 +25,7 @@
 
 {% block mainelection %}
 <div class="container text-center" itemscope itemtype="http://schema.org/Person">
-  <h1 itemprop="name" class="candidate-name">{{ candidate.name }}</h1>
+  <h1 itemprop="name" class="candidate-name">{{ candidate.name }} - {% get_personal_data candidate=candidate personal_data='Numero' as numero %} {{numero.value}}</h1>
 
   <h3>{% get_personal_data candidate=candidate personal_data='lema' as lema %}{{lema.value}}</h3>
   {% if user|is_candidate %}
@@ -52,6 +52,9 @@
             {% endif %}
             {% if config.SHOW_RIBBON_IN_CANDIDATE and not candidate.commitments.count %}<div class="ribbon label label-danger">Esse candidato ainda não se compromete com propostas</div>{% endif %}
           </div>
+          <h2>
+            {% get_personal_data candidate=candidate personal_data='Numero' as numero %} {{numero.value}}
+          </h2>
       </div>
       <div id="info-candidato" class="col-xs-12 col-sm-7 col-md-7">
         <table class="table">

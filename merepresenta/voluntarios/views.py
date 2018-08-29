@@ -30,7 +30,7 @@ class VolunteerIndexView(StaffuserRequiredMixin, FilterView):
     filterset_class = CandidateFilter
 
     def dispatch(self, *args, **kwargs):
-        if not settings.MEREPRESENTA_VOLUNTARIOS_ON:
+        if not settings.MEREPRESENTA_VOLUNTARIOS_ON and not self.request.user.is_staff:
             return render(self.request, 'voluntarios/voluntarios-inativo.html', {})
         return super(VolunteerIndexView, self).dispatch(*args, **kwargs)
 

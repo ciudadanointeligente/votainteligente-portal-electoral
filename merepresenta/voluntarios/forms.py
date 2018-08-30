@@ -55,14 +55,17 @@ class VoluntarioCandidateHuntForm(forms.Form, VolunteerGetsCandidateEmailLogMixi
         context = {
             'candidate': self.candidate.name
         }
+        self.contact = CandidacyContact.objects.create(candidate=self.candidate)
         if self.cleaned_data['tse_email']:
-            CandidacyContact.objects.create(mail=self.cleaned_data['tse_email'], candidate=self.candidate)
+            self.contact.mail = self.cleaned_data['tse_email']
+            
             send_mail(context, 'contato_novo_com_candidato', to=[self.candidate.original_email],)
 
         if self.cleaned_data['other_email']:
-            CandidacyContact.objects.create(mail=self.cleaned_data['other_email'], candidate=self.candidate)
+            self.contact.mail = self.cleaned_data['other_email']
             send_mail(context, 'contato_novo_com_candidato', to=[self.cleaned_data['other_email']],)
 
-        if self.cleaned_data['facebook']:
-            CandidacyContact.objects.create(candidate=self.candidate)
+        # if self.cleaned_data['facebook']:
+        #     CandidacyContact.objects.create(candidate=self.candidate)
+        self.contact.save()
 

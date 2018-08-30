@@ -36,7 +36,6 @@ NON_WHITE_KEY = {"possible_values": ["PARDA", "PRETA"]}
 class ForVolunteersManager(models.Manager):
     def get_queryset(self):
         qs = super(ForVolunteersManager, self).get_queryset()
-        qs = qs.exclude(candidacy__isnull=False)
         qs = qs.annotate(
                         is_women=Case(When(gender='F', then=Value(1)),
                         default=Value(0),
@@ -64,6 +63,7 @@ class LimitCandidatesForVolunteers(ForVolunteersManager):
         qs = qs.exclude(contacts__isnull=False)
         qs = qs.exclude(is_ghost=True)
         qs = qs.exclude(facebook_contacted=True)
+        qs = qs.exclude(candidacy__isnull=False)
         minutes = 30
         from_time = timezone.now() - datetime.timedelta(minutes=minutes)
         qs = qs.exclude(volunteerincandidate__created__gte=from_time)

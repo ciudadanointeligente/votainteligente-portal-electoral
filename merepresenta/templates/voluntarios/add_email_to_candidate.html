@@ -88,7 +88,7 @@
           você encontrou no Facebook ;)
         </p>
 <textarea 
-id="invitation-fb-{{form.candidate.id}}" 
+id="invitation-fb" 
 class="bottom"
 rows="10" 
 cols="45">
@@ -102,6 +102,7 @@ mesmas questões que você! Vamos? www.merepresenta.org.br
 </textarea>
         
         <a id='encontrei' class="btn btn-azul">Mandei! E agora?</a>
+        <a id='copiar_textarea' class="btn btn-roxo">Copiar</a>
     </div>
     </div>
   </div>
@@ -257,7 +258,12 @@ var pronto = function(){
   $('#add_email_to_candidate').submit();
 };
 
+
   $(function(){
+    $('#copiar_textarea').click(function(){
+      $("#invitation-fb").select();
+      document.execCommand('copy');
+    })
     $('#send_other_email').click(function(){
       var f = $('#mc-embedded-subscribe-form');
       var url = f.attr('action');

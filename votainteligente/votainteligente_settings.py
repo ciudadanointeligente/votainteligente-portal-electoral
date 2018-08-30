@@ -27,7 +27,7 @@ AREAS_THAT_SHOULD_BE_REDIRECTING_TO_THEIR_PARENTS = ['comuna']
 SECOND_ROUND_ELECTION = None
 PRIORITY_CANDIDATES = []
 MEREPRESENTA_SITE_ID = 2
-MEREPRESENTA_VOLUNTARIOS_ON = False
+MEREPRESENTA_VOLUNTARIOS_ON = True
 # Candidatos en la parte de /candidaturas aparecen 
 LIST_ONLY_COMMITED_CANDIDATES = False
 # Colores para compartir imagen de una propuesta

@@ -158,8 +158,11 @@ class MediaNaranjaWizardFormBase(SessionWizardView):
         for election in elections:
             calculator = self.calculator_class(election, positions, proposals, **self.calculator_extra_kwargs)
             results.append(calculator.get_result())
+        if settings.ORGANIZATIONS_IN_12_RESULT:
+            organization_templates = self.get_organization_templates(proposals)
+        else:
+            organization_templates = []
 
-        organization_templates = self.get_organization_templates(proposals)
         return render(self.request, self.done_template_name, {
             'results': results,
             'organizations': organization_templates

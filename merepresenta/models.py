@@ -36,6 +36,7 @@ NON_WHITE_KEY = {"possible_values": ["PARDA", "PRETA"]}
 class ForVolunteersManager(models.Manager):
     def get_queryset(self):
         qs = super(ForVolunteersManager, self).get_queryset()
+        qs = qs.exclude(candidacy__isnull=False)
         qs = qs.annotate(
                         is_women=Case(When(gender='F', then=Value(1)),
                         default=Value(0),

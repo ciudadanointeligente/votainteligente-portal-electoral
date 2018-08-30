@@ -94,3 +94,14 @@ class CandidateSearchForm(VolunteersTestCaseBase):
         form.save()
         c.refresh_from_db()
         self.assertTrue(c.contacts.all())
+
+    def test_if_nothing_found_then_ghost(self):
+        data = {'facebook': False,
+                'tse_email': False,
+                'other_email': None}
+        c = Candidate.objects.get(id=5)
+        form = VoluntarioCandidateHuntForm(data=data, candidate=c, volunteer=self.volunteer)
+        self.assertTrue(form.is_valid())
+        form.save()
+        c.refresh_from_db()
+        self.assertTrue(c.is_ghost)

@@ -65,7 +65,8 @@ class VoluntarioCandidateHuntForm(forms.Form, VolunteerGetsCandidateEmailLogMixi
             self.contact.mail = self.cleaned_data['other_email']
             send_mail(context, 'contato_novo_com_candidato', to=[self.cleaned_data['other_email']],)
 
-        # if self.cleaned_data['facebook']:
-        #     CandidacyContact.objects.create(candidate=self.candidate)
+        if not self.cleaned_data['tse_email'] and not self.cleaned_data['other_email']:
+            self.candidate.is_ghost=True
+            self.candidate.save()
         self.contact.save()
 

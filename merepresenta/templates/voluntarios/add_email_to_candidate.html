@@ -265,6 +265,7 @@ var pronto = function(){
       document.execCommand('copy');
     })
     $('#send_other_email').click(function(){
+      $('#etapa-concluida').collapse('show');
       var f = $('#mc-embedded-subscribe-form');
       var url = f.attr('action');
 
@@ -282,7 +283,6 @@ var pronto = function(){
         success     : function(data) {
             if (data.result != "success") {
               console.log(data);
-              $('#etapa-concluida').collapse('show');
             } else {
                 // It worked, so hide form and display thank-you message.
             }

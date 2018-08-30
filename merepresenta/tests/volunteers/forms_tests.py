@@ -4,7 +4,7 @@ from merepresenta.voluntarios.forms import UpdateAreaForm, VoluntarioCandidateHu
 from elections.models import Area
 from django.contrib.auth.models import User
 from merepresenta.voluntarios.models import VolunteerProfile
-from merepresenta.models import Candidate, NON_WHITE_KEY, NON_MALE_KEY
+from merepresenta.models import Candidate, NON_WHITE_KEY, NON_MALE_KEY, VolunteerGetsCandidateEmailLog
 from django.conf import settings
 from django.core import mail
 from merepresenta.tests.volunteers import VolunteersTestCaseBase
@@ -105,3 +105,5 @@ class CandidateSearchForm(VolunteersTestCaseBase):
         form.save()
         c.refresh_from_db()
         self.assertTrue(c.is_ghost)
+        log = VolunteerGetsCandidateEmailLog.objects.get(volunteer=self.volunteer, candidate=c)
+        self.assertTrue(log)

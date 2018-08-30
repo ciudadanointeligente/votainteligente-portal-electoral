@@ -69,4 +69,5 @@ class VoluntarioCandidateHuntForm(forms.Form, VolunteerGetsCandidateEmailLogMixi
             self.candidate.is_ghost=True
             self.candidate.save()
         self.contact.save()
+        VolunteerGetsCandidateEmailLog.objects.get_or_create(volunteer=self.volunteer, candidate=self.candidate)
 

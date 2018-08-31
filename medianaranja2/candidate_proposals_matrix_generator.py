@@ -33,7 +33,7 @@ class CandidateCommitmentsMatrixGenerator(object):
     def _set_proposal_index_in_matrix(self, proposal, index):
         self.proposal_index_in_matrix[proposal.id] = index
 
-    def set_cache(self, time=5000):
+    def set_cache(self, time=7200):
         m = self._get_matrix_with_all_proposals()
         cache.set(self.cache_key, m, time)
         cache.set('candidate_index_in_matrix', self.candidate_index_in_matrix)
@@ -43,7 +43,6 @@ class CandidateCommitmentsMatrixGenerator(object):
     def get_matrix_with_all_proposals(self):
         if cache.get(self.cache_key) is not None:
             return cache.get(self.cache_key)
-
         return self.set_cache()
 
     def _get_matrix_with_all_proposals(self):

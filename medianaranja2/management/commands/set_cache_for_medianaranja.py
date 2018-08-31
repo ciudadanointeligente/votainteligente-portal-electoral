@@ -11,7 +11,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         matrix_generator = CandidateCommitmentsMatrixGenerator()
         time = options['time'][0]
-        print time
         m = matrix_generator.set_cache(time)
         shape = m.shape
         self.stdout.write("Saved matrix of dimensions (%d, %d) for %d miliseconds" % (shape[0], shape[1], time))

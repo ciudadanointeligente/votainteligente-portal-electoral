@@ -8,7 +8,7 @@ from medianaranja2.candidate_proposals_matrix_generator import CandidateCommitme
 class CandidateGetterFromElectionMixin(object):
     @classmethod
     def get_candidates_from_election(cls, election):
-        return election.candidates.order_by('id')
+        return election.candidates.order_by('id').only('id')
 
     @classmethod
     def get_candidates_from_election_as_list(cls, election):

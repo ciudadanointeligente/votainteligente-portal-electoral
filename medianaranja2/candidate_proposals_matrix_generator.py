@@ -7,6 +7,7 @@ from popular_proposal.models import PopularProposal
 
 class CandidateCommitmentsMatrixGenerator(object):
     def __init__(self):
+        self.cache_key = 'matrix_proposals_candidates'
         self.candidate_index_in_matrix = {}
         self.proposal_index_in_matrix = {}
 
@@ -32,16 +33,18 @@ class CandidateCommitmentsMatrixGenerator(object):
     def _set_proposal_index_in_matrix(self, proposal, index):
         self.proposal_index_in_matrix[proposal.id] = index
 
-    def get_matrix_with_all_proposals(self):
-        cache_key = 'matrix_proposals_candidates'
-        if cache.get(cache_key) is not None:
-            m = cache.get(cache_key)
-        else:
-            m = self._get_matrix_with_all_proposals()
-            cache.set(cache_key, m)
-            cache.set('candidate_index_in_matrix', self.candidate_index_in_matrix)
-            cache.set('proposal_index_in_matrix', self.proposal_index_in_matrix)
+    def set_cache(self, time=5000):
+        m = self._get_matrix_with_all_proposals()
+        cache.set(self.cache_key, m, time)
+        cache.set('candidate_index_in_matrix', self.candidate_index_in_matrix)
+        cache.set('proposal_index_in_matrix', self.proposal_index_in_matrix)
         return m
+
+    def get_matrix_with_all_proposals(self):
+        if cache.get(self.cache_key) is not None:
+            return cache.get(self.cache_key)
+
+        return self.set_cache()
 
     def _get_matrix_with_all_proposals(self):
         _C = []

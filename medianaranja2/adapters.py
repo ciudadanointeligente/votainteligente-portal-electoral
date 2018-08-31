@@ -1,12 +1,14 @@
-from numpy import matrix, ones
+from numpy import matrix, ones, zeros
 from constance import config
 from django.core.cache import cache
+from django.conf import settings
+from medianaranja2.candidate_proposals_matrix_generator import CandidateCommitmentsMatrixGenerator
 
 
 class CandidateGetterFromElectionMixin(object):
     @classmethod
     def get_candidates_from_election(cls, election):
-        return election.candidates.order_by('id')
+        return election.candidates.order_by('id').only('id')
 
     @classmethod
     def get_candidates_from_election_as_list(cls, election):
@@ -90,15 +92,25 @@ class CommitmentsAdapter(CandidateGetterFromElectionMixin):
         self.candidates = CommitmentsAdapter.get_candidates_from_election_as_list(election)
         self.proposals = proposals
         self.ones = ones((len(self.proposals),1))
+        matrix_generator = CandidateCommitmentsMatrixGenerator()
+        self.all_candidates_and_proposals = matrix_generator.get_matrix_with_all_proposals()
+        self.candidate_index_in_matrix = matrix_generator._get_candidate_index_in_matrix()
+        self.proposal_index_in_matrix = matrix_generator._get_proposal_index_in_matrix()
 
     def get_commitments_matrix(self):
         _C = []
         for candidate in self.candidates:
             vector = []
+            try:
+                candidate_index = self.candidate_index_in_matrix[candidate.id]
+            except KeyError:
+                _C.append(zeros(len(self.proposals)))
+                continue
             for p in self.proposals:
-                if candidate.commitments.filter(proposal=p, commited=True).exists():
-                    vector.append(1)
-                else:
-                    vector.append(0)
+                proposal_index = self.proposal_index_in_matrix[p.id]
+                value = self.all_candidates_and_proposals[candidate_index, proposal_index]
+                vector.append(value)
             _C.append(vector)
         return matrix(_C)
+
+    

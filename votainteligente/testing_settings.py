@@ -4,6 +4,7 @@ LOCAL_ELASTICSEARCH = True
 CELERY_ALWAYS_EAGER = True
 TRAVIS = os.environ.get('TRAVIS')
 CACHES={'default': {'BACKEND': 'django.core.cache.backends.dummy.DummyCache'}}
+MEREPRESENTA_VOLUNTARIOS_ON = True
 
 if TRAVIS:
     DB = os.environ.get('DB')

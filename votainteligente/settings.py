@@ -175,6 +175,8 @@ CONSTANCE_CONFIG = {
     'EMAIL_DOMAIN': ("votainteligente.cl", 'Nombre dominio'),
     'MAX_AMOUNT_OF_MAILS_TO_CANDIDATE': (3, 'Numero maximo de envios de emails a candidatos'),
     'TWITTER_TOKEN': ('', 'Twitter token'),
+    'MAILCHIMP_U': ('perrito', 'MAILCHIMP u la partecita u del mailchimp'),
+    'MAILCHIMP_ID': ('gatito', 'MAILCHIMP u la partecita u del mailchimp'),
     'MARKED_AREAS': ("", u'Areas que tienen alguna marca'),
     'CANDIDATE_ABSOLUTE_URL_USING_AREA': (True, u'para ver el perfil de los candidatos utilziamos el territorio o utilizamos la elección a la que pertenece?'),
     'TWITTER_TOKEN_KEY': ('', 'Twitter token key'),

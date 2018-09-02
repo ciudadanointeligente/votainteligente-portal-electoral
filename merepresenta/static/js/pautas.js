@@ -19,6 +19,19 @@ $(function(){
 });
 
 $(function(){
+    $('form.pautas_candidatos').submit(function(event){
+      let checkboxes = $('form input[type=checkbox]');
+      if (checkboxes.length > 0){
+        if (checkboxes.filter(":checked").length !== 3){
+          $('.numero_de_temas').effect('highlight',{'color': '#EF476F'},3000); 
+          return false;  
+        }
+        
+      }
+    });
+
+});
+$(function(){
 
     let $element = $('.radio input[type="radio"]')
     let $checked = $('.radio input[type="radio"]:checked')

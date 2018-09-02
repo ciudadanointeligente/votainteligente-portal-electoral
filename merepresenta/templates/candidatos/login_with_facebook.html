@@ -31,7 +31,11 @@
           href="{% url 'candidato_social_begin' 'facebook' candidate.slug %}">
             Conectar com o Facebook e continuar
         </a>
-        <a class="small-link" href="#">Por que Facebook?</a>
+        <a class="small-link" href="#">Por que Facebook?<i class="fas fa-info-circle" 
+          data-toggle="tooltip" 
+          data-placement="right" 
+          title="Nosso cadastro é conectado com seu perfil pessoal para evitar que outras pessoas respondam em seu nome.
+"></i></a>
       </div>
     </div>
   </div>
@@ -69,6 +73,7 @@
         }
       });
     });
+           $(function () {$('[data-toggle="tooltip"]').tooltip()})
     </script>
 
 {% endblock scripts %}

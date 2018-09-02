@@ -6,6 +6,15 @@ $break-large: 992px;
 $break-x-large: 1200px;
 
 .navbar {
+  .navbar-brand {
+    width: 300px;
+  }
+
+  .nav-link {
+    padding: 10px;
+    margin-right: 10px;
+  }
+
   @media screen and (max-width: $break-large) {
     flex-direction: column;
   }

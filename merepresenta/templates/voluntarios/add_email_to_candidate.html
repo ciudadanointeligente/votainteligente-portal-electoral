@@ -173,6 +173,38 @@ Precisamos encontrar outro jeito de falar com a/o candidata/o.
             Não achei nada mesmo :(
           </a>
         </div>
+        <script type="text/javascript">
+        $(function(){
+          $("#copiar-invitation-fb-{{form.candidate.id}}").click(function(){
+                $("#invitation-fb-{{form.candidate.id}}").select();
+                document.execCommand('copy');
+            });
+        });
+        </script>
+        <div class="options">
+          <button type="button" 
+            id="copiar-invitation-fb-{{form.candidate.id}}" 
+            class="btn btn-secondary">
+              <i class="fas fa-copy"></i> Copiar
+          </button>
+          <a class="btn btn-primary card-link" 
+            target="_blank" 
+            href="https://www.facebook.com/search/pages/?q={{form.candidate.name}} {{form.candidate.partido.initials}}">
+            <i class="fab fa-facebook"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <a class="btn btn-azul card-link" 
+          target="_blank" 
+          href="{% url 'facebook_contacted' id=form.candidate.id %}">
+          CONSEGUI!
+        </a>
+        <a class="btn btn-gris" 
+          href="{% url 'could_not_find_candidate' id=form.candidate.id %}">
+          Não encontrei
+        </a>
       </div>
       <div id='new_mail' class="resultado resultado-3 bottom collapse">
         <h3>Cole aqui o email que você encontrou que a gente manda a mensagem!</h3>

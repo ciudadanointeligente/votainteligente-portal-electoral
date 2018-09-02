@@ -62,4 +62,7 @@ urlpatterns = [
     url(r'^candidatos/?', include('backend_candidate.urls', namespace='backend_candidate')),
     url(r'^accounts/?', include('registration.backends.hmac.urls')),
     url(r'^voluntarios/', include('merepresenta.voluntarios.urls')),
+    url(r'^faq/?$',
+    TemplateView.as_view(template_name="merepresenta/faq.html"),
+    name='faq'),
 ]

@@ -9,15 +9,16 @@
 <html lang="pt-br">
   <head>
     <meta charset="utf-8">
-    <meta name="og:description" content="Responda ao questionário e encontre candidaturas que respeitam e promovem Direitos Humanos na sua cidade.">
-    <meta name="og:image" content="https://s3.amazonaws.com/hub-central/uploads/1473183975_thumb_Meme_Minha_Sampa_1024.jpg">
-    <meta name="og:title" content="Encontre candidaturas a vereador/a comprometidas com Direitos Humanos!{% block title %}- Portada{% endblock title %}">
+    <meta name="og:description" content="Diversidade na política brasileira! Juntando eleitores e candidaturas engajadas.">
+    <meta name="og:image" content="{% static 'img/compartilhar.png' %}">
+    <meta name="og:title" content="Um espaço político onde seu ponto de vista importa. Vem ver!{% block title %}- Portada{% endblock title %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" type="image/png" sizes="16x16" href="/merepresenta/static/img/icon.png">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="{% sass_src 'merep_sass/main.scss' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}" type="text/css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
     {% block extra_head %}
     {% endblock extra_head %}
@@ -75,11 +76,17 @@
           </div>
 
           <div class="col-lg-2">
-              <h4>Financiadora</h4>
+              <h4>Financiamento</h4>
               <ul class="list-unstyled">
                 <li>
-                  <a href="https://altec.lat/es/inicio/" class="apioam" alt='Altec'>
-                    <img src="{% static 'img/logos/financiadora/01.png' %}">
+                  <a target="_blank" href="https://altec.lat/es/inicio/" class="apioam" alt='Altec'>
+                    <img src="{% static 'img/logos/financiadora/01.png' %}" class="img-fluid">
+                  </a>
+                </li>
+                <li>Uma iniciativa de:</li>
+                <li>
+                  <a target="_blank" href="https://altec.lat/es/inicio/" class="apioam" alt='Altec'>
+                    <img src="{% static 'img/logos/financiadora/02.png' %}" class="img-fluid">
                   </a>
                 </li>
               </ul>
@@ -90,20 +97,20 @@
             <h4>Apoio</h4>
             <ul class="list-unstyled">
               <li>
-                <a href="http://www.saiba-mais.com/" alt='Saiba+'>
+                <a target="_blank" href="http://www.saiba-mais.com/" alt='Saiba+'>
                   <img src="{% static 'img/logos/apoiam/01.png' %}">
                 </a>
-                <a href="https://medium.com/@casa1" alt='Casa 1'>
+                <a target="_blank" href="https://medium.com/@casa1" alt='Casa 1'>
                   <img src="{% static 'img/logos/apoiam/02.png' %}">
                 </a>
                 
-                <a href="https://www.mattosfilho.com.br" alt='Mattos Filho'>
+                <a target="_blank" href="https://www.mattosfilho.com.br" alt='Mattos Filho'>
                   <img src="{% static 'img/logos/apoiam/03.png' %}">
                 </a>
-                <a href="https://www.silveiraandrade.adv.br" alt='Silveira Andrade Advogados'>
+                <a target="_blank" href="https://www.silveiraandrade.adv.br" alt='Silveira Andrade Advogados'>
                   <img src="{% static 'img/logos/apoiam/04.png' %}">
                 </a>
-                <a href="http://www.tg.adv.br/" alt='Tini e Guimarães Advogados'>
+                <a target="_blank" href="http://www.tg.adv.br/" alt='Tini e Guimarães Advogados'>
                   <img src="{% static 'img/logos/apoiam/05.png' %}">
                 </a>
               </li>
@@ -125,13 +132,13 @@
           <nav class="nav-links">
             <ul class="list-unstyled">
               <li>
-                <a href="#">Contato</a>
+                <a href="mailto:contato@merepresenta.org.br">Contato</a>
               </li>
               <li>
-                <a href="#">Perguntas Frequentes</a>
+                <a target="_blank" href="https://docs.google.com/document/d/1FR41a_ZXP8FeVyH99z_EGXyTKKZpL-MQpMyPwflnLsw/edit">Perguntas Frequentes</a>
               </li>
               <li>
-                <a href="#">Termos de Uso</a>
+                <a href="{% url 'termos' %}">Termos de Uso</a>
               </li>
             </ul>
           </nav>
@@ -144,7 +151,9 @@
     <script src="{% static 'js/analytics.js' %}"></script>
     <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/pautas.js' %}"></script>
     <script src="{% static 'js/merepresenta.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.js' %}"></script>
     {% block scripts %}
     {% endblock scripts %}
 

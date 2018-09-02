@@ -27,6 +27,7 @@ AREAS_THAT_SHOULD_BE_REDIRECTING_TO_THEIR_PARENTS = ['comuna']
 SECOND_ROUND_ELECTION = None
 PRIORITY_CANDIDATES = []
 MEREPRESENTA_SITE_ID = 2
+MEREPRESENTA_VOLUNTARIOS_ON = True
 # Candidatos en la parte de /candidaturas aparecen 
 LIST_ONLY_COMMITED_CANDIDATES = False
 # Colores para compartir imagen de una propuesta
@@ -36,4 +37,5 @@ MEDIA_NARANJA_QUESTIONS_ENABLED=True
 # Esto sólo funciona para Brasil y para cargar los datos
 #Desde El TSE
 TSE_IMPORTER_CONF = None
+ORGANIZATIONS_IN_12_RESULT = True
 # TSE_DATE_FORMAT = "%Y/%m/%d"

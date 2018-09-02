@@ -30,11 +30,11 @@
               Qual sua data de nascimento?
             </label>
             <input 
-              type="date" 
               id="nascimento-id" 
               name="nascimento"
+              placeholder="dd/mm/YYYY" 
               class="form-control"
-              value="dd/mm/YYYY"
+              autocomplete="off"
               required="True" />
             <small id="helpNascimento" class="form-text text-muted"></small>
           </div>
@@ -49,7 +49,7 @@
                 class="form-control" 
                 name='cpf' 
                 aria-describedby="cpfhelp" 
-                placeholder="000.000.000-00" 
+                placeholder="00000000000" 
                 required="True">
               <small id="cpfhelp" class="form-text text-muted"></small>
           </div>
@@ -59,16 +59,25 @@
               <ul class="list-unstyled">
                 <li>
                   <i class="fas fa-check"></i>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Dados preenchidos aqui poderão ser pesquisados durante e após o período eleitoral 
                 </li>
                 <li>
                   <i class="fas fa-check"></i>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Você é responsável pelas afirmações preenchidas
                 </li>
                 <li>
                   <i class="fas fa-check"></i>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Não fazemos pesquisa de intenção de votos, nem campanha eleitoral
                 </li>
+                <li>
+                  <i class="fas fa-check"></i>
+                  Você pode alterar suas respostas ao questionário até o dia 12/9
+                </li>
+                <li>
+                  <i class="fas fa-check"></i>
+                  Você pode apagar seus dados da plataforma quando quiser
+                </li>
+             
               </ul>
           </div>
 
@@ -77,7 +86,10 @@
               Continuar e concordar com os termos
             </button>
 
-            <a class="small-link" href="#">ver termos de uso completo</a>
+            <a class="small-link" 
+              href="{% url 'termos' %}">
+              ver termos de uso completo
+            </a>
           </div>
       </form>
     </div>
@@ -85,3 +97,17 @@
 </section>
 
 {% endblock content %}
+
+
+
+{% block scripts %}
+<script type="text/javascript">
+$(function(){
+    var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+    $("#nascimento-id").datepicker({
+        dateFormat: 'dd/mm/yyyy'
+    });
+});
+    
+</script>
+{% endblock scripts %}

@@ -36,7 +36,7 @@
         {{user.username}}</a>
       <div class="dropdown-menu">
         {% if user.is_authenticated and user.is_staff %}
-        <a href="{% url 'volunteer_index' %}" class="dropdown-item">Portal voluntário</a> 
+        <a href="{% url 'volunteer_index' %}" class="dropdown-item">Portal voluntária/o</a> 
         {% endif %}
         {% if user|is_candidate %}
           {% with user.candidacies.first as candidacy %}

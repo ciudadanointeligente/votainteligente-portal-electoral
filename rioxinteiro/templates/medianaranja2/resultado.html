@@ -1,0 +1,114 @@
+{% extends "medianaranja2/base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+{% load cache %}
+{% load bootstrap3 %}
+{% block title %}- {% trans "1/2 Naranja - Resultado" %}{% endblock title %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block paso %}
+<h1>{% trans "Resultados" %}</h1>
+{% endblock paso %}
+
+{% block questions %}
+<p>{% trans "Tus posturas de la media naranja son empujadas día a día por estas organizaciones. Te invitamos a conocerlas y sumarte a las causas que te interesan." %}</p>
+{% if organizations %}
+<div class="col-md-12">
+  <h3>{% trans "Organizaciones" %}</h3>
+    {% for o in organizations.all %}
+    {% cache 3600 organization_result o.id %}
+    <div class="col-md-4 text-center">
+        {% if o.logo_small %}
+        <a href="{{o.get_absolute_url}}"><img src="{{o.logo_small.url}}" alt="{{o.title}}" title="{{o.title}}" height="96" width="96" border="0" class="img-circle"></img></a>
+        {% endif %}
+        <ul class="list-unstyled list-inline">
+          {% if o.org_url %}
+          <li><a href="{{o.org_url}}"><i class="fa fa-globe" aria-label="Website"></i></a></li>
+          {% endif %}
+          {% if o.facebook %}
+          <li><a href="{{o.facebook}}"><i class="fa fa-facebook" aria-label="Facebook"></i></a></li>
+          {% endif %}
+          {% if o.twitter %}
+          <li><a href="{{o.twitter}}"><i class="fa fa-twitter" aria-label="Twitter"></i></a></li>
+          {% endif %}
+          {% if o.instagram %}
+          <li><a href="{{o.instagram}}"><i class="fa fa-instagram" aria-label="Instagram"></i></a></li>
+          {% endif %}
+          {% if o.rss_url %}
+          <li><a href="{{o.rss_url}}"><i class="fa fa-rss" aria-label="RSS"></i></a></li>
+          {% endif %}
+        </ul>
+      <div>
+        <form action="{% url 'medianaranja2:create_share_org' %}" method="POST"  target="_blank">
+          {% csrf_token %}
+          <input name='object_id' type="hidden" value="{{ o.id }}"/>
+
+          <input type="submit" value="{% trans "Comparte tu 1/2 Naranja" %}"  class="btn btn-default" />
+
+        </form>
+        </div>
+    </div>
+    {% endcache %}
+    {% endfor %}
+</div>
+<hr>
+{% endif %}
+
+
+{% for election_result in results %}
+<div class="col-md-12">
+  <h3>{% blocktrans with election_name=election_result.election.name %}
+    Tu media naranja política para {{election_name}} es
+  {% endblocktrans %}</h3>
+  {% for candidate_result in election_result.candidates %}
+  <div class="col-md-4 text-center">
+      <div class="text-center candidate-result-value">{{ candidate_result.value|floatformat }}%</div>
+      {% cache 3600 candidate_result_numero candidate_result.candidate.id %}
+      <a href="{{candidate_result.candidate.get_absolute_url}}">
+      {% if candidate_result.candidate.image %}
+        {% thumbnail candidate_result.candidate.image "100x100" crop="center" as im %}
+        <img src="{{ im.url }}" alt="{{candidate_result.candidate.name}}" height="96" width="96" border="0" class="img-circle">
+        {% endthumbnail %}
+      {% else %}
+        <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate_result.candidate.name}}" height="96" width="96" border="0" class="img-circle">
+      {% endif %}
+      </a>
+      <p class="candidate-result-name"><a href="{{candidate_result.candidate.get_absolute_url}}">{{candidate_result.candidate}}</a></p>
+        {% get_personal_data candidate=candidate_result.candidate personal_data='Numero' as numero %}
+        {% if numero.value %}
+        <div><span class="label-default">{{numero.value}}</span></div>
+        {% endif %}
+        {% endcache %}
+
+        <div>
+        <form action="{% url 'medianaranja2:create_share' %}" method="POST"  target="_blank">
+          {% csrf_token %}
+          <input name='object_id' type="hidden" value="{{ candidate_result.candidate.id }}"/>
+          <input name="percentage" type="hidden" value="{{ candidate_result.value|floatformat:0 }}" />
+
+          <input type="submit" value="{% trans "Comparte tu 1/2 Naranja" %}"  class="btn btn-default" />
+
+        </form>
+        </div>
+    </div>
+  {% endfor %}
+</div>
+<hr>
+{% endfor %}
+<div class="col-md-12 resultado ayuda">
+  <h4>{% trans "Ayúdanos" %}</h4>
+  <p>{% trans "Acabaste de hacer tu Media Naranja Política y queremos saber cómo te sentiste con ella, ¿nos ayudas contestando cinco preguntas?" %}</p>
+  <a href="https://goo.gl/forms/eObZU3tehgzm1VoI2" class="btn btn-dark" onclick="ga('send','event','ayuda-cuestionario','click')" target="_blank">{% trans "Responder" %}</a>
+</div>
+
+<div class="col-md-12 media-naranja-info">
+<h4>{% trans "¿CÓMO CALCULAMOS TU MEDIA NARANJA PRESIDENCIAL?" %}</h4>
+<p>{% trans "En la primera pregunta, te mostramos todos aquellos temas en los que las candidaturas presidenciales muestran posiciones concretas en sus programas o en declaraciones públicas. Una vez que elegiste tus prioridades, en la segunda pregunta te mostramos como opciones las posturas de las candidaturas en esas áreas. En el paso tres, te pedimos que definas tus cinco primeras medidas de gobierno, si fueras presidente o presidenta, que corresponden a las propuestas ciudadanas que hay en Vota Inteligente con las que los candidatos se han comprometido. ¡Usando todos estos resultados calculamos cuál es tu grado de compatibilidad!" %}</p>
+</div>
+
+<a href="{% url 'medianaranja2:index' %}" class="btn btn-success pull-right" role="button" onclick="ga('send','event','juega-de-nuevo','click')">{% trans "Juega de nuevo" %}</a>
+{% endblock questions %}

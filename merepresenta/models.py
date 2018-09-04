@@ -11,10 +11,11 @@ from backend_candidate.models import CandidacyContact, Candidacy
 from votai_utils.send_mails import send_mail
 from django.utils import timezone
 import datetime
-from elections.models import QuestionCategory as OriginalQuestionCategory
+from elections.models import QuestionCategory as OriginalQuestionCategory, Topic
 from django.utils.encoding import python_2_unicode_compatible
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from candidator.models import Position
 
 
 class MeRepresentaPopularProposal(PopularProposal):
@@ -223,6 +224,11 @@ def say_thanks_to_the_volunteer(sender, instance, created, raw, **kwargs):
             send_mail(context, 'candidato_com_a_gente_por_sua_acao', to=[log.volunteer.email],)
         except VolunteerGetsCandidateEmailLog.DoesNotExist:
             pass
+
+
+class RightAnswer(models.Model):
+    topic = models.OneToOneField(Topic, related_name='right_answer', null=True)
+    position = models.OneToOneField(Position)
 
 ##### VOLUNTEERS PART!!!
 ## I wrote this as part of #MeRepresenta, this means that we haven't needed volunteers doing research on candidates before

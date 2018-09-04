@@ -1,6 +1,7 @@
 # coding=utf-8
 from django.test import TestCase
 from elections.tests import VotaInteligenteTestCase
+from candidator.models import TakenPosition, Position
 from popular_proposal.models import PopularProposal, Commitment
 from merepresenta.models import (MeRepresentaPopularProposal,
                                  MeRepresentaCommitment,
@@ -10,9 +11,10 @@ from merepresenta.models import (MeRepresentaPopularProposal,
                                  VolunteerInCandidate,
                                  CandidateQuestionCategory,
                                  LGBTQDescription,
+                                 RightAnswer,
                                  QuestionCategory)
 from django.contrib.auth.models import User
-from elections.models import Election
+from elections.models import Election, Topic
 from django.utils import timezone
 import datetime
 from django.core.urlresolvers import reverse
@@ -228,3 +230,12 @@ class VolunteerProfileTestCase(TestCase):
         u = User.objects.create_user(username='user', is_staff=True)
         i = VolunteerProfile.objects.create(user=u)
         self.assertIsNone(i.area)
+
+
+class RightAnswerTestCase(TestCase):
+    def test_instanciate(self):
+        topic4 = Topic.objects.create(label=u"Monitoramento da Lei do feminicídio")
+        yes4 = Position.objects.create(topic=topic4, label=u"Sou a FAVOR")
+        no4 = Position.objects.create(topic=topic4, label=u"Sou CONTRA")
+        a = RightAnswer.objects.create(topic=topic4, position=yes4)
+        self.assertTrue(a)

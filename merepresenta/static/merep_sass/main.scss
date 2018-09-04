@@ -242,7 +242,7 @@ footer {
   font-size: 14px;
 }
 
-.pautas {
+.pautas-page {
 
   h1 {
     font-weight: bold;
@@ -260,6 +260,12 @@ footer {
     font-size: 28px;
     color: #000000;
     margin-bottom: 20px;
+
+    @media screen and (max-width: $break-large) {
+      text-align: center;
+      font-size: 18px !important;
+      font-weight: bold;
+    }
   }
 
   p {
@@ -401,6 +407,7 @@ footer {
 .continuar {
   margin-top: 40px;
 }
+
 .faq {
   h1 {
     font-size: 40px;

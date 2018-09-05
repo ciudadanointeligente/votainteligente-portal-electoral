@@ -200,13 +200,18 @@ class CandidateCategoryLink(TestCase):
 
 class CoaligacaoTestCase(TestCase):
     def test_instanciate(self):
-        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234', mark=3)
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')
         self.assertTrue(coaligacao)
 
+    def test_get_mark_for_coaligacao(self):
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')
+        Partido.objects.create(name=u"Partido de los trabalhadores", initials='PT', number='12345', mark=3.5, coaligacao=coaligacao)
+        Partido.objects.create(name=u"Petronila", initials='PeTa', number='1232', mark=4.5, coaligacao=coaligacao)
+        self.assertEquals(coaligacao.mark, 4.0)
 
 class PartidoTestCase(TestCase):
     def test_instanciate(self):
-        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234', mark=3)
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')
         partido = Partido.objects.create(name=u"Partido de los trabalhadores", initials='PT', number='12345', mark=3, coaligacao=coaligacao)
         self.assertTrue(partido)
 

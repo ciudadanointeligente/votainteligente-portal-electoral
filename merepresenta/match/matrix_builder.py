@@ -13,6 +13,7 @@ class MatrixBuilder(object):
         self.categories_id = self.set_index_of(self.categories)
         self.candidates_id = self.set_index_of(self.candidates)
         self.electors_categories = np.ones(self.categories.count())
+        self.coalicagaos_nota = self.get_coaligacao_marks()
 
     def set_index_of(self, variable):
         index = 0
@@ -21,7 +22,17 @@ class MatrixBuilder(object):
             result[v.id] = index
             index +=1
         return result
-        
+    
+    def get_coaligacao_marks(self):
+        coalicagaos_nota = np.ones(len(self.candidates_id))
+        for c in self.candidates:
+            index = self.candidates_id[c.id]
+            try:
+                mark = c.partido.coaligacao.mark
+                coalicagaos_nota[index] = mark
+            except:
+                pass
+        return coalicagaos_nota
 
     def get_positions_vector_for_category(self, cat):
         result = np.zeros(self.positions.count())
@@ -62,7 +73,7 @@ class MatrixBuilder(object):
     def set_electors_categories(self, categories):
         for c in categories:
             index = self.categories_id[c.id]
-            self.electors_categories[index] = 2
+            self.electors_categories[index] = 3
 
     def get_candidates_result(self):
         # Candidates right answers multiplied by 2 if she chooses
@@ -70,3 +81,17 @@ class MatrixBuilder(object):
         CPR = self.get_candidates_right_positions_matrix()
         return np.dot(CPR, self.electors_categories)
 
+    def get_result(self):
+        C = self.get_candidates_result()
+        notas = self.coalicagaos_nota.T
+        return C * notas
+
+    def get_result_as_array(self):
+        r = self.get_result()
+        as_array = []
+        index = 0
+        for c in self.candidates:
+            i = self.candidates_id[c.id]
+            mark = r[i]
+            as_array.append({'candidato': c, 'nota': mark})
+        return as_array

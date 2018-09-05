@@ -187,13 +187,21 @@ class Coaligacao(models.Model):
     name = models.CharField(max_length=1024, null=True)
     initials = models.CharField(max_length=1024, null=True)
     number = models.CharField(max_length=1024, null=True)
-    mark = models.IntegerField(null=True)
+
+    @property
+    def mark(self):
+        final_sum = 0.0
+        counter = 0
+        for p in self.partido_set.all():
+            final_sum += p.mark
+            counter += 1
+        return final_sum/counter
 
 class Partido(models.Model):
     name = models.CharField(max_length=1024, null=True)
     initials = models.CharField(max_length=1024, null=True)
     number = models.CharField(max_length=1024, null=True)
-    mark = models.IntegerField(null=True)
+    mark = models.FloatField(null=True)
     coaligacao = models.ForeignKey(Coaligacao, null=True)
 
 

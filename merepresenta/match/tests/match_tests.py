@@ -149,8 +149,8 @@ class QuestionCategoryVectors(TestCase):
         builder.set_electors_categories([self.cat1, self.cat2])
         electors_choices = builder.electors_categories
         self.assertEquals(electors_choices.shape, (3,))
-        self.assertEquals(electors_choices[0], 2)
-        self.assertEquals(electors_choices[1], 2)
+        self.assertEquals(electors_choices[0], 3)
+        self.assertEquals(electors_choices[1], 3)
         self.assertEquals(electors_choices[2], 1)
 
     def test_get_candidates_right_answers_vs_electors(self):
@@ -158,3 +158,50 @@ class QuestionCategoryVectors(TestCase):
         builder.set_electors_categories([self.cat1, self.cat2])
         r = builder.get_candidates_result()
         self.assertEquals(r.shape, (Candidate.objects.count(), ))
+
+    def test_get_candidates_full_answer_including_partido(self):
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')
+        Partido.objects.create(name=u"Partido de los trabalhadores",
+                               initials='PT',
+                               number='12345',
+                               mark=3.5,
+                               coaligacao=coaligacao)
+        peta = Partido.objects.create(name=u"Petronila",
+                                      initials='PeTa',
+                                      number='1232',
+                                      mark=4.5,
+                                      coaligacao=coaligacao)
+        self.c1.partido = peta
+        self.c1.save()
+        builder = MatrixBuilder()
+        builder.set_electors_categories([self.cat1, self.cat2])
+        r = builder.get_result()
+        self.assertEquals(r.shape, (Candidate.objects.count(), ))
+        self.assertEquals(r[0], 48)
+        self.assertEquals(r[1], 3)
+        self.assertEquals(r[2], 9)
+
+    def test_get_result_as_dict(self):
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')
+        Partido.objects.create(name=u"Partido de los trabalhadores",
+                               initials='PT',
+                               number='12345',
+                               mark=3.5,
+                               coaligacao=coaligacao)
+        peta = Partido.objects.create(name=u"Petronila",
+                                      initials='PeTa',
+                                      number='1232',
+                                      mark=4.5,
+                                      coaligacao=coaligacao)
+
+        self.c1.partido = peta
+        self.c1.save()
+        builder = MatrixBuilder()
+        builder.set_electors_categories([self.cat1, self.cat2])
+        r = builder.get_result_as_array()
+        self.assertEquals(r[0]['candidato'], self.c1)
+        self.assertEquals(r[0]['nota'], 48)
+        self.assertEquals(r[1]['candidato'], self.c2)
+        self.assertEquals(r[1]['nota'], 3)
+        self.assertEquals(r[2]['candidato'], self.c3)
+        self.assertEquals(r[2]['nota'], 9)

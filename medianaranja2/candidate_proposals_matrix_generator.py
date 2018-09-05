@@ -1,8 +1,9 @@
 # coding=utf-8
-from numpy import matrix
+from numpy import matrix, dot, zeros
 from django.core.cache import cache
 from elections.models import Candidate
 from popular_proposal.models import PopularProposal
+from organization_profiles.models import OrganizationTemplate
 
 
 class CandidateCommitmentsMatrixGenerator(object):
@@ -63,3 +64,56 @@ class CandidateCommitmentsMatrixGenerator(object):
                     vector.append(0)
             _C.append(vector)
         return matrix(_C)
+
+
+class OrganizationMatrixCreator(object):
+    def __init__(self, *args, **kwargs):
+        self.cache_key = 'orgs_templates_resultado'
+        self.main_matrix, self.proposals_ids, self.organization_ids  = self.get_main_matrix_and_orders()
+
+    def get_selected_proposals_vector(self, proposals):
+        r = zeros(len(self.proposals_ids))
+        for p in proposals:
+            index = self.proposals_ids[p.id]
+            r[index] = 1
+        return r
+
+    def get_organizations(self, proposals):
+        proposals_v = self.get_selected_proposals_vector(proposals)
+        m = self.main_matrix
+        final_vector = dot(m.T, proposals_v)
+        organization_ids = []
+        counter = 0
+        for i in final_vector:
+            if i:
+                id_ = self.organization_ids[counter]
+                organization_ids.append(id_)
+            counter += 1
+        return OrganizationTemplate.objects.filter(id__in=organization_ids)
+
+    def get_main_matrix_and_orders(self):
+
+        if cache.get(self.cache_key) is not None:
+            return cache.get(self.cache_key)
+        return self.set_cache()
+
+    def set_cache(self, time=600):
+        r = self._get_main_matrix_and_orders()
+        cache.set(self.cache_key, r, time)
+        return r
+
+    def _get_main_matrix_and_orders(self):
+        main_matrix = zeros((PopularProposal.objects.count(), OrganizationTemplate.objects.count()))
+        proposals_ids = {}
+        organization_ids = {}
+        i = 0
+        for p in PopularProposal.objects.all():
+            proposals_ids[p.id] = i
+            j = 0
+            for t in OrganizationTemplate.objects.all():
+                organization_ids[j] = t.id
+                if((p.proposer==t.organization) or (t.organization in p.likers.all())):
+                    main_matrix[i][j] = 1
+                j += 1
+            i += 1
+        return main_matrix, proposals_ids, organization_ids

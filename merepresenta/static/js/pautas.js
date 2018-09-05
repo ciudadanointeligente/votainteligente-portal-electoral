@@ -16,8 +16,7 @@ $(function(){
         else{
             $(this).parent().parent().addClass('cat-unselected');
         }
-        
-      }
+       
     });
 
 });

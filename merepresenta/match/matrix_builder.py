@@ -93,5 +93,7 @@ class MatrixBuilder(object):
         for c in self.candidates:
             i = self.candidates_id[c.id]
             mark = r[i]
-            as_array.append({'candidato': c, 'nota': mark})
+            d = c.as_dict()
+            d['nota'] = mark
+            as_array.append(d)
         return as_array

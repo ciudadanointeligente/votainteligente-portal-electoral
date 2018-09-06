@@ -156,7 +156,14 @@ class Candidate(OriginalCandidate, RaceMixin):
         return reverse('candidate_profile', kwargs={'slug': self.slug})
 
     def as_dict(self):
+        partido_initials = ''
+        coaligacao = ''
+        if self.partido:
+            partido_initials = self.partido.initials
+            if self.partido.coaligacao:
+                coaligacao = self.partido.coaligacao.name
         d ={
+            'id': self.id,
             'name': self.name,
             'numero': self.numero,
             'race': self.race,
@@ -164,8 +171,8 @@ class Candidate(OriginalCandidate, RaceMixin):
             'lgbt': self.lgbt,
             'lgbt_desc': [d.name for d in self.lgbt_desc.all()],
             'candidatura_coletiva': self.candidatura_coletiva,
-            'partido': self.partido.initials,
-            'coaligacao': self.partido.coaligacao,
+            'partido': partido_initials,
+            'coaligacao': coaligacao,
         }
         return d
 

@@ -199,9 +199,10 @@ class QuestionCategoryVectors(TestCase):
         builder = MatrixBuilder()
         builder.set_electors_categories([self.cat1, self.cat2])
         r = builder.get_result_as_array()
-        self.assertEquals(r[0]['candidato'], self.c1)
+        print r
+        self.assertEquals(r[0]['id'], self.c1.id)
         self.assertEquals(r[0]['nota'], 48)
-        self.assertEquals(r[1]['candidato'], self.c2)
+        self.assertEquals(r[1]['id'], self.c2.id)
         self.assertEquals(r[1]['nota'], 3)
-        self.assertEquals(r[2]['candidato'], self.c3)
+        self.assertEquals(r[2]['id'], self.c3.id)
         self.assertEquals(r[2]['nota'], 9)

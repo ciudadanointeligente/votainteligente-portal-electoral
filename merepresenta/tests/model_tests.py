@@ -87,6 +87,34 @@ class CandidateTestCase(VotaInteligenteTestCase):
 
         self.assertTrue(candidate.lgbt_desc.all())
 
+    def test_candidate_as_json(self):
+        gay = LGBTQDescription.objects.create(name="Gay")
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')
+        partido = Partido.objects.create(name=u"Partido de los trabalhadores", initials='PT', number='12345', mark=3, coaligacao=coaligacao)
+        candidate = Candidate.objects.create(name="Candidate 1",
+                                             cpf='1230',
+                                             nome_completo=u'Candidato uno',
+                                             numero='190000000560',
+                                             race="preta",
+                                             original_email='perrito@gatito.com',
+                                             bio='blablablabla', 
+                                             lgbt=True,
+                                             candidatura_coletiva=True,
+                                             renovacao_politica='Partido Perrito',
+                                             partido=partido,
+                                             email_repeated=False)
+        candidate.lgbt_desc.add(gay)
+        d = candidate.as_dict()
+        self.assertIn('name', d.keys())
+        self.assertIn('numero', d.keys())
+        self.assertIn('race', d.keys())
+        self.assertIn('gender', d.keys())
+        self.assertIn('lgbt', d.keys())
+        self.assertIn('lgbt_desc', d.keys())
+        self.assertIn('candidatura_coletiva', d.keys())
+        self.assertIn('partido', d.keys())
+        self.assertIn('coaligacao', d.keys())
+
     def test_get_emails(self):
         user = User.objects.create_user(username='user', password="password", email='user@users.com')
         candidate = Candidate.objects.create(name="Candidate 1",

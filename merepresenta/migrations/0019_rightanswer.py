@@ -10,7 +10,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('elections', '0034_auto_20180903_1614'),
-        ('candidator', '0005_auto_20180903_1614'),
         ('merepresenta', '0018_auto_20180830_1923'),
     ]
 

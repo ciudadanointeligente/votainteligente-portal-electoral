@@ -1,6 +1,7 @@
 # coding=utf-8
 from django.test import TestCase
 from elections.tests import VotaInteligenteTestCase
+from candidator.models import TakenPosition, Position
 from popular_proposal.models import PopularProposal, Commitment
 from merepresenta.models import (MeRepresentaPopularProposal,
                                  MeRepresentaCommitment,
@@ -10,9 +11,10 @@ from merepresenta.models import (MeRepresentaPopularProposal,
                                  VolunteerInCandidate,
                                  CandidateQuestionCategory,
                                  LGBTQDescription,
+                                 RightAnswer,
                                  QuestionCategory)
 from django.contrib.auth.models import User
-from elections.models import Election
+from elections.models import Election, Topic
 from django.utils import timezone
 import datetime
 from django.core.urlresolvers import reverse
@@ -198,13 +200,18 @@ class CandidateCategoryLink(TestCase):
 
 class CoaligacaoTestCase(TestCase):
     def test_instanciate(self):
-        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234', mark=3)
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')
         self.assertTrue(coaligacao)
 
+    def test_get_mark_for_coaligacao(self):
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')
+        Partido.objects.create(name=u"Partido de los trabalhadores", initials='PT', number='12345', mark=3.5, coaligacao=coaligacao)
+        Partido.objects.create(name=u"Petronila", initials='PeTa', number='1232', mark=4.5, coaligacao=coaligacao)
+        self.assertEquals(coaligacao.mark, 4.0)
 
 class PartidoTestCase(TestCase):
     def test_instanciate(self):
-        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234', mark=3)
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')
         partido = Partido.objects.create(name=u"Partido de los trabalhadores", initials='PT', number='12345', mark=3, coaligacao=coaligacao)
         self.assertTrue(partido)
 
@@ -228,3 +235,12 @@ class VolunteerProfileTestCase(TestCase):
         u = User.objects.create_user(username='user', is_staff=True)
         i = VolunteerProfile.objects.create(user=u)
         self.assertIsNone(i.area)
+
+
+class RightAnswerTestCase(TestCase):
+    def test_instanciate(self):
+        topic4 = Topic.objects.create(label=u"Monitoramento da Lei do feminicídio")
+        yes4 = Position.objects.create(topic=topic4, label=u"Sou a FAVOR")
+        no4 = Position.objects.create(topic=topic4, label=u"Sou CONTRA")
+        a = RightAnswer.objects.create(topic=topic4, position=yes4)
+        self.assertTrue(a)

@@ -140,7 +140,7 @@ class ElectionsPerAreaTestCase(TestCase):
         url = reverse('know_your_candidates')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.context['default_election'], election)
+        self.assertTrue(response.context['default_election'])
 
     def test_area_index_view_if_not_default_area(self):
         argentina = Area.objects.create(name=u'Argentina', id='argentina-pais')
@@ -150,7 +150,7 @@ class ElectionsPerAreaTestCase(TestCase):
         url = reverse('know_your_candidates')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
-        self.assertIsNone(response.context['default_election'])
+        self.assertTrue(response.context['default_election'])
 
     @override_config(SHOW_ALL_CANDIDATES_IN_THIS_ORDER='senador, diputado', DEFAULT_AREA='argentina')
     def test_get_all_candidates_if_show_all_candidates_is_true(self):
@@ -167,7 +167,6 @@ class ElectionsPerAreaTestCase(TestCase):
         url = reverse('know_your_candidates')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.context['default_election'], election)
         self.assertIn('positions', response.context)
         self.assertEquals(response.context['positions'][0]['name'], 'senador')
         for c in second_e.candidates.all():

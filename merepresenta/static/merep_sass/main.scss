@@ -162,60 +162,103 @@ section.profile-question {
 }
 
 .question-pauta {
-    margin-top: 2em;
-    margin-bottom: 2em;
-    font-size: 20px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 20px;
 
-    .question-label {
-      font-size: 28px;
-      margin-bottom: 10px;
-      font-weight: bolder;
-    }
+  .question-label {
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-weight: bolder;
+  }
 
-    .description {
-      margin-bottom: 30px;
-    }
+  .description {
+    margin-bottom: 30px;
+  }
 
-    .posicionamento {
-      font-weight: bold;
-    }
-
-    .radio {
-
-        label {
-            @include border-radius($radius: $border-radius);
-            background-color: $gris;
-            padding: 0.4em;
-        }
-    }
+  .posicionamento {
+    font-weight: bold;
+  }
 }
 
-div.categories-select {
+.categories-select {
     @include make-row();
+
     .cat-selected {
         background-color: $roxo;
         color: $white;
     }
     .cat-unselected {
-        background-color: $branco;
+        background-color: #F7F7F7;
         color: $preto;
     }
-    div.checkbox {
-        @include make-col(4);
-        border: 2px solid $gris;
-        label {
-        
-            padding-top: 3em;
-            padding-left: 27%;
-            height: 100%;
-            width: 100%;
-            font-weight: bolder;
+    .checkbox {
+        box-shadow: 1px 2px 4px rgba(0,0,0,.25);
+        flex: 0 0 32%;
+        max-width: 32%;
+        min-height: 230px;
+        padding: 0 20px;
+        margin: 5px;
+        transition: 0.2s ease-in;
+
+        @media screen and (max-width: $break-large) {
+          flex: 0 0 31%;
+          max-width: 31%;
         }
-        min-height: 8em;
+
+        @media screen and (max-width: $break-small) {
+          flex: 0;
+          min-width: 98%;
+        }
+
+        &:hover {
+          border: 3px solid $roxo;
+        }
+
+        label {
+          height: 100%;
+          width: 100%;
+          font-weight: bolder;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+
         input[type=checkbox] {
             visibility: hidden;
         }
     }
+}
+
+// Radio A Favor ou Contra
+.options > .form-group > div > .radio {
+  background-color: #F9F9F9;
+  border: solid 3px #F9F9F9;
+  transition: 0.2s ease-in;
+  border-radius: 10px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  margin-bottom: 10px;
+
+  &:hover {
+    border: solid 3px #FFC43D;
+  }
+
+  input[type=radio] {
+    
+  }
+
+  label {
+    padding: 15px;
+    width: 100%;
+    cursor: pointer;
+  }
+}
+
+.option-selected {
+  background-color: #FFC43D !important;
+  border: 3px solid #FFC43D !important;
 }
 
 .btn-verde {
@@ -223,9 +266,49 @@ div.categories-select {
 }
 
 .obrigada-candidato {
-  color: $roxo;
-  font-weight: bolder;
-  text-transform: uppercase;
+  margin-top: 50px;
+
+  h1 {
+    color: $roxo;
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 100px;
+  }
+
+  h2 {
+    font-size: 46px;
+    margin-bottom: 30px;
+  }
+
+  p {
+    font-size: 30px;
+    font-family: 'Lato', sans-serif;
+  }
+}
+
+.obrigada-pautas {
+
+  img {
+    width: 100%;
+  }
+
+  h1 {
+    color: #4F4F4F;
+    display: flex;
+    flex-direction: column;
+    font-size: 47px;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+    span {
+      color: #1B9AAA;
+    }
+  }
+
+  p {
+    font-family: 'Lato', sans-serif;
+    font-size: 24px;
+  }
 }
 
 .nav-item {

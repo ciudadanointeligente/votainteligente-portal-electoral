@@ -8,6 +8,7 @@ from popular_proposal.models import (PopularProposalSite)
 from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment
 from elections.models import Area
 from django.conf import settings
+from unittest import skip
 from elections.models import Candidate, Election, QuestionCategory
 
 @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
@@ -127,6 +128,7 @@ class AnotherQuestionaryTestCase(MediaNaranjaAdaptersBase):
         form = response.context['form']
         self.assertIsInstance(form, MeRepresentaQuestionsForm)
 
+    @skip(u'no está siendo usado')
     def test_post_questionary(self):
         url = reverse('questions')
         response = self.client.get(url)

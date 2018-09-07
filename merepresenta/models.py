@@ -7,13 +7,15 @@ from popular_proposal.models import PopularProposal, Commitment
 from elections.models import Candidate as OriginalCandidate
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-from backend_candidate.models import CandidacyContact
+from backend_candidate.models import CandidacyContact, Candidacy
 from votai_utils.send_mails import send_mail
 from django.utils import timezone
 import datetime
-from elections.models import QuestionCategory as OriginalQuestionCategory
+from elections.models import QuestionCategory as OriginalQuestionCategory, Topic
 from django.utils.encoding import python_2_unicode_compatible
-
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from candidator.models import Position
 
 
 class MeRepresentaPopularProposal(PopularProposal):
@@ -46,7 +48,15 @@ class ForVolunteersManager(models.Manager):
                         output_field=PositiveSmallIntegerField())
 
                 )
-        qs = qs.annotate(desprivilegio=F('is_women') + F('is_non_white'))
+        qs = qs.annotate(bad_email=Case(
+                        When(email_repeated=True, then=Value(1)),
+                        When(original_email__isnull=True, then=Value(1)),
+                        When(original_email="", then=Value(1)),
+                        default=Value(0),
+                        output_field=PositiveSmallIntegerField())
+
+                )
+        qs = qs.annotate(desprivilegio=F('is_women') + F('is_non_white') + F('bad_email'))
         return qs
 
 class LimitCandidatesForVolunteers(ForVolunteersManager):
@@ -55,6 +65,7 @@ class LimitCandidatesForVolunteers(ForVolunteersManager):
         qs = qs.exclude(contacts__isnull=False)
         qs = qs.exclude(is_ghost=True)
         qs = qs.exclude(facebook_contacted=True)
+        qs = qs.exclude(candidacy__isnull=False)
         minutes = 30
         from_time = timezone.now() - datetime.timedelta(minutes=minutes)
         qs = qs.exclude(volunteerincandidate__created__gte=from_time)
@@ -113,10 +124,10 @@ class Candidate(OriginalCandidate, RaceMixin):
     facebook_contacted = models.BooleanField(default=False)
     data_de_nascimento = models.DateField(null=True)
     partido = models.ForeignKey("Partido", null=True)
-    bio = models.TextField(default='')
-    lgbt = models.BooleanField(default=False)
-    lgbt_desc = models.ManyToManyField(LGBTQDescription)
-    renovacao_politica = models.CharField(max_length=512, default='')
+    bio = models.TextField(default='', blank=True)
+    lgbt = models.BooleanField(default=False, blank=True)
+    lgbt_desc = models.ManyToManyField(LGBTQDescription, blank=True)
+    renovacao_politica = models.CharField(max_length=512, default='', blank=True)
     candidatura_coletiva = models.BooleanField(default=False)
     objects = ForVolunteersManager()
 
@@ -176,13 +187,21 @@ class Coaligacao(models.Model):
     name = models.CharField(max_length=1024, null=True)
     initials = models.CharField(max_length=1024, null=True)
     number = models.CharField(max_length=1024, null=True)
-    mark = models.IntegerField(null=True)
+
+    @property
+    def mark(self):
+        final_sum = 0.0
+        counter = 0
+        for p in self.partido_set.all():
+            final_sum += p.mark
+            counter += 1
+        return final_sum/counter
 
 class Partido(models.Model):
     name = models.CharField(max_length=1024, null=True)
     initials = models.CharField(max_length=1024, null=True)
     number = models.CharField(max_length=1024, null=True)
-    mark = models.IntegerField(null=True)
+    mark = models.FloatField(null=True)
     coaligacao = models.ForeignKey(Coaligacao, null=True)
 
 
@@ -201,6 +220,23 @@ class CandidateQuestionCategory(models.Model):
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
 
+
+@receiver(post_save, sender=Candidacy, dispatch_uid="say_thanks_to_the_volunteer")
+def say_thanks_to_the_volunteer(sender, instance, created, raw, **kwargs):
+    if raw:
+        return
+    if created:
+        try:
+            log = VolunteerGetsCandidateEmailLog.objects.get(candidate=instance.candidate)
+            context = {'candidate': log.candidate}
+            send_mail(context, 'candidato_com_a_gente_por_sua_acao', to=[log.volunteer.email],)
+        except VolunteerGetsCandidateEmailLog.DoesNotExist:
+            pass
+
+
+class RightAnswer(models.Model):
+    topic = models.OneToOneField(Topic, related_name='right_answer', null=True)
+    position = models.OneToOneField(Position)
 
 ##### VOLUNTEERS PART!!!
 ## I wrote this as part of #MeRepresenta, this means that we haven't needed volunteers doing research on candidates before

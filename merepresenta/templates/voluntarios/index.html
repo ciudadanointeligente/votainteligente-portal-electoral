@@ -39,7 +39,7 @@
       <table class="table">
       <thead>
         <tr>
-          <th scope="col">Nome Candidata</th>
+          <th scope="col">Nome</th>
           <th scope="col">Nº de Urna</th>
           <th scope="col">Candidatura</th>
           <th scope="col">Partido</th>
@@ -57,7 +57,7 @@
             <td>{{candidate.election}}</td>
             <td>{{candidate.partido.initials}}</td>
             <td>{{candidate.election.area}}</td>
-            <td><a class="btn btn-verde" href="{% url 'add_mail_to_candidate' id=candidate.id %}">Analisar</a></td>
+            <td><a class="btn btn-azul" href="{% url 'add_mail_to_candidate' id=candidate.id %}">Analisar</a></td>
           </tr>
           {% endif %}
         {% endfor %}

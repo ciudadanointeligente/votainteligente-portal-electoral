@@ -15,11 +15,12 @@
   <p class="bajada text-center">Aqui você pode encontrar os candidatos envolvidos no RioPorInteiro</p>
 
 </div>
-{% display_election_card default_election %}
 
 <div class="container">
 {% for pos in positions %}
+	{% if pos.candidates.exists %}
 	<h2>{{pos.name}}</h2>
+	{% endif %}
 	<div class="row">
 		{% for candidate in pos.candidates %}
       	{% include "_candidate_small.html" with candidate=candidate%}

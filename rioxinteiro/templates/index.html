@@ -37,6 +37,7 @@
 </section>
 <section class='green-bottom-section'></section>
 
+{% cache 600 featured_p %}
 {% if featured_proposals.count %}
 <section id="highlighted-proposals">
   <div class="container">
@@ -50,6 +51,7 @@
   </div>
 </section>
 {% endif %}
+{% endcache %}
 {% cache 600 organization_logos %}
 {% organization_logos %}
 {% endcache %}

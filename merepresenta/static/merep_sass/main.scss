@@ -25,6 +25,10 @@ a:hover {
 .btn {
   font-weight: bold;
   padding: 10px 30px;
+
+  .nav-link {
+    color: #fff !important;
+  }
 }
 
 .nav-link {

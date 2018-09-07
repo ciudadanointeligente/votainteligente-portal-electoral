@@ -30,7 +30,10 @@ $break-x-large: 1200px;
 }
 
 .navbar {
-  flex-wrap: nowrap;
+
+  .navbar-nav {
+    text-align: center;
+  }
 
   @media screen and (max-width: $break-large) {
     padding: 10px 10px;
@@ -52,7 +55,7 @@ $break-x-large: 1200px;
       width: 100%
     }
   }
-
+  
   @media screen and (max-width: $break-large) {
     .navbar-brand {
       width: 100%;
@@ -61,6 +64,12 @@ $break-x-large: 1200px;
       flex: 1;
       display: flex;
       justify-content: center;
+    }
+
+    @media screen and (max-width: $break-small) {
+      .navbar-brand{
+        padding-right: 25px;
+      }
     }
   }
 
@@ -71,7 +80,6 @@ $break-x-large: 1200px;
 
   @media screen and (max-width: $break-large) {
     width: auto;
-    flex-direction: column;
   }
 
   .nav {

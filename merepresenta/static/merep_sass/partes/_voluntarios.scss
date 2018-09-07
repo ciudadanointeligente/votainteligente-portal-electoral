@@ -80,3 +80,202 @@
     margin-bottom: 20px;
   }
 }
+
+.voluntario-login {
+  margin-top: 80px;
+
+  img {
+    width: 100%;
+  }
+
+  span {
+    font-weight: bold;
+  }
+
+  h1 {
+    color: #4F4F4F;
+    display: flex;
+    flex-direction: column;
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 40px;
+
+    span {
+      color: #1B9AAA;
+      font-weight: bold;
+    }
+  }
+
+  h2 {
+    font-size: 24px;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 20px;
+  }
+
+  .small-link {
+    color: #1B9AAA;
+    font-size: 12px;
+    margin-bottom: 40px;
+    max-width: 500px;
+  }
+
+  .preciso-fazer {
+    h2 {
+      color: $roxo;
+      font-size: 48px;
+      font-weight: bold;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+}
+
+.boas-vindas {
+
+  .text {
+    h1 {
+      color: #000000;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    h2, p {
+      font-size: 24px;
+    }
+  }
+
+  h3 {
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+
+  .field {
+    button {
+      margin-left: 10px;
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+
+      .form-group {
+        display: flex;
+        margin: 0;
+        align-items: center;
+
+        label {
+          font-weight: bold;
+          min-width: 170px;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  table {
+    border: 1px solid #dddddd;
+  }
+
+  thead {
+    font-size: 18px;
+    color: #646463;
+    font-family: 'Lato', sans-serif;
+  }
+
+  tbody {
+    font-family: 'Lato', sans-serif;
+    color: #4F4F4F;
+    font-size: 20px;
+  }
+}
+
+
+.voluntarios-analise {
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 22px;
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+  .grid {
+    background-color: #F9F9F9;
+    display: flex;
+    margin: 70px 0;
+    justify-content: space-between;
+    font-family: 'Lato', sans-serif;
+    padding: 15px 20px;
+    border-radius: 5px;
+
+    label {
+      font-size: 18px;
+      color: #4F4F4F;
+    }
+
+    p {
+      font-size: 22px;
+    }
+  }
+}
+
+.voluntarios-analise-card {
+  border: solid 1px #B0B0B0;
+  padding: 50px 10px;
+  border-radius: 5px;
+
+  h3 {
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 20px;
+  }
+
+  li {
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .buscar {
+    margin-bottom: 40px;
+  }
+}
+
+.encontrei-1 {
+  display: none;
+
+  p {
+    font-size: 20px;
+  }
+}
+
+.nao-encontrei-1 {
+  display: none;
+}
+
+.etapa-concluida,
+.etapa-nao-concluida {
+  p {
+    font-size: 20px;
+  }
+}
+
+.fa-check-circle {
+  color: #6DB044;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+
+  a:first-of-type {
+    margin-right: 20px;
+  }
+}

@@ -20,7 +20,7 @@
     </div>
 
     <div class="field row">
-      <div class="bottom col-lg-8">
+      <div class="pesquisar bottom col-lg-8">
         <form method="POST" action="{% url 'update_area_of_volunteer' %}">
           {% csrf_token %}
             {% bootstrap_form update_area_form %}
@@ -52,11 +52,11 @@
         {% for candidate in candidates %}
           {% if not candidate.volunteerincandidate_set.exists %}
           <tr>
-            <td>{{candidate.name}}</td>
-            <td>{{candidate.numero}}</td>
-            <td>{{candidate.election}}</td>
-            <td>{{candidate.partido.initials}}</td>
-            <td>{{candidate.election.area}}</td>
+            <td data-label="Nome">{{candidate.name}}</td>
+            <td data-label="Nº de Urna">{{candidate.numero}}</td>
+            <td data-label="Candidatura">{{candidate.election}}</td>
+            <td data-label="Partido">{{candidate.partido.initials}}</td>
+            <td data-label="Estado">{{candidate.election.area}}</td>
             <td><a class="btn btn-azul" href="{% url 'add_mail_to_candidate' id=candidate.id %}">Analisar</a></td>
           </tr>
           {% endif %}

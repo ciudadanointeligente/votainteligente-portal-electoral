@@ -1,9 +1,4 @@
-// variables
-$colors_pautas: $roxo, $verde, $amarelo;
-$break-small: 576px;
-$break-medium: 768px;
-$break-large: 992px;
-$break-x-large: 1200px;
+@import '../variables';
 
 @media screen and (max-width: $break-large) {
   h1,

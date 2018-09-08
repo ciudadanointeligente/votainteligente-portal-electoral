@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat');
 @import 'bootstrap/bootstrap';
-@import 'colors';
+@import 'variables';
 @import 'partes/_candidato-form';
 @import 'partes/_footer';
 @import 'partes/_perfil_candidato';
@@ -247,10 +247,6 @@ section.profile-question {
 
   &:hover {
     border: solid 3px #FFC43D;
-  }
-
-  input[type=radio] {
-    
   }
 
   label {

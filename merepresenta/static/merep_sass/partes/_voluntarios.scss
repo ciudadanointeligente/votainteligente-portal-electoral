@@ -1,3 +1,5 @@
+@import '../variables';
+
 .voluntario-form{
   margin-top: 80px;
 
@@ -132,7 +134,6 @@
 }
 
 .boas-vindas {
-
   .text {
     h1 {
       color: #000000;
@@ -192,7 +193,6 @@
     font-size: 20px;
   }
 }
-
 
 .voluntarios-analise {
   h1 {
@@ -277,5 +277,54 @@
 
   a:first-of-type {
     margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: $break-large) {
+  table {
+    border: 0;
+  }
+  table caption {
+    font-size: 1.3em;
+  }
+  table thead {
+    display: none;
+  }
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  table td:before {
+  	content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media screen and (max-width: $break-large) {
+  .pesquisar {
+    form {
+      flex-direction: column;
+
+      .form-group {
+        flex-direction: column;
+        margin-bottom: 10px !important;
+
+      label {
+        margin-bottom: 10px !important;
+      }
+      }
+    }
   }
 }

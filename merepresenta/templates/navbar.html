@@ -1,7 +1,7 @@
 {% load votainteligente_extras %}
 {% load staticfiles %}
 
-<nav id="mainNav" class="navbar navbar-expand-lg navbar-light">
+<nav id="mainNav" class="container navbar navbar-expand-lg">
     <a class="navbar-brand" href="{% url 'index' %}">
       <img src="{% static '/img/merepresenta/logo_2018.svg' %}" 
         class="navbar-img" 
@@ -19,7 +19,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id='navbar_menu_collapse'>
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <ul class="navbar-nav">
             <li>
               <a class="nav-item nav-link" 
                 href="{% url 'sobre' %}">Sobre</a>
@@ -46,7 +46,7 @@
               
               {% else %}
               <div class="nav-item dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                   {% if user.profile.image %}
                   <i src="{{user.profile.image.url}}"></i>
                   {% endif %}

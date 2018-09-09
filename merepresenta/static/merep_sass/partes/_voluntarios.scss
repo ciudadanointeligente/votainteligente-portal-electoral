@@ -178,7 +178,7 @@
   }
 
   table {
-    border: 1px solid #dddddd;
+    border: 1px solid #ddd;
   }
 
   thead {
@@ -191,6 +191,47 @@
     font-family: 'Lato', sans-serif;
     color: #4F4F4F;
     font-size: 20px;
+  }
+
+  @media screen and (max-width: $break-large) {
+    table {
+      border: 0;
+
+      .btn {
+        width: 100%;
+      }
+    }
+    table caption {
+      font-size: 1.3em;
+    }
+    table thead {
+      display: none;
+    }
+    table tr {
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      display: block;
+      margin-bottom: 4em;
+    }
+    table td {
+      display: block;
+      font-size: .8em;
+      text-align: right;
+      border-top: 0;
+
+      &:not(:first-of-type) {
+        border: 0 !important;
+      }
+    }
+    table td:before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    table td:last-child {
+      border-bottom: 0;
+    }
   }
 }
 

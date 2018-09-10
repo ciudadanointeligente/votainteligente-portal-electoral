@@ -155,6 +155,27 @@ class Candidate(OriginalCandidate, RaceMixin):
     def get_absolute_url(self):
         return reverse('candidate_profile', kwargs={'slug': self.slug})
 
+    def as_dict(self):
+        partido_initials = ''
+        coaligacao = ''
+        if self.partido:
+            partido_initials = self.partido.initials
+            if self.partido.coaligacao:
+                coaligacao = self.partido.coaligacao.name
+        d ={
+            'id': self.id,
+            'name': self.name,
+            'numero': self.numero,
+            'race': self.race,
+            'gender': self.gender,
+            'lgbt': self.lgbt,
+            'lgbt_desc': [d.name for d in self.lgbt_desc.all()],
+            'candidatura_coletiva': self.candidatura_coletiva,
+            'partido': partido_initials,
+            'coaligacao': coaligacao,
+        }
+        return d
+
 class VolunteerInCandidate(models.Model):
     volunteer = models.ForeignKey(User)
     candidate = models.ForeignKey(Candidate)

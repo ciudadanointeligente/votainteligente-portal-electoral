@@ -18,4 +18,5 @@ class Command(BaseCommand):
         o_m = OrganizationMatrixCreator()
         o_m.set_cache(time)
         shape = o_m.main_matrix.shape
-        self.stdout.write("Saved matrix of organizations and interactions of dimensions (%d, %d) for %d minutes" % (shape[0], shape[1], time/60))
+        print shape
+        # self.stdout.write("Saved matrix of organizations and interactions of dimensions (%d, %d) for %d minutes" % (shape[0], shape[1], time/60))

@@ -104,7 +104,7 @@
           </tr>
             <td>
               {% if candidate.elections.count %}
-              <p class="small-basic"><b>Candidatura a</b></p>
+              <p class="small-basic"><b>Candidatura</b></p>
               <ul class="list-inline">
                 {% for e in candidate.elections.all %}
                 <li>{{e.position}}</li>
@@ -135,7 +135,6 @@
             <td>
               <p class="small-basic"><b>Propostas comprometidas</b></p>
               {% if candidate.commitments.committed.count %}
-              <p>Esse candidato ainda não se compromete com propostas</p>
               <p class="btn btn-info"><i class="fa fa-heart"></i>{% blocktrans with commitment_count=candidate.commitments.committed.count %}
                 {{commitment_count}} compromissos cidadãos
               {% endblocktrans %}</p>
@@ -145,7 +144,7 @@
             </td>
             <td>
               {% if candidate.contact_details.count %}
-              <p class="small-basic"><b>{% trans "Contactos" %}</b></p>
+              <p class="small-basic"><b>Contatos</b></p>
               <ul class="list-inline">
                 {% include 'elections/candidates/social_media.html' with candidate=candidate %}
               </ul>

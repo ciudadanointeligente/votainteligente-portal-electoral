@@ -26,9 +26,8 @@ from merepresenta.match.matrix_builder import MatrixBuilder
 from numpy.testing import assert_equal
 
 
-class QuestionCategoryVectors(TestCase):
-    def setUp(self):
-        super(QuestionCategoryVectors, self).setUp()
+class MeRepresentaMatchBase(object):
+    def set_data(self):
         self.c1 = Candidate.objects.create(name='c1', cpf='1')
         self.c2 = Candidate.objects.create(name='c2', cpf='2')
         self.c3 = Candidate.objects.create(name='c3', cpf='3')
@@ -79,7 +78,12 @@ class QuestionCategoryVectors(TestCase):
         TakenPosition.objects.create(topic=topic5, person=self.c1, position=yes5)
         TakenPosition.objects.create(topic=topic5, person=self.c2, position=yes5)
         TakenPosition.objects.create(topic=topic5, person=self.c3, position=yes5)
+        
 
+class QuestionCategoryVectors(TestCase, MeRepresentaMatchBase):
+    def setUp(self):
+        super(QuestionCategoryVectors, self).setUp()
+        self.set_data()
 
     def test_get_positions_vector_of_categories(self):
         '''
@@ -199,7 +203,6 @@ class QuestionCategoryVectors(TestCase):
         builder = MatrixBuilder()
         builder.set_electors_categories([self.cat1, self.cat2])
         r = builder.get_result_as_array()
-        print r
         self.assertEquals(r[0]['id'], self.c1.id)
         self.assertEquals(r[0]['nota'], 48)
         self.assertEquals(r[1]['id'], self.c2.id)

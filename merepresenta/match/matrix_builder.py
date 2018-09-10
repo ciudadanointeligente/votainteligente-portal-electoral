@@ -2,18 +2,44 @@ import numpy as np
 from candidator.models import Position
 from elections.models import QuestionCategory
 from merepresenta.models import Candidate
+from django.core.cache import cache
 
 
 class MatrixBuilder(object):
+
     def __init__(self, *args, **kwargs):
-        self.positions = Position.objects.all().order_by('id')
-        self.candidates = Candidate.objects.filter(candidatequestioncategory__isnull=False).order_by('id')
-        self.categories = QuestionCategory.objects.all().order_by('id')
-        self.positions_id = self.set_index_of(self.positions)
-        self.categories_id = self.set_index_of(self.categories)
-        self.candidates_id = self.set_index_of(self.candidates)
-        self.electors_categories = np.ones(self.categories.count())
-        self.coalicagaos_nota = self.get_coaligacao_marks()
+        cache_key = '____merepresenta_matrix_builder_setup_'
+        self.cache_time = kwargs.pop('time', 6000)
+        if cache.get(cache_key) is None:
+            positions = Position.objects.all().order_by('id')
+            candidates = Candidate.objects.filter(candidatequestioncategory__isnull=False).order_by('id').distinct()
+            categories = QuestionCategory.objects.all().order_by('id')
+            positions_id = self.set_index_of(positions)
+            categories_id = self.set_index_of(categories)
+            candidates_id = self.set_index_of(candidates)
+            electors_categories = np.ones(categories.count())
+            coalicagaos_nota = self.get_coaligacao_marks(candidates_id, candidates)
+            candidates_dict = self.get_candidates_dict(candidates)
+            all_ = (positions,
+                    candidates,
+                    categories,
+                    positions_id,
+                    categories_id,
+                    candidates_id,
+                    electors_categories,
+                    coalicagaos_nota,
+                    candidates_dict)
+            cache.set(cache_key, all_, self.cache_time)
+        else:
+            all_ = cache.get(cache_key)
+
+        self.positions, self.candidates, self.categories, self.positions_id, self.categories_id, self.candidates_id, self.electors_categories, self.coalicagaos_nota, self.candidates_dict = all_
+
+    def get_candidates_dict(self, candidates):
+        candidates_dict = {}
+        for c in candidates:
+            candidates_dict[c.id] = c.as_dict()
+        return candidates_dict
 
     def set_index_of(self, variable):
         index = 0
@@ -23,10 +49,10 @@ class MatrixBuilder(object):
             index +=1
         return result
     
-    def get_coaligacao_marks(self):
-        coalicagaos_nota = np.ones(len(self.candidates_id))
-        for c in self.candidates:
-            index = self.candidates_id[c.id]
+    def get_coaligacao_marks(self, candidates_id, candidates):
+        coalicagaos_nota = np.ones(len(candidates))
+        for c in candidates:
+            index = candidates_id[c.id]
             try:
                 mark = c.partido.coaligacao.mark
                 coalicagaos_nota[index] = mark
@@ -66,6 +92,7 @@ class MatrixBuilder(object):
         return np.vstack(r)
 
     def get_candidates_right_positions_matrix(self):
+
         C = self.get_matrix_positions_and_candidates()
         P = self.get_matrix_positions_and_categories()
         return np.dot(C ,P)
@@ -78,7 +105,12 @@ class MatrixBuilder(object):
     def get_candidates_result(self):
         # Candidates right answers multiplied by 2 if she chooses
         # the given TEMA
-        CPR = self.get_candidates_right_positions_matrix()
+        cache_key = '____candidates_right_positions_'
+        if cache.get(cache_key) is None:
+            CPR = self.get_candidates_right_positions_matrix()
+            cache.set(cache_key, CPR, self.cache_time)
+        else:
+            CPR = cache.get(cache_key)
         return np.dot(CPR, self.electors_categories)
 
     def get_result(self):
@@ -93,7 +125,7 @@ class MatrixBuilder(object):
         for c in self.candidates:
             i = self.candidates_id[c.id]
             mark = r[i]
-            d = c.as_dict()
+            d = self.candidates_dict[c.id]
             d['nota'] = mark
             as_array.append(d)
         return as_array

@@ -266,22 +266,30 @@
   }
 
   .grid {
-      background-color: #F9F9F9;
-      display: flex;
-      margin: 50px 0;
-      justify-content: space-between;
-      font-family: 'Lato', sans-serif;
-      padding: 15px 20px;
-      border-radius: 5px;
+    background-color: #F9F9F9;
+    display: flex;
+    margin: 50px 0;
+    justify-content: space-between;
+    font-family: 'Lato', sans-serif;
+    padding: 15px 0;
+    border-radius: 5px;
 
-      label {
-        font-size: 18px;
-        color: #4F4F4F;
-      }
+    table {
+      width: 100%;
+    }
+    th,
+    td {
+      padding: 0 20px;
+    }
 
-      p {
-        font-size: 22px;
-      }
+    th {
+      font-size: 18px;
+      color: #4F4F4F;
+    }
+
+    td {
+      font-size: 22px;
+    }
   }
 }
 
@@ -289,6 +297,21 @@
   border: solid 1px #B0B0B0;
   padding: 40px 0;
   border-radius: 5px;
+
+  @media screen and (max-width: $break-small) {
+    margin: 0 5px;
+  }
+
+  @media screen and (max-width: $break-large) {
+    .btn,
+    .button {
+      width: 100%;
+      margin-bottom: 10px;
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+      margin-top: 0 !important;
+    }
+  }
 
   h3 {
     font-size: 20px;
@@ -316,6 +339,10 @@
   #encontrei-1 {
     textarea {
       margin-bottom: 20px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      width: 100%;
     }
 
     .btn {
@@ -345,6 +372,20 @@
 
     a:first-of-type {
       margin-right: 20px;
+    }
+  }
+
+  .mc-field-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+
+    label {
+      margin: 0;
+      min-width: 70px;
+      font-weight: bold;
+      font-size: 16px;
     }
   }
 }

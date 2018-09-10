@@ -1,3 +1,5 @@
+@import '../variables';
+
 .voluntario-form{
   margin-top: 80px;
 
@@ -132,13 +134,16 @@
 }
 
 .boas-vindas {
-  margin-top: 80px;
-
   .text {
     h1 {
       color: #000000;
       margin-bottom: 20px;
     }
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
     h2, p {
       font-size: 24px;
     }
@@ -173,7 +178,7 @@
   }
 
   table {
-    border: 1px solid #dddddd;
+    border: 1px solid #ddd;
   }
 
   thead {
@@ -187,8 +192,65 @@
     color: #4F4F4F;
     font-size: 20px;
   }
-}
 
+  @media screen and (max-width: $break-large) {
+    table {
+      border: 0;
+
+      .btn {
+        width: 100%;
+      }
+    }
+    table caption {
+      font-size: 1.3em;
+    }
+    table thead {
+      display: none;
+    }
+    table tr {
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      display: block;
+      margin-bottom: 4em;
+    }
+    table td {
+      display: block;
+      font-size: .8em;
+      text-align: right;
+      border-top: 0;
+
+      &:not(:first-of-type) {
+        border: 0 !important;
+      }
+    }
+    table td:before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  @media screen and (max-width: $break-large) {
+    .pesquisar {
+      form {
+        flex-direction: column;
+  
+        .form-group {
+          flex-direction: column;
+          margin-bottom: 10px !important;
+  
+        label {
+          margin-bottom: 10px !important;
+        }
+        }
+      }
+    }
+  }
+}
 
 .voluntarios-analise {
   h1 {
@@ -206,18 +268,26 @@
   .grid {
     background-color: #F9F9F9;
     display: flex;
-    margin: 70px 0;
+    margin: 50px 0;
     justify-content: space-between;
     font-family: 'Lato', sans-serif;
-    padding: 15px 20px;
+    padding: 15px 0;
     border-radius: 5px;
 
-    label {
+    table {
+      width: 100%;
+    }
+    th,
+    td {
+      padding: 0 20px;
+    }
+
+    th {
       font-size: 18px;
       color: #4F4F4F;
     }
 
-    p {
+    td {
       font-size: 22px;
     }
   }
@@ -225,8 +295,23 @@
 
 .voluntarios-analise-card {
   border: solid 1px #B0B0B0;
-  padding: 50px 10px;
+  padding: 40px 0;
   border-radius: 5px;
+
+  @media screen and (max-width: $break-small) {
+    margin: 0 5px;
+  }
+
+  @media screen and (max-width: $break-large) {
+    .btn,
+    .button {
+      width: 100%;
+      margin-bottom: 10px;
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+      margin-top: 0 !important;
+    }
+  }
 
   h3 {
     font-size: 20px;
@@ -242,36 +327,65 @@
   .buscar {
     margin-bottom: 40px;
   }
-}
 
-.encontrei-1 {
-  display: none;
+  .encontrei-1 {
+    display: none;
 
-  p {
-    font-size: 20px;
+    p {
+      font-size: 20px;
+    }
   }
-}
 
-.nao-encontrei-1 {
-  display: none;
-}
+  #encontrei-1 {
+    textarea {
+      margin-bottom: 20px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      width: 100%;
+    }
 
-.etapa-concluida,
-.etapa-nao-concluida {
-  p {
-    font-size: 20px;
+    .btn {
+      width: 100%;
+      color: #fff;
+    }
   }
-}
 
-.fa-check-circle {
-  color: #6DB044;
-}
+  .nao-encontrei-1 {
+    display: none;
+  }
 
-.options {
-  display: flex;
-  flex-wrap: wrap;
+  .etapa-concluida,
+  .etapa-nao-concluida {
+    p {
+      font-size: 20px;
+    }
+  }
 
-  a:first-of-type {
-    margin-right: 20px;
+  .fa-check-circle {
+    color: #6DB044;
+  }
+
+  .options {
+    display: flex;
+    flex-wrap: wrap;
+
+    a:first-of-type {
+      margin-right: 20px;
+    }
+  }
+
+  .mc-field-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+
+    label {
+      margin: 0;
+      min-width: 70px;
+      font-weight: bold;
+      font-size: 16px;
+    }
   }
 }

@@ -47,7 +47,7 @@
           <th scope="col">Pesquisar</th>
         </tr>
       </thead>
-      {% paginate 100 candidates %}
+      {% paginate 10 candidates %}
       <tbody>
         {% for candidate in candidates %}
           {% if not candidate.volunteerincandidate_set.exists %}

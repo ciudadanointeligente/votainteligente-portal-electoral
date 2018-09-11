@@ -5,6 +5,8 @@ from elections.models import Election
 from popular_proposal.models import PopularProposal
 from popular_proposal.replicator import Replicator
 from merepresenta.tse_processor import TSEProcessor
+from django.core.cache import cache
+
 
 class Command(BaseCommand):
     help = u'Carga caché del match de merepresenta, esto es para que el match no toque la DB'
@@ -15,6 +17,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         time = options['time'][0]
         builder = MatrixBuilder(time=time)
+        cache.set(builder.cache_key, None)
+        cache.set(builder.cache_key_candidates_right_positions, None)
         r = builder.get_candidates_result()
         shape = r.shape
         self.stdout.write("Saved matrix of %d candidates with answers, for %d minutes" % (shape[0], time/60))

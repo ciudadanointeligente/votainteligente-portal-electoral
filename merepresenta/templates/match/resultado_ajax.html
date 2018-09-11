@@ -14,31 +14,33 @@
       <div class="title-container">
         <span>Filtros</span>
       </div>
+
       <div id='estado_checkboxes'>
         <div class="title">
           <span>Estado (UF)</span>
         </div>
           <select v-model="checkedEstado">
             <option value='' selected="selected">
-                  TODOS OS ESTADOS
-                </option>
+              TODOS OS ESTADOS
+            </option>
             <template v-for="estado in estadosList">
-                <option :id="estado.id" :value="estado.id" >
-                  [[ estado.label ]]
-                </option>
+              <option :id="estado.id" :value="estado.id" >
+                [[ estado.label ]]
+              </option>
             </template>
-            <select>
-          <div class="election_types" >
-          <div class="title">
-            <span>Cargo</span>
-          </div>
-          {% for type_ in election_types %}
-            <div>
-              <input id="{{type_.id}}" value="{{type_.id}}" type="radio" name="election_type" class="election_type_item" v-model="electionType">
-              <label for="{{type_.id}}">{{type_.label}}</label>
-            </div>
-          {% endfor %}
+          </select>
+      </div>
+
+      <div id="cargo_radioboxes" class="election_types">
+        <div class="title">
+          <span>Cargo</span>
         </div>
+        {% for type_ in election_types %}
+          <div>
+            <input id="{{type_.id}}" value="{{type_.id}}" type="radio" name="election_type" class="election_type_item" v-model="electionType">
+            <label for="{{type_.id}}">{{type_.label}}</label>
+          </div>
+        {% endfor %}
       </div>
 
       <div id="identidade_checkboxes">
@@ -72,6 +74,7 @@
         </div>
 
       </div>
+
       <div id='partido_checkboxes'>
         <div class="title">
           <span>Partido</span>
@@ -128,7 +131,7 @@
             </div>
           </div>  
       </div>
-      <div class='row' v-else>
+      <div class="zero-encontrados">
         {% include "match/zero_candidatos_encontrados.html" %}
       </div>
       </template>
@@ -363,13 +366,10 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
   });
 </script>
 <script type="text/javascript">
-    var copiarConvite = function(){
-        $("#zero_candidates_text_area").select();
-        document.execCommand('copy');
-        
-    }
-    
-    
+  var copiarConvite = function(){
+    $("#zero_candidates_text_area").select();
+    document.execCommand('copy');
+  }
 </script>
 
 {% endblock scripts %}

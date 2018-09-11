@@ -40,6 +40,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  
+    h1 {
+      font-weight: bold;
+    }
   }
 
   .card {
@@ -203,6 +207,7 @@
     margin-right: 15px;
   }
 
+  #cargo_radioboxes,
   #identidade_checkboxes,
   #estado_checkboxes,
   #partido_checkboxes {
@@ -213,4 +218,28 @@
     width: 100%;
   }
 
+}
+
+.zero-encontrados {
+  img {
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  h4 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  textarea {
+    width: 100%;
+  }
 }

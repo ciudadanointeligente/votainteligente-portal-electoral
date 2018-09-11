@@ -34,7 +34,7 @@
   <div class='row'>
 
     <!-- Foto Candidato/a -->
-    <div class="col-lg-5">
+    <div class="col-lg-4">
       {% if candidate.candidacy_set.first.user.profile.image %}
         <img src="{{candidate.candidacy_set.first.user.profile.image.url}}" 
           alt="{{candidate.name}}" 
@@ -47,7 +47,7 @@
     </div>
   
     <!-- Detalhes Candidato/a-->
-    <div class="col-lg-7">
+    <div class="col-lg-7 offset-md-1">
       <h1 itemprop="name">
         {{candidate.name}}
       </h1>
@@ -61,7 +61,7 @@
             <label>Partido</label>
             <p>{{candidate.partido.initials}}</p>
         </div>
-        <div class="item">
+        <div class="item coligacao">
             <label>Coligação</label>
             <p>{{candidate.partido.coaligacao.name}}</p>
         </div>
@@ -105,7 +105,7 @@
     <h3>Temas prioritários</h3>
     <div class="temas">
       {% for link in candidate.candidatequestioncategory_set.all %}
-        <div class='col-4 align-middle tema-prioritario text-center item-amarelo'>
+        <div class='col-2 text-center'>
           {{link.category.name}}
         </div>
       {% endfor %}
@@ -114,10 +114,12 @@
 
   <!-- Pautas -->
   <div class="col-lg-12">
-      <h3>Seu posicionamento nas pautas do #MeRepresenta</h3>
+      <h3>Veja como {{candidate.name}} se posiciona: </h3>
   </div>
   {% for category in categories %}
-    <h3>{{category.name}}</h3>
+  <div class="col-lg-12">
+      <h3>{{category.name}}</h3>
+  </div>
     {% for topic in category.topics.all %}
     <div class='col-lg-12'>
       <div class="resposta-candidato">
@@ -131,7 +133,7 @@
       </div>
     </div>
     {% endfor %}
-  {% endfor %}
+    {% endfor %}
 
   </div>
 </section>

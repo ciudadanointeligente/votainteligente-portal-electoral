@@ -16,6 +16,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from candidator.models import Position
+from merepresenta.dicts_and_lists_for_ordering import partidos_mix
 
 
 class MeRepresentaPopularProposal(PopularProposal):
@@ -174,6 +175,31 @@ class Candidate(OriginalCandidate, RaceMixin):
             'partido': partido_initials,
             'coaligacao': coaligacao,
         }
+        try:
+            d['image'] = self.candidacy_set.first.user.profile.image.url
+        except:
+            d['image'] = None
+        area_id = ""
+        try:
+            area_id = self.election.area.id
+        except:
+            pass
+        if self.partido:
+            partido_id = partidos_mix.get(self.partido.initials, self.partido.initials)
+        else:
+            partido_id = None
+        _filter = {
+            'mulher': self.gender == NON_MALE_KEY,
+            'is_lgbt': self.lgbt,
+            'partido': partido_id,
+            'estado': area_id
+        }
+        for desc in LGBTQDescription.objects.all():
+            if desc in self.lgbt_desc.all():
+                _filter['lgbt_' + str(desc.id)] = True
+            else:
+                _filter['lgbt_' + str(desc.id)] = False
+        d['filter'] = _filter
         return d
 
 class VolunteerInCandidate(models.Model):

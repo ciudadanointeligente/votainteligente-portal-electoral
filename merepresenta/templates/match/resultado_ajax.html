@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% load markdown_deux_tags %}
+{% load staticfiles %}
+{% load votainteligente_extras%}
+
+{% block title %}- Match{% endblock title %}
+{% block content %}
+<div class="container">
+<div id='result' class="row">
+            
+
+            <template>
+                <div class="col-4">
+                 <div id='race_checkboxes'>
+                    <h3>por estado:</h3>
+                        <ul class="filtros">
+                            <li v-for="estado in estadosList">
+                                <input type="checkbox" :id="estado.id" :value="estado.id" v-model="checkedEstado">
+                                <label :for="estado.id">[[ estado.label ]]</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                      <div class="col-8">
+                        <h2>Seus candidatos sao:</h2>
+                        <ul class="results">
+<template v-if="checkedEstado.length == 0">
+        <li v-for="item in sortedList">
+          name: [[ item.name ]], gender: [[ item.gender ]], lgtb: [[ item.lgbt ]], raca: [[ item.race ]], nota: [[ item.nota ]]
+        </li>
+      </template>
+  <template v-else>
+    <!-- <span> g: [[ checkedGenders.indexOf(item.gender) ]] </span> -->
+    <li v-for="item in sortedList" v-if="checkedEstado.indexOf(item.filter.estado) !== -1">
+      name: [[ item.name ]], gender: [[ item.gender ]], lgtb: [[ item.lgbt ]], raca: [[ item.race ]], nota: [[ item.nota ]]
+    </li>
+  </template>
+                        </ul>
+                      </div>
+            </template>
+</div>
+<div>
+{% endblock content %}
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script type="text/javascript" src="{% static 'js/dicts_for_result.js' %}"></script>
+<script type="text/javascript">
+
+$(function(){
+    $.post({
+        url: '{% url "match_result_ajax" %}',
+        dataType:"json",
+        data: {
+            'categories': [{% for c in categories %}{{c.id}}{% if not forloop.last %},{% endif %}{% endfor %}],
+            'csrfmiddlewaretoken': '{{csrf_token}}',
+            },
+        success: function(data){
+            data = jQuery.parseJSON(data);
+            new Vue({
+              delimiters: ['[[', ']]'],
+              el: '#result',
+              data: {
+                list: data,
+                partidosList: partidos_ids,
+                estadosList: estados_ids,
+                checkedEstado: []
+              },
+              computed: {
+                sortedList: function() {
+                  function compare(a, b) {
+                    if (a.nota > b.nota)
+                      return -1;
+                    if (a.nota < b.nota)
+                      return 1;
+                    return 0;
+                  }
+                  return this.list.sort(compare);
+                }
+              },
+            })
+
+        }
+        })
+});
+</script>
+<script>
+
+</script>
+{% endblock scripts %}

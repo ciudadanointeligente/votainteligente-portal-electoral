@@ -6,11 +6,12 @@ from django.core.cache import cache
 
 
 class MatrixBuilder(object):
-
+    cache_key_candidates_right_positions = 'candidates_right_positions'
+    cache_key = 'merepresenta_matrix_builder_setup_'
     def __init__(self, *args, **kwargs):
-        cache_key = '____merepresenta_matrix_builder_setup_'
+        
         self.cache_time = kwargs.pop('time', 6000)
-        if cache.get(cache_key) is None:
+        if cache.get(self.cache_key) is None:
             positions = Position.objects.all().order_by('id')
             candidates = Candidate.objects.filter(candidatequestioncategory__isnull=False).order_by('id').distinct()
             categories = QuestionCategory.objects.all().order_by('id')
@@ -20,6 +21,7 @@ class MatrixBuilder(object):
             electors_categories = np.ones(categories.count())
             coalicagaos_nota = self.get_coaligacao_marks(candidates_id, candidates)
             candidates_dict = self.get_candidates_dict(candidates)
+            desprivilegios = self.get_desprivilegios(candidates)
             all_ = (positions,
                     candidates,
                     categories,
@@ -28,18 +30,28 @@ class MatrixBuilder(object):
                     candidates_id,
                     electors_categories,
                     coalicagaos_nota,
-                    candidates_dict)
-            cache.set(cache_key, all_, self.cache_time)
+                    candidates_dict,
+                    desprivilegios
+                    )
+            cache.set(self.cache_key, all_, self.cache_time)
         else:
-            all_ = cache.get(cache_key)
+            all_ = cache.get(self.cache_key)
 
-        self.positions, self.candidates, self.categories, self.positions_id, self.categories_id, self.candidates_id, self.electors_categories, self.coalicagaos_nota, self.candidates_dict = all_
+        self.positions, self.candidates, self.categories, self.positions_id, self.categories_id, self.candidates_id, self.electors_categories, self.coalicagaos_nota, self.candidates_dict, self.desprivilegios = all_
 
     def get_candidates_dict(self, candidates):
         candidates_dict = {}
         for c in candidates:
             candidates_dict[c.id] = c.as_dict()
         return candidates_dict
+
+    def get_desprivilegios(self, candidates):
+        r = np.zeros(len(candidates))
+        counter = 0
+        for c in candidates:
+            r[counter] = c.desprivilegio
+            counter += 1
+        return r
 
     def set_index_of(self, variable):
         index = 0
@@ -105,13 +117,14 @@ class MatrixBuilder(object):
     def get_candidates_result(self):
         # Candidates right answers multiplied by 2 if she chooses
         # the given TEMA
-        cache_key = '____candidates_right_positions_'
-        if cache.get(cache_key) is None:
+        if cache.get(self.cache_key_candidates_right_positions) is None:
             CPR = self.get_candidates_right_positions_matrix()
-            cache.set(cache_key, CPR, self.cache_time)
+            cache.set(self.cache_key_candidates_right_positions, CPR, self.cache_time)
         else:
-            CPR = cache.get(cache_key)
-        return np.dot(CPR, self.electors_categories)
+            CPR = cache.get(self.cache_key_candidates_right_positions)
+        result = np.dot(CPR, self.electors_categories)
+        result = result + self.desprivilegios
+        return result
 
     def get_result(self):
         C = self.get_candidates_result()

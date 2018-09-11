@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% load markdown_deux_tags %}
+{% load staticfiles %}
+{% load votainteligente_extras%}
+
+{% block title %}- Match{% endblock title %}
+{% block content %}
+<div class="row">
+  <div class="col-lg-10 offset-md-1">
+   {% for cat in categories %}
+    <div id="{{cat.id}}">
+                <h3>{{cat.name}}</h3>
+                {% for topic in cat.topics.all %}
+                  <div class="pauta-item bottom">
+                    <h4>{{topic.label}}</h4>
+                    <p>
+                      {{topic.description|safe}}
+                    </p>
+                  </div>
+                {% endfor %}
+   {% endfor %}
+   <form method="post" enctype="multipart/form-data" action="{% url 'match_result' %}">
+      {% csrf_token %}
+      <div style="display: none;">
+        {{form}}
+      </div>
+      <input type="submit" value="Dime dime dime" class="btn btn-azul" />
+    </form>
+  </div>
+</div>
+
+
+{% endblock content %}

@@ -16,7 +16,7 @@ from merepresenta.voluntarios.views import (VolunteerIndexView,
                                             CouldNotFindCandidate,
                                             FacebookContacted,
                                             complete)
-from merepresenta.match.views import MatchView
+from merepresenta.match.views import MatchView, MatchResultView, MatchResultAjaxView
 
 class MeRepresentaMeiaLaranjaForm(MediaNaranjaElectionForm):
     def __init__(self, *args, **kwargs):
@@ -49,6 +49,16 @@ urlpatterns = [
     url(r'^match/?$',
         MatchView.as_view(),
         name='match'),
+    url(r'^match_result/?$',
+        MatchResultView.as_view(),
+        name='match_result'),
+    url(r'^match_result_ajax/?$',
+        MatchResultAjaxView.as_view(),
+        name='match_result_ajax'),
+
+
+
+
     url(r'^perguntas/?$',
         MeRepresentaMeiaLaranjaWizardForm.as_view(),
         name='questionary'),

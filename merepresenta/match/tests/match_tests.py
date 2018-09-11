@@ -28,8 +28,8 @@ from numpy.testing import assert_equal
 
 class MeRepresentaMatchBase(object):
     def set_data(self):
-        self.c1 = Candidate.objects.create(name='c1', cpf='1')
-        self.c2 = Candidate.objects.create(name='c2', cpf='2')
+        self.c1 = Candidate.objects.create(name='c1', cpf='1', gender="F")
+        self.c2 = Candidate.objects.create(name='c2', cpf='2', parda=True)
         self.c3 = Candidate.objects.create(name='c3', cpf='3')
 
         self.cat1 = QuestionCategory.objects.create(name="Pautas LGBT")
@@ -131,6 +131,12 @@ class QuestionCategoryVectors(TestCase, MeRepresentaMatchBase):
         expected_vector = np.array([2,0,0,2,1,0,1,0,1,0])
         assert_equal(vector, expected_vector)
 
+    def test_get_desprivilegios_vector(self):
+        builder = MatrixBuilder()
+        v = builder.get_desprivilegios(Candidate.objects.all())
+        self.assertEquals(v.shape, (Candidate.objects.count(), ))
+        self.assertTrue(v[0])
+
     def test_get_matrix_of_candidates_with_positions(self):
         builder = MatrixBuilder()
         matrix = builder.get_matrix_positions_and_candidates()
@@ -181,9 +187,9 @@ class QuestionCategoryVectors(TestCase, MeRepresentaMatchBase):
         builder.set_electors_categories([self.cat1, self.cat2])
         r = builder.get_result()
         self.assertEquals(r.shape, (Candidate.objects.count(), ))
-        self.assertEquals(r[0], 48)
-        self.assertEquals(r[1], 3)
-        self.assertEquals(r[2], 9)
+        self.assertEquals(r[0], 56)
+        self.assertEquals(r[1], 4)
+        self.assertEquals(r[2], 10)
 
     def test_get_result_as_dict(self):
         coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')
@@ -204,8 +210,8 @@ class QuestionCategoryVectors(TestCase, MeRepresentaMatchBase):
         builder.set_electors_categories([self.cat1, self.cat2])
         r = builder.get_result_as_array()
         self.assertEquals(r[0]['id'], self.c1.id)
-        self.assertEquals(r[0]['nota'], 48)
+        self.assertEquals(r[0]['nota'], 56)
         self.assertEquals(r[1]['id'], self.c2.id)
-        self.assertEquals(r[1]['nota'], 3)
+        self.assertEquals(r[1]['nota'], 4)
         self.assertEquals(r[2]['id'], self.c3.id)
-        self.assertEquals(r[2]['nota'], 9)
+        self.assertEquals(r[2]['nota'], 10)

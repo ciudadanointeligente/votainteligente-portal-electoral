@@ -13,6 +13,9 @@
 
             <template>
                 <div class="col-4">
+                  <div id="mulher">
+                    <input type="checkbox" id="mulher_input" v-model="isMulher"><label for="mulher_input">Mulher</label>
+                  </div>
                  <div id='race_checkboxes'>
                     <h3>por estado:</h3>
                           <select v-model="checkedEstado">
@@ -24,7 +27,7 @@
                     </div>
                 </div>
                       <div class="col-8">
-                        <h2>Seus candidatos sao:</h2>[[checkedEstado]]
+                        <h2>Seus candidatos sao:</h2>
                         <ul class="results">
 <template>
        <li v-for="item in sortedList" v-if="filterElement(item)">
@@ -50,6 +53,15 @@ var filterEstado = function(el, checkedEstado){
                   }
                   return false;
 }
+var filterMulher = function(el, isMulher){
+                  if(!isMulher){
+                    return true;
+                  }
+                  if (el.filter.mulher){
+                    return true;
+                  }
+                  return false;
+}
 $(function(){
     $.post({
         url: '{% url "match_result_ajax" %}',
@@ -67,10 +79,12 @@ $(function(){
                 list: data,
                 partidosList: partidos_ids,
                 estadosList: estados_ids,
+                isMulher: undefined,
                 checkedEstado: false,
                 filterElement: function(el){
                   var f_estado = filterEstado(el, this.checkedEstado);
-                  return f_estado;
+                  var f_mulher = filterMulher(el, this.isMulher);
+                  return f_estado && f_mulher;
                 }
                 
               },
@@ -84,11 +98,6 @@ $(function(){
                     return 0;
                   }
                   return this.list.sort(compare);
-                },
-                filteredList: function() {
-                  var list = this.sortedList;
-                  list = list.filter(filterEstado);
-                  return list;
                 }
               },
             })

@@ -87,6 +87,7 @@ class CandidateTestCase(VotaInteligenteTestCase):
 
         self.assertTrue(candidate.lgbt_desc.all())
 
+
     def test_candidate_as_json(self):
         gay = LGBTQDescription.objects.create(name="Gay")
         coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')
@@ -95,7 +96,8 @@ class CandidateTestCase(VotaInteligenteTestCase):
                                              cpf='1230',
                                              nome_completo=u'Candidato uno',
                                              numero='190000000560',
-                                             race="preta",
+                                             race="PRETA",
+                                             gender='F',
                                              original_email='perrito@gatito.com',
                                              bio='blablablabla', 
                                              lgbt=True,
@@ -114,6 +116,12 @@ class CandidateTestCase(VotaInteligenteTestCase):
         self.assertIn('candidatura_coletiva', d.keys())
         self.assertIn('partido', d.keys())
         self.assertIn('coaligacao', d.keys())
+        _filter = d['filter']
+        self.assertTrue(_filter['mulher'])
+        self.assertTrue(_filter['is_lgbt'])
+        self.assertTrue(_filter['lgbt_' + str(gay.id)])
+        self.assertTrue(_filter['partido'])
+
 
     def test_get_emails(self):
         user = User.objects.create_user(username='user', password="password", email='user@users.com')

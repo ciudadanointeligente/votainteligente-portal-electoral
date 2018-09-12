@@ -15,28 +15,22 @@
                 <div class="col-4">
                  <div id='race_checkboxes'>
                     <h3>por estado:</h3>
-                        <ul class="filtros">
-                            <li v-for="estado in estadosList">
-                                <input type="checkbox" :id="estado.id" :value="estado.id" v-model="checkedEstado">
-                                <label :for="estado.id">[[ estado.label ]]</label>
-                            </li>
-                        </ul>
+                          <select v-model="checkedEstado">
+                            <template v-for="estado in estadosList">
+                                <option :id="estado.id" :value="estado.id" >
+                                [[ estado.label ]]</option>
+                            </template>
+                            <select>
                     </div>
                 </div>
                       <div class="col-8">
-                        <h2>Seus candidatos sao:</h2>
+                        <h2>Seus candidatos sao:</h2>[[checkedEstado]]
                         <ul class="results">
-<template v-if="checkedEstado.length == 0">
-        <li v-for="item in sortedList">
-          name: [[ item.name ]], gender: [[ item.gender ]], lgtb: [[ item.lgbt ]], raca: [[ item.race ]], nota: [[ item.nota ]]
-        </li>
-      </template>
-  <template v-else>
-    <!-- <span> g: [[ checkedGenders.indexOf(item.gender) ]] </span> -->
-    <li v-for="item in sortedList" v-if="checkedEstado.indexOf(item.filter.estado) !== -1">
+<template>
+       <li v-for="item in sortedList" v-if="filterElement(item)">
       name: [[ item.name ]], gender: [[ item.gender ]], lgtb: [[ item.lgbt ]], raca: [[ item.race ]], nota: [[ item.nota ]]
     </li>
-  </template>
+</template>
                         </ul>
                       </div>
             </template>
@@ -47,7 +41,15 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script type="text/javascript" src="{% static 'js/dicts_for_result.js' %}"></script>
 <script type="text/javascript">
-
+var filterEstado = function(el, checkedEstado){
+                  if(!checkedEstado){
+                    return true;
+                  }
+                  if (checkedEstado === el.filter.estado){
+                    return true;
+                  }
+                  return false;
+}
 $(function(){
     $.post({
         url: '{% url "match_result_ajax" %}',
@@ -65,7 +67,12 @@ $(function(){
                 list: data,
                 partidosList: partidos_ids,
                 estadosList: estados_ids,
-                checkedEstado: []
+                checkedEstado: false,
+                filterElement: function(el){
+                  var f_estado = filterEstado(el, this.checkedEstado);
+                  return f_estado;
+                }
+                
               },
               computed: {
                 sortedList: function() {
@@ -77,6 +84,11 @@ $(function(){
                     return 0;
                   }
                   return this.list.sort(compare);
+                },
+                filteredList: function() {
+                  var list = this.sortedList;
+                  list = list.filter(filterEstado);
+                  return list;
                 }
               },
             })

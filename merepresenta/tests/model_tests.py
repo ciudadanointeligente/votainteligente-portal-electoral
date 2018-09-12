@@ -87,7 +87,7 @@ class CandidateTestCase(VotaInteligenteTestCase):
 
         self.assertTrue(candidate.lgbt_desc.all())
 
-
+    @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
     def test_candidate_as_json(self):
         gay = LGBTQDescription.objects.create(name="Gay")
         coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')

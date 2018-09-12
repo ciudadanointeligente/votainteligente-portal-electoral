@@ -12,28 +12,53 @@
             
 
             <template>
-                <div class="col-4">
+                <div class="col-3">
                   <div id="mulher">
                     <input type="checkbox" id="mulher_input" v-model="isMulher"><label for="mulher_input">Mulher</label>
                   </div>
-                 <div id='race_checkboxes'>
+                  <div id="negro">
+                    <input type="checkbox" id="negro_input" v-model="isNegro"><label for="negro_input">Negro</label>
+                  </div>
+                  <div id="indigena">
+                    <input type="checkbox" id="indigena_input" v-model="isIndigena"><label for="indigena_input">Indígena</label>
+                  </div>
+                 <div id='estado_checkboxes'>
                     <h3>por estado:</h3>
                           <select v-model="checkedEstado">
                             <template v-for="estado in estadosList">
                                 <option :id="estado.id" :value="estado.id" >
-                                [[ estado.label ]]</option>
+                                  [[ estado.label ]]
+                                </option>
                             </template>
                             <select>
                     </div>
+                    <div id='partido_checkboxes'>
+                    <h3>por partido:</h3>
+                          
+
+                      <ul class="filtros">
+                              <li v-for="partido in filteredPartidos()">
+                                <input type="checkbox" :id="'partido-' + partido.id" :value="partido.id" v-model="checkedPartidos">
+                                <label :for="'partido-' + partido.id">[[ partido.label ]]</label>
+                              </li>
+                      </ul>
+                    </div>  
                 </div>
-                      <div class="col-8">
+                      <div class="col-9">
                         <h2>Seus candidatos sao:</h2>
                         <ul class="results">
-<template>
-       <li v-for="item in sortedList" v-if="filterElement(item)">
-      name: [[ item.name ]], gender: [[ item.gender ]], lgtb: [[ item.lgbt ]], raca: [[ item.race ]], nota: [[ item.nota ]]
-    </li>
-</template>
+                          <div class='row'>
+                            <template>
+                                   <div class='col-4' v-for="item in filteredList()">
+                                    <img :src="item.image">
+                                    <a :href="item.url" target="_blank">[[ item.name ]]</a>
+                                    <h4>[[item.numero]]</h4>
+                                    <h4>nota coal: [[item.nota_coaligacao]]</h4>
+                                    <h4>[[item.partido]]</h4>
+                                    <h4>[[item.estado]]</h4>
+                                </div>
+                            </template>
+                            </div>
                         </ul>
                       </div>
             </template>
@@ -62,6 +87,30 @@ var filterMulher = function(el, isMulher){
                   }
                   return false;
 }
+var filterNegro = function(el, isNegro){
+                  if(!isNegro){
+                    return true;
+                  }
+                  if (el.filter.preta){
+                    return true;
+                  }
+                  return false;
+}
+var filterIndigena = function(el, isIndigena){
+                  if(!isIndigena){
+                    return true;
+                  }
+                  if (el.filter.indigena){
+                    return true;
+                  }
+                  return false;
+}
+var filterPartido = function(el, checkedPartidos){
+  if (checkedPartidos.length === 0){
+    return true;
+  }
+  return checkedPartidos.includes(el.filter.partido);
+}
 $(function(){
     $.post({
         url: '{% url "match_result_ajax" %}',
@@ -79,12 +128,20 @@ $(function(){
                 list: data,
                 partidosList: partidos_ids,
                 estadosList: estados_ids,
+                amountOfResults: 36,
                 isMulher: undefined,
+                isNegro: undefined,
+                isIndigena: undefined,
+                checkedPartidos: [],
                 checkedEstado: false,
                 filterElement: function(el){
                   var f_estado = filterEstado(el, this.checkedEstado);
+                  var f_partido = filterPartido(el, this.checkedPartidos);
                   var f_mulher = filterMulher(el, this.isMulher);
-                  return f_estado && f_mulher;
+                  var f_negro = filterNegro(el, this.isNegro);
+                  var f_indigena = filterIndigena(el, this.isIndigena);
+                  var result = f_estado && f_mulher && f_partido && f_negro && f_indigena;
+                  return result;
                 }
                 
               },
@@ -100,6 +157,50 @@ $(function(){
                   return this.list.sort(compare);
                 }
               },
+              methods: {
+                filteredTotalList: function(){
+                  list = this.sortedList;
+                  filterElement = this.filterElement.bind(this);
+                  list = list.filter(filterElement);
+                  return list;
+                },
+                filteredList: function(){
+                  var list = this.filteredTotalList();
+                  return list.slice(0,this.amountOfResults);
+                },
+                filteredPartidos: function(){
+                  var counter = 0;
+                  var total_list = this.filteredTotalList();
+                  var partidos_ids = {};
+
+                  while(counter < total_list.length){
+                    let partido_id = total_list[counter].filter.partido;
+                    let keys = Object.keys(partidos_ids);
+                    if(keys.includes(String(partido_id))){
+                      partidos_ids[partido_id] += 1;  
+                    }
+                    else{
+                      partidos_ids[partido_id] = 1;
+                    }
+                    counter += 1;
+                  }
+                  counter = 0;
+                  var plist = [];
+                  while(counter < this.partidosList.length){
+                    var p = {'id': undefined, 'ĺabel': undefined};
+                    p.id = this.partidosList[counter].id;
+                    var n = partidos_ids[this.partidosList[counter].id];
+                    if (n===undefined){
+                      n = 0;
+                    }
+                    p.label = this.partidosList[counter].label + " (" + n + ")";
+                    plist.push(p);
+                    counter += 1;
+                  }
+
+                  return plist;
+                }
+              }
             })
 
         }

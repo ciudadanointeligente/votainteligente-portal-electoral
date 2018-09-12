@@ -123,7 +123,7 @@ class MatrixBuilder(object):
         else:
             CPR = cache.get(self.cache_key_candidates_right_positions)
         result = np.dot(CPR, self.electors_categories)
-        result = result + self.desprivilegios
+        # result = result + self.desprivilegios
         return result
 
     def get_result(self):

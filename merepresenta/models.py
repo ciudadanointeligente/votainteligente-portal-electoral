@@ -17,6 +17,8 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from candidator.models import Position
 from merepresenta.dicts_and_lists_for_ordering import partidos_mix
+from django.conf import settings
+from urlparse import urljoin
 
 
 class MeRepresentaPopularProposal(PopularProposal):
@@ -159,10 +161,19 @@ class Candidate(OriginalCandidate, RaceMixin):
     def as_dict(self):
         partido_initials = ''
         coaligacao = ''
+        coaligacao_mark = ''
         if self.partido:
             partido_initials = self.partido.initials
             if self.partido.coaligacao:
                 coaligacao = self.partido.coaligacao.name
+                coaligacao_mark = self.partido.coaligacao.mark
+        area_id = ""
+        area_name = ""
+        try:
+            area_id = self.election.area.id
+            area_name = self.election.area.name
+        except:
+            pass
         d ={
             'id': self.id,
             'name': self.name,
@@ -170,20 +181,19 @@ class Candidate(OriginalCandidate, RaceMixin):
             'race': self.race,
             'gender': self.gender,
             'lgbt': self.lgbt,
+            'estado': area_name,
             'lgbt_desc': [d.name for d in self.lgbt_desc.all()],
             'candidatura_coletiva': self.candidatura_coletiva,
             'partido': partido_initials,
             'coaligacao': coaligacao,
+            'nota_coaligacao': coaligacao_mark,
+            'url': self.get_absolute_url(),
         }
         try:
-            d['image'] = self.candidacy_set.first.user.profile.image.url
+            src =  self.candidacy_set.first().user.profile.image.url
+            d['image'] = urljoin(settings.STATIC_URL, src)
         except:
             d['image'] = None
-        area_id = ""
-        try:
-            area_id = self.election.area.id
-        except:
-            pass
         if self.partido:
             partido_id = partidos_mix.get(self.partido.initials, self.partido.initials)
         else:
@@ -192,7 +202,10 @@ class Candidate(OriginalCandidate, RaceMixin):
             'mulher': self.gender == NON_MALE_KEY,
             'is_lgbt': self.lgbt,
             'partido': partido_id,
-            'estado': area_id
+            'estado': area_id,
+            'preta': self.preta,
+            'parda': self.parda,
+            'indigena': self.indigena
         }
         for desc in LGBTQDescription.objects.all():
             if desc in self.lgbt_desc.all():

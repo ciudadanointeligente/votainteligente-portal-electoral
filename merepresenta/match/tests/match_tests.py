@@ -79,7 +79,7 @@ class MeRepresentaMatchBase(object):
         TakenPosition.objects.create(topic=topic5, person=self.c2, position=yes5)
         TakenPosition.objects.create(topic=topic5, person=self.c3, position=yes5)
         
-
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
 class QuestionCategoryVectors(TestCase, MeRepresentaMatchBase):
     def setUp(self):
         super(QuestionCategoryVectors, self).setUp()

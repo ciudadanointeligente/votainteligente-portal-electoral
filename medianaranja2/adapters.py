@@ -11,13 +11,13 @@ class CandidateGetterFromElectionMixin(object):
         return election.candidates.order_by('id').only('id')
 
     @classmethod
-    def get_candidates_from_election_as_list(cls, election):
+    def get_candidates_from_election_as_list(cls, election, time=83600):
         cache_key = 'candidates_for_' + str(election.id)
         if cache.get(cache_key) is not None:
             candidates = cache.get(cache_key)
         else:
             candidates = list(cls.get_candidates_from_election(election))
-            cache.set(cache_key, candidates)
+            cache.set(cache_key, candidates, time)
         return candidates
 
 class Adapter(CandidateGetterFromElectionMixin):

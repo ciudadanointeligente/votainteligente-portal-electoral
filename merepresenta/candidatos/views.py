@@ -113,6 +113,13 @@ def auth(request, backend, slug):
 class CompleteProfileView(ProfileView):
     candidate_model = Candidate
 
+    def dispatch(self, *args, **kwargs):
+        candidate = get_object_or_404(self.candidate_model,
+                                      slug=self.kwargs['candidate_slug'])
+        if candidate.candidatequestioncategory_set.exists():
+            return HttpResponseRedirect(candidate.get_absolute_url())
+        return super(CompleteProfileView, self).dispatch(*args, **kwargs)
+
     def get_form_class(self):
         return PersonalDataForm
 

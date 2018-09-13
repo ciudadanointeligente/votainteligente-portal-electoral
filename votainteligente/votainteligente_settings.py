@@ -29,6 +29,7 @@ SECOND_ROUND_ELECTION = None
 PRIORITY_CANDIDATES = []
 MEREPRESENTA_SITE_ID = 2
 MEREPRESENTA_VOLUNTARIOS_ON = True
+MEREPRESENTA_CANDIDATES_ALLOWED_TO_UPDATE = True
 # Candidatos en la parte de /candidaturas aparecen
 LIST_ONLY_COMMITED_CANDIDATES = False
 # Colores para compartir imagen de una propuesta

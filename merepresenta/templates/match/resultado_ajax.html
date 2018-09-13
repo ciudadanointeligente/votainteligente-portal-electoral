@@ -22,6 +22,9 @@
                   <div id="indigena">
                     <input type="checkbox" id="indigena_input" v-model="isIndigena"><label for="indigena_input">Indígena</label>
                   </div>
+                  <div id="lgbt">
+                    <input type="checkbox" id="lgbt_input" v-model="isLGBT"><label for="lgbt_input">LGBT</label>
+                  </div>
                  <div id='estado_checkboxes'>
                     <h3>por estado:</h3>
                           <select v-model="checkedEstado">
@@ -105,6 +108,15 @@ var filterIndigena = function(el, isIndigena){
                   }
                   return false;
 }
+var filterLGBT = function(el, isLGBT){
+                  if(!isLGBT){
+                    return true;
+                  }
+                  if (el.filter.is_lgbt){
+                    return true;
+                  }
+                  return false;
+}
 var filterPartido = function(el, checkedPartidos){
   if (checkedPartidos.length === 0){
     return true;
@@ -132,6 +144,7 @@ $(function(){
                 isMulher: undefined,
                 isNegro: undefined,
                 isIndigena: undefined,
+                isLGBT: undefined,
                 checkedPartidos: [],
                 checkedEstado: false,
                 filterElement: function(el){
@@ -140,7 +153,8 @@ $(function(){
                   var f_mulher = filterMulher(el, this.isMulher);
                   var f_negro = filterNegro(el, this.isNegro);
                   var f_indigena = filterIndigena(el, this.isIndigena);
-                  var result = f_estado && f_mulher && f_partido && f_negro && f_indigena;
+                  var f_lgbt = filterLGBT(el, this.isLGBT);
+                  var result = f_estado && f_mulher && f_partido && f_negro && f_indigena && f_lgbt;
                   return result;
                 }
                 

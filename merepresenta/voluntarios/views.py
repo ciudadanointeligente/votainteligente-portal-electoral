@@ -41,7 +41,7 @@ class VolunteerIndexView(StaffuserRequiredMixin, FilterView):
         return context
 
     def get_queryset(self):
-        qs = self.model.for_volunteers.all()
+        qs = self.model.for_volunteers.exclude(volunteerincandidate__isnull=False)
         try:
             area = self.request.user.volunteer_profile.area
             qs = qs.filter(elections__area=area)

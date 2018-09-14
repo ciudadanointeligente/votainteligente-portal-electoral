@@ -47,10 +47,12 @@
           <th scope="col">Pesquisar</th>
         </tr>
       </thead>
+
       {% paginate 10 candidates %}
+      {{candidates}}
       <tbody>
+
         {% for candidate in candidates %}
-          {% if not candidate.volunteerincandidate_set.exists %}
           <tr>
             <td data-label="Nome">{{candidate.name}}</td>
             <td data-label="Nº de Urna">{{candidate.numero}}</td>
@@ -59,7 +61,6 @@
             <td data-label="Estado">{{candidate.election.area}}</td>
             <td><a class="btn btn-azul" href="{% url 'add_mail_to_candidate' id=candidate.id %}">Analisar</a></td>
           </tr>
-          {% endif %}
         {% endfor %}
       </tbody>
       </table>

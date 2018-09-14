@@ -29,7 +29,7 @@ class LoginView(TemplateView):
 
     def dispatch(self, *args, **kwargs):
         if self.request.user.is_authenticated:
-            url = reverse_lazy('cpf_and_date')
+            url = reverse_lazy('cpf_and_date2')
             return HttpResponseRedirect(url)
         return super(LoginView, self).dispatch(*args, **kwargs)
 

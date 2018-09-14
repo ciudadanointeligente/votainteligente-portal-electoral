@@ -54,7 +54,7 @@ class CandidateLoginView(VolunteersTestCaseBase):
         user = User.objects.create_user(username="candidate", password=PASSWORD)
         self.client.login(username=user.username, password=PASSWORD)
         response = self.client.get(url)
-        cpf_and_date_url = reverse('cpf_and_date')
+        cpf_and_date_url = reverse('cpf_and_date2')
         self.assertRedirects(response, cpf_and_date_url)
 
 TEMPLATES = [

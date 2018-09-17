@@ -1,3 +1,5 @@
+@import '../variables';
+
 .eleitores {
   margin-top: 80px;
 
@@ -30,4 +32,161 @@
   .mc-field-group {
     margin-bottom: 20px;
   }
+}
+
+// quem te representa
+.quem-representa {
+  .quem-representa-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    margin: 0 5px 30px 5px;
+    flex: 0 0 32%;
+
+    .name {
+      font-size: 18px;
+      color: #39393A;
+      font-weight: bold;
+      font-family: 'Lato', sans-serif;
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .card-content {
+      padding: 0 10px;
+    
+      .infos {
+        display: flex;
+        margin-bottom: 20px;
+  
+        .item + .coligacao {
+          background-color: #FFC43D;
+        }
+  
+        .item {
+          flex: 1;
+          text-align: center;
+          border-radius: 5px;
+          min-width: 80px;
+          display: flex;
+          flex-direction: column;
+          justify-content: end;
+          padding: 6px;
+  
+          label {
+            color: #39393A;
+            font-size: 14px;
+            width: 100%;
+          }
+  
+          span {
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .btn {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  @media screen and (max-width: $break-x-large) {
+    .quem-representa-header {
+      flex-direction: column;
+      margin-bottom: 40px;
+    }
+    .card {
+      flex: 0 0 48%;
+    }
+  }
+  @media screen and (max-width: $break-medium) {
+    .card {
+      flex: 0 0 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin: 0;
+      
+      img {
+        min-height: 450px;
+      }
+    }
+  }
+  @media screen and (max-width: $break-small) {
+    .card img {
+      min-height: 300px;
+    }
+  }
+}
+
+// accordion
+.set {
+  .accordion-header {
+    padding: 1.25rem 0;
+
+    button {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      padding: 0;
+      color: #4F4F4F;
+      font-size: 28px;
+      font-family: 'Lato', sans-serif;
+      width: 100%;
+
+      div {
+        white-space: pre-line;
+        text-align: left;
+      }
+
+      button:hover,
+      button:active {
+        text-decoration: none !important;
+      }
+    }
+  }
+  .accordion-content,
+  .card-body {
+    display: none;
+    padding: 1.25rem 0;
+    font-size: 22px;
+    font-family: 'Lato', sans-serif;
+  }
+}
+
+// filtros
+.quem-representa-filtros {
+
+  .title-container,
+  .title {
+    font-size: 18px;
+    color: #39393A;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .title-container {
+    text-transform: uppercase;
+  }
+
+  input {
+    margin-right: 15px;
+  }
+
+  #identidade_checkboxes,
+  #estado_checkboxes,
+  #partido_checkboxes {
+    margin-bottom: 30px;
+  }
+
+  select {
+    width: 100%;
+  }
+
 }

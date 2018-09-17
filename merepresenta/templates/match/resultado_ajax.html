@@ -80,7 +80,7 @@
       <div class='row'>
         <template>
           <div class='card' v-for="item in filteredList()">
-            <img src="/static/img/candidate-default.jpg">
+            <img :src="item.image">
             <span class="name">[[ item.name ]]</span>
 
             <div class="card-content">

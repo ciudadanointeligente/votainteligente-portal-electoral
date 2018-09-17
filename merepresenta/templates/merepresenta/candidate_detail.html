@@ -80,7 +80,7 @@
         </div>
         <div class="item">
             <label>Nota de Coligaçao</label>
-            <p>em análise</p>
+            <p>{{candidate.partido.coaligacao.mark}}</p>
         </div>
         <div class="item">
             <label>Cidade/UF</label>
@@ -105,7 +105,15 @@
         {{candidate.bio|markdown}}
       </div>
     </div>
-
+    <div class='col-lg-12' style="display:none">
+      <h3>Coaligacoes</h3>
+      <div class='bio-text'>
+        <p>bla blablabla coaligacoes</p>
+        {% for partido in candidate.partido.coaligacao.partido_set.all %}
+          {{partido.initials}} - {{partido.mark}}
+        {% endfor %}
+      </div>
+    </div>
   <!-- Temas Prioritários -->
   <div class='col-lg-12'>
     <h3>Temas prioritarios</h3>
@@ -128,6 +136,12 @@
     <div class='col-lg-12'>
       <div class="resposta-candidato">
         {% get_taken_position_for topic candidate %}
+      </div>
+      <div style="display: none;">
+        {% comment %}
+        Miguel querida: vc sabe que tem que fazer aqui ;)
+        {% endcomment %}
+        {{topic.description}}
       </div>
     </div>
     {% endfor %}

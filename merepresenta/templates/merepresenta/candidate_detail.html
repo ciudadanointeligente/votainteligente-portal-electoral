@@ -123,11 +123,9 @@
       <h3>Seu posicionamento nas pautas do #MeRepresenta</h3>
   </div>
   {% for category in categories %}
+    <h3>{{category.name}}</h3>
     {% for topic in category.topics.all %}
     <div class='col-lg-12'>
-      <h4 class='topic-candidato'>
-        {{topic.label}}
-      </h4>
       <div class="resposta-candidato">
         {% get_taken_position_for topic candidate %}
       </div>

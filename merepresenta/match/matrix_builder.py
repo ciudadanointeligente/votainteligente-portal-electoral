@@ -139,6 +139,6 @@ class MatrixBuilder(object):
             i = self.candidates_id[c.id]
             mark = r[i]
             d = self.candidates_dict[c.id]
-            d['nota'] = mark
+            d['nota'] = float(mark)/float(100)
             as_array.append(d)
         return as_array

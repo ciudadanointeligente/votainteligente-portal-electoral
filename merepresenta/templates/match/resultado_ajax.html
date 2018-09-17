@@ -13,6 +13,21 @@
       <div class="title-container">
         <span>Filtros</span>
       </div>
+      <div id='estado_checkboxes'>
+        <div class="title">
+          <span>Estado (UF)</span>
+        </div>
+          <select v-model="checkedEstado">
+            <option  value="" >
+                  Todos os estados
+                </option>
+            <template v-for="estado in estadosList">
+                <option :id="estado.id" :value="estado.id" >
+                  [[ estado.label ]]
+                </option>
+            </template>
+            <select>
+      </div>
 
       <div id="identidade_checkboxes">
         <div class="title">
@@ -34,18 +49,6 @@
           <input type="checkbox" id="lgbt_input" v-model="isLGBT">
           <label for="lgbt_input">LGBT</label>
         </div>
-      </div>
-      <div id='estado_checkboxes'>
-        <div class="title">
-          <span>Estado (UF)</span>
-        </div>
-          <select v-model="checkedEstado">
-            <template v-for="estado in estadosList">
-                <option :id="estado.id" :value="estado.id" >
-                  [[ estado.label ]]
-                </option>
-            </template>
-            <select>
       </div>
       <div id='partido_checkboxes'>
         <div class="title">

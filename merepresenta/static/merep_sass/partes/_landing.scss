@@ -57,8 +57,13 @@
 
   .navbar-nav {
     text-align: center;
-    
+    width: 100%;
+    display: flex;
+    justify-content: end;
 
+    li:last-child {
+      margin-left: 40px;
+    }
   }
 
   @media screen and (max-width: $break-large) {

@@ -157,6 +157,17 @@
     font-size: 22px;
     font-family: 'Lato', sans-serif;
   }
+
+  .accordion-content {
+    h4 {
+      font-family: 'Lato', sans-serif;
+      font-weight: bold;
+    }
+
+    p {
+      margin-bottom: 3rem;
+    }
+  }
 }
 
 // filtros

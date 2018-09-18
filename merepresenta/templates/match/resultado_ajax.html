@@ -29,6 +29,9 @@
             </template>
             <select>
           <div class="election_types" >
+          <div class="title">
+            <span>Cargo</span>
+          </div>
           {% for type_ in election_types %}
             <div>
               <input id="{{type_.id}}" value="{{type_.id}}" type="radio" name="election_type" class="election_type_item" v-model="electionType">
@@ -58,6 +61,7 @@
           <input type="checkbox" id="lgbt_input" v-model="isLGBT" v-on:click="LGBT_checked">
           <label for="lgbt_input">LGBT</label>
         </div>
+        <!-- Querida Miguel: Eu sou preguiçoso e não escrevi isso em um sass. Além disso, queria evitar conflitos no github.-->
         <div class="lgbt_descriptions invisible card" style="display: none; padding: 10px;">
           {% for lgbt_desc in lgbt_descriptions %}
             <div>
@@ -93,16 +97,16 @@
           </p>
         </div>
         <div>
-          <a class="btn btn-azul" href="#">
+          <a class="btn btn-azul" href="{% url 'match' %}">
             Escolher outros temas
           </a>
         </div>
       </div>
-      <div class='row'>
-        <template>
-          <div class='card' v-for="item in filteredList()">
-            <a :href="item.url" >
-              <img :src="item.image">
+      <template >
+      <div class='row' v-if="filteredList().length">
+          <div class='card' v-for="item in filteredList()" >
+            <a :href="item.url"  target="_blank">
+              <img class="card-img-top" :src="item.image">
             </a>
             <span class="name">[[ item.name ]]</span>
 
@@ -125,9 +129,12 @@
                 Ver perfil
               </a>
             </div>
-          </div>
-        </template>
+          </div>  
       </div>
+      <div class='row' v-else>
+        {% include "match/zero_candidatos_encontrados.html" %}
+      </div>
+      </template>
     </div>
   </template>
 </div>
@@ -256,7 +263,7 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
             list: data,
             partidosList: partidos_ids,
             estadosList: estados_ids,
-            amountOfResults: 36,
+            amountOfResults: 99,
             isMulher: undefined,
             isNegro: undefined,
             isIndigena: undefined,
@@ -357,6 +364,15 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
       }
     })
   });
+</script>
+<script type="text/javascript">
+    var copiarConvite = function(){
+        $("#zero_candidates_text_area").select();
+        document.execCommand('copy');
+        
+    }
+    
+    
 </script>
 
 {% endblock scripts %}

@@ -32,19 +32,6 @@
 {% block everything %}
 <section class="container candidate-profile">
   <div class='row'>
-    <!-- Alerta -->
-    <div class="col-lg-8 offset-md-2 alerta">
-      {% if user|manages_this:candidate %}
-        <div class="alert alert-warning text-center alerta-content" role="alert">
-          Você tem até o dia 12/09/2018 para fazer alterações no seu perfil. Depois dessa data, você não poderá mais modificar suas informações. 
-          <span>
-            <a href="{% url 'merepresenta_complete_profile' slug=candidate.election.slug candidate_slug=candidate.slug %}">
-              Mudar perfil
-            </a>
-          </span>
-        </div>
-      {% endif %}
-    </div>
 
     <!-- Foto Candidato/a -->
     <div class="col-lg-5">
@@ -75,23 +62,19 @@
             <p>{{candidate.partido.initials}}</p>
         </div>
         <div class="item">
-            <label>Coligaçao</label>
+            <label>Coligação</label>
             <p>{{candidate.partido.coaligacao.name}}</p>
         </div>
         <div class="item">
-            <label>Nota de Coligaçao</label>
+            <label>Nota de Coligação</label>
             <p>em análise</p>
             {% comment %}
             <p>{{candidate.partido.coaligacao.mark}}</p>
             {% endcomment %}
         </div>
         <div class="item">
-            <label>Cidade/UF</label>
+            <label>UF</label>
             <p>{{candidate.election.area.name|title}}</p>
-        </div>
-        <div class="item">
-          <label>Grupo de Renovação Política</label>
-          <p>{{candidate.renovacao_politica}}</p>
         </div>
       </div>
       <!-- Grid -->
@@ -103,7 +86,7 @@
 <section class="container pautas-container">
   <div class="row">
     <div class='col-lg-12'>
-      <h3>Bio</h3>
+      <h3>Um pouco sobre a/o candidata/o</h3>
       <div class='bio-text'>
         {{candidate.bio|markdown}}
       </div>
@@ -119,10 +102,10 @@
     </div>
   <!-- Temas Prioritários -->
   <div class='col-lg-12'>
-    <h3>Temas prioritarios</h3>
+    <h3>Temas prioritários</h3>
     <div class="temas">
       {% for link in candidate.candidatequestioncategory_set.all %}
-        <div class='col-4 align-middle tema-prioritario text-center'>
+        <div class='col-4 align-middle tema-prioritario text-center item-amarelo'>
           {{link.category.name}}
         </div>
       {% endfor %}

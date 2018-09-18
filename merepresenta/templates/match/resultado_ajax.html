@@ -8,6 +8,8 @@
 {% block title %}- Match{% endblock title %}
 {% block content %}
 <div id='result' class="row quem-representa">
+
+  
   <template>
     <div class="col-lg-3 quem-representa-filtros">
       <div class="title-container">
@@ -18,7 +20,7 @@
           <span>Estado (UF)</span>
         </div>
           <select v-model="checkedEstado">
-            <option  value="" >
+            <option selected="selected">
                   TODOS OS ESTADOS
                 </option>
             <template v-for="estado in estadosList">
@@ -27,6 +29,14 @@
                 </option>
             </template>
             <select>
+          <div class="election_types" >
+          {% for type_ in election_types %}
+            <div>
+              <input id="{{type_.id}}" value="{{type_.id}}" type="radio" name="election_type" class="election_type_item" v-model="electionType">
+              <label for="{{type_.id}}">{{type_.label}}</label>
+            </div>
+          {% endfor %}
+        </div>
       </div>
 
       <div id="identidade_checkboxes">
@@ -49,6 +59,15 @@
           <input type="checkbox" id="lgbt_input" v-model="isLGBT">
           <label for="lgbt_input">LGBT</label>
         </div>
+        <div class="lgbt_descriptions" style="display:none;">
+          {% for lgbt_desc in lgbt_descriptions %}
+            <div>
+              <input type="checkbox" class="lgbt_desc_item" v-model="{{lgbt_desc.id}}">
+              <label for="lgbt_input">{{lgbt_desc.label}}</label>
+            </div>
+          {% endfor %}
+        </div>
+
       </div>
       <div id='partido_checkboxes'>
         <div class="title">
@@ -154,6 +173,16 @@
     }
     return false;
   }
+  var electionType = function(el, eType){
+    console.log(eType);
+    if(!eType){
+      return true;
+    }
+    if (el.electionType == eType){
+      return true;
+    }
+    return false;
+  }
   var filterLGBT = function(el, isLGBT){
     if(!isLGBT){
       return true;
@@ -191,8 +220,12 @@
             isNegro: undefined,
             isIndigena: undefined,
             isLGBT: undefined,
+            electionType: 'deputadao-federal',
             checkedPartidos: [],
             checkedEstado: false,
+            {% for lgbt_desc in lgbt_descriptions %}
+            {{lgbt_desc.id}}: false,
+            {% endfor %}
             filterElement: function(el){
               var f_estado = filterEstado(el, this.checkedEstado);
               var f_partido = filterPartido(el, this.checkedPartidos);
@@ -200,7 +233,8 @@
               var f_negro = filterNegro(el, this.isNegro);
               var f_indigena = filterIndigena(el, this.isIndigena);
               var f_lgbt = filterLGBT(el, this.isLGBT);
-              var result = f_estado && f_mulher && f_partido && f_negro && f_indigena && f_lgbt;
+              var f_eType = electionType(el, this.electionType);
+              var result = f_estado && f_mulher && f_partido && f_negro && f_indigena && f_lgbt && f_eType;
               return result;
             }
           },

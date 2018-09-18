@@ -58,3 +58,9 @@ class CandidateOrderingTests(VolunteersTestCaseBase):
 		cs = Candidate.objects.all().order_by('-desprivilegio')
 		self.assertEquals(int(cs[0].id), 5)
 		self.assertEquals(int(cs[1].id), 4)
+
+	def test_lgbt_adds_one(self):
+		Candidate.objects.filter(id=5).update(lgbt=True)
+		self.assertEquals(Candidate.objects.get(id=5).is_lgbt, 1)
+		self.assertEquals(Candidate.objects.get(id=5).desprivilegio, 2)
+

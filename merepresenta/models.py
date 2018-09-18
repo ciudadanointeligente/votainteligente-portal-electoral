@@ -11,7 +11,7 @@ from backend_candidate.models import CandidacyContact, Candidacy
 from votai_utils.send_mails import send_mail
 from django.utils import timezone
 import datetime
-from elections.models import QuestionCategory as OriginalQuestionCategory, Topic
+from elections.models import QuestionCategory as OriginalQuestionCategory, Topic, Election
 from django.utils.encoding import python_2_unicode_compatible
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -19,6 +19,7 @@ from candidator.models import Position
 from merepresenta.dicts_and_lists_for_ordering import partidos_mix
 from django.conf import settings
 from urlparse import urljoin
+from django.utils.text import slugify
 
 
 class MeRepresentaPopularProposal(PopularProposal):
@@ -59,7 +60,12 @@ class ForVolunteersManager(models.Manager):
                         output_field=PositiveSmallIntegerField())
 
                 )
-        qs = qs.annotate(desprivilegio=F('is_women') + F('is_non_white') + F('bad_email'))
+        qs = qs.annotate(is_lgbt=Case(When(lgbt=True, then=Value(1)),
+                         default=Value(0),
+                         output_field=PositiveSmallIntegerField())
+
+                )
+        qs = qs.annotate(desprivilegio=F('is_women') + F('is_non_white') + F('bad_email') + F('is_lgbt'))
         return qs
 
 class LimitCandidatesForVolunteers(ForVolunteersManager):
@@ -136,6 +142,21 @@ class Candidate(OriginalCandidate, RaceMixin):
 
     for_volunteers = LimitCandidatesForVolunteers()
 
+    @classmethod
+    def get_possible_election_kinds(cls):
+        r = {}
+        for e in Election.objects.exclude(name=u"Deputada/o Distrital").values_list('name', flat=True).distinct():
+            r[slugify(e)] = e
+        return r
+
+    @property
+    def election_kind(self):
+        if self.election is None:
+            return ""
+        if self.election.name == "Deputada/o Distrital":
+            return slugify('Deputada/o Estadual')
+        return slugify(self.election.name)
+
     def get_image(self):
         if self.candidacy_set.exists():
             user = self.candidacy_set.first().user
@@ -188,6 +209,7 @@ class Candidate(OriginalCandidate, RaceMixin):
             'coaligacao': coaligacao,
             'nota_coaligacao': coaligacao_mark,
             'url': self.get_absolute_url(),
+            'electionType': self.election_kind,
         }
         try:
             src =  self.candidacy_set.first().user.profile.image.url

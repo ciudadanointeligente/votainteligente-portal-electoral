@@ -87,6 +87,59 @@ class CandidateTestCase(VotaInteligenteTestCase):
 
         self.assertTrue(candidate.lgbt_desc.all())
 
+    def test_get_possible_election_kinds(self):
+        Election.objects.all().delete()
+        e = Election.objects.create(name="Chefe da todas as coisas no universo")
+        candidate = Candidate.objects.create(name="Candidate 1",
+                                             cpf='1230',
+                                             nome_completo=u'Candidato uno',
+                                             numero='190000000560',
+                                             race="preta",
+                                             original_email='perrito@gatito.com',
+                                             bio='blablablabla', 
+                                             lgbt=True,
+                                             candidatura_coletiva=True,
+                                             renovacao_politica='Partido Perrito',
+                                             email_repeated=False)
+        outro_can = Candidate.objects.create(name="Candidate 1",
+                                             cpf='1231',
+                                             nome_completo=u'Candidato uno',
+                                             numero='190000000560',
+                                             race="preta",
+                                             original_email='perrito@gatito.com',
+                                             bio='blablablabla', 
+                                             lgbt=True,
+                                             candidatura_coletiva=True,
+                                             renovacao_politica='Partido Perrito',
+                                             email_repeated=False)
+        e.candidates.add(candidate)
+        l = Candidate.get_possible_election_kinds()
+        self.assertTrue(l)
+        self.assertEquals(l[l.keys()[0]], e.name)
+        self.assertEquals(candidate.election_kind, l.keys()[0])
+        self.assertFalse(outro_can.election_kind)
+
+    def test_get_deputado_distrital_as_the_estadual(self):
+        Election.objects.all().delete()
+        e1 = Election.objects.create(name="Deputada/o Estadual")
+        e2 = Election.objects.create(name="Deputada/o Distrital")
+        candidate = Candidate.objects.create(name="Candidate 1",
+                                             cpf='1230',
+                                             nome_completo=u'Candidato uno',
+                                             numero='190000000560',
+                                             race="preta",
+                                             original_email='perrito@gatito.com',
+                                             bio='blablablabla', 
+                                             lgbt=True,
+                                             candidatura_coletiva=True,
+                                             renovacao_politica='Partido Perrito',
+                                             email_repeated=False)
+        e1.candidates.add(candidate)
+        l = Candidate.get_possible_election_kinds()
+        self.assertEquals(len(l), 1)
+        self.assertEquals(l[l.keys()[0]], e1.name)
+
+
     @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
     def test_candidate_as_json(self):
         gay = LGBTQDescription.objects.create(name="Gay")

@@ -20,7 +20,7 @@
           <span>Estado (UF)</span>
         </div>
           <select v-model="checkedEstado">
-            <option selected="selected">
+            <option value='' selected="selected">
                   TODOS OS ESTADOS
                 </option>
             <template v-for="estado in estadosList">
@@ -56,14 +56,14 @@
           <label for="indigena_input">Indígena</label>
         </div>
         <div id="lgbt">
-          <input type="checkbox" id="lgbt_input" v-model="isLGBT">
+          <input type="checkbox" id="lgbt_input" v-model="isLGBT" v-on:click="LGBT_checked">
           <label for="lgbt_input">LGBT</label>
         </div>
-        <div class="lgbt_descriptions" style="display:none;">
+        <div class="lgbt_descriptions invisible card" style="display: none; padding: 10px;">
           {% for lgbt_desc in lgbt_descriptions %}
             <div>
-              <input type="checkbox" class="lgbt_desc_item" v-model="{{lgbt_desc.id}}">
-              <label for="lgbt_input">{{lgbt_desc.label}}</label>
+              <input type="checkbox" id='lgbt_desc_{{lgbt_desc.id}}' class="lgbt_desc_item" v-model="{{lgbt_desc.id}}">
+              <label for="lgbt_desc_{{lgbt_desc.id}}">{{lgbt_desc.label}}</label>
             </div>
           {% endfor %}
         </div>
@@ -102,7 +102,9 @@
       <div class='row'>
         <template>
           <div class='card' v-for="item in filteredList()">
-            <img :src="item.image">
+            <a :href="item.url" >
+              <img :src="item.image">
+            </a>
             <span class="name">[[ item.name ]]</span>
 
             <div class="card-content">
@@ -113,11 +115,11 @@
                 </div>
                 <div class="item coligacao">
                   <label>nota da coligação</label>
-                  <span>[[item.nota]]/[[item.nota_coaligacao]]</span>
+                  <span>[[item.nota_coaligacao]]</span>
                 </div>
                 <div class="item">
                   <label>estado</label>
-                  <span>[[item.estado]]</span>
+                  <span>[[item.estado_initial]]</span>
                 </div>
               </div>
               <a :href="item.url" class="btn btn-azul" target="_blank">
@@ -137,6 +139,28 @@
 <script type="text/javascript" src="{% static 'js/accordion.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/dicts_for_result.js' %}"></script>
 <script type="text/javascript">
+// $(function(){
+//   let show_lgbt_desc = function(){
+//     $(".lgbt_descriptions").show(600);
+//     $(".lgbt_descriptions").removeClass('invisible');
+//   }
+//   let hide_lgbt_desc = function(){
+//     $(".lgbt_descriptions").hide(600);
+//     $(".lgbt_descriptions").addClass('invisible');
+//     $('.lgbt_descriptions input').removeAttr('checked');
+//   }
+//   $('#lgbt_input').change(function(evt){
+//     console.log('checked');
+//     if($(this).is(':checked')){
+//       show_lgbt_desc();
+//     }
+//     else {
+//       hide_lgbt_desc();
+//     }
+//   })
+// });
+
+
   var filterEstado = function(el, checkedEstado){
     if(!checkedEstado){
       return true;
@@ -174,7 +198,6 @@
     return false;
   }
   var electionType = function(el, eType){
-    console.log(eType);
     if(!eType){
       return true;
     }
@@ -198,6 +221,19 @@
   }
   return checkedPartidos.includes(el.filter.partido);
 }
+{% for lgbt_desc in lgbt_descriptions %}
+var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
+    if(!lgbt_desc){
+      return true;
+    }
+    if (el.filter.{{lgbt_desc.id}}){
+      return true;
+    }
+    return false;
+  }
+{% endfor %}
+
+
   $(function(){
     $.post({
       url: '{% url "match_result_ajax" %}',
@@ -235,6 +271,10 @@
               var f_lgbt = filterLGBT(el, this.isLGBT);
               var f_eType = electionType(el, this.electionType);
               var result = f_estado && f_mulher && f_partido && f_negro && f_indigena && f_lgbt && f_eType;
+              {% for lgbt_desc in lgbt_descriptions %}
+              var f_{{lgbt_desc.id}} = filter_{{lgbt_desc.id}}(el, this.{{lgbt_desc.id}});
+              result = result && f_{{lgbt_desc.id}};
+              {% endfor %}
               return result;
             }
           },
@@ -251,6 +291,20 @@
             }
           },
           methods: {
+            LGBT_checked: function(e){
+              if (this.isLGBT){
+                $(".lgbt_descriptions").hide(600);
+                $(".lgbt_descriptions").addClass('invisible');
+                {% for lgbt_desc in lgbt_descriptions %}
+                this.{{lgbt_desc.id}} = false;
+                {% endfor %}
+              }
+              else {
+                $(".lgbt_descriptions").show(600);
+                $(".lgbt_descriptions").removeClass('invisible');
+              }
+              
+            },
             filteredTotalList: function(){
               list = this.sortedList;
               filterElement = this.filterElement.bind(this);

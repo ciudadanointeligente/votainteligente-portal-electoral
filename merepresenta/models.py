@@ -187,12 +187,14 @@ class Candidate(OriginalCandidate, RaceMixin):
             partido_initials = self.partido.initials
             if self.partido.coaligacao:
                 coaligacao = self.partido.coaligacao.name
-                coaligacao_mark = self.partido.coaligacao.mark
+                coaligacao_mark = round(self.partido.coaligacao.mark, 2)
         area_id = ""
         area_name = ""
+        area_initial = ""
         try:
             area_id = self.election.area.id
             area_name = self.election.area.name
+            area_initial = self.election.area.identifier
         except:
             pass
         d ={
@@ -203,6 +205,7 @@ class Candidate(OriginalCandidate, RaceMixin):
             'gender': self.gender,
             'lgbt': self.lgbt,
             'estado': area_name,
+            'estado_initial': area_initial,
             'lgbt_desc': [d.name for d in self.lgbt_desc.all()],
             'candidatura_coletiva': self.candidatura_coletiva,
             'partido': partido_initials,

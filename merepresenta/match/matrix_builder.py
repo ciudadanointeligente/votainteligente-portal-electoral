@@ -3,6 +3,7 @@ from candidator.models import Position
 from elections.models import QuestionCategory
 from merepresenta.models import Candidate
 from django.core.cache import cache
+from constance import config
 
 
 class MatrixBuilder(object):
@@ -123,12 +124,13 @@ class MatrixBuilder(object):
         else:
             CPR = cache.get(self.cache_key_candidates_right_positions)
         result = np.dot(CPR, self.electors_categories)
-        result = result + self.desprivilegios
+        result = result + self.desprivilegios * config.MEREPRESENTA_IDENTITY_MULTIPLICATION_FACTOR
         return result
 
     def get_result(self):
         C = self.get_candidates_result()
         notas = self.coalicagaos_nota.T
+        notas = notas * config.MEREPRESENTA_COLIGACAO_ATENUATION_FACTOR
         return C * notas
 
     def get_result_as_array(self):

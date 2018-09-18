@@ -299,11 +299,15 @@ class QuestionCategory(OriginalQuestionCategory):
         proxy = True
 
 
+@python_2_unicode_compatible
 class CandidateQuestionCategory(models.Model):
     candidate = models.ForeignKey(Candidate)
     category = models.ForeignKey(QuestionCategory)
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.candidate.name + u" / " + self.category.name
 
 
 @receiver(post_save, sender=Candidacy, dispatch_uid="say_thanks_to_the_volunteer")

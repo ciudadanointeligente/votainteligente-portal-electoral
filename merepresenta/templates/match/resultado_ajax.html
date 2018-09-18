@@ -9,7 +9,6 @@
 {% block content %}
 <div id='result' class="row quem-representa">
 
-  
   <template>
     <div class="col-lg-3 quem-representa-filtros">
       <div class="title-container">
@@ -135,7 +134,13 @@
 
 {% endblock content %}
 {% block scripts %}
+{% if debug %}
+
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+{% else %}
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+{% endif %}
+
 <script type="text/javascript" src="{% static 'js/accordion.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/dicts_for_result.js' %}"></script>
 <script type="text/javascript">

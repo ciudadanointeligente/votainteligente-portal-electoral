@@ -7,8 +7,12 @@
 
 {% block title %}- Match{% endblock title %}
 {% block content %}
+<div id="aguantai" class="row">
+  <div class="col-12 text-center">
+    <h2>Aguenta aí!</h2>
+  </div>
+</div>
 <div id='result' class="row quem-representa">
-
   <template>
     <div class="col-lg-3 quem-representa-filtros">
       <div class="title-container">
@@ -154,28 +158,6 @@
 <script type="text/javascript" src="{% static 'js/accordion.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/dicts_for_result.js' %}"></script>
 <script type="text/javascript">
-// $(function(){
-//   let show_lgbt_desc = function(){
-//     $(".lgbt_descriptions").show(600);
-//     $(".lgbt_descriptions").removeClass('invisible');
-//   }
-//   let hide_lgbt_desc = function(){
-//     $(".lgbt_descriptions").hide(600);
-//     $(".lgbt_descriptions").addClass('invisible');
-//     $('.lgbt_descriptions input').removeAttr('checked');
-//   }
-//   $('#lgbt_input').change(function(evt){
-//     console.log('checked');
-//     if($(this).is(':checked')){
-//       show_lgbt_desc();
-//     }
-//     else {
-//       hide_lgbt_desc();
-//     }
-//   })
-// });
-
-
   var filterEstado = function(el, checkedEstado){
     if(!checkedEstado){
       return true;
@@ -259,6 +241,7 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
       },
       success: function(data){
         data = jQuery.parseJSON(data);
+        $("#aguantai").remove();
         new Vue({
           delimiters: ['[[', ']]'],
           el: '#result',

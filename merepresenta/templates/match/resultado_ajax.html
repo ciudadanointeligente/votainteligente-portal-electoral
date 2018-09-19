@@ -84,7 +84,7 @@
           <span>Partido</span>
         </div>
         <div class="filtros">
-          <div v-for="partido in filteredPartidos()">
+          <div v-for="partido in partidosList">
             <input type="checkbox" :id="'partido-' + partido.id" :value="partido.id" v-model="checkedPartidos">
             <label :for="'partido-' + partido.id">[[ partido.label ]]</label>
           </div>
@@ -313,38 +313,6 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
             filteredList: function(){
               var list = this.filteredTotalList();
               return list.slice(0,this.amountOfResults);
-            },
-            filteredPartidos: function(){
-              var counter = 0;
-              var total_list = this.filteredTotalList();
-              var partidos_ids = {};
-
-              while(counter < total_list.length){
-                let partido_id = total_list[counter].filter.partido;
-                let keys = Object.keys(partidos_ids);
-                if(keys.includes(String(partido_id))){
-                  partidos_ids[partido_id] += 1;  
-                }
-                else{
-                  partidos_ids[partido_id] = 1;
-                }
-                counter += 1;
-              }
-              counter = 0;
-              var plist = [];
-              while(counter < this.partidosList.length){
-                var p = {'id': undefined, 'ĺabel': undefined};
-                p.id = this.partidosList[counter].id;
-                var n = partidos_ids[this.partidosList[counter].id];
-                if (n===undefined){
-                  n = 0;
-                }
-                p.label = this.partidosList[counter].label + " (" + n + ")";
-                plist.push(p);
-                counter += 1;
-              }
-
-              return plist;
             }
           }
         })

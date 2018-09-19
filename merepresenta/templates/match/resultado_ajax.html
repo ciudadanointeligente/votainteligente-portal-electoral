@@ -307,7 +307,8 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
           },
           methods: {
             LGBT_checked: function(e){
-              if (this.isLGBT){
+              let checkado = $(e.target).prop('checked');
+              if (!checkado){
                 $(".lgbt_descriptions").hide(600);
                 $(".lgbt_descriptions").addClass('invisible');
                 {% for lgbt_desc in lgbt_descriptions %}
@@ -374,5 +375,4 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
     document.execCommand('copy');
   }
 </script>
-
 {% endblock scripts %}

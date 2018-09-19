@@ -159,6 +159,14 @@
 <script type="text/javascript" src="{% static 'js/accordion.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/dicts_for_result.js' %}"></script>
 <script type="text/javascript">
+ga('send', {
+  hitType: 'event',
+  eventCategory: 'ResultadoObtenido',
+  eventAction: 'resultado_obtenido',
+  eventLabel: 'resultado_obtenido'
+});
+
+
   var filterEstado = function(el, checkedEstado){
     if(!checkedEstado){
       return true;

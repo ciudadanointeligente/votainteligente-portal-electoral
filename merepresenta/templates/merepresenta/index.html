@@ -11,15 +11,13 @@
     <div class="row">
       <div class="col-lg-6 title-container">
         <h2 class="title">
-          Ajude seus eleitores chegarem até você!
+          Encontre candidaturas que te representam! 
         </h2>
 
         <p>
-          Quer aparecer para as eleitoras e 
-          eleitores que se preocupam 
-          com as mesmas pautas que você?
-          Cadastre-se e traga mais visibilidade 
-          para sua candidatura.
+          Quer entender quem são as/os candidatas/os que defendem 
+          temas importantes pra você?
+          Chega mais!
         </p>
 
         <div class="row ajude-btn">
@@ -47,21 +45,21 @@
             {% else %}
 
             <div class="col-lg-12">
-              <a href="{% url 'cpf_and_date2' %}"
-              class="btn btn-roxo btn-uppercase">Sou candidata/o</a>
-            </div>
-
-            <div class="col-lg-12">
-              <a href="{% url 'volunteer_index' %}" 
-                class="btn btn-azul btn-uppercase">
-                Quero ser voluntária/o
+              <a href="{% url 'match' %}" 
+                class="btn btn-roxo voluntario btn-uppercase">
+                Sou eleitor/a
               </a>
             </div>
 
             <div class="col-lg-12">
-              <a href="{% url 'eleitor' %}" 
-                class="btn btn-gris voluntario">
-                Sou eleitor/a
+              <a href="{% url 'cpf_and_date2' %}"
+              class="btn btn-azul voluntario btn-uppercase">Sou candidata/o</a>
+            </div>
+
+            <div class="col-lg-12">
+              <a href="{% url 'volunteer_index' %}" 
+                class="btn btn-azul voluntario btn-uppercase">
+                Quero ser voluntária/o
               </a>
             </div>
           {% endif %}
@@ -69,7 +67,7 @@
       </div>
 
       <div class="col-lg-6 ajude-img">
-        <img src="{% static '/img/merepresenta/merep_landing_image.svg' %}" 
+        <img src="{% static '/img/ilustra_3_amarela.svg' %}" 
           class="img-fluid" 
           alt="Ilustração com balões de diálogo escritos Voto e #MeRepresenta">
       </div>

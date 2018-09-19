@@ -1,3 +1,10 @@
+var comparadorAlfabetico = function(a, b){
+  if(a.label > b.label){
+    return 1;
+  }
+  return 0;
+};
+
 var partidos_ids = [{"id": 0, "label": "PP"},
                     {"id": 1, "label": "PHS"},
                     {"id": 2, "label": "PSC"},
@@ -32,7 +39,7 @@ var partidos_ids = [{"id": 0, "label": "PP"},
                     {"id": 31, "label": "PSTU"},
                     {"id": 32, "label": "NOVO"},
                     {"id": 33, "label": "PCB"},
-                    {"id": 34, "label": "PCO"}]
+                    {"id": 34, "label": "PCO"}].sort(comparadorAlfabetico);
 var estados_ids = [{'id': "sao-paulo-state-sp", 'label': "SÃO PAULO"},
                    {'id': "rio-de-janeiro-state-rj", 'label': "RIO DE JANEIRO"},
                    {'id': "acre-state-ac", 'label': "ACRE"},
@@ -59,4 +66,4 @@ var estados_ids = [{'id': "sao-paulo-state-sp", 'label': "SÃO PAULO"},
                    {'id': "paraiba-state-pb", 'label': "PARAÍBA"},
                    {'id': "parana-state-pr-2", 'label': "PARANÁ"},
                    {'id': "piaui-state-pi", 'label': "PIAUÍ"},
-                   {'id': "rondonia-state-ro", 'label': "RONDÔNIA"}] 
+                   {'id': "rondonia-state-ro", 'label': "RONDÔNIA"}].sort(comparadorAlfabetico);

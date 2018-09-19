@@ -218,7 +218,7 @@ class Candidate(OriginalCandidate, RaceMixin):
             src =  self.candidacy_set.first().user.profile.image.url
             d['image'] = urljoin(settings.STATIC_URL, src)
         except:
-            d['image'] = None
+            d['image'] = urljoin(settings.STATIC_URL, 'img/candidate-default.jpg')
         if self.partido:
             partido_id = partidos_mix.get(self.partido.initials, self.partido.initials)
         else:

@@ -104,6 +104,9 @@
       </div>
       <template >
       <div class='row' v-if="filteredList().length">
+        <!-- Miguel querida isso tem o número mas nao ta bem =( pode me ajudar? -->
+        <!--div><p>Encontramos [[filteredList().length]] candidatas</p></div><br /-->
+
           <div class='card' v-for="item in filteredList()" >
             <a :href="item.url"  target="_blank">
               <img class="card-img-top" :src="item.image">
@@ -131,7 +134,7 @@
             </div>
           </div>  
       </div>
-      <div class="zero-encontrados">
+      <div class="zero-encontrados" v-else>
         {% include "match/zero_candidatos_encontrados.html" %}
       </div>
       </template>

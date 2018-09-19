@@ -231,6 +231,7 @@ CONSTANCE_CONFIG = {
     'ESTRATEGIA_SELECCION_PROPUESTAS': ("getter", u'Qué estrategia usamos para mostrar propuestas en la 1/2 naranja', 'proposals_getter_for_12_n'),
     'MEREPRESENTA_COLIGACAO_ATENUATION_FACTOR': (1.0, u'o factor de atenuacao de nota de coligacao'),
     'MEREPRESENTA_IDENTITY_MULTIPLICATION_FACTOR': (1.0, u'o factor de multiplicacao de desprivilegio'),
+    'MEREPRESENTA_RESULTADO_CANTIDADE': (100, u'o factor de multiplicacao de desprivilegio'),
 }
 TESTING = 'test' in sys.argv
 if TESTING:

@@ -90,6 +90,20 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class='col'>
+          
+          {% include 'match/eleitor_entregando_datos.html' %}
+        </div>
+      </div>
+      <div class="row" style="margin-top: 10px;">
+        <div class='col'>
+          <a class="btn btn-verde" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmerepresenta.org.br%2F&amp;src=sdkpreparse" target="_blank" >
+            <i class="fab fa-facebook-square"></i> Compartilhar!
+          </a>
+        </div>
+      </div>
+    </div>
     </div>
 
     <div class="col-lg-9">
@@ -161,9 +175,12 @@
 <script type="text/javascript">
 ga('send', {
   hitType: 'event',
-  eventCategory: 'ResultadoObtenido',
-  eventAction: 'resultado_obtenido',
-  eventLabel: 'resultado_obtenido'
+  eventCategory: 'Resultado',
+  eventAction: 'resultadoObtenido',
+  eventLabel: 'resultado obtenido', 
+  fieldsObject: {
+    nonInteraction: true
+  }
 });
 
 
@@ -233,6 +250,7 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
       return true;
     }
     if (el.filter.{{lgbt_desc.id}}){
+      
       return true;
     }
     return false;

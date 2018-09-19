@@ -61,7 +61,7 @@
             <label>Partido</label>
             <p>{{candidate.partido.initials}}</p>
         </div>
-        <div class="item coligacao">
+        <div class="item">
             <label>Coligação</label>
             <p>{{candidate.partido.coaligacao.name}}</p>
         </div>
@@ -74,6 +74,12 @@
             <p>{{candidate.election.area.name|title}}</p>
         </div>
       </div>
+      <div class="item">
+        <a class="btn btn-verde" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmerepresenta.org.br{{candidate.get_absolute_url|iriencode}}&amp;src=sdkpreparse" target="_blank" >
+            <i class="fab fa-facebook-square"></i> Compartilhar!
+          </a>
+      </div>
+
       <!-- Grid -->
     </div>
   </div>

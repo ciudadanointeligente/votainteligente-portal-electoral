@@ -10,8 +10,7 @@ class MatrixBuilder(object):
     cache_key_candidates_right_positions = 'candidates_right_positions'
     cache_key = 'merepresenta_matrix_builder_setup_'
     def __init__(self, *args, **kwargs):
-        
-        self.cache_time = kwargs.pop('time', 6000)
+        self.cache_time = kwargs.pop('time', 83600)
         if cache.get(self.cache_key) is None:
             positions = Position.objects.all().order_by('id')
             candidates = Candidate.objects.filter(candidatequestioncategory__isnull=False).order_by('id').distinct()
@@ -39,6 +38,15 @@ class MatrixBuilder(object):
             all_ = cache.get(self.cache_key)
 
         self.positions, self.candidates, self.categories, self.positions_id, self.categories_id, self.candidates_id, self.electors_categories, self.coalicagaos_nota, self.candidates_dict, self.desprivilegios = all_
+        self.get_candidates_right_positions()
+
+    def clean_up_cache(self):
+        if cache.get(self.cache_key) is None or cache.get(self.cache_key_candidates_right_positions) is None:
+            self.set_cache_to_none()            
+
+    def set_cache_to_none(self):
+        cache.set(self.cache_key, None)
+        cache.set(self.cache_key_candidates_right_positions, None)
 
     def get_candidates_dict(self, candidates):
         candidates_dict = {}
@@ -115,14 +123,21 @@ class MatrixBuilder(object):
             index = self.categories_id[c.id]
             self.electors_categories[index] = 3
 
-    def get_candidates_result(self):
-        # Candidates right answers multiplied by 2 if she chooses
-        # the given TEMA
+    def get_candidates_right_positions(self):
         if cache.get(self.cache_key_candidates_right_positions) is None:
             CPR = self.get_candidates_right_positions_matrix()
             cache.set(self.cache_key_candidates_right_positions, CPR, self.cache_time)
         else:
             CPR = cache.get(self.cache_key_candidates_right_positions)
+        return CPR
+
+    def get_candidates_result(self):
+        # Candidates right answers multiplied by 2 if she chooses
+        # the given TEMA
+        if cache.get(self.cache_key_candidates_right_positions) is not None:
+            CPR = cache.get(self.cache_key_candidates_right_positions)
+        else:
+            CPR = self.get_candidates_right_positions_matrix()
         result = np.dot(CPR, self.electors_categories)
         result = result + self.desprivilegios * config.MEREPRESENTA_IDENTITY_MULTIPLICATION_FACTOR
         return result

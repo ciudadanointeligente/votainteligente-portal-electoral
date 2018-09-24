@@ -71,7 +71,7 @@
     {% block extra_css %}
     {% endblock extra_css %}
 </head>
-    <body class="navbar_visible">
+    <body class="{% block body_class %}navbar_visible{% endblock body_class %}">
       {% cache 5000 FACEBOOK_INIT %}
       <script>
         window.fbAsyncInit = function() {

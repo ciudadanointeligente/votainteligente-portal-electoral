@@ -22,7 +22,9 @@ from merepresenta.voluntarios.models import VolunteerProfile
 from backend_candidate.models import Candidacy
 from django.test import override_settings
 import numpy as np
-from merepresenta.match.matrix_builder import MatrixBuilder
+from merepresenta.match.matrix_builder import (MatrixBuilder,
+                                               InformationHolder,
+                                               CandidatesRightPositionsVector)
 from numpy.testing import assert_equal
 
 
@@ -103,16 +105,18 @@ class QuestionCategoryVectors(TestCase, MeRepresentaMatchBase):
 
         Más que só tem os dados do Tema
         '''
-        builder = MatrixBuilder()
-        vector = builder.get_positions_vector_for_category(self.cat1)
+        information_holder = InformationHolder(Position.objects.all(), Candidate.objects.all(), QuestionCategory.objects.all())
+        right_positions_vector = CandidatesRightPositionsVector(information_holder)
+        vector = right_positions_vector.get_positions_vector_for_category(self.cat1)
         self.assertEquals(vector.shape, (Position.objects.count(),))
         expected_vector = np.array([1,0,1,0,0,0,0,0,0,0])
 
         assert_equal(vector, expected_vector)
 
     def test_get_matrix_of_positions_and_categories(self):
-        builder = MatrixBuilder()
-        matrix = builder.get_matrix_positions_and_categories()
+        information_holder = InformationHolder(Position.objects.all(), Candidate.objects.all(), QuestionCategory.objects.all())
+        right_positions_vector = CandidatesRightPositionsVector(information_holder)
+        matrix = right_positions_vector.get_matrix_positions_and_categories()
         expected_mat = np.array([[1,0,1,0,0,0,0,0,0,0],
                                  [0,0,0,0,1,0,1,0,0,0],
                                  [0,0,0,0,0,0,0,0,0,1] 
@@ -120,26 +124,29 @@ class QuestionCategoryVectors(TestCase, MeRepresentaMatchBase):
         assert_equal(matrix, expected_mat)
 
     def test_get_zeros_if_not_right_answers_selected(self):
-        builder = MatrixBuilder()
-        vector = builder.get_positions_vector_for_category(self.cat1)
+        information_holder = InformationHolder(Position.objects.all(), Candidate.objects.all(), QuestionCategory.objects.all())
+        right_positions_vector = CandidatesRightPositionsVector(information_holder)
+        vector = right_positions_vector.get_positions_vector_for_category(self.cat1)
         RightAnswer.objects.all().delete()
         expected_vector = np.array([0,0,0,0,0,0,0,0,0,0])
 
     def test_get_position_vector_respect_with_candidate(self):
-        builder = MatrixBuilder()
-        vector = builder.get_positions_vector_for_candidate(self.c1)
+        information_holder = InformationHolder(Position.objects.all(), Candidate.objects.all(), QuestionCategory.objects.all())
+        right_positions_vector = CandidatesRightPositionsVector(information_holder)
+        vector = right_positions_vector.get_positions_vector_for_candidate(self.c1)
         expected_vector = np.array([2,0,0,2,1,0,1,0,1,0])
         assert_equal(vector, expected_vector)
 
     def test_get_desprivilegios_vector(self):
-        builder = MatrixBuilder()
-        v = builder.get_desprivilegios(Candidate.objects.all())
+        information_holder = InformationHolder(Position.objects.all(), Candidate.objects.all(), QuestionCategory.objects.all())
+        v = information_holder.get_desprivilegios(Candidate.objects.all())
         self.assertEquals(v.shape, (Candidate.objects.count(), ))
         self.assertTrue(v[0])
 
     def test_get_matrix_of_candidates_with_positions(self):
-        builder = MatrixBuilder()
-        matrix = builder.get_matrix_positions_and_candidates()
+        information_holder = InformationHolder(Position.objects.all(), Candidate.objects.all(), QuestionCategory.objects.all())
+        right_positions_vector = CandidatesRightPositionsVector(information_holder)
+        matrix = right_positions_vector.get_matrix_positions_and_candidates()
         expected_mat = np.array([[2,0,0,2,1,0,1,0,1,0],
                                  [0,1,1,0,0,2,0,2,1,0],
                                  [1,0,1,0,0,1,1,0,2,0]
@@ -147,8 +154,9 @@ class QuestionCategoryVectors(TestCase, MeRepresentaMatchBase):
         assert_equal(matrix, expected_mat)
 
     def test_get_matrix_of_candidates_and_positions_and_right_positions(self):
-        builder = MatrixBuilder()
-        matrix = builder.get_candidates_right_positions_matrix()
+        information_holder = InformationHolder(Position.objects.all(), Candidate.objects.all(), QuestionCategory.objects.all())
+        right_positions_vector = CandidatesRightPositionsVector(information_holder)
+        matrix = right_positions_vector.get_candidates_right_positions_matrix()
         self.assertEquals(matrix.shape, (3 ,3))
         self.assertEquals(matrix[0][0], 2)
         self.assertEquals(matrix[0][1], 2)

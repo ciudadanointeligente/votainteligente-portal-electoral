@@ -19,10 +19,10 @@
 {% block questions %}
 {% if organizations.exists %}
 <div class="col-md-12">
-<p class='exp_orgs'>{% trans "Tus posturas de la media naranja son empujadas día a día por estas organizaciones. Te invitamos a conocerlas y sumarte a las causas que te interesan." %}</p>
+<p class='exp_orgs'>Suas posturas da #TemCompromisso são empurradas a cada dia por essas organizações em RioPorInteiro. Nós convidamos você a conhecê-los e juntar-se às causas que lhe interessam.</p>
   <h3>{% trans "Organizaciones" %}</h3>
     {% for o in organizations.all %}
-    {% cache 83000 organization_result o.id %}
+    {% cache 83000 organization_in_result o.id %}
     <div class="col-md-4 text-center">
         {% if o.logo_small %}
         <a href="{{o.get_absolute_url}}"><img src="{{o.logo_small.url}}" alt="{{o.title}}" title="{{o.title}}" height="96" width="96" border="0" class="img-circle"></img></a>

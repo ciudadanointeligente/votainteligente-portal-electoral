@@ -1,5 +1,4 @@
 from django.conf.urls import url
-from medianaranja2.forms import MediaNaranjaOnlyProposals
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from medianaranja2.views import (ShareYourResult,
@@ -7,23 +6,24 @@ from medianaranja2.views import (ShareYourResult,
                                  ShareMyResultOrgPlz,
                                  SharedResultOGImageView,
                                  get_medianaranja_view)
+from django.utils.translation import ugettext_lazy as _
 
 
 urlpatterns = [
     url(r'^$',
         get_medianaranja_view,
         name='index'),
-    url(r'^compartir/?$',
+    url(_(r'^compartir/?$'),
         ShareMyResultPlz.as_view(),
         name='create_share'),
     
-    url(r'^compartir_org/?$',
+    url(_(r'^compartir_org/?$'),
         ShareMyResultOrgPlz.as_view(),
         name='create_share_org'),
-    url(r'^compartir/(?P<identifier>[-\w]+)/?$',
+    url(_(r'^compartir/(?P<identifier>[-\w]+)/?$'),
         ShareYourResult.as_view(),
         name='share'),
-    url(r'^og_image/(?P<identifier>[-\w]+).jpg$',
+    url(_(r'^og_image/(?P<identifier>[-\w]+).jpg$'),
         SharedResultOGImageView.as_view(),
         name='og_image'),
 ]

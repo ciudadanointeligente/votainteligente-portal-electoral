@@ -228,8 +228,7 @@ class Candidate(OriginalCandidate, RaceMixin):
             'is_lgbt': self.lgbt,
             'partido': partido_id,
             'estado': area_id,
-            'preta': self.preta,
-            'parda': self.parda,
+            'preta': self.preta or self.parda,
             'indigena': self.indigena
         }
         for desc in LGBTQDescription.objects.all():

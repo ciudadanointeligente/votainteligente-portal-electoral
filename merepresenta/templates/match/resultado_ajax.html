@@ -283,7 +283,7 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
             isLGBT: undefined,
             electionType: 'deputadao-federal',
             checkedPartidos: [],
-            checkedEstado: false,
+            checkedEstado: '{{area.id}}',
             {% for lgbt_desc in lgbt_descriptions %}
             {{lgbt_desc.id}}: false,
             {% endfor %}

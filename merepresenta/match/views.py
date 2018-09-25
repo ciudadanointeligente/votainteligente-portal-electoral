@@ -16,6 +16,7 @@ class MatchQuestionCategoryBase(FormView):
         # builder.set_electors_categories(categories)
         # r = builder.get_result_as_array()
         context = self.get_context_data()
+        context['area'] = form.cleaned_data['area']
         context['categories'] = categories
         election_types = [{'id': k, 'label': v} for k, v in Candidate.get_possible_election_kinds().items()]
         context['election_types'] = election_types

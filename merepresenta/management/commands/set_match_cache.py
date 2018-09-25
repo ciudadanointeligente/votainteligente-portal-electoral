@@ -16,9 +16,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         time = options['time'][0]
-        cache.set('merepresenta_matrix_builder_setup_', None)
-        cache.set('candidates_right_positions', None)
         builder = MatrixBuilder(time=time)
-        r = builder.get_candidates_result()
-        shape = r.shape
+        all_ = builder.set_cache()
+        shape = all_[-1].shape
         self.stdout.write("Saved matrix of %d candidates with answers, for %d minutes" % (shape[0], time/60))

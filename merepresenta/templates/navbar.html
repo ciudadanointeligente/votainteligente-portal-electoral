@@ -41,8 +41,12 @@
                 href="{% url 'faq' %}">Perguntas?</a>
             </li>
             <li>
+              
               {% if not user.is_authenticated %}
-              <a class="btn btn-roxo btn-uppercase" href="{% url 'cpf_and_date2' %}">Sou Candidata/o</a>
+              <a href="{% url 'match' %}" 
+                class="btn btn-roxo voluntario btn-uppercase">
+                Quem me representa?
+              </a>
               
               {% else %}
               <div class="nav-item dropdown">

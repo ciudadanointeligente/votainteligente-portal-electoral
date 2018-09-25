@@ -19,7 +19,7 @@
 {% block questions %}
 {% if organizations.exists %}
 <div class="col-md-12">
-<p class='exp_orgs'>Suas posturas da #TemCompromisso são empurradas a cada dia por essas organizações em RioPorInteiro. Nós convidamos você a conhecê-los e juntar-se às causas que lhe interessam.</p>
+<p class='exp_orgs'>Suas prioridades no #TemCompromisso são conduzidas diariamente por essas organizações da Rio por Inteiro. Te convidamos a conhecê-las e se juntar às causas que le interessam!</p>
   <h3>{% trans "Organizaciones" %}</h3>
     {% for o in organizations.all %}
     {% cache 83000 organization_in_result o.id %}
@@ -64,7 +64,7 @@
 {% for election_result in results %}
 <div class="col-md-12">
   <h3>{% blocktrans with election_name=election_result.election.name %}
-    Seus candidatos para {{election_name}} são
+    Suas candidaturas {{election_name}} são
   {% endblocktrans %}</h3>
   {% for candidate_result in election_result.candidates %}
   <div class="col-md-4 text-center">

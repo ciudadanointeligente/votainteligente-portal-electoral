@@ -33,6 +33,12 @@
 <section class="container candidate-profile">
   <div class='row'>
 
+    <div class="col-md-12 offset-md-2 bottom">
+      <a href="/" onclick="window.history.back()" />
+        < Voltar
+      </a>
+    </div>
+
     <!-- Foto Candidato/a -->
     <div class="col-lg-4">
       {% if candidate.candidacy_set.first.user.profile.image %}
@@ -115,7 +121,7 @@
     <h3>Temas prioritários</h3>
     <div class="temas">
       {% for link in candidate.candidatequestioncategory_set.all %}
-        <div class='col-2 text-center '>
+        <div class="text-center">
           {{link.category.name}}
         </div>
       {% endfor %}
@@ -132,19 +138,16 @@
   </div>
     {% for topic in category.topics.all %}
     <div class='col-lg-12'>
-      <div class="resposta-candidato"  data-toggle="collapse" data-target="#collapse{{topic.id}}">
-        {% get_taken_position_for topic candidate %} 
+      <div class="resposta-candidato" data-toggle="collapse" data-target="#collapse{{topic.id}}">
+        {% get_taken_position_for topic candidate %}
         <i class="fas fa-chevron-down"></i>
       </div>
       <div id="collapse{{topic.id}}" class='pauta-item bottom collapse'>
-        {% comment %}
-        Miguel querida: vc sabe que tem que fazer aqui ;)
-        {% endcomment %}
         <p>{{topic.description|safe}}</p>
       </div>
     </div>
     {% endfor %}
-    {% endfor %}
+  {% endfor %}
 
   </div>
 </section>

@@ -62,7 +62,7 @@ Convidamos você a conhecê-las e se juntar às causas que te interessam!</p>
 {% for election_result in results %}
 <div class="col-md-12">
   <h3>{% blocktrans with election_name=election_result.election.name %}
-    Suas candidaturas {{election_name}} são
+    Suas candidaturas para {{election_name}} são
   {% endblocktrans %}</h3>
   {% for candidate_result in election_result.candidates %}
   <div class="col-md-4 text-center">

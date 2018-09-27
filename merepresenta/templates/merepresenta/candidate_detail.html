@@ -74,22 +74,23 @@
             <p>{{candidate.election.area.name|title}}</p>
         </div>
       </div>
-      <div class="item">
-        <a class="btn btn-verde" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmerepresenta.org.br{{candidate.get_absolute_url|iriencode}}&amp;src=sdkpreparse" target="_blank" >
-            <i class="fab fa-facebook-square"></i> Compartilhar!
-          </a>
-      </div>
-
       <!-- Grid -->
     </div>
   </div>
 </section>
 
   <!-- Pautas Detalhes -->
-<section class="container pautas-container">
+<section class="container pautas-container margin-bottom">
   <div class="row">
     <div class='col-lg-12'>
-      <h3>Um pouco sobre a/o candidata/o</h3>
+      <div class="sobre d-flex justify-content-between align-items-center">
+        <h3>Um pouco sobre a/o candidata/o</h3>
+        <div class="item">
+          <a class="btn btn-verde" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmerepresenta.org.br{{candidate.get_absolute_url|iriencode}}&amp;src=sdkpreparse" target="_blank" >
+              <i class="fab fa-facebook-square"></i> Compartilhar!
+            </a>
+        </div>
+      </div>
       <div class='bio-text'>
         {{candidate.bio|markdown}}
       </div>
@@ -100,9 +101,11 @@
         <p>Você sabia que não basta você escolher a pessoa em quem votar? A gente também precisa conhecer o seu partido e coligação porque nos cargos de deputado estadual/federal nosso voto é pra toda coligação.</p>
         <p class="font-weight-bold">Por isso é tão importante votar em partidos e coligações que tenham um histórico de apoio aos temas que você escolheu. </p>
         <p>Fizemos uma avaliação minuciosa de 10 votações relevantes nos últimos 4 anos do Congresso Nacional para chegar às notas dos partidos ligados a essa candidatura. Se quiser se aprofundar na metodologia, <a href="https://docs.google.com/document/d/1qoOj1ehZNOKW__1pi4lQmM4yFIThwOMaKQWxA_U9tA8/edit">clique aqui</a>.</p>
-        <ul class="list-unstyled">
+        <ul class="list-unstyled d-flex flex-wrap">
           {% for partido in candidate.partido.coaligacao.partido_set.all %}
-            <li>{{partido.initials}} - <span class="font-weight-bold">{{partido.mark}}</span></li>
+            <li>
+              <span>{{partido.initials}}&nbsp;-&nbsp;</span>
+              <span class="font-weight-bold">{{partido.mark}}</span></li>
           {% endfor %}
         </ul>
       </div>

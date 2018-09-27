@@ -46,7 +46,7 @@
           {% csrf_token %}
           <input name='object_id' type="hidden" value="{{ o.id }}"/>
 
-          <input type="submit" value="Compartilhar"  class="btn btn-default" />
+          <!-- <input type="submit" value="Compartilhar"  class="btn btn-default" /> -->
 
         </form>
         </div>
@@ -89,7 +89,7 @@
           <input name='object_id' type="hidden" value="{{ candidate_result.candidate.id }}"/>
           <input name="percentage" type="hidden" value="{{ candidate_result.value|floatformat:0 }}" />
 
-          <input type="submit" value="Compartilhe"  class="btn btn-default" />
+          <!-- <input type="submit" value="Compartilhe"  class="btn btn-default" /> -->
 
         </form>
         </div>

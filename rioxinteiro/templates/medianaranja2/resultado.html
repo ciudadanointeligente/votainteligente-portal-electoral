@@ -20,7 +20,7 @@
 Convidamos você a conhecê-las e se juntar às causas que te interessam!</p>
   <h3>{% trans "Organizaciones" %}</h3>
     {% for o in organizations.all %}
-    {% cache 83000 organization_in_result o.id %}
+    {% cache 83000 organization_in_result_ o.id %}
     <div class="col-md-4 text-center">
         {% if o.logo_small %}
         <a href="{{o.get_absolute_url}}"><img src="{{o.logo_small.url}}" alt="{{o.title}}" title="{{o.title}}" height="96" width="96" border="0" class="img-circle"></img></a>

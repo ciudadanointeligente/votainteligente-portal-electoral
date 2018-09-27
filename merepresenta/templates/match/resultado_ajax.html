@@ -7,8 +7,12 @@
 
 {% block title %}- Match{% endblock title %}
 {% block content %}
+<div id="aguantai" class="row">
+  <div class="col-12 text-center">
+    <h2>Aguenta aí!</h2>
+  </div>
+</div>
 <div id='result' class="row quem-representa">
-
   <template>
     <div class="col-lg-3 quem-representa-filtros">
       <div class="title-container">
@@ -80,12 +84,26 @@
           <span>Partido</span>
         </div>
         <div class="filtros">
-          <div v-for="partido in filteredPartidos()">
+          <div v-for="partido in partidosList">
             <input type="checkbox" :id="'partido-' + partido.id" :value="partido.id" v-model="checkedPartidos">
             <label :for="'partido-' + partido.id">[[ partido.label ]]</label>
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class='col'>
+          
+          {% include 'match/eleitor_entregando_datos.html' %}
+        </div>
+      </div>
+      <div class="row" style="margin-top: 10px;">
+        <div class='col'>
+          <a class="btn btn-verde" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmerepresenta.org.br%2F&amp;src=sdkpreparse" target="_blank" >
+            <i class="fab fa-facebook-square"></i> Compartilhar!
+          </a>
+        </div>
+      </div>
+    </div>
     </div>
 
     <div class="col-lg-9">
@@ -95,6 +113,7 @@
           <p>
             Com base nas suas escolhas, fizemos um ranking com as candidaturas inscritas que mais se comprometem com as nossas pautas. As que aparecem primeiro são as que dão maior match. <strong>Não esqueça de selecionar o estado!</strong>
           </p>
+          <p>Encontramos <strong>[[filteredList().length]]</strong> candidatas/os</p></p>
         </div>
         <div>
           <a class="btn btn-azul" href="{% url 'match' %}">
@@ -154,26 +173,15 @@
 <script type="text/javascript" src="{% static 'js/accordion.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/dicts_for_result.js' %}"></script>
 <script type="text/javascript">
-// $(function(){
-//   let show_lgbt_desc = function(){
-//     $(".lgbt_descriptions").show(600);
-//     $(".lgbt_descriptions").removeClass('invisible');
-//   }
-//   let hide_lgbt_desc = function(){
-//     $(".lgbt_descriptions").hide(600);
-//     $(".lgbt_descriptions").addClass('invisible');
-//     $('.lgbt_descriptions input').removeAttr('checked');
-//   }
-//   $('#lgbt_input').change(function(evt){
-//     console.log('checked');
-//     if($(this).is(':checked')){
-//       show_lgbt_desc();
-//     }
-//     else {
-//       hide_lgbt_desc();
-//     }
-//   })
-// });
+ga('send', {
+  hitType: 'event',
+  eventCategory: 'Resultado',
+  eventAction: 'resultadoObtenido',
+  eventLabel: 'resultado obtenido', 
+  fieldsObject: {
+    nonInteraction: true
+  }
+});
 
 
   var filterEstado = function(el, checkedEstado){
@@ -242,6 +250,7 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
       return true;
     }
     if (el.filter.{{lgbt_desc.id}}){
+      
       return true;
     }
     return false;
@@ -259,6 +268,7 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
       },
       success: function(data){
         data = jQuery.parseJSON(data);
+        $("#aguantai").remove();
         new Vue({
           delimiters: ['[[', ']]'],
           el: '#result',
@@ -273,7 +283,7 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
             isLGBT: undefined,
             electionType: 'deputadao-federal',
             checkedPartidos: [],
-            checkedEstado: false,
+            checkedEstado: '{{area.id}}',
             {% for lgbt_desc in lgbt_descriptions %}
             {{lgbt_desc.id}}: false,
             {% endfor %}
@@ -307,7 +317,8 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
           },
           methods: {
             LGBT_checked: function(e){
-              if (this.isLGBT){
+              let checkado = $(e.target).prop('checked');
+              if (!checkado){
                 $(".lgbt_descriptions").hide(600);
                 $(".lgbt_descriptions").addClass('invisible');
                 {% for lgbt_desc in lgbt_descriptions %}
@@ -329,38 +340,6 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
             filteredList: function(){
               var list = this.filteredTotalList();
               return list.slice(0,this.amountOfResults);
-            },
-            filteredPartidos: function(){
-              var counter = 0;
-              var total_list = this.filteredTotalList();
-              var partidos_ids = {};
-
-              while(counter < total_list.length){
-                let partido_id = total_list[counter].filter.partido;
-                let keys = Object.keys(partidos_ids);
-                if(keys.includes(String(partido_id))){
-                  partidos_ids[partido_id] += 1;  
-                }
-                else{
-                  partidos_ids[partido_id] = 1;
-                }
-                counter += 1;
-              }
-              counter = 0;
-              var plist = [];
-              while(counter < this.partidosList.length){
-                var p = {'id': undefined, 'ĺabel': undefined};
-                p.id = this.partidosList[counter].id;
-                var n = partidos_ids[this.partidosList[counter].id];
-                if (n===undefined){
-                  n = 0;
-                }
-                p.label = this.partidosList[counter].label + " (" + n + ")";
-                plist.push(p);
-                counter += 1;
-              }
-
-              return plist;
             }
           }
         })
@@ -374,5 +353,4 @@ var filter_{{lgbt_desc.id}} = function(el, lgbt_desc){
     document.execCommand('copy');
   }
 </script>
-
 {% endblock scripts %}

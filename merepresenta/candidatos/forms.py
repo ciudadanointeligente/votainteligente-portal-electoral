@@ -9,15 +9,16 @@ from backend_candidate.forms import MediaNaranjaSingleCandidateMixin, MediaNaran
 class CPFAndDdnFormBase(forms.Form):
     cpf = forms.CharField(required=True)
     nascimento = forms.DateField(required=True, input_formats=['%d/%m/%Y','%d/%m/%y', '%d-%m-%Y', '%d-%m-%y', '%m/%d/%Y', '%Y-%m-%d'])
+    
+    def get_me_the_numbers_from_a_cpf(self, cpf):
+        cpf = re.sub('[^0-9]','', cpf)
+        cpf = unicode(int(cpf))
+        return cpf
 
 class CPFAndDdnForm(CPFAndDdnFormBase):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
         super(CPFAndDdnForm, self).__init__(*args, **kwargs)
-
-    def get_me_the_numbers_from_a_cpf(self, cpf):
-        cpf = unicode(int(cpf))
-        return cpf
 
     def clean(self):
         cpf = self.cleaned_data['cpf']
@@ -36,10 +37,6 @@ class CPFAndDdnForm(CPFAndDdnFormBase):
 
 
 class CPFAndDdnForm2(CPFAndDdnFormBase):
-    def get_me_the_numbers_from_a_cpf(self, cpf):
-        cpf = re.sub('[^0-9]','', cpf)
-        cpf = unicode(int(cpf))
-        return cpf
         
     def clean(self):
         cpf = self.cleaned_data['cpf']

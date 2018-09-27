@@ -1,6 +1,6 @@
 
 from django.conf.urls import url, include
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, RedirectView
 from merepresenta.forms import (MeRepresentaMeiaLaranjaWizardForm,
                                 MeRepresentaMeiaLaranjaQuestionsWizardForm)
 from elections.views import CandidateDetailView
@@ -38,7 +38,10 @@ urlpatterns = [
         TemplateView.as_view(template_name="merepresenta/sobre.html"),
         name='sobre'),
     url(r'^eleitor/?$',
-        TemplateView.as_view(template_name="merepresenta/eleitor.html"),
+        RedirectView.as_view(url='/eleitora'),
+        name='eleitor'),
+    url(r'^eleitores/?$',
+        RedirectView.as_view(url='/eleitora'),
         name='eleitor'),
     url(r'^termos/?$',
         TemplateView.as_view(template_name="merepresenta/termos.html"),

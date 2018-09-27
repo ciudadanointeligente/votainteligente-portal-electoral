@@ -7,20 +7,19 @@
 {% load bootstrap3 %}
 {% block title %}- {% trans "1/2 Naranja - Resultado" %}{% endblock title %}
 
-{% block navbar %}
-{% endblock navbar %}
+
 
 {% block paso %}
 <h1>{% trans "Resultados" %}</h1>
 {% endblock paso %}
 
 {% block questions %}
-<p>{% trans "Tus posturas de la media naranja son empujadas día a día por estas organizaciones. Te invitamos a conocerlas y sumarte a las causas que te interesan." %}</p>
 {% if organizations.exists %}
 <div class="col-md-12">
+<p class='exp_orgs'>Suas prioridades no #TemCompromisso são conduzidas diariamente por essas organizações da Rio por Inteiro. Te convidamos a conhecê-las e se juntar às causas que le interessam!</p>
   <h3>{% trans "Organizaciones" %}</h3>
     {% for o in organizations.all %}
-    {% cache 83000 organization_result o.id %}
+    {% cache 83000 organization_in_result o.id %}
     <div class="col-md-4 text-center">
         {% if o.logo_small %}
         <a href="{{o.get_absolute_url}}"><img src="{{o.logo_small.url}}" alt="{{o.title}}" title="{{o.title}}" height="96" width="96" border="0" class="img-circle"></img></a>
@@ -47,7 +46,7 @@
           {% csrf_token %}
           <input name='object_id' type="hidden" value="{{ o.id }}"/>
 
-          <input type="submit" value="{% trans "Comparte tu 1/2 Naranja" %}"  class="btn btn-default" />
+          <input type="submit" value="Compartilhar"  class="btn btn-default" />
 
         </form>
         </div>
@@ -62,7 +61,7 @@
 {% for election_result in results %}
 <div class="col-md-12">
   <h3>{% blocktrans with election_name=election_result.election.name %}
-    Tu media naranja política para {{election_name}} es
+    Suas candidaturas {{election_name}} são
   {% endblocktrans %}</h3>
   {% for candidate_result in election_result.candidates %}
   <div class="col-md-4 text-center">
@@ -90,7 +89,7 @@
           <input name='object_id' type="hidden" value="{{ candidate_result.candidate.id }}"/>
           <input name="percentage" type="hidden" value="{{ candidate_result.value|floatformat:0 }}" />
 
-          <input type="submit" value="{% trans "Comparte tu 1/2 Naranja" %}"  class="btn btn-default" />
+          <input type="submit" value="Compartilhe"  class="btn btn-default" />
 
         </form>
         </div>
@@ -99,16 +98,6 @@
 </div>
 <hr>
 {% endfor %}
-<div class="col-md-12 resultado ayuda">
-  <h4>{% trans "Ayúdanos" %}</h4>
-  <p>{% trans "Acabaste de hacer tu Media Naranja Política y queremos saber cómo te sentiste con ella, ¿nos ayudas contestando cinco preguntas?" %}</p>
-  <a href="https://goo.gl/forms/eObZU3tehgzm1VoI2" class="btn btn-dark" onclick="ga('send','event','ayuda-cuestionario','click')" target="_blank">{% trans "Responder" %}</a>
-</div>
-
-<div class="col-md-12 media-naranja-info">
-<h4>{% trans "¿CÓMO CALCULAMOS TU MEDIA NARANJA PRESIDENCIAL?" %}</h4>
-<p>{% trans "En la primera pregunta, te mostramos todos aquellos temas en los que las candidaturas presidenciales muestran posiciones concretas en sus programas o en declaraciones públicas. Una vez que elegiste tus prioridades, en la segunda pregunta te mostramos como opciones las posturas de las candidaturas en esas áreas. En el paso tres, te pedimos que definas tus cinco primeras medidas de gobierno, si fueras presidente o presidenta, que corresponden a las propuestas ciudadanas que hay en Vota Inteligente con las que los candidatos se han comprometido. ¡Usando todos estos resultados calculamos cuál es tu grado de compatibilidad!" %}</p>
-</div>
 
 <a href="{% url 'medianaranja2:index' %}" class="btn btn-success pull-right" role="button" onclick="ga('send','event','juega-de-nuevo','click')">{% trans "Juega de nuevo" %}</a>
 {% endblock questions %}

@@ -8,8 +8,8 @@
 {% load cache %}
 <head>
     <meta charset="utf-8">
-    {% cache 1000 landing_meta_1 %}
     <title>Rio Por Inteiro{% block title %}: {{ config.WEBSITE_GENERAL_SETTINGS_HOME_TITLE }}{% endblock title %}</title>
+    {% cache 1000 landing_meta_1 %}
     <meta name="author" content="{{ config.WEBSITE_METADATA_AUTHOR }}">
     <meta name="description" content="{% block description %}{{ config.WEBSITE_METADATA_DESCRIPTION }}{% endblock description %}">
     <meta name="keywords" content="{% block extrakeywords %}{% endblock extrakeywords %}{{ config.WEBSITE_METADATA_KEYWORD }}{% block keywords %}{% endblock keywords %}">
@@ -71,7 +71,7 @@
     {% block extra_css %}
     {% endblock extra_css %}
 </head>
-    <body class="navbar_visible">
+    <body class="{% block body_class %}navbar_visible{% endblock body_class %}">
       {% cache 5000 FACEBOOK_INIT %}
       <script>
         window.fbAsyncInit = function() {

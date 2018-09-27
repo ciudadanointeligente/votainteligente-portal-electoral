@@ -573,12 +573,13 @@
       justify-content: space-between;
 
       @media screen and (max-width: $break-large) {
-        flex-direction: column;
+        flex-direction: column-reverse;
       }
 
       .direitos-reservados {
         align-items: center;
         display: flex;
+        margin: 30px 0;
 
         & .fab {
           color: white;
@@ -612,4 +613,10 @@
 
 .bottom {
   margin: 40px 0;
+}
+
+@media screen and (max-width: $break-large) {
+  .altec {
+    max-width: 250px;
+  }
 }

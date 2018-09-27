@@ -124,15 +124,47 @@
   }
 }
 
+.resposta-candidato {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  @media screen and (max-width: $break-large) {
+    justify-content: center;
+  }
+
+  i {
+    margin-left: 5px;
+  }
+}
+
 .pautas-container {
   .col-lg-12 {
     margin: 30px 0;
+    @media screen and (max-width: $break-large) {
+      &:first-child {
+        margin: 0;
+      }
+    }
+  }
+
+  .sobre {
+    @media screen and (max-width: $break-large) {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: center;
+
+      .btn {
+        margin-bottom: 50px;
+      }
+    }
   }
 
   h3, 
   .topic-candidato {
     font-weight: bold;
     color: #39393A;
+    font-size: 24px;
   }
 
   .temas {
@@ -141,16 +173,19 @@
     margin: 30px 0;
     font-size: 24px;
     color: #303030;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
     & > div {
       background-color: #FFC43D;
       border-radius: 5px;
-      margin-right: 30px;
+      margin: 15px 5px;
+      min-width: 100px;
+      padding: 0 10px;
     }
   }
 
   .bio-text {
-    font-size: 24px;
     margin-top: 20px;
   }
 
@@ -255,8 +290,20 @@
 }
 
 .coligacoes-explicacao {
-  border-color: $amarelo;
+  border: #FFC43D solid 5px;
+  width: 100%;
+
   h3 {
-    color: $roxo;
+    color: #EF476F;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  li {
+    display: inline-flex;
+    flex: 28%;
+    justify-content: center;
+    padding: 10px 5px;
+    min-width: 20px;
   }
 }

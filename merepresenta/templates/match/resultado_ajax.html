@@ -9,7 +9,9 @@
 {% block content %}
 <div id="aguantai" class="row">
   <div class="col-12 text-center">
-    <h2>Aguenta aí!</h2>
+      <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+     </svg>
   </div>
 </div>
 <div id='result' class="row quem-representa">
@@ -90,6 +92,7 @@
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class='col'>
           
@@ -98,12 +101,11 @@
       </div>
       <div class="row" style="margin-top: 10px;">
         <div class='col col-sm-12 d-flex justify-content-center' style="margin-bottom: 30px;">
-          <a class="btn btn-verde" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmerepresenta.org.br%2F&amp;src=sdkpreparse" target="_blank" >
+          <a class="btn btn-verde" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmerepresenta.org.br%2F&amp;src=sdkpreparse" target="_blank" style="width: 100%;" >
             <i class="fab fa-facebook-square"></i> Compartilhar!
           </a>
         </div>
       </div>
-    </div>
     </div>
 
     <div class="col-lg-9">
@@ -113,9 +115,121 @@
           <p>
             Com base nas suas escolhas, fizemos um ranking com as candidaturas inscritas que mais se comprometem com as nossas pautas. As que aparecem primeiro são as que dão maior match. <strong>Não esqueça de selecionar o estado!</strong>
           </p>
-          <p>Encontramos <strong>[[filteredList().length]]</strong> candidatas/os</p></p>
+          <div class="d-flex justify-content-between align-items-center">
+            <p>Encontramos <strong>[[filteredList().length]]</strong> candidatas/os</p>
+            <!-- Filtros Mobile -->
+            <button type="button" class="btn btn-filtros" data-toggle="modal" data-target="#ModalCenter">
+                Filtros
+            </button>
+              
+              <!-- Modal -->
+              <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content container quem-representa-filtros-modal" style="top: 100px;">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalCenterTitle">Filtros</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div style="padding: 1rem;">
+                      <div id='estado_checkboxes'>
+                        <div class="title">
+                          <span>Estado (UF)</span>
+                        </div>
+                          <select v-model="checkedEstado">
+                            <option value='' selected="selected">
+                              TODOS OS ESTADOS
+                            </option>
+                            <template v-for="estado in estadosList">
+                              <option :id="estado.id" :value="estado.id" >
+                                [[ estado.label ]]
+                              </option>
+                            </template>
+                          </select>
+                      </div>
+                
+                      <div id="cargo_radioboxes" class="election_types">
+                        <div class="title">
+                          <span>Cargo</span>
+                        </div>
+                        {% for type_ in election_types %}
+                          <div>
+                            <input id="{{type_.id}}" value="{{type_.id}}" type="radio" name="election_type" class="election_type_item" v-model="electionType">
+                            <label for="{{type_.id}}">{{type_.label}}</label>
+                          </div>
+                        {% endfor %}
+                      </div>
+                
+                      <div id="identidade_checkboxes">
+                        <div class="title">
+                            <span>Identidade</span>
+                        </div>
+                        <div id="mulher">
+                          <input type="checkbox" id="mulher_input" v-model="isMulher">
+                          <label for="mulher_input">Mulher</label>
+                        </div>
+                        <div id="negro">
+                          <input type="checkbox" id="negro_input" v-model="isNegro">
+                          <label for="negro_input">Negro</label>
+                        </div>
+                        <div id="indigena">
+                          <input type="checkbox" id="indigena_input" v-model="isIndigena">
+                          <label for="indigena_input">Indígena</label>
+                        </div>
+                        <div id="lgbt">
+                          <input type="checkbox" id="lgbt_input" v-model="isLGBT" v-on:click="LGBT_checked">
+                          <label for="lgbt_input">LGBT</label>
+                        </div>
+                        <!-- Querida Miguel: Eu sou preguiçoso e não escrevi isso em um sass. Além disso, queria evitar conflitos no github.-->
+                        <div class="lgbt_descriptions invisible card" style="display: none; padding: 10px;">
+                          {% for lgbt_desc in lgbt_descriptions %}
+                            <div>
+                              <input type="checkbox" id='lgbt_desc_{{lgbt_desc.id}}' class="lgbt_desc_item" v-model="{{lgbt_desc.id}}">
+                              <label for="lgbt_desc_{{lgbt_desc.id}}">{{lgbt_desc.label}}</label>
+                            </div>
+                          {% endfor %}
+                        </div>
+                
+                      </div>
+                
+                      <div id='partido_checkboxes'>
+                        <div class="title">
+                          <span>Partido</span>
+                        </div>
+                        <div class="filtros">
+                          <div v-for="partido in partidosList">
+                            <input type="checkbox" :id="'partido-' + partido.id" :value="partido.id" v-model="checkedPartidos">
+                            <label :for="'partido-' + partido.id">[[ partido.label ]]</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class='col'>
+                          
+                          {% include 'match/eleitor_entregando_datos.html' %}
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 10px;">
+                        <div class='col col-sm-12 d-flex justify-content-center' style="margin-bottom: 30px;">
+                          <a class="btn btn-verde" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmerepresenta.org.br%2F&amp;src=sdkpreparse" target="_blank" style="width: 100%;" >
+                            <i class="fab fa-facebook-square"></i> Compartilhar!
+                          </a>
+                        </div>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-roxo" data-dismiss="modal">Aplicar filtro</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
         </div>
-        <div>
+        <div class="filtros-btn">
           <a class="btn btn-azul" href="{% url 'match' %}">
             Escolher outros temas
           </a>

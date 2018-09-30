@@ -173,7 +173,7 @@ section.profile-question {
   .question-label {
     font-size: 28px;
     margin-bottom: 10px;
-    font-weight: bolder;
+    font-weight: bold;
   }
 
   .description {
@@ -183,6 +183,26 @@ section.profile-question {
   .posicionamento {
     font-weight: bold;
   }
+}
+
+.question-title {
+  font-weight: bold;
+}
+
+.question-estado > div {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+
+  label,
+  select {
+    flex: 1;
+  }
+
+  label {
+  font-size: 20px;
+  }
+
 }
 
 .categories-select {

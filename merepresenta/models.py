@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.db.models import Case, Value, When, PositiveSmallIntegerField, Sum, F
 from popular_proposal.models import PopularProposal, Commitment
-from elections.models import Candidate as OriginalCandidate
+from elections.models import Candidate as OriginalCandidate, Area
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from backend_candidate.models import CandidacyContact, Candidacy
@@ -271,6 +271,7 @@ class Coaligacao(models.Model):
     name = models.CharField(max_length=1024, null=True)
     initials = models.CharField(max_length=1024, null=True)
     number = models.CharField(max_length=1024, null=True)
+    area = models.ForeignKey(Area, related_name='coligacoes', null=True)
 
     @property
     def mark(self):

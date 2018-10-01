@@ -14,7 +14,7 @@ from merepresenta.models import (MeRepresentaPopularProposal,
                                  RightAnswer,
                                  QuestionCategory)
 from django.contrib.auth.models import User
-from elections.models import Election, Topic
+from elections.models import Election, Topic, Area
 from django.utils import timezone
 import datetime
 from django.core.urlresolvers import reverse
@@ -291,6 +291,12 @@ class CoaligacaoTestCase(TestCase):
     def test_instanciate(self):
         coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')
         self.assertTrue(coaligacao)
+
+    def test_instanciate_with_area(self):
+        a = Area.objects.create(name='Estado estadual')
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234', area=a, classification='deputado-estadual')
+        self.assertTrue(coaligacao)
+
 
     def test_get_mark_for_coaligacao(self):
         coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')

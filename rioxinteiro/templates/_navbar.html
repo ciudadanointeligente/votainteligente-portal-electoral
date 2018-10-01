@@ -21,11 +21,21 @@
 
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="{% url 'que_es' %}" onclick="ga('send', 'event', 'nav-que-es', 'click')">O que é?</a></li>
+                <li class="important"><a href="{% url 'medianaranja2:index' %}" onclick="ga('send', 'event', 'nav-tem-compromisso', 'click')">#TemCompromisso</a></li>
                 <li><a href="{% url 'popular_proposals:home' %}" onclick="ga('send', 'event', 'nav-conoce-propuestas', 'click')">Propostas Cidadãs</a></li>
-                <li><a href="{% url 'backend_citizen:all_activities' %}" onclick="ga('send', 'event', 'nav-eventos', 'click')">{% trans "Mobilize" %}</a></li>
+                
                 <li><a href="{% url 'know_your_candidates' %}" onclick="ga('send', 'event', 'nav-candidaturas', 'click')">Candidaturas</a></li>
-                <li><a href="{% url 'material_ciudadano' %}" onclick="ga('send', 'event', 'nav-material-ciudadano', 'click')">Material</a></li>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Sobre<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'que_es' %}" onclick="ga('send', 'event', 'nav-que-es', 'click')">O que é?</a></li>
+                        <li><a href="{% url 'material_ciudadano' %}" onclick="ga('send', 'event', 'nav-material-ciudadano', 'click')">Material</a></li>
+                        <li><a href="{% url 'backend_citizen:all_activities' %}" onclick="ga('send', 'event', 'nav-eventos', 'click')">{% trans "Mobilize" %}</a></li>                
+                    </ul>
+                </li>
                 {% include "_dropdown_user.html" with user=user %}
                 {% cache 500 navbar_social_media %}
                 <li>

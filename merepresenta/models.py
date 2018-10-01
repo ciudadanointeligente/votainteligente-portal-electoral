@@ -272,6 +272,7 @@ class Coaligacao(models.Model):
     initials = models.CharField(max_length=1024, null=True)
     number = models.CharField(max_length=1024, null=True)
     area = models.ForeignKey(Area, related_name='coligacoes', null=True)
+    classification = models.CharField(max_length=512, null=True)
 
     @property
     def mark(self):

@@ -294,8 +294,9 @@ class CoaligacaoTestCase(TestCase):
 
     def test_instanciate_with_area(self):
         a = Area.objects.create(name='Estado estadual')
-        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234', area=a)
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234', area=a, classification='deputado-estadual')
         self.assertTrue(coaligacao)
+
 
     def test_get_mark_for_coaligacao(self):
         coaligacao = Coaligacao.objects.create(name=u"Coaligacao a", initials='CA', number='1234')

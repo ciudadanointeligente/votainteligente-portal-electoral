@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from merepresenta.forms import MeRepresentaProposalsForm, MeRepresentaQuestionsForm
 from django.contrib.sites.models import Site
 from popular_proposal.models import (PopularProposalSite)
-from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment
+from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment, Coaligacao
 from elections.models import Area
 from django.conf import settings
 from unittest import skip
@@ -156,3 +156,19 @@ class TemplatesViews(MediaNaranjaAdaptersBase):
         url = reverse('sobre')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
+
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
+class ColigacoesPerAreaViewTestCase(MediaNaranjaAdaptersBase):
+    def test_get_the_view(self):
+        a = Area.objects.create(name='Area')
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a",
+                                               initials='CA',
+                                               number='1234',
+                                               area=a,
+                                               classification='deputado-estadual')
+        url = reverse('coligacoes', kwargs={'slug': a.slug})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(a, response.context['area'])
+        self.assertIn(coaligacao, response.context['coligacoes']['deputado-estadual'])

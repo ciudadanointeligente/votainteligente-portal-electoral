@@ -281,6 +281,8 @@ class Coaligacao(models.Model):
         for p in self.partido_set.all():
             final_sum += p.mark
             counter += 1
+        if not counter:
+            return 0
         return final_sum/counter
 
 class Partido(models.Model):

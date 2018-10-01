@@ -172,3 +172,16 @@ class ColigacoesPerAreaViewTestCase(MediaNaranjaAdaptersBase):
         self.assertEquals(response.status_code, 200)
         self.assertEquals(a, response.context['area'])
         self.assertIn(coaligacao, response.context['coligacoes']['deputado-estadual'])
+
+    def test_get_the_view_redirected(self):
+        Area.objects.all().delete()
+        a = Area.objects.create(name='Area')
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a",
+                                               initials='CA',
+                                               number='1234',
+                                               area=a,
+                                               classification='deputado-estadual')
+        url = reverse('coligacoes_initial')
+        response = self.client.get(url)
+        url_redirected = reverse('coligacoes', kwargs={'slug': a.slug})
+        self.assertRedirects(response, url_redirected)

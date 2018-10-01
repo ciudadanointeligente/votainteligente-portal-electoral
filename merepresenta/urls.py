@@ -17,7 +17,7 @@ from merepresenta.voluntarios.views import (VolunteerIndexView,
                                             FacebookContacted,
                                             complete)
 from merepresenta.match.views import MatchView, MatchResultView, MatchResultAjaxView
-from merepresenta.views import ColigacoesPerAreaView
+from merepresenta.views import ColigacoesPerAreaView, ColigacoesInitialRedirect
 
 class MeRepresentaMeiaLaranjaForm(MediaNaranjaElectionForm):
     def __init__(self, *args, **kwargs):
@@ -53,6 +53,9 @@ urlpatterns = [
     url(r'^pautas/?$',
         TemplateView.as_view(template_name="merepresenta/pautas.html"),
         name='pautas'),
+    url(r'^coligacoes/?$',
+        ColigacoesInitialRedirect.as_view(),
+        name='coligacoes_initial'),
     url(r'^coligacoes/(?P<slug>[-\w]+)/?$',
         ColigacoesPerAreaView.as_view(),
         name='coligacoes'),

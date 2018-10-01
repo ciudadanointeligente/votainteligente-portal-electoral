@@ -1,0 +1,15 @@
+{% load i18n %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+
+{% if taken_position.position %}
+<span class="resposta-candidato btn {%if taken_position.position.topic.right_answer.position == taken_position.position %}btn-verde{% else %}btn-roxo{% endif %}" style="width:100%;" data-toggle="collapse" data-target="#collapse{{taken_position.position.topic.id}}">
+  {{taken_position.position.label|safe}}
+  <i class="fas fa-chevron-down"></i>
+</span>
+{% else %}
+  <span>
+    Essa pessoa ainda não respondeu a essa pergunta.
+  </span>
+{% endif %}

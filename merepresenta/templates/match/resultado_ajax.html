@@ -43,7 +43,7 @@
         </div>
         {% for type_ in election_types %}
           <div>
-            <input id="{{type_.id}}" value="{{type_.id}}" type="radio" name="election_type" class="election_type_item" v-model="electionType">
+            <input id="{{type_.id}}" value="{{type_.id}}" type="radio" class="election_type_item" v-model="electionType">
             <label for="{{type_.id}}">{{type_.label}}</label>
           </div>
         {% endfor %}
@@ -155,7 +155,7 @@
                         </div>
                         {% for type_ in election_types %}
                           <div>
-                            <input id="{{type_.id}}" value="{{type_.id}}" type="radio" name="election_type" class="election_type_item" v-model="electionType">
+                            <input id="{{type_.id}}" value="{{type_.id}}" type="radio" class="election_type_item" v-model="electionType">
                             <label for="{{type_.id}}">{{type_.label}}</label>
                           </div>
                         {% endfor %}

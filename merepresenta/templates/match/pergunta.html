@@ -4,6 +4,7 @@
 {% load markdown_deux_tags %}
 {% load staticfiles %}
 {% load votainteligente_extras%}
+{% load cache %}
 
 {% block title %}- Match{% endblock title %}
 {% block content %}
@@ -24,7 +25,7 @@
             </p>
           </div> 
           <!-- Title -->
-
+          {% cache 600 eleitora_categories_and_areas %}
           <p class="description">{{form.categories.help_text|safe}}</p>
           <div class="options">
             {% bootstrap_field form.categories show_label=False show_help=False %}
@@ -32,6 +33,7 @@
           <div class="options question-estado">
             {% bootstrap_field form.area %}
           </div>
+          {% endcache %}
         </section>
         {% endblock formulario %}
         <div class="row">

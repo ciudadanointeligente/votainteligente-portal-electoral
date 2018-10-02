@@ -26,7 +26,7 @@
         </p>
         <select id="lista_estados">
             {% for a in all_areas %}
-                <option value='{{a.slug}}'>{{a}}</option>
+                <option value='{{a.slug}}'{% if a == area %} selected{% endif %}>{{a}}</option>
             {% endfor %}
         </select>
 
@@ -46,6 +46,7 @@
                     <tr>
                       <th scope="col">Coligacoes</th>
                       <th scope="col">nota</th>
+                      <th scope="col">Ver</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -54,7 +55,34 @@
                         <tr>
                           <td>{{c.name}}</td>
                           <td>{{c.mark|floatformat:2}}</td>
+                          <td>
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#collapsePartido-{{c.id}}">
+                            Confira os partidos
+                          </button>
+
+                      </td>
                         </tr>
+                        <!-- Modal -->
+                        <div class="modal fade" id="collapsePartido-{{c.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Partidos</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <ul>
+                                {% for partido in c.partido_set.all %}
+                                <li>{{partido.initials}} - {{partido.mark}}</li>
+                                {% endfor %}
+                                </ul>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </div>
                         {% endfor %}
                     </tr>
                   </tbody>

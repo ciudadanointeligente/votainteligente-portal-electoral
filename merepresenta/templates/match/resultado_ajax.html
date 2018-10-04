@@ -113,14 +113,79 @@
         <div>
           <h1>Quem te representa</h1>
           <p>
-            Com base nas suas escolhas, fizemos um ranking com as candidaturas inscritas que mais se comprometem com as nossas pautas. As que aparecem primeiro são as que dão maior match. <strong>Não esqueça de selecionar o estado!</strong>
+            Convidamos <strong>TODAS</strong> as candidaturas com email no TSE para se cadastrar na plataforma. Com base nas suas escolhas, fizemos um ranking com as candidaturas inscritas que mais se comprometem com as nossas pautas. As que aparecem primeiro são as que dão maior match no cargo de deputada/o federal. <strong>Para outros cargos selecione box amarelo</strong>.
           </p>
+          <p>Encontramos <strong>[[filteredList().length]]</strong> candidatas/os</p>
+          <div class="d-md-none quem-representa-filtros-modal">
+              <div id='estado_checkboxes'>
+                <div class="title">
+                  <span>Estado (UF)</span>
+                </div>
+                  <select v-model="checkedEstado">
+                    <option value='' selected="selected">
+                      TODOS OS ESTADOS
+                    </option>
+                    <template v-for="estado in estadosList">
+                      <option :id="estado.id" :value="estado.id" >
+                        [[ estado.label ]]
+                      </option>
+                    </template>
+                  </select>
+              </div>
+
+              <div id="cargo_radioboxes" class="election_types">
+                <div class="title">
+                  <span>Cargo</span>
+                </div>
+                {% for type_ in election_types %}
+                  <div>
+                    <input id="{{type_.id}}" value="{{type_.id}}" type="radio" class="election_type_item" v-model="electionType">
+                    <label for="{{type_.id}}">{{type_.label}}</label>
+                  </div>
+                {% endfor %}
+              </div>
+
+              <div id="identidade_checkboxes">
+                <div class="title">
+                    <span>Identidade</span>
+                </div>
+                <div id="mulher">
+                  <input type="checkbox" id="mulher_input" v-model="isMulher">
+                  <label for="mulher_input">Mulher</label>
+                </div>
+                <div id="negro">
+                  <input type="checkbox" id="negro_input" v-model="isNegro">
+                  <label for="negro_input">Negro</label>
+                </div>
+                <div id="indigena">
+                  <input type="checkbox" id="indigena_input" v-model="isIndigena">
+                  <label for="indigena_input">Indígena</label>
+                </div>
+                <div id="lgbt">
+                  <input type="checkbox" id="lgbt_input" v-model="isLGBT" v-on:click="LGBT_checked">
+                  <label for="lgbt_input">LGBT</label>
+                </div>
+                <!-- Querida Miguel: Eu sou preguiçoso e não escrevi isso em um sass. Além disso, queria evitar conflitos no github.-->
+                <div class="lgbt_descriptions invisible card" style="display: none; padding: 10px;">
+                  {% for lgbt_desc in lgbt_descriptions %}
+                    <div>
+                      <input type="checkbox" id='lgbt_desc_{{lgbt_desc.id}}' class="lgbt_desc_item" v-model="{{lgbt_desc.id}}">
+                      <label for="lgbt_desc_{{lgbt_desc.id}}">{{lgbt_desc.label}}</label>
+                    </div>
+                  {% endfor %}
+                </div>
+
+              </div>
+            </div>
           <div class="d-flex justify-content-between align-items-center">
-            <p>Encontramos <strong>[[filteredList().length]]</strong> candidatas/os</p>
+            
+
             <!-- Filtros Mobile -->
             <button type="button" class="btn btn-filtros" data-toggle="modal" data-target="#ModalCenter">
-                Filtros
+                Filtrar Partidos
             </button>
+            <br/>
+            
               
               <!-- Modal -->
               <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
@@ -133,66 +198,6 @@
                       </button>
                     </div>
                     <div style="padding: 1rem;">
-                      <div id='estado_checkboxes'>
-                        <div class="title">
-                          <span>Estado (UF)</span>
-                        </div>
-                          <select v-model="checkedEstado">
-                            <option value='' selected="selected">
-                              TODOS OS ESTADOS
-                            </option>
-                            <template v-for="estado in estadosList">
-                              <option :id="estado.id" :value="estado.id" >
-                                [[ estado.label ]]
-                              </option>
-                            </template>
-                          </select>
-                      </div>
-                
-                      <div id="cargo_radioboxes" class="election_types">
-                        <div class="title">
-                          <span>Cargo</span>
-                        </div>
-                        {% for type_ in election_types %}
-                          <div>
-                            <input id="{{type_.id}}" value="{{type_.id}}" type="radio" class="election_type_item" v-model="electionType">
-                            <label for="{{type_.id}}">{{type_.label}}</label>
-                          </div>
-                        {% endfor %}
-                      </div>
-                
-                      <div id="identidade_checkboxes">
-                        <div class="title">
-                            <span>Identidade</span>
-                        </div>
-                        <div id="mulher">
-                          <input type="checkbox" id="mulher_input" v-model="isMulher">
-                          <label for="mulher_input">Mulher</label>
-                        </div>
-                        <div id="negro">
-                          <input type="checkbox" id="negro_input" v-model="isNegro">
-                          <label for="negro_input">Negro</label>
-                        </div>
-                        <div id="indigena">
-                          <input type="checkbox" id="indigena_input" v-model="isIndigena">
-                          <label for="indigena_input">Indígena</label>
-                        </div>
-                        <div id="lgbt">
-                          <input type="checkbox" id="lgbt_input" v-model="isLGBT" v-on:click="LGBT_checked">
-                          <label for="lgbt_input">LGBT</label>
-                        </div>
-                        <!-- Querida Miguel: Eu sou preguiçoso e não escrevi isso em um sass. Além disso, queria evitar conflitos no github.-->
-                        <div class="lgbt_descriptions invisible card" style="display: none; padding: 10px;">
-                          {% for lgbt_desc in lgbt_descriptions %}
-                            <div>
-                              <input type="checkbox" id='lgbt_desc_{{lgbt_desc.id}}' class="lgbt_desc_item" v-model="{{lgbt_desc.id}}">
-                              <label for="lgbt_desc_{{lgbt_desc.id}}">{{lgbt_desc.label}}</label>
-                            </div>
-                          {% endfor %}
-                        </div>
-                
-                      </div>
-                
                       <div id='partido_checkboxes'>
                         <div class="title">
                           <span>Partido</span>

@@ -59,13 +59,12 @@
       <div class="tab-content" id="coligacoesTabContent">
         {% for tipo, cs in coligacoes.items %}
         <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="nav-{{tipo|slugify}}-content" role="tabpanel" aria-labelledby="home-tab">
-            div id="accordion"
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">Coligacoes</th>
-                <th scope="col">Nota</th>
-                <th scope="col">Ver</th>
+                <th scope="col" style="border-top: none;">Coligacoes</th>
+                <th scope="col" style="text-align:center;border-top: none;">Nota</th>
+                <th scope="col" style="border-top: none;"></th>
               </tr>
             </thead>
             <tbody>
@@ -73,9 +72,9 @@
               {% for c in cs %}
                 <tr>
                   <td>{{c.name}}</td>
-                  <td>{{c.mark|floatformat:2}}</td>
-                  <td>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#collapsePartido-{{c.id}}">
+                  <td style="text-align:center;">{{c.mark|floatformat:2}}</td>
+                  <td style="text-align:end;">
+                    <button type="button" class="btn btn-roxo" data-toggle="modal" data-target="#collapsePartido-{{c.id}}">
                       Confira os partidos
                     </button>
                   </td>

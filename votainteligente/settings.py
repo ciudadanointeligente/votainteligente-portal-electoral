@@ -232,6 +232,7 @@ CONSTANCE_CONFIG = {
     'MEREPRESENTA_COLIGACAO_ATENUATION_FACTOR': (1.0, u'o factor de atenuacao de nota de coligacao'),
     'MEREPRESENTA_IDENTITY_MULTIPLICATION_FACTOR': (1.0, u'o factor de multiplicacao de desprivilegio'),
     'MEREPRESENTA_RESULTADO_CANTIDADE': (100, u'o factor de multiplicacao de desprivilegio'),
+    'MEREPRESENTA_CANDIDATES_ALLOWED_TO_LOGIN': (True, u'os candidatos podem entrar na plataforma'),
 }
 TESTING = 'test' in sys.argv
 if TESTING:

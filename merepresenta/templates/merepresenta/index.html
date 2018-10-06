@@ -50,11 +50,12 @@
                 Sou eleitor/a
               </a>
             </div>
-
+            {% if config.MEREPRESENTA_CANDIDATES_ALLOWED_TO_LOGIN %}
             <div class="col-lg-12">
               <a href="{% url 'cpf_and_date2' %}"
               class="btn btn-azul voluntario btn-uppercase">Sou candidata/o</a>
             </div>
+            {% endif %}
 
             <div class="col-lg-12">
               <a href="{% url 'volunteer_index' %}" 

@@ -15,6 +15,7 @@
 <section class="row candidato-form">
   <div class="col-md-8 offset-md-2">
     <h1 class="text-center">Olá, candidata/o!</h1>
+    {% if config.MEREPRESENTA_CANDIDATES_ALLOWED_TO_LOGIN %}
     <h2 class="text-center">
       Antes de começar, precisamos de alguns dados seus:
     </h2>
@@ -95,6 +96,11 @@
           </div>
       </form>
     </div>
+    {% else %}
+    <h2 class="text-center">
+      As candidatas/os não podem mais inserir informações.
+    </h2>
+    {% endif %}
   </div>
 </section>
 

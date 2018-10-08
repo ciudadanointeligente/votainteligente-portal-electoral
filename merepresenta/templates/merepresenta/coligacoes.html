@@ -19,76 +19,96 @@
 
 
 {% block everything %}
-    <section class="container">
-        <h1>Ranking de coligações de {{area}}</h1>
+<section class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <a href="/" onclick="window.history.back()" />
+        < Voltar
+      </a>
+    </div>
+    
+    <div class="col-md-8 offset-md-2">
+      <div class="bottom">
+        <h1 class="bottom" style="font-size: 40px;font-weight: bold;">
+          Entenda mais sobre as coligações
+        </h1>
         <p>
-            
+            No sistema político brasileiro, as coligações variam por cargo disputado e por estado. São quase 200 combinações! Nossos votos para o legislativo tem um valor duplo. Votamos em candidaturas, mas os votos para deputados contam primeiro para as coligações - que são como as “equipes” dos candidatos. Cada “equipe” conquista um número de vagas ligado à quantidade de votos totais recebidos. As vagas conquistadas são então divididas entre os primeiros colocados dentro de cada “equipe”, cada coligação. Assim podemos votar em alguém super legal e acabar elegendo alguém que pensa o contrário da gente e o contrário da candidata/o que escolhemos. Mais sobre as notas de cada partido aqui.
         </p>
-        <select id="lista_estados">
-            {% for a in all_areas %}
-                <option value='{{a.slug}}'{% if a == area %} selected{% endif %}>{{a}}</option>
-            {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-md-8 offset-md-2">
+      <div class="d-flex align-items-center justify-content-center" style="margin: 20px 0;">
+        <label style="width: 100%;font-size: 20px;font-weight: bold;">
+          Escolha seu estado
+        </label>
+        <select id="lista_estados" style="width: 100%;">
+          {% for a in all_areas %}
+              <option value='{{a.slug}}'{% if a == area %} selected{% endif %}>{{a}}</option>
+          {% endfor %}
         </select>
-
-
-        <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            {% for tipo, cs in coligacoes.items %}
-            <a class="nav-item nav-link {% if forloop.first %} active{% endif %}" id="nav-{{tipo|slugify}}-tab" data-toggle="tab" href="#nav-{{tipo|slugify}}-content" role="tab" aria-controls="nav-home" aria-selected="true">{{tipo}}</a>
-            {% endfor %}
-            </div>
-        </nav>
-        <div class="tab-content" id="coligacoesTabContent">
-            {% for tipo, cs in coligacoes.items %}
-                <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="nav-{{tipo|slugify}}-content" role="tabpanel" aria-labelledby="home-tab">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Coligacoes</th>
-                      <th scope="col">nota</th>
-                      <th scope="col">Ver</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                        {% for c in cs %}
-                        <tr>
-                          <td>{{c.name}}</td>
-                          <td>{{c.mark|floatformat:2}}</td>
-                          <td>
-                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#collapsePartido-{{c.id}}">
-                            Confira os partidos
-                          </button>
-
-                      </td>
-                        </tr>
-                        <!-- Modal -->
-                        <div class="modal fade" id="collapsePartido-{{c.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Partidos</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                <ul>
-                                {% for partido in c.partido_set.all %}
-                                <li>{{partido.initials}} - {{partido.mark}}</li>
-                                {% endfor %}
-                                </ul>
-                              </div>
-                              
-                            </div>
-                          </div>
-                        </div>
-                        {% endfor %}
-                    </tr>
-                  </tbody>
-                </table>
-                </div>
-            {% endfor %}
+      </div>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          {% for tipo, cs in coligacoes.items %}
+          <a class="nav-item nav-link {% if forloop.first %} active{% endif %}" id="nav-{{tipo|slugify}}-tab" data-toggle="tab" href="#nav-{{tipo|slugify}}-content" role="tab" aria-controls="nav-home" aria-selected="true">{{tipo}}</a>
+          {% endfor %}
         </div>
-    </section>
+      </nav>
+      <div class="tab-content" id="coligacoesTabContent">
+        {% for tipo, cs in coligacoes.items %}
+        <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="nav-{{tipo|slugify}}-content" role="tabpanel" aria-labelledby="home-tab">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" style="border-top: none;">Coligacoes</th>
+                <th scope="col" style="text-align:center;border-top: none;">Nota</th>
+                <th scope="col" style="border-top: none;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              {% for c in cs %}
+                <tr>
+                  <td>{{c.name}}</td>
+                  <td style="text-align:center;">{{c.mark|floatformat:2}}</td>
+                  <td style="text-align:end;">
+                    <button type="button" class="btn btn-roxo" data-toggle="modal" data-target="#collapsePartido-{{c.id}}">
+                      Confira os partidos
+                    </button>
+                  </td>
+                </tr>
+                <!-- Modal -->
+                <div class="modal fade" id="collapsePartido-{{c.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Partidos</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <ul class="list-unstyled">
+                        {% for partido in c.partido_set.all %}
+                        <li>{{partido.initials}} - {{partido.mark}}</li>
+                        {% endfor %}
+                        </ul>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
 {% endblock everything %}

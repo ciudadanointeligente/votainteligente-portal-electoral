@@ -34,6 +34,9 @@
 .navbar {
   min-height: 50px;
   background-color: $main-background-color;
+  .important {
+    background-color: $blue-light;
+  }
 }
 .navbar-inverse .navbar-nav > li > a {
   color: $grey-three;

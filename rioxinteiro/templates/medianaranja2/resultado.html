@@ -1,0 +1,104 @@
+{% extends "medianaranja2/base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load thumbnail %}
+{% load votainteligente_extras %}
+{% load cache %}
+{% load bootstrap3 %}
+{% block title %}- Tem Compromisso{% endblock title %}
+
+
+
+{% block paso %}
+<h1>{% trans "Resultados" %}</h1>
+{% endblock paso %}
+
+{% block questions %}
+{% if organizations.exists %}
+<div class="col-md-12">
+<p class='exp_orgs'>Suas prioridades no #TemCompromisso são conduzidas diariamente por essas organizações da Rio por Inteiro. 
+Convidamos você a conhecê-las e se juntar às causas que te interessam!</p>
+  <h3>{% trans "Organizaciones" %}</h3>
+    {% for o in organizations.all %}
+    {% cache 83000 organization_in_result_ o.id %}
+    <div class="col-md-4 text-center">
+        {% if o.logo_small %}
+        <a href="{{o.get_absolute_url}}"><img src="{{o.logo_small.url}}" alt="{{o.title}}" title="{{o.title}}" height="96" width="96" border="0" class="img-circle"></img></a>
+        {% endif %}
+        <ul class="list-unstyled list-inline">
+          {% if o.org_url %}
+          <li><a href="{{o.org_url}}"><i class="fa fa-globe" aria-label="Website"></i></a></li>
+          {% endif %}
+          {% if o.facebook %}
+          <li><a href="{{o.facebook}}"><i class="fa fa-facebook" aria-label="Facebook"></i></a></li>
+          {% endif %}
+          {% if o.twitter %}
+          <li><a href="{{o.twitter}}"><i class="fa fa-twitter" aria-label="Twitter"></i></a></li>
+          {% endif %}
+          {% if o.instagram %}
+          <li><a href="{{o.instagram}}"><i class="fa fa-instagram" aria-label="Instagram"></i></a></li>
+          {% endif %}
+          {% if o.rss_url %}
+          <li><a href="{{o.rss_url}}"><i class="fa fa-rss" aria-label="RSS"></i></a></li>
+          {% endif %}
+        </ul>
+      <div>
+        <form action="{% url 'medianaranja2:create_share_org' %}" method="POST"  target="_blank">
+          {% csrf_token %}
+          <input name='object_id' type="hidden" value="{{ o.id }}"/>
+
+          <!-- <input type="submit" value="Compartilhar"  class="btn btn-default" /> -->
+
+        </form>
+        </div>
+    </div>
+    {% endcache %}
+    {% endfor %}
+</div>
+<hr>
+{% endif %}
+
+
+{% for election_result in results %}
+<div class="col-md-12">
+  <h3>{% blocktrans with election_name=election_result.election.name %}
+    Suas candidaturas para {{election_name}} são
+  {% endblocktrans %}</h3>
+  {% for candidate_result in election_result.candidates %}
+  <div class="col-md-4 text-center">
+      <div class="text-center candidate-result-value">{{ candidate_result.value|floatformat }}%</div>
+      {% cache 83000 candidate_result_numero candidate_result.candidate.id %}
+      <a href="{{candidate_result.candidate.get_absolute_url}}">
+      {% if candidate_result.candidate.image %}
+        {% thumbnail candidate_result.candidate.image "100x100" crop="center" as im %}
+        <img src="{{ im.url }}" alt="{{candidate_result.candidate.name}}" height="96" width="96" border="0" class="img-circle">
+        {% endthumbnail %}
+      {% else %}
+        <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate_result.candidate.name}}" height="96" width="96" border="0" class="img-circle">
+      {% endif %}
+      </a>
+      <p class="candidate-result-name"><a href="{{candidate_result.candidate.get_absolute_url}}">{{candidate_result.candidate}}</a></p>
+        {% get_personal_data candidate=candidate_result.candidate personal_data='Numero' as numero %}
+        {% if numero.value %}
+        <div><span class="label-default">{{numero.value}}</span></div>
+        {% endif %}
+        {% endcache %}
+
+        <div>
+        <form action="{% url 'medianaranja2:create_share' %}" method="POST"  target="_blank">
+          {% csrf_token %}
+          <input name='object_id' type="hidden" value="{{ candidate_result.candidate.id }}"/>
+          <input name="percentage" type="hidden" value="{{ candidate_result.value|floatformat:0 }}" />
+
+          <!-- <input type="submit" value="Compartilhe"  class="btn btn-default" /> -->
+
+        </form>
+        </div>
+    </div>
+  {% endfor %}
+</div>
+<hr>
+{% endfor %}
+
+<a href="{% url 'medianaranja2:index' %}" class="btn btn-success pull-right" role="button" onclick="ga('send','event','juega-de-nuevo','click')">{% trans "Juega de nuevo" %}</a>
+{% endblock questions %}

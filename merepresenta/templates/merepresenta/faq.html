@@ -1,0 +1,354 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load votainteligente_extras %}
+
+{% block title %}- Sobre{% endblock title %}
+
+{% block everything %}
+<main class="container faq">
+  <div class="row">
+    <!-- Voltar -->
+    <div class="col-md-8 offset-md-2">
+      <a href="/" onclick="window.history.back()" />
+        < Voltar
+      </a>
+    </div>
+
+    <!-- Vídeo -->
+    <div class="col-md-8 offset-md-2">
+      <div class="bottom">
+        <h1 class="bottom">Tem alguma dúvida?</h1>
+        <h2>
+            Veja aqui as principais dúvidas sobre a gente e nossa plataforma.
+        </h2>
+      </div>
+      <div class="faq-video">
+        <iframe width="640" height="360" src="https://www.youtube.com/embed/QtUHmuFFOt8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+     
+      </div>
+        <p>
+          E aproveite pra conhecer mais nossos posicionamentos. Não encontrou o que  procurava? Fala com a gente no <a href="mailto:contato@merepresenta.org.br">contato@merepresenta.org.br</a> ou no inbox do Facebook.
+        </p>
+    </div>
+
+    <!-- Sobre a plataforma -->
+    <div class="col-md-8 offset-md-2 margin-bottom">
+      <h3>Sobre a plataforma</h3>
+      <!-- Accordion Bootstrap -->
+      <div id="accordion">
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <div>O que é o #MeRepresenta?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+      
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              O #MeRepresenta é a união de coletivos (pessoas massa fazendo coisas juntas) e instituições (organizações civis massa fazendo mais coisas juntas) que buscam visibilizar as narrativas pró igualdade de raça e gênero e o respeito às LGBT+. O que queremos é aumentar a chance de representatividade desses grupos nos espaços de poder, e viabilizar, a partir de uma linguagem acessível, a aproximação das/os eleitoras/es se às políticas e aos políticos.
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <div>Porque falar de raça, gênero e identidade LGBT durante as eleições?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+              Porque mesmo somando 80% da população brasileira, mulheres, negras/os e LGBTs têm pouca ou nenhuma representação política. Essa falta de representantes traz uma série de consequências para essas populações, com políticas públicas inadequadas ou ausentes para suas necessidades de sobrevivência. Acreditamos que existe uma potência eleitoral que, ao se engajar no momento das eleições, pode mudar a cara do legislativo com gente que sente na pele quando os direitos humanos são desrespeitados. 
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <div>Quem participa do #MeRepresenta?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+              O #MeRepresenta é o resultado da união do Blogueiras Negras, Fundação Cidadania Inteligente, Rede Feminista de Juristas (#DefemDe) e #VoteLGBT. Coletivos que pautam, conjuntamente, participação de mulheres negras na construção da escrita e pesquisa, incidência democrática e impacto social, acesso à justiça e direitos das mulheres e participação ativa da população LGBT na construção política nacional. Participam como aceleradoras o #AgoraÉQueSãoElas e as ONGs Nossas e CFemea.
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <div>Tá, mas quem toma as decisões do grupo?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+              Dentro do #MeRepresenta as questões são pautadas de forma horizontal, ou seja, geral dá pitaco em tudo o que é de interesse e decisão do coletivo. 
+              O que fazemos é buscar sempre nas decisões sensíveis o consenso entre as instituições gestoras. Em um coletivo de grupos minorizados não faz sentido uma imposição da vontade da maioria. Por isso, as decisões são tomadas sempre em comum acordo, num exercício de empatia política e interseccionalidade.
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingFour">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                <div>E da onde vocês tiraram esses temas e pautas?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+            <div class="card-body">
+              Então… Foi um longo processo de meses. A gente juntou todas as sugestões que recebemos por inbox e email desde 2016. Ao mesmo tempo foi construindo conversas bilaterais com várias organizações e coletivos. Foram mais de 140 sugestões de 19 entidades da sociedade civil. Por fim, realizamos evento presencial para decidir coletivamente as redações e as classificações das pautas nos temas como você vê no site. 
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingA">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseA" aria-expanded="false" aria-controls="collapseA">
+                <div>Como faço para achar candidaturas?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseA" class="collapse" aria-labelledby="headingA" data-parent="#accordion">
+            <div class="card-body">
+              Primeiro, é preciso selecionar quais são os temas importantes pra você. Pode ser de 1 até todos os 9 temas. Na tela seguinte abre uma lista ranqueada com as candidaturas mais em sintonia com suas escolhas pras mais distantes. Lembre-se, é preciso selecionar o estado em que você vota. Procure também alternar os cargos para ter uma busca mais completa. Ao lado, existe uma lista grande de filtros pra você experimentar. Pesquise! 
+            </div>
+          </div>
+</div>
+<div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingB">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseB" aria-expanded="false" aria-controls="collapseB">
+                <div>Vocês apóiam ou são filiados a algum partido?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseB" class="collapse" aria-labelledby="headingB" data-parent="#accordion">
+            <div class="card-body">
+              Não somos filiados e não apoiamos partidos ou candidaturas. Escolhemos 10 votações no congresso nacional dos últimos 4 anos para chegar nas notas partidárias. Fizemos uma análise extensa da performance de cada partido. Nos casos de partidos sem representantes eleitos, avaliamos as declarações oficiais em relação à cada uma das matéria. Também avaliamos o repasse de verba para mulheres dentro do partido. Se quiser saber tudo sobre a nossa metodologia, <a href="https://docs.google.com/document/d/1qoOj1ehZNOKW__1pi4lQmM4yFIThwOMaKQWxA_U9tA8/edit?usp=sharing">clica aqui</a>. 
+            </div>
+          </div>
+</div>
+<div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingC">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseC" aria-expanded="false" aria-controls="collapseC">
+                <div>O que é nota da coligação? Por que tanta atenção pra isso?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseC" class="collapse" aria-labelledby="headingC" data-parent="#accordion">
+            <div class="card-body">
+              Porque no Brasil as eleições para Deputada/o Federal, Estaduas e Distrital as coligações contam muito. O nosso voto não vai somente para a candidatura escolhida, ele também compõe o total de votos da coligação que acabam sendo divididos pelas candidaturas que foram mais votadas na coligação. Normalmente, candidaturas com mais recurso e mais apoio partidário. Assim, a gente pode votar numa candidatura super alinhada com a gente e acabar elegendo outra bem diferente e até de outro partido!
+
+            </div>
+          </div>
+</div>
+<div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingD">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseD" aria-expanded="false" aria-controls="collapseD">
+                <div>Por que não encontro minha candidata/o ou meu partido na plataforma?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseD" class="collapse" aria-labelledby="headingD" data-parent="#accordion">
+            <div class="card-body">
+              Porque algumas candidaturas não se inscreveram ainda. Nós mandamos email para todas as candidaturas com email válido na lista do TSE. Além disso, buscamos entrar em contato com as outras 13 mil candidaturas sem email válido com a ajuda de centenas de voluntárias/os espalhadas/os por todo o País. <a href="https://merepresenta.org.br/voluntarios">Saca nossa plataforma de voluntárias/os</a>!
+
+            </div>
+          </div>
+</div>
+
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingFive">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                <div>A candidatura a um cargo estadual precisa responder sobre temas federais, como aborto?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+            <div class="card-body">
+              Precisa. As perguntas são as mesmas para todos os cargos pesquisados e buscam traçar um perfil político a partir desses posicionamentos. Entendemos que políticos se candidatam a cargos diferentes em cada eleição, dependendo do contexto. Também trabalham em gabinetes, secretarias, ministérios e coordenações. Conhecer e visibilizar seus posicionamentos agora ajuda eleitoras/es a te procurar no futuro também.
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingSix">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                <div>Quero encontrar candidata/o à Presidência ou a Governador/a. Por que não consigo?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+            <div class="card-body">
+              Nossa plataforma é dedicada apenas ao legislativo (Deputadas/os Estaduais, Federais, Distritais e Senadoras/es). O voto nos cargos de presidência e Governador/a já tem muitos espaços de debate, enquanto o voto no legislativo ainda não tem muita visibilidade. A plataforma é uma ferramenta trazer pro centro do debate a função do legislativo e o quanto que essa política afeta a nosso cotidiano e nossas vidas.
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingSeven">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                <div>As candidaturas precisam responder todas as perguntas?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+            <div class="card-body">
+              Sim! Para completar o cadastro precisa responder a TODAS as perguntas. Com A FAVOR ou CONTRA.
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingEight">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                <div>Só pode ser A FAVOR ou CONTRA? Não pode ser neutro?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
+            <div class="card-body">
+              Não pode. É preciso saber como se posicionam nossos representante porque na hora da disputa política, a gente precisa saber em que lado essa/e representante estará.
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingNine">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                <div>Mas é uma plataforma de match?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion">
+            <div class="card-body">
+              Não exatamente. É uma plataforma de funcionamento misto: ranking & match. Assim: ao responder às perguntas sobre as pautas, a candidatura acumula pontos no ranking. Ao final das perguntas cada candidaturas escolhe 3 temas prioritários. Quando a/o eleitor/a escolhe os mesmos temas que a/o candidata/o, ela multiplica os pontos ganhados naqueles temas que coincidiram com as prioridades da/o eleitor/a. 
+
+              A gente declara nosso viés pró-direitos humanos e, ao mesmo tempo, dá espaço para a priorização dos interesse das/os eleitoras/es.
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingTen">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                <div>Vocês me indicam algum/a candidata/o ou partido?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordion">
+            <div class="card-body">
+              Não. A gente convida todas as candidaturas e faz um ranking com aquelas que se inscreveram. Proporcionamos filtros de partidos para que a/o eleitor/a possa fazer suas escolhas. Ao mesmo tempo, daremos notas às coligações segundo o desempenho dos partidos nos últimos 4 anos, levando em conta a atuação em votações sensíveis a nossas pautas no legislativo. Assim que estiver pronta a gente sobe a metodologia pro site. 
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingEleven">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                <div>Por que vocês perguntam raça de candidata/o?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordion">
+            <div class="card-body">
+              O TSE só começou a contabilizar raça entre as candidaturas em 2014 (!!). Em 2018, será a primeira vez que vamos conseguir comparar os dados raciais nas eleições. Isso é importante pra saber se existe mais ou menos negras/os na política, quantos são eleitas/os. Mas uma coisa que não sabemos é a qualidade desses dados do TSE, muitas vezes preenchidos pelos partidos. Assim, fica difícil saber como a/o candidata/o se auto-declara. Depois das eleições a gente conta o que descobrimos.
+
+              Além disso, o pertencimento racial é um dos critérios para a ordem das candidaturas nos resultados paras as/eleitoras/es. Também são critérios afirmativos gênero e identidade LGBT.             
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingTwelve">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                <div>Dá pra marcar mais de uma raça? Como é isso?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwelve" class="collapse" aria-labelledby="headingTwelve" data-parent="#accordion">
+            <div class="card-body">
+              Para poder garantir comparação, escolhemos adotar as mesmas classificações precárias e muitas vezes ofensivas do IBGE. Entretanto, entendemos que existem muitas pessoas no país que têm muito desconforto para se encaixar em apenas uma dessas categorias, pertencendo a mais de um grupo étnico. A população que é ao mesmo tempo negra e indígena é uma delas. 
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingThirteen">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+                <div>Por que vocês perguntam orientação sexual de candidata/o?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThirteen" class="collapse" aria-labelledby="headingThirteen" data-parent="#accordion">
+            <div class="card-body">
+              Não existem muitos dados sobre LGBTs no Brasil e isso é um dos maiores problemas dessa comunidade. O país é o campeão de assassinatos por crime de ódio contra LGBTs em todo o mundo e o estado pouco faz, pois não há dados oficiais. Coletar esse dado sobre as candidaturas afirma essas identidades como um valor político, para que eleitoras e eleitores possam filtrar LGBTs entre as candidaturas para escolher seu voto. 
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingFourteen">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
+                <div>Qualé a desses filtros por identidade?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseFourteen" class="collapse" aria-labelledby="headingFourteen" data-parent="#accordion">
+            <div class="card-body">
+              Sempre que tiver candidaturas inscritas, proporcionamos filtros de gênero, raça e sexualidade como uma ferramenta para ajudar a/o eleitor/a escolher outros corpos para ocupar os cargos de poder. Acreditamos na importância da representatividade de uma maneira dupla: tanto das pautas quanto dos corpos. Mas só é se quiser. Ninguém é obrigada/o.
+            </div>
+          </div>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-accordion-header" id="headingFifteen">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFifteen" aria-expanded="false" aria-controls="collapseFifteen">
+                <div>E por que vocês escrevem o final das palavras com a/o?</div>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseFifteen" class="collapse" aria-labelledby="headingFifteen" data-parent="#accordion">
+            <div class="card-body">
+              Na língua portuguesa, assim como na política institucional, o gênero masculino tem sido usado há séculos como genérico, substituindo e silenciando o que existe de feminino nos conjuntos. Acreditamos que imaginar outras possibilidades é fundamental para construir a mudança. A linguagem também é política.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% endblock everything %}

@@ -2,7 +2,9 @@
 html .navbar_visible, body .navbar_visible{
   padding-top: 55px;
 }
-
+html .navbar_invisible, body .navbar_invisible{
+  padding-top: 0px;
+}
 .navbar{
   min-height: 55px;
 }
@@ -1094,7 +1096,10 @@ label{
 
 /*MEDIA NARANJA*/
 .media-naranja{
-  background-color: #E2F4FF;
+  background-color: #646F9D;
+  background-image: url("../img/temcompromisso_header.svg");
+  background-size: 100%;
+  background-repeat: no-repeat;
   padding-top: 60px;
   h2{
     font-family: 'Montserrat', sans-serif;
@@ -1114,6 +1119,21 @@ label{
     letter-spacing: 2px;
     margin: 22px 0 0;
   }
+}
+.tem-compromisso-info {
+  margin-top: 30px;
+  color: white;
+  h2 {
+    color: white;
+  }
+  h4{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 28px;
+    // font-weight: 700;
+    // letter-spacing: 2px;
+    margin: 22px 0 0;
+  } 
 }
 
 .naranja-form{
@@ -1144,21 +1164,21 @@ label{
     padding: 4px 13px;
   }
   .label-default{
-    background-color: $blue;
+    background-color: $yellow;
     color: white;
     padding: 2px 5px;
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 11px;
-    border-radius: 5px;
+    border-bottom: 5px solid;
   }
   .label-warning{
     @extend .label-default;
     background-color: $yellow;
   }
   .pregunta{
-    border: 3px solid $blue-light;
+    border: 3px solid $yellow;
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 20px;
@@ -1197,6 +1217,9 @@ label{
   padding: 10px 15px;
   margin-top: 15px;
   color: $grey-one;
+}
+.exp_orgs {
+  font-size: 15px;
 }
 
 .mano{

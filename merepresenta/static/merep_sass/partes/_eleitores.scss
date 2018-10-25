@@ -1,3 +1,5 @@
+@import '../variables';
+
 .eleitores {
   margin-top: 80px;
 
@@ -15,7 +17,6 @@
 
     span {
       color: #EF476F;
-      font-weight: bold;
     }
   }
 
@@ -32,3 +33,313 @@
     margin-bottom: 20px;
   }
 }
+
+// quem te representa
+.quem-representa {
+  .quem-representa-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    h1 {
+      font-weight: bold;
+      margin: 30px 0;
+    }
+  }
+
+  .card {
+    margin: 0 5px 30px 5px;
+    flex: 0 0 32%;
+
+    .name {
+      font-size: 18px;
+      color: #39393A;
+      font-weight: bold;
+      font-family: 'Lato', sans-serif;
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .card-content {
+      padding: 0 10px;
+    
+      .infos {
+        display: flex;
+        margin-bottom: 20px;
+  
+        .item + .coligacao {
+          background-color: #FFC43D;
+        }
+  
+        .item {
+          flex: 1;
+          text-align: center;
+          border-radius: 5px;
+          min-width: 80px;
+          display: flex;
+          flex-direction: column;
+          justify-content: end;
+          padding: 6px;
+  
+          label {
+            color: #39393A;
+            font-size: 14px;
+            width: 100%;
+          }
+  
+          span {
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .btn {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  @media screen and (max-width: $break-x-large) {
+    .quem-representa-header {
+      flex-direction: column;
+      margin-bottom: 40px;
+    }
+    .card {
+      flex: 0 0 48%;
+    }
+  }
+  @media screen and (max-width: $break-medium) {
+    .card {
+      flex: 0 0 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-left: 0;
+      margin-right: 0;
+      
+      img {
+        min-height: 450px;
+      }
+    }
+  }
+  @media screen and (max-width: $break-small) {
+    .card img {
+      min-height: 300px;
+    }
+  }
+}
+
+// titles
+
+.explicacion-pautas {
+  h2 {
+    font-size: 28px;
+  }
+}
+
+// accordion
+.set {
+  .accordion-header {
+    padding: 1.25rem 0;
+
+    button {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      padding: 0;
+      color: #4F4F4F;
+      font-size: 28px;
+      font-family: 'Lato', sans-serif;
+      width: 100%;
+
+      div {
+        white-space: pre-line;
+        text-align: left;
+      }
+
+      button:hover,
+      button:active {
+        text-decoration: none !important;
+      }
+    }
+  }
+  .accordion-content,
+  .card-body {
+    display: none;
+    padding: 1.25rem 0;
+    font-size: 22px;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .accordion-content {
+    h4 {
+      font-family: 'Lato', sans-serif;
+      font-weight: bold;
+    }
+
+    p {
+      margin-bottom: 3rem;
+    }
+  }
+}
+
+// filtros
+.quem-representa-filtros {
+
+  .title-container,
+  .title {
+    font-size: 18px;
+    color: #39393A;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .title-container {
+    text-transform: uppercase;
+  }
+
+  input {
+    margin-right: 15px;
+  }
+
+  #cargo_radioboxes,
+  #identidade_checkboxes,
+  #estado_checkboxes,
+  #partido_checkboxes {
+    margin-bottom: 30px;
+  }
+
+  #cargo_radioboxes,
+  .election_types {
+    background-color: #FFC43D;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  select {
+    width: 100%;
+  }
+  @media screen and (max-width: $break-x-large) {
+    display: none;
+  }
+}
+
+.quem-representa-filtros-modal {
+
+.title-container,
+  .title {
+    font-size: 18px;
+    color: #39393A;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .title-container {
+    text-transform: uppercase;
+  }
+
+  input {
+    margin-right: 15px;
+  }
+
+  #cargo_radioboxes,
+  #identidade_checkboxes,
+  #estado_checkboxes,
+  #partido_checkboxes {
+    margin-bottom: 30px;
+  }
+
+  #cargo_radioboxes,
+  .election_types {
+    background-color: #FFC43D;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  select {
+    width: 100%;
+  }
+
+}
+
+@media screen and (min-width: $break-x-large) {
+  .btn-filtros {
+    display: none;
+  }
+}
+
+@media screen and (max-width: $break-x-large) {
+  .filtros-btn, a {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+  .zero-encontrados {
+  img {
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  h4 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  textarea {
+    width: 100%;
+  }
+}
+
+  $offset: 187;
+  $duration: 1.4s;
+
+  .spinner {
+    animation: rotator $duration linear infinite;
+    margin: 200px 0;
+  }
+
+  @keyframes rotator {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(270deg); }
+  }
+
+  .path {
+    stroke-dasharray: $offset;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    animation:
+      dash $duration ease-in-out infinite, 
+      colors ($duration*4) ease-in-out infinite;
+  }
+
+  @keyframes colors {
+    0% { stroke: #4285F4; }
+    25% { stroke: #DE3E35; }
+    50% { stroke: #F7C223; }
+    75% { stroke: #1B9A59; }
+    100% { stroke: #4285F4; }
+  }
+
+  @keyframes dash {
+  0% { stroke-dashoffset: $offset; }
+  50% {
+    stroke-dashoffset: $offset/4;
+    transform:rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: $offset;
+    transform:rotate(450deg);
+  }
+  }

@@ -1,7 +1,7 @@
 # coding=utf-8
 from backend_candidate.tests import SoulMateCandidateAnswerTestsBase
 from django.test import override_settings, modify_settings
-from merepresenta.models import Candidate, LGBTQDescription
+from merepresenta.models import Candidate, LGBTQDescription, CandidateQuestionCategory, QuestionCategory
 from merepresenta.forms import PersonalDataForm
 from backend_candidate.forms import get_candidate_profile_form_class
 from backend_candidate.models import Candidacy
@@ -153,6 +153,19 @@ class GetAndPostToTheUpdateProfileView(SoulMateCandidateAnswerTestsBase):
         self.assertEquals(response.status_code, 200)
         self.assertTrue(response.context['form'])
         self.assertEquals(response.context['form'].candidate, self.candidate)
+
+    @override_settings(MEREPRESENTA_CANDIDATES_ALLOWED_TO_UPDATE=False)
+    def test_if_officially_not_allowed(self):
+        '''
+        If a candidate has answered then it is taken to its profile
+        '''
+        cat = QuestionCategory.objects.create(name="Pautas LGBT")
+        instance = CandidateQuestionCategory.objects.create(candidate=self.candidate, category=cat)
+
+        kwargs = {'slug': self.election.slug, 'candidate_slug': self.candidate.slug}
+        url = reverse('merepresenta_complete_profile', kwargs=kwargs)
+        response = self.client.get(url)
+        self.assertRedirects(response, self.candidate.get_absolute_url())
 
     def test_post_to_the_view(self):
         kwargs = {'slug': self.election.slug, 'candidate_slug': self.candidate.slug}

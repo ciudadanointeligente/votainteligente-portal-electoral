@@ -5,17 +5,21 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load votainteligente_extras %}
+{% load cache %}
 <head>
     <meta charset="utf-8">
     <title>Rio Por Inteiro{% block title %}: {{ config.WEBSITE_GENERAL_SETTINGS_HOME_TITLE }}{% endblock title %}</title>
+    {% cache 1000 landing_meta_1 %}
     <meta name="author" content="{{ config.WEBSITE_METADATA_AUTHOR }}">
     <meta name="description" content="{% block description %}{{ config.WEBSITE_METADATA_DESCRIPTION }}{% endblock description %}">
     <meta name="keywords" content="{% block extrakeywords %}{% endblock extrakeywords %}{{ config.WEBSITE_METADATA_KEYWORD }}{% block keywords %}{% endblock keywords %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="google-site-verification" content="{{ config.WEBSITE_GA_GSITE_VERIFICATION }}">
+    {% endcache %}
     <!--for facebook fans-->
     {% block ogp %}
+    {% cache 1000 social_meta %}
     <meta property="og:title" content="{{ config.WEBSITE_OGP_TITLE }}">
     <meta property="og:type" content="{{ config.WEBSITE_OGP_TYPE }}">
     <meta property="og:url" content="https://{% url_domain %}">
@@ -28,9 +32,9 @@
     <meta name="twitter:title" content="{{config.WEBSITE_TWITTER_HASHTAG}}">
     <meta name="twitter:description" content="{{config.WEBSITE_TWITTER_TEXT}}">
     <meta name="twitter:image" content="{% static 'img/logo_rpi_og.png' %}">
-
-    {% endblock ogp %}
     <meta property="fb:app_id" content="{{ config.WEBSITE_OGP_APP_ID }}">
+    {% endcache %}
+    {% endblock ogp %}
     <!--eoff-->
     <link rel="shortcut icon" sizes="196x196" href="{% static 'img/favicon-96x96.png' %}">
     <!-- Browser out of date -->
@@ -67,7 +71,8 @@
     {% block extra_css %}
     {% endblock extra_css %}
 </head>
-    <body class="navbar_visible">
+    <body class="{% block body_class %}navbar_visible{% endblock body_class %}">
+      {% cache 5000 FACEBOOK_INIT %}
       <script>
         window.fbAsyncInit = function() {
           FB.init({
@@ -86,6 +91,7 @@
            fjs.parentNode.insertBefore(js, fjs);
          }(document, 'script', 'facebook-jssdk'));
       </script>
+      {% endcache %}
       {% block _everything %}
       <div>
           {% block navbar %}
@@ -136,6 +142,7 @@
         {% block extra_scripts %}
         {% endblock extra_scripts %}
 
+          {% cache 5000 analytics_bottom %}
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -146,6 +153,7 @@
           {% block analytics %}{% endblock analytics %}
           ga('send', 'pageview');
         </script>
+          {% endcache %}
         <script src="//my.hellobar.com/3386a1a0ded6e97c66150a9239e12ec69909b59c.js" type="text/javascript" charset="utf-8" async="async"></script>
     </body>
 </html>

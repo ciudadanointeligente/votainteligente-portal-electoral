@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-13 22:06+0000\n"
-"PO-Revision-Date: 2018-08-22 09:30-0300\n"
+"POT-Creation-Date: 2018-09-24 19:32+0000\n"
+"PO-Revision-Date: 2018-09-24 19:06-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -18,13 +18,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.1.1\n"
 
-#: agenda/forms.py:24 backend_candidate/forms.py:250
+#: agenda/forms.py:24 backend_candidate/forms.py:253
 #: votai_general_theme/templates/backend_candidate/add_activity.html:20
 #: votai_general_theme/templates/backend_citizen/add_activity.html:12
 msgid "Fecha"
 msgstr "Data"
 
-#: agenda/forms.py:25 backend_candidate/forms.py:251
+#: agenda/forms.py:25 backend_candidate/forms.py:254
 msgid "Link a tu actividad, puede ser al evento en Facebook"
 msgstr "Link para o seu evento (pode ser um evento no Facebook)"
 
@@ -71,7 +71,7 @@ msgstr "será a imagem que usaremos na lista de eventos"
 msgid "Tus comentarios sobre esta pregunta"
 msgstr "Seus comentários sobre essa pergunta"
 
-#: backend_candidate/forms.py:157 backend_citizen/forms.py:18
+#: backend_candidate/forms.py:157 backend_citizen/forms.py:19
 msgid "Imagen de perfil"
 msgstr "Imagem do perfil"
 
@@ -91,11 +91,11 @@ msgstr ""
 msgid "Sitio (debe comenzar con http://)"
 msgstr "Site (deve começar com http: // o https://)"
 
-#: backend_candidate/forms.py:252
+#: backend_candidate/forms.py:255
 msgid "Descripción de tu actividad"
 msgstr "Descrição da sua atividade"
 
-#: backend_candidate/forms.py:253
+#: backend_candidate/forms.py:256
 msgid "El lugar donde se realizará esta actividad"
 msgstr "Lugar onde a atividade será realizada"
 
@@ -107,28 +107,28 @@ msgstr "Guardamos suas respostas"
 msgid "Hemos actualizado tu perfil"
 msgstr "Atualizamos seu perfil"
 
-#: backend_citizen/forms.py:21
+#: backend_citizen/forms.py:22
 msgid "Descripción"
 msgstr "Descrição"
 
-#: backend_citizen/forms.py:26
+#: backend_citizen/forms.py:27
 msgid "Tu nombre"
 msgstr "Seu nome"
 
-#: backend_citizen/forms.py:27
+#: backend_citizen/forms.py:28
 msgid "Tu Apellido"
 msgstr "Seu sobrenome"
 
-#: backend_citizen/forms.py:51
+#: backend_citizen/forms.py:52
 msgid "Nombre de usuario, ej: votante1975, animal-mamifero, joven-idealista"
 msgstr ""
 "Nome de usuário, exemplo: votante1975, mamífero-animal, jovem-idealista"
 
-#: backend_citizen/forms.py:52
+#: backend_citizen/forms.py:53
 msgid "Email"
 msgstr "E-mail"
 
-#: backend_citizen/forms.py:54
+#: backend_citizen/forms.py:55
 msgid "El nombre de usuario no tiene espacios ni acentos."
 msgstr "O nome de usuário não pode conter espaços ou acentos."
 
@@ -146,7 +146,7 @@ msgstr "E-mail da organização"
 
 #: backend_citizen/forms.py:79 popular_proposal/forms/forms.py:391
 #: rioxinteiro/templates/_login_tabs.html:23
-#: rioxinteiro/templates/popular_proposal/detail.html:182
+#: rioxinteiro/templates/popular_proposal/detail.html:196
 #: rioxinteiro/templates/terms_and_conditions/organizations_register.html:2
 #: votai_general_theme/templates/popular_proposal/detail.html:182
 #: votai_general_theme/templates/popular_proposal/terms_and_conditions.html:2
@@ -258,14 +258,28 @@ msgstr "Minha eleição"
 msgid "Mis Elecciones"
 msgstr "Minhas eleições"
 
+#: medianaranja2/urls.py:16
+#, fuzzy
+#| msgid "^crear/?$"
+msgid "^compartir/?$"
+msgstr "^criar/?$"
+
+#: medianaranja2/urls.py:20
+msgid "^compartir_org/?$"
+msgstr ""
+
+#: medianaranja2/urls.py:23
+msgid "^compartir/(?P<identifier>[-\\w]+)/?$"
+msgstr ""
+
+#: medianaranja2/urls.py:26
+msgid "^og_image/(?P<identifier>[-\\w]+).jpg$"
+msgstr ""
+
 #: merepresenta/templates/backend_base.html:26
 #: votai_general_theme/templates/backend_base.html:50
 msgid "Menú"
 msgstr "Menu"
-
-#: merepresenta/templates/backend_candidate/complete_profile.html:67
-msgid "Guardar"
-msgstr "Salvar"
 
 #: merepresenta/templates/candidatos/login.html:10
 #: votai_general_theme/templates/_social_login_buttons.html:6
@@ -295,13 +309,13 @@ msgid "Encontrar candidaturas"
 msgstr "Encontrar candidatas/os"
 
 #: merepresenta/templates/registration/login.html:29
-#: rioxinteiro/templates/_login_tabs.html:31
+#: rioxinteiro/templates/_login_tabs.html:32
 #: votai_general_theme/templates/_login_tabs.html:25
 msgid "O regístrate con un usuario y contraseña"
 msgstr "Ou registre-se com um nome de usuário e senha"
 
 #: merepresenta/templates/registration/login.html:34
-#: rioxinteiro/templates/_login_tabs.html:43
+#: rioxinteiro/templates/_login_tabs.html:44
 #: votai_general_theme/templates/_login_tabs.html:37
 msgid "Ingresa tu usuario y contraseña"
 msgstr "Digite seu nome de usuário e senha"
@@ -1025,6 +1039,18 @@ msgstr ""
 msgid "Cada cuanto quieres que te notifiquemos?"
 msgstr ""
 
+#: rioxinteiro/templates/_candidate_small.html:19
+#: votai_general_theme/templates/_candidate_small.html:18
+#, python-format
+msgid ""
+"\n"
+"          %(commitments_count)s compromisos\n"
+"        "
+msgstr ""
+"\n"
+"        %(commitments_count)s compromissos\n"
+"      "
+
 #: rioxinteiro/templates/_login_tabs.html:13
 #: votai_general_theme/templates/_login_tabs.html:12
 msgid "Individual"
@@ -1041,7 +1067,7 @@ msgstr "Organização"
 msgid "¿Tienes cuenta?"
 msgstr "Você já tem uma conta?"
 
-#: rioxinteiro/templates/_login_tabs.html:36
+#: rioxinteiro/templates/_login_tabs.html:37
 #: votai_general_theme/templates/_login_tabs.html:30
 msgid "Registrate como organización"
 msgstr "Registrar uma organização"
@@ -1049,6 +1075,54 @@ msgstr "Registrar uma organização"
 #: rioxinteiro/templates/_navbar.html:26
 msgid "Mobilize"
 msgstr ""
+
+#: rioxinteiro/templates/backend_candidate/_suggestions_formset.html:11
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                <b>Propuesta Nº%(id)s</b> - Una propuesta de <strong>"
+#| "%(proposer)s</strong>\n"
+#| "              "
+msgid ""
+"\n"
+"                <b>Proposta Nº%(id)s</b> - Uma proposta de <strong>"
+"%(proposer)s</strong>\n"
+"              "
+msgstr ""
+"\n"
+"                <b>Proposta Nº%(id)s</b> - Uma proposta de <strong>"
+"%(proposer)s</strong>\n"
+"              "
+
+#: rioxinteiro/templates/backend_candidate/_suggestions_formset.html:23
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                ¿Deseas apoyar la propuesta <b>%(proposal)s</b>?\n"
+#| "              "
+msgid ""
+"\n"
+"                  <b>Meus termos de compromisso:</b>(opcional)\n"
+"                "
+msgstr ""
+"\n"
+"                Você quer apoiar a proposta <b>%(proposal)s</b>?\n"
+"              "
+
+#: rioxinteiro/templates/backend_candidate/_suggestions_formset.html:30
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                ¿Deseas apoyar la propuesta <b>%(proposal)s</b>?\n"
+#| "              "
+msgid ""
+"\n"
+"                    Eu me comprometo com esta proposta\n"
+"                  "
+msgstr ""
+"\n"
+"                Você quer apoiar a proposta <b>%(proposal)s</b>?\n"
+"              "
 
 #: rioxinteiro/templates/backend_candidate/complete_profile.html:15
 #: votai_general_theme/templates/backend_candidate/complete_profile.html:15
@@ -1067,7 +1141,7 @@ msgstr ""
 msgid "Ir a ver mi perfil"
 msgstr "Ver meu perfil"
 
-#: rioxinteiro/templates/backend_candidate/complete_profile.html:45
+#: rioxinteiro/templates/backend_candidate/complete_profile.html:47
 #: votai_general_theme/templates/backend_candidate/add_activity.html:32
 #: votai_general_theme/templates/backend_candidate/complete_12_naranja.html:20
 #: votai_general_theme/templates/backend_candidate/complete_profile.html:49
@@ -1078,12 +1152,133 @@ msgstr "Ver meu perfil"
 msgid "Enviar"
 msgstr "Enviar"
 
-#: rioxinteiro/templates/index.html:44
+#: rioxinteiro/templates/elections/candidate_detail.html:35
+#: votai_general_theme/templates/elections/candidate_detail.html:35
+msgid "Modificar mi perfil"
+msgstr "Modifique meu perfil"
+
+#: rioxinteiro/templates/elections/candidate_detail.html:129
+#: votai_general_theme/templates/elections/candidate_detail.html:98
+msgid "Reseña Biográfica"
+msgstr "Biografia"
+
+#: rioxinteiro/templates/elections/candidate_detail.html:138
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "          %(commitments_count)s compromisos\n"
+#| "        "
+msgid ""
+"\n"
+"                %(commitment_count)s compromissos cidadãos\n"
+"              "
+msgstr ""
+"\n"
+"        %(commitments_count)s compromissos\n"
+"      "
+
+#: rioxinteiro/templates/elections/candidate_detail.html:169
+#: votai_general_theme/templates/elections/candidate_detail.html:139
+msgid "Revisa sus ideas y planteamientos"
+msgstr "Confira as ideias"
+
+#: rioxinteiro/templates/elections/candidate_detail.html:170
+#: votai_general_theme/templates/elections/candidate_detail.html:140
+msgid "aquí"
+msgstr ""
+
+#: rioxinteiro/templates/elections/candidate_detail.html:175
+#: votai_general_theme/templates/elections/candidate_detail.html:105
+#: votai_general_theme/templates/elections/candidate_detail.html:145
+msgid "Compromisos Ciudadanos"
+msgstr "Compromissos Cidadãos"
+
+#: rioxinteiro/templates/elections/candidate_detail.html:177
+#: votai_general_theme/templates/elections/candidate_detail.html:147
+#, python-format
+msgid ""
+"\n"
+"    Acá encontrarás un total de %(proposals_committed)s propuestas a las que "
+"%(candidate_name)s se comprometió en VotaInteligente a cumplir dentro del "
+"plan de gobierno.\n"
+"  "
+msgstr ""
+"\n"
+"    Aqui você pode encontrar um total de %(proposals_committed)s propostas "
+"que %(candidate_name)s se comprometeu a cumprir dentro do plano do governo.\n"
+" "
+
+#: rioxinteiro/templates/elections/candidate_detail.html:183
+#: votai_general_theme/templates/elections/candidate_detail.html:153
+#, python-format
+msgid ""
+"\n"
+"          %(candidate_name)s aún no te haz comprometido en VotaInteligente!\n"
+"      "
+msgstr ""
+"\n"
+"          %(candidate_name)s: Você ainda não se compromete!\n"
+"      "
+
+#: rioxinteiro/templates/elections/election_base.html:9
+#: votai_general_theme/templates/elections/election_base.html:9
+#: votai_general_theme/templates/elections/embedded.html:13
+#: votai_general_theme/templates/elections/embedded.html:50
+msgid "Perfiles"
+msgstr ""
+
+#: rioxinteiro/templates/elections/election_base.html:13
+#: votai_general_theme/templates/elections/election_base.html:13
+msgid ""
+"Conoce los candidatos a Senador, Diputado y Presidente para las elecciones "
+"de Chile 2017"
+msgstr ""
+
+#: rioxinteiro/templates/elections/election_base.html:24
+#: votai_general_theme/templates/elections/election_base.html:24
+msgid "Candidaturas"
+msgstr ""
+
+#: rioxinteiro/templates/elections/election_base.html:28
+#: votai_general_theme/templates/elections/election_base.html:31
+msgid "También te podría interesar:"
+msgstr ""
+
+#: rioxinteiro/templates/elections/election_card.html:40
+#: votai_general_theme/templates/elections/election_card.html:46
+msgid "Electa/o"
+msgstr "Eleito"
+
+#: rioxinteiro/templates/elections/election_card.html:45
+#: votai_general_theme/templates/elections/election_card.html:51
+#, python-format
+msgid ""
+"\n"
+"              %(commitments_count)s compromisos\n"
+"            "
+msgstr ""
+
+#: rioxinteiro/templates/elections/election_card.html:57
+#: votai_general_theme/templates/elections/election_card.html:63
+msgid "Ayudanos!"
+msgstr ""
+
+#: rioxinteiro/templates/index.html:45
 #: votai_general_theme/templates/popular_proposal/_lista_propuestas.html:22
 msgid ""
 "Te invitamos a filtrar y encontrar propuestas ciudadanas en las siguientes "
 "áreas"
 msgstr "Busque e encontre propostas nas seguintes áreas"
+
+#: rioxinteiro/templates/know_your_candidates.html:10
+#: votai_general_theme/templates/know_your_candidates.html:7
+msgid "Candidatos Chile 2017"
+msgstr ""
+
+#: rioxinteiro/templates/know_your_candidates.html:11
+#: votai_general_theme/templates/know_your_candidates.html:8
+msgid "Conoce tus congresistas y sus compromisos"
+msgstr ""
 
 #: rioxinteiro/templates/mails/organization_activation/body.html:5
 #, fuzzy, python-format
@@ -1201,6 +1396,52 @@ msgstr ""
 msgid "Descargar"
 msgstr "Baixar"
 
+#: rioxinteiro/templates/medianaranja2/resultado.html:8
+#: votai_general_theme/templates/medianaranja2/resultado.html:8
+msgid "1/2 Naranja - Resultado"
+msgstr "1/2 Laranja - Resultado"
+
+#: rioxinteiro/templates/medianaranja2/resultado.html:14
+#: votai_general_theme/templates/medianaranja2/resultado.html:14
+msgid "Resultados"
+msgstr "Resultados"
+
+#: rioxinteiro/templates/medianaranja2/resultado.html:18
+#: votai_general_theme/templates/medianaranja2/resultado.html:18
+msgid ""
+"Tus posturas de la media naranja son empujadas día a día por estas "
+"organizaciones. Te invitamos a conocerlas y sumarte a las causas que te "
+"interesan."
+msgstr ""
+"Suas posturas da meia laranja são empurradas a cada dia por essas "
+"organizações. Nós convidamos você a conhecê-los e juntar-se às causas que "
+"lhe interessam."
+
+#: rioxinteiro/templates/medianaranja2/resultado.html:21
+#: votai_general_theme/templates/medianaranja2/resultado.html:21
+msgid "Organizaciones"
+msgstr "Organizações"
+
+#: rioxinteiro/templates/medianaranja2/resultado.html:50
+#: rioxinteiro/templates/medianaranja2/resultado.html:93
+#: votai_general_theme/templates/medianaranja2/resultado.html:49
+#: votai_general_theme/templates/medianaranja2/resultado.html:94
+msgid "Comparte tu 1/2 Naranja"
+msgstr "Compartilhe sua 1/2 Laranja"
+
+#: rioxinteiro/templates/medianaranja2/resultado.html:64
+#: votai_general_theme/templates/medianaranja2/resultado.html:62
+#, python-format
+msgid ""
+"\n"
+"    Tu media naranja política para %(election_name)s es\n"
+"  "
+msgstr ""
+"\n"
+"    Sua metade da laranja política para %(election_name)s es\n"
+"  "
+
+#: rioxinteiro/templates/medianaranja2/resultado.html:103
 #: rioxinteiro/templates/organization_profiles/ayuranos.html:8
 #: rioxinteiro/templates/organization_profiles/index.html:8
 #: votai_general_theme/templates/backend_candidate/help_finding_candidates.html:8
@@ -1210,6 +1451,52 @@ msgstr "Baixar"
 #: votai_general_theme/templates/popular_proposal/ayuranos.html:8
 msgid "Ayúdanos"
 msgstr ""
+
+#: rioxinteiro/templates/medianaranja2/resultado.html:104
+#: votai_general_theme/templates/medianaranja2/resultado.html:105
+msgid ""
+"Acabaste de hacer tu Media Naranja Política y queremos saber cómo te "
+"sentiste con ella, ¿nos ayudas contestando cinco preguntas?"
+msgstr ""
+"Você acabou de fazer sua Meia Laranja Política e queremos saber como se "
+"sentiu com ela, você nos ajuda respondendo a cinco perguntas?"
+
+#: rioxinteiro/templates/medianaranja2/resultado.html:105
+#: votai_general_theme/templates/medianaranja2/resultado.html:106
+msgid "Responder"
+msgstr "Responder"
+
+#: rioxinteiro/templates/medianaranja2/resultado.html:109
+#: votai_general_theme/templates/medianaranja2/resultado.html:110
+msgid "¿CÓMO CALCULAMOS TU MEDIA NARANJA PRESIDENCIAL?"
+msgstr "COMO CALCULAMOS SUA METADE DA LARANJA?"
+
+#: rioxinteiro/templates/medianaranja2/resultado.html:110
+#: votai_general_theme/templates/medianaranja2/resultado.html:111
+msgid ""
+"En la primera pregunta, te mostramos todos aquellos temas en los que las "
+"candidaturas presidenciales muestran posiciones concretas en sus programas o "
+"en declaraciones públicas. Una vez que elegiste tus prioridades, en la "
+"segunda pregunta te mostramos como opciones las posturas de las candidaturas "
+"en esas áreas. En el paso tres, te pedimos que definas tus cinco primeras "
+"medidas de gobierno, si fueras presidente o presidenta, que corresponden a "
+"las propuestas ciudadanas que hay en Vota Inteligente con las que los "
+"candidatos se han comprometido. ¡Usando todos estos resultados calculamos "
+"cuál es tu grado de compatibilidad!"
+msgstr ""
+"Na primeira pergunta, mostramos todos os temas em que as/os candidatas/os "
+"apresentam posições específicas em seus programas ou em declarações "
+"públicas. Depois de ter escolhido as suas prioridades, na segunda pergunta, "
+"te mostramos as posições das candidaturas nessas áreas. Na etapa três, "
+"pedimos que você defina suas primeiro cinco medidas governamentais, se você "
+"fosse candidata/o, o que corresponde às propostas cidadãs que estão na Vota "
+"Inteligente com as quais as/os candidatas/os se comprometeram. Usando todos "
+"esses resultados, calculamos qual é o seu grau de compatibilidade!"
+
+#: rioxinteiro/templates/medianaranja2/resultado.html:113
+#: votai_general_theme/templates/medianaranja2/resultado.html:114
+msgid "Juega de nuevo"
+msgstr "Jogar novamente"
 
 #: rioxinteiro/templates/organization_profiles/ayuranos.html:16
 #: votai_general_theme/templates/organization_profiles/ayuranos.html:16
@@ -1312,6 +1599,11 @@ msgid ""
 "\"%(create_proposal_url)s\">enlace</a>\n"
 msgstr ""
 
+#: rioxinteiro/templates/popular_proposal/_likers_candidatos.html:28
+#: votai_general_theme/templates/popular_proposal/_likers_candidatos.html:29
+msgid "Lee el compromiso"
+msgstr "Leia o compromisso"
+
 #: rioxinteiro/templates/popular_proposal/detail.html:22
 #: votai_general_theme/templates/backend_candidate/i_have_commited.html:17
 #: votai_general_theme/templates/popular_proposal/detail.html:22
@@ -1387,7 +1679,7 @@ msgstr "Documentos"
 msgid "Documento"
 msgstr "Documento"
 
-#: rioxinteiro/templates/popular_proposal/detail.html:162
+#: rioxinteiro/templates/popular_proposal/detail.html:176
 #: votai_general_theme/templates/popular_proposal/detail.html:162
 msgid ""
 "Si te gustó ¡apóyala y compártela! Así todos/as tendremos voz en las "
@@ -1396,7 +1688,7 @@ msgstr ""
 "Se você gostou, apoie e compartilhe! Então, todos nós vamos ter voz nas "
 "eleições deste ano."
 
-#: rioxinteiro/templates/popular_proposal/detail.html:164
+#: rioxinteiro/templates/popular_proposal/detail.html:178
 #: votai_general_theme/templates/popular_proposal/detail.html:164
 msgid ""
 "\n"
@@ -1413,25 +1705,25 @@ msgstr ""
 "class=\"reportar_propuesta\">informando</a> esta proposta.\n"
 "          "
 
-#: rioxinteiro/templates/popular_proposal/detail.html:172
-#: rioxinteiro/templates/popular_proposal/detail.html:222
+#: rioxinteiro/templates/popular_proposal/detail.html:186
+#: rioxinteiro/templates/popular_proposal/detail.html:236
 #: votai_general_theme/templates/popular_proposal/detail.html:172
 #: votai_general_theme/templates/popular_proposal/detail.html:222
 msgid "Ayúdanos a difundir esta propuesta entre las candidaturas"
 msgstr "Ajude-nos a espalhar esta proposta entre as candidaturas"
 
-#: rioxinteiro/templates/popular_proposal/detail.html:188
+#: rioxinteiro/templates/popular_proposal/detail.html:202
 #: votai_general_theme/templates/agenda/_activity_card.html:56
 #: votai_general_theme/templates/popular_proposal/detail.html:188
 msgid "Cerrar"
 msgstr "Fechar"
 
-#: rioxinteiro/templates/popular_proposal/detail.html:202
+#: rioxinteiro/templates/popular_proposal/detail.html:216
 #: votai_general_theme/templates/popular_proposal/detail.html:202
 msgid "Esta propuesta tiene"
 msgstr "Esta proposta tem"
 
-#: rioxinteiro/templates/popular_proposal/detail.html:204
+#: rioxinteiro/templates/popular_proposal/detail.html:218
 #: votai_general_theme/templates/popular_proposal/detail.html:204
 #, python-format
 msgid ""
@@ -1445,7 +1737,7 @@ msgstr ""
 "%(likers_count)s</span>  apoio(s) cidadão(s)</p>\n"
 "          "
 
-#: rioxinteiro/templates/popular_proposal/detail.html:208
+#: rioxinteiro/templates/popular_proposal/detail.html:222
 #, python-format
 msgid ""
 "\n"
@@ -1458,22 +1750,22 @@ msgstr ""
 "%(commitments_count)s</span> candidaturas(s) comprometida(s)\n"
 "      "
 
-#: rioxinteiro/templates/popular_proposal/detail.html:213
+#: rioxinteiro/templates/popular_proposal/detail.html:227
 #: votai_general_theme/templates/popular_proposal/detail.html:213
 msgid "Apoya esta propuesta"
 msgstr "Apoie esta proposta"
 
-#: rioxinteiro/templates/popular_proposal/detail.html:218
+#: rioxinteiro/templates/popular_proposal/detail.html:232
 #: votai_general_theme/templates/popular_proposal/detail.html:218
 msgid "Comparte esta propuesta"
 msgstr "Compartilhe esta proposta"
 
-#: rioxinteiro/templates/popular_proposal/detail.html:228
+#: rioxinteiro/templates/popular_proposal/detail.html:242
 #: votai_general_theme/templates/popular_proposal/detail.html:228
 msgid "Organizaciones que apoyan esta propuesta"
 msgstr "Organizações que apoiam esta proposta"
 
-#: rioxinteiro/templates/popular_proposal/detail.html:274
+#: rioxinteiro/templates/popular_proposal/detail.html:289
 #: votai_general_theme/templates/popular_proposal/_likers.html:70
 #: votai_general_theme/templates/popular_proposal/detail.html:274
 msgid "Apoya una propuesta"
@@ -1580,11 +1872,11 @@ msgstr ""
 msgid "Enviarle los filtros a los candidatos"
 msgstr ""
 
-#: suggestions_for_candidates/models.py:79
+#: suggestions_for_candidates/models.py:86
 msgid "Filtro de propuestas para candidatos"
 msgstr ""
 
-#: suggestions_for_candidates/models.py:80
+#: suggestions_for_candidates/models.py:87
 msgid "Filtros de propuestas para candidatos"
 msgstr ""
 
@@ -1599,17 +1891,6 @@ msgstr ""
 "              Desculpe, esta página não existe mais.<p>Comece de novo em. <a "
 "href=\"/\">home.</a></p></h2>\n"
 "              "
-
-#: votai_general_theme/templates/_candidate_small.html:18
-#, python-format
-msgid ""
-"\n"
-"          %(commitments_count)s compromisos\n"
-"        "
-msgstr ""
-"\n"
-"        %(commitments_count)s compromissos\n"
-"      "
 
 #: votai_general_theme/templates/_dropdown_user.html:15
 msgid "Sección de administración"
@@ -2489,22 +2770,9 @@ msgstr ""
 msgid "No hay mensajes aún. Sé la/el primer@ en preguntar"
 msgstr ""
 
-#: votai_general_theme/templates/elections/candidate_detail.html:35
-msgid "Modificar mi perfil"
-msgstr "Modifique meu perfil"
-
 #: votai_general_theme/templates/elections/candidate_detail.html:53
 msgid "No se ha comprometido en VotaInteligente"
 msgstr ""
-
-#: votai_general_theme/templates/elections/candidate_detail.html:98
-msgid "Reseña Biográfica"
-msgstr "Biografia"
-
-#: votai_general_theme/templates/elections/candidate_detail.html:105
-#: votai_general_theme/templates/elections/candidate_detail.html:145
-msgid "Compromisos Ciudadanos"
-msgstr "Compromissos Cidadãos"
 
 #: votai_general_theme/templates/elections/candidate_detail.html:107
 msgid "Este candidato se ha comprometido en VotaInteligente con"
@@ -2526,39 +2794,6 @@ msgstr ""
 #: votai_general_theme/templates/elections/candidate_detail.html:117
 msgid "Contactos"
 msgstr ""
-
-#: votai_general_theme/templates/elections/candidate_detail.html:139
-msgid "Revisa sus ideas y planteamientos"
-msgstr "Confira as ideias"
-
-#: votai_general_theme/templates/elections/candidate_detail.html:140
-msgid "aquí"
-msgstr ""
-
-#: votai_general_theme/templates/elections/candidate_detail.html:147
-#, python-format
-msgid ""
-"\n"
-"    Acá encontrarás un total de %(proposals_committed)s propuestas a las que "
-"%(candidate_name)s se comprometió en VotaInteligente a cumplir dentro del "
-"plan de gobierno.\n"
-"  "
-msgstr ""
-"\n"
-"    Aqui você pode encontrar um total de %(proposals_committed)s propostas "
-"que %(candidate_name)s se comprometeu a cumprir dentro do plano do governo.\n"
-" "
-
-#: votai_general_theme/templates/elections/candidate_detail.html:153
-#, python-format
-msgid ""
-"\n"
-"          %(candidate_name)s aún no te haz comprometido en VotaInteligente!\n"
-"      "
-msgstr ""
-"\n"
-"          %(candidate_name)s: Você ainda não se compromete!\n"
-"      "
 
 #: votai_general_theme/templates/elections/candidate_detail.html:167
 msgid "Revisar propuestas ciudadana"
@@ -2605,48 +2840,12 @@ msgid ""
 "selecciones."
 msgstr ""
 
-#: votai_general_theme/templates/elections/election_base.html:9
-#: votai_general_theme/templates/elections/embedded.html:13
-#: votai_general_theme/templates/elections/embedded.html:50
-msgid "Perfiles"
-msgstr ""
-
-#: votai_general_theme/templates/elections/election_base.html:13
-msgid ""
-"Conoce los candidatos a Senador, Diputado y Presidente para las elecciones "
-"de Chile 2017"
-msgstr ""
-
-#: votai_general_theme/templates/elections/election_base.html:24
-msgid "Candidaturas"
-msgstr ""
-
-#: votai_general_theme/templates/elections/election_base.html:31
-msgid "También te podría interesar:"
-msgstr ""
-
 #: votai_general_theme/templates/elections/election_card.html:10
 msgid "Comunas"
 msgstr ""
 
 #: votai_general_theme/templates/elections/election_card.html:27
 msgid "Sin compromisos en votainteligente.cl"
-msgstr ""
-
-#: votai_general_theme/templates/elections/election_card.html:46
-msgid "Electa/o"
-msgstr "Eleito"
-
-#: votai_general_theme/templates/elections/election_card.html:51
-#, python-format
-msgid ""
-"\n"
-"              %(commitments_count)s compromisos\n"
-"            "
-msgstr ""
-
-#: votai_general_theme/templates/elections/election_card.html:63
-msgid "Ayudanos!"
 msgstr ""
 
 #: votai_general_theme/templates/elections/election_detail.html:20
@@ -2868,14 +3067,6 @@ msgstr ""
 #: votai_general_theme/templates/encuentro_ciudadano.html:37
 msgid "Descarga la guía"
 msgstr "Baixe o guia"
-
-#: votai_general_theme/templates/know_your_candidates.html:7
-msgid "Candidatos Chile 2017"
-msgstr ""
-
-#: votai_general_theme/templates/know_your_candidates.html:8
-msgid "Conoce tus congresistas y sus compromisos"
-msgstr ""
 
 #: votai_general_theme/templates/know_your_candidates.html:11
 msgid "Congresistas comprometidos"
@@ -3139,85 +3330,6 @@ msgstr ""
 "%(max_proposals_in_12_naranja)s medidas ou prioridades?\n"
 "    "
 
-#: votai_general_theme/templates/medianaranja2/resultado.html:8
-msgid "1/2 Naranja - Resultado"
-msgstr "1/2 Laranja - Resultado"
-
-#: votai_general_theme/templates/medianaranja2/resultado.html:14
-msgid "Resultados"
-msgstr "Resultados"
-
-#: votai_general_theme/templates/medianaranja2/resultado.html:18
-msgid ""
-"Tus posturas de la media naranja son empujadas día a día por estas "
-"organizaciones. Te invitamos a conocerlas y sumarte a las causas que te "
-"interesan."
-msgstr ""
-"Suas posturas da meia laranja são empurradas a cada dia por essas "
-"organizações. Nós convidamos você a conhecê-los e juntar-se às causas que "
-"lhe interessam."
-
-#: votai_general_theme/templates/medianaranja2/resultado.html:21
-msgid "Organizaciones"
-msgstr "Organizações"
-
-#: votai_general_theme/templates/medianaranja2/resultado.html:49
-#: votai_general_theme/templates/medianaranja2/resultado.html:94
-msgid "Comparte tu 1/2 Naranja"
-msgstr "Compartilhe sua 1/2 Laranja"
-
-#: votai_general_theme/templates/medianaranja2/resultado.html:62
-#, python-format
-msgid ""
-"\n"
-"    Tu media naranja política para %(election_name)s es\n"
-"  "
-msgstr ""
-"\n"
-"    Sua metade da laranja política para %(election_name)s es\n"
-"  "
-
-#: votai_general_theme/templates/medianaranja2/resultado.html:105
-msgid ""
-"Acabaste de hacer tu Media Naranja Política y queremos saber cómo te "
-"sentiste con ella, ¿nos ayudas contestando cinco preguntas?"
-msgstr ""
-"Você acabou de fazer sua Meia Laranja Política e queremos saber como se "
-"sentiu com ela, você nos ajuda respondendo a cinco perguntas?"
-
-#: votai_general_theme/templates/medianaranja2/resultado.html:106
-msgid "Responder"
-msgstr "Responder"
-
-#: votai_general_theme/templates/medianaranja2/resultado.html:110
-msgid "¿CÓMO CALCULAMOS TU MEDIA NARANJA PRESIDENCIAL?"
-msgstr "COMO CALCULAMOS SUA METADE DA LARANJA?"
-
-#: votai_general_theme/templates/medianaranja2/resultado.html:111
-msgid ""
-"En la primera pregunta, te mostramos todos aquellos temas en los que las "
-"candidaturas presidenciales muestran posiciones concretas en sus programas o "
-"en declaraciones públicas. Una vez que elegiste tus prioridades, en la "
-"segunda pregunta te mostramos como opciones las posturas de las candidaturas "
-"en esas áreas. En el paso tres, te pedimos que definas tus cinco primeras "
-"medidas de gobierno, si fueras presidente o presidenta, que corresponden a "
-"las propuestas ciudadanas que hay en Vota Inteligente con las que los "
-"candidatos se han comprometido. ¡Usando todos estos resultados calculamos "
-"cuál es tu grado de compatibilidad!"
-msgstr ""
-"Na primeira pergunta, mostramos todos os temas em que as/os candidatas/os "
-"apresentam posições específicas em seus programas ou em declarações "
-"públicas. Depois de ter escolhido as suas prioridades, na segunda pergunta, "
-"te mostramos as posições das candidaturas nessas áreas. Na etapa três, "
-"pedimos que você defina suas primeiro cinco medidas governamentais, se você "
-"fosse candidata/o, o que corresponde às propostas cidadãs que estão na Vota "
-"Inteligente com as quais as/os candidatas/os se comprometeram. Usando todos "
-"esses resultados, calculamos qual é o seu grau de compatibilidade!"
-
-#: votai_general_theme/templates/medianaranja2/resultado.html:114
-msgid "Juega de nuevo"
-msgstr "Jogar novamente"
-
 #: votai_general_theme/templates/modal_like_proposal.html:19
 #, python-format
 msgid ""
@@ -3379,10 +3491,6 @@ msgstr ""
 "      Candidaturas a %(cargo)s comprometidas com essa proposta em "
 "VotaInteligente\n"
 "    "
-
-#: votai_general_theme/templates/popular_proposal/_likers_candidatos.html:29
-msgid "Lee el compromiso"
-msgstr "Leia o compromisso"
 
 #: votai_general_theme/templates/popular_proposal/_lista_propuestas.html:33
 #: votai_general_theme/templates/popular_proposal/_lista_propuestas.html:39
@@ -4622,7 +4730,7 @@ msgstr "^perfil_ciudadao/"
 
 #: votainteligente/urls.py:43
 msgid "^media_naranja/"
-msgstr "^meia_laranja/"
+msgstr "^temcompromisso/"
 
 #: votainteligente/urls.py:44
 msgid "^organizacion/"
@@ -4663,6 +4771,9 @@ msgstr "Medida"
 #: votita/models.py:167
 msgid "Medidas"
 msgstr "Medidas"
+
+#~ msgid "Guardar"
+#~ msgstr "Salvar"
 
 #~ msgid "Material ciudadano"
 #~ msgstr "Material Cidadão"

@@ -18,24 +18,32 @@
 </div>
 
 <div class='row title-pauta'>
-    <div class='col text-center'>
+    <div class='col-lg-10 offset-md-1 text-center'>
         {% if form.category.name %}
          <h1>Pautas sobre 
              <span class="category-name">
                  {{form.category.name}}
             </span>
+
         </h1>
         
          {% else %}
-         <h1>Quais desses temas são prioritários na sua candidatura?</h1>
+         <h2>Agora escolha <strong class='numero_de_temas'>3 temas</strong> que são prioridades na sua candidatura!</h2> 
+
          {% endif %}
+
     </div>
+    <div class='col-lg-10 offset-md-1 text-center'>
+        <h3>{{wizard.steps.step1}} de {{wizard.steps.count}} passos</h3>
+
+    </div>
+  
 </div>
 
 <div class="row">
-  <div class="col-8 offset-md-2">
+  <div class="col-lg-10 offset-md-1">
     {% block formulario %}
-    <form method="post"  enctype="multipart/form-data" action="{% url 'complete_pautas' %}">
+    <form method="post" enctype="multipart/form-data" class='pautas_candidatos' action="{% url 'complete_pautas' %}">
       {% csrf_token %}
       
       <!-- Image -->
@@ -47,10 +55,12 @@
         {% if field.name == 'categories' %}
 
         <!-- Title -->
-        <span class="question-label">Agora escolha 
-          <strong class='numero_de_temas'>3 temas</strong> 
-           que são prioridades na sua candidatura!
-        </span>    
+        <div class="col-lg-12 text-center">
+          <span class="question-label">Eleitoras/es poderão fazer a 
+            mesma seleção que você 
+             e te encontrar primeiro!
+          </span>
+        </div> 
         <!-- Title -->
 
         <p class="description">{{field.help_text|safe}}</p>
@@ -75,11 +85,11 @@
       </section>
       {% endfor %}
 
-      <div class="col-lg-12 opcoes">
+      <div class="row opcoes">
         <a href="/" onclick="window.history.back()" />
           < Voltar
         </a>
-        <input type="submit" value="Continuar" class="btn btn-verde" />
+        <input type="submit" value="Continuar" class="btn btn-azul" />
       </div>
 
       {% endblock formulario %}

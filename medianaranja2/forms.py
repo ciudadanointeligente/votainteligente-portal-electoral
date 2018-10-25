@@ -15,7 +15,9 @@ from django.core.cache import cache
 from django.utils.safestring import mark_safe
 from django.db.models import Q
 from medianaranja2.grouped_multiple_choice_fields import GroupedModelMultiChoiceField
+from medianaranja2.candidate_proposals_matrix_generator import OrganizationMatrixCreator
 from django.forms import ModelForm
+
 
 
 class CategoryMultipleChoiceField(forms.ModelMultipleChoiceField):
@@ -142,10 +144,14 @@ class MediaNaranjaWizardFormBase(SessionWizardView):
         return self.get_proposal_class()(**self.get_proposal_getter_kwargs())
 
     def get_organization_templates(self, proposals):
-        is_creator_of_this_proposals_filter = Q(organization__proposals__in=proposals)
-        is_liker_of_this_proposals = Q(organization__likes__proposal__in=proposals)
-        organization_templates = OrganizationTemplate.objects.filter(is_creator_of_this_proposals_filter|is_liker_of_this_proposals).distinct()
-        return organization_templates
+        if settings.RECOMMENDED_ORGS_FROM_CACHE:
+            c = OrganizationMatrixCreator()
+            return c.get_organizations(proposals)
+        else:
+            is_creator_of_this_proposals_filter = Q(organization__proposals__in=proposals)
+            is_liker_of_this_proposals = Q(organization__likes__proposal__in=proposals)
+            organization_templates = OrganizationTemplate.objects.filter(is_creator_of_this_proposals_filter|is_liker_of_this_proposals).distinct()
+            return organization_templates
 
     def done(self, form_list, **kwargs):
         cleaned_data = self.get_all_cleaned_data()
@@ -158,8 +164,11 @@ class MediaNaranjaWizardFormBase(SessionWizardView):
         for election in elections:
             calculator = self.calculator_class(election, positions, proposals, **self.calculator_extra_kwargs)
             results.append(calculator.get_result())
+        if settings.ORGANIZATIONS_IN_12_RESULT:
+            organization_templates = self.get_organization_templates(proposals)
+        else:
+            organization_templates = []
 
-        organization_templates = self.get_organization_templates(proposals)
         return render(self.request, self.done_template_name, {
             'results': results,
             'organizations': organization_templates

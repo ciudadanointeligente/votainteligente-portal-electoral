@@ -5,147 +5,325 @@
 {% block title %}- Sobre{% endblock title %}
 
 {% block everything %}
-<main class="container sobre-container">
+<main class="container pautas-page margin-bottom">
   <div class="row">
-    <!-- Quem Somos -->
-    <div class="col-lg-6">
-      <h2 id='somos'>Pautas</h2>
-      <p>
-        O #MeRepresenta é uma ONG formada por coletivos de mulheres, pessoas negras 
-        e LGBT+ que buscam mostrar igualdade de gênero, luta antirracista e respeito 
-        à diversidade sexual e à identidade de gênero. Estamos coordenados em parceria
-          com a Rede Feminista de Juristas (DeFEMde), #VoteLGBT, Blogueiras Negras e 
-          Fundação Cidadania Inteligente.
-      </p>
-      <p>
-        Lançamos a plataforma #MeRepresenta em 2016 para conectar eleitoras e 
-        eleitores à candidaturas que valorizam os direitos humanos. Desde então,
-          nosso desafio é, de forma comprometida com a representatividade, diminuir
-          a distância entre a população e a política brasileira e mostrar que os 
-          direitos da mulher, das pessoas negras e LGBTs são um valor político e 
-          eleitoral inegociável.
-      </p>
-      <p>
-        A nova plataforma #MeRepresenta para as eleições de 2018 foi elaborada 
-        com a participação diversas organizações da sociedade civil, com apoio da
-          Saiba+, responsável pelo desenho da plataforma, e financiamento da Altec. 
-          Os escritórios Mattos Filho, Silveira Andrade Advogados, Tini e Guimarães 
-          Advogados e a ONG Casa 1 também apóiam a iniciativa.
-      </p>
+
+    <!-- Voltar Link -->
+    <div class="col-lg-12 voltar">
+      <a href="/" onclick="window.history.back()" />
+        < Voltar
+      </a>
     </div>
 
-    <div class="col-lg-6 flex">
-      <img src="{% static '/img/merepresenta/merep_landing_image.svg' %}" class="img-fluid" alt="#MeRepresentaLogo">
-    </div>
-
-    <!-- Impacto -->
+    <!-- Header -->
     <div class="col-lg-12">
-      <h3 id='impacto'>Impacto</h3>
-      <p>
-        Nas eleições municipais de 2016, convidamos todas as 460 mil candidaturas 
-        a vereador e vereadora do país a responderem 14 perguntas sobre diversos 
-        temas da agenda de direitos humanos, como descriminalização e legalização 
-        do aborto, desmilitarização da polícia, adoção por famílias LGBTs, entre 
-        outros. Em 10 dias, nossa plataforma teve 1 milhão de visualizações e mais 
-        de 150 mil pessoas a usaram para escolher seu voto. 70% era de mulheres 
-        eleitoras, em sua maioria entre 18 e 34 anos. Um sucesso, né?
-      </p>
-      <p>
-        Foram 890 candidatas e candidatos de todos os 35 partidos participando 
-        dessa pesquisa em nossa plataforma, distribuídos em 244 municípios de 24 
-        estados. Das 10 candidaturas mais visualizadas da plataforma, 4 eram LGBT. 
-        Além disso, 9 eram mulheres, sendo 3 delas negras e uma trans. O único 
-        homem dessa lista era gay.
-      </p>
-      <p>
-        Política com a nossa cara, é isso que esses dados mostram! 
-        A plataforma do #MeRepresenta serve para fazer com que a política seja 
-        mais parecida com a gente e leve em consideração nossas demandas prioritárias.
-      </p>
-      <p>
-        Queremos mais mulheres, pessoas negras e LGBTs na política!
-      </p>
+      <h1 id='pautas'>Pautas #MeRepresenta</h1>
     </div>
 
-    <!-- Como funciona -->
+    <!-- Menu Tabs  -->
     <div class="col-lg-12">
-      <h3 id='comofunciona'>Como funciona</h3>
-      <p>
-        A plataforma do #MeRepresenta conecta eleitoras/es às candidaturas que 
-        se posicionam sobre temas relevantes para a sociedade civil, como segurança, 
-        corrupção, trabalho, saúde, educação, raça, gênero, meio ambiente e povos 
-        tradicionais, etc. Ela foi desenvolvida contendo três grandes eixos: 
-        Candidatas/os, Eleitoras/es e Voluntários.
-      </p>
-    </div>
+      <div class="container">
+          <div id="tabs-container" class="tabs-container">
 
-    <!-- Privacidade -->
-    <div class="col-lg-12">
-      <h3 id='privacidade'>Privacidade</h3>
-      <p>
-        Uma das preocupações da plataforma é a aplicação da nova lei de proteção 
-        de dados pessoais (ninguém quer dados invadidos por aqui! #sos), que mesmo 
-        ainda não estando em vigor, será uma diretriz da platafoma #MeRepresenta. 
-        Transparência não é mesmo? :)
-      </p>
-    </div>
+            <ul class="row tabs-menu margin-bottom">
+              <li class="col-lg-3 col-md-4 link current"><a href="#genero">#Gênero</a></li>
+              <li class="col-lg-3 col-md-4 link"><a href="#raca">#Raça</a></li>
+              <li class="col-lg-3 col-md-4 link"><a href="#lgbt">#LGBT</a></li>
+              <li class="col-lg-3 col-md-4 link"><a href="#povos">#Povos Tradicionais & Meio Ambiente</a></li>
+              <li class="col-lg-3 col-md-4 link"><a href="#saude">#Saúde, Educação & Trabalho</a></li>
+              <li class="col-lg-3 col-md-4 link"><a href="#seguranca">#Segurança & Direitos Humanos</a></li>
+              <li class="col-lg-3 col-md-4 link"><a href="#corrupcao">#Corrupção</a></li>
+              <li class="col-lg-3 col-md-4 link"><a href="#drogas">#Drogas</a></li>
+              <li class="col-lg-3 col-md-4 link"><a href="#migrantes">#Migrantes</a></li>
+            </ul>
 
-    <!-- Candidatas/os -->
-    <div class="col-lg-12">
-      <h3 id="candidatas">Candidatas/os</h3>
-      <p>
-        A partir do dia 16 de agosto, todas candidaturas autorizadas pelo TSE 
-        ao legislativo podem fazer seu cadastro na plataforma. Finalmente! É 
-        necessário apenas incluir alguns dados pessoais e conectar o perfil da 
-        plataforma com a conta pessoal do Facebook, par,  garantir a identidade 
-        da/o candidata/o.
-      </p>
-      <p>
-        Após completar seu perfil com informações simples e uma breve bio, a 
-        candidatura deve responder se é a favor ou contra a 22 pautas, construídas 
-        em diálogo com as organizações parceiras, sobre 9 temas: Gênero, Raça, 
-        LGBT, Povos Tradicionais e Meio Ambiente, Segurança e Direitos Humanos, 
-        Corrupção, Trabalho, Saúde, Educação, Drogas e Migrantes. Ao terminar, o 
-        candidato aponta quais seriam os 3 temas prioritários do seu mandato. Os 
-        perfis e respostas poderão ser editados até dia 12 de setembro.
-      </p>
-    </div>
+            <div class="tab">
 
-    <!-- Eleitoras -->
-    <div class="col-lg-12">
-      <h3>Eleitoras/es</h3>
-      <p>
-        A partir da metade de setembro, as eleitoras/es poderão começar a usar 
-        a plataforma e indicar quais os temas mais importantes (entre os nove 
-        apresentados) para definir seu voto.
-      </p>
-      <p>
-        Sendo assim, a plataforma apresenta um ranking das candidaturas que 
-        priorizam essas pautas levando em consideração o comprometimento dos 
-        partidos com essas pautas. Fizemos uma avaliação da atuação de todos os 
-        partidos com representação no congresso nacional durante os últimos 
-        4 anos.
-      </p>
-      <p>
-        Serão priorizadas na ordem de exibição as candidaturas de mulheres, 
-        negras/os, indígenas e LGBTs - grupos que, juntos, compõem 80% da 
-        população, mas que têm pouca ou nenhuma representação na política.
-      </p>
-    </div>
-    <!-- Voluntárias -->
-    <div class="col-lg-12 margin-bottom">
-      <h3>Voluntárias/os</h3>
-      <p>
-        Assim como em 2016, o trabalho das/os voluntárias/os é fundamental 
-        para alcançar o máximo de candidaturas e garantir o sucesso do 
-        #MeRepresenta. Esse grupo de pessoas é responsável por entrar em 
-        contato com as candidaturas via Facebook, encontrar emails diretos 
-        e convidar para o ingresso na plataforma.
-        <a href="{% url 'volunteer_index' %}">Vem pra cá ó!</a>
-      </p>
+              <div id="genero" class="tab-content">
+                <h3>Gênero</h3>
+          
+                <div class="pauta-item bottom">
+                  <h4>Legalização do aborto</h4>
+                  <p>
+                    A prática de aborto é crime no Brasil: mulheres e médicos que 
+                    praticam aborto ilegal podem ser presos. Uma em cada cinco mulheres 
+                    já fez aborto no país e, por ano, cerca de 1 milhão de abortos são 
+                    realizados. Metade das mulheres que praticam aborto ilegal acabam 
+                    tendo complicações médicas e precisam ser internadas e muitas delas 
+                    morrem. O Supremo Tribunal Federal fez recentemente uma audiência 
+                    pública sobre o tema, com participação da sociedade civil e de 
+                    pesquisadores, e vai decidir se mulheres com gravidez de até 12 
+                    semanas podem abortar (ADPF 442). 
+                  </p>
+          
+                  <p>
+                    Saiba mais a respeito com a campanha <a target="_blank" href="http://www.nempresanemmorta.bonde.org/">#NemPresaNemMorta</a></p>
+                </div>
+                <div class="pauta-item bottom">
+                  <h4>Monitoramento da Lei do feminicídio</h4>
+                  <p>
+                    Cerca de 12 mulheres são assassinadas por dia no Brasil. O 
+                    feminicídio (assassinato motivado pela vítima ser mulher) atinge 
+                    principalmente mulheres negras e de baixa renda. Mesmo depois de três 
+                    anos da lei do feminicídio ter sido aprovada no Brasil, os seus 
+                    efeitos ainda não podem ser medidos. A falta de dados oficiais 
+                    dificulta o combate a este tipo de violência contra mulheres. A 
+                    aplicação efetiva da lei do feminicídio depende de seu monitoramento 
+                    pelos órgãos públicos, responsáveis pela coleta e divulgação dos 
+                    dados. 
+                  </p>
+                  <p>
+                    Saiba mais a respeito na série de reportagem <a target="_blank" href="http://www.generonumero.media/edicao-04/">Violência Anunciada</a> 
+                   
+                  </p>
+                </div>
+                <div class="pauta-item bottom">
+                  <h4>Financiamento público de campanhas de mulheres negras</h4>
+                  <p>
+                    27% da população: essa é a porcentagem de mulheres negras no Brasil.
+                    Mas no Congresso Nacional, elas são apenas 2%. Mulheres brancas 
+                    também são minoria na política, a diferença é que elas têm 3 vezes 
+                    mais chances de ganhar uma eleição do que mulheres negras. Dentro 
+                    dos partidos políticos, apenas 2,5% dos recursos são destinados 
+                    para candidaturas de mulheres negras. Hoje está no Tribunal 
+                    Superior Eleitoral uma consulta pública que exige um investimento 
+                    mínimo de dinheiro dos partidos em candidatas negras. 
+                  </p>
+                  <p>
+                    Saiba mais a respeito com a campanha <a target="_blank" href="http://mulheresnegrasdecidem.org/">Mulheres Negras Decidem</a>
+                  </p>
+                </div>
+              </div>
+
+              <div id="raca" class="tab-content">
+                <h3>Raça</h3>
+                <div class="pauta-item bottom">
+                    <h4>Tornar crime o abate de animais em religiões de matriz africana</h4>
+                    <p>
+                      A Constituição protege a liberdade religiosa e a Lei de Crimes Ambientais proíbe maus tratos contra animais. Abates religiosos são praticados por judeus, muçulmanos e fiéis de religiões afro-brasileiras de um jeito que provoca morte instantânea, com mínimo de dor. Tribunais do Rio Grande do Sul e São Paulo já decidiram que estes casos não são maus tratos. Agora o Supremo Tribunal Federal dará a palavra final sobre o assunto (RE 494601). 
+                    </p>
+                    <p>
+                      Saiba mais <a target="_blank" href="https://www.youtube.com/watch?v=LrXGuOdH85s">nesse vídeo</a> 
+                    </p>
+                </div>
+                <div class="pauta-item bottom">
+                    <h4>Cotas raciais nas universidades</h4>
+                    <p>
+                        Apenas 10% das mulheres negras e 7% dos homens negros têm acesso à universidade, mostrando que esse espaço ainda não é democrático e não representa a realidade da população brasileira. O valor médio do salário da população negra é quase metade do valor do salário da população branca (60%). As ações afirmativas, como cotas raciais nas universidades, servem para mudar esse cenário. Em 2012, o Supremo Tribunal Federal entendeu que as cotas raciais são um direito e ajudam a corrigir o histórico de racismo e escravidão no Brasil.
+                    </p>
+                    <p>
+                      Saiba mais <a target="_blank" href="https://www.youtube.com/watch?v=tWRW0qBIo2g">nesse vídeo</a>
+                    </p>
+                </div>
+                <div class="pauta-item bottom">
+                    <h4>Prioridade no atendimento de mulheres negras no SUS</h4>
+                    <p>
+                      Mulheres negras sofrem com preconceito racial no atendimento de saúde no SUS. Em relação a mulheres brancas, recebem menos anestesia no parto, esperam mais tempo por atendimento, têm menos acesso a exames médicos, como mamografia, e 60% das vítimas de mortalidade materna no país são negras.
+                    </p>
+                    <p>
+                      Saiba mais na campanha <a target="_blank" href="https://www.facebook.com/SUSnasRedes/">SUS sem Racismo</a>.
+                    </p>
+                </div>
+              </div>
+
+              <div id="lgbt" class="tab-content">
+                <h3>LGBTS</h3>
+                <div class="pauta-item bottom">
+                  <h4>O preconceito contra LGBTs deve ser crime</h4>
+                  <p>
+                    O Brasil é um dos países que mais mata LGBTs no mundo, em especial travestis e transexuais. 
+                    Mas não há legislação que considere crime o preconceito contra lésbicas, transexuais e travestis, bissexuais, gays. 
+                    Propostas para tornar crime o preconceito contra LGBTs estão sendo discutidas no Congresso Nacional (PL 134/2018, PL 515/2017 e 7582/2014). 
+                    Veja mais <a target="_blank" href="https://www.youtube.com/watch?v=idx8zw1_zN4">nesse vídeo</a>
+                  </p>
+                </div>
+                <div class="pauta-item bottom">
+                  <h4>Trans e travestis podem usar o banheiro que quiserem</h4>
+                  <p>
+                    A população transexual e travesti é frequentemente impedida de usar banheiros de acordo com sua identidade de gênero. 
+                    Não existe uma legislação sobre o assunto. 
+                    Porém, o Supremo Tribunal Federal iniciou essa discussão em 2015, 
+                    dizendo que não permitir o uso de banheiros conforme identidade de gênero feriria a dignidade humana, 
+                    mas o julgamento foi suspenso (RE 845779). Veja mais <a target="_blank" href="https://www.youtube.com/watch?v=nxdNW4ptMQM">nesse vídeo</a>
+                  </p>
+                </div>
+                <div class="pauta-item bottom">
+                  <h4>Projeto “Escola sem partido”</h4>
+                  <p>
+                    “Escola sem partido” é nome dado a uma série de projetos lei que têm sido apresentados nos municípios, estados e também no Congresso Nacional (PL 7180/2014), que querem tirar o ensino sobre raça, classe social, gênero, identidade de gênero e orientação sexual nas escolas. 73% dos estudantes LGBTs já sofreu agressão verbal, 60% se sente inseguro e 36% já sofreu violência física nas escolas. 
+                  </p>
+                  <p>
+                      Saiba mais a respeito com a campanha <a target="_blank" href="http://www.educacaofazmeugenero.beta.org.br/">Educação faz meu gênero</a>
+                  </p>
+                </div>
+              </div>
+
+              <div id="povos" class="tab-content">
+                <h3>Povos tradicionais & Meio Ambiente</h3>
+                
+                <div class="pauta-item bottom">
+                  <h4>Marco temporal na demarcação de terra</h4>
+                  <p>
+                    A demarcação de terras é uma luta histórica dos povos indígenas e quilombolas, por conta de seus vínculos históricos, culturais e ancestrais com o território. Uma série de iniciativas quer impedir o direito à terra que esses povos têm, seja no Congresso Nacional (PEC 215/2000), seja no judiciário. É o caso do “marco temporal”, argumento usado por alguns juízes para limitar o direito à terra apenas para os povos tradicionais que estivessem vivendo nela em 5 de outubro de 1988. Mas isso ignora que esses povos tradicionais foram expulsos e impedidos de retornar a suas terras. 
+                  </p>
+                  <p>
+                    Saiba mais com a campanha <a target="_blank" href="https://ruralometro.reporterbrasil.org.br/">Ruralômetro</a>
+                  </p>
+                </div>
+                <div class="pauta-item bottom">
+                  <h4>Cotas para indígenas no Congresso</h4>
+                  <p>
+                    Nos últimos 30 anos de democracia no Brasil, apenas um representante indígena foi eleito para o Congresso Nacional, 
+                    apesar dos indígenas serem 0,4% da população brasileira. Para mudar esse cenário, 
+                    recursos públicos para campanhas ou cadeiras no Congresso poderiam ser reservados a candidaturas de indígenas.
+                    Saiba mais <a target="_blank" href="https://www.youtube.com/watch?v=rmPkGMfoZJA">nesse vídeo</a>
+                  </p>
+                </div>
+                <div class="pauta-item bottom">
+                  <h4>Facilitar uso de agrotóxico</h4>
+                  <p>
+                    O Brasil é campeão mundial no consumo de agrotóxicos, mercado que gira bilhões de dólares todos os anos. Mais da metade dos alimentos consumidos pelos brasileiros está contaminado por agrotóxicos e milhares de pessoas são atendidas pelo SUS com sintomas de intoxicação. O tema está sendo discutido no Congresso (PL 6299/2002), para permitir ainda mais o uso de alimentos com agrotóxicos. 
+                  </p>
+                  <p>
+                    Saiba mais com a campanha <a target="_blank" href="https://www.chegadeagrotoxicos.org.br/">#ChegaDeAgrotóxicos</a>
+                  </p>
+                </div>
+              </div>
+
+              <div id="saude" class="tab-content">
+                <h3>Trabalho, Saúde e Educação</h3>
+                <div class="pauta-item bottom">
+                  <h4>Reforma trabalhista</h4>
+                  <p>
+                    A reforma trabalhista aprovada no atual governo criou algumas formas precárias de contratação, como o contrato intermitente, 
+                    enfraqueceu os sindicatos ao retirar a contribuição sindical obrigatória, permitiu o trabalho insalubre da mulher gestante 
+                    e retirou o acesso gratuito do trabalhador à justiça. 
+                  </p>
+                  <p>
+                    Saiba mais <a target="_blank" href="https://www.youtube.com/watch?v=YwLfUWSwGnU">nesse vídeo</a>
+                  </p>
+                </div>
+                <div class="pauta-item bottom">
+                  <h4>Teto de gastos públicos</h4>
+                  <p>
+                    O governo atual adotou uma política econômica conhecida por “teto de gastos públicos”, para limitar os gastos públicos federais. Essa política é formada por algumas medidas como: congelamento de gastos sociais com políticas para a saúde, educação e seguro desemprego pelos próximos 20 anos. A ONU condenou tais medidas, por afetarem a população mais pobre. Ainda assim, ela foi aprovada no Congresso Nacional pela Emenda Constitucional 95.  
+                  </p>
+                  <p>
+                    Saiba mais a respeito com a campanha <a target="_blank" href="http://direitosvalemmais.org.br/">Direitos Valem Mais, Não aos Cortes Sociais</a>
+                  </p>
+                </div>
+              </div>
+
+              <div id="seguranca" class="tab-content">
+                <h3>Segurança e Direitos Humanos</h3>
+                <div class="pauta-item bottom">
+                  <h4>Autos de resistência</h4>
+                  <p>
+                    “Auto de resistência” era o nome dado pela polícia ao homicídio de pessoas que ofereceram “resistência à prisão”. Na prática, significava dizer que esses homicídios eram praticados por policiais em legítima defesa. O problema é que esses casos acabam não sendo investigados e, dos que são, 98% são arquivados. Hoje essa expressão foi proibida, mas outras parecidas, como "mortes em decorrência de ação policial", continuam sendo usadas pela polícia.
+                  </p>
+                  <p>
+                    Saiba mais a respeito com o documentário <a target="_blank" href="http://www.autoderesistencia.com.br/">Auto de Resistência</a>
+                  </p>
+                </div>
+                <div class="pauta-item bottom">
+                  <h4>Redução de maioridade penal</h4>
+                  <p>
+                    Nossa Constituição não permite que menores de 18 anos sejam processados e presos como adultos, 
+                    mas permite que esses adolescentes sejam internados em Fundações Casa. 
+                    Alguns membros do Congresso Nacional defendem a alteração da 
+                    Constituição para reduzir a “maioridade penal” (PEC 171/93 e PEC 33/12), 
+                    ou seja, que possam ser presos como adultos. Como não estão conseguindo, 
+                    agora tentam outra estratégia: aumentar o tempo que os adolescentes passam internados (PL 7197/02).
+                    Estudos comprovam que a redução da maioridade penal em diferentes países não levou à redução da criminalidade. 
+                  </p>
+                  <p>
+                    Saiba mais com a campanha <a target="_blank" href="https://18razoes.wordpress.com/">18 Razões para a Não Redução da Maioridade Penal</a>
+                  </p>
+                </div>
+              </div>
+
+              <div id="corrupcao" class="tab-content">
+                <h3>Corrupção</h3>
+                <div class="pauta-item bottom">
+                    <h4>Políticos serem donos de emissoras de rádio e TV</h4>
+                    <p>
+                      Hoje existem 32 deputados federais e 8 senadores no Congresso Nacional que são donos de emissoras de rádio e TV. Assim eles podem influenciar o que a mídia fala sobre eles. Esses veículos de comunicação são concessões públicas que dependem de autorização do próprio Congresso Nacional, ou seja, dos próprios deputados federais e senadores. Duas ações no Supremo Tribunal Federal questionam se essa situação viola a nossa Constituição (ADPF 246 e ADPF 379).
+                    </p>
+                    <p>
+                      Saiba mais a respeito com a iniciativa 
+                      <a target="_blank" href="http://brazil.mom-rsf.org/br/destaques/afiliacoes-politicas/">Quem controla a mídia no Brasil?</a>
+                    </p>
+                </div>
+          
+                <div class="pauta-item bottom">
+                    <h4>Transparência nos gastos dos partidos políticos</h4>
+                    <p>
+                      Todos os partidos políticos recebem dinheiro público do chamado “Fundo Partidário”. Nas eleições de 2018, pela primeira vez, também receberão 1,7 bilhão de reais de dinheiro público para financiar suas campanhas eleitorais de um “Fundo Especial de Financiamento de Campanha”. As lideranças dos partidos têm liberdade para escolher como gastar esse dinheiro e não existe um controle da sociedade sobre esses gastos. A obrigação dos partidos divulgarem seus balanços financeiros e prestações de contas pode ajudar na fiscalização da utilização desses recursos públicos pela sociedade. 
+                    </p>
+                    <p>
+                      Saiba mais a respeito com a iniciativa 
+                      <a target="_blank" href="https://unidoscontraacorrupcao.org.br/">Unidos Contra a Corrupção</a>
+                    </p>
+                </div>
+              </div>
+
+              <div id="drogas" class="tab-content">
+                <h3>Drogas</h3>
+                <div class="pauta-item bottom">
+                  <h4>Legalização da maconha</h4>
+                  <p>
+                    A maconha não seria mais um mercado ilegal se fossem aprovadas leis dizendo como ela deveria ser produzida e vendida, do mesmo jeito que já acontece com outras drogas, como álcool, tabaco e medicamentos. Isso significa que a maconha poderia ser produzida, vendida e utilizada de acordo com o direito. O mercado da maconha seria fiscalizado e não financiaria mais atividades criminosas. A legalização da maconha está sendo discutida no Congresso Nacional (Projetos de Lei 7.270/2014 e 10.549/2018).
+                  </p>
+                  <p>
+                    Saiba mais a respeito com a plataforma <a target="_blank" href="http://eleicoes.pbpd.org.br/">Drogas é Coisa de Política</a> 
+                   
+                  </p>
+                </div>
+                <div class="pauta-item bottom">
+                  <h4>Internação compulsória para usuários de drogas</h4>
+                  <p>
+                    A internação psiquiátrica compulsória ocorre quando uma pessoa é internada contra a sua vontade. Atualmente, ela pode ocorrer por decisão do Judiciário (sem precisar da autorização da família) em casos extremos, quando o paciente não tem mais controle sobre sua condição psicológica e física. Alguns políticos têm tentado combater o uso de drogas com a internação compulsória coletiva de usuários, ou seja, contra sua vontade e sem avaliação da condição psicológica e física de cada um. É o que ocorre atualmente na cidade de São Paulo, na região da Cracolândia.
+                  </p>
+                  <p>
+                     Saiba mais <a target="_blank" href="https://www.youtube.com/watch?v=plcMm_rAddc">nesse vídeo</a>
+                  </p>
+                </div>
+              </div>
+
+              <div id="migrantes" class="tab-content">
+                <h3>Migrantes</h3>
+                <div class="pauta-item bottom">
+                  <h4>Acolhimento de migrantes venezuelanos no Brasil</h4>
+                  <p>
+                    A Venezuela está passando por uma grave crise econômica e humanitária. O Brasil faz fronteira com a Venezuela, mas é um dos países da América do Sul que menos recebe migrantes de lá. Em Roraima, o governo restringiu o acesso de venezuelanos à saúde e o judiciário chegou a fechar as fronteiras para a entrada de novos migrantes. Casos de xenofobia (ódio e preconceito por causa da origem da pessoa) também têm acontecido.
+                  </p>
+                  <p>
+                    Saiba mais <a target="_blank" href="https://www.youtube.com/watch?v=RCbz9mGxpzU&">nesse vídeo</a>
+                  </p>
+                </div>
+                <div class="pauta-item bottom">
+                  <h4>Direito a voto de migrantes</h4>
+                  <p>
+                    Cerca de 3 milhões de migrantes residem, trabalham e estudam no Brasil. Porém, eles não podem votar, nem se candidatar. Esse cenário pode mudar caso a nossa Constituição seja alterada e garanta o direito à participação dos migrantes na política do país (PEC 25/2012). Diversos países já garantiram esse direito.
+                  </p>
+                  <p>
+                    Saiba mais a respeito com a campanha <a target="_blank" href="https://www1.folha.uol.com.br/poder/2018/02/proposta-de-emenda-pode-dar-direito-a-voto-para-3-milhoes-de-imigrantes.shtml">“Aqui Vivo, Aqui Voto"</a>
+                    
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
 </main>
+
+{% block scripts %}
+  <script type="text/javascript" src="{% static 'js/pautas.js' %}"></script>
+{% endblock scripts %}
 
 {% endblock everything %}

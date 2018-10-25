@@ -52,13 +52,25 @@
 
       <!-- Manter contato -->
       {% for field in form %}
-        {% if field.name == 'email' %}
+      {% if field.name == 'gender' %}
+          <span class="question">
+            {% bootstrap_label field.label %}
+            <i class="fas fa-info-circle" 
+          data-toggle="tooltip" 
+          data-placement="right" 
+          title="Nós respeitamos sua identidade de gênero aqui na plataforma, mesmo que o cadastro esteja errado no TSE."></i>
+          </span>
+        {% elif field.name == 'email' %}
           <span class="question">
             {% bootstrap_label field.label %}
           </span>
         {% elif field.name == 'lgbt' %}
           <span class="question">
             {% bootstrap_label 'Você se declara LGBT?' %}
+            <i class="fas fa-info-circle" 
+          data-toggle="tooltip" 
+          data-placement="right" 
+          title="Marcando esse campo, eleitoras/es que quiserem votar em pessoas LGBTs poderão te encontrar."></i>
           </span>
         {% elif field.name == 'candidatura_coletiva' %}
           <span class="question">
@@ -80,9 +92,8 @@
           <i class="fas fa-info-circle" 
           data-toggle="tooltip" 
           data-placement="right" 
-          title="Aqui utilizamos as categorias oficiais selecionadas pelo governo
-          para contar a população. É importante manter esse padrão para poder 
-          comparar com os dados oficiais."></i>
+          title="Aqui utilizamos as categorias usadas pelo governo para contar a população. É importante manter esse padrão para poder comparar com os dados oficiais.
+"></i>
         {% endif %}
 
         {% if field.name == 'email' %}

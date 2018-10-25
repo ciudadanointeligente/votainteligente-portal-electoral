@@ -1,108 +1,294 @@
 {% extends "base_voluntarios.html" %}
 {% load staticfiles %}
 {% load i18n %}
+{% load bootstrap4 %}
 {% load votainteligente_extras %}
 
 {% block title %}- Voluntarios{% endblock title %}
 
 {% block content %}
-<div class="container no-background">
-  <div class="row">
-    <div class="col">
-      <h1>Analisar candidatura - {{form.candidate}}</h1>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col">
-      <p>Obrigada por analisar as informações da candidatura de {{form.candidate}}, aqui nós lhes contamos tudo o que sabemos sobre essa pessoa.</p>
+
+<div class="row voluntarios-analise">
+  <div class="col-lg-12 bottom">
+    <a href="/" onclick="window.history.back()" />
+      < voltar para lista
+    </a>
+  </div>
+
+  <div class="col-lg-12">
+    <div class="text">
+      <h1>Análise de candidatura</h1>
+      <h2>
+        Obrigada. Aqui mostramos o que o TSE disse sobre a/o 
+        <span>{{form.candidate}}</span>!
+        Por favor, siga o passo a passo para completar as informações.
+      </h2>
     </div>
   </div>
-    
+
+  <div class="col-lg-12 grid table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Nº de Urna</th>
+          <th scope="col">Candidatura</th>
+          <th scope="col">Partido</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{form.candidate}}</td>
+          <td>{{form.candidate.numero}}</td>
+          <td>{{form.candidate.election.name|title}}</td>
+          <td>{{form.candidate.partido.initials}}</td>
+          <td>{{form.candidate.election.area.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Passo 1 -->
+<div  id='pesquiseLaNoFacebook' class="row collapse show voluntarios-analise-card">
+  <div class="col-lg-6">
+    <div class="buscar">
+      <h3>1. Primeiro, veja se a/o candidata/o tem página ou perfil de facebook:</h3>
+      <a type="button" 
+        class="btn btn-primary card-link"
+        target="_blank"
+        href="https://www.facebook.com/search/top/?q={{form.candidate.name}} {{form.candidate.partido.initials}}">
+          <i class="fab fa-facebook"></i> Buscar no Facebook
+      </a>
+    </div>
+    <div class="resultado resultado-1 bottom ">
+      <h3>Encontrou página ou perfil no Facebook?</h3>
+      <div class="options">
+        <a class="btn btn-azul option-encontrei" 
+          href="#encontrei-1" data-toggle="collapse" >
+          Sim, encontrei! :) 
+        </a>
+        <a id='naoEncontreiFacebook' class="btn btn-gris option-nao-encontrei" 
+          href="#pesquisaDeMails" data-toggle="collapse">
+          Não achei nada :|
+        </a>
+      </div>
+    </div>
+    <div id="encontrei-1" class="etapa-concluida collapse bottom">
+      <p>
+        <i class="fas fa-check-circle"></i>
+        Booa! Então copie a mensagem abaixo e cole no inbox da página que 
+        você encontrou no Facebook ;)
+      </p>
+      <textarea id="invitation-fb" rows="10" cols="45">
+      Olá candidata/o,
+      Faço parte do time do #MeRepresenta, uma plataforma que conecta eleitoras/es às candidaturas que se posicionam sobre temas relevantes para a sociedade civil. Em 2016 nossa plataforma foi acessada por mais de 150000 eleitoras e eleitores que nos utilizaram para encontrar candidaturas!
+      
+      Chegamos em você depois de uma super busca na internet! Esse é um convite para que você conheça a plataforma e encontre mais eleitoras/es que se preocupam com as mesmas questões que você! Vamos? merepresenta.org.br
+
+      (Qualquer dúvida, pode entrar em contato com a gente no email contato@merepresenta.org.br)
+      </textarea>
+      <a id='encontrei' class="btn btn-azul">Mandei! E agora?</a>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <h3>em sua busca no facebook, tente também:</h3>
     <ul>
-        <li><b>Número:   </b>{{form.candidate.numero}}</li>
-        <li><b>Partido   </b>{{form.candidate.partido.initials}}</li>
-        <li><b>Coligação  </b>{{form.candidate.partido.coaligacao.name}}</li>
-        <li><b>Estado  </b>{{form.candidate.election.area.name}}</li>
-        {% if form.candidate.original_email %}
-        <li><b>EMAIL entregado pelo TSE  </b>{{form.candidate.original_email}}{% if form.candidate.email_repeated %}, mas o e-mail aparece para várias pessoas{% endif %}</li>
-        {% else %}
-        <li>O TSE não entregou email</li>
-        {%endif %}
+      <li>nome + número da/o candidata/o</li>
+      <li>nome + "deputado" ou "deputado"</li>
+      <li>nome + "candidata" ou "candidato"</li>
     </ul>
 
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Ajude-nos a encontrar!</h5>
-            <div>
-            <a class="btn btn-primary card-link" target="_blank" href="https://www.google.com/search?q={{form.candidate.name}} {{form.candidate.partido.initials}} {{form.candidate.election.area.name}}">Pesquise-la em Google <i class="fab fa-google"></i></a>
-            </div>
-            <div>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary card-link" data-toggle="modal" data-target="#pesquiseLaNoFacebook">
-              Pesquise-la em Facebbook <i class="fab fa-facebook"></i>
-            </button>
+    <h3>Como saber se a página pertence mesmo ao candidato:</h3>
+    <ul>
+      <li>Fotos e vídeos com material de campanha</li>
+      <li>Imagem de capa com informações da eleição</li>
+      <li>Número da candidatura 123 ou 1234, ou 12345</li>
+      <li>Tem hashtag de campanha?</li>
+      <li>Alguns sites mostram as fotos das/os candidatas/os, isso pode ajudar a identificar o Facebook. Fica a dica.</li>
+    </ul>
+  </div>
+</div>
 
+<!-- Passo 2 -->
+<div id='pesquisaDeMails' class="row collapse voluntarios-analise-card">
+  <div class="col-lg-6 ">
+    <div id="mandei" class="mandei collapse etapa-concluida">
+      <p>
+        <i class="fas fa-check-circle"></i>
+        O email cadastrado no TSE é genérico ou voltou. Precisamos encontrar outro jeito de falar com a/o candidata/o.
+      </p>
+    </div>
+
+    <div id="nao-encontrei-1" class="etapa-nao-concluida collapse bottom">
+      <p>
+        <i class="fas fa-check-circle"></i>
+        O email cadastrado no TSE é genérico ou voltou. Precisamos encontrar outro jeito de falar com a/o candidata/o.
+      </p>
+    </div>
+
+    <div class="buscar">
+      <a id='tse_mail_not_correct' class="btn btn-gris option-nao-encontrei" target="_blank"
+        href="https://www.google.com/search?q={{form.candidate.name}} {{form.candidate.partido.initials}}">
+        <i class="fab fa-google"></i> Bora Google!
+      </a>
+    </div>
+
+    <div id='pesquisaDeMailsB' class="resultado collapse resultado-2 bottom">
+      <h3>
+        Você encontrou algum email bom na sua busca? De repente, no site da 
+        candidatura ou na página de Facebook...
+      </h3>
+      <div class="options">
+        <a class="btn btn-azul option-encontrei" href="#new_mail" data-toggle="collapse" >
+          Sim, encontrei!
+        </a>
+        <a class="btn btn-gris option-nao-encontrei" href="#etapa-concluida" data-toggle="collapse">
+          Não achei nada mesmo :(
+        </a>
+      </div>
+    </div>
+
+    <div id='new_mail' class="resultado resultado-3 bottom collapse">
+      <h3>Cole aqui o email que você encontrou que a gente manda a mensagem!</h3>
+      <div class="options">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup" style="width: 100%;">
+        <form action="https://merepresenta.us18.list-manage.com/subscribe/post-json?u={{config.MAILCHIMP_U}}&amp;id={{config.MAILCHIMP_ID}}&amp;c=?" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
+        
+        <div class="mc-field-group">
+        <label for="mce-EMAIL">Email </label>
+        <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
         </div>
-    </div>
-    
-
-
-
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="pesquiseLaNoFacebook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Pesquise-la em Facebbook</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Quando você encontrar essa pessoa, você pode se apresentar da seguinte maneira:
-<div id="wrap"><textarea id="invitation-fb-{{form.candidate.id}}" rows="10 " cols="35"> Oi! Eu sou {{user}} e queria falar sobre o MeRepresenta,
-A melhor plataforma
-Quer que sejamos amigos?
-
-Beijos, nós te amamos</textarea></div>
-  <script type="text/javascript">
-  $(function(){
-    $("#copiar-invitation-fb-{{form.candidate.id}}").click(function(){
-          $("#invitation-fb-{{form.candidate.id}}").select();
-          document.execCommand('copy');
-      });
-  });
-      
-      </script>
-            <button type="button" id="copiar-invitation-fb-{{form.candidate.id}}" class="btn btn-secondary"><i class="fas fa-copy"></i> Copiar</button>
-            <a class="btn btn-primary card-link" target="_blank" href="https://www.facebook.com/search/pages/?q={{form.candidate.name}} {{form.candidate.partido.initials}}">Vamos <i class="fab fa-facebook"></i>!!!!!</a>
-          </div>
-          <div class="modal-footer">
-            
-            <a class="btn btn-danger card-link" target="_blank" href="{% url 'facebook_contacted' id=form.candidate.id %}">CONSEGUI <i class="fas fa-grin-stars"></i></a>
-            <a class="btn btn-danger" href="{% url 'could_not_find_candidate' id=form.candidate.id %}">Não encontrei <i class="fas fa-frown"></i></a>
-          </div>
+        <div class="mc-field-group" style="display:none;">
+        <label for="mce-FNAME">Nome </label>
+        <input type="text" value="{{form.candidate.name}}" name="FNAME" class="" id="mce-FNAME">
+        </div>
+        <div class="mc-field-group"  style="display:none;">
+        <label for="mce-MMERGE3">Estado </label>
+        <input type="text" value="{{form.candidate.election.area.name}}" name="MMERGE3" class="" id="mce-MMERGE3">
+        </div>
+        <div id="mce-responses" class="clear">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
+        </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_35786ffc33e0f1caacdd9e3e6_df49a1037f" tabindex="-1" value=""></div>
+            <div class="clear"><input id='send_other_email' type="submit" value="Pronto!" name="subscribe" id="mc-embedded-subscribe" class="button btn btn-azul"></div>
+            </div>
+        </form>
         </div>
       </div>
     </div>
 
-    <form method='POST' action="{% url 'add_mail_to_candidate' id=form.candidate.id %}">
-        {% csrf_token %}
-        <div class="card">
-          <div class="card-body">
-            <h5 class="modal-title" id="exampleModalLabel">Eu procurei pelo céu, mar e terra e ...</pesqu>
-            
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-2 col-form-label">{{form.mail.label}}</label>
-                <div class="col-sm-10">
-                    {{form.mail}}
-                </div>
-              </div>
-            <button type="submit" class="btn btn-primary">Enviar!</button>
-            <a class="btn btn-danger" href="{% url 'could_not_find_candidate' id=form.candidate.id %}">Não encontrei nada <i class="fas fa-frown"></i></a>
-          </div>
-        </div>
-    </form>
+    <div class="etapa-concluida bottom collapse" id='etapa-concluida'>
+      <p>
+        <i class="fas fa-check-circle"></i>
+        Sucesso! Muito obrigada!
+      </p>
+      <button class="btn btn-roxo" onclick="pronto()">Missão Completa!</button>
+    </div>
+  </div>
+  
+  <div class="col-lg-6">
+    <h3>em sua busca no google, tente também:</h3>
+    <ul>
+      <li>nome + "e-mail"</li>
+      <li>nome + "e-mail" + número da candidata ou candidato</li>
+      <li>nome + "e-mail" + "deputado" ou "deputado"</li>
+      <li>nome + "e-mail" + "candidata" ou "candidato" </li>
+    </ul>
+    <h3>Exemplos de onde você pode achar esse email</h3>
+    <ul>
+      <li>Site da campanha</li>
+      <li>Facebook de campanha</li>
+      <li>Seja criativa/o. A internet tá aqui pra isso. ;)</li>
+    </ul>
+  </div>
 </div>
+
+<form id='add_email_to_candidate' enctype="multipart/form-data" method='POST' action="{% url 'add_mail_to_candidate' id=form.candidate.id %}" style="display:none;">
+          {% csrf_token %}
+        <div id="facebook-checkbox">{{form.facebook}}</div>
+        <div id='tse_mail_correct_input'>{{form.tse_email}}</div>
+</form>
+
 {% endblock content %}
+
+{% block scripts %}
+<script type="text/javascript">
+var pronto = function(){
+  $('#add_email_to_candidate').submit();
+};
+
+  $(function(){
+    $('#copiar_textarea').click(function(){
+      $("#invitation-fb").select();
+      document.execCommand('copy');
+    })
+    $('#send_other_email').click(function(){
+      $('#etapa-concluida').collapse('show');
+      var f = $('#mc-embedded-subscribe-form');
+      var url = f.attr('action');
+
+      $.ajax( {
+        type: 'get',
+        url: url,
+        data: f.serialize(),
+        dataType    : 'jsonp',
+        jsonp: 'c',
+        contentType: "application/json; charset=utf-8",
+        error       : function(err) { 
+          console.log('error');
+          console.log("Could not connect to the registration server."); },
+        success     : function(data) {
+            if (data.result != "success") {
+              console.log(data);
+            } else {
+                // It worked, so hide form and display thank-you message.
+            }
+        }
+      });
+    })
+    $('#mc-embedded-subscribe-form').submit(function(){
+      return false;
+    });
+    var closeFirstAndOpenSecond= function(){
+      //checkbox checked
+      
+      //fechar collapse 1
+      $('#pesquiseLaNoFacebook').collapse('hide');
+      $('#pesquisaDeMails').collapse('show');
+      
+    }
+    var showPesquisaMailB = function() {
+      $('#pesquisaDeMailsA').collapse('hide');
+      $('#pesquisaDeMailsB').collapse('show');
+    };
+    //acá se debe pensar en hacer click y que se cierra esta ventana, pero se abre la número 2
+    // también hay una parte importante que es marcar el checkbox como true
+    $('#encontrei').click(function(){
+        $('#facebook-checkbox input').prop('checked', true);
+        $('#mandei').collapse('show');
+        closeFirstAndOpenSecond();
+    });
+    $('#naoEncontreiFacebook').click(function(){
+        $('#facebook-checkbox input').prop('checked', false);
+        $('#nao-encontrei-1').collapse('show');
+        closeFirstAndOpenSecond();
+    });
+    $('#tse_mail_correct').click(function(){
+      $('#tse_mail_correct_input input').prop('checked', true);
+      showPesquisaMailB();
+    });
+
+    $('#tse_mail_not_correct').click(function(){
+      $('#tse_mail_correct_input input').prop('checked', false);
+      showPesquisaMailB();
+    });
+  });
+  </script>
+
+{% endblock scripts %}

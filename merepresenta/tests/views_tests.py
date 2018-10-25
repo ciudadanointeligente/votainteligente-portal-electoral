@@ -5,9 +5,10 @@ from django.core.urlresolvers import reverse
 from merepresenta.forms import MeRepresentaProposalsForm, MeRepresentaQuestionsForm
 from django.contrib.sites.models import Site
 from popular_proposal.models import (PopularProposalSite)
-from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment
+from merepresenta.models import MeRepresentaPopularProposal, MeRepresentaCommitment, Coaligacao
 from elections.models import Area
 from django.conf import settings
+from unittest import skip
 from elections.models import Candidate, Election, QuestionCategory
 
 @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
@@ -127,6 +128,7 @@ class AnotherQuestionaryTestCase(MediaNaranjaAdaptersBase):
         form = response.context['form']
         self.assertIsInstance(form, MeRepresentaQuestionsForm)
 
+    @skip(u'no está siendo usado')
     def test_post_questionary(self):
         url = reverse('questions')
         response = self.client.get(url)
@@ -154,3 +156,32 @@ class TemplatesViews(MediaNaranjaAdaptersBase):
         url = reverse('sobre')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
+
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
+class ColigacoesPerAreaViewTestCase(MediaNaranjaAdaptersBase):
+    def test_get_the_view(self):
+        a = Area.objects.create(name='Area')
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a",
+                                               initials='CA',
+                                               number='1234',
+                                               area=a,
+                                               classification='deputado-estadual')
+        url = reverse('coligacoes', kwargs={'slug': a.slug})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(a, response.context['area'])
+        self.assertIn(coaligacao, response.context['coligacoes']['deputado-estadual'])
+
+    def test_get_the_view_redirected(self):
+        Area.objects.all().delete()
+        a = Area.objects.create(name='Area')
+        coaligacao = Coaligacao.objects.create(name=u"Coaligacao a",
+                                               initials='CA',
+                                               number='1234',
+                                               area=a,
+                                               classification='deputado-estadual')
+        url = reverse('coligacoes_initial')
+        response = self.client.get(url)
+        url_redirected = reverse('coligacoes', kwargs={'slug': a.slug})
+        self.assertRedirects(response, url_redirected)

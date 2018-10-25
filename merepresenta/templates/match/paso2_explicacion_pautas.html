@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% load markdown_deux_tags %}
+{% load staticfiles %}
+{% load votainteligente_extras%}
+
+{% block title %}- Match{% endblock title %}
+{% block content %}
+<div class="row">
+  <div class="col-lg-10 offset-md-1 text-center explicacion-pautas">
+    <h1>Confira as pautas de cada tema!</h1>
+    <h2>
+      As/os candidatas/os responderam A FAVOR ou CONTRA para cada uma dessas pautas.
+    </h2>
+  </div>
+  <div id="accordion" class="col-lg-10 offset-md-1">
+    <div class="bottom">
+      {% for cat in categories %}
+      <div class="set" id="{{cat.id}}">
+        <div class="accordion-header">
+          <button class="btn btn-link">
+            <h3>{{cat.name}}</h3>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+        <div class="card-body accordion-content">
+          {% for topic in cat.topics.all %}
+          <h4>{{topic.label}}</h4>
+          <p>
+            {{topic.description|safe}}
+          </p>
+        {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+   <form method="post" enctype="multipart/form-data" action="{% url 'match_result' %}">
+      {% csrf_token %}
+      <div style="display: none;">
+        {{form}}
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 d-flex justify-content-between bottom">
+            <a href="/" onclick="window.history.back()" />
+              < Voltar
+            </a>
+            <input type="submit" value="Quem me representa" class="btn btn-azul" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static 'js/accordion.js' %}"></script>
+{% endblock scripts %}

@@ -32,22 +32,15 @@
 {% block everything %}
 <section class="container candidate-profile">
   <div class='row'>
-    <!-- Alerta -->
-    <div class="col-lg-8 offset-md-2 alerta">
-      {% if user|manages_this:candidate %}
-        <div class="alert alert-warning text-center alerta-content" role="alert">
-          Você tem até o dia 12/09/2018 para fazer alterações no seu perfil. Depois dessa data, você não poderá mais modificar suas informações. 
-          <span>
-            <a href="{% url 'merepresenta_complete_profile' slug=candidate.election.slug candidate_slug=candidate.slug %}">
-              Mudar perfil
-            </a>
-          </span>
-        </div>
-      {% endif %}
+
+    <div class="col-md-12 offset-md-2 bottom">
+      <a href="/" onclick="window.history.back()" />
+        < Voltar
+      </a>
     </div>
 
     <!-- Foto Candidato/a -->
-    <div class="col-lg-5">
+    <div class="col-lg-4">
       {% if candidate.candidacy_set.first.user.profile.image %}
         <img src="{{candidate.candidacy_set.first.user.profile.image.url}}" 
           alt="{{candidate.name}}" 
@@ -60,7 +53,7 @@
     </div>
   
     <!-- Detalhes Candidato/a-->
-    <div class="col-lg-7">
+    <div class="col-lg-7 offset-md-1">
       <h1 itemprop="name">
         {{candidate.name}}
       </h1>
@@ -75,20 +68,16 @@
             <p>{{candidate.partido.initials}}</p>
         </div>
         <div class="item">
-            <label>Coligaçao</label>
-            <p>{{candidate.partido.coaligacao.initials}}</p>
+            <label>Coligação</label>
+            <p>{{candidate.partido.coaligacao.name}}</p>
+        </div>
+        <div class="item coligacao">
+            <label>Nota de Coligação</label>
+            <p>{{candidate.partido.coaligacao.mark|floatformat:2 }}</p>
         </div>
         <div class="item">
-            <label>Nota de Coligaçao</label>
-            <p>em análise</p>
-        </div>
-        <div class="item">
-            <label>Cidade/UF</label>
+            <label>UF</label>
             <p>{{candidate.election.area.name|title}}</p>
-        </div>
-        <div class="item">
-          <label>Grupo de Renovação Política</label>
-          <p>{{candidate.renovacao_politica}}</p>
         </div>
       </div>
       <!-- Grid -->
@@ -97,21 +86,42 @@
 </section>
 
   <!-- Pautas Detalhes -->
-<section class="container pautas-container">
+<section class="container pautas-container margin-bottom">
   <div class="row">
     <div class='col-lg-12'>
-      <h3>Bio</h3>
+      <div class="sobre d-flex justify-content-between align-items-center">
+        <h3>Um pouco sobre a/o candidata/o</h3>
+        <div class="item">
+          <a class="btn btn-verde" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmerepresenta.org.br{{candidate.get_absolute_url|iriencode}}&amp;src=sdkpreparse" target="_blank" >
+              <i class="fab fa-facebook-square"></i> Compartilhar!
+            </a>
+        </div>
+      </div>
       <div class='bio-text'>
         {{candidate.bio|markdown}}
       </div>
     </div>
-
+    <div class='card coligacoes-explicacao'>
+      <div class='card-body'>
+        <h3>Atenção nos partidos e coligações</h3>
+        <p>Você sabia que não basta você escolher a pessoa em quem votar? A gente também precisa conhecer o seu partido e coligação porque nos cargos de deputado estadual/federal nosso voto é pra toda coligação.</p>
+        <p class="font-weight-bold">Por isso é tão importante votar em partidos e coligações que tenham um histórico de apoio aos temas que você escolheu. </p>
+        <p>Fizemos uma avaliação minuciosa de 10 votações relevantes nos últimos 4 anos do Congresso Nacional para chegar às notas dos partidos ligados a essa candidatura. Se quiser se aprofundar na metodologia, <a href="https://docs.google.com/document/d/1qoOj1ehZNOKW__1pi4lQmM4yFIThwOMaKQWxA_U9tA8/edit">clique aqui</a>.</p>
+        <ul class="list-unstyled d-flex flex-wrap">
+          {% for partido in candidate.partido.coaligacao.partido_set.all %}
+            <li>
+              <span>{{partido.initials}}&nbsp;-&nbsp;</span>
+              <span class="font-weight-bold">{{partido.mark}}</span></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
   <!-- Temas Prioritários -->
   <div class='col-lg-12'>
-    <h3>Temas prioritarios</h3>
+    <h3>Temas prioritários</h3>
     <div class="temas">
       {% for link in candidate.candidatequestioncategory_set.all %}
-        <div class='col-4 align-middle tema-prioritario text-center'>
+        <div class="text-center">
           {{link.category.name}}
         </div>
       {% endfor %}
@@ -119,20 +129,23 @@
   </div>
 
   <!-- Pautas -->
-  <h3>Seu posicionamento nas pautas do #MeRepresenta</h3>
-      {% for category in categories %}
-      {% for topic in category.topics.all %}
-        <div class='col-lg-12'>
-        <h4 class='topic-candidato'>
-          {{topic.label}}
-        </h4>
-        <div class="resposta-candidato">
-          {% get_taken_position_for topic candidate %}
-        </div>
+  <div class="col-lg-12">
+      <h3>Veja como {{candidate.name}} se posiciona: </h3>
+  </div>
+  {% for category in categories %}
+  <div class="col-lg-12">
+      <h3>{{category.name}}</h3>
+  </div>
+    {% for topic in category.topics.all %}
+    <div class='col-lg-12'>
+      {% get_taken_position_for topic candidate %}
+      <div id="collapse{{topic.id}}" class='pauta-item bottom collapse'>
+        <p>{{topic.description|safe}}</p>
       </div>
-        {% endfor %}
-      {% endfor %}
-      
+    </div>
+    {% endfor %}
+  {% endfor %}
+
   </div>
 </section>
 

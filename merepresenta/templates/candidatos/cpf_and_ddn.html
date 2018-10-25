@@ -6,6 +6,7 @@
 
 {% block content %}
 <div class="content">
+  {% if config.MEREPRESENTA_CANDIDATES_ALLOWED_TO_LOGIN %}
     {% if form.errors %}
     {{form.errors}}
     {% endif %}
@@ -23,6 +24,9 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    {% else %}
+    <h1>As candidatas/os não podem mais inserir informações.</h1>
+    {% endif %}
 </div>
 {% endblock content %}
 

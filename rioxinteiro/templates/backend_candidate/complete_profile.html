@@ -24,10 +24,12 @@
   <!-- image -->
 
   {% if candidate.image %}
-      <img src="{% if 'http' in candidate.image %}{{ candidate.image }}{% else %}{% static candidate.image %}{% endif %}" alt="{{ candidate.name }}" height="96" width="96" border="0" class="img-responsive img-circle"/>    
+    {% thumbnail candidate.image "135x135" crop="center" as im %}
+        <img src="{{ im.url }}" alt="{{candidate.name}}" height="135" width="135" border="0" class="img-responsive img-circle img-candidato" itemprop="image">
+    {% endthumbnail %}
     {% else %}
-      <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle">
-    {% endif %}
+    <img src="{% static 'img/candidate-default.jpg' %}" alt="{{candidate.name}}" border="0" class="img-responsive img-circle img-candidato img-candidato">
+  {% endif %}
 
   {% bootstrap_field form.image %}
   {% for field in form %}

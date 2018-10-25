@@ -20,7 +20,7 @@ class ProposalsGetterBase(AreaDeterminerMixin):
     Getme all the proposals for a given area:
     getter = ProposalsGetter()
     proposals = getter.get_all_proposals(area)
-    
+
     '''
     def __init__(self, *args, **kwargs):
         self.proposal_model_class = kwargs.pop('proposal_class', PopularProposal)
@@ -38,8 +38,8 @@ class ProposalsGetterBase(AreaDeterminerMixin):
         has_parent = True
         elections = []
         while has_parent:
-            if proposals_container_element.elections.all():
-                elections += list(proposals_container_element.elections.all())
+            if proposals_container_element.elections.filter(candidates__commitments__isnull=False).exists():
+                elections += list(proposals_container_element.elections.filter(candidates__commitments__isnull=False).distinct())
             if not proposals_container_element.parent:
                 has_parent = False
             else:
@@ -72,7 +72,7 @@ class ProposalsGetterBase(AreaDeterminerMixin):
 
 class ProposalsGetter(ProposalsGetterBase):
     cache_key = 'proposals_for_'
-    
+
     def get_proposals_from_election(self, elections):
         return self.get_default_proposals_from_elections(elections)
 
@@ -109,13 +109,13 @@ class ProposalsGetterByReadingGroup(ProposalsGetterBase):
                             are_there_still_more_proposals = False
                     else: # Si hay propuestas
                         proposal_id = proposal.id
-                
+
                         if proposal_id not in ids:
                             ids.append(proposal_id)
                         if len(ids) == config.MEDIA_NARANJA_MAX_NUM_PR:
                             are_there_still_more_proposals = False
             index += 1
-        
+
         return self.proposal_model_class.objects.filter(id__in=ids)
 
 

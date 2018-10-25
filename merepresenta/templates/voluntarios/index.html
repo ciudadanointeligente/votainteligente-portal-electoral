@@ -8,67 +8,63 @@
 {% block title %}- Voluntarios{% endblock title %}
 
 {% block content %}
-<div class="card benvinda-voluntaria">
-  <div class="card-body">
-        <div class="col">
-          <h4 class="alert-heading">Bemvinda, {{user}}!</h4>
-          <p>Obrigada por fazer parte dos voluntários do <b>#MeRepresenta</b>! Aqui você vai encontrar a lista de candidatos que precisamos entrar em contato!</p>
-          
+<div class="row boas-vindas">
+  <div class="col-lg-12">
+    <div class="text">
+      <h1 class="bottom">Bem–vinda/o, voluntária/o!</h1>
+      <h2>
+        Aqui você encontra uma lista de candidatas/os que precisamos stalkear até 
+        o fim! Vem com a gente! 
+      </h2>
+      <p>Para começar, escolha o estado e clique em pesquisar.</p>
+    </div>
 
-          <!--form method="GET" action="">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Escolha seu estado</label>
-            {{filter.form.elections__area}}
-          </div>
-          <button type="submit" class="btn btn-primary">Pesquisa</button>
-        </form-->
-      <div class="row">
-        <div class="col-4 offset-md-8">
-          <form method="POST" action="{% url 'update_area_of_volunteer' %}">
-            {% csrf_token %}
-              {% bootstrap_form update_area_form %}
-            <button type="submit" class="btn btn-primary float-right">Pesquisa</button>
-          </form>
-        </div>
+    <div class="field row">
+      <div class="pesquisar bottom col-lg-8">
+        <form method="POST" action="{% url 'update_area_of_volunteer' %}">
+          {% csrf_token %}
+            {% bootstrap_form update_area_form %}
+          <button type="submit" class="btn btn-azul float-right">Pesquisar</button>
+        </form>
       </div>
-
-
-
-          
-        </div>
+      <div class="col-lg-4 d-flex align-items-center justify-content-center">
+        <img src="{% static 'img/whatsap.png' %}" class='img-fluid' style="max-height:80px;">
+      </div>
+    </div>
   </div>
-</div>
 
-<div class="container">
-    <table class="table">
+  <div class="col-lg-12">
+    <h3 class="bottom">Candidaturas encontradas</h3>
+    <div class="table-responsive">
+      <table class="table">
       <thead>
         <tr>
-          <th scope="col">Nome Candidata</th>
+          <th scope="col">Nome</th>
           <th scope="col">Nº de Urna</th>
           <th scope="col">Candidatura</th>
           <th scope="col">Partido</th>
           <th scope="col">Estado</th>
           <th scope="col">Pesquisar</th>
-
         </tr>
       </thead>
-      {% paginate 100 candidates %}
+
+      {% paginate 10 candidates %}
       <tbody>
-        
+
         {% for candidate in candidates %}
-          {% if not candidate.volunteerincandidate_set.exists %}
           <tr>
-            <td>{{candidate.name}}</td>
-            <td>{{candidate.numero}}</td>
-            <td>{{candidate.election}}</td>
-            <td>{{candidate.partido.initials}}</td>
-            <td>{{candidate.election.area}}</td>
-            <td><a class="btn btn-verde" href="{% url 'add_mail_to_candidate' id=candidate.id %}">Analisar</a></td>
+            <td data-label="Nome">{{candidate.name}}</td>
+            <td data-label="Nº de Urna">{{candidate.numero}}</td>
+            <td data-label="Candidatura">{{candidate.election}}</td>
+            <td data-label="Partido">{{candidate.partido.initials}}</td>
+            <td data-label="Estado">{{candidate.election.area}}</td>
+            <td><a class="btn btn-azul" href="{% url 'add_mail_to_candidate' id=candidate.id %}">Analisar</a></td>
           </tr>
-          {% endif %}
         {% endfor %}
       </tbody>
-    </table>
+      </table>
+    </div>
     {% show_pages %}
+  </div>
 </div>
 {% endblock content %}

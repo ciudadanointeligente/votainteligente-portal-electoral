@@ -1,52 +1,76 @@
 {% load votainteligente_extras %}
 {% load staticfiles %}
 
-<nav id="mainNav" class="container navbar navbar-light">
-  <a class="navbar-brand" href="{% url 'index' %}">
-    <img src="{% static '/img/merepresenta/logo_2018.svg' %}" 
-      class="img-fluid" 
-      alt="#MeRepresenta Logo">
-  </a>
-    
-  <ul class="nav nav-pills">
-    <li>
-      <a class="nav-item nav-link" 
-        href="{% url 'sobre' %}">Sobre</a>
-    </li>
-    <li>
-      <a class="nav-item nav-link" 
-        href="{% url 'volunteer_index' %}">Voluntaria/o</a>
-    </li>
-    <li>
-      <a class="nav-item nav-link" 
-        href="{% url 'eleitor' %}">Eleitor/a</a>
-    </li>
-  </ul>
+<nav id="mainNav" class="container navbar navbar-expand-lg">
+    <a class="navbar-brand" href="{% url 'index' %}">
+      <img src="{% static '/img/merepresenta/logo_2018.svg' %}" 
+        class="navbar-img" 
+        alt="#MeRepresenta Logo">
+    </a>
 
-  <div class="button">
-    {% if not user.is_authenticated %}
-    <a class="nav-link btn btn-roxo btn-uppercase" href="{% url 'cpf_and_date2' %}">Sou Candidata/o</a>
-    
-    {% else %}
-    <div class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-        {% if user.profile.image %}
-        <i src="{{user.profile.image.url}}"></i>
-        {% endif %}
-        {{user.username}}</a>
-      <div class="dropdown-menu">
-        {% if user.is_authenticated and user.is_staff %}
-        <a href="{% url 'volunteer_index' %}" class="dropdown-item">Portal voluntario</a> 
-        {% endif %}
-        {% if user|is_candidate %}
-          {% with user.candidacies.first as candidacy %}
-            <a href="{{candidacy.candidate.get_absolute_url}}" class="dropdown-item">Meu perfil</a> 
-          {% endwith %}
-        {% endif %}
-        <div role="separator" class="dropdown-divider"></div>
-        <a class="dropdown-item" href="/accounts/logout">Sair</a>
-      </div>
+    <button class="navbar-toggler" type="button" 
+      data-toggle="collapse"
+      data-target="#navbar_menu_collapse"
+      aria-controls="navbar_menu_collapse"
+      aria-expanded="false"
+      aria-label="Menu"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id='navbar_menu_collapse'>
+          <ul class="navbar-nav">
+            <li>
+              <a class="nav-item nav-link" 
+                href="{% url 'sobre' %}">Sobre</a>
+            </li>
+            <li>
+              <a class="nav-item nav-link" 
+                href="{% url 'volunteer_index' %}">Voluntaria/o</a>
+            </li>
+            <li>
+              <a class="nav-item nav-link" 
+                href="{% url 'match' %}">Eleitor/a</a>
+            </li>
+            <li>
+              <a class="nav-item nav-link" 
+                href="{% url 'pautas' %}">Pautas</a>
+            </li>
+            <li>
+              <a class="nav-item nav-link" 
+                href="{% url 'faq' %}">Perguntas?</a>
+            </li>
+            <li>
+              
+              {% if not user.is_authenticated %}
+              <a href="{% url 'match' %}" 
+                class="btn btn-roxo voluntario btn-uppercase">
+                Quem me representa?
+              </a>
+              
+              {% else %}
+              <div class="nav-item dropdown">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                  {% if user.profile.image %}
+                  <i src="{{user.profile.image.url}}"></i>
+                  {% endif %}
+                  {{user.username}}</a>
+                <div class="dropdown-menu">
+                  {% if user.is_authenticated and user.is_staff %}
+                  <a href="{% url 'volunteer_index' %}" class="dropdown-item">Portal voluntario</a> 
+                  {% endif %}
+                  {% if user|is_candidate %}
+                    {% with user.candidacies.first as candidacy %}
+                      <a href="{{candidacy.candidate.get_absolute_url}}" class="dropdown-item">Meu perfil</a> 
+                    {% endwith %}
+                  {% endif %}
+                  <div role="separator" class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/accounts/logout">Sair</a>
+                </div>
+              </div>
+              {% endif %}
+            </li>
+          </ul>
     </div>
-    {% endif %}
-  </div>
+
 </nav>

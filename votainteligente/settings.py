@@ -175,6 +175,8 @@ CONSTANCE_CONFIG = {
     'EMAIL_DOMAIN': ("votainteligente.cl", 'Nombre dominio'),
     'MAX_AMOUNT_OF_MAILS_TO_CANDIDATE': (3, 'Numero maximo de envios de emails a candidatos'),
     'TWITTER_TOKEN': ('', 'Twitter token'),
+    'MAILCHIMP_U': ('perrito', 'MAILCHIMP u la partecita u del mailchimp'),
+    'MAILCHIMP_ID': ('gatito', 'MAILCHIMP u la partecita u del mailchimp'),
     'MARKED_AREAS': ("", u'Areas que tienen alguna marca'),
     'CANDIDATE_ABSOLUTE_URL_USING_AREA': (True, u'para ver el perfil de los candidatos utilziamos el territorio o utilizamos la elección a la que pertenece?'),
     'TWITTER_TOKEN_KEY': ('', 'Twitter token key'),
@@ -225,7 +227,12 @@ CONSTANCE_CONFIG = {
     'MEDIA_NARANJA_MAX_SELECT_PROPOSALS': (5, u'Máximo número de propuestas seleccionables en la 1/2 Naranja'),
     'PRUEBAS_DE_CARGA_MEDIA_NARANJA': (False, u'Esto baja el csrf para las pruebas de la medianaranja2'),
     'MEDIA_NARANJA_QUESTIONS_ENABLED': (True, u'Si bajas esto la 1/2 n sólo usará propuestas ciudadanas'),
+
     'ESTRATEGIA_SELECCION_PROPUESTAS': ("getter", u'Qué estrategia usamos para mostrar propuestas en la 1/2 naranja', 'proposals_getter_for_12_n'),
+    'MEREPRESENTA_COLIGACAO_ATENUATION_FACTOR': (1.0, u'o factor de atenuacao de nota de coligacao'),
+    'MEREPRESENTA_IDENTITY_MULTIPLICATION_FACTOR': (1.0, u'o factor de multiplicacao de desprivilegio'),
+    'MEREPRESENTA_RESULTADO_CANTIDADE': (100, u'o factor de multiplicacao de desprivilegio'),
+    'MEREPRESENTA_CANDIDATES_ALLOWED_TO_LOGIN': (True, u'os candidatos podem entrar na plataforma'),
 }
 TESTING = 'test' in sys.argv
 if TESTING:

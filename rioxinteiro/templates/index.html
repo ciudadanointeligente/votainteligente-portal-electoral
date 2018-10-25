@@ -10,16 +10,21 @@
 
 <section id="you-proposal">
     <div class="container">
-        <div class="col-md-6 hidden-xs">
-            <div class="pull-bottom">
-
-                <h2 class="text-center">Acreditamos na força coletiva</h2>
-                <h3 class="text-center">para orientar as políticas públicas no Rio</h3>
-
-            </div>
+        <div class="col-md-4">
+            <a href="{% url 'medianaranja2:index' %}">  
+              <img src="{% static 'img/logotipo_rioporinteiro_para_fundo_de_cor.svg' %}" class="img-responsive logo_landing" alt="">
+                
+            </a>
         </div>
-        <div class="col-md-6">
-            <img src="{% static 'img/logotipo_rioporinteiro_para_fundo_de_cor.svg' %}" class="img-responsive logo_landing" alt="">
+        <div class="col-md-4">
+          <a href="{% url 'medianaranja2:index' %}">
+            <h2 class="text-center">Pra quem acredita que o Rio pode ser diferente</h2>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="{% url 'medianaranja2:index' %}">  
+            <img src="{% static 'img/logo_tem_compromiso.svg' %}" class="img-responsive logo_landing" alt="TemCompromiso">
+          </a>
         </div>
     </div>
 
@@ -30,13 +35,14 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-          <p>Escreva sua proposta para as candidaturas <a href="{% url 'popular_proposals:home' %}" class="btn btn-blue" onclick="ga('send', 'event', 'home-invitacion-ong', 'click')">Aqui</a></p>
+          <p>Encontre o ponto em comum entre você e sua candidatura <a href="{% url 'medianaranja2:index' %}" class="btn btn-blue" onclick="ga('send', 'event', 'home-invitacion-ong', 'click')">#TemCompromisso</a></p>
         </div>
       </div>
     </div>
 </section>
 <section class='green-bottom-section'></section>
 
+{% cache 600 featured_p %}
 {% if featured_proposals.count %}
 <section id="highlighted-proposals">
   <div class="container">
@@ -50,6 +56,7 @@
   </div>
 </section>
 {% endif %}
+{% endcache %}
 {% cache 600 organization_logos %}
 {% organization_logos %}
 {% endcache %}

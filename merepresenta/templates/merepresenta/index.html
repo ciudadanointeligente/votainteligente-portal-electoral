@@ -11,28 +11,26 @@
     <div class="row">
       <div class="col-lg-6 title-container">
         <h2 class="title">
-          Ajude seus eleitores chegarem até você!
+          Encontre candidaturas que te representam! 
         </h2>
 
         <p>
-          Quer aparecer para as eleitoras e 
-          eleitores que se preocupam 
-          com as mesmas pautas que você?
-          Cadastre-se e traga mais visibilidade 
-          para sua candidatura.
+          Quer entender quem são as/os candidatas/os que defendem 
+          temas importantes pra você?
+          Chega mais!
         </p>
 
-        <div class="row">
+        <div class="row ajude-btn">
 
           {% if user|is_candidate %}
             {% with user.candidacies.first as candidacy %}
             {% if candidacy.candidate.candidatequestioncategory_set.exists %}
-            <div class="col-lg-4">
+            <div class="col-lg-12">
               <a href="{{candidacy.candidate.get_absolute_url}}" 
                   class="btn btn-roxo voluntario">Meu perfil</a>
             </div>
             {% else %}
-            <div class="col-lg-4">
+            <div class="col-lg-12">
               <a href="{% url 'cpf_and_date2' %}" 
                 class="btn btn-gris voluntario">Preencher dados</a>
             </div>
@@ -40,25 +38,37 @@
             {% endwith %}
 
             {% elif user.is_authenticated and user.is_staff %}
-            <div class="col-lg-4">
+            <div class="col-lg-12">
               <a href="{% url 'volunteer_index' %}" 
                 class="btn btn-roxo voluntario">Portal voluntario</a>
             </div>
             {% else %}
-            <div class="col-lg-5">
-              <a href="{% url 'cpf_and_date2' %}"
-              class="btn btn-roxo btn-uppercase">Sou candidata/o</a>
+
+            <div class="col-lg-12">
+              <a href="{% url 'match' %}" 
+                class="btn btn-roxo voluntario btn-uppercase">
+                Sou eleitor/a
+              </a>
             </div>
-            <div class="col-lg-5">
-              <a href="{% url 'eleitor' %}" 
-                class="btn btn-gris voluntario">Sou eleitor/a</a>
+            {% if config.MEREPRESENTA_CANDIDATES_ALLOWED_TO_LOGIN %}
+            <div class="col-lg-12">
+              <a href="{% url 'cpf_and_date2' %}"
+              class="btn btn-azul voluntario btn-uppercase">Sou candidata/o</a>
             </div>
             {% endif %}
+
+            <div class="col-lg-12">
+              <a href="{% url 'volunteer_index' %}" 
+                class="btn btn-azul voluntario btn-uppercase">
+                Quero ser voluntária/o
+              </a>
+            </div>
+          {% endif %}
         </div>
       </div>
 
-      <div class="col-lg-6">
-        <img src="{% static '/img/merepresenta/merep_landing_image.svg' %}" 
+      <div class="col-lg-6 ajude-img">
+        <img src="{% static '/img/ilustra_3_amarela.svg' %}" 
           class="img-fluid" 
           alt="Ilustração com balões de diálogo escritos Voto e #MeRepresenta">
       </div>
@@ -119,7 +129,7 @@ Em 2016 conectamos mais de 150 mil pessoas à candidaturas que valorizam
               <li>Monitoramento da Lei do feminicídio</li>
               <li>Financiamento público de campanhas de mulheres negras</li>
             </ol>
-            <!-- <a href="{% url 'pautas' %}">quero saber mais</a> -->
+            <a href="{% url 'pautas' %}">quero saber mais</a>
           </div>
         </div>
       </div>
@@ -134,7 +144,7 @@ Em 2016 conectamos mais de 150 mil pessoas à candidaturas que valorizam
               <li>Trans e travestis podem usar o banheiro que quiserem</li>
               <li>Projeto “Escola sem partido”</li>
             </ol>
-            <!-- <a href="{% url 'pautas' %}">quero saber mais</a> -->
+            <a href="{% url 'pautas' %}">quero saber mais</a>
           </div>
         </div>
       </div>
@@ -153,7 +163,7 @@ Em 2016 conectamos mais de 150 mil pessoas à candidaturas que valorizam
               <li>Cotas raciais nas universidades</li>
               <li> Prioridade no atendimento de mulheres negras no SUS</li>
             </ol>
-            <!-- <a href="{% url 'pautas' %}">quero saber mais</a> -->
+            <a href="{% url 'pautas' %}">quero saber mais</a>
           </div>
         </div>
       </div>
@@ -166,8 +176,9 @@ Em 2016 conectamos mais de 150 mil pessoas à candidaturas que valorizam
             <ol>
               <li>Marco temporal na demarcação de terra</li>
               <li>Cotas para indígenas no Congresso</li>
+              <li>Facilitar o uso de agrotóxicos</li>
             </ol>
-            <!-- <a href="{% url 'pautas' %}">quero saber mais</a> -->
+            <a href="{% url 'pautas' %}">quero saber mais</a>
           </div>
         </div>
       </div>
@@ -185,7 +196,7 @@ Em 2016 conectamos mais de 150 mil pessoas à candidaturas que valorizam
               <li>Reforma trabalhista</li>
               <li>Teto de gastos públicos</li>
             </ol>
-            <!-- <a href="{% url 'pautas' %}">quero saber mais</a> -->
+            <a href="{% url 'pautas' %}">quero saber mais</a>
           </div>
         </div>
       </div>
@@ -199,7 +210,7 @@ Em 2016 conectamos mais de 150 mil pessoas à candidaturas que valorizam
               <li>Acolhimento de migrantes venezuelanos no Brasil</li>
               <li>Direito a voto de migrantes</li>
             </ol>
-            <!-- <a href="{% url 'pautas' %}">quero saber mais</a> -->
+            <a href="{% url 'pautas' %}">quero saber mais</a>
           </div>
         </div>
       </div>
@@ -213,7 +224,7 @@ Em 2016 conectamos mais de 150 mil pessoas à candidaturas que valorizam
               <li>Legalização da maconha</li>
               <li>Internação compulsória para usuários de drogas</li>
             </ol>
-            <!-- <a href="{% url 'pautas' %}">quero saber mais</a> -->
+            <a href="{% url 'pautas' %}">quero saber mais</a>
           </div>
         </div>
       </div>
@@ -229,7 +240,7 @@ Em 2016 conectamos mais de 150 mil pessoas à candidaturas que valorizam
                       <li>Políticos serem donos de emissoras de rádio e TV</li>
                       <li>Transparência nos gastos dos partidos políticos</li>
                     </ol>
-                  <!-- <a href="{% url 'pautas' %}">quero saber mais</a> -->
+                  <a href="{% url 'pautas' %}">quero saber mais</a>
               </div>
           </div>
       </div>
@@ -243,7 +254,8 @@ Em 2016 conectamos mais de 150 mil pessoas à candidaturas que valorizam
               <li>Autos de resistência</li>
               <li>Redução de maioridade penal</li>
             </ol>
-            <!-- <a href="{% url 'pautas' %}">quero saber mais</a> -->
+            <a href="{% url 'pautas' %}">quero saber mais</a>
+
           </div>
         </div>
       </div>
@@ -254,8 +266,6 @@ Em 2016 conectamos mais de 150 mil pessoas à candidaturas que valorizam
     </div>
   </div>
 </section>
-
-{% include "_apoiam.html" %}
 
 <section class="voluntaria">
   <div class="container">
@@ -272,13 +282,13 @@ Em 2016 conectamos mais de 150 mil pessoas à candidaturas que valorizam
         </h2>
         
         <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-12">
             <a href="{% url 'volunteer_index' %}" 
               class="btn btn-azul btn-uppercase">
               Quero ser voluntária/o
             </a>
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-12">
             <a href="{% url 'sobre' %}" 
               class="btn btn-gris voluntario">
               Quero saber mais
@@ -290,5 +300,7 @@ Em 2016 conectamos mais de 150 mil pessoas à candidaturas que valorizam
     </div>
   </div>
 </section>
+
+{% include "_apoiam.html" %}
 
 {% endblock everything %}

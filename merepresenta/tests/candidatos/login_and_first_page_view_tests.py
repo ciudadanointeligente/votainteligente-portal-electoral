@@ -15,6 +15,7 @@ from elections.models import PersonalData, Area, Election
 from django.conf import settings
 import datetime
 from merepresenta.candidatos.forms import CPFAndDdnForm, CPFAndDdnForm2
+from django.core import mail
 
 PASSWORD = 'candidato123'
 
@@ -53,7 +54,7 @@ class CandidateLoginView(VolunteersTestCaseBase):
         user = User.objects.create_user(username="candidate", password=PASSWORD)
         self.client.login(username=user.username, password=PASSWORD)
         response = self.client.get(url)
-        cpf_and_date_url = reverse('cpf_and_date')
+        cpf_and_date_url = reverse('cpf_and_date2')
         self.assertRedirects(response, cpf_and_date_url)
 
 TEMPLATES = [
@@ -170,6 +171,17 @@ class CPFChoosingView2(VolunteersTestCaseBase):
         response = self.client.get(url)
         self.assertRedirects(response, url_complete_profile)
 
+    def test_email_sent_to_volunteer(self):
+        volunteer = User.objects.create(username="volunteer")
+        volunteer.email = 'the_one@voluntarias.org.br'
+        volunteer.save()
+        VolunteerGetsCandidateEmailLog.objects.create(volunteer=volunteer, candidate=self.candidate)
+        user = User.objects.create_user(username='HolaSoyCandidato', password=PASSWORD)
+        candidacy = Candidacy.objects.create(candidate=self.candidate, user=user)
+        
+        self.assertTrue(len(mail.outbox))
+        the_mail_to_the_volunteer = mail.outbox[0]
+        self.assertIn(volunteer.email, the_mail_to_the_volunteer.to)
 
 
 @override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls',

@@ -1,6 +1,6 @@
 
 from django.conf.urls import url, include
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, RedirectView
 from merepresenta.forms import (MeRepresentaMeiaLaranjaWizardForm,
                                 MeRepresentaMeiaLaranjaQuestionsWizardForm)
 from elections.views import CandidateDetailView
@@ -16,6 +16,8 @@ from merepresenta.voluntarios.views import (VolunteerIndexView,
                                             CouldNotFindCandidate,
                                             FacebookContacted,
                                             complete)
+from merepresenta.match.views import MatchView, MatchResultView, MatchResultAjaxView
+from merepresenta.views import ColigacoesPerAreaView, ColigacoesInitialRedirect
 
 class MeRepresentaMeiaLaranjaForm(MediaNaranjaElectionForm):
     def __init__(self, *args, **kwargs):
@@ -37,14 +39,39 @@ urlpatterns = [
         TemplateView.as_view(template_name="merepresenta/sobre.html"),
         name='sobre'),
     url(r'^eleitor/?$',
-        TemplateView.as_view(template_name="merepresenta/eleitor.html"),
+        RedirectView.as_view(url='/eleitora'),
         name='eleitor'),
+    url(r'^eleitores/?$',
+        RedirectView.as_view(url='/eleitora'),
+        name='eleitor'),
+    url(r'^eleitorx/?$',
+        TemplateView.as_view(template_name='merepresenta/eleitor.html'),
+        name='eleitorx'),
     url(r'^termos/?$',
         TemplateView.as_view(template_name="merepresenta/termos.html"),
         name='termos'),
     url(r'^pautas/?$',
         TemplateView.as_view(template_name="merepresenta/pautas.html"),
         name='pautas'),
+    url(r'^coligacoes/?$',
+        ColigacoesInitialRedirect.as_view(),
+        name='coligacoes_initial'),
+    url(r'^coligacoes/(?P<slug>[-\w]+)/?$',
+        ColigacoesPerAreaView.as_view(),
+        name='coligacoes'),
+    url(r'^eleitora/?$',
+        MatchView.as_view(),
+        name='match'),
+    url(r'^resultado/?$',
+        MatchResultView.as_view(),
+        name='match_result'),
+    url(r'^match_result_ajax/?$',
+        MatchResultAjaxView.as_view(),
+        name='match_result_ajax'),
+
+
+
+
     url(r'^perguntas/?$',
         MeRepresentaMeiaLaranjaWizardForm.as_view(),
         name='questionary'),
@@ -62,4 +89,7 @@ urlpatterns = [
     url(r'^candidatos/?', include('backend_candidate.urls', namespace='backend_candidate')),
     url(r'^accounts/?', include('registration.backends.hmac.urls')),
     url(r'^voluntarios/', include('merepresenta.voluntarios.urls')),
+    url(r'^faq/?$',
+    TemplateView.as_view(template_name="merepresenta/faq.html"),
+    name='faq'),
 ]

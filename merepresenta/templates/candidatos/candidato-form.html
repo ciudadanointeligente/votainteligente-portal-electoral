@@ -15,6 +15,7 @@
 <section class="row candidato-form">
   <div class="col-md-8 offset-md-2">
     <h1 class="text-center">Olá, candidata/o!</h1>
+    {% if config.MEREPRESENTA_CANDIDATES_ALLOWED_TO_LOGIN %}
     <h2 class="text-center">
       Antes de começar, precisamos de alguns dados seus:
     </h2>
@@ -34,6 +35,7 @@
               name="nascimento"
               placeholder="dd/mm/YYYY" 
               class="form-control"
+              autocomplete="off"
               required="True" />
             <small id="helpNascimento" class="form-text text-muted"></small>
           </div>
@@ -76,10 +78,7 @@
                   <i class="fas fa-check"></i>
                   Você pode apagar seus dados da plataforma quando quiser
                 </li>
-                <li>
-                  <i class="fas fa-check"></i>
-                  Você pode apagar seus dados da plataforma quando quiser
-                </li>
+             
               </ul>
           </div>
 
@@ -88,10 +87,20 @@
               Continuar e concordar com os termos
             </button>
 
-            <a class="small-link" href="https://docs.google.com/document/d/1lUdJlxizcPHX_HJLxKp_RtgIaCOm2MUjaM-Kv4og6ew/edit">ver termos de uso completo</a>
+            <div class="d-flex justify-center">
+              <a class="small-link" 
+                href="{% url 'termos' %}">
+                ver termos de uso completo
+              </a>
+            </div>
           </div>
       </form>
     </div>
+    {% else %}
+    <h2 class="text-center">
+      As candidatas/os não podem mais inserir informações.
+    </h2>
+    {% endif %}
   </div>
 </section>
 
@@ -104,7 +113,7 @@
 $(function(){
     var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
     $("#nascimento-id").datepicker({
-        format: 'dd/mm/yyyy'
+        dateFormat: 'dd/mm/yyyy'
     });
 });
     

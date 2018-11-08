@@ -7,6 +7,13 @@ CACHES={'default': {'BACKEND': 'django.core.cache.backends.dummy.DummyCache'}}
 MEREPRESENTA_VOLUNTARIOS_ON = True
 
 if TRAVIS:
+    HAYSTACK_CONNECTIONS = {
+        'default': {
+            'ENGINE': 'haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine',
+            'URL': 'http://127.0.0.1:9200/',
+            'INDEX_NAME': 'votainteligente_test',
+        },
+    }
     DB = os.environ.get('DB')
 
     if DB == 'postgres':

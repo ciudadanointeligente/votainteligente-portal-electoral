@@ -237,11 +237,11 @@ CONSTANCE_CONFIG = {
 TESTING = 'test' in sys.argv
 if TESTING:
 
+    import os
     HAYSTACK_CONNECTIONS = {
         'default': {
-            'ENGINE': 'haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine',
-            'URL': 'http://127.0.0.1:9200/',
-            'INDEX_NAME': 'votainteligente_test',
+            'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+            'PATH': os.path.join(os.path.dirname(__file__),'..', 'whoosh_index'),
         },
     }
 else:

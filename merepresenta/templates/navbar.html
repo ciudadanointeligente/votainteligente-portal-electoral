@@ -28,10 +28,10 @@
               <a class="nav-item nav-link" 
                 href="{% url 'volunteer_index' %}">Voluntaria/o</a>
             </li>
-            <li>
+            <!-- <li>
               <a class="nav-item nav-link" 
                 href="{% url 'match' %}">Eleitor/a</a>
-            </li>
+            </li> -->
             <li>
               <a class="nav-item nav-link" 
                 href="{% url 'pautas' %}">Pautas</a>
@@ -43,9 +43,9 @@
             <li>
               
               {% if not user.is_authenticated %}
-              <a href="{% url 'match' %}" 
+              <a href="{% url 'volunteer_index' %}" 
                 class="btn btn-roxo voluntario btn-uppercase">
-                Quem me representa?
+                Quero ser voluntária/o
               </a>
               
               {% else %}

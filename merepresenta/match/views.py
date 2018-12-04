@@ -7,6 +7,9 @@ from django.shortcuts import render
 from merepresenta.match.matrix_builder import MatrixBuilder
 import json
 from django.core.cache import cache
+from django.conf import settings
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse_lazy
 
 
 class MatchQuestionCategoryBase(FormView):
@@ -39,6 +42,11 @@ class MatchQuestionCategoryBase(FormView):
 class MatchView(MatchQuestionCategoryBase):
     template_name = 'match/pergunta.html'
     success_template = 'match/resultado_ajax.html'
+
+    def dispatch(self, *args, **kwargs):
+        if not getattr(settings, 'ELEITOR_WORKING', True):
+            return HttpResponseRedirect(reverse_lazy('volunteer_index'))
+        return super(MatchView, self).dispatch(*args, **kwargs)
 
 
 class MatchResultView(MatchQuestionCategoryBase):

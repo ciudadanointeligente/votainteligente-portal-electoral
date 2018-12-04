@@ -185,3 +185,20 @@ class ColigacoesPerAreaViewTestCase(MediaNaranjaAdaptersBase):
         response = self.client.get(url)
         url_redirected = reverse('coligacoes', kwargs={'slug': a.slug})
         self.assertRedirects(response, url_redirected)
+
+
+@override_settings(ROOT_URLCONF='merepresenta.stand_alone_urls')
+class EleitorxRedirectView(MediaNaranjaAdaptersBase):
+    @override_settings(ELEITOR_WORKING=True)
+    def test_get_the_view_that_corresponds_to_the_elector(self):
+        url = reverse('match')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+    @override_settings(ELEITOR_WORKING=False)
+    def test_redirects(self):
+        url = reverse('match')
+        response = self.client.get(url)
+        voluntario_url = reverse('volunteer_index')
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, voluntario_url)

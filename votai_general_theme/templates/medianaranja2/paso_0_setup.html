@@ -16,8 +16,9 @@
   {% if wizard.form.area %}
     {% bootstrap_field wizard.form.area%}
   {% endif %}
-  {% bootstrap_field wizard.form.categories%}
-
+  {% if wizard.form.categories %}
+    {% bootstrap_field wizard.form.categories%}
+  {% endif %}
 
   <button type="submit" name="submit" value="{% trans "Paso Siguiente" %}" class="btn btn-success pull-right" onclick="ga('send','event','siguiente-paso-{{wizard.steps.step1}}-media-naranja','click')">{% trans "Paso Siguiente" %}</button>
 

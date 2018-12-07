@@ -47,16 +47,21 @@ categories_field = CategoryMultipleChoiceField(label=u"De estos temas, ¿cuáles
                                                queryset=QuestionCategory.objects.none(),
                                                widget=forms.CheckboxSelectMultiple(),)
 class SetupForm(forms.Form):
-    categories = categories_field
 
     def __init__(self, *args, **kwargs):
+        should_use_categories = kwargs.pop('should_use_categories', True)
         super(SetupForm, self).__init__(*args, **kwargs)
+        if should_use_categories:
+            self.fields['categories'] = categories_field
+
         if settings.SECOND_ROUND_ELECTION is None:
             self.fields['area'] = area_field
-            self.fields['categories'].queryset = QuestionCategory.objects.all().order_by('-name')
+            if 'categories' in self.fields:
+                self.fields['categories'].queryset = QuestionCategory.objects.all().order_by('-name')
         else:
             self.election = Election.objects.get(slug=settings.SECOND_ROUND_ELECTION)
-            self.fields['categories'].queryset = self.election.categories.order_by('-name')
+            if 'categories' in self.fields:
+                self.fields['categories'].queryset = self.election.categories.order_by('-name')
 
     def clean(self):
         cleaned_data = super(SetupForm, self).clean()
@@ -195,6 +200,7 @@ class MediaNaranjaWizardFormBase(SessionWizardView):
 
     def get_proposals_form_kwargs(self, cleaned_data):
         proposal_getter_kwargs = self.get_proposal_getter_kwargs()
+        
         getter = self.get_proposal_class()(**proposal_getter_kwargs)
         element_selector = self.get_element_selector_from_cleaned_data(cleaned_data)
         proposals = getter.get_all_proposals(element_selector)
@@ -227,6 +233,21 @@ class MediaNaranjaWizardForm(MediaNaranjaWizardFormBase):
     templates = {"0": "medianaranja2/paso_0_setup.html",
                  "1": "medianaranja2/paso_1_preguntas_y_respuestas.html",
                  "2": "medianaranja2/paso_2_proposals_list.html"}
+
+
+class MediaNaranjaNoQuestionsWizardForm(MediaNaranjaWizardFormBase):
+    form_list = [SetupForm, ProposalsForm]
+    steps_and_functions = {
+        1: 'get_proposals_form_kwargs'
+    }
+    templates = {"0": "medianaranja2/paso_0_setup.html",
+                 "1": "medianaranja2/paso_2_proposals_list.html"}
+
+    def get_form_kwargs(self, step):
+        kwargs = super(MediaNaranjaNoQuestionsWizardForm, self).get_form_kwargs(step)
+        if step == '0':
+            kwargs['should_use_categories'] = False
+        return kwargs
 
 
 class MediaNaranjaOnlyProposals(MediaNaranjaWizardFormBase):

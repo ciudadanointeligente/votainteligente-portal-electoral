@@ -147,3 +147,12 @@ class ProposalWizardFullWithoutArea(ProposalWizardBase):
 
     def get_previous_forms(self):
         return []
+
+
+def wizard_creator_chooser():
+    filterable_area_type = settings.FILTERABLE_AREAS_TYPE[0]
+    areas = Area.objects.filter(classification=filterable_area_type)
+    if areas:
+        return ProposalWizardFull
+    else:
+        return ProposalWizardFullWithoutArea

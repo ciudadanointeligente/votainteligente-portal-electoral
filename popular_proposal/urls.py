@@ -16,7 +16,8 @@ from popular_proposal.views.proposal_views import (ProposalCreationView,
                                                    )
 from popular_proposal.views.wizard import (ProposalWizard,
                                            ProposalWizardFull,
-                                           ProposalWizardFullWithoutArea,)
+                                           ProposalWizardFullWithoutArea,
+                                           wizard_creator_chooser)
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.utils.translation import ugettext_lazy as _
 
@@ -34,11 +35,11 @@ urlpatterns = [
     url(r'^create_wizard/(?P<slug>[-\w]+)/?$',
         ProposalWizard.as_view(),
         name='propose_wizard'),
-    url(r'^create_wizard_full/?$',
+    url(_(r'^nueva/?$'),
         ProposalWizardFull.as_view(),
         name='propose_wizard_full'),
     url(_(r'^crear/?$'),
-        ProposalWizardFullWithoutArea.as_view(),
+        wizard_creator_chooser().as_view(),
         name='propose_wizard_full_without_area'),
     url(r'^detail/(?P<slug>[-\w]+)/?$',
         xframe_options_exempt(PopularProposalDetailView.as_view()),

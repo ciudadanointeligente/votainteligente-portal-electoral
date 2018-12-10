@@ -12,15 +12,30 @@ from django.core.urlresolvers import reverse
 from popular_proposal.forms import UpdateProposalForm
 from popular_proposal.forms.form_texts import TEXTS
 from popular_proposal.models import ProposalTemporaryData
+from popular_proposal.views.wizard import wizard_creator_chooser, ProposalWizardFull, ProposalWizardFullWithoutArea
 from django.core import mail
 from collections import OrderedDict
 from constance.test import override_config
 from django.test import override_settings
 from constance import config
 from popular_proposal.tests import example_fields
+from django.conf import settings
 
 USER_PASSWORD = 'secr3t'
 
+
+class WizardChooserViewTestCase(TestCase):
+    def test_depends_on_the_filterable_area_test(self):
+        filterable_area_type = settings.FILTERABLE_AREAS_TYPE[0]
+        areas = Area.objects.filter(classification=filterable_area_type)
+        self.assertTrue(areas)
+
+        class_view = wizard_creator_chooser()
+        self.assertEquals(class_view, ProposalWizardFull)
+
+        areas.delete()
+        class_view = wizard_creator_chooser()
+        self.assertEquals(class_view, ProposalWizardFullWithoutArea)        
 
 class WizardDataMixin(object):
     url = reverse('popular_proposals:propose_wizard_full_without_area')

@@ -2,12 +2,13 @@
 from django.views.generic import DetailView
 from medianaranja2.models import SharedResult
 from django.contrib.contenttypes.models import ContentType
+from elections.models import QuestionCategory
 from elections.models import Candidate
 from medianaranja2.forms import ShareForm
 from django.views.generic.edit import CreateView
 from organization_profiles.models import OrganizationTemplate
 from django.http import HttpResponse
-from medianaranja2.forms import MediaNaranjaOnlyProposals, MediaNaranjaWizardForm
+from medianaranja2.forms import MediaNaranjaOnlyProposals, MediaNaranjaWizardForm, MediaNaranjaNoQuestionsWizardForm
 
 
 
@@ -55,7 +56,10 @@ def get_medianaranja_view(*args, **kwargs):
     from django.conf import settings
     from constance import config
     if settings.MEDIA_NARANJA_QUESTIONS_ENABLED:
-        view = MediaNaranjaWizardForm.as_view()
+        if not QuestionCategory.objects.exists():
+            view = MediaNaranjaNoQuestionsWizardForm.as_view()
+        else:
+            view = MediaNaranjaWizardForm.as_view()
     else:
         view = MediaNaranjaOnlyProposals.as_view()
 

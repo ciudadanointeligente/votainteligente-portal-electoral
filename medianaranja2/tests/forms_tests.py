@@ -2,6 +2,7 @@
 from .adapter_tests import MediaNaranjaAdaptersBase
 from elections.models import Area
 from medianaranja2.forms import SetupForm, QuestionsForm, ProposalsForm, MediaNaranjaWizardForm
+from elections.models import QuestionCategory
 from django.conf import settings
 from elections.models import Candidate, Election, Area
 from constance import config
@@ -23,6 +24,14 @@ class FormsTestCase(MediaNaranjaAdaptersBase):
                                         classification=settings.FILTERABLE_AREAS_TYPE[0])
         self.election.area = self.area
         self.election.save()
+
+    def test_if_no_categories_then_no_field(self):
+        '''If there are no categories in the database then the categories field is not shown in setupFilter'''
+        data = {
+            'area': self.area.id
+        }
+        form = SetupForm(data, should_use_categories=False)
+        self.assertTrue(form.is_valid())
 
     def test_instanciate_category_selection_form(self):
         data = {
@@ -185,6 +194,7 @@ class MediaNaranjaWizardFormTestsBase(MediaNaranjaAdaptersBase):
         self.assertTrue(is_done)
         return response
 
+
 class MediaNaranjaWizardFormTests(MediaNaranjaWizardFormTestsBase):
     
 
@@ -211,6 +221,42 @@ class MediaNaranjaWizardFormTests(MediaNaranjaWizardFormTestsBase):
         result_2 = response.context['results'][2]
         self.assertEquals(result_2, expected)
         self.assertIn(self.p1.proposer.organization_template, response.context['organizations'].all())
+
+
+@override_config(DEFAULT_AREA='grand_mother')
+class MediaNaranjaTwoFormWizardFormTests(MediaNaranjaWizardFormTestsBase):
+    def setUp(self):
+        super(MediaNaranjaTwoFormWizardFormTests, self).setUp()
+        self.url = reverse('medianaranja2:index')
+        QuestionCategory.objects.all().delete()
+        self.area = Area.objects.create(name="children",
+                                        classification=settings.FILTERABLE_AREAS_TYPE[0])
+        self.election.area = self.area
+        self.election.save()
+        PopularProposal.objects.update(area=self.area)
+
+    def test_no_categories_in_the_database(self):
+        response = self.client.get(self.url)
+        steps = response.context['wizard']['steps']
+        self.assertEquals(steps.count, 2)
+        self.assertIsInstance(response.context['form'], SetupForm)
+        data = {
+            '0-area': self.area.id,
+            'media_naranja_no_questions_wizard_form-current_step': 0
+        }
+        response = self.client.post(self.url, data=data)
+        
+        steps = response.context['wizard']['steps']
+        # Dimos un paso
+        self.assertFalse(response.context['form'].errors)
+        self.assertEquals(steps.current, '1')
+        # propuestas
+        self.assertIsInstance(response.context['form'], ProposalsForm)
+        data = {'media_naranja_no_questions_wizard_form-current_step': 1,
+                '1-proposals': [self.p1.id, self.p3.id]}
+        response = self.client.post(self.url, data=data)
+        self.assertNotIn('form', response.context)
+
 
 
 @override_config(DEFAULT_AREA='grand_mother')

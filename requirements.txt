@@ -6,7 +6,7 @@ loremipsum==1.0.5
 elasticsearch==2.4
 django-haystack==2.7.0
 -e git+https://github.com/lfalvarez/django-candidator.git#egg=django-candidator
-PyYAML==3.12
+pyyaml>=4.2b1
 django-markdown-deux==1.0.4
 django-extensions==1.7.5
 sorl-thumbnail==12.4a1

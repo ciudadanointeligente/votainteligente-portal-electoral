@@ -356,7 +356,7 @@ class WizardTestCase2(TestCase, WizardDataMixin):
         self.assertIn(temporary_data.get_title(), the_mail.body)
 
 
-@override_config(DEFAULT_AREA='argentina', DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD=True)
+@override_config(DEFAULT_AREA='argentina')
 class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
     def setUp(self):
         super(AutomaticallyCreateProposalTestCase, self).setUp()
@@ -368,6 +368,7 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
         ProposalTemporaryData.objects.all().delete()
         self.example_data = self.get_example_data_for_post()
 
+    @override_config(DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD=True)
     def test_create_a_proposal(self):
         original_amount = len(mail.outbox)
         response = self.fill_the_whole_wizard()
@@ -387,6 +388,7 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
                 url_in_mail = True
         self.assertTrue(url_in_mail)
 
+    @override_config(DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD=True)
     def test_create_a_proposal_attributes(self):
         response = self.fill_the_whole_wizard()
         temporary_data = response.context['popular_proposal']
@@ -395,6 +397,7 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
         self.assertTrue(proposal.is_local_meeting)
         self.assertTrue(proposal.generated_at)
 
+    @override_config(DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD=True)
     def test_done_brings_update_proposal_form(self):
         response = self.fill_the_whole_wizard()
         temporary_data = response.context['popular_proposal']

@@ -20,22 +20,22 @@ from django.test import override_settings
 from constance import config
 from popular_proposal.tests import example_fields
 from django.conf import settings
+from constance.test import override_config
 
 USER_PASSWORD = 'secr3t'
 
 
 class WizardChooserViewTestCase(TestCase):
-    def test_depends_on_the_filterable_area_test(self):
-        filterable_area_type = settings.FILTERABLE_AREAS_TYPE[0]
-        areas = Area.objects.filter(classification=filterable_area_type)
-        self.assertTrue(areas)
-
+    @override_config(DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD=False)
+    def test_please_show_areas(self):
         class_view = wizard_creator_chooser()
         self.assertEquals(class_view, ProposalWizardFull)
 
-        areas.delete()
+    @override_config(DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD=True)
+    def test_dont_show_areas(self):
         class_view = wizard_creator_chooser()
-        self.assertEquals(class_view, ProposalWizardFullWithoutArea)        
+        self.assertEquals(class_view, ProposalWizardFullWithoutArea)
+
 
 class WizardDataMixin(object):
     url = reverse('popular_proposals:propose_wizard_full_without_area')

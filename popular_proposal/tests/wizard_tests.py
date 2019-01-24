@@ -71,7 +71,6 @@ class WizardDataMixin(object):
 
     def fill_the_whole_wizard(self,
                               override_example_data={},
-                              default_view_slug='proposal_wizard_full_without_area',
                               **kwargs):
         '''
         en:
@@ -90,11 +89,14 @@ class WizardDataMixin(object):
         self.client.login(username=user,
                           password=password)
         response = self.client.get(url)
+        # Este es el prefix que trae el management form del wizard
+        # Es una cosa media compleja, pero busquen donde dice management form en html
+        prefix = response.context['wizard']['management_form'].prefix
         steps = response.context['wizard']['steps']
         for i in range(steps.count):
             self.assertEquals(steps.current, unicode(i))
             data = example_data[i]
-            data.update({default_view_slug + '-current_step': unicode(i)})
+            data.update({prefix + '-current_step': unicode(i)})
             response = self.client.post(url, data=data)
             if 'form' in response.context:
                 if response.context['form'] is not None:

@@ -233,6 +233,7 @@ CONSTANCE_CONFIG = {
     'MEREPRESENTA_IDENTITY_MULTIPLICATION_FACTOR': (1.0, u'o factor de multiplicacao de desprivilegio'),
     'MEREPRESENTA_RESULTADO_CANTIDADE': (100, u'o factor de multiplicacao de desprivilegio'),
     'MEREPRESENTA_CANDIDATES_ALLOWED_TO_LOGIN': (True, u'os candidatos podem entrar na plataforma'),
+    'DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD': (True, u'No muestres las areas en el wizard de creación de propuestas'),
 }
 TESTING = 'test' in sys.argv
 if TESTING:

@@ -5,6 +5,7 @@
 {% load bootstrap3 %}
 {% load votainteligente_extras%}
 {% block form_content %}
+
             {% csrf_token %}
         {{ wizard.management_form }}
         {% for field in form %}

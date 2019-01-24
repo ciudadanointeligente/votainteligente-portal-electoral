@@ -20,22 +20,22 @@ from django.test import override_settings
 from constance import config
 from popular_proposal.tests import example_fields
 from django.conf import settings
+from constance.test import override_config
 
 USER_PASSWORD = 'secr3t'
 
 
 class WizardChooserViewTestCase(TestCase):
-    def test_depends_on_the_filterable_area_test(self):
-        filterable_area_type = settings.FILTERABLE_AREAS_TYPE[0]
-        areas = Area.objects.filter(classification=filterable_area_type)
-        self.assertTrue(areas)
-
+    @override_settings(DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD=False)
+    def test_please_show_areas(self):
         class_view = wizard_creator_chooser()
         self.assertEquals(class_view, ProposalWizardFull)
 
-        areas.delete()
+    @override_settings(DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD=True)
+    def test_dont_show_areas(self):
         class_view = wizard_creator_chooser()
-        self.assertEquals(class_view, ProposalWizardFullWithoutArea)        
+        self.assertEquals(class_view, ProposalWizardFullWithoutArea)
+
 
 class WizardDataMixin(object):
     url = reverse('popular_proposals:propose_wizard_full_without_area')
@@ -71,7 +71,6 @@ class WizardDataMixin(object):
 
     def fill_the_whole_wizard(self,
                               override_example_data={},
-                              default_view_slug='proposal_wizard_full_without_area',
                               **kwargs):
         '''
         en:
@@ -90,11 +89,14 @@ class WizardDataMixin(object):
         self.client.login(username=user,
                           password=password)
         response = self.client.get(url)
+        # Este es el prefix que trae el management form del wizard
+        # Es una cosa media compleja, pero busquen donde dice management form en html
+        prefix = response.context['wizard']['management_form'].prefix
         steps = response.context['wizard']['steps']
         for i in range(steps.count):
             self.assertEquals(steps.current, unicode(i))
             data = example_data[i]
-            data.update({default_view_slug + '-current_step': unicode(i)})
+            data.update({prefix + '-current_step': unicode(i)})
             response = self.client.post(url, data=data)
             if 'form' in response.context:
                 if response.context['form'] is not None:
@@ -355,6 +357,7 @@ class WizardTestCase2(TestCase, WizardDataMixin):
 
 
 @override_config(DEFAULT_AREA='argentina')
+@override_settings(DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD=True)
 class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
     def setUp(self):
         super(AutomaticallyCreateProposalTestCase, self).setUp()

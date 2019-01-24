@@ -32,6 +32,17 @@
 </div>
 {% endif %}
 
+{% if debug and user.is_superuser and wizard.steps.step1 == 1 %}
+
+<div class="alert alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  QUERIDA PROGRAMADORA:
+  DEBES SETEAR UN PARÁMETRO LLAMADO DEFAULT_AREA en <a href="/admin/constance/config/"> /admin/constance/config/</a> con el area por defecto para crear una propuesta
+
+  ESTE MENSAJE SOLO SALE EN DEBUG
+</div>
+
+{% endif %}
 {% endblock messages %}
 
 <div class="text-center proposal-step">

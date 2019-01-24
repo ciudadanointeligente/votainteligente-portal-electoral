@@ -356,7 +356,7 @@ class WizardTestCase2(TestCase, WizardDataMixin):
         self.assertIn(temporary_data.get_title(), the_mail.body)
 
 
-@override_config(DEFAULT_AREA='argentina')
+@override_config(DEFAULT_AREA='argentina', DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD=True)
 class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
     def setUp(self):
         super(AutomaticallyCreateProposalTestCase, self).setUp()

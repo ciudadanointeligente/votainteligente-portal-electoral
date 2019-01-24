@@ -151,6 +151,6 @@ class ProposalWizardFullWithoutArea(ProposalWizardBase):
 
 def wizard_creator_chooser():
     filterable_area_type = settings.FILTERABLE_AREAS_TYPE[0]
-    if config.DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD:
+    if settings.DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD:
        return ProposalWizardFullWithoutArea
     return ProposalWizardFull

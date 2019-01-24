@@ -15,8 +15,9 @@ NOTIFY_CANDIDATES_OF_NEW_PROPOSAL = True
 MAX_AMOUNT_OF_MAILS_TO_CANDIDATE = 3
 RECOMMENDED_ORGS_FROM_CACHE = True
 # El tipo de area territorial que sirve para listar propuestas en /propuestas 
-
 FILTERABLE_AREAS_TYPE = ['Comuna']
+## No muestres las areas en el wizard de creación de propuestas
+DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD = True
 DEFAULT_EXTRAPAGES_FOR_ORGANIZATIONS=[{'title':u'Agenda', 'content':'''* **19 DE NOVIEMBRE**\r\nPrimera vuelta de Elecciones Presidenciales y Parlamentarias
 * **17 DE DICIEMBRE**   *Segunda vuelta de Elecciones Presidenciales'''},
                                                            {'title':u'Documentos', 'content':''}]

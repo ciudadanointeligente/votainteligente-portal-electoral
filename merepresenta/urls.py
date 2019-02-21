@@ -16,8 +16,9 @@ from merepresenta.voluntarios.views import (VolunteerIndexView,
                                             CouldNotFindCandidate,
                                             FacebookContacted,
                                             complete)
-from merepresenta.match.views import MatchView, MatchResultView, MatchResultAjaxView
+from merepresenta.match.views import MatchView, MatchResultView, MatchResultAjaxView, MatchSecretView
 from merepresenta.views import ColigacoesPerAreaView, ColigacoesInitialRedirect
+from django.conf import settings
 
 class MeRepresentaMeiaLaranjaForm(MediaNaranjaElectionForm):
     def __init__(self, *args, **kwargs):
@@ -28,6 +29,7 @@ class MeRepresentaMeiaLaranja(CompleteMediaNaranjaView):
     def get_form_class(self):
         return MeRepresentaMeiaLaranjaForm
 
+SECRET_URL_MATCH = getattr(settings, 'SECRET_URL_MATCH', 'secret_match' )
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -62,6 +64,9 @@ urlpatterns = [
     url(r'^eleitora/?$',
         MatchView.as_view(),
         name='match'),
+    url(r'^{secret_url}/?$'.format(secret_url=SECRET_URL_MATCH),
+        MatchSecretView.as_view(),
+        name='match_secret'),
     url(r'^resultado/?$',
         MatchResultView.as_view(),
         name='match_result'),

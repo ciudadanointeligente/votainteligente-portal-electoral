@@ -31,6 +31,13 @@ class QuestionCategoryForm(TestCase, MeRepresentaMatchBase):
         self.assertEquals(response.status_code, 200)
         self.assertIsInstance(response.context['form'], QuestionsCategoryForm)
 
+    def test_get_the_secret_view(self):
+        url = reverse('match_secret')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIsInstance(response.context['form'], QuestionsCategoryForm)
+        self.assertTemplateUsed(response, 'match/pergunta.html')
+
     def test_get_post(self):
         a = Area.objects.create(name='area')
         e = Election.objects.create(name='Deputada/o estadual', area=a)

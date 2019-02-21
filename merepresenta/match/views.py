@@ -48,6 +48,9 @@ class MatchView(MatchQuestionCategoryBase):
             return HttpResponseRedirect(reverse_lazy('volunteer_index'))
         return super(MatchView, self).dispatch(*args, **kwargs)
 
+class MatchSecretView(MatchQuestionCategoryBase):
+    template_name = 'match/pergunta.html'
+    success_template = 'match/resultado_ajax.html'
 
 class MatchResultView(MatchQuestionCategoryBase):
     template_name = 'match/pergunta.html'

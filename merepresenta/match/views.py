@@ -49,7 +49,7 @@ class MatchView(MatchQuestionCategoryBase):
         return super(MatchView, self).dispatch(*args, **kwargs)
 
 class MatchSecretView(MatchQuestionCategoryBase):
-    template_name = 'match/pergunta.html'
+    template_name = 'match/pergunta_secret.html'
     success_template = 'match/resultado_ajax.html'
 
 class MatchResultView(MatchQuestionCategoryBase):

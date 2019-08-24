@@ -36,7 +36,6 @@ class QuestionCategoryForm(TestCase, MeRepresentaMatchBase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertIsInstance(response.context['form'], QuestionsCategoryForm)
-        self.assertTemplateUsed(response, 'match/pergunta.html')
 
     def test_get_post(self):
         a = Area.objects.create(name='area')

@@ -1,2 +1,0 @@
-class CouldNotFindIdentifier(Exception):
-        pass

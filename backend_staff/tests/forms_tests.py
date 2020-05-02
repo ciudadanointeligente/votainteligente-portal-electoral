@@ -6,7 +6,6 @@ from popular_proposal.models import ProposalTemporaryData, PopularProposal
 from popular_proposal.forms import RejectionForm
 from elections.models import Area
 from elections.models import Election, Candidate
-from preguntales.models import Message
 from django.core import mail
 from backend_staff.forms import AddContactAndSendMailForm
 from backend_candidate.models import CandidacyContact

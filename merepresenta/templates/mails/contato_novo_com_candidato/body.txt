@@ -1,5 +1,0 @@
-Olá {{candidate}}!
-
-
-
-Este é um convite para a plataforma merepresenta.org.br que é a melhor plataforma que existe.

@@ -59,8 +59,6 @@ INSTALLED_APPS = (
     'mathfilters',
     'newsletter',
     'rest_framework',
-    'preguntales',
-    'votita',
     'suggestions_for_candidates',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
@@ -74,7 +72,6 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'agenda',
     'medianaranja2',
-    'merepresenta',
     # 'debug_panel',
     'el_pagination',
     'proposal_subscriptions',

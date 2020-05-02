@@ -32,7 +32,6 @@ urlpatterns = [
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('elections.urls')),
-    url(_(r'^preguntales/'), include('preguntales.urls')),
     url(_(r'^propuestas/'), include('popular_proposal.urls', namespace='popular_proposals')),
     url(_('^pages/'), include('django.contrib.flatpages.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
@@ -44,8 +43,6 @@ urlpatterns = [
     url(_(r'^organizacion/'), include('organization_profiles.urls', namespace='organization_profiles')),
     url(_(r'^candidatos/'), include('backend_candidate.urls', namespace='backend_candidate')),
     url(r'^proposal_subscriptions/', include('proposal_subscriptions.urls', namespace='proposal_subscriptions')),
-    url(r'^levantalamano/', include('votita.urls', namespace='votita')),
-    url(r'^cuentas/', include('votita.urls.auth_urls', namespace="votita_auth")),
     url(_(r'^ayudanos/$'),
         HelpFindingCandidates.as_view(),
         name='help'),

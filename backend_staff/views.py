@@ -4,7 +4,6 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from popular_proposal.models import ProposalTemporaryData, Commitment
-from preguntales.models import Message
 from django.views.generic.edit import FormView
 from popular_proposal.forms import CommentsForm, RejectionForm
 from backend_staff.forms import AddContactAndSendMailForm
@@ -30,7 +29,6 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['proposals'] = ProposalTemporaryData.objects.all().order_by('-created')
-        context['needing_moderation_messages'] = Message.objects.needing_moderation_messages()
         return context
 
 

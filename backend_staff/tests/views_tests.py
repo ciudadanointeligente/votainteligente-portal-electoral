@@ -6,7 +6,6 @@ from popular_proposal.models import ProposalTemporaryData, PopularProposal, Comm
 from popular_proposal.forms import RejectionForm
 from elections.models import Area
 from elections.models import Election, Candidate
-from preguntales.models import Message
 from django.core import mail
 from backend_staff.views import Stats
 from backend_staff.stats import PerAreaStaffStats
@@ -125,13 +124,6 @@ class StaffHomeViewTest(TestCase):
 
         # Temporary datas are listed in the index so we can moderate them
         # or update them.
-        message = Message.objects.create(election=self.election,
-                                         author_name='author',
-                                         author_email='author@email.com',
-                                         subject='Perrito',
-                                         content='content',
-                                         )
-        # Messages are listed as well
 
         url = reverse('backend_staff:index')
         self.client.login(username=self.fiera.username,
@@ -142,7 +134,6 @@ class StaffHomeViewTest(TestCase):
         self.assertIn(temporary_data, response.context['proposals'])
         self.assertIn(temporary_data2, response.context['proposals'])
         self.assertIn(temporary_data3, response.context['proposals'])
-        self.assertIn(message, response.context['needing_moderation_messages'].all())
 
     def test_get_proposal_moderation_view(self):
         temporary_data = ProposalTemporaryData.objects.create(proposer=self.feli,

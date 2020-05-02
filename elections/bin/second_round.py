@@ -30,22 +30,9 @@ class SecondRoundCreator(object):
         for candidate in self.candidates:
             second_round.candidates.add(candidate)
         self.copy_categories(second_round)
-        self.copy_messages(second_round)
         self.election.second_round = second_round
         self.election.save()
         return second_round
-
-    def copy_messages(self, second_round):
-        for message in self.election.messages.all():
-            _message = copy_model_instance(message)
-            _message.id = None
-            _message.election = second_round
-            _message.save()
-            for answer in message.answers.all():
-                _answer = copy_model_instance(answer)
-                _answer.id = None
-                _answer.message = _message
-                _answer.save()
 
     def copy_categories(self, second_round):
         for category in self.election.categories.all():

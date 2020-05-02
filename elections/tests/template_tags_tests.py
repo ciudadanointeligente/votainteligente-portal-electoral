@@ -21,7 +21,6 @@ from django.test import override_settings
 from django.shortcuts import render
 from constance import config
 from constance.test import override_config
-from votita.models import KidsProposal
 
 class TemplateTagsTestCase(TestCase):
     def setUp(self):
@@ -534,7 +533,7 @@ class LoginFormsTemplateTags(TestCase):
         actual = popular_proposal.display_card(Context(context))
         self.assertEquals(expected, actual)
 
-        kids_proposal = KidsProposal.objects.create(proposer=u,
+        kids_proposal = PopularProposal.objects.create(proposer=u,
                                                     data=data,
                                                     title=u'This is a title',
                                                     clasification=u'education'

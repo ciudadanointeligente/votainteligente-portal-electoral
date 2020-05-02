@@ -417,9 +417,6 @@ def get_proposal_author(popular_proposal):
 def get_classification_from_str(classification):
     from popular_proposal.forms.form_texts import TOPIC_CHOICES_DICT
     d = TOPIC_CHOICES_DICT
-    if settings.THEME is None:
-        from votita.forms.forms import TOPIC_CHOICES_DICT
-        d.update(TOPIC_CHOICES_DICT)
 
     return d.get(classification, "")
 

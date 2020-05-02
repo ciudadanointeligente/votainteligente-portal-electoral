@@ -14,8 +14,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.flatpages.models import FlatPage
 import copy
 from votai_utils.open_graph import OGPMixin
-from django.db.models import Count, F, FloatField, IntegerField, ExpressionWrapper, Case, Value, When
-from django.shortcuts import render
+from django.db.models import Count, F, FloatField, ExpressionWrapper
 from constance import config
 from django.db.models import Case, Value, When, PositiveSmallIntegerField
 from django.template.loader import get_template

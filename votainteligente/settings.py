@@ -183,7 +183,6 @@ CONSTANCE_CONFIG = {
     'HIDDEN_AREAS': ('', 'Seccion oculta'),
     'DEFAULT_ELECTION_ID': (1, u'La elección que aparece en /candidaturas'),
     'NAV_BAR': ('profiles, questionary, soulmate, facetoface, ask, ranking', 'Menu de navegacion'),
-    'NAV_BAR_VOTITA_DISPLAYED': (False, 'Desplegamos el navbar del votita??????'),
     'SHOW_RIBBON_IN_CANDIDATE': (False, u"Debería aparecerles la franja roja que dice 'No se ha compormetido?'"),
     'SHOW_ALL_CANDIDATES_IN_THIS_ORDER': ("", u"Mostrar todos los candidatos en la parte de /candidatos? "),
     'CAN_CREATE_TEST_PROPOSAL': (False, u'Se pueden crear propuestas de prueba?'),
@@ -226,10 +225,6 @@ CONSTANCE_CONFIG = {
     'MEDIA_NARANJA_QUESTIONS_ENABLED': (True, u'Si bajas esto la 1/2 n sólo usará propuestas ciudadanas'),
 
     'ESTRATEGIA_SELECCION_PROPUESTAS': ("getter", u'Qué estrategia usamos para mostrar propuestas en la 1/2 naranja', 'proposals_getter_for_12_n'),
-    'MEREPRESENTA_COLIGACAO_ATENUATION_FACTOR': (1.0, u'o factor de atenuacao de nota de coligacao'),
-    'MEREPRESENTA_IDENTITY_MULTIPLICATION_FACTOR': (1.0, u'o factor de multiplicacao de desprivilegio'),
-    'MEREPRESENTA_RESULTADO_CANTIDADE': (100, u'o factor de multiplicacao de desprivilegio'),
-    'MEREPRESENTA_CANDIDATES_ALLOWED_TO_LOGIN': (True, u'os candidatos podem entrar na plataforma'),
     'DONT_SHOW_AREAS_IN_PROPOSAL_WIZARD': (True, u'No muestres las areas en el wizard de creación de propuestas'),
 }
 TESTING = 'test' in sys.argv

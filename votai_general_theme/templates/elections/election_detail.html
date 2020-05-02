@@ -25,9 +25,6 @@
 	<div class="nav-candidator btn-bajada">
 		<nav class="col-md-12">
 			<ul class="list-inline text-center">
-				{% if 'soulmate'|val_navbars and election.uses_soul_mate  %}
-				<li {% block tab_soulmate %}{% endblock %}><a href="{% url 'soul_mate_detail_view' slug=election.slug %}" accesskey="n" title="{% trans "1/2 Naranja" %} (Alt+n)" class="btn btn-success"><i class="icon-heart"></i> {% trans "1/2 Naranja" %}</a></li>
-				{% endif %}
 				{% if 'facetoface'|val_navbars and election.uses_face_to_face  %}
 				<li {% block tab_facetoface %}{% endblock %}><a href="{% block url_face_to_face %}{% url 'face_to_face_no_candidate_detail_view' slug=election.slug %}{% endblock url_face_to_face %}" accesskey="f" title="{% trans "Frente a Frente" %} (Alt+f)" class="btn btn-primary"><i class="icon-bolt"></i> {% trans "Frente a Frente" %}</a></li>
 				{% endif %}

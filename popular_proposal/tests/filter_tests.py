@@ -56,20 +56,20 @@ class PopularProposalFilterTestCase(ProposingCycleTestCaseBase):
     def test_filter_with_area(self):
 
         data = {'clasification': TOPIC_CHOICES[1][0],
-                'area': self.algarrobo.id}
+                'area': self.algarrobo.slug}
         f = ProposalWithAreaFilter(data=data)
         self.assertIn(self.p1, f.qs)
         self.assertNotIn(self.p2, f.qs)
         self.assertNotIn(self.p2, f.qs)
 
-        data = {'area': self.algarrobo.id}
+        data = {'area': self.algarrobo.slug}
         f = ProposalWithAreaFilter(data=data)
         self.assertIn(self.p1, f.qs)
         self.assertIn(self.p2, f.qs)
         self.assertIn(self.p2, f.qs)
 
     def test_filter_where_generated_area(self):
-        chonchi = Area.objects.create(name="Chonchi", classification="Comuna")
+        chonchi = Area.objects.create(name="Chonchi", classification="Comuna", slug='chonchi')
         p = PopularProposal.objects.create(proposer=self.fiera,
                                            data=self.data,
                                            title=u'P2',
@@ -190,7 +190,7 @@ class OrderingFormTestCase(ProposingCycleTestCaseBase):
         p3.created = one_day_ago
         p3.save()
 
-        data = {'area': self.algarrobo.id}
+        data = {'area': self.algarrobo.slug}
 
         url = reverse('popular_proposals:home')
         response = self.client.get(url, data)

@@ -128,17 +128,6 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'popular_proposal/home.html')
 
-    @override_config(HIDDEN_AREAS="argentina")
-    def test_not_showing_proposals_for_hidden_areas(self):
-        argentina = Area.objects.create(name=u'Argentina')
-        popular_proposal = PopularProposal.objects.create(proposer=self.fiera,
-                                                          area=argentina,
-                                                          data=self.data,
-                                                          title=u'This is a title'
-                                                          )
-        response = self.client.get(self.url)
-        self.assertNotIn(popular_proposal, response.context['popular_proposals'])
-
     def test_brings_a_list_of_proposals(self):
         response = self.client.get(self.url, {})
         self.assertIsInstance(response.context['form'], Form)
@@ -157,7 +146,7 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
         response = self.client.get(self.url, {'clasification': TOPIC_CHOICES[2][0], 'generated_at': self.alhue.id})
         form = response.context['form']
         self.assertEquals(form.fields['clasification'].initial, TOPIC_CHOICES[2][0])
-        self.assertEquals(form.fields['generated_at'].initial, self.alhue.id)
+        self.assertEquals(form.fields['generated_at'].initial, str(self.alhue.id))
         self.assertIn(self.popular_proposal3, response.context['popular_proposals'])
         self.assertNotIn(self.popular_proposal2, response.context['popular_proposals'])
         self.assertNotIn(self.popular_proposal1, response.context['popular_proposals'])

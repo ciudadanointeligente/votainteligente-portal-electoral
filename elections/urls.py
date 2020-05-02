@@ -9,13 +9,9 @@ from elections.views import (
     CandidateDetailView,
     FaceToFaceView,
     AreaDetailView,
-    CandidateFlatPageDetailView,
     KnowYourCandidatesView,
     )
 
-from elections.soul_mate import SoulMateDetailView
-
-from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.views.decorators.cache import cache_page
 
@@ -48,14 +44,6 @@ urlpatterns = [
     url(r'^eleccion/(?P<slug>[-\w]+)/face-to-face/?$',
         cache_page(60 * settings.CACHE_MINUTES)(ElectionDetailView.as_view(template_name='elections/compare_candidates.html')),
         name='face_to_face_no_candidate_detail_view'),
-    #soulmate
-    url(r'^eleccion/(?P<slug>[-\w]+)/soul-mate/?$',
-        csrf_exempt(SoulMateDetailView.as_view(template_name='elections/soulmate_candidate.html')),
-        name='soul_mate_detail_view'),
-    #soulmate
-    url(r'^eleccion/(?P<slug>[-\w]+)/embedded-soul-mate/?$',
-        xframe_options_exempt(csrf_exempt(SoulMateDetailView.as_view(template_name='elections/soulmate_candidate.html', layout="elections/embedded.html"))),
-        name='embedded_soul_mate_detail_view'),
 
     url(r'^eleccion/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/?$',
         cache_page(60 * settings.CACHE_MINUTES)(CandidateDetailView.as_view(template_name='elections/candidate_detail.html')),
@@ -64,11 +52,6 @@ urlpatterns = [
     url(r'^candidaturas/(?P<area_slug>[-\w]+)/(?P<slug>[-\w]+)/?$',
         cache_page(60 * settings.CACHE_MINUTES)(CandidateDetailView.as_view(template_name='elections/candidate_detail.html')),
         name='candidate_detail_view_area'
-        ),
-    # End Preguntales
-    url(r'^eleccion/(?P<election_slug>[-\w]+)/(?P<slug>[-\w]+)/(?P<url>[-\w]+)/?$',
-        cache_page(60 * settings.CACHE_MINUTES)(CandidateFlatPageDetailView.as_view()),
-        name='candidate_flatpage'
         ),
     url(r'^eleccion/(?P<slug>[-\w]+)/extra_info.html$',
         ElectionDetailView.as_view(template_name='elections/extra_info.html'),

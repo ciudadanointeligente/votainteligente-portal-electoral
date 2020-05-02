@@ -1,4 +1,6 @@
 # coding=utf-8
+from copy import copy
+
 from django_filters import (FilterSet,
                             ChoiceFilter,
                             ModelChoiceFilter,
@@ -53,18 +55,22 @@ class ProposalWithoutAreaFilter(FilterSet):
                  strict=None,
                  **kwargs):
         self.area = kwargs.pop('area', None)
+        d = copy(data)
         if self.area is None and data is not None:
             self.area = data.get('area', None)
             if self.area:
                 try:
-                    self.area = Area.objects.get(id=self.area)
+                    self.area = Area.objects.get(slug=self.area)
                 except Area.DoesNotExist as e:
                     self.area = None
         if queryset is None:
             queryset = PopularProposal.ordered.all()
         if self.area is not None:
             queryset = queryset.filter(area=self.area)
-        super(ProposalWithoutAreaFilter, self).__init__(data=data,
+            if d and self.area:
+                print("<----------------", self.area)
+                d['area'] = self.area.id
+        super(ProposalWithoutAreaFilter, self).__init__(data=d,
                                                         queryset=queryset,
                                                         prefix=prefix,
                                                         strict=strict)
@@ -87,7 +93,6 @@ class ProposalWithoutAreaFilter(FilterSet):
     def qs(self):
 
         super(ProposalWithoutAreaFilter, self).qs
-        self._qs = self._qs.exclude(area__id=config.HIDDEN_AREAS)
         if not self.form.is_valid():
             return self._qs
         order_by = self.form.cleaned_data.get('order_by', None)

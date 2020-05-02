@@ -11,7 +11,7 @@ from django.conf import settings
 
 class AreaDeterminerMixin(object):
     def get_default_area(self):
-        return Area.objects.get(id=settings.DEFAULT_AREA)
+        return Area.objects.get(slug=settings.DEFAULT_AREA)
 
 
 class ProposalsGetterBase(AreaDeterminerMixin):
@@ -43,7 +43,8 @@ class ProposalsGetterBase(AreaDeterminerMixin):
             if not proposals_container_element.parent:
                 has_parent = False
             else:
-                proposals_container_element = proposals_container_element.parent
+                parent = proposals_container_element.parent
+                proposals_container_element = Area.objects.get(id=parent.id)
         return elections
 
     def get_proposals_from_election(self, elections):

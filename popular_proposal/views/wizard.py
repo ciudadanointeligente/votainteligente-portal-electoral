@@ -50,7 +50,7 @@ class ProposalWizardBase(SessionWizardView):
         elif hasattr(self, 'area'):
             return self.area
         else:
-            return Area.objects.get(id=config.DEFAULT_AREA)
+            return Area.objects.get(slug=config.DEFAULT_AREA)
 
     def done(self, form_list, **kwargs):
         data = {}

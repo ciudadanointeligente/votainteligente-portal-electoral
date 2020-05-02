@@ -1,6 +1,5 @@
 # coding=utf-8
 from elections.tests import VotaInteligenteTestCase as TestCase
-from popolo.models import Person, ContactDetail
 from elections.models import Candidate, Election, QuestionCategory, PersonalData, Area
 from candidator.models import Category, Position, TakenPosition
 from django.test import override_settings
@@ -19,7 +18,7 @@ class MediaNaranjaAdaptersBase(TestCase):
     popular_proposal_class = PopularProposal
     commitment_class = Commitment
     def setUp(self):
-        a = Area.objects.create(name=u"Territory")
+        a = Area.objects.create(name=u"Territory", slug='terrytory')
         self.election = Election.objects.create(
             name=u'the name', slug=u"the-election", area=a)
 

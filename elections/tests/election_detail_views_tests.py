@@ -141,8 +141,8 @@ class FaceToFaceViewTestCase(TestCase):
         url = reverse('face_to_face_two_candidates_detail_view',
             kwargs={
                 'slug': self.tarapaca.slug,
-                'slug_candidate_one': candidate1.id,
-                'slug_candidate_two': candidate2.id,
+                'slug_candidate_one': candidate1.slug,
+                'slug_candidate_two': candidate2.slug,
             })
         response = self.client.get(url)
 
@@ -159,8 +159,8 @@ class FaceToFaceViewTestCase(TestCase):
         url = reverse('face_to_face_two_candidates_detail_view',
             kwargs={
                 'slug': self.tarapaca.slug,
-                'slug_candidate_one': candidate1.id,
-                'slug_candidate_two': candidate2.id,
+                'slug_candidate_one': candidate1.slug,
+                'slug_candidate_two': candidate2.slug,
             })
 
         response = self.client.get(url)
@@ -178,26 +178,3 @@ class FaceToFaceViewTestCase(TestCase):
         position = topic.positions.first()
         c.taken_positions.create(topic=topic, position=position)
         self.assertTrue(self.tarapaca.has_anyone_answered())
-
-
-class SoulMateTestCase(TestCase):
-    def setUp(self):
-        super(SoulMateTestCase, self).setUp()
-        self.tarapaca = Election.objects.get(id=1)
-
-    def test_url_better_half(self):
-        url = reverse('soul_mate_detail_view',
-            kwargs={
-                'slug': self.tarapaca.slug
-            })
-        self.assertTrue(url)
-
-    def test_url_is_reachable_for_better_half(self):
-        url = reverse('soul_mate_detail_view',
-            kwargs={
-                'slug': self.tarapaca.slug,
-            })
-        self.assertTrue(url)
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'elections/soulmate_candidate.html')

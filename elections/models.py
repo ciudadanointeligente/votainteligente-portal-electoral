@@ -43,10 +43,8 @@ def get_position_in_(qs, el):
             return position
 
 class Area(PopoloArea, OGPMixin):
+    slug = AutoSlugField(populate_from='name', unique=True)
     public = AreaManager()
-
-    class Meta:
-        proxy = True
 
     def get_absolute_url(self):
         return reverse('area', kwargs={'slug': self.slug})
@@ -78,7 +76,7 @@ class Area(PopoloArea, OGPMixin):
     def get_related(self):
         related = []
         for child in self.children.all():
-            if child.elections.exists():
+            if Election.objects.filter(area=child).exists():
                 related.append(self.__class__.objects.get(id=child.id))
         for parent in self.parents:
             if parent !=self and parent.elections.exists():
@@ -89,7 +87,8 @@ class Area(PopoloArea, OGPMixin):
         filterable_contained = []
         for area in self.children.all():
             if area.classification in settings.FILTERABLE_AREAS_TYPE:
-                filterable_contained.append(area)
+                a = Area.objects.get(id=area.id)
+                filterable_contained.append(a)
         return filterable_contained
 
 class ExtraInfoMixin(models.Model):
@@ -168,6 +167,7 @@ from agenda.models import Activity
 
 
 class Candidate(Person, ExtraInfoMixin, OGPMixin, ShareableMixin):
+    slug = AutoSlugField(populate_from='name', unique=True)
     elections = models.ManyToManyField('Election', related_name='candidates', default=None)
     force_has_answer = models.BooleanField(default=False,
                                            help_text=_('Marca esto si quieres que el candidato aparezca como que no ha respondido'))
@@ -226,8 +226,9 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin, ShareableMixin):
             return self.election.position_in_ranking(self)
 
     def get_url_based_on_area(self):
+        a = Area.objects.get(id=self.election.area.id)
         url = reverse('candidate_detail_view_area', kwargs={
-            'area_slug': self.election.area.slug,
+            'area_slug': a.slug,
             'slug': self.slug
         })
         return url
@@ -252,22 +253,6 @@ class Candidate(Person, ExtraInfoMixin, OGPMixin, ShareableMixin):
     class Meta:
         verbose_name = _("Candidato")
         verbose_name_plural = _("Candidatos")
-
-
-class CandidateFlatPage(FlatPage):
-    candidate = models.ForeignKey(Candidate, related_name='flatpages')
-
-    class Meta:
-        verbose_name = _(u"Página estáticas por candidato")
-        verbose_name_plural = _(u"Páginas estáticas por candidato")
-
-    def get_absolute_url(self):
-        return reverse('candidate_flatpage', kwargs={'election_slug': self.candidate.election.slug,
-                                                     'slug': self.candidate.slug,
-                                                     'url': self.url
-                                                     }
-                       )
-
 
 class PersonalData(models.Model):
     candidate = models.ForeignKey('Candidate', related_name="personal_datas")

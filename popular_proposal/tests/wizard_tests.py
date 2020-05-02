@@ -322,7 +322,7 @@ class WizardTestCase2(TestCase, WizardDataMixin):
         ProposalTemporaryData.objects.all().delete()
 
     def test_full_wizard_without_areas(self):
-        argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        argentina = Area.objects.create(name=u'Argentina', slug='argentina')
         original_amount = len(mail.outbox)
         url = reverse('popular_proposals:propose_wizard_full_without_area')
         self.client.login(username=self.feli,
@@ -362,7 +362,7 @@ class AutomaticallyCreateProposalTestCase(TestCase, WizardDataMixin):
     def setUp(self):
         super(AutomaticallyCreateProposalTestCase, self).setUp()
         self.fiera = User.objects.get(username='fiera')
-        self.argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        self.argentina = Area.objects.create(name=u'Argentina', slug='argentina')
         self.feli = User.objects.get(username='feli')
         self.feli.set_password(USER_PASSWORD)
         self.feli.save()

@@ -69,7 +69,7 @@ class SetupForm(forms.Form):
             cleaned_data['element_selector'] = Election.objects.get(slug=settings.SECOND_ROUND_ELECTION)
         else:
             if cleaned_data['area'] is None:
-                cleaned_data['area'] = Area.objects.get(id=config.DEFAULT_AREA)
+                cleaned_data['area'] = Area.objects.get(slug=config.DEFAULT_AREA)
 
         if 'area' in cleaned_data.keys():
             cleaned_data['element_selector'] = cleaned_data['area']
@@ -195,7 +195,7 @@ class MediaNaranjaWizardFormBase(SessionWizardView):
 
     def get_element_selector_from_cleaned_data(self, cleaned_data):
         if 'element_selector' not in cleaned_data:
-            return Area.objects.get(id=config.DEFAULT_AREA)
+            return Area.objects.get(slug=config.DEFAULT_AREA)
         return cleaned_data['element_selector']
 
     def get_proposals_form_kwargs(self, cleaned_data):

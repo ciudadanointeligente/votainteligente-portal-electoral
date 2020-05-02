@@ -9,8 +9,8 @@ from popolo.models import Membership, ContactDetail, OtherName, Person
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django import forms
 from django.conf import settings
+from elections.models import Topic
 from candidator.models import Position as CanPosition, TakenPosition as CanTakenPosition
-from elections.models import Topic, CandidateFlatPage
 from django.utils.encoding import python_2_unicode_compatible
 
 
@@ -288,11 +288,6 @@ class CandidateAdmin(admin.ModelAdmin):
                     TakenPosition.objects.get_or_create(topic=topic, person=candidate)
 
 admin.site.register(Candidate, CandidateAdmin)
-
-
-class CandidateFlatPageAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(CandidateFlatPage, CandidateFlatPageAdmin)
 
 
 class AreaAdmin(admin.ModelAdmin):

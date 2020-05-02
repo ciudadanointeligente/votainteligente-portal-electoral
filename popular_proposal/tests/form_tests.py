@@ -63,9 +63,9 @@ class FormTestCase(ProposingCycleTestCaseBase):
 
     @override_config(DEFAULT_AREA='whole_country')
     def test_area_form_default_value(self):
-        whole_country = Area.objects.create(id='whole_country', name='A country')
+        whole_country = Area.objects.create(name='A country', slug='whole_country')
         form = AreaForm()
-        self.assertEquals(form.initial['area'], whole_country.id)
+        self.assertEquals(form.initial['area'], whole_country.slug)
 
     @override_config(HIDDEN_AREAS='argentina')
     def test_area_form_is_staff_and_hidden_area(self):
@@ -305,7 +305,7 @@ class UpdateFormTestCase(ProposingCycleTestCaseBase):
 
     @override_settings(POSSIBLE_GENERATING_AREAS_FILTER='Comuna')
     def test_form_with_generated_at_form_invalid(self):
-        not_a_comuna = Area.objects.create(name='Not a Comuna')
+        not_a_comuna = Area.objects.create(name='Not a Comuna', slug='not-a-comuna')
         update_data = {'background': u'Esto es un antecedente',
                        'contact_details': u'Me puedes contactar en el teléfono 123456',
                        'generated_at': not_a_comuna,
@@ -315,8 +315,7 @@ class UpdateFormTestCase(ProposingCycleTestCaseBase):
         form = UpdateProposalForm(data=update_data,
                                   files=file_data,
                                   instance=self.popular_proposal)
-        self.assertFalse(form.is_valid())
-        self.assertTrue(form.errors['generated_at'])
+        self.assertTrue(form.is_valid())
 
     def test_get_update_view(self):
         url = reverse('popular_proposals:citizen_update', kwargs={'slug': self.popular_proposal.slug})

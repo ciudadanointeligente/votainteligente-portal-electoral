@@ -19,7 +19,7 @@ django-tastypie==0.13.3
 linaro-django-pagination==2.0.3
 celery==3.1.18
 python-memcached==1.58
--e git+https://github.com/ciudadanointeligente/django-popolo.git@areas_with_slug#egg=django_popolo-dev
+-e git+https://github.com/mysociety/django-popolo.git#egg=django-popolo
 django-mathfilters==0.4.0
 django-picklefield==0.3.2
 -e git+https://github.com/dokterbob/django-newsletter#egg=django_newsletter

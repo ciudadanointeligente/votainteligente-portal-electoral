@@ -22,7 +22,7 @@ class CandidateParticipation(object):
 
 class Stats(object):
     def __init__(self):
-        self.all_candidates_qs = Candidate.objects.exclude(elections__area__id=config.HIDDEN_AREAS)
+        self.all_candidates_qs = Candidate.objects.exclude(elections__area__slug=config.HIDDEN_AREAS)
         self.candidates_qs = self.all_candidates_qs
         super(Stats, self).__init__()
 
@@ -124,7 +124,7 @@ class PerAreaStaffStats(object):
         self.commitments_qs = self.all_commitments_qs
         self.all_commiters_qs = Candidate.objects.filter(elections__area=self.area).exclude(commitments__isnull=True)
         self.commiters_qs = self.all_commiters_qs
-        self.all_candidates_qs = Candidate.objects.exclude(elections__area__id=config.HIDDEN_AREAS)
+        self.all_candidates_qs = Candidate.objects.exclude(elections__area__slug=config.HIDDEN_AREAS)
         self.all_candidates_qs = self.all_candidates_qs.filter(elections__area=self.area)
         self.candidates_qs = self.all_candidates_qs
         super(PerAreaStaffStats, self).__init__()

@@ -1,4 +1,4 @@
-
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView
 from medianaranja2.models import SharedResult
 from django.contrib.contenttypes.models import ContentType

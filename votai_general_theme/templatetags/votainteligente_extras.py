@@ -357,7 +357,7 @@ def template_exists(value):
 
 @register.filter(name='is_marked_area')
 def is_marked_area(area):
-    if area.id in config.MARKED_AREAS:
+    if area.slug in config.MARKED_AREAS:
         return True
     return False
 

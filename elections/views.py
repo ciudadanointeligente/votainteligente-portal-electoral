@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic import DetailView
 from django.views.generic.base import TemplateView
 from elections.models import Election, Area
-from elections.models import Candidate, QuestionCategory, CandidateFlatPage
+from elections.models import Candidate, QuestionCategory
 from votai_utils.views import HomeViewBase
 import logging
 from backend_citizen.forms import GroupCreationForm
@@ -107,13 +107,14 @@ class ElectionDetailView(ElectionDetailViewBase):
     def get_context_data(self, **kwargs):
         context = super(ElectionDetailView, self).get_context_data(**kwargs)
         if 'slug_candidate_one' in self.kwargs:
-            if self.object.candidates.filter(id=self.kwargs['slug_candidate_one']).exists():
+            if self.object.candidates.filter(slug=self.kwargs['slug_candidate_one']).exists():
                 context['first_candidate'] = self.object.candidates\
-                    .get(id=self.kwargs['slug_candidate_one'])
+                    .get(slug=self.kwargs['slug_candidate_one'])
         if 'slug_candidate_two' in self.kwargs:
-            if self.object.candidates.filter(id=self.kwargs['slug_candidate_two']).exists():
+            if self.object.candidates.filter(slug=self.kwargs['slug_candidate_two']).exists():
                 context['second_candidate'] = self.object.candidates\
-                    .get(id=self.kwargs['slug_candidate_two'])
+                    .get(slug=self.kwargs['slug_candidate_two'])
+
         return context
 
 
@@ -182,7 +183,7 @@ class CandidateDetailView(DetailView):
         if candidate is None:
             candidate = super(CandidateDetailView, self).get_object(queryset)
             cache.set(cache_key, candidate, 60 * config.INFINITE_CACHE)
-        cache_key_ranking = u'ranking-for-' + candidate.id
+        cache_key_ranking = u'ranking-for-' + str(candidate.id)
         _candidate = cache.get(cache_key_ranking)
         if _candidate is None:
             try:
@@ -213,7 +214,6 @@ class AreaDetailView(DetailView, FilterMixin):
             return HttpResponseRedirect(Area.objects.get(id=area.parent.id).get_absolute_url())
         return super(AreaDetailView, self).dispatch(request, *args, **kwargs)
 
-
     def get_context_data(self, **kwargs):
         context = super(AreaDetailView, self).get_context_data(**kwargs)
         initial = self.request.GET or None
@@ -229,28 +229,6 @@ class AreaDetailView(DetailView, FilterMixin):
 
     def get_queryset(self, *args, **kwargs):
         return Area.objects.all()
-
-
-class CandidateFlatPageDetailView(DetailView):
-    model = CandidateFlatPage
-    context_object_name = 'flatpage'
-    template_name = 'flatpages/candidate_flatpages.html'
-
-    def get_queryset(self):
-        qs = CandidateFlatPage.objects.filter(candidate__slug=self.kwargs['slug'])
-        return qs
-
-    def get_object(self, queryset=None):
-        if queryset is None:
-            queryset = self.get_queryset()
-        return get_object_or_404(self.model, url=self.kwargs['url'])
-
-    def get_context_data(self, **kwargs):
-        context = super(CandidateFlatPageDetailView, self)\
-            .get_context_data(**kwargs)
-        context['election'] = self.object.candidate.election
-        context['candidate'] = self.object.candidate
-        return context
 
 
 class KnowYourCandidatesView(TemplateView):

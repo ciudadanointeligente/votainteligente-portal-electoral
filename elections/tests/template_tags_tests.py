@@ -140,40 +140,6 @@ class TemplateTagsTestCase(TestCase):
         actual_rendered_template = template.render(context)
         self.assertEqual(expected_template, actual_rendered_template)
 
-    def test_explanation_template_tag(self):
-        '''Given an explanation of 1/2 naranja display it'''
-
-        antofa = Election.objects.get(id=2)
-        data = {
-            "question-0": "8",
-            "question-1": "11",
-            "question-2": "13",
-            "question-id-0": "4",
-            "question-id-1": "5",
-            "question-id-2": "6"
-        }
-        url = reverse('soul_mate_detail_view',
-            kwargs={
-                'slug': antofa.slug,
-            })
-
-        response = self.client.post(url, data=data)
-        explanation_from_html = response.context["winner"]['explanation']
-        education_cat = QuestionCategory.objects.get(slug='educacion', election=antofa)
-        perros_y_gatos_cat = QuestionCategory.objects.get(slug='perros-y-gatos', election=antofa)
-        freedom2_topic = Topic.objects.get(slug='freedom2')
-        benito2_topic = Topic.objects.get(slug='benito2')
-        fiera2_topic = Topic.objects.get(slug='fiera2')
-        template_str = get_template('elections/soulmate_explanation.html')
-
-        rendered_template = template_str.render({'explanation_container': explanation_from_html,
-                                                 'election': antofa})
-        self.assertIn(education_cat.name, rendered_template)
-        self.assertIn(perros_y_gatos_cat.name, rendered_template)
-        self.assertIn(freedom2_topic.label, rendered_template)
-        self.assertIn(benito2_topic.label, rendered_template)
-        self.assertIn(fiera2_topic.label, rendered_template)
-
     def test_filter_times(self):
         template = Template("{% load votainteligente_extras %}{% for i in 3|times %}hola{% endfor %}")
         context = Context({})
@@ -475,8 +441,8 @@ class LoginFormsTemplateTags(TestCase):
 
     @override_config(MARKED_AREAS=['argentina',])
     def test_marked_areas(self):
-        argentina = Area.objects.create(name=u'Argentina')
-        chile = Area.objects.create(name=u'Chile')
+        argentina = Area.objects.create(name=u'Argentina', slug='argentina')
+        chile = Area.objects.create(name=u'Chile', slug='chile')
         template = Template("{% load votainteligente_extras %}{% if area|is_marked_area %}si{% else %}no{% endif %}")
 
         context = Context({'area': argentina})

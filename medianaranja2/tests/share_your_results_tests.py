@@ -46,7 +46,7 @@ class ShareYourResultsTestCase(MediaNaranjaAdaptersBase):
         response = self.client.post(url, data=data)
         result = SharedResult.objects.get()
         self.assertEquals(result.content_type, content_type)
-        self.assertEquals(result.data['object_id'], self.c1.id)
+        self.assertEquals(result.data['object_id'], str(self.c1.id))
         self.assertEquals(result.data['percentage'], 75.0)
         self.assertRedirects(response, result.get_absolute_url())
 
@@ -72,7 +72,7 @@ class ShareYourResultsTestCase(MediaNaranjaAdaptersBase):
         self.assertTrue(form.is_valid())
         result = form.save()
         self.assertEquals(result.content_type, content_type)
-        self.assertEquals(result.data['object_id'], self.c1.id)
+        self.assertEquals(result.data['object_id'], str(self.c1.id))
         self.assertEquals(result.data['percentage'], 75.0)
 
     def test_get_actual_object(self):

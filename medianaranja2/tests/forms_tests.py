@@ -5,7 +5,6 @@ from medianaranja2.forms import SetupForm, QuestionsForm, ProposalsForm, MediaNa
 from elections.models import QuestionCategory
 from django.conf import settings
 from elections.models import Candidate, Election, Area
-from constance import config
 from django import forms
 from popular_proposal.models import (PopularProposal,
                                      Commitment,
@@ -21,6 +20,7 @@ class FormsTestCase(MediaNaranjaAdaptersBase):
         self.setUpProposals()
         self.setUpQuestions()
         self.area = Area.objects.create(name="children",
+                                        slug='children',
                                         classification=settings.FILTERABLE_AREAS_TYPE[0])
         self.election.area = self.area
         self.election.save()
@@ -46,7 +46,7 @@ class FormsTestCase(MediaNaranjaAdaptersBase):
 
     @override_config(DEFAULT_AREA='argentina')
     def test_if_no_area_given_then_selects_the_default_area(self):
-        argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        argentina = Area.objects.create(name=u'Argentina', slug='argentina')
         data = {
             'categories': [self.category1.id, self.category2.id]
         }
@@ -80,7 +80,7 @@ class FormsTestCase(MediaNaranjaAdaptersBase):
         self.assertIn(self.position3, form.cleaned_data['positions'])
 
     def test_proposals_form_instanciate(self):
-        argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        argentina = Area.objects.create(name=u'Argentina', slug='argentina')
         proposals = PopularProposal.objects.filter(id__in=[self.p1.id, self.p2.id, self.p3.id])
         kwargs = {'proposals': proposals, 'element_selector': argentina} 
         form = ProposalsForm(**kwargs)
@@ -94,7 +94,7 @@ class FormsTestCase(MediaNaranjaAdaptersBase):
         self.assertIn(unicode(self.p3), possible_labels[self.p3.id])
 
     def test_posting_proposals_form(self):
-        argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        argentina = Area.objects.create(name=u'Argentina', slug='argentina')
         data = {'proposals': [self.p1.id, self.p2.id]}
         proposals = PopularProposal.objects.filter(id__in=[self.p1.id, self.p2.id, self.p3.id])
         kwargs = {'proposals': proposals,'element_selector': argentina, 'data':data}
@@ -140,7 +140,7 @@ class MediaNaranjaWizardFormTestsBase(MediaNaranjaAdaptersBase):
         Commitment.objects.create(commited=True, candidate=self.candidate_2_2, proposal=self.p5)
         mother.children.add(self.child)
         # Distrito
-        grand_mother = Area.objects.create(name="grand_mother")
+        grand_mother = Area.objects.create(name="grand_mother", slug='grand_mother')
         self.election3 = Election.objects.create(name='election3')
 
         self.election3.area = self.child
@@ -230,6 +230,7 @@ class MediaNaranjaTwoFormWizardFormTests(MediaNaranjaWizardFormTestsBase):
         self.url = reverse('medianaranja2:index')
         QuestionCategory.objects.all().delete()
         self.area = Area.objects.create(name="children",
+                                        slug='children',
                                         classification=settings.FILTERABLE_AREAS_TYPE[0])
         self.election.area = self.area
         self.election.save()

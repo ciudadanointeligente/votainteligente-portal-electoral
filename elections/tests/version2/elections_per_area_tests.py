@@ -11,7 +11,7 @@ from constance.test import override_config
 
 class ElectionsPerAreaTestCase(TestCase):
     def test_an_election_can_have_an_area(self):
-        argentina = Area.objects.create(name=u'Argentina')
+        argentina = Area.objects.create(name=u'Argentina', slug='argentina')
         election = Election.objects.create(
             name='the name',
             slug='the-slug',
@@ -23,26 +23,14 @@ class ElectionsPerAreaTestCase(TestCase):
         self.assertIn(election, argentina.elections.all())
 
     def test_there_is_a_url_with_the_area(self):
-        argentina = Area.objects.create(name=u'Argentina')
+        argentina = Area.objects.create(name=u'Argentina', slug='argentina')
         url = argentina.get_absolute_url()
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'elections/area.html')
 
-    @override_config(HIDDEN_AREAS='argentina')
-    def test_hidden_area(self):
-        argentina = Area.objects.create(name=u'Argentina')
-        self.assertNotIn(argentina, Area.public.all())
-
-    @override_config(HIDDEN_AREAS='argentina')
-    def test_hidden_area_is_still_reachable(self):
-        argentina = Area.objects.create(name=u'Argentina')
-        url = argentina.get_absolute_url()
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-
     def test_candidates_per_area(self):
-        argentina = Area.objects.create(name=u'Argentina')
+        argentina = Area.objects.create(name=u'Argentina', slug='argentina')
         election = Election.objects.create(
             name='the name',
             slug='the-slug',
@@ -60,7 +48,7 @@ class ElectionsPerAreaTestCase(TestCase):
         self.assertNotIn(c3, argentina.candidates().all())
 
     def test_area_ranking(self):
-        argentina = Area.objects.create(name=u'Argentina')
+        argentina = Area.objects.create(name=u'Argentina', slug='argentina')
         election = Election.objects.create(
             name='the name',
             slug='the-slug',
@@ -78,7 +66,7 @@ class ElectionsPerAreaTestCase(TestCase):
         self.assertNotIn(c3, election.ranking().all())
 
     def test_get_position_in_ranking(self):
-        argentina = Area.objects.create(name=u'Argentina')
+        argentina = Area.objects.create(name=u'Argentina', slug='argentina')
         election = Election.objects.create(
             name='the name',
             slug='the-slug',
@@ -105,7 +93,7 @@ class ElectionsPerAreaTestCase(TestCase):
 
     def test_get_position_no_questions(self):
         QuestionCategory.objects.all().delete()
-        argentina = Area.objects.create(name=u'Argentina')
+        argentina = Area.objects.create(name=u'Argentina', slug='argentina')
 
         election = Election.objects.create(
             name='the name',
@@ -133,7 +121,7 @@ class ElectionsPerAreaTestCase(TestCase):
 
     @override_config(DEFAULT_AREA='argentina')
     def test_area_index_view(self):
-        argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        argentina = Area.objects.create(name=u'Argentina', slug='argentina')
         election = Election.objects.create(
             name='the name',
             area=argentina)
@@ -143,7 +131,7 @@ class ElectionsPerAreaTestCase(TestCase):
         self.assertTrue(response.context['default_election'])
 
     def test_area_index_view_if_not_default_area(self):
-        argentina = Area.objects.create(name=u'Argentina', id='argentina-pais')
+        argentina = Area.objects.create(name=u'Argentina', slug='argentina')
         election = Election.objects.create(
             name='the name',
             area=argentina)
@@ -160,7 +148,7 @@ class ElectionsPerAreaTestCase(TestCase):
         second_e = Election.objects.get(id=2)
         second_e.position = 'senador'
         second_e.save()
-        argentina = Area.objects.create(name=u'Argentina', id='argentina')
+        argentina = Area.objects.create(name=u'Argentina', slug='argentina')
         election = Election.objects.create(
             name='the name',
             area=argentina)
@@ -196,8 +184,8 @@ class ElectionsPerAreaTestCase(TestCase):
 
     @override_settings(FILTERABLE_AREAS_TYPE = ['Comuna'])
     def test_areas_redirect_when_necesary(self):
-        child = Area.objects.create(name="children", classification="Comuna")
-        mother = Area.objects.create(name="mother")
+        child = Area.objects.create(name="children", classification="Comuna", slug='children')
+        mother = Area.objects.create(name="mother", slug='mother')
         mother.children.add(child)
 
         url = child.get_absolute_url()
@@ -205,15 +193,15 @@ class ElectionsPerAreaTestCase(TestCase):
         url_mother = mother.get_absolute_url()
         self.assertRedirects(response, url_mother)
 
-        child2 = Area.objects.create(name="children", classification="Comuna")
+        child2 = Area.objects.create(name="children", classification="Comuna", slug='children2')
         url = child2.get_absolute_url()
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
     @override_settings(FILTERABLE_AREAS_TYPE = ['Comuna'])
     def test_related_areas_elections(self):
-        child = Area.objects.create(name="children", classification="Comuna")
-        mother = Area.objects.create(name="mother")
+        child = Area.objects.create(name="children", classification="Comuna", slug='children')
+        mother = Area.objects.create(name="mother", slug='mother')
         mother.children.add(child)
 
         Election.objects.create(name='the election_mother',
@@ -223,7 +211,7 @@ class ElectionsPerAreaTestCase(TestCase):
                                 position='alcalde',
                                 extra_info_content=u'Más Información')
 
-        grand_mother = Area.objects.create(name="grand_mother")
+        grand_mother = Area.objects.create(name="grand_mother", slug='grand-mother')
         grand_mother.children.add(mother)
 
         Election.objects.create(name='the election_grand_mother',
@@ -243,7 +231,7 @@ class ElectionsPerAreaTestCase(TestCase):
 
 class AreaOGPTestCase(TestCase):
     def setUp(self):
-        self.argentina = Area.objects.create(name=u'Argentina')
+        self.argentina = Area.objects.create(name=u'Argentina', slug='argentina')
         self.site = Site.objects.get_current()
 
     def test_get_absolute_url(self):

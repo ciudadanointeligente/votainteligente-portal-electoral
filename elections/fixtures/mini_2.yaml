@@ -28,24 +28,36 @@
     user_permissions: []
 - model: popolo.area
   pk: "1"
-  fields: {slug: algarrobo, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     name: Algarrobo, identifier: '5602', classification: 'Comuna', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: "2"
-  fields: {slug: alhue, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     name: "Alhu\xE9", identifier: '13502', classification: 'Comuna', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: "3"
-  fields: {slug: arica, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     name: Arica, identifier: '15101', classification: '', parent: null, geom: null,
     inhabitants: null}
 - model: popolo.area
   pk: "4"
-  fields: {slug: ciudadanoi, start_date: null, end_date: null,
+  fields: {start_date: null, end_date: null,
     name: CiudadanoI, identifier: '15102', classification: '', parent: null, geom: null,
     inhabitants: null}
+- model: elections.area
+  pk: 1
+  fields: {area_ptr_id: 1, slug: 'algarrobo'}
+- model: elections.area
+  pk: 2
+  fields: {area_ptr_id: 2, slug: 'alhue'}
+- model: elections.area
+  pk: 3
+  fields: {area_ptr_id: 3, slug: 'arica'}
+- model: elections.area
+  pk: 4
+  fields: {area_ptr_id: 4, slug: 'ciudadaniai'}
 - model: backend_citizen.profile
   pk: 1
   fields: {user: 1, image: '', description: '', first_time_in_backend_citizen: true}
@@ -64,40 +76,40 @@
     searchable: true, slug: 4a-circunscripcion-coquimbo, area: 1}
   model: elections.election
   pk: 2
-- fields: { slug: candidato-1, name: Manuel Rojas }
+- fields: { name: Manuel Rojas }
   model: popolo.person
   pk: 1
-- fields: { slug: candidato-2, name: Alejandro Guillier}
+- fields: { name: Alejandro Guillier}
   model: popolo.person
   pk: 2
-- fields: { slug: candidato-3, name: Pedro Araya}
+- fields: { name: Pedro Araya}
   model: popolo.person
   pk: 3
-- fields: { slug: candidato-4, name: Gisela Contreras, email: gcontreras@votai.cl}
+- fields: { name: Gisela Contreras, email: gcontreras@votai.cl}
   model: popolo.person
   pk: 4
-- fields: { slug: candidato-5, name: Carlos Cantero, email: ccantero@votai.com}
+- fields: { name: Carlos Cantero, email: ccantero@votai.com}
   model: popolo.person
   pk: 5
-- fields: { slug: candidato-6, name: Daniel Guevara, email: dguevara@votai.io}
+- fields: { name: Daniel Guevara, email: dguevara@votai.io}
   model: popolo.person
   pk: 6
-- fields: { slug: candidato-7, name: Jimena Orrego}
+- fields: { name: Jimena Orrego}
   model: popolo.person
   pk: 7
-- fields: { slug: candidato-8, name: Gonzalo Uriarte}
+- fields: { name: Gonzalo Uriarte}
   model: popolo.person
   pk: 8
-- fields: { slug: candidato-9, name: Mario Bertolino}
+- fields: { name: Mario Bertolino}
   model: popolo.person
   pk: 9
-- fields: { slug: candidato-10, name: Jorge Pizarro}
+- fields: { name: Jorge Pizarro}
   model: popolo.person
   pk: 10
-- fields: { slug: candidato-11, name: "Adriana Munoz"}
+- fields: { name: "Adriana Munoz"}
   model: popolo.person
   pk: 11
-- fields: { slug: candidato-12, name: Luis Vega}
+- fields: { name: Luis Vega}
   model: popolo.person
   pk: 12
 - fields: {name: Perros y gatos, slug: perros-y-gatos}
@@ -184,22 +196,22 @@
 - fields: {label: 'no', topic: 6}
   model: candidator.position
   pk: 14
-- fields: {person_ptr: 1, name: Manuel Rojas, elections: [2], extra_info: {}}
+- fields: {person_ptr: 1, slug: candidate-1, name: Manuel Rojas, elections: [2], extra_info: {}}
   model: elections.candidate
   pk: 1
-- fields: {person_ptr: 2, name: Alejandro Guillier, elections: [2], extra_info: {}}
+- fields: {person_ptr: 2, slug: candidate-2, name: Alejandro Guillier, elections: [2], extra_info: {}}
   model: elections.candidate
   pk: 2
-- fields: {person_ptr: 3, name: Pedro Araya, elections: [2], extra_info: {}}
+- fields: {person_ptr: 3, slug: candidate-3, name: Pedro Araya, elections: [2], extra_info: {}}
   model: elections.candidate
   pk: 3
-- fields: {person_ptr: 4, name: Gisela Contreras, elections: [1], extra_info: {}}
+- fields: {person_ptr: 4, slug: candidate-4, name: Gisela Contreras, elections: [1], extra_info: {}}
   model: elections.candidate
   pk: 4
-- fields: {person_ptr: 5, name: Carlos Cantero, elections: [1], extra_info: {}}
+- fields: {person_ptr: 5, slug: candidate-5, name: Carlos Cantero, elections: [1], extra_info: {}}
   model: elections.candidate
   pk: 5
-- fields: {person_ptr: 6, name: Daniel Guevara, elections: [1], extra_info: {}}
+- fields: {person_ptr: 6, slug: candidate-6, name: Daniel Guevara, elections: [1], extra_info: {}}
   model: elections.candidate
   pk: 6
 - fields: {topic: 4, position: 8, person: 1}

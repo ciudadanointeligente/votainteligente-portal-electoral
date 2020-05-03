@@ -24,5 +24,5 @@ class Command(BaseCommand):
             tag = tag.decode('utf8').strip().lower()
             election.tags.add(tag)
         except Exception:
-          print u'excepción con la elección ' + election_name
+          print(u'excepción con la elección ' + election_name)
           pass

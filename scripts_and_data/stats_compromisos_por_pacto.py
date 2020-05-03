@@ -11,4 +11,4 @@ stats = {}
 
 for p in PersonalData.objects.filter(label="Pacto").distinct("value"):
     ps = Commitment.objects.filter(candidate__personal_datas__label="Pacto", candidate__personal_datas__value=p.value).count()
-    print p.value + "|" + str(ps)
+    print(p.value + "|" + str(ps))

@@ -53,7 +53,6 @@ class ProposalsGetterBase(AreaDeterminerMixin):
     def _get_all_proposals(self, area):
         elections = self.get_elections(area)
         proposals = self.get_proposals_from_election(elections)
-        print proposals, elections
         return proposals
 
     def get_cache_key(self, area):

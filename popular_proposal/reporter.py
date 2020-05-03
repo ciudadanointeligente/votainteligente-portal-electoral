@@ -39,7 +39,7 @@ class PeriodicReporter(object):
         context['proposals'] = self.get_proposals_dict()
         if self.user.profile.is_organization:
             context['new_proposals'] = self.get_new_proposals()
-            print context['new_proposals']
+            print(context['new_proposals'])
         return context
 
     def send_mail(self):

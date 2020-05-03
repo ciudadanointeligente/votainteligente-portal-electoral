@@ -68,7 +68,6 @@ class ProposalWithoutAreaFilter(FilterSet):
         if self.area is not None:
             queryset = queryset.filter(area=self.area)
             if d and self.area:
-                print("<----------------", self.area)
                 d['area'] = self.area.id
         super(ProposalWithoutAreaFilter, self).__init__(data=d,
                                                         queryset=queryset,

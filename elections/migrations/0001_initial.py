@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ('popolo', '0002_update_models_from_upstream'),
         ('taggit', '0002_auto_20150616_2121'),
-        ('candidator', '0005_auto_20200502_2354'),
+        ('candidator', '0004_auto_20150714_1756'),
     ]
 
     operations = [

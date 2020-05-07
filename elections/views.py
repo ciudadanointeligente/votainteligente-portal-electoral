@@ -8,7 +8,6 @@ from elections.models import Election, Area
 from elections.models import Candidate, QuestionCategory
 from votai_utils.views import HomeViewBase
 import logging
-from backend_citizen.forms import GroupCreationForm
 from candidator.models import Topic, TakenPosition
 from django.contrib.auth.forms import AuthenticationForm
 from django_filters.views import FilterMixin
@@ -67,7 +66,6 @@ class HomeView(HomeViewBase):
 
         context['searchable_elections_enabled'] = True
         context['login_form'] = AuthenticationForm()
-        context['group_login_form'] = GroupCreationForm()
         featured_candidates = cache.get('featured_candidates')
         if featured_candidates is None:
             featured_candidates = Candidate.objects.filter(commitments__isnull=False).filter(elections__name="Presidencia")

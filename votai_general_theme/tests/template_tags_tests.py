@@ -18,8 +18,6 @@ from backend_candidate.models import Candidacy
 from popular_proposal.models import PopularProposal, Commitment
 from popular_proposal.forms.form_texts import TOPIC_CHOICES
 from django.test import override_settings
-from django.shortcuts import render
-from constance import config
 from constance.test import override_config
 
 class TemplateTagsTestCase(TestCase):

@@ -163,35 +163,6 @@ class ProposalHomeTestCase(PopularProposalTestCaseBase):
         form = filterset.form
         self.assertTrue(form.is_valid())
 
-    def test_area_detail_view_brings_proposals(self):
-        url = self.algarrobo.get_absolute_url()
-        response = self.client.get(url)
-        self.assertIn(self.popular_proposal1,
-                      response.context['popular_proposals'])
-        self.assertIn(self.popular_proposal2,
-                      response.context['popular_proposals'])
-
-    def test_get_area_with_form(self):
-        url = self.algarrobo.get_absolute_url()
-        response = self.client.get(url)
-        self.assertIsInstance(response.context['proposal_filter_form'],
-                              Form)
-        self.assertIn(self.popular_proposal1,
-                      response.context['popular_proposals'])
-
-        self.assertIn(self.popular_proposal2,
-                      response.context['popular_proposals'])
-        clasification_id = TOPIC_CHOICES[2][0]
-        response = self.client.get(url, {'clasification': clasification_id})
-        form = response.context['proposal_filter_form']
-        self.assertEquals(form.fields['clasification'].initial,
-                          clasification_id)
-        self.assertNotIn(self.popular_proposal1,
-                         response.context['popular_proposals'])
-
-        self.assertIn(self.popular_proposal2,
-                      response.context['popular_proposals'])
-
 
 class ProposalFilterTestsCase(PopularProposalTestCaseBase):
     def setUp(self):

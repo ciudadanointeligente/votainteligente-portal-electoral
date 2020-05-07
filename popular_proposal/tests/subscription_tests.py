@@ -363,14 +363,3 @@ class HomeWithProposalsViewTestCase(TestCase):
         self.assertEquals(ps.all()[2], self.proposal1)
         # this proposal has 4 likes
         self.assertEquals(ps.all()[3], self.proposal3)
-
-    def test_get_home_with_the_proposals(self):
-        url = reverse('home')
-        response = self.client.get(url)
-        ps = response.context['proposals_with_likers']
-        # this proposal has 4 likes
-        self.assertEquals(ps.all()[0], self.proposal2)
-        # this proposal has 4 likes
-        self.assertEquals(ps.all()[1], self.proposal4)
-        # this proposal has 4 likes
-        self.assertEquals(ps.all()[2], self.proposal1)

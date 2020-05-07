@@ -7,8 +7,6 @@ from django.template.loader import get_template
 from django.template import Context, Template
 from django.test import override_settings
 from elections.models import Topic
-from django.contrib.auth.models import User
-from backend_candidate.models import Candidacy
 import datetime
 from django.utils import timezone
 from agenda.models import Activity
@@ -162,16 +160,6 @@ class CandidaTeTestCase(Version2TestCase):
         candidate = Candidate.objects.create(name="Felipe Feroz")
         self.election.candidates.add(candidate)
         self.assertFalse(candidate.force_has_answer)
-
-    def test_candidate_is_with_us(self):
-        candidate = Candidate.objects.get(id=1)
-        user = User.objects.create_user(username='user', password='password')
-        Candidacy.objects.create(user=user, candidate=candidate)
-        self.assertFalse(candidate.has_joined())
-        self.client.login(username=user.username, password='password')
-        user = User.objects.get(id=user.id)
-        self.assertTrue(user.last_login)
-        self.assertTrue(candidate.has_joined())
 
     def test_candidate_ordering(self):
         TakenPosition.objects.all().delete()

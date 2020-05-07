@@ -8,4 +8,4 @@ from popular_proposal.models import PopularProposal
 from elections.models import Election
 for p in PopularProposal.objects.exclude(commitments__isnull=True):
     c = p.commitments.count()
-    print unicode(p.id) + u"|" +p.get_classification()+ u"|" + p.title + u"|" + unicode(c)
+    print(unicode(p.id) + u"|" +p.get_classification()+ u"|" + p.title + u"|" + unicode(c))

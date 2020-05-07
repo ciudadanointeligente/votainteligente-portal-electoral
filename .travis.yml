@@ -17,15 +17,11 @@ addons:
             - python-pgmagick
             - postgresql-client
 install:
-  - wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.4.1/elasticsearch-2.4.1.tar.gz
-  - tar -xzf elasticsearch-2.4.1.tar.gz
-  - ./elasticsearch-2.4.1/bin/elasticsearch &
   - pip install -r requirements.txt
   - pip install coveralls
   - pip install psycopg2
 # command to run tests
 script:
-  - wget -q --waitretry=1 --retry-connrefused -T 10 -O - http://127.0.0.1:9200
   - coverage run manage.py test --noinput
   - coverage report -m
 after_script:

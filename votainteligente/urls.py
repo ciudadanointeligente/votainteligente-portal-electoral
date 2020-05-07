@@ -35,7 +35,6 @@ urlpatterns = [
     url(_(r'^propuestas/'), include('popular_proposal.urls', namespace='popular_proposals')),
     url(_('^pages/'), include('django.contrib.flatpages.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
-    url(r'^newsletter/', include('newsletter.urls')),
     url(r'^backend_staff/', include('backend_staff.urls', namespace='backend_staff')),
     url(_(r'^perfil_ciudadano/'), include('backend_citizen.urls', namespace='backend_citizen')),
     url(r'^suggestions/', include('suggestions_for_candidates.urls', namespace='suggestions_for_candidates')),

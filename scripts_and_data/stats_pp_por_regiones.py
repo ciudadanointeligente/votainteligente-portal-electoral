@@ -10,4 +10,4 @@ pp = pprint.PrettyPrinter(indent=4)
 regiones = {}
 for p in PopularProposal.objects.filter(generated_at__classification="Comuna"):
 	region = p.generated_at.parent.parent.parent
-	print region.id + u"|" + unicode(p.id) + u"|" + p.title
+	print(region.id + u"|" + unicode(p.id) + u"|" + p.title)

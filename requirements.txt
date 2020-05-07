@@ -5,7 +5,7 @@ django-taggit==0.21.3
 loremipsum==1.0.5
 elasticsearch==2.4
 django-haystack==2.7.0
--e git+https://github.com/lfalvarez/django-candidator.git#egg=django-candidator
+-e git+https://github.com/lfalvarez/django-candidator.git@django2#egg=django-candidator
 pyyaml>=4.2b1
 django-markdown-deux==1.0.4
 django-extensions==1.7.5
@@ -22,7 +22,6 @@ python-memcached==1.58
 -e git+https://github.com/mysociety/django-popolo.git#egg=django-popolo
 django-mathfilters==0.4.0
 django-picklefield==0.3.2
--e git+https://github.com/dokterbob/django-newsletter#egg=django_newsletter
 djangorestframework==3.6.2
 slumber==0.7.1
 -e git+https://github.com/liberation/django-ogp.git#egg=django_ogp

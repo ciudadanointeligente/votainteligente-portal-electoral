@@ -25,3 +25,4 @@ preguntales/tests/testing_mails/attachments/hello.pd_*.pdf
 .ropeproject
 .idea/
 glenv/
+whoosh_index/

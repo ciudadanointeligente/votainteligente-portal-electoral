@@ -129,7 +129,6 @@ class RankingTests(TestCase):
                                   commited=False)
         ordered_candidates = Candidate.ranking.all()
         self.assertEquals(ordered_candidates.count(), Candidate.objects.all().count())
-        print ordered_candidates[1].elections.first().area.proposals.count()
         self.assertEquals(ordered_candidates[1].num_proposals, 3)
         self.assertEquals(ordered_candidates[1].num_commitments, 2)
 

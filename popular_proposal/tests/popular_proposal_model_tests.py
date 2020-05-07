@@ -125,35 +125,6 @@ class PopularProposalTestCase(ProposingCycleTestCaseBase):
         proposals = PopularProposal.objects.all()
         self.assertEquals(p2, proposals.first())
 
-    def test_home_view_brings_featured_first(self):
-        p1 = PopularProposal.objects.create(proposer=self.fiera,
-                                            area=self.arica,
-                                            data=self.data,
-                                            title=u'This is a title1',
-                                            clasification=u'education'
-                                            )
-        p2 = PopularProposal.objects.create(proposer=self.fiera,
-                                            area=self.arica,
-                                            data=self.data,
-                                            title=u'This is a title2',
-                                            clasification=u'education',
-                                            featured=True
-                                            )
-        p3 = PopularProposal.objects.create(proposer=self.fiera,
-                                            area=self.arica,
-                                            data=self.data,
-                                            title=u'This is a title3',
-                                            clasification=u'education',
-                                            featured=True
-                                            )
-        url = reverse('home')
-        response = self.client.get(url)
-        featured_proposals = response.context['featured_proposals']
-        # this proposal has 4 likes
-        self.assertIn(p2, featured_proposals)
-        self.assertIn(p3, featured_proposals)
-        self.assertNotIn(p1, featured_proposals)
-
     def test_get_ribbon_text(self):
         p1 = PopularProposal.objects.create(proposer=self.fiera,
                                             area=self.arica,

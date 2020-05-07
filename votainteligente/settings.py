@@ -57,7 +57,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'tinymce',
     'mathfilters',
-    'newsletter',
     'rest_framework',
     'suggestions_for_candidates',
     # Uncomment the next line to enable admin documentation:
@@ -249,15 +248,12 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # SITE_ID
 SITE_ID = 1
-NEWSLETTER_CONFIRM_EMAIL = False
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 LANGUAGE_CODE = 'es-cl'
 SITE_ROOT = os.path.dirname(os.path.realpath(__name__))
 LOCALE_PATHS = ( os.path.join(SITE_ROOT, 'locale'), )
 TIME_ZONE = 'UTC'
-# Using django-tinymce
-# NEWSLETTER_RICHTEXT_WIDGET = "tinymce.widgets.TinyMCE"
 
 # Send YoQuieroSaber_Juego mails to Cuttlefish (see http://cuttlefish.io)
 EMAIL_HOST = 'cuttlefish.oaf.org.au'

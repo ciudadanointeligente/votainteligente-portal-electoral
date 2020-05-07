@@ -16,7 +16,7 @@ def save_candidate_image_locally(c, url):
     try:
         downloaded_image = urllib2.urlopen(url)
     except:
-        print c.name, c.election
+        print(c.name, c.election)
         # c.image = None
         # c.save()
         return

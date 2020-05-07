@@ -8,13 +8,8 @@ from elections.models import Election, Area
 from elections.models import Candidate, QuestionCategory
 from votai_utils.views import HomeViewBase
 import logging
-from backend_citizen.forms import GroupCreationForm
 from candidator.models import Topic, TakenPosition
-from django.shortcuts import get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
-from backend_citizen.forms import UserCreationForm as RegistrationForm
-from popular_proposal.models import PopularProposal
-from popular_proposal.filters import ProposalWithoutAreaFilter
 from django_filters.views import FilterMixin
 from django.core.cache import cache
 from django.conf import settings
@@ -70,24 +65,7 @@ class HomeView(HomeViewBase):
         context['featured_elections'] = featured_elections
 
         context['searchable_elections_enabled'] = True
-        context['register_new_form'] = RegistrationForm()
         context['login_form'] = AuthenticationForm()
-        context['group_login_form'] = GroupCreationForm()
-        total_proposals = cache.get('total_proposals')
-        if total_proposals is None:
-            total_proposals = PopularProposal.objects.count()
-            cache.set('total_proposals', total_proposals, 600)
-        context['total_proposals'] = total_proposals
-        proposals_with_likers = cache.get('proposals_with_likers')
-        if proposals_with_likers is None:
-            proposals_with_likers = PopularProposal.ordered.by_likers()[:9]
-            cache.set('proposals_with_likers', proposals_with_likers, 600)
-        context['proposals_with_likers'] = proposals_with_likers
-        featured_proposals = cache.get('featured_proposals')
-        if featured_proposals is None:
-            featured_proposals = PopularProposal.objects.filter(featured=True).filter(content_type__app_label="popular_proposal")
-            cache.set('featured_proposals', featured_proposals, 600)
-        context['featured_proposals'] = featured_proposals
         featured_candidates = cache.get('featured_candidates')
         if featured_candidates is None:
             featured_candidates = Candidate.objects.filter(commitments__isnull=False).filter(elections__name="Presidencia")
@@ -221,10 +199,6 @@ class AreaDetailView(DetailView, FilterMixin):
         kwargs = {'data': initial or None,
                   'area': self.object
                   }
-        filterset = ProposalWithoutAreaFilter(**kwargs)
-        context['proposal_filter_form'] = filterset.form
-
-        context['popular_proposals'] = filterset.qs
         return context
 
     def get_queryset(self, *args, **kwargs):

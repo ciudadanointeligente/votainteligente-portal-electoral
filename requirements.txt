@@ -23,7 +23,7 @@ python-memcached==1.58
 django-mathfilters==0.4.0
 django-picklefield==0.3.2
 -e git+https://github.com/dokterbob/django-newsletter#egg=django_newsletter
-djangorestframework==3.6.2
+djangorestframework==3.11.2
 slumber==0.7.1
 -e git+https://github.com/liberation/django-ogp.git#egg=django_ogp
 mock==1.3.0

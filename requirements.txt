@@ -10,7 +10,7 @@ pyyaml>=4.2b1
 django-markdown-deux==1.0.4
 django-extensions==1.7.5
 sorl-thumbnail==12.4a1
-Pillow==4.1.1
+Pillow==9.0.0
 django-tinymce==2.7.0
 django-registration==2.0.4
 django-registration-defaults==0.4.4
